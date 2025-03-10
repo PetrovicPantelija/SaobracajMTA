@@ -233,7 +233,7 @@ namespace Saobracaj.Dokumenta
 
         /////
         ///
-        public void InsPopisKontejneraStavke(int IDNadredjenog, string BrojKontejnera, int SkladisteU, int LokacijaU, int PronadjenIspravan, int SkladisteNovo, int LokacijaNovo,  DateTime Datum, string Korisnik, int Brodar, int TipKontejnera, int StatusKontejnera)
+        public void InsPopisKontejneraStavke(int IDNadredjenog, string BrojKontejnera, int SkladisteU, int LokacijaU, int PronadjenIspravan, int SkladisteNovo, int LokacijaNovo,  DateTime Datum, string Korisnik, int Brodar, int TipKontejnera, int StatusKontejnera, int KvalitetKontejnera)
         {
            
 
@@ -338,6 +338,13 @@ namespace Saobracaj.Dokumenta
             parameter43.Value = StatusKontejnera;
             myCommand.Parameters.Add(parameter43);
 
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@KvalitetKontejnera";
+            parameter44.SqlDbType = SqlDbType.Int;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = KvalitetKontejnera;
+            myCommand.Parameters.Add(parameter44);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -431,7 +438,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdPopisKontejneraStavke(int ID, int IDNadredjenog, string BrojKontejnera, int SkladisteU, int LokacijaU, int PronadjenIspravan, int SkladisteNovo, int LokacijaNovo, DateTime Datum, string Korisnik, int Brodar, int TipKontejnera, int StatusKontejnera)
+        public void UpdPopisKontejneraStavke(int ID, int IDNadredjenog, string BrojKontejnera, int SkladisteU, int LokacijaU, int PronadjenIspravan, int SkladisteNovo, int LokacijaNovo, DateTime Datum, string Korisnik, int Brodar, int TipKontejnera, int StatusKontejnera, int KvalitetKontejnera)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -539,6 +546,14 @@ namespace Saobracaj.Dokumenta
             parameter43.Direction = ParameterDirection.Input;
             parameter43.Value = StatusKontejnera;
             myCommand.Parameters.Add(parameter43);
+
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@KvalitetKontejnera";
+            parameter44.SqlDbType = SqlDbType.Int;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = KvalitetKontejnera;
+            myCommand.Parameters.Add(parameter44);
+
 
 
             myConnection.Open();

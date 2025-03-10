@@ -29,6 +29,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKopiranjeCenovnikaPoTipu));
             this.label6 = new System.Windows.Forms.Label();
             this.cboTipCenovnika1 = new System.Windows.Forms.ComboBox();
@@ -39,7 +40,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button4 = new System.Windows.Forms.Button();
             this.cboPartner2 = new System.Windows.Forms.ComboBox();
@@ -50,8 +51,10 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.toolStrip1.SuspendLayout();
+            this.meniHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -176,17 +179,17 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.dataGridView1.Size = new System.Drawing.Size(1031, 410);
             this.dataGridView1.TabIndex = 132;
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1058, 25);
-            this.toolStrip1.TabIndex = 133;
-            this.toolStrip1.Text = "Štampaj izveštaj";
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(1058, 25);
+            this.meniHeader.TabIndex = 133;
+            this.meniHeader.Text = "Štampaj izveštaj";
             // 
             // toolStripSeparator1
             // 
@@ -294,6 +297,13 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.txtNaziv.Size = new System.Drawing.Size(380, 20);
             this.txtNaziv.TabIndex = 143;
             // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // frmKopiranjeCenovnikaPoTipu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,7 +319,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.Controls.Add(this.cboPartner1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cboRazred);
             this.Controls.Add(this.label11);
@@ -324,8 +334,9 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.Text = "Kopiranje cenovnika po parametrima";
             this.Load += new System.EventHandler(this.frmKopiranjeCenovnikaPoTipu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +353,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip meniHeader;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox cboPartner2;
@@ -353,5 +364,6 @@ namespace Saobracaj.TrackModal.Sifarnici
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNaziv;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

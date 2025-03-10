@@ -54,8 +54,6 @@ namespace Saobracaj.Uvoz
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.txtNaziv = new System.Windows.Forms.TextBox();
-            this.txtPIN = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripEx1.SuspendLayout();
@@ -68,13 +66,14 @@ namespace Saobracaj.Uvoz
             // meniHeader
             // 
             this.meniHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.meniHeader.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1});
-            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Location = new System.Drawing.Point(0, 568);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(698, 27);
             this.meniHeader.TabIndex = 47;
@@ -118,7 +117,7 @@ namespace Saobracaj.Uvoz
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 39);
+            this.label1.Location = new System.Drawing.Point(19, 56);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
@@ -128,7 +127,7 @@ namespace Saobracaj.Uvoz
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 172);
+            this.label2.Location = new System.Drawing.Point(20, 169);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
@@ -138,7 +137,7 @@ namespace Saobracaj.Uvoz
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 115);
+            this.label3.Location = new System.Drawing.Point(14, 110);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
@@ -149,7 +148,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtID.BackColor = System.Drawing.Color.PeachPuff;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(17, 81);
+            this.txtID.Location = new System.Drawing.Point(18, 78);
             this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(86, 20);
@@ -238,7 +237,7 @@ namespace Saobracaj.Uvoz
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(698, 33);
             this.panelHeader.TabIndex = 461;
@@ -315,24 +314,8 @@ namespace Saobracaj.Uvoz
             this.txtNaziv.Location = new System.Drawing.Point(17, 187);
             this.txtNaziv.Margin = new System.Windows.Forms.Padding(2);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(226, 20);
+            this.txtNaziv.Size = new System.Drawing.Size(231, 20);
             this.txtNaziv.TabIndex = 462;
-            // 
-            // txtPIN
-            // 
-            this.txtPIN.Location = new System.Drawing.Point(246, 92);
-            this.txtPIN.Name = "txtPIN";
-            this.txtPIN.Size = new System.Drawing.Size(231, 20);
-            this.txtPIN.TabIndex = 485;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(246, 66);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(86, 20);
-            this.textBox1.TabIndex = 484;
-            this.textBox1.Text = "0";
             // 
             // Brodovi
             // 
@@ -344,8 +327,6 @@ namespace Saobracaj.Uvoz
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
             this.ClientSize = new System.Drawing.Size(698, 595);
-            this.Controls.Add(this.txtPIN);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel4);
@@ -404,7 +385,5 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox txtPIN;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

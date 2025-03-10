@@ -307,6 +307,8 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnTaraZ;
             
+            private global::System.Data.DataColumn columnRoba;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VaganjeRptDataTable() {
@@ -454,6 +456,14 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RobaColumn {
+                get {
+                    return this.columnRoba;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +499,7 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public VaganjeRptRow AddVaganjeRptRow(string BrojKontejnera, int VrstaKontejnera, string VagarskaPotvrdaBroj, decimal Bruto, decimal Tara, decimal Neto, System.DateTime DatumMerenja, int ID, int KontID, string Kamion, string Korisnik, int IDVaganja, string SkNaziv, decimal TaraZ) {
+            public VaganjeRptRow AddVaganjeRptRow(string BrojKontejnera, int VrstaKontejnera, string VagarskaPotvrdaBroj, decimal Bruto, decimal Tara, decimal Neto, System.DateTime DatumMerenja, int ID, int KontID, string Kamion, string Korisnik, int IDVaganja, string SkNaziv, decimal TaraZ, string Roba) {
                 VaganjeRptRow rowVaganjeRptRow = ((VaganjeRptRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BrojKontejnera,
@@ -505,7 +515,8 @@ namespace Saobracaj {
                         Korisnik,
                         IDVaganja,
                         SkNaziv,
-                        TaraZ};
+                        TaraZ,
+                        Roba};
                 rowVaganjeRptRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVaganjeRptRow);
                 return rowVaganjeRptRow;
@@ -542,6 +553,7 @@ namespace Saobracaj {
                 this.columnIDVaganja = base.Columns["IDVaganja"];
                 this.columnSkNaziv = base.Columns["SkNaziv"];
                 this.columnTaraZ = base.Columns["TaraZ"];
+                this.columnRoba = base.Columns["Roba"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -575,12 +587,15 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnSkNaziv);
                 this.columnTaraZ = new global::System.Data.DataColumn("TaraZ", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaraZ);
+                this.columnRoba = new global::System.Data.DataColumn("Roba", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoba);
                 this.columnBrojKontejnera.MaxLength = 100;
                 this.columnVagarskaPotvrdaBroj.MaxLength = 50;
                 this.columnKontID.AllowDBNull = false;
                 this.columnKamion.MaxLength = 100;
                 this.columnKorisnik.MaxLength = 30;
                 this.columnSkNaziv.MaxLength = 20;
+                this.columnRoba.MaxLength = 30;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -942,6 +957,22 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Roba {
+                get {
+                    try {
+                        return ((string)(this[this.tableVaganjeRpt.RobaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Roba\' in table \'VaganjeRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVaganjeRpt.RobaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsBrojKontejneraNull() {
                 return this.IsNull(this.tableVaganjeRpt.BrojKontejneraColumn);
             }
@@ -1094,6 +1125,18 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTaraZNull() {
                 this[this.tableVaganjeRpt.TaraZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRobaNull() {
+                return this.IsNull(this.tableVaganjeRpt.RobaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRobaNull() {
+                this[this.tableVaganjeRpt.RobaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1270,6 +1313,7 @@ namespace Saobracaj.TestiranjeDataSet17TableAdapters {
             tableMapping.ColumnMappings.Add("IDVaganja", "IDVaganja");
             tableMapping.ColumnMappings.Add("SkNaziv", "SkNaziv");
             tableMapping.ColumnMappings.Add("TaraZ", "TaraZ");
+            tableMapping.ColumnMappings.Add("Roba", "Roba");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

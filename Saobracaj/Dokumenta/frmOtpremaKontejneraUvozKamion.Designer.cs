@@ -79,14 +79,15 @@ namespace Saobracaj.Dokumenta
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.label53 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
             this.cboCarinskiPostupak = new System.Windows.Forms.ComboBox();
+            this.txtKoletaTer = new System.Windows.Forms.NumericUpDown();
             this.cbNacinPakovanja = new System.Windows.Forms.ComboBox();
+            this.label66 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.txtKoleta = new System.Windows.Forms.NumericUpDown();
-            this.label66 = new System.Windows.Forms.Label();
-            this.txtKoletaTer = new System.Windows.Forms.NumericUpDown();
-            this.label56 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.cboADR = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
@@ -202,6 +203,7 @@ namespace Saobracaj.Dokumenta
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -210,12 +212,11 @@ namespace Saobracaj.Dokumenta
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button11 = new System.Windows.Forms.Button();
             this.meniHeader.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKoleta)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtKoletaTer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKoleta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -241,7 +242,6 @@ namespace Saobracaj.Dokumenta
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // meniHeader
@@ -691,9 +691,24 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.cboTipKontejnera);
             this.panel1.Location = new System.Drawing.Point(9, 215);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1443, 360);
+            this.panel1.Size = new System.Drawing.Size(1444, 360);
             this.panel1.TabIndex = 262;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label53);
+            this.panel6.Controls.Add(this.label56);
+            this.panel6.Controls.Add(this.cboCarinskiPostupak);
+            this.panel6.Controls.Add(this.txtKoletaTer);
+            this.panel6.Controls.Add(this.cbNacinPakovanja);
+            this.panel6.Controls.Add(this.label66);
+            this.panel6.Controls.Add(this.label54);
+            this.panel6.Controls.Add(this.txtKoleta);
+            this.panel6.Location = new System.Drawing.Point(608, 7);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(264, 155);
+            this.panel6.TabIndex = 474;
             // 
             // label53
             // 
@@ -706,6 +721,18 @@ namespace Saobracaj.Dokumenta
             this.label53.TabIndex = 467;
             this.label53.Text = "NAČIN PAKOVANJA";
             // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.BackColor = System.Drawing.Color.Transparent;
+            this.label56.ForeColor = System.Drawing.Color.Black;
+            this.label56.Location = new System.Drawing.Point(11, 56);
+            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(49, 13);
+            this.label56.TabIndex = 471;
+            this.label56.Text = "KOLETA";
+            // 
             // cboCarinskiPostupak
             // 
             this.cboCarinskiPostupak.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -717,6 +744,21 @@ namespace Saobracaj.Dokumenta
             this.cboCarinskiPostupak.Size = new System.Drawing.Size(234, 21);
             this.cboCarinskiPostupak.TabIndex = 472;
             // 
+            // txtKoletaTer
+            // 
+            this.txtKoletaTer.DecimalPlaces = 3;
+            this.txtKoletaTer.Location = new System.Drawing.Point(132, 72);
+            this.txtKoletaTer.Margin = new System.Windows.Forms.Padding(2);
+            this.txtKoletaTer.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtKoletaTer.Name = "txtKoletaTer";
+            this.txtKoletaTer.Size = new System.Drawing.Size(110, 20);
+            this.txtKoletaTer.TabIndex = 469;
+            this.txtKoletaTer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // cbNacinPakovanja
             // 
             this.cbNacinPakovanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -727,6 +769,18 @@ namespace Saobracaj.Dokumenta
             this.cbNacinPakovanja.Name = "cbNacinPakovanja";
             this.cbNacinPakovanja.Size = new System.Drawing.Size(235, 21);
             this.cbNacinPakovanja.TabIndex = 466;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.BackColor = System.Drawing.Color.Transparent;
+            this.label66.ForeColor = System.Drawing.Color.Black;
+            this.label66.Location = new System.Drawing.Point(138, 55);
+            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(83, 13);
+            this.label66.TabIndex = 470;
+            this.label66.Text = "KOLETA TERM";
             // 
             // label54
             // 
@@ -752,45 +806,6 @@ namespace Saobracaj.Dokumenta
             this.txtKoleta.Name = "txtKoleta";
             this.txtKoleta.Size = new System.Drawing.Size(103, 20);
             this.txtKoleta.TabIndex = 468;
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.BackColor = System.Drawing.Color.Transparent;
-            this.label66.ForeColor = System.Drawing.Color.Black;
-            this.label66.Location = new System.Drawing.Point(138, 55);
-            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(83, 13);
-            this.label66.TabIndex = 470;
-            this.label66.Text = "KOLETA TERM";
-            // 
-            // txtKoletaTer
-            // 
-            this.txtKoletaTer.DecimalPlaces = 3;
-            this.txtKoletaTer.Location = new System.Drawing.Point(132, 72);
-            this.txtKoletaTer.Margin = new System.Windows.Forms.Padding(2);
-            this.txtKoletaTer.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.txtKoletaTer.Name = "txtKoletaTer";
-            this.txtKoletaTer.Size = new System.Drawing.Size(110, 20);
-            this.txtKoletaTer.TabIndex = 469;
-            this.txtKoletaTer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.ForeColor = System.Drawing.Color.Black;
-            this.label56.Location = new System.Drawing.Point(11, 56);
-            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(49, 13);
-            this.label56.TabIndex = 471;
-            this.label56.Text = "KOLETA";
             // 
             // label45
             // 
@@ -1035,7 +1050,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl2.Location = new System.Drawing.Point(880, 11);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(552, 308);
+            this.tabControl2.Size = new System.Drawing.Size(553, 308);
             this.tabControl2.TabIndex = 425;
             // 
             // tabPage2
@@ -1043,7 +1058,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(544, 282);
+            this.tabPage2.Size = new System.Drawing.Size(545, 282);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "RADNI NALOG OTPREMA KAMIONOM";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1084,7 +1099,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 25;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(534, 272);
+            this.dataGridView2.Size = new System.Drawing.Size(535, 272);
             this.dataGridView2.TabIndex = 159;
             // 
             // tabPage5
@@ -1093,7 +1108,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(491, 282);
+            this.tabPage5.Size = new System.Drawing.Size(544, 282);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Usluge";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1144,7 +1159,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(491, 282);
+            this.tabPage4.Size = new System.Drawing.Size(544, 282);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Napomene za pozicioniranje";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2020,7 +2035,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1410, 68);
+            this.tabPage1.Size = new System.Drawing.Size(1411, 51);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke otpreme";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2036,7 +2051,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.Location = new System.Drawing.Point(13, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1391, 56);
+            this.dataGridView1.Size = new System.Drawing.Size(1392, 39);
             this.dataGridView1.TabIndex = 133;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -2050,7 +2065,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl1.Location = new System.Drawing.Point(12, 581);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1418, 97);
+            this.tabControl1.Size = new System.Drawing.Size(1419, 80);
             this.tabControl1.TabIndex = 263;
             // 
             // chkCirada
@@ -2320,6 +2335,27 @@ namespace Saobracaj.Dokumenta
             this.panel8.Size = new System.Drawing.Size(1157, 31);
             this.panel8.TabIndex = 6;
             // 
+            // button11
+            // 
+            this.button11.AutoSize = true;
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button11.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button11.Location = new System.Drawing.Point(330, 0);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(41, 31);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "CIR";
+            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
             // button10
             // 
             this.button10.AutoSize = true;
@@ -2464,42 +2500,6 @@ namespace Saobracaj.Dokumenta
             this.panel5.Size = new System.Drawing.Size(358, 132);
             this.panel5.TabIndex = 472;
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label53);
-            this.panel6.Controls.Add(this.label56);
-            this.panel6.Controls.Add(this.cboCarinskiPostupak);
-            this.panel6.Controls.Add(this.txtKoletaTer);
-            this.panel6.Controls.Add(this.cbNacinPakovanja);
-            this.panel6.Controls.Add(this.label66);
-            this.panel6.Controls.Add(this.label54);
-            this.panel6.Controls.Add(this.txtKoleta);
-            this.panel6.Location = new System.Drawing.Point(608, 7);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(264, 155);
-            this.panel6.TabIndex = 474;
-            // 
-            // button11
-            // 
-            this.button11.AutoSize = true;
-            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button11.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button11.Location = new System.Drawing.Point(330, 0);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(41, 31);
-            this.button11.TabIndex = 19;
-            this.button11.Text = "CIR";
-            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
             // frmOtpremaKontejneraUvozKamion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2541,8 +2541,10 @@ namespace Saobracaj.Dokumenta
             this.meniHeader.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKoleta)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtKoletaTer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKoleta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -2571,8 +2573,6 @@ namespace Saobracaj.Dokumenta
             this.panel9.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

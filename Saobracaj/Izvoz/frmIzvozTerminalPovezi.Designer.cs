@@ -36,7 +36,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.txtTaraZ = new System.Windows.Forms.NumericUpDown();
             this.label40 = new System.Windows.Forms.Label();
             this.txVGMBrodBruto = new System.Windows.Forms.NumericUpDown();
             this.label39 = new System.Windows.Forms.Label();
@@ -57,12 +57,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txVGMBrodBruto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOdvaganaTezina)).BeginInit();
@@ -83,12 +84,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.chkNerasporedjeni);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.gridGroupingControl1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Controls.Add(this.numericUpDown1);
+            this.splitContainer1.Panel1.Controls.Add(this.txtTaraZ);
             this.splitContainer1.Panel1.Controls.Add(this.label40);
             this.splitContainer1.Panel1.Controls.Add(this.txVGMBrodBruto);
             this.splitContainer1.Panel1.Controls.Add(this.label39);
@@ -133,6 +135,7 @@
             this.chkNerasporedjeni.TabIndex = 437;
             this.chkNerasporedjeni.Text = "Iz nerasporedjenih";
             this.chkNerasporedjeni.UseVisualStyleBackColor = true;
+            this.chkNerasporedjeni.Click += new System.EventHandler(this.chkNerasporedjeni_CheckedChanged);
             // 
             // button1
             // 
@@ -144,6 +147,7 @@
             this.button1.TabIndex = 438;
             this.button1.Text = "POVEŽI / SNIMI PODATKE";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // gridGroupingControl1
             // 
@@ -177,29 +181,30 @@
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(1132, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 19);
+            this.label2.Size = new System.Drawing.Size(193, 19);
             this.label2.TabIndex = 435;
-            this.label2.Text = "TARA KONTEJNERA UPISANA";
+            this.label2.Text = "TARA KONTEJNERA ZAOKRUZENA";
             // 
-            // numericUpDown1
+            // txtTaraZ
             // 
-            this.numericUpDown1.DecimalPlaces = 3;
-            this.numericUpDown1.Location = new System.Drawing.Point(1135, 82);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.txtTaraZ.DecimalPlaces = 3;
+            this.txtTaraZ.Location = new System.Drawing.Point(1135, 82);
+            this.txtTaraZ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTaraZ.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(128, 20);
-            this.numericUpDown1.TabIndex = 434;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTaraZ.Name = "txtTaraZ";
+            this.txtTaraZ.Size = new System.Drawing.Size(128, 20);
+            this.txtTaraZ.TabIndex = 434;
+            this.txtTaraZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label40
             // 
@@ -228,9 +233,9 @@
             // 
             this.label39.Location = new System.Drawing.Point(1132, 12);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(146, 13);
+            this.label39.Size = new System.Drawing.Size(193, 15);
             this.label39.TabIndex = 431;
-            this.label39.Text = "TARA KONTEJNERA";
+            this.label39.Text = "TARA KONTEJNERA UPISANA";
             // 
             // txtTaraKontejnera
             // 
@@ -249,7 +254,7 @@
             // 
             // label38
             // 
-            this.label38.Location = new System.Drawing.Point(979, 7);
+            this.label38.Location = new System.Drawing.Point(984, 9);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(124, 15);
             this.label38.TabIndex = 429;
@@ -438,6 +443,13 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(341, 115);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 440;
+            // 
             // frmIzvozTerminalPovezi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +467,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txVGMBrodBruto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOdvaganaTezina)).EndInit();
@@ -486,7 +498,7 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.NumericUpDown txtOdvaganaTezina;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown txtTaraZ;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.NumericUpDown txVGMBrodBruto;
         private System.Windows.Forms.Label label39;
@@ -497,5 +509,6 @@
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

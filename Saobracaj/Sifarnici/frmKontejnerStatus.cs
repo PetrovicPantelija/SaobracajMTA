@@ -176,7 +176,7 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[1].Width = 250;
 
 
 

@@ -378,7 +378,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(1022, 64);
+            this.label13.Location = new System.Drawing.Point(986, 83);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(66, 15);
             this.label13.TabIndex = 250;

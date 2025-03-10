@@ -30,7 +30,7 @@ namespace Testiranje.Dokumeta
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
-
+        int ModulPoziva = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -150,13 +150,15 @@ namespace Testiranje.Dokumeta
 
         }
 
-        public frmPregledVozova()
+        public frmPregledVozova(int Modul)
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
             ProveriFirmu();
             ChangeTextBox();
+            ModulPoziva = Modul;
+
 
 
         }
@@ -266,7 +268,20 @@ namespace Testiranje.Dokumeta
 
         private void PrijemVozomPregled_Load(object sender, EventArgs e)
         {
-          //  RefreshDataGrid();
+
+            //1-Iz Uvoza
+            if (ModulPoziva == 1)
+            {
+                button25.Visible = false;   
+
+
+            }
+            else
+            {
+                button24.Visible = false;
+            }
+            
+            //  RefreshDataGrid();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -318,7 +333,7 @@ namespace Testiranje.Dokumeta
             {
                 case "Leget":
                     {
-                        select = " SELECT[Voz].[ID] ,UvozKonacnaZaglavlje.[ID] as PLANID,[Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
+                        select = " SELECT[Voz].[ID] ,UvozKonacnaZaglavlje.[ID] as PLANID, NazivVoza as OznakaVoza, [Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
                         " PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
                         " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera, " +
                         " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera, " +
@@ -372,20 +387,20 @@ namespace Testiranje.Dokumeta
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Voz_ID";
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Plan_ID";
-            dataGridView1.Columns[1].Width = 30;
+            dataGridView1.Columns[1].Width = 50;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].HeaderText = "Oznaka voza";
             dataGridView1.Columns[2].Width = 230;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            var select = "SELECT [ID] ,[BrVoza],[Relacija] , NazivVoza, " +
+            var select = "SELECT [ID] , NazivVoza,[BrVoza],[Relacija] ,  " +
              " CONVERT(varchar,VremePolaskaO,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaskaO,108),1,5) as VremePolaska, " +
               " CONVERT(varchar,[VremeDolaskaO],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaskaO],108),1,5)  as VremeDolaska, " +
            " [MaksimalnaBruto],[MaksimalnaDuzina] " +

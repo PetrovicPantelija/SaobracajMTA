@@ -4058,7 +4058,7 @@ namespace Saobracaj
 
         private void toolStripButton197_Click(object sender, EventArgs e)
         {
-            frmPregledVozova pvozo = new frmPregledVozova();
+            frmPregledVozova pvozo = new frmPregledVozova(Korisnik);
             pvozo.Show();
 
         }
@@ -5048,7 +5048,7 @@ namespace Saobracaj
 
         private void toolStripButton276_Click(object sender, EventArgs e)
         {
-            Uvoz.frmVrstePostupakaUvoz vpu = new Uvoz.frmVrstePostupakaUvoz();
+            Uvoz.frmVrstaCarinskogPostupka vpu = new Uvoz.frmVrstaCarinskogPostupka();
             vpu.Show();
         }
 
@@ -5114,7 +5114,7 @@ namespace Saobracaj
 
 
 
-            frmPregledVozova pv = new frmPregledVozova();
+            frmPregledVozova pv = new frmPregledVozova(2);
 
             pv.Show();
 
@@ -5122,7 +5122,7 @@ namespace Saobracaj
 
         private void toolStripButton281_Click(object sender, EventArgs e)
         {
-            frmPregledVozova pv = new frmPregledVozova();
+            frmPregledVozova pv = new frmPregledVozova(1);
 
             pv.Show();
 

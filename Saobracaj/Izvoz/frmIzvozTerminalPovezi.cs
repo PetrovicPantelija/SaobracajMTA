@@ -277,16 +277,13 @@ namespace Saobracaj.Izvoz
                             InsertIzvozKonacna ins = new InsertIzvozKonacna();
                             ins.OdrediKontejnerTerminal(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), selectedRecord2.Record.GetValue("Kontejner").ToString(),1);
                         }
-                        
                     }
-
-                    //ins.PrenesiUPlanUtovaraIzvoz
-                    //To get the cell value of particular column of selected records   
-                    //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
-                    // MessageBox.Show(cellValue);
                 }
             }
 
+            InsertIzvoz iz = new InsertIzvoz();
+            iz.UpdIzvozTerminalIzbor(Convert.ToInt32(textBox1.Text), txtOstalePlombe.Text, Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txtOdvaganaTezina.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtBokingBrodara.Text), Convert.ToDecimal(txtTaraZ.Value));
+ 
             RefreshSync();
             RefreshSync2();
 
@@ -302,5 +299,114 @@ namespace Saobracaj.Izvoz
         {
 
         }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+               
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+                if (chkNerasporedjeni.Checked == true)
+                {
+                    VratiPodatkeSelectIzvoz(Convert.ToInt32(textBox1.Text));
+                }
+                else 
+                {
+                    VratiPodatkeSelectIzvozKonacna(Convert.ToInt32(textBox1.Text));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void VratiPodatkeSelectIzvoz(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID],[BrojVagona] ,[BrojKontejnera],[VrstaKontejnera] " +
+   "   ,[BrodskaPlomba],[BookingBrodara],[Brodar] " +
+   "      ,[NetoRobe],[BrutoRobe],[BrutoRobeO],[BrojKoleta] " +
+   "      ,[BrojKoletaO],[CBM],[CBMO] " +
+    "     ,[VGMTezina],[Tara],[VGMBrod] " +
+   "      ,[SpediterRijeka],[OstalePlombe], VrstaBrodskePlombe,  VGMBrod2, TaraZ  " +
+ "  FROM [Izvoz] where ID=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
+                cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["BrodskaPlomba"].ToString());
+                txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
+                txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
+                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
+                 txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());     
+                
+                txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
+                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
+                txtTaraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
+
+
+
+
+
+
+
+            }
+
+
+
+            con.Close();
+
+
+        }
+
+        private void VratiPodatkeSelectIzvozKonacna(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID],[BrojVagona] ,[BrojKontejnera],[VrstaKontejnera] " +
+   "   ,[BrodskaPlomba],[BookingBrodara],[Brodar] " +
+   "      ,[NetoRobe],[BrutoRobe],[BrutoRobeO],[BrojKoleta] " +
+   "      ,[BrojKoletaO],[CBM],[CBMO] " +
+    "     ,[VGMTezina],[Tara],[VGMBrod] " +
+   "      ,[SpediterRijeka],[OstalePlombe], VrstaBrodskePlombe,  VGMBrod2, TaraZ  " +
+ "  FROM [IzvozKonacna] where ID=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
+                txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
+                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
+                txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
+                txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
+                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
+                txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
+                txtTaraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
+            }
+
+
+
+            con.Close();
+
+
+        }
+   
     }
 }

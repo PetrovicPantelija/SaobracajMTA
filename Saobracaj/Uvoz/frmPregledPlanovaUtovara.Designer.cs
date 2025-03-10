@@ -79,12 +79,14 @@ namespace Saobracaj.Uvoz
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(0, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(873, 398);
+            this.dataGridView1.Size = new System.Drawing.Size(1188, 506);
             this.dataGridView1.TabIndex = 136;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -97,9 +99,9 @@ namespace Saobracaj.Uvoz
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4});
-            this.meniHeader.Location = new System.Drawing.Point(0, 431);
+            this.meniHeader.Location = new System.Drawing.Point(0, 33);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(873, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1188, 27);
             this.meniHeader.TabIndex = 131;
             this.meniHeader.Text = "Pošalji mail infrastrukturi";
             this.meniHeader.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -167,7 +169,7 @@ namespace Saobracaj.Uvoz
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(873, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1188, 33);
             this.panelHeader.TabIndex = 462;
             // 
             // panel2
@@ -182,7 +184,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(12, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(606, 31);
+            this.panel2.Size = new System.Drawing.Size(921, 31);
             this.panel2.TabIndex = 6;
             // 
             // button2
@@ -199,9 +201,9 @@ namespace Saobracaj.Uvoz
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button2.Location = new System.Drawing.Point(208, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 31);
+            this.button2.Size = new System.Drawing.Size(215, 31);
             this.button2.TabIndex = 20;
-            this.button2.Text = "Plan SC15";
+            this.button2.Text = "DODAJ KONTEJNER PO SC15";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.toolStripButton4_Click);
@@ -302,9 +304,9 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(873, 466);
-            this.Controls.Add(this.meniHeader);
+            this.ClientSize = new System.Drawing.Size(1188, 574);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Forms;
+using Syncfusion.GridHelperClasses;
 
 namespace Saobracaj.Uvoz
 {
@@ -151,6 +152,16 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+           
+            
+            
             /*
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
             gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.Green;

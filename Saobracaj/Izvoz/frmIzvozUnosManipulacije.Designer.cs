@@ -96,6 +96,7 @@ namespace Saobracaj.Izvoz
             this.label5 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button27 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
@@ -117,9 +118,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(1209, 54);
+            this.button5.Location = new System.Drawing.Point(1212, 31);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(53, 27);
+            this.button5.Size = new System.Drawing.Size(53, 29);
             this.button5.TabIndex = 248;
             this.button5.Text = "N3-BU";
             this.button5.UseVisualStyleBackColor = false;
@@ -130,9 +131,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(1262, 66);
+            this.button4.Location = new System.Drawing.Point(1265, 43);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(53, 27);
+            this.button4.Size = new System.Drawing.Size(53, 29);
             this.button4.TabIndex = 247;
             this.button4.Text = "N2-BU";
             this.button4.UseVisualStyleBackColor = false;
@@ -143,9 +144,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(1209, 66);
+            this.button3.Location = new System.Drawing.Point(1212, 43);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(53, 27);
+            this.button3.Size = new System.Drawing.Size(53, 29);
             this.button3.TabIndex = 246;
             this.button3.Text = "N1-BU";
             this.button3.UseVisualStyleBackColor = false;
@@ -156,7 +157,7 @@ namespace Saobracaj.Izvoz
             // 
             this.cboUvoznik.FormattingEnabled = true;
             this.cboUvoznik.ItemHeight = 13;
-            this.cboUvoznik.Location = new System.Drawing.Point(865, 149);
+            this.cboUvoznik.Location = new System.Drawing.Point(868, 128);
             this.cboUvoznik.Margin = new System.Windows.Forms.Padding(2);
             this.cboUvoznik.Name = "cboUvoznik";
             this.cboUvoznik.Size = new System.Drawing.Size(231, 21);
@@ -165,7 +166,7 @@ namespace Saobracaj.Izvoz
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(862, 133);
+            this.label2.Location = new System.Drawing.Point(865, 112);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
@@ -176,9 +177,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(1268, 69);
+            this.button2.Location = new System.Drawing.Point(1271, 46);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 27);
+            this.button2.Size = new System.Drawing.Size(53, 29);
             this.button2.TabIndex = 243;
             this.button2.Text = "N3";
             this.button2.UseVisualStyleBackColor = false;
@@ -189,9 +190,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(1268, 52);
+            this.button1.Location = new System.Drawing.Point(1271, 29);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 27);
+            this.button1.Size = new System.Drawing.Size(53, 29);
             this.button1.TabIndex = 242;
             this.button1.Text = "N2";
             this.button1.UseVisualStyleBackColor = false;
@@ -202,7 +203,7 @@ namespace Saobracaj.Izvoz
             // 
             this.cboNalogodavac3.FormattingEnabled = true;
             this.cboNalogodavac3.ItemHeight = 13;
-            this.cboNalogodavac3.Location = new System.Drawing.Point(865, 96);
+            this.cboNalogodavac3.Location = new System.Drawing.Point(868, 75);
             this.cboNalogodavac3.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac3.Name = "cboNalogodavac3";
             this.cboNalogodavac3.Size = new System.Drawing.Size(231, 21);
@@ -211,7 +212,7 @@ namespace Saobracaj.Izvoz
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(862, 77);
+            this.label57.Location = new System.Drawing.Point(865, 56);
             this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(124, 13);
@@ -222,7 +223,7 @@ namespace Saobracaj.Izvoz
             // 
             this.cboNalogodavac2.FormattingEnabled = true;
             this.cboNalogodavac2.ItemHeight = 13;
-            this.cboNalogodavac2.Location = new System.Drawing.Point(555, 152);
+            this.cboNalogodavac2.Location = new System.Drawing.Point(558, 131);
             this.cboNalogodavac2.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac2.Name = "cboNalogodavac2";
             this.cboNalogodavac2.Size = new System.Drawing.Size(231, 21);
@@ -231,7 +232,7 @@ namespace Saobracaj.Izvoz
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(552, 137);
+            this.label53.Location = new System.Drawing.Point(555, 116);
             this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(119, 13);
@@ -241,7 +242,7 @@ namespace Saobracaj.Izvoz
             // cboNalogodavac1
             // 
             this.cboNalogodavac1.FormattingEnabled = true;
-            this.cboNalogodavac1.Location = new System.Drawing.Point(555, 87);
+            this.cboNalogodavac1.Location = new System.Drawing.Point(558, 66);
             this.cboNalogodavac1.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac1.Name = "cboNalogodavac1";
             this.cboNalogodavac1.Size = new System.Drawing.Size(231, 21);
@@ -250,7 +251,7 @@ namespace Saobracaj.Izvoz
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(552, 68);
+            this.label55.Location = new System.Drawing.Point(555, 47);
             this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(105, 13);
@@ -261,7 +262,7 @@ namespace Saobracaj.Izvoz
             // 
             this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(72, 84);
+            this.txtID.Location = new System.Drawing.Point(75, 63);
             this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(62, 20);
@@ -270,7 +271,7 @@ namespace Saobracaj.Izvoz
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 68);
+            this.label1.Location = new System.Drawing.Point(72, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
@@ -281,7 +282,7 @@ namespace Saobracaj.Izvoz
             // 
             this.txtNadredjeni.BackColor = System.Drawing.Color.White;
             this.txtNadredjeni.Enabled = false;
-            this.txtNadredjeni.Location = new System.Drawing.Point(2, 84);
+            this.txtNadredjeni.Location = new System.Drawing.Point(5, 63);
             this.txtNadredjeni.Margin = new System.Windows.Forms.Padding(2);
             this.txtNadredjeni.Name = "txtNadredjeni";
             this.txtNadredjeni.Size = new System.Drawing.Size(62, 20);
@@ -290,7 +291,7 @@ namespace Saobracaj.Izvoz
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(0, 68);
+            this.label16.Location = new System.Drawing.Point(3, 47);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(49, 13);
@@ -304,13 +305,14 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 743);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 795);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1351, 87);
+            this.dataGridView1.Size = new System.Drawing.Size(1351, 35);
             this.dataGridView1.TabIndex = 231;
+            this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label58
@@ -375,15 +377,16 @@ namespace Saobracaj.Izvoz
             this.button12.TabIndex = 228;
             this.button12.Text = "N1 >>>>";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Visible = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button11.Location = new System.Drawing.Point(1321, 55);
+            this.button11.Location = new System.Drawing.Point(1324, 32);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(50, 26);
+            this.button11.Size = new System.Drawing.Size(50, 28);
             this.button11.TabIndex = 226;
             this.button11.Text = "OPŠTI";
             this.button11.UseVisualStyleBackColor = false;
@@ -394,9 +397,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Location = new System.Drawing.Point(1306, 69);
+            this.button13.Location = new System.Drawing.Point(1309, 46);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(53, 27);
+            this.button13.Size = new System.Drawing.Size(53, 29);
             this.button13.TabIndex = 227;
             this.button13.Text = "N1";
             this.button13.UseVisualStyleBackColor = false;
@@ -423,7 +426,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView6.Location = new System.Drawing.Point(6, 204);
+            this.dataGridView6.Location = new System.Drawing.Point(6, 205);
             this.dataGridView6.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView6.Name = "dataGridView6";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -436,7 +439,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView6.RowHeadersWidth = 22;
             this.dataGridView6.RowTemplate.Height = 24;
-            this.dataGridView6.Size = new System.Drawing.Size(489, 524);
+            this.dataGridView6.Size = new System.Drawing.Size(489, 523);
             this.dataGridView6.TabIndex = 224;
             // 
             // button6
@@ -449,6 +452,7 @@ namespace Saobracaj.Izvoz
             this.button6.TabIndex = 249;
             this.button6.Text = "N2 >>>>";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
@@ -461,15 +465,16 @@ namespace Saobracaj.Izvoz
             this.button7.TabIndex = 250;
             this.button7.Text = "N3 >>>>";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.Location = new System.Drawing.Point(1209, 109);
+            this.button8.Location = new System.Drawing.Point(1212, 86);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(148, 74);
+            this.button8.Size = new System.Drawing.Size(148, 76);
             this.button8.TabIndex = 251;
             this.button8.Text = "Obrisi selektovane";
             this.button8.UseVisualStyleBackColor = false;
@@ -479,9 +484,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button9.Location = new System.Drawing.Point(1112, 141);
+            this.button9.Location = new System.Drawing.Point(1115, 118);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(71, 42);
+            this.button9.Size = new System.Drawing.Size(71, 44);
             this.button9.TabIndex = 252;
             this.button9.Text = "Promeni  platioca";
             this.button9.UseVisualStyleBackColor = false;
@@ -497,15 +502,16 @@ namespace Saobracaj.Izvoz
             this.button10.TabIndex = 253;
             this.button10.Text = "P >>>>";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Visible = false;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button14
             // 
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Location = new System.Drawing.Point(149, 79);
+            this.button14.Location = new System.Drawing.Point(152, 56);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(101, 25);
+            this.button14.Size = new System.Drawing.Size(101, 27);
             this.button14.TabIndex = 254;
             this.button14.Text = "SVE USLUGE";
             this.button14.UseVisualStyleBackColor = false;
@@ -516,25 +522,25 @@ namespace Saobracaj.Izvoz
             // 
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Location = new System.Drawing.Point(256, 79);
+            this.button15.Location = new System.Drawing.Point(403, 60);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(122, 25);
+            this.button15.Size = new System.Drawing.Size(125, 27);
             this.button15.TabIndex = 255;
             this.button15.Text = "ADMINISTRATIVNE";
             this.button15.UseVisualStyleBackColor = false;
-            this.button15.Visible = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // meniHeader
             // 
             this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.toolStripButton6,
             this.toolStripButton1,
             this.toolStripButton2});
-            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Location = new System.Drawing.Point(0, 815);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(1369, 27);
             this.meniHeader.TabIndex = 256;
@@ -579,9 +585,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Location = new System.Drawing.Point(400, 124);
+            this.button16.Location = new System.Drawing.Point(403, 151);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(106, 25);
+            this.button16.Size = new System.Drawing.Size(125, 27);
             this.button16.TabIndex = 265;
             this.button16.Text = "PO SCENARIJU";
             this.button16.UseVisualStyleBackColor = false;
@@ -590,7 +596,7 @@ namespace Saobracaj.Izvoz
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 109);
+            this.label4.Location = new System.Drawing.Point(8, 138);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
@@ -602,7 +608,7 @@ namespace Saobracaj.Izvoz
             this.cboScenario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboScenario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboScenario.FormattingEnabled = true;
-            this.cboScenario.Location = new System.Drawing.Point(6, 127);
+            this.cboScenario.Location = new System.Drawing.Point(9, 156);
             this.cboScenario.Margin = new System.Windows.Forms.Padding(2);
             this.cboScenario.Name = "cboScenario";
             this.cboScenario.Size = new System.Drawing.Size(384, 21);
@@ -612,21 +618,22 @@ namespace Saobracaj.Izvoz
             // 
             this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Location = new System.Drawing.Point(384, 79);
+            this.button17.Location = new System.Drawing.Point(261, 60);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(122, 25);
+            this.button17.Size = new System.Drawing.Size(106, 27);
             this.button17.TabIndex = 266;
             this.button17.Text = "DODATNE";
             this.button17.UseVisualStyleBackColor = false;
+            this.button17.Visible = false;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // cboGrupaVrsteManipulacije
             // 
             this.cboGrupaVrsteManipulacije.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.cboGrupaVrsteManipulacije.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cboGrupaVrsteManipulacije.Location = new System.Drawing.Point(2, 168);
+            this.cboGrupaVrsteManipulacije.Location = new System.Drawing.Point(7, 106);
             this.cboGrupaVrsteManipulacije.Name = "cboGrupaVrsteManipulacije";
-            this.cboGrupaVrsteManipulacije.Size = new System.Drawing.Size(387, 23);
+            this.cboGrupaVrsteManipulacije.Size = new System.Drawing.Size(387, 25);
             this.cboGrupaVrsteManipulacije.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cboGrupaVrsteManipulacije.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cboGrupaVrsteManipulacije.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -637,9 +644,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Location = new System.Drawing.Point(400, 166);
+            this.button18.Location = new System.Drawing.Point(403, 104);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(106, 25);
+            this.button18.Size = new System.Drawing.Size(125, 27);
             this.button18.TabIndex = 269;
             this.button18.Text = "PO GRUPI";
             this.button18.UseVisualStyleBackColor = false;
@@ -650,7 +657,7 @@ namespace Saobracaj.Izvoz
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(3, 150);
+            this.label10.Location = new System.Drawing.Point(8, 88);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 15);
             this.label10.TabIndex = 268;
@@ -660,9 +667,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Location = new System.Drawing.Point(791, 75);
+            this.button19.Location = new System.Drawing.Point(794, 52);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(66, 47);
+            this.button19.Size = new System.Drawing.Size(66, 49);
             this.button19.TabIndex = 271;
             this.button19.Text = "Promeni  platioca";
             this.button19.UseVisualStyleBackColor = false;
@@ -672,9 +679,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Location = new System.Drawing.Point(791, 138);
+            this.button20.Location = new System.Drawing.Point(794, 115);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(66, 47);
+            this.button20.Size = new System.Drawing.Size(66, 49);
             this.button20.TabIndex = 272;
             this.button20.Text = "Promeni  platioca";
             this.button20.UseVisualStyleBackColor = false;
@@ -684,9 +691,9 @@ namespace Saobracaj.Izvoz
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Location = new System.Drawing.Point(1112, 84);
+            this.button21.Location = new System.Drawing.Point(1115, 61);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(71, 42);
+            this.button21.Size = new System.Drawing.Size(71, 44);
             this.button21.TabIndex = 273;
             this.button21.Text = "Promeni  platioca";
             this.button21.UseVisualStyleBackColor = false;
@@ -695,12 +702,14 @@ namespace Saobracaj.Izvoz
             // button22
             // 
             this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button22.FlatAppearance.BorderSize = 0;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button22.Location = new System.Drawing.Point(500, 205);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(50, 341);
             this.button22.TabIndex = 274;
-            this.button22.Text = ">>>>";
+            this.button22.Text = "S N I M I";
             this.button22.UseVisualStyleBackColor = false;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
@@ -807,7 +816,7 @@ namespace Saobracaj.Izvoz
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1369, 30);
             this.panelHeader.TabIndex = 464;
@@ -817,6 +826,7 @@ namespace Saobracaj.Izvoz
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button27);
             this.panel2.Controls.Add(this.button23);
             this.panel2.Controls.Add(this.button25);
             this.panel2.Controls.Add(this.button24);
@@ -825,6 +835,27 @@ namespace Saobracaj.Izvoz
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1149, 31);
             this.panel2.TabIndex = 6;
+            // 
+            // button27
+            // 
+            this.button27.AutoSize = true;
+            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button27.Location = new System.Drawing.Point(524, 0);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(161, 31);
+            this.button27.TabIndex = 20;
+            this.button27.Text = "Kopiraj usluge";
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
             // button23
             // 
@@ -1051,5 +1082,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button26;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Button button27;
     }
 }

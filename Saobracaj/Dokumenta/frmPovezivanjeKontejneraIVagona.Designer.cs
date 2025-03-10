@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPovezivanjeKontejneraIVagona));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.txtIzabran = new System.Windows.Forms.TextBox();
@@ -39,13 +41,15 @@
             this.chkPostojeci = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.txtIzvozPlanID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -57,6 +61,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.splitContainer1.Panel1.Controls.Add(this.txtIzvozPlanID);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView2);
@@ -76,10 +81,24 @@
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(268, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(117, 28);
+            this.button1.TabIndex = 246;
+            this.button1.Text = "Sačuvaj";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 31);
+            this.label1.Location = new System.Drawing.Point(12, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 13);
             this.label1.TabIndex = 245;
@@ -92,9 +111,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 47);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 79);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(373, 606);
+            this.dataGridView2.Size = new System.Drawing.Size(373, 574);
             this.dataGridView2.TabIndex = 244;
             this.dataGridView2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDown);
             // 
@@ -112,9 +131,9 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(563, 16);
+            this.button5.Location = new System.Drawing.Point(514, 16);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(10, 24);
+            this.button5.Size = new System.Drawing.Size(22, 24);
             this.button5.TabIndex = 252;
             this.button5.Text = "?";
             this.button5.UseVisualStyleBackColor = false;
@@ -126,7 +145,7 @@
             this.cboBukingPrijema.FormattingEnabled = true;
             this.cboBukingPrijema.Location = new System.Drawing.Point(293, 17);
             this.cboBukingPrijema.Name = "cboBukingPrijema";
-            this.cboBukingPrijema.Size = new System.Drawing.Size(264, 24);
+            this.cboBukingPrijema.Size = new System.Drawing.Size(215, 24);
             this.cboBukingPrijema.TabIndex = 250;
             // 
             // label15
@@ -172,19 +191,21 @@
             this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
             // 
-            // button1
+            // commandBarController1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(268, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 28);
-            this.button1.TabIndex = 246;
-            this.button1.Text = "Sačuvaj";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // txtIzvozPlanID
+            // 
+            this.txtIzvozPlanID.Location = new System.Drawing.Point(15, 12);
+            this.txtIzvozPlanID.Name = "txtIzvozPlanID";
+            this.txtIzvozPlanID.Size = new System.Drawing.Size(100, 20);
+            this.txtIzvozPlanID.TabIndex = 255;
+            this.txtIzvozPlanID.Text = "0";
+            this.txtIzvozPlanID.Visible = false;
             // 
             // frmPovezivanjeKontejneraIVagona
             // 
@@ -204,6 +225,7 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,5 +243,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtIzabran;
         private System.Windows.Forms.Button button1;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.TextBox txtIzvozPlanID;
     }
 }

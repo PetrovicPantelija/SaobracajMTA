@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmScenario : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmScenario : Form
     {
         bool status = false;
         int vizuelniPregled = 0;
@@ -167,7 +167,7 @@ namespace Saobracaj.Sifarnici
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
 
             }
             RefreshDataGrid();
@@ -228,7 +228,7 @@ ORDER BY
 
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 130;
+            dataGridView1.Columns[2].Width = 330;
 
             DataGridViewColumn column3 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "USL";
@@ -236,7 +236,7 @@ ORDER BY
 
             DataGridViewColumn column4 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Usluga";
-            dataGridView1.Columns[4].Width = 230;
+            dataGridView1.Columns[4].Width = 330;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Pokret";

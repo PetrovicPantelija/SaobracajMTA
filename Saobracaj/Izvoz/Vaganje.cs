@@ -200,7 +200,7 @@ namespace Saobracaj.Izvoz
             {
                 InsertIzvoz ins = new InsertIzvoz();
                 ins.InsVaganje(Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(),  txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
-                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user);
+                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user, txtRoba.Text);
             }
             con.Close();
             FillGV();
@@ -230,7 +230,7 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada from Vaganje\r\ninner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID";
+            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik, IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -288,7 +288,7 @@ namespace Saobracaj.Izvoz
             {
                 InsertIzvoz ins = new InsertIzvoz();
                 ins.InsVaganje(Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(), txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
-                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user);
+                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user, txtRoba.Text);
                 status = false;
             }
             else
@@ -296,7 +296,7 @@ namespace Saobracaj.Izvoz
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertIzvoz upd = new InsertIzvoz();
                 upd.UpdVaganje(Convert.ToInt32(txtID.Text), Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(), txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
-                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user);
+                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user, txtRoba.Text);
             }
             if (chkCirada.Checked == true)
             {
@@ -358,6 +358,11 @@ namespace Saobracaj.Izvoz
             txtNeto.Value = txtBruto.Value - txtTara.Value;
         }
 
+        private void txtTara_Leave(object sender, EventArgs e)
+        {
+            txtNeto.Value = txtBruto.Value - txtTara.Value;
+        }
+
         private void VratiPodatke(string ID)
         {
          
@@ -366,7 +371,7 @@ namespace Saobracaj.Izvoz
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
+                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz, Vaganje.Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
                  " where Vaganje.ID = " + ID, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -384,6 +389,7 @@ namespace Saobracaj.Izvoz
                     txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                     dtpDatumMerenja.Value = Convert.ToDateTime(dr["DatumMerenja"].ToString());
                     txtTaraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
+                    txtRoba.Text = dr["Roba"].ToString();
                 if (dr["Cirada"].ToString() == "1")
                 {
                     chkCirada.Checked = true;

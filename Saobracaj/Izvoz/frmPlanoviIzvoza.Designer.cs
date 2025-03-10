@@ -63,7 +63,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4});
-            this.meniHeader.Location = new System.Drawing.Point(0, 368);
+            this.meniHeader.Location = new System.Drawing.Point(0, 33);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(910, 27);
             this.meniHeader.TabIndex = 132;
@@ -134,13 +134,15 @@ namespace Saobracaj.Izvoz
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(0, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(910, 335);
+            this.dataGridView1.Size = new System.Drawing.Size(910, 373);
             this.dataGridView1.TabIndex = 139;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -289,8 +291,8 @@ namespace Saobracaj.Izvoz
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(910, 408);
-            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);

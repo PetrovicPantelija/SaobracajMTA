@@ -153,7 +153,7 @@ namespace Saobracaj.Sifarnici
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(335, 167);
+            this.label10.Location = new System.Drawing.Point(335, 164);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 13);
             this.label10.TabIndex = 214;
@@ -169,7 +169,7 @@ namespace Saobracaj.Sifarnici
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(332, 123);
+            this.label9.Location = new System.Drawing.Point(332, 119);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 212;
@@ -193,7 +193,7 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeTelefon2
             // 
-            this.txtDeTelefon2.Location = new System.Drawing.Point(15, 272);
+            this.txtDeTelefon2.Location = new System.Drawing.Point(15, 275);
             this.txtDeTelefon2.Name = "txtDeTelefon2";
             this.txtDeTelefon2.Size = new System.Drawing.Size(231, 20);
             this.txtDeTelefon2.TabIndex = 207;
@@ -296,7 +296,7 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeSifStat
             // 
-            this.txtDeSifStat.Location = new System.Drawing.Point(333, 272);
+            this.txtDeSifStat.Location = new System.Drawing.Point(333, 280);
             this.txtDeSifStat.Name = "txtDeSifStat";
             this.txtDeSifStat.Size = new System.Drawing.Size(87, 20);
             this.txtDeSifStat.TabIndex = 220;
@@ -305,7 +305,7 @@ namespace Saobracaj.Sifarnici
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 256);
+            this.label2.Location = new System.Drawing.Point(330, 260);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 219;
@@ -369,7 +369,7 @@ namespace Saobracaj.Sifarnici
             // txtDeSifDelMes
             // 
             this.txtDeSifDelMes.FormattingEnabled = true;
-            this.txtDeSifDelMes.Location = new System.Drawing.Point(333, 232);
+            this.txtDeSifDelMes.Location = new System.Drawing.Point(333, 231);
             this.txtDeSifDelMes.Margin = new System.Windows.Forms.Padding(4);
             this.txtDeSifDelMes.Name = "txtDeSifDelMes";
             this.txtDeSifDelMes.Size = new System.Drawing.Size(229, 21);
@@ -377,7 +377,7 @@ namespace Saobracaj.Sifarnici
             // 
             // txtERPID
             // 
-            this.txtERPID.Location = new System.Drawing.Point(444, 272);
+            this.txtERPID.Location = new System.Drawing.Point(444, 280);
             this.txtERPID.Name = "txtERPID";
             this.txtERPID.Size = new System.Drawing.Size(87, 20);
             this.txtERPID.TabIndex = 227;
@@ -385,7 +385,7 @@ namespace Saobracaj.Sifarnici
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(441, 256);
+            this.label8.Location = new System.Drawing.Point(441, 260);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 228;
@@ -410,9 +410,9 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button23);
-            this.panel2.Location = new System.Drawing.Point(126, 0);
+            this.panel2.Location = new System.Drawing.Point(103, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(692, 31);
+            this.panel2.Size = new System.Drawing.Size(345, 31);
             this.panel2.TabIndex = 7;
             // 
             // button23

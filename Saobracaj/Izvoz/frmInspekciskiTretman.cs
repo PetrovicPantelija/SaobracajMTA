@@ -205,7 +205,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[1].Width = 250;
 
 
 
@@ -231,6 +231,7 @@ namespace Saobracaj.Izvoz
                 InsertInspekciskiTretman upd = new InsertInspekciskiTretman();
                 upd.UpdInspekciskiTretman(Convert.ToInt32(txtID.Text), txtNaziv.Text);
             }
+            status = false;
             RefreshDataGrid();
         }
 

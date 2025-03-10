@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmPrebacivanjeIzPlanaUPlan : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmPrebacivanjeIzPlanaUPlan : Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
@@ -31,7 +31,7 @@ namespace Saobracaj.Izvoz
                 this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
 
-                foreach (Control control in groupBox1.Controls)
+                foreach (Control control in this.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
@@ -214,7 +214,7 @@ namespace Saobracaj.Izvoz
 
         private void frmPrebacivanjeIzPlanaUPlan_Load(object sender, EventArgs e)
         {
-            var planutovara = "select IzvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
+            var planutovara = "select IzvozKonacnaZaglavlje.ID,(NazivVoza + '-' + Cast(BrVoza as nvarchar(15)) + '-'  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
             " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
@@ -223,7 +223,7 @@ namespace Saobracaj.Izvoz
             cboPlanUtovaraIz.DisplayMember = "Naziv";
             cboPlanUtovaraIz.ValueMember = "ID";
 
-            var planutovara2 = "select IzvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
+            var planutovara2 = "select IzvozKonacnaZaglavlje.ID,(NazivVoza + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
             " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
             var planutovara2SAD = new SqlDataAdapter(planutovara2, connection);
             var planutovara2SDS = new DataSet();

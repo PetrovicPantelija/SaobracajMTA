@@ -268,6 +268,7 @@ namespace Saobracaj.Sifarnici
                     ins.DelKrajnjaDestinacija(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
             }
+            FillGV();
         }
     }
 }

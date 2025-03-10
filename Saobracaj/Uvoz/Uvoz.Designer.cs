@@ -31,8 +31,8 @@ namespace Saobracaj.Uvoz
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Uvoz));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
@@ -232,6 +232,8 @@ namespace Saobracaj.Uvoz
             this.label10 = new System.Windows.Forms.Label();
             this.cbDirigacija = new System.Windows.Forms.ComboBox();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.chkPotvrdioKlijent = new System.Windows.Forms.CheckBox();
+            this.chkUradilaCarina = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -285,7 +287,7 @@ namespace Saobracaj.Uvoz
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.meniHeader.Size = new System.Drawing.Size(1465, 31);
+            this.meniHeader.Size = new System.Drawing.Size(1533, 31);
             this.meniHeader.TabIndex = 50;
             this.meniHeader.Text = "toolStrip1";
             this.meniHeader.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -444,7 +446,7 @@ namespace Saobracaj.Uvoz
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1465, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1533, 33);
             this.panelHeader.TabIndex = 460;
             // 
             // panel2
@@ -459,7 +461,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(692, 31);
+            this.panel2.Size = new System.Drawing.Size(760, 31);
             this.panel2.TabIndex = 6;
             // 
             // button27
@@ -641,9 +643,9 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1465, 853);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1533, 853);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.White;
-            this.tabSplitterContainer1.SplitterPosition = 502;
+            this.tabSplitterContainer1.SplitterPosition = 592;
             this.tabSplitterContainer1.TabIndex = 461;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
@@ -651,6 +653,8 @@ namespace Saobracaj.Uvoz
             // 
             this.tabSplitterPage1.AutoScroll = true;
             this.tabSplitterPage1.AutoSize = true;
+            this.tabSplitterPage1.Controls.Add(this.chkUradilaCarina);
+            this.tabSplitterPage1.Controls.Add(this.chkPotvrdioKlijent);
             this.tabSplitterPage1.Controls.Add(this.chkOpsti);
             this.tabSplitterPage1.Controls.Add(this.button28);
             this.tabSplitterPage1.Controls.Add(this.button19);
@@ -782,7 +786,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1465, 502);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1533, 592);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPŠTE";
             this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
@@ -937,26 +941,26 @@ namespace Saobracaj.Uvoz
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.dataGridView2.Location = new System.Drawing.Point(744, 65);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.dataGridView2.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
@@ -2057,9 +2061,9 @@ namespace Saobracaj.Uvoz
             this.label5.Location = new System.Drawing.Point(19, 479);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 14);
+            this.label5.Size = new System.Drawing.Size(93, 14);
             this.label5.TabIndex = 51;
-            this.label5.Text = "Broj kontejnera";
+            this.label5.Text = "Broj kontejnera ";
             // 
             // txtNetoR
             // 
@@ -2099,7 +2103,7 @@ namespace Saobracaj.Uvoz
             this.txtNapomena1.Location = new System.Drawing.Point(1295, 1);
             this.txtNapomena1.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena1.Name = "txtNapomena1";
-            this.txtNapomena1.Size = new System.Drawing.Size(31, 23);
+            this.txtNapomena1.Size = new System.Drawing.Size(77, 23);
             this.txtNapomena1.TabIndex = 3;
             this.txtNapomena1.Visible = false;
             this.txtNapomena1.TextChanged += new System.EventHandler(this.txtNapomena1_TextChanged);
@@ -2363,7 +2367,7 @@ namespace Saobracaj.Uvoz
             this.button15.ForeColor = System.Drawing.Color.Transparent;
             this.button15.Location = new System.Drawing.Point(464, 158);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(24, 24);
+            this.button15.Size = new System.Drawing.Size(26, 23);
             this.button15.TabIndex = 223;
             this.button15.UseVisualStyleBackColor = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
@@ -2374,20 +2378,23 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Controls.Add(this.tabControl1);
             this.tabSplitterPage2.Controls.Add(this.panel1);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 522);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 612);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1465, 331);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1533, 241);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "USLUGE";
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(12, 10);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(873, 178);
+            this.tabControl1.Size = new System.Drawing.Size(1100, 226);
             this.tabControl1.TabIndex = 42;
             // 
             // tabPage2
@@ -2396,7 +2403,7 @@ namespace Saobracaj.Uvoz
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(865, 151);
+            this.tabPage2.Size = new System.Drawing.Size(1092, 199);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usluge";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2414,7 +2421,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(856, 148);
+            this.dataGridView7.Size = new System.Drawing.Size(1083, 204);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -2423,7 +2430,7 @@ namespace Saobracaj.Uvoz
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(865, 151);
+            this.tabPage1.Size = new System.Drawing.Size(1092, 199);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Napomene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2431,6 +2438,9 @@ namespace Saobracaj.Uvoz
             // dataGridView4
             // 
             this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(5, 5);
@@ -2438,7 +2448,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(855, 142);
+            this.dataGridView4.Size = new System.Drawing.Size(1082, 194);
             this.dataGridView4.TabIndex = 157;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 
@@ -2944,13 +2954,37 @@ namespace Saobracaj.Uvoz
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // chkPotvrdioKlijent
+            // 
+            this.chkPotvrdioKlijent.AutoSize = true;
+            this.chkPotvrdioKlijent.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkPotvrdioKlijent.Location = new System.Drawing.Point(124, 299);
+            this.chkPotvrdioKlijent.Margin = new System.Windows.Forms.Padding(2);
+            this.chkPotvrdioKlijent.Name = "chkPotvrdioKlijent";
+            this.chkPotvrdioKlijent.Size = new System.Drawing.Size(106, 18);
+            this.chkPotvrdioKlijent.TabIndex = 497;
+            this.chkPotvrdioKlijent.Text = "Potvrdio klijent";
+            this.chkPotvrdioKlijent.UseVisualStyleBackColor = true;
+            // 
+            // chkUradilaCarina
+            // 
+            this.chkUradilaCarina.AutoSize = true;
+            this.chkUradilaCarina.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkUradilaCarina.Location = new System.Drawing.Point(124, 321);
+            this.chkUradilaCarina.Margin = new System.Windows.Forms.Padding(2);
+            this.chkUradilaCarina.Name = "chkUradilaCarina";
+            this.chkUradilaCarina.Size = new System.Drawing.Size(103, 18);
+            this.chkUradilaCarina.TabIndex = 498;
+            this.chkUradilaCarina.Text = "Uradila carina";
+            this.chkUradilaCarina.UseVisualStyleBackColor = true;
+            // 
             // Uvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1482, 791);
+            this.ClientSize = new System.Drawing.Size(1550, 791);
             this.Controls.Add(this.tabSplitterContainer1);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
@@ -3207,5 +3241,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.CheckBox chkOpsti;
+        private System.Windows.Forms.CheckBox chkUradilaCarina;
+        private System.Windows.Forms.CheckBox chkPotvrdioKlijent;
     }
 }

@@ -231,6 +231,7 @@ namespace Saobracaj.Izvoz
                 upd.UpdVrstePlombi(txtSifra.Text, txtNaziv.Text);
             }
             RefreshDataGrid();
+            status = false;
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -238,6 +239,7 @@ namespace Saobracaj.Izvoz
             InsertVrstePlombi del = new InsertVrstePlombi();
             del.DelVrstePlombi(txtSifra.Text);
             RefreshDataGrid();
+            status = false;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

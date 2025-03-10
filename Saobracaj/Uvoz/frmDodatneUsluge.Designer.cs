@@ -31,16 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDodatneUsluge));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtKonkretnaMan = new System.Windows.Forms.TextBox();
-            this.txtNalogID = new System.Windows.Forms.TextBox();
-            this.txtBrojOsnov = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.chkUvoz = new System.Windows.Forms.CheckBox();
-            this.chkIzvoz = new System.Windows.Forms.CheckBox();
-            this.chkDodatne = new System.Windows.Forms.CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cboBukingPrijema = new System.Windows.Forms.ComboBox();
-            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.chkUvozniPosao = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtkontejner = new System.Windows.Forms.TextBox();
@@ -58,15 +48,25 @@
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.cboUsluga = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtKonkretnaMan = new System.Windows.Forms.TextBox();
+            this.txtNalogID = new System.Windows.Forms.TextBox();
+            this.txtBrojOsnov = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
+            this.chkIzvoz = new System.Windows.Forms.CheckBox();
+            this.chkDodatne = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cboBukingPrijema = new System.Windows.Forms.ComboBox();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -114,100 +114,6 @@
             this.splitContainer1.SplitterDistance = 423;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // txtKonkretnaMan
-            // 
-            this.txtKonkretnaMan.Enabled = false;
-            this.txtKonkretnaMan.Location = new System.Drawing.Point(323, 57);
-            this.txtKonkretnaMan.Name = "txtKonkretnaMan";
-            this.txtKonkretnaMan.Size = new System.Drawing.Size(85, 20);
-            this.txtKonkretnaMan.TabIndex = 256;
-            // 
-            // txtNalogID
-            // 
-            this.txtNalogID.Enabled = false;
-            this.txtNalogID.Location = new System.Drawing.Point(323, 83);
-            this.txtNalogID.Name = "txtNalogID";
-            this.txtNalogID.Size = new System.Drawing.Size(85, 20);
-            this.txtNalogID.TabIndex = 255;
-            // 
-            // txtBrojOsnov
-            // 
-            this.txtBrojOsnov.Enabled = false;
-            this.txtBrojOsnov.Location = new System.Drawing.Point(323, 31);
-            this.txtBrojOsnov.Name = "txtBrojOsnov";
-            this.txtBrojOsnov.Size = new System.Drawing.Size(85, 20);
-            this.txtBrojOsnov.TabIndex = 254;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(24, 130);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 23);
-            this.button3.TabIndex = 251;
-            this.button3.Text = "Pozovi";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // chkUvoz
-            // 
-            this.chkUvoz.AutoSize = true;
-            this.chkUvoz.Location = new System.Drawing.Point(24, 63);
-            this.chkUvoz.Name = "chkUvoz";
-            this.chkUvoz.Size = new System.Drawing.Size(168, 17);
-            this.chkUvoz.TabIndex = 1;
-            this.chkUvoz.Text = "Usluge predefinisane od Uvoz";
-            this.chkUvoz.UseVisualStyleBackColor = true;
-            // 
-            // chkIzvoz
-            // 
-            this.chkIzvoz.AutoSize = true;
-            this.chkIzvoz.Location = new System.Drawing.Point(24, 31);
-            this.chkIzvoz.Name = "chkIzvoz";
-            this.chkIzvoz.Size = new System.Drawing.Size(174, 17);
-            this.chkIzvoz.TabIndex = 0;
-            this.chkIzvoz.Text = "Usluge predefinisane od Izvoza";
-            this.chkIzvoz.UseVisualStyleBackColor = true;
-            // 
-            // chkDodatne
-            // 
-            this.chkDodatne.AutoSize = true;
-            this.chkDodatne.Location = new System.Drawing.Point(24, 98);
-            this.chkDodatne.Name = "chkDodatne";
-            this.chkDodatne.Size = new System.Drawing.Size(171, 17);
-            this.chkDodatne.TabIndex = 3;
-            this.chkDodatne.Text = "Unos dedatnih usluga za Uvoz";
-            this.chkDodatne.UseVisualStyleBackColor = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 8.25F);
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(137, 130);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(82, 14);
-            this.label15.TabIndex = 232;
-            this.label15.Text = "DOLAZNI VOZ";
-            this.label15.Visible = false;
-            // 
-            // cboBukingPrijema
-            // 
-            this.cboBukingPrijema.Font = new System.Drawing.Font("Times New Roman", 8.25F);
-            this.cboBukingPrijema.FormattingEnabled = true;
-            this.cboBukingPrijema.Location = new System.Drawing.Point(225, 127);
-            this.cboBukingPrijema.Name = "cboBukingPrijema";
-            this.cboBukingPrijema.Size = new System.Drawing.Size(55, 22);
-            this.cboBukingPrijema.TabIndex = 231;
-            this.cboBukingPrijema.Visible = false;
-            // 
-            // commandBarController1
-            // 
-            this.commandBarController1.HostForm = this;
-            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
-            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
-            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // chkUvozniPosao
             // 
@@ -285,7 +191,7 @@
             this.button1.TabIndex = 273;
             this.button1.Text = "Dodeli slike";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // chkPotvrdiUradjen
             // 
@@ -362,6 +268,7 @@
             this.button4.TabIndex = 269;
             this.button4.Text = "Sačuvaj promenu";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label31
             // 
@@ -405,6 +312,93 @@
             this.label2.TabIndex = 264;
             this.label2.Text = "DODATNA USLUGA:";
             // 
+            // txtKonkretnaMan
+            // 
+            this.txtKonkretnaMan.Enabled = false;
+            this.txtKonkretnaMan.Location = new System.Drawing.Point(323, 57);
+            this.txtKonkretnaMan.Name = "txtKonkretnaMan";
+            this.txtKonkretnaMan.Size = new System.Drawing.Size(85, 20);
+            this.txtKonkretnaMan.TabIndex = 256;
+            // 
+            // txtNalogID
+            // 
+            this.txtNalogID.Enabled = false;
+            this.txtNalogID.Location = new System.Drawing.Point(323, 83);
+            this.txtNalogID.Name = "txtNalogID";
+            this.txtNalogID.Size = new System.Drawing.Size(85, 20);
+            this.txtNalogID.TabIndex = 255;
+            // 
+            // txtBrojOsnov
+            // 
+            this.txtBrojOsnov.Enabled = false;
+            this.txtBrojOsnov.Location = new System.Drawing.Point(323, 31);
+            this.txtBrojOsnov.Name = "txtBrojOsnov";
+            this.txtBrojOsnov.Size = new System.Drawing.Size(85, 20);
+            this.txtBrojOsnov.TabIndex = 254;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(24, 130);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(95, 23);
+            this.button3.TabIndex = 251;
+            this.button3.Text = "Pozovi";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // chkUvoz
+            // 
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.Location = new System.Drawing.Point(24, 63);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(168, 17);
+            this.chkUvoz.TabIndex = 1;
+            this.chkUvoz.Text = "Usluge predefinisane od Uvoz";
+            this.chkUvoz.UseVisualStyleBackColor = true;
+            // 
+            // chkIzvoz
+            // 
+            this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.Location = new System.Drawing.Point(24, 31);
+            this.chkIzvoz.Name = "chkIzvoz";
+            this.chkIzvoz.Size = new System.Drawing.Size(174, 17);
+            this.chkIzvoz.TabIndex = 0;
+            this.chkIzvoz.Text = "Usluge predefinisane od Izvoza";
+            this.chkIzvoz.UseVisualStyleBackColor = true;
+            // 
+            // chkDodatne
+            // 
+            this.chkDodatne.AutoSize = true;
+            this.chkDodatne.Location = new System.Drawing.Point(24, 98);
+            this.chkDodatne.Name = "chkDodatne";
+            this.chkDodatne.Size = new System.Drawing.Size(172, 17);
+            this.chkDodatne.TabIndex = 3;
+            this.chkDodatne.Text = "Unos dedatnih usluga Terminal";
+            this.chkDodatne.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(137, 130);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 14);
+            this.label15.TabIndex = 232;
+            this.label15.Text = "DOLAZNI VOZ";
+            this.label15.Visible = false;
+            // 
+            // cboBukingPrijema
+            // 
+            this.cboBukingPrijema.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.cboBukingPrijema.FormattingEnabled = true;
+            this.cboBukingPrijema.Location = new System.Drawing.Point(225, 127);
+            this.cboBukingPrijema.Name = "cboBukingPrijema";
+            this.cboBukingPrijema.Size = new System.Drawing.Size(55, 22);
+            this.cboBukingPrijema.TabIndex = 231;
+            this.cboBukingPrijema.Visible = false;
+            // 
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -424,7 +418,7 @@
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(879, 646);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(875, 646);
             this.gridGroupingControl1.TabIndex = 238;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -438,6 +432,13 @@
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // frmDodatneUsluge
             // 
@@ -454,10 +455,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
 
         }

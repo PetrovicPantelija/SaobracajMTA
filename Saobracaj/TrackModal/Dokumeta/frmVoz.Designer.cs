@@ -322,11 +322,11 @@
             // txtRelacija
             // 
             this.txtRelacija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtRelacija.Location = new System.Drawing.Point(107, 228);
+            this.txtRelacija.Location = new System.Drawing.Point(104, 228);
             this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Multiline = true;
             this.txtRelacija.Name = "txtRelacija";
-            this.txtRelacija.Size = new System.Drawing.Size(231, 38);
+            this.txtRelacija.Size = new System.Drawing.Size(234, 38);
             this.txtRelacija.TabIndex = 39;
             // 
             // label2
@@ -604,7 +604,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1271, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(1271, 143);
             this.dataGridView1.TabIndex = 137;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -628,7 +628,7 @@
             this.cboStanicaOd.Location = new System.Drawing.Point(106, 168);
             this.cboStanicaOd.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaOd.Name = "cboStanicaOd";
-            this.cboStanicaOd.Size = new System.Drawing.Size(229, 24);
+            this.cboStanicaOd.Size = new System.Drawing.Size(232, 24);
             this.cboStanicaOd.TabIndex = 186;
             // 
             // label5
@@ -1139,10 +1139,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(5, 531);
+            this.tabControl1.Location = new System.Drawing.Point(8, 555);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1299, 251);
+            this.tabControl1.Size = new System.Drawing.Size(1299, 185);
             this.tabControl1.TabIndex = 248;
             // 
             // tabPage1
@@ -1151,7 +1151,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1291, 223);
+            this.tabPage1.Size = new System.Drawing.Size(1291, 157);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Vozovi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1346,10 +1346,10 @@
             // 
             this.cboVlasnik.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboVlasnik.FormattingEnabled = true;
-            this.cboVlasnik.Location = new System.Drawing.Point(4, 117);
+            this.cboVlasnik.Location = new System.Drawing.Point(7, 117);
             this.cboVlasnik.Margin = new System.Windows.Forms.Padding(4);
             this.cboVlasnik.Name = "cboVlasnik";
-            this.cboVlasnik.Size = new System.Drawing.Size(234, 24);
+            this.cboVlasnik.Size = new System.Drawing.Size(231, 24);
             this.cboVlasnik.TabIndex = 251;
             // 
             // label33
@@ -1390,10 +1390,10 @@
             // 
             this.cboOperaterHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboOperaterHR.FormattingEnabled = true;
-            this.cboOperaterHR.Location = new System.Drawing.Point(4, 72);
+            this.cboOperaterHR.Location = new System.Drawing.Point(7, 70);
             this.cboOperaterHR.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperaterHR.Name = "cboOperaterHR";
-            this.cboOperaterHR.Size = new System.Drawing.Size(234, 24);
+            this.cboOperaterHR.Size = new System.Drawing.Size(231, 24);
             this.cboOperaterHR.TabIndex = 255;
             // 
             // label35
@@ -1760,9 +1760,9 @@
             this.panel1.Controls.Add(this.txtKontrolniPregledD);
             this.panel1.Controls.Add(this.txtVremeIstovaraD);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(424, 65);
+            this.panel1.Location = new System.Drawing.Point(427, 65);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(838, 250);
+            this.panel1.Size = new System.Drawing.Size(835, 251);
             this.panel1.TabIndex = 276;
             // 
             // chkTerminal

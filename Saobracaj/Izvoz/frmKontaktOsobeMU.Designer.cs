@@ -273,6 +273,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(686, 307);
             this.dataGridView1.TabIndex = 269;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // panelHeader
             // 

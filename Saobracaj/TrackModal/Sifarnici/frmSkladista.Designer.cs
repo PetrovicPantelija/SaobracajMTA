@@ -53,6 +53,8 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.cboGrupaPolja = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -322,12 +324,34 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // cboGrupaPolja
+            // 
+            this.cboGrupaPolja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cboGrupaPolja.FormattingEnabled = true;
+            this.cboGrupaPolja.Location = new System.Drawing.Point(284, 140);
+            this.cboGrupaPolja.Name = "cboGrupaPolja";
+            this.cboGrupaPolja.Size = new System.Drawing.Size(217, 21);
+            this.cboGrupaPolja.TabIndex = 471;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(272, 118);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 15);
+            this.label4.TabIndex = 472;
+            this.label4.Text = "Grupa polja:";
+            // 
             // frmSkladista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(670, 536);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cboGrupaPolja);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.txtKapacitet);
             this.Controls.Add(this.label3);
@@ -379,5 +403,7 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboGrupaPolja;
     }
 }

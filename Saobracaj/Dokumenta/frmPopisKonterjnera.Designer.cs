@@ -49,6 +49,8 @@
             this.button22 = new System.Windows.Forms.Button();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.txtPIN = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label29 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
@@ -57,6 +59,8 @@
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboKvalitet = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -85,8 +89,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.txtPIN = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -353,7 +355,7 @@
             this.tabSplitterPage2});
             this.tabSplitterContainer1.Size = new System.Drawing.Size(1320, 658);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.SystemColors.Control;
-            this.tabSplitterContainer1.SplitterPosition = 115;
+            this.tabSplitterContainer1.SplitterPosition = 191;
             this.tabSplitterContainer1.TabIndex = 462;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
@@ -372,9 +374,25 @@
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1320, 115);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1320, 191);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPŠTE";
+            // 
+            // txtPIN
+            // 
+            this.txtPIN.Location = new System.Drawing.Point(537, 292);
+            this.txtPIN.Name = "txtPIN";
+            this.txtPIN.Size = new System.Drawing.Size(231, 20);
+            this.txtPIN.TabIndex = 485;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(538, -122);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(86, 20);
+            this.textBox1.TabIndex = 484;
+            this.textBox1.Text = "0";
             // 
             // dataGridView2
             // 
@@ -387,7 +405,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(647, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(606, 53);
+            this.dataGridView2.Size = new System.Drawing.Size(572, 289);
             this.dataGridView2.TabIndex = 303;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -448,6 +466,8 @@
             // 
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
+            this.tabSplitterPage2.Controls.Add(this.label1);
+            this.tabSplitterPage2.Controls.Add(this.cboKvalitet);
             this.tabSplitterPage2.Controls.Add(this.button3);
             this.tabSplitterPage2.Controls.Add(this.button2);
             this.tabSplitterPage2.Controls.Add(this.button1);
@@ -476,11 +496,29 @@
             this.tabSplitterPage2.Controls.Add(this.txtID);
             this.tabSplitterPage2.Controls.Add(this.label13);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 135);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 211);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1320, 523);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1320, 447);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "SPISAK";
+            this.tabSplitterPage2.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage2_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(779, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 353;
+            this.label1.Text = "Kvalitet kontejnera:";
+            // 
+            // cboKvalitet
+            // 
+            this.cboKvalitet.FormattingEnabled = true;
+            this.cboKvalitet.Location = new System.Drawing.Point(782, 129);
+            this.cboKvalitet.Name = "cboKvalitet";
+            this.cboKvalitet.Size = new System.Drawing.Size(231, 21);
+            this.cboKvalitet.TabIndex = 352;
             // 
             // button3
             // 
@@ -494,6 +532,7 @@
             this.button3.TabIndex = 350;
             this.button3.Text = "Izbriši";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -507,6 +546,7 @@
             this.button2.TabIndex = 349;
             this.button2.Text = "Promeni";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -520,6 +560,7 @@
             this.button1.TabIndex = 348;
             this.button1.Text = "Ubaci";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView3
             // 
@@ -532,7 +573,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(11, 498);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(1280, 19);
+            this.dataGridView3.Size = new System.Drawing.Size(1280, 0);
             this.dataGridView3.TabIndex = 347;
             this.dataGridView3.Visible = false;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -742,22 +783,6 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
-            // txtPIN
-            // 
-            this.txtPIN.Location = new System.Drawing.Point(537, 292);
-            this.txtPIN.Name = "txtPIN";
-            this.txtPIN.Size = new System.Drawing.Size(231, 20);
-            this.txtPIN.TabIndex = 485;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(538, -122);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(86, 20);
-            this.textBox1.TabIndex = 484;
-            this.textBox1.Text = "0";
-            // 
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -771,20 +796,20 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(11, 162);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(10, 174);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1280, 330);
-            this.gridGroupingControl1.TabIndex = 351;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1271, 245);
+            this.gridGroupingControl1.TabIndex = 354;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
@@ -882,6 +907,8 @@
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.TextBox txtPIN;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboKvalitet;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
     }
 }

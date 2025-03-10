@@ -162,7 +162,7 @@ namespace Saobracaj.Izvoz
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID,Naziv FROM  MestaUtovara";
+            var select = " SELECT ID,Naziv FROM  MestaUtovara order by ID desc";
 
 
 

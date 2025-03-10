@@ -32,6 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaniraniPretovar));
             this.button1 = new System.Windows.Forms.Button();
             this.cboSaPoz = new System.Windows.Forms.ComboBox();
@@ -50,6 +56,7 @@
             this.txtRN = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sparkLine1 = new Syncfusion.Windows.Forms.Chart.SparkLine();
             this.button21 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -94,6 +101,15 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
@@ -104,6 +120,9 @@
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -310,6 +329,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.sparkLine1);
             this.panel2.Controls.Add(this.button21);
             this.panel2.Controls.Add(this.button20);
             this.panel2.Controls.Add(this.button14);
@@ -317,18 +337,45 @@
             this.panel2.Controls.Add(this.button12);
             this.panel2.Controls.Add(this.button11);
             this.panel2.Controls.Add(this.button10);
-            this.panel2.Location = new System.Drawing.Point(14, 13);
+            this.panel2.Location = new System.Drawing.Point(3, 14);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(301, 207);
+            this.panel2.Size = new System.Drawing.Size(222, 207);
             this.panel2.TabIndex = 477;
+            // 
+            // sparkLine1
+            // 
+            this.sparkLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.sparkLine1.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.White);
+            this.sparkLine1.EndPoint = 10D;
+            this.sparkLine1.HighPoint = 90D;
+            this.sparkLine1.Location = new System.Drawing.Point(193, 46);
+            this.sparkLine1.LowPoint = 10D;
+            this.sparkLine1.Name = "sparkLine1";
+            this.sparkLine1.NegativeItem = new double[] {
+        0D,
+        0D,
+        0D,
+        0D,
+        0D};
+            this.sparkLine1.Size = new System.Drawing.Size(10, 111);
+            this.sparkLine1.Source = new double[] {
+        20D,
+        90D,
+        30D,
+        60D,
+        10D};
+            this.sparkLine1.StartPoint = 20D;
+            this.sparkLine1.TabIndex = 481;
+            this.sparkLine1.Text = "sparkLine1";
+            this.sparkLine1.Type = Syncfusion.Windows.Forms.Chart.SparkLineType.Line;
             // 
             // button21
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
             this.button21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button21.Location = new System.Drawing.Point(245, 164);
+            this.button21.Location = new System.Drawing.Point(193, 164);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(43, 34);
+            this.button21.Size = new System.Drawing.Size(25, 34);
             this.button21.TabIndex = 480;
             this.button21.Text = "Z";
             this.button21.UseVisualStyleBackColor = false;
@@ -338,9 +385,9 @@
             // 
             this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
             this.button20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button20.Location = new System.Drawing.Point(245, 5);
+            this.button20.Location = new System.Drawing.Point(193, 4);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(43, 37);
+            this.button20.Size = new System.Drawing.Size(25, 36);
             this.button20.TabIndex = 479;
             this.button20.Text = "Z";
             this.button20.UseVisualStyleBackColor = false;
@@ -352,7 +399,7 @@
             this.button14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button14.Location = new System.Drawing.Point(12, 164);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(227, 34);
+            this.button14.Size = new System.Drawing.Size(175, 34);
             this.button14.TabIndex = 466;
             this.button14.Text = "KALMARISTA PREMESTAJ KONTEJNERA / CIR";
             this.button14.UseVisualStyleBackColor = false;
@@ -364,7 +411,7 @@
             this.button13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button13.Location = new System.Drawing.Point(12, 125);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(227, 34);
+            this.button13.Size = new System.Drawing.Size(175, 34);
             this.button13.TabIndex = 465;
             this.button13.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
             this.button13.UseVisualStyleBackColor = false;
@@ -376,7 +423,7 @@
             this.button12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button12.Location = new System.Drawing.Point(12, 90);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(227, 34);
+            this.button12.Size = new System.Drawing.Size(175, 34);
             this.button12.TabIndex = 464;
             this.button12.Text = "OTPREMA UTOVAR CIRADA";
             this.button12.UseVisualStyleBackColor = false;
@@ -388,7 +435,7 @@
             this.button11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button11.Location = new System.Drawing.Point(12, 46);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(227, 43);
+            this.button11.Size = new System.Drawing.Size(175, 43);
             this.button11.TabIndex = 463;
             this.button11.Text = "PRETOVAR ROBE - PRIJEM / SKLADISTENJE";
             this.button11.UseVisualStyleBackColor = false;
@@ -400,7 +447,7 @@
             this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button10.Location = new System.Drawing.Point(12, 3);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(227, 42);
+            this.button10.Size = new System.Drawing.Size(175, 42);
             this.button10.TabIndex = 14;
             this.button10.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
             this.button10.UseVisualStyleBackColor = false;
@@ -415,18 +462,18 @@
             this.panel3.Controls.Add(this.button17);
             this.panel3.Controls.Add(this.button18);
             this.panel3.Controls.Add(this.button19);
-            this.panel3.Location = new System.Drawing.Point(321, 13);
+            this.panel3.Location = new System.Drawing.Point(231, 14);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(296, 208);
+            this.panel3.Size = new System.Drawing.Size(224, 208);
             this.panel3.TabIndex = 478;
             // 
             // button23
             // 
             this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
             this.button23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button23.Location = new System.Drawing.Point(245, 164);
+            this.button23.Location = new System.Drawing.Point(194, 164);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(43, 34);
+            this.button23.Size = new System.Drawing.Size(22, 34);
             this.button23.TabIndex = 481;
             this.button23.Text = "Z";
             this.button23.UseVisualStyleBackColor = false;
@@ -436,9 +483,9 @@
             // 
             this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
             this.button22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button22.Location = new System.Drawing.Point(245, 6);
+            this.button22.Location = new System.Drawing.Point(194, 5);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(43, 32);
+            this.button22.Size = new System.Drawing.Size(22, 32);
             this.button22.TabIndex = 480;
             this.button22.Text = "Z";
             this.button22.UseVisualStyleBackColor = false;
@@ -450,7 +497,7 @@
             this.button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button16.Location = new System.Drawing.Point(12, 88);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(227, 38);
+            this.button16.Size = new System.Drawing.Size(176, 38);
             this.button16.TabIndex = 467;
             this.button16.Text = "PRIJEM ROBE - ISTOVAR ROBE";
             this.button16.UseVisualStyleBackColor = false;
@@ -462,7 +509,7 @@
             this.button15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button15.Location = new System.Drawing.Point(12, 164);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(227, 34);
+            this.button15.Size = new System.Drawing.Size(176, 34);
             this.button15.TabIndex = 466;
             this.button15.Text = "KALMARISTA PREMESTAJ KONTEJNERA";
             this.button15.UseVisualStyleBackColor = false;
@@ -474,7 +521,7 @@
             this.button17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button17.Location = new System.Drawing.Point(12, 127);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(227, 34);
+            this.button17.Size = new System.Drawing.Size(176, 34);
             this.button17.TabIndex = 464;
             this.button17.Text = "OTPREMA / UTOVAR U KONTEJNER";
             this.button17.UseVisualStyleBackColor = false;
@@ -486,7 +533,7 @@
             this.button18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button18.Location = new System.Drawing.Point(12, 46);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(227, 38);
+            this.button18.Size = new System.Drawing.Size(176, 38);
             this.button18.TabIndex = 463;
             this.button18.Text = "DOLAZAK KAMION CIRADA";
             this.button18.UseVisualStyleBackColor = false;
@@ -498,7 +545,7 @@
             this.button19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button19.Location = new System.Drawing.Point(12, 3);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(227, 37);
+            this.button19.Size = new System.Drawing.Size(176, 37);
             this.button19.TabIndex = 14;
             this.button19.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
             this.button19.UseVisualStyleBackColor = false;
@@ -526,7 +573,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView7.Location = new System.Drawing.Point(632, 11);
+            this.dataGridView7.Location = new System.Drawing.Point(659, 11);
             this.dataGridView7.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView7.Name = "dataGridView7";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -539,7 +586,7 @@
             this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView7.RowHeadersWidth = 26;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(299, 208);
+            this.dataGridView7.Size = new System.Drawing.Size(301, 73);
             this.dataGridView7.TabIndex = 479;
             // 
             // splitter1
@@ -584,11 +631,14 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView7);
-            this.splitContainer1.Size = new System.Drawing.Size(1510, 234);
-            this.splitContainer1.SplitterDistance = 561;
+            this.splitContainer1.Size = new System.Drawing.Size(1510, 230);
+            this.splitContainer1.SplitterDistance = 532;
             this.splitContainer1.TabIndex = 481;
             // 
             // label3
@@ -626,7 +676,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(310, 112);
+            this.label6.Location = new System.Drawing.Point(297, 112);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 16);
             this.label6.TabIndex = 472;
@@ -637,7 +687,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(310, 8);
+            this.label4.Location = new System.Drawing.Point(297, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 16);
             this.label4.TabIndex = 473;
@@ -647,7 +697,7 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(313, 134);
+            this.dateTimePicker1.Location = new System.Drawing.Point(300, 134);
             this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
@@ -669,7 +719,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(310, 59);
+            this.label5.Location = new System.Drawing.Point(297, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 475;
@@ -677,9 +727,9 @@
             // 
             // txtVozac
             // 
-            this.txtVozac.Location = new System.Drawing.Point(313, 79);
+            this.txtVozac.Location = new System.Drawing.Point(300, 79);
             this.txtVozac.Name = "txtVozac";
-            this.txtVozac.Size = new System.Drawing.Size(231, 20);
+            this.txtVozac.Size = new System.Drawing.Size(217, 20);
             this.txtVozac.TabIndex = 479;
             // 
             // txtKontejner
@@ -691,9 +741,9 @@
             // 
             // txtReg
             // 
-            this.txtReg.Location = new System.Drawing.Point(313, 28);
+            this.txtReg.Location = new System.Drawing.Point(300, 28);
             this.txtReg.Name = "txtReg";
-            this.txtReg.Size = new System.Drawing.Size(231, 20);
+            this.txtReg.Size = new System.Drawing.Size(217, 20);
             this.txtReg.TabIndex = 480;
             // 
             // txtOsnov
@@ -800,7 +850,9 @@
             this.panelHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.toolStripButton6,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton4,
+            this.toolStripButton3});
             this.panelHeader.Location = new System.Drawing.Point(3, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1519, 25);
@@ -850,26 +902,176 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 270);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 266);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1498, 346);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1498, 350);
             this.gridGroupingControl1.TabIndex = 487;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button24);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.button25);
+            this.panel1.Controls.Add(this.button28);
+            this.panel1.Location = new System.Drawing.Point(461, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(193, 208);
+            this.panel1.TabIndex = 482;
+            // 
+            // button25
+            // 
+            this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button25.Location = new System.Drawing.Point(12, 49);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(176, 38);
+            this.button25.TabIndex = 467;
+            this.button25.Text = "PRIJEM ROBE - ISTOVAR ROBE";
+            this.button25.UseVisualStyleBackColor = false;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button28
+            // 
+            this.button28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button28.Location = new System.Drawing.Point(12, 8);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(176, 38);
+            this.button28.TabIndex = 463;
+            this.button28.Text = "DOLAZAK KAMION CIRADA";
+            this.button28.UseVisualStyleBackColor = false;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button5.Location = new System.Drawing.Point(12, 93);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(176, 34);
+            this.button5.TabIndex = 468;
+            this.button5.Text = "OTPREMA UTOVAR CIRADA";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button24
+            // 
+            this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button24.Location = new System.Drawing.Point(12, 135);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(176, 34);
+            this.button24.TabIndex = 469;
+            this.button24.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
+            this.button24.UseVisualStyleBackColor = false;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.Location = new System.Drawing.Point(659, 88);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.RowHeadersWidth = 26;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(152, 129);
+            this.dataGridView1.TabIndex = 483;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView2.Location = new System.Drawing.Point(815, 88);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.Name = "dataGridView2";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView2.RowHeadersWidth = 26;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(145, 129);
+            this.dataGridView2.TabIndex = 484;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.ForeColor = System.Drawing.Color.Black;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(93, 22);
+            this.toolStripButton3.Text = "Otvori otpremu";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.ForeColor = System.Drawing.Color.Black;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(81, 22);
+            this.toolStripButton4.Text = "Otvori prijem";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // PlaniraniPretovar
             // 
@@ -911,6 +1113,9 @@
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -978,5 +1183,15 @@
         private System.Windows.Forms.CheckBox chkUvoz;
         private System.Windows.Forms.CheckBox chkPlatforma;
         private System.Windows.Forms.CheckBox chkIzvoz;
+        private Syncfusion.Windows.Forms.Chart.SparkLine sparkLine1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

@@ -1,32 +1,152 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-using System.Windows.Controls;
+using System.Diagnostics.CodeAnalysis;
+using Saobracaj;
+using System.Drawing;
+using Saobracaj.Dokumenta;
+using Syncfusion.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class frmDodelaSkladista : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmDodelaSkladista : Form
     {
         int TipRadnogNaloga = 0;
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+     
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+               
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                tabSplitterContainer1.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+
+
+
+                foreach (Control control in tabSplitterPage1.Controls)
+                {
+                    if (control is Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                }
+            }
+            else
+            {
+            
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                ChangeTextBox();
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
+        }
+
         public frmDodelaSkladista()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
         public frmDodelaSkladista(string Prijem, int TipRN)
         {
             InitializeComponent();
+            ChangeTextBox();
             TipRadnogNaloga = TipRN;
             textBox1.Text = Prijem;
             if (TipRN == 1)
@@ -79,13 +199,18 @@ namespace Saobracaj.RadniNalozi
                 label5.Text = "Otprema ID";
             };
 
-            
+            if (TipRN == 12)
+            {
+                label5.Text = "INTERNI PRENOS";
+            };
+
+
         }
         private void FillGVSkladista()
         {
             var select = "  Select ID, Naziv, Kapacitet ,  " +
 " (Select Count(*) from KontejnerTekuce where KontejnerTekuce.Skladiste = Skladista.ID) as TrenutnoKontejnera " +
-" From Skladista ";
+" From Skladista where GrupaPoljaID = 1";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -96,6 +221,8 @@ namespace Saobracaj.RadniNalozi
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
@@ -140,18 +267,7 @@ namespace Saobracaj.RadniNalozi
             dataAdapter.Fill(ds);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
-
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
             dataGridView2.Columns["Sklad"].DefaultCellStyle.BackColor = Color.LightBlue;
 
@@ -174,17 +290,7 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
         }
 
@@ -214,24 +320,14 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
         }
 
         private void FillDGRN4()
         {
             //Prijem platforme Uvoz - scenario 1
-            var select = "  select RNPrijemPlatforme.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme.Kamion, USkladiste,Skladista.Naziv as Sklad, " +
+            var select = "  select RNPrijemPlatforme.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme.Kamion, USkladiste,Skladista.Naziv as Polje, " +
                 " DatumRasporeda, NalogIzdao, " +
 "  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, " +
 " VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemPlatforme.Napomena, RNPrijemPlatforme.PrijemID,RNPrijemPlatforme.NalogID, DatumRealizacije, " +
@@ -254,24 +350,14 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
         }
 
         private void FillDGRN5()
         {
             //Prijem platforme TERMINAL BRODAR
-            var select = "  select RNPrijemPlatforme2.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme2.Kamion, USkladiste,Skladista.Naziv as Sklad, " +
+            var select = "  select RNPrijemPlatforme2.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme2.Kamion, USkladiste,Skladista.Naziv as Polje, " +
 " DatumRasporeda, NalogIzdao, " +
 " '' as Uvoznik, p2.PaNaziv as Brodar, " +
 " VrstaManipulacije.Naziv as Usliga, '' as BRojPlombe, RNPrijemPlatforme2.Napomena, RNPrijemPlatforme2.PrijemID,RNPrijemPlatforme2.NalogID, DatumRealizacije, " +
@@ -293,17 +379,34 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+        }
+
+        private void FillDGRN12()
+        {
+            //Prijem platforme TERMINAL BRODAR
+            var select = "SELECT       RNMedjuskladisni.ID as ID,  RNMedjuskladisni.BrojKontejnera,  RNMedjuskladisni.VrstaKontejnera,TipKontenjera.Naziv, " +
+                  "Skladista.ID as SaID, Skladista.Naziv AS SkladSa, Skladista_1.ID AS NaID, Skladista_1.Naziv AS NaSkladiste," +
+                  "                     RNMedjuskladisni.DatumRasporeda, " +
+                 " RNMedjuskladisni.NalogIzdao, RNMedjuskladisni.DatumRealizacije, RNMedjuskladisni.NalogRealizovao, RNMedjuskladisni.Napomena, " +
+                 " RNMedjuskladisni.Zavrsen FROM            RNMedjuskladisni INNER JOIN" +
+                 " TipKontenjera ON RNMedjuskladisni.VrstaKontejnera = TipKontenjera.ID INNER JOIN" +
+                 " Skladista ON RNMedjuskladisni.SaSkladista = Skladista.ID INNER JOIN   Skladista AS Skladista_1 ON RNMedjuskladisni.NaSkladiste = Skladista_1.ID where RNMedjuskladisni.ID = " + textBox1.Text;
+       
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView2);
 
         }
 
@@ -316,7 +419,7 @@ namespace Saobracaj.RadniNalozi
    "    ,[CarinskiPostupak]      , VrstaCarinskogPostupka.Naziv as CarinskiPostupak " +
      "  ,[SpedicijaRTC]	  , p3.PaNaziv as SpedicijaRTC " +
     "   ,[NazivBrodara]      ,[VrstaRobe] " +
-    "   ,[SaSkladista]	  , Skladista.Naziv " +
+    "   ,[SaSkladista] as Polja	  , Skladista.Naziv as NazivPolja" +
      "  ,[SaPozicijeSklad]	  , Pozicija.Opis " +
      "  ,[IdUsluge]      ,[NalogRealizovao] " +
     "   ,[OtpremaID]      ,[Kamion] " +
@@ -341,17 +444,7 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
         }
 
@@ -374,6 +467,8 @@ namespace Saobracaj.RadniNalozi
 
             if (TipRadnogNaloga == 5)
                 FillDGRN5();
+            if (TipRadnogNaloga == 12)  // MEDJUSKLADISNI
+                FillDGRN12();
         }
 
         private void btnUnesi_Click(object sender, EventArgs e)
@@ -576,7 +671,30 @@ namespace Saobracaj.RadniNalozi
                 FillDGRN6();
             }
 
+
+            if (TipRadnogNaloga == 12)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN12Skladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN12();
             }
+
+        }
 
         private void FillGVSkladistaSuzeno()
         {
@@ -593,6 +711,8 @@ namespace Saobracaj.RadniNalozi
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];

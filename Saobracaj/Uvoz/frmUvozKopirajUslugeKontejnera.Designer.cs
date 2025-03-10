@@ -40,9 +40,7 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button25 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -169,7 +167,6 @@
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel2);
-            this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
@@ -181,31 +178,11 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.button25);
             this.panel2.Controls.Add(this.button23);
-            this.panel2.Location = new System.Drawing.Point(35, 0);
+            this.panel2.Location = new System.Drawing.Point(3, -1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(836, 31);
             this.panel2.TabIndex = 6;
-            // 
-            // button25
-            // 
-            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button25.FlatAppearance.BorderSize = 0;
-            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button25.Location = new System.Drawing.Point(102, 0);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(10, 31);
-            this.button25.TabIndex = 18;
-            this.button25.Text = "Refresh";
-            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button25.UseVisualStyleBackColor = true;
             // 
             // button23
             // 
@@ -227,15 +204,6 @@
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.button23_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(13, 31);
-            this.panel3.TabIndex = 2;
             // 
             // frmUvozKopirajUslugeKontejnera
             // 
@@ -277,8 +245,6 @@
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Panel panel3;
     }
 }

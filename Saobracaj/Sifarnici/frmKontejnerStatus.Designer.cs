@@ -44,10 +44,6 @@ namespace Saobracaj.Sifarnici
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
@@ -56,7 +52,6 @@ namespace Saobracaj.Sifarnici
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panelHeader.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,94 +176,10 @@ namespace Saobracaj.Sifarnici
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.button26);
-            this.panel2.Controls.Add(this.button25);
-            this.panel2.Controls.Add(this.button24);
-            this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(126, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(470, 31);
             this.panel2.TabIndex = 7;
-            // 
-            // button26
-            // 
-            this.button26.AutoSize = true;
-            this.button26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button26.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button26.FlatAppearance.BorderSize = 0;
-            this.button26.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button26.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button26.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button26.Location = new System.Drawing.Point(96, 0);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(34, 31);
-            this.button26.TabIndex = 19;
-            this.button26.Text = ">>";
-            this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button26.UseVisualStyleBackColor = true;
-            // 
-            // button25
-            // 
-            this.button25.AutoSize = true;
-            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button25.FlatAppearance.BorderSize = 0;
-            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button25.Location = new System.Drawing.Point(61, 0);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(35, 31);
-            this.button25.TabIndex = 18;
-            this.button25.Text = ">";
-            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button25.UseVisualStyleBackColor = true;
-            // 
-            // button24
-            // 
-            this.button24.AutoSize = true;
-            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button24.FlatAppearance.BorderSize = 0;
-            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button24.Location = new System.Drawing.Point(33, 0);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(28, 31);
-            this.button24.TabIndex = 17;
-            this.button24.Text = "<";
-            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button24.UseVisualStyleBackColor = true;
-            // 
-            // button23
-            // 
-            this.button23.AutoSize = true;
-            this.button23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button23.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button23.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button23.FlatAppearance.BorderSize = 0;
-            this.button23.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button23.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button23.Location = new System.Drawing.Point(0, 0);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(33, 31);
-            this.button23.TabIndex = 16;
-            this.button23.Text = "<<";
-            this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button23.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -355,8 +266,6 @@ namespace Saobracaj.Sifarnici
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.panelHeader.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -378,10 +287,6 @@ namespace Saobracaj.Sifarnici
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;

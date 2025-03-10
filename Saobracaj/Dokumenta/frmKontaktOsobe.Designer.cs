@@ -232,7 +232,7 @@ namespace Saobracaj.Dokumenta
             this.txtPaKOOpomba.Location = new System.Drawing.Point(66, 197);
             this.txtPaKOOpomba.Multiline = true;
             this.txtPaKOOpomba.Name = "txtPaKOOpomba";
-            this.txtPaKOOpomba.Size = new System.Drawing.Size(498, 36);
+            this.txtPaKOOpomba.Size = new System.Drawing.Size(192, 36);
             this.txtPaKOOpomba.TabIndex = 245;
             // 
             // label7
@@ -357,9 +357,9 @@ namespace Saobracaj.Dokumenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button23);
-            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(258, 31);
+            this.panel2.Size = new System.Drawing.Size(201, 31);
             this.panel2.TabIndex = 6;
             // 
             // button23
@@ -374,9 +374,10 @@ namespace Saobracaj.Dokumenta
             this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button23.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button23.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.button23.Location = new System.Drawing.Point(0, 0);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(111, 31);
+            this.button23.Size = new System.Drawing.Size(89, 31);
             this.button23.TabIndex = 16;
             this.button23.Text = "Svi kontakti";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

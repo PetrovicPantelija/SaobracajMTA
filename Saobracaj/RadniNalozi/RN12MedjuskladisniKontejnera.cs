@@ -164,6 +164,7 @@ namespace Saobracaj.RadniNalozi
             InitializeComponent();
             FillGV();
             FillCombo();
+            ChangeTextBox();
             txtNapomena.Text = Napomena;
             txtBrojKontejnera.Text = BrojKontejnera;
             txtNalogID.Text = NalogID.ToString();
@@ -483,6 +484,12 @@ namespace Saobracaj.RadniNalozi
         private void button2_Click(object sender, EventArgs e)
         {
             VratiOstaloIzRN1(txtBrojKontejnera.Text);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtID.Text, 12);
+            ds.Show();
         }
     }
 }

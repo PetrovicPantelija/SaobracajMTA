@@ -513,13 +513,6 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public NPreRptRow FindByID(int ID) {
-                return ((NPreRptRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 NPreRptDataTable cln = ((NPreRptDataTable)(base.Clone()));
                 cln.InitVars();
@@ -582,10 +575,7 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnLot);
                 this.columnSkladisteno = new global::System.Data.DataColumn("Skladisteno", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSkladisteno);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
                 this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
                 this.columnDatumTransakcije.AllowDBNull = false;
                 this.columnPrStDokumenta.AllowDBNull = false;
                 this.columnKolicina.AllowDBNull = false;
@@ -1242,7 +1232,7 @@ namespace Saobracaj.PrijemnicaDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.TESTIRANJEConnectionString;
+            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.NedraConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -2061,9 +2061,9 @@ namespace Saobracaj.Dokumenta
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(349, 8);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(130, 14);
+            this.label15.Size = new System.Drawing.Size(27, 14);
             this.label15.TabIndex = 258;
-            this.label15.Text = "BROJ VOZA I RELACIJA:";
+            this.label15.Text = "Voz:";
             // 
             // chkOtprema
             // 

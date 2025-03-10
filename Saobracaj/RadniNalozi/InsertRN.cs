@@ -444,6 +444,61 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
+
+        public void UpdateRN12Skladiste(int Skladiste, int RN)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN12MedjuskladisniSkladiste";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter skladiste = new SqlParameter();
+            skladiste.ParameterName = "@Skladiste";
+            skladiste.SqlDbType = SqlDbType.Int;
+            skladiste.Direction = ParameterDirection.Input;
+            skladiste.Value = Skladiste;
+            cmd.Parameters.Add(skladiste);
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
         public void UpdateRN5Skladiste(int Skladiste, int RN)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -4888,8 +4943,14 @@ namespace Saobracaj.RadniNalozi
 
         public void UpdRNPPrijemPlatforme(int ID, DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, string BrojKontejnera, int VrstaKontejnera,
             string BrojPlombe, int Izvoznik, int NazivBrodara, int CarinskiPostupak, int InspekcijskiPregled, int VrstaRobe, int NaSkladiste, int NaPozicijuSklad, int IdUsluge,
-            string NalogRealizovao, string Napomena)
+            string NalogRealizovao, string Napomena, string Kamion, int PrijemID, int NalogID, int Zavrsen, int ZavrsenCIR, string  NalogRealizovaoCIR,
+            DateTime DatumRealizacijeCIR, int USkladisteCIR, int ZavrsenKalmarista, string NalogRealizovaoKal, DateTime DatumRealizacijeKal, int PotrebanCIR,
+            int VizuelniPotreban, int IzUvoza, string VizuelniUradio, DateTime VizuelniDatumReal, int VizuelniZavrsen)
         {
+
+
+
+
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 conn.Open();
@@ -4921,7 +4982,33 @@ namespace Saobracaj.RadniNalozi
                             cmd.Parameters.Add(new SqlParameter("@IdUsluge", SqlDbType.Int) { Value = IdUsluge });
                             cmd.Parameters.Add(new SqlParameter("@NalogRealizovao", SqlDbType.NVarChar, 50) { Value = NalogRealizovao });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@Kamion", SqlDbType.NVarChar, 50) { Value = Kamion });
+                            cmd.Parameters.Add(new SqlParameter("@PrijemID", SqlDbType.Int) { Value = PrijemID });
+                            cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
+                            cmd.Parameters.Add(new SqlParameter("@Zavrsen", SqlDbType.Int) { Value = Zavrsen });
+                            cmd.Parameters.Add(new SqlParameter("@ZavrsenCIR", SqlDbType.Int) { Value = ZavrsenCIR });
+                            cmd.Parameters.Add(new SqlParameter("@NalogRealizovaoCIR", SqlDbType.NVarChar, 50) { Value = NalogRealizovaoCIR });
+                            cmd.Parameters.Add(new SqlParameter("@DatumRealizacijeCIR", SqlDbType.DateTime) { Value = DatumRealizacijeCIR });
+                            cmd.Parameters.Add(new SqlParameter("@USkladisteCIR", SqlDbType.Int) { Value = USkladisteCIR });
+                            cmd.Parameters.Add(new SqlParameter("@ZavrsenKalmarista", SqlDbType.Int) { Value = ZavrsenKalmarista });
+                            cmd.Parameters.Add(new SqlParameter("@NalogRealizovaoKal", SqlDbType.NVarChar, 50) { Value = NalogRealizovaoKal });
+                            cmd.Parameters.Add(new SqlParameter("@DatumRealizacijeKal", SqlDbType.DateTime) { Value = DatumRealizacijeKal });
+                            cmd.Parameters.Add(new SqlParameter("@PotrebanCIR", SqlDbType.Int) { Value = PotrebanCIR });
+                            cmd.Parameters.Add(new SqlParameter("@VizuelniPotreban", SqlDbType.Int) { Value = VizuelniPotreban });
+                            cmd.Parameters.Add(new SqlParameter("@IzUvoza", SqlDbType.Int) { Value = IzUvoza });
+                            cmd.Parameters.Add(new SqlParameter("@VizuelniUradio", SqlDbType.NVarChar, 30) { Value = VizuelniUradio });
+                            cmd.Parameters.Add(new SqlParameter("@VizuelniDatumReal", SqlDbType.DateTime) { Value = VizuelniDatumReal });
+                            cmd.Parameters.Add(new SqlParameter("@VizuelniZavrsen", SqlDbType.Int) { Value = VizuelniZavrsen });
+
+
+
+
+
+
+
+
                             cmd.ExecuteNonQuery();
+                      
                         }
 
                         tran.Commit();

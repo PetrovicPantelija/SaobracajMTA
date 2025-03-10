@@ -56,13 +56,14 @@
             // meniHeader
             // 
             this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton4,
             this.toolStripButton5});
-            this.meniHeader.Location = new System.Drawing.Point(0, 33);
+            this.meniHeader.Location = new System.Drawing.Point(0, 455);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(1049, 27);
             this.meniHeader.TabIndex = 129;
@@ -141,7 +142,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 63);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1048, 419);

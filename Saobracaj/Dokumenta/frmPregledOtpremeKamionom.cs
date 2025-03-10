@@ -393,7 +393,7 @@ namespace TrackModal.Dokumeta
                     " (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
  "  FROM OtpremaKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
- " as Kontejner, VrstaKamiona, Poreklo " +
+ " as Kontejner, VrstaKamiona,  (CASE WHEN Poreklo = 1 THEN 'Uvoz' ELSE 'Izvoz' END) as Poreklo " +
                     "FROM [dbo].[OtpremaKontejnera] as n1 where NacinOtpreme = 1  order by ID desc";
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
@@ -453,8 +453,12 @@ namespace TrackModal.Dokumeta
                 var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme]," +
                     " [IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ," +
                     " [Datum] ,[Korisnik],  " +
-                     " CASE WHEN Poreklo = 0 THEN 'Uvoz' ELSE 'Izvoz' END " +
-                    " FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 and Poreklo in ( " + pomModul + ") and VrstaKamiona in ( " + pomPoreklo + ") order by ID desc";
+                     " (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+                     "  FROM OtpremaKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+                     " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
+                     " as Kontejner, VrstaKamiona," +
+                     " (CASE WHEN Poreklo = 1 THEN 'Uvoz' ELSE 'Izvoz' END) as Poreklo " +
+                    " FROM [dbo].[OtpremaKontejnera] n1 where NacinOtpreme = 0 and Poreklo in ( " + pomModul + ") and VrstaKamiona in ( " + pomPoreklo + ") order by ID desc";
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);

@@ -3027,8 +3027,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1924, 865);
+            this.ClientSize = new System.Drawing.Size(1763, 838);
             this.Controls.Add(this.button204);
             this.Controls.Add(this.button203);
             this.Controls.Add(this.button202);
@@ -3229,7 +3230,6 @@
             this.Name = "frmPregledSkladistaNovi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VIZUELNI PREGLED SKLADISTA";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPregledSkladistaNovi_Load);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

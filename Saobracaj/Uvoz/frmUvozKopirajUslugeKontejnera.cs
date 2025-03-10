@@ -145,6 +145,7 @@ namespace Saobracaj.Uvoz
         public frmUvozKopirajUslugeKontejnera(string KontID, int IzUvoza)
         {
             InitializeComponent();
+            ChangeTextBox();
             txtID.Text = KontID;
             if (IzUvoza == 1)
             {

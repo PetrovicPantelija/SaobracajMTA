@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.Dokumenta;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Data;
@@ -1576,12 +1577,12 @@ namespace Saobracaj.Izvoz
         private void MoguciScenario()
         {
             string Moguce = "";
-            if (pickUp == "Leget" && pickUp3 != "Leget")
+            if (pickUp == "Leget -" && pickUp2 == "Leget -" && pickUp3 != "Leget -")
             {
                 ScenarioGL = 1; ///Leget - Leget - Krajnja destinacija
 
             }
-            else if (pickUp != "Leget" && pickUp3 != "Leget")
+            else if (pickUp != "Leget -" && pickUp3 != "Leget -")
             {
                 ScenarioGL = 2; //Drugi terminal - Leget - Krajnja destinacija
             }
@@ -1599,20 +1600,23 @@ namespace Saobracaj.Izvoz
             {
                 Moguce = "15";
             }
-            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp > 1)
             {
-                Moguce = "8,9"; // Leget - Leget - NestoDrugo - BEZ ADR
+                Moguce = "7,8,9"; // Leget - Leget - NestoDrugo - BEZ ADR - pun
             }
-            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp > 1)
             {
-                Moguce = "23,24,25";
+                Moguce = "23,24,25";  // PUN
             }
-
-            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp > 1)
             {
-                Moguce = "11,12,13,14,29"; // Ostaje na terminalu
+                Moguce = "13"; // PUN Ostaje na terminalu \"11,12,13,14,29
             }
-            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
+            {
+                Moguce = "12,14,29"; // PUN Ostaje na terminalu \"11,12,13,14,29
+            }
+            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
             {
                 Moguce = "25,26";
             }
@@ -1628,6 +1632,8 @@ namespace Saobracaj.Izvoz
                 }
 
             }
+
+
 
             if (poklapase == 0)
             {
@@ -2199,7 +2205,7 @@ namespace Saobracaj.Izvoz
             int idnhm = 0;
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from IzvozkonacnaNHM where IDNadredjena where ID = " + Convert.ToInt32(txtID.Text), con);
+            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from IzvozkonacnaNHM where IDNadredjena  = " + Convert.ToInt32(txtID.Text), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2223,7 +2229,9 @@ namespace Saobracaj.Izvoz
                 txtID.Text = detailForm.GetID();
                 if (txtID.Text == "")
                 { return; }
-                { VratiPodatkeSelect(Convert.ToInt32(txtID.Text)); }
+                { VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                    FillDG2();
+                }
                 
             }
         }
@@ -2255,9 +2263,10 @@ namespace Saobracaj.Izvoz
             MoguciScenario();
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
             um.Show();
             FillDG2();
+           
         }
 
         private void frmIzvozKonacna_SizeChanged(object sender, EventArgs e)
@@ -2555,6 +2564,25 @@ namespace Saobracaj.Izvoz
         private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            var partner5 = "select Distinct PaKOsifra, PaNaziv from partnerjiKontOseba inner join Partnerji on Partnerji.PaSifra = PaKOsifra where Carinarnica = " + Convert.ToInt32(cboCarina.SelectedValue);
+            var partAD5 = new SqlDataAdapter(partner5, conn);
+            var partDS5 = new DataSet();
+            partAD5.Fill(partDS5);
+            cboSpedicija.DataSource = partDS5.Tables[0];
+            cboSpedicija.DisplayMember = "PaNaziv";
+            cboSpedicija.ValueMember = "PaKOsifra";
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            frmPovezivanjeKontejneraIVagona pkv = new frmPovezivanjeKontejneraIVagona(Convert.ToInt32(txtNadredjeni.Text));
+            pkv.Show();
         }
     }
 }

@@ -1,20 +1,121 @@
-﻿using Saobracaj.Sifarnici;
+﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Saobracaj.Sifarnici;
+using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
+using Saobracaj.Uvoz;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class Prijemnica : Syncfusion.Windows.Forms.Office2010Form
+    public partial class Prijemnica : Form
     {
         string connect = frmLogovanje.connectionString;
         string korisnik,kontejner;
         int nalog,sklad,poz;
+        int usao = 0;
+        int PrijemnicaID = 0;
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+          
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+             
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+              
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
         public Prijemnica()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
         public Prijemnica(int NalogID,string Kontejner,int Sklad,int Poz)
         {
@@ -32,7 +133,28 @@ namespace Saobracaj.RadniNalozi
                 cbo_MestoTroska.Visible = false;
                 cbo_Partner.Visible = false;
             }
+            ChangeTextBox();
             }
+
+        public Prijemnica(int NalogID, string Kontejner, int Sklad, int Poz, int Prijemnica)
+        {
+            InitializeComponent();
+            nalog = NalogID;
+
+            kontejner = Kontejner;
+            sklad = Sklad;
+            poz = Poz;
+            txtNalogID.Text = nalog.ToString();
+            if (frmLogovanje.Firma == "Leget")
+            {
+                cbo_Skladiste.Visible = false;
+                cbo_Lokacija.Visible = false;
+                cbo_MestoTroska.Visible = false;
+                cbo_Partner.Visible = false;
+            }
+            PrijemnicaID = Prijemnica;
+            ChangeTextBox();
+        }
 
         private void Prijemnica_Load(object sender, EventArgs e)
         {
@@ -47,7 +169,36 @@ namespace Saobracaj.RadniNalozi
                 cbo_Lokacija.SelectedValue = poz;
                 txtBrojKontejnera.Text = kontejner;
                 korisnik = frmLogovanje.user;
+                if (PrijemnicaID != 0)
+                {
+                    SetGrupaPolja();
+                    RefreshDataGrid();
+                    
+                    
+                  
+
+                }
             }
+        }
+
+        private void SetGrupaPolja()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 SkladistaGrupa.ID from SkladistaGrupa inner join Skladista on Skladista.GrupaPoljaID = SkladistaGrupa.ID inner join Promet on Promet.SkladisteU = Skladista.ID where Promet.PrStDokumenta = " + PrijemnicaID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboGrupaPolja.SelectedValue = Convert.ToInt32(dr["ID"].ToString());
+            }
+
+            con.Close();
+
         }
         private void FillCombo()
         {
@@ -66,7 +217,7 @@ namespace Saobracaj.RadniNalozi
             }
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
+            System.Data.DataSet ds = new System.Data.DataSet();
             da.Fill(ds);
             cbo_Skladiste.DataSource = ds.Tables[0];
             cbo_Skladiste.DisplayMember = display;
@@ -74,7 +225,7 @@ namespace Saobracaj.RadniNalozi
 
             var query3 = "Select PaSifra,PaNaziv from Partnerji order by PaNaziv";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, conn);
-            DataSet ds3 = new DataSet();
+            System.Data.DataSet ds3 = new System.Data.DataSet();
             da3.Fill(ds3);
             cbo_Partner.DataSource = ds3.Tables[0];
             cbo_Partner.DisplayMember = "PaNaziv";
@@ -82,7 +233,7 @@ namespace Saobracaj.RadniNalozi
 
             var query4 = "Select DeSifra as ID,(RTrim(DePriimek)+' '+RTrim(DeIme)) as Opis From Delavci Where DeSifStat<>'P' order by Opis";
             SqlDataAdapter da4 = new SqlDataAdapter(query4, conn);
-            DataSet ds4 = new DataSet();
+            System.Data.DataSet ds4 = new System.Data.DataSet();
             da4.Fill(ds4);
             cbo_Referent.DataSource = ds4.Tables[0];
             cbo_Referent.DisplayMember = "Opis";
@@ -90,7 +241,7 @@ namespace Saobracaj.RadniNalozi
 
             var query5 = "Select DeSifra as ID,(Rtrim(DePriimek)+' '+RTrim(DeIme)) as Opis From Delavci Where DeSifStat<>'P' order by Opis";
             SqlDataAdapter da5 = new SqlDataAdapter(query5, conn);
-            DataSet ds5 = new DataSet();
+            System.Data.DataSet ds5 = new System.Data.DataSet();
             da5.Fill(ds5);
             cboPrimio.DataSource = ds5.Tables[0];
             cboPrimio.DisplayMember = "Opis";
@@ -98,17 +249,30 @@ namespace Saobracaj.RadniNalozi
 
             var query7 = "Select LokSifra, Lokopis from Lokac";
             SqlDataAdapter da7 = new SqlDataAdapter(query7, conn);
-            DataSet ds7 = new DataSet();
+            System.Data.DataSet ds7 = new System.Data.DataSet();
             da7.Fill(ds7);
             cbo_Lokacija.DataSource = ds7.Tables[0];
             cbo_Lokacija.DisplayMember = "LokOpis";
             cbo_Lokacija.ValueMember = "LokSifra";
 
+            var select41 = "  select ID, Naziv from SkladistaGrupa order by ID";
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c41 = new SqlConnection(s_connection4);
+            var dataAdapter41 = new SqlDataAdapter(select41, c41);
+
+            var commandBuilder41 = new SqlCommandBuilder(dataAdapter41);
+            var ds41 = new System.Data.DataSet();
+            dataAdapter41.Fill(ds41);
+            cboGrupaPolja.DataSource = ds41.Tables[0];
+            cboGrupaPolja.DisplayMember = "Naziv";
+            cboGrupaPolja.ValueMember = "ID";
+
             if (frmLogovanje.Firma == "Leget")
             {
                 var query8 = "Select ID,Oznaka from Pozicija";
                 SqlDataAdapter da8 = new SqlDataAdapter(query8, conn);
-                DataSet ds8 = new DataSet();
+                System.Data.DataSet ds8 = new System.Data.DataSet();
                 da8.Fill(ds8);
                 cbo_Lokacija.DataSource = ds8.Tables[0];
                 cbo_Lokacija.DisplayMember = "Oznaka";
@@ -118,7 +282,7 @@ namespace Saobracaj.RadniNalozi
 
             var query2 = "Select SmNaziv,SmSifra From Mesta";
             SqlDataAdapter da2 = new SqlDataAdapter(query2, conn);
-            DataSet ds2 = new DataSet();
+            System.Data.DataSet ds2 = new System.Data.DataSet();
             da2.Fill(ds2);
             cbo_MestoTroska.DataSource = ds2.Tables[0];
             cbo_MestoTroska.DisplayMember = "SmNaziv";
@@ -132,21 +296,21 @@ namespace Saobracaj.RadniNalozi
             DataGridViewComboBoxColumn cb = new DataGridViewComboBoxColumn();
             cb.HeaderText = "Tip";
             cb.Name = "Tip";
-            var query21 = "SELECT DISTINCT * FROM ( VALUES ('1-NHM'), ('2-LOT'), ('3-ZBIRNI')) AS X(a)";
+            var query21 = "SELECT ID, Naziv FROM TipRobe";
             SqlConnection conn21 = new SqlConnection(connect);
             SqlDataAdapter da21 = new SqlDataAdapter(query21, conn21);
-            DataSet ds21 = new DataSet();
+            System.Data.DataSet ds21 = new System.Data.DataSet();
             da21.Fill(ds21);
             cb.DataSource = ds21.Tables[0];
-            cb.DisplayMember = "a";
-            cb.ValueMember = "a";
+            cb.DisplayMember = "Naziv";
+            cb.ValueMember = "ID";
 
             cbo.HeaderText = "MPNaziv";
             cbo.Name = "MPNaziv";
             var query = "Select MpSifra,MpNaziv from MaticniPodatki  order by MpNaziv";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
+            System.Data.DataSet ds = new System.Data.DataSet();
             da.Fill(ds);
             cbo.DataSource = ds.Tables[0];
             cbo.DisplayMember = "MpNaziv";
@@ -166,7 +330,7 @@ namespace Saobracaj.RadniNalozi
                 
                 var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM where Interni = 1 order by ID";
                 SqlDataAdapter daMP = new SqlDataAdapter(queryMP, conn);
-                DataSet dsMP = new DataSet();
+                System.Data.DataSet dsMP = new System.Data.DataSet();
                 daMP.Fill(dsMP);
                 cbo.DataSource = dsMP.Tables[0];
                 cbo.DisplayMember = "MpNaziv";
@@ -178,7 +342,7 @@ namespace Saobracaj.RadniNalozi
                 cbo3.Name = "JM";
                 var query2 = "Select MeSifra,MeNaziv from MerskeEnote";
                 SqlDataAdapter da2 = new SqlDataAdapter(query2, conn);
-                DataSet ds2 = new DataSet();
+                System.Data.DataSet ds2 = new System.Data.DataSet();
                 da2.Fill(ds2);
                 cbo3.DataSource = ds2.Tables[0];
                 cbo3.DisplayMember = "MeNaziv";
@@ -191,12 +355,14 @@ namespace Saobracaj.RadniNalozi
                 cbo31.Name = "Skladiste";
                 var query31 = "select ID ,Naziv from Skladista order by ID";
                 SqlDataAdapter da31 = new SqlDataAdapter(query31, conn);
-                DataSet ds31 = new DataSet();
+                System.Data.DataSet ds31 = new System.Data.DataSet();
                 da31.Fill(ds31);
                 cbo31.DataSource = ds31.Tables[0];
                 cbo31.DisplayMember = "Naziv";
                 cbo31.ValueMember = "ID";
                 cbo31.Width = 90;
+
+                usao = 1;
 
                 DataGridViewTextBoxColumn cbo4 = new DataGridViewTextBoxColumn();
                 cbo4.HeaderText = "LOT";
@@ -265,9 +431,9 @@ namespace Saobracaj.RadniNalozi
                         //       string LOt = row.Cells["Lot"].Value.ToString();
 
                         int Tip = 1;
-                        if (row.Cells[0].Value.ToString() == "1-NHM")
+                        if (row.Cells[0].Value.ToString() == "NHM")
                             Tip = 1;
-                        else if (row.Cells[0].Value.ToString() == "2-LOT")
+                        else if (row.Cells[0].Value.ToString() == "LOT")
                             Tip = 2;
                         else
                         {
@@ -332,7 +498,7 @@ namespace Saobracaj.RadniNalozi
                 "WHere NNaStatus='PO' ' order by NNaStNal desc";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
+            System.Data.DataSet ds = new System.Data.DataSet();
             da.Fill(ds);
             dataGridView2.DataSource = ds.Tables[0];
             dataGridView2.Columns[3].Width = 170;
@@ -368,7 +534,7 @@ namespace Saobracaj.RadniNalozi
                 var query2 = "Select NNaPSifra,MpNaziv,NNaPKolNar From NNalP inner join MaticniPodatki on NNalP.NNaPSifra=MaticniPodatki.MpSifra WHere NNaPStNar=" + Convert.ToInt32(txt_ID.Text);
                 conn.Open();
                 SqlDataAdapter da = new SqlDataAdapter(query2, conn);
-                DataSet ds = new DataSet();
+                System.Data.DataSet ds = new System.Data.DataSet();
                 da.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
                 dataGridView1.Columns[0].Visible = false;
@@ -402,7 +568,7 @@ namespace Saobracaj.RadniNalozi
                     var query2 = "Select NNaPSifra,MpNaziv,NNaPKolNar From NNalP inner join MaticniPodatki on NNalP.NNaPSifra=MaticniPodatki.MpSifra WHere NNaPStNar=" + Convert.ToInt32(txt_ID.Text);
                     conn.Open();
                     SqlDataAdapter da = new SqlDataAdapter(query2, conn);
-                    DataSet ds = new DataSet();
+                    System.Data.DataSet ds = new System.Data.DataSet();
                     da.Fill(ds);
                     dataGridView3.DataSource = ds.Tables[0];
                     dataGridView3.Columns[0].Visible = false;
@@ -434,7 +600,7 @@ namespace Saobracaj.RadniNalozi
                 var cell = dataGridView1[e.ColumnIndex, e.RowIndex];
                 if (cell.OwningColumn.Name == "Tip")
                 {
-                if (cell.OwningRow.Cells["Tip"].Value.ToString() == "3-ZBIRNI")
+                if (cell.OwningRow.Cells["Tip"].Value.ToString() == "ZBIRNI")
 
                 {
                    
@@ -446,6 +612,74 @@ namespace Saobracaj.RadniNalozi
 
                 }
             }
+        }
+
+        private void cboGrupaPolja_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (usao == 1)
+            {
+                SqlConnection conn = new SqlConnection(connect);
+                DataGridViewComboBoxColumn col = dataGridView1.Columns[4] as DataGridViewComboBoxColumn;
+               // col.HeaderText = "Skladiste";
+              //  col.Name = "Skladiste";
+                var query31 = "select ID ,Naziv from Skladista where GrupaPoljaID = " + Convert.ToInt32(cboGrupaPolja.SelectedValue) + " order by ID";
+                SqlDataAdapter da31 = new SqlDataAdapter(query31, conn);
+               System.Data.DataSet ds31 = new System.Data.DataSet();
+                da31.Fill(ds31);
+                col.DataSource = ds31.Tables[0];
+                col.DisplayMember = "Naziv";
+                col.ValueMember = "ID";
+              
+
+
+           
+            }
+        }
+
+        private void RefreshDataGrid()
+        {
+            var select = "";
+            select = @" Select Tip, MpSifra, PrPrimKol, JedinicaMere, SkladisteU, Lot, Skladisteno from Promet Where PrStDokumenta =" + PrijemnicaID;
+
+            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = false;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            int row = ds.Tables[0].Rows.Count - 1 ;
+
+            for (int r = 0; r <= row; r++)
+            {
+                //dataGridView1.Rows.Add();
+
+                //1 - NHM'), ('2 - LOT'), ('3 - ZBIRNI'
+
+
+                dataGridView1.Rows[r].Cells[0].Value = ds.Tables[0].Rows[r].ItemArray[0];
+                dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
+                dataGridView1.Rows[r].Cells[2].Value = ds.Tables[0].Rows[r].ItemArray[2];
+                dataGridView1.Rows[r].Cells[3].Value = ds.Tables[0].Rows[r].ItemArray[3];
+                dataGridView1.Rows[r].Cells[4].Value = ds.Tables[0].Rows[r].ItemArray[4];
+                dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
+                dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
+
+            }
+
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            ZapisnikOOstecenjuRobe zor = new ZapisnikOOstecenjuRobe(txtNalogID.Text);
+            zor.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

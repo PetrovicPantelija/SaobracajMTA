@@ -185,7 +185,7 @@ namespace Saobracaj.Uvoz
                          " Left join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
                          " inner join Partnerji p1 on p1.PaSifra = OperaterSrbija " +
                           " inner join Partnerji p2 on p2.PaSifra = OperaterHR " +
-                         " where Dolazeci = 1 and Terminal = " + pomTerminal + "Order by [Voz].[ID] desc";
+                         " where Dolazeci = 1 and Terminal = " + pomTerminal + " Order by [Voz].[ID] desc";
                         break;
 
                     }

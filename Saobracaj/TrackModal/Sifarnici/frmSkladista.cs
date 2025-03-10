@@ -176,14 +176,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertSkladista ins = new InsertSkladista();
-                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text);
+                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue));
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertSkladista upd = new InsertSkladista();
-                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text);
+                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -208,7 +208,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT [ID] ,Naziv,Kapacitet, [Datum],[Korisnik] FROM [dbo].[Skladista] order by ID";
+            var select = " SELECT Skladista.[ID] ,Skladista.Naziv,Kapacitet, SkladistaGrupa.Naziv as Grupa, [Datum],[Korisnik] FROM [dbo].[Skladista]" +
+                " inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID order by ID";
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -237,12 +238,16 @@ namespace Testiranje.Sifarnici
 
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Datum";
+            dataGridView1.Columns[3].HeaderText = "Grupa";
             dataGridView1.Columns[3].Width = 100;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Korisnik";
+            dataGridView1.Columns[4].HeaderText = "Datum";
             dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "korisnik";
+            dataGridView1.Columns[5].Width = 100;
         }
 
         private void VratiPodatke(string ID)
@@ -252,7 +257,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv,Kapacitet from Skladista where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv,Kapacitet, GrupaPoljaID from Skladista where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -260,6 +265,7 @@ namespace Testiranje.Sifarnici
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtNaziv.Text = dr["Naziv"].ToString();
                 txtKapacitet.Text = dr["Kapacitet"].ToString();
+                cboGrupaPolja.SelectedValue = Convert.ToInt32(dr["GrupaPoljaID"].ToString());
             }
 
             con.Close();
@@ -405,6 +411,21 @@ namespace Testiranje.Sifarnici
 
         private void frmSkladista_Load(object sender, EventArgs e)
         {
+            var select4 = "  select ID, Naziv from SkladistaGrupa order by ID";
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboGrupaPolja.DataSource = ds4.Tables[0];
+            cboGrupaPolja.DisplayMember = "Naziv";
+            cboGrupaPolja.ValueMember = "ID";
+
+
+
             RefreshDataGrid();
         }
     }

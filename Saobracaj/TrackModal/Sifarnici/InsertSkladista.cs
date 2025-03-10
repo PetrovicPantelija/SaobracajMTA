@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertSkladista
     {
 
-        public void InsSkladista(string Naziv, DateTime Datum, string Korisnik, string Kapacitet)
+        public void InsSkladista(string Naziv, DateTime Datum, string Korisnik, string Kapacitet, int Grupa)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -51,6 +51,14 @@ namespace Testiranje.Sifarnici
             myCommand.Parameters.Add(parameter6);
 
 
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Grupa";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Grupa;
+            myCommand.Parameters.Add(parameter7);
+
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -89,7 +97,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdSkladista(int ID, string Naziv, DateTime Datum, string Korisnik, string Kapacitet)
+        public void UpdSkladista(int ID, string Naziv, DateTime Datum, string Korisnik, string Kapacitet, int Grupa)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -136,6 +144,13 @@ namespace Testiranje.Sifarnici
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Kapacitet;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Grupa";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Grupa;
+            myCommand.Parameters.Add(parameter7);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

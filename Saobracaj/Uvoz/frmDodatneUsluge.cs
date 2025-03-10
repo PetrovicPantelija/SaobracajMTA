@@ -536,25 +536,20 @@ namespace Saobracaj.Uvoz
           
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
-        {/*
+        {
             if (chkIzvoz.Checked == true)
             {
-                frmDokumentaIzvozManipulacije dm = new frmDokumentaIzvozManipulacije(txtKonkretnaMan.Text);
+                frmIzvozDokumenta dm = new frmIzvozDokumenta(txtKonkretnaMan.Text);
                 dm.Show();
 
             }
             else
             {
-                frmDokumentaUvozneManipulacije dm = new frmDokumentaUvozneManipulacije(txtKonkretnaMan.Text);
+                UvozDokumenta dm = new UvozDokumenta(txtKonkretnaMan.Text);
                 dm.Show();
             }
-          */
+         
         }
 
         private void cboUsluga_SelectedIndexChanged(object sender, EventArgs e)
@@ -572,11 +567,6 @@ namespace Saobracaj.Uvoz
         private void button2_Click_1(object sender, EventArgs e)
         {
             VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
-        }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-
         }
     }
 }

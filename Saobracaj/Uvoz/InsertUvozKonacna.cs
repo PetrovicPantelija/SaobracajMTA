@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms.Diagram;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -1444,7 +1445,77 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
         }
 
 
+        public void UpdPokretFormaStatusi(int ID, string Pokret, int StatusKontejnera, string Forma)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdPokretFormaStatus";
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@Pokret";
+            parameter3.SqlDbType = SqlDbType.NVarChar;
+            parameter3.Size = 50;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = Pokret;
+            cmd.Parameters.Add(parameter3);
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@StatusKontejnera";
+            parameter4.SqlDbType = SqlDbType.Int;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = StatusKontejnera;
+            cmd.Parameters.Add(parameter4);
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Forma";
+            parameter5.SqlDbType = SqlDbType.NVarChar;
+            parameter5.Size = 50;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Forma;
+            cmd.Parameters.Add(parameter5);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
 
         public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik, string pomForma)
         {
@@ -2239,7 +2310,8 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
             SqlParameter stnapomene = new SqlParameter();
             stnapomene.ParameterName = "@stNapomene";
-            stnapomene.SqlDbType = SqlDbType.Int;
+            stnapomene.SqlDbType = SqlDbType.NVarChar;
+            stnapomene.Size = 500;
             stnapomene.Direction = ParameterDirection.Input;
             stnapomene.Value = stNapomene;
             cmd.Parameters.Add(stnapomene);
@@ -3059,6 +3131,107 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             idnadredjena.Direction = ParameterDirection.Input;
             idnadredjena.Value = IDNaloga;
             cmd.Parameters.Add(idnadredjena);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void Storniraj(string RNI)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spStornijaRNI";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@RNI";
+            id.SqlDbType = SqlDbType.NVarChar;
+            id.Size = 50;
+            id.Direction = ParameterDirection.Input;
+            id.Value = RNI;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void IzbrisiUvozKonacna(int KonkretnaUslugaID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spIzbrisiKUScenario";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@KonkretnaUslugaID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = KonkretnaUslugaID;
+            cmd.Parameters.Add(id);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

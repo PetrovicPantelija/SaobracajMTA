@@ -452,6 +452,11 @@ namespace Saobracaj.Izvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                MessageBox.Show("Izaberite stavku");
+                return;
+            }
             frmIzvozKopiranjeKontejnera kk = new frmIzvozKopiranjeKontejnera(Convert.ToInt16(txtSifra.Text));
             kk.Show();
         }

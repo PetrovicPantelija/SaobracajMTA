@@ -55,15 +55,17 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button23 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button21 = new System.Windows.Forms.Button();
-            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.button20 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.txtTara = new System.Windows.Forms.NumericUpDown();
             this.txtNeto = new System.Windows.Forms.NumericUpDown();
             this.txtBruto = new System.Windows.Forms.NumericUpDown();
             this.txtTaraZ = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtRoba = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -80,7 +82,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(145, 50);
+            this.label1.Location = new System.Drawing.Point(301, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 0;
@@ -91,7 +93,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(144, 91);
+            this.label2.Location = new System.Drawing.Point(300, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 0;
@@ -102,7 +104,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(141, 135);
+            this.label3.Location = new System.Drawing.Point(297, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 0;
@@ -113,7 +115,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(362, 92);
+            this.label4.Location = new System.Drawing.Point(586, 50);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 16);
             this.label4.TabIndex = 0;
@@ -124,7 +126,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(364, 135);
+            this.label5.Location = new System.Drawing.Point(588, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 16);
             this.label5.TabIndex = 0;
@@ -135,7 +137,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(362, 50);
+            this.label6.Location = new System.Drawing.Point(586, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 16);
             this.label6.TabIndex = 0;
@@ -146,7 +148,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(141, 177);
+            this.label7.Location = new System.Drawing.Point(21, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 16);
             this.label7.TabIndex = 0;
@@ -167,23 +169,23 @@
             // 
             // txtKontejner
             // 
-            this.txtKontejner.Location = new System.Drawing.Point(144, 69);
+            this.txtKontejner.Location = new System.Drawing.Point(300, 69);
             this.txtKontejner.Name = "txtKontejner";
-            this.txtKontejner.Size = new System.Drawing.Size(134, 20);
+            this.txtKontejner.Size = new System.Drawing.Size(231, 20);
             this.txtKontejner.TabIndex = 3;
             // 
             // txtVagarskaPotvrda
             // 
-            this.txtVagarskaPotvrda.Location = new System.Drawing.Point(144, 154);
+            this.txtVagarskaPotvrda.Location = new System.Drawing.Point(300, 154);
             this.txtVagarskaPotvrda.Name = "txtVagarskaPotvrda";
-            this.txtVagarskaPotvrda.Size = new System.Drawing.Size(163, 20);
+            this.txtVagarskaPotvrda.Size = new System.Drawing.Size(231, 20);
             this.txtVagarskaPotvrda.TabIndex = 3;
             // 
             // dtpDatumMerenja
             // 
             this.dtpDatumMerenja.CustomFormat = "dd.MM.yyyy hh:mm";
             this.dtpDatumMerenja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumMerenja.Location = new System.Drawing.Point(144, 196);
+            this.dtpDatumMerenja.Location = new System.Drawing.Point(19, 206);
             this.dtpDatumMerenja.Name = "dtpDatumMerenja";
             this.dtpDatumMerenja.Size = new System.Drawing.Size(163, 20);
             this.dtpDatumMerenja.TabIndex = 4;
@@ -230,7 +232,7 @@
             // 
             this.txtVozilo.Location = new System.Drawing.Point(21, 154);
             this.txtVozilo.Name = "txtVozilo";
-            this.txtVozilo.Size = new System.Drawing.Size(103, 20);
+            this.txtVozilo.Size = new System.Drawing.Size(231, 20);
             this.txtVozilo.TabIndex = 9;
             // 
             // label10
@@ -248,10 +250,10 @@
             // 
             this.cbovrstakontejnera.FormattingEnabled = true;
             this.cbovrstakontejnera.ItemHeight = 13;
-            this.cbovrstakontejnera.Location = new System.Drawing.Point(144, 109);
+            this.cbovrstakontejnera.Location = new System.Drawing.Point(300, 109);
             this.cbovrstakontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.cbovrstakontejnera.Name = "cbovrstakontejnera";
-            this.cbovrstakontejnera.Size = new System.Drawing.Size(209, 21);
+            this.cbovrstakontejnera.Size = new System.Drawing.Size(231, 21);
             this.cbovrstakontejnera.TabIndex = 190;
             // 
             // chkCirada
@@ -260,7 +262,7 @@
             this.chkCirada.Checked = true;
             this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCirada.ForeColor = System.Drawing.Color.White;
-            this.chkCirada.Location = new System.Drawing.Point(401, 196);
+            this.chkCirada.Location = new System.Drawing.Point(623, 196);
             this.chkCirada.Name = "chkCirada";
             this.chkCirada.Size = new System.Drawing.Size(56, 17);
             this.chkCirada.TabIndex = 194;
@@ -271,7 +273,7 @@
             // 
             this.chkPlatforma.AutoSize = true;
             this.chkPlatforma.ForeColor = System.Drawing.Color.White;
-            this.chkPlatforma.Location = new System.Drawing.Point(473, 196);
+            this.chkPlatforma.Location = new System.Drawing.Point(695, 196);
             this.chkPlatforma.Name = "chkPlatforma";
             this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
             this.chkPlatforma.TabIndex = 195;
@@ -308,7 +310,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button23);
-            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Location = new System.Drawing.Point(110, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(638, 31);
             this.panel2.TabIndex = 6;
@@ -344,30 +346,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(104, 31);
             this.panel3.TabIndex = 2;
-            // 
-            // button21
-            // 
-            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
-            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button21.FlatAppearance.BorderSize = 0;
-            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Location = new System.Drawing.Point(38, 2);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(27, 27);
-            this.button21.TabIndex = 14;
-            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // commandBarController1
-            // 
-            this.commandBarController1.HostForm = this;
-            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
-            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
-            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // button20
             // 
@@ -405,18 +383,53 @@
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Location = new System.Drawing.Point(38, 2);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(27, 27);
+            this.button21.TabIndex = 14;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // txtTara
             // 
             this.txtTara.DecimalPlaces = 2;
-            this.txtTara.Location = new System.Drawing.Point(365, 69);
+            this.txtTara.Location = new System.Drawing.Point(589, 116);
+            this.txtTara.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.txtTara.Name = "txtTara";
             this.txtTara.Size = new System.Drawing.Size(120, 20);
             this.txtTara.TabIndex = 463;
+            this.txtTara.Leave += new System.EventHandler(this.txtTara_Leave);
             // 
             // txtNeto
             // 
             this.txtNeto.DecimalPlaces = 2;
-            this.txtNeto.Location = new System.Drawing.Point(365, 155);
+            this.txtNeto.Location = new System.Drawing.Point(589, 164);
+            this.txtNeto.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.txtNeto.Name = "txtNeto";
             this.txtNeto.Size = new System.Drawing.Size(120, 20);
             this.txtNeto.TabIndex = 464;
@@ -424,7 +437,12 @@
             // txtBruto
             // 
             this.txtBruto.DecimalPlaces = 2;
-            this.txtBruto.Location = new System.Drawing.Point(365, 112);
+            this.txtBruto.Location = new System.Drawing.Point(589, 70);
+            this.txtBruto.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.txtBruto.Name = "txtBruto";
             this.txtBruto.Size = new System.Drawing.Size(120, 20);
             this.txtBruto.TabIndex = 465;
@@ -433,7 +451,12 @@
             // txtTaraZ
             // 
             this.txtTaraZ.DecimalPlaces = 2;
-            this.txtTaraZ.Location = new System.Drawing.Point(553, 69);
+            this.txtTaraZ.Location = new System.Drawing.Point(775, 69);
+            this.txtTaraZ.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.txtTaraZ.Name = "txtTaraZ";
             this.txtTaraZ.Size = new System.Drawing.Size(120, 20);
             this.txtTaraZ.TabIndex = 467;
@@ -443,11 +466,29 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(550, 50);
+            this.label11.Location = new System.Drawing.Point(772, 50);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 16);
             this.label11.TabIndex = 466;
             this.label11.Text = "Tara upisana:";
+            // 
+            // txtRoba
+            // 
+            this.txtRoba.Location = new System.Drawing.Point(300, 206);
+            this.txtRoba.Name = "txtRoba";
+            this.txtRoba.Size = new System.Drawing.Size(231, 20);
+            this.txtRoba.TabIndex = 468;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(297, 187);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 16);
+            this.label12.TabIndex = 469;
+            this.label12.Text = "Roba:";
             // 
             // Vaganje
             // 
@@ -455,6 +496,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(983, 583);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtRoba);
             this.Controls.Add(this.txtTaraZ);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtBruto);
@@ -536,5 +579,7 @@
         private System.Windows.Forms.NumericUpDown txtTara;
         private System.Windows.Forms.NumericUpDown txtTaraZ;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtRoba;
     }
 }

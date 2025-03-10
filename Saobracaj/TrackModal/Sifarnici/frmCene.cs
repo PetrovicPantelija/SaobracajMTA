@@ -155,6 +155,7 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
         }
 
         private void RefreshDataGrid()
@@ -517,6 +518,7 @@ namespace Testiranje.Sifarnici
             {
                 InsertCene upd = new InsertCene();
                 upd.DeleteCene(Convert.ToInt32(txtSifra.Text));
+                RefreshDataGrid();
             }
             else if (dialogResult == DialogResult.No)
             {

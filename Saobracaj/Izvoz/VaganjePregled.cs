@@ -163,10 +163,10 @@ namespace Saobracaj.Izvoz
                 {
                     textBox1.Text = row.Cells[0].Value.ToString();
                     brojKontejnera = row.Cells["BrojKontejnera"].Value.ToString().TrimEnd();
-                    vrstaKontejnera = row.Cells["VrstaKontejnera"].Value.ToString();
+                  //  vrstaKontejnera = row.Cells["VrstaKontejnera"].Value.ToString();
                     KontID =  Convert.ToInt32(row.Cells["ID"].Value.ToString());
-                    Vozilo = row.Cells["Vozilo"].Value.ToString();
-                    Vozac = row.Cells["Vozac"].Value.ToString();
+                   // Vozilo = row.Cells["Vozilo"].Value.ToString();
+                   // Vozac = row.Cells["Vozac"].Value.ToString();
                 }
             }
         }

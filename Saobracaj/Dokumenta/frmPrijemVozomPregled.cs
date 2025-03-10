@@ -231,7 +231,7 @@ namespace TrackModal.Dokumeta
 
         private void RefreshDataGridLeget()
         {
-            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+            var select = "SELECT PrijemKontejneraVoz.[ID],(Voz.NazivVoza) as OznakaVoza, Voz.Relacija,  " +
 " CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
 "  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
 "  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
@@ -267,7 +267,7 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].HeaderText = "Oznaka Voza";
             dataGridView1.Columns[1].Width = 80;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];

@@ -532,6 +532,12 @@
       <DependentUpon>Prava.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="Dokumenta\DokumentaTerminal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\DokumentaTerminal.Designer.cs">
+      <DependentUpon>DokumentaTerminal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmAutomobili.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1625,6 +1631,12 @@
     </Compile>
     <Compile Include="Izvoz\frmIzvozKopiranjeKontejnera.Designer.cs">
       <DependentUpon>frmIzvozKopiranjeKontejnera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKopiranjeUslugaKontejnera1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKopiranjeUslugaKontejnera1.Designer.cs">
+      <DependentUpon>frmIzvozKopiranjeUslugaKontejnera1.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmIzvozKopoirajKontejner.cs">
       <SubType>Form</SubType>
@@ -2822,6 +2834,7 @@
     </Compile>
     <Compile Include="Tehnologija\InsertDefinisiPoziciju.cs" />
     <Compile Include="Tehnologija\InserTerminalProces.cs" />
+    <Compile Include="Tehnologija\InsertKontejnerTekuceOperacije.cs" />
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
     <Compile Include="Tehnologija\InsertTerminalOperacije.cs" />
     <Compile Include="Tehnologija\InsertTestoviPitanja.cs" />
@@ -2854,6 +2867,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TestiranjeDataSet20.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet21.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet21.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet22.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet22.xsd</DependentUpon>
     </Compile>
     <Compile Include="TESTIRANJEDataSetTA12.cs">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
@@ -3709,6 +3732,8 @@
     <Compile Include="Uvoz\insertVrstaRobeADR.cs" />
     <Compile Include="Uvoz\InsertVrstaRobeHS.cs" />
     <Compile Include="Uvoz\InsertVrstePostupakaUvoz.cs" />
+    <Compile Include="Uvoz\InsertZapisnikONepravilnosti.cs" />
+    <Compile Include="Uvoz\InsertZapisnikOOstecenju.cs" />
     <Compile Include="Uvoz\Nalogodavci.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3744,6 +3769,18 @@
     </Compile>
     <Compile Include="Uvoz\UvozTable.Designer.cs">
       <DependentUpon>UvozTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\ZapisnikONepravilnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\ZapisnikONepravilnosti.Designer.cs">
+      <DependentUpon>ZapisnikONepravilnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.Designer.cs">
+      <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Administracija\frmDodeliGrupu.resx">
       <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
@@ -3789,6 +3826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\Prava.resx">
       <DependentUpon>Prava.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\DokumentaTerminal.resx">
+      <DependentUpon>DokumentaTerminal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmAutomobili.resx">
       <DependentUpon>frmAutomobili.cs</DependentUpon>
@@ -4289,6 +4329,8 @@
     <EmbeddedResource Include="Izvestaji\rptNalogZaPrevozTA.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptPopisnaListaKontejnera.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptUkupnoZaPeriod.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptZapisnikONepravilnosti.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptZapisnikOOstecenju.rdlc" />
     <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
     <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
     <EmbeddedResource Include="Izvestaji\ZaradeStavkePoZaposlenom.rdlc" />
@@ -4327,6 +4369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozKopiranjeKontejnera.resx">
       <DependentUpon>frmIzvozKopiranjeKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozKopiranjeUslugaKontejnera1.resx">
+      <DependentUpon>frmIzvozKopiranjeUslugaKontejnera1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozKopoirajKontejner.resx">
       <DependentUpon>frmIzvozKopoirajKontejner.cs</DependentUpon>
@@ -5201,6 +5246,12 @@
     <EmbeddedResource Include="Uvoz\UvozTable.resx">
       <DependentUpon>UvozTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\ZapisnikONepravilnosti.resx">
+      <DependentUpon>ZapisnikONepravilnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
+      <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="NedraDataSet.xsc">
       <DependentUpon>NedraDataSet.xsd</DependentUpon>
     </None>
@@ -5507,6 +5558,28 @@
     </None>
     <None Include="TestiranjeDataSet20.xss">
       <DependentUpon>TestiranjeDataSet20.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet21.xsc">
+      <DependentUpon>TestiranjeDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet21.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet21.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet21.xss">
+      <DependentUpon>TestiranjeDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet22.xsc">
+      <DependentUpon>TestiranjeDataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet22.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet22.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet22.xss">
+      <DependentUpon>TestiranjeDataSet22.xsd</DependentUpon>
     </None>
     <None Include="TESTIRANJEDataSetTA12.xsc">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>

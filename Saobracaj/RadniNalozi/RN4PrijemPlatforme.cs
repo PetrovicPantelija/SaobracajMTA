@@ -112,7 +112,7 @@ namespace Saobracaj.RadniNalozi
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                ChangeTextBox();
+           
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -153,6 +153,7 @@ namespace Saobracaj.RadniNalozi
         public RN4PrijemPlatforme(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz, string NalogID)
         {
             InitializeComponent();
+            ChangeTextBox();
             txtNalogIzdao.Text = KorisnikCene;
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = RegBr;
@@ -318,6 +319,44 @@ namespace Saobracaj.RadniNalozi
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int Zavrsen = 0;
+            int ZavrsenCIR = 0;
+            int VizuelniPotreban = 0;
+            int IzUvoza = 0;
+            int ZavrsenKalmarista = 0;
+            int VizuelniZavrsen = 0;
+            int PotrebanCIR = 0;
+            if (chkPotrebanCIR.Checked == true)
+            {
+                PotrebanCIR = 1;
+            }
+            if (chkVizuelniZavrsen.Checked == true)
+            {
+                VizuelniZavrsen = 1;
+            }
+            if (chkZavrsenKalmarista.Checked == true)
+            {
+                ZavrsenKalmarista = 1;
+            }
+            if (chkUvoz.Checked == true)
+            {
+                IzUvoza = 1;
+            }
+            if (chkVizuelni.Checked == true)
+            {
+                VizuelniPotreban = 1;
+            }
+            if (chkZavrsenCIR.Checked == true)
+            {
+                ZavrsenCIR = 1;
+            }
+
+            if (chkZavrsen.Checked == true)
+            {
+                Zavrsen = 1;
+            }
+
+
             InsertRN rn = new InsertRN();
             if (status == true)
             {
@@ -333,7 +372,10 @@ namespace Saobracaj.RadniNalozi
                     Convert.ToInt32(cboSaSredstva.SelectedValue), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cboVrstaKontejnera.SelectedValue), txtBrojPlombe.Text.ToString().TrimEnd(),
                     Convert.ToInt32(cboIzvoznik.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboInspekcijski.SelectedValue),
                     Convert.ToInt32(cboVrstaRobe.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue),
-                    txtNalogRealizovao.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
+                    txtNalogRealizovao.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),
+                    txtKamion.Text, Convert.ToInt32(txtPrijemID.Text), Convert.ToInt32(txtNalogID.Text), Zavrsen, ZavrsenCIR, txtNalogRealizovaoCIR.Text,
+            Convert.ToDateTime(dtpNalogRealizovaoCIR.Value), Convert.ToInt32(cboNaSkladistePregledac.SelectedValue), ZavrsenKalmarista, txtNalogRealizovaoKal.Text, Convert.ToDateTime(dtpNalogRealizovaoKal.Value), PotrebanCIR,
+             VizuelniPotreban, IzUvoza, txtVizuelniRealizovao.Text, Convert.ToDateTime(txtDatumRealizacije.Value),  VizuelniZavrsen);
             }
             FillGV();
             status = false;
@@ -378,7 +420,8 @@ namespace Saobracaj.RadniNalozi
      "  ,[IdUsluge]      ,[NalogRealizovao]      ,[Napomena]      ,[Kamion] " +
      "  ,[PrijemID]      ,[NalogID]      ,[Zavrsen]," +
      "  [ZavrsenCIR]     ,[NalogRealizovaoCIR]      ,[DatumRealizacijeCIR]      ,[USkladisteCIR]     ,[ZavrsenKalmarista]" +
-     "     ,[NalogRealizovaoKal]      ,IsNull(GetDate(),[DatumRealizacijeKal]) as DatumRealizacijeKal FROM [dbo].[RNPrijemPlatforme]" +
+     "     ,[NalogRealizovaoKal]      ,IsNull(GetDate(),[DatumRealizacijeKal]) as DatumRealizacijeKal," +
+     " [VizuelniPotreban]          ,[IzUvoza]          ,[VizuelniUradio]          ,[VizuelniDatumReal]           ,[VizuelniZavrsen] FROM [dbo].[RNPrijemPlatforme]" +
              " where ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -401,7 +444,7 @@ namespace Saobracaj.RadniNalozi
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtNalogID.Text = dr["NalogID"].ToString();
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
-               cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
 
                 cboNaPoz.SelectedValue = Convert.ToInt32(dr["UPozicijaSklad"].ToString());
 
@@ -409,7 +452,8 @@ namespace Saobracaj.RadniNalozi
                 txtKamion.Text = dr["Kamion"].ToString();
              //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
-             //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
+                txtVizuelniRealizovao.Text = dr["VizuelniUradio"].ToString();
+                //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
 
                 if (dr["Zavrsen"].ToString() == "1")
                 { chkZavrsen.Checked = true; }
@@ -430,6 +474,25 @@ namespace Saobracaj.RadniNalozi
                 else
                 {
                     chkZavrsenKalmarista.Checked = false;
+                }
+                if (dr["VizuelniPotreban"].ToString() == "1")
+                { chkVizuelni.Checked = true; }
+                else
+                {
+                    chkVizuelni.Checked = false;
+                }
+                if (dr["IzUvoza"].ToString() == "1")
+                { chkUvoz.Checked = true; }
+                else
+                {
+                    chkIzvoz.Checked = false;
+                }
+
+                if (dr["IzUvoza"].ToString() == "1")
+                { chkUvoz.Checked = true; }
+                else
+                {
+                    chkIzvoz.Checked = false;
                 }
             }
 
@@ -573,6 +636,11 @@ namespace Saobracaj.RadniNalozi
         }
 
         private void chkZavrsenCIR_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

@@ -150,10 +150,14 @@ namespace Saobracaj.Izvoz
         {
             InitializeComponent();
             ChangeTextBox();
+            FillDG2();
+            FillDG4();
         }
         public frmIzvoz(string Korisnik)
         {
             InitializeComponent();
+            FillDG2();
+            FillDG4();
             tslKreirao.Text = Korisnik;
             tKorisnik = Korisnik;
             ChangeTextBox();
@@ -165,6 +169,8 @@ namespace Saobracaj.Izvoz
             // FillDG();
 
             FillCombo();
+            FillDG2();
+            FillDG4();
             chkTerminal.Checked = true;
             PlanZaPrebacivanje = PlanTerminala;
             ChangeTextBox() ;
@@ -182,7 +188,7 @@ namespace Saobracaj.Izvoz
             VratiPodatke(ID);
             FillDG2();
             FillDG3();
-          //  FillDG4();
+            FillDG4();
 
         }
 
@@ -206,7 +212,7 @@ namespace Saobracaj.Izvoz
                  " ,[NacinPretovara]      ,[DodatneNapomeneDrumski]      ,[Vaganje]      ,[VGMTezina] " +
                  " ,[Tara]      ,[VGMBrod]      ,[Izvoznik]      ,[Klijent1] " +
                  " ,[Napomena1REf]      ,[DobijenNalogKlijent1]      ,[Klijent2]      ,[Napomena2REf] " +
-                 " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR , Korisnik, DatumKreiranja,Scenario  " +
+                 " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR , Korisnik, DatumKreiranja,Scenario,TaraZ, MestoPreuzimanja2, MestoPreuzimanja3  " +
                  "  FROM [Izvoz] where ID=" + ID, con);
                
             SqlDataReader dr = cmd.ExecuteReader();
@@ -437,8 +443,10 @@ namespace Saobracaj.Izvoz
         private void frmIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
-          //  FillDG();
-           
+       
+
+            //  FillDG();
+
         }
 
         private void FillDG()
@@ -896,7 +904,11 @@ namespace Saobracaj.Izvoz
             dtpEtaLeget.Value = DateTime.Now;
             dtpPeriodSkladistenjaOd.Value = DateTime.Now;
             dtpPeriodSkladistenjaDo.Value = DateTime.Now;
-            
+            FillDG2();
+            FillDG4();
+            FillDGUsluge();
+
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -1462,6 +1474,46 @@ namespace Saobracaj.Izvoz
 
         }
 
+
+        private void PovuciPodatkeIzUvoza(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select ID, BrojKontejnera, ADR,TipKontejnera, RLTerminali, RLTerminali2, RLTerminali3, Scenario from UvozKonacna where ID = " + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtUvozniID.Text = dr["ID"].ToString();
+                txtBrKont.Text = dr["BrojKontejnera"].ToString();
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+
+
+
+
+                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+            
+             
+                cboPPCNT.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                cboPPCNT2.SelectedValue = Convert.ToInt32(dr["RLTerminali2"].ToString());
+                cboPPCNT3.SelectedValue = Convert.ToInt32(dr["RLTerminali3"].ToString());
+            
+
+                cboScenario.SelectedItem = Convert.ToInt32(dr["Scenario"].ToString());
+
+             
+            }
+
+
+
+            con.Close();
+
+
+        }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -1979,14 +2031,42 @@ namespace Saobracaj.Izvoz
                 {
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                     FillDGUsluge();
+                    FillDG2();
+                    FillDG4();
                 }
             }
         }
 
+        private void RefreshScenario()
+        {
+            if (txtID.Text == "")
+            {
+                MessageBox.Show("Nije unet ID kontejnera");
+                return;
+            }
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT Scenario" +
+  " FROM [Izvoz] where ID=" + txtID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
+            }
+            con.Close();
+
+        }
+
         private void frmIzvoz_Activated(object sender, EventArgs e)
         {
+            FillDGUsluge();
 
-           
+            RefreshScenario();
+
         }
 
        
@@ -2000,7 +2080,7 @@ namespace Saobracaj.Izvoz
             int idnhm = 0;
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from IzvozNHM where IDNadredjena where ID = " + Convert.ToInt32(txtID.Text), con);
+            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from IzvozNHM where IDNadredjena = " + Convert.ToInt32(txtID.Text), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2035,6 +2115,7 @@ namespace Saobracaj.Izvoz
             frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
             um.Show();
             FillDG2();
+            FillDG4();
         }
 
         int ScenarioGL = 0;
@@ -2042,12 +2123,12 @@ namespace Saobracaj.Izvoz
         private void MoguciScenario()
         {
             string Moguce = "";
-            if (pickUp == "Leget" && pickUp3 != "Leget")
+            if (pickUp == "Leget -" && pickUp2 == "Leget -" && pickUp3 != "Leget -")
             {
                 ScenarioGL = 1; ///Leget - Leget - Krajnja destinacija
 
             }
-            else if (pickUp != "Leget" && pickUp3 != "Leget")
+            else if (pickUp != "Leget -" && pickUp3 != "Leget -")
             {
                 ScenarioGL = 2; //Drugi terminal - Leget - Krajnja destinacija
             }
@@ -2065,15 +2146,15 @@ namespace Saobracaj.Izvoz
             {
                 Moguce = "15";
             }
-            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
+            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp > 1)
             {
-                Moguce = "8,9"; // Leget - Leget - NestoDrugo - BEZ ADR pun
+                Moguce = "7,8,9"; // Leget - Leget - NestoDrugo - BEZ ADR - pun
             }
-            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
+            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp > 1)
             {
                 Moguce = "23,24,25";  // PUN
             }
-            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
+            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp > 1)
             {
                 Moguce = "13"; // PUN Ostaje na terminalu \"11,12,13,14,29
             }
@@ -2412,8 +2493,10 @@ namespace Saobracaj.Izvoz
                 txtUvozniID.Text = detailForm.GetUvozniID();
                 InsertIzvoz ins = new InsertIzvoz();
                 ins.IzvozOpredelio(txtBrKont.Text);
-                MessageBox.Show("Kontejner je opredeljen");
-                // VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                MessageBox.Show("Kontejner je opredeljen za voz");
+                PovuciPodatkeIzUvoza(Convert.ToInt32(txtUvozniID.Text));
+              //  VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+
             }
         }
 
@@ -2611,8 +2694,47 @@ namespace Saobracaj.Izvoz
             InterniProm = 1;
             OpstiProm = 0;
         }
-     
-       }
+
+        private void button12_Click_1(object sender, EventArgs e)
+        {
+            if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = " " + cboNalogodavac3.Text;
+            }
+
+            if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  " + cboIzvoznik.Text;
+            }
+
+
+            if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  " + txtBrKont.Text;
+            }
+            if (checkedListBox2.GetItemCheckState(3) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "   " + cboBrodar.Text;
+            }
+            if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "   " + txtBokingBrodara.Text;
+            }
+        }
+
+        private void button7_Click_2(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            var partner5 = "select Distinct PaKOsifra, PaNaziv from partnerjiKontOseba inner join Partnerji on Partnerji.PaSifra = PaKOsifra where Carinarnica = " + Convert.ToInt32(cboCarina.SelectedValue);
+            var partAD5 = new SqlDataAdapter(partner5, conn);
+            var partDS5 = new DataSet();
+            partAD5.Fill(partDS5);
+            cboSpedicija.DataSource = partDS5.Tables[0];
+            cboSpedicija.DisplayMember = "PaNaziv";
+            cboSpedicija.ValueMember = "PaKOsifra";
+        }
+    }
     }
  
 

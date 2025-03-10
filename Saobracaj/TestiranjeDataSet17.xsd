@@ -37,6 +37,7 @@
               <Mapping SourceColumn="IDVaganja" DataSetColumn="IDVaganja" />
               <Mapping SourceColumn="SkNaziv" DataSetColumn="SkNaziv" />
               <Mapping SourceColumn="TaraZ" DataSetColumn="TaraZ" />
+              <Mapping SourceColumn="Roba" DataSetColumn="Roba" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -70,31 +71,38 @@
               <xs:element name="Tara" msprop:Generator_ColumnPropNameInTable="TaraColumn" msprop:Generator_ColumnPropNameInRow="Tara" msprop:Generator_UserColumnName="Tara" msprop:Generator_ColumnVarNameInTable="columnTara" type="xs:decimal" minOccurs="0" />
               <xs:element name="Neto" msprop:Generator_ColumnPropNameInTable="NetoColumn" msprop:Generator_ColumnPropNameInRow="Neto" msprop:Generator_UserColumnName="Neto" msprop:Generator_ColumnVarNameInTable="columnNeto" type="xs:decimal" minOccurs="0" />
               <xs:element name="DatumMerenja" msprop:Generator_ColumnPropNameInTable="DatumMerenjaColumn" msprop:Generator_ColumnPropNameInRow="DatumMerenja" msprop:Generator_UserColumnName="DatumMerenja" msprop:Generator_ColumnVarNameInTable="columnDatumMerenja" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" minOccurs="0" />
-              <xs:element name="KontID" msprop:Generator_UserColumnName="KontID" msprop:Generator_ColumnPropNameInTable="KontIDColumn" msprop:Generator_ColumnPropNameInRow="KontID" msprop:Generator_ColumnVarNameInTable="columnKontID" type="xs:int" />
-              <xs:element name="Kamion" msprop:Generator_UserColumnName="Kamion" msprop:Generator_ColumnPropNameInTable="KamionColumn" msprop:Generator_ColumnPropNameInRow="Kamion" msprop:Generator_ColumnVarNameInTable="columnKamion" minOccurs="0">
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" minOccurs="0" />
+              <xs:element name="KontID" msprop:Generator_ColumnPropNameInTable="KontIDColumn" msprop:Generator_ColumnPropNameInRow="KontID" msprop:Generator_UserColumnName="KontID" msprop:Generator_ColumnVarNameInTable="columnKontID" type="xs:int" />
+              <xs:element name="Kamion" msprop:Generator_ColumnPropNameInTable="KamionColumn" msprop:Generator_ColumnPropNameInRow="Kamion" msprop:Generator_UserColumnName="Kamion" msprop:Generator_ColumnVarNameInTable="columnKamion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Korisnik" msprop:Generator_UserColumnName="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_ColumnVarNameInTable="columnKorisnik" minOccurs="0">
+              <xs:element name="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_UserColumnName="Korisnik" msprop:Generator_ColumnVarNameInTable="columnKorisnik" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IDVaganja" msprop:Generator_UserColumnName="IDVaganja" msprop:Generator_ColumnPropNameInTable="IDVaganjaColumn" msprop:Generator_ColumnPropNameInRow="IDVaganja" msprop:Generator_ColumnVarNameInTable="columnIDVaganja" type="xs:int" minOccurs="0" />
-              <xs:element name="SkNaziv" msprop:Generator_UserColumnName="SkNaziv" msprop:Generator_ColumnPropNameInTable="SkNazivColumn" msprop:Generator_ColumnPropNameInRow="SkNaziv" msprop:Generator_ColumnVarNameInTable="columnSkNaziv" minOccurs="0">
+              <xs:element name="IDVaganja" msprop:Generator_ColumnPropNameInTable="IDVaganjaColumn" msprop:Generator_ColumnPropNameInRow="IDVaganja" msprop:Generator_UserColumnName="IDVaganja" msprop:Generator_ColumnVarNameInTable="columnIDVaganja" type="xs:int" minOccurs="0" />
+              <xs:element name="SkNaziv" msprop:Generator_ColumnPropNameInTable="SkNazivColumn" msprop:Generator_ColumnPropNameInRow="SkNaziv" msprop:Generator_UserColumnName="SkNaziv" msprop:Generator_ColumnVarNameInTable="columnSkNaziv" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TaraZ" msprop:Generator_ColumnPropNameInRow="TaraZ" msprop:Generator_ColumnPropNameInTable="TaraZColumn" msprop:Generator_ColumnVarNameInTable="columnTaraZ" msprop:Generator_UserColumnName="TaraZ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TaraZ" msprop:Generator_UserColumnName="TaraZ" msprop:Generator_ColumnPropNameInTable="TaraZColumn" msprop:Generator_ColumnPropNameInRow="TaraZ" msprop:Generator_ColumnVarNameInTable="columnTaraZ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Roba" msprop:Generator_ColumnPropNameInRow="Roba" msprop:Generator_ColumnPropNameInTable="RobaColumn" msprop:Generator_ColumnVarNameInTable="columnRoba" msprop:Generator_UserColumnName="Roba" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

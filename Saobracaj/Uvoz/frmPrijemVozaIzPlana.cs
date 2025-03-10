@@ -274,7 +274,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select ID from PrijemKontejneraVoz where IDVoza = " + Voz, con);
+            SqlCommand cmd = new SqlCommand("select top 1 ID from PrijemKontejneraVoz where IDVoza = " + Voz + " order by PrijemKontejneraVoz.ID Desc", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -295,22 +295,27 @@ namespace Saobracaj.Uvoz
                 int i = ProveriDaLIPostojiVoz(Convert.ToInt32(cboBukingPrijema.SelectedValue));
                 if (i > 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Već postoji Prijem za navedeni voz. Da li želite da formirate novu prijemnicu, u suprotnom dopunice se postojeca?", "Prijem voza", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("Već postoji GATE IN za taj voz, da li želite da nastavite?", "GATE IN VOZ", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                            /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
-                            Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
-                            ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, Convert.ToInt32(cboOperaterHR.SelectedValue), OJD);
-                            status = false;
-                            VratiPodatkeMax();
-                     
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
+                        /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                         VratiIDPrijemnice(Convert.ToInt32(cboBukingPrijema.SelectedValue));
                         Dokumeta.InsertPrijemKontejneraVoz upd = new Dokumeta.InsertPrijemKontejneraVoz();
                         upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, Convert.ToInt32(cboOperaterHR.SelectedValue), OJD);
                         status = false;
+
+
+                       
+                     
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        /*
+                         *  Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
+                             ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, Convert.ToInt32(cboOperaterHR.SelectedValue), OJD);
+                             status = false;
+                             VratiPodatkeMax();
+                         */
 
                     }
 
@@ -536,16 +541,16 @@ namespace Saobracaj.Uvoz
                     //Ako jer kamion 1 onda prenosim voz
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     
-                    {
+                   
                         //Stavke voza
                         //OVaj poziv vazi samo za Voz
                         ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
-                    }
+                   
 
-                    VratiPodatkeMax();
+                   // VratiPodatkeMax();
                     RefreshDataGrid();
                     ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
-                    MessageBox.Show("Uspešno ste formirali prijemnicu za izabrani plan");
+                    MessageBox.Show("Uspešno ste formirali/dopunili prijemnicu za izabrani plan");
                     DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN za Vizuelni pregled i Kalmaristu", "Radni nalozi?", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {

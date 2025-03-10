@@ -408,7 +408,7 @@ namespace TrackModal.Dokumeta
         }
         public void REfreshDataGridOtpremaNajava()
         {
-            var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.BrVoza, Voz.Relacija, " +
+            var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.NAzivVoza,Voz.BrVoza, Voz.Relacija, " +
                " OtpremaKontejnera.DatumOtpreme as ETA, " +
                        " CASE WHEN OtpremaKontejnera.StatusOtpreme = 0 THEN '1-Najava' ELSE '2-Otpremljen' END as Status, " +
                     " OtpremaKontejnera.VremeOdlaska as ATA, " +
@@ -457,40 +457,44 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].HeaderText = "Oznaka voza";
             dataGridView1.Columns[1].Width = 80;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].HeaderText = "Br Voza";
             dataGridView1.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].HeaderText = "Relacija";
             dataGridView1.Columns[3].Width = 150;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].HeaderText = "ETA";
             dataGridView1.Columns[4].Width = 100;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].HeaderText = "Status";
             dataGridView1.Columns[5].Width = 150;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Datum";
+            dataGridView1.Columns[6].HeaderText = "ATA";
             dataGridView1.Columns[6].Width = 100;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Korisnik";
+            dataGridView1.Columns[7].HeaderText = "Datum";
             dataGridView1.Columns[7].Width = 100;
-        
-        
-        
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Korisnik";
+            dataGridView1.Columns[8].Width = 100;
+
+
+
         }
 
         public void REfreshDataGridOtpremaOtpremljen()
         {
-            var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.BrVoza, Voz.Relacija, " +
+            var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.NazivVoza, Voz.BrVoza, Voz.Relacija, " +
                 " CONVERT(varchar,OtpremaKontejnera.DatumOtpreme,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5) as ETA, " +
                         " CASE WHEN OtpremaKontejnera.StatusOtpreme = 0 THEN '1-Najava' ELSE '2-Otpremljen' END as Status, " +
                      " CONVERT(varchar,OtpremaKontejnera.VremeOdlaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[VremeOdlaska],108),1,5) as ATA, " +
@@ -526,32 +530,36 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].HeaderText = "Oznaka voza";
             dataGridView1.Columns[1].Width = 80;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].HeaderText = "Br Voza";
             dataGridView1.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].HeaderText = "Relacija";
             dataGridView1.Columns[3].Width = 150;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].HeaderText = "ETA";
             dataGridView1.Columns[4].Width = 100;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].HeaderText = "Status";
             dataGridView1.Columns[5].Width = 150;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Korisnik";
+            dataGridView1.Columns[6].HeaderText = "ATA";
             dataGridView1.Columns[6].Width = 100;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Datum";
             dataGridView1.Columns[7].Width = 100;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Korisnik";
+            dataGridView1.Columns[8].Width = 100;
 
 
 

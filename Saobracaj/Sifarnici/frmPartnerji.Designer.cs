@@ -588,7 +588,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(320, 347);
+            this.label1.Location = new System.Drawing.Point(309, 347);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 205;
@@ -604,7 +604,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(320, 373);
+            this.label15.Location = new System.Drawing.Point(309, 373);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(114, 13);
             this.label15.TabIndex = 207;
@@ -896,7 +896,7 @@
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(0, 0);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(116, 31);
+            this.button27.Size = new System.Drawing.Size(108, 31);
             this.button27.TabIndex = 20;
             this.button27.Text = "Kontakt osobe";
             this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

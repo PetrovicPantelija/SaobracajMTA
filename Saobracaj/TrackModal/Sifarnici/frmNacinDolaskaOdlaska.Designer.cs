@@ -184,7 +184,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 117);
+            this.label2.Location = new System.Drawing.Point(12, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 121;
@@ -193,7 +193,7 @@
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(11, 92);
+            this.txtSifra.Location = new System.Drawing.Point(11, 87);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(87, 22);
             this.txtSifra.TabIndex = 118;
@@ -203,7 +203,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(9, 74);
+            this.label1.Location = new System.Drawing.Point(9, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 119;
@@ -255,6 +255,7 @@
             this.button26.Text = ">>";
             this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Visible = false;
             this.button26.Click += new System.EventHandler(this.tsPoslednja_Click);
             // 
             // button25
@@ -276,6 +277,7 @@
             this.button25.Text = ">";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Visible = false;
             this.button25.Click += new System.EventHandler(this.tsNapred_Click);
             // 
             // button24
@@ -297,6 +299,7 @@
             this.button24.Text = "<";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Visible = false;
             this.button24.Click += new System.EventHandler(this.tsNazad_Click);
             // 
             // button23
@@ -318,6 +321,7 @@
             this.button23.Text = "<<";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Visible = false;
             this.button23.Click += new System.EventHandler(this.tsPrvi_Click);
             // 
             // panel3

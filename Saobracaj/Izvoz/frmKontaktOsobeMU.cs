@@ -161,7 +161,7 @@ namespace Saobracaj.Izvoz
         
         private void frmKontaktOsobeMU_Load(object sender, EventArgs e)
         {
-            var select = " Select Distinct ID, Naziv  From MestaUtovara";
+            var select = " Select Distinct ID, Naziv  From MestaUtovara order by ID";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -195,7 +195,7 @@ namespace Saobracaj.Izvoz
         {
             var select = " SELECT [PaKOZapSt]      ,[PaKOSifra]      ,[PaKOIme]      ,[PaKOPriimek]      ,[PaKOOddelek]      ,[PaKOTel] " +
  " ,[PaKOMail],[PaKOOpomba],[Operatika], MestaUtovara.Naziv as MestoUtovara  FROM[partnerjiKontOsebaMU] " +
- " inner join MestaUtovara on MestaUtovara.ID = partnerjiKontOsebaMU.PaKOSifra";
+ " inner join MestaUtovara on MestaUtovara.ID = partnerjiKontOsebaMU.PaKOSifra order by [PaKOZapSt] desc";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -384,7 +384,7 @@ namespace Saobracaj.Izvoz
         private void tsDelete_Click(object sender, EventArgs e)
         {
 
-            Sifarnici.InsertKontaktOsobe upd = new Sifarnici.InsertKontaktOsobe();
+            Sifarnici.InsertKontaktOsobeMU upd = new Sifarnici.InsertKontaktOsobeMU();
             upd.DelKontaktOsoba(Convert.ToInt32(txtPaKOZapSt.Text));
             RefreshDataGrid();
         }

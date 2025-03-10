@@ -60,7 +60,8 @@ namespace Saobracaj.Uvoz
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 43);
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox1.Location = new System.Drawing.Point(344, 7);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(64, 20);
             this.textBox1.TabIndex = 236;
@@ -88,7 +89,7 @@ namespace Saobracaj.Uvoz
             this.groupBox1.Controls.Add(this.label54);
             this.groupBox1.Controls.Add(this.cboPolje);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(12, 43);
+            this.groupBox1.Location = new System.Drawing.Point(11, 43);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -100,6 +101,7 @@ namespace Saobracaj.Uvoz
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(665, 26);
             this.button2.Name = "button2";
@@ -151,6 +153,7 @@ namespace Saobracaj.Uvoz
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(281, 26);
             this.button1.Name = "button1";
@@ -225,7 +228,7 @@ namespace Saobracaj.Uvoz
             // 
             this.label54.AutoSize = true;
             this.label54.ForeColor = System.Drawing.Color.Black;
-            this.label54.Location = new System.Drawing.Point(13, 15);
+            this.label54.Location = new System.Drawing.Point(13, 19);
             this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(30, 13);
@@ -317,6 +320,7 @@ namespace Saobracaj.Uvoz
             // 
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -376,6 +380,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // frmUvozKonacnaTable
             // 
@@ -387,7 +392,6 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtNadredjeni);
-            this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmUvozKonacnaTable";

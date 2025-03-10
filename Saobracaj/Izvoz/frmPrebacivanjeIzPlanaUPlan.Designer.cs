@@ -41,18 +41,16 @@ namespace Saobracaj.Izvoz
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
             this.cboPlanUtovaraU = new System.Windows.Forms.ComboBox();
             this.cboPlanUtovaraIz = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +63,7 @@ namespace Saobracaj.Izvoz
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.0974F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.902597F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 489F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 491F));
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 2, 0);
@@ -113,7 +111,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 386);
+            this.dataGridView1.Size = new System.Drawing.Size(598, 386);
             this.dataGridView1.TabIndex = 60;
             // 
             // button3
@@ -122,8 +120,10 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(607, 3);
+            this.button3.Location = new System.Drawing.Point(605, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(60, 384);
             this.button3.TabIndex = 163;
@@ -154,7 +154,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.Location = new System.Drawing.Point(672, 2);
+            this.dataGridView2.Location = new System.Drawing.Point(670, 2);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -167,95 +167,8 @@ namespace Saobracaj.Izvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(486, 386);
+            this.dataGridView2.Size = new System.Drawing.Size(488, 386);
             this.dataGridView2.TabIndex = 164;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label44);
-            this.groupBox1.Controls.Add(this.cboPlanUtovaraU);
-            this.groupBox1.Controls.Add(this.cboPlanUtovaraIz);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(11, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(1149, 82);
-            this.groupBox1.TabIndex = 164;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Planovi";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(982, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 30);
-            this.button1.TabIndex = 163;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(316, 37);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 30);
-            this.button2.TabIndex = 162;
-            this.button2.Text = "Refresh";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(12, 27);
-            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(68, 13);
-            this.label44.TabIndex = 158;
-            this.label44.Text = "Planizvoza iz";
-            // 
-            // cboPlanUtovaraU
-            // 
-            this.cboPlanUtovaraU.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cboPlanUtovaraU.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.cboPlanUtovaraU.FormattingEnabled = true;
-            this.cboPlanUtovaraU.Location = new System.Drawing.Point(685, 43);
-            this.cboPlanUtovaraU.Margin = new System.Windows.Forms.Padding(2);
-            this.cboPlanUtovaraU.Name = "cboPlanUtovaraU";
-            this.cboPlanUtovaraU.Size = new System.Drawing.Size(281, 21);
-            this.cboPlanUtovaraU.TabIndex = 161;
-            // 
-            // cboPlanUtovaraIz
-            // 
-            this.cboPlanUtovaraIz.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.cboPlanUtovaraIz.FormattingEnabled = true;
-            this.cboPlanUtovaraIz.Location = new System.Drawing.Point(15, 43);
-            this.cboPlanUtovaraIz.Margin = new System.Windows.Forms.Padding(2);
-            this.cboPlanUtovaraIz.Name = "cboPlanUtovaraIz";
-            this.cboPlanUtovaraIz.Size = new System.Drawing.Size(281, 21);
-            this.cboPlanUtovaraIz.TabIndex = 159;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(683, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 160;
-            this.label1.Text = "Plan izvoza u";
             // 
             // commandBarController1
             // 
@@ -264,14 +177,90 @@ namespace Saobracaj.Izvoz
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(979, 37);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 30);
+            this.button1.TabIndex = 171;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(313, 37);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(70, 30);
+            this.button2.TabIndex = 170;
+            this.button2.Text = "Refresh";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(9, 27);
+            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(68, 13);
+            this.label44.TabIndex = 166;
+            this.label44.Text = "Planizvoza iz";
+            // 
+            // cboPlanUtovaraU
+            // 
+            this.cboPlanUtovaraU.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cboPlanUtovaraU.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.cboPlanUtovaraU.FormattingEnabled = true;
+            this.cboPlanUtovaraU.Location = new System.Drawing.Point(682, 43);
+            this.cboPlanUtovaraU.Margin = new System.Windows.Forms.Padding(2);
+            this.cboPlanUtovaraU.Name = "cboPlanUtovaraU";
+            this.cboPlanUtovaraU.Size = new System.Drawing.Size(281, 21);
+            this.cboPlanUtovaraU.TabIndex = 169;
+            // 
+            // cboPlanUtovaraIz
+            // 
+            this.cboPlanUtovaraIz.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.cboPlanUtovaraIz.FormattingEnabled = true;
+            this.cboPlanUtovaraIz.Location = new System.Drawing.Point(12, 43);
+            this.cboPlanUtovaraIz.Margin = new System.Windows.Forms.Padding(2);
+            this.cboPlanUtovaraIz.Name = "cboPlanUtovaraIz";
+            this.cboPlanUtovaraIz.Size = new System.Drawing.Size(281, 21);
+            this.cboPlanUtovaraIz.TabIndex = 167;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(680, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 168;
+            this.label1.Text = "Plan izvoza u";
+            // 
             // frmPrebacivanjeIzPlanaUPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1182, 498);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.cboPlanUtovaraU);
+            this.Controls.Add(this.cboPlanUtovaraIz);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrebacivanjeIzPlanaUPlan";
             this.Text = "Prebacivanje stavki iz plana u plan";
@@ -279,8 +268,6 @@ namespace Saobracaj.Izvoz
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,13 +280,12 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox cboPlanUtovaraU;
         private System.Windows.Forms.ComboBox cboPlanUtovaraIz;
         private System.Windows.Forms.Label label1;
-        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

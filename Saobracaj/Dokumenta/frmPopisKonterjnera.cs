@@ -351,6 +351,20 @@ namespace Saobracaj.Dokumenta
             cboStatusKontejnera.DisplayMember = "Naziv";
             cboStatusKontejnera.ValueMember = "ID";
 
+
+            var select6 = " Select Distinct ID, Naziv   From uvKvalitetKontejnera order by ID";
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var c6 = new SqlConnection(s_connection6);
+            var dataAdapter6 = new SqlDataAdapter(select6, c6);
+
+            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
+            var ds6 = new DataSet();
+            dataAdapter6.Fill(ds6);
+            cboKvalitet.DataSource = ds6.Tables[0];
+            cboKvalitet.DisplayMember = "Naziv";
+            cboKvalitet.ValueMember = "ID";
+
             RefreshDataGridPopisi();
 
         }
@@ -496,12 +510,12 @@ namespace Saobracaj.Dokumenta
             if (txtSifra.Text == "")
                 return;
             var select = "         SELECT [PopisKontejneraStavke].[ID]      ,[PopisKontejneraStavke].[IDNadredjenog]  as NAdredjeni" +
-     " ,[PopisKontejneraStavke].[BrojKontejnera]      ,Skladista.Naziv as TekuceSkladiste " +
-     "  ,Pozicija.Oznaka as TekucaPozicija      ,[PronadjenIspravan] " +
-    "   ,s2.Naziv as SkladisteNovo      ,p2.Oznaka " +
-    "   ,[PopisKontejneraStavke].[Datum]      ,[PopisKontejneraStavke].[Korisnik] " +
-     "  ,Partnerji.PaNAziv as Brodar     ,TipKontenjera.SkNaziv as VrstaKontejnera " +
-     "  ,KontejnerStatus.Naziv as StatusKonterjnera, Generisan  FROM [dbo].[PopisKontejneraStavke] " +
+     "    ,[PopisKontejneraStavke].[BrojKontejnera]      ,Skladista.Naziv as TekuceSkladiste " +
+     "    ,PronadjenIspravan " +
+    "     ,s2.Naziv as SkladisteNovo  " +    
+     "     ,Partnerji.PaNAziv as Brodar     ,TipKontenjera.SkNaziv as VrstaKontejnera, kk.Naziv as KvalitetKontejnera " +
+     "    ,KontejnerStatus.Naziv as StatusKonterjnera, Generisan,  Pozicija.Oznaka as TekucaPozicija  " +
+     "    ,p2.Oznaka  ,[PopisKontejneraStavke].[Datum]      ,[PopisKontejneraStavke].[Korisnik]  FROM [dbo].[PopisKontejneraStavke] " +
      "    left  join TipKontenjera on TipKontenjera.ID = PopisKontejneraStavke.TipKontejnera " +
      "    left  join KontejnerStatus on KontejnerStatus.ID = PopisKontejneraStavke.[StatusKontejnera] " +
       "   left  join Partnerji on Partnerji.PaSifra = PopisKontejneraStavke.[Brodar] " +
@@ -509,6 +523,7 @@ namespace Saobracaj.Dokumenta
       "   inner join Skladista as s2 on s2.ID = PopisKontejneraStavke.[SkladisteNovo] " +
       "   inner join Pozicija on Pozicija.ID = PopisKontejneraStavke.[LokacijaU] " +
       "   inner join Pozicija as p2 on p2.ID = PopisKontejneraStavke.[LokacijaNovo] " +
+        "   inner join uvKvalitetKontejnera as kk on kk.ID = PopisKontejneraStavke.[Kvalitet] " +
       "   where IDNadredjenog = " + txtSifra.Text + " Order by [PopisKontejneraStavke].[ID]  desc ";
 
 
@@ -522,33 +537,40 @@ namespace Saobracaj.Dokumenta
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             // dataGridView1.ReadOnly = true;
-            gridGroupingControl1.DataSource = ds.Tables[0];
-            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.DataSource = ds.Tables[0];
+            this.gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+        
+          
+
+
+            
+            
+           
+
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
-
-
-
             }
 
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
             GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
             gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
             gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
-            gcfd3.Expression = "PronadjenIspravan =  '1'";
-            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+            gcfd3.Expression = "[PronadjenIspravan] LIKE \'1'";
+            gcfd3.Name = "ConditionalFormat 1";
+
 
 
             GridConditionalFormatDescriptor gcfd31 = new GridConditionalFormatDescriptor();
-            gcfd31.Appearance.AnyRecordFieldCell.BackColor = Color.Blue;
-            gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+            gcfd31.Appearance.AnyRecordFieldCell.BackColor = Color.Red;
+            gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.White;
 
-            gcfd31.Expression = "Generisan =  '0'";
-            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
-
+            gcfd31.Expression = "[Generisan] LIKE \'0'";
+            gcfd31.Name = "ConditionalFormat 2";
 
 
 
@@ -556,18 +578,12 @@ namespace Saobracaj.Dokumenta
             gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.Orange;
             gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
 
-            gcfd.Expression = "SkladisteNovo <>  '\\'";
-
+            gcfd.Expression = "[SkladisteNovo] != \\";
+            gcfd.Name = "ConditionalFormat 0";
             //To add the conditional format instances to the ConditionalFormats collection. 
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd);
-
-          
-
-            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-
-            //Wiring the Dynamic Filter to GridGroupingControl
-            dynamicFilter.WireGrid(this.gridGroupingControl1);
-
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd31);
         }
 
         private void RefreshDataGridColors()
@@ -603,7 +619,7 @@ namespace Saobracaj.Dokumenta
             InsertPopisKontejnera ins = new InsertPopisKontejnera();
             ins.InsPopisKontejneraStavke(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladiste.SelectedValue), Convert.ToInt32(cboPozicija.SelectedValue)
                 , pronadjen, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNova.SelectedValue), DateTime.Now, Korisnik
-                , Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboStatusKontejnera.SelectedValue));
+                , Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboStatusKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue));
             RefreshDataGrid();
         }
 
@@ -615,7 +631,7 @@ namespace Saobracaj.Dokumenta
             InsertPopisKontejnera ins = new InsertPopisKontejnera();
             ins.UpdPopisKontejneraStavke(Convert.ToInt32(txtID.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladiste.SelectedValue), Convert.ToInt32(cboPozicija.SelectedValue)
                 , pronadjen, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNova.SelectedValue), DateTime.Now, Korisnik
-                , Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboStatusKontejnera.SelectedValue));
+                , Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboStatusKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue));
             RefreshDataGrid();
         }
 
@@ -638,7 +654,7 @@ namespace Saobracaj.Dokumenta
             SqlCommand cmd = new SqlCommand(" SELECT [ID] " +
                 "  , [IDNadredjenog]      , [BrojKontejnera]      , [SkladisteU]      , [LokacijaU] " +
                 "  , [PronadjenIspravan]      , [SkladisteNovo]      , [LokacijaNovo]      , [Datum] " +
-                "  , [Korisnik]      , [Brodar]      , [TipKontejnera]      , [StatusKontejnera] " +
+                "  , [Korisnik]      , [Brodar]      , [TipKontejnera]      , [StatusKontejnera], Kvalitet " +
               " FROM [dbo].[PopisKontejneraStavke] " +
                          " where IdNadredjenog = " + txtSifra.Text + " and ID = " + Stavka, con);
 
@@ -656,6 +672,7 @@ namespace Saobracaj.Dokumenta
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 cboTipKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
                 cboStatusKontejnera.SelectedValue = Convert.ToInt32(dr["StatusKontejnera"].ToString());
+                cboKvalitet.SelectedValue = Convert.ToInt32(dr["Kvalitet"].ToString());
                 if (dr["PronadjenIspravan"].ToString() == "1")
                         chkPronadjen.Checked = true;
 
@@ -739,6 +756,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
             RefreshDataGrid();
+            RefreshDataGridGT();
         }
 
         private void toolStripButton3_Click_1(object sender, EventArgs e)
@@ -751,12 +769,13 @@ namespace Saobracaj.Dokumenta
         {
             try
             {
-                if (gridGroupingControl1.Table.CurrentRecord != null)
+                if (this.gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                    VratiPodatkeStavke(txtSifra.Text,Convert.ToInt32(txtID.Text) );
+                     VratiPodatkeStavke(txtSifra.Text,Convert.ToInt32(txtID.Text) );
 
                    
+
                     //  RefreshDataGridGT();
 
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
@@ -768,6 +787,11 @@ namespace Saobracaj.Dokumenta
 
                 throw ex;
             }
+        }
+
+        private void tabSplitterPage2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -117,25 +117,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 306);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 251);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(728, 312);
+            this.dataGridView1.Size = new System.Drawing.Size(728, 367);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(377, 133);
+            this.txtNaziv.Location = new System.Drawing.Point(288, 98);
             this.txtNaziv.Multiline = true;
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(233, 109);
+            this.txtNaziv.Size = new System.Drawing.Size(233, 58);
             this.txtNaziv.TabIndex = 3;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(374, 117);
+            this.lblNaziv.Location = new System.Drawing.Point(285, 66);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(37, 13);
             this.lblNaziv.TabIndex = 8;
@@ -143,7 +143,7 @@
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(9, 90);
+            this.txtSifra.Location = new System.Drawing.Point(9, 82);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(95, 20);
             this.txtSifra.TabIndex = 1;
@@ -151,7 +151,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 74);
+            this.label1.Location = new System.Drawing.Point(5, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 6;
@@ -159,7 +159,7 @@
             // 
             // txtBroj
             // 
-            this.txtBroj.Location = new System.Drawing.Point(10, 133);
+            this.txtBroj.Location = new System.Drawing.Point(10, 125);
             this.txtBroj.Name = "txtBroj";
             this.txtBroj.Size = new System.Drawing.Size(233, 20);
             this.txtBroj.TabIndex = 2;
@@ -167,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 117);
+            this.label2.Location = new System.Drawing.Point(8, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 13);
             this.label2.TabIndex = 11;
@@ -176,7 +176,7 @@
             // chkRid
             // 
             this.chkRid.AutoSize = true;
-            this.chkRid.Location = new System.Drawing.Point(13, 211);
+            this.chkRid.Location = new System.Drawing.Point(182, 166);
             this.chkRid.Name = "chkRid";
             this.chkRid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkRid.Size = new System.Drawing.Size(91, 17);
@@ -188,7 +188,7 @@
             // 
             this.txtADR.FormattingEnabled = true;
             this.txtADR.ItemHeight = 13;
-            this.txtADR.Location = new System.Drawing.Point(13, 255);
+            this.txtADR.Location = new System.Drawing.Point(13, 215);
             this.txtADR.Margin = new System.Windows.Forms.Padding(2);
             this.txtADR.Name = "txtADR";
             this.txtADR.Size = new System.Drawing.Size(230, 21);
@@ -197,7 +197,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(11, 240);
+            this.label13.Location = new System.Drawing.Point(11, 200);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(30, 13);
@@ -209,7 +209,7 @@
             this.chkUvozni.AutoSize = true;
             this.chkUvozni.Checked = true;
             this.chkUvozni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUvozni.Location = new System.Drawing.Point(11, 174);
+            this.chkUvozni.Location = new System.Drawing.Point(11, 166);
             this.chkUvozni.Name = "chkUvozni";
             this.chkUvozni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkUvozni.Size = new System.Drawing.Size(51, 17);
@@ -222,7 +222,7 @@
             this.chkInterni.AutoSize = true;
             this.chkInterni.Checked = true;
             this.chkInterni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInterni.Location = new System.Drawing.Point(90, 174);
+            this.chkInterni.Location = new System.Drawing.Point(90, 166);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkInterni.Size = new System.Drawing.Size(55, 17);

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmStanice : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmStanice : Form
     {
        
         string Kor = Sifarnici.frmLogovanje.user.ToString();
@@ -20,7 +20,7 @@ namespace Saobracaj.Sifarnici
 
             //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
-            panelHeader.Visible = false;
+          //  panelHeader.Visible = false;
 
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")

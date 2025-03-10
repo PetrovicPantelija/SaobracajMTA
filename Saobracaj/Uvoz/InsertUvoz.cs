@@ -15,7 +15,8 @@ namespace Saobracaj.Uvoz
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, int Terminalska, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, int Terminalska, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3,
+int PotvrdioKlijent, int UradilaCarina)
         {
 
 
@@ -501,6 +502,20 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             rlterminali3.Direction = ParameterDirection.Input;
             rlterminali3.Value = RLTerminali3;
             cmd.Parameters.Add(rlterminali3);
+
+            SqlParameter potvrdioK = new SqlParameter();
+            potvrdioK.ParameterName = "@PotvrdioKlijent";
+            potvrdioK.SqlDbType = SqlDbType.Int;
+            potvrdioK.Direction = ParameterDirection.Input;
+            potvrdioK.Value = NapomenaPoz;
+            cmd.Parameters.Add(potvrdioK);
+
+            SqlParameter napomenaP = new SqlParameter();
+            napomenaP.ParameterName = "@NapomenaZaPozicioniranje";
+            napomenaP.SqlDbType = SqlDbType.Int;
+            napomenaP.Direction = ParameterDirection.Input;
+            napomenaP.Value = NapomenaPoz;
+            cmd.Parameters.Add(napomenaP);
 
 
 

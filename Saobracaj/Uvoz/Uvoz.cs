@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Office.Interop.Excel;
+using Saobracaj.Sifarnici;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Diagram;
@@ -543,7 +544,7 @@ namespace Saobracaj.Uvoz
             cbNacinPakovanja.DisplayMember = "Naziv";
             cbNacinPakovanja.ValueMember = "ID";
             //napomena pozicioniranje
-            var dir5 = "Select ID,Naziv from PredefinisanePoruke order by Naziv";
+            var dir5 = "Select ID,Naziv from NapomenaZaPozicioniranje order by Naziv";
             var dirAD5 = new SqlDataAdapter(dir5, conn);
             var dirDS5 = new DataSet();
             dirAD5.Fill(dirDS5);
@@ -1205,7 +1206,7 @@ namespace Saobracaj.Uvoz
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
      "  ,[TipKontejnera] ,[Koleta]," +
      " RLTErminali , RLTErminali2 ,RLTErminali3 ,Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, " +
-     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer, Scenario " +
+     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer, Scenario , PotvrdioKlijent, UradilaCarina" +
  "  FROM [Uvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1302,6 +1303,18 @@ namespace Saobracaj.Uvoz
                 txtKontaktOsobe.Text = dr["KontaktOsobe"].ToString();
 
                 cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
+
+                if (dr["PotvrdioKlijent"].ToString() == "1")
+                {
+                    chkPotvrdioKlijent.Checked = true;
+
+                }
+
+                if (dr["UradilaCarina"].ToString() == "1")
+                {
+                    chkUradilaCarina.Checked = true;
+
+                }
 
                 /*
                 string pomNal = dr["Nalogodavac"].ToString();
@@ -1573,6 +1586,10 @@ namespace Saobracaj.Uvoz
 
         private void FillDG2()
         {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
             var select = " SELECT     UvozNHM.ID, NHM.Broj, UvozNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
                       " UvozNHM ON NHM.ID = UvozNHM.IDNHM where Uvoznhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by Uvoznhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
@@ -1684,15 +1701,15 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView4.Columns[0];
             dataGridView4.Columns[0].HeaderText = "ID";
-            dataGridView4.Columns[0].Width = 20;
+            dataGridView4.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView4.Columns[1];
             dataGridView4.Columns[1].HeaderText = "NapomenaID";
-            dataGridView4.Columns[1].Width = 20;
+            dataGridView4.Columns[1].Width = 50;
 
             DataGridViewColumn column3 = dataGridView4.Columns[2];
             dataGridView4.Columns[2].HeaderText = "Napomena";
-            dataGridView4.Columns[2].Width = 160;
+            dataGridView4.Columns[2].Width = 260;
 
         }
         private void PromeriADRIAkoPostojiUpisi()
@@ -2801,7 +2818,7 @@ namespace Saobracaj.Uvoz
             //Proveri da li ima usluga za 
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal,relacija,Zeleznina, ADR, ScenarioGl,pp);
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal,relacija,Zeleznina, ADR, ScenarioGl,pp, Repozicija);
            // um.FormClosing += new FormClosingEventHandler(this.frmUnosManipulacija_FormClosing);
             um.Show();
 
@@ -3012,7 +3029,7 @@ namespace Saobracaj.Uvoz
                 //Terminali
                 relacija = cboRLTerminal.Text.ToString().TrimEnd();
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina,ADR, ScenarioGl,pp);
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina,ADR, ScenarioGl,pp, Repozicija);
                 um.Show();
 
             }
@@ -3187,6 +3204,11 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
 
             RefreshScenario();
+            if (chkTerminalski.Checked == true)
+            {
+                cboScenario.SelectedValue = 15;
+            
+            }
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -3216,6 +3238,9 @@ namespace Saobracaj.Uvoz
             GetID();
             tsNew.Enabled = false;
             txtBrKont.Text = "";
+            FillDG2();
+            FillDGUsluge();
+            FillDG4();
         }
         string labelDialogResult = "";
 
@@ -3245,7 +3270,9 @@ namespace Saobracaj.Uvoz
             if (chkDobijenBZ.Checked == true)
             { tDobijenBZ = 1; };
             if (chkTerminalski.Checked == true)
-            { Terminalska = 1; };
+            { Terminalska = 1;
+                cboScenario.SelectedValue = 15;
+                    };
 
 
             try
@@ -3328,13 +3355,21 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text = "0";
             }
 
+            int PotvrdioKlijent = 0;
+            int UradilaCarina = 0;
+
+            if (chkPotvrdioKlijent.Checked == true)
+            { PotvrdioKlijent = 1; };
+            if (chkUradilaCarina.Checked == true)
+            { UradilaCarina = 1; };
+
 
 
             int i = ProveriBiloIzmena(txtID.Text);
 
             if (i != 0)
             {
-                DialogResult result = MessageBox.Show("Da li želite da sačuvate promene?", "Confirmation", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bilo je izmena nad podacima koji uticu na usluge?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
@@ -3351,18 +3386,36 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
                 }
-
                 else
                 {
                     return;
                 }
-
             }
+            else
+            {
+                ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
+             Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
+             Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
+             txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
+             txtTeretnica.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
+             usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), "", Convert.ToInt32(cboSpedicijaG.SelectedValue),
+             Convert.ToInt32(cboSpedicijaRTC.SelectedValue), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), Convert.ToInt32(cbPostupak.SelectedValue),
+             Convert.ToInt32(cbNacinPakovanja.SelectedValue), Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue),
+             Convert.ToInt32(txtMesto.SelectedValue), Convert.ToInt32(txtKontaktOsoba.SelectedValue), txtMail.Text.ToString(), txtPlomba1.Text,
+             txtPlomba2.Text, Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
+             Convert.ToDecimal(txtBrutoK.Value), Convert.ToInt32(cbNapomenaPoz.SelectedValue), Convert.ToDateTime(dtAtaOtprema.Value.ToString()),
+             Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
+             Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
+             Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
+             Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
+            }
+
+         
 
 
         }
@@ -3431,11 +3484,25 @@ namespace Saobracaj.Uvoz
             relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
             relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
 
-            MoguciScenario();
+            if (txtBrKont.Text.StartsWith("ROB-"))
+            {
+
+                ScenarioGl = 4; /// CIRADA U CIRADU
+            }
+            else if (relacija3 == "KAMION")
+            {
+                ScenarioGl = 5; //DOLAZAK KAMIONA IZ POLJSKE I PRETOVAR
+            }
+          
+            else
+            {
+                MoguciScenario();
+            }
+        
             //Proveri da li ima usluga za 
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl, pp);
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl, pp, Repozicija);
             // um.FormClosing += new FormClosingEventHandler(this.frmUnosManipulacija_FormClosing);
             um.Show();
             FillDG2();
@@ -3534,15 +3601,20 @@ namespace Saobracaj.Uvoz
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE IN EMPTY", 13, KorisnikTekuci, "GATE IN KAMION");
+
             FillDGUsluge();
+            InsertScenario isc = new InsertScenario();
+            isc.UpdScenarioKontejnera(15, Convert.ToInt32(txtID.Text), 1, 0);
 
             InsertUvozKonacna ins = new InsertUvozKonacna();
             ins.PrenesiUPlanUtovara(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
 
+        
+
 
             if (chkTerminalski.Checked == true)
             {
-                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja Terminalskog naloga ", "Radni nalog", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja Terminalskog naloga, kontejner je pridruzen planu i RNI ", "Radni nalog", MessageBoxButtons.YesNo);
                 int PostojeRn = 0;
                 PostojeRn = VratiPostojeceRN();
                 if (dialogResult == DialogResult.Yes)
