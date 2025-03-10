@@ -503,19 +503,19 @@ int PotvrdioKlijent, int UradilaCarina)
             rlterminali3.Value = RLTerminali3;
             cmd.Parameters.Add(rlterminali3);
 
-            SqlParameter potvrdioK = new SqlParameter();
-            potvrdioK.ParameterName = "@PotvrdioKlijent";
-            potvrdioK.SqlDbType = SqlDbType.Int;
-            potvrdioK.Direction = ParameterDirection.Input;
-            potvrdioK.Value = NapomenaPoz;
-            cmd.Parameters.Add(potvrdioK);
+            SqlParameter potvrdioKlijent = new SqlParameter();
+            potvrdioKlijent.ParameterName = "@PotvrdioKlijent";
+            potvrdioKlijent.SqlDbType = SqlDbType.Int;
+            potvrdioKlijent.Direction = ParameterDirection.Input;
+            potvrdioKlijent.Value = PotvrdioKlijent;
+            cmd.Parameters.Add(potvrdioKlijent);
 
-            SqlParameter napomenaP = new SqlParameter();
-            napomenaP.ParameterName = "@NapomenaZaPozicioniranje";
-            napomenaP.SqlDbType = SqlDbType.Int;
-            napomenaP.Direction = ParameterDirection.Input;
-            napomenaP.Value = NapomenaPoz;
-            cmd.Parameters.Add(napomenaP);
+            SqlParameter uradilaCarina = new SqlParameter();
+            uradilaCarina.ParameterName = "@UradilaCarina";
+            uradilaCarina.SqlDbType = SqlDbType.Int;
+            uradilaCarina.Direction = ParameterDirection.Input;
+            uradilaCarina.Value = UradilaCarina;
+            cmd.Parameters.Add(uradilaCarina);
 
 
 

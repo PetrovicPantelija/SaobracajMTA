@@ -782,7 +782,7 @@ namespace Saobracaj.Uvoz
      "  ,[Email]  ,[BrojPlombe1]   ,[BrojPlombe2]  ,[NetoRobe] " +
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
-     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3" +
+     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3, PotvrdioKlijent, UradilaCarina" +
  "  FROM [UvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -879,6 +879,24 @@ namespace Saobracaj.Uvoz
                 txtKontaktOsobe.Text = dr["KontaktOsobe"].ToString();
 
                 cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
+
+                if (dr["PotvrdioKlijent"].ToString() == "1")
+                {
+                    chkPotvrdioKlijent.Checked = true;
+                }
+                else
+                {
+                    chkSlobodan.Checked = false;
+                }
+
+                if (dr["UradilaCarina"].ToString() == "1")
+                {
+                    chkUradilaCarina.Checked = true;
+                }
+                else
+                {
+                    chkUradilaCarina.Checked = false;
+                }
 
                 /*
                 string pomNal = dr["Nalogodavac"].ToString();
@@ -1047,6 +1065,8 @@ namespace Saobracaj.Uvoz
         {
             int tDobijenBZ = 0;
             int tPrioritet = 0;
+            int PotvrdioKlijent = 0;
+            int UradilaCarina = 0;
 
 
             if (chkDobijenBZ.Checked == true)
@@ -1097,6 +1117,12 @@ namespace Saobracaj.Uvoz
             {
                 txtNapomena1.Text = "0";
             }
+
+            if (chkPotvrdioKlijent.Checked == true)
+            { PotvrdioKlijent = 1; };
+            if (chkUradilaCarina.Checked == true)
+            { UradilaCarina = 1; };
+
             int i = ProveriBiloIzmena(txtID.Text);
 
 
@@ -1116,7 +1142,7 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue),Convert.ToInt32(cboRLTerminal3.SelectedValue));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue),Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
             FillGV();
             RefreshDataGridColor();
         }

@@ -60,6 +60,8 @@ namespace Saobracaj.Uvoz
             this.button22 = new System.Windows.Forms.Button();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.chkUradilaCarina = new System.Windows.Forms.CheckBox();
+            this.chkPotvrdioKlijent = new System.Windows.Forms.CheckBox();
             this.chkOpsti = new System.Windows.Forms.CheckBox();
             this.button28 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
@@ -232,8 +234,6 @@ namespace Saobracaj.Uvoz
             this.label10 = new System.Windows.Forms.Label();
             this.cbDirigacija = new System.Windows.Forms.ComboBox();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.chkPotvrdioKlijent = new System.Windows.Forms.CheckBox();
-            this.chkUradilaCarina = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -790,6 +790,30 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPŠTE";
             this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
+            // 
+            // chkUradilaCarina
+            // 
+            this.chkUradilaCarina.AutoSize = true;
+            this.chkUradilaCarina.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkUradilaCarina.Location = new System.Drawing.Point(124, 321);
+            this.chkUradilaCarina.Margin = new System.Windows.Forms.Padding(2);
+            this.chkUradilaCarina.Name = "chkUradilaCarina";
+            this.chkUradilaCarina.Size = new System.Drawing.Size(103, 18);
+            this.chkUradilaCarina.TabIndex = 498;
+            this.chkUradilaCarina.Text = "Uradila carina";
+            this.chkUradilaCarina.UseVisualStyleBackColor = true;
+            // 
+            // chkPotvrdioKlijent
+            // 
+            this.chkPotvrdioKlijent.AutoSize = true;
+            this.chkPotvrdioKlijent.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkPotvrdioKlijent.Location = new System.Drawing.Point(124, 299);
+            this.chkPotvrdioKlijent.Margin = new System.Windows.Forms.Padding(2);
+            this.chkPotvrdioKlijent.Name = "chkPotvrdioKlijent";
+            this.chkPotvrdioKlijent.Size = new System.Drawing.Size(106, 18);
+            this.chkPotvrdioKlijent.TabIndex = 497;
+            this.chkPotvrdioKlijent.Text = "Potvrdio klijent";
+            this.chkPotvrdioKlijent.UseVisualStyleBackColor = true;
             // 
             // chkOpsti
             // 
@@ -2421,7 +2445,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(1083, 204);
+            this.dataGridView7.Size = new System.Drawing.Size(1083, 205);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -2448,7 +2472,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1082, 194);
+            this.dataGridView4.Size = new System.Drawing.Size(1082, 195);
             this.dataGridView4.TabIndex = 157;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 
@@ -2953,30 +2977,6 @@ namespace Saobracaj.Uvoz
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // chkPotvrdioKlijent
-            // 
-            this.chkPotvrdioKlijent.AutoSize = true;
-            this.chkPotvrdioKlijent.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkPotvrdioKlijent.Location = new System.Drawing.Point(124, 299);
-            this.chkPotvrdioKlijent.Margin = new System.Windows.Forms.Padding(2);
-            this.chkPotvrdioKlijent.Name = "chkPotvrdioKlijent";
-            this.chkPotvrdioKlijent.Size = new System.Drawing.Size(106, 18);
-            this.chkPotvrdioKlijent.TabIndex = 497;
-            this.chkPotvrdioKlijent.Text = "Potvrdio klijent";
-            this.chkPotvrdioKlijent.UseVisualStyleBackColor = true;
-            // 
-            // chkUradilaCarina
-            // 
-            this.chkUradilaCarina.AutoSize = true;
-            this.chkUradilaCarina.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.chkUradilaCarina.Location = new System.Drawing.Point(124, 321);
-            this.chkUradilaCarina.Margin = new System.Windows.Forms.Padding(2);
-            this.chkUradilaCarina.Name = "chkUradilaCarina";
-            this.chkUradilaCarina.Size = new System.Drawing.Size(103, 18);
-            this.chkUradilaCarina.TabIndex = 498;
-            this.chkUradilaCarina.Text = "Uradila carina";
-            this.chkUradilaCarina.UseVisualStyleBackColor = true;
             // 
             // Uvoz
             // 

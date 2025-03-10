@@ -258,6 +258,8 @@ namespace Saobracaj.Uvoz
             this.chkOpsti = new System.Windows.Forms.CheckBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.chkUradilaCarina = new System.Windows.Forms.CheckBox();
+            this.chkPotvrdioKlijent = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).BeginInit();
@@ -2910,6 +2912,8 @@ namespace Saobracaj.Uvoz
             // tabSplitterPage1
             // 
             this.tabSplitterPage1.AutoScroll = true;
+            this.tabSplitterPage1.Controls.Add(this.chkUradilaCarina);
+            this.tabSplitterPage1.Controls.Add(this.chkPotvrdioKlijent);
             this.tabSplitterPage1.Controls.Add(this.button31);
             this.tabSplitterPage1.Controls.Add(this.chkOpsti);
             this.tabSplitterPage1.Controls.Add(this.comboBox2);
@@ -3102,6 +3106,30 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Size = new System.Drawing.Size(1395, 48);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "TABELA";
+            // 
+            // chkUradilaCarina
+            // 
+            this.chkUradilaCarina.AutoSize = true;
+            this.chkUradilaCarina.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkUradilaCarina.Location = new System.Drawing.Point(111, 372);
+            this.chkUradilaCarina.Margin = new System.Windows.Forms.Padding(2);
+            this.chkUradilaCarina.Name = "chkUradilaCarina";
+            this.chkUradilaCarina.Size = new System.Drawing.Size(103, 18);
+            this.chkUradilaCarina.TabIndex = 500;
+            this.chkUradilaCarina.Text = "Uradila carina";
+            this.chkUradilaCarina.UseVisualStyleBackColor = true;
+            // 
+            // chkPotvrdioKlijent
+            // 
+            this.chkPotvrdioKlijent.AutoSize = true;
+            this.chkPotvrdioKlijent.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkPotvrdioKlijent.Location = new System.Drawing.Point(111, 355);
+            this.chkPotvrdioKlijent.Margin = new System.Windows.Forms.Padding(2);
+            this.chkPotvrdioKlijent.Name = "chkPotvrdioKlijent";
+            this.chkPotvrdioKlijent.Size = new System.Drawing.Size(106, 18);
+            this.chkPotvrdioKlijent.TabIndex = 499;
+            this.chkPotvrdioKlijent.Text = "Potvrdio klijent";
+            this.chkPotvrdioKlijent.UseVisualStyleBackColor = true;
             // 
             // frmUvozKonacna
             // 
@@ -3380,5 +3408,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.CheckBox chkOpsti;
         private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.CheckBox chkUradilaCarina;
+        private System.Windows.Forms.CheckBox chkPotvrdioKlijent;
     }
 }

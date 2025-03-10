@@ -466,7 +466,7 @@ namespace Saobracaj.Uvoz
 
            
 
-            var select = "Select * from (SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]  , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS ,  " +  
+            var select = "Select * from (SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]  , UvozKonacna.PotvrdioKlijent, UvozKonacna.UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS ,  " +  
 " (select Top 1 OperacijaUradjena from KontejnerTekuce inner join UvozKonacna  on UvozKonacna.BrojKontejnera = KontejnerTekuce.Kontejner  where UvozKonacna.ID = rn.BrojOsnov) as ZadnjaOperacija, " +
 " (select Top 1 Operacija from KontejnerTekuceOperacije inner join UvozKonacna  on UvozKonacna.BrojKontejnera = KontejnerTekuceOperacije.Kontejner  where UvozKonacna.ID = rn.BrojOsnov order by KontejnerTekuceOperacije.ID DESC) as LogOperacija, " +
 " rn.BrojDokPrevoza, rn.BrojRN, " +
@@ -482,7 +482,7 @@ namespace Saobracaj.Uvoz
 " Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera " +
 " where 1=1  " + DodatniAND +
 " union " +
-" SELECT rn.[ID] , IzvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen],TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
+" SELECT rn.[ID] , IzvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen], 0 as PotvrdioKlijent,  0 as UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
 " (select Top 1 OperacijaUradjena from KontejnerTekuce inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuce.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov) as ZadnjaOperacija, " +
 " (select Top 1 Operacija from KontejnerTekuceOperacije inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuceOperacije.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov order by KontejnerTekuceOperacije.ID DESC) as LogOperacija, " +
 "  rn.BrojDokPrevoza, " +

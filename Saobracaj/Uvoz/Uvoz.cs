@@ -939,6 +939,12 @@ namespace Saobracaj.Uvoz
                     return;
                 }
             }
+            int PotvrdioKlijent = 0;
+            int UradilaCarina = 0;
+            if (chkPotvrdioKlijent.Checked == true)
+            { PotvrdioKlijent = 1; };
+            if (chkUradilaCarina.Checked == true)
+            { UradilaCarina = 1; };
 
 
             /*
@@ -1009,7 +1015,8 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue),
+                PotvrdioKlijent, UradilaCarina);
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
@@ -1481,12 +1488,18 @@ namespace Saobracaj.Uvoz
         {
             int tDobijenBZ = 0;
             int tPrioritet = 0;
+            int PotvrdioKlijent = 0;
+            int UradilaCarina = 0;
 
 
             if (chkDobijenBZ.Checked == true)
             { tDobijenBZ = 1; };
             if (chkPrioritet.Checked == true)
             { tPrioritet = 1; };
+            if (chkPotvrdioKlijent.Checked == true)
+            { PotvrdioKlijent = 1; };
+            if (chkUradilaCarina.Checked == true)
+            { UradilaCarina = 1; };
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             for (int i = 0; i < clNalogodavac.Items.Count; i++)
             {
@@ -1545,7 +1558,7 @@ namespace Saobracaj.Uvoz
                 , Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToDecimal(txtTaraTerminal.Value),Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToDecimal(txtTaraTerminal.Value),Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
 
             uvK.PrebaciNHMUvozUvozKonacna(Convert.ToInt32(txtID.Text));
             uvK.PrebaciVrsterobeHSUvozUvozKonacna(Convert.ToInt32(txtID.Text));

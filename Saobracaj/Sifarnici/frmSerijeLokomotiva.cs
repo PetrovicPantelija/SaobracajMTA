@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -19,7 +20,7 @@ namespace Saobracaj.Sifarnici
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
 
-        private ToolStrip toolStrip1;
+        private ToolStrip meniHeader;
         private ToolStripButton tsNew;
         private ToolStripButton tsSave;
         private ToolStripButton tsDelete;
@@ -35,19 +36,149 @@ namespace Saobracaj.Sifarnici
         private Label lblUkupnoT;
         private NumericUpDown txtSnaga;
         private Label label4;
+        private Panel panelHeader;
+        private Panel panel3;
+        private Button button20;
+        private Button button21;
+        private Button button22;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.ComponentModel.IContainer components;
         bool status = false;
 
         public frmSerijeLokomotiva()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            ChangeTextBox();
 
+        }
+
+        private void ChangeTextBox()
+        {
+            panelHeader.Visible = false;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+                meniHeader.Visible = false;
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+
+                foreach (Control control in this.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                meniHeader.Visible = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
         }
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSerijeLokomotiva));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
@@ -63,26 +194,35 @@ namespace Saobracaj.Sifarnici
             this.lblUkupnoT = new System.Windows.Forms.Label();
             this.txtSnaga = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.toolStrip1.SuspendLayout();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSnaga)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(572, 27);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(572, 27);
+            this.meniHeader.TabIndex = 8;
+            this.meniHeader.Text = "toolStrip1";
             // 
             // tsNew
             // 
@@ -90,7 +230,7 @@ namespace Saobracaj.Sifarnici
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -100,7 +240,7 @@ namespace Saobracaj.Sifarnici
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -110,7 +250,7 @@ namespace Saobracaj.Sifarnici
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
@@ -120,62 +260,63 @@ namespace Saobracaj.Sifarnici
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 157);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 245);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 172);
+            this.dataGridView1.Size = new System.Drawing.Size(554, 267);
             this.dataGridView1.TabIndex = 28;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtOznaka
             // 
-            this.txtOznaka.Location = new System.Drawing.Point(75, 66);
+            this.txtOznaka.Location = new System.Drawing.Point(75, 98);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(159, 22);
+            this.txtOznaka.Size = new System.Drawing.Size(229, 20);
             this.txtOznaka.TabIndex = 27;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 68);
+            this.label2.Location = new System.Drawing.Point(12, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 17);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 26;
             this.label2.Text = "Oznaka";
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(75, 40);
+            this.txtSifra.Location = new System.Drawing.Point(75, 72);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(100, 22);
+            this.txtSifra.Size = new System.Drawing.Size(229, 20);
             this.txtSifra.TabIndex = 25;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 40);
+            this.label1.Location = new System.Drawing.Point(12, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 24;
             this.label1.Text = "Šifra:";
             // 
             // txtOpis
             // 
-            this.txtOpis.Location = new System.Drawing.Point(75, 94);
+            this.txtOpis.Location = new System.Drawing.Point(75, 126);
+            this.txtOpis.Multiline = true;
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(491, 22);
+            this.txtOpis.Size = new System.Drawing.Size(230, 65);
             this.txtOpis.TabIndex = 30;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 94);
+            this.label3.Location = new System.Drawing.Point(12, 126);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 29;
             this.label3.Text = "Opis";
             // 
@@ -184,23 +325,23 @@ namespace Saobracaj.Sifarnici
             this.txtTezina.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.txtTezina.DecimalPlaces = 2;
             this.txtTezina.ForeColor = System.Drawing.Color.White;
-            this.txtTezina.Location = new System.Drawing.Point(58, 120);
+            this.txtTezina.Location = new System.Drawing.Point(75, 204);
             this.txtTezina.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtTezina.Name = "txtTezina";
-            this.txtTezina.Size = new System.Drawing.Size(81, 22);
+            this.txtTezina.Size = new System.Drawing.Size(90, 20);
             this.txtTezina.TabIndex = 188;
             this.txtTezina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblUkupnoT
             // 
             this.lblUkupnoT.AutoSize = true;
-            this.lblUkupnoT.Location = new System.Drawing.Point(9, 122);
+            this.lblUkupnoT.Location = new System.Drawing.Point(9, 206);
             this.lblUkupnoT.Name = "lblUkupnoT";
-            this.lblUkupnoT.Size = new System.Drawing.Size(51, 17);
+            this.lblUkupnoT.Size = new System.Drawing.Size(39, 13);
             this.lblUkupnoT.TabIndex = 187;
             this.lblUkupnoT.Text = "Težina";
             // 
@@ -209,30 +350,115 @@ namespace Saobracaj.Sifarnici
             this.txtSnaga.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.txtSnaga.DecimalPlaces = 2;
             this.txtSnaga.ForeColor = System.Drawing.Color.White;
-            this.txtSnaga.Location = new System.Drawing.Point(204, 120);
+            this.txtSnaga.Location = new System.Drawing.Point(272, 204);
             this.txtSnaga.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtSnaga.Name = "txtSnaga";
-            this.txtSnaga.Size = new System.Drawing.Size(81, 22);
+            this.txtSnaga.Size = new System.Drawing.Size(90, 20);
             this.txtSnaga.TabIndex = 190;
             this.txtSnaga.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(149, 122);
+            this.label4.Location = new System.Drawing.Point(217, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
+            this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 189;
             this.label4.Text = "Snaga";
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel3);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(572, 35);
+            this.panelHeader.TabIndex = 467;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button20);
+            this.panel3.Controls.Add(this.button21);
+            this.panel3.Controls.Add(this.button22);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(108, 33);
+            this.panel3.TabIndex = 2;
+            // 
+            // button20
+            // 
+            this.button20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button20.BackgroundImage")));
+            this.button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button20.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button20.FlatAppearance.BorderSize = 0;
+            this.button20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button20.Location = new System.Drawing.Point(70, 3);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(27, 27);
+            this.button20.TabIndex = 15;
+            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Location = new System.Drawing.Point(39, 3);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(27, 27);
+            this.button21.TabIndex = 14;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // button22
+            // 
+            this.button22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button22.BackgroundImage")));
+            this.button22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button22.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button22.FlatAppearance.BorderSize = 0;
+            this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(10, 3);
+            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
+            this.button22.Name = "button22";
+            this.button22.Padding = new System.Windows.Forms.Padding(9);
+            this.button22.Size = new System.Drawing.Size(27, 27);
+            this.button22.TabIndex = 13;
+            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // frmSerijeLokomotiva
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(572, 332);
+            this.ClientSize = new System.Drawing.Size(572, 477);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.txtSnaga);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTezina);
@@ -244,16 +470,19 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.meniHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSerijeLokomotiva";
             this.Text = "Serije lokomotiva";
             this.Load += new System.EventHandler(this.frmSerijeLokomotiva_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSnaga)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,17 +511,7 @@ namespace Saobracaj.Sifarnici
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];

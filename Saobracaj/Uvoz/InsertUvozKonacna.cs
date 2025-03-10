@@ -17,7 +17,7 @@ namespace Saobracaj.Uvoz
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, decimal TaraKontejneraT,int RLTerminali2,int RLTerminali3)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, decimal TaraKontejneraT,int RLTerminali2,int RLTerminali3, int PotvrdioKlijent, int UradilaCarina)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -467,6 +467,20 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             rlterminali3.Value = RLTerminali3;
             cmd.Parameters.Add(rlterminali3);
 
+            SqlParameter potvrdioKlijent= new SqlParameter();
+            potvrdioKlijent.ParameterName = "@PotvrdioKlijent";
+            potvrdioKlijent.SqlDbType = SqlDbType.Int;
+            potvrdioKlijent.Direction = ParameterDirection.Input;
+            potvrdioKlijent.Value = PotvrdioKlijent;
+            cmd.Parameters.Add(potvrdioKlijent);
+
+            SqlParameter uradilaCarina = new SqlParameter();
+            uradilaCarina.ParameterName = "@UradilaCarina";
+            uradilaCarina.SqlDbType = SqlDbType.Int;
+            uradilaCarina.Direction = ParameterDirection.Input;
+            uradilaCarina.Value = UradilaCarina;
+            cmd.Parameters.Add(uradilaCarina);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -508,7 +522,8 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3,
+int PotvrdioKlijent, int UradilaCarina)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -986,6 +1001,20 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             rlterminali3.Direction = ParameterDirection.Input;
             rlterminali3.Value = RLTerminali3;
             cmd.Parameters.Add(rlterminali3);
+
+            SqlParameter potvrdioKlijent = new SqlParameter();
+            potvrdioKlijent.ParameterName = "@PotvrdioKlijent";
+            potvrdioKlijent.SqlDbType = SqlDbType.Int;
+            potvrdioKlijent.Direction = ParameterDirection.Input;
+            potvrdioKlijent.Value = PotvrdioKlijent;
+            cmd.Parameters.Add(potvrdioKlijent);
+
+            SqlParameter uradilaCarina = new SqlParameter();
+            uradilaCarina.ParameterName = "@UradilaCarina";
+            uradilaCarina.SqlDbType = SqlDbType.Int;
+            uradilaCarina.Direction = ParameterDirection.Input;
+            uradilaCarina.Value = UradilaCarina;
+            cmd.Parameters.Add(uradilaCarina);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
