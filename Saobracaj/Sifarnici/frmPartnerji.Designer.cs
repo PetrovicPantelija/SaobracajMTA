@@ -114,6 +114,26 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtUnesiDrzavu = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtUnesiOznaku = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtUnesiValutu = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.meniHeader.SuspendLayout();
@@ -125,6 +145,8 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNaziv
@@ -472,8 +494,8 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(86, 24);
-            this.toolStripButton1.Text = "Kontakl osobe";
+            this.toolStripButton1.Size = new System.Drawing.Size(87, 24);
+            this.toolStripButton1.Text = "Kontakt osobe";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -724,12 +746,16 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnMin);
             this.panel1.Controls.Add(this.dataGridView4);
             this.panel1.Controls.Add(this.dataGridView3);
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Location = new System.Drawing.Point(721, 61);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(574, 647);
@@ -892,7 +918,7 @@
             this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button27.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(0, 0);
             this.button27.Name = "button27";
@@ -975,6 +1001,193 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.txtUnesiValutu);
+            this.panel4.Controls.Add(this.txtUnesiOznaku);
+            this.panel4.Controls.Add(this.txtUnesiDrzavu);
+            this.panel4.Controls.Add(this.label25);
+            this.panel4.Controls.Add(this.label24);
+            this.panel4.Controls.Add(this.label23);
+            this.panel4.Location = new System.Drawing.Point(16, 77);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(227, 240);
+            this.panel4.TabIndex = 4;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(81, 13);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(41, 13);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Država";
+            // 
+            // txtUnesiDrzavu
+            // 
+            this.txtUnesiDrzavu.Location = new System.Drawing.Point(14, 29);
+            this.txtUnesiDrzavu.Name = "txtUnesiDrzavu";
+            this.txtUnesiDrzavu.Size = new System.Drawing.Size(183, 20);
+            this.txtUnesiDrzavu.TabIndex = 1;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(81, 62);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(44, 13);
+            this.label24.TabIndex = 0;
+            this.label24.Text = "Oznaka";
+            // 
+            // txtUnesiOznaku
+            // 
+            this.txtUnesiOznaku.Location = new System.Drawing.Point(57, 78);
+            this.txtUnesiOznaku.Name = "txtUnesiOznaku";
+            this.txtUnesiOznaku.Size = new System.Drawing.Size(93, 20);
+            this.txtUnesiOznaku.TabIndex = 1;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(85, 107);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(37, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Valuta";
+            // 
+            // txtUnesiValutu
+            // 
+            this.txtUnesiValutu.Location = new System.Drawing.Point(57, 123);
+            this.txtUnesiValutu.Name = "txtUnesiValutu";
+            this.txtUnesiValutu.Size = new System.Drawing.Size(93, 20);
+            this.txtUnesiValutu.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(43, 159);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(129, 27);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Unesi državu";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(5, 204);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(220, 13);
+            this.label26.TabIndex = 3;
+            this.label26.Text = "Uneti podaci moraju biti unešeni i u Pantheon";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(385, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 36);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Unesi državu";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(466, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 36);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Unesi poštu";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label27);
+            this.panel5.Controls.Add(this.button5);
+            this.panel5.Controls.Add(this.textBox1);
+            this.panel5.Controls.Add(this.textBox2);
+            this.panel5.Controls.Add(this.textBox3);
+            this.panel5.Controls.Add(this.label28);
+            this.panel5.Controls.Add(this.label29);
+            this.panel5.Controls.Add(this.label30);
+            this.panel5.Location = new System.Drawing.Point(332, 77);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(227, 240);
+            this.panel5.TabIndex = 4;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(5, 204);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(220, 13);
+            this.label27.TabIndex = 3;
+            this.label27.Text = "Uneti podaci moraju biti unešeni i u Pantheon";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(43, 159);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(129, 27);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "Unesi poštu";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(57, 123);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(93, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(57, 78);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(93, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(14, 29);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(183, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(71, 107);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(73, 13);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "Poštanski broj";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(71, 62);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(79, 13);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "Oznaka države";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(81, 13);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(36, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Mesto";
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // frmPartnerji
             // 
@@ -1065,6 +1278,10 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1155,5 +1372,25 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox txtUnesiOznaku;
+        private System.Windows.Forms.TextBox txtUnesiDrzavu;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtUnesiValutu;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
     }
 }

@@ -46,10 +46,16 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = "";
-            select = "select  SmSifra, SmNaziv,  Password, StatusLokomotive, Dizel, SmPogDela as Masa , Serija from Mesta where Lokomotiva = 1  ";
+            if (pomAktivna % 2 == 0)
+            {
+                select = "select  SmSifra, SmNaziv,  Password, StatusLokomotive, Dizel, SmPogDela as Masa , Serija from Mesta where Lokomotiva = 1 and StatusLokomotive=1 ";
 
-            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
-
+                //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+            }
+            else
+            {
+                select = "select  SmSifra, SmNaziv,  Password, StatusLokomotive, Dizel, SmPogDela as Masa , Serija from Mesta where Lokomotiva = 1 and StatusLokomotive=0 ";
+            }
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -218,6 +224,12 @@ namespace Saobracaj.Sifarnici
             upd.DeleteLokomotive(txtLokomotiva.Text);
             status = false;
             txtLokomotiva.Enabled = false;
+            RefreshDataGrid();
+        }
+        int pomAktivna = 0;
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            pomAktivna++;
             RefreshDataGrid();
         }
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using Saobracaj.Pantheon_Export;
 using Syncfusion.Windows.Forms;
 using System;
@@ -166,6 +167,8 @@ namespace Saobracaj.Sifarnici
             RefreshDataGrid();
             ChecBoxVisible(this.Controls);
             panel1.Visible = false;
+            panel4.Visible = false;
+            panel5.Visible= false;
 
             SqlConnection conn = new SqlConnection(connect);
             var valuta = "Select VaSifra,VaNaziv From Valute";
@@ -812,9 +815,8 @@ namespace Saobracaj.Sifarnici
 
         int SifDrzave;
         string Drzava = "";
-        private void btnDrzava_Click(object sender, EventArgs e)
+        private void FillDrzavePoste()
         {
-            panel1.Visible = true;
             var select = "Select DrSifra,DrNaziv From Drzave order by DrSifra";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
@@ -823,25 +825,17 @@ namespace Saobracaj.Sifarnici
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
 
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
 
-            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
-            {
-                PodesiDatagridView(dataGridView3);
-            }
-            else
-            {
-                dataGridView3.BorderStyle = BorderStyle.None;
-                dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView3.BackgroundColor = Color.White;
-
-                dataGridView3.EnableHeadersVisualStyles = false;
-                dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            }
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             var select2 = "select RTrim(PttNaziv)as Naziv,(RTrim(PttDrzava)+'-'+PttSifra) as Posta from Poste order by PttNaziv asc";
 
@@ -851,23 +845,27 @@ namespace Saobracaj.Sifarnici
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds2.Tables[0];
 
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+        }
+        private void btnDrzava_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = true;
+
+            FillDrzavePoste();
+
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
-                PodesiDatagridView(dataGridView4);
-            }
-            else
-            {
-                dataGridView4.BorderStyle = BorderStyle.None;
-                dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView4.BackgroundColor = Color.White;
-
-                dataGridView4.EnableHeadersVisualStyles = false;
-                dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                PodesiDatagridView(dataGridView3);
             }
 
         }
@@ -979,5 +977,44 @@ namespace Saobracaj.Sifarnici
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InsertPartnerji ins = new InsertPartnerji();
+            if (txtUnesiDrzavu.Text != "")
+            {
+                ins.InsDrzave(Kor, txtUnesiDrzavu.Text.ToString().TrimEnd(), txtUnesiOznaku.ToString().TrimEnd().ToUpper(), txtUnesiValutu.Text.ToString().TrimEnd().ToUpper());
+                FillDrzavePoste();
+                panel4.Visible = false;
+            }
+            
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertPartnerji ins = new InsertPartnerji();
+            if (textBox3.Text != "")
+            {
+                ins.InsPoste(Kor, textBox1.Text.ToString().TrimEnd(), textBox3.Text.ToString().TrimEnd(), textBox2.Text.ToString().TrimEnd());
+                FillDrzavePoste();
+                panel5.Visible = false;
+            }
+        }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel4.Visible = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel5.Visible = true;
+        }
+
+
     }
 }

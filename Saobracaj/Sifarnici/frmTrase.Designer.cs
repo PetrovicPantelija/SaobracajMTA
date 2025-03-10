@@ -160,7 +160,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Šifra:";
             // 
@@ -178,7 +178,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(8, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 16);
+            this.label2.Size = new System.Drawing.Size(60, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Početna:";
             // 
@@ -196,7 +196,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(8, 128);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 16);
+            this.label3.Size = new System.Drawing.Size(51, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Krajnja:";
             // 
@@ -213,7 +213,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(215, 31);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 16);
+            this.label4.Size = new System.Drawing.Size(60, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Relacija:";
             // 
@@ -231,7 +231,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(215, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 16);
+            this.label5.Size = new System.Drawing.Size(85, 16);
             this.label5.TabIndex = 11;
             this.label5.Text = "Opis relacije:";
             // 
@@ -241,7 +241,7 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(8, 177);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 16);
+            this.label6.Size = new System.Drawing.Size(89, 16);
             this.label6.TabIndex = 13;
             this.label6.Text = "Voz/Tras ozn:";
             // 
@@ -271,7 +271,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(8, 225);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 16);
+            this.label7.Size = new System.Drawing.Size(43, 16);
             this.label7.TabIndex = 15;
             this.label7.Text = "Rang:";
             // 
@@ -281,7 +281,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(422, 31);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 16);
+            this.label8.Size = new System.Drawing.Size(83, 16);
             this.label8.TabIndex = 17;
             this.label8.Text = "Težina voza:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
@@ -292,7 +292,7 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(422, 79);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 16);
+            this.label10.Size = new System.Drawing.Size(72, 16);
             this.label10.TabIndex = 20;
             this.label10.Text = "Težina lok:";
             // 
@@ -302,7 +302,7 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(215, 177);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 16);
+            this.label12.Size = new System.Drawing.Size(69, 16);
             this.label12.TabIndex = 23;
             this.label12.Text = "Prevoznik:";
             // 
@@ -320,7 +320,7 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(422, 128);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 16);
+            this.label13.Size = new System.Drawing.Size(83, 16);
             this.label13.TabIndex = 25;
             this.label13.Text = "Dužina voza:";
             // 
@@ -330,7 +330,7 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(422, 177);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(116, 16);
+            this.label16.Size = new System.Drawing.Size(115, 16);
             this.label16.TabIndex = 28;
             this.label16.Text = "Procenat kočenja:";
             // 
@@ -340,7 +340,7 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(422, 225);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(111, 16);
+            this.label18.Size = new System.Drawing.Size(110, 16);
             this.label18.TabIndex = 31;
             this.label18.Text = "Cena ugovorena:";
             // 
@@ -350,7 +350,7 @@
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(629, 31);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(120, 16);
+            this.label19.Size = new System.Drawing.Size(119, 16);
             this.label19.TabIndex = 33;
             this.label19.Text = "Ukupno rastojanje:";
             // 
@@ -360,7 +360,7 @@
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(629, 275);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(103, 16);
+            this.label21.Size = new System.Drawing.Size(102, 16);
             this.label21.TabIndex = 36;
             this.label21.Text = "Vreme polaska:";
             // 
@@ -370,7 +370,7 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(837, 275);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(103, 16);
+            this.label22.Size = new System.Drawing.Size(102, 16);
             this.label22.TabIndex = 38;
             this.label22.Text = "Vreme dolaska:";
             // 
@@ -403,7 +403,7 @@
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(837, 79);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 16);
+            this.label23.Size = new System.Drawing.Size(98, 16);
             this.label23.TabIndex = 42;
             this.label23.Text = "Dužina trajanja:";
             // 
@@ -414,7 +414,7 @@
             this.chkRezi.Location = new System.Drawing.Point(1040, 184);
             this.chkRezi.Name = "chkRezi";
             this.chkRezi.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkRezi.Size = new System.Drawing.Size(96, 20);
+            this.chkRezi.Size = new System.Drawing.Size(95, 20);
             this.chkRezi.TabIndex = 45;
             this.chkRezi.Text = "Reži vožnja";
             this.chkRezi.UseVisualStyleBackColor = true;
@@ -425,7 +425,7 @@
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(1040, 225);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(105, 16);
+            this.label25.Size = new System.Drawing.Size(104, 16);
             this.label25.TabIndex = 47;
             this.label25.Text = "Godina važenja:";
             // 
@@ -435,7 +435,8 @@
             this.cboGodinaVazenja.Items.AddRange(new object[] {
             "2022",
             "2023",
-            "2024"});
+            "2024",
+            "2025"});
             this.cboGodinaVazenja.Location = new System.Drawing.Point(1040, 244);
             this.cboGodinaVazenja.Name = "cboGodinaVazenja";
             this.cboGodinaVazenja.Size = new System.Drawing.Size(152, 21);
@@ -668,7 +669,7 @@
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(422, 275);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(81, 16);
+            this.label26.Size = new System.Drawing.Size(80, 16);
             this.label26.TabIndex = 65;
             this.label26.Text = "Cena kalkul:";
             // 
@@ -692,7 +693,7 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(629, 128);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(81, 16);
+            this.label27.Size = new System.Drawing.Size(80, 16);
             this.label27.TabIndex = 68;
             this.label27.Text = "Magistralno:";
             // 
@@ -716,7 +717,7 @@
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(629, 177);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(81, 16);
+            this.label30.Size = new System.Drawing.Size(80, 16);
             this.label30.TabIndex = 71;
             this.label30.Text = "Regionalne:";
             // 
@@ -740,7 +741,7 @@
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.Location = new System.Drawing.Point(629, 225);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(59, 16);
+            this.label32.Size = new System.Drawing.Size(58, 16);
             this.label32.TabIndex = 74;
             this.label32.Text = "Lokalne:";
             // 
@@ -764,7 +765,7 @@
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.Location = new System.Drawing.Point(837, 31);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(44, 16);
+            this.label33.Size = new System.Drawing.Size(43, 16);
             this.label33.TabIndex = 77;
             this.label33.Text = "Dana:";
             // 
@@ -788,7 +789,7 @@
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.Location = new System.Drawing.Point(837, 225);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(150, 16);
+            this.label34.Size = new System.Drawing.Size(149, 16);
             this.label34.TabIndex = 83;
             this.label34.Text = "Osovinsko opterećenje:";
             // 
@@ -812,7 +813,7 @@
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.Location = new System.Drawing.Point(837, 177);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(112, 16);
+            this.label35.Size = new System.Drawing.Size(111, 16);
             this.label35.TabIndex = 81;
             this.label35.Text = "Najkraći kolosek:";
             // 
@@ -836,7 +837,7 @@
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.Location = new System.Drawing.Point(837, 128);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(91, 16);
+            this.label36.Size = new System.Drawing.Size(90, 16);
             this.label36.TabIndex = 79;
             this.label36.Text = "Najveći otpor:";
             // 
@@ -847,7 +848,7 @@
             this.chkDE.Location = new System.Drawing.Point(1040, 87);
             this.chkDE.Name = "chkDE";
             this.chkDE.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDE.Size = new System.Drawing.Size(57, 20);
+            this.chkDE.Size = new System.Drawing.Size(56, 20);
             this.chkDE.TabIndex = 85;
             this.chkDE.Text = "Dizel";
             this.chkDE.UseVisualStyleBackColor = true;
@@ -873,7 +874,7 @@
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.Location = new System.Drawing.Point(1040, 128);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(53, 16);
+            this.label37.Size = new System.Drawing.Size(52, 16);
             this.label37.TabIndex = 88;
             this.label37.Text = "Elektro:";
             // 
@@ -897,7 +898,7 @@
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.Location = new System.Drawing.Point(1040, 31);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(41, 16);
+            this.label38.Size = new System.Drawing.Size(40, 16);
             this.label38.TabIndex = 86;
             this.label38.Text = "Dizel:";
             // 
@@ -921,7 +922,7 @@
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.Location = new System.Drawing.Point(8, 275);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(46, 16);
+            this.label39.Size = new System.Drawing.Size(45, 16);
             this.label39.TabIndex = 92;
             this.label39.Text = "Listica";
             // 
@@ -970,7 +971,7 @@
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.Location = new System.Drawing.Point(629, 79);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(130, 16);
+            this.label41.Size = new System.Drawing.Size(129, 16);
             this.label41.TabIndex = 94;
             this.label41.Text = "Prevozno rastojanje:";
             // 
@@ -1150,7 +1151,7 @@
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1186, 326);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sve trase";

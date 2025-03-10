@@ -763,5 +763,157 @@ namespace Saobracaj.Sifarnici
 
 
         }
+        public void InsDrzave(string Korisnik,string Drzava, string Oznaka, string Valuta)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertDrzave";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter par = new SqlParameter();
+            par.ParameterName = "@Korisnik";
+            par.SqlDbType = SqlDbType.NVarChar;
+            par.Direction = ParameterDirection.Input;
+            par.Size = 50;
+            par.Value = Korisnik;
+            myCommand.Parameters.Add(par);
+
+
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@Drzava";
+            parameter1.SqlDbType = SqlDbType.NVarChar;
+            parameter1.Size = 100;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = Drzava;
+            myCommand.Parameters.Add(parameter1);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Oznaka";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 10;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Oznaka;
+            myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@Valuta";
+            parameter3.SqlDbType = SqlDbType.NVarChar;
+            parameter3.Size = 10;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = Valuta;
+            myCommand.Parameters.Add(parameter3);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+                throw new Exception("Neuspešna promena podataka");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Neuspešna promena podataka", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void InsPoste(string Korisnik, string Sifra, string Naziv, string Oznaka)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertPoste";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter par = new SqlParameter();
+            par.ParameterName = "@Korisnik";
+            par.SqlDbType = SqlDbType.NVarChar;
+            par.Direction = ParameterDirection.Input;
+            par.Size = 50;
+            par.Value = Korisnik;
+            myCommand.Parameters.Add(par);
+
+
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@Sifra";
+            parameter1.SqlDbType = SqlDbType.NVarChar;
+            parameter1.Size = 10;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = Sifra;
+            myCommand.Parameters.Add(parameter1);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Naziv";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 50;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Naziv;
+            myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@Oznaka";
+            parameter3.SqlDbType = SqlDbType.NVarChar;
+            parameter3.Size = 10;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = Oznaka;
+            myCommand.Parameters.Add(parameter3);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+
+                throw new Exception("Neuspešna promena podataka");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Neuspešna promena podataka", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }
