@@ -1236,6 +1236,15 @@ namespace Saobracaj.Uvoz
             }
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (txtOsnov.Text != "") 
+            {
+                InsertUvozKonacna ins = new InsertUvozKonacna();
+                ins.UpdUvozKonacnaUC(Convert.ToInt32(txtOsnov.Text));
+            }
+        }
+
         private void VratiRNOtpremaCiradeID()
         {
             SqlConnection conn = new SqlConnection(s_connection);

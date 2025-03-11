@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.Uvoz;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Data;
@@ -230,7 +231,7 @@ namespace Saobracaj.Sifarnici
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -240,7 +241,7 @@ namespace Saobracaj.Sifarnici
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -250,7 +251,7 @@ namespace Saobracaj.Sifarnici
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
@@ -275,7 +276,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.txtOznaka.Location = new System.Drawing.Point(75, 98);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(229, 20);
+            this.txtOznaka.Size = new System.Drawing.Size(229, 22);
             this.txtOznaka.TabIndex = 27;
             // 
             // label2
@@ -283,7 +284,7 @@ namespace Saobracaj.Sifarnici
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(53, 16);
             this.label2.TabIndex = 26;
             this.label2.Text = "Oznaka";
             // 
@@ -291,7 +292,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.txtSifra.Location = new System.Drawing.Point(75, 72);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(229, 20);
+            this.txtSifra.Size = new System.Drawing.Size(229, 22);
             this.txtSifra.TabIndex = 25;
             // 
             // label1
@@ -299,7 +300,7 @@ namespace Saobracaj.Sifarnici
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 24;
             this.label1.Text = "Šifra:";
             // 
@@ -316,7 +317,7 @@ namespace Saobracaj.Sifarnici
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 126);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.Size = new System.Drawing.Size(35, 16);
             this.label3.TabIndex = 29;
             this.label3.Text = "Opis";
             // 
@@ -332,7 +333,7 @@ namespace Saobracaj.Sifarnici
             0,
             0});
             this.txtTezina.Name = "txtTezina";
-            this.txtTezina.Size = new System.Drawing.Size(90, 20);
+            this.txtTezina.Size = new System.Drawing.Size(90, 22);
             this.txtTezina.TabIndex = 188;
             this.txtTezina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -341,7 +342,7 @@ namespace Saobracaj.Sifarnici
             this.lblUkupnoT.AutoSize = true;
             this.lblUkupnoT.Location = new System.Drawing.Point(9, 206);
             this.lblUkupnoT.Name = "lblUkupnoT";
-            this.lblUkupnoT.Size = new System.Drawing.Size(39, 13);
+            this.lblUkupnoT.Size = new System.Drawing.Size(48, 16);
             this.lblUkupnoT.TabIndex = 187;
             this.lblUkupnoT.Text = "Težina";
             // 
@@ -357,7 +358,7 @@ namespace Saobracaj.Sifarnici
             0,
             0});
             this.txtSnaga.Name = "txtSnaga";
-            this.txtSnaga.Size = new System.Drawing.Size(90, 20);
+            this.txtSnaga.Size = new System.Drawing.Size(90, 22);
             this.txtSnaga.TabIndex = 190;
             this.txtSnaga.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -366,7 +367,7 @@ namespace Saobracaj.Sifarnici
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(217, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(47, 16);
             this.label4.TabIndex = 189;
             this.label4.Text = "Snaga";
             // 
@@ -410,6 +411,7 @@ namespace Saobracaj.Sifarnici
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button21
             // 
@@ -575,5 +577,16 @@ namespace Saobracaj.Sifarnici
         {
             RefreshDataGrid();
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if (txtSifra.Text.Length != 0)
+            {
+                InsertLokomotivaSerija ins = new InsertLokomotivaSerija();
+                ins.DeleteLokomotivaSerija(Convert.ToInt32(txtSifra.Text));
+                RefreshDataGrid();
+            }
+        }
+
     }
 }
