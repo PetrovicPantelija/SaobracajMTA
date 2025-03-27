@@ -3495,7 +3495,7 @@ namespace Saobracaj.Dokumenta
             }
             //ID usluge je ustvaribroj RadnogNalogaInternog
 
-            RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text, 0, txtNalogID.Text);
+            RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text, 0, txtNalogID.Text, txtBrojKontejnera.Text);
             rnop.Show();
         }
 

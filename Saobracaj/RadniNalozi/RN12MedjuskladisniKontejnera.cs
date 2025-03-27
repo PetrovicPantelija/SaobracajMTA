@@ -173,6 +173,7 @@ namespace Saobracaj.RadniNalozi
 
             KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user;
             txtDatumRasporeda.Value = DateTime.Now;
+            VratiOstaloIzTekuceg(BrojKontejnera);
         }
 
         private void FillGV()

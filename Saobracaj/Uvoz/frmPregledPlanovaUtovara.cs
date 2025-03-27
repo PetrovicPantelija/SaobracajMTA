@@ -171,7 +171,7 @@ namespace Saobracaj.Uvoz
             {
                 case "Leget":
                     {
-                        select = " SELECT UvozKonacnaZaglavlje.[ID] as PLANID,[Voz].[ID] ,[Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
+                        select = " SELECT UvozKonacnaZaglavlje.[ID] as PLANID,[Voz].[ID] ,Voz.NazivVoza, [Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
                         " PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
                         " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera, " +
                         " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera, " +
@@ -276,6 +276,12 @@ namespace Saobracaj.Uvoz
             }
             Saobracaj.Uvoz.Uvoz uv = new Saobracaj.Uvoz.Uvoz(1, Convert.ToInt32(txtSifra.Text));
             uv.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmRAdniNalogInterniPUvoz rnUvoz = new frmRAdniNalogInterniPUvoz(Convert.ToInt32(txtSifra.Text));
+            rnUvoz.Show();
         }
     }
 }

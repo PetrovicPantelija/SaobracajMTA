@@ -1944,7 +1944,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, txtNadredjeni.Text);
             uvdok.Show();
         }
 
@@ -3201,8 +3201,7 @@ namespace Saobracaj.Uvoz
         {
             if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F1)
             {
-
-                UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+                UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, txtNadredjeni.Text);
                 uvdok.Show();
             }
             else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F2)
@@ -3388,7 +3387,7 @@ namespace Saobracaj.Uvoz
         private void button23_Click(object sender, EventArgs e)
         {
 
-            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, txtNadredjeni.Text);
             uvdok.Show();
         }
         int Repozicija = 0;
@@ -3555,7 +3554,7 @@ namespace Saobracaj.Uvoz
         {
             if (chkTerminalski.Checked == false)
             {
-                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal, nalozi se neće izdati za Administrativne usluge", "Radni nalog", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal, nalozi se neće izdati za Administrativne usluge i za zapise koje nemaju unet Broj kontejnera", "Radni nalog", MessageBoxButtons.YesNo);
                 int PostojeRn = 0;
                 PostojeRn = VratiPostojeceRN();
                 if (dialogResult == DialogResult.Yes)

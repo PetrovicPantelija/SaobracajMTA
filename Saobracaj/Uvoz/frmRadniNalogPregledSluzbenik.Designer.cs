@@ -57,6 +57,7 @@
             this.txtTipBroj = new System.Windows.Forms.TextBox();
             this.txtTip = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -370,12 +371,21 @@
             this.label4.TabIndex = 468;
             this.label4.Text = "PREVOZNO SREDSTVO";
             // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Enabled = false;
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(706, 88);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(85, 20);
+            this.txtBrojKontejnera.TabIndex = 473;
+            // 
             // frmRadniNalogPregledSluzbenik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1431, 646);
+            this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNALOGID);
             this.Controls.Add(this.label3);
@@ -434,5 +444,6 @@
         private System.Windows.Forms.TextBox txtTipBroj;
         private System.Windows.Forms.TextBox txtTip;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
     }
 }

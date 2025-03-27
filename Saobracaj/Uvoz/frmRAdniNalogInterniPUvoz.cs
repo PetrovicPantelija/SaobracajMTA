@@ -1,156 +1,32 @@
-﻿using Syncfusion.GridHelperClasses;
+﻿using Microsoft.Office.Interop.Excel;
+using Saobracaj.Dokumenta;
+using Saobracaj.Izvoz;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing.Imaging;
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using System.Numerics;
-using Syncfusion.Windows.Forms.Grid;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmAnalizaUvoza : Form
+    public partial class frmRAdniNalogInterniPUvoz : Form
     {
-        private void ChangeTextBox()
+        int Plan = 0;
+        public frmRAdniNalogInterniPUvoz(int PlanID)
         {
-
-
-            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
-            {
-                // toolStripHeader.Visible = false;
-      
-                this.BackColor = Color.White;
-                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
-                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
-                this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                Office2010Colors.ApplyManagedColors(this, Color.White);
-                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
-                // this.FormBorderStyle = FormBorderStyle.None;
-                this.BackColor = Color.White;
-                Office2010Colors.ApplyManagedColors(this, Color.White);
-
-                foreach (Control control in this.Controls)
-                {
-                    if (control is System.Windows.Forms.Button buttons)
-                    {
-
-                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
-                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
-                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
-                        buttons.FlatStyle = FlatStyle.Flat;
-                    }
-
-                    if (control is System.Windows.Forms.TextBox textBox)
-                    {
-
-                        textBox.BackColor = Color.White;// Example: Change background color
-                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
-                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                        // Example: Change font
-                    }
-
-
-                    if (control is System.Windows.Forms.Label label)
-                    {
-                        // Change properties here
-                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
-
-                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
-                    }
-
-                    if (control is DateTimePicker dtp)
-                    {
-                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                    }
-
-                    if (control is System.Windows.Forms.CheckBox chk)
-                    {
-                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                    }
-
-                    if (control is System.Windows.Forms.ListBox lb)
-                    {
-                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                    }
-
-                    if (control is System.Windows.Forms.ComboBox cb)
-                    {
-                        cb.ForeColor = Color.FromArgb(51, 51, 54);
-                        cb.BackColor = Color.White;// Example: Change background color
-                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                    }
-
-                    if (control is System.Windows.Forms.NumericUpDown nu)
-                    {
-                        nu.ForeColor = Color.FromArgb(51, 51, 54);
-                        nu.BackColor = Color.White;// Example: Change background color
-                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
-                    }
-                }
-            }
-            else
-            {
-         
-
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                //  this.BackColor = Color.White;
-                // toolStripHeader.Visible = true;
-            }
-
-
-
-
-
-
-
-
-
-        }
-
-        private void PodesiDatagridView(DataGridView dgv)
-        {
-
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 30;
-        }
-
-
-        public frmAnalizaUvoza()
-        {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
-
             InitializeComponent();
-            ChangeTextBox();
-
+            Plan = PlanID;
         }
 
-        private void frmAnalizaUvoza_Load(object sender, EventArgs e)
+        private void RefreshGV(int Plan)
         {
             var select = "";
             select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv,   [Uradjen],  " +
@@ -172,9 +48,8 @@ namespace Saobracaj.Uvoz
 " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
 " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
 " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera  " +
-           " where OJIzdavanja =  1 " +
-           " order by UvozKonacna.ID desc";
-
+           " where OJIzdavanja =  1 and UvozKonacna.IdNadredjeni = " + Plan +
+           " order by rn.ID desc";
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -280,6 +155,16 @@ namespace Saobracaj.Uvoz
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+        }
+
+        private void frmRAdniNalogInterniPUvoz_Load(object sender, EventArgs e)
+        {
+            RefreshGV(Plan);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            RefreshGV(Plan);
         }
     }
 }

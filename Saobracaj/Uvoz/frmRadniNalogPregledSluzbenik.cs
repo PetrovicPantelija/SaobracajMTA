@@ -361,17 +361,17 @@ namespace Saobracaj.Uvoz
             InitializeComponent();
             Korisnik = KorisnikTekuci;
             ChangeTextBox();
-        //    ChangeTextBoxGradientPanel1();
-         //   ChangeTextBoxGradientPanel2();
-          //  ChangeTextBoxGradientPanel3();
+            //    ChangeTextBoxGradientPanel1();
+            //   ChangeTextBoxGradientPanel2();
+            //  ChangeTextBoxGradientPanel3();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
             string DodatniAND = " ";
-         
-                DodatniAND = DodatniAND + " AND rn.Forma in ('GATE IN KAMION' , 'GATE IN KAMION IZVOZ', 'GATE IN KAMION TERMINAL', 'GATE OUT KAMION', 'GATE OUT KAMION TERMINAL')" ;
+
+            DodatniAND = DodatniAND + " AND rn.Forma in ('GATE IN KAMION' , 'GATE IN KAMION IZVOZ', 'GATE IN KAMION TERMINAL', 'GATE OUT KAMION', 'GATE OUT KAMION TERMINAL')";
 
 
             var select = "Select * from (SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]  , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS ,  " +
@@ -481,7 +481,7 @@ namespace Saobracaj.Uvoz
             */
         }
         private void frmRadniNalogPregledSluzbenik_Load(object sender, EventArgs e)
-         {
+        {
             /*
                var select8 = "  Select Distinct ID, Naziv   From OrganizacioneJedinice ";
                var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -643,26 +643,59 @@ namespace Saobracaj.Uvoz
             }
         }
 
+        int ProveriDaLiJeUradjenaPredhodnaOperacija(string Nalog)
+        {
+            int Uradjen = 1;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 ID, BrojOsnov, Uradjen from RadniNalogInterni where ID < " + txtNALOGID.Text + " and ID > " + txtNALOGID.Text + " -10 and BrojOsnov = (Select BrojOsnov from RadniNalogInterni where ID = " + txtNALOGID.Text + ") order by ID DEsc ", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Uradjen = Convert.ToInt32(dr["Uradjen"].ToString().TrimEnd());
+            }
+            con.Close();
+            return Uradjen;
+
+        }
+
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
+            int i = 0;
+
+            i = ProveriDaLiJeUradjenaPredhodnaOperacija(txtNALOGID.Text);
+            if (i == 0)
+            {
+                MessageBox.Show("Nije zavrsena predhodna usluga ne mozete generisati novu!!!");
+                return;
+            }
+            if (txtTipBroj.Text != "0" || txtRNBroj.Text != "0")
+            {
+                MessageBox.Show("Vec su napravljeni RN i Vozno sredstvo");
+                return;
+            
+            }
+            
             string Forma = VratiFormu();
             int KISUsl = 0;
             int OJ = VratiOJIzdavanja();
             if (Forma == "GATE IN VOZ")
             {
-                MessageBox.Show("Formirate Prijem vozom");
+                MessageBox.Show("Formirate GATE IN VOZ");
                 frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 0, OJ);
                 rd1.Show();
             }
             if (Forma == "GATE OUT KAMION" || Forma == "GATE OUT KAMION TERMINAL")
             {
 
-                MessageBox.Show("Formirate Otpremu kamionom Platforma");
+                MessageBox.Show("Formirate GATE OUT KAMION Platforma");
                 KISUsl = VratiKonkretanIDUsluge();
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0, OJ);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0, OJ, txtBrojKontejnera.Text);
                 okk.Show();
-
-
 
 
             }
@@ -674,7 +707,7 @@ namespace Saobracaj.Uvoz
                 if (OJ == 4)
                 {
                     //
-                    MessageBox.Show("Formirate Prijem kamionom Platforma TERMINAL");
+                    MessageBox.Show("Formirate GATE IN Platforma TERMINAL");
                     //OVDE TREBA DA URADIM TERMINALSKI GATE IN KAMION
                     frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
                     rd1.Show();
@@ -685,7 +718,7 @@ namespace Saobracaj.Uvoz
                 {
 
                     // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
-                    MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
+                    MessageBox.Show("Formirate GATE IN Platforma Izvoz");
                     frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
                     rd1.Show();
 
@@ -696,7 +729,7 @@ namespace Saobracaj.Uvoz
                 else if (OJ == 1)
                 {
                     //Prijem platforme //Uvoz SC1
-                    MessageBox.Show("Formirate Prijem kamionom Platforma Uvoz");
+                    MessageBox.Show("Formirate GATE IN Platforma Uvoz");
                     frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
                     rd1.Show();
                     //   Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
@@ -710,7 +743,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE OUT PRETOVAR")
             {
                 //
-                MessageBox.Show("Formirate Prijem kamionom Cirada");
+                MessageBox.Show("Formirate GATE IN kamion Cirada");
                 Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1, 1);
                 prijemplat.Show();
 
@@ -718,16 +751,46 @@ namespace Saobracaj.Uvoz
 
             if (Forma == "GATE IN PRETOVAR")
             {
-                MessageBox.Show("Formirate Otprema kamionom Cirada");
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1, OJ);
+                MessageBox.Show("Formirate GATE OUT kamion Cirada");
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1, OJ,txtBrojKontejnera.Text);
                 okk.Show();
             }
 
             if (Forma == "GATE OUT VOZ")
             {
-                MessageBox.Show("Formirate Otprema VOZ");
+                MessageBox.Show("GATE OUT VOZ");
                 frmOtpremaVozaIzPlana ovizpl = new frmOtpremaVozaIzPlana(txtNALOGID.Text);
                 ovizpl.Show();
+
+                /*
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1);
+                okk.Show();
+                */
+            }
+
+            if (Forma == "INTERNI NALOG PRENOS")
+            {
+                MessageBox.Show("Formirate nalog za prenos");
+                string Napomena = "";
+                string Kontejner = "";
+                string Usluga = "";
+                try
+                {
+                    if (gridGroupingControl1.Table.CurrentRecord != null)
+                    {
+                        Napomena = gridGroupingControl1.Table.CurrentRecord.GetValue("Napomena").ToString();
+                        Kontejner = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojKontejnera").ToString();
+                        Usluga = gridGroupingControl1.Table.CurrentRecord.GetValue("Naziv").ToString();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                RadniNalozi.RN12MedjuskladisniKontejnera rnpv = new RadniNalozi.RN12MedjuskladisniKontejnera(Convert.ToInt32(txtNALOGID.Text), Kontejner, Usluga + ' ' + Napomena);
+                rnpv.Show();
 
                 /*
                 Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1);
@@ -749,6 +812,7 @@ namespace Saobracaj.Uvoz
                     txtTipBroj.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojDokPrevoza").ToString();
                     txtRNTip.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("TipRN").ToString();
                     txtRNBroj.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojRN").ToString();
+                    txtBrojKontejnera.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojKontejnera").ToString();
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
 

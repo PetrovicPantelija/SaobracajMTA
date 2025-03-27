@@ -151,7 +151,7 @@ namespace Saobracaj.Izvoz
             txtImeVozaca.Text = Vozac;
             txtKontejnerID.Text = Osnov.ToString();
             txtNalogID.Text = NalogID.ToString();
-            kontejner = Kontejner;
+          //  kontejner = BrojKontejnera;
            // PovuciIzPrijemnice();
         }
 
@@ -185,11 +185,12 @@ namespace Saobracaj.Izvoz
 
         }
 
-        public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID, string NalogID, string Korisnik, int Cirada, int OJ)
+        public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID, string NalogID, string Korisnik, int Cirada, int OJ, string BrojKontejnera)
         {
             InitializeComponent();
             ChangeTextBox();
             txtKontejnerID.Text = KontejnerID;
+            txtBrojKontejnera.Text = BrojKontejnera;
             txtNalogID.Text = NalogID;
             KorisnikCene = Korisnik;
             KonkretnaUsluga = VratiKonkretanIDUsluge();
@@ -227,6 +228,7 @@ namespace Saobracaj.Izvoz
                 chkTerminal.Checked = true;
 
             }
+            kontejner = txtBrojKontejnera.Text;
         }
 
         private void VratiOstalePodatkeIzUsluge(int ID, int Modul)
@@ -339,7 +341,8 @@ namespace Saobracaj.Izvoz
                     DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 6 za otpremu platforme", "Radni nalozi?", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 0, txtNalogID.Text);
+                        //Kontejner
+                        RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 0, txtNalogID.Text,kontejner );
                         rnop.Show();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -360,7 +363,7 @@ namespace Saobracaj.Izvoz
                     if (dialogResult == DialogResult.Yes)
                     {
                        // string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz
-                        RadniNalozi.RN6OtpremaPlatforme ppl = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene,  Usluga.ToString(), txtRegBrKamiona.Text, 1, txtNalogID.Text);
+                        RadniNalozi.RN6OtpremaPlatforme ppl = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene,  Usluga.ToString(), txtRegBrKamiona.Text, 1, txtNalogID.Text, kontejner);
                         ppl.Show();
                     }
                     else if (dialogResult == DialogResult.No)

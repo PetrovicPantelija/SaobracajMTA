@@ -1588,7 +1588,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, "0");
             uvdok.Show();
         }
 
@@ -3021,7 +3021,7 @@ namespace Saobracaj.Uvoz
             */
             if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F1)
             {
-                UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+                UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, "0");
                 uvdok.Show();
             }
             else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F2 )

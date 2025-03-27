@@ -85,6 +85,7 @@ namespace Saobracaj.Uvoz
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -269,6 +270,7 @@ namespace Saobracaj.Uvoz
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.splitContainer1.Panel1.Controls.Add(this.txtBrojKontejnera);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel4);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel3);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel2);
@@ -296,7 +298,7 @@ namespace Saobracaj.Uvoz
             this.gradientPanel4.Controls.Add(this.txtTipBroj);
             this.gradientPanel4.Controls.Add(this.txtTip);
             this.gradientPanel4.Controls.Add(this.label4);
-            this.gradientPanel4.Location = new System.Drawing.Point(9, 408);
+            this.gradientPanel4.Location = new System.Drawing.Point(6, 439);
             this.gradientPanel4.Name = "gradientPanel4";
             this.gradientPanel4.Size = new System.Drawing.Size(228, 129);
             this.gradientPanel4.TabIndex = 230;
@@ -358,7 +360,7 @@ namespace Saobracaj.Uvoz
             // gradientPanel3
             // 
             this.gradientPanel3.Controls.Add(this.chkFormiranTerminal);
-            this.gradientPanel3.Location = new System.Drawing.Point(6, 341);
+            this.gradientPanel3.Location = new System.Drawing.Point(3, 372);
             this.gradientPanel3.Name = "gradientPanel3";
             this.gradientPanel3.Size = new System.Drawing.Size(231, 50);
             this.gradientPanel3.TabIndex = 229;
@@ -379,7 +381,7 @@ namespace Saobracaj.Uvoz
             this.gradientPanel2.Controls.Add(this.chkAdministrativna);
             this.gradientPanel2.Controls.Add(this.chkKamion);
             this.gradientPanel2.Controls.Add(this.chkVOZ);
-            this.gradientPanel2.Location = new System.Drawing.Point(9, 186);
+            this.gradientPanel2.Location = new System.Drawing.Point(6, 217);
             this.gradientPanel2.Name = "gradientPanel2";
             this.gradientPanel2.Size = new System.Drawing.Size(228, 142);
             this.gradientPanel2.TabIndex = 228;
@@ -423,7 +425,7 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.Controls.Add(this.txtNALOGID);
             this.gradientPanel1.Controls.Add(this.label3);
             this.gradientPanel1.Controls.Add(this.textBox1);
-            this.gradientPanel1.Location = new System.Drawing.Point(9, 59);
+            this.gradientPanel1.Location = new System.Drawing.Point(6, 90);
             this.gradientPanel1.Name = "gradientPanel1";
             this.gradientPanel1.Size = new System.Drawing.Size(228, 109);
             this.gradientPanel1.TabIndex = 227;
@@ -442,7 +444,7 @@ namespace Saobracaj.Uvoz
             // txtNALOGID
             // 
             this.txtNALOGID.Enabled = false;
-            this.txtNALOGID.Location = new System.Drawing.Point(12, 76);
+            this.txtNALOGID.Location = new System.Drawing.Point(12, 65);
             this.txtNALOGID.Name = "txtNALOGID";
             this.txtNALOGID.Size = new System.Drawing.Size(85, 20);
             this.txtNALOGID.TabIndex = 225;
@@ -451,7 +453,7 @@ namespace Saobracaj.Uvoz
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(9, 60);
+            this.label3.Location = new System.Drawing.Point(9, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
@@ -540,7 +542,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1133, 693);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1134, 693);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.tabSplitterContainer1.SplitterPosition = 631;
             this.tabSplitterContainer1.TabIndex = 10;
@@ -554,7 +556,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1133, 631);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1134, 631);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
             // 
@@ -577,7 +579,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1127, 625);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1128, 625);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -600,7 +602,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 651);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1133, 42);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1134, 42);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
@@ -623,7 +625,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1127, 37);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1128, 37);
             this.gridGroupingControl2.TabIndex = 237;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -820,6 +822,14 @@ namespace Saobracaj.Uvoz
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Enabled = false;
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(20, 191);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(209, 20);
+            this.txtBrojKontejnera.TabIndex = 231;
+            // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -924,5 +934,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
     }
 }

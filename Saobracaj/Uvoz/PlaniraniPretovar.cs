@@ -762,6 +762,11 @@ namespace Saobracaj.Uvoz
         int VratiOJIzdavanja()
         {
             int Konkretan = 0;
+            if (txtID.Text != "")
+            { 
+            
+            }
+        
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 

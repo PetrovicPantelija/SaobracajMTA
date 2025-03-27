@@ -161,6 +161,13 @@ namespace Saobracaj.Uvoz
         {
             InitializeComponent();
             ChangeTextBox();
+            cboPokret.Visible = false;
+            cboForma.Visible = false;
+            cboStatus.Visible = false;
+            label8.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            button28.Visible = false;
             FillDG6(1);
             Usao = 0;
         }
@@ -169,6 +176,13 @@ namespace Saobracaj.Uvoz
         {
             InitializeComponent();
             ChangeTextBox();
+            cboPokret.Visible = false;
+            cboForma.Visible = false;
+            cboStatus.Visible = false;
+            label8.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            button28.Visible = false;
             pIDPlana = IDPlana;
             pID = ID;
             txtID.Text = pID.ToString();
@@ -4328,13 +4342,15 @@ namespace Saobracaj.Uvoz
 
         private void dataGridView7_SelectionChanged(object sender, EventArgs e)
         {
-            cboPokret.Visible = true;
-            cboForma.Visible = true;
-            cboStatus.Visible = true;
-            button28.Visible = true;
-            label8.Visible = true;
-            label6.Visible = true;
-            label7.Visible = true;
+            //SAkriti polja
+            cboPokret.Visible = false;
+            cboForma.Visible = false;
+            cboStatus.Visible = false;
+            button28.Visible = false;
+            label8.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            //Trebalo da moze da se promeni izvrsavanje
         }
 
         int VratiUsluguNovog(int ScenarioNovi, int RB)

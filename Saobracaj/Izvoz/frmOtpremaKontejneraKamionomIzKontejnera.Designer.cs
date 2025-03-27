@@ -73,6 +73,8 @@ namespace Saobracaj.Izvoz
             this.panel8 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -373,7 +375,7 @@ namespace Saobracaj.Izvoz
             this.chkUvoz.BackColor = System.Drawing.Color.Transparent;
             this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkUvoz.Location = new System.Drawing.Point(146, 256);
+            this.chkUvoz.Location = new System.Drawing.Point(458, 256);
             this.chkUvoz.Name = "chkUvoz";
             this.chkUvoz.Size = new System.Drawing.Size(51, 17);
             this.chkUvoz.TabIndex = 266;
@@ -426,7 +428,7 @@ namespace Saobracaj.Izvoz
             this.chkCirada.BackColor = System.Drawing.Color.Transparent;
             this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkCirada.ForeColor = System.Drawing.Color.Black;
-            this.chkCirada.Location = new System.Drawing.Point(146, 295);
+            this.chkCirada.Location = new System.Drawing.Point(458, 295);
             this.chkCirada.Name = "chkCirada";
             this.chkCirada.Size = new System.Drawing.Size(56, 17);
             this.chkCirada.TabIndex = 296;
@@ -439,7 +441,7 @@ namespace Saobracaj.Izvoz
             this.chkIzvoz.BackColor = System.Drawing.Color.Transparent;
             this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkIzvoz.Location = new System.Drawing.Point(216, 256);
+            this.chkIzvoz.Location = new System.Drawing.Point(528, 256);
             this.chkIzvoz.Name = "chkIzvoz";
             this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
             this.chkIzvoz.TabIndex = 297;
@@ -452,7 +454,7 @@ namespace Saobracaj.Izvoz
             this.chkPlatforma.BackColor = System.Drawing.Color.Transparent;
             this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
-            this.chkPlatforma.Location = new System.Drawing.Point(216, 295);
+            this.chkPlatforma.Location = new System.Drawing.Point(528, 295);
             this.chkPlatforma.Name = "chkPlatforma";
             this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
             this.chkPlatforma.TabIndex = 298;
@@ -465,7 +467,7 @@ namespace Saobracaj.Izvoz
             this.chkTerminal.BackColor = System.Drawing.Color.Transparent;
             this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkTerminal.ForeColor = System.Drawing.Color.Black;
-            this.chkTerminal.Location = new System.Drawing.Point(285, 256);
+            this.chkTerminal.Location = new System.Drawing.Point(597, 256);
             this.chkTerminal.Name = "chkTerminal";
             this.chkTerminal.Size = new System.Drawing.Size(66, 17);
             this.chkTerminal.TabIndex = 299;
@@ -571,12 +573,34 @@ namespace Saobracaj.Izvoz
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.tsNew_Click);
             // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(105, 252);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(233, 21);
+            this.txtBrojKontejnera.TabIndex = 463;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label8.Location = new System.Drawing.Point(102, 234);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 15);
+            this.label8.TabIndex = 464;
+            this.label8.Text = "BrojKontejnera";
+            // 
             // frmOtpremaKontejneraKamionomIzKontejnera
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(960, 466);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.chkTerminal);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.chkPlatforma);
@@ -670,5 +694,7 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
     }
 }

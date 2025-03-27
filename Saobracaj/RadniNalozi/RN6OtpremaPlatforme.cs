@@ -142,7 +142,32 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
-        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz, string NalogID)
+        private void VratiOstaloIzTekuceg(string BrojKontejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT TipKontejnera, Skladiste, Pozicija " +
+  " FROM KontejnerTekuce where Kontejner= '" + BrojKontejnera + "'", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                // txtID.Text = dr["ID"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+                cboSaPoz.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+            }
+            con.Close();
+
+
+
+
+        }
+
+        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz, string NalogID, string Kontejner)
         {
             //Uvoz = 0
             //Izvoz = 1
@@ -177,6 +202,7 @@ namespace Saobracaj.RadniNalozi
             txtRegBr.Text = Kamion;
             KorisnikTekuci = Korisnik;
             txtNalogID.Text = NalogID;
+            VratiOstaloIzTekuceg(Kontejner);
         }
 
         private void VratiPodatkeVrstaMan(string IDUsluge)

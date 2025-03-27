@@ -2134,7 +2134,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
             }
             //string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz
-            Saobracaj.RadniNalozi.RN6OtpremaPlatforme op = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 1, txtNalogID.Text);
+            Saobracaj.RadniNalozi.RN6OtpremaPlatforme op = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 1, txtNalogID.Text, txtBrojKontejnera.Text);
             op.Show();
             ;
         }

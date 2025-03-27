@@ -743,5 +743,10 @@ namespace Saobracaj.RadniNalozi
         {
 
         }
+
+        private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
