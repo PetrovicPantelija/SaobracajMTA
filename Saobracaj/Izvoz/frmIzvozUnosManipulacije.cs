@@ -16,6 +16,7 @@ using Saobracaj.Sifarnici;
 using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Diagram;
+using Testiranje.Sifarnici;
 using static System.IdentityModel.Tokens.SecurityTokenHandlerCollectionManager;
 
 namespace Saobracaj.Izvoz
@@ -35,7 +36,9 @@ namespace Saobracaj.Izvoz
         string pickUp;
         int scenariogl = 0;
         int PunPrazan = 0;
-    int adr = 0;
+        int ZelezninaUneta = 0;
+        int RepozicijaUneta = 0;
+        int adr = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -162,7 +165,7 @@ namespace Saobracaj.Izvoz
             int Usao = 0;
         }
 
-        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp, int ScenarioGL, int ADR, int pp)
+        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp, int ScenarioGL, int ADR, int pp, int Zeleznina, int Repozicija)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -185,7 +188,216 @@ namespace Saobracaj.Izvoz
             adr = ADR;
             PunPrazan = pp;
 
-        
+            ZelezninaUneta = VratiUnetuZelezninu(ID);
+            RepozicijaUneta = VratiUnetuRepoziciju(ID);
+            if (Zeleznina != ZelezninaUneta)
+            {
+                if (ZelezninaUneta == 0)
+                {
+                    UbaciZelezninu(Zeleznina, ZelezninaUneta, pID);
+                }
+                else
+                {
+                    var result = System.Windows.Forms.MessageBox.Show("Promenjena je železnina", "Provera železnine", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        UbaciZelezninu(Zeleznina, ZelezninaUneta, pID);
+                    }
+                }
+            }
+            if (Repozicija != RepozicijaUneta)
+            {
+                if (RepozicijaUneta == 0)
+                {
+                    UbaciRepoziciju(Repozicija, RepozicijaUneta, pID);
+                }
+                else
+                {
+                    var result = System.Windows.Forms.MessageBox.Show("Promenjena je reopzicija", "Provera železnine", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        UbaciRepoziciju(Repozicija, RepozicijaUneta, pID);
+                    }
+                }
+
+
+            }
+
+
+        }
+
+        int VratiUnetuZelezninu(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+            if (txtNadredjeni.Text != "0")
+            {
+                Komanda = "select VrstaManipulacije.ID from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
+            }
+            else
+            {
+                Komanda = "select VrstaManipulacije.ID from UvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
+            }
+
+            SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["ID"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int VratiUnetuRepoziciju(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+            if (txtNadredjeni.Text != "0")
+            {
+                Komanda = "select VrstaManipulacije.ID from IzvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 2 and IDNadredjena= ";
+            }
+            else
+            {
+                Komanda = "select VrstaManipulacije.ID from IzvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 2 and IDNadredjena= ";
+            }
+
+            SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["ID"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        private void UbaciZelezninu(int ZelezninaNova, int ZelezninaStara, int pID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Cena from VrstaManipulacije where  ID = " + ZelezninaNova, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            double pomCena = 0;
+            while (dr.Read())
+            {
+                //Izmenjeno
+                if (dr["Cena"].ToString() == "")
+                { pomCena = 0; }
+                else
+                {
+                    pomCena = Convert.ToDouble(dr["Cena"].ToString());
+
+                }
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+
+                // pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                // Nece se analizirati podrazumevano da nije cekirano
+                // pomSaPDV = Convert.ToInt32(dr["SaPDV"].ToString());
+            }
+
+            con.Close();
+
+
+            if (ZelezninaStara == 0)
+            {
+
+                UbaciStavkuUsluge(pID, ZelezninaNova, pomCena, 1, 1, 0, "", 0, "");
+
+            }
+            else
+            {
+                var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con2 = new SqlConnection(s_connection2);
+
+                con2.Open();
+
+                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = " + ZelezninaNova + ", Cena = " + pomCena + " where IDVrstaManipulacije = " + ZelezninaStara + " and IDNAdredjena = " + pID, con2);
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+
+
+
+                con2.Close();
+
+            }
+
+
+        }
+
+        private void UbaciRepoziciju(int RepozicijaNova, int RepozicijaStara, int pID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Cena from VrstaManipulacije where  ID = " + RepozicijaNova, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            double pomCena = 0;
+            while (dr.Read())
+            {
+                //Izmenjeno
+                if (dr["Cena"].ToString() == "")
+                { pomCena = 0; }
+                else
+                {
+                    pomCena = Convert.ToDouble(dr["Cena"].ToString());
+
+                }
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+
+                // pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                // Nece se analizirati podrazumevano da nije cekirano
+                // pomSaPDV = Convert.ToInt32(dr["SaPDV"].ToString());
+            }
+
+            con.Close();
+
+
+            if (RepozicijaStara == 0)
+            {
+
+                UbaciStavkuUsluge(pID, RepozicijaNova, pomCena, 1, 1, 0, "", 0, "");
+
+            }
+            else
+            {
+                var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con2 = new SqlConnection(s_connection2);
+
+                con2.Open();
+
+                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = " + RepozicijaNova + ", Cena = " + pomCena + " where IDVrstaManipulacije = " + RepozicijaStara + " and IDNAdredjena = " + pID, con2);
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+
+
+
+                con2.Close();
+
+            }
+
+
         }
 
         private void button11_Click(object sender, EventArgs e)

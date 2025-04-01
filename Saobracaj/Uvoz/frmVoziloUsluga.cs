@@ -134,19 +134,23 @@ namespace Saobracaj.Uvoz
         public frmVoziloUsluga()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
         public frmVoziloUsluga(string ID)
         {
             InitializeComponent();
+            ChangeTextBox();
 
             txtID.Text = ID.ToString();
             VratiOstalePodatke();
+            
         }
 
         public frmVoziloUsluga(int ID, int Modul)
         {
             InitializeComponent();
+            ChangeTextBox();
 
             // txtID.Text = ID.ToString();
             if (Modul == 0)

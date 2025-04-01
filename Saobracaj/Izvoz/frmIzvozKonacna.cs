@@ -1572,6 +1572,10 @@ namespace Saobracaj.Izvoz
         string pickUp3;
         int ADR = 0;
         int ScenarioGL = 0;
+        int Zeleznina = 0;
+        int Repozicija = 0;
+        string relacija;
+
 
 
         private void MoguciScenario()
@@ -1679,6 +1683,62 @@ namespace Saobracaj.Izvoz
 
         }
 
+
+        private void VratiZelezninu(int pickUp, int pickUp2, int pickUp3, string TipKOntejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
+                " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID" +
+                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                Zeleznina = Convert.ToInt32(dr["ID"].ToString());
+                relacija = dr["Relacija"].ToString();
+            }
+            con.Close();
+
+
+        }
+
+
+        private void VratiRepoziciju(int pickUp, int pickUp2, int pickUp3, string TipKOntejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
+                " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID " +
+                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                Repozicija = Convert.ToInt32(dr["ID"].ToString());
+                //  relacija = dr["Relacija"].ToString();
+            }
+            con.Close();
+
+
+        }
+
         private void button14_Click(object sender, EventArgs e)
         {
 
@@ -1692,13 +1752,27 @@ namespace Saobracaj.Izvoz
 
             ADR = Convert.ToInt32(txtADR.SelectedValue);
 
+            if (txtTipKont.Text.Length > 3)
+            {
+                if (pp == 0)
+                {
+                    //PRAZAN
+                    VratiRepoziciju(Convert.ToInt32(cboPPCNT.SelectedValue), Convert.ToInt32(cboPPCNT2.SelectedValue), Convert.ToInt32(cboPPCNT3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+                }
+                else
+                {
+                    //PUN
+                    VratiZelezninu(Convert.ToInt32(cboPPCNT.SelectedValue), Convert.ToInt32(cboPPCNT2.SelectedValue), Convert.ToInt32(cboPPCNT3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+
+                }
+            }
 
 
 
             MoguciScenario();
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp, Zeleznina, Repozicija);
             um.Show();
         }
 
@@ -2263,7 +2337,7 @@ namespace Saobracaj.Izvoz
             MoguciScenario();
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp, Zeleznina, Repozicija);
             um.Show();
             FillDG2();
            
@@ -2493,7 +2567,7 @@ namespace Saobracaj.Izvoz
                 ADR = Convert.ToInt32(txtADR.SelectedValue);
                 MoguciScenario();
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp);
+                frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR,pp, Zeleznina, Repozicija);
                 um.Show();
 
             }

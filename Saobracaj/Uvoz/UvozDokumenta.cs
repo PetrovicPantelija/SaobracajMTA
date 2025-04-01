@@ -337,7 +337,7 @@ namespace Saobracaj.Uvoz
                 return;
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
-            var select = "select * from UvozDokumentaUsluga  where UvozDokumentaUsluga.IDUsluge =  " + txtSifraUsluge.Text;
+            var select = "select * from UvozDokumentaUsluge  where UvozDokumentaUsluge.IDUsluge =  " + txtSifraUsluge.Text;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -346,23 +346,23 @@ namespace Saobracaj.Uvoz
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
 
 
-            PodesiDatagridView(dataGridView2);
+            PodesiDatagridView(dataGridView3);
 
-            DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 30;
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 30;
 
-            DataGridViewColumn column2 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "UslugaID";
-            dataGridView2.Columns[1].Width = 50;
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "UslugaID";
+            dataGridView3.Columns[1].Width = 50;
 
-            DataGridViewColumn column3 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Putanja";
-            dataGridView2.Columns[2].Width = 550;
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "Putanja";
+            dataGridView3.Columns[2].Width = 550;
         }
 
         private void PozoviUslugu(string KontejnerID)
@@ -573,8 +573,17 @@ namespace Saobracaj.Uvoz
             }
             else if (chkUsluge.Checked == true)
             {
-                KopirajFajlPoTipuUsluga(txtPutanja.Text, txtPlanID.Text, 6);
-                ins.InsUvozDokumentaUsluga(Convert.ToInt32(txtSifraUsluge.Text), txtPutanja.Text);
+                foreach (DataGridViewRow row in dataGridView5.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        KopirajFajlPoTipuUsluga(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
+                        ins.InsUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text);
+
+
+                    }
+                }
+              
                 RefreshDataGridUsluga();
             }
           
@@ -607,8 +616,39 @@ namespace Saobracaj.Uvoz
         private void button3_Click(object sender, EventArgs e)
         {
             InsertUvozDokumenta ins = new InsertUvozDokumenta();
-            ins.DelUvozDokumenta(Convert.ToInt32(txtSifra.Text));
-            RefreshDataGrid();
+            if (chkZaVoz.Checked == true)
+            {
+              
+                ins.DelUvozDokumentaCeoVoz(Convert.ToInt32(txtSifra.Text));
+                RefreshDataGridCeoVoz();
+
+            }
+            else if (chkKontejner.Checked == true)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        ins.DelUvozDokumenta(Convert.ToInt32(Convert.ToInt32(row.Cells[0].Value.ToString())));
+                    }
+                }
+                RefreshDataGrid();
+            }
+            else if (chkUsluge.Checked == true)
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        ins.DelUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    }
+                }
+            
+                RefreshDataGridUsluga();
+            }
+
+
+
 
             status = true;
 

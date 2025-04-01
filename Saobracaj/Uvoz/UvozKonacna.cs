@@ -232,7 +232,29 @@ namespace Saobracaj.Uvoz
             FillCheck();
             UcitajNHMoveCombo();
             FillCombo();
-            // FillGV();
+            this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
+            txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
+            cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
+            cboRLTerminal2.GotFocus += (sender, args) => cboRLTerminal2.DroppedDown = true;
+            cboRLTerminal3.GotFocus += (sender, args) => cboRLTerminal3.DroppedDown = true;
+            txtADR.GotFocus += (sender, args) => txtADR.DroppedDown = true;
+            cboBrodar.GotFocus += (sender, args) => cboBrodar.DroppedDown = true;
+            cbVlasnikKont.GotFocus += (sender, args) => cbVlasnikKont.DroppedDown = true;
+            cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
+            cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+            cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
+            cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
+            txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
+            cboSpedicijaG.GotFocus += (sender, args) => cboSpedicijaG.DroppedDown = true;
+            cboSpedicijaRTC.GotFocus += (sender, args) => cboSpedicijaRTC.DroppedDown = true;
+            cboCarinskiPostupak.GotFocus += (sender, args) => cboCarinskiPostupak.DroppedDown = true;
+            cbPostupak.GotFocus += (sender, args) => cbPostupak.DroppedDown = true;
+            cbNapomenaPoz.GotFocus += (sender, args) => cbNapomenaPoz.DroppedDown = true;
+            cbNacinPakovanja.GotFocus += (sender, args) => cbNacinPakovanja.DroppedDown = true;
+            cbOcarina.GotFocus += (sender, args) => cbOcarina.DroppedDown = true;
+            cbOspedicija.GotFocus += (sender, args) => cbOspedicija.DroppedDown = true;
+            txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
+            txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
         }
 
         public frmUvozKonacna(int Sifra, string Korisnik)
@@ -250,6 +272,29 @@ namespace Saobracaj.Uvoz
 
             // FillGV();
             KorisnikTekuci = Korisnik;
+            this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
+            txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
+            cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
+            cboRLTerminal2.GotFocus += (sender, args) => cboRLTerminal2.DroppedDown = true;
+            cboRLTerminal3.GotFocus += (sender, args) => cboRLTerminal3.DroppedDown = true;
+            txtADR.GotFocus += (sender, args) => txtADR.DroppedDown = true;
+            cboBrodar.GotFocus += (sender, args) => cboBrodar.DroppedDown = true;
+            cbVlasnikKont.GotFocus += (sender, args) => cbVlasnikKont.DroppedDown = true;
+            cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
+            cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+            cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
+            cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
+            txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
+            cboSpedicijaG.GotFocus += (sender, args) => cboSpedicijaG.DroppedDown = true;
+            cboSpedicijaRTC.GotFocus += (sender, args) => cboSpedicijaRTC.DroppedDown = true;
+            cboCarinskiPostupak.GotFocus += (sender, args) => cboCarinskiPostupak.DroppedDown = true;
+            cbPostupak.GotFocus += (sender, args) => cbPostupak.DroppedDown = true;
+            cbNapomenaPoz.GotFocus += (sender, args) => cbNapomenaPoz.DroppedDown = true;
+            cbNacinPakovanja.GotFocus += (sender, args) => cbNacinPakovanja.DroppedDown = true;
+            cbOcarina.GotFocus += (sender, args) => cbOcarina.DroppedDown = true;
+            cbOspedicija.GotFocus += (sender, args) => cbOspedicija.DroppedDown = true;
+            txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
+            txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
             // FillDG2(); jos nemam ID
             // FillDG3();
         }
@@ -880,23 +925,42 @@ namespace Saobracaj.Uvoz
 
                 cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
 
+                if (dr["PotvrdioKlijent"].ToString() == "0")
+                {
+                    chkCekaSeKlijent.Checked = true;
+                    chkPotvrdioKlijent2BDI.Checked = false;
+                    chkPotvrdioKlijent.Checked = false;
+
+                }
                 if (dr["PotvrdioKlijent"].ToString() == "1")
                 {
-                    chkPotvrdioKlijent.Checked = true;
-                }
-                else
-                {
-                    chkSlobodan.Checked = false;
+                    chkCekaSeKlijent.Checked = false;
+                    chkPotvrdioKlijent2BDI.Checked = true;
+                    chkPotvrdioKlijent.Checked = false;
+
                 }
 
+                if (dr["PotvrdioKlijent"].ToString() == "2")
+                {
+                    chkCekaSeKlijent.Checked = false;
+                    chkPotvrdioKlijent2BDI.Checked = false;
+                    chkPotvrdioKlijent.Checked = true;
+
+                }
+
+                if (dr["UradilaCarina"].ToString() == "0")
+                {
+                    chkCekaSeCarina.Checked = true;
+                    chkUradilaCarina.Checked = false;
+
+                }
                 if (dr["UradilaCarina"].ToString() == "1")
                 {
+                    chkCekaSeCarina.Checked = false;
                     chkUradilaCarina.Checked = true;
+
                 }
-                else
-                {
-                    chkUradilaCarina.Checked = false;
-                }
+
 
                 /*
                 string pomNal = dr["Nalogodavac"].ToString();
@@ -1118,8 +1182,18 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text = "0";
             }
 
-            if (chkPotvrdioKlijent.Checked == true)
+            if (chkCekaSeKlijent.Checked == true)
+            { PotvrdioKlijent = 0; };
+            if (chkPotvrdioKlijent2BDI.Checked == true)
             { PotvrdioKlijent = 1; };
+
+            if (chkPotvrdioKlijent.Checked == true)
+            { PotvrdioKlijent = 2; };
+
+
+            if (chkCekaSeCarina.Checked == true)
+            { UradilaCarina = 0; };
+
             if (chkUradilaCarina.Checked == true)
             { UradilaCarina = 1; };
 
@@ -3774,6 +3848,57 @@ namespace Saobracaj.Uvoz
             cbOspedicija.DataSource = partDS5.Tables[0];
             cbOspedicija.DisplayMember = "PaNaziv";
             cbOspedicija.ValueMember = "PaKOsifra";
+        }
+
+        private void chkCekaSeCarina_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCekaSeCarina.Checked == true)
+            {
+                chkUradilaCarina.Checked = false;
+            }
+            else
+            {
+                chkUradilaCarina.Checked = true;
+            }
+        }
+
+        private void chkUradilaCarina_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUradilaCarina.Checked == true)
+            {
+                chkCekaSeCarina.Checked = false;
+            }
+            else
+            {
+                chkCekaSeCarina.Checked = true;
+            }
+        }
+
+        private void chkCekaSeKlijent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCekaSeKlijent.Checked == true)
+            {
+                chkPotvrdioKlijent2BDI.Checked = false;
+                chkPotvrdioKlijent.Checked = false;
+            }
+        }
+
+        private void chkPotvrdioKlijent2BDI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPotvrdioKlijent2BDI.Checked == true)
+            {
+                chkCekaSeKlijent.Checked = false;
+                chkPotvrdioKlijent.Checked = false;
+            }
+        }
+
+        private void chkPotvrdioKlijent_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPotvrdioKlijent.Checked == true)
+            {
+                chkCekaSeKlijent.Checked = false;
+                chkPotvrdioKlijent2BDI.Checked = false;
+            }
         }
     }
 }

@@ -466,7 +466,11 @@ namespace Saobracaj.Uvoz
 
            
 
-            var select = "Select * from (SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]  , UvozKonacna.PotvrdioKlijent, UvozKonacna.UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS ,  " +  
+            var select = "Select * from (SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]  , " +
+                 " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                "CASE WHEN UvozKonacna.PotvrdioKlijent = 0 THEN 'ČEKA SE'    WHEN UvozKonacna.PotvrdioKlijent = 1 THEN 'ODOBREN POČETAK – BEZ DODATNIH INSTRUKCIJA ' ELSE 'ODOBREN POČETAK – UZ DODATNE INSTRUKCIJE' END AS PotvrdioKlijent, " +
+                "CASE WHEN UvozKonacna.UradilaCarina = 0 THEN 'ČEKA SE'    ELSE 'Potvrđen carinski postupak'END AS UradilaCarina, " +
+                " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS ,  " +  
 " (select Top 1 OperacijaUradjena from KontejnerTekuce inner join UvozKonacna  on UvozKonacna.BrojKontejnera = KontejnerTekuce.Kontejner  where UvozKonacna.ID = rn.BrojOsnov) as ZadnjaOperacija, " +
 " (select Top 1 Operacija from KontejnerTekuceOperacije inner join UvozKonacna  on UvozKonacna.BrojKontejnera = KontejnerTekuceOperacije.Kontejner  where UvozKonacna.ID = rn.BrojOsnov order by KontejnerTekuceOperacije.ID DESC) as LogOperacija, " +
 " rn.BrojDokPrevoza, rn.BrojRN, " +
@@ -482,7 +486,9 @@ namespace Saobracaj.Uvoz
 " Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera " +
 " where 1=1  " + DodatniAND +
 " union " +
-" SELECT rn.[ID] , IzvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen], 0 as PotvrdioKlijent,  0 as UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
+" SELECT rn.[ID] , IzvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]," +
+ " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+" '0' as PotvrdioKlijent,  '0' as UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
 " (select Top 1 OperacijaUradjena from KontejnerTekuce inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuce.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov) as ZadnjaOperacija, " +
 " (select Top 1 Operacija from KontejnerTekuceOperacije inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuceOperacije.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov order by KontejnerTekuceOperacije.ID DESC) as LogOperacija, " +
 "  rn.BrojDokPrevoza, " +
