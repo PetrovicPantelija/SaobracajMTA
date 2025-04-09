@@ -14,6 +14,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Syncfusion.Windows.Forms;
 using System.Drawing.Imaging;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 
 
 namespace Testiranje.Dokumeta
@@ -214,6 +216,7 @@ namespace Testiranje.Dokumeta
          " ,[VremePrimopredajeD],[PostNaTerminalO],[VremeUtovaraO],[VremeKontrolnogO] " +
          " ,[VremeIzvlacenjaO] ,[VremePolaskaO],[Datum] ,[Korisnik]" + 
          " FROM [dbo].[Voz] ";
+           
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -222,48 +225,27 @@ namespace Testiranje.Dokumeta
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
 
-            PodesiDatagridView(dataGridView1);
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
 
-             DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Br voza";
-            dataGridView1.Columns[1].Width = 50;
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Relacija";
-            dataGridView1.Columns[2].Width = 150;
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Vr polaska";
-            dataGridView1.Columns[3].Width = 70;
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Vr dolaska";
-            dataGridView1.Columns[4].Width = 70;
 
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Max bruto";
-            dataGridView1.Columns[5].Width = 70;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Max duž";
-            dataGridView1.Columns[6].Width = 70;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Max br kola";
-            dataGridView1.Columns[7].Width = 70;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Napomena";
-            dataGridView1.Columns[8].Width = 100;
-       
-       
         }
 
         private void PrijemVozomPregled_Load(object sender, EventArgs e)
@@ -284,26 +266,6 @@ namespace Testiranje.Dokumeta
             //  RefreshDataGrid();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -371,7 +333,7 @@ namespace Testiranje.Dokumeta
 
 
 
-            
+
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -380,22 +342,25 @@ namespace Testiranje.Dokumeta
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
 
-            PodesiDatagridView(dataGridView1);
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
 
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Voz_ID";
-            dataGridView1.Columns[0].Width = 50;
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Plan_ID";
-            dataGridView1.Columns[1].Width = 50;
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Oznaka voza";
-            dataGridView1.Columns[2].Width = 230;
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -417,16 +382,50 @@ namespace Testiranje.Dokumeta
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
 
-            PodesiDatagridView(dataGridView1);
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             InsertVoz ins = new InsertVoz();
             ins.PrekopirajVoz(Convert.ToInt32(txtSifra.Text));
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

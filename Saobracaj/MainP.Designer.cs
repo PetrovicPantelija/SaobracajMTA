@@ -607,7 +607,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.Custom;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
             this.ribbonControlAdv1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem9;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem10;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowLauncher = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
@@ -5887,8 +5887,8 @@ namespace Saobracaj
             this.toolStripButton196.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton196.Image")));
             this.toolStripButton196.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton196.Name = "toolStripButton196";
-            this.toolStripButton196.Size = new System.Drawing.Size(169, 23);
-            this.toolStripButton196.Text = "Analiza istorije kontejnera";
+            this.toolStripButton196.Size = new System.Drawing.Size(228, 23);
+            this.toolStripButton196.Text = "Pregled operacija nad kontejnerima";
             this.toolStripButton196.Click += new System.EventHandler(this.toolStripButton196_Click);
             // 
             // toolStripSeparator1

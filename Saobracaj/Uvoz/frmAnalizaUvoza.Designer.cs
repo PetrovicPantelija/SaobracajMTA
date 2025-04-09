@@ -86,7 +86,7 @@ namespace Saobracaj.Uvoz
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmAnalizaUvoza";
-            this.Text = "Analiza uvoza";
+            this.Text = "Pregled operacija nad kontejnerima";
             this.Load += new System.EventHandler(this.frmAnalizaUvoza_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 
 
 namespace Saobracaj.Uvoz
@@ -32,7 +33,7 @@ namespace Saobracaj.Uvoz
                 // this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
                 splitContainer1.Panel2.BackColor = Color.White;
-                splitContainer1 .Panel1.BackColor = Color.White;
+                splitContainer1.Panel1.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
 
                 foreach (Control control in this.Controls)
@@ -180,7 +181,7 @@ namespace Saobracaj.Uvoz
 
 
             ////
-           if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 foreach (Control control in splitContainer1.Panel1.Controls)
                 {
@@ -360,7 +361,7 @@ namespace Saobracaj.Uvoz
         }
         private void FillCombo()
         {
-            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
+            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(NAzivVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
               " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
@@ -410,6 +411,149 @@ namespace Saobracaj.Uvoz
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string file = "";   //variable for the Excel File Location
+            DataTable dt = new DataTable();   //container for our excel data
+            DataRow row;
+            int Dodati = 1;
+            DialogResult result = openFileDialog1.ShowDialog();  // Show the dialog.
+            if (result == DialogResult.OK)   // Check if Result == "OK".
+            {
+                file = openFileDialog1.FileName; //get the filename with the location of the file
+                try
+
+                {
+                    //Create Object for Microsoft.Office.Interop.Excel that will be use to read excel file
+
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+
+                    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
+
+                    Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+
+                    Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
+
+
+                    int rowCount = excelRange.Rows.Count;  //get row count of excel data
+
+                    int colCount = excelRange.Columns.Count; // get column count of excel data
+
+                    //Get the first Column of excel file which is the Column Name                  
+
+                    for (int i = 3; i <= rowCount; i++)
+                    {
+                        for (int j = 1; j <= 12; j++)
+                        {
+                            dt.Columns.Add(excelRange.Cells[i, j].Value2.ToString());
+                        }
+                        break;
+                    }
+                    //Get Row Data of Excel              
+                    int rowCounter;  //This variable is used for row index number
+                    for (int i = 4; i <= rowCount; i++) //Loop for available row of excel data
+                    {
+                        row = dt.NewRow();  //assign new row to DataTable
+                        rowCounter = 0;
+                        for (int j = 1; j <= 12; j++) //Loop for available column of excel data
+                        {
+                            //check if cell is empty
+                            if (excelRange.Cells[i, j] != null && excelRange.Cells[i, j].Value2 != null)
+                            {
+                                row[rowCounter] = excelRange.Cells[i, j].Value2.ToString();
+                                
+                            }
+                            else
+                            {
+                                row[j] = "";
+                                if (j == 1)
+                                {
+                                    Dodati = 0;
+                                    break;
+                                }    
+                            }
+
+                            rowCounter++;
+                        }
+                        if (Dodati == 1)
+                        {
+                            dt.Rows.Add(row);
+                        }
+                      
+                   
+                        //add row to DataTable
+                    }
+
+                    dataGridView1.DataSource = dt; //assign DataTable as Datasource for DataGridview
+
+                    //Close and Clean excel process
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Marshal.ReleaseComObject(excelRange);
+                    Marshal.ReleaseComObject(excelWorksheet);
+                    excelWorkbook.Close();
+                    Marshal.ReleaseComObject(excelWorkbook);
+
+                    //quit 
+                    excelApp.Quit();
+                    Marshal.ReleaseComObject(excelApp);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        int PostojiKontejner = 0;
+        private void ProveriKontejner(string BrojKontejnera)
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select count(*) as Broj from UvozKonacna Where BrojKontejnera  =" + BrojKontejnera, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+                if (Convert.ToInt32(dr["Broj"].ToString()) > 0)
+                {
+                    PostojiKontejner = 1;
+                }
+                else { MessageBox.Show("Ne postoji kontejner: " + BrojKontejnera); PostojiKontejner=0; }
+
+
+
+            }
+            con.Close();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+
+                    ProveriKontejner(row.Cells[2].Value.ToString());
+                    if (PostojiKontejner == 1)
+                    {
+                        InsertUvozKonacna ins = new InsertUvozKonacna();
+                        ins.UpdateBrojKolaIzExcelaVoz(Convert.ToInt32(cboPlanUtovara.SelectedValue), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[5].Value.ToString(), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()));
+                        RefreshDataGrid2();
+
+                    }
+                    
+                                  }
+            }
         }
     }
 }

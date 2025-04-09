@@ -3023,6 +3023,112 @@ int PotvrdioKlijent, int UradilaCarina)
 
         }
 
+        public void UpdateBrojKolaIzExcelaVoz(int IDPlan, string Tipkontejnera, string Kontejner1, string Plomba, double Koleta, double Tara, double Masa, double Ukupno)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateBrojKolaIzExcelaVoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDPlan";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = IDPlan;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter brojkola = new SqlParameter();
+            brojkola.ParameterName = "@Tipkontejnera";
+            brojkola.SqlDbType = SqlDbType.NVarChar;
+            brojkola.Size = 50;
+            brojkola.Direction = ParameterDirection.Input;
+            brojkola.Value = Tipkontejnera;
+            cmd.Parameters.Add(brojkola);
+
+            SqlParameter kontejner1 = new SqlParameter();
+            kontejner1.ParameterName = "@Kontejner1";
+            kontejner1.SqlDbType = SqlDbType.NVarChar;
+            kontejner1.Size = 50;
+            kontejner1.Direction = ParameterDirection.Input;
+            kontejner1.Value = Kontejner1;
+            cmd.Parameters.Add(kontejner1);
+
+            SqlParameter plomba = new SqlParameter();
+            plomba.ParameterName = "@Plomba";
+            plomba.SqlDbType = SqlDbType.NVarChar;
+            plomba.Size = 50;
+            plomba.Direction = ParameterDirection.Input;
+            plomba.Value = Plomba;
+            cmd.Parameters.Add(plomba);
+
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = koleta;
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter tara = new SqlParameter();
+            tara.ParameterName = "@Tara";
+            tara.SqlDbType = SqlDbType.Decimal;
+            tara.Direction = ParameterDirection.Input;
+            tara.Value = Tara;
+            cmd.Parameters.Add(tara);
+
+            SqlParameter masa = new SqlParameter();
+            masa.ParameterName = "@Masa";
+            masa.SqlDbType = SqlDbType.Decimal;
+            masa.Direction = ParameterDirection.Input;
+            masa.Value = Masa;
+            cmd.Parameters.Add(masa);
+
+            SqlParameter ukupno = new SqlParameter();
+            ukupno.ParameterName = "@ukupno";
+            ukupno.SqlDbType = SqlDbType.Decimal;
+            ukupno.Direction = ParameterDirection.Input;
+            ukupno.Value = Ukupno;
+            cmd.Parameters.Add(ukupno);
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
         public void PrenesiPlanUtovaraUPrijemVozIzvoz(int IDPrijema, int IDNaloga)
         {
             SqlConnection conn = new SqlConnection(connection);

@@ -188,6 +188,11 @@ namespace Saobracaj.Uvoz
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

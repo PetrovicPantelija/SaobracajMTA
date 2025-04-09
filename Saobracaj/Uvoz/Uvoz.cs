@@ -163,7 +163,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
             cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
-            cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
+            //cboUvoznik.GotFocus += (sender, args) => cboUvoznik. = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
             cboSpedicijaG.GotFocus += (sender, args) => cboSpedicijaG.DroppedDown = true;
             cboSpedicijaRTC.GotFocus += (sender, args) => cboSpedicijaRTC.DroppedDown = true;
@@ -207,7 +207,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
             cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
-            cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
+            //cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
             cboSpedicijaG.GotFocus += (sender, args) => cboSpedicijaG.DroppedDown = true;
             cboSpedicijaRTC.GotFocus += (sender, args) => cboSpedicijaRTC.DroppedDown = true;
@@ -246,7 +246,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
             cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
-            cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
+            //cboUvoznik.GotFocus += (sender, args) => cboUvoznik.ShowPopupAsync = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
             cboSpedicijaG.GotFocus += (sender, args) => cboSpedicijaG.DroppedDown = true;
             cboSpedicijaRTC.GotFocus += (sender, args) => cboSpedicijaRTC.DroppedDown = true;
@@ -259,7 +259,7 @@ namespace Saobracaj.Uvoz
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
             // cboScenario.SelectedValue = 15;
-
+            
             //  RefreshDataGridColor();
         }
 
@@ -647,13 +647,21 @@ namespace Saobracaj.Uvoz
             cbVlasnikKont.DisplayMember = "PaNaziv";
             cbVlasnikKont.ValueMember = "PaSifra";
             //uvoznik
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaNaziv";
+            var partner2 = "Select PaSifra,(Rtrim(PaNaziv) + '-' + PaDmatst) as PaNaziv From Partnerji where UvoznikCH = 1 order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
             cboUvoznik.DataSource = partDS2.Tables[0];
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
+
+
+            //Igranka
+        
+          //  cboUvoznik.DisplayMember = "PaNaziv";
+           // cboUvoznik.ValueMember = "PaSifra";
+
+            //
             //spedicija na granici
 
             var partner3 = "Select PaSifra,PaNaziv From Partnerji where  Spediter = 1 order by PaNaziv";
