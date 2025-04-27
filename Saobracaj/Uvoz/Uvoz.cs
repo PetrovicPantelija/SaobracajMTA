@@ -3532,7 +3532,7 @@ namespace Saobracaj.Uvoz
                 DialogResult result = MessageBox.Show("Bilo je izmena nad podacima koji uticu na usluge?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
+                    ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtpETAbroda.Value.ToString()),
                 Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
                 Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
                 txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
@@ -4001,6 +4001,12 @@ namespace Saobracaj.Uvoz
         {
             UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, "0");
             uvdok.Show();
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            UvozNHM uNHM = new UvozNHM(txtID.Text);
+            uNHM.Show();
         }
     }
 }

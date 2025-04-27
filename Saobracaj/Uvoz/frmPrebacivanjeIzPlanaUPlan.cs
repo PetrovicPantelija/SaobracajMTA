@@ -110,7 +110,7 @@ namespace Saobracaj.Uvoz
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
-                foreach (Control control in tableLayoutPanel1.Controls)
+                foreach (Control control in this.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
@@ -381,6 +381,20 @@ namespace Saobracaj.Uvoz
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    InsertUvozKonacna ins = new InsertUvozKonacna();
+                    ins.PrenesiIzPlanUtovaraUPlanUtovara(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboPlanUtovaraU.SelectedValue), Convert.ToInt32(cboPlanUtovaraIz.SelectedValue));
+                }
+            }
+            RefreshDataGrid1();
+            RefreshDataGrid2();
         }
     }
 }

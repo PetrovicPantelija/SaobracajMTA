@@ -3770,6 +3770,12 @@
     <Compile Include="Uvoz\UvozKonacna.designer.cs">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\UvozNHM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozNHM.Designer.cs">
+      <DependentUpon>UvozNHM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\UvozTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5252,6 +5258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozNHM.resx">
+      <DependentUpon>UvozNHM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozTable.resx">
       <DependentUpon>UvozTable.cs</DependentUpon>
