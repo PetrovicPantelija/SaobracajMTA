@@ -3684,6 +3684,12 @@
     <Compile Include="Uvoz\frmUvozKopirajUslugeKontejnera.Designer.cs">
       <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmUvozUvoznici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozUvoznici.Designer.cs">
+      <DependentUpon>frmUvozUvoznici.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmVoziloUsluga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5225,6 +5231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmUvozKopirajUslugeKontejnera.resx">
       <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmUvozUvoznici.resx">
+      <DependentUpon>frmUvozUvoznici.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVoziloUsluga.resx">
       <DependentUpon>frmVoziloUsluga.cs</DependentUpon>

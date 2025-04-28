@@ -827,7 +827,9 @@ namespace Saobracaj.Uvoz
      "  ,[Email]  ,[BrojPlombe1]   ,[BrojPlombe2]  ,[NetoRobe] " +
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
-     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3, PotvrdioKlijent, UradilaCarina" +
+     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3, PotvrdioKlijent, UradilaCarina," +
+     "  ,[chkDobijenNalogBrodara]     ,[chkDobijenNalogodavac1]      ,[DatumNalogodavac1]     ,[chkDobijenNalogodavac2]     ,[DatumNalogodavac2]     ,[chkDobijenNalogodavac3]  " +
+     "   ,[DatumNalogodavac3]      ,[DatumPotvrdioKlijent]     ,[DatumSlobasodanDaNapusti]     ,[FCL]     ,[LCL]" +
  "  FROM [UvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -960,6 +962,38 @@ namespace Saobracaj.Uvoz
                     chkUradilaCarina.Checked = true;
 
                 }
+
+                if (dr["chkDobijenNalogBrodara"].ToString() == "1")
+                {
+                    chkDobijenNalogBrodara.Checked = true;
+                }
+
+                if (dr["chkDobijenNalogodavac1"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac1.Checked = true;
+                }
+                if (dr["chkDobijenNalogodavac2"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac2.Checked = true;
+                }
+                if (dr["chkDobijenNalogodavac3"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac2.Checked = true;
+                }
+                if (dr["FCL"].ToString() == "1")
+                {
+                    chkFCL.Checked = true;
+                }
+
+                if (dr["LCL"].ToString() == "1")
+                {
+                    chkLCL.Checked = true;
+                }
+                dtpDobijenNalogodavac1.Value = Convert.ToDateTime(dr["DatumNalogodavac1"].ToString());
+                dtpDobijenNalogodavac2.Value = Convert.ToDateTime(dr["DatumNalogodavac2"].ToString());
+                dtpDobijenNalogodavac3.Value = Convert.ToDateTime(dr["DatumNalogodavac3"].ToString());
+                dtpPotvrdioKlijent.Value = Convert.ToDateTime(dr["DatumPotvrdioKlijent"].ToString());
+                dtpSlobodanDaNapusti.Value = Convert.ToDateTime(dr["DatumSlobasodanDaNapusti"].ToString());
 
 
                 /*
@@ -1197,6 +1231,33 @@ namespace Saobracaj.Uvoz
             if (chkUradilaCarina.Checked == true)
             { UradilaCarina = 1; };
 
+            int TFDobijenNalog = 0;
+            if (chkDobijenNalogBrodara.Checked == true)
+            { TFDobijenNalog = 1; };
+
+            int TFDobijenNalogodavac1 = 0;
+            if (chkDobijenNalogodavac1.Checked == true)
+            { TFDobijenNalogodavac1 = 1; };
+
+
+            int TFDobijenNalogodavac2 = 0;
+            if (chkDobijenNalogodavac2.Checked == true)
+            { TFDobijenNalogodavac2 = 1; };
+
+            int TFDobijenNalogodavac3 = 0;
+            if (chkDobijenNalogodavac3.Checked == true)
+            { TFDobijenNalogodavac3 = 1; };
+
+
+            int TFFCL = 0;
+            if (chkFCL.Checked == true)
+            { TFFCL = 1; };
+
+
+            int TFLCL = 0;
+            if (chkLCL.Checked == true)
+            { TFLCL = 1; };
+
             int i = ProveriBiloIzmena(txtID.Text);
 
 
@@ -1216,7 +1277,9 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue),Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue),Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina,
+                 TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
             FillGV();
             RefreshDataGridColor();
         }

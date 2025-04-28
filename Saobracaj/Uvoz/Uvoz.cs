@@ -1025,6 +1025,36 @@ namespace Saobracaj.Uvoz
             { UradilaCarina = 1; };
 
 
+
+            int TFDobijenNalog = 0;
+            if (chkDobijenNalogBrodara.Checked == true)
+            { TFDobijenNalog = 1; };
+
+            int TFDobijenNalogodavac1 = 0;
+            if (chkDobijenNalogodavac1.Checked == true)
+            { TFDobijenNalogodavac1 = 1; };
+
+
+            int TFDobijenNalogodavac2 = 0;
+            if (chkDobijenNalogodavac2.Checked == true)
+            { TFDobijenNalogodavac2 = 1; };
+
+            int TFDobijenNalogodavac3 = 0;
+            if (chkDobijenNalogodavac3.Checked == true)
+            { TFDobijenNalogodavac3 = 1; };
+
+
+            int TFFCL = 0;
+            if (chkFCL.Checked == true)
+            { TFFCL = 1; };
+
+
+            int TFLCL = 0;
+            if (chkLCL.Checked == true)
+            { TFLCL = 1; };
+
+
+
             /*
 
             for (int i = 0; i < clNalogodavac.Items.Count; i++)
@@ -1094,7 +1124,9 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue),
-                PotvrdioKlijent, UradilaCarina);
+                PotvrdioKlijent, UradilaCarina,
+                              TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
@@ -1291,7 +1323,9 @@ namespace Saobracaj.Uvoz
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
      "  ,[TipKontejnera] ,[Koleta]," +
      " RLTErminali , RLTErminali2 ,RLTErminali3 ,Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, " +
-     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer, Scenario , PotvrdioKlijent, UradilaCarina" +
+     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer, Scenario , PotvrdioKlijent, UradilaCarina," +
+     "  [chkDobijenNalogBrodara]     ,[chkDobijenNalogodavac1]      ,[DatumNalogodavac1]     ,[chkDobijenNalogodavac2]     ,[DatumNalogodavac2]     ,[chkDobijenNalogodavac3]  " +
+     "   ,[DatumNalogodavac3]      ,[DatumPotvrdioKlijent]     ,[DatumSlobasodanDaNapusti]     ,[FCL]     ,[LCL]" +
  "  FROM [Uvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1449,6 +1483,43 @@ namespace Saobracaj.Uvoz
 
                 }
 
+                if (dr["chkDobijenNalogBrodara"].ToString() == "1")
+                {
+                    chkDobijenNalogBrodara.Checked = true;
+                }
+
+                if (dr["chkDobijenNalogodavac1"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac1.Checked = true;
+                }
+                if (dr["chkDobijenNalogodavac2"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac2.Checked = true;
+                }
+                if (dr["chkDobijenNalogodavac3"].ToString() == "1")
+                {
+                    chkDobijenNalogodavac2.Checked = true;
+                }
+                if (dr["FCL"].ToString() == "1")
+                {
+                    chkFCL.Checked = true;
+                }
+
+                if (dr["LCL"].ToString() == "1")
+                {
+                    chkLCL.Checked = true;
+                }
+                dtpDobijenNalogodavac1.Value = Convert.ToDateTime(dr["DatumNalogodavac1"].ToString());
+                dtpDobijenNalogodavac2.Value = Convert.ToDateTime(dr["DatumNalogodavac2"].ToString());
+                dtpDobijenNalogodavac3.Value = Convert.ToDateTime(dr["DatumNalogodavac3"].ToString());
+                dtpPotvrdioKlijent.Value = Convert.ToDateTime(dr["DatumPotvrdioKlijent"].ToString());
+                dtpSlobodanDaNapusti.Value = Convert.ToDateTime(dr["DatumSlobasodanDaNapusti"].ToString());
+
+             
+
+
+
+
                 /*
                 string pomNal = dr["Nalogodavac"].ToString();
                 string[] nal = pomNal.Split(',');
@@ -1598,6 +1669,7 @@ namespace Saobracaj.Uvoz
                     FillDG4();
                     FillDG8();
                     FillDGUsluge();
+                    FillDGUvoznici();
 
                 }
             }
@@ -3101,6 +3173,7 @@ namespace Saobracaj.Uvoz
                     }
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
+
             }
             else
             {
@@ -3117,7 +3190,51 @@ namespace Saobracaj.Uvoz
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
             }
+
             FillDGUsluge();
+            FillDGUvoznici();
+
+
+        }
+
+        private void FillDGUvoznici()
+        {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
+            var select = " SELECT     UvozUvoznici.ID, Naziv  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new System.Data.DataSet();
+            da.Fill(ds);
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
+
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView8.Columns[0];
+            dataGridView8.Columns[0].HeaderText = "ID";
+            dataGridView8.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView8.Columns[1];
+            dataGridView8.Columns[1].HeaderText = "Naziv";
+            dataGridView8.Columns[1].Width = 400;
+
+
+
 
 
         }
@@ -3277,6 +3394,7 @@ namespace Saobracaj.Uvoz
         private void txtID_TextChanged(object sender, EventArgs e)
         {
             FillDGUsluge();
+            FillDGUvoznici();
             FillDG2();
             FillDG4();
         }
@@ -3345,6 +3463,7 @@ namespace Saobracaj.Uvoz
         private void Uvoz_Activated(object sender, EventArgs e)
         {
             FillDGUsluge();
+            FillDGUvoznici();
 
             RefreshScenario();
             if (chkTerminalski.Checked == true)
@@ -3405,6 +3524,8 @@ namespace Saobracaj.Uvoz
             int tDobijenBZ = 0;
             int tPrioritet = 0;
             int Terminalska = 0;
+
+
 
             if (chkDobijenBZ.Checked == true)
             { tDobijenBZ = 1; };
@@ -3520,7 +3641,40 @@ namespace Saobracaj.Uvoz
             
             if (chkUradilaCarina.Checked == true)
             { UradilaCarina = 1; };
-      
+
+
+
+            int TFDobijenNalog = 0;
+            if (chkDobijenNalogBrodara.Checked == true)
+            { TFDobijenNalog = 1; };
+
+            int TFDobijenNalogodavac1 = 0;
+            if (chkDobijenNalogodavac1.Checked == true)
+            { TFDobijenNalogodavac1 = 1; };
+
+
+            int TFDobijenNalogodavac2 = 0;
+            if (chkDobijenNalogodavac2.Checked == true)
+            { TFDobijenNalogodavac2 = 1; };
+
+            int TFDobijenNalogodavac3 = 0;
+            if (chkDobijenNalogodavac3.Checked == true)
+            { TFDobijenNalogodavac3 = 1; };
+
+
+            int TFFCL = 0;
+            if (chkFCL.Checked == true)
+            { TFFCL = 1; };
+
+
+            int TFLCL = 0;
+            if (chkLCL.Checked == true)
+            { TFLCL = 1; };
+
+
+           
+
+
 
 
 
@@ -3546,7 +3700,9 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina,
+                TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value),  TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value), 
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
@@ -3572,7 +3728,9 @@ namespace Saobracaj.Uvoz
              Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
              Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
              Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-             Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina);
+             Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina,
+                          TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
             }
 
          
@@ -3703,6 +3861,7 @@ namespace Saobracaj.Uvoz
                 }
             }
             FillDGUsluge();
+            FillDGUvoznici();
             FillDG2();
         }
 
@@ -3975,6 +4134,7 @@ namespace Saobracaj.Uvoz
             {
                 chkPotvrdioKlijent2BDI.Checked = false;
                 chkPotvrdioKlijent.Checked = false;
+                dtpPotvrdioKlijent.Value = DateTime.Now;
             }
            
         }
@@ -3985,6 +4145,7 @@ namespace Saobracaj.Uvoz
             {
                 chkCekaSeKlijent.Checked = false;
                 chkPotvrdioKlijent.Checked = false;
+                dtpPotvrdioKlijent.Value = DateTime.Now;
             }
         }
 
@@ -3994,6 +4155,7 @@ namespace Saobracaj.Uvoz
             {
                 chkCekaSeKlijent.Checked = false;
                 chkPotvrdioKlijent2BDI.Checked = false;
+                dtpPotvrdioKlijent.Value = DateTime.Now;
             }
         }
 
@@ -4007,6 +4169,49 @@ namespace Saobracaj.Uvoz
         {
             UvozNHM uNHM = new UvozNHM(txtID.Text);
             uNHM.Show();
+        }
+
+        private void chkDobijenNalogBrodara_Click(object sender, EventArgs e)
+        {
+            if (chkDobijenNalogBrodara.Checked == true)
+            {
+                dtNalogBrodara.Value = DateTime.Now;
+            }
+        }
+
+        private void chkDobijenNalogodavac1_Click(object sender, EventArgs e)
+        {
+            if (chkDobijenNalogodavac1.Checked == true)
+            {
+                dtpDobijenNalogodavac1.Value = DateTime.Now;
+            }
+        }
+
+        private void chkDobijenNalogodavac2_Click(object sender, EventArgs e)
+        {
+            if (chkDobijenNalogodavac2.Checked == true)
+            {
+                dtpDobijenNalogodavac2.Value = DateTime.Now;
+            }
+        }
+
+        private void chkDobijenNalogodavac3_Click(object sender, EventArgs e)
+        {
+            if (chkDobijenNalogodavac3.Checked == true)
+            {
+                dtpDobijenNalogodavac3.Value = DateTime.Now;
+            }
+        }
+
+        private void chkSlobodan_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpSlobodanDaNapusti.Value = DateTime.Now;
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            frmUvozUvoznici uuv = new frmUvozUvoznici(txtID.Text);
+            uuv.Show();
         }
     }
 }
