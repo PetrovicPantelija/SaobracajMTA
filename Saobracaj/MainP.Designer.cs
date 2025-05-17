@@ -607,7 +607,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.Custom;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
             this.ribbonControlAdv1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem8;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem10;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowLauncher = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
@@ -6480,7 +6480,7 @@ namespace Saobracaj
             this.toolStripButton335,
             this.toolStripButton349});
             this.toolStripEx47.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx47.Location = new System.Drawing.Point(270, 1);
+            this.toolStripEx47.Location = new System.Drawing.Point(45, 1);
             this.toolStripEx47.Name = "toolStripEx47";
             this.toolStripEx47.Office12Mode = false;
             this.toolStripEx47.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6624,7 +6624,7 @@ namespace Saobracaj
             this.toolStripButton105,
             this.toolStripButton318});
             this.toolStripEx49.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx49.Location = new System.Drawing.Point(569, 1);
+            this.toolStripEx49.Location = new System.Drawing.Point(90, 1);
             this.toolStripEx49.Name = "toolStripEx49";
             this.toolStripEx49.Office12Mode = false;
             this.toolStripEx49.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);

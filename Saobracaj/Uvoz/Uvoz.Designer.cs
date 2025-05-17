@@ -3453,7 +3453,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(1100, 108);
+            this.dataGridView7.Size = new System.Drawing.Size(1100, 110);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -3462,7 +3462,7 @@ namespace Saobracaj.Uvoz
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1092, 89);
+            this.tabPage1.Size = new System.Drawing.Size(1109, 89);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Napomene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -3480,7 +3480,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1082, 99);
+            this.dataGridView4.Size = new System.Drawing.Size(1099, 101);
             this.dataGridView4.TabIndex = 157;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 

@@ -3637,7 +3637,50 @@ namespace Saobracaj.Uvoz
                 FillDG2();
                 FillDG8();
                 FillDG4();
+                FillDGUvoznici();
             }
+        }
+
+        private void FillDGUvoznici()
+        {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
+            var select = " SELECT     UvozUvoznici.ID, Naziv  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new System.Data.DataSet();
+            da.Fill(ds);
+            dataGridView9.ReadOnly = true;
+            dataGridView9.DataSource = ds.Tables[0];
+
+
+            dataGridView9.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridView9.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView9.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView9.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView9.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView9.BackgroundColor = Color.White;
+
+            dataGridView9.EnableHeadersVisualStyles = false;
+            dataGridView9.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView9.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView9.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView9.Columns[0];
+            dataGridView9.Columns[0].HeaderText = "ID";
+            dataGridView9.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView9.Columns[1];
+            dataGridView9.Columns[1].HeaderText = "Naziv";
+            dataGridView9.Columns[1].Width = 400;
+
+
+
+
+
         }
 
         private void button26_Click(object sender, EventArgs e)
