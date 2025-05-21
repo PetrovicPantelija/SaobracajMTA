@@ -495,10 +495,14 @@ namespace Saobracaj
             this.toolStripButton90 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton102 = new System.Windows.Forms.ToolStripButton();
             this.imageListAdv1 = new Syncfusion.Windows.Forms.Tools.ImageListAdv(this.components);
+            this.backStageButton2 = new Syncfusion.Windows.Forms.BackStageButton();
+            this.backStageTab4 = new Syncfusion.Windows.Forms.BackStageTab();
+            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backStage1)).BeginInit();
             this.backStage1.SuspendLayout();
+            this.backStageTab3.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
             this.toolStripEx1.SuspendLayout();
             this.toolStripEx2.SuspendLayout();
@@ -607,7 +611,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.Custom;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
             this.ribbonControlAdv1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem10;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem9;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowLauncher = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
@@ -635,7 +639,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.ThemeStyle.TitleBarFont = new System.Drawing.Font("Helvetica", 10F);
             this.ribbonControlAdv1.ThemeStyle.TitleBarForeColor = System.Drawing.Color.White;
             this.ribbonControlAdv1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.ribbonControlAdv1.TitleFont = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.ribbonControlAdv1.TitleFont = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbonControlAdv1.Click += new System.EventHandler(this.ribbonControlAdv1_Click);
             // 
             // backStageView1
@@ -646,9 +650,9 @@ namespace Saobracaj
             // 
             // backStage1
             // 
+            this.backStage1.ActiveTabFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.backStage1.AllowDrop = true;
-            this.backStage1.BackStagePanelWidth = 130;
-            this.backStage1.BeforeTouchSize = new System.Drawing.Size(1386, 510);
+            this.backStage1.BeforeTouchSize = new System.Drawing.Size(1386, 702);
             this.backStage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.backStage1.BorderVisible = true;
             this.backStage1.ChildItemSize = new System.Drawing.Size(80, 140);
@@ -656,32 +660,34 @@ namespace Saobracaj
             this.backStage1.Controls.Add(this.backStageTab2);
             this.backStage1.Controls.Add(this.backStageTab1);
             this.backStage1.Controls.Add(this.backStageButton1);
-            this.backStage1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.backStage1.ItemSize = new System.Drawing.Size(130, 40);
-            this.backStage1.Location = new System.Drawing.Point(0, 0);
-            this.backStage1.MinimumSize = new System.Drawing.Size(100, 143);
+            this.backStage1.Controls.Add(this.backStageButton2);
+            this.backStage1.Controls.Add(this.backStageTab4);
+            this.backStage1.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.backStage1.ItemSize = new System.Drawing.Size(138, 40);
+            this.backStage1.Location = new System.Drawing.Point(0, 63);
+            this.backStage1.MinimumSize = new System.Drawing.Size(100, 141);
             this.backStage1.Name = "backStage1";
             this.backStage1.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Managed;
-            this.backStage1.Size = new System.Drawing.Size(1386, 510);
+            this.backStage1.Size = new System.Drawing.Size(1386, 702);
             this.backStage1.TabIndex = 1;
             this.backStage1.TabPanelBackColor = System.Drawing.Color.Yellow;
             this.backStage1.ThemeName = "BackStage2016Renderer";
-            this.backStage1.Visible = false;
             // 
             // backStageTab3
             // 
             this.backStageTab3.Accelerator = "";
             this.backStageTab3.BackColor = System.Drawing.Color.White;
+            this.backStageTab3.Controls.Add(this.sfButton1);
             this.backStageTab3.Image = null;
             this.backStageTab3.ImageSize = new System.Drawing.Size(16, 16);
-            this.backStageTab3.Location = new System.Drawing.Point(130, 5);
+            this.backStageTab3.Location = new System.Drawing.Point(138, 5);
             this.backStageTab3.Name = "backStageTab3";
             this.backStageTab3.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
-            this.backStageTab3.Position = new System.Drawing.Point(11, 51);
+            this.backStageTab3.Position = new System.Drawing.Point(11, 50);
             this.backStageTab3.ShowCloseButton = true;
-            this.backStageTab3.Size = new System.Drawing.Size(1251, 500);
+            this.backStageTab3.Size = new System.Drawing.Size(1243, 692);
             this.backStageTab3.TabIndex = 7;
-            this.backStageTab3.Text = "Terminal";
+            this.backStageTab3.Text = "Terminal šifarnici";
             this.backStageTab3.ThemesEnabled = false;
             // 
             // backStageTab2
@@ -690,12 +696,12 @@ namespace Saobracaj
             this.backStageTab2.BackColor = System.Drawing.Color.White;
             this.backStageTab2.Image = null;
             this.backStageTab2.ImageSize = new System.Drawing.Size(16, 16);
-            this.backStageTab2.Location = new System.Drawing.Point(130, 5);
+            this.backStageTab2.Location = new System.Drawing.Point(138, 5);
             this.backStageTab2.Name = "backStageTab2";
             this.backStageTab2.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
-            this.backStageTab2.Position = new System.Drawing.Point(52, 92);
+            this.backStageTab2.Position = new System.Drawing.Point(51, 91);
             this.backStageTab2.ShowCloseButton = true;
-            this.backStageTab2.Size = new System.Drawing.Size(1251, 500);
+            this.backStageTab2.Size = new System.Drawing.Size(1243, 692);
             this.backStageTab2.TabIndex = 6;
             this.backStageTab2.Text = "Izvoz";
             this.backStageTab2.ThemesEnabled = false;
@@ -706,12 +712,12 @@ namespace Saobracaj
             this.backStageTab1.BackColor = System.Drawing.Color.White;
             this.backStageTab1.Image = null;
             this.backStageTab1.ImageSize = new System.Drawing.Size(16, 16);
-            this.backStageTab1.Location = new System.Drawing.Point(130, 5);
+            this.backStageTab1.Location = new System.Drawing.Point(138, 5);
             this.backStageTab1.Name = "backStageTab1";
             this.backStageTab1.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
-            this.backStageTab1.Position = new System.Drawing.Point(93, 133);
+            this.backStageTab1.Position = new System.Drawing.Point(92, 131);
             this.backStageTab1.ShowCloseButton = true;
-            this.backStageTab1.Size = new System.Drawing.Size(1251, 500);
+            this.backStageTab1.Size = new System.Drawing.Size(1243, 692);
             this.backStageTab1.TabIndex = 5;
             this.backStageTab1.Text = "Uvoz";
             this.backStageTab1.ThemesEnabled = false;
@@ -720,10 +726,10 @@ namespace Saobracaj
             // 
             this.backStageButton1.Accelerator = "";
             this.backStageButton1.BackColor = System.Drawing.Color.Transparent;
-            this.backStageButton1.Location = new System.Drawing.Point(10, 133);
+            this.backStageButton1.Location = new System.Drawing.Point(0, 124);
             this.backStageButton1.Name = "backStageButton1";
             this.backStageButton1.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
-            this.backStageButton1.Size = new System.Drawing.Size(110, 25);
+            this.backStageButton1.Size = new System.Drawing.Size(137, 33);
             this.backStageButton1.TabIndex = 8;
             this.backStageButton1.Text = "backStageButton1";
             // 
@@ -774,7 +780,7 @@ namespace Saobracaj
             this.toolStripEx1.Office12Mode = false;
             this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx1.Size = new System.Drawing.Size(216, 493);
+            this.toolStripEx1.Size = new System.Drawing.Size(216, 634);
             this.toolStripEx1.TabIndex = 0;
             this.toolStripEx1.Text = "Prevozni šifarnici";
             this.toolStripEx1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripEx1_ItemClicked);
@@ -896,12 +902,12 @@ namespace Saobracaj
             this.toolStripButton10,
             this.toolStripButton232});
             this.toolStripEx2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx2.Location = new System.Drawing.Point(0, 1);
+            this.toolStripEx2.Location = new System.Drawing.Point(218, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx2.Size = new System.Drawing.Size(241, 493);
+            this.toolStripEx2.Size = new System.Drawing.Size(241, 634);
             this.toolStripEx2.TabIndex = 1;
             this.toolStripEx2.Text = "Prevozi";
             // 
@@ -985,12 +991,12 @@ namespace Saobracaj
             this.toolStripButton11,
             this.toolStripButton175});
             this.toolStripEx3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx3.Location = new System.Drawing.Point(0, 1);
+            this.toolStripEx3.Location = new System.Drawing.Point(461, 1);
             this.toolStripEx3.Name = "toolStripEx3";
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx3.Size = new System.Drawing.Size(292, 493);
+            this.toolStripEx3.Size = new System.Drawing.Size(292, 634);
             this.toolStripEx3.TabIndex = 2;
             this.toolStripEx3.Text = "Partneri";
             // 
@@ -3323,7 +3329,7 @@ namespace Saobracaj
             this.toolStripButton57,
             this.toolStripButton58});
             this.toolStripEx18.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx18.Location = new System.Drawing.Point(225, 1);
+            this.toolStripEx18.Location = new System.Drawing.Point(45, 1);
             this.toolStripEx18.Name = "toolStripEx18";
             this.toolStripEx18.Office12Mode = false;
             this.toolStripEx18.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3409,7 +3415,7 @@ namespace Saobracaj
             this.toolStripButton178,
             this.toolStripButton9});
             this.toolStripEx42.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx42.Location = new System.Drawing.Point(420, 1);
+            this.toolStripEx42.Location = new System.Drawing.Point(90, 1);
             this.toolStripEx42.Name = "toolStripEx42";
             this.toolStripEx42.Office12Mode = false;
             this.toolStripEx42.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4198,7 +4204,7 @@ namespace Saobracaj
             this.toolStripButton238,
             this.toolStripButton338});
             this.toolStripEx35.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx35.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx35.Location = new System.Drawing.Point(345, 1);
             this.toolStripEx35.Name = "toolStripEx35";
             this.toolStripEx35.Office12Mode = false;
             this.toolStripEx35.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4499,7 +4505,7 @@ namespace Saobracaj
             this.toolStripButton364,
             this.toolStripButton370});
             this.toolStripEx36.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx36.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx36.Location = new System.Drawing.Point(598, 1);
             this.toolStripEx36.Name = "toolStripEx36";
             this.toolStripEx36.Office12Mode = false;
             this.toolStripEx36.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4790,7 +4796,7 @@ namespace Saobracaj
             this.toolStripButton373,
             this.toolStripButton375});
             this.toolStripEx37.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx37.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx37.Location = new System.Drawing.Point(834, 1);
             this.toolStripEx37.Name = "toolStripEx37";
             this.toolStripEx37.Office12Mode = false;
             this.toolStripEx37.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4981,7 +4987,7 @@ namespace Saobracaj
             this.toolStripDropDownButton1,
             this.toolStripButton236});
             this.toolStripEx38.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx38.Location = new System.Drawing.Point(180, 1);
+            this.toolStripEx38.Location = new System.Drawing.Point(1063, 1);
             this.toolStripEx38.Name = "toolStripEx38";
             this.toolStripEx38.Office12Mode = false;
             this.toolStripEx38.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -5183,7 +5189,7 @@ namespace Saobracaj
             this.toolStripButton325,
             this.toolStripButton326});
             this.toolStripEx39.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx39.Location = new System.Drawing.Point(225, 1);
+            this.toolStripEx39.Location = new System.Drawing.Point(1096, 1);
             this.toolStripEx39.Name = "toolStripEx39";
             this.toolStripEx39.Office12Mode = false;
             this.toolStripEx39.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6480,7 +6486,7 @@ namespace Saobracaj
             this.toolStripButton335,
             this.toolStripButton349});
             this.toolStripEx47.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx47.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx47.Location = new System.Drawing.Point(270, 1);
             this.toolStripEx47.Name = "toolStripEx47";
             this.toolStripEx47.Office12Mode = false;
             this.toolStripEx47.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6624,7 +6630,7 @@ namespace Saobracaj
             this.toolStripButton105,
             this.toolStripButton318});
             this.toolStripEx49.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx49.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx49.Location = new System.Drawing.Point(569, 1);
             this.toolStripEx49.Name = "toolStripEx49";
             this.toolStripEx49.Office12Mode = false;
             this.toolStripEx49.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6722,6 +6728,44 @@ namespace Saobracaj
             this.toolStripButton102.Size = new System.Drawing.Size(31, 20);
             this.toolStripButton102.Text = "toolStripButton15";
             // 
+            // backStageButton2
+            // 
+            this.backStageButton2.Accelerator = "";
+            this.backStageButton2.BackColor = System.Drawing.Color.Transparent;
+            this.backStageButton2.Location = new System.Drawing.Point(0, 157);
+            this.backStageButton2.Name = "backStageButton2";
+            this.backStageButton2.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
+            this.backStageButton2.Size = new System.Drawing.Size(137, 33);
+            this.backStageButton2.TabIndex = 9;
+            this.backStageButton2.Text = "backStageButton2";
+            // 
+            // backStageTab4
+            // 
+            this.backStageTab4.Accelerator = "";
+            this.backStageTab4.BackColor = System.Drawing.Color.White;
+            this.backStageTab4.Image = null;
+            this.backStageTab4.ImageSize = new System.Drawing.Size(16, 16);
+            this.backStageTab4.Location = new System.Drawing.Point(138, 5);
+            this.backStageTab4.Name = "backStageTab4";
+            this.backStageTab4.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
+            this.backStageTab4.Position = new System.Drawing.Point(0, 0);
+            this.backStageTab4.ShowCloseButton = true;
+            this.backStageTab4.Size = new System.Drawing.Size(1243, 692);
+            this.backStageTab4.TabIndex = 10;
+            this.backStageTab4.Text = "backStageTab4";
+            this.backStageTab4.ThemesEnabled = false;
+            // 
+            // sfButton1
+            // 
+            this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton1.Location = new System.Drawing.Point(49, 31);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(96, 28);
+            this.sfButton1.TabIndex = 0;
+            this.sfButton1.Text = "Brodovi";
+            this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click);
+            // 
             // MainP
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -6739,6 +6783,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backStage1)).EndInit();
             this.backStage1.ResumeLayout(false);
+            this.backStageTab3.ResumeLayout(false);
             this.toolStripTabItem1.Panel.ResumeLayout(false);
             this.toolStripEx1.ResumeLayout(false);
             this.toolStripEx1.PerformLayout();
@@ -7323,5 +7368,8 @@ namespace Saobracaj
         private Syncfusion.Windows.Forms.BackStageTab backStageTab2;
         private Syncfusion.Windows.Forms.BackStageTab backStageTab3;
         private Syncfusion.Windows.Forms.BackStageButton backStageButton1;
+        private Syncfusion.Windows.Forms.BackStageButton backStageButton2;
+        private Syncfusion.Windows.Forms.BackStageTab backStageTab4;
+        private Syncfusion.WinForms.Controls.SfButton sfButton1;
     }
 }

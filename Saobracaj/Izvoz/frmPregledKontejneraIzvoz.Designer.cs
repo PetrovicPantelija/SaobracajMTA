@@ -67,7 +67,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3});
-            this.meniHeader.Location = new System.Drawing.Point(0, 646);
+            this.meniHeader.Location = new System.Drawing.Point(0, 33);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(1207, 27);
             this.meniHeader.TabIndex = 131;
@@ -206,7 +206,7 @@ namespace Saobracaj.Izvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(11, -1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(729, 31);
+            this.panel2.Size = new System.Drawing.Size(403, 31);
             this.panel2.TabIndex = 6;
             // 
             // button2
@@ -324,9 +324,11 @@ namespace Saobracaj.Izvoz
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl1.ApplyVisualStyles = false;
             this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.gridGroupingControl1.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));

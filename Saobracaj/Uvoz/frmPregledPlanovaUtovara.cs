@@ -312,7 +312,7 @@ namespace Saobracaj.Uvoz
             {
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PLANID").ToString();
 
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }

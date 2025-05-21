@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
@@ -827,10 +828,10 @@ namespace Saobracaj.Uvoz
      "  ,[Email]  ,[BrojPlombe1]   ,[BrojPlombe2]  ,[NetoRobe] " +
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
-     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3, PotvrdioKlijent, UradilaCarina," +
+     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3, PotvrdioKlijent, UradilaCarina" +
      "  ,[chkDobijenNalogBrodara]     ,[chkDobijenNalogodavac1]      ,[DatumNalogodavac1]     ,[chkDobijenNalogodavac2]     ,[DatumNalogodavac2]     ,[chkDobijenNalogodavac3]  " +
      "   ,[DatumNalogodavac3]      ,[DatumPotvrdioKlijent]     ,[DatumSlobasodanDaNapusti]     ,[FCL]     ,[LCL]" +
- "  FROM [UvozKonacna] where ID=" + ID, con);
+ "  FROM [UvozKonacna] where ID= " + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1155,6 +1156,7 @@ namespace Saobracaj.Uvoz
                     FillDG4();
                     // FillDG8();
                     FillDGUsluge();
+                    FillDG2Konacna();
                 }
             }
         }
@@ -1520,6 +1522,7 @@ namespace Saobracaj.Uvoz
             uvK.InsUvozKonacnaNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
             VratiADRIzNHM(Convert.ToInt32(cboNHM.SelectedValue));
             FillDG2();
+            FillDG2Konacna();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1536,6 +1539,7 @@ namespace Saobracaj.Uvoz
                 InsertUvozKonacna uvK = new InsertUvozKonacna();
                 uvK.DelUvozKonacnaNHM(Convert.ToInt32(txtIDNHM.Text));
                 FillDG2();
+                FillDG2Konacna();
             }
 
 
@@ -1566,6 +1570,7 @@ namespace Saobracaj.Uvoz
 
         private void FillDG2()
         {
+            /*
             if (txtID.Text == "")
                 return;
             var select = "  SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
@@ -1596,7 +1601,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
             dataGridView2.Columns[3].Width = 350;
-
+            */
 
         }
 
@@ -1672,8 +1677,63 @@ namespace Saobracaj.Uvoz
             //RefreshDataGridColor();
             firstWidth = this.Size.Width;
             firstHeight = this.Size.Height;
+
+            fILLsVI();
+        }
+        private void fILLsVI()
+        {
+            if (chkTerminalski.Checked == false)
+            {
+                RefreshGV();
+            }
+            else
+            {
+               // RefreshGVT();
+            }
+
+
+
         }
 
+        private void RefreshGV()
+        {
+            var select = "    SELECT UvozKonacna.ID, BrojKontejnera,   CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet ,  CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) " +
+               " ELSE Cast(0 as BIT) END as DobijenBZ ,TipKontenjera.Naziv as Vrsta_Kontejnera, DobijeBZ as DatumBZ ,  p1.PaNaziv as Uvoznik,   Brodovi.Naziv as Brod,n1.PaNaziv as Nalogodavac1, " +
+               " Ref1 as Ref1, n2.PaNaziv as Nalogodavac2, Ref2 as Ref2, n3.PaNaziv as Nalogodavac3, Ref3 as Ref3, DobijenNalogBrodara as Dobijen_Nalog_Brodara ,BrodskaTeretnica as BL,  " +
+               " Napomena1 as Napomena1, PIN,    BrodskaTeretnica,KontejnerskiTerminali.Naziv as R_L_SRB,  VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar, pv.PaNaziv as VlasnikKontejnera,  " +
+               " pp1.Naziv as Dirigacija_Kontejnera_Za,                VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+               " VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, Napomena as Napomena2,                         Carinarnice.Naziv as Carinarnica,   " +
+               " p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, AdresaMestaUtovara, KontaktOsobe,  Email,  " +
+               " BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta FROM UvozKonacna inner join Partnerji on PaSifra = VlasnikKontejnera " +
+               " inner join Partnerji p1 on p1.PaSifra = Uvoznik  inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC  inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+               " inner join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe   inner join NHM on NHM.ID = NHMBroj  inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+               " inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina   inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+               " inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali   inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+               " inner join Partnerji n2 on n2.PaSifra = Nalogodavac2   inner join Partnerji n3 on n3.PaSifra = Nalogodavac3   inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar " +
+               " inner join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa     inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda    inner join VrstaRobeADR on VrstaRobeADR.ID = ADR     inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom   " +
+               "  inner join MestaUtovara on UvozKOnacna.MestoIstovara = MestaUtovara.ID  " +
+               "inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+               " inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
+               " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " order by UvozKonacna.ID desc";
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             InsertUvozKonacnaZaglavlje upd = new InsertUvozKonacnaZaglavlje();
@@ -3448,6 +3508,7 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
             FillDG2();
             FillDG4();
+            FillDG2Konacna();
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
@@ -3461,6 +3522,7 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
             FillDG2();
             FillDG4();
+            FillDG2Konacna();
         }
 
         private void cboVoz_SelectedIndexChanged(object sender, EventArgs e)
@@ -3617,6 +3679,10 @@ namespace Saobracaj.Uvoz
             }
             frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl,pp, Repozicija);
             um.Show();
+            FillDGUsluge();
+            FillDG2();
+            FillDG4();
+            FillDG2Konacna();
         }
 
         private void button25_Click(object sender, EventArgs e)
@@ -3638,9 +3704,58 @@ namespace Saobracaj.Uvoz
                 FillDG8();
                 FillDG4();
                 FillDGUvoznici();
+                FillDG2Konacna();
+
             }
         }
+        private void FillDG2Konacna()
+        {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
+            var select = " SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
+                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView10.ReadOnly = true;
+            dataGridView10.DataSource = ds.Tables[0];
 
+
+            dataGridView10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridView10.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView10.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView10.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView10.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView10.BackgroundColor = Color.White;
+
+            dataGridView10.EnableHeadersVisualStyles = false;
+            dataGridView10.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView10.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView10.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView10.Columns[0];
+            dataGridView10.Columns[0].HeaderText = "ID";
+            dataGridView10.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView10.Columns[1];
+            dataGridView10.Columns[1].HeaderText = "Broj";
+            dataGridView10.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView10.Columns[2];
+            dataGridView10.Columns[2].HeaderText = "ID";
+            dataGridView10.Columns[2].Width = 20;
+
+            DataGridViewColumn column4 = dataGridView10.Columns[3];
+            dataGridView10.Columns[3].HeaderText = "NHM";
+            dataGridView10.Columns[3].Width = 400;
+
+
+
+        }
         private void FillDGUvoznici()
         {
             if (txtID.Text == "")
@@ -4004,6 +4119,52 @@ namespace Saobracaj.Uvoz
             {
                 chkCekaSeKlijent.Checked = false;
                 chkPotvrdioKlijent2BDI.Checked = false;
+            }
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            UvozNHM uNHM = new UvozNHM(txtID.Text, 1);
+            uNHM.Show();
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            frmUvozUvoznici uuv = new frmUvozUvoznici(txtID.Text,1);
+            uuv.Show();
+        }
+
+        private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                }
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+
+                RefreshScenario();
+                FillDG2();
+                FillDG8();
+                FillDG4();
+                FillDGUvoznici();
+                FillDG2Konacna();
+            }
+
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

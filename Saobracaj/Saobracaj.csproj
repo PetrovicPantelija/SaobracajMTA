@@ -177,6 +177,7 @@
     <Reference Include="OpenPop">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Syncfusion.BulletGraph.Windows, Version=19.4460.0.56, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.BulletGraph.Windows.19.4.0.56\lib\net46\Syncfusion.BulletGraph.Windows.dll</HintPath>
@@ -3776,6 +3777,12 @@
     <Compile Include="Uvoz\UvozKonacna.designer.cs">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\UvozKonacnaPronadji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozKonacnaPronadji.Designer.cs">
+      <DependentUpon>UvozKonacnaPronadji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\UvozNHM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5267,6 +5274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozKonacnaPronadji.resx">
+      <DependentUpon>UvozKonacnaPronadji.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozNHM.resx">
       <DependentUpon>UvozNHM.cs</DependentUpon>

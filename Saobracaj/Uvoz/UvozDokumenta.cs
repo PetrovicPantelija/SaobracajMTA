@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
@@ -15,6 +16,8 @@ namespace Saobracaj.Uvoz
     public partial class UvozDokumenta : Form
     {
         bool status = false;
+        string pomNadredjeni = "0";
+        string pomSifra = "0";
         public UvozDokumenta()
         {
             InitializeComponent();
@@ -119,7 +122,6 @@ namespace Saobracaj.Uvoz
 
         private void PodesiDatagridView(DataGridView dgv)
         {
-
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
@@ -144,14 +146,12 @@ namespace Saobracaj.Uvoz
         public UvozDokumenta(string sifra, string Nadredjeni)
         {
             InitializeComponent();
-            txtSifraUvoza.Text = sifra;
-            txtPlanID.Text = Nadredjeni;
-            chkZaVoz.Checked = true;
+          
             ChangeTextBox();
-            RefreshDataGridCeoVoz();
-            RefreshDataGrid();
-            RefreshDataGridKontejnere();
-            RefreshDataGridUslugaSvePoVozu();
+           
+            pomNadredjeni = Nadredjeni;
+            pomSifra = sifra;
+        
         }
 
         private void RefreshDataGrid()
@@ -165,7 +165,7 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (txtPlanID.Text == "0")
             {
-                select = "select * from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz";
+                select = "select * from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz where IDUvoz = " + txtSifraUvoza.Text;
             }
             else
             {
@@ -201,11 +201,7 @@ namespace Saobracaj.Uvoz
 
         private void RefreshDataGridCeoVoz()
         {
-            if (txtSifraUvoza.Text == "")
-            {
-                MessageBox.Show("Odaberite stavku");
-                return;
-            }
+           
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
             var select = "select * from UvozDokumentaCeoVoz  where UvozDokumentaCeoVoz.PlanID =  " + txtPlanID.Text;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -331,13 +327,19 @@ namespace Saobracaj.Uvoz
 
         private void RefreshDataGridUsluga()
         {
-            if (txtSifraUvoza.Text == "")
+            var select = "";
+            if (txtSifraUsluge.Text == "")
             {
-                MessageBox.Show("Odaberite stavku");
-                return;
+                select = " select UvozDokumentaUsluge.*from UvozVrstaManipulacije " +
+ " inner join UvozDokumentaUsluge On UvozVrstaManipulacije.ID = UvozDokumentaUsluge.IDUsluge " +
+ " where UvozVrstaManipulacije.IDNadredjena = " + txtSifraUvoza.Text;
+            }
+            else
+            {
+               select =  "select * from UvozDokumentaUsluge  where UvozDokumentaUsluge.IDUsluge =  " + txtSifraUsluge.Text;
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
-            var select = "select * from UvozDokumentaUsluge  where UvozDokumentaUsluge.IDUsluge =  " + txtSifraUsluge.Text;
+           
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -737,6 +739,30 @@ namespace Saobracaj.Uvoz
               //  RefreshDataGridKontejnere();
 
             }
+        }
+
+        private void UvozDokumenta_Load(object sender, EventArgs e)
+        {
+            txtSifraUvoza.Text = pomSifra;
+            txtPlanID.Text = pomNadredjeni;
+            chkZaVoz.Checked = true;
+            if (pomNadredjeni == "0")
+            {
+                RefreshDataGridUsluga();
+                chkKontejner.Checked = true;
+                chkZaVoz.Checked=false;
+                chkZaVoz.Enabled = false;
+            }
+            else
+            {
+                RefreshDataGridUslugaSvePoVozu();
+                RefreshDataGridUsluga();
+                chkKontejner.Checked = false;
+                chkZaVoz.Checked = true;
+            }
+           // RefreshDataGridCeoVoz();
+            RefreshDataGrid();
+            RefreshDataGridKontejnere();
         }
     }
 }

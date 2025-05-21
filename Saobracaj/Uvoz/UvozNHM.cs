@@ -24,17 +24,23 @@ namespace Saobracaj.Uvoz
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int NHMObrni = 0;
+        int pomNerasporedjeni = 0;
         public UvozNHM()
         {
             InitializeComponent();
         }
 
-        public UvozNHM(string ID)
+        public UvozNHM(string ID, int Nerasporedjeni)
         {
             InitializeComponent();
             txtID.Text = ID;
-            FillDG2();
+           
             ChangeTextBox();
+            pomNerasporedjeni = Nerasporedjeni;
+            if (Nerasporedjeni == 0)
+            { FillDG2(); }
+            else 
+            { FillDG2Konacna(); }
         }
 
         private void ChangeTextBox()
@@ -272,6 +278,15 @@ namespace Saobracaj.Uvoz
             cboNHM.DataSource = nhmSDS.Tables[0];
             cboNHM.DisplayMember = "Naziv";
             cboNHM.ValueMember = "ID";
+
+            if (pomNerasporedjeni == 0)
+            { 
+            chkNerasporedjeni.Checked = true;
+            }
+            else
+            {
+                chkNerasporedjeni .Checked = false;
+            }
         }
 
         private void OpstiInterni(int Interni)
@@ -463,6 +478,55 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Broj";
+            dataGridView2.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "ID";
+            dataGridView2.Columns[2].Width = 20;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "NHM";
+            dataGridView2.Columns[3].Width = 400;
+
+
+
+        }
+
+        private void FillDG2Konacna()
+        {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
+            var select = " SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
+                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
             dataGridView2.Columns[0].Width = 20;
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
@@ -487,7 +551,15 @@ namespace Saobracaj.Uvoz
             uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
           //  VratiADRIzNHM(Convert.ToInt32(cboNHM.SelectedValue)); // Nije potrebno jer ovde ionako ne mo\e da se vrati
 
-            FillDG2();
+            if (chkNerasporedjeni.Checked == true )
+            {
+                FillDG2();
+            }
+            else
+            {
+                FillDG2Konacna();
+            }
+           
         }
 
      
@@ -567,31 +639,120 @@ namespace Saobracaj.Uvoz
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
 
-            foreach (DataGridViewRow row in dataGridView2.Rows)
+            if (chkNerasporedjeni.Checked == true)
             {
-                uvK.DelUvozNHM(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    uvK.DelUvozNHM(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
 
+                }
             }
-              
+            else
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    uvK.DelUvozKonacnaNHM(Convert.ToInt32(row.Cells[0].Value.ToString()));
+
+
+                }
+            }
+
+
+            if (chkNerasporedjeni.Checked == true)
+            {
                 FillDG2();
+            }
+            else
+            {
+                FillDG2Konacna();
+            }
+
+
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (chkNerasporedjeni.Checked == true)
             {
-                
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+
 
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     ins.InsUvozNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), row.Cells[6].Value.ToString());
-                
-            
-            }
-         
 
-            FillDG2();
+
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+
+
+                    InsertUvozKonacna ins = new InsertUvozKonacna();
+                    ins.InsUvozKonacnaNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), row.Cells[6].Value.ToString());
+
+
+                }
+            }
+
+
+
+           
+
+            if (chkNerasporedjeni.Checked == true)
+            {
+                FillDG2();
+            }
+            else
+            {
+                FillDG2Konacna();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (chkNerasporedjeni.Checked == true)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected == true)
+                    {
+                        txtNHMID.Text = row.Cells[0].Value.ToString();
+                        InsertUvozKonacna del = new InsertUvozKonacna();
+                        del.DelUvozNHMDiana(Convert.ToInt32(txtNHMID.Text));
+
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected == true)
+                    {
+                        txtNHMID.Text = row.Cells[0].Value.ToString();
+                        InsertUvozKonacna del = new InsertUvozKonacna();
+                        del.DelUvozKonacnaNHMDiana(Convert.ToInt32(txtNHMID.Text));
+
+                    }
+
+                }
+
+
+            }
+            if (chkNerasporedjeni.Checked == true)
+            {
+                FillDG2();
+            }
+            else
+            {
+                FillDG2Konacna();
+            }
         }
     }
     }

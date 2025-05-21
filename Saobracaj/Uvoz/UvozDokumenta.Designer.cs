@@ -167,10 +167,11 @@ namespace Saobracaj.Uvoz
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 165);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 19);
+            this.label1.Size = new System.Drawing.Size(76, 17);
             this.label1.TabIndex = 78;
             this.label1.Text = "Dokument";
             // 
@@ -208,10 +209,11 @@ namespace Saobracaj.Uvoz
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(427, 108);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 19);
+            this.label4.Size = new System.Drawing.Size(69, 17);
             this.label4.TabIndex = 75;
             this.label4.Text = "ID KONT";
             // 
@@ -252,10 +254,11 @@ namespace Saobracaj.Uvoz
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(427, 139);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 19);
+            this.label2.Size = new System.Drawing.Size(52, 17);
             this.label2.TabIndex = 87;
             this.label2.Text = "PlanID";
             // 
@@ -303,7 +306,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(3, -2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1069, 31);
+            this.panel2.Size = new System.Drawing.Size(383, 31);
             this.panel2.TabIndex = 6;
             // 
             // button6
@@ -412,9 +415,10 @@ namespace Saobracaj.Uvoz
             // chkZaVoz
             // 
             this.chkZaVoz.AutoSize = true;
+            this.chkZaVoz.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkZaVoz.Location = new System.Drawing.Point(16, 72);
             this.chkZaVoz.Name = "chkZaVoz";
-            this.chkZaVoz.Size = new System.Drawing.Size(255, 23);
+            this.chkZaVoz.Size = new System.Drawing.Size(238, 21);
             this.chkZaVoz.TabIndex = 465;
             this.chkZaVoz.Text = "Dokument se odnosi na ceo voz";
             this.chkZaVoz.UseVisualStyleBackColor = true;
@@ -423,9 +427,10 @@ namespace Saobracaj.Uvoz
             // chkKontejner
             // 
             this.chkKontejner.AutoSize = true;
+            this.chkKontejner.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkKontejner.Location = new System.Drawing.Point(16, 101);
             this.chkKontejner.Name = "chkKontejner";
-            this.chkKontejner.Size = new System.Drawing.Size(333, 23);
+            this.chkKontejner.Size = new System.Drawing.Size(306, 21);
             this.chkKontejner.TabIndex = 466;
             this.chkKontejner.Text = "Dokument se odnosi  odredjene kontejnere";
             this.chkKontejner.UseVisualStyleBackColor = true;
@@ -434,9 +439,10 @@ namespace Saobracaj.Uvoz
             // chkUsluge
             // 
             this.chkUsluge.AutoSize = true;
+            this.chkUsluge.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkUsluge.Location = new System.Drawing.Point(17, 130);
             this.chkUsluge.Name = "chkUsluge";
-            this.chkUsluge.Size = new System.Drawing.Size(256, 23);
+            this.chkUsluge.Size = new System.Drawing.Size(237, 21);
             this.chkUsluge.TabIndex = 468;
             this.chkUsluge.Text = "Dokument se odnosi   na uslugu";
             this.chkUsluge.UseVisualStyleBackColor = true;
@@ -445,10 +451,11 @@ namespace Saobracaj.Uvoz
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(427, 72);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 19);
+            this.label3.Size = new System.Drawing.Size(73, 17);
             this.label3.TabIndex = 469;
             this.label3.Text = "ID Usluga";
             // 
@@ -474,36 +481,39 @@ namespace Saobracaj.Uvoz
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(749, 184);
+            this.dataGridView3.Size = new System.Drawing.Size(749, 237);
             this.dataGridView3.TabIndex = 471;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(13, 220);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 19);
+            this.label5.Size = new System.Drawing.Size(142, 17);
             this.label5.TabIndex = 472;
             this.label5.Text = "Dokumentacija voza";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(13, 390);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(195, 19);
+            this.label6.Size = new System.Drawing.Size(178, 17);
             this.label6.TabIndex = 473;
             this.label6.Text = "Dokumentacija kontejnera";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(12, 587);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(171, 19);
+            this.label7.Size = new System.Drawing.Size(156, 17);
             this.label7.TabIndex = 474;
             this.label7.Text = "Dokumentacija Usluga";
             // 
@@ -515,7 +525,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(258, 486);
+            this.dataGridView4.Size = new System.Drawing.Size(258, 752);
             this.dataGridView4.TabIndex = 475;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 
@@ -531,10 +541,11 @@ namespace Saobracaj.Uvoz
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(776, 72);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 19);
+            this.label8.Size = new System.Drawing.Size(73, 17);
             this.label8.TabIndex = 477;
             this.label8.Text = "Kontejneri";
             // 
@@ -548,17 +559,18 @@ namespace Saobracaj.Uvoz
             this.dataGridView5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersWidth = 51;
-            this.dataGridView5.Size = new System.Drawing.Size(347, 488);
+            this.dataGridView5.Size = new System.Drawing.Size(347, 754);
             this.dataGridView5.TabIndex = 478;
             this.dataGridView5.SelectionChanged += new System.EventHandler(this.dataGridView5_SelectionChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(1052, 69);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 19);
+            this.label9.Size = new System.Drawing.Size(54, 17);
             this.label9.TabIndex = 479;
             this.label9.Text = "Usluge";
             // 
@@ -599,8 +611,8 @@ namespace Saobracaj.Uvoz
             this.Font = new System.Drawing.Font("Helvetica", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UvozDokumenta";
-            this.ShowIcon = false;
             this.Text = "Uvoz dokumenta";
+            this.Load += new System.EventHandler(this.UvozDokumenta_Load);
             this.meniHeader.ResumeLayout(false);
             this.meniHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

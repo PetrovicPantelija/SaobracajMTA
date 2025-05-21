@@ -23,11 +23,12 @@ namespace Saobracaj.Uvoz
     public partial class frmUvozUvoznici : Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        int pomNerasporedjeni = 0;
         public frmUvozUvoznici()
         {
             InitializeComponent();
         }
-        public frmUvozUvoznici(string ID)
+        public frmUvozUvoznici(string ID, int Nerasporedjeni)
         {
             InitializeComponent();
             txtID.Text = ID;
@@ -305,6 +306,36 @@ namespace Saobracaj.Uvoz
             }
 
 
+            FillDG2();
+        }
+
+        private void frmUvozUvoznici_Load(object sender, EventArgs e)
+        {
+            if (pomNerasporedjeni == 0)
+            {
+                chkNerasporedjeni.Checked = true;
+            }
+            else 
+            { 
+                chkNerasporedjeni.Checked = false; 
+            }
+            
+           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    txtRB.Text = row.Cells[0].Value.ToString();
+                    InsertUvozKonacna del = new InsertUvozKonacna();
+                    del.DelUvozUvoznici(Convert.ToInt32(txtRB.Text));
+
+                }
+
+            }
             FillDG2();
         }
     }

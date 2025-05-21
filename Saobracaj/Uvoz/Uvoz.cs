@@ -1,9 +1,11 @@
 ﻿
 using Microsoft.Office.Interop.Excel;
 using Saobracaj.Sifarnici;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Diagram;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
@@ -195,6 +197,7 @@ namespace Saobracaj.Uvoz
             FillDG2();
             FillDG3();
             FillDG4();
+            FillNHM();
             KorisnikTekuci = Korisnik;
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
@@ -1668,6 +1671,7 @@ namespace Saobracaj.Uvoz
                     FillDG3();
                     FillDG4();
                     FillDG8();
+                    FillNHM();
                     FillDGUsluge();
                     FillDGUvoznici();
 
@@ -1801,6 +1805,7 @@ namespace Saobracaj.Uvoz
 
         private void FillDG2()
         {
+            /*
             if (txtID.Text == "")
             {
                 txtID.Text = "0";
@@ -1830,7 +1835,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 20;
+            dataGridView2.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "Broj";
@@ -1844,7 +1849,7 @@ namespace Saobracaj.Uvoz
             dataGridView2.Columns[3].HeaderText = "NHM";
             dataGridView2.Columns[3].Width = 400;
 
-
+            */
 
         }
 
@@ -1940,6 +1945,7 @@ namespace Saobracaj.Uvoz
             VratiADRIzNHM(Convert.ToInt32(cboNHM.SelectedValue));
 
             FillDG2();
+            FillNHM();
             // refreshdataNHM doraditi
         }
 
@@ -1957,6 +1963,7 @@ namespace Saobracaj.Uvoz
             {
                 uvK.DelUvozNHM(Convert.ToInt32(txtIDNHM.Text));
                 FillDG2();
+                FillNHM();
             }
 
             // refreshdataNHM doraditi
@@ -2037,6 +2044,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.SelectedValue = 15;
 
             }
+            FillSvi();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -3396,6 +3404,7 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
             FillDGUvoznici();
             FillDG2();
+            FillNHM();
             FillDG4();
         }
 
@@ -3503,6 +3512,7 @@ namespace Saobracaj.Uvoz
             FillDG2();
             FillDGUsluge();
             FillDG4();
+            FillNHM();
         }
         string labelDialogResult = "";
 
@@ -3824,6 +3834,195 @@ namespace Saobracaj.Uvoz
             // um.FormClosing += new FormClosingEventHandler(this.frmUnosManipulacija_FormClosing);
             um.Show();
             FillDG2();
+            FillNHM();
+           // FillSvi();
+
+        }
+
+        private void RefreshGV()
+        {
+            var select = "SELECT Uvoz.ID, " +
+                " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+                " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+                " [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,   Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
+" n1.PaNaziv as NalogodavacZaVoz, Ref1 as Ref1,n2.PaNaziv as NalogodavacZaUsluge, Ref2 as Ref2,n3.PaNaziv as NalogodavacZaDrumski,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,  " +
+" Napomena1 as Napomena1,  DobijeBZ as DatumBZ ,PIN,    KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
+" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,pv.PaNaziv as VlasnikKontejnera,     Ref3 as Ref3,         VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  " +
+" p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
+" Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
+" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, Email, " +
+" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
+" inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+" inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
+" inner join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina " +
+" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
+" inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje " +
+" inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
+" inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+" inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
+" inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
+" inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
+" inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
+" inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
+" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+" inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
+" inner join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
+" inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
+" inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+" inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
+"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            // this.gridGroupingControl1.RecordFilterDescriptor.
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+                //  column.RecordFilterDescriptor
+            }
+            this.gridGroupingControl1.TableDescriptor.Columns["BrojKontejnera"].FilterRowOptions.FilterMode = FilterMode.DisplayText;
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+        }
+
+        private void RefreshGVT()
+        {
+            var select = "SELECT Uvoz.ID, " +
+                " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+                " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+                " [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,   Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
+" n1.PaNaziv as NalogodavacZaVoz, Ref1 as Ref1,n2.PaNaziv as NalogodavacZaUsluge, Ref2 as Ref2,n3.PaNaziv as NalogodavacZaDrumski,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,  " +
+" Napomena1 as Napomena1,  DobijeBZ as DatumBZ ,PIN,    KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
+" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,pv.PaNaziv as VlasnikKontejnera,     Ref3 as Ref3,         VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  " +
+" p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
+" Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
+" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, Email, " +
+" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
+" inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+" inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
+" inner join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina " +
+" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
+" inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje " +
+" inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
+" inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+" inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
+" inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
+" inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
+" inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
+" inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
+" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+" inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
+" inner join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
+" inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
+" inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+" inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera where Uvoz.Terminal = 1" +
+"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+        }
+
+        private void FillSvi()
+        {
+            if (chkTerminalski.Checked == false)
+            {
+                RefreshGV();
+            }
+            else
+            {
+                RefreshGVT();
+            }
+
+
+        }
+
+        private void FillNHM()
+        {
+            if (txtID.Text == "")
+            {
+                txtID.Text = "0";
+            }
+            var select = " SELECT     UvozNHM.ID, NHM.Broj, UvozNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
+                      " UvozNHM ON NHM.ID = UvozNHM.IDNHM where Uvoznhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by Uvoznhm.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView9.ReadOnly = true;
+            dataGridView9.DataSource = ds.Tables[0];
+
+
+            dataGridView9.BorderStyle = BorderStyle.None;
+            dataGridView9.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView9.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView9.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView9.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView9.BackgroundColor = Color.White;
+
+            dataGridView9.EnableHeadersVisualStyles = false;
+            dataGridView9.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView9.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView9.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView9.Columns[0];
+            dataGridView9.Columns[0].HeaderText = "ID";
+            dataGridView9.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView9.Columns[1];
+            dataGridView9.Columns[1].HeaderText = "Broj";
+            dataGridView9.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView9.Columns[2];
+            dataGridView9.Columns[2].HeaderText = "ID";
+            dataGridView9.Columns[2].Width = 20;
+
+            DataGridViewColumn column4 = dataGridView9.Columns[3];
+            dataGridView9.Columns[3].HeaderText = "NHM";
+            dataGridView9.Columns[3].Width = 400;
+
+
 
         }
 
@@ -3863,6 +4062,8 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
             FillDGUvoznici();
             FillDG2();
+            FillNHM();
+            
         }
 
         private void button26_Click(object sender, EventArgs e)
@@ -4167,7 +4368,7 @@ namespace Saobracaj.Uvoz
 
         private void button30_Click(object sender, EventArgs e)
         {
-            UvozNHM uNHM = new UvozNHM(txtID.Text);
+            UvozNHM uNHM = new UvozNHM(txtID.Text, 0);
             uNHM.Show();
         }
 
@@ -4210,8 +4411,39 @@ namespace Saobracaj.Uvoz
 
         private void button31_Click(object sender, EventArgs e)
         {
-            frmUvozUvoznici uuv = new frmUvozUvoznici(txtID.Text);
+            frmUvozUvoznici uuv = new frmUvozUvoznici(txtID.Text,0);
             uuv.Show();
+        }
+
+        private void button17_Click_1(object sender, EventArgs e)
+        {
+            UvozKonacnaPronadji ukp = new UvozKonacnaPronadji();
+            ukp.Show();
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                  
+                }
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                FillDGUsluge();
+                FillDGUvoznici();
+                FillDG2();
+                FillNHM();
+            }
+     
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
