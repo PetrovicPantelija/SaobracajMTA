@@ -155,10 +155,15 @@ namespace Saobracaj.Dokumenta
         private void frmAutomobili_Load(object sender, EventArgs e)
         {
             RefreshDataGRid();
-            IstekPPomoc();
-            IstekPP();
+            this.BeginInvoke(new Action(() =>
+            {
+               
+                IstekPPomoc();
+                IstekPP();
 
-            IstekReg();
+                IstekReg();
+            }));    
+        
         }
         private void RefreshDataGRid()
         {

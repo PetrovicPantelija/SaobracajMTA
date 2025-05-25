@@ -4167,6 +4167,12 @@ namespace Saobracaj.Uvoz
                 throw ex;
             }
         }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
+        }
     }
 }
 

@@ -4445,5 +4445,11 @@ namespace Saobracaj.Uvoz
                 throw ex;
             }
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(0), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
+        }
     }
 }

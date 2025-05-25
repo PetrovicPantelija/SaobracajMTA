@@ -6790,6 +6790,69 @@ namespace Saobracaj
             Uvoz.Brodovi brod = new Uvoz.Brodovi();
             brod.Show();
         }
+
+        private void toolStripButton379_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAutomobili")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
+                autom.Show();
+            }
+        }
+
+        private void toolStripButton380_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmValute val = new Izvoz.frmValute();
+            val.Show();
+        }
+
+        private void toolStripButton381_Click(object sender, EventArgs e)
+        {
+            Drumski.frmStatusVozila st = new Drumski.frmStatusVozila();
+            st.Show();
+        }
+
+        private void toolStripButton382_Click(object sender, EventArgs e)
+        {
+            Drumski.frmVrstaVozila vv = new Drumski.frmVrstaVozila();
+            vv.Show();
+        }
+
+        private void toolStripButton408_Click(object sender, EventArgs e)
+        {
+            Drumski.frmPregledNalogaDrumski fd = new Drumski.frmPregledNalogaDrumski();
+            fd.Show();
+        }
+
+        private void toolStripButton409_Click(object sender, EventArgs e)
+        {
+            Drumski.frmPakovanjeKamiona fppp = new Drumski.frmPakovanjeKamiona();
+            fppp.Show();
+        }
+
+        private void toolStripButton383_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmOperativniPlanIzvoz op = new Izvoz.frmOperativniPlanIzvoz();
+            op.Show();
+        }
+
+        private void toolStripButton384_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmOperativniPlanUvoz vv = new Uvoz.frmOperativniPlanUvoz();
+            vv.Show();
+        }
     }
     }
 

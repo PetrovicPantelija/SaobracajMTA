@@ -124,8 +124,52 @@ namespace Saobracaj.Izvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Drumski.frmPregledNalogaDrumski pnd = new Drumski.frmPregledNalogaDrumski();
-            pnd.Show();
+            int uvoz = 0;
+            InsertUvoz isu = new InsertUvoz();
+            List<(int kontejnerID, int manipulacijaID)> stavkeBezNaloga = new List<(int, int)>();
+            HashSet<int> nalogIds = new HashSet<int>();
+
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+            {
+                object nalogIdValue = selectedRecord.Record.GetValue("NalogID");
+                int nalogId = 0;
+                if (nalogIdValue != null && int.TryParse(nalogIdValue.ToString(), out int parsedId))
+                {
+                    nalogId = parsedId;
+                }
+
+                if (nalogId != 0)
+                {
+                    nalogIds.Add(nalogId);
+                }
+                else
+                {
+                    int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
+                    int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID));
+                }
+            }
+
+            if (nalogIds.Count > 1)
+            {
+                MessageBox.Show("Stavke se mogu dodati samo u jedan nalog. Selektovano je više različitih naloga.",
+                                "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nalogIds.Count == 1 && stavkeBezNaloga.Count > 0)
+            {
+                int nalogId = nalogIds.First();
+
+                DialogResult result = MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
+                                                      "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    isu.UpdateRadniNalogDrumski(stavkeBezNaloga, nalogId, uvoz);
+                    RefreshGrid();
+                }
+            }
         }
     }
 }
