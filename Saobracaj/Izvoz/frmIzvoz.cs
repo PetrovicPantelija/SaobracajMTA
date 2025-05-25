@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
-using System.Drawing.Imaging;
-using Saobracaj.Uvoz;
-using Testiranje.Sifarnici;
 
 namespace Saobracaj.Izvoz
 {
@@ -2811,6 +2801,12 @@ namespace Saobracaj.Izvoz
             cboSpedicija.DataSource = partDS5.Tables[0];
             cboSpedicija.DisplayMember = "PaNaziv";
             cboSpedicija.ValueMember = "PaKOsifra";
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(Convert.ToInt32(0), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
         }
     }
     }

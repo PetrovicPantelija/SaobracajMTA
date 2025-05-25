@@ -1,4 +1,5 @@
 ﻿using Saobracaj.Dokumenta;
+using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
@@ -2657,6 +2658,12 @@ namespace Saobracaj.Izvoz
         {
             frmPovezivanjeKontejneraIVagona pkv = new frmPovezivanjeKontejneraIVagona(Convert.ToInt32(txtNadredjeni.Text));
             pkv.Show();
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(0));
+            ppDU.Show();
         }
     }
 }

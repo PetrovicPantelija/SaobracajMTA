@@ -4002,5 +4002,11 @@ namespace Saobracaj.Uvoz
             UvozDokumenta uvdok = new UvozDokumenta(txtID.Text, "0");
             uvdok.Show();
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(0), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
+        }
     }
 }

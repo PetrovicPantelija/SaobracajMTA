@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using Saobracaj.Uvoz;
 
 namespace Saobracaj.Uvoz
 {
@@ -840,7 +841,7 @@ namespace Saobracaj.Uvoz
                 txtBrKont.Text = dr["BrojKontejnera"].ToString();
                 txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
                 dtNalogBrodara.Value = Convert.ToDateTime(dr["DobijenNalogBrodara"].ToString());
-                txtBZ.Text = dr["DobijeBZ"].ToString();
+                //txtBZ.Text = dr["DobijeBZ"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
                 txtPIN.Text = dr["PIN"].ToString();
                 cbDirigacija.SelectedValue = Convert.ToInt32(dr["DirigacijaKontejeraZa"].ToString());
@@ -1134,7 +1135,6 @@ namespace Saobracaj.Uvoz
 
 
             if (chkDobijenBZ.Checked == true)
-            { tDobijenBZ = 1; };
             if (chkPrioritet.Checked == true)
             { tPrioritet = 1; };
 
@@ -3899,6 +3899,12 @@ namespace Saobracaj.Uvoz
                 chkCekaSeKlijent.Checked = false;
                 chkPotvrdioKlijent2BDI.Checked = false;
             }
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
         }
     }
 }
