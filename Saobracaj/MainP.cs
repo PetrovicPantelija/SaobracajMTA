@@ -6784,6 +6784,12 @@ namespace Saobracaj
                 frm.Show();
             }
         }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+            Uvoz.Brodovi brod = new Uvoz.Brodovi();
+            brod.Show();
+        }
     }
     }
 

@@ -1,5 +1,7 @@
 ﻿using Saobracaj.Sifarnici;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
@@ -205,7 +207,7 @@ namespace Saobracaj.Uvoz
 
                     }
             }
-            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -213,10 +215,25 @@ namespace Saobracaj.Uvoz
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
 
-            PodesiDatagridView(dataGridView1);
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
 
         }
@@ -280,8 +297,32 @@ namespace Saobracaj.Uvoz
 
         private void button3_Click(object sender, EventArgs e)
         {
-            frmRAdniNalogInterniPUvoz rnUvoz = new frmRAdniNalogInterniPUvoz(Convert.ToInt32(txtSifra.Text));
-            rnUvoz.Show();
+            if (txtSifra.Text != "")
+            {
+                frmRAdniNalogInterniPUvoz rnUvoz = new frmRAdniNalogInterniPUvoz(Convert.ToInt32(txtSifra.Text));
+                rnUvoz.Show();
+
+            }
+               
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PLANID").ToString();
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Testiranje.Sifarnici
 
                         textBox.BackColor = Color.White;// Example: Change background color
                         textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
-                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9);
                         // Example: Change font
                     }
 
@@ -80,39 +80,39 @@ namespace Testiranje.Sifarnici
                     {
                         // Change properties here
                         label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+                        label.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
 
                         // textBox.ReadOnly = true;              // Example: Make text boxes read-only
                     }
                     if (control is DateTimePicker dtp)
                     {
                         dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9);
                     }
                     if (control is System.Windows.Forms.CheckBox chk)
                     {
                         chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        chk.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
                     if (control is System.Windows.Forms.ListBox lb)
                     {
                         lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        lb.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
                     if (control is System.Windows.Forms.ComboBox cb)
                     {
                         cb.ForeColor = Color.FromArgb(51, 51, 54);
                         cb.BackColor = Color.White;// Example: Change background color
-                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        cb.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
                     if (control is System.Windows.Forms.NumericUpDown nu)
                     {
                         nu.ForeColor = Color.FromArgb(51, 51, 54);
                         nu.BackColor = Color.White;// Example: Change background color
-                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        nu.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
                 }

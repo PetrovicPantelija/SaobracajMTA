@@ -515,6 +515,11 @@ namespace Saobracaj.Uvoz
             cboPlanUtovara.DisplayMember = "Naziv";
             cboPlanUtovara.ValueMember = "ID";
 
+            if (pomPostojiPlan == 1)
+            {
+                cboPlanUtovara.SelectedValue = pomPlan;
+            }
+
         }
 
         private void frmFormiranjePlana_Load(object sender, EventArgs e)

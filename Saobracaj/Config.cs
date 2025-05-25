@@ -30,7 +30,8 @@ namespace Saobracaj
                     return new CompanyConfiguration
                     {
                         Naziv = "Leget",
-                        DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990;",
+                        // DB = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=Leget;User ID=sa;Password=P@ss011!;",
+                        DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;;Initial Catalog=Testiranje;User ID=sa;Password=duki7990;",
                         Dokumenta = @"\\192.168.99.10\Leget\",
                         PIB = "100791711",
                         Name_Value = "RTC LUKA LEGET AD SREMSKA MITROVICA",

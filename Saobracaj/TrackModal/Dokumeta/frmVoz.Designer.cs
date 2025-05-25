@@ -1172,7 +1172,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1291, 223);
+            this.tabPage2.Size = new System.Drawing.Size(1291, 157);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sastav voza";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1416,8 +1416,7 @@
             this.dtpPlOtpreme.Location = new System.Drawing.Point(12, 52);
             this.dtpPlOtpreme.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPlOtpreme.Name = "dtpPlOtpreme";
-            this.dtpPlOtpreme.ShowUpDown = true;
-            this.dtpPlOtpreme.Size = new System.Drawing.Size(128, 22);
+            this.dtpPlOtpreme.Size = new System.Drawing.Size(143, 22);
             this.dtpPlOtpreme.TabIndex = 257;
             this.dtpPlOtpreme.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1441,8 +1440,7 @@
             this.dtpPLFormiranja.Location = new System.Drawing.Point(210, 48);
             this.dtpPLFormiranja.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPLFormiranja.Name = "dtpPLFormiranja";
-            this.dtpPLFormiranja.ShowUpDown = true;
-            this.dtpPLFormiranja.Size = new System.Drawing.Size(128, 22);
+            this.dtpPLFormiranja.Size = new System.Drawing.Size(147, 22);
             this.dtpPLFormiranja.TabIndex = 259;
             this.dtpPLFormiranja.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1465,8 +1463,7 @@
             this.dtpIzvlacenjeSaTerminala.Location = new System.Drawing.Point(213, 131);
             this.dtpIzvlacenjeSaTerminala.Margin = new System.Windows.Forms.Padding(4);
             this.dtpIzvlacenjeSaTerminala.Name = "dtpIzvlacenjeSaTerminala";
-            this.dtpIzvlacenjeSaTerminala.ShowUpDown = true;
-            this.dtpIzvlacenjeSaTerminala.Size = new System.Drawing.Size(128, 22);
+            this.dtpIzvlacenjeSaTerminala.Size = new System.Drawing.Size(144, 22);
             this.dtpIzvlacenjeSaTerminala.TabIndex = 261;
             this.dtpIzvlacenjeSaTerminala.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1490,8 +1487,7 @@
             this.dtpPreuzimanjeSM.Location = new System.Drawing.Point(210, 197);
             this.dtpPreuzimanjeSM.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPreuzimanjeSM.Name = "dtpPreuzimanjeSM";
-            this.dtpPreuzimanjeSM.ShowUpDown = true;
-            this.dtpPreuzimanjeSM.Size = new System.Drawing.Size(128, 22);
+            this.dtpPreuzimanjeSM.Size = new System.Drawing.Size(147, 22);
             this.dtpPreuzimanjeSM.TabIndex = 263;
             this.dtpPreuzimanjeSM.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1515,8 +1511,7 @@
             this.dtpPolazakSid.Location = new System.Drawing.Point(424, 24);
             this.dtpPolazakSid.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPolazakSid.Name = "dtpPolazakSid";
-            this.dtpPolazakSid.ShowUpDown = true;
-            this.dtpPolazakSid.Size = new System.Drawing.Size(128, 22);
+            this.dtpPolazakSid.Size = new System.Drawing.Size(139, 22);
             this.dtpPolazakSid.TabIndex = 265;
             this.dtpPolazakSid.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1539,8 +1534,7 @@
             this.dtpPredajaHR.Location = new System.Drawing.Point(424, 77);
             this.dtpPredajaHR.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredajaHR.Name = "dtpPredajaHR";
-            this.dtpPredajaHR.ShowUpDown = true;
-            this.dtpPredajaHR.Size = new System.Drawing.Size(128, 22);
+            this.dtpPredajaHR.Size = new System.Drawing.Size(139, 22);
             this.dtpPredajaHR.TabIndex = 267;
             this.dtpPredajaHR.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1564,8 +1558,7 @@
             this.dtpPrispeceRijeka.Location = new System.Drawing.Point(424, 131);
             this.dtpPrispeceRijeka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrispeceRijeka.Name = "dtpPrispeceRijeka";
-            this.dtpPrispeceRijeka.ShowUpDown = true;
-            this.dtpPrispeceRijeka.Size = new System.Drawing.Size(128, 22);
+            this.dtpPrispeceRijeka.Size = new System.Drawing.Size(139, 22);
             this.dtpPrispeceRijeka.TabIndex = 269;
             this.dtpPrispeceRijeka.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1589,8 +1582,7 @@
             this.dtpIskrcajRijeka.Location = new System.Drawing.Point(428, 197);
             this.dtpIskrcajRijeka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpIskrcajRijeka.Name = "dtpIskrcajRijeka";
-            this.dtpIskrcajRijeka.ShowUpDown = true;
-            this.dtpIskrcajRijeka.Size = new System.Drawing.Size(128, 22);
+            this.dtpIskrcajRijeka.Size = new System.Drawing.Size(135, 22);
             this.dtpIskrcajRijeka.TabIndex = 271;
             this.dtpIskrcajRijeka.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1629,7 +1621,7 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(560, 131);
+            this.button7.Location = new System.Drawing.Point(598, 131);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(16, 22);
@@ -1658,8 +1650,7 @@
             this.dtpSazeta.Location = new System.Drawing.Point(14, 197);
             this.dtpSazeta.Margin = new System.Windows.Forms.Padding(4);
             this.dtpSazeta.Name = "dtpSazeta";
-            this.dtpSazeta.ShowUpDown = true;
-            this.dtpSazeta.Size = new System.Drawing.Size(128, 22);
+            this.dtpSazeta.Size = new System.Drawing.Size(141, 22);
             this.dtpSazeta.TabIndex = 269;
             this.dtpSazeta.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -1683,8 +1674,7 @@
             this.dtpPristizanjaUSid.Location = new System.Drawing.Point(14, 131);
             this.dtpPristizanjaUSid.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPristizanjaUSid.Name = "dtpPristizanjaUSid";
-            this.dtpPristizanjaUSid.ShowUpDown = true;
-            this.dtpPristizanjaUSid.Size = new System.Drawing.Size(128, 22);
+            this.dtpPristizanjaUSid.Size = new System.Drawing.Size(141, 22);
             this.dtpPristizanjaUSid.TabIndex = 267;
             this.dtpPristizanjaUSid.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 

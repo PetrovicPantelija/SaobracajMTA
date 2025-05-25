@@ -177,6 +177,7 @@
     <Reference Include="OpenPop">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Syncfusion.BulletGraph.Windows, Version=19.4460.0.56, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.BulletGraph.Windows.19.4.0.56\lib\net46\Syncfusion.BulletGraph.Windows.dll</HintPath>
@@ -3747,6 +3748,12 @@
     <Compile Include="Uvoz\frmUvozKopirajUslugeKontejnera.Designer.cs">
       <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmUvozUvoznici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozUvoznici.Designer.cs">
+      <DependentUpon>frmUvozUvoznici.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmVoziloUsluga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3832,6 +3839,18 @@
     </Compile>
     <Compile Include="Uvoz\UvozKonacna.designer.cs">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\UvozKonacnaPronadji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozKonacnaPronadji.Designer.cs">
+      <DependentUpon>UvozKonacnaPronadji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\UvozNHM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozNHM.Designer.cs">
+      <DependentUpon>UvozNHM.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\UvozTable.cs">
       <SubType>Form</SubType>
@@ -5316,6 +5335,9 @@
     <EmbeddedResource Include="Uvoz\frmUvozKopirajUslugeKontejnera.resx">
       <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmUvozUvoznici.resx">
+      <DependentUpon>frmUvozUvoznici.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVoziloUsluga.resx">
       <DependentUpon>frmVoziloUsluga.cs</DependentUpon>
     </EmbeddedResource>
@@ -5349,6 +5371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozKonacnaPronadji.resx">
+      <DependentUpon>UvozKonacnaPronadji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozNHM.resx">
+      <DependentUpon>UvozNHM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozTable.resx">
       <DependentUpon>UvozTable.cs</DependentUpon>

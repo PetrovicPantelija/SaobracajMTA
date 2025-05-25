@@ -17,14 +17,16 @@ namespace Saobracaj.Uvoz
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
 string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, int Terminalska, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3,
-int PotvrdioKlijent, int UradilaCarina)
+int PotvrdioKlijent, int UradilaCarina,
+             int TFDobijenNalog, int TFDobijenNalogodavac1, DateTime dtpDobijenNalogodavac1, int TFDobijenNalogodavac2, DateTime dtpDobijenNalogodavac2,
+                int TFDobijenNalogodavac3, DateTime dtpDobijenNalogodavac3 , int TFFCL, int TFLCL, DateTime dtpPotvrdioKlijent, DateTime dtpSlobodanDaNapusti)
         {
 
 
 
 
 
-            SqlConnection conn = new SqlConnection(connection);
+                        SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "UpdateUvoz";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -518,6 +520,91 @@ int PotvrdioKlijent, int UradilaCarina)
             uradilaCarina.Value = UradilaCarina;
             cmd.Parameters.Add(uradilaCarina);
 
+            SqlParameter tfDobijenNalog = new SqlParameter();
+            tfDobijenNalog.ParameterName = "@chkDobijenNalogBrodara";
+            tfDobijenNalog.SqlDbType = SqlDbType.Int;
+            tfDobijenNalog.Direction = ParameterDirection.Input;
+            tfDobijenNalog.Value = TFDobijenNalog;
+            cmd.Parameters.Add(tfDobijenNalog);
+
+            SqlParameter tfDobijenNalogodavac1 = new SqlParameter();
+            tfDobijenNalogodavac1.ParameterName = "@chkDobijenNalogodavac1";
+            tfDobijenNalogodavac1.SqlDbType = SqlDbType.Int;
+            tfDobijenNalogodavac1.Direction = ParameterDirection.Input;
+            tfDobijenNalogodavac1.Value = TFDobijenNalogodavac1;
+            cmd.Parameters.Add(tfDobijenNalogodavac1);
+
+
+            SqlParameter dtpdobijenNalogodavac1 = new SqlParameter();
+            dtpdobijenNalogodavac1.ParameterName = "@DatumNalogodavac1";
+            dtpdobijenNalogodavac1.SqlDbType = SqlDbType.DateTime;
+            dtpdobijenNalogodavac1.Direction = ParameterDirection.Input;
+            dtpdobijenNalogodavac1.Value = dtpDobijenNalogodavac1;
+            cmd.Parameters.Add(dtpdobijenNalogodavac1);
+
+
+            SqlParameter tfDobijenNalogodavac2 = new SqlParameter();
+            tfDobijenNalogodavac2.ParameterName = "@chkDobijenNalogodavac2";
+            tfDobijenNalogodavac2.SqlDbType = SqlDbType.Int;
+            tfDobijenNalogodavac2.Direction = ParameterDirection.Input;
+            tfDobijenNalogodavac2.Value = TFDobijenNalogodavac2;
+            cmd.Parameters.Add(tfDobijenNalogodavac2);
+
+
+            SqlParameter dtpdobijenNalogodavac2 = new SqlParameter();
+            dtpdobijenNalogodavac2.ParameterName = "@DatumNalogodavac2";
+            dtpdobijenNalogodavac2.SqlDbType = SqlDbType.DateTime;
+            dtpdobijenNalogodavac2.Direction = ParameterDirection.Input;
+            dtpdobijenNalogodavac2.Value = dtpDobijenNalogodavac2;
+            cmd.Parameters.Add(dtpdobijenNalogodavac2);
+
+
+            SqlParameter tfDobijenNalogodavac3 = new SqlParameter();
+            tfDobijenNalogodavac3.ParameterName = "@chkDobijenNalogodavac3";
+            tfDobijenNalogodavac3.SqlDbType = SqlDbType.Int;
+            tfDobijenNalogodavac3.Direction = ParameterDirection.Input;
+            tfDobijenNalogodavac3.Value = TFDobijenNalogodavac3;
+            cmd.Parameters.Add(tfDobijenNalogodavac3);
+
+
+            SqlParameter dtpdobijenNalogodavac3 = new SqlParameter();
+            dtpdobijenNalogodavac3.ParameterName = "@DatumNalogodavac3";
+            dtpdobijenNalogodavac3.SqlDbType = SqlDbType.DateTime;
+            dtpdobijenNalogodavac3.Direction = ParameterDirection.Input;
+            dtpdobijenNalogodavac3.Value = dtpDobijenNalogodavac3;
+            cmd.Parameters.Add(dtpdobijenNalogodavac3);
+
+
+            SqlParameter datumPotvrdioKlijent = new SqlParameter();
+            datumPotvrdioKlijent.ParameterName = "@DatumPotvrdioKlijent";
+            datumPotvrdioKlijent.SqlDbType = SqlDbType.DateTime;
+            datumPotvrdioKlijent.Direction = ParameterDirection.Input;
+            datumPotvrdioKlijent.Value = dtpPotvrdioKlijent;
+            cmd.Parameters.Add(datumPotvrdioKlijent);
+
+            SqlParameter dtpslobodanDaNapusti = new SqlParameter();
+            dtpslobodanDaNapusti.ParameterName = "@DatumSlobasodanDaNapusti";
+            dtpslobodanDaNapusti.SqlDbType = SqlDbType.DateTime;
+            dtpslobodanDaNapusti.Direction = ParameterDirection.Input;
+            dtpslobodanDaNapusti.Value = dtpSlobodanDaNapusti;
+            cmd.Parameters.Add(dtpslobodanDaNapusti);
+
+
+            SqlParameter fcl = new SqlParameter();
+            fcl.ParameterName = "@FCL";
+            fcl.SqlDbType = SqlDbType.Int;
+            fcl.Direction = ParameterDirection.Input;
+            fcl.Value = TFFCL;
+            cmd.Parameters.Add(fcl);
+
+
+            SqlParameter lcl = new SqlParameter();
+            lcl.ParameterName = "@LCL";
+            lcl.SqlDbType = SqlDbType.Int;
+            lcl.Direction = ParameterDirection.Input;
+            lcl.Value = TFLCL;
+            cmd.Parameters.Add(lcl);
+
 
 
             conn.Open();
@@ -848,6 +935,56 @@ int PotvrdioKlijent, int UradilaCarina)
             sauslugama.Direction = ParameterDirection.Input;
             sauslugama.Value = SaUslugama;
             cmd.Parameters.Add(sauslugama);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void KopirajKontejnerIzKonacne(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "KopirajKontejnerIzKonacne";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
