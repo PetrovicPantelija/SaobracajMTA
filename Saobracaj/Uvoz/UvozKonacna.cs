@@ -3899,7 +3899,7 @@ namespace Saobracaj.Uvoz
 
         private void button30_Click(object sender, EventArgs e)
         {
-            ExportToHZ();
+        
         }
 
         private void OpstiInterni(int Interni)
@@ -4166,6 +4166,31 @@ namespace Saobracaj.Uvoz
 
                 throw ex;
             }
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            ExportToHZ();
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            ExportToDrumski();
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            ExportToMagacin();
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            ExportToBezbednost();
+        }
+
+        private void button37_Click(object sender, EventArgs e)
+        {
+            ExportToSpediter();
         }
     }
 }
