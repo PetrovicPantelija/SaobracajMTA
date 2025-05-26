@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -914,7 +915,6 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-
         public void KopirajKontejner(int ID, int SaUslugama)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -1214,6 +1214,84 @@ int PotvrdioKlijent, int UradilaCarina,
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
+        }
+
+        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID)> stavke, int Uvoz)
+        {
+            DataTable tvp = new DataTable();
+            tvp.Columns.Add("KontejnerID", typeof(int));
+            tvp.Columns.Add("ManipulacijaID", typeof(int));
+
+            foreach (var s in stavke)
+            {
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID);
+            }
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            using (SqlCommand cmd = new SqlCommand("NapraviRadniNalogDrumski", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Dodavanje TVP parametra
+                SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Stavke", tvp);
+                tvpParam.SqlDbType = SqlDbType.Structured;
+                tvpParam.TypeName = "TVP_Stavke";
+
+                // Dodavanje int parametra Uvoz
+                SqlParameter uvozParam = new SqlParameter();
+                uvozParam.ParameterName = "@Uvoz";
+                uvozParam.SqlDbType = SqlDbType.Int;
+                uvozParam.Direction = ParameterDirection.Input;
+                uvozParam.Value = Uvoz;
+                cmd.Parameters.Add(uvozParam);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            MessageBox.Show("Radni nalog uspešno kreiran.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        public void UpdateRadniNalogDrumski(List<(int kontejnerID, int manipulacijaID)> stavke, int nalogID, int Uvoz)
+        {
+            DataTable tvp = new DataTable();
+            tvp.Columns.Add("KontejnerID", typeof(int));
+            tvp.Columns.Add("ManipulacijaID", typeof(int));
+
+            foreach (var s in stavke)
+            {
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID);
+            }
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            using (SqlCommand cmd = new SqlCommand("DodajStavkeURadniNalog", conn)) 
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Stavke", tvp);
+                tvpParam.SqlDbType = SqlDbType.Structured;
+                tvpParam.TypeName = "TVP_Stavke";
+
+                SqlParameter nalogParam = new SqlParameter();
+                nalogParam.ParameterName = "@NalogID";
+                nalogParam.SqlDbType = SqlDbType.Int;
+                nalogParam.Direction = ParameterDirection.Input;
+                nalogParam.Value = nalogID;
+                cmd.Parameters.Add(nalogParam);
+
+                SqlParameter uvozParam = new SqlParameter();
+                uvozParam.ParameterName = "@Uvoz";
+                uvozParam.SqlDbType = SqlDbType.Int;
+                uvozParam.Direction = ParameterDirection.Input;
+                uvozParam.Value = Uvoz;
+                cmd.Parameters.Add(uvozParam);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            MessageBox.Show("Stavke su uspešno dodate u postojeći nalog.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

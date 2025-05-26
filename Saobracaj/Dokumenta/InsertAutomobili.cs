@@ -223,8 +223,6 @@ namespace Saobracaj.Dokumenta
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
-
-
         }
 
         public void DelAutomobiliServis(int ID)
@@ -277,22 +275,20 @@ namespace Saobracaj.Dokumenta
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
-
-
         }
 
 
-
         public void InsAutomobili(int Zaposleni, string RegBr, string Marka, int Sluzbeni
-            , string Model, DateTime DatumRegistracije, int GodinaProizvodnje, string Gorivo
+           , string Model, DateTime DatumRegistracije, int GodinaProizvodnje, string Gorivo
            , int ZapreminaMotora, string Kategorija, DateTime VServisUradjen, double VServisKM
            , DateTime VServisSledeci, DateTime MServisUradjen, double MServisKM, DateTime MServisSledeci
            , string BrojPlombe1, string BrojPlombe2, DateTime PPAparatDatumOvere, DateTime PPAparatDatumIsteka
            , string PPAparatSeriski, DateTime PRvaPomocDatumIsteka, int TrougaoIma, int SajlaZaVucu
-             , int Marker, int Lanci, string LokacijaLanci, string ZGDOT
+           , int Marker, int Lanci, string LokacijaLanci, string ZGDOT
            , string ZGLokacija, string ZGDubinaSare, string LGDot, string LGLokacija
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
-           , string NivoUlja, string Nepravilnosti, string MestoTroska
+           , string NivoUlja, string Nepravilnosti, string MestoTroska, int VlasnistvoLegeta
+           , string Vozac, string LKVozaca, string VozacTelefon
             )
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -300,10 +296,6 @@ namespace Saobracaj.Dokumenta
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutomobili";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-
-
-
 
 
             SqlParameter parameter0 = new SqlParameter();
@@ -622,6 +614,37 @@ namespace Saobracaj.Dokumenta
             parameter38.Value = MestoTroska;
             myCommand.Parameters.Add(parameter38);
 
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@VlasnistvoLegeta";
+            parameter39.SqlDbType = SqlDbType.Int;
+            // parameter9.Size = 50;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = VlasnistvoLegeta;
+            myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@Vozac";
+            parameter40.SqlDbType = SqlDbType.NVarChar;
+            parameter40.Size = 50;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = Vozac;
+            myCommand.Parameters.Add(parameter40);
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@LKVozaca";
+            parameter41.SqlDbType = SqlDbType.NVarChar;
+            parameter41.Size = 50;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = LKVozaca;
+            myCommand.Parameters.Add(parameter41);
+
+            SqlParameter parameter42 = new SqlParameter();
+            parameter42.ParameterName = "@VozacTelefon";
+            parameter42.SqlDbType = SqlDbType.NVarChar;
+            parameter42.Size = 50;
+            parameter42.Direction = ParameterDirection.Input;
+            parameter42.Value = VozacTelefon;
+            myCommand.Parameters.Add(parameter42);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -670,7 +693,8 @@ namespace Saobracaj.Dokumenta
              , int Marker, int Lanci, string LokacijaLanci, string ZGDOT
            , string ZGLokacija, string ZGDubinaSare, string LGDot, string LGLokacija
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
-           , string NivoUlja, string Nepravilnosti, string MestoTroska)
+           , string NivoUlja, string Nepravilnosti, string MestoTroska, int VlasnistvoLegeta
+           , string Vozac, string LKVozaca, string VozacTelefon)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1001,7 +1025,37 @@ namespace Saobracaj.Dokumenta
             parameter38.Value = MestoTroska;
             myCommand.Parameters.Add(parameter38);
 
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@VlasnistvoLegeta";
+            parameter39.SqlDbType = SqlDbType.Int;
+            // parameter9.Size = 50;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = VlasnistvoLegeta;
+            myCommand.Parameters.Add(parameter39);
 
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@Vozac";
+            parameter40.SqlDbType = SqlDbType.NVarChar;
+            parameter40.Size = 50;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = Vozac;
+            myCommand.Parameters.Add(parameter40);
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@LKVozaca";
+            parameter41.SqlDbType = SqlDbType.NVarChar;
+            parameter41.Size = 50;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = LKVozaca;
+            myCommand.Parameters.Add(parameter41);
+
+            SqlParameter parameter42 = new SqlParameter();
+            parameter42.ParameterName = "@VozacTelefon";
+            parameter42.SqlDbType = SqlDbType.NVarChar;
+            parameter42.Size = 50;
+            parameter42.Direction = ParameterDirection.Input;
+            parameter42.Value = VozacTelefon;
+            myCommand.Parameters.Add(parameter42);
 
 
             myConnection.Open();
