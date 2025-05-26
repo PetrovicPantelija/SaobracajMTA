@@ -4193,7 +4193,11 @@ namespace Saobracaj.Uvoz
             ExportToSpediter();
         }
 
-
+        private void button38_Click(object sender, EventArgs e)
+        {
+            frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text));
+            ppDU.Show();
+        }
     }
 }
 

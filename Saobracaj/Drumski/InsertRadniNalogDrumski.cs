@@ -21,7 +21,7 @@ namespace Saobracaj.Drumski
                  //decimal? Trosak, int? Valuta, int? KamionID, int? StatusID
         public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, string MestoUtovara, string AdresaUtovara,
                     string MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
-                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID)
+                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, decimal? Cena, string kontaktNaIstovaru)
         
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -157,6 +157,21 @@ namespace Saobracaj.Drumski
             status.Value = (StatusID.HasValue && StatusID.Value > 0) ? (object)StatusID.Value : DBNull.Value;
             cmd.Parameters.Add(status);
 
+            SqlParameter cena = new SqlParameter();
+            cena.ParameterName = "@Cena";
+            cena.SqlDbType = SqlDbType.Decimal;
+            cena.Direction = ParameterDirection.Input;
+            cena.Value = Cena.HasValue ? (object)Cena.Value : DBNull.Value;
+            cmd.Parameters.Add(cena);
+
+            SqlParameter kontaktNaistovaru = new SqlParameter();
+            kontaktNaistovaru.ParameterName = "@kontaktNaIstovaru";
+            kontaktNaistovaru.SqlDbType = SqlDbType.NVarChar;
+            kontaktNaistovaru.Size = 50;
+            kontaktNaistovaru.Direction = ParameterDirection.Input;
+            kontaktNaistovaru.Value = (object)kontaktNaIstovaru ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktNaIstovaru);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -207,6 +222,65 @@ namespace Saobracaj.Drumski
             kamionID.SqlDbType = SqlDbType.Int;
             kamionID.Direction = ParameterDirection.Input;
             kamionID.Value = KamionID;
+            cmd.Parameters.Add(kamionID);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void DodeliKamionP(int ID, string RegBr)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DodeliKamionZaRadniNalogDrumskiP";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter kamionID = new SqlParameter();
+            kamionID.ParameterName = "@RegBr";
+            kamionID.SqlDbType = SqlDbType.NVarChar;
+            kamionID.Size = 50;
+            kamionID.Direction = ParameterDirection.Input;
+            kamionID.Value = RegBr;
             cmd.Parameters.Add(kamionID);
 
             conn.Open();

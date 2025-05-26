@@ -32,14 +32,14 @@ namespace Saobracaj.Drumski
             Office2010Colors.ApplyManagedColors(this, Color.White);
             //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
-            panelHeader.Visible = false;
+            meniHeader.Visible = false;
             this.ControlBox = true;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 // toolStripHeader.Visible = false;
-                panelHeader.Visible = true;
+                meniHeader.Visible = true;
                 meniHeader.Visible = false;
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -116,7 +116,7 @@ namespace Saobracaj.Drumski
             }
             else
             {
-                panelHeader.Visible = false;
+                meniHeader.Visible = false;
                 meniHeader.Visible = true;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
@@ -147,7 +147,7 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent, mu.Naziv AS MestoUtovara, rn.AdresaUtovara, rn.MestoIstovara AS MestoIstovara, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara, p2.PaNaziv AS BrojPlombe, ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
-             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID " +
+             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona" +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = ik.MesoUtovara " +
@@ -161,7 +161,7 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,  mu.Naziv AS MestoUtovara, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara, p2.PaNaziv AS BrojPlombe, i.VGMBrod AS BTTKontejnetra, i.BrutoRobe AS BTTRobe, " +
-             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID  " +
+             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona  " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = i.MesoUtovara " +
@@ -175,7 +175,7 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,rn.MestoUtovara,rn.AdresaUtovara,mu.Naziv AS MestoIstovara,rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, uk.BrodskaTeretnica AS BrojPlombe,uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID  " +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN Partnerji p on uk.Nalogodavac3 = p.PaSifra " +
@@ -190,7 +190,7 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,rn.MestoUtovara,rn.AdresaUtovara,mu.Naziv AS MestoIstovara,rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, u.BrodskaTeretnica AS BrojPlombe,u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, "+
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID  " +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN Partnerji p on u.Nalogodavac3 = p.PaSifra " +
@@ -218,7 +218,9 @@ namespace Saobracaj.Drumski
                 txtMestoIstovara.Text = dr["MestoIstovara"].ToString();
                 txtKlijent.Text = dr["Klijent"].ToString();
                 txtNapomenaPoz.Text = dr["NapomenaZaPozicioniranje"].ToString();
-
+                txtVozac.Text =  dr["Vozac"].ToString();
+                txtBrojTelefona.Text =  dr["BrojTelefona"].ToString();
+                txtBrojLK.Text = dr["LicnaKarta"].ToString();
                 //if (dr["AdresaUtovara"] != DBNull.Value)
                 //    cboAdresaUtovara.SelectedValue = Convert.ToInt32(dr["AdresaUtovara"].ToString());
                 //if (dr["AdresaIstovara"] != DBNull.Value)
@@ -258,6 +260,14 @@ namespace Saobracaj.Drumski
                     txtBrutoR.Value = Convert.ToDecimal(dr["BTTRobe"].ToString());
                 if(dr["KamionID"]!=DBNull.Value)
                     comboBox1.SelectedValue =(dr["KamionID"].ToString());
+
+
+                //
+                txtkontaktNaIstovaru.Text = dr["GranicniPrelaz"].ToString();
+                if (dr["Cena"] != DBNull.Value)
+                    txtTrosak.Value = Convert.ToDecimal(dr["Cena"].ToString());
+
+
 
                 if (Convert.ToInt32(dr["Uvoz"].ToString()) == 0)
                 {
@@ -355,6 +365,7 @@ namespace Saobracaj.Drumski
             string mestoUtovara = string.IsNullOrWhiteSpace(txtMestoUtovara.Text) ? null : txtMestoUtovara.Text;
             string adresaUtovara = string.IsNullOrWhiteSpace(txtAdresaUtovara.Text) ? null : txtAdresaUtovara.Text;
             string mestoIstovara = string.IsNullOrWhiteSpace(txtMestoIstovara.Text) ? null : txtMestoIstovara.Text;
+            string kontaktistovara = string.IsNullOrWhiteSpace(txtkontaktNaIstovaru.Text) ? null : txtkontaktNaIstovaru.Text;
             DateTime? datumIstovara = null;
             DateTime? datumUtovara = null;
             string kontaktSpeditera = string.IsNullOrWhiteSpace(txtKontaktOsobeSpeditera.Text) ? null : txtKontaktOsobeSpeditera.Text;
@@ -374,12 +385,18 @@ namespace Saobracaj.Drumski
             }
             string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text;
             decimal? trosak = null;
+            decimal? cena = null;
             if (!string.IsNullOrWhiteSpace(txtTrosak.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedTrosak))
             {
                 trosak = parsedTrosak;
             }
 
-           string valutaID = null;
+            if (!string.IsNullOrWhiteSpace(txtCena.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedCena))
+            {
+                cena = parsedCena;
+            }
+
+            string valutaID = null;
             if (txtValuta.SelectedValue != null)
             {
                 valutaID = txtValuta.SelectedValue.ToString();
@@ -396,7 +413,7 @@ namespace Saobracaj.Drumski
             }
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             ins.UpdateRadniNalogDrumski(iD, AutoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                dtPreuzimanjaPraznogKont, granicniPrelaz, kontaktSpeditera, trosak, valutaID, kamionID, statusID);
+                dtPreuzimanjaPraznogKont, granicniPrelaz, kontaktSpeditera, trosak, valutaID, kamionID, statusID, cena, kontaktistovara);
 
         }
     }

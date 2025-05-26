@@ -83,7 +83,7 @@ namespace Saobracaj.Izvoz
             InsertUvoz isu = new InsertUvoz();
             int uvoz = 0;
 
-            List<(int kontejnerID, int manipulacijaID)> stavke = new List<(int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID)> stavke = new List<(int, int, int)>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
             {
@@ -94,10 +94,10 @@ namespace Saobracaj.Izvoz
                                     "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                 int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                 int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                stavke.Add((kontejnerID, manipulacijaID));
+                stavke.Add((kontejnerID, manipulacijaID, IKID));
             }
 
             if (stavke.Count > 0)
@@ -111,7 +111,7 @@ namespace Saobracaj.Izvoz
         {
             int uvoz = 0;
             InsertUvoz isu = new InsertUvoz();
-            List<(int kontejnerID, int manipulacijaID)> stavkeBezNaloga = new List<(int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID)> stavkeBezNaloga = new List<(int, int, int)>();
             HashSet<int> nalogIds = new HashSet<int>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
@@ -129,9 +129,10 @@ namespace Saobracaj.Izvoz
                 }
                 else
                 {
+                    int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID));
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID));
                 }
             }
 

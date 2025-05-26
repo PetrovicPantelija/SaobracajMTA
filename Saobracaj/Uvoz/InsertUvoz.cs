@@ -1216,15 +1216,16 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID)> stavke, int Uvoz)
+        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID, int UKID)> stavke, int Uvoz)
         {
             DataTable tvp = new DataTable();
             tvp.Columns.Add("KontejnerID", typeof(int));
             tvp.Columns.Add("ManipulacijaID", typeof(int));
+            tvp.Columns.Add("UKID", typeof(int));
 
             foreach (var s in stavke)
             {
-                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID);
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID, s.UKID);
             }
 
             using (SqlConnection conn = new SqlConnection(connection))
@@ -1235,7 +1236,7 @@ int PotvrdioKlijent, int UradilaCarina,
                 // Dodavanje TVP parametra
                 SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Stavke", tvp);
                 tvpParam.SqlDbType = SqlDbType.Structured;
-                tvpParam.TypeName = "TVP_Stavke";
+                tvpParam.TypeName = "TVP_StavkePanta";
 
                 // Dodavanje int parametra Uvoz
                 SqlParameter uvozParam = new SqlParameter();
@@ -1253,11 +1254,12 @@ int PotvrdioKlijent, int UradilaCarina,
         }
 
 
-        public void UpdateRadniNalogDrumski(List<(int kontejnerID, int manipulacijaID)> stavke, int nalogID, int Uvoz)
+        public void UpdateRadniNalogDrumski(List<(int kontejnerID, int manipulacijaID, int UKID)> stavke, int nalogID, int Uvoz)
         {
             DataTable tvp = new DataTable();
             tvp.Columns.Add("KontejnerID", typeof(int));
             tvp.Columns.Add("ManipulacijaID", typeof(int));
+            tvp.Columns.Add("UKID", typeof(int));
 
             foreach (var s in stavke)
             {
@@ -1271,7 +1273,7 @@ int PotvrdioKlijent, int UradilaCarina,
 
                 SqlParameter tvpParam = cmd.Parameters.AddWithValue("@Stavke", tvp);
                 tvpParam.SqlDbType = SqlDbType.Structured;
-                tvpParam.TypeName = "TVP_Stavke";
+                tvpParam.TypeName = "TVP_StavkePanta";
 
                 SqlParameter nalogParam = new SqlParameter();
                 nalogParam.ParameterName = "@NalogID";
