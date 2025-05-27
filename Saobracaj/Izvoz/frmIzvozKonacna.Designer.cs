@@ -253,6 +253,7 @@ namespace Saobracaj.Izvoz
             this.cboPPCNT2 = new System.Windows.Forms.ComboBox();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button32 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
@@ -271,7 +272,6 @@ namespace Saobracaj.Izvoz
             this.button30 = new System.Windows.Forms.Button();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.button32 = new System.Windows.Forms.Button();
             this.meniHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
@@ -2729,6 +2729,27 @@ namespace Saobracaj.Izvoz
             this.panel3.Size = new System.Drawing.Size(1406, 31);
             this.panel3.TabIndex = 6;
             // 
+            // button32
+            // 
+            this.button32.AutoSize = true;
+            this.button32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button32.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button32.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button32.FlatAppearance.BorderSize = 0;
+            this.button32.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button32.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button32.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button32.Location = new System.Drawing.Point(1306, 0);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(156, 31);
+            this.button32.TabIndex = 25;
+            this.button32.Text = "Drumske usluge";
+            this.button32.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
+            // 
             // button31
             // 
             this.button31.AutoSize = true;
@@ -3197,27 +3218,6 @@ namespace Saobracaj.Izvoz
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // button32
-            // 
-            this.button32.AutoSize = true;
-            this.button32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button32.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button32.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button32.FlatAppearance.BorderSize = 0;
-            this.button32.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button32.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button32.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button32.Location = new System.Drawing.Point(1306, 0);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(156, 39);
-            this.button32.TabIndex = 25;
-            this.button32.Text = "Drumske usluge";
-            this.button32.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // frmIzvozKonacna
             // 

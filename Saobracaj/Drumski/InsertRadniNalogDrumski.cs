@@ -21,7 +21,7 @@ namespace Saobracaj.Drumski
                  //decimal? Trosak, int? Valuta, int? KamionID, int? StatusID
         public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, string MestoUtovara, string AdresaUtovara,
                     string MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
-                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, decimal? Cena, string kontaktNaIstovaru)
+                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, decimal? Cena, string KontaktNaIstovaru)
         
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -123,7 +123,7 @@ namespace Saobracaj.Drumski
             SqlParameter kontaktSpeditera = new SqlParameter();
             kontaktSpeditera.ParameterName = "@KontaktSpeditera";
             kontaktSpeditera.SqlDbType = SqlDbType.NVarChar;
-            kontaktSpeditera.Size = 50;
+            kontaktSpeditera.Size = 100;
             kontaktSpeditera.Direction = ParameterDirection.Input;
             kontaktSpeditera.Value = (object)KontaktSpeditera ?? DBNull.Value;
             cmd.Parameters.Add(kontaktSpeditera);
@@ -165,12 +165,12 @@ namespace Saobracaj.Drumski
             cmd.Parameters.Add(cena);
 
             SqlParameter kontaktNaistovaru = new SqlParameter();
-            kontaktNaistovaru.ParameterName = "@kontaktNaIstovaru";
+            kontaktNaistovaru.ParameterName = "@KontaktNaIstovaru";
             kontaktNaistovaru.SqlDbType = SqlDbType.NVarChar;
             kontaktNaistovaru.Size = 50;
             kontaktNaistovaru.Direction = ParameterDirection.Input;
-            kontaktNaistovaru.Value = (object)kontaktNaIstovaru ?? DBNull.Value;
-            cmd.Parameters.Add(kontaktNaIstovaru);
+            kontaktNaistovaru.Value = (object)KontaktNaIstovaru ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktNaistovaru);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

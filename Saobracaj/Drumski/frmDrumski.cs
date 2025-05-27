@@ -147,13 +147,16 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent, mu.Naziv AS MestoUtovara, rn.AdresaUtovara, rn.MestoIstovara AS MestoIstovara, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara, p2.PaNaziv AS BrojPlombe, ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
-             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona" +
+             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = ik.MesoUtovara " +
                       "LEFT JOIN Partnerji p on ik.Klijent3 = p.PaSifra " +
                       "LEFT JOIN Partnerji p2 ON ik.BrodskaPlomba = p2.PaSifra AND p2.Brodar = 1 " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = ik.NapomenaReexport " +
+                      "LEFT JOIN Carinarnice cc on cc.ID = ik.MestoCarinjenja " +
              "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
              "UNION " +
              "SELECT	rn.ID ," +
@@ -161,13 +164,16 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,  mu.Naziv AS MestoUtovara, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara, p2.PaNaziv AS BrojPlombe, i.VGMBrod AS BTTKontejnetra, i.BrutoRobe AS BTTRobe, " +
-             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona  " +
+             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = i.MesoUtovara " +
                       "LEFT JOIN Partnerji p on i.Klijent3 = p.PaSifra " +
                       "LEFT JOIN Partnerji p2 ON i.BrodskaPlomba = p2.PaSifra AND p2.Brodar = 1 " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
+                      "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
              "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
              "UNION " +
              "SELECT rn.ID ," +
@@ -175,7 +181,8 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,rn.MestoUtovara,rn.AdresaUtovara,mu.Naziv AS MestoIstovara,rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, uk.BrodskaTeretnica AS BrojPlombe,uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona " +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
+             " c.Naziv as OdredisnaCarina ,p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN Partnerji p on uk.Nalogodavac3 = p.PaSifra " +
@@ -183,6 +190,10 @@ namespace Saobracaj.Drumski
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara " + /*AND PaKOSifra = mu.Naziv*/
                     "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
                     "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                    "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = uk.PostupakSaRobom " +
+                    "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = uk.CarinskiPostupak " +
+                    "LEFT JOIN Carinarnice c on c.ID = uk.OdredisnaCarina " +
+                     "LEFT JOIN Partnerji p2 on p2.PaSifra = uk.OdredisnaSpedicija " +
              "where rn.ID= " + id + " AND rn.Uvoz = 1 " +
              "UNION " +
              "SELECT rn.ID ," +
@@ -190,7 +201,8 @@ namespace Saobracaj.Drumski
              "p.PaNaziv AS Klijent,rn.MestoUtovara,rn.AdresaUtovara,mu.Naziv AS MestoIstovara,rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, u.BrodskaTeretnica AS BrojPlombe,u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, "+
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona  " +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
+             " c.Naziv as OdredisnaCarina, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN Partnerji p on u.Nalogodavac3 = p.PaSifra " +
@@ -198,6 +210,10 @@ namespace Saobracaj.Drumski
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara " + /*AND PaKOSifra = mu.Naziv*/
                     "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = u.NapomenaZaPozicioniranje " +
                     "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                    "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = u.PostupakSaRobom " +
+                    "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = u.CarinskiPostupak " +
+                    "LEFT JOIN Carinarnice c on c.ID = u.OdredisnaCarina " +
+                     "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
              "where rn.ID= " + id + " AND rn.Uvoz = 1", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -260,14 +276,16 @@ namespace Saobracaj.Drumski
                     txtBrutoR.Value = Convert.ToDecimal(dr["BTTRobe"].ToString());
                 if(dr["KamionID"]!=DBNull.Value)
                     comboBox1.SelectedValue =(dr["KamionID"].ToString());
+                txtDodatniOpis.Text = dr["DodatniOpis"].ToString();
 
+                txtOdredisnaCarinarnica.Text = dr["OdredisnaCarina"].ToString();
+                txtSpediterCarinarnice.Text = dr["OdredisnaSpedicija"].ToString();
+                txtCarinjenjeIzvozno.Text = dr["CarinjenjeIzvozno"].ToString().Trim();
 
                 //
                 txtkontaktNaIstovaru.Text = dr["GranicniPrelaz"].ToString();
                 if (dr["Cena"] != DBNull.Value)
-                    txtTrosak.Value = Convert.ToDecimal(dr["Cena"].ToString());
-
-
+                    txtCena.Value = Convert.ToDecimal(dr["Cena"].ToString());
 
                 if (Convert.ToInt32(dr["Uvoz"].ToString()) == 0)
                 {
@@ -279,6 +297,7 @@ namespace Saobracaj.Drumski
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
                     txtNapomenaPoz.Enabled = false;
+                    txtDodatniOpis.Enabled = false;
                 }
                 else if (Convert.ToInt32(dr["Uvoz"].ToString()) == 1)
                 {
@@ -286,7 +305,6 @@ namespace Saobracaj.Drumski
                     txtBL.Enabled = false;
                     txtBokingBrodara.Enabled = false;
                     txtMestoUtovara.Enabled = true;
-                    txtReferenca.Enabled = false;
                     txtReferenca.Enabled = false;
                     txtKlijent.Enabled = false;
                     txtMestoIstovara.Enabled = false;

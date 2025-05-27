@@ -1263,7 +1263,7 @@ int PotvrdioKlijent, int UradilaCarina,
 
             foreach (var s in stavke)
             {
-                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID);
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID,s.UKID);
             }
 
             using (SqlConnection conn = new SqlConnection(connection))

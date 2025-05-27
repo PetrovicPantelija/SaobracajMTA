@@ -128,7 +128,7 @@ namespace Saobracaj.Uvoz
                         " Inner join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
                         " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozVrstaManipulacije.OrgJed " +
                         " inner join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
-                        " left join RadniNalogDrumski on Uvoz.ID = RadniNalogDrumski.KontejnerID and UvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                        " left join RadniNalogDrumski on Uvoz.ID = RadniNalogDrumski.KontejnerID and UvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND UvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                         " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
                         " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
                         " where  OrganizacioneJedinice.Naziv = 'Drumski prevoz' "+
@@ -142,7 +142,7 @@ namespace Saobracaj.Uvoz
                         " Inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
                         " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
                         " inner join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
-                        " left join RadniNalogDrumski on UvozKonacna.ID = RadniNalogDrumski.KontejnerID and UvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                        " left join RadniNalogDrumski on UvozKonacna.ID = RadniNalogDrumski.KontejnerID and UvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND UvozKonacnaVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                         " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
                         " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
                         " where  OrganizacioneJedinice.Naziv = 'Drumski prevoz' ";

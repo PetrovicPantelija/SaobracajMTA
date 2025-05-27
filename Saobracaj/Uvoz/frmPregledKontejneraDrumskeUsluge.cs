@@ -139,9 +139,9 @@ namespace Saobracaj.Uvoz
                         " Inner join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
                         " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozVrstaManipulacije.OrgJed " +
                         " inner join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
-                        " left join RadniNalogDrumski on Uvoz.ID = RadniNalogDrumski.KontejnerID   and UvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                        " left join RadniNalogDrumski on Uvoz.ID = RadniNalogDrumski.KontejnerID and UvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND UvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                         " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
-                        " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
+                        " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
                         " where Uvoz.ID = " + kontejner + "  and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by UvozVrstaManipulacije.ID";
 
             }
@@ -150,15 +150,15 @@ namespace Saobracaj.Uvoz
                   select = "select  UvozKonacnaVrstaManipulacije.ID as UKID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
                         " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                         "  OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-                        "  RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila," +
-                        "CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,  RadniNalogDrumski.Uvoz    " +
+                        "  RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
+                        "CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,  RadniNalogDrumski.Uvoz " +
                         " from UvozKonacnaVrstaManipulacije " +
-                        " Inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+                        " Inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
                         " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
                         " inner join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
-                        " left join RadniNalogDrumski on UvozKonacna.ID = RadniNalogDrumski.KontejnerID   and UvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                        " left join RadniNalogDrumski on UvozKonacna.ID = RadniNalogDrumski.KontejnerID and UvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND UvozKonacnaVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                         " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
-                        " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
+                        " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
                         " where UvozKonacna.IDNadredjeni = " + nadredjeni + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz'  order by UvozKonacnaVrstaManipulacije.ID";
             }
 

@@ -27,7 +27,7 @@ namespace Saobracaj.Izvoz
         {
             var select = "";
 
-            select = "select  IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
+            select = "select  IzvozVrstaManipulacije.ID as IKID, IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                      " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
@@ -36,23 +36,23 @@ namespace Saobracaj.Izvoz
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
                     " inner join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
-                    " left join RadniNalogDrumski on Izvoz.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                    " left join RadniNalogDrumski on Izvoz.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                     " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
                     " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
                     " where  OrganizacioneJedinice.Naziv = 'Drumski prevoz' " +
                     "UNION " +
-                     "select  IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
+                     "select  IzvozKonacnaVrstaManipulacije.ID as IKID,IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                     " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-                    " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila," +
+                    " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
                     " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr   " +
                     " from IzvozKonacnaVrstaManipulacije " +
-                    " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+                    " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
                     " inner join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID  " +
-                    " left join RadniNalogDrumski on IzvozKonacna.ID = RadniNalogDrumski.KontejnerID and IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije" +
+                    " left join RadniNalogDrumski on IzvozKonacna.ID = RadniNalogDrumski.KontejnerID and IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND  IzvozKonacnaVrstaManipulacije.ID = RadniNalogDrumski.UKID  " +
                     " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
-                    " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
+                    " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
                     " where  OrganizacioneJedinice.Naziv = 'Drumski prevoz' ";
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
