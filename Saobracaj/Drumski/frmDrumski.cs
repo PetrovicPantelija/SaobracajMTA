@@ -148,7 +148,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara, p2.PaNaziv AS BrojPlombe, ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
-             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = ik.MesoUtovara " +
@@ -165,7 +165,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara, p2.PaNaziv AS BrojPlombe, i.VGMBrod AS BTTKontejnetra, i.BrutoRobe AS BTTRobe, " +
              "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
-             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS  OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = i.MesoUtovara " +
@@ -182,7 +182,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, uk.BrodskaTeretnica AS BrojPlombe,uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
-             " c.Naziv as OdredisnaCarina ,p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru " +
+             "'' AS NapomenaCarinskiPostupak,c.Naziv as OdredisnaCarina ,p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN Partnerji p on uk.Nalogodavac3 = p.PaSifra " +
@@ -202,7 +202,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, u.BrodskaTeretnica AS BrojPlombe,u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, "+
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
-             " c.Naziv as OdredisnaCarina, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru  " +
+             " '' AS NapomenaCarinskiPostupak, c.Naziv as OdredisnaCarina, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN Partnerji p on u.Nalogodavac3 = p.PaSifra " +
@@ -279,6 +279,7 @@ namespace Saobracaj.Drumski
                 txtOdredisnaCarinarnica.Text = dr["OdredisnaCarina"].ToString();
                 txtSpediterCarinarnice.Text = dr["OdredisnaSpedicija"].ToString();
                 txtCarinjenjeIzvozno.Text = dr["CarinjenjeIzvozno"].ToString().Trim();
+                txtCarinjenjeUvozno.Text = dr["NapomenaCarinskiPostupak"].ToString();
 
                 //
                 txtkontaktNaIstovaru.Text = dr["KontaktNaIstovaru"].ToString();
@@ -303,6 +304,7 @@ namespace Saobracaj.Drumski
                     txtVozac.Enabled = false;
                     txtBrojLK.Enabled = false;
                     txtBrojTelefona.Enabled = false;
+                    txtCarinjenjeUvozno.Enabled = false;
                 }
                 else if (Convert.ToInt32(dr["Uvoz"].ToString()) == 1)
                 {
@@ -324,6 +326,7 @@ namespace Saobracaj.Drumski
                     txtVozac.Enabled = false;
                     txtBrojLK.Enabled = false;
                     txtBrojTelefona.Enabled = false;
+                    txtCarinjenjeUvozno.Enabled = false;
                 }
             }
             con.Close();

@@ -39,7 +39,7 @@ namespace Saobracaj.Izvoz
             if (nadredjeni == 0)
             {
                 
-                select = " IzvozVrstaManipulacije.ID as IKID,IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
+                select = "select IzvozVrstaManipulacije.ID as IKID,IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                      " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
