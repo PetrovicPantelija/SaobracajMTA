@@ -148,7 +148,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara, p2.PaNaziv AS BrojPlombe, ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
-             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis " +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = ik.MesoUtovara " +
@@ -165,7 +165,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru, rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara, p2.PaNaziv AS BrojPlombe, i.VGMBrod AS BTTKontejnetra, i.BrutoRobe AS BTTRobe, " +
              "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
-             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis " +
+             "(ccp.Oznaka + ' ' + ccp.Naziv) AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN MestaUtovara mu on mu.ID = i.MesoUtovara " +
@@ -182,7 +182,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, uk.BrodskaTeretnica AS BrojPlombe,uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
-             " c.Naziv as OdredisnaCarina ,p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis " +
+             " c.Naziv as OdredisnaCarina ,p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN Partnerji p on uk.Nalogodavac3 = p.PaSifra " +
@@ -202,7 +202,7 @@ namespace Saobracaj.Drumski
              "rn.KontaktOsobaNaIstovaru,rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara, u.BrodskaTeretnica AS BrojPlombe,u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, "+
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
-             " c.Naziv as OdredisnaCarina, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis  " +
+             " c.Naziv as OdredisnaCarina, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN Partnerji p on u.Nalogodavac3 = p.PaSifra " +
@@ -231,16 +231,14 @@ namespace Saobracaj.Drumski
                     chkAutoDan.Checked = true;
                 txtMestoPreuzimanja.Text = dr["MestoPreuzimanjaKontejnera"].ToString();
                 txtMestoUtovara.Text = dr["MestoUtovara"].ToString();
+                txtAdresaUtovara.Text = dr["AdresaUtovara"].ToString();
                 txtMestoIstovara.Text = dr["MestoIstovara"].ToString();
                 txtKlijent.Text = dr["Klijent"].ToString();
                 txtNapomenaPoz.Text = dr["NapomenaZaPozicioniranje"].ToString();
                 txtVozac.Text =  dr["Vozac"].ToString();
                 txtBrojTelefona.Text =  dr["BrojTelefona"].ToString();
                 txtBrojLK.Text = dr["LicnaKarta"].ToString();
-                //if (dr["AdresaUtovara"] != DBNull.Value)
-                //    cboAdresaUtovara.SelectedValue = Convert.ToInt32(dr["AdresaUtovara"].ToString());
-                //if (dr["AdresaIstovara"] != DBNull.Value)
-                //    cboAdresaIstovara.SelectedValue = Convert.ToInt32(dr["AdresaIstovara"].ToString());
+
                 if (dr["DatumUtovara"] != DBNull.Value)
                     dtpUtovara.Value = Convert.ToDateTime(dr["DatumUtovara"].ToString());
                 if (dr["DatumIstovara"] != DBNull.Value)
@@ -251,8 +249,8 @@ namespace Saobracaj.Drumski
                 //txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
                 if (dr["Trosak"] != DBNull.Value)
                     txtTrosak.Value = Convert.ToDecimal(dr["Trosak"].ToString());
-                if (dr["Valuta"] != DBNull.Value)
-                    txtValuta.SelectedValue = (dr["Valuta"]);
+                //if (dr["Valuta"] != DBNull.Value)
+                //    txtValuta.SelectedValue = (dr["Valuta"]);
                 if (dr["Valuta"] != DBNull.Value)
                 {
                     string sifraValute = dr["Valuta"].ToString().Trim();
@@ -283,14 +281,14 @@ namespace Saobracaj.Drumski
                 txtCarinjenjeIzvozno.Text = dr["CarinjenjeIzvozno"].ToString().Trim();
 
                 //
-                txtkontaktNaIstovaru.Text = dr["GranicniPrelaz"].ToString();
+                txtkontaktNaIstovaru.Text = dr["KontaktNaIstovaru"].ToString();
                 if (dr["Cena"] != DBNull.Value)
                     txtCena.Value = Convert.ToDecimal(dr["Cena"].ToString());
 
                 if (Convert.ToInt32(dr["Uvoz"].ToString()) == 0)
                 {
                     txtBokingBrodara.Enabled = false;
-                    lblBL.Text = "BL";
+                    label18.Text = "BL";
                     txtMestoUtovara.Enabled = false; // Read-only prikaz
                     txtAdresaUtovara.Enabled = false;
                     txtKlijent.Enabled = false;
@@ -298,10 +296,17 @@ namespace Saobracaj.Drumski
                     txtBrutoR.Enabled = false;
                     txtNapomenaPoz.Enabled = false;
                     txtDodatniOpis.Enabled = false;
+                    txtOdredisnaCarinarnica.Enabled = false;
+                    txtKontaktSpeditera.Enabled = false;
+                    txtSpediterCarinarnice.Enabled = false;
+                    txtCarinjenjeIzvozno.Enabled = false;
+                    txtVozac.Enabled = false;
+                    txtBrojLK.Enabled = false;
+                    txtBrojTelefona.Enabled = false;
                 }
                 else if (Convert.ToInt32(dr["Uvoz"].ToString()) == 1)
                 {
-                    lblBL.Text = "Broj plombe";
+                    label18.Text = "Broj plombe";
                     txtBL.Enabled = false;
                     txtBokingBrodara.Enabled = false;
                     txtMestoUtovara.Enabled = true;
@@ -312,6 +317,13 @@ namespace Saobracaj.Drumski
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
                     txtNapomenaPoz.Enabled = false;
+                    txtOdredisnaCarinarnica.Enabled = false;
+                    txtKontaktSpeditera.Enabled = false;
+                    txtSpediterCarinarnice.Enabled = false;
+                    txtCarinjenjeIzvozno.Enabled = false;
+                    txtVozac.Enabled = false;
+                    txtBrojLK.Enabled = false;
+                    txtBrojTelefona.Enabled = false;
                 }
             }
             con.Close();
@@ -409,7 +421,7 @@ namespace Saobracaj.Drumski
                 trosak = parsedTrosak;
             }
 
-            if (!string.IsNullOrWhiteSpace(txtCena.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedCena))
+            if (!string.IsNullOrWhiteSpace(txtCena.Text) && decimal.TryParse(txtCena.Text, out decimal parsedCena))
             {
                 cena = parsedCena;
             }
@@ -429,10 +441,10 @@ namespace Saobracaj.Drumski
             {
                 statusID = parsedStatusID;
             }
+            string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text;
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             ins.UpdateRadniNalogDrumski(iD, AutoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                dtPreuzimanjaPraznogKont, granicniPrelaz, kontaktSpeditera, trosak, valutaID, kamionID, statusID, cena, kontaktistovara);
-
+                dtPreuzimanjaPraznogKont, granicniPrelaz, kontaktSpeditera, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktistovara);
         }
     }
 }

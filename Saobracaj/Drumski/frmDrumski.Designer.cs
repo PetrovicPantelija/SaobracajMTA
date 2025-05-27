@@ -495,13 +495,14 @@
             this.txtTipNaloga.Location = new System.Drawing.Point(19, 142);
             this.txtTipNaloga.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtTipNaloga.Name = "txtTipNaloga";
+            this.txtTipNaloga.ReadOnly = true;
             this.txtTipNaloga.Size = new System.Drawing.Size(308, 22);
             this.txtTipNaloga.TabIndex = 565;
             // 
             // lblBL
             // 
             this.lblBL.AutoSize = true;
-            this.lblBL.Location = new System.Drawing.Point(395, 82);
+            this.lblBL.Location = new System.Drawing.Point(493, 169);
             this.lblBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBL.Name = "lblBL";
             this.lblBL.Size = new System.Drawing.Size(0, 16);
@@ -587,6 +588,7 @@
             this.txtNapomenaPoz.Location = new System.Drawing.Point(1104, 641);
             this.txtNapomenaPoz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNapomenaPoz.Name = "txtNapomenaPoz";
+            this.txtNapomenaPoz.ReadOnly = true;
             this.txtNapomenaPoz.Size = new System.Drawing.Size(308, 22);
             this.txtNapomenaPoz.TabIndex = 576;
             // 
@@ -676,7 +678,7 @@
             this.meniHeader.Controls.Add(this.panel3);
             this.meniHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
-            this.meniHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.meniHeader.Margin = new System.Windows.Forms.Padding(4);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.Size = new System.Drawing.Size(1529, 40);
             this.meniHeader.TabIndex = 585;
@@ -687,7 +689,7 @@
             this.panel3.Controls.Add(this.button21);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(123, 38);
             this.panel3.TabIndex = 2;
@@ -702,7 +704,7 @@
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.Location = new System.Drawing.Point(9, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
             this.button21.TabIndex = 14;

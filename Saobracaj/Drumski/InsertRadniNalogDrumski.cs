@@ -21,7 +21,7 @@ namespace Saobracaj.Drumski
                  //decimal? Trosak, int? Valuta, int? KamionID, int? StatusID
         public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, string MestoUtovara, string AdresaUtovara,
                     string MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
-                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, decimal? Cena, string KontaktNaIstovaru)
+                    string GranicniPrelaz, string KontaktSpeditera, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktNaIstovaru)
         
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -157,6 +157,14 @@ namespace Saobracaj.Drumski
             status.Value = (StatusID.HasValue && StatusID.Value > 0) ? (object)StatusID.Value : DBNull.Value;
             cmd.Parameters.Add(status);
 
+            SqlParameter dodatniOpis = new SqlParameter();
+            dodatniOpis.ParameterName = "@DodatniOpis";
+            dodatniOpis.SqlDbType = SqlDbType.NVarChar;
+            dodatniOpis.Size = 100;
+            dodatniOpis.Direction = ParameterDirection.Input;
+            dodatniOpis.Value = (object)DodatniOpis ?? DBNull.Value;
+            cmd.Parameters.Add(dodatniOpis);
+
             SqlParameter cena = new SqlParameter();
             cena.ParameterName = "@Cena";
             cena.SqlDbType = SqlDbType.Decimal;
@@ -180,12 +188,15 @@ namespace Saobracaj.Drumski
             {
                 cmd.ExecuteNonQuery();
                 tran.Commit();
+                error = false;
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis");
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {

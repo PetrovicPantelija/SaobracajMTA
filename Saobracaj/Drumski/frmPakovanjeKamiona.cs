@@ -384,7 +384,7 @@ namespace Saobracaj.Drumski
         {
             var select = "SELECT ID, Marka, RegBr, Vozac " +
                         " FROM Automobili " +
-                        " WHERE Vozac IS NOT NULL AND Vozac <>''";
+                        " WHERE VlasnistvoLegeta in (2,3)";
 
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -429,7 +429,7 @@ namespace Saobracaj.Drumski
           //      int kamionID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
 
 
-                var select = "select   rn.ID, rn.NalogID, rn.KontejnerID , vm.Naziv as UslugaNaziv, sv.Naziv AS Status, au.ID as KamionID,    au.RegBr AS Kamion " +
+                var select = "select   rn.ID, rn.NalogID, rn.KontejnerID , vm.Naziv as UslugaNaziv, sv.Naziv AS Status, au.ID as KamionID, au.RegBr AS Kamion " +
                              "from     RadniNalogDrumski rn " +
                                        "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
                                        "left join StatusVozila sv on sv.ID = rn.Status " +
