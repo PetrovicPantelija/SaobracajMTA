@@ -130,7 +130,7 @@ namespace Saobracaj.Uvoz
 
             if (nadredjeni == 0)
             { 
-                select = "select UvozKonacnaVrstaManipulacije.ID as UKID,  UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
+                select = "select UvozVrstaManipulacije.ID as UKID,  UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
                         " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                          " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                         " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +

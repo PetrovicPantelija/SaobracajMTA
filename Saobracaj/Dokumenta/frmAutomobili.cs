@@ -275,98 +275,121 @@ namespace Saobracaj.Dokumenta
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
-            int Sluzbeni = 0;
-            int TrougaoIma = 0;
-            int MarkerIma = 0;
-            int SajluZaVucu = 0;
-            int ImaLance = 0;
-            int VlasnistvoLegeta = 0;
+            if (string.IsNullOrWhiteSpace(txtSifra.Text))
+            {
+                int Sluzbeni = 0;
+                int TrougaoIma = 0;
+                int MarkerIma = 0;
+                int SajluZaVucu = 0;
+                int ImaLance = 0;
+                int VlasnistvoLegeta = 0;
 
-            if (chkLanci.Checked)
-            {
-                ImaLance = 1;
-            }
-            else
-            {
-                ImaLance = 0;
-            }
+                int? selectedID = null;
+                if (dataGridView1.CurrentRow != null)
+                {
+                    selectedID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+                }
 
-            if (chkSajlaZaVucu.Checked)
-            {
-                SajluZaVucu = 1;
-            }
-            else
-            {
-                SajluZaVucu = 0;
-            }
 
-            if (chkMarker.Checked)
-            {
-                MarkerIma = 1;
-            }
-            else
-            {
-                MarkerIma = 0;
-            }
-            if (chkImaTrougao.Checked)
-            {
-                TrougaoIma = 1;
-            }
-            else
-            {
-                TrougaoIma = 0;
-            }
-            if (chkSluzbeni.Checked)
-            {
-                Sluzbeni = 1;
-            }
-            else
-            {
-                Sluzbeni = 0;
-            }
-            //if (chkVlasnistvoLegeta.Checked)
-            //{
-            //    VlasnistvoLegeta = 1;
-            //}
-            //else
-            //{
-            //    VlasnistvoLegeta = 0;
-            //}Convert.ToInt32(txtMesto.SelectedValue)
+                if (chkLanci.Checked)
+                {
+                    ImaLance = 1;
+                }
+                else
+                {
+                    ImaLance = 0;
+                }
 
-            if (cboVozilo.SelectedValue != null) 
-            {
-                VlasnistvoLegeta = Convert.ToInt32(cboVozilo.SelectedValue);
+                if (chkSajlaZaVucu.Checked)
+                {
+                    SajluZaVucu = 1;
+                }
+                else
+                {
+                    SajluZaVucu = 0;
+                }
+
+                if (chkMarker.Checked)
+                {
+                    MarkerIma = 1;
+                }
+                else
+                {
+                    MarkerIma = 0;
+                }
+                if (chkImaTrougao.Checked)
+                {
+                    TrougaoIma = 1;
+                }
+                else
+                {
+                    TrougaoIma = 0;
+                }
+                if (chkSluzbeni.Checked)
+                {
+                    Sluzbeni = 1;
+                }
+                else
+                {
+                    Sluzbeni = 0;
+                }
+                //if (chkVlasnistvoLegeta.Checked)
+                //{
+                //    VlasnistvoLegeta = 1;
+                //}
+                //else
+                //{
+                //    VlasnistvoLegeta = 0;
+                //}Convert.ToInt32(txtMesto.SelectedValue)
+
+                if (cboVozilo.SelectedValue != null)
+                {
+                    VlasnistvoLegeta = Convert.ToInt32(cboVozilo.SelectedValue);
+                }
+                if (status == true)
+                {
+                    InsertAutomobili ins = new InsertAutomobili();
+                    ins.InsAutomobili(Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
+                        , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
+                        txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
+                        Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
+                        txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
+                        txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
+                    MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
+                    txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
+                    txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
+                    status = false;
+                }
+                else
+                {
+                    InsertAutomobili upd = new InsertAutomobili();
+                    upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
+                        , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
+                        txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
+                        Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
+                        txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
+                        txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
+                    MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
+                    txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
+                    txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
+                }
+                RefreshDataGRid();
+                if (selectedID.HasValue)
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (Convert.ToInt32(row.Cells["ID"].Value) == selectedID.Value)
+                        {
+                            row.Selected = true;
+                            dataGridView1.CurrentCell = row.Cells[0];
+                            break;
+                        }
+                    }
+                }
+                VratiPodatke(txtSifra.Text);
             }
-            if (status == true)
-            {
-                InsertAutomobili ins = new InsertAutomobili();
-                ins.InsAutomobili(Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
-                    , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
-                    txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
-                    Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
-                    txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
-                    txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
-                MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
-                txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
-                txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text, 
-                VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
-                status = false;
-            }
-            else
-            {
-                InsertAutomobili upd = new InsertAutomobili();
-                upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
-                    , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
-                    txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
-                    Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
-                    txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
-                    txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
-                MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
-                txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
-                txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
-            }
-            RefreshDataGRid();
         }
 
         private void tsDelete_Click(object sender, EventArgs e)

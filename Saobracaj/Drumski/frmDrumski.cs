@@ -246,7 +246,7 @@ namespace Saobracaj.Drumski
                 if (dr["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value)
                     dtPreuzimanjaPraznogKontejnera.Value = Convert.ToDateTime(dr["DtPreuzimanjaPraznogKontejnera"].ToString());
                 txtGranicniPrelaz.Text = dr["GranicniPrelaz"].ToString();
-                //txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
+                txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
                 if (dr["Trosak"] != DBNull.Value)
                     txtTrosak.Value = Convert.ToDecimal(dr["Trosak"].ToString());
                 //if (dr["Valuta"] != DBNull.Value)
@@ -349,6 +349,13 @@ namespace Saobracaj.Drumski
             var kamAD = new SqlDataAdapter(kam, conn);
             var kmaDS = new DataSet();
             kamAD.Fill(kmaDS);
+
+            System.Data.DataTable dt1 = kmaDS.Tables[0];
+            DataRow prazanR = dt1.NewRow();
+            prazanR["ID"] = DBNull.Value;
+            prazanR["RegBr"] = "";
+            dt1.Rows.InsertAt(prazanR, 0);
+
             comboBox1.DataSource = kmaDS.Tables[0];
             comboBox1.DisplayMember = "RegBr";
             comboBox1.ValueMember = "ID";
