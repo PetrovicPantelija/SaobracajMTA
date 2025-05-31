@@ -9,14 +9,45 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobili : Form
+    public partial class frmAutomobiliDrumski : Form
     {
         string Poruka = "";
         bool status = false;
-        public frmAutomobili()
+
+
+        public frmAutomobiliDrumski()
         {
             InitializeComponent();
             ChangeTextBox();
+
+        }
+        private void PostaviVrednostZaposleni()
+        {
+         
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                {
+                    txtZaposleniID.Text = dr["ID"].ToString().Trim();
+                }
+                if (dr["Zaposleni"] != DBNull.Value)
+                {
+                    txtZaposleni.Text = dr["Zaposleni"].ToString().Trim();
+                }
+            }
+            
         }
         private void ChangeTextBox()
         {
@@ -149,51 +180,29 @@ namespace Saobracaj.Dokumenta
             txtSifra.Enabled = false;
             txtSifra.Text = "";
             txtRegBr.Text = "";
-            txtMarka.Text = "";
+            txtVozac.Text = "";
+            txtLKVozaca.Text = "";
+            txtVozacTelefon.Text = "";
         }
 
-        private void frmAutomobili_Load(object sender, EventArgs e)
+        private void frmAutomobiliDrumski_Load(object sender, EventArgs e)
         {
             RefreshDataGRid();
-            this.BeginInvoke(new Action(() =>
-            {
-               
-                IstekPPomoc();
-                IstekPP();
+            PostaviVrednostZaposleni();
 
-                IstekReg();
-            }));    
-        
+            //this.BeginInvoke(new Action(() =>
+            //{
+
+            //    IstekPPomoc();
+            //    IstekPP();
+
+            //    IstekReg();
+            //}));    
+
         }
+      
         private void RefreshDataGRid()
         {
-            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection3 = new SqlConnection(s_connection3);
-            var c3 = new SqlConnection(s_connection3);
-            var dataAdapter3 = new SqlDataAdapter(select3, c3);
-
-            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
-            var ds3 = new DataSet();
-            dataAdapter3.Fill(ds3);
-            cboZaposleni.DataSource = ds3.Tables[0];
-            cboZaposleni.DisplayMember = "Opis";
-            cboZaposleni.ValueMember = "ID";
-
-
-            var select4 = " select SmSifra from Mesta";
-            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection4 = new SqlConnection(s_connection4);
-            var c4 = new SqlConnection(s_connection4);
-            var dataAdapter4 = new SqlDataAdapter(select4, c4);
-
-            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
-            var ds4 = new DataSet();
-            dataAdapter4.Fill(ds4);
-            cboMestoTroska.DataSource = ds4.Tables[0];
-            cboMestoTroska.DisplayMember = "SmSifra";
-            cboMestoTroska.ValueMember = "SmSifra";
-
             var select5 = " select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila";
             var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
@@ -207,15 +216,17 @@ namespace Saobracaj.Dokumenta
             cboVozilo.DisplayMember = "Naziv";
             cboVozilo.ValueMember = "ID";
 
-            var select = "  select Automobili.ID as ID, Automobili.Zaposleni, " +
-           " Rtrim(Delavci.DeIme) + ' ' +  Rtrim(Delavci.DePriimek) as ZaposleniNaziv, " +
-           " Automobili.RegBr, Automobili.Marka, Automobili.Sluzbeni, VServisSledeci as VelServisSled, MServisSledeci as MaliServSled," +
-           " PPAparatDatumIsteka,PRvaPomocDatumIsteka,DatumRegistracije,Vozac ,VrstaVozila.Naziv AS Vozilo " +
-           " from Automobili " +
-            " inner join Delavci on Delavci.DeSifra = Automobili.Zaposleni " +
-            " left join VrstaVozila on Automobili.VlasnistvoLegeta = VrstaVozila.ID";
+            var select = " select a.ID as ID, " +
+           "a.RegBr,vv.Naziv AS Vozilo,  Vozac ,BrojTelefona, LicnaKarta," +
+           "Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
+           "Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as ZaposleniKreirao " +
+           "from Automobili a " +
+           "inner join Delavci d on d.DeSifra = a.Zaposleni " +
+           "inner join Delavci dk on dk.DeSifra = a.KreiraoZaposleni " +
+           "left join VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
+           "WHERE a.VoziloDrumskog = 1 ";
 
-            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -228,152 +239,72 @@ namespace Saobracaj.Dokumenta
 
             PodesiDatagridView(dataGridView1);
 
+            int totalWidth = dataGridView1.Width;
+
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Šifra";
-            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[0].Width = 60;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Zaposleni ID";
-            dataGridView1.Columns[1].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Reg br";
+            dataGridView1.Columns[1].Width = (int)(totalWidth * 0.10);
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Zaposleni naziv";
-            dataGridView1.Columns[2].Width = 150;
-
+            dataGridView1.Columns[2].HeaderText = "Vozilo";
+            dataGridView1.Columns[2].Width = (int)(totalWidth * 0.12);
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Reg br";
-            dataGridView1.Columns[3].Width = 150;
+            dataGridView1.Columns[3].HeaderText = "Vozač";
+            dataGridView1.Columns[3].Width = (int)(totalWidth * 0.16);
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Marka";
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].HeaderText = "Broj telefona";
+            dataGridView1.Columns[4].Width = (int)(totalWidth * 0.14);
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Službeni";
-            dataGridView1.Columns[5].Width = 40;
+            dataGridView1.Columns[5].HeaderText = "Lična karta";
+            dataGridView1.Columns[5].Width = (int)(totalWidth * 0.10);
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Veliki servis istek";
-            dataGridView1.Columns[6].Width = 70;
+            dataGridView1.Columns[6].HeaderText = "Zadnja izmena";
+            dataGridView1.Columns[6].Width = (int)(totalWidth * 0.18);
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Mali servis istek";
-            dataGridView1.Columns[7].Width = 70;
+            dataGridView1.Columns[7].HeaderText = "Kreirao";
+            dataGridView1.Columns[7].Width = (int)(totalWidth * 0.18);
 
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "PPAparatDatumIsteka";
-            dataGridView1.Columns[8].Width = 120;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "PrvaPomocDatumIsteka";
-            dataGridView1.Columns[9].Width = 120;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "DatumRegistracije";
-            dataGridView1.Columns[10].Width = 120;
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSifra.Text))
-            {
-                int Sluzbeni = 0;
-                int TrougaoIma = 0;
-                int MarkerIma = 0;
-                int SajluZaVucu = 0;
-                int ImaLance = 0;
+            
                 int VlasnistvoLegeta = 0;
-
+                if (cboVozilo.SelectedValue != null)
+                {
+                    VlasnistvoLegeta = Convert.ToInt32(cboVozilo.SelectedValue);
+                }
                 int? selectedID = null;
                 if (dataGridView1.CurrentRow != null)
                 {
                     selectedID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
                 }
 
-
-                if (chkLanci.Checked)
-                {
-                    ImaLance = 1;
-                }
-                else
-                {
-                    ImaLance = 0;
-                }
-
-                if (chkSajlaZaVucu.Checked)
-                {
-                    SajluZaVucu = 1;
-                }
-                else
-                {
-                    SajluZaVucu = 0;
-                }
-
-                if (chkMarker.Checked)
-                {
-                    MarkerIma = 1;
-                }
-                else
-                {
-                    MarkerIma = 0;
-                }
-                if (chkImaTrougao.Checked)
-                {
-                    TrougaoIma = 1;
-                }
-                else
-                {
-                    TrougaoIma = 0;
-                }
-                if (chkSluzbeni.Checked)
-                {
-                    Sluzbeni = 1;
-                }
-                else
-                {
-                    Sluzbeni = 0;
-                }
-                //if (chkVlasnistvoLegeta.Checked)
-                //{
-                //    VlasnistvoLegeta = 1;
-                //}
-                //else
-                //{
-                //    VlasnistvoLegeta = 0;
-                //}Convert.ToInt32(txtMesto.SelectedValue)
-
-                if (cboVozilo.SelectedValue != null)
-                {
-                    VlasnistvoLegeta = Convert.ToInt32(cboVozilo.SelectedValue);
-                }
+                int? ZaposleniID = string.IsNullOrWhiteSpace(txtZaposleniID.Text.ToString()) ? (int?)null : Convert.ToInt32(txtZaposleniID.Text);
                 if (status == true)
                 {
                     InsertAutomobili ins = new InsertAutomobili();
-                    ins.InsAutomobili(Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
-                        , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
-                        txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
-                        Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
-                        txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
-                        txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
-                    MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
-                    txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
-                    txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null, null);
+                    ins.InsAutomobili(ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), 1, ZaposleniID);
                     status = false;
                 }
-                else
+                else if(!string.IsNullOrWhiteSpace(txtSifra.Text))
                 {
                     InsertAutomobili upd = new InsertAutomobili();
-                    upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboZaposleni.SelectedValue), txtRegBr.Text, txtMarka.Text, Sluzbeni, txtModel.Text, dtpDatumRegistracije.Value
-                        , Convert.ToInt32(txtGodinaProizvodnje.Text), txtGorivo.Text, Convert.ToInt32(txtZapreminaMotora.Text),
-                        txtKategorija.Text, Convert.ToDateTime(dtpVServisUradjen.Value), Convert.ToDouble(txtVServisKM.Text), Convert.ToDateTime(dtpVServisSledeci.Value),
-                        Convert.ToDateTime(dtpMaliServisUradjen.Value), Convert.ToDouble(txtMaliServisKM.Text), Convert.ToDateTime(dtpMaliServisSledeci.Value),
-                        txtBrojPlombe1.Text, txtBrojPlombe2.Text, Convert.ToDateTime(dtpPPAparatDatumOvere.Value), Convert.ToDateTime(dtpPPAparatDatumIsteka.Value),
-                        txtPPAparatSeriskiBroj.Text, Convert.ToDateTime(dtpPrvaPomocDatumIsteka.Value), TrougaoIma,
-                    MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
-                    txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
-                    txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
+                    upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                        VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
                 }
                 RefreshDataGRid();
                 if (selectedID.HasValue)
@@ -389,7 +320,8 @@ namespace Saobracaj.Dokumenta
                     }
                 }
                 VratiPodatke(txtSifra.Text);
-            }
+            
+            
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -402,7 +334,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatke(string ID)
         {
-            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -424,147 +356,18 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-                txtModel.Text = dr["Model"].ToString();
-                dtpDatumRegistracije.Value = Convert.ToDateTime(dr["DatumRegistracije"].ToString());
-                txtGodinaProizvodnje.Text = dr["GodinaProizvodnje"].ToString();
-                txtGorivo.Text = dr["Gorivo"].ToString();
-                txtZapreminaMotora.Text = dr["ZapreminaMotora"].ToString();
-                txtKategorija.Text = dr["Kategorija"].ToString();
-                dtpVServisUradjen.Value = Convert.ToDateTime(dr["VServisUradjen"].ToString());
-                txtVServisKM.Text = dr["VServisKM"].ToString();
-                dtpVServisSledeci.Value = Convert.ToDateTime(dr["VServisSledeci"].ToString());
-                dtpMaliServisUradjen.Value = Convert.ToDateTime(dr["MServisUradjen"].ToString());
-                txtMaliServisKM.Text = dr["MServisKM"].ToString();
-                dtpMaliServisSledeci.Value = Convert.ToDateTime(dr["MServisSledeci"].ToString());
-                txtBrojPlombe1.Text = dr["BrojPlombe1"].ToString();
-                txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
-                dtpPPAparatDatumOvere.Value = Convert.ToDateTime(dr["PPAparatDatumOvere"].ToString());
-                dtpPPAparatDatumIsteka.Value = Convert.ToDateTime(dr["PPAparatDatumIsteka"].ToString());
-                txtPPAparatSeriskiBroj.Text = dr["PPAparatSeriski"].ToString();
-                dtpPrvaPomocDatumIsteka.Value = Convert.ToDateTime(dr["PRvaPomocDatumIsteka"].ToString());
-                txtVozac.Text= dr["Vozac"].ToString();
-                txtVozacTelefon.Text = dr["BrojTelefona"].ToString();
-                txtLKVozaca.Text = dr["LicnaKarta"].ToString();
-                if (dr["TrougaoIma"].ToString() == "1")
-                {
-                    chkImaTrougao.Checked = true;
-                }
-                else
-                {
-                    chkImaTrougao.Checked = false;
-                }
-
-                if (dr["SajlaZaVucu"].ToString() == "1")
-                {
-                    chkSajlaZaVucu.Checked = true;
-                }
-                else
-                {
-                    chkSajlaZaVucu.Checked = false;
-                }
-
-                if (dr["Marker"].ToString() == "1")
-                {
-                    chkMarker.Checked = true;
-                }
-                else
-                {
-                    chkMarker.Checked = false;
-                }
-
-                if (dr["Lanci"].ToString() == "1")
-                {
-                    chkLanci.Checked = true;
-                }
-                else
-                {
-                    chkLanci.Checked = false;
-                }
-                //if (dr["VlasnistvoLegeta"].ToString() == "1")
-                //{
-                //    chkVlasnistvoLegeta.Checked = true;
-                //}
-                //else
-                //{
-                //    chkVlasnistvoLegeta.Checked = false;
-                //}
+                txtVozac.Text = dr["Vozac"].ToString().Trim();
+                txtVozacTelefon.Text = dr["BrojTelefona"].ToString().Trim();
+                txtLKVozaca.Text = dr["LicnaKarta"].ToString().Trim();
                 if (dr["VlasnistvoLegeta"].ToString() != "")
                     cboVozilo.SelectedValue = dr["VlasnistvoLegeta"].ToString();
-
-
-                txtLokacijaLanci.Text = dr["LokacijaLanci"].ToString();
-                txtZGDot.Text = dr["ZGDOT"].ToString();
-                txtZGLokacija.Text = dr["ZGLokacija"].ToString();
-                txtZGSare.Text = dr["ZGDubinaSare"].ToString();
-                txtLGgumeDOT.Text = dr["LGDot"].ToString();
-                txtLGLokacija.Text = dr["LGLokacija"].ToString();
-                txtLGSare.Text = dr["LGDubinaSare"].ToString();
-                txtNapomena.Text = dr["Napomena"].ToString();
-                txtCistocaSpolja.Text = dr["CistocaSpolja"].ToString();
-                txtCistocaUnutra.Text = dr["CistocaUnutra"].ToString();
-                txtNivoUlja.Text = dr["NivoUlja"].ToString();
-                txtNepravilnosti.Text = dr["Nepravilnosti"].ToString();
-                cboMestoTroska.SelectedValue = dr["MestoTroska"].ToString();
-                cboZaposleni.SelectedValue = Convert.ToInt32(dr["Zaposleni"].ToString());
-                txtRegBr.Text = dr["RegBr"].ToString();
-                txtMarka.Text = dr["Marka"].ToString();
-
-                if (dr["Sluzbeni"].ToString() == "1")
-                {
-                    chkSluzbeni.Checked = true;
-                }
-                else
-                {
-                    chkSluzbeni.Checked = false;
-                }
+                txtRegBr.Text = dr["RegBr"].ToString().Trim();
+             
             }
             con.Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-
-                        DateTime danas = DateTime.Now;
-                        DateTime PP = Convert.ToDateTime(row.Cells[8].Value);
-                        DateTime pPomoc = Convert.ToDateTime(row.Cells[9].Value);
-                        DateTime reg = Convert.ToDateTime(row.Cells[10].Value);
-                        DateTime regIstek = reg.AddYears(1);
-
-                        TimeSpan tsPP = PP - danas;
-                        TimeSpan tsPomoc = pPomoc - danas;
-                        TimeSpan tsReg = regIstek - danas;
-
-                        int diffPP = tsPP.Days;
-                        if (diffPP <= 30)
-                        {
-                            MessageBox.Show("PP Aparat ističe za manje od 30 dana");
-                        }
-                        int diffPomoc = tsPomoc.Days;
-                        if (diffPomoc <= 30)
-                        {
-                            MessageBox.Show("Prva Pomoć ističe za manje od 30 dana");
-                        }
-                        int diffReg = tsReg.Days;
-                        if (diffReg <= 30)
-                        {
-                            MessageBox.Show("Registracija ističe za manje od 30 dana");
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-        }
+      
         public void IstekPP()
         {
             var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -649,14 +452,50 @@ namespace Saobracaj.Dokumenta
             kvar.Show();
         }
 
-        private void txtCistocaUnutra_TextChanged(object sender, EventArgs e)
+ 
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+                        VratiPodatke(txtSifra.Text);
 
-        }
+                        //DateTime danas = DateTime.Now;
+                        //DateTime PP = Convert.ToDateTime(row.Cells[8].Value);
+                        //DateTime pPomoc = Convert.ToDateTime(row.Cells[9].Value);
+                        //DateTime reg = Convert.ToDateTime(row.Cells[10].Value);
+                        //DateTime regIstek = reg.AddYears(1);
 
-        private void button22_Click(object sender, EventArgs e)
-        {
+                        //TimeSpan tsPP = PP - danas;
+                        //TimeSpan tsPomoc = pPomoc - danas;
+                        //TimeSpan tsReg = regIstek - danas;
 
+                        //int diffPP = tsPP.Days;
+                        //if (diffPP <= 30)
+                        //{
+                        //    MessageBox.Show("PP Aparat ističe za manje od 30 dana");
+                        //}
+                        //int diffPomoc = tsPomoc.Days;
+                        //if (diffPomoc <= 30)
+                        //{
+                        //    MessageBox.Show("Prva Pomoć ističe za manje od 30 dana");
+                        //}
+                        //int diffReg = tsReg.Days;
+                        //if (diffReg <= 30)
+                        //{
+                        //    MessageBox.Show("Registracija ističe za manje od 30 dana");
+                        //}
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
         }
     }
 }

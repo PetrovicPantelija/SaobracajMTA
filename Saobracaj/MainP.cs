@@ -864,11 +864,8 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
-                autom.Show();
+                autom.Show(); 
             }
-
-
-
         }
 
         private void toolStripButton39_Click(object sender, EventArgs e)
@@ -6807,8 +6804,16 @@ namespace Saobracaj
             }
             if (bFormNameOpen == false)
             {
-                Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
-                autom.Show();
+                if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+                {
+                    Dokumenta.frmAutomobiliDrumski autom = new Dokumenta.frmAutomobiliDrumski();
+                    autom.Show();
+                }
+                else
+                {
+                    Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
+                    autom.Show();
+                }
             }
         }
 
