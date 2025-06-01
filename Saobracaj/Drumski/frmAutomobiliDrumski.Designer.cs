@@ -45,12 +45,6 @@
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -65,15 +59,21 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.txtVozac = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
             this.txtRegBr = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.txtLKVozaca = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.txtSifra = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.txtZaposleni = new System.Windows.Forms.TextBox();
             this.txtZaposleniID = new System.Windows.Forms.TextBox();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.label44 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -252,72 +252,6 @@
             this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(179, 24);
-            this.toolStripButton1.Text = "Skenirana dokumentacija";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(130, 24);
-            this.toolStripButton2.Text = "Evidencija Servisa";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(157, 24);
-            this.toolStripButton3.Text = "Evidencija registracija";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(176, 24);
-            this.toolStripButton4.Text = "Evidencija troškova iz UF";
-            this.toolStripButton4.Visible = false;
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(135, 24);
-            this.toolStripButton5.Text = "Evidencija kvarova";
-            this.toolStripButton5.Visible = false;
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(186, 24);
-            this.toolStripButton6.Text = "Evidencija prijava i odjava";
-            // 
             // meniHeader
             // 
             this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
@@ -339,7 +273,7 @@
             this.toolStripButton6});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1184, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1180, 27);
             this.meniHeader.TabIndex = 194;
             this.meniHeader.Text = "Osveži";
             // 
@@ -354,7 +288,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 40);
+            this.panel1.Size = new System.Drawing.Size(1180, 40);
             this.panel1.TabIndex = 587;
             // 
             // panel4
@@ -365,7 +299,7 @@
             this.panel4.Location = new System.Drawing.Point(168, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1015, 38);
+            this.panel4.Size = new System.Drawing.Size(1011, 38);
             this.panel4.TabIndex = 7;
             // 
             // panel5
@@ -446,18 +380,18 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 247);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 279);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1154, 583);
+            this.dataGridView1.Size = new System.Drawing.Size(1151, 551);
             this.dataGridView1.TabIndex = 706;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(309, 132);
+            this.label40.Location = new System.Drawing.Point(440, 139);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(47, 16);
@@ -468,24 +402,24 @@
             // 
             this.cboVozilo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVozilo.FormattingEnabled = true;
-            this.cboVozilo.Location = new System.Drawing.Point(306, 152);
+            this.cboVozilo.Location = new System.Drawing.Point(439, 160);
             this.cboVozilo.Margin = new System.Windows.Forms.Padding(4);
             this.cboVozilo.Name = "cboVozilo";
-            this.cboVozilo.Size = new System.Drawing.Size(244, 24);
+            this.cboVozilo.Size = new System.Drawing.Size(308, 24);
             this.cboVozilo.TabIndex = 704;
             // 
             // txtVozacTelefon
             // 
-            this.txtVozacTelefon.Location = new System.Drawing.Point(619, 208);
+            this.txtVozacTelefon.Location = new System.Drawing.Point(857, 220);
             this.txtVozacTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.txtVozacTelefon.Name = "txtVozacTelefon";
-            this.txtVozacTelefon.Size = new System.Drawing.Size(196, 22);
+            this.txtVozacTelefon.Size = new System.Drawing.Size(308, 22);
             this.txtVozacTelefon.TabIndex = 702;
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(622, 189);
+            this.label41.Location = new System.Drawing.Point(858, 200);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(129, 16);
@@ -495,7 +429,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(309, 189);
+            this.label43.Location = new System.Drawing.Point(440, 200);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(122, 16);
@@ -504,34 +438,24 @@
             // 
             // txtVozac
             // 
-            this.txtVozac.Location = new System.Drawing.Point(19, 208);
+            this.txtVozac.Location = new System.Drawing.Point(19, 220);
             this.txtVozac.Margin = new System.Windows.Forms.Padding(4);
             this.txtVozac.Name = "txtVozac";
-            this.txtVozac.Size = new System.Drawing.Size(221, 22);
+            this.txtVozac.Size = new System.Drawing.Size(308, 22);
             this.txtVozac.TabIndex = 701;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(22, 133);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(104, 16);
-            this.label44.TabIndex = 698;
-            this.label44.Text = "Registarski broj:";
             // 
             // txtRegBr
             // 
-            this.txtRegBr.Location = new System.Drawing.Point(19, 152);
+            this.txtRegBr.Location = new System.Drawing.Point(19, 161);
             this.txtRegBr.Margin = new System.Windows.Forms.Padding(4);
             this.txtRegBr.Name = "txtRegBr";
-            this.txtRegBr.Size = new System.Drawing.Size(221, 22);
+            this.txtRegBr.Size = new System.Drawing.Size(308, 22);
             this.txtRegBr.TabIndex = 699;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(22, 189);
+            this.label45.Location = new System.Drawing.Point(20, 200);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(48, 16);
@@ -540,34 +464,26 @@
             // 
             // txtLKVozaca
             // 
-            this.txtLKVozaca.Location = new System.Drawing.Point(308, 208);
+            this.txtLKVozaca.Location = new System.Drawing.Point(439, 220);
             this.txtLKVozaca.Margin = new System.Windows.Forms.Padding(4);
             this.txtLKVozaca.Name = "txtLKVozaca";
-            this.txtLKVozaca.Size = new System.Drawing.Size(242, 22);
+            this.txtLKVozaca.Size = new System.Drawing.Size(308, 22);
             this.txtLKVozaca.TabIndex = 697;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(308, 81);
+            this.label46.Location = new System.Drawing.Point(440, 82);
             this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(70, 16);
             this.label46.TabIndex = 695;
             this.label46.Text = "Zaposleni:";
             // 
-            // txtSifra
-            // 
-            this.txtSifra.Location = new System.Drawing.Point(19, 101);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(82, 22);
-            this.txtSifra.TabIndex = 693;
-            // 
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(21, 82);
+            this.label47.Location = new System.Drawing.Point(20, 82);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(80, 16);
@@ -576,27 +492,114 @@
             // 
             // txtZaposleni
             // 
-            this.txtZaposleni.Location = new System.Drawing.Point(305, 99);
+            this.txtZaposleni.Location = new System.Drawing.Point(439, 102);
             this.txtZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.txtZaposleni.Name = "txtZaposleni";
-            this.txtZaposleni.Size = new System.Drawing.Size(242, 22);
+            this.txtZaposleni.Size = new System.Drawing.Size(308, 22);
             this.txtZaposleni.TabIndex = 708;
             // 
             // txtZaposleniID
             // 
-            this.txtZaposleniID.Location = new System.Drawing.Point(555, 99);
+            this.txtZaposleniID.Location = new System.Drawing.Point(755, 102);
             this.txtZaposleniID.Margin = new System.Windows.Forms.Padding(4);
             this.txtZaposleniID.Name = "txtZaposleniID";
-            this.txtZaposleniID.Size = new System.Drawing.Size(33, 22);
+            this.txtZaposleniID.Size = new System.Drawing.Size(86, 22);
             this.txtZaposleniID.TabIndex = 709;
             this.txtZaposleniID.Visible = false;
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtSifra.Enabled = false;
+            this.txtSifra.Location = new System.Drawing.Point(19, 102);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(113, 22);
+            this.txtSifra.TabIndex = 710;
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(186, 24);
+            this.toolStripButton6.Text = "Evidencija prijava i odjava";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(135, 24);
+            this.toolStripButton5.Text = "Evidencija kvarova";
+            this.toolStripButton5.Visible = false;
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(176, 24);
+            this.toolStripButton4.Text = "Evidencija troškova iz UF";
+            this.toolStripButton4.Visible = false;
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(157, 24);
+            this.toolStripButton3.Text = "Evidencija registracija";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(130, 24);
+            this.toolStripButton2.Text = "Evidencija Servisa";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(179, 24);
+            this.toolStripButton1.Text = "Skenirana dokumentacija";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(20, 141);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(104, 16);
+            this.label44.TabIndex = 698;
+            this.label44.Text = "Registarski broj:";
             // 
             // frmAutomobiliDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1184, 843);
+            this.ClientSize = new System.Drawing.Size(1180, 843);
+            this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.txtZaposleniID);
             this.Controls.Add(this.txtZaposleni);
             this.Controls.Add(this.dataGridView1);
@@ -611,7 +614,6 @@
             this.Controls.Add(this.label45);
             this.Controls.Add(this.txtLKVozaca);
             this.Controls.Add(this.label46);
-            this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.meniHeader);
@@ -650,12 +652,6 @@
         private System.Windows.Forms.ToolStripButton tsNazad;
         private System.Windows.Forms.ToolStripButton tsNapred;
         private System.Windows.Forms.ToolStripButton tsPoslednja;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
-        private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
@@ -669,14 +665,20 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.TextBox txtVozac;
-        private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox txtRegBr;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox txtLKVozaca;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox txtZaposleni;
         private System.Windows.Forms.TextBox txtZaposleniID;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.Label label44;
     }
 }
