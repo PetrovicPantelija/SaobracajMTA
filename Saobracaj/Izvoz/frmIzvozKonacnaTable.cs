@@ -1,4 +1,5 @@
-﻿using Syncfusion.Grouping;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -771,6 +772,15 @@ namespace Saobracaj.Izvoz
             {
                 column.AllowFilter = true;
             }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void RefreshGVPoPlanu()
@@ -826,6 +836,15 @@ namespace Saobracaj.Izvoz
             {
                 column.AllowFilter = true;
             }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
         private void button2_Click(object sender, EventArgs e)
         {

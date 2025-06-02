@@ -183,6 +183,11 @@ namespace Saobracaj.Uvoz
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
         }
 
         private void RefreshGVT()
@@ -242,6 +247,11 @@ namespace Saobracaj.Uvoz
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
         }
 

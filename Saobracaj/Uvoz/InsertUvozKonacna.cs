@@ -2281,7 +2281,7 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void InsUvozNHMDiana(int IDNadredjena, string KomercijalniNaziv, string TarifniBroj, double Brojkoleta, double Bruto, double Vrednost, string Valuta)
+        public void InsUvozNHMDiana(int IDNadredjena, string KomercijalniNaziv, string TarifniBroj, double Brojkoleta, double Neto , double Bruto, double Vrednost, string Valuta)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2317,6 +2317,13 @@ int PotvrdioKlijent, int UradilaCarina,
             brojkoleta.Direction = ParameterDirection.Input;
             brojkoleta.Value = Brojkoleta;
             cmd.Parameters.Add(brojkoleta);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
 
             SqlParameter bruto = new SqlParameter();
             bruto.ParameterName = "@Bruto";
@@ -2375,7 +2382,7 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void InsUvozKonacnaNHMDiana(int IDNadredjena, string KomercijalniNaziv, string TarifniBroj, double Brojkoleta, double Bruto, double Vrednost, string Valuta)
+        public void InsUvozKonacnaNHMDiana(int IDNadredjena, string KomercijalniNaziv, string TarifniBroj, double Brojkoleta, double Neto, double Bruto, double Vrednost, string Valuta)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2411,6 +2418,13 @@ int PotvrdioKlijent, int UradilaCarina,
             brojkoleta.Direction = ParameterDirection.Input;
             brojkoleta.Value = Brojkoleta;
             cmd.Parameters.Add(brojkoleta);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
 
             SqlParameter bruto = new SqlParameter();
             bruto.ParameterName = "@Bruto";
@@ -4398,6 +4412,66 @@ int PotvrdioKlijent, int UradilaCarina,
                 {
                     myTransaction.Commit();
                     MessageBox.Show("Nije uspeo upis dokumenta u bazu", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+
+        }
+
+
+        public void UpdUvozNHMTezine(int ID, int Tip)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateUvozNHMTezine";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter0 = new SqlParameter();
+            parameter0.ParameterName = "@ID";
+            parameter0.SqlDbType = SqlDbType.Int;
+            parameter0.Direction = ParameterDirection.Input;
+            parameter0.Value = ID;
+            myCommand.Parameters.Add(parameter0);
+
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Tip";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Tip;
+            myCommand.Parameters.Add(parameter9);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešna promena uradila carina");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Uradila carina uspesno snimljena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

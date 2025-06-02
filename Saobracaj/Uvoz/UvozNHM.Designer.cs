@@ -53,6 +53,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.txtNHMID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.chkAzuriraj = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
@@ -327,11 +328,22 @@
             this.label2.TabIndex = 516;
             this.label2.Text = "NHM ID";
             // 
+            // chkAzuriraj
+            // 
+            this.chkAzuriraj.AutoSize = true;
+            this.chkAzuriraj.Location = new System.Drawing.Point(850, 36);
+            this.chkAzuriraj.Name = "chkAzuriraj";
+            this.chkAzuriraj.Size = new System.Drawing.Size(91, 17);
+            this.chkAzuriraj.TabIndex = 518;
+            this.chkAzuriraj.Text = "Ažuriraj tezine";
+            this.chkAzuriraj.UseVisualStyleBackColor = true;
+            // 
             // UvozNHM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1430, 746);
+            this.Controls.Add(this.chkAzuriraj);
             this.Controls.Add(this.txtNHMID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button5);
@@ -383,5 +395,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtNHMID;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkAzuriraj;
     }
 }

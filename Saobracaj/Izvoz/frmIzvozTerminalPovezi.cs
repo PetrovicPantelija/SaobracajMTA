@@ -1,4 +1,5 @@
-﻿using Syncfusion.Grouping;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -212,6 +213,14 @@ namespace Saobracaj.Izvoz
             {
                 column.AllowFilter = true;
             }
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
 
 
@@ -255,6 +264,15 @@ namespace Saobracaj.Izvoz
                 column.AllowFilter = true;
             }
 
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl2);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl2);
+
 
 
         }
@@ -272,18 +290,19 @@ namespace Saobracaj.Izvoz
                             //Azurira kontejner u izvozu
                             InsertIzvozKonacna ins = new InsertIzvozKonacna();
                             ins.OdrediKontejnerTerminal(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), selectedRecord2.Record.GetValue("Kontejner").ToString(), 0);
+                            InsertIzvoz iz = new InsertIzvoz();
+                            iz.UpdIzvozTerminalIzbor(Convert.ToInt32(textBox1.Text), txtOstalePlombe.Text, Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txtOdvaganaTezina.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtBokingBrodara.Text), Convert.ToDecimal(txtTaraZ.Value), 0);
                         }
                         else {
                             InsertIzvozKonacna ins = new InsertIzvozKonacna();
                             ins.OdrediKontejnerTerminal(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), selectedRecord2.Record.GetValue("Kontejner").ToString(),1);
+                            InsertIzvoz iz = new InsertIzvoz();
+                            iz.UpdIzvozTerminalIzbor(Convert.ToInt32(textBox1.Text), txtOstalePlombe.Text, Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txtOdvaganaTezina.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtBokingBrodara.Text), Convert.ToDecimal(txtTaraZ.Value), 1);
                         }
                     }
                 }
             }
 
-            InsertIzvoz iz = new InsertIzvoz();
-            iz.UpdIzvozTerminalIzbor(Convert.ToInt32(textBox1.Text), txtOstalePlombe.Text, Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txtOdvaganaTezina.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtBokingBrodara.Text), Convert.ToDecimal(txtTaraZ.Value));
- 
             RefreshSync();
             RefreshSync2();
 
@@ -346,7 +365,7 @@ namespace Saobracaj.Izvoz
             while (dr.Read())
             {
                 txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
-                cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["BrodskaPlomba"].ToString());
+                cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
                 txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
                 txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());

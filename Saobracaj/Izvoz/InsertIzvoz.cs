@@ -3207,7 +3207,7 @@ namespace Saobracaj.Izvoz
         }
 
 
-        public void UpdIzvozTerminalIzbor(int ID,string OstalePlombe,  decimal VGMBrod, decimal Tara, decimal VGMTezina,  decimal CBMO,int BrojKoletaO,  decimal BrutoRobeO,  int BookingBrodara,    decimal TaraZ)
+        public void UpdIzvozTerminalIzbor(int ID,string OstalePlombe,  decimal VGMBrod, decimal Tara, decimal VGMTezina,  decimal CBMO,int BrojKoletaO,  decimal BrutoRobeO,  int BookingBrodara,    decimal TaraZ, int Rasporedjen)
             {
 
             SqlConnection conn = new SqlConnection(connection);
@@ -3289,6 +3289,13 @@ namespace Saobracaj.Izvoz
             taraz.Direction = ParameterDirection.Input;
             taraz.Value = TaraZ;
             cmd.Parameters.Add(taraz);
+
+            SqlParameter rasporedjen = new SqlParameter();
+            rasporedjen.ParameterName = "@Raspoeredjen";
+            rasporedjen.SqlDbType = SqlDbType.Int;
+            rasporedjen.Direction = ParameterDirection.Input;
+            rasporedjen.Value = Rasporedjen;
+            cmd.Parameters.Add(rasporedjen);
 
 
             conn.Open();

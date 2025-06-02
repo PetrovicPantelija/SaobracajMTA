@@ -967,7 +967,8 @@ namespace Saobracaj.Izvoz
                  Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value),
                  Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value),
                  txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text), pomTerminal, 
-                 Convert.ToInt32(cboScenario.SelectedValue) , Convert.ToDecimal(txtTaraKontejneraZ.Value),Convert.ToInt32(cboPPCNT2.SelectedValue), Convert.ToInt32(cboPPCNT3.SelectedValue));
+                 Convert.ToInt32(cboScenario.SelectedValue) , Convert.ToDecimal(txtTaraKontejneraZ.Value),
+                 Convert.ToInt32(cboPPCNT2.SelectedValue), Convert.ToInt32(cboPPCNT3.SelectedValue));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 

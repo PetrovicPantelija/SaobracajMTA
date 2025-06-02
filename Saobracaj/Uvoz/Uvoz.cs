@@ -3901,6 +3901,8 @@ namespace Saobracaj.Uvoz
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+
+
         }
 
         private void RefreshGVT()

@@ -384,7 +384,7 @@ namespace Saobracaj.Uvoz
                   //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                   DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 20;
+                dataGridView6.Columns[0].Width = 50;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
@@ -445,7 +445,7 @@ namespace Saobracaj.Uvoz
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 20;
+                dataGridView6.Columns[0].Width = 50;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
@@ -507,7 +507,7 @@ namespace Saobracaj.Uvoz
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 20;
+                dataGridView6.Columns[0].Width = 50;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
@@ -566,7 +566,7 @@ namespace Saobracaj.Uvoz
 
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 20;
+                dataGridView6.Columns[0].Width = 50;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
@@ -767,7 +767,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -810,7 +810,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -854,7 +854,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -899,7 +899,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -941,7 +941,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -985,7 +985,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";

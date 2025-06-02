@@ -85,7 +85,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
@@ -375,9 +375,9 @@ namespace Saobracaj.Uvoz
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(117, 0);
+            this.button3.Location = new System.Drawing.Point(85, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 33);
+            this.button3.Size = new System.Drawing.Size(98, 33);
             this.button3.TabIndex = 20;
             this.button3.Text = "Refresh";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -397,7 +397,7 @@ namespace Saobracaj.Uvoz
             this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button25.Location = new System.Drawing.Point(0, 0);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(117, 33);
+            this.button25.Size = new System.Drawing.Size(85, 33);
             this.button25.TabIndex = 19;
             this.button25.Text = "Kopiranje ";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
