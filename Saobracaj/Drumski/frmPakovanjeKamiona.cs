@@ -382,9 +382,10 @@ namespace Saobracaj.Drumski
 
         private void RefreshDataGrid1()
         {
-            var select = "SELECT ID, Marka, RegBr, Vozac " +
-                        " FROM Automobili " +
-                        " WHERE VlasnistvoLegeta in (2,3)";
+            var select = "SELECT a.ID, vv.Naziv AS TipVozila, a.RegBr, a.Vozac " +
+                        " FROM Automobili a " +
+                        " LEFT  JOIN VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
+                        " WHERE VoziloDrumskog = 1";
 
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);

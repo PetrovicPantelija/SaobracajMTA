@@ -1442,6 +1442,12 @@
     <Compile Include="Dokumenta\WebMapa.Designer.cs">
       <DependentUpon>WebMapa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmAutomobiliDrumski.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmAutomobiliDrumski.Designer.cs">
+      <DependentUpon>frmAutomobiliDrumski.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmDrumski.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3920,6 +3926,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmAutomobili.resx">
       <DependentUpon>frmAutomobili.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmAutomobiliDokumenta.resx">
       <DependentUpon>frmAutomobiliDokumenta.cs</DependentUpon>
@@ -4340,6 +4347,9 @@
       <DependentUpon>WebMapa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\Zarada.rdlc" />
+    <EmbeddedResource Include="Drumski\frmAutomobiliDrumski.resx">
+      <DependentUpon>frmAutomobiliDrumski.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmDrumski.resx">
       <DependentUpon>frmDrumski.cs</DependentUpon>
     </EmbeddedResource>

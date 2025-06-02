@@ -208,6 +208,7 @@ namespace Saobracaj.Drumski
             {
                 InsertVrstaVozila ins = new InsertVrstaVozila();
                 ins.InsVrstaVozila(txtNaziv.Text.TrimEnd());
+                status = false;
             }
             else
             {
