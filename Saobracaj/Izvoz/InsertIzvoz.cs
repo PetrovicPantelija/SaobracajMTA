@@ -3291,7 +3291,7 @@ namespace Saobracaj.Izvoz
             cmd.Parameters.Add(taraz);
 
             SqlParameter rasporedjen = new SqlParameter();
-            rasporedjen.ParameterName = "@Raspoeredjen";
+            rasporedjen.ParameterName = "@Rasporedjen";
             rasporedjen.SqlDbType = SqlDbType.Int;
             rasporedjen.Direction = ParameterDirection.Input;
             rasporedjen.Value = Rasporedjen;

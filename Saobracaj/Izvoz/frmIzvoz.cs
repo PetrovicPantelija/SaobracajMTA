@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Syncfusion.Windows.Forms;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Izvoz
 {
@@ -137,12 +139,84 @@ namespace Saobracaj.Izvoz
             dgv.ColumnHeadersHeight = 30;
         }
 
+
+        private void RefreshGV()
+        {
+            var select = " SELECT  Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
+    " Izvoz.BrojVagona,   Izvoz.CutOffPort,Partnerji_2.PaNaziv AS Izvoznik,Partnerji_3.PaNaziv AS Nalogodavac1, Partnerji_4.PaNaziv AS kNalogodavac2, Partnerji_5.PaNaziv AS Nalogodavac3, " +
+    " Izvoz.DobijenNalogKlijent1, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe,  " +
+    " Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura,  " +
+    " (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije " +
+    " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
+    " FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,        (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+    " FROM IzvozVrstaRobeHS        inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = Izvoz.ID " +
+    " FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,       (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+    " FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = Izvoz.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
+    " Izvoz.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
+    " KontejnerskiTerminali.Oznaka, Izvoz.Cirada, Izvoz.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, Izvoz.KontaktOsoba,  " +
+    " Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija,  AdresaSlanjaStatusa,    " +
+    " NaslovSlanjaStatusa, Izvoz.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,   " +
+    " Izvoz.AutoDana, Izvoz.NajavaVozila, Izvoz.DodatneNapomeneDrumski, Izvoz.Vaganje, Izvoz.VGMTezina, Izvoz.Tara, Izvoz.VGMBrod,   " +
+    "   Izvoz.Napomena1REf, " +
+    " Izvoz.Napomena2REf, Izvoz.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja,  " +
+    " Izvoz.NacinPretovara FROM         Izvoz INNER JOIN TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID LEFT JOIN " +
+    " Partnerji ON Izvoz.Brodar = Partnerji.PaSifra INNER JOIN         KrajnjaDestinacija ON Izvoz.KrajnaDestinacija = KrajnjaDestinacija.ID INNER JOIN " +
+    " VrstePostupakaUvoz ON Izvoz.Postupanje = VrstePostupakaUvoz.ID INNER JOIN         KontejnerskiTerminali ON Izvoz.MestoPreuzimanja = KontejnerskiTerminali.id " +
+    " INNER JOIN " +
+    " MestaUtovara ON Izvoz.MesoUtovara = MestaUtovara.ID " +
+    " INNER JOIN         Carinarnice ON Izvoz.MestoCarinjenja = Carinarnice.ID " +
+    " INNER JOIN        Partnerji AS Partnerji_1 ON Izvoz.Spedicija = Partnerji_1.PaSifra " +
+    " INNER JOIN         VrstaCarinskogPostupka ON Izvoz.NapomenaReexport = VrstaCarinskogPostupka.id " +
+    " INNER JOIN        InspekciskiTretman ON Izvoz.Inspekcija = InspekciskiTretman.ID " +
+    " INNER JOIN        Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra " +
+    " INNER JOIN        Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra " +
+    " INNER JOIN       Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra " +
+    " INNER JOIN         Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra LEFT JOIN " +
+    " Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra " +
+    " INNER JOIN         uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc  ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            // this.gridGroupingControl1.RecordFilterDescriptor.
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+                //  column.RecordFilterDescriptor
+            }
+            this.gridGroupingControl1.TableDescriptor.Columns["BrojKontejnera"].FilterRowOptions.FilterMode = FilterMode.DisplayText;
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+
+
+        }
+
+
         public frmIzvoz()
         {
             InitializeComponent();
             ChangeTextBox();
             FillDG2();
             FillDG4();
+            RefreshGV();
         }
         public frmIzvoz(string Korisnik)
         {
@@ -152,6 +226,7 @@ namespace Saobracaj.Izvoz
             tslKreirao.Text = Korisnik;
             tKorisnik = Korisnik;
             ChangeTextBox();
+            RefreshGV();
         }
 
         public frmIzvoz(int Terminal, int PlanTerminala)
@@ -165,6 +240,7 @@ namespace Saobracaj.Izvoz
             chkTerminal.Checked = true;
             PlanZaPrebacivanje = PlanTerminala;
             ChangeTextBox() ;
+            RefreshGV();
 
             //  FillDG4();
 
@@ -180,6 +256,7 @@ namespace Saobracaj.Izvoz
             FillDG2();
             FillDG3();
             FillDG4();
+            RefreshGV();
 
         }
 
@@ -2154,6 +2231,8 @@ namespace Saobracaj.Izvoz
             pickUp = cboPPCNT.Text.ToString().TrimEnd();
             pickUp2 = cboPPCNT2.Text.ToString().TrimEnd();
             pickUp3 = cboPPCNT3.Text.ToString().TrimEnd();
+           
+            pp = ProveriPrazanPun();
 
             if (txtTipKont.Text.Length > 3)
             {
@@ -2175,7 +2254,7 @@ namespace Saobracaj.Izvoz
 
             ADR = Convert.ToInt32(txtADR.SelectedValue);
 
-            pp = ProveriPrazanPun();
+          
 
 
             MoguciScenario();
@@ -2185,6 +2264,7 @@ namespace Saobracaj.Izvoz
             um.Show();
             FillDG2();
             FillDG4();
+
         }
 
         int ScenarioGL = 0;
@@ -2508,6 +2588,7 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvoz_KeyDown(object sender, KeyEventArgs e)
         {
+            /*
             if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.D)
             {
                 frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text, txtBokingBrodara.Text, "0");
@@ -2545,6 +2626,7 @@ namespace Saobracaj.Izvoz
                 um.Show();
 
             }
+            */
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -2808,6 +2890,34 @@ namespace Saobracaj.Izvoz
         {
             frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(Convert.ToInt32(0), Convert.ToInt32(txtID.Text));
             ppDU.Show();
+        }
+
+        private void button17_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                }
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                FillDGUsluge();
+                FillDG2();
+            }
+
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
     }
