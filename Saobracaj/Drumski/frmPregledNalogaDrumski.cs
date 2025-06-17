@@ -4,6 +4,7 @@ using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -138,12 +139,13 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                               rn.Klijent as Nalogodavac,
+                               pa.PaNaziv as Nalogodavac,
                                rn.KontejnerID, 'KONACAN' as Trenutno
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
                        
                         union all
@@ -158,14 +160,36 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               rn.Klijent as Nalogodavac,
+                               pa.PaNaziv as Nalogodavac,
                                rn.KontejnerID, 'NEODREDJEN' as Trenutno
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         INNER JOIN Uvoz uk ON uk.ID = rn.KontejnerID
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
+
+                        union all
+                               SELECT rn.ID, 
+                               rn.BrojKontejnera as BrojKontejnera,
+                               '' AS TipKontejnera,
+                               rn.NalogID,
+                               CONVERT(varchar, rn.DatumKreiranjaNaloga, 104) AS KreiranjeNaloga,
+                               rn.KamionID,
+                               a.RegBr,
+                               a.Vozac,
+                               rn.Status,   
+                               rn.Status AS StatusID, 
+                               CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
+                               pa.PaNaziv as Nalogodavac,
+                               rn.KontejnerID, 'NEODREDJEN' as Trenutno
+                        FROM RadniNalogDrumski rn
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
+                        WHERE rn.Uvoz in (2, 3)
                         ORDER BY ID DESC";
+            
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             var connection = new SqlConnection(s_connection);
@@ -192,7 +216,6 @@ namespace Saobracaj.Drumski
 
             // Veži za grid
             gridGroupingControl1.DataSource = mainTable;
-
 
             var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
             statusCol.Appearance.AnyRecordFieldCell.CellType = "ComboBox";
@@ -224,7 +247,6 @@ namespace Saobracaj.Drumski
             {
                 gridGroupingControl1.TableDescriptor.Columns["Status"].Width = 130;
             }
-            // Pretplata na promene
             gridGroupingControl1.TableControlCurrentCellAcceptedChanges -= GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
             gridGroupingControl1.TableControlCurrentCellAcceptedChanges += GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
         }
@@ -240,14 +262,21 @@ namespace Saobracaj.Drumski
                 {
                     int ID = Convert.ToInt32(rec.GetValue("ID"));
                     frmDrumski pnd = new frmDrumski(ID);
+                    pnd.FormClosed += pnd_FormClosed;
                     pnd.Show();
                 }
             }
             else
             {
                 frmDrumski pnd = new frmDrumski();
+                pnd.FormClosed += pnd_FormClosed;
                 pnd.Show();
             }
+        }
+
+        private void pnd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshGrid(); 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -320,6 +349,81 @@ namespace Saobracaj.Drumski
             }
             panelStatus.Visible = false;
             RefreshGrid();
+        }
+
+        private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
+
+            List<int> stavke = new List<int>();
+
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+            {
+                object nalogIdValue = selectedRecord.Record.GetValue("NalogID");
+                if (nalogIdValue != null && int.TryParse(nalogIdValue.ToString(), out int nalogId) && nalogId != 0)
+                {
+                    MessageBox.Show("Radni nalog se može kreirati samo za stavke koje još nisu dodeljene nalogu.",
+                                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                int ID = Convert.ToInt32(selectedRecord.Record.GetValue("ID"));
+                stavke.Add((ID));
+            }
+
+            if (stavke.Count > 0)
+            {
+                isu.PostaviNalogIDNaRedove(stavke);
+                RefreshGrid();
+            }
+        }
+
+
+        private void btnDopunaNaloga_Click_1(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
+            List<int> stavkeBezNaloga = new List<int>();
+            HashSet<int> nalogIds = new HashSet<int>();
+
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+            {
+                object nalogIdValue = selectedRecord.Record.GetValue("NalogID");
+                int nalogId = 0;
+                if (nalogIdValue != null && int.TryParse(nalogIdValue.ToString(), out int parsedId))
+                {
+                    nalogId = parsedId;
+                }
+
+                if (nalogId != 0)
+                {
+                    nalogIds.Add(nalogId);
+                }
+                else
+                {
+                    int ID = Convert.ToInt32(selectedRecord.Record.GetValue("ID"));
+                    stavkeBezNaloga.Add( ID);
+                }
+            }
+
+            if (nalogIds.Count > 1)
+            {
+                MessageBox.Show("Stavke se mogu dodati samo u jedan nalog. Selektovano je više različitih naloga.",
+                                "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nalogIds.Count == 1 && stavkeBezNaloga.Count > 0)
+            {
+                int nalogId = nalogIds.First();
+
+                DialogResult result = MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
+                                                      "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    isu.UpdateNalogIDRadniNalogDrumski(stavkeBezNaloga, nalogId);
+                    RefreshGrid();
+                }
+            }
         }
     }
 }

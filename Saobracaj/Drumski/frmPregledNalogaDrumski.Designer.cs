@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDopunaNaloga = new System.Windows.Forms.Button();
+            this.btnFormiranjeNaloga = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,14 +57,60 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnDopunaNaloga);
+            this.panel2.Controls.Add(this.btnFormiranjeNaloga);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(559, 38);
+            this.panel2.Size = new System.Drawing.Size(687, 38);
             this.panel2.TabIndex = 6;
+            // 
+            // btnDopunaNaloga
+            // 
+            this.btnDopunaNaloga.AutoSize = true;
+            this.btnDopunaNaloga.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDopunaNaloga.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnDopunaNaloga.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnDopunaNaloga.FlatAppearance.BorderSize = 0;
+            this.btnDopunaNaloga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnDopunaNaloga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnDopunaNaloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDopunaNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnDopunaNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnDopunaNaloga.Location = new System.Drawing.Point(432, 0);
+            this.btnDopunaNaloga.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDopunaNaloga.Name = "btnDopunaNaloga";
+            this.btnDopunaNaloga.Size = new System.Drawing.Size(135, 38);
+            this.btnDopunaNaloga.TabIndex = 22;
+            this.btnDopunaNaloga.Text = "Dopuna naloga";
+            this.btnDopunaNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDopunaNaloga.UseVisualStyleBackColor = true;
+            this.btnDopunaNaloga.Click += new System.EventHandler(this.btnDopunaNaloga_Click_1);
+            // 
+            // btnFormiranjeNaloga
+            // 
+            this.btnFormiranjeNaloga.AutoSize = true;
+            this.btnFormiranjeNaloga.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFormiranjeNaloga.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnFormiranjeNaloga.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnFormiranjeNaloga.FlatAppearance.BorderSize = 0;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormiranjeNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnFormiranjeNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnFormiranjeNaloga.Location = new System.Drawing.Point(297, 0);
+            this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormiranjeNaloga.Name = "btnFormiranjeNaloga";
+            this.btnFormiranjeNaloga.Size = new System.Drawing.Size(135, 38);
+            this.btnFormiranjeNaloga.TabIndex = 21;
+            this.btnFormiranjeNaloga.Text = "Formiranje naloga";
+            this.btnFormiranjeNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormiranjeNaloga.UseVisualStyleBackColor = true;
+            this.btnFormiranjeNaloga.Click += new System.EventHandler(this.btnFormiranjeNaloga_Click);
             // 
             // button3
             // 
@@ -76,10 +124,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(161, 0);
+            this.button3.Location = new System.Drawing.Point(167, 0);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(124, 38);
+            this.button3.Size = new System.Drawing.Size(130, 38);
             this.button3.TabIndex = 20;
             this.button3.Text = "Promena statusa";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -98,10 +146,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(55, 0);
+            this.button2.Location = new System.Drawing.Point(57, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 38);
+            this.button2.Size = new System.Drawing.Size(110, 38);
             this.button2.TabIndex = 19;
             this.button2.Text = "Dodeli kamion";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -123,7 +171,7 @@
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 38);
+            this.button1.Size = new System.Drawing.Size(57, 38);
             this.button1.TabIndex = 18;
             this.button1.Text = "Otvori";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -178,9 +226,11 @@
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl1.ApplyVisualStyles = false;
             this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -244,7 +294,7 @@
             this.cboStatus.FormattingEnabled = true;
             this.cboStatus.Location = new System.Drawing.Point(34, 52);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(229, 21);
+            this.cboStatus.Size = new System.Drawing.Size(229, 24);
             this.cboStatus.TabIndex = 1;
             // 
             // lblStatus
@@ -252,7 +302,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(31, 21);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(37, 13);
+            this.lblStatus.Size = new System.Drawing.Size(44, 16);
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Status";
             // 
@@ -297,5 +347,7 @@
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Label lblStatus;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Button btnFormiranjeNaloga;
+        private System.Windows.Forms.Button btnDopunaNaloga;
     }
 }
