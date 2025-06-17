@@ -175,6 +175,11 @@ namespace Saobracaj.Izvoz
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
         }
 
         private void frmIzvozTable_Load(object sender, EventArgs e)

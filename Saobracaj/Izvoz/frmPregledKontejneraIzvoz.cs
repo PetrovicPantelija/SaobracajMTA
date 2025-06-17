@@ -264,46 +264,14 @@ namespace Saobracaj.Izvoz
             }
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
-            /*
-                        DataGridViewColumn column = dataGridView1.Columns[0];
-                        dataGridView1.Columns[0].HeaderText = "ID";
-                        dataGridView1.Columns[0].Width = 50;
 
-                        DataGridViewColumn column2 = dataGridView1.Columns[1];
-                        dataGridView1.Columns[1].HeaderText = "Br voza";
-                        dataGridView1.Columns[1].Width = 50;
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
 
-                        DataGridViewColumn column3 = dataGridView1.Columns[2];
-                        dataGridView1.Columns[2].HeaderText = "Relacija";
-                        dataGridView1.Columns[2].Width = 150;
-
-                        DataGridViewColumn column4 = dataGridView1.Columns[3];
-                        dataGridView1.Columns[3].HeaderText = "Vr polaska";
-                        dataGridView1.Columns[3].Width = 70;
-
-                        DataGridViewColumn column5 = dataGridView1.Columns[4];
-                        dataGridView1.Columns[4].HeaderText = "Vr dolaska";
-                        dataGridView1.Columns[4].Width = 70;
-
-                        DataGridViewColumn column6 = dataGridView1.Columns[5];
-                        dataGridView1.Columns[5].HeaderText = "Max bruto";
-                        dataGridView1.Columns[5].Width = 70;
-
-                        DataGridViewColumn column7 = dataGridView1.Columns[6];
-                        dataGridView1.Columns[6].HeaderText = "Max duž";
-                        dataGridView1.Columns[6].Width = 70;
-
-                        DataGridViewColumn column8 = dataGridView1.Columns[7];
-                        dataGridView1.Columns[7].HeaderText = "Max br kola";
-                        dataGridView1.Columns[7].Width = 70;
-
-                        DataGridViewColumn column9 = dataGridView1.Columns[8];
-                        dataGridView1.Columns[8].HeaderText = "Napomena";
-                        dataGridView1.Columns[8].Width = 100;
-            */
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+           
 
         }
 
@@ -385,10 +353,13 @@ namespace Saobracaj.Izvoz
             }
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
-            // this.gridGroupingControl1.SelectionMode = GridSelectionMode.Multiple;
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
         }
 

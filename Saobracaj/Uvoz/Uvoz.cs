@@ -1368,8 +1368,7 @@ namespace Saobracaj.Uvoz
                 txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
                 txtTaraK.Value = Convert.ToDecimal(dr["TaraKontejnera"].ToString());
                 txtBrutoK.Value = Convert.ToDecimal(dr["BrutoKontejnera"].ToString());
-     
-                   txtTaraTerminal.Value = Convert.ToDecimal(dr["TaraKontejneraT"].ToString());
+                txtTaraTerminal.Value = Convert.ToDecimal(dr["TaraKontejneraT"].ToString());
                 cbNapomenaPoz.SelectedValue = Convert.ToInt32(dr["NapomenaZaPozicioniranje"].ToString());
                 dtAtaOtprema.Value = Convert.ToDateTime(dr["AtaOtpreme"].ToString());
                 txtBrojVoza.Text = dr["BrojVoza"].ToString();
@@ -1447,7 +1446,7 @@ namespace Saobracaj.Uvoz
             
             if (chkUradilaCarina.Checked == true)
             { UradilaCarina = 1; };
-                 */
+            */
 
                 //PANTA
                 if (dr["PotvrdioKlijent"].ToString() == "0")
@@ -3897,9 +3896,14 @@ namespace Saobracaj.Uvoz
             }
             this.gridGroupingControl1.TableDescriptor.Columns["BrojKontejnera"].FilterRowOptions.FilterMode = FilterMode.DisplayText;
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-
             //Wiring the Dynamic Filter to GridGroupingControl
             dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
 
         }
 

@@ -116,7 +116,7 @@
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(554, 4);
+            this.txtSifra.Location = new System.Drawing.Point(763, 6);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(79, 22);
             this.txtSifra.TabIndex = 131;
@@ -127,7 +127,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(485, 7);
+            this.label1.Location = new System.Drawing.Point(700, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 132;
@@ -147,8 +147,6 @@
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.mainHeder);
-            this.panelHeader.Controls.Add(this.label1);
-            this.panelHeader.Controls.Add(this.txtSifra);
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -172,12 +170,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button26);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.txtSifra);
             this.panel2.Controls.Add(this.button24);
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(3, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(731, 31);
+            this.panel2.Size = new System.Drawing.Size(857, 31);
             this.panel2.TabIndex = 6;
             // 
             // button26
@@ -191,7 +191,7 @@
             this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button26.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button26.Location = new System.Drawing.Point(266, 0);
+            this.button26.Location = new System.Drawing.Point(254, 0);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(108, 31);
             this.button26.TabIndex = 19;
@@ -212,9 +212,9 @@
             this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button25.Location = new System.Drawing.Point(168, 0);
+            this.button25.Location = new System.Drawing.Point(162, 0);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(98, 31);
+            this.button25.Size = new System.Drawing.Size(92, 31);
             this.button25.TabIndex = 18;
             this.button25.Text = "Odlazeći";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -233,7 +233,7 @@
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button24.Location = new System.Drawing.Point(85, 0);
+            this.button24.Location = new System.Drawing.Point(79, 0);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(83, 31);
             this.button24.TabIndex = 17;
@@ -255,7 +255,7 @@
             this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button23.Location = new System.Drawing.Point(0, 0);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(85, 31);
+            this.button23.Size = new System.Drawing.Size(79, 31);
             this.button23.TabIndex = 16;
             this.button23.Text = "Otvori";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -315,7 +315,6 @@
             this.meniHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.panelHeader.ResumeLayout(false);
-            this.panelHeader.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();

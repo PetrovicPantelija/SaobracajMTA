@@ -453,7 +453,7 @@ namespace Saobracaj.Uvoz
             {
                 txtID.Text = "0";
             }
-            var select = " SELECT     UvozNHM.ID, NHM.Broj, UvozNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
+            var select = " SELECT     UvozNHM.ID, NHM.Broj, UvozNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Neto, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
                       " UvozNHM ON NHM.ID = UvozNHM.IDNHM where Uvoznhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by Uvoznhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -502,7 +502,7 @@ namespace Saobracaj.Uvoz
             {
                 txtID.Text = "0";
             }
-            var select = " SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
+            var select = " SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv, KomercijalniNaziv, TarifniBroj, BrojKoleta, Neto, Bruto, Vrednost, Valuta FROM NHM INNER JOIN " +
                       " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -681,7 +681,7 @@ namespace Saobracaj.Uvoz
 
 
                     InsertUvozKonacna ins = new InsertUvozKonacna();
-                    ins.InsUvozNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), row.Cells[6].Value.ToString());
+                    ins.InsUvozNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToDouble(row.Cells[6].Value.ToString()), row.Cells[7].Value.ToString());
 
 
                 }
@@ -693,23 +693,28 @@ namespace Saobracaj.Uvoz
 
 
                     InsertUvozKonacna ins = new InsertUvozKonacna();
-                    ins.InsUvozKonacnaNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), row.Cells[6].Value.ToString());
+                    ins.InsUvozKonacnaNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToDouble(row.Cells[6].Value.ToString()), row.Cells[6].Value.ToString());
 
 
                 }
             }
 
+            InsertUvozKonacna upd = new InsertUvozKonacna();
 
 
-           
+
+
 
             if (chkNerasporedjeni.Checked == true)
             {
                 FillDG2();
+                upd.UpdUvozNHMTezine(Convert.ToInt32(txtID.Text), 0);
+
             }
             else
             {
                 FillDG2Konacna();
+                upd.UpdUvozNHMTezine(Convert.ToInt32(txtID.Text), 1);
             }
         }
 

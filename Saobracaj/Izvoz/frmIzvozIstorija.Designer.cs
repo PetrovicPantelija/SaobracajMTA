@@ -29,10 +29,13 @@ namespace Saobracaj.Izvoz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIzvozIstorija));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -75,6 +78,13 @@ namespace Saobracaj.Izvoz
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // frmIzvozIstorija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,6 +98,7 @@ namespace Saobracaj.Izvoz
             this.Text = "Pregled istoriskih podataka kroz planove";
             this.Load += new System.EventHandler(this.frmIzvozIstorija_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +107,6 @@ namespace Saobracaj.Izvoz
         #endregion
         private System.Windows.Forms.TextBox textBox1;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

@@ -1,6 +1,9 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -209,6 +212,41 @@ namespace Saobracaj.Sifarnici
 
         }
 
+        private void RefrechDataGridT()
+        {
+            var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni, Interni " +
+" , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from NHM " +
+"  left join VrstaRobeADR on NHM.ADRID = VrstaRobeADR.ID";
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpUvozni = 0;
@@ -247,7 +285,8 @@ namespace Saobracaj.Sifarnici
             {
                 Insertnhm ins = new Insertnhm();
                 ins.InsNHM(txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni, tmpInterni);
-                RefreshDataGrid();
+                // RefreshDataGrid();
+                RefrechDataGridT();
                 status = false;
             }
             else
@@ -256,7 +295,8 @@ namespace Saobracaj.Sifarnici
                 upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni, tmpInterni);
                 status = false;
                 txtSifra.Enabled = false;
-                RefreshDataGrid();
+               // RefreshDataGrid();
+                RefrechDataGridT();
             }
         }
 
@@ -276,7 +316,8 @@ namespace Saobracaj.Sifarnici
             del.DeleteNHM(Convert.ToInt32(txtSifra.Text));
             status = false;
             txtSifra.Enabled = false;
-            RefreshDataGrid();
+            // RefreshDataGrid();
+            RefrechDataGridT();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -326,8 +367,9 @@ namespace Saobracaj.Sifarnici
 
         private void frmNHM_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
-            var connect = frmLogovanje.connectionString;
+            // RefreshDataGrid();
+            RefrechDataGridT();
+             var connect = frmLogovanje.connectionString;
 
             var conn = new SqlConnection(connect);
             var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
@@ -337,6 +379,52 @@ namespace Saobracaj.Sifarnici
             txtADR.DataSource = adrSDS.Tables[0];
             txtADR.DisplayMember = "Naziv";
             txtADR.ValueMember = "ID";
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    txtBroj.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("Broj").ToString();
+                    txtNaziv.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("Naziv").ToString();
+                    chkRid.Checked = Convert.ToBoolean(gridGroupingControl1.Table.CurrentRecord.GetValue("RID").ToString());
+                    if (gridGroupingControl1.Table.CurrentRecord.GetValue("ADRID").ToString() != "")
+                    {
+                        txtADR.SelectedValue = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ADRID"));
+                    }
+                    else
+                    {
+                        txtADR.SelectedValue = 0;
+                    }
+                    if (gridGroupingControl1.Table.CurrentRecord.GetValue("UVozni").ToString() == "1")
+                    {
+                        chkUvozni.Checked = true;
+                    }
+                    else
+                    {
+                        chkUvozni.Checked = false;
+                    }
+
+                    if (gridGroupingControl1.Table.CurrentRecord.GetValue("Interni").ToString() == "1")
+                    {
+                        chkInterni.Checked = true;
+                    }
+                    else
+                    {
+                        chkInterni.Checked = false;
+                    }
+                   
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

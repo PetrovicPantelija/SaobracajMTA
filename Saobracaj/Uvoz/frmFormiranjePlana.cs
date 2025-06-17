@@ -262,6 +262,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiUkupanBrojKontejnera()
         {
+          
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 

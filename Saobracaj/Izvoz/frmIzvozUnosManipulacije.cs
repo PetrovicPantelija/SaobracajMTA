@@ -3331,7 +3331,7 @@ namespace Saobracaj.Izvoz
 
         private void button18_Click(object sender, EventArgs e)
         {
-            FillDG6(3);
+            FillDG6(2);
         }
 
         private void button21_Click(object sender, EventArgs e)

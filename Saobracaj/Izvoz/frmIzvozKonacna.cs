@@ -1,6 +1,8 @@
 ﻿using Saobracaj.Dokumenta;
 using Saobracaj.Uvoz;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
@@ -142,6 +144,72 @@ namespace Saobracaj.Izvoz
         }
 
 
+        private void RefreshGV()
+        {
+            var select = " SELECT  IzvozKonacna.ID as ID,  IzvozKonacna.BrojKontejnera,  IzvozKonacna.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, IzvozKonacna.BookingBrodara, " +
+        " IzvozKonacna.BrojVagona,   IzvozKonacna.CutOffPort,Partnerji_2.PaNaziv AS Izvoznik,Partnerji_3.PaNaziv AS Nalogodavac1, Partnerji_4.PaNaziv AS Nalogodavac2, Partnerji_5.PaNaziv AS Nalogodavac3, " +
+        " IzvozKonacna.DobijenNalogKlijent1, IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe,  " +
+        " IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, IzvozKonacna.VrednostRobeFaktura,  " +
+        " (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozKonacnaVrstaManipulacije " +
+        " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije   where IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID" +
+        " FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,        (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+        " FROM IzvozKonacnaVrstaRobeHS        inner join VrstaRobeHS on IzvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozKonacnaVrstaRobeHS.IDNadredjena = IzvozKonacna.ID " +
+        " FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,       (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+        " FROM IzvozKonacnaNHM  inner join NHM on IzvozKonacnaNHM.IDNHM = NHM.ID  where IzvozKonacnaNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
+        " IzvozKonacna.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
+        " KontejnerskiTerminali.Oznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, IzvozKonacna.KontaktOsoba,  " +
+        " Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija,  AdresaSlanjaStatusa,    " +
+        " NaslovSlanjaStatusa, IzvozKonacna.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,   " +
+        " IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.VGMTezina, IzvozKonacna.Tara, IzvozKonacna.VGMBrod,   " +
+        "   IzvozKonacna.Napomena1REf, " +
+        " IzvozKonacna.Napomena2REf, IzvozKonacna.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja,  " +
+        " IzvozKonacna.NacinPretovara FROM         IzvozKonacna Left JOIN TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID LEFT JOIN " +
+        " Partnerji ON IzvozKonacna.Brodar = Partnerji.PaSifra LEFT JOIN         KrajnjaDestinacija ON IzvozKonacna.KrajnaDestinacija = KrajnjaDestinacija.ID LEFT JOIN " +
+        " VrstePostupakaUvoz ON IzvozKonacna.Postupanje = VrstePostupakaUvoz.ID LEFT JOIN         KontejnerskiTerminali ON IzvozKonacna.MestoPreuzimanja = KontejnerskiTerminali.id " +
+        " LEFT JOIN " +
+        " MestaUtovara ON IzvozKonacna.MesoUtovara = MestaUtovara.ID " +
+        " LEFT JOIN         Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID " +
+        " LEFT JOIN        Partnerji AS Partnerji_1 ON IzvozKonacna.Spedicija = Partnerji_1.PaSifra " +
+        " LEFT JOIN         VrstaCarinskogPostupka ON IzvozKonacna.NapomenaReexport = VrstaCarinskogPostupka.id " +
+        " LEFT JOIN        InspekciskiTretman ON IzvozKonacna.Inspekcija = InspekciskiTretman.ID " +
+        " LEFT JOIN        Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra " +
+        " LEFT JOIN        Partnerji AS Partnerji_3 ON IzvozKonacna.Klijent1 = Partnerji_3.PaSifra " +
+        " LEFT JOIN       Partnerji AS Partnerji_4 ON IzvozKonacna.Klijent2 = Partnerji_4.PaSifra " +
+        " LEFT JOIN         Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra LEFT JOIN " +
+        " Partnerji AS Partnerji_6 ON IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra " +
+        " LEFT JOIN         uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID " +
+        " Where IzvozKonacna.IDNAdredjena = " + txtNadredjeni.Text + " order by IzvozKonacna.ID desc  ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+        }
+
         public frmIzvozKonacna()
         {
             InitializeComponent();
@@ -150,6 +218,7 @@ namespace Saobracaj.Izvoz
             txtVozilo.Enabled = false;
             txtVozac.Enabled = false;
             ChangeTextBox();
+            RefreshGV();
         }
 
         public frmIzvozKonacna(int ID)
@@ -163,6 +232,7 @@ namespace Saobracaj.Izvoz
             VratiPodatke(ID);
             FillZaglavlje(ID);
             ChangeTextBox();
+            RefreshGV();
             //FillDG2();
             //FillDG3();
 
@@ -393,17 +463,7 @@ namespace Saobracaj.Izvoz
                 cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
-
                 cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
-
-
-
-
-
-
-
-
-
             }
             con.Close();
         }
@@ -512,31 +572,7 @@ namespace Saobracaj.Izvoz
             cboSpedicijaJ.DisplayMember = "PaNaziv";
             cboSpedicijaJ.ValueMember = "PaSifra";
            
-            
-            
-            /*
-            //Adresa statusa vozila
-            var dir5 = "Select ID,Naziv from AdresaStatusVozila order by Naziv";
-            var dirAD5 = new SqlDataAdapter(dir5, conn);
-            var dirDS5 = new DataSet();
-            dirAD5.Fill(dirDS5);
-            cboAdresaStatusVozila.DataSource = dirDS5.Tables[0];
-            cboAdresaStatusVozila.DisplayMember = "Naziv";
-            cboAdresaStatusVozila.ValueMember = "ID";
-            */
-            
-            //Naslov statusa vozila
-            /*
-            var partner40 = "Select ID,Naziv from NaslovStatusaVozila order by Naziv";
-            var partAD40 = new SqlDataAdapter(partner40, conn);
-            var partDS40 = new DataSet();
-            partAD40.Fill(partDS40);
-            cboNaslovStatusaVozila.DataSource = partDS40.Tables[0];
-            cboNaslovStatusaVozila.DisplayMember = "Naziv";
-            cboNaslovStatusaVozila.ValueMember = "ID";
-            */
-
-
+          
 
             //carinski postupak
             var dir2 = "Select ID, (Oznaka + ' ' + Naziv) as Naziv from VrstaCarinskogPostupka order by Naziv";
@@ -613,9 +649,6 @@ namespace Saobracaj.Izvoz
             cboVoz.DataSource = vozSDS.Tables[0];
             cboVoz.DisplayMember = "Naziv";
             cboVoz.ValueMember = "ID";
-
-
-
 
             //Panta
             var VRHS = "Select ID,(HSKod + '   ' + Rtrim(Naziv)) as Naziv from VrstaRobeHS order by HSKod";
