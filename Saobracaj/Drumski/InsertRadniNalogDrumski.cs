@@ -19,8 +19,8 @@ namespace Saobracaj.Drumski
         public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, int? MestoUtovara, int? AdresaUtovara,
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, int? AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktNaIstovaru,
-                    int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba)
-        
+                    int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz)
+
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -248,6 +248,15 @@ namespace Saobracaj.Drumski
             brodskaPlomba.Direction = ParameterDirection.Input;
             brodskaPlomba.Value = (object)BrodskaPlomba ?? DBNull.Value;
             cmd.Parameters.Add(brodskaPlomba);
+            
+            SqlParameter napomenaPoz = new SqlParameter();
+            napomenaPoz.ParameterName = "@NapomenaPoz";
+            napomenaPoz.SqlDbType = SqlDbType.NVarChar;
+            napomenaPoz.Size = 100;
+            napomenaPoz.Direction = ParameterDirection.Input;
+            napomenaPoz.Value = (object)NapomenaPoz ?? DBNull.Value;
+            cmd.Parameters.Add(napomenaPoz);
+            
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
@@ -286,7 +295,7 @@ namespace Saobracaj.Drumski
         public int InsRadniNalogDrumski(int? TipNaloga, int AutoDan, string Ref, string MestoPreuzimanja,int? Klijent, int? MestoUtovara, int? AdresaUtovara,
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, int? AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktNaIstovaru, int? PDV, int? TipTransporta,
-                 string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba)
+                 string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz)
 
         {
             int IDPom = 0;
@@ -516,6 +525,14 @@ namespace Saobracaj.Drumski
             brodskaPlomba.Direction = ParameterDirection.Input;
             brodskaPlomba.Value = (object)BrodskaPlomba ?? DBNull.Value;
             cmd.Parameters.Add(brodskaPlomba);
+
+            SqlParameter napomenaPoz = new SqlParameter();
+            napomenaPoz.ParameterName = "@NapomenaPoz";
+            napomenaPoz.SqlDbType = SqlDbType.NVarChar;
+            napomenaPoz.Size = 100;
+            napomenaPoz.Direction = ParameterDirection.Input;
+            napomenaPoz.Value = (object)NapomenaPoz ?? DBNull.Value;
+            cmd.Parameters.Add(napomenaPoz);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;

@@ -160,7 +160,7 @@ namespace Saobracaj.Drumski
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = ik.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = ik.MestoCarinjenja " +
-                      "LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena " +
+                      "LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena " +
                       "LEFT JOIN Voz v ON v.ID = ukz.IDVoza " +
              "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
              "UNION " +
@@ -225,7 +225,7 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
              " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
-             "'' as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
+             "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, '' as OdredisnaCarina,'' as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
@@ -334,8 +334,8 @@ namespace Saobracaj.Drumski
 
                 txtDodatniOpis.Text = dr["DodatniOpis"].ToString();
                 txtOdredisnaCarinarnica.Text = dr["OdredisnaCarina"].ToString();
-                txtSpediterCarinarnice.Text = dr["OdredisnaSpedicija"].ToString();
-                txtCarinjenjeUvozno.Text = dr["NapomenaCarinskiPostupak"].ToString();
+                //txtSpediterCarinarnice.Text = dr["OdredisnaSpedicija"].ToString();
+                //txtCarinjenjeUvozno.Text = dr["NapomenaCarinskiPostupak"].ToString();
               //  txtkontaktNaIstovaru.Text = dr["KontaktNaIstovaru"].ToString();   PROVERI!!!!!
                 if (dr["Cena"] != DBNull.Value)
                     txtCena.Value = Convert.ToDecimal(dr["Cena"].ToString());
@@ -345,8 +345,8 @@ namespace Saobracaj.Drumski
                 if (Uvoz == 0)
                 {
                     txtBokingBrodara.Enabled = false;
-                    label18.Visible = false;  // labela BL
-                    txtBL.Visible = false;
+                   // label18.Visible = false;  // labela BL
+                    txtBL.Enabled = false;
                     cboMestoUtovara.Enabled = false;
                     cboAdresaUtovara.Enabled = false;
                     cboKlijent.Enabled = false;
@@ -356,11 +356,13 @@ namespace Saobracaj.Drumski
                     txtBrojVoza.Enabled = false;
                     cboTipNaloga.Visible = false;
                     txtTipNaloga1.Visible = true;
+                    txtBrodskaPlomba.Enabled = false;
+                    txtBrojKontejnera.Enabled = false;
                 }
                 else if (Uvoz == 1)
                 {
-                    label29.Visible = false;
-                    txtBrodskaPlomba.Visible = false;
+                    //label29.Visible = false;
+                    txtBrodskaPlomba.Enabled = false;
                     txtBokingBrodara.Enabled = false;
                     txtBL.Visible = true;
                     txtReferenca.Enabled = false;
@@ -368,7 +370,7 @@ namespace Saobracaj.Drumski
                     cboMestoIstovara.Enabled = false;
                     cboAdresaIstovara.Enabled = false;
                     txtkontaktNaIstovaru.Enabled = false;
-                    //txtBL.Enabled = false;
+                    txtBL.Enabled = false;
                     cboKlijent.Enabled = false;
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
@@ -376,6 +378,8 @@ namespace Saobracaj.Drumski
                     txtBrojVoza.Enabled = false;
                     cboTipNaloga.Visible = false;
                     txtTipNaloga1.Visible = true;
+                    btnKontaktOsobe.Enabled = false;
+                    txtBrojKontejnera.Enabled = false;
                 }
                 else 
                 {
@@ -616,6 +620,7 @@ namespace Saobracaj.Drumski
             int? bookingBrodara = null;
             int? adresaIstovara = null;
             int? adresaUtovara = null;
+            string napomenaPoz = null;
 
             int iD = 0;
             if (txtID.Text != null && int.TryParse(txtID.Text, out int parsedID))
@@ -719,6 +724,8 @@ namespace Saobracaj.Drumski
                 brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text;
             if (Uvoz != 1)
                 brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text;
+            if (Uvoz != 1 && Uvoz != 0)
+                napomenaPoz = string.IsNullOrWhiteSpace(txtNapomenaPoz.Text) ? null : txtNapomenaPoz.Text; 
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             if (status == true)
             {
@@ -730,7 +737,7 @@ namespace Saobracaj.Drumski
 
                 int noviID = ins.InsRadniNalogDrumski( tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2, 
-                   bookingBrodara, brodskaTeretnica, brodskaPlomba);
+                   bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz);
                
                 txtID.Text = noviID.ToString();
                 status = false;
@@ -740,7 +747,7 @@ namespace Saobracaj.Drumski
                
                  ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                     dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
-                    brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba);
+                    brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz);
             }    
                 
         }

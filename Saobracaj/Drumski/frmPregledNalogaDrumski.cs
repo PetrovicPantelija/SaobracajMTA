@@ -128,6 +128,50 @@ namespace Saobracaj.Drumski
         {
             //samo oni koji imaju raspored voya
             var select = @"
+                            SELECT rn.ID,
+                                    ik.BrojKontejnera,
+                                    tk.SkNaziv AS TipKontejnera,
+                                    rn.NalogID,
+                                    CONVERT(varchar,rn.DatumKreiranjaNaloga,104) AS KreiranjeNaloga,
+                                    rn.KamionID,
+                                    a.RegBr,
+                                    a.Vozac,
+                                    rn.Status,   
+                                    rn.Status AS StatusID, 
+                                    CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
+                                    pa.PaNaziv as Nalogodavac,
+                                    rn.KontejnerID, 'KONACAN' as Trenutno
+                            FROM RadniNalogDrumski rn
+                            LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                            LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                            INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
+                            LEFT JOIN TipKontenjera tk ON ik.VrstaKontejnera = tk.ID
+                            WHERE rn.Uvoz = 0
+
+                            union all
+                                    SELECT rn.ID,
+                                    i.BrojKontejnera,
+                                    tk.SkNaziv AS TipKontejnera,
+                                    rn.NalogID,
+                                    CONVERT(varchar, rn.DatumKreiranjaNaloga, 104) AS KreiranjeNaloga,
+                                    rn.KamionID,
+                                    a.RegBr,
+                                    a.Vozac,
+                                    rn.Status,   
+                                    rn.Status AS StatusID, 
+                                    CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
+                                    pa.PaNaziv as Nalogodavac,
+                            rn.KontejnerID, 'NEODREDJEN' as Trenutno
+                        FROM RadniNalogDrumski rn
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
+                        LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
+                        WHERE rn.Uvoz = 0
+
+                        union all
                         SELECT rn.ID, 
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
@@ -147,7 +191,8 @@ namespace Saobracaj.Drumski
                         INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                       
+                        WHERE rn.Uvoz = 1
+
                         union all
                                SELECT rn.ID, 
                                uk.BrojKontejnera,
@@ -168,6 +213,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN Uvoz uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
+                        WHERE rn.Uvoz = 1
 
                         union all
                                SELECT rn.ID, 
