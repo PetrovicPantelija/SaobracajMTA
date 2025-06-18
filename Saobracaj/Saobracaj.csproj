@@ -532,6 +532,25 @@
     <Compile Include="Administracija\Prava.Designer.cs">
       <DependentUpon>Prava.cs</DependentUpon>
     </Compile>
+    <Compile Include="Carinko\frmMagacinskiBrojevi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinko\frmMagacinskiBrojevi.Designer.cs">
+      <DependentUpon>frmMagacinskiBrojevi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinko\frmPrijemnicaCarinskaTabela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinko\frmPrijemnicaCarinskaTabela.Designer.cs">
+      <DependentUpon>frmPrijemnicaCarinskaTabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinko\frmPrijemnicaCarinsko.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinko\frmPrijemnicaCarinsko.Designer.cs">
+      <DependentUpon>frmPrijemnicaCarinsko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinko\InsertPrijemnicaCarinska.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Dokumenta\DokumentaTerminal.cs">
       <SubType>Form</SubType>
@@ -3920,6 +3939,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\Prava.resx">
       <DependentUpon>Prava.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinko\frmMagacinskiBrojevi.resx">
+      <DependentUpon>frmMagacinskiBrojevi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinko\frmPrijemnicaCarinskaTabela.resx">
+      <DependentUpon>frmPrijemnicaCarinskaTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinko\frmPrijemnicaCarinsko.resx">
+      <DependentUpon>frmPrijemnicaCarinsko.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\DokumentaTerminal.resx">
       <DependentUpon>DokumentaTerminal.cs</DependentUpon>

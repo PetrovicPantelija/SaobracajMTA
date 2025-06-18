@@ -330,7 +330,7 @@ namespace Saobracaj.Uvoz
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.meniHeader.Size = new System.Drawing.Size(1567, 31);
+            this.meniHeader.Size = new System.Drawing.Size(1584, 31);
             this.meniHeader.TabIndex = 50;
             this.meniHeader.Text = "toolStrip1";
             this.meniHeader.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -489,7 +489,7 @@ namespace Saobracaj.Uvoz
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1567, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1584, 33);
             this.panelHeader.TabIndex = 460;
             // 
             // panel2
@@ -506,7 +506,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(845, 31);
+            this.panel2.Size = new System.Drawing.Size(862, 31);
             this.panel2.TabIndex = 6;
             // 
             // button29
@@ -731,7 +731,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1567, 903);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1584, 903);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.White;
             this.tabSplitterContainer1.SplitterPosition = 679;
             this.tabSplitterContainer1.TabIndex = 461;
@@ -892,7 +892,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1567, 679);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1584, 679);
             this.tabSplitterPage1.TabIndex = 0;
             this.tabSplitterPage1.Text = "OPŠTE";
             this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
@@ -3444,7 +3444,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 699);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1567, 204);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1584, 204);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "TABELE";
             this.tabSplitterPage2.ToolTip = "TABELE";
@@ -3459,7 +3459,7 @@ namespace Saobracaj.Uvoz
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1567, 204);
+            this.tabControl1.Size = new System.Drawing.Size(1584, 204);
             this.tabControl1.TabIndex = 42;
             // 
             // tabPage2
@@ -3468,7 +3468,7 @@ namespace Saobracaj.Uvoz
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1559, 176);
+            this.tabPage2.Size = new System.Drawing.Size(1576, 176);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usluge";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -3486,7 +3486,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(1528, 164);
+            this.dataGridView7.Size = new System.Drawing.Size(1545, 166);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -3513,7 +3513,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1549, 170);
+            this.dataGridView4.Size = new System.Drawing.Size(1549, 172);
             this.dataGridView4.TabIndex = 157;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 
@@ -3540,7 +3540,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView9.Name = "dataGridView9";
             this.dataGridView9.RowHeadersWidth = 11;
             this.dataGridView9.RowTemplate.Height = 24;
-            this.dataGridView9.Size = new System.Drawing.Size(1551, 163);
+            this.dataGridView9.Size = new System.Drawing.Size(1551, 165);
             this.dataGridView9.TabIndex = 158;
             // 
             // tabPage4
@@ -3598,7 +3598,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1584, 960);
+            this.ClientSize = new System.Drawing.Size(1601, 960);
             this.Controls.Add(this.tabSplitterContainer1);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
