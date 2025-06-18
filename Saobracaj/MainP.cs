@@ -6858,6 +6858,18 @@ namespace Saobracaj
             Uvoz.frmOperativniPlanUvoz vv = new Uvoz.frmOperativniPlanUvoz();
             vv.Show();
         }
+
+        private void toolStripButton387_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmMestaUtovara mu = new Izvoz.frmMestaUtovara();
+            mu.Show();
+        }
+
+        private void toolStripButton385_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmKontaktOsobeMU komu = new Izvoz.frmKontaktOsobeMU();
+            komu.Show();
+        }
     }
     }
 
