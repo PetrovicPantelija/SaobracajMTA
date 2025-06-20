@@ -77,9 +77,14 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDokument
@@ -92,7 +97,7 @@
             // txtStatus
             // 
             this.txtStatus.Enabled = false;
-            this.txtStatus.Location = new System.Drawing.Point(1167, 80);
+            this.txtStatus.Location = new System.Drawing.Point(1182, 63);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(85, 20);
             this.txtStatus.TabIndex = 482;
@@ -111,7 +116,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1164, 62);
+            this.label4.Location = new System.Drawing.Point(1179, 45);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 15);
@@ -179,7 +184,7 @@
             // txtKorisnik
             // 
             this.txtKorisnik.Enabled = false;
-            this.txtKorisnik.Location = new System.Drawing.Point(1051, 80);
+            this.txtKorisnik.Location = new System.Drawing.Point(1066, 63);
             this.txtKorisnik.Name = "txtKorisnik";
             this.txtKorisnik.Size = new System.Drawing.Size(85, 20);
             this.txtKorisnik.TabIndex = 491;
@@ -188,7 +193,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1048, 62);
+            this.label3.Location = new System.Drawing.Point(1063, 45);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
@@ -199,7 +204,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 103);
+            this.label5.Location = new System.Drawing.Point(29, 113);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 15);
@@ -210,7 +215,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(325, 171);
+            this.label6.Location = new System.Drawing.Point(313, 299);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 15);
@@ -223,7 +228,7 @@
             this.cboMagacinskiBroj.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMagacinskiBroj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboMagacinskiBroj.FormattingEnabled = true;
-            this.cboMagacinskiBroj.Location = new System.Drawing.Point(328, 189);
+            this.cboMagacinskiBroj.Location = new System.Drawing.Point(316, 317);
             this.cboMagacinskiBroj.Margin = new System.Windows.Forms.Padding(2);
             this.cboMagacinskiBroj.Name = "cboMagacinskiBroj";
             this.cboMagacinskiBroj.Size = new System.Drawing.Size(230, 23);
@@ -235,7 +240,7 @@
             this.cboVrstaSkladista.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaSkladista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboVrstaSkladista.FormattingEnabled = true;
-            this.cboVrstaSkladista.Location = new System.Drawing.Point(328, 121);
+            this.cboVrstaSkladista.Location = new System.Drawing.Point(316, 249);
             this.cboVrstaSkladista.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaSkladista.Name = "cboVrstaSkladista";
             this.cboVrstaSkladista.Size = new System.Drawing.Size(230, 23);
@@ -245,7 +250,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(325, 103);
+            this.label7.Location = new System.Drawing.Point(313, 231);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 15);
@@ -258,7 +263,7 @@
             this.cboSektor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSektor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboSektor.FormattingEnabled = true;
-            this.cboSektor.Location = new System.Drawing.Point(601, 121);
+            this.cboSektor.Location = new System.Drawing.Point(589, 249);
             this.cboSektor.Margin = new System.Windows.Forms.Padding(2);
             this.cboSektor.Name = "cboSektor";
             this.cboSektor.Size = new System.Drawing.Size(230, 23);
@@ -268,7 +273,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(598, 103);
+            this.label8.Location = new System.Drawing.Point(586, 231);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 15);
@@ -369,7 +374,7 @@
             // 
             // txtBrojFakture
             // 
-            this.txtBrojFakture.Location = new System.Drawing.Point(30, 475);
+            this.txtBrojFakture.Location = new System.Drawing.Point(314, 63);
             this.txtBrojFakture.Name = "txtBrojFakture";
             this.txtBrojFakture.Size = new System.Drawing.Size(232, 20);
             this.txtBrojFakture.TabIndex = 509;
@@ -378,7 +383,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(25, 457);
+            this.label14.Location = new System.Drawing.Point(311, 45);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 15);
@@ -387,7 +392,7 @@
             // 
             // txtPrevoznik
             // 
-            this.txtPrevoznik.Location = new System.Drawing.Point(32, 535);
+            this.txtPrevoznik.Location = new System.Drawing.Point(316, 136);
             this.txtPrevoznik.Name = "txtPrevoznik";
             this.txtPrevoznik.Size = new System.Drawing.Size(232, 20);
             this.txtPrevoznik.TabIndex = 511;
@@ -396,7 +401,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(29, 517);
+            this.label15.Location = new System.Drawing.Point(313, 118);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
@@ -405,7 +410,7 @@
             // 
             // txtBrojKamiona
             // 
-            this.txtBrojKamiona.Location = new System.Drawing.Point(32, 592);
+            this.txtBrojKamiona.Location = new System.Drawing.Point(316, 193);
             this.txtBrojKamiona.Name = "txtBrojKamiona";
             this.txtBrojKamiona.Size = new System.Drawing.Size(232, 20);
             this.txtBrojKamiona.TabIndex = 513;
@@ -414,7 +419,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(29, 571);
+            this.label16.Location = new System.Drawing.Point(313, 172);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(80, 15);
@@ -425,13 +430,12 @@
             // 
             this.txtNapomena1.BackColor = System.Drawing.Color.White;
             this.txtNapomena1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNapomena1.Location = new System.Drawing.Point(312, 417);
+            this.txtNapomena1.Location = new System.Drawing.Point(583, 316);
             this.txtNapomena1.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena1.Multiline = true;
             this.txtNapomena1.Name = "txtNapomena1";
             this.txtNapomena1.Size = new System.Drawing.Size(234, 152);
             this.txtNapomena1.TabIndex = 515;
-            this.txtNapomena1.Visible = false;
             // 
             // label26
             // 
@@ -439,25 +443,23 @@
             this.label26.BackColor = System.Drawing.Color.Transparent;
             this.label26.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(314, 399);
+            this.label26.Location = new System.Drawing.Point(585, 298);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(80, 16);
             this.label26.TabIndex = 516;
             this.label26.Text = "Napomena 1";
-            this.label26.Visible = false;
             // 
             // txtNapomena2
             // 
             this.txtNapomena2.BackColor = System.Drawing.Color.White;
             this.txtNapomena2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNapomena2.Location = new System.Drawing.Point(585, 417);
+            this.txtNapomena2.Location = new System.Drawing.Point(856, 316);
             this.txtNapomena2.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena2.Multiline = true;
             this.txtNapomena2.Name = "txtNapomena2";
             this.txtNapomena2.Size = new System.Drawing.Size(234, 152);
             this.txtNapomena2.TabIndex = 517;
-            this.txtNapomena2.Visible = false;
             // 
             // label17
             // 
@@ -465,17 +467,16 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(587, 399);
+            this.label17.Location = new System.Drawing.Point(858, 298);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(80, 16);
             this.label17.TabIndex = 518;
             this.label17.Text = "Napomena 2";
-            this.label17.Visible = false;
             // 
             // txtTransportNo
             // 
-            this.txtTransportNo.Location = new System.Drawing.Point(328, 250);
+            this.txtTransportNo.Location = new System.Drawing.Point(316, 378);
             this.txtTransportNo.Name = "txtTransportNo";
             this.txtTransportNo.Size = new System.Drawing.Size(232, 20);
             this.txtTransportNo.TabIndex = 519;
@@ -484,7 +485,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(333, 231);
+            this.label18.Location = new System.Drawing.Point(321, 359);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(77, 15);
@@ -495,7 +496,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(333, 286);
+            this.label19.Location = new System.Drawing.Point(321, 414);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 15);
@@ -507,7 +508,7 @@
             this.dtpOcekivanoVreme.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpOcekivanoVreme.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.dtpOcekivanoVreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(328, 307);
+            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(316, 435);
             this.dtpOcekivanoVreme.Margin = new System.Windows.Forms.Padding(2);
             this.dtpOcekivanoVreme.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpOcekivanoVreme.Name = "dtpOcekivanoVreme";
@@ -525,7 +526,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1311, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1307, 33);
             this.panelHeader.TabIndex = 523;
             // 
             // panel2
@@ -537,7 +538,7 @@
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(431, 31);
+            this.panel2.Size = new System.Drawing.Size(427, 31);
             this.panel2.TabIndex = 6;
             // 
             // button17
@@ -559,6 +560,7 @@
             this.button17.Text = "Magacinski Brojevi";
             this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button23
             // 
@@ -645,11 +647,55 @@
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(28, 646);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 127);
+            this.dataGridView1.TabIndex = 524;
+            // 
+            // sfDataGrid1
+            // 
+            this.sfDataGrid1.AccessibleName = "Table";
+            this.sfDataGrid1.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom;
+            this.sfDataGrid1.AllowDeleting = true;
+            this.sfDataGrid1.Location = new System.Drawing.Point(28, 485);
+            this.sfDataGrid1.Name = "sfDataGrid1";
+            this.sfDataGrid1.Size = new System.Drawing.Size(1271, 146);
+            this.sfDataGrid1.TabIndex = 525;
+            this.sfDataGrid1.Text = "sfDataGrid1";
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(1268, 452);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(27, 27);
+            this.button1.TabIndex = 16;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmPrijemnicaCarinsko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1311, 702);
+            this.ClientSize = new System.Drawing.Size(1307, 776);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sfDataGrid1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.dtpOcekivanoVreme);
@@ -693,10 +739,13 @@
             this.Controls.Add(this.cboSkladisteID);
             this.Name = "frmPrijemnicaCarinsko";
             this.Text = "CARINSKA PRIJEMNICA";
+            this.Load += new System.EventHandler(this.frmPrijemnicaCarinsko_Load);
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -752,5 +801,8 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
+        private System.Windows.Forms.Button button1;
     }
 }

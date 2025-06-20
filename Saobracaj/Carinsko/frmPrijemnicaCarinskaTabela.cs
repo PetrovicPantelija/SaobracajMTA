@@ -22,7 +22,7 @@ namespace Saobracaj.Carinko
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT     Skladista.ID, Partnerji.PaNaziv AS Vlasnik, PrijemnicaCarinska.ID AS Expr1, PrijemnicaCarinska.Status, PrijemnicaCarinska.Datum," +
+            var select = " SELECT     PrijemnicaCarinska.ID, PrijemnicaCarinska.Status, Partnerji.PaNaziv AS Vlasnik, PrijemnicaCarinska.ID AS Expr1, PrijemnicaCarinska.Status, PrijemnicaCarinska.Datum," +
                 " PrijemnicaCarinska.Korisanik, PrijemnicaCarinska.SkladisteID, PrijemnicaCarinska.Dokument, PrijemnicaCarinska.MBR, " +
                 "  PrijemnicaCarinska.VrstaSkladista, PrijemnicaCarinska.Vlasnik AS VlasnikRobe, PrijemnicaCarinska.Korisinik, PrijemnicaCarinska.Posiljalac,  " +
                 "  PrijemnicaCarinska.Sektor, Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac,  " +
@@ -65,5 +65,43 @@ namespace Saobracaj.Carinko
 
         }
 
+        private void button23_Click(object sender, EventArgs e)
+        {
+            frmPrijemnicaCarinsko car = new frmPrijemnicaCarinsko();
+            car.Show();
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            frmPrijemnicaCarinsko pc = new frmPrijemnicaCarinsko(txtSifra.Text);
+            pc.Show();
+        }
+
+        private void frmPrijemnicaCarinskaTabela_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

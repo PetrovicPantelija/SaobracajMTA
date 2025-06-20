@@ -42,7 +42,6 @@ string TransportNo, DateTime OcekivanoVreme)
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Datum";
             parameter2.SqlDbType = SqlDbType.DateTime;
-            parameter.Size = 1000;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Datum;
             myCommand.Parameters.Add(parameter2);
@@ -152,13 +151,7 @@ string TransportNo, DateTime OcekivanoVreme)
             myCommand.Parameters.Add(parameter14);
 
 
-            SqlParameter parameter15 = new SqlParameter();
-            parameter15.ParameterName = "@Prevoznik";
-            parameter15.SqlDbType = SqlDbType.NVarChar;
-            parameter15.Size = 50;
-            parameter15.Direction = ParameterDirection.Input;
-            parameter15.Value = Prevoznik;
-            myCommand.Parameters.Add(parameter15);
+
 
 
             SqlParameter parameter16 = new SqlParameter();
@@ -198,9 +191,8 @@ string TransportNo, DateTime OcekivanoVreme)
 
 
             SqlParameter parameter20 = new SqlParameter();
-            parameter20.ParameterName = "@OcekivanoVreme ";
+            parameter20.ParameterName = "@OcekivanoVreme";
             parameter20.SqlDbType = SqlDbType.DateTime;
-            parameter20.Size = 50;
             parameter20.Direction = ParameterDirection.Input;
             parameter20.Value = OcekivanoVreme;
             myCommand.Parameters.Add(parameter20);
@@ -220,7 +212,7 @@ string TransportNo, DateTime OcekivanoVreme)
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis NHM brojeva");
+                throw new Exception("Neuspešan upis zaglavlje");
             }
 
             finally
@@ -228,7 +220,7 @@ string TransportNo, DateTime OcekivanoVreme)
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBox.Show("Unos zaglavlja je uspešno završen", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -434,9 +426,8 @@ string TransportNo, DateTime OcekivanoVreme)
 
 
             SqlParameter parameter20 = new SqlParameter();
-            parameter20.ParameterName = "@OcekivanoVreme ";
+            parameter20.ParameterName = "@OcekivanoVreme";
             parameter20.SqlDbType = SqlDbType.DateTime;
-            parameter20.Size = 50;
             parameter20.Direction = ParameterDirection.Input;
             parameter20.Value = OcekivanoVreme;
             myCommand.Parameters.Add(parameter20);
