@@ -1058,7 +1058,7 @@ int PotvrdioKlijent, int UradilaCarina,
 
 
             SqlParameter tfDobijenNalogodavac3 = new SqlParameter();
-            tfDobijenNalogodavac3.ParameterName = "@chkDobijenNalogodavac1";
+            tfDobijenNalogodavac3.ParameterName = "@chkDobijenNalogodavac3";
             tfDobijenNalogodavac3.SqlDbType = SqlDbType.Int;
             tfDobijenNalogodavac3.Direction = ParameterDirection.Input;
             tfDobijenNalogodavac3.Value = TFDobijenNalogodavac3;
