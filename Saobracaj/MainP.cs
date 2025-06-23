@@ -6870,6 +6870,99 @@ namespace Saobracaj
             Izvoz.frmKontaktOsobeMU komu = new Izvoz.frmKontaktOsobeMU();
             komu.Show();
         }
+
+        private void toolStripButton388_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Carinko.frmMagacinskiBrojevi mbr = new Saobracaj.Carinko.frmMagacinskiBrojevi();
+            mbr.Show();
+        }
+
+        private void toolStripButton389_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Carinko.frmPrijemnicaCarinskaTabela ct = new Saobracaj.Carinko.frmPrijemnicaCarinskaTabela();
+            ct.Show();
+        }
+
+        private void toolStripButton391_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPartnerji")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPartnerji komitenti = new frmPartnerji();
+                komitenti.Show();
+            }
+        }
+
+        private void toolStripButton394_Click(object sender, EventArgs e)
+        {
+            Uvoz.Carinarnice car = new Uvoz.Carinarnice();
+            car.Show();
+        }
+
+        private void toolStripButton395_Click(object sender, EventArgs e)
+        {
+            Sifarnici.frmJediniceMere jm = new frmJediniceMere();
+            jm.Show();
+        }
+
+        private void toolStripButton392_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmSkladista")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmSkladista sklad = new frmSkladista(Korisnik);
+                sklad.Show();
+            }
+        }
+
+        private void toolStripButton393_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPozicija")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPozicija poz = new frmPozicija(Korisnik);
+                poz.Show();
+            }
+        }
+
+        private void toolStripButton390_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Carinsko.frmOtpremnicaCarinskoTabela ct = new Saobracaj.Carinsko.frmOtpremnicaCarinskoTabela();
+            ct.Show();
+        }
     }
     }
 
