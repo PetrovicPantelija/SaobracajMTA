@@ -1,4 +1,6 @@
-﻿using Microsoft.Ajax.Utilities;
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
+using Microsoft.Ajax.Utilities;
 using Saobracaj.Dokumenta.TrainListItem;
 using Saobracaj.Pantheon_Export;
 using Saobracaj.Uvoz;
@@ -9,6 +11,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Net.Mail;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -19,7 +24,7 @@ namespace Saobracaj.Drumski
         int? Uvoz = null;
         int id = 0;
         bool status = false;
-      
+
         public frmDrumski()
         {
             InitializeComponent();
@@ -149,7 +154,7 @@ namespace Saobracaj.Drumski
 
             SqlCommand cmd = new SqlCommand("SELECT	rn.ID ," +
              "rn.NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
-             "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovar,  -1 as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, rn.KontaktOsobaNaIstovaru, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
+             "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
@@ -157,6 +162,7 @@ namespace Saobracaj.Drumski
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
+                      "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = ik.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = ik.MestoCarinjenja " +
@@ -166,7 +172,7 @@ namespace Saobracaj.Drumski
              "UNION " +
              "SELECT	rn.ID ," +
              "rn.NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref, rn.MestoPreuzimanjaKontejnera, " +
-             "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovar, -1 as AdresaUtovara,rn.MestoIstovara AS MestoIstovara, rn.KontaktOsobaNaIstovaru, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
+             "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
@@ -174,6 +180,7 @@ namespace Saobracaj.Drumski
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS  OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
+                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
@@ -181,7 +188,7 @@ namespace Saobracaj.Drumski
              "UNION " +
              "SELECT rn.ID ," +
              "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,uk.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
-             "uk.Nalogodavac3 AS Klijent,  rn.MestoUtovara,-1 as KontaktOsobaUtovar, rn.AdresaUtovara,uk.MestoIstovara AS MestoIstovara,uk.KontaktOsobe as KontaktOsobaNaIstovaru, rn.DatumUtovara,rn.DatumIstovara,uk.AdresaMestaUtovara AS AdresaIstovara, " +
+             "uk.Nalogodavac3 AS Klijent,  rn.MestoUtovara,-1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,uk.MestoIstovara AS MestoIstovara,uk.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara, (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  uk.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
              " uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
@@ -202,7 +209,7 @@ namespace Saobracaj.Drumski
              "UNION " +
              "SELECT rn.ID ," +
              "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,u.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
-             "u.Nalogodavac3 AS Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovar, rn.AdresaUtovara,u.MestoIstovara AS MestoIstovara,u.KontaktOsobe as KontaktOsobaNaIstovaru, rn.DatumUtovara,rn.DatumIstovara,u.AdresaMestaUtovara AS AdresaIstovara,  " +
+             "u.Nalogodavac3 AS Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,u.MestoIstovara AS MestoIstovara,u.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  u.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
              "u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, " +
@@ -221,15 +228,15 @@ namespace Saobracaj.Drumski
              "UNION " +
              "SELECT rn.ID ," +
              "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
-             "rn.Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovar, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara,rn.KontaktNaIstovaru AS KontaktOsobaNaIstovaru, rn.DatumUtovara,rn.DatumIstovara,rn.AdresaIstovara AS AdresaIstovara,  " +
+             "rn.Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara,rn.KontaktOsobaNaIstovaru AS KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,rn.AdresaIstovara AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
-             "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
+             "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
              " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
              "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, '' as OdredisnaCarina,'' as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
-             "where rn.ID= " + id + " AND rn.Uvoz in (2,3)", con);
+             "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3)", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -248,8 +255,8 @@ namespace Saobracaj.Drumski
                 txtBL.Text = dr["BrodskaTeretnica"].ToString();
                 txtBrodskaPlomba.Text = dr["BrojPlombe"].ToString();
                 txtMestoPreuzimanja.Text = dr["MestoPreuzimanjaKontejnera"].ToString();
-                
-                if ( dr["Klijent"] != DBNull.Value && int.TryParse(dr["Klijent"].ToString(), out int parsedKlijentID))
+
+                if (dr["Klijent"] != DBNull.Value && int.TryParse(dr["Klijent"].ToString(), out int parsedKlijentID))
                     cboKlijent.SelectedValue = parsedKlijentID;
                 else
                     cboKlijent.SelectedIndex = -1;
@@ -263,18 +270,19 @@ namespace Saobracaj.Drumski
                 else
                     cboMestoIstovara.SelectedIndex = -1;
 
-                txtKontaktOsobaUtovara.Text = dr["KontaktOsobaUtovar"].ToString();
-                FillAdresaUtovara();
-                FillAdresaIstovara();
-                if (dr["AdresaIstovara"] != DBNull.Value && int.TryParse(dr["AdresaIstovara"].ToString(), out int parsedAdresaIstovaraID))
-                    cboAdresaIstovara.SelectedValue = parsedAdresaIstovaraID;
-                else
-                    cboAdresaIstovara.SelectedIndex = -1;
-                if (dr["AdresaUtovara"] != DBNull.Value && int.TryParse(dr["AdresaUtovara"].ToString(), out int parsedAdresaUtovaraID))
-                    cboAdresaUtovara.SelectedValue = parsedAdresaUtovaraID;
-                else
-                    cboAdresaUtovara.SelectedIndex = -1;
-
+                txtKontaktOsobaUtovara.Text = dr["KontaktOsobaUtovarInt"].ToString();
+                //FillAdresaUtovara();
+                //FillAdresaIstovara();
+                //if (dr["AdresaIstovara"] != DBNull.Value && int.TryParse(dr["AdresaIstovara"].ToString(), out int parsedAdresaIstovaraID))
+                //    cboAdresaIstovara.SelectedValue = parsedAdresaIstovaraID;
+                //else
+                //    cboAdresaIstovara.SelectedIndex = -1;
+                //if (dr["AdresaUtovara"] != DBNull.Value && int.TryParse(dr["AdresaUtovara"].ToString(), out int parsedAdresaUtovaraID))
+                //    cboAdresaUtovara.SelectedValue = parsedAdresaUtovaraID;
+                //else
+                //    cboAdresaUtovara.SelectedIndex = -1;
+                txtAdresaUtovara.Text = dr["AdresaUtovara"].ToString();
+                txtAdresaIstovara.Text = dr["AdresaIstovara"].ToString();
                 if (dr["DatumUtovara"] != DBNull.Value)
                     dtpUtovara.Value = Convert.ToDateTime(dr["DatumUtovara"].ToString());
                 if (dr["DatumIstovara"] != DBNull.Value)
@@ -283,16 +291,16 @@ namespace Saobracaj.Drumski
                     dtPreuzimanjaPraznogKontejnera.Value = Convert.ToDateTime(dr["DtPreuzimanjaPraznogKontejnera"].ToString());
 
                 // txtKontaktOsobeIstovar.Text = dr["KontaktOsobaNaIstovaru"].ToString();
-                txtkontaktNaIstovaru.Text = dr["KontaktOsobaNaIstovaru"].ToString();
-                if ( dr["BTTKontejnetra"] != DBNull.Value)
+                txtkontaktNaIstovaru.Text = dr["KontaktOsobaUtovarIstovar"].ToString();
+                if (dr["BTTKontejnetra"] != DBNull.Value)
                     txtBrutoK.Value = Convert.ToDecimal(dr["BTTKontejnetra"].ToString());
-                if ( dr["BTTRobe"] != DBNull.Value)
+                if (dr["BTTRobe"] != DBNull.Value)
                     txtBrutoR.Value = Convert.ToDecimal(dr["BTTRobe"].ToString());
 
                 txtBrojVoza.Text = dr["NAzivVoza"].ToString();
-                txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();          
+                txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 txtBrojKontejnera2.Text = dr["BrojKontejnera2"].ToString();
-               
+
                 if (dr["PDV"] != DBNull.Value && Convert.ToInt32(dr["PDV"].ToString()) == 1)
                     chkPDV.Checked = true;
 
@@ -300,13 +308,13 @@ namespace Saobracaj.Drumski
                     cboTipTransporta.SelectedValue = parsedTipTransportaDrumskiID;
                 else
                     cboTipTransporta.SelectedIndex = -1;
- 
+
                 txtNapomenaPoz.Text = dr["NapomenaZaPozicioniranje"].ToString();
-                txtVozac.Text =  dr["Vozac"].ToString();
-                txtBrojTelefona.Text =  dr["BrojTelefona"].ToString();
-                txtBrojLK.Text = dr["LicnaKarta"].ToString();       
+                txtVozac.Text = dr["Vozac"].ToString();
+                txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
+                txtBrojLK.Text = dr["LicnaKarta"].ToString();
                 txtGranicniPrelaz.Text = dr["GranicniPrelaz"].ToString();
-            //    txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
+                //    txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
                 if (dr["Trosak"] != DBNull.Value)
                     txtTrosak.Value = Convert.ToDecimal(dr["Trosak"].ToString());
                 if (dr["Valuta"] != DBNull.Value)
@@ -328,7 +336,7 @@ namespace Saobracaj.Drumski
                 else
                     cboTipNaloga.SelectedIndex = -1;
 
-              
+
                 if (dr["KamionID"] != DBNull.Value)
                     cboKamion.SelectedValue = (dr["KamionID"].ToString());
 
@@ -336,7 +344,7 @@ namespace Saobracaj.Drumski
                 txtOdredisnaCarinarnica.Text = dr["OdredisnaCarina"].ToString();
                 //txtSpediterCarinarnice.Text = dr["OdredisnaSpedicija"].ToString();
                 //txtCarinjenjeUvozno.Text = dr["NapomenaCarinskiPostupak"].ToString();
-              //  txtkontaktNaIstovaru.Text = dr["KontaktNaIstovaru"].ToString();   PROVERI!!!!!
+                //  txtkontaktNaIstovaru.Text = dr["KontaktNaIstovaru"].ToString();   PROVERI!!!!!
                 if (dr["Cena"] != DBNull.Value)
                     txtCena.Value = Convert.ToDecimal(dr["Cena"].ToString());
                 txtVozac.Enabled = false;
@@ -345,10 +353,10 @@ namespace Saobracaj.Drumski
                 if (Uvoz == 0)
                 {
                     txtBokingBrodara.Enabled = false;
-                   // label18.Visible = false;  // labela BL
+                    // label18.Visible = false;  // labela BL
                     txtBL.Enabled = false;
                     cboMestoUtovara.Enabled = false;
-                    cboAdresaUtovara.Enabled = false;
+                    txtAdresaUtovara.Enabled = false;
                     cboKlijent.Enabled = false;
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
@@ -358,6 +366,7 @@ namespace Saobracaj.Drumski
                     txtTipNaloga1.Visible = true;
                     txtBrodskaPlomba.Enabled = false;
                     txtBrojKontejnera.Enabled = false;
+                    label12.Text = "Kontakt osoba na utovaru";
                 }
                 else if (Uvoz == 1)
                 {
@@ -366,9 +375,9 @@ namespace Saobracaj.Drumski
                     txtBokingBrodara.Enabled = false;
                     txtBL.Visible = true;
                     txtReferenca.Enabled = false;
-                    cboAdresaUtovara.Enabled = true;
+                    txtAdresaUtovara.Enabled = true;
                     cboMestoIstovara.Enabled = false;
-                    cboAdresaIstovara.Enabled = false;
+                    txtAdresaIstovara.Enabled = false;
                     txtkontaktNaIstovaru.Enabled = false;
                     txtBL.Enabled = false;
                     cboKlijent.Enabled = false;
@@ -378,10 +387,24 @@ namespace Saobracaj.Drumski
                     txtBrojVoza.Enabled = false;
                     cboTipNaloga.Visible = false;
                     txtTipNaloga1.Visible = true;
-                    btnKontaktOsobe.Enabled = false;
                     txtBrojKontejnera.Enabled = false;
+                    label12.Text = "Kontakt osoba na istovaru";
                 }
-                else 
+                else if (Uvoz == 2)
+                {
+                    label12.Text = "Kontakt osoba na istovaru";
+                    cboTipNaloga.Visible = true;
+                    txtTipNaloga1.Visible = false;
+                    cboKlijent.Enabled = true;
+                }
+                else if (Uvoz == 3)
+                {
+                    label12.Text = "Kontakt osoba na utovaru";
+                    cboTipNaloga.Visible = true;
+                    txtTipNaloga1.Visible = false;
+                    cboKlijent.Enabled = true;
+                }
+                else
                 {
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
@@ -403,15 +426,15 @@ namespace Saobracaj.Drumski
             txtValuta.ValueMember = "VaSifra";
 
             UcitajKamione(null);
-            var stv = "select ID, Naziv from StatusVozila order by Naziv";
+            var stv = "select ID, Ltrim(Rtrim(Naziv)) AS Naziv from StatusVozila order by Naziv";
             var stvAD = new SqlDataAdapter(stv, conn);
             var stvDS = new DataSet();
             stvAD.Fill(stvDS);
 
             System.Data.DataTable dt = stvDS.Tables[0];
             DataRow prazanRed = dt.NewRow();
-            prazanRed["ID"] = DBNull.Value; 
-            prazanRed["Naziv"] = "";       
+            prazanRed["ID"] = DBNull.Value;
+            prazanRed["Naziv"] = "";
             dt.Rows.InsertAt(prazanRed, 0);
 
             cboStatus.DataSource = dt;
@@ -476,83 +499,84 @@ namespace Saobracaj.Drumski
             cboMestoIstovara.ValueMember = "ID";
         }
 
-         public void FillAdresaIstovara()
+        //public void FillAdresaIstovara()
+        //{
+        //    cboAdresaIstovara.DataSource = null;
+        //    cboAdresaIstovara.Items.Clear();
+        //    cboAdresaIstovara.SelectedIndex = -1;
+
+        //    if (cboMestoIstovara.SelectedIndex == -1 || cboMestoIstovara.SelectedValue == null || cboMestoIstovara.SelectedValue == DBNull.Value)
+        //        return;
+
+        //    using (SqlConnection conn = new SqlConnection(connection))
+        //    {
+        //        string query = @"SELECT PaKoZapSt, 
+        //                        (RTRIM(PaKOOpomba)) AS Naziv 
+        //                     FROM partnerjiKontOsebaMU 
+        //                     WHERE PaKOSifra = @MestoIstovara 
+        //                     ORDER BY PaKOIme";
+        //        //+', ' + (LTRIM(RTRIM(PaKOIme))) + ' ' + (LTRIM(RTRIM(PaKOPriimek)))
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@MestoIstovara", Convert.ToInt32(cboMestoIstovara.SelectedValue));
+        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //            DataSet ds = new DataSet();
+        //            da.Fill(ds);
+
+        //            cboAdresaIstovara.DataSource = ds.Tables[0];
+        //            cboAdresaIstovara.DisplayMember = "Naziv";
+        //            cboAdresaIstovara.ValueMember = "PaKoZapSt";
+
+        //            if (ds.Tables[0].Rows.Count == 0)
+        //            {
+        //                cboAdresaIstovara.SelectedIndex = -1;
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        //public void FillAdresaUtovara()
+        //{
+        //    cboAdresaUtovara.DataSource = null;
+        //    cboAdresaUtovara.Items.Clear();
+        //    cboAdresaUtovara.SelectedIndex = -1;
+
+        //    if (cboMestoUtovara.SelectedIndex == -1 || cboMestoUtovara.SelectedValue == null || cboMestoUtovara.SelectedValue == DBNull.Value)
+        //        return;
+
+        //    using (SqlConnection conn = new SqlConnection(connection))
+        //    {
+        //        string where = ""; 
+        //        int kontaktOsoba = 0;
+        //        if (Uvoz == 0 && int.TryParse(txtKontaktOsobaUtovara.Text, out kontaktOsoba))
+        //            where = "WHERE PaKOZapSt = " + kontaktOsoba;
+        //        else if (cboMestoUtovara.SelectedValue != null && Convert.ToInt32(cboMestoUtovara.SelectedValue) != -1)
+        //            where = " WHERE PaKOSifra =  " + cboMestoUtovara.SelectedValue;
+        //        string query = @"SELECT PaKOOpomba, PaKoZapSt FROM partnerjiKontOsebaMU  " + where;
+
+        //        using (SqlCommand cmd = new SqlCommand(query, conn))
+        //        {
+        //            if (Uvoz == 1)
+        //                cmd.Parameters.AddWithValue("@KontaktOsoba", kontaktOsoba);
+        //            else
+        //                cmd.Parameters.AddWithValue("@MestoUtovara", Convert.ToInt32(cboMestoUtovara.SelectedValue));
+        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //            DataSet ds = new DataSet();
+        //            da.Fill(ds);
+
+        //            cboAdresaUtovara.DataSource = ds.Tables[0];
+        //            cboAdresaUtovara.DisplayMember = "PaKOOpomba";
+        //            cboAdresaUtovara.ValueMember = "PaKoZapSt";
+        //        }
+        //    }
+        //}
+
+        public void FillAdresaMestaUtovara()
         {
-            cboAdresaIstovara.DataSource = null;
-            cboAdresaIstovara.Items.Clear();
-            cboAdresaIstovara.SelectedIndex = -1;
-
-            if (cboMestoIstovara.SelectedIndex == -1 || cboMestoIstovara.SelectedValue == null || cboMestoIstovara.SelectedValue == DBNull.Value)
-                return;
-
-            using (SqlConnection conn = new SqlConnection(connection))
-            {
-                string query = @"SELECT PaKoZapSt, 
-                                (RTRIM(PaKOOpomba)) AS Naziv 
-                             FROM partnerjiKontOsebaMU 
-                             WHERE PaKOSifra = @MestoIstovara 
-                             ORDER BY PaKOIme";
-                //+', ' + (LTRIM(RTRIM(PaKOIme))) + ' ' + (LTRIM(RTRIM(PaKOPriimek)))
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MestoIstovara", Convert.ToInt32(cboMestoIstovara.SelectedValue));
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-
-                    cboAdresaIstovara.DataSource = ds.Tables[0];
-                    cboAdresaIstovara.DisplayMember = "Naziv";
-                    cboAdresaIstovara.ValueMember = "PaKoZapSt";
-
-                    if (ds.Tables[0].Rows.Count == 0)
-                    {
-                        cboAdresaIstovara.SelectedIndex = -1;
-                    }
-                }
-            }
-        }
-
-
-        public void FillAdresaUtovara()
-        {
-            cboAdresaUtovara.DataSource = null;
-            cboAdresaUtovara.Items.Clear();
-            cboAdresaUtovara.SelectedIndex = -1;
-
-            if (cboMestoUtovara.SelectedIndex == -1 || cboMestoUtovara.SelectedValue == null || cboMestoUtovara.SelectedValue == DBNull.Value)
-                return;
-
-            using (SqlConnection conn = new SqlConnection(connection))
-            {
-                string where = "";
-                int kontaktOsoba = 0;
-                if (Uvoz == 0 && int.TryParse(txtKontaktOsobaUtovara.Text, out kontaktOsoba))
-                    where = "WHERE PaKOZapSt = " + kontaktOsoba;
-                else if (cboMestoUtovara.SelectedValue != null && Convert.ToInt32(cboMestoUtovara.SelectedValue) != -1)
-                    where = " WHERE PaKOSifra =  " + cboMestoUtovara.SelectedValue;
-                    string query = @"SELECT PaKOOpomba, PaKoZapSt FROM partnerjiKontOsebaMU  " + where;
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    if (Uvoz == 1)
-                        cmd.Parameters.AddWithValue("@KontaktOsoba", kontaktOsoba);
-                    else
-                        cmd.Parameters.AddWithValue("@MestoUtovara", Convert.ToInt32(cboMestoUtovara.SelectedValue));
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-
-                    cboAdresaUtovara.DataSource = ds.Tables[0];
-                    cboAdresaUtovara.DisplayMember = "PaKOOpomba";
-                    cboAdresaUtovara.ValueMember = "PaKoZapSt";
-                }
-            }
-        }
-
-        public void FillAdresaMestaUtovara() {
             SqlConnection conn = new SqlConnection(connection);
             // PaKOOpomba
-           var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKoZapSt = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
+            var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKoZapSt = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
 
             var koAD = new SqlDataAdapter(ko, conn);
             var koDS = new DataSet();
@@ -618,8 +642,8 @@ namespace Saobracaj.Drumski
             DateTime? datumIstovara = null;
             DateTime? datumUtovara = null;
             int? bookingBrodara = null;
-            int? adresaIstovara = null;
-            int? adresaUtovara = null;
+            string adresaIstovara = null;
+            string adresaUtovara = null;
             string napomenaPoz = null;
 
             int iD = 0;
@@ -630,16 +654,16 @@ namespace Saobracaj.Drumski
             int autoDan = 0;
             if (chkAutoDan.Checked == true)
             {
-                autoDan = 1; 
+                autoDan = 1;
             }
             int PDV = 0;
             if (chkPDV.Checked == true)
             {
-                PDV = 1; 
+                PDV = 1;
             }
-            string mestoPreuzimanja = string.IsNullOrWhiteSpace(txtMestoPreuzimanja.Text) ? null : txtMestoPreuzimanja.Text;
-            string kontaktistovara = string.IsNullOrWhiteSpace(txtkontaktNaIstovaru.Text) ? null : txtkontaktNaIstovaru.Text;
-      
+            string mestoPreuzimanja = string.IsNullOrWhiteSpace(txtMestoPreuzimanja.Text) ? null : txtMestoPreuzimanja.Text.Trim();
+            string kontaktOsobaistovara = string.IsNullOrWhiteSpace(txtkontaktNaIstovaru.Text) ? null : txtkontaktNaIstovaru.Text.Trim();
+
             if (dtpUtovara.Checked)
             {
                 datumUtovara = dtpUtovara.Value;
@@ -648,14 +672,14 @@ namespace Saobracaj.Drumski
             {
                 datumIstovara = dtIstovara.Value;
             }
-           
-           
+
+
             DateTime? dtPreuzimanjaPraznogKont = null;
             if (dtPreuzimanjaPraznogKontejnera.Checked)
             {
                 dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
             }
-            string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text;
+            string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text.Trim();
             decimal? trosak = null;
             decimal? cena = null;
             if (!string.IsNullOrWhiteSpace(txtTrosak.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedTrosak))
@@ -693,21 +717,21 @@ namespace Saobracaj.Drumski
             {
                 tipTransportaID = parsedTipTransportaID;
             }
-            
-            string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text;
-            string brojKontejnera2 = string.IsNullOrWhiteSpace(txtBrojKontejnera2.Text) ? null : txtBrojKontejnera2.Text;
-            if (Uvoz != 0 && cboAdresaUtovara.SelectedValue != null && int.TryParse(cboAdresaUtovara.SelectedValue.ToString(), out int parsedAdresaUtovaraID))
-                adresaUtovara = parsedAdresaUtovaraID;   
-            if (Uvoz != 1 && cboAdresaIstovara.SelectedValue != null && int.TryParse(cboAdresaIstovara.SelectedValue.ToString(), out int parsedAdresaIstovaraID))
-                adresaIstovara = parsedAdresaIstovaraID;
+
+            string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
+            string brojKontejnera2 = string.IsNullOrWhiteSpace(txtBrojKontejnera2.Text) ? null : txtBrojKontejnera2.Text.Trim();
+            //if (Uvoz != 0 && cboAdresaUtovara.SelectedValue != null && int.TryParse(cboAdresaUtovara.SelectedValue.ToString(), out int parsedAdresaUtovaraID))
+            //    adresaUtovara = parsedAdresaUtovaraID;
+            //if (Uvoz != 1 && cboAdresaIstovara.SelectedValue != null && int.TryParse(cboAdresaIstovara.SelectedValue.ToString(), out int parsedAdresaIstovaraID))
+            //    adresaIstovara = parsedAdresaIstovaraID;
+            adresaUtovara = string.IsNullOrWhiteSpace(txtAdresaUtovara.Text) ? null : txtAdresaUtovara.Text.Trim();
+            adresaIstovara = string.IsNullOrWhiteSpace(txtAdresaIstovara.Text) ? null : txtAdresaIstovara.Text.Trim();
             if (cboMestoUtovara.SelectedValue != null && Uvoz != 0 && int.TryParse(cboMestoUtovara.SelectedValue.ToString(), out int parsedMestoUtovaraID))
                 mestoUtovara = parsedMestoUtovaraID;
-            Debug.WriteLine("SelectedIndex: " + cboMestoIstovara.SelectedIndex);
-            Debug.WriteLine("SelectedValue: " + cboMestoIstovara.SelectedValue);
             if (cboMestoIstovara.SelectedValue != null && Uvoz != 1 && int.TryParse(cboMestoIstovara.SelectedValue.ToString(), out int parsedMestoIstovaraID))
                 mestoIstovara = parsedMestoIstovaraID;
-            if (Uvoz != 1 )
-                referenca = string.IsNullOrWhiteSpace(txtReferenca.Text) ? null : txtReferenca.Text;
+            if (Uvoz != 1)
+                referenca = string.IsNullOrWhiteSpace(txtReferenca.Text) ? null : txtReferenca.Text.Trim();
             if (Uvoz != 1 && Uvoz != 0 && cboKlijent.SelectedValue != null && int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
                 klijent = parsedKlijentID;
             if (Uvoz != 1 && Uvoz != 0 && txtBokingBrodara.Text != null && int.TryParse(txtBokingBrodara.Text.ToString(), out int parsedBookingBrodara))
@@ -717,15 +741,15 @@ namespace Saobracaj.Drumski
             if (Uvoz != 1 && Uvoz != 0 && decimal.TryParse(txtBrutoR.Text, out decimal parsedBrutoR))
                 bttoRobe = parsedBrutoR;
             if (Uvoz != 1 && Uvoz != 0)
-                brojKontejnera = string.IsNullOrWhiteSpace(txtBrojKontejnera.Text) ? null : txtBrojKontejnera.Text;
+                brojKontejnera = string.IsNullOrWhiteSpace(txtBrojKontejnera.Text) ? null : txtBrojKontejnera.Text.Trim();
             if (Uvoz != 1 && Uvoz != 0)
-                brojVoza = string.IsNullOrWhiteSpace(txtBrojVoza.Text) ? null : txtBrojVoza.Text;
-            if ( Uvoz != 0)
-                brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text;
+                brojVoza = string.IsNullOrWhiteSpace(txtBrojVoza.Text) ? null : txtBrojVoza.Text.Trim();
+            if (Uvoz != 0)
+                brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text.Trim();
             if (Uvoz != 1)
-                brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text;
+                brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();
             if (Uvoz != 1 && Uvoz != 0)
-                napomenaPoz = string.IsNullOrWhiteSpace(txtNapomenaPoz.Text) ? null : txtNapomenaPoz.Text; 
+                napomenaPoz = string.IsNullOrWhiteSpace(txtNapomenaPoz.Text) ? null : txtNapomenaPoz.Text.Trim();
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             if (status == true)
             {
@@ -735,21 +759,21 @@ namespace Saobracaj.Drumski
                     return; // prekida dalje izvršavanje
                 }
 
-                int noviID = ins.InsRadniNalogDrumski( tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                   dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2, 
+                int noviID = ins.InsRadniNalogDrumski(tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+                   dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
                    bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz);
-               
+
                 txtID.Text = noviID.ToString();
                 status = false;
             }
             else
             {
-               
-                 ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
-                    brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz);
-            }    
-                
+
+                ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+                   dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
+                   brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz);
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -770,14 +794,14 @@ namespace Saobracaj.Drumski
             cboKlijent.Enabled = true;
             cboMestoUtovara.SelectedValue = -1;
             cboMestoUtovara.Enabled = true;
-            cboAdresaUtovara.SelectedValue = -1;
-            cboAdresaUtovara.Enabled = true;
-            cboAdresaIstovara.Enabled = true;
+            txtAdresaUtovara.Text = "";
+            txtAdresaUtovara.Enabled = true;
+            txtAdresaIstovara.Enabled = true;
 
             cboMestoIstovara.SelectedValue = -1;
             cboMestoIstovara.Enabled = true;
-            FillAdresaIstovara();
-            FillAdresaUtovara();
+            //FillAdresaIstovara();
+            //FillAdresaUtovara();
             txtBrutoK.Value = 0.00m;
             txtBrutoK.Enabled = true;
             txtBrutoR.Value = 0.00m;
@@ -847,26 +871,16 @@ namespace Saobracaj.Drumski
             {
                 UcitajKamione(null); // Ako nije validan ID, učitaj sve kamione bez filtera
             }
-           
 
-        }
 
-        private void cboMestoIstovara_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            FillAdresaIstovara();
-        }
-
-        private void cboMestoUtovara_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            FillAdresaUtovara();
         }
 
         private void btnKontaktOsobe_Click(object sender, EventArgs e)
         {
-            using (var detailForm = new Izvoz.frmKontaktOsobeMU(cboAdresaIstovara.Text))
+            using (var detailForm = new Izvoz.frmKontaktOsobeMU(txtAdresaIstovara.Text))
             {
                 detailForm.ShowDialog();
-                txtkontaktNaIstovaru.Text = detailForm.GetSviKontaktiPoAdresi(cboAdresaIstovara.Text);
+                txtkontaktNaIstovaru.Text = detailForm.GetSviKontaktiPoAdresi(txtAdresaIstovara.Text);
             }
         }
 
@@ -893,11 +907,113 @@ namespace Saobracaj.Drumski
 
                 }
             }
-            else 
+            else
             {
                 txtBrojLK.Text = "";
                 txtVozac.Text = "";
                 txtBrojTelefona.Text = "";
+            }
+        }
+
+
+        private void KreirajPdf(string putanjaFajla)
+        {
+            using (FileStream fs = new FileStream(putanjaFajla, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                Document doc = new Document(PageSize.A4);
+                PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                doc.Open();
+                doc.Add(new Paragraph("Ovo je automatski generisan izveštaj."));
+                doc.Add(new Paragraph("Datum: " + DateTime.Now.ToString("dd.MM.yyyy")));
+                doc.Close();
+            }
+        }
+
+        private void PosaljiEmailSaPrilogom(string primalac,string korisnickiEmail, string korisnickaLozinka, string putanjaFajla)
+        {
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(korisnickiEmail);
+            mail.To.Add(primalac);
+            mail.Subject = "Izveštaj u PDF formatu";
+            mail.Body = "U prilogu se nalazi automatski generisan PDF.";
+            string Trosak = txtTrosak.Text.Trim();
+            string BrojKontejnera = txtBrojKontejnera.Text.Trim();
+            string Cena = txtCena.Text.Trim();
+
+            string htmlBody = $@"
+            <html>
+            <body>
+            <h2 style='color:#2a7ae2;'>Podaci sa forme</h2>
+            <table border='1' cellpadding='6' cellspacing='0' style='border-collapse:collapse; font-family:Arial; font-size:14px;'>
+                <tr><th align='left'>Trosak</th><td>{Trosak}</td></tr>
+                <tr><th align='left'>Broj Kontejnera</th><td>{BrojKontejnera}</td></tr>
+                <tr><th align='left'>Cena</th><td>{Cena}</td></tr>
+            </table>
+            </body>
+            </html>";
+
+            mail.IsBodyHtml = true;
+            mail.Body = htmlBody;
+
+            Attachment attachment = new Attachment(putanjaFajla);
+            mail.Attachments.Add(attachment);
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential(korisnickiEmail, korisnickaLozinka); // 
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Timeout = 20000;
+            smtp.Send(mail);
+        }
+
+        //private void GenerisiIPosaljiMail_Click(object sender, EventArgs e)
+        //{
+        //    frmEmailLogin em = new frmEmailLogin();
+    
+        //    if (em.ShowDialog() == DialogResult.OK)
+        //    {
+        //        string korisnickiEmail = em.EmailAdresa;
+        //        string korisnickaLozinka = em.Lozinka;
+
+        //        try
+        //        {
+        //            // 1. Generiši privremeni PDF fajl
+        //            string tempPdfPath = Path.Combine(Path.GetTempPath(), "Izvestaj_" + Guid.NewGuid() + ".pdf");
+        //            KreirajPdf(tempPdfPath);
+
+        //            // 2. Pošalji email
+        //            string emailAdresaPrimaoca = "jelena.djokicbb@gmail.com";
+        //            if (!string.IsNullOrEmpty(emailAdresaPrimaoca))
+        //            {
+        //                PosaljiEmailSaPrilogom(emailAdresaPrimaoca, korisnickiEmail, korisnickaLozinka, tempPdfPath);
+        //                MessageBox.Show("PDF je poslat na: " + emailAdresaPrimaoca);
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Unesite email adresu.");
+        //            }
+
+        //            // 3. (opciono) Obriši temp fajl posle slanja
+        //            if (File.Exists(tempPdfPath))
+        //                File.Delete(tempPdfPath);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //MessageBox.Show("Greška: " + ex.Message);
+        //            MessageBox.Show("Greška: " + ex.Message +
+        //    (ex.InnerException != null ? "\nDetalji: " + ex.InnerException.Message : ""));
+        //        }
+        //    }
+        //}
+
+        private void cboTipNaloga_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId > 0)
+            {
+                if (tipNalogaId == 3)
+                    label12.Text = "Kontakt osoba na utovaru";
+                else
+                    label12.Text = "Kontakt osoba na istovaru";
             }
         }
     }

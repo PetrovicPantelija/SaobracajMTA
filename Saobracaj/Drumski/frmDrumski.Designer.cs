@@ -115,10 +115,9 @@
             this.cboKlijent = new System.Windows.Forms.ComboBox();
             this.cboMestoUtovara = new System.Windows.Forms.ComboBox();
             this.cboMestoIstovara = new System.Windows.Forms.ComboBox();
-            this.cboAdresaIstovara = new System.Windows.Forms.ComboBox();
-            this.cboAdresaUtovara = new System.Windows.Forms.ComboBox();
             this.txtKontaktOsobaUtovara = new System.Windows.Forms.TextBox();
-            this.btnKontaktOsobe = new System.Windows.Forms.Button();
+            this.txtAdresaUtovara = new System.Windows.Forms.TextBox();
+            this.txtAdresaIstovara = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -139,7 +138,7 @@
             this.txtValuta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValuta.Name = "txtValuta";
             this.txtValuta.Size = new System.Drawing.Size(240, 24);
-            this.txtValuta.TabIndex = 538;
+            this.txtValuta.TabIndex = 260;
             // 
             // label15
             // 
@@ -174,7 +173,7 @@
             this.txtReferenca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtReferenca.Name = "txtReferenca";
             this.txtReferenca.Size = new System.Drawing.Size(308, 22);
-            this.txtReferenca.TabIndex = 534;
+            this.txtReferenca.TabIndex = 90;
             // 
             // label37
             // 
@@ -191,7 +190,7 @@
             this.txtDodatniOpis.Multiline = true;
             this.txtDodatniOpis.Name = "txtDodatniOpis";
             this.txtDodatniOpis.Size = new System.Drawing.Size(323, 43);
-            this.txtDodatniOpis.TabIndex = 532;
+            this.txtDodatniOpis.TabIndex = 330;
             // 
             // label63
             // 
@@ -209,7 +208,7 @@
             this.txtKontaktSpeditera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKontaktSpeditera.Name = "txtKontaktSpeditera";
             this.txtKontaktSpeditera.Size = new System.Drawing.Size(305, 22);
-            this.txtKontaktSpeditera.TabIndex = 526;
+            this.txtKontaktSpeditera.TabIndex = 180;
             // 
             // label27
             // 
@@ -237,7 +236,7 @@
             this.dtPreuzimanjaPraznogKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtPreuzimanjaPraznogKontejnera.Name = "dtPreuzimanjaPraznogKontejnera";
             this.dtPreuzimanjaPraznogKontejnera.Size = new System.Drawing.Size(192, 22);
-            this.dtPreuzimanjaPraznogKontejnera.TabIndex = 520;
+            this.dtPreuzimanjaPraznogKontejnera.TabIndex = 220;
             this.dtPreuzimanjaPraznogKontejnera.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             // 
             // label4
@@ -266,7 +265,7 @@
             this.dtIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtIstovara.Name = "dtIstovara";
             this.dtIstovara.Size = new System.Drawing.Size(196, 22);
-            this.dtIstovara.TabIndex = 512;
+            this.dtIstovara.TabIndex = 160;
             this.dtIstovara.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             // 
             // label3
@@ -286,7 +285,7 @@
             this.dtpUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpUtovara.Name = "dtpUtovara";
             this.dtpUtovara.Size = new System.Drawing.Size(192, 22);
-            this.dtpUtovara.TabIndex = 510;
+            this.dtpUtovara.TabIndex = 150;
             this.dtpUtovara.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             // 
             // label22
@@ -350,7 +349,7 @@
             this.chkAutoDan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkAutoDan.Name = "chkAutoDan";
             this.chkAutoDan.Size = new System.Drawing.Size(82, 20);
-            this.chkAutoDan.TabIndex = 499;
+            this.chkAutoDan.TabIndex = 200;
             this.chkAutoDan.Text = "Auto dan";
             this.chkAutoDan.UseVisualStyleBackColor = true;
             // 
@@ -381,7 +380,7 @@
             this.txtBokingBrodara.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtBokingBrodara.Name = "txtBokingBrodara";
             this.txtBokingBrodara.Size = new System.Drawing.Size(308, 22);
-            this.txtBokingBrodara.TabIndex = 541;
+            this.txtBokingBrodara.TabIndex = 30;
             // 
             // label6
             // 
@@ -406,7 +405,7 @@
             this.txtBrutoK.Name = "txtBrutoK";
             this.txtBrutoK.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBrutoK.Size = new System.Drawing.Size(176, 22);
-            this.txtBrutoK.TabIndex = 542;
+            this.txtBrutoK.TabIndex = 82;
             this.txtBrutoK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBrutoR
@@ -421,7 +420,7 @@
             0});
             this.txtBrutoR.Name = "txtBrutoR";
             this.txtBrutoR.Size = new System.Drawing.Size(173, 22);
-            this.txtBrutoR.TabIndex = 543;
+            this.txtBrutoR.TabIndex = 170;
             this.txtBrutoR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label36
@@ -473,7 +472,7 @@
             0});
             this.txtTrosak.Name = "txtTrosak";
             this.txtTrosak.Size = new System.Drawing.Size(176, 22);
-            this.txtTrosak.TabIndex = 558;
+            this.txtTrosak.TabIndex = 270;
             this.txtTrosak.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
@@ -514,7 +513,7 @@
             this.cboKamion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKamion.Name = "cboKamion";
             this.cboKamion.Size = new System.Drawing.Size(305, 24);
-            this.cboKamion.TabIndex = 568;
+            this.cboKamion.TabIndex = 230;
             this.cboKamion.SelectionChangeCommitted += new System.EventHandler(this.cboKamion_SelectionChangeCommitted);
             // 
             // label9
@@ -552,7 +551,7 @@
             this.cboStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(189, 24);
-            this.cboStatus.TabIndex = 573;
+            this.cboStatus.TabIndex = 10;
             // 
             // txtMestoPreuzimanja
             // 
@@ -560,7 +559,7 @@
             this.txtMestoPreuzimanja.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtMestoPreuzimanja.Name = "txtMestoPreuzimanja";
             this.txtMestoPreuzimanja.Size = new System.Drawing.Size(308, 22);
-            this.txtMestoPreuzimanja.TabIndex = 574;
+            this.txtMestoPreuzimanja.TabIndex = 40;
             // 
             // txtNapomenaPoz
             // 
@@ -569,7 +568,7 @@
             this.txtNapomenaPoz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNapomenaPoz.Name = "txtNapomenaPoz";
             this.txtNapomenaPoz.Size = new System.Drawing.Size(308, 22);
-            this.txtNapomenaPoz.TabIndex = 576;
+            this.txtNapomenaPoz.TabIndex = 320;
             // 
             // txtCarinjenjeUvozno
             // 
@@ -578,7 +577,7 @@
             this.txtCarinjenjeUvozno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCarinjenjeUvozno.Name = "txtCarinjenjeUvozno";
             this.txtCarinjenjeUvozno.Size = new System.Drawing.Size(305, 22);
-            this.txtCarinjenjeUvozno.TabIndex = 577;
+            this.txtCarinjenjeUvozno.TabIndex = 84;
             // 
             // txtGranicniPrelaz
             // 
@@ -587,7 +586,7 @@
             this.txtGranicniPrelaz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtGranicniPrelaz.Name = "txtGranicniPrelaz";
             this.txtGranicniPrelaz.Size = new System.Drawing.Size(308, 22);
-            this.txtGranicniPrelaz.TabIndex = 582;
+            this.txtGranicniPrelaz.TabIndex = 310;
             // 
             // txtSpediterCarinarnice
             // 
@@ -596,7 +595,7 @@
             this.txtSpediterCarinarnice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSpediterCarinarnice.Name = "txtSpediterCarinarnice";
             this.txtSpediterCarinarnice.Size = new System.Drawing.Size(305, 22);
-            this.txtSpediterCarinarnice.TabIndex = 583;
+            this.txtSpediterCarinarnice.TabIndex = 190;
             // 
             // label10
             // 
@@ -615,7 +614,7 @@
             this.txtOdredisnaCarinarnica.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtOdredisnaCarinarnica.Name = "txtOdredisnaCarinarnica";
             this.txtOdredisnaCarinarnica.Size = new System.Drawing.Size(305, 22);
-            this.txtOdredisnaCarinarnica.TabIndex = 586;
+            this.txtOdredisnaCarinarnica.TabIndex = 86;
             // 
             // txtkontaktNaIstovaru
             // 
@@ -624,7 +623,7 @@
             this.txtkontaktNaIstovaru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtkontaktNaIstovaru.Name = "txtkontaktNaIstovaru";
             this.txtkontaktNaIstovaru.Size = new System.Drawing.Size(308, 22);
-            this.txtkontaktNaIstovaru.TabIndex = 588;
+            this.txtkontaktNaIstovaru.TabIndex = 300;
             // 
             // label12
             // 
@@ -647,7 +646,7 @@
             0});
             this.txtCena.Name = "txtCena";
             this.txtCena.Size = new System.Drawing.Size(176, 22);
-            this.txtCena.TabIndex = 590;
+            this.txtCena.TabIndex = 280;
             this.txtCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
@@ -748,7 +747,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(108, 38);
+            this.panel3.Size = new System.Drawing.Size(162, 38);
             this.panel3.TabIndex = 2;
             // 
             // button2
@@ -831,7 +830,7 @@
             this.txtBL.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtBL.Name = "txtBL";
             this.txtBL.Size = new System.Drawing.Size(308, 22);
-            this.txtBL.TabIndex = 567;
+            this.txtBL.TabIndex = 140;
             // 
             // cboTipTransporta
             // 
@@ -843,7 +842,7 @@
             this.cboTipTransporta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipTransporta.Name = "cboTipTransporta";
             this.cboTipTransporta.Size = new System.Drawing.Size(240, 24);
-            this.cboTipTransporta.TabIndex = 605;
+            this.cboTipTransporta.TabIndex = 110;
             this.cboTipTransporta.SelectedIndexChanged += new System.EventHandler(this.cboTipTransporta_SelectedIndexChanged);
             // 
             // label19
@@ -863,7 +862,7 @@
             this.chkPDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkPDV.Name = "chkPDV";
             this.chkPDV.Size = new System.Drawing.Size(57, 20);
-            this.chkPDV.TabIndex = 606;
+            this.chkPDV.TabIndex = 290;
             this.chkPDV.Text = "PDV";
             this.chkPDV.UseVisualStyleBackColor = true;
             // 
@@ -874,7 +873,7 @@
             this.txtBrojKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojKontejnera2.Name = "txtBrojKontejnera2";
             this.txtBrojKontejnera2.Size = new System.Drawing.Size(305, 22);
-            this.txtBrojKontejnera2.TabIndex = 608;
+            this.txtBrojKontejnera2.TabIndex = 130;
             // 
             // label20
             // 
@@ -893,7 +892,7 @@
             this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(305, 22);
-            this.txtBrojKontejnera.TabIndex = 610;
+            this.txtBrojKontejnera.TabIndex = 120;
             // 
             // label21
             // 
@@ -912,7 +911,7 @@
             this.txtBrojVoza.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojVoza.Name = "txtBrojVoza";
             this.txtBrojVoza.Size = new System.Drawing.Size(113, 22);
-            this.txtBrojVoza.TabIndex = 612;
+            this.txtBrojVoza.TabIndex = 210;
             // 
             // label25
             // 
@@ -931,7 +930,7 @@
             this.txtBrodskaPlomba.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrodskaPlomba.Name = "txtBrodskaPlomba";
             this.txtBrodskaPlomba.Size = new System.Drawing.Size(305, 22);
-            this.txtBrodskaPlomba.TabIndex = 614;
+            this.txtBrodskaPlomba.TabIndex = 100;
             // 
             // label29
             // 
@@ -953,7 +952,8 @@
             this.cboTipNaloga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipNaloga.Name = "cboTipNaloga";
             this.cboTipNaloga.Size = new System.Drawing.Size(309, 24);
-            this.cboTipNaloga.TabIndex = 615;
+            this.cboTipNaloga.TabIndex = 20;
+            this.cboTipNaloga.SelectedValueChanged += new System.EventHandler(this.cboTipNaloga_SelectedValueChanged);
             // 
             // cboKlijent
             // 
@@ -965,7 +965,7 @@
             this.cboKlijent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKlijent.Name = "cboKlijent";
             this.cboKlijent.Size = new System.Drawing.Size(305, 24);
-            this.cboKlijent.TabIndex = 616;
+            this.cboKlijent.TabIndex = 50;
             // 
             // cboMestoUtovara
             // 
@@ -977,8 +977,7 @@
             this.cboMestoUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoUtovara.Name = "cboMestoUtovara";
             this.cboMestoUtovara.Size = new System.Drawing.Size(305, 24);
-            this.cboMestoUtovara.TabIndex = 617;
-            this.cboMestoUtovara.SelectionChangeCommitted += new System.EventHandler(this.cboMestoUtovara_SelectionChangeCommitted);
+            this.cboMestoUtovara.TabIndex = 60;
             // 
             // cboMestoIstovara
             // 
@@ -990,32 +989,7 @@
             this.cboMestoIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoIstovara.Name = "cboMestoIstovara";
             this.cboMestoIstovara.Size = new System.Drawing.Size(305, 24);
-            this.cboMestoIstovara.TabIndex = 618;
-            this.cboMestoIstovara.SelectionChangeCommitted += new System.EventHandler(this.cboMestoIstovara_SelectionChangeCommitted);
-            // 
-            // cboAdresaIstovara
-            // 
-            this.cboAdresaIstovara.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboAdresaIstovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboAdresaIstovara.FormattingEnabled = true;
-            this.cboAdresaIstovara.ItemHeight = 16;
-            this.cboAdresaIstovara.Location = new System.Drawing.Point(19, 580);
-            this.cboAdresaIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboAdresaIstovara.Name = "cboAdresaIstovara";
-            this.cboAdresaIstovara.Size = new System.Drawing.Size(305, 24);
-            this.cboAdresaIstovara.TabIndex = 619;
-            // 
-            // cboAdresaUtovara
-            // 
-            this.cboAdresaUtovara.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboAdresaUtovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboAdresaUtovara.FormattingEnabled = true;
-            this.cboAdresaUtovara.ItemHeight = 16;
-            this.cboAdresaUtovara.Location = new System.Drawing.Point(19, 460);
-            this.cboAdresaUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboAdresaUtovara.Name = "cboAdresaUtovara";
-            this.cboAdresaUtovara.Size = new System.Drawing.Size(305, 24);
-            this.cboAdresaUtovara.TabIndex = 620;
+            this.cboMestoIstovara.TabIndex = 80;
             // 
             // txtKontaktOsobaUtovara
             // 
@@ -1026,31 +1000,32 @@
             this.txtKontaktOsobaUtovara.TabIndex = 623;
             this.txtKontaktOsobaUtovara.Visible = false;
             // 
-            // btnKontaktOsobe
+            // txtAdresaUtovara
             // 
-            this.btnKontaktOsobe.BackColor = System.Drawing.Color.Yellow;
-            this.btnKontaktOsobe.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnKontaktOsobe.BackgroundImage")));
-            this.btnKontaktOsobe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnKontaktOsobe.FlatAppearance.BorderSize = 0;
-            this.btnKontaktOsobe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKontaktOsobe.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnKontaktOsobe.Location = new System.Drawing.Point(1380, 503);
-            this.btnKontaktOsobe.Margin = new System.Windows.Forms.Padding(4);
-            this.btnKontaktOsobe.Name = "btnKontaktOsobe";
-            this.btnKontaktOsobe.Size = new System.Drawing.Size(32, 26);
-            this.btnKontaktOsobe.TabIndex = 624;
-            this.btnKontaktOsobe.UseVisualStyleBackColor = false;
-            this.btnKontaktOsobe.Click += new System.EventHandler(this.btnKontaktOsobe_Click);
+            this.txtAdresaUtovara.ForeColor = System.Drawing.Color.Black;
+            this.txtAdresaUtovara.Location = new System.Drawing.Point(19, 460);
+            this.txtAdresaUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAdresaUtovara.Name = "txtAdresaUtovara";
+            this.txtAdresaUtovara.Size = new System.Drawing.Size(308, 22);
+            this.txtAdresaUtovara.TabIndex = 626;
+            // 
+            // txtAdresaIstovara
+            // 
+            this.txtAdresaIstovara.ForeColor = System.Drawing.Color.Black;
+            this.txtAdresaIstovara.Location = new System.Drawing.Point(19, 580);
+            this.txtAdresaIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAdresaIstovara.Name = "txtAdresaIstovara";
+            this.txtAdresaIstovara.Size = new System.Drawing.Size(308, 22);
+            this.txtAdresaIstovara.TabIndex = 627;
             // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 871);
-            this.Controls.Add(this.btnKontaktOsobe);
+            this.Controls.Add(this.txtAdresaIstovara);
+            this.Controls.Add(this.txtAdresaUtovara);
             this.Controls.Add(this.txtKontaktOsobaUtovara);
-            this.Controls.Add(this.cboAdresaUtovara);
-            this.Controls.Add(this.cboAdresaIstovara);
             this.Controls.Add(this.cboMestoIstovara);
             this.Controls.Add(this.cboMestoUtovara);
             this.Controls.Add(this.cboKlijent);
@@ -1233,9 +1208,8 @@
         private System.Windows.Forms.ComboBox cboKlijent;
         private System.Windows.Forms.ComboBox cboMestoUtovara;
         private System.Windows.Forms.ComboBox cboMestoIstovara;
-        private System.Windows.Forms.ComboBox cboAdresaIstovara;
-        private System.Windows.Forms.ComboBox cboAdresaUtovara;
         private System.Windows.Forms.TextBox txtKontaktOsobaUtovara;
-        private System.Windows.Forms.Button btnKontaktOsobe;
+        private System.Windows.Forms.TextBox txtAdresaIstovara;
+        private System.Windows.Forms.TextBox txtAdresaUtovara;
     }
 }

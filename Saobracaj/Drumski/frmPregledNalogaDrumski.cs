@@ -233,7 +233,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                        WHERE rn.Uvoz in (2, 3)
+                        WHERE rn.Uvoz in (-1,2, 3)
                         ORDER BY ID DESC";
             
 
@@ -470,6 +470,219 @@ namespace Saobracaj.Drumski
                     RefreshGrid();
                 }
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (gridGroupingControl1.Table.SelectedRecords.Count == 0)
+            {
+                MessageBox.Show("Nije selektovan nijedan red.");
+                return;
+            }
+            bool sveUspešno = true;
+            InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+            {
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                // Uzimanje ID-ja selektovanog reda
+                int id = Convert.ToInt32(selectedRecord.Record.GetValue("ID"));
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("SELECT	rn.ID ," +
+                 " rn.Uvoz, rn.Status, rn.AutoDan,  rn.MestoPreuzimanjaKontejnera, " +
+                 "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara,  (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, rn.KontaktOsobaNaIstovaru,  rn.DatumIstovara, rn.AdresaIstovara,  " +
+                 "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,  " +
+                 "rn.Trosak, rn.Valuta, ik.BookingBrodara,   ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
+                 " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
+                 "ik.NapomenaZaRobu as NapomenaZaPozicioniranje , rn.Cena, cc.Naziv AS CarinjenjeIzvozno," +
+                 "  '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
+                 "FROM    RadniNalogDrumski rn " +
+                          "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
+                          "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
+                          "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = ik.NapomenaReexport " +
+                          "LEFT JOIN Carinarnice cc on cc.ID = ik.MestoCarinjenja " +
+                          "LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena " +
+                          "LEFT JOIN Voz v ON v.ID = ukz.IDVoza " +
+                 "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
+                 "UNION " +
+                 "SELECT	rn.ID ," +
+                 " rn.Uvoz, rn.Status, rn.AutoDan,  rn.MestoPreuzimanjaKontejnera, " +
+                 "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,rn.MestoIstovara AS MestoIstovara, rn.KontaktOsobaNaIstovaru, rn.DatumIstovara, rn.AdresaIstovara, " +
+                 "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, " +
+                 "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
+                 " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
+                 "i.NapomenaZaRobu AS NapomenaZaPozicioniranje,  rn.Cena, cc.Naziv AS CarinjenjeIzvozno," +
+                 " '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
+                 "FROM    RadniNalogDrumski rn " +
+                          "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
+                           "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
+                          "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
+                          "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
+                 "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
+                 "UNION " +
+                 "SELECT rn.ID ," +
+                 "rn.Uvoz,rn.Status, rn.AutoDan, rn.MestoPreuzimanjaKontejnera, " +
+                 "uk.Nalogodavac3 AS Klijent,  rn.MestoUtovara, rn.AdresaUtovara,uk.MestoIstovara AS MestoIstovara,uk.KontaktOsobe as KontaktOsobaNaIstovaru, rn.DatumIstovara, (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
+                 "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz, " +
+                 "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
+                 " uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
+                 " np.Naziv as NapomenaZaPozicioniranje, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno,  " +
+                 "  rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta AS TipTransportaDrumski " +
+                 "FROM  RadniNalogDrumski rn " +
+                        "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
+                        "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
+                        "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
+                        "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = uk.PostupakSaRobom " +
+                        "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = uk.CarinskiPostupak " +
+                        "LEFT JOIN Carinarnice c on c.ID = uk.OdredisnaCarina " +
+                        "LEFT JOIN Partnerji p2 on p2.PaSifra = uk.OdredisnaSpedicija " +
+                        "LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = uk.IDNadredjeni " +
+                        "LEFT JOIN Voz v ON v.ID = ukz.IDVoza " +
+                 "where rn.ID= " + id + " AND rn.Uvoz = 1 " +
+                 "UNION " +
+                 "SELECT rn.ID ," +
+                 "rn.Uvoz,rn.Status,rn.AutoDan, rn.MestoPreuzimanjaKontejnera, " +
+                 "u.Nalogodavac3 AS Klijent, rn.MestoUtovara, rn.AdresaUtovara,u.MestoIstovara AS MestoIstovara,u.KontaktOsobe as KontaktOsobaNaIstovaru, rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
+                 "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz, " +
+                 "rn.Trosak,rn.Valuta,0 AS BookingBrodara,   '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
+                 "u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, " +
+                 "np.Naziv as NapomenaZaPozicioniranje,  rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, " +
+                 "rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,'' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
+                 "FROM  RadniNalogDrumski rn " +
+                        "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
+                        "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
+                        "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = u.NapomenaZaPozicioniranje " +
+                        "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = u.PostupakSaRobom " +
+                        "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = u.CarinskiPostupak " +
+                        "LEFT JOIN Carinarnice c on c.ID = u.OdredisnaCarina " +
+                        "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
+                 "where rn.ID= " + id + " AND rn.Uvoz = 1" +
+                 "UNION " +
+                 "SELECT rn.ID ," +
+                 "rn.Uvoz,rn.Status,rn.AutoDan, rn.MestoPreuzimanjaKontejnera, " +
+                 "rn.Klijent, rn.MestoUtovara, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara,rn.KontaktOsobaNaIstovaru AS KontaktOsobaNaIstovaru, rn.DatumIstovara,rn.AdresaIstovara AS AdresaIstovara,  " +
+                 "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz, " +
+                 "rn.Trosak,rn.Valuta,rn.BookingBrodara, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
+                 " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
+                 "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje,  rn.Cena,'' as CarinjenjeIzvozno, " +
+                 "rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
+                 "FROM  RadniNalogDrumski rn " +
+                 "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3)", con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                try
+                {
+                        while (dr.Read())
+                    {
+                        int? uvoz = null;
+                        int? autoDan = null;
+                        int? mestoIstovara = null;
+                        int? mestoUtovara = null;
+                        int? klijent = null;
+                        decimal? bttoKontejnera = null;
+                        decimal? bttoRobe = null;
+                        string brojVoza = null;
+                        string brojKontejnera = null;
+                        string brodskaPlomba = null;
+                        string brodskaTeretnica = null;
+                        DateTime? datumIstovara = null;
+                        DateTime? datumUtovara = null;
+                        DateTime? dtPreuzimanjaPKontejnera = null;
+                        int? bookingBrodara = null;
+                        string adresaIstovara = null;
+                        string adresaUtovara = null;
+                        string napomenaPoz = null;
+                        decimal? trosak = null;
+                        decimal? cena = null;
+                        int? status = null;
+                        int? pdv = null;
+                        int? tipTransporta = null;
+
+                        int uvozConverted = Convert.ToInt32(dr["Uvoz"].ToString());
+                        if (uvozConverted == 1 || uvozConverted == 0)
+                            uvoz = -1;
+                        //else if (uvozConverted == 0)
+                        //    uvoz = 3;
+                        else
+                            uvoz = uvozConverted;
+
+                        if (dr["AutoDan"] != DBNull.Value && int.TryParse(dr["AutoDan"].ToString(), out int parseAutoDan))
+                           autoDan  = parseAutoDan;
+ 
+                        string msetoPreuzimanja = dr["MestoPreuzimanjaKontejnera"] == DBNull.Value ? null : dr["MestoPreuzimanjaKontejnera"].ToString();
+
+                        if (dr["Klijent"] != DBNull.Value && int.TryParse(dr["Klijent"].ToString(), out int parsedKlijentID))
+                            klijent = parsedKlijentID;
+
+                        if (dr["MestoUtovara"] != DBNull.Value && int.TryParse(dr["MestoUtovara"].ToString(), out int parsedMestoUtovaraID))
+                            mestoUtovara =  parsedMestoUtovaraID;
+
+                        adresaUtovara = dr["AdresaUtovara"] == DBNull.Value ? null : dr["AdresaUtovara"].ToString();
+
+                        if (dr["MestoIstovara"] != DBNull.Value && int.TryParse(dr["MestoIstovara"].ToString(), out int parsedMestoIstovaraID))
+                            mestoIstovara = parsedMestoIstovaraID;
+
+                        if (dr["DatumIstovara"] != DBNull.Value)
+                            datumIstovara = Convert.ToDateTime(dr["DatumIstovara"].ToString());
+
+                        adresaIstovara = dr["AdresaIstovara"] == DBNull.Value ? null : dr["AdresaIstovara"].ToString();
+
+                        if (dr["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value)
+                            dtPreuzimanjaPKontejnera = Convert.ToDateTime(dr["DtPreuzimanjaPraznogKontejnera"].ToString());
+                    
+                        string granicniPrelaz = dr["GranicniPrelaz"] == DBNull.Value ? null : dr["GranicniPrelaz"].ToString();
+
+                        if (dr["Trosak"] != DBNull.Value)
+                            trosak = Convert.ToDecimal(dr["Trosak"].ToString());
+
+                        string valuta = dr["Valuta"] == DBNull.Value ? null : dr["Valuta"].ToString();
+
+                        if (dr["Status"] != DBNull.Value && int.TryParse(dr["Status"].ToString(), out int parsedStatusID))
+                            status = parsedStatusID;
+
+                       string opis = dr["DodatniOpis"] == DBNull.Value ? null : dr["DodatniOpis"].ToString();
+
+                        if (dr["Cena"] != DBNull.Value)
+                            cena = Convert.ToDecimal(dr["Cena"].ToString());
+                    
+                        string kontaktOsobaNaIstovaru = dr["KontaktOsobaNaIstovaru"] == DBNull.Value ? null : dr["KontaktOsobaNaIstovaru"].ToString();
+
+                        if (dr["PDV"] != DBNull.Value && int.TryParse(dr["PDV"].ToString(), out int parsePDV))
+                            pdv = parsePDV;
+
+                        if (dr["TipTransportaDrumski"] != DBNull.Value && int.TryParse(dr["TipTransportaDrumski"].ToString(), out int parsedTipTransportaDrumskiID))
+                            tipTransporta  = parsedTipTransportaDrumskiID;
+
+                        brojVoza = dr["NAzivVoza"] == DBNull.Value ? null : dr["NAzivVoza"].ToString();
+
+                        if (dr["BTTKontejnetra"] != DBNull.Value)
+                            bttoKontejnera = Convert.ToDecimal(dr["BTTKontejnetra"].ToString());
+                        if (dr["BTTRobe"] != DBNull.Value)
+                            bttoRobe = Convert.ToDecimal(dr["BTTRobe"].ToString());
+
+                        if (dr["BookingBrodara"] != DBNull.Value && int.TryParse(dr["BookingBrodara"].ToString(), out int parsedBookingBrodara))
+                            bookingBrodara = parsedBookingBrodara;
+
+                        brodskaTeretnica = dr["BrodskaTeretnica"] == DBNull.Value ? null : dr["BrodskaTeretnica"].ToString();
+                        brodskaPlomba = dr["BrojPlombe"] == DBNull.Value ? null : dr["BrojPlombe"].ToString();
+                        napomenaPoz = dr["NapomenaZaPozicioniranje"] == DBNull.Value ? null : dr["NapomenaZaPozicioniranje"].ToString();
+
+                        isu.DuplirajRadniNalogDrumski( uvoz, autoDan, msetoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
+                            trosak, valuta, status, opis, cena, kontaktOsobaNaIstovaru, pdv, tipTransporta, brojVoza, bttoKontejnera, bttoRobe, bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz);
+                    }         
+                }
+
+                catch (Exception ex)
+                {
+                    sveUspešno = false;
+                    MessageBox.Show("Greška tokom obrade: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break; // prekini dalje dupliranje
+                }
+            }
+            RefreshGrid();
         }
     }
 }
