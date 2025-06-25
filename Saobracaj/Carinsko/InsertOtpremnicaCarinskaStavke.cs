@@ -15,6 +15,71 @@ namespace Saobracaj.Carinsko
     {
         string connect = Sifarnici.frmLogovanje.connectionString;
 
+        public void PrebaciStavkeIzPrijemnice(int PrijemnicaStavkaID, int OtpremnicaID)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "PrebaciStavkeIzCarinskePriUOtp";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = PrijemnicaStavkaID;
+            myCommand.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@OtpremnicaID";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 50;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = OtpremnicaID;
+            myCommand.Parameters.Add(parameter2);
+
+
+
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis zaglavlje");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos zaglavlja je uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+
+        }
+
+
+
         public void InsOtpremnicaCarinskaStavke(int ID, int IDNadredjena, string Artikal, string JM, double Koleta, double Bruto, int Pozicija, double Vrednost, string Valuta,
 string BrojKontejnera, string Paleta, string VrstaPalete, string Dimenzije, int PrijemnicaStavkeID)
         {

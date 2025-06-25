@@ -30,6 +30,132 @@ namespace Saobracaj.Carinko
         string PrijemnicaID = "0";
 
         bool status = false;
+
+        private void ChangeTextBox()
+        {
+
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+
+                foreach (Control control in this.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
+        }
         public frmPrijemnicaCarinsko()
         {
             InitializeComponent();
@@ -37,6 +163,7 @@ namespace Saobracaj.Carinko
         public frmPrijemnicaCarinsko(string Prijemnica)
         {
             InitializeComponent();
+            ChangeTextBox();
             PrijemnicaID = Prijemnica;
         }
 
@@ -44,7 +171,7 @@ namespace Saobracaj.Carinko
         {
             txtID.Text = "";
             txtID.Enabled = false;
-           
+
 
             status = true;
         }
@@ -93,7 +220,7 @@ namespace Saobracaj.Carinko
                 dataGridView1.Rows[r].Cells[10].Value = ds.Tables[0].Rows[r].ItemArray[10];
                 dataGridView1.Rows[r].Cells[11].Value = ds.Tables[0].Rows[r].ItemArray[11];
                 dataGridView1.Rows[r].Cells[12].Value = ds.Tables[0].Rows[r].ItemArray[12];
-             //   dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
+                //   dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
 
             }
 
@@ -117,17 +244,17 @@ namespace Saobracaj.Carinko
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
-            this.sfDataGrid1.DataSource =  ds.Tables[0];
+            this.sfDataGrid1.DataSource = ds.Tables[0];
 
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-          
+
             if (status == true)
             {
                 InsertPrijemnicaCarinska ins = new InsertPrijemnicaCarinska();
-                ins.InsPrijemnicaCarinska( 
+                ins.InsPrijemnicaCarinska(
                 txtStatus.Text, DateTime.Now,
 Kor, Convert.ToInt32(cboSkladisteID.SelectedValue), txtDokument.Text,
 Convert.ToInt32(cboMagacinskiBroj.SelectedValue), cboVrstaSkladista.Text, cboSektor.Text,
@@ -137,8 +264,8 @@ txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
 
-              RefreshDataGrid();
-              //  RefrechDataGridT();
+                RefreshDataGrid();
+                //  RefrechDataGridT();
                 status = false;
             }
             else
@@ -153,9 +280,9 @@ txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
                 status = false;
-               
-                 RefreshDataGrid();
-               // RefrechDataGridT();
+
+                RefreshDataGrid();
+                // RefrechDataGridT();
             }
         }
 
@@ -163,11 +290,56 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
         {
 
             txtID.Text = PrijemnicaID;
-            
+
             FillCombo();
             DGVCombo();
+            VratiPodatke(PrijemnicaID);
             RefreshDataGrid();
             RefreshsfDataGrid();
+        }
+
+        private void VratiPodatke(string PrijemnicaID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT [ID]      , [Status] " +
+             " , [Datum]      , [Korisanik]      , [SkladisteID]      , [Dokument] " +
+             " , [MBR]      , [VrstaSkladista]      , [Sektor]      , [Vlasnik] " +
+             " , [Korisinik]      , [Posiljalac]      , [Primalac]      , [BrFakture] " +
+             " , [Prevoznik]      , [BrojKamiona]      , [Napomena1]      , [Napomena2] " +
+             " , [TransportNo]      , [OcekivanoVreme]  FROM [dbo].[PrijemnicaCarinska]" +
+             " where ID = " + txtID.Text, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtStatus.Text = dr["Status"].ToString();
+                dtpDatum.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                txtKorisnik.Text = dr["Korisanik"].ToString();
+                cboSkladisteID.SelectedValue = Convert.ToInt32(dr["SkladisteID"].ToString());
+                txtDokument.Text = dr["Dokument"].ToString();
+                cboMagacinskiBroj.SelectedValue = Convert.ToInt32(dr["MBR"].ToString());
+                cboVrstaSkladista.Text = dr["VrstaSkladista"].ToString();
+                cboSektor.Text = dr["Sektor"].ToString();
+                cboVlasnik.SelectedValue = Convert.ToInt32(dr["Vlasnik"].ToString());
+                cboKorisnikRobe.SelectedValue = Convert.ToInt32(dr["Korisinik"].ToString());
+                cboPosiljalac.SelectedValue = Convert.ToInt32(dr["Posiljalac"].ToString());
+                cboPrimalac.SelectedValue = Convert.ToInt32(dr["Primalac"].ToString());
+                txtBrojFakture.Text = dr["BrFakture"].ToString();
+                txtPrevoznik.Text = dr["Prevoznik"].ToString();
+                txtBrojKamiona.Text = dr["BrojKamiona"].ToString();
+                txtNapomena1.Text = dr["Napomena1"].ToString();
+                txtNapomena2.Text = dr["Napomena2"].ToString();
+                txtTransportNo.Text = dr["TransportNo"].ToString();
+                dtpOcekivanoVreme.Value = Convert.ToDateTime(dr["OcekivanoVreme"].ToString());
+            }
+
+            con.Close();
+
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -181,7 +353,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
         {
             SqlConnection conn = new SqlConnection(connection);
 
-          
+
 
             //where Vlasnik = 1
             var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
@@ -377,16 +549,16 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
                 string postojeciID = "0";
                 if (row != null)
                 {
-                if (row.Cells[0].Value ==  null)
-                {
-                    postojeciID = "0";
+                    if (row.Cells[0].Value == null)
+                    {
+                        postojeciID = "0";
 
-                }
-                else
-                {
-                    postojeciID = row.Cells[0].Value.ToString();
-                }
-                   
+                    }
+                    else
+                    {
+                        postojeciID = row.Cells[0].Value.ToString();
+                    }
+
 
 
                 }
@@ -399,52 +571,119 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
 
 
 
-               
-                  
-
-                if (row.Cells[9].Value == null)
-                {
-                    brk = " ";
-                }
-                else
-                {  brk = row.Cells[9].Value.ToString();}
 
 
-                if (row.Cells[10].Value == null)
-                {
-                    paleta = " ";
-                }
-                else
-                { paleta = row.Cells[10].Value.ToString(); }
 
-                if (row.Cells[11].Value == null)
-                {
-                    vrstp = " ";
-                }
-                else
-                { vrstp = row.Cells[11].Value.ToString(); }
+                    if (row.Cells[9].Value == null)
+                    {
+                        brk = " ";
+                    }
+                    else
+                    { brk = row.Cells[9].Value.ToString(); }
 
 
-                if (row.Cells[12].Value == null)
-                {
-                    dim = " ";
-                }
-                else
-                { dim = row.Cells[12].Value.ToString(); }
+                    if (row.Cells[10].Value == null)
+                    {
+                        paleta = " ";
+                    }
+                    else
+                    { paleta = row.Cells[10].Value.ToString(); }
+
+                    if (row.Cells[11].Value == null)
+                    {
+                        vrstp = " ";
+                    }
+                    else
+                    { vrstp = row.Cells[11].Value.ToString(); }
+
+
+                    if (row.Cells[12].Value == null)
+                    {
+                        dim = " ";
+                    }
+                    else
+                    { dim = row.Cells[12].Value.ToString(); }
 
 
                 }
 
                 if (row != null)
-                    {
+                {
                     ins.InsPrijemnicaCarinskaStavke(Convert.ToInt32(postojeciID), Convert.ToInt32(txtID.Text),
                         row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), Convert.ToDouble(row.Cells[4].Value),
                         Convert.ToDouble(row.Cells[5].Value)
                         , Convert.ToInt32(row.Cells[6].Value), Convert.ToDouble(row.Cells[7].Value), row.Cells[8].Value.ToString(),
                         brk, paleta, vrstp, dim);
+                }
+
+                
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int prStDokumenta = 0;
+            string LOt = "";
+            if (frmLogovanje.Firma == "Leget")
+            {
+                var query = "Select (Max(PrStDokumenta)+1) From Promet";
+                SqlConnection conn = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    prStDokumenta = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+
+                InsertIsporuka ins = new InsertIsporuka();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row != null && row.Cells[0].Value != null)
+                    {
+                        int skladisteno = 0;
+
+                     
+                        //       string LOt = row.Cells["Lot"].Value.ToString();
+
+                        int Tip = 2;
+                        /*
+                        SELECT[ID]      ,[IDNadredjena]      ,[Artikal] -2      ,[JM]  - 3     ,[Koleta] - 4      ,[Bruto]      ,[Pozicija]  - 6     ,[Vrednost]      ,[Valuta]
+      ,[BrojKontejnera]   - 9    ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije]
+                        FROM[dbo].[PrijemnicaCarinskaStavke]
+
+                        row.Cells[0].Value.ToString() -- PrijemnicaStavkaID
+                            row.Cells[3].Value.ToString(), 
+                            Convert.ToDouble(row.Cells[4].Value),
+                        Convert.ToDouble(row.Cells[5].Value)
+                        , Convert.ToInt32(row.Cells[6].Value), 
+                            Convert.ToDouble(row.Cells[7].Value), 
+                            row.Cells[8].Value.ToString(),
+            */
+
+                        ins.InsertPromet(Convert.ToDateTime(dtpDatum.Value), "PRI", prStDokumenta, row.Cells[9].Value.ToString(), "CPR", Convert.ToDecimal(row.Cells[4].Value), 0, Convert.ToInt32(cboSkladisteID.SelectedValue),
+                            Convert.ToInt32(row.Cells[6].Value), 0, 0, Convert.ToDateTime(DateTime.Now), Kor.Trim(), 0, 0, Convert.ToDateTime(dtpDatum.Value.ToString()), row.Cells[3].Value.ToString(),
+                            row.Cells[0].Value.ToString(), Convert.ToInt32(txtID.Text), Convert.ToInt32(0), skladisteno, Tip);
+
+                        // txtPrometID.Text = VratiIDPrometa().ToString();
+
+                        //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        // progressBar1.Value = progressBar1.Value + 1;
                     }
+                }
+
+                InsertPrijemnicaCarinska updst = new InsertPrijemnicaCarinska();
+                updst.updetePrijemnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "PROKNJIZEN");
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmPrijemnicaCarinskaStampa st = new frmPrijemnicaCarinskaStampa();
+            st.Show();
+        }
     }
-    }
+}
 

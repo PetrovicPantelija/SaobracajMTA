@@ -133,5 +133,10 @@ namespace Saobracaj.Dokumenta
              */
             reportViewer1.RefreshReport();
         }
+
+        private void frmPopisKontejneraStampa_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,34 +1,30 @@
-﻿using Saobracaj.Carinko;
-using Syncfusion.GridHelperClasses;
+﻿using Microsoft.Reporting.WinForms;
+using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
+using System.Drawing.Imaging;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Saobracaj.RadniNalozi;
 
 namespace Saobracaj.Carinsko
 {
-    public partial class frmOtpremnicaCarinskoTabela : Form
+    public partial class frmOtpremnicaCarinskaStampa : Form
     {
+        string Otpremnica = "0";
+
         private void ChangeTextBox()
         {
 
             //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
-            panelHeader.Visible = false;
+           
 
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 // toolStripHeader.Visible = false;
-                panelHeader.Visible = true;
+             
 
                 this.BackColor = Color.White;
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
@@ -142,93 +138,107 @@ namespace Saobracaj.Carinsko
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv.ColumnHeadersHeight = 30;
         }
-        public frmOtpremnicaCarinskoTabela()
+        public frmOtpremnicaCarinskaStampa()
         {
             InitializeComponent();
+        }
+
+        public frmOtpremnicaCarinskaStampa(string OtpremnicaID)
+        {
+            InitializeComponent();
+            Otpremnica = OtpremnicaID;
             ChangeTextBox();
         }
 
-
-        private void RefreshDataGrid()
+        private void frmOtpremnicaCarinskaStampa_Load(object sender, EventArgs e)
         {
-            var select = "  SELECT     OtpremnicaCarinska.ID, OtpremnicaCarinska.Status, Partnerji.PaNaziv AS Vlasnik, OtpremnicaCarinska.ID AS Expr1, OtpremnicaCarinska.Status, "+
- " OtpremnicaCarinska.Datum, OtpremnicaCarinska.Korisnik, OtpremnicaCarinska.SkladisteID, OtpremnicaCarinska.Dokument, OtpremnicaCarinska.MBR, "+
-" OtpremnicaCarinska.Vlasnik AS VlasnikRobe, OtpremnicaCarinska.KorisnikRoba, OtpremnicaCarinska.Nalogodavac,  "+
-" Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac,      Skladista.Naziv AS Skladiste "+
-"  FROM        dbo.OtpremnicaCarinska INNER JOIN Skladista ON OtpremnicaCarinska.SkladisteID = Skladista.ID "+
-" INNER JOIN   Partnerji ON OtpremnicaCarinska.Vlasnik = Partnerji.PaSifra "+
-" INNER JOIN  Partnerji AS Partnerji_1 ON OtpremnicaCarinska.KorisnikRoba = Partnerji_1.PaSifra "+
-" INNER JOIN   Partnerji AS Partnerji_2 ON OtpremnicaCarinska.Nalogodavac = Partnerji_2.PaSifra ";
-
-
-            // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            //  SqlConnection myConnection = new SqlConnection(s_connection);
-            var s_connection = Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            // dataGridView1.ReadOnly = true;
-            gridGroupingControl1.DataSource = ds.Tables[0];
-            gridGroupingControl1.ShowGroupDropArea = true;
-            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
-            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
-            {
-                column.AllowFilter = true;
-            }
-
-            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-            //Wiring the Dynamic Filter to GridGroupingControl
-            dynamicFilter.WireGrid(this.gridGroupingControl1);
-
-            GridExcelFilter gridExcelFilter = new GridExcelFilter();
-
-            //Wiring GridExcelFilter to GridGroupingControl
-            gridExcelFilter.WireGrid(this.gridGroupingControl1);
-
-
+            txtSifra.Text = Otpremnica;
         }
 
-        private void frmOtpremnicaCarinskoTabela_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            Saobracaj.CarinskaOtpremnicaDataSetTableAdapters.SelectCarinskaOtpremnicaTableAdapter ta = new Saobracaj.CarinskaOtpremnicaDataSetTableAdapters.SelectCarinskaOtpremnicaTableAdapter();
+            Saobracaj.CarinskaOtpremnicaDataSet.SelectCarinskaOtpremnicaDataTable dt = new Saobracaj.CarinskaOtpremnicaDataSet.SelectCarinskaOtpremnicaDataTable();
 
+            ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1";
+            rds.Value = dt;
+
+
+
+
+
+            Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter taa = new Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter();
+
+           // Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable dta = new Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable();
+           /*
+            taa.Fill(dta, Convert.ToInt32(txtSifra.Text));
+            ReportDataSource rdsa = new ReportDataSource();
+            rdsa.Name = "DataSet2";
+            rdsa.Value = dta;
+
+
+
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("ID", txtSifra.Text);
+
+
+
+
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.ReportPath = "rptOtpremnicaCarinska.rdlc";
+            reportViewer1.LocalReport.SetParameters(par);
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.LocalReport.DataSources.Add(rdsa);
+            /*
+            reportViewer1.LocalReport.SubreportProcessing += new
+                          SubreportProcessingEventHandler(SetSubDataSource);
+             */
+            reportViewer1.RefreshReport();
         }
 
-        private void button23_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            frmOtpremnicaCarinsko car = new frmOtpremnicaCarinsko();
-            car.Show();
-        }
+            Saobracaj.CarinskaOtpremnicaDataSetTableAdapters.SelectCarinskaOtpremnicaTableAdapter ta = new Saobracaj.CarinskaOtpremnicaDataSetTableAdapters.SelectCarinskaOtpremnicaTableAdapter();
+            Saobracaj.CarinskaOtpremnicaDataSet.SelectCarinskaOtpremnicaDataTable dt = new Saobracaj.CarinskaOtpremnicaDataSet.SelectCarinskaOtpremnicaDataTable();
 
-        private void button24_Click(object sender, EventArgs e)
-        {
-            frmOtpremnicaCarinsko pc = new frmOtpremnicaCarinsko(txtSifra.Text);
-            pc.Show();
-        }
+            ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1";
+            rds.Value = dt;
 
-        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
-        {
-            try
-            {
-                if (gridGroupingControl1.Table.CurrentRecord != null)
-                {
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                }
 
-            }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
-        }
 
-        private void button25_Click(object sender, EventArgs e)
-        {
-            RefreshDataGrid();
+
+            Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter taa = new Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter();
+
+            // Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable dta = new Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable();
+            /*
+             taa.Fill(dta, Convert.ToInt32(txtSifra.Text));
+             ReportDataSource rdsa = new ReportDataSource();
+             rdsa.Name = "DataSet2";
+             rdsa.Value = dta;
+
+
+
+             ReportParameter[] par = new ReportParameter[1];
+             par[0] = new ReportParameter("ID", txtSifra.Text);
+
+
+
+
+             reportViewer1.LocalReport.DataSources.Clear();
+             reportViewer1.LocalReport.ReportPath = "rptOtpremnicaCarinska.rdlc";
+             reportViewer1.LocalReport.SetParameters(par);
+             reportViewer1.LocalReport.DataSources.Add(rds);
+             reportViewer1.LocalReport.DataSources.Add(rdsa);
+             /*
+             reportViewer1.LocalReport.SubreportProcessing += new
+                           SubreportProcessingEventHandler(SetSubDataSource);
+              */
+            reportViewer1.RefreshReport();
         }
     }
 }
