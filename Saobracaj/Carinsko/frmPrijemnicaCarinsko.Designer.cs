@@ -84,6 +84,8 @@
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.button1 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.label20 = new System.Windows.Forms.Label();
+            this.cboNalogodavac = new System.Windows.Forms.ComboBox();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -220,7 +222,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(313, 299);
+            this.label6.Location = new System.Drawing.Point(303, 400);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 15);
@@ -233,7 +235,7 @@
             this.cboMagacinskiBroj.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMagacinskiBroj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboMagacinskiBroj.FormattingEnabled = true;
-            this.cboMagacinskiBroj.Location = new System.Drawing.Point(316, 317);
+            this.cboMagacinskiBroj.Location = new System.Drawing.Point(306, 418);
             this.cboMagacinskiBroj.Margin = new System.Windows.Forms.Padding(2);
             this.cboMagacinskiBroj.Name = "cboMagacinskiBroj";
             this.cboMagacinskiBroj.Size = new System.Drawing.Size(230, 23);
@@ -245,7 +247,7 @@
             this.cboVrstaSkladista.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaSkladista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboVrstaSkladista.FormattingEnabled = true;
-            this.cboVrstaSkladista.Location = new System.Drawing.Point(316, 249);
+            this.cboVrstaSkladista.Location = new System.Drawing.Point(306, 359);
             this.cboVrstaSkladista.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaSkladista.Name = "cboVrstaSkladista";
             this.cboVrstaSkladista.Size = new System.Drawing.Size(230, 23);
@@ -255,7 +257,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(313, 231);
+            this.label7.Location = new System.Drawing.Point(303, 341);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 15);
@@ -379,7 +381,7 @@
             // 
             // txtBrojFakture
             // 
-            this.txtBrojFakture.Location = new System.Drawing.Point(314, 63);
+            this.txtBrojFakture.Location = new System.Drawing.Point(306, 189);
             this.txtBrojFakture.Name = "txtBrojFakture";
             this.txtBrojFakture.Size = new System.Drawing.Size(232, 20);
             this.txtBrojFakture.TabIndex = 509;
@@ -388,7 +390,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(311, 45);
+            this.label14.Location = new System.Drawing.Point(303, 171);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 15);
@@ -397,7 +399,7 @@
             // 
             // txtPrevoznik
             // 
-            this.txtPrevoznik.Location = new System.Drawing.Point(316, 136);
+            this.txtPrevoznik.Location = new System.Drawing.Point(306, 249);
             this.txtPrevoznik.Name = "txtPrevoznik";
             this.txtPrevoznik.Size = new System.Drawing.Size(232, 20);
             this.txtPrevoznik.TabIndex = 511;
@@ -406,7 +408,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(313, 118);
+            this.label15.Location = new System.Drawing.Point(303, 231);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
@@ -415,7 +417,7 @@
             // 
             // txtBrojKamiona
             // 
-            this.txtBrojKamiona.Location = new System.Drawing.Point(316, 193);
+            this.txtBrojKamiona.Location = new System.Drawing.Point(306, 307);
             this.txtBrojKamiona.Name = "txtBrojKamiona";
             this.txtBrojKamiona.Size = new System.Drawing.Size(232, 20);
             this.txtBrojKamiona.TabIndex = 513;
@@ -424,7 +426,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(313, 172);
+            this.label16.Location = new System.Drawing.Point(303, 286);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(80, 15);
@@ -481,7 +483,7 @@
             // 
             // txtTransportNo
             // 
-            this.txtTransportNo.Location = new System.Drawing.Point(316, 378);
+            this.txtTransportNo.Location = new System.Drawing.Point(593, 132);
             this.txtTransportNo.Name = "txtTransportNo";
             this.txtTransportNo.Size = new System.Drawing.Size(232, 20);
             this.txtTransportNo.TabIndex = 519;
@@ -490,7 +492,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(321, 359);
+            this.label18.Location = new System.Drawing.Point(598, 113);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(77, 15);
@@ -501,7 +503,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(321, 414);
+            this.label19.Location = new System.Drawing.Point(598, 168);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 15);
@@ -513,7 +515,7 @@
             this.dtpOcekivanoVreme.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpOcekivanoVreme.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.dtpOcekivanoVreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(316, 435);
+            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(593, 189);
             this.dtpOcekivanoVreme.Margin = new System.Windows.Forms.Padding(2);
             this.dtpOcekivanoVreme.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpOcekivanoVreme.Name = "dtpOcekivanoVreme";
@@ -698,15 +700,16 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 646);
+            this.dataGridView1.Location = new System.Drawing.Point(28, 623);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1268, 127);
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 150);
             this.dataGridView1.TabIndex = 524;
             // 
             // sfDataGrid1
@@ -716,7 +719,7 @@
             this.sfDataGrid1.AllowDeleting = true;
             this.sfDataGrid1.Location = new System.Drawing.Point(28, 485);
             this.sfDataGrid1.Name = "sfDataGrid1";
-            this.sfDataGrid1.Size = new System.Drawing.Size(1271, 146);
+            this.sfDataGrid1.Size = new System.Drawing.Size(1271, 133);
             this.sfDataGrid1.TabIndex = 525;
             this.sfDataGrid1.Text = "sfDataGrid1";
             // 
@@ -744,11 +747,36 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(303, 113);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 15);
+            this.label20.TabIndex = 527;
+            this.label20.Text = "Nalogodavac";
+            // 
+            // cboNalogodavac
+            // 
+            this.cboNalogodavac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNalogodavac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboNalogodavac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cboNalogodavac.FormattingEnabled = true;
+            this.cboNalogodavac.Location = new System.Drawing.Point(306, 130);
+            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNalogodavac.Name = "cboNalogodavac";
+            this.cboNalogodavac.Size = new System.Drawing.Size(230, 23);
+            this.cboNalogodavac.TabIndex = 526;
+            // 
             // frmPrijemnicaCarinsko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 776);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.cboNalogodavac);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sfDataGrid1);
             this.Controls.Add(this.dataGridView1);
@@ -864,5 +892,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox cboNalogodavac;
     }
 }

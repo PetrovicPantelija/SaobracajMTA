@@ -167,6 +167,30 @@ namespace Saobracaj.Carinko
             PrijemnicaID = Prijemnica;
         }
 
+        private void PodesiDatagridView2(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
+        }
+
         private void button22_Click(object sender, EventArgs e)
         {
             txtID.Text = "";
@@ -178,6 +202,8 @@ namespace Saobracaj.Carinko
 
         private void RefreshDataGrid()
         {
+            dataGridView1.AutoGenerateColumns = false;
+           
             var select = "";
             select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,[JM]      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
       ,[BrojKontejnera]      ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije]
@@ -224,6 +250,8 @@ namespace Saobracaj.Carinko
 
             }
 
+            PodesiDatagridView2(dataGridView1);
+
         }
 
         private void RefreshsfDataGrid()
@@ -262,7 +290,7 @@ Convert.ToInt32(cboVlasnik.SelectedValue), Convert.ToInt32(cboKorisnikRobe.Selec
 Convert.ToInt32(cboPrimalac.SelectedValue), txtBrojFakture.Text,
 txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
-txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
+txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboNalogodavac.SelectedValue));
 
                 RefreshDataGrid();
                 //  RefrechDataGridT();
@@ -278,7 +306,7 @@ Convert.ToInt32(cboVlasnik.SelectedValue), Convert.ToInt32(cboKorisnikRobe.Selec
 Convert.ToInt32(cboPrimalac.SelectedValue), txtBrojFakture.Text,
 txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
-txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
+txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboNalogodavac.SelectedValue));
                 status = false;
 
                 RefreshDataGrid();
@@ -310,7 +338,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
              " , [MBR]      , [VrstaSkladista]      , [Sektor]      , [Vlasnik] " +
              " , [Korisinik]      , [Posiljalac]      , [Primalac]      , [BrFakture] " +
              " , [Prevoznik]      , [BrojKamiona]      , [Napomena1]      , [Napomena2] " +
-             " , [TransportNo]      , [OcekivanoVreme]  FROM [dbo].[PrijemnicaCarinska]" +
+             " , [TransportNo]      , [OcekivanoVreme], Nalogodavac  FROM [dbo].[PrijemnicaCarinska]" +
              " where ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -336,6 +364,8 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
                 txtNapomena2.Text = dr["Napomena2"].ToString();
                 txtTransportNo.Text = dr["TransportNo"].ToString();
                 dtpOcekivanoVreme.Value = Convert.ToDateTime(dr["OcekivanoVreme"].ToString());
+                cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
+
             }
 
             con.Close();
@@ -390,13 +420,24 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
             cboPosiljalac.ValueMember = "PaSifra";
             //spedicija rtc luka leget
 
-            var partner4 = "Select PaSifra,PaNaziv From Partnerji  where Spediter = 1 order by PaNaziv";
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji   order by PaNaziv";
             var partAD4 = new SqlDataAdapter(partner4, conn);
             var partDS4 = new System.Data.DataSet();
             partAD4.Fill(partDS4);
             cboPrimalac.DataSource = partDS4.Tables[0];
             cboPrimalac.DisplayMember = "PaNaziv";
             cboPrimalac.ValueMember = "PaSifra";
+
+            var partner41 = "Select PaSifra,PaNaziv From Partnerji   order by PaNaziv";
+            var partAD41 = new SqlDataAdapter(partner41, conn);
+            var partDS41 = new System.Data.DataSet();
+            partAD41.Fill(partDS41);
+            cboNalogodavac.DataSource = partDS41.Tables[0];
+            cboNalogodavac.DisplayMember = "PaNaziv";
+            cboNalogodavac.ValueMember = "PaSifra";
+
+
+
             //odredisna spedicija
             var partner5 = "Select ID, Napomena from MagacinskiBrojevi order by ID Desc";
             var partAD5 = new SqlDataAdapter(partner5, conn);
@@ -607,7 +648,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
 
                 }
 
-                if (row != null)
+                if (row.Cells[2].Value != null)
                 {
                     ins.InsPrijemnicaCarinskaStavke(Convert.ToInt32(postojeciID), Convert.ToInt32(txtID.Text),
                         row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), Convert.ToDouble(row.Cells[4].Value),
@@ -618,6 +659,8 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
 
                 
             }
+
+            RefreshDataGrid();
 
         }
 
@@ -649,19 +692,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
                         //       string LOt = row.Cells["Lot"].Value.ToString();
 
                         int Tip = 2;
-                        /*
-                        SELECT[ID]      ,[IDNadredjena]      ,[Artikal] -2      ,[JM]  - 3     ,[Koleta] - 4      ,[Bruto]      ,[Pozicija]  - 6     ,[Vrednost]      ,[Valuta]
-      ,[BrojKontejnera]   - 9    ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije]
-                        FROM[dbo].[PrijemnicaCarinskaStavke]
-
-                        row.Cells[0].Value.ToString() -- PrijemnicaStavkaID
-                            row.Cells[3].Value.ToString(), 
-                            Convert.ToDouble(row.Cells[4].Value),
-                        Convert.ToDouble(row.Cells[5].Value)
-                        , Convert.ToInt32(row.Cells[6].Value), 
-                            Convert.ToDouble(row.Cells[7].Value), 
-                            row.Cells[8].Value.ToString(),
-            */
+                    
 
                         ins.InsertPromet(Convert.ToDateTime(dtpDatum.Value), "PRI", prStDokumenta, row.Cells[9].Value.ToString(), "CPR", Convert.ToDecimal(row.Cells[4].Value), 0, Convert.ToInt32(cboSkladisteID.SelectedValue),
                             Convert.ToInt32(row.Cells[6].Value), 0, 0, Convert.ToDateTime(DateTime.Now), Kor.Trim(), 0, 0, Convert.ToDateTime(dtpDatum.Value.ToString()), row.Cells[3].Value.ToString(),
@@ -681,7 +712,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value));
 
         private void button3_Click(object sender, EventArgs e)
         {
-            frmPrijemnicaCarinskaStampa st = new frmPrijemnicaCarinskaStampa();
+            frmPrijemnicaCarinskaStampa st = new frmPrijemnicaCarinskaStampa(txtID.Text);
             st.Show();
         }
     }

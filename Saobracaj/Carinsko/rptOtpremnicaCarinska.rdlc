@@ -502,7 +502,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Datum.Value</Value>
+                                  <Value>=Format(Cdate(Fields!Datum.Value),"dd.MM.yyyy")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -815,7 +815,7 @@
             <Top>0.3937cm</Top>
             <Left>0.18362cm</Left>
             <Height>3.81167cm</Height>
-            <Width>15.21229cm</Width>
+            <Width>15.2123cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>

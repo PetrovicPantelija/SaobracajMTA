@@ -141,7 +141,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>SKLADISNI DOKUMENT</Value>
+                                  <Value>SKLADIŠNI DOKUMENT</Value>
                                   <Style>
                                     <FontSize>16pt</FontSize>
                                   </Style>
@@ -205,6 +205,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>4</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -246,7 +247,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>2</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -328,7 +328,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatDateTime(Fields!Datum.Value, DateFormat.ShortDate)</Value>
+                                  <Value>=Format(Cdate(Fields!Datum.Value),"dd.MM.yyyy")</Value>
                                   <Style>
                                     <FontSize>16pt</FontSize>
                                     <FontWeight>Bold</FontWeight>

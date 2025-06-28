@@ -12,13 +12,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Saobracaj.Carinsko
 {
-    public partial class frmPrijemnicaStavke : Form
+    public partial class frmPregledCarinskog : Form
     {
-        string Otpremnica = "0";
+        public frmPregledCarinskog()
+        {
+            InitializeComponent();
+            ChangeTextBox();
+        }
 
         private void ChangeTextBox()
         {
@@ -122,57 +127,56 @@ namespace Saobracaj.Carinsko
             }
         }
 
-        private void PodesiDatagridView(DataGridView dgv)
+        private void frmPregledCarinskog_Load(object sender, EventArgs e)
         {
 
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 30;
-        }
-        public frmPrijemnicaStavke()
-        {
-            InitializeComponent();
         }
 
-        public frmPrijemnicaStavke(string OtpremnicaID)
+        private void button23_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
-            ChangeTextBox();
-            Otpremnica = OtpremnicaID;
-            RefreshDataGrid();
-        }
+            gridGroupingControl1.DataSource = null;
 
-        private void RefreshDataGrid()
-        {
-            var select = " SELECT     PrijemnicaCarinska.ID, PrijemnicaCarinskaStavke.ID as StavkaID, PrijemnicaCarinska.Status,  PrijemnicaCarinska.Datum, " +
-" PrijemnicaCarinska.Korisanik, PrijemnicaCarinskaStavke.Artikal, PrijemnicaCarinskaStavke.JM, PrijemnicaCarinskaStavke.Koleta, PrijemnicaCarinskaStavke.Bruto, " +
-" Skladista.Naziv AS Skladiste, PrijemnicaCarinska.Dokument, PrijemnicaCarinska.MBR, " +
+           var select = " select Promet.ID, PrSifVrstePrometa, PrijemnicaCarinska.MBR as MagacinskiBroj, Skladista.Naziv as Skladiste, Pozicija.Oznaka as Pozicija, Promet.BrojKontejnera, Promet.PrPrimKol as Primljeno, " +
+" 0 as Otpremljeno, Promet.JedinicaMere, " +
+" PrijemnicaCarinska.Dokument as DokumentZaduzenja , '' as Dokument, " +
+" PrijemnicaCarinskaStavke.Artikal, " +
+" PrijemnicaCarinskaStavke.Bruto, " +
 " Partnerji.PANaziv as Vlasnik, " +
-" Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac, PrijemnicaCarinska.Napomena1, PrijemnicaCarinska.Napomena2 " +
-" FROM        PrijemnicaCarinska " +
-" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.IdNAdredjena = PrijemnicaCarinska.ID " +
-" INNER JOIN " +
-" Skladista ON PrijemnicaCarinska.SkladisteID = Skladista.ID INNER JOIN " +
-" Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
-" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra INNER JOIN " +
-" Partnerji AS Partnerji_2 ON PrijemnicaCarinska.Posiljalac = Partnerji_2.PaSifra " +
-"  Order by PrijemnicaCarinska.ID";
+" Partnerji_1.PaNaziv AS KorisnikRobe, " +
+" PrijemnicaCarinska.ID as BrojDokumenta, PrijemnicaCarinskaStavke.ID as StavkaID " +
+" from Promet " +
+" inner join Skladista on Skladista.ID = SkladisteU " +
+" inner " +
+" join Pozicija on Pozicija.ID = LokacijaU " +
+" inner " +
+" join PrijemnicaCarinska on PrijemnicaCarinska.ID = Promet.NalogID " +
+" inner " +
+" join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.ID = Promet.Lot " +
+" INNER JOIN Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra " +
+" where PrSifVrstePrometa in ('CPR') " +
+" union " +
+" select Promet.ID, PrSifVrstePrometa, OtpremnicaCarinska.MBR as MagacinskiBroj, Skladista.Naziv, Pozicija.Oznaka, Promet.BrojKontejnera, Promet.PrPrimKol as Primljeno,  " +
+" Promet.PrIzdKol as Otpremljeno, Promet.JedinicaMere,  " +
+" (Select Top 1 dokument from  PrijemnicaCarinska " +
+" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinska.ID = PrijemnicaCarinskaStavke.IdNAdredjena " +
+" where ocs.PrijemnicaStavkaID = PrijemnicaCarinskaStavke.ID) as DokumentZaduzenja, OtpremnicaCarinska.Dokument, " +
+" ocs.Artikal,  " +
+" ocs.Bruto, " +
+" Partnerji.PANaziv as Vlasnik,  " +
+" Partnerji_1.PaNaziv AS KorisnikRobe,  " +
+" OtpremnicaCarinska.ID as BrojDokumenta, ocs.ID as StavkaID " +
+" from Promet " +
+" inner join Skladista on Skladista.ID = SkladisteU" +
+" inner " +
+" join Pozicija on Pozicija.ID = LokacijaU " +
+" inner " +
+" join OtpremnicaCarinska on OtpremnicaCarinska.ID = Promet.NalogID " +
+" inner " +
+" join OtpremnicaCarinskaStavke as ocs on ocs.ID = Promet.Lot " +
+" INNER JOIN Partnerji ON OtpremnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON OtpremnicaCarinska.KorisnikROba = Partnerji_1.PaSifra " +
+" where PrSifVrstePrometa in ('COT')  ";
 
 
             // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -202,30 +206,67 @@ namespace Saobracaj.Carinsko
 
             //Wiring GridExcelFilter to GridGroupingControl
             gridExcelFilter.WireGrid(this.gridGroupingControl1);
-
-
         }
-            private void button23_Click(object sender, EventArgs e)
-             {
 
-            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gridGroupingControl1.DataSource = null;
+            var select = " SELECT     PrijemnicaCarinska.ID, PrijemnicaCarinskaStavke.ID as StavkaID, PrijemnicaCarinska.Status,  " + 
+" PrijemnicaCarinska.Datum, PrijemnicaCarinska.Korisanik, PrijemnicaCarinskaStavke.Artikal, " +
+" PrijemnicaCarinskaStavke.JM, PrijemnicaCarinskaStavke.Koleta, " +
+" PrijemnicaCarinskaStavke.KolicinaOtpremljena, (PrijemnicaCarinskaStavke.Koleta - PrijemnicaCarinskaStavke.KolicinaOtpremljena) as Razlika , PrijemnicaCarinskaStavke.Bruto, " +
+" Skladista.Naziv AS Skladiste, PrijemnicaCarinska.Dokument, PrijemnicaCarinska.MBR, " +
+" Partnerji.PANaziv as Vlasnik, Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac, PrijemnicaCarinska.Napomena1, PrijemnicaCarinska.Napomena2 " +
+" FROM        PrijemnicaCarinska " +
+" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.IdNAdredjena = PrijemnicaCarinska.ID " +
+" INNER JOIN " +
+" Skladista ON PrijemnicaCarinska.SkladisteID = Skladista.ID INNER JOIN " +
+" Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_2 ON PrijemnicaCarinska.Posiljalac = Partnerji_2.PaSifra " +
+" Order by PrijemnicaCarinska.ID ";
+
+
+            // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            //  SqlConnection myConnection = new SqlConnection(s_connection);
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+          
+
+      
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
-                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
-                {
-                    InsertOtpremnicaCarinskaStavke ins = new InsertOtpremnicaCarinskaStavke();
-                    ins.PrebaciStavkeIzPrijemnice(Convert.ToInt32(selectedRecord.Record.GetValue("StavkaID").ToString()), Convert.ToInt32(Otpremnica));
-                }
+                column.AllowFilter = true;
             }
-        }
 
-        private void frmPrijemnicaStavke_Load(object sender, EventArgs e)
-        {
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
-        }
+            gcfd3.Expression = "[Razlika] = '0,00'";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
     }
 }

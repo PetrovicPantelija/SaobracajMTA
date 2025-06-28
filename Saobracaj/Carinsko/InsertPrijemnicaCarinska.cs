@@ -82,7 +82,7 @@ namespace Saobracaj.Carinko
                     int Primalac, string BrFakture,
                     string Prevoznik, string BrojKamiona,
                     string Napomena1, string Napomena2,
-                    string TransportNo, DateTime OcekivanoVreme)
+                    string TransportNo, DateTime OcekivanoVreme, int Nalogodavac)
         {
 
 
@@ -260,6 +260,14 @@ namespace Saobracaj.Carinko
             myCommand.Parameters.Add(parameter20);
 
 
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@Nalogodavac";
+            parameter21.SqlDbType = SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = Nalogodavac;
+            myCommand.Parameters.Add(parameter21);
+
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -305,7 +313,7 @@ int Vlasnik, int KorisnikRoba, int Posiljalac,
 int Primalac, string BrFakture,
 string Prevoznik, string BrojKamiona,
 string Napomena1, string Napomena2,
-string TransportNo, DateTime OcekivanoVreme)
+string TransportNo, DateTime OcekivanoVreme, int Nalogodavac)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -493,6 +501,14 @@ string TransportNo, DateTime OcekivanoVreme)
             parameter20.Direction = ParameterDirection.Input;
             parameter20.Value = OcekivanoVreme;
             myCommand.Parameters.Add(parameter20);
+
+
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@Nalogodavac";
+            parameter21.SqlDbType = SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = Nalogodavac;
+            myCommand.Parameters.Add(parameter21);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

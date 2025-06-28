@@ -555,7 +555,7 @@ namespace Saobracaj.Uvoz
             gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
             gcfd31.Expression = "[Uradjen] =  '2'";
-            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd31);
 
 
 

@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -164,6 +165,7 @@ namespace Saobracaj.Carinsko
         public frmOtpremnicaCarinsko()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
         public frmOtpremnicaCarinsko(string Otpremnica)
@@ -178,7 +180,7 @@ namespace Saobracaj.Carinsko
             if (status == true)
             {
                 insertOtpremnicaCarinsko ins = new insertOtpremnicaCarinsko();
-                ins.InsPrijemnicaCarinska(
+                ins.InsOtpremnicaCarinska(
                 txtStatus.Text, DateTime.Now,
 Kor, Convert.ToInt32(cboSkladisteID.SelectedValue), txtDokument.Text,
 Convert.ToInt32(cboMagacinskiBroj.SelectedValue), 
@@ -398,7 +400,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                 dataGridView1.Rows[r].Cells[10].Value = ds.Tables[0].Rows[r].ItemArray[10];
                 dataGridView1.Rows[r].Cells[11].Value = ds.Tables[0].Rows[r].ItemArray[11];
                 dataGridView1.Rows[r].Cells[12].Value = ds.Tables[0].Rows[r].ItemArray[12];
-                //   dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
+                dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
 
             }
 
@@ -534,6 +536,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                 conn.Close();
 
                 InsertIsporuka ins = new InsertIsporuka();
+                insertOtpremnicaCarinsko updst = new insertOtpremnicaCarinsko();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row != null && row.Cells[0].Value != null)
@@ -562,14 +565,15 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                             Convert.ToInt32(row.Cells[6].Value),  Convert.ToDateTime(DateTime.Now), Kor.Trim(), 0, 0, Convert.ToDateTime(dtpDatum.Value.ToString()), row.Cells[3].Value.ToString(),
                             row.Cells[13].Value.ToString(), Convert.ToInt32(txtID.Text), Convert.ToInt32(0), skladisteno, Tip);
 
-
+                        updst.updetePrijemnicaCarinskaStavkaKolicina(Convert.ToInt32(row.Cells[13].Value), Convert.ToDouble(row.Cells[4].Value));
                         //Yaklapaju se po stavci prijemnice
-                       
+
                     }
                 }
 
-                insertOtpremnicaCarinsko updst = new insertOtpremnicaCarinsko();
+             
                 updst.updeteOtpremnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "PROKNJIZEN");
+               
             }
         }
 

@@ -581,6 +581,12 @@
     <Compile Include="Carinsko\frmOtpremnicaCarinskoTabela.Designer.cs">
       <DependentUpon>frmOtpremnicaCarinskoTabela.cs</DependentUpon>
     </Compile>
+    <Compile Include="Carinsko\frmPregledCarinskog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinsko\frmPregledCarinskog.Designer.cs">
+      <DependentUpon>frmPregledCarinskog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Carinsko\frmPrijemnicaCarinskaStampa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4010,6 +4016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmOtpremnicaCarinskoTabela.resx">
       <DependentUpon>frmOtpremnicaCarinskoTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\frmPregledCarinskog.resx">
+      <DependentUpon>frmPregledCarinskog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmPrijemnicaCarinskaStampa.resx">
       <DependentUpon>frmPrijemnicaCarinskaStampa.cs</DependentUpon>
