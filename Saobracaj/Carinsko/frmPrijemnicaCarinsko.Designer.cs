@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijemnicaCarinsko));
             this.txtDokument = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -71,6 +72,8 @@
             this.dtpOcekivanoVreme = new System.Windows.Forms.DateTimePicker();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -80,11 +83,15 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.button1 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.label20 = new System.Windows.Forms.Label();
+            this.cboNalogodavac = new System.Windows.Forms.ComboBox();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDokument
@@ -215,7 +222,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(313, 299);
+            this.label6.Location = new System.Drawing.Point(303, 400);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 15);
@@ -228,7 +235,7 @@
             this.cboMagacinskiBroj.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMagacinskiBroj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboMagacinskiBroj.FormattingEnabled = true;
-            this.cboMagacinskiBroj.Location = new System.Drawing.Point(316, 317);
+            this.cboMagacinskiBroj.Location = new System.Drawing.Point(306, 418);
             this.cboMagacinskiBroj.Margin = new System.Windows.Forms.Padding(2);
             this.cboMagacinskiBroj.Name = "cboMagacinskiBroj";
             this.cboMagacinskiBroj.Size = new System.Drawing.Size(230, 23);
@@ -240,7 +247,7 @@
             this.cboVrstaSkladista.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaSkladista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboVrstaSkladista.FormattingEnabled = true;
-            this.cboVrstaSkladista.Location = new System.Drawing.Point(316, 249);
+            this.cboVrstaSkladista.Location = new System.Drawing.Point(306, 359);
             this.cboVrstaSkladista.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaSkladista.Name = "cboVrstaSkladista";
             this.cboVrstaSkladista.Size = new System.Drawing.Size(230, 23);
@@ -250,7 +257,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(313, 231);
+            this.label7.Location = new System.Drawing.Point(303, 341);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 15);
@@ -374,7 +381,7 @@
             // 
             // txtBrojFakture
             // 
-            this.txtBrojFakture.Location = new System.Drawing.Point(314, 63);
+            this.txtBrojFakture.Location = new System.Drawing.Point(306, 189);
             this.txtBrojFakture.Name = "txtBrojFakture";
             this.txtBrojFakture.Size = new System.Drawing.Size(232, 20);
             this.txtBrojFakture.TabIndex = 509;
@@ -383,7 +390,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(311, 45);
+            this.label14.Location = new System.Drawing.Point(303, 171);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 15);
@@ -392,7 +399,7 @@
             // 
             // txtPrevoznik
             // 
-            this.txtPrevoznik.Location = new System.Drawing.Point(316, 136);
+            this.txtPrevoznik.Location = new System.Drawing.Point(306, 249);
             this.txtPrevoznik.Name = "txtPrevoznik";
             this.txtPrevoznik.Size = new System.Drawing.Size(232, 20);
             this.txtPrevoznik.TabIndex = 511;
@@ -401,7 +408,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(313, 118);
+            this.label15.Location = new System.Drawing.Point(303, 231);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
@@ -410,7 +417,7 @@
             // 
             // txtBrojKamiona
             // 
-            this.txtBrojKamiona.Location = new System.Drawing.Point(316, 193);
+            this.txtBrojKamiona.Location = new System.Drawing.Point(306, 307);
             this.txtBrojKamiona.Name = "txtBrojKamiona";
             this.txtBrojKamiona.Size = new System.Drawing.Size(232, 20);
             this.txtBrojKamiona.TabIndex = 513;
@@ -419,7 +426,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(313, 172);
+            this.label16.Location = new System.Drawing.Point(303, 286);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(80, 15);
@@ -476,7 +483,7 @@
             // 
             // txtTransportNo
             // 
-            this.txtTransportNo.Location = new System.Drawing.Point(316, 378);
+            this.txtTransportNo.Location = new System.Drawing.Point(593, 132);
             this.txtTransportNo.Name = "txtTransportNo";
             this.txtTransportNo.Size = new System.Drawing.Size(232, 20);
             this.txtTransportNo.TabIndex = 519;
@@ -485,7 +492,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(321, 359);
+            this.label18.Location = new System.Drawing.Point(598, 113);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(77, 15);
@@ -496,7 +503,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(321, 414);
+            this.label19.Location = new System.Drawing.Point(598, 168);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 15);
@@ -508,7 +515,7 @@
             this.dtpOcekivanoVreme.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpOcekivanoVreme.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.dtpOcekivanoVreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(316, 435);
+            this.dtpOcekivanoVreme.Location = new System.Drawing.Point(593, 189);
             this.dtpOcekivanoVreme.Margin = new System.Windows.Forms.Padding(2);
             this.dtpOcekivanoVreme.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpOcekivanoVreme.Name = "dtpOcekivanoVreme";
@@ -534,12 +541,56 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button17);
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(427, 31);
+            this.panel2.Size = new System.Drawing.Size(702, 31);
             this.panel2.TabIndex = 6;
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button3.Location = new System.Drawing.Point(326, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(262, 31);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Štampaj prijemnicu / Skladisni dokumet";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(257, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(69, 31);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Proknjizi";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button17
             // 
@@ -555,7 +606,7 @@
             this.button17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button17.Location = new System.Drawing.Point(115, 0);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(161, 31);
+            this.button17.Size = new System.Drawing.Size(142, 31);
             this.button17.TabIndex = 21;
             this.button17.Text = "Magacinski Brojevi";
             this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -649,15 +700,16 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 646);
+            this.dataGridView1.Location = new System.Drawing.Point(28, 623);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1268, 127);
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 150);
             this.dataGridView1.TabIndex = 524;
             // 
             // sfDataGrid1
@@ -667,7 +719,7 @@
             this.sfDataGrid1.AllowDeleting = true;
             this.sfDataGrid1.Location = new System.Drawing.Point(28, 485);
             this.sfDataGrid1.Name = "sfDataGrid1";
-            this.sfDataGrid1.Size = new System.Drawing.Size(1271, 146);
+            this.sfDataGrid1.Size = new System.Drawing.Size(1271, 133);
             this.sfDataGrid1.TabIndex = 525;
             this.sfDataGrid1.Text = "sfDataGrid1";
             // 
@@ -688,11 +740,43 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(303, 113);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 15);
+            this.label20.TabIndex = 527;
+            this.label20.Text = "Nalogodavac";
+            // 
+            // cboNalogodavac
+            // 
+            this.cboNalogodavac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNalogodavac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboNalogodavac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cboNalogodavac.FormattingEnabled = true;
+            this.cboNalogodavac.Location = new System.Drawing.Point(306, 130);
+            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNalogodavac.Name = "cboNalogodavac";
+            this.cboNalogodavac.Size = new System.Drawing.Size(230, 23);
+            this.cboNalogodavac.TabIndex = 526;
+            // 
             // frmPrijemnicaCarinsko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 776);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.cboNalogodavac);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sfDataGrid1);
             this.Controls.Add(this.dataGridView1);
@@ -746,6 +830,7 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -804,5 +889,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox cboNalogodavac;
     }
 }

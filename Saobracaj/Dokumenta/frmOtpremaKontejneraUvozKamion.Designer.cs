@@ -691,7 +691,7 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.cboTipKontejnera);
             this.panel1.Location = new System.Drawing.Point(9, 215);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1445, 360);
+            this.panel1.Size = new System.Drawing.Size(1446, 360);
             this.panel1.TabIndex = 262;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -1050,7 +1050,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl2.Location = new System.Drawing.Point(880, 11);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(554, 308);
+            this.tabControl2.Size = new System.Drawing.Size(555, 308);
             this.tabControl2.TabIndex = 425;
             // 
             // tabPage2
@@ -1058,7 +1058,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(546, 282);
+            this.tabPage2.Size = new System.Drawing.Size(547, 282);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "RADNI NALOG OTPREMA KAMIONOM";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1099,7 +1099,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 25;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(536, 272);
+            this.dataGridView2.Size = new System.Drawing.Size(537, 272);
             this.dataGridView2.TabIndex = 159;
             // 
             // tabPage5
@@ -1108,7 +1108,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(545, 282);
+            this.tabPage5.Size = new System.Drawing.Size(546, 282);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Usluge";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1159,7 +1159,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(545, 282);
+            this.tabPage4.Size = new System.Drawing.Size(546, 282);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Napomene za pozicioniranje";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2035,7 +2035,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1412, 51);
+            this.tabPage1.Size = new System.Drawing.Size(1413, 34);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke otpreme";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2051,7 +2051,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.Location = new System.Drawing.Point(13, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1393, 39);
+            this.dataGridView1.Size = new System.Drawing.Size(1394, 22);
             this.dataGridView1.TabIndex = 133;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -2065,7 +2065,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl1.Location = new System.Drawing.Point(12, 581);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1420, 80);
+            this.tabControl1.Size = new System.Drawing.Size(1421, 63);
             this.tabControl1.TabIndex = 263;
             // 
             // chkCirada

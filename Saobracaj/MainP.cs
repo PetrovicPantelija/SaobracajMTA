@@ -6963,6 +6963,12 @@ namespace Saobracaj
             Saobracaj.Carinsko.frmOtpremnicaCarinskoTabela ct = new Saobracaj.Carinsko.frmOtpremnicaCarinskoTabela();
             ct.Show();
         }
+
+        private void toolStripButton396_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Carinsko.frmPregledCarinskog pcar = new Carinsko.frmPregledCarinskog();
+            pcar.Show();
+        }
     }
     }
 

@@ -1,5 +1,6 @@
-﻿using Saobracaj.Carinko;
+﻿using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -11,12 +12,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Saobracaj.Carinsko
 {
-    public partial class frmOtpremnicaCarinskoTabela : Form
+    public partial class frmPregledCarinskog : Form
     {
+        public frmPregledCarinskog()
+        {
+            InitializeComponent();
+            ChangeTextBox();
+        }
+
         private void ChangeTextBox()
         {
 
@@ -119,46 +127,56 @@ namespace Saobracaj.Carinsko
             }
         }
 
-        private void PodesiDatagridView(DataGridView dgv)
+        private void frmPregledCarinskog_Load(object sender, EventArgs e)
         {
 
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 30;
-        }
-        public frmOtpremnicaCarinskoTabela()
-        {
-            InitializeComponent();
-            ChangeTextBox();
         }
 
-
-        private void RefreshDataGrid()
+        private void button23_Click(object sender, EventArgs e)
         {
-            var select = "  SELECT     OtpremnicaCarinska.ID, OtpremnicaCarinska.Status, Partnerji.PaNaziv AS Vlasnik, OtpremnicaCarinska.ID AS Expr1, OtpremnicaCarinska.Status, "+
- " OtpremnicaCarinska.Datum, OtpremnicaCarinska.Korisnik, OtpremnicaCarinska.SkladisteID, OtpremnicaCarinska.Dokument, OtpremnicaCarinska.MBR, "+
-" OtpremnicaCarinska.Vlasnik AS VlasnikRobe, OtpremnicaCarinska.KorisnikRoba, OtpremnicaCarinska.Nalogodavac,  "+
-" Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac,      Skladista.Naziv AS Skladiste "+
-"  FROM        dbo.OtpremnicaCarinska INNER JOIN Skladista ON OtpremnicaCarinska.SkladisteID = Skladista.ID "+
-" INNER JOIN   Partnerji ON OtpremnicaCarinska.Vlasnik = Partnerji.PaSifra "+
-" INNER JOIN  Partnerji AS Partnerji_1 ON OtpremnicaCarinska.KorisnikRoba = Partnerji_1.PaSifra "+
-" INNER JOIN   Partnerji AS Partnerji_2 ON OtpremnicaCarinska.Nalogodavac = Partnerji_2.PaSifra ";
+            gridGroupingControl1.DataSource = null;
+
+           var select = " select Promet.ID, PrSifVrstePrometa, PrijemnicaCarinska.MBR as MagacinskiBroj, Skladista.Naziv as Skladiste, Pozicija.Oznaka as Pozicija, Promet.BrojKontejnera, Promet.PrPrimKol as Primljeno, " +
+" 0 as Otpremljeno, Promet.JedinicaMere, " +
+" PrijemnicaCarinska.Dokument as DokumentZaduzenja , '' as Dokument, " +
+" PrijemnicaCarinskaStavke.Artikal, " +
+" PrijemnicaCarinskaStavke.Bruto, " +
+" Partnerji.PANaziv as Vlasnik, " +
+" Partnerji_1.PaNaziv AS KorisnikRobe, " +
+" PrijemnicaCarinska.ID as BrojDokumenta, PrijemnicaCarinskaStavke.ID as StavkaID " +
+" from Promet " +
+" inner join Skladista on Skladista.ID = SkladisteU " +
+" inner " +
+" join Pozicija on Pozicija.ID = LokacijaU " +
+" inner " +
+" join PrijemnicaCarinska on PrijemnicaCarinska.ID = Promet.NalogID " +
+" inner " +
+" join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.ID = Promet.Lot " +
+" INNER JOIN Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra " +
+" where PrSifVrstePrometa in ('CPR') " +
+" union " +
+" select Promet.ID, PrSifVrstePrometa, OtpremnicaCarinska.MBR as MagacinskiBroj, Skladista.Naziv, Pozicija.Oznaka, Promet.BrojKontejnera, Promet.PrPrimKol as Primljeno,  " +
+" Promet.PrIzdKol as Otpremljeno, Promet.JedinicaMere,  " +
+" (Select Top 1 dokument from  PrijemnicaCarinska " +
+" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinska.ID = PrijemnicaCarinskaStavke.IdNAdredjena " +
+" where ocs.PrijemnicaStavkaID = PrijemnicaCarinskaStavke.ID) as DokumentZaduzenja, OtpremnicaCarinska.Dokument, " +
+" ocs.Artikal,  " +
+" ocs.Bruto, " +
+" Partnerji.PANaziv as Vlasnik,  " +
+" Partnerji_1.PaNaziv AS KorisnikRobe,  " +
+" OtpremnicaCarinska.ID as BrojDokumenta, ocs.ID as StavkaID " +
+" from Promet " +
+" inner join Skladista on Skladista.ID = SkladisteU" +
+" inner " +
+" join Pozicija on Pozicija.ID = LokacijaU " +
+" inner " +
+" join OtpremnicaCarinska on OtpremnicaCarinska.ID = Promet.NalogID " +
+" inner " +
+" join OtpremnicaCarinskaStavke as ocs on ocs.ID = Promet.Lot " +
+" INNER JOIN Partnerji ON OtpremnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON OtpremnicaCarinska.KorisnikROba = Partnerji_1.PaSifra " +
+" where PrSifVrstePrometa in ('COT')  ";
 
 
             // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -188,47 +206,67 @@ namespace Saobracaj.Carinsko
 
             //Wiring GridExcelFilter to GridGroupingControl
             gridExcelFilter.WireGrid(this.gridGroupingControl1);
-
-
         }
 
-        private void frmOtpremnicaCarinskoTabela_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            gridGroupingControl1.DataSource = null;
+            var select = " SELECT     PrijemnicaCarinska.ID, PrijemnicaCarinskaStavke.ID as StavkaID, PrijemnicaCarinska.Status,  " + 
+" PrijemnicaCarinska.Datum, PrijemnicaCarinska.Korisanik, PrijemnicaCarinskaStavke.Artikal, " +
+" PrijemnicaCarinskaStavke.JM, PrijemnicaCarinskaStavke.Koleta, " +
+" PrijemnicaCarinskaStavke.KolicinaOtpremljena, (PrijemnicaCarinskaStavke.Koleta - PrijemnicaCarinskaStavke.KolicinaOtpremljena) as Razlika , PrijemnicaCarinskaStavke.Bruto, " +
+" Skladista.Naziv AS Skladiste, PrijemnicaCarinska.Dokument, PrijemnicaCarinska.MBR, " +
+" Partnerji.PANaziv as Vlasnik, Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac, PrijemnicaCarinska.Napomena1, PrijemnicaCarinska.Napomena2 " +
+" FROM        PrijemnicaCarinska " +
+" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.IdNAdredjena = PrijemnicaCarinska.ID " +
+" INNER JOIN " +
+" Skladista ON PrijemnicaCarinska.SkladisteID = Skladista.ID INNER JOIN " +
+" Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_2 ON PrijemnicaCarinska.Posiljalac = Partnerji_2.PaSifra " +
+" Order by PrijemnicaCarinska.ID ";
 
-        }
 
-        private void button23_Click(object sender, EventArgs e)
-        {
-            frmOtpremnicaCarinsko car = new frmOtpremnicaCarinsko();
-            car.Show();
-        }
+            // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            //  SqlConnection myConnection = new SqlConnection(s_connection);
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-        private void button24_Click(object sender, EventArgs e)
-        {
-            frmOtpremnicaCarinsko pc = new frmOtpremnicaCarinsko(txtSifra.Text);
-            pc.Show();
-        }
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
-        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
-        {
-            try
+          
+
+      
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
-                if (gridGroupingControl1.Table.CurrentRecord != null)
-                {
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                }
-
+                column.AllowFilter = true;
             }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
-        }
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
-        private void button25_Click(object sender, EventArgs e)
-        {
-            RefreshDataGrid();
+            gcfd3.Expression = "[Razlika] = '0,00'";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
     }
 }

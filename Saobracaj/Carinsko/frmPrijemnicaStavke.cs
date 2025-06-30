@@ -1,5 +1,6 @@
-﻿using Saobracaj.Carinko;
+﻿using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -15,8 +16,10 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Carinsko
 {
-    public partial class frmOtpremnicaCarinskoTabela : Form
+    public partial class frmPrijemnicaStavke : Form
     {
+        string Otpremnica = "0";
+
         private void ChangeTextBox()
         {
 
@@ -142,23 +145,34 @@ namespace Saobracaj.Carinsko
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv.ColumnHeadersHeight = 30;
         }
-        public frmOtpremnicaCarinskoTabela()
+        public frmPrijemnicaStavke()
+        {
+            InitializeComponent();
+        }
+
+        public frmPrijemnicaStavke(string OtpremnicaID)
         {
             InitializeComponent();
             ChangeTextBox();
+            Otpremnica = OtpremnicaID;
+            RefreshDataGrid();
         }
-
 
         private void RefreshDataGrid()
         {
-            var select = "  SELECT     OtpremnicaCarinska.ID, OtpremnicaCarinska.Status, Partnerji.PaNaziv AS Vlasnik, OtpremnicaCarinska.ID AS Expr1, OtpremnicaCarinska.Status, "+
- " OtpremnicaCarinska.Datum, OtpremnicaCarinska.Korisnik, OtpremnicaCarinska.SkladisteID, OtpremnicaCarinska.Dokument, OtpremnicaCarinska.MBR, "+
-" OtpremnicaCarinska.Vlasnik AS VlasnikRobe, OtpremnicaCarinska.KorisnikRoba, OtpremnicaCarinska.Nalogodavac,  "+
-" Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac,      Skladista.Naziv AS Skladiste "+
-"  FROM        dbo.OtpremnicaCarinska INNER JOIN Skladista ON OtpremnicaCarinska.SkladisteID = Skladista.ID "+
-" INNER JOIN   Partnerji ON OtpremnicaCarinska.Vlasnik = Partnerji.PaSifra "+
-" INNER JOIN  Partnerji AS Partnerji_1 ON OtpremnicaCarinska.KorisnikRoba = Partnerji_1.PaSifra "+
-" INNER JOIN   Partnerji AS Partnerji_2 ON OtpremnicaCarinska.Nalogodavac = Partnerji_2.PaSifra ";
+            var select = " SELECT     PrijemnicaCarinska.ID, PrijemnicaCarinskaStavke.ID as StavkaID, PrijemnicaCarinska.Status,  PrijemnicaCarinska.Datum, " +
+" PrijemnicaCarinska.Korisanik, PrijemnicaCarinskaStavke.Artikal, PrijemnicaCarinskaStavke.JM, PrijemnicaCarinskaStavke.Koleta, PrijemnicaCarinskaStavke.Bruto, " +
+" Skladista.Naziv AS Skladiste, PrijemnicaCarinska.Dokument, PrijemnicaCarinska.MBR, " +
+" Partnerji.PANaziv as Vlasnik, " +
+" Partnerji_1.PaNaziv AS KorisnikRobe, Partnerji_2.PaNaziv AS Primalac, PrijemnicaCarinska.Napomena1, PrijemnicaCarinska.Napomena2 " +
+" FROM        PrijemnicaCarinska " +
+" inner join PrijemnicaCarinskaStavke on PrijemnicaCarinskaStavke.IdNAdredjena = PrijemnicaCarinska.ID " +
+" INNER JOIN " +
+" Skladista ON PrijemnicaCarinska.SkladisteID = Skladista.ID INNER JOIN " +
+" Partnerji ON PrijemnicaCarinska.Vlasnik = Partnerji.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_1 ON PrijemnicaCarinska.Korisinik = Partnerji_1.PaSifra INNER JOIN " +
+" Partnerji AS Partnerji_2 ON PrijemnicaCarinska.Posiljalac = Partnerji_2.PaSifra " +
+"  Order by PrijemnicaCarinska.ID";
 
 
             // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -191,44 +205,27 @@ namespace Saobracaj.Carinsko
 
 
         }
+            private void button23_Click(object sender, EventArgs e)
+             {
 
-        private void frmOtpremnicaCarinskoTabela_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button23_Click(object sender, EventArgs e)
-        {
-            frmOtpremnicaCarinsko car = new frmOtpremnicaCarinsko();
-            car.Show();
-        }
-
-        private void button24_Click(object sender, EventArgs e)
-        {
-            frmOtpremnicaCarinsko pc = new frmOtpremnicaCarinsko(txtSifra.Text);
-            pc.Show();
-        }
-
-        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
-        {
-            try
+            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
             {
-                if (gridGroupingControl1.Table.CurrentRecord != null)
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    InsertOtpremnicaCarinskaStavke ins = new InsertOtpremnicaCarinskaStavke();
+                    ins.PrebaciStavkeIzPrijemnice(Convert.ToInt32(selectedRecord.Record.GetValue("StavkaID").ToString()), Convert.ToInt32(Otpremnica));
                 }
-
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
             }
         }
 
-        private void button25_Click(object sender, EventArgs e)
+        private void frmPrijemnicaStavke_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -532,11 +532,42 @@
     <Compile Include="Administracija\Prava.Designer.cs">
       <DependentUpon>Prava.cs</DependentUpon>
     </Compile>
+    <Compile Include="CarinskaOtpremnicaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarinskaOtpremnicaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CarinskaOtpremnicaStavkeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarinskaOtpremnicaStavkeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CarinskaPrijemnicaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarinskaPrijemnicaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CarinskaPrijemnicaSkladDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarinskaPrijemnicaSkladDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CarinskaPrijemnicaStavkeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarinskaPrijemnicaStavkeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Carinsko\frmMagacinskiBrojevi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Carinsko\frmMagacinskiBrojevi.Designer.cs">
       <DependentUpon>frmMagacinskiBrojevi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinsko\frmOtpremnicaCarinskaStampa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinsko\frmOtpremnicaCarinskaStampa.Designer.cs">
+      <DependentUpon>frmOtpremnicaCarinskaStampa.cs</DependentUpon>
     </Compile>
     <Compile Include="Carinsko\frmOtpremnicaCarinsko.cs">
       <SubType>Form</SubType>
@@ -550,6 +581,18 @@
     <Compile Include="Carinsko\frmOtpremnicaCarinskoTabela.Designer.cs">
       <DependentUpon>frmOtpremnicaCarinskoTabela.cs</DependentUpon>
     </Compile>
+    <Compile Include="Carinsko\frmPregledCarinskog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinsko\frmPregledCarinskog.Designer.cs">
+      <DependentUpon>frmPregledCarinskog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinsko\frmPrijemnicaCarinskaStampa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinsko\frmPrijemnicaCarinskaStampa.Designer.cs">
+      <DependentUpon>frmPrijemnicaCarinskaStampa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Carinsko\frmPrijemnicaCarinskaTabela.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -561,6 +604,12 @@
     </Compile>
     <Compile Include="Carinsko\frmPrijemnicaCarinsko.Designer.cs">
       <DependentUpon>frmPrijemnicaCarinsko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Carinsko\frmPrijemnicaStavke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Carinsko\frmPrijemnicaStavke.Designer.cs">
+      <DependentUpon>frmPrijemnicaStavke.cs</DependentUpon>
     </Compile>
     <Compile Include="Carinsko\InsertMagacinskiBrojevi.cs" />
     <Compile Include="Carinsko\InsertOtpremnicaCarinskaStavke.cs" />
@@ -3959,11 +4008,20 @@
     <EmbeddedResource Include="Carinsko\frmMagacinskiBrojevi.resx">
       <DependentUpon>frmMagacinskiBrojevi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\frmOtpremnicaCarinskaStampa.resx">
+      <DependentUpon>frmOtpremnicaCarinskaStampa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmOtpremnicaCarinsko.resx">
       <DependentUpon>frmOtpremnicaCarinsko.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmOtpremnicaCarinskoTabela.resx">
       <DependentUpon>frmOtpremnicaCarinskoTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\frmPregledCarinskog.resx">
+      <DependentUpon>frmPregledCarinskog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\frmPrijemnicaCarinskaStampa.resx">
+      <DependentUpon>frmPrijemnicaCarinskaStampa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmPrijemnicaCarinskaTabela.resx">
       <DependentUpon>frmPrijemnicaCarinskaTabela.cs</DependentUpon>
@@ -3971,6 +4029,12 @@
     <EmbeddedResource Include="Carinsko\frmPrijemnicaCarinsko.resx">
       <DependentUpon>frmPrijemnicaCarinsko.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\frmPrijemnicaStavke.resx">
+      <DependentUpon>frmPrijemnicaStavke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Carinsko\rptOtpremnicaCarinska.rdlc" />
+    <EmbeddedResource Include="Carinsko\rptPrijemnicaCarinskaSkladisni.rdlc" />
+    <EmbeddedResource Include="Carinsko\rptPrijemnicaCarinska.rdlc" />
     <EmbeddedResource Include="Dokumenta\DokumentaTerminal.resx">
       <DependentUpon>DokumentaTerminal.cs</DependentUpon>
     </EmbeddedResource>
@@ -5449,6 +5513,61 @@
     <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CarinskaOtpremnicaDataSet.xsc">
+      <DependentUpon>CarinskaOtpremnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaOtpremnicaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarinskaOtpremnicaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CarinskaOtpremnicaDataSet.xss">
+      <DependentUpon>CarinskaOtpremnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaOtpremnicaStavkeDataSet.xsc">
+      <DependentUpon>CarinskaOtpremnicaStavkeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaOtpremnicaStavkeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarinskaOtpremnicaStavkeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CarinskaOtpremnicaStavkeDataSet.xss">
+      <DependentUpon>CarinskaOtpremnicaStavkeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaDataSet.xsc">
+      <DependentUpon>CarinskaPrijemnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarinskaPrijemnicaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CarinskaPrijemnicaDataSet.xss">
+      <DependentUpon>CarinskaPrijemnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaSkladDataSet.xsc">
+      <DependentUpon>CarinskaPrijemnicaSkladDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaSkladDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarinskaPrijemnicaSkladDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CarinskaPrijemnicaSkladDataSet.xss">
+      <DependentUpon>CarinskaPrijemnicaSkladDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaStavkeDataSet.xsc">
+      <DependentUpon>CarinskaPrijemnicaStavkeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CarinskaPrijemnicaStavkeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarinskaPrijemnicaStavkeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CarinskaPrijemnicaStavkeDataSet.xss">
+      <DependentUpon>CarinskaPrijemnicaStavkeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="NedraDataSet.xsc">
       <DependentUpon>NedraDataSet.xsd</DependentUpon>
     </None>

@@ -6,27 +6,51 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Saobracaj.Dokumenta
+namespace Saobracaj.Carinsko
 {
-    public partial class frmPopisKontejneraStampa : Form
+    public partial class frmPrijemnicaCarinskaStampa : Form
     {
+        string Prijemnica = "0";
+
         private void ChangeTextBox()
         {
-           
+
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+
+
                 foreach (Control control in this.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
+
                         buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
                         buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
                         buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
                         buttons.FlatStyle = FlatStyle.Flat;
                     }
+                }
 
+
+                foreach (Control control in this.Controls)
+                {
 
                     if (control is System.Windows.Forms.TextBox textBox)
                     {
@@ -79,27 +103,48 @@ namespace Saobracaj.Dokumenta
                         nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
                 }
+            }
+            else
+            {
+                panelHeader.Visible = false;
 
-
-             
-                }
-          
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
         }
-
-        public frmPopisKontejneraStampa()
+        public frmPrijemnicaCarinskaStampa()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
-        public frmPopisKontejneraStampa(string broj)
+
+        public frmPrijemnicaCarinskaStampa(string PrijemnicaID)
         {
             InitializeComponent();
-            txtSifra.Text = broj;
+            Prijemnica = PrijemnicaID;
+            ChangeTextBox();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Saobracaj.TestiranjeDataSet19TableAdapters.SelectPopisKontejneraStavkeTableAdapter ta = new Saobracaj.TestiranjeDataSet19TableAdapters.SelectPopisKontejneraStavkeTableAdapter();
-            Saobracaj.TestiranjeDataSet19.SelectPopisKontejneraStavkeDataTable dt = new Saobracaj.TestiranjeDataSet19.SelectPopisKontejneraStavkeDataTable();
+           
+        }
+
+        private void frmPrijemnicaCarinskaStampa_Load(object sender, EventArgs e)
+        {
+            txtSifra.Text = Prijemnica;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Saobracaj.CarinskaPrijemnicaDataSetTableAdapters.SelectCarinskaPrijemnicaTableAdapter ta = new Saobracaj.CarinskaPrijemnicaDataSetTableAdapters.SelectCarinskaPrijemnicaTableAdapter();
+            Saobracaj.CarinskaPrijemnicaDataSet.SelectCarinskaPrijemnicaDataTable dt = new Saobracaj.CarinskaPrijemnicaDataSet.SelectCarinskaPrijemnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -107,23 +152,28 @@ namespace Saobracaj.Dokumenta
             rds.Value = dt;
 
 
-            Saobracaj.TestiranjeDataSet20TableAdapters.SistemskePostavkeHeaderTableAdapter taa = new Saobracaj.TestiranjeDataSet20TableAdapters.SistemskePostavkeHeaderTableAdapter();
 
-            Saobracaj.TestiranjeDataSet20.SistemskePostavkeHeaderDataTable dta = new Saobracaj.TestiranjeDataSet20.SistemskePostavkeHeaderDataTable();
 
-            taa.Fill(dta);
+
+            Saobracaj.CarinskaPrijemnicaStavkeDataSetTableAdapters.SelectCarinskaPrijemnicaStavkeTableAdapter taa = new Saobracaj.CarinskaPrijemnicaStavkeDataSetTableAdapters.SelectCarinskaPrijemnicaStavkeTableAdapter();
+
+            Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaPrijemnicaStavkeDataTable dta = new Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaPrijemnicaStavkeDataTable();
+
+            taa.Fill(dta, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rdsa = new ReportDataSource();
             rdsa.Name = "DataSet2";
             rdsa.Value = dta;
 
-          
+
 
             ReportParameter[] par = new ReportParameter[1];
-            par[0] = new ReportParameter("PopisBroj", txtSifra.Text);
+            par[0] = new ReportParameter("ID", txtSifra.Text);
+
+
 
 
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "rptPopisnaListaKontejnera.rdlc";
+            reportViewer1.LocalReport.ReportPath = "rptPrijemnicaCarinska.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.LocalReport.DataSources.Add(rdsa);
@@ -134,9 +184,34 @@ namespace Saobracaj.Dokumenta
             reportViewer1.RefreshReport();
         }
 
-        private void frmPopisKontejneraStampa_Load(object sender, EventArgs e)
+        private void button17_Click(object sender, EventArgs e)
         {
+            Saobracaj.CarinskaPrijemnicaSkladDataSetTableAdapters.SelectCarinskaPrijemnicaSkladisniDokTableAdapter ta = new Saobracaj.CarinskaPrijemnicaSkladDataSetTableAdapters.SelectCarinskaPrijemnicaSkladisniDokTableAdapter();
+            Saobracaj.CarinskaPrijemnicaSkladDataSet.SelectCarinskaPrijemnicaSkladisniDokDataTable dt = new Saobracaj.CarinskaPrijemnicaSkladDataSet.SelectCarinskaPrijemnicaSkladisniDokDataTable();
 
+            ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1";
+            rds.Value = dt;
+
+
+
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("ID", txtSifra.Text);
+
+
+
+
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.ReportPath = "rptPrijemnicaCarinskaSkladisni.rdlc";
+            reportViewer1.LocalReport.SetParameters(par);
+            reportViewer1.LocalReport.DataSources.Add(rds);
+
+            /*
+            reportViewer1.LocalReport.SubreportProcessing += new
+                          SubreportProcessingEventHandler(SetSubDataSource);
+             */
+            reportViewer1.RefreshReport();
         }
     }
 }
