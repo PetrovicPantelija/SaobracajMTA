@@ -6867,8 +6867,23 @@ namespace Saobracaj
 
         private void toolStripButton385_Click(object sender, EventArgs e)
         {
-            Izvoz.frmKontaktOsobeMU komu = new Izvoz.frmKontaktOsobeMU();
-            komu.Show();
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPartnerji")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmPartnerji part = new Sifarnici.frmPartnerji();
+                part.Show();
+            }
         }
 
         private void toolStripButton388_Click(object sender, EventArgs e)

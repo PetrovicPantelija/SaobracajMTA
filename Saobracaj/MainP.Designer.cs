@@ -6822,7 +6822,7 @@ namespace Saobracaj
             this.toolStripButton382,
             this.toolStripButton385,
             this.toolStripButton387});
-            this.toolStripEx54.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStripEx54.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx54.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx54.Name = "toolStripEx54";
             this.toolStripEx54.Office12Mode = false;
@@ -6884,7 +6884,7 @@ namespace Saobracaj
             this.toolStripButton385.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton385.Name = "toolStripButton385";
             this.toolStripButton385.Size = new System.Drawing.Size(195, 23);
-            this.toolStripButton385.Text = "Kontakt osobe Mesta utovara";
+            this.toolStripButton385.Text = "Partneri";
             this.toolStripButton385.Click += new System.EventHandler(this.toolStripButton385_Click);
             // 
             // toolStripButton387

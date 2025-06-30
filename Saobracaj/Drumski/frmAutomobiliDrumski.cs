@@ -220,6 +220,15 @@ namespace Saobracaj.Dokumenta
             var partAD = new SqlDataAdapter(partner, s_connection5);
             var partDS = new DataSet();
             partAD.Fill(partDS);
+            DataTable dt = partDS.Tables[0];
+
+            // Kreiraj novi red sa praznim tekstom i ID -1
+            DataRow prazanRed = dt.NewRow();
+            prazanRed["PaNaziv"] = "";
+            prazanRed["PaSifra"] = -1;
+
+            // Ubaci kao prvi red
+            dt.Rows.InsertAt(prazanRed, 0);
             cboPrevoznik.DataSource = partDS.Tables[0];
             cboPrevoznik.DisplayMember = "PaNaziv";
             cboPrevoznik.ValueMember = "PaSifra";
@@ -303,7 +312,7 @@ namespace Saobracaj.Dokumenta
 
                 int? ZaposleniID = string.IsNullOrWhiteSpace(txtZaposleniID.Text.ToString()) ? (int?)null : Convert.ToInt32(txtZaposleniID.Text);
                 int? parnerID = null;
-                if (cboPrevoznik.SelectedValue != null && int.TryParse(cboPrevoznik.SelectedValue.ToString(), out int parsedPrevoznikID))
+                if (cboPrevoznik.SelectedValue != null && int.TryParse(cboPrevoznik.SelectedValue.ToString(), out int parsedPrevoznikID) && parsedPrevoznikID >-1)
                 {
                 parnerID = parsedPrevoznikID;
                 }
