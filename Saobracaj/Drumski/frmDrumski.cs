@@ -591,9 +591,19 @@ namespace Saobracaj.Drumski
         private void UcitajKamione(int? tipTransportaId)
         {
             SqlConnection conn = new SqlConnection(connection);
-            string kam = "SELECT ID, Marka, RegBr, Vozac " +
-                         "FROM Automobili " +
-                         "WHERE VoziloDrumskog = 1";
+            string kam = "SELECT a.ID, a.Marka, a.RegBr, a.Vozac " +
+                         "FROM Automobili a " +
+                        " LEFT JOIN( " +
+                                    " SELECT r1.KamionID, r1.Status " +
+                                   "  FROM RadniNalogDrumski r1 " +
+                                   "  INNER JOIN( " +
+                                   "      SELECT KamionID, MAX(ID) AS MaxID " +
+                                   "      FROM RadniNalogDrumski " +
+                                    "     GROUP BY KamionID " +
+                                   "  ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID " +
+                               "  ) rn ON a.ID = rn.KamionID " +
+
+                        " WHERE a.VoziloDrumskog = 1 AND (rn.KamionID IS NULL OR rn.Status = 7) ";
 
             SqlCommand cmd = new SqlCommand();
 

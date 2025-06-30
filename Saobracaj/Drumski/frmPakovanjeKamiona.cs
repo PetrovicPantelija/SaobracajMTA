@@ -473,7 +473,17 @@ namespace Saobracaj.Drumski
                         " FROM Automobili a " +
                         " LEFT JOIN VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
                         " LEFT JOIN Partnerji p on a.PartnerID = p.PaSifra  " +
-                        " WHERE VoziloDrumskog = 1" + condition;
+                        " LEFT JOIN( "+
+                                    " SELECT r1.KamionID, r1.Status " +
+                                   "  FROM RadniNalogDrumski r1 " +
+                                   "  INNER JOIN( " +
+                                   "      SELECT KamionID, MAX(ID) AS MaxID " +
+                                   "      FROM RadniNalogDrumski " +
+                                    "     GROUP BY KamionID " +
+                                   "  ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID " +
+                               "  ) rn ON a.ID = rn.KamionID " +
+
+                        " WHERE VoziloDrumskog = 1 AND (rn.KamionID IS NULL OR rn.Status = 7) " + condition;
 
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = new SqlCommand(select, conn);
@@ -643,7 +653,7 @@ namespace Saobracaj.Drumski
                                        "left join Partnerji pa ON pa.PaSifra = rn.Klijent " +
                                        "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  "+
-                                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and rn.KamionID is not NULL AND rn.KamionID = 0";
+                                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and rn.KamionID is not NULL AND rn.KamionID != 0";
  
 
                 SqlConnection conn = new SqlConnection(connection);
@@ -768,6 +778,7 @@ namespace Saobracaj.Drumski
                 }
                 RefreshDataGrid3();
                 RefreshDataGrid2();
+                RefreshDataGrid1();
 
                 dataGridView3.ClearSelection();
 
@@ -811,7 +822,7 @@ namespace Saobracaj.Drumski
                 }
                 RefreshDataGrid3();
                 RefreshDataGrid2();
-
+                RefreshDataGrid1();
                 dataGridView2.ClearSelection();
 
                 foreach (DataGridViewRow row in dataGridView2.Rows)
