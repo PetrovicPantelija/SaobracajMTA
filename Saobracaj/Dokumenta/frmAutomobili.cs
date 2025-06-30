@@ -358,7 +358,7 @@ namespace Saobracaj.Dokumenta
                     MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
                     txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
                     txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null, null);
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null, null, null);
                     status = false;
                 }
                 else
@@ -373,7 +373,7 @@ namespace Saobracaj.Dokumenta
                     MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
                     txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
                     txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null);
                 }
                 RefreshDataGRid();
                 if (selectedID.HasValue)

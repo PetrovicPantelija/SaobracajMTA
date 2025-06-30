@@ -93,6 +93,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.meniHeader = new System.Windows.Forms.ToolStrip();
@@ -732,7 +733,7 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1529, 40);
@@ -741,6 +742,7 @@
             // panel3
             // 
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button21);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -749,6 +751,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(162, 38);
             this.panel3.TabIndex = 2;
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button21.Location = new System.Drawing.Point(95, 3);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(36, 33);
+            this.button21.TabIndex = 19;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Visible = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click_1);
             // 
             // button2
             // 
@@ -797,7 +819,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1529, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1529, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -807,13 +829,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -821,7 +843,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1211,5 +1233,6 @@
         private System.Windows.Forms.TextBox txtKontaktOsobaUtovara;
         private System.Windows.Forms.TextBox txtAdresaIstovara;
         private System.Windows.Forms.TextBox txtAdresaUtovara;
+        private System.Windows.Forms.Button button21;
     }
 }

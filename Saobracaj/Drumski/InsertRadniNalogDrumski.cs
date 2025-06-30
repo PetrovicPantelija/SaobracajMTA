@@ -581,7 +581,6 @@ namespace Saobracaj.Drumski
         }
 
 
-
         public void DodeliKamion(int ID, int KamionID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -661,6 +660,64 @@ namespace Saobracaj.Drumski
             kamionID.Size = 50;
             kamionID.Direction = ParameterDirection.Input;
             kamionID.Value = RegBr;
+            cmd.Parameters.Add(kamionID);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void VratiKamionUNerasporedjene(int ID, int KamionID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiKamionID";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter kamionID = new SqlParameter();
+            kamionID.ParameterName = "@KamionID";
+            kamionID.SqlDbType = SqlDbType.Int;
+            kamionID.Direction = ParameterDirection.Input;
+            kamionID.Value = KamionID;
             cmd.Parameters.Add(kamionID);
 
             conn.Open();
@@ -1106,6 +1163,56 @@ namespace Saobracaj.Drumski
             }
             return IDPom;
         }
+
+        public void DelRadniNalogDrumski(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteRadniNalogDrumski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
 
     }
 }

@@ -288,7 +288,7 @@ namespace Saobracaj.Dokumenta
            , string ZGLokacija, string ZGDubinaSare, string LGDot, string LGLokacija
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
            , string NivoUlja, string Nepravilnosti, string MestoTroska, int? VlasnistvoLegeta
-           , string Vozac, string LKVozaca, string VozacTelefon, int? VoziloDrumskog, int? KreiraoZaposleni
+           , string Vozac, string LKVozaca, string VozacTelefon, int? VoziloDrumskog, int? KreiraoZaposleni , int? PartnerID
             )
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -318,7 +318,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Marka";
             parameter2.SqlDbType = SqlDbType.NVarChar;
-            parameter.Size = 60;
+            parameter2.Size = 60;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Marka ?? (object)DBNull.Value;
             myCommand.Parameters.Add(parameter2);
@@ -662,6 +662,13 @@ namespace Saobracaj.Dokumenta
             parameter44.Value = (KreiraoZaposleni.HasValue && KreiraoZaposleni.Value > 0) ? (object)KreiraoZaposleni.Value : DBNull.Value;
             myCommand.Parameters.Add(parameter44);
 
+            SqlParameter parameter45 = new SqlParameter();
+            parameter45.ParameterName = "@PartnerID";
+            parameter45.SqlDbType = SqlDbType.Int;
+            parameter45.Direction = ParameterDirection.Input;
+            parameter45.Value = (PartnerID.HasValue && PartnerID.Value > 0) ? (object)PartnerID.Value : DBNull.Value;
+            myCommand.Parameters.Add(parameter45);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -810,7 +817,7 @@ namespace Saobracaj.Dokumenta
            , string ZGLokacija, string ZGDubinaSare, string LGDot, string LGLokacija
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
            , string NivoUlja, string Nepravilnosti, string MestoTroska, int? VlasnistvoLegeta
-           , string Vozac, string LKVozaca, string VozacTelefon)
+           , string Vozac, string LKVozaca, string VozacTelefon, int? PartnerID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1169,6 +1176,13 @@ namespace Saobracaj.Dokumenta
             parameter42.Direction = ParameterDirection.Input;
             parameter42.Value = VozacTelefon ?? (object)DBNull.Value;
             myCommand.Parameters.Add(parameter42);
+
+            SqlParameter parameter43 = new SqlParameter();
+            parameter43.ParameterName = "@PartnerID";
+            parameter43.SqlDbType = SqlDbType.Int;
+            parameter43.Direction = ParameterDirection.Input;
+            parameter43.Value = (PartnerID.HasValue && PartnerID.Value > 0) ? (object)PartnerID.Value : DBNull.Value;
+            myCommand.Parameters.Add(parameter43);
 
 
             myConnection.Open();

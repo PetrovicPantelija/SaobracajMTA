@@ -396,6 +396,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    button21.Visible = true;
                 }
                 else if (Uvoz == 3)
                 {
@@ -403,6 +404,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    button21.Visible = true;
                 }
                 else
                 {
@@ -591,7 +593,7 @@ namespace Saobracaj.Drumski
             SqlConnection conn = new SqlConnection(connection);
             string kam = "SELECT ID, Marka, RegBr, Vozac " +
                          "FROM Automobili " +
-                         "WHERE Vozac IS NOT NULL AND Vozac <> ''";
+                         "WHERE VoziloDrumskog = 1";
 
             SqlCommand cmd = new SqlCommand();
 
@@ -776,9 +778,8 @@ namespace Saobracaj.Drumski
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void ResetujVrednostiPolja()
         {
-            status = true;
             Uvoz = -1;
             cboTipNaloga.Visible = true;
             txtTipNaloga1.Visible = false;
@@ -841,6 +842,14 @@ namespace Saobracaj.Drumski
             txtGranicniPrelaz.Text = "";
             txtNapomenaPoz.Text = "";
             txtDodatniOpis.Text = "";
+
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            status = true;
+            Uvoz = -1;
+            ResetujVrednostiPolja();
+            button21.Visible = true;
 
         }
 
@@ -1015,6 +1024,35 @@ namespace Saobracaj.Drumski
                 else
                     label12.Text = "Kontakt osoba na istovaru";
             }
+        }
+
+        private void button21_Click_1(object sender, EventArgs e)
+        {
+            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int parsedTipNaloga) &&
+                 (parsedTipNaloga == 2 || parsedTipNaloga == 3))
+            {
+                DialogResult result = MessageBox.Show(
+                         "Da li ste sigurni da želite da obrišete ovaj zapis?",
+                         "Potvrda brisanja",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+    );
+
+                if (result == DialogResult.Yes)
+                {
+                    // Pozovi metodu za brisanje
+                    InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                    ins.DelRadniNalogDrumski(Convert.ToInt32(txtID.Text));
+                    txtID.Text = "0";
+                    ResetujVrednostiPolja();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ovaj nalog nije moguće obrisati.");
+                return;
+            }
+            
         }
     }
 }
