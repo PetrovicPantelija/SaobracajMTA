@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Net;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Saobracaj.Drumski
 {
@@ -180,7 +181,7 @@ namespace Saobracaj.Drumski
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS  OdredisnaCarina, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
-                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
+                      "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
@@ -591,44 +592,65 @@ namespace Saobracaj.Drumski
         private void UcitajKamione(int? tipTransportaId)
         {
             SqlConnection conn = new SqlConnection(connection);
-            string kam = "SELECT a.ID, a.Marka, a.RegBr, a.Vozac " +
-                         "FROM Automobili a " +
-                        " LEFT JOIN( " +
-                                    " SELECT r1.KamionID, r1.Status " +
-                                   "  FROM RadniNalogDrumski r1 " +
-                                   "  INNER JOIN( " +
-                                   "      SELECT KamionID, MAX(ID) AS MaxID " +
-                                   "      FROM RadniNalogDrumski " +
-                                    "     GROUP BY KamionID " +
-                                   "  ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID " +
-                               "  ) rn ON a.ID = rn.KamionID " +
 
-                        " WHERE a.VoziloDrumskog = 1 AND (rn.KamionID IS NULL OR rn.Status = 7) ";
+            List<string> statusi = new List<string>();
 
-            SqlCommand cmd = new SqlCommand();
-
-            if (tipTransportaId.HasValue && tipTransportaId.Value > 0)
+            using (conn)
             {
-                kam += " AND VlasnistvoLegeta = @TipTransporta";
-                cmd.Parameters.AddWithValue("@TipTransporta", tipTransportaId.Value);
+                conn.Open();
+
+                // 1. Učitaj status vrednosti iz SistemskePostavke
+                SqlCommand cmd1 = new SqlCommand("SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", conn);
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        statusi.Add(reader.GetString(0));
+                    }
+                }
+
+                // 2. Priprema statusa za upit
+                string statusiZaUpit = string.Join(",", statusi
+                    .Select(s => s.Trim())
+                    .Where(s => int.TryParse(s, out _)));
+
+                // 3. Kreiraj glavni SQL upit
+                string kam = @" SELECT a.ID, a.Marka, a.RegBr, a.Vozac
+                                FROM Automobili a
+                                LEFT JOIN (
+                                    SELECT r1.KamionID, r1.Status
+                                    FROM RadniNalogDrumski r1
+                                    INNER JOIN (
+                                        SELECT KamionID, MAX(ID) AS MaxID
+                                        FROM RadniNalogDrumski
+                                        GROUP BY KamionID
+                                    ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID
+                                ) rn ON a.ID = rn.KamionID
+                                WHERE a.VoziloDrumskog = 1 AND (rn.KamionID IS NULL OR rn.Status IN (" + statusiZaUpit + "))";
+
+                SqlCommand cmd = new SqlCommand(kam, conn);
+
+                if (tipTransportaId.HasValue && tipTransportaId.Value > 0)
+                {
+                    kam += " AND VlasnistvoLegeta = @TipTransporta";
+                    cmd.Parameters.AddWithValue("@TipTransporta", tipTransportaId.Value);
+                    cmd.CommandText = kam; // ponovo postavi CommandText ako si dodao AND
+                }
+
+                SqlDataAdapter kamAD = new SqlDataAdapter(cmd);
+                DataSet kmaDS = new DataSet();
+                kamAD.Fill(kmaDS);
+
+                DataTable dt1 = kmaDS.Tables[0];
+                DataRow prazanR = dt1.NewRow();
+                prazanR["ID"] = DBNull.Value;
+                prazanR["RegBr"] = "";
+                dt1.Rows.InsertAt(prazanR, 0);
+
+                cboKamion.DataSource = dt1;
+                cboKamion.DisplayMember = "RegBr";
+                cboKamion.ValueMember = "ID";
             }
-
-            cmd.CommandText = kam;
-            cmd.Connection = conn;
-
-            SqlDataAdapter kamAD = new SqlDataAdapter(cmd);
-            DataSet kmaDS = new DataSet();
-            kamAD.Fill(kmaDS);
-
-            DataTable dt1 = kmaDS.Tables[0];
-            DataRow prazanR = dt1.NewRow();
-            prazanR["ID"] = DBNull.Value;
-            prazanR["RegBr"] = "";
-            dt1.Rows.InsertAt(prazanR, 0);
-
-            cboKamion.DataSource = dt1;
-            cboKamion.DisplayMember = "RegBr";
-            cboKamion.ValueMember = "ID";
         }
 
         private void frmDrumski_Load(object sender, EventArgs e)
@@ -1001,7 +1023,7 @@ namespace Saobracaj.Drumski
         //            KreirajPdf(tempPdfPath);
 
         //            // 2. Pošalji email
-        //            string emailAdresaPrimaoca = "jelena.djokicbb@gmail.com";
+        //            string emailAdresaPrimaoca = "";
         //            if (!string.IsNullOrEmpty(emailAdresaPrimaoca))
         //            {
         //                PosaljiEmailSaPrilogom(emailAdresaPrimaoca, korisnickiEmail, korisnickaLozinka, tempPdfPath);

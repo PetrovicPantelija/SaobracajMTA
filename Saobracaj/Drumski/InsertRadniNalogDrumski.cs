@@ -1214,5 +1214,126 @@ namespace Saobracaj.Drumski
         }
 
 
+        public void UpdateRadniNalogDrumskiPoslataNajava(int ID, int? NajavuPoslaoKorisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiPoslataNajava";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@ID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = ID;
+            cmd.Parameters.Add(iD);
+
+            SqlParameter korisnikID = new SqlParameter();
+            korisnikID.ParameterName = "@NajavuPoslaoKorisnik";
+            korisnikID.SqlDbType = SqlDbType.Int;
+            korisnikID.Direction = ParameterDirection.Input;
+            korisnikID.Value = NajavuPoslaoKorisnik.HasValue ? (object)NajavuPoslaoKorisnik.Value : DBNull.Value;
+            cmd.Parameters.Add(korisnikID);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
+        public void SnimiUFajlBazu(int RadniNalogDrumskiID, string NazivFajla, string Putanja, int DodaoKorisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertDokumentaRadniNalogDrumski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@RadniNalogDrumskiID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = RadniNalogDrumskiID;
+            cmd.Parameters.Add(iD);
+
+            SqlParameter nazivFajla = new SqlParameter();
+            nazivFajla.ParameterName = "@NazivFajla";
+            nazivFajla.SqlDbType = SqlDbType.NVarChar;
+            nazivFajla.Size = 225;
+            nazivFajla.Direction = ParameterDirection.Input;
+            nazivFajla.Value = (object)NazivFajla ?? DBNull.Value;
+            cmd.Parameters.Add(nazivFajla);
+
+            SqlParameter putanja = new SqlParameter();
+            putanja.ParameterName = "@Putanja";
+            putanja.SqlDbType = SqlDbType.NVarChar;
+            putanja.Size = 500;
+            putanja.Direction = ParameterDirection.Input;
+            putanja.Value = (object)Putanja ?? DBNull.Value;
+            cmd.Parameters.Add(putanja);
+
+            SqlParameter dodaoKorisnik = new SqlParameter();
+            dodaoKorisnik.ParameterName = "@DodaoKorisnik";
+            dodaoKorisnik.SqlDbType = SqlDbType.Int;
+            dodaoKorisnik.Direction = ParameterDirection.Input;
+            dodaoKorisnik.Value = DodaoKorisnik;
+            cmd.Parameters.Add(dodaoKorisnik);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+        
+
     }
 }
