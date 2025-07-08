@@ -27,6 +27,7 @@ namespace Saobracaj.Drumski
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int dragRow = -1;
+        private Form aktivnaFormaPregleda;
         System.Windows.Forms.Label dragLabel = null;
 
         private void ChangeTextBox()
@@ -1211,11 +1212,14 @@ namespace Saobracaj.Drumski
                 }
                 else if (kolona == "Otvori")
                 {
-                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                    int radniNalogID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
+                    if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
+                    {
+                        var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                        int radniNalogID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
 
-                    FormaPregledFajlova pregled = new FormaPregledFajlova(radniNalogID);
-                    pregled.ShowDialog();
+                        frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
+                        pregled.ShowDialog();
+                    }
                 }
             }
         }
