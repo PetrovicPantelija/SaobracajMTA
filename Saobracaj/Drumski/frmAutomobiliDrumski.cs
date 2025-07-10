@@ -178,11 +178,7 @@ namespace Saobracaj.Dokumenta
         {
             status = true;
             txtSifra.Enabled = false;
-            txtSifra.Text = "";
-            txtRegBr.Text = "";
-            txtVozac.Text = "";
-            txtLKVozaca.Text = "";
-            txtVozacTelefon.Text = "";
+            ResetujVrednostiPolja();
         }
 
         private void frmAutomobiliDrumski_Load(object sender, EventArgs e)
@@ -298,7 +294,8 @@ namespace Saobracaj.Dokumenta
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
-            
+
+                int noviID = -1;
                 int VlasnistvoLegeta = 0;
                 if (cboTipVozila.SelectedValue != null)
                 {
@@ -316,47 +313,65 @@ namespace Saobracaj.Dokumenta
                 {
                 parnerID = parsedPrevoznikID;
                 }
-                if (status == true)
+            if (status == true)
+            {
+                InsertAutomobili ins = new InsertAutomobili();
+                ins.InsAutomobili(ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), 1, ZaposleniID, parnerID, out noviID);
+                status = false;
+                txtSifra.Text = noviID.ToString();
+            }
+            else if (!string.IsNullOrWhiteSpace(txtSifra.Text))
+            {
+                InsertAutomobili upd = new InsertAutomobili();
+                upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), parnerID);
+                noviID = Convert.ToInt32(txtSifra.Text);
+            }
+            RefreshDataGRid();
+
+            if (noviID > 0)
+            {
+                VratiPodatke(txtSifra.Text);
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    InsertAutomobili ins = new InsertAutomobili();
-                    ins.InsAutomobili(ZaposleniID, txtRegBr.Text, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), 1, ZaposleniID, parnerID);
-                    status = false;
-                }
-                else if(!string.IsNullOrWhiteSpace(txtSifra.Text))
-                {
-                    InsertAutomobili upd = new InsertAutomobili();
-                    upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), ZaposleniID, txtRegBr.Text, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), parnerID);
-                }
-                RefreshDataGRid();
-                if (selectedID.HasValue)
-                {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
                     {
-                        if (Convert.ToInt32(row.Cells["ID"].Value) == selectedID.Value)
-                        {
-                            row.Selected = true;
-                            dataGridView1.CurrentCell = row.Cells[0];
-                            break;
-                        }
+                        row.Selected = true;
+                        dataGridView1.CurrentCell = row.Cells[0];
+                        break;
                     }
                 }
-                VratiPodatke(txtSifra.Text);
-            
-            
+            }         
         }
-
+        private void ResetujVrednostiPolja()
+        {
+            txtSifra.Text = "";
+            txtRegBr.Text = "";
+            txtVozac.Text = "";
+            txtLKVozaca.Text = "";
+            txtVozacTelefon.Text = "";
+            cboTipVozila.SelectedValue = -1; 
+        }
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            InsertAutomobili ins = new InsertAutomobili();
+            int sifraID;
+            if (!string.IsNullOrWhiteSpace(txtSifra.Text) && int.TryParse(txtSifra.Text, out sifraID))
+            {
+                InsertAutomobili ins = new InsertAutomobili();
             ins.DeleteAutomobili(Convert.ToInt32(txtSifra.Text));
             status = false;
+            ResetujVrednostiPolja();
             RefreshDataGRid();
+            }
+            else
+            {
+                MessageBox.Show("Selektuj red za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void VratiPodatke(string ID)

@@ -607,6 +607,7 @@
             // 
             // cboPrevoznik
             // 
+            this.cboPrevoznik.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboPrevoznik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPrevoznik.FormattingEnabled = true;
             this.cboPrevoznik.Location = new System.Drawing.Point(857, 102);

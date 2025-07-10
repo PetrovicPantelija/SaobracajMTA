@@ -277,6 +277,7 @@ namespace Saobracaj.Dokumenta
         {
             if (string.IsNullOrWhiteSpace(txtSifra.Text))
             {
+                int noviID;
                 int Sluzbeni = 0;
                 int TrougaoIma = 0;
                 int MarkerIma = 0;
@@ -358,7 +359,7 @@ namespace Saobracaj.Dokumenta
                     MarkerIma, SajluZaVucu, ImaLance, txtLokacijaLanci.Text, txtZGDot.Text, txtZGLokacija.Text,
                     txtZGSare.Text, txtLGgumeDOT.Text, txtLGLokacija.Text, txtLGSare.Text, txtNapomena.Text,
                     txtCistocaSpolja.Text, txtCistocaUnutra.Text, txtNivoUlja.Text, txtNepravilnosti.Text, cboMestoTroska.Text,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null, null, null);
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), null, null, null, out noviID);
                     status = false;
                 }
                 else

@@ -289,7 +289,7 @@ namespace Saobracaj.Dokumenta
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
            , string NivoUlja, string Nepravilnosti, string MestoTroska, int? VlasnistvoLegeta
            , string Vozac, string LKVozaca, string VozacTelefon, int? VoziloDrumskog, int? KreiraoZaposleni , int? PartnerID
-            )
+            , out int id)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -669,6 +669,10 @@ namespace Saobracaj.Dokumenta
             parameter45.Value = (PartnerID.HasValue && PartnerID.Value > 0) ? (object)PartnerID.Value : DBNull.Value;
             myCommand.Parameters.Add(parameter45);
 
+            SqlParameter parameter46 = new SqlParameter("@ID", SqlDbType.Int);
+            parameter46.Direction = ParameterDirection.Output;
+            myCommand.Parameters.Add(parameter46);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -676,6 +680,7 @@ namespace Saobracaj.Dokumenta
             try
             {
                 myCommand.ExecuteNonQuery();
+                id = Convert.ToInt32(parameter46.Value);
                 myTransaction.Commit();
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
@@ -684,6 +689,7 @@ namespace Saobracaj.Dokumenta
             catch (SqlException ex)
             {
                 //throw new Exception("Neuspešan upis NHM brojeva");
+                id = -1;
                 MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 myTransaction.Rollback(); // Ne zaboravi i rollback
             }
