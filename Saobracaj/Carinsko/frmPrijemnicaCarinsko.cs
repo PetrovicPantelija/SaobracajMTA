@@ -11,6 +11,7 @@ using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Diagram;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.WinForms.DataGrid;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -257,7 +258,7 @@ namespace Saobracaj.Carinko
         private void RefreshsfDataGrid()
         {
             var select = "";
-            select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,[JM]      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
+            select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,JM      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
       ,[BrojKontejnera]      ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije]
   FROM [dbo].[PrijemnicaCarinskaStavke] where IDNadredjena =" + txtID.Text;
 
@@ -274,6 +275,16 @@ namespace Saobracaj.Carinko
             dataAdapter.Fill(ds);
             this.sfDataGrid1.DataSource = ds.Tables[0];
 
+
+
+            var query21 = "SELECT MeSifra FROM MerskeEnote";
+            SqlConnection conn21 = new SqlConnection(connection);
+            SqlDataAdapter da21 = new SqlDataAdapter(query21, conn21);
+            System.Data.DataSet ds21 = new System.Data.DataSet();
+            da21.Fill(ds21);
+            this.sfDataGrid1.Columns.Add(new GridComboBoxColumn() { MappingName = "JM2", HeaderText = "JM2" });
+            (this.sfDataGrid1.Columns["JM2"] as GridComboBoxColumn).DataSource = ds21.Tables[0];
+                ;
         }
 
         private void button21_Click(object sender, EventArgs e)
@@ -714,6 +725,52 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
         {
             frmPrijemnicaCarinskaStampa st = new frmPrijemnicaCarinskaStampa(txtID.Text);
             st.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            int prStDokumenta = 0;
+            string LOt = "";
+            if (frmLogovanje.Firma == "Leget")
+            {
+                var query = "Select (Max(PrStDokumenta)+1) From Promet";
+                SqlConnection conn = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    prStDokumenta = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+
+                InsertIsporuka ins = new InsertIsporuka();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row != null && row.Cells[0].Value != null)
+                    {
+                        int skladisteno = 0;
+
+
+                        //       string LOt = row.Cells["Lot"].Value.ToString();
+
+                        int Tip = 2;
+
+
+                        ins.DeletePromet(Convert.ToInt32(txtID.Text), "CPR");
+
+                        // txtPrometID.Text = VratiIDPrometa().ToString();
+
+                        //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        // progressBar1.Value = progressBar1.Value + 1;
+                    }
+                }
+
+                InsertPrijemnicaCarinska updst = new InsertPrijemnicaCarinska();
+                updst.updetePrijemnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "OTVOREN");
+            }
+
         }
     }
 }

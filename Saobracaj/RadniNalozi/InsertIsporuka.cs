@@ -687,5 +687,41 @@ namespace Saobracaj.RadniNalozi
 
             }
         }
+
+
+        public void DeletePromet(int NalogID, string VrstaDokumenta)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DeletePromet";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@PrSifVrstePrometa", SqlDbType.Char, 3) { Value = VrstaDokumenta });
+                            cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
+                           
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                conn.Close();
+
+            }
+        }
     }
 }

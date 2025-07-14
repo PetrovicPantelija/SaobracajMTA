@@ -183,7 +183,7 @@ namespace Saobracaj.Carinsko
                 ins.InsOtpremnicaCarinska(
                 txtStatus.Text, DateTime.Now,
 Kor, Convert.ToInt32(cboSkladisteID.SelectedValue), txtDokument.Text,
-Convert.ToInt32(cboMagacinskiBroj.SelectedValue), 
+Convert.ToInt32(cboMagacinskiBroj.SelectedValue),
 Convert.ToInt32(cboVlasnik.SelectedValue), Convert.ToInt32(cboKorisnikRobe.SelectedValue), Convert.ToInt32(cboNalogodavac.SelectedValue),
 Convert.ToInt32(cboKupac.SelectedValue), Convert.ToDouble(numIznos.Value),
 txtPrevoznik.Text, txtBrojKamiona.Text,
@@ -199,7 +199,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                 insertOtpremnicaCarinsko upd = new insertOtpremnicaCarinsko();
                 upd.updOtpremnicaCarinska(Convert.ToInt32(txtID.Text), txtStatus.Text, DateTime.Now,
 Kor, Convert.ToInt32(cboSkladisteID.SelectedValue), txtDokument.Text,
-Convert.ToInt32(cboMagacinskiBroj.SelectedValue), 
+Convert.ToInt32(cboMagacinskiBroj.SelectedValue),
 Convert.ToInt32(cboVlasnik.SelectedValue), Convert.ToInt32(cboKorisnikRobe.SelectedValue), Convert.ToInt32(cboNalogodavac.SelectedValue),
 Convert.ToInt32(cboKupac.SelectedValue), Convert.ToDouble(numIznos.Value),
 txtPrevoznik.Text, txtBrojKamiona.Text,
@@ -207,7 +207,7 @@ txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboPrijemnicaId.SelectedValue));
                 status = false;
 
-               // RefreshDataGrid();
+                // RefreshDataGrid();
                 // RefrechDataGridT();
             }
         }
@@ -294,7 +294,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             brojkontejnera.Width = 250;
 
 
-         
+
 
 
 
@@ -312,12 +312,12 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             dimenzije.HeaderText = "Dimenzije";
             dimenzije.Name = "Dimenzije";
             dimenzije.Width = 150;
-   
+
             DataGridViewTextBoxColumn prijemnicastavkaid = new DataGridViewTextBoxColumn();
             prijemnicastavkaid.HeaderText = "PrijemnicaStavkaID";
             prijemnicastavkaid.Name = "PrijekmnicaStavkaID";
             prijemnicastavkaid.Width = 150;
-            
+
             dataGridView1.Columns.Add(ID);
             dataGridView1.Columns.Add(IDNadredjena);
             dataGridView1.Columns.Add(Artikal);
@@ -353,7 +353,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             DGVCombo();
 
             RefreshDataGrid();
-          //  RefreshsfDataGrid();
+            //  RefreshsfDataGrid();
         }
 
         private void RefreshDataGrid()
@@ -473,7 +473,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             cboKorisnikRobe.ValueMember = "PaSifra";
 
 
-         
+
 
             var partner3 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
             var partAD3 = new SqlDataAdapter(partner3, conn);
@@ -561,8 +561,8 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                             row.Cells[8].Value.ToString(),
             */
 
-                        ins.InsertPromet(Convert.ToDateTime(dtpDatum.Value), "OTP", prStDokumenta, row.Cells[9].Value.ToString(), "COT", 0,  Convert.ToDecimal(row.Cells[4].Value), 0, 0, Convert.ToInt32(cboSkladisteID.SelectedValue),
-                            Convert.ToInt32(row.Cells[6].Value),  Convert.ToDateTime(DateTime.Now), Kor.Trim(), 0, 0, Convert.ToDateTime(dtpDatum.Value.ToString()), row.Cells[3].Value.ToString(),
+                        ins.InsertPromet(Convert.ToDateTime(dtpDatum.Value), "OTP", prStDokumenta, row.Cells[9].Value.ToString(), "COT", 0, Convert.ToDecimal(row.Cells[4].Value), 0, 0, Convert.ToInt32(cboSkladisteID.SelectedValue),
+                            Convert.ToInt32(row.Cells[6].Value), Convert.ToDateTime(DateTime.Now), Kor.Trim(), 0, 0, Convert.ToDateTime(dtpDatum.Value.ToString()), row.Cells[3].Value.ToString(),
                             row.Cells[13].Value.ToString(), Convert.ToInt32(txtID.Text), Convert.ToInt32(0), skladisteno, Tip);
 
                         updst.updetePrijemnicaCarinskaStavkaKolicina(Convert.ToInt32(row.Cells[13].Value), Convert.ToDouble(row.Cells[4].Value));
@@ -571,9 +571,9 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                     }
                 }
 
-             
+
                 updst.updeteOtpremnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "PROKNJIZEN");
-               
+
             }
         }
 
@@ -587,6 +587,52 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
         {
             frmOtpremnicaCarinskaStampa st = new frmOtpremnicaCarinskaStampa(txtID.Text);
             st.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int prStDokumenta = 0;
+            string LOt = "";
+            if (frmLogovanje.Firma == "Leget")
+            {
+                var query = "Select (Max(PrStDokumenta)+1) From Promet";
+                SqlConnection conn = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    prStDokumenta = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+
+                InsertIsporuka ins = new InsertIsporuka();
+                insertOtpremnicaCarinsko updsto = new insertOtpremnicaCarinsko();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row != null && row.Cells[0].Value != null)
+                    {
+                        int skladisteno = 0;
+
+
+                        //       string LOt = row.Cells["Lot"].Value.ToString();
+
+                        int Tip = 2;
+
+
+                        ins.DeletePromet(Convert.ToInt32(txtID.Text), "COT");
+                        updsto.updetePrijemnicaCarinskaStavkaKolicina(Convert.ToInt32(row.Cells[13].Value), Convert.ToDouble(-1 * Convert.ToDouble( row.Cells[4].Value)));
+
+                        // txtPrometID.Text = VratiIDPrometa().ToString();
+
+                        //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        // progressBar1.Value = progressBar1.Value + 1;
+                    }
+                }
+
+                InsertPrijemnicaCarinska updst = new InsertPrijemnicaCarinska();
+                updst.updetePrijemnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "OTVOREN");
+            }
         }
     }
 }
