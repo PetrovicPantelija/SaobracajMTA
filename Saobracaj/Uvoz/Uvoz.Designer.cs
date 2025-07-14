@@ -3486,7 +3486,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(1579, 170);
+            this.dataGridView7.Size = new System.Drawing.Size(1579, 172);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -3495,7 +3495,7 @@ namespace Saobracaj.Uvoz
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1593, 176);
+            this.tabPage1.Size = new System.Drawing.Size(1610, 176);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Napomene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -3513,7 +3513,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(1583, 176);
+            this.dataGridView4.Size = new System.Drawing.Size(1600, 178);
             this.dataGridView4.TabIndex = 157;
             this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
             // 
@@ -3522,7 +3522,7 @@ namespace Saobracaj.Uvoz
             this.tabPage3.Controls.Add(this.dataGridView9);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1593, 176);
+            this.tabPage3.Size = new System.Drawing.Size(1610, 176);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "NHM";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -3540,7 +3540,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView9.Name = "dataGridView9";
             this.dataGridView9.RowHeadersWidth = 11;
             this.dataGridView9.RowTemplate.Height = 24;
-            this.dataGridView9.Size = new System.Drawing.Size(1585, 169);
+            this.dataGridView9.Size = new System.Drawing.Size(1602, 171);
             this.dataGridView9.TabIndex = 158;
             // 
             // tabPage4
@@ -3548,7 +3548,7 @@ namespace Saobracaj.Uvoz
             this.tabPage4.Controls.Add(this.gridGroupingControl1);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1593, 176);
+            this.tabPage4.Size = new System.Drawing.Size(1610, 176);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "KONTEJNERI";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -3570,7 +3570,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1593, 176);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1610, 176);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;

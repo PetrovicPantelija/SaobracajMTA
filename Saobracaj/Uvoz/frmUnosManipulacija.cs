@@ -1270,7 +1270,6 @@ namespace Saobracaj.Uvoz
             int BSC5 = VratiBrojScenario(5);
             int BSC6 = VratiBrojScenario(6);
             int BSC15 = VratiBrojScenario(15);
-
             int BSC18 = VratiBrojScenario(18);
             int BSC19 = VratiBrojScenario(19);
             int BSC20 = VratiBrojScenario(20);
@@ -4271,6 +4270,7 @@ namespace Saobracaj.Uvoz
                                     if (row2.Selected)
                                     {
                                         pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                //Ako je usluga prevoz drumskim 
                                         UbaciStavkuUsluge(pomID, pomManupulacija, 0, pomkolicina, pomOrgJed, 0, pomPokret, pomStatusKontejnera, pomForma);
                                     }
                                 }
