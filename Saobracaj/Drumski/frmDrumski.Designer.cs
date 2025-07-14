@@ -38,7 +38,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.txtDodatniOpis = new System.Windows.Forms.TextBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.txtKontaktSpeditera = new System.Windows.Forms.TextBox();
+            this.txtPolaznaSpedicijaKontakt = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.dtPreuzimanjaPraznogKontejnera = new System.Windows.Forms.DateTimePicker();
@@ -77,7 +77,7 @@
             this.txtNapomenaPoz = new System.Windows.Forms.TextBox();
             this.txtCarinjenjeUvozno = new System.Windows.Forms.TextBox();
             this.txtGranicniPrelaz = new System.Windows.Forms.TextBox();
-            this.txtSpediterCarinarnice = new System.Windows.Forms.TextBox();
+            this.txtOdredisnaSpedicijaKontakt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtOdredisnaCarinarnica = new System.Windows.Forms.TextBox();
             this.txtkontaktNaIstovaru = new System.Windows.Forms.TextBox();
@@ -93,6 +93,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.meniHeader = new System.Windows.Forms.ToolStrip();
@@ -201,14 +202,14 @@
             this.label63.TabIndex = 531;
             this.label63.Text = "Napomene za pozicioniranje";
             // 
-            // txtKontaktSpeditera
+            // txtPolaznaSpedicijaKontakt
             // 
-            this.txtKontaktSpeditera.ForeColor = System.Drawing.Color.Black;
-            this.txtKontaktSpeditera.Location = new System.Drawing.Point(399, 732);
-            this.txtKontaktSpeditera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtKontaktSpeditera.Name = "txtKontaktSpeditera";
-            this.txtKontaktSpeditera.Size = new System.Drawing.Size(305, 22);
-            this.txtKontaktSpeditera.TabIndex = 180;
+            this.txtPolaznaSpedicijaKontakt.ForeColor = System.Drawing.Color.Black;
+            this.txtPolaznaSpedicijaKontakt.Location = new System.Drawing.Point(399, 732);
+            this.txtPolaznaSpedicijaKontakt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPolaznaSpedicijaKontakt.Name = "txtPolaznaSpedicijaKontakt";
+            this.txtPolaznaSpedicijaKontakt.Size = new System.Drawing.Size(305, 22);
+            this.txtPolaznaSpedicijaKontakt.TabIndex = 180;
             // 
             // label27
             // 
@@ -588,14 +589,14 @@
             this.txtGranicniPrelaz.Size = new System.Drawing.Size(308, 22);
             this.txtGranicniPrelaz.TabIndex = 310;
             // 
-            // txtSpediterCarinarnice
+            // txtOdredisnaSpedicijaKontakt
             // 
-            this.txtSpediterCarinarnice.ForeColor = System.Drawing.Color.Black;
-            this.txtSpediterCarinarnice.Location = new System.Drawing.Point(399, 789);
-            this.txtSpediterCarinarnice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtSpediterCarinarnice.Name = "txtSpediterCarinarnice";
-            this.txtSpediterCarinarnice.Size = new System.Drawing.Size(305, 22);
-            this.txtSpediterCarinarnice.TabIndex = 190;
+            this.txtOdredisnaSpedicijaKontakt.ForeColor = System.Drawing.Color.Black;
+            this.txtOdredisnaSpedicijaKontakt.Location = new System.Drawing.Point(399, 789);
+            this.txtOdredisnaSpedicijaKontakt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtOdredisnaSpedicijaKontakt.Name = "txtOdredisnaSpedicijaKontakt";
+            this.txtOdredisnaSpedicijaKontakt.Size = new System.Drawing.Size(305, 22);
+            this.txtOdredisnaSpedicijaKontakt.TabIndex = 190;
             // 
             // label10
             // 
@@ -741,6 +742,7 @@
             // panel3
             // 
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button21);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -749,6 +751,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(162, 38);
             this.panel3.TabIndex = 2;
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button21.Location = new System.Drawing.Point(95, 3);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(36, 33);
+            this.button21.TabIndex = 19;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Visible = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click_1);
             // 
             // button2
             // 
@@ -1055,7 +1077,7 @@
             this.Controls.Add(this.txtkontaktNaIstovaru);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtOdredisnaCarinarnica);
-            this.Controls.Add(this.txtSpediterCarinarnice);
+            this.Controls.Add(this.txtOdredisnaSpedicijaKontakt);
             this.Controls.Add(this.txtGranicniPrelaz);
             this.Controls.Add(this.txtCarinjenjeUvozno);
             this.Controls.Add(this.txtNapomenaPoz);
@@ -1093,7 +1115,7 @@
             this.Controls.Add(this.label63);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.txtKontaktSpeditera);
+            this.Controls.Add(this.txtPolaznaSpedicijaKontakt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label22);
@@ -1131,7 +1153,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox txtDodatniOpis;
         private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.TextBox txtKontaktSpeditera;
+        private System.Windows.Forms.TextBox txtPolaznaSpedicijaKontakt;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejnera;
@@ -1170,7 +1192,7 @@
         private System.Windows.Forms.TextBox txtCarinjenjeUvozno;
         private System.Windows.Forms.TextBox txtNapomenaPoz;
         private System.Windows.Forms.TextBox txtGranicniPrelaz;
-        private System.Windows.Forms.TextBox txtSpediterCarinarnice;
+        private System.Windows.Forms.TextBox txtOdredisnaSpedicijaKontakt;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown txtCena;
         private System.Windows.Forms.Label label13;
@@ -1211,5 +1233,6 @@
         private System.Windows.Forms.TextBox txtKontaktOsobaUtovara;
         private System.Windows.Forms.TextBox txtAdresaIstovara;
         private System.Windows.Forms.TextBox txtAdresaUtovara;
+        private System.Windows.Forms.Button button21;
     }
 }

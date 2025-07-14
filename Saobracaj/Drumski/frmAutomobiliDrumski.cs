@@ -178,11 +178,7 @@ namespace Saobracaj.Dokumenta
         {
             status = true;
             txtSifra.Enabled = false;
-            txtSifra.Text = "";
-            txtRegBr.Text = "";
-            txtVozac.Text = "";
-            txtLKVozaca.Text = "";
-            txtVozacTelefon.Text = "";
+            ResetujVrednostiPolja();
         }
 
         private void frmAutomobiliDrumski_Load(object sender, EventArgs e)
@@ -212,18 +208,36 @@ namespace Saobracaj.Dokumenta
             var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
             var ds5 = new DataSet();
             dataAdapter5.Fill(ds5);
-            cboVozilo.DataSource = ds5.Tables[0];
-            cboVozilo.DisplayMember = "Naziv";
-            cboVozilo.ValueMember = "ID";
+            cboTipVozila.DataSource = ds5.Tables[0];
+            cboTipVozila.DisplayMember = "Naziv";
+            cboTipVozila.ValueMember = "ID";
+
+            var partner = "Select PaSifra,PaNaziv From Partnerji  WHERE DrumskiPrevoz = 1 order by PaNaziv";
+            var partAD = new SqlDataAdapter(partner, s_connection5);
+            var partDS = new DataSet();
+            partAD.Fill(partDS);
+            DataTable dt = partDS.Tables[0];
+
+            // Kreiraj novi red sa praznim tekstom i ID -1
+            DataRow prazanRed = dt.NewRow();
+            prazanRed["PaNaziv"] = "";
+            prazanRed["PaSifra"] = -1;
+
+            // Ubaci kao prvi red
+            dt.Rows.InsertAt(prazanRed, 0);
+            cboPrevoznik.DataSource = partDS.Tables[0];
+            cboPrevoznik.DisplayMember = "PaNaziv";
+            cboPrevoznik.ValueMember = "PaSifra";
 
             var select = " select a.ID as ID, " +
-           "a.RegBr,vv.Naziv AS Vozilo,  Vozac ,BrojTelefona, LicnaKarta," +
+           "a.RegBr,vv.Naziv AS Vozilo,  Vozac, p.PaNaziv AS Prevoznik, BrojTelefona, LicnaKarta," +
            "Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
            "Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as ZaposleniKreirao " +
            "from Automobili a " +
            "inner join Delavci d on d.DeSifra = a.Zaposleni " +
            "inner join Delavci dk on dk.DeSifra = a.KreiraoZaposleni " +
            "left join VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
+           "left join Partnerji p on  a.PartnerID = p.PaSifra  " +
            "WHERE a.VoziloDrumskog = 1 ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -247,40 +261,45 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Reg br";
-            dataGridView1.Columns[1].Width = (int)(totalWidth * 0.10);
+            dataGridView1.Columns[1].Width = (int)(totalWidth * 0.09);
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Vozilo";
-            dataGridView1.Columns[2].Width = (int)(totalWidth * 0.12);
+            dataGridView1.Columns[2].HeaderText = "Tip vozila";
+            dataGridView1.Columns[2].Width = (int)(totalWidth * 0.11);
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Vozač";
-            dataGridView1.Columns[3].Width = (int)(totalWidth * 0.16);
+            dataGridView1.Columns[3].Width = (int)(totalWidth * 0.13);
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Broj telefona";
-            dataGridView1.Columns[4].Width = (int)(totalWidth * 0.14);
+            dataGridView1.Columns[4].HeaderText = "Prevoznik";
+            dataGridView1.Columns[4].Width = (int)(totalWidth * 0.13);
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Lična karta";
-            dataGridView1.Columns[5].Width = (int)(totalWidth * 0.10);
+            dataGridView1.Columns[5].HeaderText = "Broj telefona";
+            dataGridView1.Columns[5].Width = (int)(totalWidth * 0.13);
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Zadnja izmena";
-            dataGridView1.Columns[6].Width = (int)(totalWidth * 0.18);
+            dataGridView1.Columns[6].HeaderText = "Lična karta";
+            dataGridView1.Columns[6].Width = (int)(totalWidth * 0.09);
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Kreirao";
-            dataGridView1.Columns[7].Width = (int)(totalWidth * 0.18);
+            dataGridView1.Columns[7].HeaderText = "Zadnja izmena";
+            dataGridView1.Columns[7].Width = (int)(totalWidth * 0.13);
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Kreirao";
+            dataGridView1.Columns[8].Width = (int)(totalWidth * 0.13);
 
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
-            
+
+                int noviID = -1;
                 int VlasnistvoLegeta = 0;
-                if (cboVozilo.SelectedValue != null)
+                if (cboTipVozila.SelectedValue != null)
                 {
-                    VlasnistvoLegeta = Convert.ToInt32(cboVozilo.SelectedValue);
+                    VlasnistvoLegeta = Convert.ToInt32(cboTipVozila.SelectedValue);
                 }
                 int? selectedID = null;
                 if (dataGridView1.CurrentRow != null)
@@ -289,47 +308,70 @@ namespace Saobracaj.Dokumenta
                 }
 
                 int? ZaposleniID = string.IsNullOrWhiteSpace(txtZaposleniID.Text.ToString()) ? (int?)null : Convert.ToInt32(txtZaposleniID.Text);
-                if (status == true)
+                int? parnerID = null;
+                if (cboPrevoznik.SelectedValue != null && int.TryParse(cboPrevoznik.SelectedValue.ToString(), out int parsedPrevoznikID) && parsedPrevoznikID >-1)
                 {
-                    InsertAutomobili ins = new InsertAutomobili();
-                    ins.InsAutomobili(ZaposleniID, txtRegBr.Text, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), 1, ZaposleniID);
-                    status = false;
+                parnerID = parsedPrevoznikID;
                 }
-                else if(!string.IsNullOrWhiteSpace(txtSifra.Text))
+            if (status == true)
+            {
+                InsertAutomobili ins = new InsertAutomobili();
+                ins.InsAutomobili(ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), 1, ZaposleniID, parnerID, out noviID);
+                status = false;
+                txtSifra.Text = noviID.ToString();
+            }
+            else if (!string.IsNullOrWhiteSpace(txtSifra.Text))
+            {
+                InsertAutomobili upd = new InsertAutomobili();
+                upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), ZaposleniID, txtRegBr.Text, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim(), parnerID);
+                noviID = Convert.ToInt32(txtSifra.Text);
+            }
+            RefreshDataGRid();
+
+            if (noviID > 0)
+            {
+                VratiPodatke(txtSifra.Text);
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    InsertAutomobili upd = new InsertAutomobili();
-                    upd.UpdAutobili(Convert.ToInt32(txtSifra.Text), ZaposleniID, txtRegBr.Text, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-                        VlasnistvoLegeta, txtVozac.Text.Trim(), txtLKVozaca.Text.Trim(), txtVozacTelefon.Text.Trim());
-                }
-                RefreshDataGRid();
-                if (selectedID.HasValue)
-                {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
                     {
-                        if (Convert.ToInt32(row.Cells["ID"].Value) == selectedID.Value)
-                        {
-                            row.Selected = true;
-                            dataGridView1.CurrentCell = row.Cells[0];
-                            break;
-                        }
+                        row.Selected = true;
+                        dataGridView1.CurrentCell = row.Cells[0];
+                        break;
                     }
                 }
-                VratiPodatke(txtSifra.Text);
-            
-            
+            }         
         }
-
+        private void ResetujVrednostiPolja()
+        {
+            txtSifra.Text = "";
+            txtRegBr.Text = "";
+            txtVozac.Text = "";
+            txtLKVozaca.Text = "";
+            txtVozacTelefon.Text = "";
+            cboTipVozila.SelectedValue = -1; 
+        }
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            InsertAutomobili ins = new InsertAutomobili();
+            int sifraID;
+            if (!string.IsNullOrWhiteSpace(txtSifra.Text) && int.TryParse(txtSifra.Text, out sifraID))
+            {
+                InsertAutomobili ins = new InsertAutomobili();
             ins.DeleteAutomobili(Convert.ToInt32(txtSifra.Text));
             status = false;
+            ResetujVrednostiPolja();
             RefreshDataGRid();
+            }
+            else
+            {
+                MessageBox.Show("Selektuj red za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void VratiPodatke(string ID)
@@ -349,7 +391,7 @@ namespace Saobracaj.Dokumenta
              " ,[Marker],[Lanci] ,[LokacijaLanci],[ZGDOT] " +
              " ,[ZGLokacija],[ZGDubinaSare],[LGDot],[LGLokacija] " +
              " ,[LGDubinaSare],[Napomena],[CistocaSpolja],[CistocaUnutra] " +
-             " ,[NivoUlja],[Nepravilnosti] ,[MestoTroska], [VlasnistvoLegeta], [Vozac], [BrojTelefona], [LicnaKarta] " +
+             " ,[NivoUlja],[Nepravilnosti] ,[MestoTroska], [VlasnistvoLegeta], [Vozac], [BrojTelefona], [LicnaKarta], [PartnerID] " +
              " FROM [Automobili] " +
              " WHERE ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -360,9 +402,13 @@ namespace Saobracaj.Dokumenta
                 txtVozacTelefon.Text = dr["BrojTelefona"].ToString().Trim();
                 txtLKVozaca.Text = dr["LicnaKarta"].ToString().Trim();
                 if (dr["VlasnistvoLegeta"].ToString() != "")
-                    cboVozilo.SelectedValue = dr["VlasnistvoLegeta"].ToString();
+                   cboTipVozila.SelectedValue = dr["VlasnistvoLegeta"].ToString();
                 txtRegBr.Text = dr["RegBr"].ToString().Trim();
-             
+                if (dr["PartnerID"] != DBNull.Value && int.TryParse(dr["PartnerID"].ToString(), out int parsedPartnerID))
+                    cboPrevoznik.SelectedValue = parsedPartnerID;
+                else
+                    cboPrevoznik.SelectedValue = -1;
+
             }
             con.Close();
         }

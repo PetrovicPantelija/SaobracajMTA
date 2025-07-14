@@ -8,8 +8,10 @@ namespace Saobracaj.Sifarnici
     {
         public string connect = Sifarnici.frmLogovanje.connectionString;
 
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Valuta, string Dobavljac, int Referent, int FREC, int DrumskiPrevoz, string ERPID)
+        public int InsPartneri(string Naziv, string Ulica, string Mesto, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Valuta, string Dobavljac, int Referent, int FREC, int DrumskiPrevoz, string ERPID)
         {
+            int IDPom = 0;
+
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertParnerji";
@@ -28,7 +30,7 @@ namespace Saobracaj.Sifarnici
             parameter2.SqlDbType = SqlDbType.Char;
             parameter2.Size = 35;
             parameter2.Direction = ParameterDirection.Input;
-            parameter2.Value = Ulica;
+            parameter2.Value = string.IsNullOrWhiteSpace(Ulica) ? (object)DBNull.Value : (object)Ulica; 
             myCommand.Parameters.Add(parameter2);
 
             SqlParameter parameter3 = new SqlParameter();
@@ -36,7 +38,7 @@ namespace Saobracaj.Sifarnici
             parameter3.SqlDbType = SqlDbType.Char;
             parameter3.Size = 35;
             parameter3.Direction = ParameterDirection.Input;
-            parameter3.Value = Mesto;
+            parameter3.Value = string.IsNullOrWhiteSpace(Mesto) ? (object)DBNull.Value : (object)Mesto; 
             myCommand.Parameters.Add(parameter3);
 
             /*SqlParameter parameter4 = new SqlParameter();
@@ -52,7 +54,7 @@ namespace Saobracaj.Sifarnici
             parameter5.SqlDbType = SqlDbType.Char;
             parameter5.Size = 9;
             parameter5.Direction = ParameterDirection.Input;
-            parameter5.Value = Posta;
+            parameter5.Value = string.IsNullOrWhiteSpace(Posta) ? (object)DBNull.Value : (object)Posta; 
             myCommand.Parameters.Add(parameter5);
 
             SqlParameter parameter6 = new SqlParameter();
@@ -60,7 +62,7 @@ namespace Saobracaj.Sifarnici
             parameter6.SqlDbType = SqlDbType.Char;
             parameter6.Size = 3;
             parameter6.Direction = ParameterDirection.Input;
-            parameter6.Value = Drzava;
+            parameter6.Value = string.IsNullOrWhiteSpace(Drzava) ? (object)DBNull.Value : (object)Drzava; 
             myCommand.Parameters.Add(parameter6);
 
             SqlParameter parameter7 = new SqlParameter();
@@ -68,7 +70,7 @@ namespace Saobracaj.Sifarnici
             parameter7.SqlDbType = SqlDbType.Char;
             parameter7.Size = 17;
             parameter7.Direction = ParameterDirection.Input;
-            parameter7.Value = Telefon;
+            parameter7.Value = string.IsNullOrWhiteSpace(Telefon) ? (object)DBNull.Value : (object)Telefon; 
             myCommand.Parameters.Add(parameter7);
 
             SqlParameter parameter8 = new SqlParameter();
@@ -76,7 +78,7 @@ namespace Saobracaj.Sifarnici
             parameter8.SqlDbType = SqlDbType.Char;
             parameter8.Size = 44;
             parameter8.Direction = ParameterDirection.Input;
-            parameter8.Value = TR;
+            parameter8.Value = string.IsNullOrWhiteSpace(TR) ? (object)DBNull.Value : (object)TR; 
             myCommand.Parameters.Add(parameter8);
 
             SqlParameter parameter9 = new SqlParameter();
@@ -84,7 +86,7 @@ namespace Saobracaj.Sifarnici
             parameter9.SqlDbType = SqlDbType.VarChar;
             parameter9.Size = 2048;
             parameter9.Direction = ParameterDirection.Input;
-            parameter9.Value = Napomena;
+            parameter9.Value = string.IsNullOrWhiteSpace(Napomena) ? (object)DBNull.Value : (object)Napomena; 
             myCommand.Parameters.Add(parameter9);
 
 
@@ -93,7 +95,7 @@ namespace Saobracaj.Sifarnici
             parameter10.SqlDbType = SqlDbType.Char;
             parameter10.Size = 35;
             parameter10.Direction = ParameterDirection.Input;
-            parameter10.Value = MaticniBroj;
+            parameter10.Value = string.IsNullOrWhiteSpace(MaticniBroj) ? (object)DBNull.Value : (object)MaticniBroj; 
             myCommand.Parameters.Add(parameter10);
 
             SqlParameter parameter11 = new SqlParameter();
@@ -101,7 +103,7 @@ namespace Saobracaj.Sifarnici
             parameter11.SqlDbType = SqlDbType.Char;
             parameter11.Size = 70;
             parameter11.Direction = ParameterDirection.Input;
-            parameter11.Value = Email;
+            parameter11.Value = string.IsNullOrWhiteSpace(Email) ? (object)DBNull.Value : (object)Email; 
             myCommand.Parameters.Add(parameter11);
 
             SqlParameter parameter12 = new SqlParameter();
@@ -109,7 +111,7 @@ namespace Saobracaj.Sifarnici
             parameter12.SqlDbType = SqlDbType.Char;
             parameter12.Size = 35;
             parameter12.Direction = ParameterDirection.Input;
-            parameter12.Value = PIB;
+            parameter12.Value = string.IsNullOrWhiteSpace(PIB) ? (object)DBNull.Value : (object)PIB; 
             myCommand.Parameters.Add(parameter12);
 
             SqlParameter sqlParameter = new SqlParameter();
@@ -117,7 +119,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter.SqlDbType = SqlDbType.Char;
             sqlParameter.Size = 1;
             sqlParameter.Direction = ParameterDirection.Input;
-            sqlParameter.Value = Kupac;
+            sqlParameter.Value = string.IsNullOrWhiteSpace(Kupac) ? (object)DBNull.Value : (object)Kupac; 
             myCommand.Parameters.Add(sqlParameter);
 
             SqlParameter sqlParameter2 = new SqlParameter();
@@ -125,7 +127,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter2.SqlDbType = SqlDbType.Char;
             sqlParameter2.Size = 1;
             sqlParameter2.Direction = ParameterDirection.Input;
-            sqlParameter2.Value = Obveznik;
+            sqlParameter2.Value = string.IsNullOrWhiteSpace(Obveznik) ? (object)DBNull.Value : (object)Obveznik; 
             myCommand.Parameters.Add(sqlParameter2);
 
             SqlParameter sqlParameter3 = new SqlParameter();
@@ -133,7 +135,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter3.SqlDbType = SqlDbType.Char;
             sqlParameter3.Size = 3;
             sqlParameter3.Direction = ParameterDirection.Input;
-            sqlParameter3.Value = Valuta;
+            sqlParameter3.Value = string.IsNullOrWhiteSpace(Valuta) ? (object)DBNull.Value : (object)Valuta; 
             myCommand.Parameters.Add(sqlParameter3);
 
             SqlParameter sqlParameter1 = new SqlParameter();
@@ -141,7 +143,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter1.SqlDbType = SqlDbType.Char;
             sqlParameter1.Size = 1;
             sqlParameter1.Direction = ParameterDirection.Input;
-            sqlParameter1.Value = Dobavljac;
+            sqlParameter1.Value = string.IsNullOrWhiteSpace(Dobavljac) ? (object)DBNull.Value : (object)Dobavljac; 
             myCommand.Parameters.Add(sqlParameter1);
             /*
                      ,< PaNaziv, char(35),>
@@ -167,7 +169,7 @@ namespace Saobracaj.Sifarnici
             parameter13.SqlDbType = SqlDbType.NVarChar;
             parameter13.Size = 10;
             parameter13.Direction = ParameterDirection.Input;
-            parameter13.Value = UIC;
+            parameter13.Value = string.IsNullOrWhiteSpace(UIC) ? (object)DBNull.Value : (object)UIC; 
             myCommand.Parameters.Add(parameter13);
 
             SqlParameter parameter14 = new SqlParameter();
@@ -190,8 +192,6 @@ namespace Saobracaj.Sifarnici
             parameter16.Direction = ParameterDirection.Input;
             parameter16.Value = Primalac;
             myCommand.Parameters.Add(parameter16);
-
-
 
             SqlParameter parameter17 = new SqlParameter();
             parameter17.ParameterName = "@Brodar";
@@ -243,13 +243,12 @@ namespace Saobracaj.Sifarnici
             parameter23.Value = Uvoznik;
             myCommand.Parameters.Add(parameter23);
 
-
             SqlParameter parameter24 = new SqlParameter();
             parameter24.ParameterName = "@MUAdresa";
             parameter24.SqlDbType = SqlDbType.NVarChar;
             parameter24.Size = 150;
             parameter24.Direction = ParameterDirection.Input;
-            parameter24.Value = MUAdresa;
+            parameter24.Value = string.IsNullOrWhiteSpace(MUAdresa) ? (object)DBNull.Value : (object)MUAdresa; 
             myCommand.Parameters.Add(parameter24);
 
             SqlParameter parameter25 = new SqlParameter();
@@ -257,7 +256,7 @@ namespace Saobracaj.Sifarnici
             parameter25.SqlDbType = SqlDbType.NVarChar;
             parameter25.Size = 150;
             parameter25.Direction = ParameterDirection.Input;
-            parameter25.Value = MUKontakt;
+            parameter25.Value = string.IsNullOrWhiteSpace(MUKontakt) ? (object)DBNull.Value : (object)MUKontakt;
             myCommand.Parameters.Add(parameter25);
 
 
@@ -266,19 +265,17 @@ namespace Saobracaj.Sifarnici
             parameter27.SqlDbType = SqlDbType.NVarChar;
             parameter27.Size = 60;
             parameter27.Direction = ParameterDirection.Input;
-            parameter27.Value = UICDrzava;
+            parameter27.Value = string.IsNullOrWhiteSpace(UICDrzava) ? (object)DBNull.Value : (object)UICDrzava;
             myCommand.Parameters.Add(parameter27);
 
-
             //string UICDrzava , string TR2, string Faks , int PomIzvoznik
-
 
             SqlParameter parameter28 = new SqlParameter();
             parameter28.ParameterName = "@TR2";
             parameter28.SqlDbType = SqlDbType.NVarChar;
             parameter28.Size = 60;
             parameter28.Direction = ParameterDirection.Input;
-            parameter28.Value = TR2;
+            parameter28.Value = string.IsNullOrWhiteSpace(TR2) ? (object)DBNull.Value : (object)TR2;
             myCommand.Parameters.Add(parameter28);
 
             SqlParameter parameter29 = new SqlParameter();
@@ -286,7 +283,7 @@ namespace Saobracaj.Sifarnici
             parameter29.SqlDbType = SqlDbType.NVarChar;
             parameter29.Size = 60;
             parameter29.Direction = ParameterDirection.Input;
-            parameter29.Value = Faks;
+            parameter29.Value = string.IsNullOrWhiteSpace(Faks) ? (object)DBNull.Value : (object)Faks;
             myCommand.Parameters.Add(parameter29);
 
             SqlParameter parameter30 = new SqlParameter();
@@ -343,9 +340,12 @@ namespace Saobracaj.Sifarnici
             sqlParameter42.SqlDbType = SqlDbType.NVarChar;
             sqlParameter42.Size = 10;
             sqlParameter42.Direction = ParameterDirection.Input;
-            sqlParameter42.Value = ERPID;
+            sqlParameter42.Value = string.IsNullOrWhiteSpace(ERPID) ? (object)DBNull.Value : (object)ERPID;
             myCommand.Parameters.Add(sqlParameter42);
 
+            SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
+            idParam.Direction = ParameterDirection.Output;
+            myCommand.Parameters.Add(idParam);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -357,6 +357,7 @@ namespace Saobracaj.Sifarnici
                 myTransaction.Commit();
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
+                IDPom = (int)myCommand.Parameters["@IDPom"].Value;
             }
 
             catch (SqlException ex)
@@ -382,6 +383,7 @@ namespace Saobracaj.Sifarnici
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
+            return IDPom;
         }
 
         public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Dobavljac, string Valuta, int FREC, int DrumskiPrevoz, string ERPID)

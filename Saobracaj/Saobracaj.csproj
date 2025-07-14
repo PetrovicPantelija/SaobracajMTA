@@ -1544,6 +1544,12 @@
     <Compile Include="Drumski\frmPakovanjeKamiona.Designer.cs">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmPregledFajlova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPregledFajlova.Designer.cs">
+      <DependentUpon>frmPregledFajlova.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPregledNalogaDrumski.cs">
       <SubType>Form</SubType>
     </Compile>
