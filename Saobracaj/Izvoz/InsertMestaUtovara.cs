@@ -11,8 +11,9 @@ namespace Saobracaj.Izvoz
     {
         string connection = Sifarnici.frmLogovanje.connectionString;
 
-        public void InsMestaUtovara(string Naziv)
+        public int InsMestaUtovara(string Naziv)
         {
+            int IDPom = 0;
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertMestaUtovara";
@@ -26,6 +27,10 @@ namespace Saobracaj.Izvoz
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
 
+            SqlParameter idParam = new SqlParameter("@IDPomVer", SqlDbType.Int);
+            idParam.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(idParam);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -37,6 +42,7 @@ namespace Saobracaj.Izvoz
                 myTransaction.Commit();
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
+                IDPom = (int)cmd.Parameters["@IDPomVer"].Value;
             }
 
             catch (SqlException)
@@ -60,6 +66,7 @@ namespace Saobracaj.Izvoz
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
+            return IDPom;
         }
         public void UpdMestaUtovara(int ID, string Naziv)
         {

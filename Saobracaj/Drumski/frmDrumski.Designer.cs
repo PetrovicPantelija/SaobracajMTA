@@ -38,7 +38,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.txtDodatniOpis = new System.Windows.Forms.TextBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.txtKontaktSpeditera = new System.Windows.Forms.TextBox();
+            this.txtPolaznaSpedicijaKontakt = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.dtPreuzimanjaPraznogKontejnera = new System.Windows.Forms.DateTimePicker();
@@ -77,7 +77,7 @@
             this.txtNapomenaPoz = new System.Windows.Forms.TextBox();
             this.txtCarinjenjeUvozno = new System.Windows.Forms.TextBox();
             this.txtGranicniPrelaz = new System.Windows.Forms.TextBox();
-            this.txtSpediterCarinarnice = new System.Windows.Forms.TextBox();
+            this.txtOdredisnaSpedicijaKontakt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtOdredisnaCarinarnica = new System.Windows.Forms.TextBox();
             this.txtkontaktNaIstovaru = new System.Windows.Forms.TextBox();
@@ -202,14 +202,14 @@
             this.label63.TabIndex = 531;
             this.label63.Text = "Napomene za pozicioniranje";
             // 
-            // txtKontaktSpeditera
+            // txtPolaznaSpedicijaKontakt
             // 
-            this.txtKontaktSpeditera.ForeColor = System.Drawing.Color.Black;
-            this.txtKontaktSpeditera.Location = new System.Drawing.Point(399, 732);
-            this.txtKontaktSpeditera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtKontaktSpeditera.Name = "txtKontaktSpeditera";
-            this.txtKontaktSpeditera.Size = new System.Drawing.Size(305, 22);
-            this.txtKontaktSpeditera.TabIndex = 180;
+            this.txtPolaznaSpedicijaKontakt.ForeColor = System.Drawing.Color.Black;
+            this.txtPolaznaSpedicijaKontakt.Location = new System.Drawing.Point(399, 732);
+            this.txtPolaznaSpedicijaKontakt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPolaznaSpedicijaKontakt.Name = "txtPolaznaSpedicijaKontakt";
+            this.txtPolaznaSpedicijaKontakt.Size = new System.Drawing.Size(305, 22);
+            this.txtPolaznaSpedicijaKontakt.TabIndex = 180;
             // 
             // label27
             // 
@@ -589,14 +589,14 @@
             this.txtGranicniPrelaz.Size = new System.Drawing.Size(308, 22);
             this.txtGranicniPrelaz.TabIndex = 310;
             // 
-            // txtSpediterCarinarnice
+            // txtOdredisnaSpedicijaKontakt
             // 
-            this.txtSpediterCarinarnice.ForeColor = System.Drawing.Color.Black;
-            this.txtSpediterCarinarnice.Location = new System.Drawing.Point(399, 789);
-            this.txtSpediterCarinarnice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtSpediterCarinarnice.Name = "txtSpediterCarinarnice";
-            this.txtSpediterCarinarnice.Size = new System.Drawing.Size(305, 22);
-            this.txtSpediterCarinarnice.TabIndex = 190;
+            this.txtOdredisnaSpedicijaKontakt.ForeColor = System.Drawing.Color.Black;
+            this.txtOdredisnaSpedicijaKontakt.Location = new System.Drawing.Point(399, 789);
+            this.txtOdredisnaSpedicijaKontakt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtOdredisnaSpedicijaKontakt.Name = "txtOdredisnaSpedicijaKontakt";
+            this.txtOdredisnaSpedicijaKontakt.Size = new System.Drawing.Size(305, 22);
+            this.txtOdredisnaSpedicijaKontakt.TabIndex = 190;
             // 
             // label10
             // 
@@ -733,7 +733,7 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 31);
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1529, 40);
@@ -819,7 +819,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1529, 31);
+            this.meniHeader.Size = new System.Drawing.Size(1529, 27);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -829,13 +829,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton2
             // 
@@ -843,7 +843,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1077,7 +1077,7 @@
             this.Controls.Add(this.txtkontaktNaIstovaru);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtOdredisnaCarinarnica);
-            this.Controls.Add(this.txtSpediterCarinarnice);
+            this.Controls.Add(this.txtOdredisnaSpedicijaKontakt);
             this.Controls.Add(this.txtGranicniPrelaz);
             this.Controls.Add(this.txtCarinjenjeUvozno);
             this.Controls.Add(this.txtNapomenaPoz);
@@ -1115,7 +1115,7 @@
             this.Controls.Add(this.label63);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label24);
-            this.Controls.Add(this.txtKontaktSpeditera);
+            this.Controls.Add(this.txtPolaznaSpedicijaKontakt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label22);
@@ -1153,7 +1153,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox txtDodatniOpis;
         private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.TextBox txtKontaktSpeditera;
+        private System.Windows.Forms.TextBox txtPolaznaSpedicijaKontakt;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejnera;
@@ -1192,7 +1192,7 @@
         private System.Windows.Forms.TextBox txtCarinjenjeUvozno;
         private System.Windows.Forms.TextBox txtNapomenaPoz;
         private System.Windows.Forms.TextBox txtGranicniPrelaz;
-        private System.Windows.Forms.TextBox txtSpediterCarinarnice;
+        private System.Windows.Forms.TextBox txtOdredisnaSpedicijaKontakt;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown txtCena;
         private System.Windows.Forms.Label label13;

@@ -493,21 +493,28 @@ namespace Saobracaj.Drumski
                     string regBr = cboRegistracija.Text.Trim();
                     condition += " AND a.RegBr LIKE '" + regBr + "'";
                 }
+
                 var select = "SELECT a.ID, vv.Naziv AS TipVozila, a.RegBr, a.Vozac, p.PaNaziv AS Prevoznik " +
                             " FROM Automobili a " +
                             " LEFT JOIN VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
                             " LEFT JOIN Partnerji p on a.PartnerID = p.PaSifra  " +
-                            " LEFT JOIN( " +
-                                        " SELECT r1.KamionID, r1.Status " +
-                                       "  FROM RadniNalogDrumski r1 " +
-                                       "  INNER JOIN( " +
-                                       "      SELECT KamionID, MAX(ID) AS MaxID " +
-                                       "      FROM RadniNalogDrumski " +
-                                        "     GROUP BY KamionID " +
-                                       "  ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID " +
-                                   "  ) rn ON a.ID = rn.KamionID " +
+                            //" LEFT JOIN( " +
+                            //            " SELECT r1.KamionID, r1.Status " +
+                            //           "  FROM RadniNalogDrumski r1 " +
+                            //           "  INNER JOIN( " +
+                            //           "      SELECT KamionID, MAX(ID) AS MaxID " +
+                            //           "      FROM RadniNalogDrumski " +
+                            //            "     GROUP BY KamionID " +
+                            //           "  ) r2 ON r1.KamionID = r2.KamionID AND r1.ID = r2.MaxID " +
+                            //       "  ) rn ON a.ID = rn.KamionID " +
 
-                            " WHERE VoziloDrumskog = 1 AND (rn.KamionID IS NULL OR rn.Status IN (" + statusiZaUpit + ")) " + condition;
+                            " WHERE VoziloDrumskog = 1 AND (" +
+                                    "  NOT EXISTS( " +
+                                      "    SELECT 1 " +
+                                      "    FROM RadniNalogDrumski r " +
+                                      "    WHERE  r.KamionID = a.ID " +
+                                      "           AND(r.Status IS NULL OR r.Status NOT IN ( " + statusiZaUpit + "))" +
+                                      ")) " +  condition;
 
 
                 SqlCommand cmd = new SqlCommand(select, conn);
@@ -597,6 +604,7 @@ namespace Saobracaj.Drumski
                 var select = "select  rn.ID, "+
                                      "pa.PaNaziv as Nalogodavac, " +
                                      "i.BrojKontejnera," +
+                                     "'' as BrojKontejnera2, " + 
                                      "au.RegBr AS Kamion, " +
                                      "p.PaNaziv AS Prevoznik, " +
                                      "vv.Naziv as TipVozila, " +
@@ -605,7 +613,8 @@ namespace Saobracaj.Drumski
                                      "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,  mi.Naziv AS MestoIstovara , rn.AdresaIstovara, " +
                                      "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                      " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                     "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, rn.NalogID " +
+                                     "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, rn.NalogID ,  '' AS OdredisnaCarina," +
+                                     "'' as polaznaCarinarnica, '' as polaznaSpedicija, '' as OdredisnaSpedicija " +
                              " from  RadniNalogDrumski rn " +
                                      "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                      "inner join Automobili au on au.ID = rn.KamionID " +
@@ -621,6 +630,7 @@ namespace Saobracaj.Drumski
                              " select  rn.ID, " +
                                        "pa.PaNaziv as Nalogodavac, " +
                                        "ik.BrojKontejnera," +
+                                        "'' AS BrojKontejnera2," +
                                        "au.RegBr AS Kamion, " +
                                        "p.PaNaziv AS Prevoznik, " +
                                        "vv.Naziv as TipVozila, " +
@@ -629,7 +639,8 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,   mi.Naziv AS MestoIstovara, rn.AdresaIstovara," +
                                        "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera ," +
-                                       "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, rn.NalogID" +
+                                       "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, rn.NalogID,  '' AS OdredisnaCarina, " +
+                                       "'' as polaznaCarinarnica, '' as polaznaSpedicija, '' as OdredisnaSpedicija " +
                              " from     RadniNalogDrumski rn " +
                                        "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                        "inner join Automobili au on au.ID = rn.KamionID " +
@@ -645,6 +656,7 @@ namespace Saobracaj.Drumski
                              " select  rn.ID,  " +
                                        "pa.PaNaziv as Nalogodavac, " +
                                        "uk.BrojKontejnera," +
+                                       " '' as BrojKontejnera2," +
                                        "au.RegBr AS Kamion, " +
                                        "p.PaNaziv AS Prevoznik, " +
                                        "vv.Naziv as TipVozila, " +
@@ -653,15 +665,18 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara, mi.Naziv AS MestoIstovara,  (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
                                        "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                       " np.Naziv as NapomenaZaPozicioniranje, rn.NalogID  " +
+                                       " np.Naziv as NapomenaZaPozicioniranje, rn.NalogID, c.Naziv as OdredisnaCarina," +
+                                       "'' as polaznaCarinarnica, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija" +  
                              " from     RadniNalogDrumski rn " +
                                        "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                        "inner join Automobili au on au.ID = rn.KamionID " +
                                        "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
                                        "inner join UvozKonacna uk ON uk.ID = rn.KontejnerID " +
-                                        "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
+                                       "LEFT JOIN Carinarnice c on c.ID = uk.OdredisnaCarina " +
+                                       "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
                                        "left join partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " +
                                        "left join Partnerji pa ON pa.PaSifra = uk.Nalogodavac3 " +
+                                       "LEFT JOIN Partnerji p2 on p2.PaSifra = uk.OdredisnaSpedicija " +
                                        "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
@@ -671,6 +686,7 @@ namespace Saobracaj.Drumski
                              " select   rn.ID,  " +
                                        "pa.PaNaziv as Nalogodavac, " +
                                        "u.BrojKontejnera," +
+                                       "'' AS BrojKontejnera2," +
                                        "au.RegBr AS Kamion, " +
                                        "p.PaNaziv AS Prevoznik, " +
                                        "vv.Naziv as TipVozila, " +
@@ -679,16 +695,18 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,  mi.Naziv AS MestoIstovara,  (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara," +
                                        "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave , " +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                       "np.Naziv as NapomenaZaPozicioniranje, rn.NalogID " +
+                                       "np.Naziv as NapomenaZaPozicioniranje, rn.NalogID, c.Naziv as OdredisnaCarina, '' as polaznaCarinarnica, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija" +
                              " from     RadniNalogDrumski rn " +
                                        "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                        "inner join Automobili au on au.ID = rn.KamionID " +
                                        "inner join Uvoz u ON u.ID = rn.KontejnerID " +
+                                       "LEFT JOIN Carinarnice c on c.ID = u.OdredisnaCarina " +
                                        "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = u.NapomenaZaPozicioniranje " +
                                        "left join partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " +
                                        "left join Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
                                        "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
                                        "left join Partnerji p on au.PartnerID = p.PaSifra " +
+                                       "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  u.MestoIstovara = mi.ID  " +
                                        "where rn.Uvoz = 1 and rn.KamionID is NOT NULL and rn.KamionID != 0 " +
@@ -696,6 +714,7 @@ namespace Saobracaj.Drumski
                              " select   rn.ID,  " +
                                        "pa.PaNaziv as Nalogodavac, " +
                                        "rn.BrojKontejnera," +
+                                       "rn.BrojKontejnera2," +
                                        "au.regbr AS Kamion, " +
                                        "p.PaNaziv AS Prevoznik, " +
                                        "vv.Naziv as TipVozila, " +
@@ -704,7 +723,8 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,  mi.Naziv AS MestoIstovara , rn.AdresaIstovara AS AdresaIstovara, " +
                                        "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                       "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, rn.NalogID " +
+                                       "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, rn.NalogID, rn.OdredisnaCarinarnica as OdredisnaCarina," +
+                                       "rn.PolaznaCarinarnica as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija " +
                              " from     RadniNalogDrumski rn " +
                                        "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                        "inner join Automobili au on au.ID = rn.KamionID " +
@@ -742,15 +762,15 @@ namespace Saobracaj.Drumski
             dataGridView3.Columns.Insert(colIndex, chk);
 
             DodajDugmadKolonu();
-            dataGridView3.CellClick += dataGridView3_CellClick;
+            dataGridView3.CellClick += dataGridView3_CellContentClick;
 
             PodesiDatagridView(dataGridView3);
 
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara",
-                    "KontaktOsobaUtovarIstovar", "NapomenaZaPozicioniranje", "NalogID"
+                    "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
+                    "KontaktOsobaUtovarIstovar", "NapomenaZaPozicioniranje", "NalogID" , "OdredisnaCarina", "PolaznaCarinarnica", "PolaznaSpedicija", "OdredisnaSpedicija"
                     };
 
             foreach (string kolona in koloneZaSakrivanje)
@@ -956,7 +976,7 @@ namespace Saobracaj.Drumski
 
             string datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
    
-            string odredisnaCarinarnica = "xxxxxxxxx";
+            string odredisnaCarinarnica = dataGridView3.SelectedRows[0].Cells["OdredisnaCarina"].Value?.ToString();
             string napomenaZaPozicioniranje = dataGridView3.SelectedRows[0].Cells["NapomenaZaPozicioniranje"].Value?.ToString();
 
             //  Uvodni tekst
@@ -1110,7 +1130,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 )
             {
@@ -1127,6 +1147,7 @@ namespace Saobracaj.Drumski
 
                         // Čitanje vrednosti iz reda
                         string brojKontejnera = row.Cells["BrojKontejnera"].Value?.ToString();
+                        string brojKontejnera2 = row.Cells["BrojKontejnera2"].Value?.ToString();
                         string datumUtovara = row.Cells["DatumUtovara"].Value?.ToString();
                         string datumIstovara = row.Cells["DatumIstovara"].Value?.ToString();
                         string mestoPreuzimanja = row.Cells["DatumUtovara"].Value?.ToString(); ;
@@ -1138,11 +1159,16 @@ namespace Saobracaj.Drumski
                         string brojNaloga = row.Cells["NalogID"].Value?.ToString();
                         string kontaktUtovaraIstovara = row.Cells["KontaktOsobaUtovarIstovar"].Value?.ToString();
                         string napomenaZaPozicioniranje = row.Cells["NapomenaZaPozicioniranje"].Value?.ToString();
+                        string odredisnaCarinarnica = row.Cells["OdredisnaCarina"].Value?.ToString();
+                        string polaznaCarinarnica = row.Cells["PolaznaCarinarnica"].Value?.ToString();
+                        string polaznaSpedicija = row.Cells["PolaznaSpedicija"].Value?.ToString();
+                        string odredisnaSpedicija = row.Cells["OdredisnaSpedicija"].Value?.ToString();
+
 
                         // Formiranje poruke
-                        string poruka = $"Kontejner {brojKontejnera} preuzimate {datumUtovara} na {mestoUtovara}\n" +
-                                        $"Propratnicu Vam radi <POLAZNA CARINARNICA> <Naziv špedicije, kontakt špeditera> \n" +
-                                        $"Javljate se {datumIstovara} na <ODREDISNA CARINARNICA>: <Naziv špedicije, kontakt špeditera>\n" +
+                        string poruka = $"Kontejner {brojKontejnera}, {brojKontejnera2} preuzimate {datumUtovara} na {mestoUtovara}\n" +
+                                        $"Propratnicu Vam radi {polaznaCarinarnica} {polaznaSpedicija} \n" +
+                                        $"Javljate se {datumIstovara} na {odredisnaCarinarnica}: {odredisnaSpedicija}\n" +
                                         $"Kontejner istovarate {mestoIstovara} {adresaIstovara}\n" +
                                         $",{kontaktUtovaraIstovara}\n" +
                                         $"Posebni uslovi transporta: {napomenaZaPozicioniranje}\n" +
