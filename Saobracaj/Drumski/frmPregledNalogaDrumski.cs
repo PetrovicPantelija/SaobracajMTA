@@ -126,8 +126,29 @@ namespace Saobracaj.Drumski
 
         private void RefreshGrid()
         {
-            //samo oni koji imaju raspored voya
-            var select = @"
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            var connection = new SqlConnection(s_connection);
+            List<string> statusi = new List<string>();
+            using (connection)
+            {
+                connection.Open();
+
+                // 1. Učitaj status vrednosti iz SistemskePostavke
+                SqlCommand cmd1 = new SqlCommand("SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", connection);
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        statusi.Add(reader.GetString(0));
+                    }
+                }
+
+                // 2. Priprema statusa za upit
+                string statusiZaUpit = string.Join(",", statusi
+                    .Select(s => s.Trim())
+                    .Where(s => int.TryParse(s, out _)));
+                //samo oni koji imaju raspored voya
+                var select = $@"
                             SELECT rn.ID,
                                     ik.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
@@ -147,7 +168,7 @@ namespace Saobracaj.Drumski
                             INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
                             LEFT JOIN TipKontenjera tk ON ik.VrstaKontejnera = tk.ID
-                            WHERE rn.Uvoz = 0
+                            WHERE rn.Uvoz = 0  AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                             union all
                                     SELECT rn.ID,
@@ -169,7 +190,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
                         LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
-                        WHERE rn.Uvoz = 0
+                        WHERE rn.Uvoz = 0 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                         SELECT rn.ID, 
@@ -191,7 +212,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -213,7 +234,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN Uvoz uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -233,68 +254,66 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                        WHERE rn.Uvoz in (-1,2, 3)
+                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
                         ORDER BY ID DESC";
-            
 
-            var s_connection = Sifarnici.frmLogovanje.connectionString;
-            var connection = new SqlConnection(s_connection);
-            dataAdapter = new SqlDataAdapter(select, connection);
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter = new SqlDataAdapter(select, connection);
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
 
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            mainTable = ds.Tables[0];
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                mainTable = ds.Tables[0];
 
-            // Napuni Status combo listu
-            var stv = "SELECT ID, Naziv FROM StatusVozila ORDER BY Naziv";
-            var stvAD = new SqlDataAdapter(stv, s_connection);
-            var stvDS = new DataSet();
-            stvAD.Fill(stvDS);
-            var dtStatus = stvDS.Tables[0];
+                // Napuni Status combo listu
+                var stv = "SELECT ID, Naziv FROM StatusVozila ORDER BY Naziv";
+                var stvAD = new SqlDataAdapter(stv, s_connection);
+                var stvDS = new DataSet();
+                stvAD.Fill(stvDS);
+                var dtStatus = stvDS.Tables[0];
 
-            // Osiguraj da StatusID kolona u glavnoj tabeli ima vrednosti ili je DBNull
-            foreach (DataRow row in mainTable.Rows)
-            {
-                if (row.IsNull("Status"))
-                    row["Status"] = DBNull.Value;
-            }
-
-            // Veži za grid
-            gridGroupingControl1.DataSource = mainTable;
-
-            var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
-            statusCol.Appearance.AnyRecordFieldCell.CellType = "ComboBox";
-            statusCol.Appearance.AnyRecordFieldCell.DataSource = dtStatus;
-            statusCol.Appearance.AnyRecordFieldCell.DisplayMember = "Naziv";
-            statusCol.Appearance.AnyRecordFieldCell.ValueMember = "ID";
-            statusCol.Appearance.AnyRecordFieldCell.ExclusiveChoiceList = true;
-            statusCol.Appearance.AnyRecordFieldCell.DropDownStyle = GridDropDownStyle.AutoComplete;
-
-            // Ukloni kolone koje ne želiš da se vide
-            var colsToRemove = new[] {  "KontejnerID", "StatusID" }; // "Status" je Naziv
-            foreach (var col in colsToRemove)
-            {
-                if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
+                // Osiguraj da StatusID kolona u glavnoj tabeli ima vrednosti ili je DBNull
+                foreach (DataRow row in mainTable.Rows)
                 {
-                    gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
+                    if (row.IsNull("Status"))
+                        row["Status"] = DBNull.Value;
                 }
-            }
 
-            // Filter bar
-            gridGroupingControl1.ShowGroupDropArea = true;
-            gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+                // Veži za grid
+                gridGroupingControl1.DataSource = mainTable;
 
-            foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
-            {
-                column.AllowFilter = true;
+                var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
+                statusCol.Appearance.AnyRecordFieldCell.CellType = "ComboBox";
+                statusCol.Appearance.AnyRecordFieldCell.DataSource = dtStatus;
+                statusCol.Appearance.AnyRecordFieldCell.DisplayMember = "Naziv";
+                statusCol.Appearance.AnyRecordFieldCell.ValueMember = "ID";
+                statusCol.Appearance.AnyRecordFieldCell.ExclusiveChoiceList = true;
+                statusCol.Appearance.AnyRecordFieldCell.DropDownStyle = GridDropDownStyle.AutoComplete;
+
+                // Ukloni kolone koje ne želiš da se vide
+                var colsToRemove = new[] { "KontejnerID", "StatusID" }; // "Status" je Naziv
+                foreach (var col in colsToRemove)
+                {
+                    if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
+                    {
+                        gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
+                    }
+                }
+
+                // Filter bar
+                gridGroupingControl1.ShowGroupDropArea = true;
+                gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+                foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
+                {
+                    column.AllowFilter = true;
+                }
+                if (gridGroupingControl1.TableDescriptor.Columns.Contains("Status"))
+                {
+                    gridGroupingControl1.TableDescriptor.Columns["Status"].Width = 130;
+                }
+                gridGroupingControl1.TableControlCurrentCellAcceptedChanges -= GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
+                gridGroupingControl1.TableControlCurrentCellAcceptedChanges += GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
             }
-            if (gridGroupingControl1.TableDescriptor.Columns.Contains("Status"))
-            {
-                gridGroupingControl1.TableDescriptor.Columns["Status"].Width = 130;
-            }
-            gridGroupingControl1.TableControlCurrentCellAcceptedChanges -= GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
-            gridGroupingControl1.TableControlCurrentCellAcceptedChanges += GridGroupingControl1_TableControlCurrentCellAcceptedChanges;
         }
 
         private void button23_Click(object sender, EventArgs e)

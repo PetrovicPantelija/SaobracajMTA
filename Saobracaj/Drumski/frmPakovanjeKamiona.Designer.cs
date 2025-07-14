@@ -58,6 +58,7 @@ namespace Saobracaj.Drumski
             this.btnFiltriraj = new System.Windows.Forms.Button();
             this.txtIzabran = new System.Windows.Forms.TextBox();
             this.outerPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -100,10 +101,10 @@ namespace Saobracaj.Drumski
             this.dataGridView3.ColumnHeadersHeight = 29;
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridView3, 2);
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(8, 407);
+            this.dataGridView3.Location = new System.Drawing.Point(8, 383);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(1191, 283);
+            this.dataGridView3.Size = new System.Drawing.Size(1191, 276);
             this.dataGridView3.TabIndex = 3;
             // 
             // button3
@@ -112,9 +113,9 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.SetColumnSpan(this.button3, 2);
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(8, 314);
+            this.button3.Location = new System.Drawing.Point(8, 307);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(1191, 36);
+            this.button3.Size = new System.Drawing.Size(1191, 31);
             this.button3.TabIndex = 1;
             this.button3.Text = "Dodeli selekcijom";
             this.button3.UseVisualStyleBackColor = false;
@@ -126,9 +127,9 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.SetColumnSpan(this.button1, 2);
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(8, 356);
+            this.button1.Location = new System.Drawing.Point(8, 344);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1191, 45);
+            this.button1.Size = new System.Drawing.Size(1191, 33);
             this.button1.TabIndex = 2;
             this.button1.Text = "Sačuvaj povezane";
             this.button1.UseVisualStyleBackColor = false;
@@ -140,9 +141,9 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.SetColumnSpan(this.buttonVrati, 2);
             this.buttonVrati.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonVrati.ForeColor = System.Drawing.Color.White;
-            this.buttonVrati.Location = new System.Drawing.Point(8, 696);
+            this.buttonVrati.Location = new System.Drawing.Point(8, 665);
             this.buttonVrati.Name = "buttonVrati";
-            this.buttonVrati.Size = new System.Drawing.Size(1191, 38);
+            this.buttonVrati.Size = new System.Drawing.Size(1191, 31);
             this.buttonVrati.TabIndex = 4;
             this.buttonVrati.Text = "Vrati u neraspoređene";
             this.buttonVrati.UseVisualStyleBackColor = false;
@@ -154,7 +155,7 @@ namespace Saobracaj.Drumski
             this.btnUploadDokumenta.BackColor = System.Drawing.Color.SteelBlue;
             this.btnUploadDokumenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUploadDokumenta.ForeColor = System.Drawing.Color.White;
-            this.btnUploadDokumenta.Location = new System.Drawing.Point(7, 120);
+            this.btnUploadDokumenta.Location = new System.Drawing.Point(7, 116);
             this.btnUploadDokumenta.Name = "btnUploadDokumenta";
             this.btnUploadDokumenta.Size = new System.Drawing.Size(140, 35);
             this.btnUploadDokumenta.TabIndex = 0;
@@ -180,6 +181,7 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 3);
@@ -191,13 +193,14 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1207, 742);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -221,7 +224,7 @@ namespace Saobracaj.Drumski
             this.panelPosaljiNajavu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPosaljiNajavu.Location = new System.Drawing.Point(8, 25);
             this.panelPosaljiNajavu.Name = "panelPosaljiNajavu";
-            this.panelPosaljiNajavu.Size = new System.Drawing.Size(1191, 283);
+            this.panelPosaljiNajavu.Size = new System.Drawing.Size(1191, 276);
             this.panelPosaljiNajavu.TabIndex = 6;
             // 
             // innerLayout
@@ -236,7 +239,7 @@ namespace Saobracaj.Drumski
             this.innerLayout.Name = "innerLayout";
             this.innerLayout.RowCount = 1;
             this.innerLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.innerLayout.Size = new System.Drawing.Size(1189, 281);
+            this.innerLayout.Size = new System.Drawing.Size(1189, 274);
             this.innerLayout.TabIndex = 0;
             // 
             // dataGridView2
@@ -250,7 +253,7 @@ namespace Saobracaj.Drumski
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1023, 275);
+            this.dataGridView2.Size = new System.Drawing.Size(1023, 268);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDown);
             // 
@@ -267,7 +270,7 @@ namespace Saobracaj.Drumski
             this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dugmePanel.Size = new System.Drawing.Size(154, 275);
+            this.dugmePanel.Size = new System.Drawing.Size(154, 268);
             this.dugmePanel.TabIndex = 1;
             // 
             // panelLevo
@@ -387,6 +390,20 @@ namespace Saobracaj.Drumski
             this.outerPanel.Size = new System.Drawing.Size(1892, 802);
             this.outerPanel.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.button2, 2);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(8, 702);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(1191, 32);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Arhiviraj";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // frmPakovanjeKamiona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -445,5 +462,6 @@ namespace Saobracaj.Drumski
         private ComboBox cboPrevoznik;
         private TableLayoutPanel innerLayout;
         private TableLayoutPanel dugmePanel;
+        private Button button2;
     }
 }
