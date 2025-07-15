@@ -34,6 +34,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.lblBrKontejnera = new System.Windows.Forms.Label();
+            this.txtBrKontejnera = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -100,14 +103,14 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 40);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 95);
             this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1401, 511);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1401, 456);
             this.gridGroupingControl1.TabIndex = 476;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -128,11 +131,40 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // lblBrKontejnera
+            // 
+            this.lblBrKontejnera.AutoSize = true;
+            this.lblBrKontejnera.Location = new System.Drawing.Point(13, 58);
+            this.lblBrKontejnera.Name = "lblBrKontejnera";
+            this.lblBrKontejnera.Size = new System.Drawing.Size(97, 16);
+            this.lblBrKontejnera.TabIndex = 477;
+            this.lblBrKontejnera.Text = "Broj kontejnera";
+            // 
+            // txtBrKontejnera
+            // 
+            this.txtBrKontejnera.Location = new System.Drawing.Point(149, 55);
+            this.txtBrKontejnera.Name = "txtBrKontejnera";
+            this.txtBrKontejnera.Size = new System.Drawing.Size(305, 22);
+            this.txtBrKontejnera.TabIndex = 478;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(494, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(125, 32);
+            this.button2.TabIndex = 479;
+            this.button2.Text = "Traži";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frmPregledArhiviranihNalogaDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1401, 564);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtBrKontejnera);
+            this.Controls.Add(this.lblBrKontejnera);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelHeader);
             this.Name = "frmPregledArhiviranihNalogaDrumski";
@@ -143,6 +175,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -153,5 +186,8 @@
         private System.Windows.Forms.Button button1;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtBrKontejnera;
+        private System.Windows.Forms.Label lblBrKontejnera;
     }
 }
