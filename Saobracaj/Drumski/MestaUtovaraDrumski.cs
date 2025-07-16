@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Syncfusion.Windows.Forms;
 using System.Drawing.Imaging;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Izvoz
 {
@@ -162,7 +163,7 @@ namespace Saobracaj.Izvoz
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID,Naziv FROM  MestaUtovaraDrumski order by ID desc";
+            var select = " SELECT ID,Naziv, PostanskiBroj FROM  MestaUtovaraDrumski order by ID desc";
 
 
 
@@ -176,7 +177,6 @@ namespace Saobracaj.Izvoz
             dataAdapter.Fill(ds);
 
 
-            dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
@@ -206,7 +206,9 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 150;
 
-
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "PostanskiBroj";
+            dataGridView1.Columns[2].Width = 150;
 
         }
 
@@ -222,13 +224,13 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                ins.InsMestaUtovara(txtNaziv.Text);
+                ins.InsMestaUtovara(txtNaziv.Text, txtPostanskiBroj.Text.Trim());
                 status = false;
             }
             else
             {
                 InsertMestaUtovara upd = new InsertMestaUtovara();
-                upd.UpdMestaUtovara(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                upd.UpdMestaUtovara(Convert.ToInt32(txtID.Text), txtNaziv.Text, txtPostanskiBroj.Text.Trim());
 
             }
             RefreshDataGrid();
@@ -251,7 +253,7 @@ namespace Saobracaj.Izvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
-
+                        txtPostanskiBroj.Text = row.Cells[2].Value.ToString();
                     }
                 }
             }

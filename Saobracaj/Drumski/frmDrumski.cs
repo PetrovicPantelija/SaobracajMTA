@@ -370,7 +370,7 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
-                    button3.Visible = NalogID > 0 ? false : true;
+                   // button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 1)
                 {
@@ -397,7 +397,7 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
-                    button3.Visible = NalogID > 0 ? false : true;
+                 //   button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 2)
                 {
@@ -408,13 +408,13 @@ namespace Saobracaj.Drumski
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
                     button21.Visible = NalogID > 0 ? false : true;
-                    button3.Visible = NalogID > 0 ? false : true;
+                  //  button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 3)
                 {
                     btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     button21.Visible = NalogID > 0 ? false : true;
-                    button3.Visible = NalogID > 0 ? false : true;
+               //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
@@ -422,7 +422,7 @@ namespace Saobracaj.Drumski
                 }
                 else
                 {
-                    button3.Visible = NalogID > 0 ? false : true;
+                  //  button3.Visible = NalogID > 0 ? false : true;
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
@@ -441,6 +441,9 @@ namespace Saobracaj.Drumski
             txtValuta.DataSource = valSDS.Tables[0];
             txtValuta.DisplayMember = "VaNaziv";
             txtValuta.ValueMember = "VaSifra";
+
+            // postavi na default vrednost
+            txtValuta.SelectedValue = "EUR";
 
             UcitajKamione(null);
             var stv = "select ID, Ltrim(Rtrim(Naziv)) AS Naziv from StatusVozila order by Naziv";
@@ -817,7 +820,7 @@ namespace Saobracaj.Drumski
             if (!dr.HasRows)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                mestoIstovara = ins.InsMestaUtovara(cboMestoIstovara.Text.Trim());
+                mestoIstovara = ins.InsMestaUtovara(cboMestoIstovara.Text.Trim(), null);
             }
             return mestoIstovara;
         }
@@ -841,7 +844,7 @@ namespace Saobracaj.Drumski
             if (!dr.HasRows)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                mestoIstovara = ins.InsMestaUtovara(cboMestoUtovara.Text.Trim());
+                mestoIstovara = ins.InsMestaUtovara(cboMestoUtovara.Text.Trim(), null);
             }
             return mestoIstovara;
         }
@@ -917,6 +920,7 @@ namespace Saobracaj.Drumski
             status = true;
             Uvoz = -1;
             ResetujVrednostiPolja();
+            FillCombo();
             button21.Visible = true;
         }
 

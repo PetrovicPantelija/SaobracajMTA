@@ -162,8 +162,7 @@ namespace Saobracaj.Izvoz
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID,Naziv FROM  MestaUtovara order by ID desc";
-
+            var select = " SELECT ID,Naziv,PostanskiBroj FROM  MestaUtovara order by ID desc";
 
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -205,9 +204,6 @@ namespace Saobracaj.Izvoz
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 150;
-
-
-
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -222,13 +218,13 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                ins.InsMestaUtovara(txtNaziv.Text);
+                ins.InsMestaUtovara(txtNaziv.Text, txtPostanskiBroj.Text.Trim());
                 status = false;
             }
             else
             {
                 InsertMestaUtovara upd = new InsertMestaUtovara();
-                upd.UpdMestaUtovara(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                upd.UpdMestaUtovara(Convert.ToInt32(txtID.Text), txtNaziv.Text, txtPostanskiBroj.Text.Trim());
 
             }
             RefreshDataGrid();
@@ -251,6 +247,7 @@ namespace Saobracaj.Izvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
+                        txtPostanskiBroj.Text = row.Cells[2].Value.ToString();
 
                     }
                 }

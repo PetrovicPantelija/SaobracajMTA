@@ -41,6 +41,7 @@ namespace Saobracaj.Drumski
             this.btnUploadDokumenta = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.panelPosaljiNajavu = new System.Windows.Forms.Panel();
             this.innerLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -58,7 +59,6 @@ namespace Saobracaj.Drumski
             this.btnFiltriraj = new System.Windows.Forms.Button();
             this.txtIzabran = new System.Windows.Forms.TextBox();
             this.outerPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -203,6 +203,20 @@ namespace Saobracaj.Drumski
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1207, 742);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.button2, 2);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(8, 702);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(1191, 32);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Arhiviraj";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // label5
             // 
@@ -389,20 +403,6 @@ namespace Saobracaj.Drumski
             this.outerPanel.Padding = new System.Windows.Forms.Padding(10, 15, 10, 10);
             this.outerPanel.Size = new System.Drawing.Size(1892, 802);
             this.outerPanel.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.button2, 2);
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(8, 702);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(1191, 32);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Arhiviraj";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // frmPakovanjeKamiona
             // 
