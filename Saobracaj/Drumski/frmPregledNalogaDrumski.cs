@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 
+
 namespace Saobracaj.Drumski
 {
     public partial class frmPregledNalogaDrumski : Form
@@ -260,34 +261,64 @@ namespace Saobracaj.Drumski
                 dataAdapter = new SqlDataAdapter(select, connection);
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
 
+                // Napuni glavnu tabelu
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
                 mainTable = ds.Tables[0];
 
-                // Napuni Status combo listu
+                // Napuni status listu
                 var stv = "SELECT ID, Naziv FROM StatusVozila ORDER BY Naziv";
                 var stvAD = new SqlDataAdapter(stv, s_connection);
                 var stvDS = new DataSet();
                 stvAD.Fill(stvDS);
                 var dtStatus = stvDS.Tables[0];
 
-                // Osiguraj da StatusID kolona u glavnoj tabeli ima vrednosti ili je DBNull
+                // Očisti null vrednosti
                 foreach (DataRow row in mainTable.Rows)
                 {
                     if (row.IsNull("Status"))
                         row["Status"] = DBNull.Value;
                 }
 
-                // Veži za grid
+                // Veži glavnu tabelu
                 gridGroupingControl1.DataSource = mainTable;
 
+                // Postavi Syncfusion Visual Style (lepši izgled grida i kontrola)
+                gridGroupingControl1.TableOptions.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016Colorful;
+
+                // Pristupi koloni Status i definiši njen izgled
                 var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
-                statusCol.Appearance.AnyRecordFieldCell.CellType = "ComboBox";
-                statusCol.Appearance.AnyRecordFieldCell.DataSource = dtStatus;
-                statusCol.Appearance.AnyRecordFieldCell.DisplayMember = "Naziv";
-                statusCol.Appearance.AnyRecordFieldCell.ValueMember = "ID";
-                statusCol.Appearance.AnyRecordFieldCell.ExclusiveChoiceList = true;
-                statusCol.Appearance.AnyRecordFieldCell.DropDownStyle = GridDropDownStyle.AutoComplete;
+                var cellStyle = statusCol.Appearance.AnyRecordFieldCell;
+
+                // Podešavanje ComboBox-a
+                cellStyle.CellType = "ComboBox";
+                cellStyle.DataSource = dtStatus;
+                cellStyle.DisplayMember = "Naziv";
+                cellStyle.ValueMember = "ID";
+                cellStyle.ExclusiveChoiceList = true;
+                cellStyle.DropDownStyle = GridDropDownStyle.AutoComplete;
+
+                // Ulepšavanje izgleda
+                cellStyle.Font.Facename = "Segoe UI";
+                cellStyle.Font.Size = 10;
+                cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
+                cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
+                cellStyle.BackColor = Color.White;
+                cellStyle.TextColor = Color.Black;
+                cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
+                cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
+                cellStyle.TextMargins = new GridMarginsInfo(2, 2, 2, 2);
+                cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
+
+                var typeName = gridGroupingControl1.TableModel.GetType().FullName;
+                MessageBox.Show(typeName);
+
+                //// Ako želiš još moderniji izgled:
+                //var comboRenderer = gridGroupingControl1.TableModel.CellRenderers["ComboBox"] as GridComboBoxCellRenderer;
+                //if (comboRenderer != null)
+                //{
+                //    comboRenderer.FlatStyle = FlatStyle.Flat;
+                //}
 
                 // Ukloni kolone koje ne želiš da se vide
                 var colsToRemove = new[] { "KontejnerID", "StatusID" }; // "Status" je Naziv
