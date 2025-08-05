@@ -11,7 +11,7 @@ namespace Saobracaj.Izvoz
     {
         string connection = Sifarnici.frmLogovanje.connectionString;
 
-        public int InsMestaUtovara(string Naziv)
+        public int InsMestaUtovara(string Naziv, string PostanskiBroj)
         {
             int IDPom = 0;
             SqlConnection conn = new SqlConnection(connection);
@@ -26,6 +26,14 @@ namespace Saobracaj.Izvoz
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
+
+            SqlParameter postanskiBroj = new SqlParameter();
+            postanskiBroj.ParameterName = "@PostanskiBroj";
+            postanskiBroj.SqlDbType = SqlDbType.NVarChar;
+            postanskiBroj.Size = 6;
+            postanskiBroj.Direction = ParameterDirection.Input;
+            postanskiBroj.Value = PostanskiBroj;
+            cmd.Parameters.Add(postanskiBroj);
 
             SqlParameter idParam = new SqlParameter("@IDPomVer", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
@@ -68,7 +76,7 @@ namespace Saobracaj.Izvoz
             }
             return IDPom;
         }
-        public void UpdMestaUtovara(int ID, string Naziv)
+        public void UpdMestaUtovara(int ID, string Naziv, string PostanskiBroj)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -90,7 +98,13 @@ namespace Saobracaj.Izvoz
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
 
-
+            SqlParameter postanskiBroj = new SqlParameter();
+            postanskiBroj.ParameterName = "@PostanskiBroj";
+            postanskiBroj.SqlDbType = SqlDbType.NVarChar;
+            postanskiBroj.Size = 6;
+            postanskiBroj.Direction = ParameterDirection.Input;
+            postanskiBroj.Value = PostanskiBroj;
+            cmd.Parameters.Add(postanskiBroj);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
