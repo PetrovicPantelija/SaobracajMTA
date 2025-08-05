@@ -1,4 +1,6 @@
-﻿using Syncfusion.Grouping;
+﻿using Saobracaj.Sifarnici;
+using Saobracaj.Uvoz;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -15,6 +17,9 @@ namespace Saobracaj.Izvoz
     {
         int pomPostojiPlan = 0;
         int pomPlan = 0;
+        int pomRadniNalogInterni = 0;
+
+        int pomIzUvoza = 0;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         private void ChangeTextBox()
@@ -153,6 +158,16 @@ namespace Saobracaj.Izvoz
             ChangeTextBox();
         }
 
+        public frmFormiranjePlanaIzvoz(int RadniNalogInterni, int IzUvoza)
+        {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
+            InitializeComponent();
+            pomIzUvoza = 1;
+            pomRadniNalogInterni = RadniNalogInterni;
+            ChangeTextBox();
+        }
+
         private void RefreshSync()
         {
             var select = " SELECT  Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
@@ -189,6 +204,53 @@ namespace Saobracaj.Izvoz
     " INNER JOIN         Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra INNER JOIN " +
     " Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra " +
     " INNER JOIN         uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc  ";
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+
+
+        }
+
+        private void RefreshSyncIzUvoza(int RadniNalog)
+        {
+            var select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv,   [Uradjen],  " +
+                    " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                    " (select Top 1 stNapomene from UvozKonacnaNapomenePozicioniranja inner join UvozKonacna  on UvozKonacna.ID = UvozKonacnaNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = rn.BrojOsnov order by UvozKonacnaNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+                    " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje " +
+" inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+"  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ," +
+" TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
+ " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
+" [OJIzdavanja]      , o1.Naziv as Izdao " +
+" ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
+" UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
+" [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
+"  rn.Pokret,  rn.TipDokPrevoza, " +
+" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
+" FROM [RadniNalogInterni] rn " +
+" inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
+" inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
+" inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
+" inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
+" Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera  " +
+           " where OJIzdavanja = " + Convert.ToInt32(1)   + " and rn.[ID] = " + RadniNalog +
+           " order by rn.ID desc"; 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -451,23 +513,137 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FormirajNoviID()
         {
-
-            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            try
             {
-                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
-                {
-                    InsertIzvozKonacna ins = new InsertIzvozKonacna();
-                    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                SqlConnection conn = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand("Insert into Izvoz Default Values", conn);
+                conn.Open();
+                var q = cmd.ExecuteNonQuery();
+                conn.Close();
 
-                    //To get the cell value of particular column of selected records   
-                    //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
-                    // MessageBox.Show(cellValue);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            GetID();
+
+        }
+
+        string IDUvozni = "0"; // Ovo je izvozni 
+      
+
+        private void GetID()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = new SqlCommand("Select MAX(ID) FROM Izvoz", conn);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    int IDpom = Convert.ToInt32(dr[0].ToString());
+                    IDUvozni = IDpom.ToString();
                 }
             }
+            UpisiKorisnikaIVreme(Convert.ToInt32(IDUvozni));
+        }
 
-            RefreshSync();
+
+        private void UpisiKorisnikaIVreme(int IDpom)
+        {
+
+
+            using (SqlConnection connection1 = new SqlConnection(connection))
+            using (SqlCommand command = connection1.CreateCommand())
+            {
+                command.CommandText = "Update Izvoz set Korisnik = '" + frmLogovanje.user + "' , DatumKreiranja = ' " + DateTime.Now + "' where ID = " + IDpom;
+
+
+
+                connection1.Open();
+                command.ExecuteNonQuery();
+                connection1.Close();
+            }
+         
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (pomIzUvoza == 1)
+            {
+                 if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+                {
+                    foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                    {
+
+                        FormirajNoviID();
+                        
+                        //Updejtuj podatke
+                        
+                        InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                        ins.UpdejtujPodatkeIzUvoza(Convert.ToInt32(IDUvozni), Convert.ToInt32(cboPlanUtovara.SelectedValue), Convert.ToInt32(pomRadniNalogInterni));
+                        
+
+                        //Ubaciti uslugu
+                        InsertIzvoz uvK = new InsertIzvoz();
+                        uvK.InsUbaciUsluguPlan(Convert.ToInt32(IDUvozni), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                       
+                        using (SqlConnection conn = new SqlConnection(connection))
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "UPDATE Izvoz Set Scenario=" + Convert.ToInt32(11) + " Where ID=" + Convert.ToInt32(IDUvozni);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "UPDATE IzvozKonacna Set Scenario=" + Convert.ToInt32(11) + " Where ID=" + Convert.ToInt32(IDUvozni);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                        }
+
+                        ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(IDUvozni), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+
+                       // InsertIzvoz uvK3 = new InsertIzvoz();
+                       // uvK3.InsUbaciUsluguKonacna(Convert.ToInt32(IDUvozni), 96, 0, 1, 4, 0, 0, "GATE OUT EMPTY", 12, "GATE OUT VOZ");
+
+                        Uvoz.InsertRadniNalogInterni ins4 = new Uvoz.InsertRadniNalogInterni();
+                        //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                        ins4.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(cboPlanUtovara.SelectedValue), frmLogovanje.user, " ");
+
+                        //To get the cell value of particular column of selected records   
+                        //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                        // MessageBox.Show(cellValue);
+                    }
+                }
+
+            }
+            else
+            {
+                if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+                {
+                    foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                    {
+                        InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                        ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+
+                        //To get the cell value of particular column of selected records   
+                        //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                        // MessageBox.Show(cellValue);
+                    }
+                }
+
+                RefreshSync();
+            }
+        
             // RefreshDataGrid1();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
@@ -502,7 +678,16 @@ namespace Saobracaj.Izvoz
         private void frmFormiranjePlanaIzvoz_Load(object sender, EventArgs e)
         {
             // RefreshDataGrid1();
-            RefreshSync();
+            if (pomIzUvoza == 1)
+            {
+                RefreshSyncIzUvoza(pomRadniNalogInterni);
+            }
+            else
+            {
+                RefreshSync();
+            }
+          
+
             RefreshDataGrid2();
             FillCombo();
             if (pomPostojiPlan == 1)

@@ -93,7 +93,7 @@ namespace Saobracaj.Uvoz
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(771, 159);
+            this.groupBox1.Size = new System.Drawing.Size(1101, 159);
             this.groupBox1.TabIndex = 239;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Promena vrednosti na više selektovanih stavki";
@@ -105,7 +105,7 @@ namespace Saobracaj.Uvoz
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(665, 26);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 57);
+            this.button2.Size = new System.Drawing.Size(320, 39);
             this.button2.TabIndex = 203;
             this.button2.Text = "Primeni izmenu";
             this.button2.UseVisualStyleBackColor = false;
@@ -155,9 +155,9 @@ namespace Saobracaj.Uvoz
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(281, 26);
+            this.button1.Location = new System.Drawing.Point(16, 63);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 57);
+            this.button1.Size = new System.Drawing.Size(260, 33);
             this.button1.TabIndex = 199;
             this.button1.Text = "Izberi";
             this.button1.UseVisualStyleBackColor = false;
@@ -241,37 +241,49 @@ namespace Saobracaj.Uvoz
             this.cboPolje.FormattingEnabled = true;
             this.cboPolje.ItemHeight = 13;
             this.cboPolje.Items.AddRange(new object[] {
+            "ETA Broda Luka",
+            "ATA broda Luka",
+            "Dobijen nalog brodara",
+            "Datum Dobijen nalog brodara",
+            "Naziv Broda",
+            "Brodar",
+            "Dobijen nal voz",
+            "Datum Dobijen nal voz",
+            "Nalogodavac za voz",
+            "Dobijen nal usluge",
+            "Datum Dobijen nal usluge",
+            "Nalogdavac za usluge",
+            "Dobijen nal drumski",
+            "Datum Dobijen nal drumski",
+            "Nalogodavac za drumski prevoz",
+            "Terminal 1",
+            "Terminal 2",
+            "Terminal 3",
             "DobijenBZ",
             "Datum BZ",
             "Prioritet",
             "PIN",
+            "FCL",
+            "LCL",
             "Broj kontejnera",
             "Vrsta kontejnera",
-            "Relacija R/L/SRB",
-            "Dirigacija kontejnera za",
             "BL",
-            "ADR",
-            "Brodar ",
-            "Vlasnik kontejnera",
-            "Nalogodavac za voz",
-            "Ref za fakturisanje 1",
-            "Nalogdavac za usluge",
-            "Ref za fakturisanje 2",
-            "Nalogodavac za drumski prevoz",
-            "Ref za fakturisanje 3",
             "Uvoznik",
+            "ADR",
+            "Vlasnik kontejnera",
             "Inspekciski tretman",
             "Špedicija-granica",
             "Špedicija-RTC Leget",
             "Carinski postupak",
             "Postupak sa robom /kontejnerom",
-            "Način pakovanja",
             "Odredišna Špedicija",
             "Carinarnica",
+            "Kontakt osoba speditera",
             "Mesto istovara",
             "Adresa utovara",
             "Kontakt osobe",
             "Naslov za slanje statusa vozila",
+            "Napomena 1",
             "E-mail za slanje statusa",
             "Napomena 2",
             "NTTO robe",
@@ -279,9 +291,10 @@ namespace Saobracaj.Uvoz
             "BTTO kontejnera",
             "BTTO robe",
             "Koleta",
-            "ATA broda u Luku Rijeka",
             "Broj plombe 1",
-            "Broj plombe 2"});
+            "Ref za fakturisanje 1",
+            "Ref za fakturisanje 2",
+            "Ref za fakturisanje 3"});
             this.cboPolje.Location = new System.Drawing.Point(16, 34);
             this.cboPolje.Margin = new System.Windows.Forms.Padding(2);
             this.cboPolje.Name = "cboPolje";

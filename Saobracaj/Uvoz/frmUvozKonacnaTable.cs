@@ -33,7 +33,9 @@ namespace Saobracaj.Uvoz
                 // toolStripHeader.Visible = false;
                 panelHeader.Visible = true;
                 // this.FormBorderStyle = FormBorderStyle.None;
-                groupBox1.BackColor = Color.White;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
 
                 foreach (Control control in groupBox1.Controls)
@@ -180,6 +182,182 @@ Koleta
             SqlConnection conn = new SqlConnection(connection);
             switch (cboPolje.Text)
             {
+                case "ETA Broda Luka":
+                    dtpOpsti.Visible = true;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    break;
+
+                case "ATA broda Luka":
+                    dtpOpsti.Visible = true;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    break;
+
+                case "Dobijen nalog brodara":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = true;
+                    nmrOpsti.Visible = false;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    break;
+                case "Datum Dobijen nalog brodara":
+                    dtpOpsti.Visible = true;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    break;
+
+                case "Brodar":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var bro = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
+                    var broAD = new SqlDataAdapter(bro, conn);
+                    var broDS = new DataSet();
+                    broAD.Fill(broDS);
+                    cboOpsti.DataSource = broDS.Tables[0];
+                    cboOpsti.DisplayMember = "PaNaziv";
+                    cboOpsti.ValueMember = "PaSifra";
+                    break;
+
+
+                case "Naziv Broda":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var brod = "Select ID,Naziv From Brodovi order by Naziv";
+                    var brodAD = new SqlDataAdapter(brod, conn);
+                    var brodDS = new DataSet();
+                    brodAD.Fill(brodDS);
+                    cboOpsti.DataSource = brodDS.Tables[0];
+                    cboOpsti.DisplayMember = "Naziv";
+                    cboOpsti.ValueMember = "ID";
+                    break;
+
+                case "Dobijen nal voz":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = true;
+                    nmrOpsti.Visible = false;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    break;
+
+                case "Datum Dobijen nal voz":
+                    dtpOpsti.Visible = true;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    break;
+
+                case "Nalogodavac za voz":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
+                    var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
+                    var nal1DS = new DataSet();
+                    nal1AD.Fill(nal1DS);
+                    cboOpsti.DataSource = nal1DS.Tables[0];
+                    cboOpsti.DisplayMember = "PaNaziv";
+                    cboOpsti.ValueMember = "PaSifra";
+                    break;
+                case "Nalogdavac za usluge":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+
+                    var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
+                    var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
+                    var nal2DS = new DataSet();
+                    nal2AD.Fill(nal2DS);
+                    cboOpsti.DataSource = nal2DS.Tables[0];
+                    cboOpsti.DisplayMember = "PaNaziv";
+                    cboOpsti.ValueMember = "PaSifra";
+                    break;
+                case "Nalogodavac za drumski prevoz":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
+                    var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
+                    var nal3DS = new DataSet();
+                    nal3AD.Fill(nal3DS);
+                    cboOpsti.DataSource = nal3DS.Tables[0];
+                    cboOpsti.DisplayMember = "PaNaziv";
+                    cboOpsti.ValueMember = "PaSifra";
+                    break;
+
+                case "Terminal 1":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var rl = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+                    var rlSAD = new SqlDataAdapter(rl, conn);
+                    var rlSDS = new DataSet();
+                    rlSAD.Fill(rlSDS);
+                    cboOpsti.DataSource = rlSDS.Tables[0];
+                    cboOpsti.DisplayMember = "Naziv";
+                    cboOpsti.ValueMember = "ID";
+                    break;
+
+                case "Terminal 2":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var rl2 = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+                    var rl2SAD = new SqlDataAdapter(rl2, conn);
+                    var rl2SDS = new DataSet();
+                    rl2SAD.Fill(rl2SDS);
+                    cboOpsti.DataSource = rl2SDS.Tables[0];
+                    cboOpsti.DisplayMember = "Naziv";
+                    cboOpsti.ValueMember = "ID";
+                    break;
+
+
+                case "Terminal 3":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = true;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    var rl3 = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+                    var rl3SAD = new SqlDataAdapter(rl3, conn);
+                    var rl3SDS = new DataSet();
+                    rl3SAD.Fill(rl3SDS);
+                    cboOpsti.DataSource = rl3SDS.Tables[0];
+                    cboOpsti.DisplayMember = "Naziv";
+                    cboOpsti.ValueMember = "ID";
+                    break;
+
+
+
+
                 case "Datum BZ":
                     dtpOpsti.Visible = true;
                     cboOpsti.Visible = false;
@@ -188,13 +366,7 @@ Koleta
                     nmrOpsti.Visible = false;
                     //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
                     break;
-                case "ATA broda u Luku Rijeka":
-                    dtpOpsti.Visible = true;
-                    cboOpsti.Visible = false;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    break;
+
 
                 case "DobijenBZ":
                     dtpOpsti.Visible = false;
@@ -210,6 +382,25 @@ Koleta
                     chkOpsti.Visible = true;
                     nmrOpsti.Visible = false;
                     break;
+
+
+
+                case "FCL":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = true;
+                    nmrOpsti.Visible = false;
+                    break;
+
+                case "LCL":
+                    dtpOpsti.Visible = false;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = true;
+                    nmrOpsti.Visible = false;
+                    break;
+
                 case "PIN":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = false;
@@ -297,34 +488,8 @@ Koleta
                     cboOpsti.DisplayMember = "SkNaziv";
                     cboOpsti.ValueMember = "ID";
                     break;
-                case "Relacija R / L / SRB":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    var rl = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
-                    var rlSAD = new SqlDataAdapter(rl, conn);
-                    var rlSDS = new DataSet();
-                    rlSAD.Fill(rlSDS);
-                    cboOpsti.DataSource = rlSDS.Tables[0];
-                    cboOpsti.DisplayMember = "Naziv";
-                    cboOpsti.ValueMember = "ID";
-                    break;
-                case "Dirigacija kontejnera za":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    var dir = "Select ID,Naziv from DirigacijaKontejneraZa order by Naziv";
-                    var dirAD = new SqlDataAdapter(dir, conn);
-                    var dirDS = new DataSet();
-                    dirAD.Fill(dirDS);
-                    cboOpsti.DataSource = dirDS.Tables[0];
-                    cboOpsti.DisplayMember = "Naziv";
-                    cboOpsti.ValueMember = "ID";
-                    break;
+
+
                 case "ADR":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = true;
@@ -339,20 +504,7 @@ Koleta
                     cboOpsti.DisplayMember = "Naziv";
                     cboOpsti.ValueMember = "ID";
                     break;
-                case "Brodar":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    var bro = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaNaziv";
-                    var broAD = new SqlDataAdapter(bro, conn);
-                    var broDS = new DataSet();
-                    broAD.Fill(broDS);
-                    cboOpsti.DataSource = broDS.Tables[0];
-                    cboOpsti.DisplayMember = "PaNaziv";
-                    cboOpsti.ValueMember = "PaSifra";
-                    break;
+
                 case "Vlasnik kontejnera":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = true;
@@ -367,49 +519,7 @@ Koleta
                     cboOpsti.DisplayMember = "PaNaziv";
                     cboOpsti.ValueMember = "PaSifra";
                     break;
-                case "Nalogodavac za voz":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
-                    var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
-                    var nal1DS = new DataSet();
-                    nal1AD.Fill(nal1DS);
-                    cboOpsti.DataSource = nal1DS.Tables[0];
-                    cboOpsti.DisplayMember = "PaNaziv";
-                    cboOpsti.ValueMember = "PaSifra";
-                    break;
-                case "Nalogdavac za usluge":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
 
-                    var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
-                    var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
-                    var nal2DS = new DataSet();
-                    nal2AD.Fill(nal2DS);
-                    cboOpsti.DataSource = nal2DS.Tables[0];
-                    cboOpsti.DisplayMember = "PaNaziv";
-                    cboOpsti.ValueMember = "PaSifra";
-                    break;
-                case "Nalogodavac za drumski prevoz":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
-                    var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
-                    var nal3DS = new DataSet();
-                    nal3AD.Fill(nal3DS);
-                    cboOpsti.DataSource = nal3DS.Tables[0];
-                    cboOpsti.DisplayMember = "PaNaziv";
-                    cboOpsti.ValueMember = "PaSifra";
-                    break;
 
                 case "Uvoznik":
                     dtpOpsti.Visible = false;
@@ -513,21 +623,7 @@ Koleta
                     cboOpsti.DisplayMember = "PaNaziv";
                     cboOpsti.ValueMember = "PaSifra";
                     break;
-                case "Način pakovanja":
-                    dtpOpsti.Visible = false;
-                    cboOpsti.Visible = true;
-                    txtOpsti.Visible = false;
-                    chkOpsti.Visible = false;
-                    nmrOpsti.Visible = false;
-                    //nacin pakovanja
-                    var dir4 = "Select ID,(Oznaka + ' ' + Naziv) as Naziv from uvNacinPakovanja order by Naziv";
-                    var dirAD4 = new SqlDataAdapter(dir4, conn);
-                    var dirDS4 = new DataSet();
-                    dirAD4.Fill(dirDS4);
-                    cboOpsti.DataSource = dirDS4.Tables[0];
-                    cboOpsti.DisplayMember = "Naziv";
-                    cboOpsti.ValueMember = "ID";
-                    break;
+
                 case "Carinarnica":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = true;
@@ -775,142 +871,249 @@ Koleta
 
         private void UpdateVrednostiPolja(int IdZaPromenu)
         {
+            //NazivBroda
+
             int temp = 0;
             SqlConnection conn = new SqlConnection(connection);
             string updatestring = "";
             switch (cboPolje.Text)
             {
+                case "ETA broda Luka":
+                    updatestring = " Update uvozkonacna set ETABroda = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                    break;
+
+                // case "Datum Dobijen nalog brodara":
+                //    updatestring = " Update uvoz set ETABroda = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                //   break;
+
+                case "Dobijen nal voz":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set chkDobijenNalogodavac1 = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Datum Dobijen nal voz":
+                    updatestring = " Update uvozkonacna set DatumNalogodavac1 = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Dobijen nal usluge":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set chkDobijenNalogodavac2  = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Datum Dobijen nal usluge":
+                    updatestring = " Update uvoz set DatumNalogodavac2 = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Dobijen nal drumski":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set chkDobijenNalogodavac3 = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Datum Dobijen nal drumski":
+                    updatestring = " Update uvozkonacna set DatumNalogodavac2 = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Dobijen nalog brodara":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set chkDobijenNalogBrodara = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
+
+                case "Naziv broda":
+                    updatestring = " Update uvozkonacna set NazivBroda = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+
+                case "Brodar":
+                    updatestring = " Update uvozkonacna set Brodar  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                case "Nalogodavac za voz":
+                    updatestring = " Update uvozkonacna set Nalogodavac1  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+                case "Nalogdavac za usluge":
+                    updatestring = " Update uvozkonacna set Nalogodavac2  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+                case "Nalogodavac za drumski prevoz":
+                    updatestring = " Update uvozkonacna set Nalogodavac3  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+
+                case "ATA broda Luka":
+                    updatestring = " Update uvozkonacna set AtaBroda = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
+                    break;
+
+
+                case "Terminal 1":
+                    updatestring = " Update uvozkonacna set RLTErminali  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Terminal 2":
+                    updatestring = " Update uvozkonacna set RLTErminali2  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Terminal 3":
+                    updatestring = " Update uvozkonacna set RLTErminali2  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+
                 case "Datum BZ":
-                    updatestring = " Update UvozKonacna set DobijeBZ = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set obijeBZ = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
                     break;
-                case "ATA broda u Luku Rijeka":
-                    updatestring = " Update UvozKonacna set EtaBroda = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
-                    break;
+
 
                 case "DobijenBZ":
 
                     temp = 0;
                     if (chkOpsti.Checked == true)
                     { temp = 1; }
-                    updatestring = " Update UvozKonacna set DobijenBZ = " + temp + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set DobijenBZ = " + temp + " where ID =" + IdZaPromenu;
                     break;
                 case "Prioritet":
 
                     temp = 0;
                     if (chkOpsti.Checked == true)
                     { temp = 1; }
-                    updatestring = " Update UvozKonacna set Prioritet = " + temp + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Prioritet = " + temp + " where ID =" + IdZaPromenu;
                     break;
+
+
+                case "FCL":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set FCL = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
+
+                case "LCL":
+
+                    temp = 0;
+                    if (chkOpsti.Checked == true)
+                    { temp = 1; }
+                    updatestring = " Update uvozkonacna set LCL = " + temp + " where ID =" + IdZaPromenu;
+                    break;
+
                 case "PIN":
 
-                    updatestring = " Update UvozKonacna set PIN = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set PIN = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Broj kontejnera":
-                    updatestring = " Update UvozKonacna set BrojKontejnera = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set BrojKontejnera = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "BL":
-                    updatestring = " Update UvozKonacna set BrodskaTeretnica = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set BrodskaTeretnica = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
 
                     break;
                 case "Ref za fakturisanje 1":
-                    updatestring = " Update UvozKonacna set Ref1 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Ref1 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Ref za fakturisanje 2":
-                    updatestring = " Update UvozKonacna set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Ref za fakturisanje 3":
-                    updatestring = " Update UvozKonacna set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Kontakt osobe":
-                    updatestring = " Update UvozKonacna set KontaktOsobe = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set KontaktOsobe = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Naslov za slanje statusa vozila":
-                    updatestring = " Update UvozKonacna set NaslovStatusaVozila  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set NaslovStatusaVozila  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Napomena 2":
-                    updatestring = " Update UvozKonacna set Napomena  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Napomena  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "E - mail za slanje statusa":
-                    updatestring = " Update UvozKonacna set Email  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Email  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Vrsta kontejnera":
-                    updatestring = " Update UvozKonacna set TipKontejnera  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Relacija R / L / SRB":
-                    updatestring = " Update UvozKonacna set RLTErminali  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Dirigacija kontejnera za":
-                    updatestring = " Update UvozKonacna set DirigacijaKontejeraZa  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "ADR":
-                    updatestring = " Update UvozKonacna set ADR  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Brodar":
-                    updatestring = " Update UvozKonacna set Brodar  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Vlasnik kontejnera":
-                    updatestring = " Update UvozKonacna set VlasnikKontejnera  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogodavac za voz":
-                    updatestring = " Update UvozKonacna set Nalogodavac1  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogdavac za usluge":
-                    updatestring = " Update UvozKonacna set Nalogodavac2  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogodavac za drumski prevoz":
-                    updatestring = " Update UvozKonacna set Nalogodavac3  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set TipKontejnera  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
 
+
+                case "ADR":
+                    updatestring = " Update uvozkonacna set ADR  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+                case "Vlasnik kontejnera":
+                    updatestring = " Update uvozkonacna set VlasnikKontejnera  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    break;
+
+
                 case "Uvoznik":
-                    updatestring = " Update UvozKonacna set Uvoznik  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Uvoznik  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Inspekciski tretman":
-                    updatestring = " Update UvozKonacna set VrstaPregleda  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvuvozkonacnaoz set VrstaPregleda  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Špedicija -granica":
-                    updatestring = " Update UvozKonacna set SpedicijaGranica  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set SpedicijaGranica  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     //spedicija rtc luka leget
                     break;
                 case "Špedicija - RTC Leget":
-                    updatestring = " Update UvozKonacna set SpedicijaRTC  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set SpedicijaRTC  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Carinski postupak":
-                    updatestring = " Update UvozKonacna set CarinskiPostupak = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set CarinskiPostupak = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Postupak sa robom / kontejnerom":
-                    updatestring = " Update UvozKonacna set PostupakSaRobom = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set PostupakSaRobom = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Odredišna Špedicija":
-                    updatestring = " Update UvozKonacna set OdredisnaSpedicija = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set OdredisnaSpedicija = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
-                case "Način pakovanja":
-                    updatestring = " Update UvozKonacna set NacinPakovanja = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
+
                 case "Carinarnica":
-                    updatestring = " Update UvozKonacna set OdredisnaCarina = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set OdredisnaCarina = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
 
                     break;
                 case "Mesto istovara":
-                    updatestring = " Update UvozKonacna set MestoIstovara = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set MestoIstovara = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
 
                     break;
-                case "Adresa utovara":
-                    updatestring = " Update UvozKonacna set AdresaMestaUtovara = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                case "Adresa istovara":
+                    updatestring = " Update uvozkonacna set AdresaMestaUtovara = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "NTTO robe":
-                    updatestring = " Update UvozKonacna set NetoRobe = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set NetoRobe = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Tara kontejnera":
-                    updatestring = " Update UvozKonacna set TaraKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set TaraKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "BTTO kontejnera":
-                    updatestring = " Update UvozKonacna set BrutoKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set BrutoKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "BTTO robe":
-                    updatestring = " Update UvozKonacna set BrutoRobe = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set BrutoRobe = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 case "Koleta":
-                    updatestring = " Update UvozKonacna set Koleta = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvozkonacna set Koleta = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
                 default:
                     Console.WriteLine("Nema podatka");

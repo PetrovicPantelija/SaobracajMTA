@@ -46,6 +46,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.gradientPanel4 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRNBroj = new System.Windows.Forms.TextBox();
@@ -85,7 +86,7 @@ namespace Saobracaj.Uvoz
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
-            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -289,6 +290,14 @@ namespace Saobracaj.Uvoz
             this.splitContainer1.SplitterDistance = 243;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Enabled = false;
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(20, 191);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(209, 20);
+            this.txtBrojKontejnera.TabIndex = 231;
             // 
             // gradientPanel4
             // 
@@ -542,7 +551,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1134, 693);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1135, 693);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.tabSplitterContainer1.SplitterPosition = 631;
             this.tabSplitterContainer1.TabIndex = 10;
@@ -556,7 +565,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1134, 631);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1135, 631);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
             // 
@@ -579,7 +588,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1128, 625);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1129, 625);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -602,7 +611,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 651);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1134, 42);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1135, 42);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
@@ -625,7 +634,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1128, 37);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1129, 37);
             this.gridGroupingControl2.TabIndex = 237;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -663,6 +672,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button27);
@@ -822,13 +832,26 @@ namespace Saobracaj.Uvoz
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // txtBrojKontejnera
+            // button5
             // 
-            this.txtBrojKontejnera.Enabled = false;
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(20, 191);
-            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
-            this.txtBrojKontejnera.Size = new System.Drawing.Size(209, 20);
-            this.txtBrojKontejnera.TabIndex = 231;
+            this.button5.AutoSize = true;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button5.Location = new System.Drawing.Point(678, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(208, 31);
+            this.button5.TabIndex = 23;
+            this.button5.Text = "Dodaj izvoznom vozu iz uvoza";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // frmRadniNalogInterniPregled
             // 
@@ -935,5 +958,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
+        private System.Windows.Forms.Button button5;
     }
 }

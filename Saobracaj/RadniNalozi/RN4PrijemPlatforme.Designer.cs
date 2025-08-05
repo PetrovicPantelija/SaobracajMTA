@@ -64,6 +64,9 @@ namespace Saobracaj.RadniNalozi
             this.nedraDataSet1 = new Saobracaj.NedraDataSet();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.chkVizuelniZavrsen = new System.Windows.Forms.CheckBox();
+            this.txtVizuelniRealizovao = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.chkPotrebanCIR = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.chkZavrsenKalmarista = new System.Windows.Forms.CheckBox();
@@ -118,9 +121,6 @@ namespace Saobracaj.RadniNalozi
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.txtVizuelniRealizovao = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.chkVizuelniZavrsen = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet1)).BeginInit();
@@ -559,6 +559,37 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage1.Size = new System.Drawing.Size(1610, 399);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPSTE";
+            this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
+            // 
+            // chkVizuelniZavrsen
+            // 
+            this.chkVizuelniZavrsen.AutoSize = true;
+            this.chkVizuelniZavrsen.ForeColor = System.Drawing.Color.White;
+            this.chkVizuelniZavrsen.Location = new System.Drawing.Point(746, 16);
+            this.chkVizuelniZavrsen.Name = "chkVizuelniZavrsen";
+            this.chkVizuelniZavrsen.Size = new System.Drawing.Size(104, 17);
+            this.chkVizuelniZavrsen.TabIndex = 391;
+            this.chkVizuelniZavrsen.Text = "Vizuelni Zavrsen";
+            this.chkVizuelniZavrsen.UseVisualStyleBackColor = true;
+            // 
+            // txtVizuelniRealizovao
+            // 
+            this.txtVizuelniRealizovao.Location = new System.Drawing.Point(590, 55);
+            this.txtVizuelniRealizovao.Margin = new System.Windows.Forms.Padding(2);
+            this.txtVizuelniRealizovao.Name = "txtVizuelniRealizovao";
+            this.txtVizuelniRealizovao.Size = new System.Drawing.Size(238, 20);
+            this.txtVizuelniRealizovao.TabIndex = 389;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Location = new System.Drawing.Point(590, 37);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(94, 13);
+            this.label16.TabIndex = 390;
+            this.label16.Text = "Vizuelni realizovao";
             // 
             // chkPotrebanCIR
             // 
@@ -1191,36 +1222,6 @@ namespace Saobracaj.RadniNalozi
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // txtVizuelniRealizovao
-            // 
-            this.txtVizuelniRealizovao.Location = new System.Drawing.Point(590, 55);
-            this.txtVizuelniRealizovao.Margin = new System.Windows.Forms.Padding(2);
-            this.txtVizuelniRealizovao.Name = "txtVizuelniRealizovao";
-            this.txtVizuelniRealizovao.Size = new System.Drawing.Size(238, 20);
-            this.txtVizuelniRealizovao.TabIndex = 389;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(590, 37);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(94, 13);
-            this.label16.TabIndex = 390;
-            this.label16.Text = "Vizuelni realizovao";
-            // 
-            // chkVizuelniZavrsen
-            // 
-            this.chkVizuelniZavrsen.AutoSize = true;
-            this.chkVizuelniZavrsen.ForeColor = System.Drawing.Color.White;
-            this.chkVizuelniZavrsen.Location = new System.Drawing.Point(746, 16);
-            this.chkVizuelniZavrsen.Name = "chkVizuelniZavrsen";
-            this.chkVizuelniZavrsen.Size = new System.Drawing.Size(104, 17);
-            this.chkVizuelniZavrsen.TabIndex = 391;
-            this.chkVizuelniZavrsen.Text = "Vizuelni Zavrsen";
-            this.chkVizuelniZavrsen.UseVisualStyleBackColor = true;
             // 
             // RN4PrijemPlatforme
             // 

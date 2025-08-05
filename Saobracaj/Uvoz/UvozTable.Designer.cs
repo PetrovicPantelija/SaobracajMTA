@@ -120,7 +120,7 @@ namespace Saobracaj.Uvoz
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(675, 108);
+            this.groupBox1.Size = new System.Drawing.Size(980, 108);
             this.groupBox1.TabIndex = 236;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Promena vrednosti na više selektovanih stavki";
@@ -133,7 +133,7 @@ namespace Saobracaj.Uvoz
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(555, 9);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 34);
+            this.button2.Size = new System.Drawing.Size(256, 34);
             this.button2.TabIndex = 203;
             this.button2.Text = "Primeni ";
             this.button2.UseVisualStyleBackColor = false;
@@ -182,9 +182,9 @@ namespace Saobracaj.Uvoz
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(166, 60);
+            this.button1.Location = new System.Drawing.Point(16, 60);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 33);
+            this.button1.Size = new System.Drawing.Size(260, 33);
             this.button1.TabIndex = 199;
             this.button1.Text = "Izberi";
             this.button1.UseVisualStyleBackColor = false;
@@ -269,37 +269,49 @@ namespace Saobracaj.Uvoz
             this.cboPolje.FormattingEnabled = true;
             this.cboPolje.ItemHeight = 13;
             this.cboPolje.Items.AddRange(new object[] {
+            "ETA Broda Luka",
+            "ATA broda Luka",
+            "Dobijen nalog brodara",
+            "Datum Dobijen nalog brodara",
+            "Naziv Broda",
+            "Brodar",
+            "Dobijen nal voz",
+            "Datum Dobijen nal voz",
+            "Nalogodavac za voz",
+            "Dobijen nal usluge",
+            "Datum Dobijen nal usluge",
+            "Nalogdavac za usluge",
+            "Dobijen nal drumski",
+            "Datum Dobijen nal drumski",
+            "Nalogodavac za drumski prevoz",
+            "Terminal 1",
+            "Terminal 2",
+            "Terminal 3",
             "DobijenBZ",
             "Datum BZ",
             "Prioritet",
             "PIN",
+            "FCL",
+            "LCL",
             "Broj kontejnera",
             "Vrsta kontejnera",
-            "Relacija R/L/SRB",
-            "Dirigacija kontejnera za",
             "BL",
-            "ADR",
-            "Brodar ",
-            "Vlasnik kontejnera",
-            "Nalogodavac za voz",
-            "Ref za fakturisanje 1",
-            "Nalogdavac za usluge",
-            "Ref za fakturisanje 2",
-            "Nalogodavac za drumski prevoz",
-            "Ref za fakturisanje 3",
             "Uvoznik",
+            "ADR",
+            "Vlasnik kontejnera",
             "Inspekciski tretman",
             "Špedicija-granica",
             "Špedicija-RTC Leget",
             "Carinski postupak",
             "Postupak sa robom /kontejnerom",
-            "Način pakovanja",
             "Odredišna Špedicija",
             "Carinarnica",
+            "Kontakt osoba speditera",
             "Mesto istovara",
             "Adresa utovara",
             "Kontakt osobe",
             "Naslov za slanje statusa vozila",
+            "Napomena 1",
             "E-mail za slanje statusa",
             "Napomena 2",
             "NTTO robe",
@@ -307,9 +319,10 @@ namespace Saobracaj.Uvoz
             "BTTO kontejnera",
             "BTTO robe",
             "Koleta",
-            "ATA broda u Luku Rijeka",
             "Broj plombe 1",
-            "Broj plombe 2"});
+            "Ref za fakturisanje 1",
+            "Ref za fakturisanje 2",
+            "Ref za fakturisanje 3"});
             this.cboPolje.Location = new System.Drawing.Point(16, 34);
             this.cboPolje.Margin = new System.Windows.Forms.Padding(2);
             this.cboPolje.Name = "cboPolje";
@@ -348,9 +361,9 @@ namespace Saobracaj.Uvoz
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(710, 0);
+            this.panel4.Location = new System.Drawing.Point(655, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(555, 30);
+            this.panel4.Size = new System.Drawing.Size(610, 30);
             this.panel4.TabIndex = 7;
             // 
             // panel2
@@ -361,7 +374,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(710, 33);
+            this.panel2.Size = new System.Drawing.Size(655, 33);
             this.panel2.TabIndex = 6;
             // 
             // button3
@@ -377,7 +390,7 @@ namespace Saobracaj.Uvoz
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button3.Location = new System.Drawing.Point(85, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 33);
+            this.button3.Size = new System.Drawing.Size(92, 33);
             this.button3.TabIndex = 20;
             this.button3.Text = "Refresh";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

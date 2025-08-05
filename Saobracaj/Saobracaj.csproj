@@ -3954,6 +3954,12 @@
     <Compile Include="Uvoz\UvozTable.Designer.cs">
       <DependentUpon>UvozTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\UvozZapisniciONepravilnostima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozZapisniciONepravilnostima.Designer.cs">
+      <DependentUpon>UvozZapisniciONepravilnostima.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\ZapisnikONepravilnosti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5512,6 +5518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozTable.resx">
       <DependentUpon>UvozTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozZapisniciONepravilnostima.resx">
+      <DependentUpon>UvozZapisniciONepravilnostima.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\ZapisnikONepravilnosti.resx">
       <DependentUpon>ZapisnikONepravilnosti.cs</DependentUpon>
