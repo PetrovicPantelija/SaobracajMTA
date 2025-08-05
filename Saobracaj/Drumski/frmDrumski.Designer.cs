@@ -92,6 +92,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.btnFormiranjeNaloga = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -731,13 +732,37 @@
             this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.btnFormiranjeNaloga);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1529, 40);
             this.panelHeader.TabIndex = 600;
+            // 
+            // btnFormiranjeNaloga
+            // 
+            this.btnFormiranjeNaloga.AutoSize = true;
+            this.btnFormiranjeNaloga.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFormiranjeNaloga.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnFormiranjeNaloga.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnFormiranjeNaloga.FlatAppearance.BorderSize = 0;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormiranjeNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnFormiranjeNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnFormiranjeNaloga.Location = new System.Drawing.Point(162, 0);
+            this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormiranjeNaloga.Name = "btnFormiranjeNaloga";
+            this.btnFormiranjeNaloga.Size = new System.Drawing.Size(135, 38);
+            this.btnFormiranjeNaloga.TabIndex = 22;
+            this.btnFormiranjeNaloga.Text = "Formiranje naloga";
+            this.btnFormiranjeNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormiranjeNaloga.UseVisualStyleBackColor = true;
+            this.btnFormiranjeNaloga.Visible = false;
+            this.btnFormiranjeNaloga.Click += new System.EventHandler(this.btnFormiranjeNaloga_Click);
             // 
             // panel3
             // 
@@ -819,7 +844,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1529, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1529, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -829,13 +854,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -843,7 +868,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1136,6 +1161,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).EndInit();
             this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.meniHeader.ResumeLayout(false);
             this.meniHeader.PerformLayout();
@@ -1234,5 +1260,6 @@
         private System.Windows.Forms.TextBox txtAdresaIstovara;
         private System.Windows.Forms.TextBox txtAdresaUtovara;
         private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button btnFormiranjeNaloga;
     }
 }

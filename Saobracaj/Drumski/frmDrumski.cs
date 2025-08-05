@@ -19,6 +19,7 @@ using System.Linq;
 using Saobracaj.Sifarnici;
 using System.Security.Cryptography.Xml;
 using Saobracaj.Izvoz;
+using Syncfusion.Grouping;
 
 namespace Saobracaj.Drumski
 {
@@ -156,7 +157,7 @@ namespace Saobracaj.Drumski
             con.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT	rn.ID ," +
-             "rn.NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
+             "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
@@ -174,7 +175,7 @@ namespace Saobracaj.Drumski
              "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
              "UNION " +
              "SELECT	rn.ID ," +
-             "rn.NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref, rn.MestoPreuzimanjaKontejnera, " +
+             "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref, rn.MestoPreuzimanjaKontejnera, " +
              "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
@@ -190,7 +191,7 @@ namespace Saobracaj.Drumski
              "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
              "UNION " +
              "SELECT rn.ID ," +
-             "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,uk.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
+             "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,uk.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "uk.Nalogodavac3 AS Klijent,  rn.MestoUtovara,-1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,uk.MestoIstovara AS MestoIstovara,uk.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara, (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  uk.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
@@ -211,7 +212,7 @@ namespace Saobracaj.Drumski
              "where rn.ID= " + id + " AND rn.Uvoz = 1 " +
              "UNION " +
              "SELECT rn.ID ," +
-             "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,u.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
+             "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,u.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "u.Nalogodavac3 AS Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,u.MestoIstovara AS MestoIstovara,u.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  u.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
@@ -230,7 +231,7 @@ namespace Saobracaj.Drumski
              "where rn.ID= " + id + " AND rn.Uvoz = 1" +
              "UNION " +
              "SELECT rn.ID ," +
-             "rn.NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
+             "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "rn.Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara,rn.KontaktOsobaNaIstovaru AS KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,rn.AdresaIstovara AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
@@ -343,6 +344,11 @@ namespace Saobracaj.Drumski
                 txtVozac.Enabled = false;
                 txtBrojLK.Enabled = false;
                 txtBrojTelefona.Enabled = false;
+                int NalogID = -1;
+                if (dr["NalogID"] != DBNull.Value && int.TryParse(dr["NalogID"].ToString(), out int conertedNalogID))
+                     NalogID = conertedNalogID;
+                
+                    
                 if (Uvoz == 0)
                 {
                     txtBokingBrodara.Enabled = false;
@@ -364,6 +370,7 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
+                   // button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 1)
                 {
@@ -390,25 +397,32 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
+                 //   button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 2)
                 {
+
+                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na istovaru";
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
-                    button21.Visible = true;
+                    button21.Visible = NalogID > 0 ? false : true;
+                  //  button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 3)
                 {
+                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    button21.Visible = NalogID > 0 ? false : true;
+               //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
-                    button21.Visible = true;
                 }
                 else
                 {
+                  //  button3.Visible = NalogID > 0 ? false : true;
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
@@ -427,6 +441,9 @@ namespace Saobracaj.Drumski
             txtValuta.DataSource = valSDS.Tables[0];
             txtValuta.DisplayMember = "VaNaziv";
             txtValuta.ValueMember = "VaSifra";
+
+            // postavi na default vrednost
+            txtValuta.SelectedValue = "EUR";
 
             UcitajKamione(null);
             var stv = "select ID, Ltrim(Rtrim(Naziv)) AS Naziv from StatusVozila order by Naziv";
@@ -803,7 +820,7 @@ namespace Saobracaj.Drumski
             if (!dr.HasRows)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                mestoIstovara = ins.InsMestaUtovara(cboMestoIstovara.Text.Trim());
+                mestoIstovara = ins.InsMestaUtovara(cboMestoIstovara.Text.Trim(), null);
             }
             return mestoIstovara;
         }
@@ -827,7 +844,7 @@ namespace Saobracaj.Drumski
             if (!dr.HasRows)
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
-                mestoIstovara = ins.InsMestaUtovara(cboMestoUtovara.Text.Trim());
+                mestoIstovara = ins.InsMestaUtovara(cboMestoUtovara.Text.Trim(), null);
             }
             return mestoIstovara;
         }
@@ -903,6 +920,7 @@ namespace Saobracaj.Drumski
             status = true;
             Uvoz = -1;
             ResetujVrednostiPolja();
+            FillCombo();
             button21.Visible = true;
         }
 
@@ -1099,6 +1117,17 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("Ovaj nalog nije moguće obrisati.");
                 return;
             }    
+        }
+
+        private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
+            // ostaje logika sa listom da ne bih pravila novu metodu za kreiranje naloga id, u ovom slucaju je jedna stavka jedan nalogId
+            List<int> stavke = new List<int>();
+            int ID = Convert.ToInt32(txtID.Text.Trim());
+            stavke.Add((ID));
+            isu.PostaviNalogIDNaRedove(stavke);
+
         }
     }
 }
