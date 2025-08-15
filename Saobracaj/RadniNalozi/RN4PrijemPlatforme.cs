@@ -421,7 +421,7 @@ namespace Saobracaj.RadniNalozi
      "  ,[PrijemID]      ,[NalogID]      ,[Zavrsen]," +
      "  [ZavrsenCIR]     ,[NalogRealizovaoCIR]      ,[DatumRealizacijeCIR]      ,[USkladisteCIR]     ,[ZavrsenKalmarista]" +
      "     ,[NalogRealizovaoKal]      ,IsNull(GetDate(),[DatumRealizacijeKal]) as DatumRealizacijeKal," +
-     " [VizuelniPotreban]          ,[IzUvoza]          ,[VizuelniUradio]          ,[VizuelniDatumReal]           ,[VizuelniZavrsen] FROM [dbo].[RNPrijemPlatforme]" +
+     " [VizuelniPotreban]          ,[IzUvoza]          ,[VizuelniUradio]          ,[VizuelniDatumReal]           ,[VizuelniZavrsen], PotrebanCIR  FROM [dbo].[RNPrijemPlatforme]" +
              " where ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -493,6 +493,13 @@ namespace Saobracaj.RadniNalozi
                 else
                 {
                     chkIzvoz.Checked = false;
+                }
+
+                if (dr["PotrebanCIR"].ToString() == "1")
+                { chkPotrebanCIR.Checked = true; }
+                else
+                {
+                    chkPotrebanCIR.Checked = false;
                 }
             }
 
@@ -641,6 +648,11 @@ namespace Saobracaj.RadniNalozi
         }
 
         private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
         {
 
         }

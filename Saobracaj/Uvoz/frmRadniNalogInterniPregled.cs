@@ -403,9 +403,11 @@ namespace Saobracaj.Uvoz
             {
                 select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv,   [Uradjen],  " +
                     " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                    " (select Top 1 stNapomene from UvozKonacnaNapomenePozicioniranja inner join UvozKonacna  on UvozKonacna.ID = UvozKonacnaNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = rn.BrojOsnov order by UvozKonacnaNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
                     " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje " +
 " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
-"  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
+"  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ," +
+" TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
  " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
 " [OJIzdavanja]      , o1.Naziv as Izdao " +
 " ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
@@ -447,6 +449,7 @@ namespace Saobracaj.Uvoz
 
                 select = "   SELECT rn.[ID]  ,IzvozKonacna.BrojKontejnera , VrstaManipulacije.Naziv, [Uradjen]  , " +
                     " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                    " '' as ScenarioNapomena, " +
                     "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
          " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
                     "   where IzvozKonacnaZaglavlje.ID = rn.PlanID) as VozOdlaska , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]," +
@@ -479,6 +482,7 @@ namespace Saobracaj.Uvoz
                 {
                     select = "  SELECT rn.[ID] ,UvozKonacna.BrojKontejnera , VrstaManipulacije.Naziv,  [Uradjen]  , " +
                         " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                        " '' as ScenarioNapomena, " +
                         "  (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje  inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska , " +
                         " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv," +
                         " rn.[StatusIzdavanja]  ," +
@@ -1053,40 +1057,49 @@ namespace Saobracaj.Uvoz
 
             if (Forma == "GATE IN KAMION" || Forma ==  "GATE IN KAMION IZVOZ" || Forma == "GATE IN KAMION TERMINAL")
             {
-                
-                //ZAdnja nula je Uvoz
-                if (OJ == 4)
+                if (txtRNBroj.Text == "")
                 {
-                    //
-                    MessageBox.Show("Formirate GATE IN Platforma TERMINAL");
-                    //OVDE TREBA DA URADIM TERMINALSKI GATE IN KAMION
-                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
-                    rd1.Show();
-                   // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0,4);
-                  //  prijemplat.Show();
-                }
-                else if (OJ ==2)
-                {
-                   
-                   // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
-                    MessageBox.Show("Formirate GATE IN Platforma Izvoz");
-                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
-                    rd1.Show();
+                    //ZAdnja nula je Uvoz
+                    if (OJ == 4)
+                    {
+                        //
+                        MessageBox.Show("Formirate GATE IN Platforma TERMINAL");
+                        //OVDE TREBA DA URADIM TERMINALSKI GATE IN KAMION
+                        frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                        rd1.Show();
+                        // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0,4);
+                        //  prijemplat.Show();
+                    }
+                    else if (OJ == 2)
+                    {
+
+                        // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
+                        MessageBox.Show("Formirate GATE IN Platforma Izvoz");
+                        frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                        rd1.Show();
 
 
-                   // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);
-                   // prijemplat.Show();
-                }
-                else if (OJ == 1)
-                {
-                    //Prijem platforme //Uvoz SC1
-                    MessageBox.Show("Formirate GATE IN Platforma Uvoz");
-                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
-                    rd1.Show();
-                    //   Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
-                    // prijemplat.Show();
+                        // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);
+                        // prijemplat.Show();
+                    }
+                    else if (OJ == 1)
+                    {
+                        //Prijem platforme //Uvoz SC1
+                        MessageBox.Show("Formirate GATE IN Platforma Uvoz");
+                        frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                        rd1.Show();
+                        //   Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
+                        // prijemplat.Show();
+
+                    }
 
                 }
+                else
+                {
+                    MessageBox.Show("Radni nalog je veće formiran");
+                }
+
+               
               
 
             }
@@ -1206,6 +1219,16 @@ namespace Saobracaj.Uvoz
         {
             ZapisnikONepravilnosti zon = new ZapisnikONepravilnosti(txtNALOGID.Text);
             zon.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(1));
+            fpi.Show();
+            //Kom vozu -- PLAN PRETOVARA
+            //
+            //Napraviti novi kontejner
+            //Napraviti uslugu izvoznu
         }
     }
 }

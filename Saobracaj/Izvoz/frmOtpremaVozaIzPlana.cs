@@ -156,8 +156,8 @@ namespace Saobracaj.Izvoz
 
         private void frmOtpremaVozaIzPlana_Load(object sender, EventArgs e)
         {
-            var planutovara = "select IzvozKonacnaZaglavlje.ID,(Cast(IzvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
-        " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
+            var planutovara = "select IzvozKonacnaZaglavlje.ID,(Cast(IzvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + NazivVoza + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
+            " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
             planutovaraSAD.Fill(planutovaraSDS);

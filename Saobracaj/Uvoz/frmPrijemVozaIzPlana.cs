@@ -207,6 +207,10 @@ namespace Saobracaj.Uvoz
                 cboOperater.Visible = false;
                 label3.Visible = false;
                 cboOperaterHR.Visible = false;
+                txtNapomenaVozac.Visible = true;
+                txtTelefon.Visible = true;
+                label6.Visible = true;
+                label5.Visible = true;
                 VratiKamion(RNI); // Vraca podatke o kamionu i vozacu
             }
             else {
@@ -246,13 +250,15 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" Select RegBr, Vozac, BrojTelefona, VoziloUsluga.Napomena from RadniNalogInterni inner join VoziloUsluga On VoziloUsluga.IdUsluge = RadniNalogInterni.KonkretaIDUsluge where Modul = " + IzUvoza, con); // UVoz
+            SqlCommand cmd = new SqlCommand(" Select RegBr, Vozac, BrojTelefona, VoziloUsluga.Napomena from RadniNalogInterni inner join VoziloUsluga On VoziloUsluga.IdUsluge = RadniNalogInterni.KonkretaIDUsluge where RadniNalogInterni.ID =  " + RNI + " and Modul = " + IzUvoza, con); // UVoz
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 txtRegBrKamiona.Text = dr["RegBr"].ToString();
                 txtImeVozaca.Text = dr["Vozac"].ToString();
+                txtTelefon.Text = dr["BrojTelefona"].ToString();
+                txtNapomena.Text = dr["Napomena"].ToString();
             }
 
             con.Close();
@@ -341,6 +347,7 @@ namespace Saobracaj.Uvoz
                 if (status == true)
                 {
                     //Ovde unosim Kamion Zaglavlje
+                    
                     Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
                     ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, Convert.ToInt32(cboOperaterHR.SelectedValue), OJD);
                     status = false;
@@ -381,6 +388,25 @@ namespace Saobracaj.Uvoz
             while (dr.Read())
             {
                 txtSifra.Text = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
+
+        private void ProveriDaLijeFormiranVecRN4()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as broj from RNPrijemPlatforme where NalogID = " + txtNalogID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtPostoji.Text = dr["broj"].ToString();
             }
 
             con.Close();
@@ -440,7 +466,7 @@ namespace Saobracaj.Uvoz
 
         private void frmPrijemVozaIzPlana_Load(object sender, EventArgs e)
         {
-            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(UvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
+            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(UvozKonacnaZaglavlje.ID as nvarchar(5)) + '-'  + NazivVoza  +  '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija ) as Naziv from UvozKonacnaZaglavlje " +
           " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
@@ -599,10 +625,17 @@ namespace Saobracaj.Uvoz
                     }
                     else if (chkUvoz.Checked == true)
                     {
+                        ProveriDaLijeFormiranVecRN4();
+                        if (txtPostoji.Text == "1")
+                        {
+                            MessageBox.Show("Vec je napravljen RN");
+                            return;
+                        }
                         Modul = 0; // Da li je ovo Uvoz
                         DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 4 PRIJEM PLATFORME", "Radni nalozi?", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
+
                             RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, Usluga.ToString(), Modul, txtNalogID.Text);
                             ppl.Show();
                         }

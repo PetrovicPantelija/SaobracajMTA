@@ -11,6 +11,74 @@ namespace Saobracaj.Izvoz
     {
         string connection = Sifarnici.frmLogovanje.connectionString;
 
+        public void UpdejtujPodatkeIzUvoza(int IDIzvozni, int PlanID, int RadniNalogInterniID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spPrenesiIzUvozaUIzvoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter otpremaid = new SqlParameter();
+            otpremaid.ParameterName = "@IDIzvozni";
+            otpremaid.SqlDbType = SqlDbType.Int;
+            otpremaid.Direction = ParameterDirection.Input;
+            otpremaid.Value = IDIzvozni;
+            cmd.Parameters.Add(otpremaid);
+
+            /*
+            SqlParameter planid = new SqlParameter();
+            planid.ParameterName = "@PlanID";
+            planid.SqlDbType = SqlDbType.Int;
+            planid.Direction = ParameterDirection.Input;
+            planid.Value = PlanID;
+            cmd.Parameters.Add(planid);
+            */
+
+            SqlParameter radninaloginterniid = new SqlParameter();
+            radninaloginterniid.ParameterName = "@RadniNalogInterniID";
+            radninaloginterniid.SqlDbType = SqlDbType.Int;
+            radninaloginterniid.Direction = ParameterDirection.Input;
+            radninaloginterniid.Value = RadniNalogInterniID;
+            cmd.Parameters.Add(radninaloginterniid);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+
+
 
         public void DelIzvozKonacnaSve(int ID)
         {

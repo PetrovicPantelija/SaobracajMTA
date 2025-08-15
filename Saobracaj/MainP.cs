@@ -6990,6 +6990,12 @@ namespace Saobracaj
             Saobracaj.Carinsko.frmPregledCarinskog pcar = new Carinsko.frmPregledCarinskog();
             pcar.Show();
         }
+
+        private void toolStripButton397_Click(object sender, EventArgs e)
+        {
+            UvozZapisniciONepravilnostima zon = new UvozZapisniciONepravilnostima();
+            zon.Show();
+        }
     }
     }
 
