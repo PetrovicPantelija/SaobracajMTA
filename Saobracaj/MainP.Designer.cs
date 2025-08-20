@@ -238,6 +238,7 @@ namespace Saobracaj
             this.toolStripButton177 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton178 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEx58 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripEx24 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton72 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton73 = new System.Windows.Forms.ToolStripButton();
@@ -250,7 +251,6 @@ namespace Saobracaj
             this.toolStripButton78 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton79 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton80 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripEx58 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripTabItem9 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.toolStripEx34 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton121 = new System.Windows.Forms.ToolStripButton();
@@ -3564,6 +3564,23 @@ namespace Saobracaj
             this.toolStripButton9.Text = "Evidencija poznavanja pruga i lokomotiva";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click_1);
             // 
+            // toolStripEx58
+            // 
+            this.toolStripEx58.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripEx58.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.toolStripEx58.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.toolStripEx58.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripEx58.Image = null;
+            this.toolStripEx58.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
+            this.toolStripEx58.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx58.Name = "toolStripEx58";
+            this.toolStripEx58.Office12Mode = false;
+            this.toolStripEx58.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.toolStripEx58.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripEx58.Size = new System.Drawing.Size(3, 634);
+            this.toolStripEx58.TabIndex = 5;
+            this.toolStripEx58.Text = "Finansije terminal";
+            // 
             // toolStripEx24
             // 
             this.toolStripEx24.Dock = System.Windows.Forms.DockStyle.None;
@@ -3727,23 +3744,6 @@ namespace Saobracaj
             this.toolStripButton80.Text = "Troškovi banaka";
             this.toolStripButton80.Visible = false;
             this.toolStripButton80.Click += new System.EventHandler(this.toolStripButton80_Click);
-            // 
-            // toolStripEx58
-            // 
-            this.toolStripEx58.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripEx58.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.toolStripEx58.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.toolStripEx58.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripEx58.Image = null;
-            this.toolStripEx58.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx58.Location = new System.Drawing.Point(135, 1);
-            this.toolStripEx58.Name = "toolStripEx58";
-            this.toolStripEx58.Office12Mode = false;
-            this.toolStripEx58.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx58.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx58.Size = new System.Drawing.Size(3, 634);
-            this.toolStripEx58.TabIndex = 5;
-            this.toolStripEx58.Text = "Finansije terminal";
             // 
             // toolStripTabItem9
             // 
@@ -6229,7 +6229,7 @@ namespace Saobracaj
             this.toolStripButton398.Name = "toolStripButton398";
             this.toolStripButton398.Size = new System.Drawing.Size(137, 19);
             this.toolStripButton398.Text = "Obrada uvoznih usluga";
-            this.toolStripButton398.Click += new System.EventHandler(this.toolStripButton398_Click);
+            this.toolStripButton398.Click += new System.EventHandler(this.toolStripButton398_Click_1);
             // 
             // toolStripTabItem11
             // 
