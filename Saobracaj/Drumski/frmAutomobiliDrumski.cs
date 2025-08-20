@@ -3,6 +3,7 @@ using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,12 +14,23 @@ namespace Saobracaj.Dokumenta
     {
         string Poruka = "";
         bool status = false;
+        string id = "0";
 
 
         public frmAutomobiliDrumski()
         {
             InitializeComponent();
             ChangeTextBox();
+            ucitajComboBoxove();
+
+        }
+        public frmAutomobiliDrumski(int ID)
+        {
+            id = ID.ToString();
+            InitializeComponent();
+            ChangeTextBox();
+            ucitajComboBoxove();
+            VratiPodatke(id);
 
         }
         private void PostaviVrednostZaposleni()
@@ -196,8 +208,7 @@ namespace Saobracaj.Dokumenta
             //}));    
 
         }
-      
-        private void RefreshDataGRid()
+        private void ucitajComboBoxove() 
         {
             var select5 = " select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila";
             var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -228,6 +239,10 @@ namespace Saobracaj.Dokumenta
             cboPrevoznik.DataSource = partDS.Tables[0];
             cboPrevoznik.DisplayMember = "PaNaziv";
             cboPrevoznik.ValueMember = "PaSifra";
+        }
+        private void RefreshDataGRid()
+        {
+           
 
             var select = " select a.ID as ID, " +
            "a.RegBr,vv.Naziv AS Vozilo,  Vozac, p.PaNaziv AS Prevoznik, BrojTelefona, LicnaKarta," +
@@ -377,11 +392,19 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatke(string ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection con = new SqlConnection(s_connection);
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                con.Open();
 
-            con.Open();
+                txtSifra.Text = !string.IsNullOrWhiteSpace(ID) ? ID : txtSifra.Text;
 
-            SqlCommand cmd = new SqlCommand("SELECT [ID] " +
+                if (string.IsNullOrWhiteSpace(txtSifra.Text) && string.IsNullOrWhiteSpace(ID))
+                {
+                    MessageBox.Show("Nije unet ID vozila.");
+                    return;
+                }
+
+                SqlCommand cmd = new SqlCommand("SELECT [ID] " +
              " ,[Zaposleni],[RegBr] ,[Marka],[Sluzbeni] " +
              " ,[Model],[DatumRegistracije],[GodinaProizvodnje],[Gorivo] " +
              " ,[ZapreminaMotora],[Kategorija] ,[VServisUradjen],[VServisKM] " +
@@ -392,25 +415,30 @@ namespace Saobracaj.Dokumenta
              " ,[ZGLokacija],[ZGDubinaSare],[LGDot],[LGLokacija] " +
              " ,[LGDubinaSare],[Napomena],[CistocaSpolja],[CistocaUnutra] " +
              " ,[NivoUlja],[Nepravilnosti] ,[MestoTroska], [VlasnistvoLegeta], [Vozac], [BrojTelefona], [LicnaKarta], [PartnerID] " +
-             " FROM [Automobili] " +
-             " WHERE ID=" + txtSifra.Text, con);
-            SqlDataReader dr = cmd.ExecuteReader();
+             "  FROM [Automobili] " +
+             " WHERE ID = " + txtSifra.Text, con);
 
-            while (dr.Read())
-            {
-                txtVozac.Text = dr["Vozac"].ToString().Trim();
-                txtVozacTelefon.Text = dr["BrojTelefona"].ToString().Trim();
-                txtLKVozaca.Text = dr["LicnaKarta"].ToString().Trim();
-                if (dr["VlasnistvoLegeta"].ToString() != "")
-                   cboTipVozila.SelectedValue = dr["VlasnistvoLegeta"].ToString();
-                txtRegBr.Text = dr["RegBr"].ToString().Trim();
-                if (dr["PartnerID"] != DBNull.Value && int.TryParse(dr["PartnerID"].ToString(), out int parsedPartnerID))
-                    cboPrevoznik.SelectedValue = parsedPartnerID;
-                else
-                    cboPrevoznik.SelectedValue = -1;
 
+               using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        txtVozac.Text = dr["Vozac"].ToString().Trim();
+                        txtVozacTelefon.Text = dr["BrojTelefona"].ToString().Trim();
+                        txtLKVozaca.Text = dr["LicnaKarta"].ToString().Trim();
+                        if (dr["VlasnistvoLegeta"].ToString() != "")
+                            cboTipVozila.SelectedValue = dr["VlasnistvoLegeta"].ToString();
+                        txtRegBr.Text = dr["RegBr"].ToString().Trim();
+                        string s = dr["PartnerID"].ToString();
+                        if (dr["PartnerID"] != DBNull.Value && int.TryParse(dr["PartnerID"].ToString(), out int parsedPartnerID))
+                            cboPrevoznik.SelectedValue = parsedPartnerID;
+                        else
+                            cboPrevoznik.SelectedValue = -1;
+
+                    }
+
+                }
             }
-            con.Close();
         }
 
       

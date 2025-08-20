@@ -601,7 +601,6 @@ namespace Saobracaj.Drumski
                 string statusiZaUpit = string.Join(",", statusi
                     .Select(s => s.Trim())
                     .Where(s => int.TryParse(s, out _)));
-                string condition = "";
                 var select = "select  rn.ID, " +
                                      "pa.PaNaziv as Nalogodavac, " +
                                      "i.BrojKontejnera," +
@@ -1006,7 +1005,9 @@ namespace Saobracaj.Drumski
              datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
             else if(Uvoz == 1 || Uvoz == 3)
                 datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumIstovara"].Value?.ToString();
-
+            int? radniNalogDrumskiID = 0;
+            if (dataGridView3.SelectedRows[0].Cells["ID"].Value != DBNull.Value && int.TryParse(dataGridView3.SelectedRows[0].Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
+                radniNalogDrumskiID = parsedRadniNalogDrumskiID;
             //  Uvodni tekst
             htmlBuilder.AppendLine("<p>Poštovani,</p>");
             htmlBuilder.AppendLine($"<p>Podaci vozila koje danas preuzima kontejner za <b>{nalogodavac}</b>,</p>");
@@ -1041,6 +1042,16 @@ namespace Saobracaj.Drumski
 
                 InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
                 ins.UpdateRadniNalogDrumskiPoslataNajava(Id, NajavuPoslaoKorisnik);
+                InsertFakture insf = new InsertFakture();
+                int? vecPostojiFaktura = 0;
+
+                if (radniNalogDrumskiID > 0)
+                {
+                    vecPostojiFaktura = ProveriPostojanjeRadnogNaloga(radniNalogDrumskiID);
+                    if (vecPostojiFaktura == 0)
+                        insf.InsFaktura(radniNalogDrumskiID);
+
+                }
                 htmlBuilder.AppendLine("</table>");
             }
 
@@ -1051,6 +1062,23 @@ namespace Saobracaj.Drumski
             MessageBox.Show("Podaci su kopirani u clipboard.");
 
             RefreshDataGrid3();
+        }
+
+        private int ProveriPostojanjeRadnogNaloga(int? radniNalogDrumskiID)
+        {
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM FakturaDrumski WHERE RadniNalogDrumskiID = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", radniNalogDrumskiID);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0 ? 1 : 0;
+                }
+            }
         }
 
 
@@ -1137,7 +1165,7 @@ namespace Saobracaj.Drumski
             // Kolona za upload
             DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
             uploadBtn.Name = "Upload";
-            uploadBtn.HeaderText = "Upload";
+            uploadBtn.HeaderText = "";
             uploadBtn.Text = "Dodaj";
             uploadBtn.UseColumnTextForButtonValue = true;
             uploadBtn.Width = 100;

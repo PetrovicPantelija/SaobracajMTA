@@ -1,15 +1,10 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
-using Microsoft.Ajax.Utilities;
-using Saobracaj.Dokumenta.TrainListItem;
-using Saobracaj.Pantheon_Export;
-using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Mail;
@@ -17,9 +12,7 @@ using System.Net;
 using System.Windows.Forms;
 using System.Linq;
 using Saobracaj.Sifarnici;
-using System.Security.Cryptography.Xml;
 using Saobracaj.Izvoz;
-using Syncfusion.Grouping;
 
 namespace Saobracaj.Drumski
 {

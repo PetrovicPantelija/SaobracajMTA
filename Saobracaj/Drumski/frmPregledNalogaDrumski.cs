@@ -310,16 +310,6 @@ namespace Saobracaj.Drumski
                 cellStyle.TextMargins = new GridMarginsInfo(2, 2, 2, 2);
                 cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
 
-                var typeName = gridGroupingControl1.TableModel.GetType().FullName;
-                MessageBox.Show(typeName);
-
-                //// Ako želiš još moderniji izgled:
-                //var comboRenderer = gridGroupingControl1.TableModel.CellRenderers["ComboBox"] as GridComboBoxCellRenderer;
-                //if (comboRenderer != null)
-                //{
-                //    comboRenderer.FlatStyle = FlatStyle.Flat;
-                //}
-
                 // Ukloni kolone koje ne želiš da se vide
                 var colsToRemove = new[] { "KontejnerID", "StatusID" }; // "Status" je Naziv
                 foreach (var col in colsToRemove)

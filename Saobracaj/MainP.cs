@@ -6871,6 +6871,18 @@ namespace Saobracaj
             mu.Show();
         }
 
+        private void toolStripButton399_Click(object sender, EventArgs e)
+        {
+            Drumski.frmKursnaLista mu = new Drumski.frmKursnaLista();
+            mu.Show();
+        }
+
+        private void toolStripButton398_Click(object sender, EventArgs e)
+        {
+            Drumski.frmPregledFaktura mu = new Drumski.frmPregledFaktura();
+            mu.Show();
+        }
+
         private void toolStripButton385_Click(object sender, EventArgs e)
         {
             FormCollection fc = Application.OpenForms;
