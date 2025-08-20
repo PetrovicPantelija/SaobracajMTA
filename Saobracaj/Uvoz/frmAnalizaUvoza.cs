@@ -10,6 +10,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Numerics;
 using Syncfusion.Windows.Forms.Grid;
+using Microsoft.Office.Interop.Excel;
+using Syncfusion.Grouping;
 
 namespace Saobracaj.Uvoz
 {
@@ -150,8 +152,84 @@ namespace Saobracaj.Uvoz
 
         }
 
-        private void frmAnalizaUvoza_Load(object sender, EventArgs e)
+        private void RefreshUlazneUsluge()
         {
+            gridGroupingControl2.DataSource = null;
+            var select = "";
+            select = "   SELECT UvozKonacnaVrstaManipulacije.[ID]  ,UK.BrojKontejnera, UK.BrodskaTeretnica as BL, VrstaManipulacije.Naziv as Usluga,  " +
+ " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza  where UvozKonacnaZaglavlje.ID = UK.IDNadredjeni) as VozDolaska ,  " +
+ " (select Top 1 Naziv from Scenario inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = UK.ID) as ScenarioNaziv, " +
+" TipKontenjera.Naziv as Tipkontejnera, " +
+"  UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, UvozKonacnaVrstaManipulacije.Cena, UvozKonacnaVrstaManipulacije.SaPDV, UvozKonacnaVrstaManipulacije.Objedinjena, UvozKonacnaVrstaManipulacije.StatusFakturisano, UvozKonacnaVrstaManipulacije.BrojFakture " +
+" FROM " +
+" UvozKonacna as UK " +
+" inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.IDNadredjena = UK.ID " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+" inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
+" Inner join TipKontenjera on TipKontenjera.ID = UK.TipKontejnera " +
+" order by UK.ID desc";
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+       
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd3.Expression = "StatusFakturisano =  '1'";
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+
+            GridConditionalFormatDescriptor gcfd31 = new GridConditionalFormatDescriptor();
+            gcfd31.Appearance.AnyRecordFieldCell.BackColor = Color.Blue;
+            gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd31.Expression = "StatusFakturisano =  '2'";
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+            this.gridGroupingControl2.TableDescriptor.Columns[0].Width = 50;
+            this.gridGroupingControl2.TableDescriptor.Columns[1].Width = 120;
+
+          
+
+ 
+            this.gridGroupingControl2.TableDescriptor.Columns["Objedinjena"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
+
+            //To set '1' and '0' instead of "True" and "False" 
+            this.gridGroupingControl2.TableDescriptor.Columns["Objedinjena"].Appearance.AnyRecordFieldCell.CheckBoxOptions = new GridCheckBoxCellInfo("1", "0", "", true);
+            this.gridGroupingControl2.TableDescriptor.Columns["Objedinjena"].Appearance.AnyRecordFieldCell.ReadOnly = false;
+            this.gridGroupingControl2.TableDescriptor.Columns["Objedinjena"].Appearance.AnyRecordFieldCell.Enabled = true;
+          
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl2);
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl2);
+
+
+        }
+
+        private void RefreshRadniNalogInterni()
+        {
+            gridGroupingControl1.DataSource = null;
             var select = "";
             select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, UvozKonacna.BrodskaTeretnica as BL, VrstaManipulacije.Naziv as Usluga,  " +
                 "    (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ,  [Uradjen],  " +
@@ -279,6 +357,56 @@ namespace Saobracaj.Uvoz
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
 
+        }
+
+        private void frmAnalizaUvoza_Load(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            RefreshRadniNalogInterni();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RefreshUlazneUsluge();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            if (this.gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            {
+                InsertUvozKonacna uv = new InsertUvozKonacna();
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                {
+
+                    uv.UpdUvozKonacnaManObjedinjena(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+
+                }
+            }
+
+            RefreshUlazneUsluge();
+
+        
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            if (this.gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            {
+                InsertUvozKonacna uv = new InsertUvozKonacna();
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                {
+
+                    uv.UpdUvozKonacnaManZaFakturisanje(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+
+                }
+            }
+
+            RefreshUlazneUsluge();
         }
     }
 }

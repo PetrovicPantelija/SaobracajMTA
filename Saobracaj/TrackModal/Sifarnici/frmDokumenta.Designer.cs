@@ -59,7 +59,7 @@
             this.txtSifra.Location = new System.Drawing.Point(105, 74);
             this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(156, 26);
+            this.txtSifra.Size = new System.Drawing.Size(156, 22);
             this.txtSifra.TabIndex = 114;
             // 
             // label1
@@ -70,7 +70,7 @@
             this.label1.Location = new System.Drawing.Point(12, 76);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 18);
+            this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 115;
             this.label1.Text = "Šifra:";
             // 
@@ -89,7 +89,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1179, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1179, 27);
             this.toolStrip1.TabIndex = 113;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -99,7 +99,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -109,7 +109,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -119,14 +119,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -134,7 +134,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
+            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -143,7 +143,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 28);
+            this.tsNazad.Size = new System.Drawing.Size(24, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -152,7 +152,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 28);
+            this.tsNapred.Size = new System.Drawing.Size(24, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -161,7 +161,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
+            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // dataGridView1
@@ -186,7 +186,7 @@
             this.txtNaziv.Location = new System.Drawing.Point(105, 115);
             this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(313, 26);
+            this.txtNaziv.Size = new System.Drawing.Size(313, 22);
             this.txtNaziv.TabIndex = 116;
             // 
             // label2
@@ -194,10 +194,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(14, 119);
+            this.label2.Location = new System.Drawing.Point(15, 118);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 18);
+            this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 117;
             this.label2.Text = "Naziv:";
             // 
@@ -208,7 +208,7 @@
             this.txtOznaka.Location = new System.Drawing.Point(105, 158);
             this.txtOznaka.Margin = new System.Windows.Forms.Padding(4);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(313, 26);
+            this.txtOznaka.Size = new System.Drawing.Size(313, 22);
             this.txtOznaka.TabIndex = 119;
             // 
             // label3
@@ -219,7 +219,7 @@
             this.label3.Location = new System.Drawing.Point(12, 162);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 18);
+            this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 120;
             this.label3.Text = "Oznaka:";
             // 
@@ -229,7 +229,7 @@
             this.txtDokumentIzradjuje.Location = new System.Drawing.Point(846, 74);
             this.txtDokumentIzradjuje.Margin = new System.Windows.Forms.Padding(4);
             this.txtDokumentIzradjuje.Name = "txtDokumentIzradjuje";
-            this.txtDokumentIzradjuje.Size = new System.Drawing.Size(313, 26);
+            this.txtDokumentIzradjuje.Size = new System.Drawing.Size(313, 22);
             this.txtDokumentIzradjuje.TabIndex = 121;
             // 
             // label4
@@ -240,7 +240,7 @@
             this.label4.Location = new System.Drawing.Point(611, 76);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 18);
+            this.label4.Size = new System.Drawing.Size(114, 15);
             this.label4.TabIndex = 122;
             this.label4.Text = "Dokument izrađuje:";
             // 
@@ -252,7 +252,7 @@
             this.label6.Location = new System.Drawing.Point(611, 119);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 18);
+            this.label6.Size = new System.Drawing.Size(134, 15);
             this.label6.TabIndex = 187;
             this.label6.Text = "Nacin dolaska odlaska:";
             // 
@@ -263,12 +263,12 @@
             this.cboNacinDolaskaOdlaska.Location = new System.Drawing.Point(846, 115);
             this.cboNacinDolaskaOdlaska.Margin = new System.Windows.Forms.Padding(4);
             this.cboNacinDolaskaOdlaska.Name = "cboNacinDolaskaOdlaska";
-            this.cboNacinDolaskaOdlaska.Size = new System.Drawing.Size(313, 27);
+            this.cboNacinDolaskaOdlaska.Size = new System.Drawing.Size(313, 24);
             this.cboNacinDolaskaOdlaska.TabIndex = 186;
             // 
             // frmDokumenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1179, 564);

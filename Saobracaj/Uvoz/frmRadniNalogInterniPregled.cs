@@ -1057,7 +1057,7 @@ namespace Saobracaj.Uvoz
 
             if (Forma == "GATE IN KAMION" || Forma ==  "GATE IN KAMION IZVOZ" || Forma == "GATE IN KAMION TERMINAL")
             {
-                if (txtRNBroj.Text == "")
+                if (txtRNBroj.Text == "" || txtRNBroj.Text == "0")
                 {
                     //ZAdnja nula je Uvoz
                     if (OJ == 4)

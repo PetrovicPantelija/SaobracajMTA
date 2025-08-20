@@ -177,7 +177,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(16, 189);
+            this.txtPutanja.Location = new System.Drawing.Point(12, 189);
             this.txtPutanja.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPutanja.Name = "txtPutanja";
             this.txtPutanja.Size = new System.Drawing.Size(746, 26);
