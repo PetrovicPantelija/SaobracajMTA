@@ -7009,11 +7009,7 @@ namespace Saobracaj
             zon.Show();
         }
 
-        private void toolStripButton398_Click(object sender, EventArgs e)
-        {
-            Finansije.ObradaUvoznihUsluga ouu = new Finansije.ObradaUvoznihUsluga();
-            ouu.Show();
-        }
+       
     }
     }
 
