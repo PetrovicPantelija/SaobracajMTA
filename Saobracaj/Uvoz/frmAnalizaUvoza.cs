@@ -231,13 +231,13 @@ namespace Saobracaj.Uvoz
         {
             gridGroupingControl1.DataSource = null;
             var select = "";
-            select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, UvozKonacna.BrodskaTeretnica as BL, VrstaManipulacije.Naziv as Usluga,  " +
+            select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, UvozKonacna.BrodskaTeretnica as BL, VrstaManipulacije.Naziv as Usluga, [DatumRealizacije] , " +
                 "    (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ,  [Uradjen],  " +
                     " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
                  " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
  " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
 " [OJIzdavanja]      , o1.Naziv as Izdao " +
-" ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
+" ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]       ,rn.[Napomena]  , " +
 " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
 " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
 "  rn.Pokret,  rn.TipDokPrevoza, " +

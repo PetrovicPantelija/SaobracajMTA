@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
@@ -18,6 +19,7 @@ namespace Saobracaj.Uvoz
         bool status = false;
         string pomNadredjeni = "0";
         string pomSifra = "0";
+        string pomUsluga = "0";
         public UvozDokumenta()
         {
             InitializeComponent();
@@ -141,6 +143,18 @@ namespace Saobracaj.Uvoz
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv.ColumnHeadersHeight = 30;
+        }
+
+        public UvozDokumenta(string sifra, string Nadredjeni, string Usluga)
+        {
+            InitializeComponent();
+
+            ChangeTextBox();
+
+            pomNadredjeni = Nadredjeni;
+            pomSifra = sifra;
+            pomUsluga = Usluga;
+
         }
 
         public UvozDokumenta(string sifra, string Nadredjeni)
@@ -330,7 +344,7 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (txtSifraUsluge.Text == "")
             {
-                select = " select UvozDokumentaUsluge.*from UvozVrstaManipulacije " +
+                select = " select UvozDokumentaUsluge.* from UvozVrstaManipulacije " +
  " inner join UvozDokumentaUsluge On UvozVrstaManipulacije.ID = UvozDokumentaUsluge.IDUsluge " +
  " where UvozVrstaManipulacije.IDNadredjena = " + txtSifraUvoza.Text;
             }
@@ -365,6 +379,43 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column3 = dataGridView3.Columns[2];
             dataGridView3.Columns[2].HeaderText = "Putanja";
             dataGridView3.Columns[2].Width = 550;
+        }
+
+        private void RefreshDataGridUslugaWindows()
+        {
+            var select = "";
+        
+            select = " select ID from UvozKonacnaVrstaManipulacije " +
+            " where UvozKonacnaVrstaManipulacije.ID = " + txtSifraUsluge.Text;
+           
+            int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView5.ReadOnly = true;
+            dataGridView5.DataSource = ds.Tables[0];
+
+
+            PodesiDatagridView(dataGridView3);
+
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView5.Columns[0].HeaderText = "ID";
+            dataGridView5.Columns[0].Width = 30;
+            /*
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "UslugaID";
+            dataGridView3.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "Putanja";
+            dataGridView3.Columns[2].Width = 550;
+            */
         }
 
         private void PozoviUslugu(string KontejnerID)
@@ -577,6 +628,7 @@ namespace Saobracaj.Uvoz
             {
                 foreach (DataGridViewRow row in dataGridView5.Rows)
                 {
+                    
                     if (row.Selected)
                     {
                         KopirajFajlPoTipuUsluga(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
@@ -760,6 +812,19 @@ namespace Saobracaj.Uvoz
                 chkKontejner.Checked = false;
                 chkZaVoz.Checked = true;
             }
+            if (pomUsluga == "1")
+            {
+                chkUsluge.Checked = true;
+                txtSifraUvoza.Text = pomNadredjeni;
+                txtPlanID.Text = "0";
+                txtSifraUsluge.Text = pomSifra;
+
+            
+                PozoviUslugu(txtSifraUvoza.Text);
+                RefreshDataGridUslugaWindows();
+                dataGridView5.SelectAll();
+            }
+          
            // RefreshDataGridCeoVoz();
             RefreshDataGrid();
             RefreshDataGridKontejnere();

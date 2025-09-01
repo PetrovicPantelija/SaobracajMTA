@@ -1178,7 +1178,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID + " and usluga <> 74", con);
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1223,7 +1223,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC + " and usluga <> 74", con);
+            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1513,7 +1513,7 @@ namespace Saobracaj.Uvoz
 
             if (BrojZapisaKontejnera == BSC30 && ADRSC > 0 && PunPrazan > 0 && IzabraniScenario == 0)
             {
-                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 29);
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 30);
                 if (IzabraniScenario == 1)
                 {
                     PronadjenSC = 1;
