@@ -31,11 +31,12 @@ namespace Saobracaj.RadniNalozi
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RN1PrijemVoza));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
@@ -318,34 +319,34 @@ namespace Saobracaj.RadniNalozi
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle66.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle66.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle67.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle67.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle67;
-            this.dataGridView3.Location = new System.Drawing.Point(627, 279);
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridView3.Location = new System.Drawing.Point(624, 316);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
-            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle68.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle68.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView3.RowHeadersWidth = 11;
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(464, 87);
@@ -364,7 +365,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2});
             this.tabSplitterContainer1.Size = new System.Drawing.Size(1391, 655);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
-            this.tabSplitterContainer1.SplitterPosition = 381;
+            this.tabSplitterContainer1.SplitterPosition = 417;
             this.tabSplitterContainer1.TabIndex = 352;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
@@ -438,7 +439,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1391, 381);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1391, 417);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPSTE";
             this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
@@ -615,7 +616,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNapomenaPlombe2
             // 
-            this.txtNapomenaPlombe2.Location = new System.Drawing.Point(627, 172);
+            this.txtNapomenaPlombe2.Location = new System.Drawing.Point(624, 193);
             this.txtNapomenaPlombe2.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaPlombe2.Name = "txtNapomenaPlombe2";
             this.txtNapomenaPlombe2.Size = new System.Drawing.Size(233, 20);
@@ -625,7 +626,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(629, 157);
+            this.label28.Location = new System.Drawing.Point(624, 169);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(105, 13);
@@ -636,7 +637,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label27.AutoSize = true;
             this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(624, 112);
+            this.label27.Location = new System.Drawing.Point(624, 120);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(96, 13);
@@ -647,7 +648,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(624, 13);
+            this.label22.Location = new System.Drawing.Point(624, 1);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(55, 13);
@@ -658,7 +659,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.chkZavrsenVP.AutoSize = true;
             this.chkZavrsenVP.ForeColor = System.Drawing.Color.White;
-            this.chkZavrsenVP.Location = new System.Drawing.Point(624, 92);
+            this.chkZavrsenVP.Location = new System.Drawing.Point(624, 99);
             this.chkZavrsenVP.Name = "chkZavrsenVP";
             this.chkZavrsenVP.Size = new System.Drawing.Size(141, 17);
             this.chkZavrsenVP.TabIndex = 387;
@@ -667,7 +668,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNapomenaPlombe
             // 
-            this.txtNapomenaPlombe.Location = new System.Drawing.Point(627, 135);
+            this.txtNapomenaPlombe.Location = new System.Drawing.Point(624, 142);
             this.txtNapomenaPlombe.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaPlombe.Name = "txtNapomenaPlombe";
             this.txtNapomenaPlombe.Size = new System.Drawing.Size(233, 20);
@@ -677,7 +678,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtDatumRealizacijeVP.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRealizacijeVP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRealizacijeVP.Location = new System.Drawing.Point(624, 67);
+            this.txtDatumRealizacijeVP.Location = new System.Drawing.Point(624, 72);
             this.txtDatumRealizacijeVP.Margin = new System.Windows.Forms.Padding(2);
             this.txtDatumRealizacijeVP.Name = "txtDatumRealizacijeVP";
             this.txtDatumRealizacijeVP.Size = new System.Drawing.Size(122, 20);
@@ -686,7 +687,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNalogRealizovaoVP
             // 
-            this.txtNalogRealizovaoVP.Location = new System.Drawing.Point(624, 30);
+            this.txtNalogRealizovaoVP.Location = new System.Drawing.Point(624, 24);
             this.txtNalogRealizovaoVP.Margin = new System.Windows.Forms.Padding(2);
             this.txtNalogRealizovaoVP.Name = "txtNalogRealizovaoVP";
             this.txtNalogRealizovaoVP.Size = new System.Drawing.Size(236, 20);
@@ -696,7 +697,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(624, 52);
+            this.label21.Location = new System.Drawing.Point(624, 50);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(87, 13);
@@ -707,7 +708,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(629, 194);
+            this.label23.Location = new System.Drawing.Point(624, 224);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(120, 13);
@@ -716,7 +717,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNapomenaVP
             // 
-            this.txtNapomenaVP.Location = new System.Drawing.Point(627, 213);
+            this.txtNapomenaVP.Location = new System.Drawing.Point(624, 248);
             this.txtNapomenaVP.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaVP.Multiline = true;
             this.txtNapomenaVP.Name = "txtNapomenaVP";
@@ -728,7 +729,7 @@ namespace Saobracaj.RadniNalozi
             this.label12.AutoSize = true;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(346, 14);
+            this.label12.Location = new System.Drawing.Point(346, 2);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(46, 13);
@@ -739,7 +740,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(346, 60);
+            this.label11.Location = new System.Drawing.Point(346, 55);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
@@ -757,7 +758,7 @@ namespace Saobracaj.RadniNalozi
             // txtBrojPlombe
             // 
             this.txtBrojPlombe.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBrojPlombe.Location = new System.Drawing.Point(346, 76);
+            this.txtBrojPlombe.Location = new System.Drawing.Point(346, 75);
             this.txtBrojPlombe.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrojPlombe.Name = "txtBrojPlombe";
             this.txtBrojPlombe.Size = new System.Drawing.Size(233, 20);
@@ -778,7 +779,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboUvoznik.FormattingEnabled = true;
             this.cboUvoznik.ItemHeight = 13;
-            this.cboUvoznik.Location = new System.Drawing.Point(349, 31);
+            this.cboUvoznik.Location = new System.Drawing.Point(349, 23);
             this.cboUvoznik.Margin = new System.Windows.Forms.Padding(2);
             this.cboUvoznik.Name = "cboUvoznik";
             this.cboUvoznik.Size = new System.Drawing.Size(231, 21);
@@ -831,7 +832,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(346, 239);
+            this.label19.Location = new System.Drawing.Point(346, 248);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 13);
@@ -841,7 +842,7 @@ namespace Saobracaj.RadniNalozi
             // txtNalogID
             // 
             this.txtNalogID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtNalogID.Location = new System.Drawing.Point(346, 254);
+            this.txtNalogID.Location = new System.Drawing.Point(345, 269);
             this.txtNalogID.Margin = new System.Windows.Forms.Padding(2);
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(81, 20);
@@ -864,7 +865,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(343, 288);
+            this.label2.Location = new System.Drawing.Point(342, 295);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 13);
@@ -885,7 +886,7 @@ namespace Saobracaj.RadniNalozi
             this.cboSaVoznog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.cboSaVoznog.FormattingEnabled = true;
             this.cboSaVoznog.ItemHeight = 13;
-            this.cboSaVoznog.Location = new System.Drawing.Point(346, 303);
+            this.cboSaVoznog.Location = new System.Drawing.Point(345, 316);
             this.cboSaVoznog.Margin = new System.Windows.Forms.Padding(2);
             this.cboSaVoznog.Name = "cboSaVoznog";
             this.cboSaVoznog.Size = new System.Drawing.Size(234, 21);
@@ -928,7 +929,7 @@ namespace Saobracaj.RadniNalozi
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Orange;
-            this.label20.Location = new System.Drawing.Point(20, 254);
+            this.label20.Location = new System.Drawing.Point(19, 258);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(195, 16);
@@ -939,7 +940,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(20, 285);
+            this.label8.Location = new System.Drawing.Point(20, 293);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
@@ -950,7 +951,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaSkladiste.FormattingEnabled = true;
             this.cboNaSkladiste.ItemHeight = 13;
-            this.cboNaSkladiste.Location = new System.Drawing.Point(23, 302);
+            this.cboNaSkladiste.Location = new System.Drawing.Point(25, 316);
             this.cboNaSkladiste.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaSkladiste.Name = "cboNaSkladiste";
             this.cboNaSkladiste.Size = new System.Drawing.Size(233, 21);
@@ -960,7 +961,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtNAPozicijaskladista.AutoSize = true;
             this.txtNAPozicijaskladista.ForeColor = System.Drawing.Color.White;
-            this.txtNAPozicijaskladista.Location = new System.Drawing.Point(20, 328);
+            this.txtNAPozicijaskladista.Location = new System.Drawing.Point(22, 346);
             this.txtNAPozicijaskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtNAPozicijaskladista.Name = "txtNAPozicijaskladista";
             this.txtNAPozicijaskladista.Size = new System.Drawing.Size(76, 13);
@@ -972,7 +973,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaPoziciju.FormattingEnabled = true;
             this.cboNaPoziciju.ItemHeight = 13;
-            this.cboNaPoziciju.Location = new System.Drawing.Point(23, 345);
+            this.cboNaPoziciju.Location = new System.Drawing.Point(23, 365);
             this.cboNaPoziciju.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaPoziciju.Name = "cboNaPoziciju";
             this.cboNaPoziciju.Size = new System.Drawing.Size(233, 21);
@@ -987,7 +988,7 @@ namespace Saobracaj.RadniNalozi
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(230, 208);
+            this.button2.Location = new System.Drawing.Point(228, 226);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 82);
@@ -1081,7 +1082,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(18, 184);
+            this.label7.Location = new System.Drawing.Point(18, 193);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 13);
@@ -1093,7 +1094,7 @@ namespace Saobracaj.RadniNalozi
             this.txtDatumRasporeda.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.txtDatumRasporeda.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRasporeda.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRasporeda.Location = new System.Drawing.Point(23, 208);
+            this.txtDatumRasporeda.Location = new System.Drawing.Point(22, 217);
             this.txtDatumRasporeda.Margin = new System.Windows.Forms.Padding(2);
             this.txtDatumRasporeda.Name = "txtDatumRasporeda";
             this.txtDatumRasporeda.Size = new System.Drawing.Size(131, 20);
@@ -1105,9 +1106,9 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.Controls.Add(this.dataGridView1);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 401);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 437);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1391, 254);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1391, 218);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "TABELA";
             // 
@@ -1117,29 +1118,37 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle69.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle69.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle69.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle69.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle69.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView1.Location = new System.Drawing.Point(2, 13);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1389, 241);
+            this.dataGridView1.Size = new System.Drawing.Size(1389, 205);
             this.dataGridView1.TabIndex = 214;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             // 

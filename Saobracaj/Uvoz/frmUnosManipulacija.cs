@@ -384,11 +384,11 @@ namespace Saobracaj.Uvoz
                   //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                   DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 50;
+                dataGridView6.Columns[0].Width = 70;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
-                dataGridView6.Columns[1].Width = 180;
+                dataGridView6.Columns[1].Width = 250;
 
                 DataGridViewColumn column3 = dataGridView6.Columns[2];
                 dataGridView6.Columns[2].HeaderText = "JM";
@@ -445,11 +445,11 @@ namespace Saobracaj.Uvoz
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 50;
+                dataGridView6.Columns[0].Width = 80;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
-                dataGridView6.Columns[1].Width = 180;
+                dataGridView6.Columns[1].Width = 250;
 
                 DataGridViewColumn column3 = dataGridView6.Columns[2];
                 dataGridView6.Columns[2].HeaderText = "JM";
@@ -507,11 +507,11 @@ namespace Saobracaj.Uvoz
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 50;
+                dataGridView6.Columns[0].Width = 70;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
-                dataGridView6.Columns[1].Width = 180;
+                dataGridView6.Columns[1].Width = 250;
 
                 DataGridViewColumn column3 = dataGridView6.Columns[2];
                 dataGridView6.Columns[2].HeaderText = "JM";
@@ -566,11 +566,11 @@ namespace Saobracaj.Uvoz
 
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
-                dataGridView6.Columns[0].Width = 50;
+                dataGridView6.Columns[0].Width = 70;
 
                 DataGridViewColumn column2 = dataGridView6.Columns[1];
                 dataGridView6.Columns[1].HeaderText = "Naziv";
-                dataGridView6.Columns[1].Width = 180;
+                dataGridView6.Columns[1].Width = 250;
 
                 DataGridViewColumn column3 = dataGridView6.Columns[2];
                 dataGridView6.Columns[2].HeaderText = "JM";
@@ -632,11 +632,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Naziv";
-            dataGridView6.Columns[1].Width = 180;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "JM";
@@ -702,11 +702,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Naziv";
-            dataGridView6.Columns[1].Width = 180;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "JM";
@@ -767,11 +767,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -810,11 +810,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -854,11 +854,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -899,11 +899,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -941,11 +941,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -985,11 +985,11 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[0].Width = 70;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -1178,7 +1178,29 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID, con);
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int VratiBrojScenarioS(int ID)
+        {
+            int pomBZ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1201,7 +1223,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC, con);
+            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1210,6 +1232,34 @@ namespace Saobracaj.Uvoz
                 //Izmenjeno
                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                 postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()),Convert.ToInt32(txtID.Text));
+                if (postoji == 0)
+                {
+                    konacan = 0;
+                }
+            }
+            con.Close();
+            return konacan;
+
+        }
+
+        int ProveriDaLiSuIsteManipulacijeS(int ID, int SC)
+        {
+            int postoji = 0;
+            int konacan = 1;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()), Convert.ToInt32(txtID.Text));
                 if (postoji == 0)
                 {
                     konacan = 0;
@@ -1266,6 +1316,7 @@ namespace Saobracaj.Uvoz
             int BSC1 = VratiBrojScenario(1);
             int BSC2 = VratiBrojScenario(2);
             int BSC3 = VratiBrojScenario(3);
+            int BSC3S = VratiBrojScenarioS(3);
             int BSC4 = VratiBrojScenario(4);
             int BSC5 = VratiBrojScenario(5);
             int BSC6 = VratiBrojScenario(6);
@@ -1315,8 +1366,19 @@ namespace Saobracaj.Uvoz
                     System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 2");
                 }
             }
+            if (BrojZapisaKontejnera == BSC3 && ADRSC == 0 && PunPrazan > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(3, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 3");
+                }
+            }
 
-            if (BrojZapisaKontejnera == BSC3 && ADRSC == 0 && PunPrazan > 0 && IzabraniScenario == 0)   
+            if (BrojZapisaKontejnera == BSC3S && ADRSC == 0 && PunPrazan > 0 && IzabraniScenario == 0)   
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
                 if (IzabraniScenario == 1)
@@ -1451,7 +1513,7 @@ namespace Saobracaj.Uvoz
 
             if (BrojZapisaKontejnera == BSC30 && ADRSC > 0 && PunPrazan > 0 && IzabraniScenario == 0)
             {
-                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 29);
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 30);
                 if (IzabraniScenario == 1)
                 {
                     PronadjenSC = 1;
@@ -1523,7 +1585,7 @@ namespace Saobracaj.Uvoz
 
             if (txtNadredjeni.Text == "0")
             {
-                select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
+   select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
 " UvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
 " UvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
 " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV, Pokret, KontejnerStatus.Naziv, Forma " +
@@ -1537,7 +1599,6 @@ namespace Saobracaj.Uvoz
 " join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
 " left join KontejnerStatus on  UvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
 " where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + "  and Dodatna = 0 and Administrativna = 0 order by UvozVrstaManipulacije.ID";
-
 
             }
             else

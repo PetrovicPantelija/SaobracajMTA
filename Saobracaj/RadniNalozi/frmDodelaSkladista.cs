@@ -248,7 +248,7 @@ namespace Saobracaj.RadniNalozi
 
         private void FillDGRN1()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, NaSkladiste,Skladista.Naziv as Sklad, DatumRasporeda, NalogIzdao, Voz.BrVoza,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, NaSkladiste,Skladista.Naziv as Sklad, DatumRasporeda, NalogIzdao, Voz.BrVoza, Voz.NazivVoza,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
    " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
    " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
    " inner join Skladista on Skladista.ID = NaSkladiste " +

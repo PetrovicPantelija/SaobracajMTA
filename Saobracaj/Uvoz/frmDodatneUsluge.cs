@@ -547,7 +547,7 @@ namespace Saobracaj.Uvoz
             else
             {
                 //Preraditi
-                UvozDokumenta dm = new UvozDokumenta(txtKonkretnaMan.Text,"0");
+                UvozDokumenta dm = new UvozDokumenta(txtKonkretnaMan.Text,txtBrojOsnov.Text, "1");
                 dm.Show();
             }
          

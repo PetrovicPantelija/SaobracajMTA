@@ -2966,7 +2966,7 @@ namespace Saobracaj.Uvoz
             SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
                 " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID" +
                 " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
-                RLTerminal1 + " and RLTerminali2 = " + RLTerminal2 + " AND RLTerminali3 = " + RLTerminal3 , con);
+                RLTerminal1 + " and RLTerminali2 = " + RLTerminal2  , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
 

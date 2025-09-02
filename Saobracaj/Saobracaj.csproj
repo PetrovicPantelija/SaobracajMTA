@@ -1682,6 +1682,12 @@
     <Compile Include="EDokumenta\PrimljenaDokumenta.designer.cs">
       <DependentUpon>PrimljenaDokumenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Finansije\ObradaUvoznihUsluga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Finansije\ObradaUvoznihUsluga.Designer.cs">
+      <DependentUpon>ObradaUvoznihUsluga.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMergePDF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4639,6 +4645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EDokumenta\PrimljenaDokumenta.resx">
       <DependentUpon>PrimljenaDokumenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Finansije\ObradaUvoznihUsluga.resx">
+      <DependentUpon>ObradaUvoznihUsluga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMergePDF.resx">
       <DependentUpon>frmMergePDF.cs</DependentUpon>
