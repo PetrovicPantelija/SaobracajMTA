@@ -90,7 +90,7 @@
             this.button2.TabIndex = 16;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // txtNazivDodatihFajlova
             // 
@@ -118,7 +118,7 @@
             this.button1.TabIndex = 496;
             this.button1.Text = "Odabir dokumenata";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // txtNaslov
             // 

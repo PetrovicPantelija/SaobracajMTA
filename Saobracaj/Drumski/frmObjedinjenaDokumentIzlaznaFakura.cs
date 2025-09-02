@@ -1,36 +1,28 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
-using Syncfusion.Grouping;
-using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+﻿using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
 {
-    public partial class frmPregledSkeniranihDokumenata: Form
+    public partial class frmObjedinjenaDokumentIzlaznaFakura: Form
     {
-        public int RadniNalogID;
-        private bool cellClickHandlerAttached = false;
-        public frmPregledSkeniranihDokumenata(int radniNalogId)
+        public string IzlaznaFaktura;
+        public frmObjedinjenaDokumentIzlaznaFakura(string izlaznaFaktura)
         {
             InitializeComponent();
-            RadniNalogID = radniNalogId;
-            RefreshDataGrid();
-            ChangeTextBox();
+            IzlaznaFaktura = izlaznaFaktura;
+            RefreshDataGrid1();
+            this.Text = "Objedinjena dokumentacija po izlaznoj fakturi " + IzlaznaFaktura;
         }
-
 
         private void ChangeTextBox()
         {
@@ -194,7 +186,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        private void RefreshDataGrid()
+        private void RefreshDataGrid1()
         {
             string s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection conn = new SqlConnection(s_connection);
@@ -204,36 +196,31 @@ namespace Saobracaj.Drumski
                 conn.Open();
 
                 var select = @"
-                        SELECT  d.id as DokumentID,
-                            CASE WHEN tip = 1 THEN 'Prevoznica' ELSE 'Faktura' END AS TipDokumenta,
-                            d.NazivDokumenta,
-                            d.Naslov,
-                             CONVERT(varchar, d.DatumDodavanja,104) AS DatumDodavanja,
-                            LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Korisnik,
-                            d.Putanja
-                        FROM RadniNalogDrumski rn
-                        INNER JOIN Automobili a ON rn.KamionID = a.ID
-                        INNER JOIN Partnerji p ON a.PartnerID = p.PaSifra AND p.DrumskiPrevoz = 1
-                        INNER JOIN DokumentaFaktureDrumski d ON d.FakturaDrumskiID = rn.ID
+                  SELECT 
+                        CASE WHEN d.tip = 1 THEN 'Prevoznica'  WHEN tip = 2 THEN 'Faktura' END AS TipDokumenta,
+                        CONVERT(varchar, d.DatumDodavanja,104) AS DatumUpisa,
+                        LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Skenirao,
+                        rn.RadniNalogDrumskiID,  
+                        p.PaNaziv AS Prevoznik, 
+                        a.RegBr AS RegistarskiBroj, 
+                        a.Vozac AS PodaciVozaca
+                   FROM FakturaDrumski rn 
+                        INNER JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+                        INNER JOIN RadniNalogDrumski rnd on rn.RadniNalogDrumskiID = rnd.ID
+                        INNER JOIN Automobili a ON a.ID = rnd.KamionID  and a.VoziloDrumskog = 1
+                        INNER JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        INNER JOIN DokumentaFaktureDrumski d ON d.FakturaDrumskiID = rn.RadniNalogDrumskiID
                         INNER JOIN Delavci k ON d.Dodao = k.DeSifra
-                        WHERE rn.ID = @RadniNalogID";
+                  WHERE f.IzlaznaFaktura like @IzlaznaFaktura";
 
                 // Bind baze
                 SqlDataAdapter da = new SqlDataAdapter(select, conn);
-                da.SelectCommand.Parameters.AddWithValue("@RadniNalogID", RadniNalogID);
+                da.SelectCommand.Parameters.AddWithValue("@IzlaznaFaktura", IzlaznaFaktura);
 
-               
                 var ds = new System.Data.DataSet();
                 da.Fill(ds);
                 dataGridView1.ReadOnly = true;
                 dataGridView1.DataSource = ds.Tables[0];
-            }
-
-            DodajDugmadKolonu();
-            if (!cellClickHandlerAttached)
-            {
-                dataGridView1.CellClick += dataGridView1_CellContentClick;
-                cellClickHandlerAttached = true;
             }
 
             PodesiDatagridView(dataGridView1);
@@ -241,22 +228,22 @@ namespace Saobracaj.Drumski
             dataGridView1.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
 
-            if (dataGridView1.Columns.Contains("Putanja"))
-            {
-                dataGridView1.Columns["Putanja"].Visible = false;
-            }
-            if (dataGridView1.Columns.Contains("DokumentID"))
-            {
-                dataGridView1.Columns["DokumentID"].Visible = false;
-            }
+            //if (dataGridView1.Columns.Contains("Putanja"))
+            //{
+            //    dataGridView1.Columns["Putanja"].Visible = false;
+            //}
+            //if (dataGridView1.Columns.Contains("DokumentID"))
+            //{
+            //    dataGridView1.Columns["DokumentID"].Visible = false;
+            //}
 
-            int ukupnaSirina = dataGridView1.Width;
-            int sirinaKolone = (int)(ukupnaSirina * 0.25);
+            //int ukupnaSirina = dataGridView1.Width;
+            //int sirinaKolone = (int)(ukupnaSirina * 0.25);
 
-            if (dataGridView1.Columns["NazivDokumenta"] != null)
-            {
-                dataGridView1.Columns["NazivDokumenta"].Width = sirinaKolone;
-            }
+            //if (dataGridView1.Columns["NazivDokumenta"] != null)
+            //{
+            //    dataGridView1.Columns["NazivDokumenta"].Width = sirinaKolone;
+            //}
 
         }
 
@@ -286,7 +273,7 @@ namespace Saobracaj.Drumski
                             File.Delete(putanja);
                             ins.DelDokument(dokumentID);
                             MessageBox.Show("Dokument je uspešno obrisan.");
-                            RefreshDataGrid();
+                            RefreshDataGrid1();
                         }
                         else
                         {
@@ -358,33 +345,6 @@ namespace Saobracaj.Drumski
             dgv.ColumnHeadersHeight = 30;
         }
 
-
-        private void DodajDugmadKolonu()
-        {
-            // Kolona za instrukcije
-            DataGridViewButtonColumn preuzimanjeBtn = new DataGridViewButtonColumn();
-            preuzimanjeBtn.Name = "Preuzimanje";
-            preuzimanjeBtn.HeaderText = "Preuzimanje";
-            preuzimanjeBtn.Text = "Preuzmi";
-            preuzimanjeBtn.UseColumnTextForButtonValue = true;
-            preuzimanjeBtn.Width = 100;
-
-            // Kolona za upload
-            DataGridViewButtonColumn brisanjeBtn = new DataGridViewButtonColumn();
-            brisanjeBtn.Name = "Brisanje";
-            brisanjeBtn.HeaderText = "Brisanje";
-            brisanjeBtn.Text = "Briši";
-            brisanjeBtn.UseColumnTextForButtonValue = true;
-            brisanjeBtn.Width = 100;
-
-           
-            // Dodaj ako već ne postoje
-            if (!dataGridView1.Columns.Contains("Preuzimanje"))
-                dataGridView1.Columns.Add(preuzimanjeBtn);
-
-            if (!dataGridView1.Columns.Contains("Brisanje"))
-                dataGridView1.Columns.Add(brisanjeBtn);
-        }
 
     }
 }

@@ -66,7 +66,7 @@ namespace Saobracaj.Drumski
             beleskaUlazneFakture.SqlDbType = SqlDbType.NVarChar;
             beleskaUlazneFakture.Size = 500;
             beleskaUlazneFakture.Direction = ParameterDirection.Input;
-            beleskaUlazneFakture.Value = (object)Faktura ?? DBNull.Value;
+            beleskaUlazneFakture.Value = (object)BeleskaUlazneFakture ?? DBNull.Value;
             cmd.Parameters.Add(beleskaUlazneFakture);
 
             conn.Open();
@@ -92,8 +92,8 @@ namespace Saobracaj.Drumski
                 if (!error)
                 {
                     tran.Commit();
-                    MessageBox.Show("Ažuriranje je uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    //MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 conn.Close();
             }
@@ -245,13 +245,63 @@ namespace Saobracaj.Drumski
                 if (!error)
                 {
                     tran.Commit();
-                    MessageBox.Show("Kreiranje je uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Kreiranje je uspešno završeno", "",
+                    //MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 conn.Close();
             }
             if (error)
             {
+            }
+        }
+
+        public void DelStavkaFakture(int ID)
+        {
+
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteFakturaDrumskiStavka";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            myCommand.Parameters.Add(id);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešno brisanje podataka");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Neuspešno brisanje podataka", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
             }
         }
 
@@ -492,12 +542,118 @@ namespace Saobracaj.Drumski
             }
         }
 
+        public void UpdateStatusFajla(int ID, string Status)
+
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateStatusFajla";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter status = new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.NVarChar;
+            status.Size = 50;
+            status.Direction = ParameterDirection.Input;
+            status.Value = (object)Status ?? DBNull.Value;
+            cmd.Parameters.Add(status);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                error = false;
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
         public void DelDokument(int ID)
         {
 
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteDokumentFaktureDrumski";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            myCommand.Parameters.Add(id);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešna promena podataka");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Neuspešna promena podataka", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelDokumentVozaca(int ID)
+        {
+
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteDokumentVozaca";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

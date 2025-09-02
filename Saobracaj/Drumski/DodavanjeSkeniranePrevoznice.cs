@@ -18,10 +18,11 @@ namespace Saobracaj.Drumski
     public partial class DodavanjeSkeniranePrevoznice : Form
     {
         private int radniNalogID = 0;
-        private int fakturaDrumskogID = 0;
-        public DodavanjeSkeniranePrevoznice(int ID, int FakturaDrumskogID)
+        private Dictionary<string, string> fajloviZaUpload =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        public DodavanjeSkeniranePrevoznice(int ID)
         {
-            fakturaDrumskogID = FakturaDrumskogID;
             radniNalogID = ID;
             InitializeComponent();
             ChangeTextBox();
@@ -130,149 +131,75 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnUpload_Click(object sender, EventArgs e)
         {
             try
             {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Title = "Odaberite fajlove za upload";
-                ofd.Filter = "Svi fajlovi|*.*";
-                ofd.Multiselect = true;
+                OpenFileDialog ofd = new OpenFileDialog
+                {
+                    Title = "Odaberite fajlove",
+                    Filter = "Svi fajlovi|*.*",
+                    Multiselect = true
+                };
 
                 if (ofd.ShowDialog() != DialogResult.OK)
                     return;
 
-                int zaposleniID = PostaviVrednostZaposleni();
-                string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\Prevoznice\ID_{radniNalogID}";
-
-                if (!Directory.Exists(destinacijaFolder))
-                    Directory.CreateDirectory(destinacijaFolder);
-
-                // 1) Pronadji prvi "prazan" dokument (putanja NULL ili prazan string)
-                int? prazniDokumentId = null;
-                using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
-                using (var cmd = new SqlCommand(@"
-                        SELECT TOP 1 ID
-                        FROM DokumentaFaktureDrumski
-                        WHERE FakturaDrumskiID = @fid
-                               AND (Putanja IS NULL OR LTRIM(RTRIM(Putanja)) = '')
-                        ORDER BY DatumDodavanja ASC;", con))
-                {
-                    cmd.Parameters.AddWithValue("@fid", radniNalogID); 
-                    con.Open();
-                    var o = cmd.ExecuteScalar();
-                    prazniDokumentId = (o == null || o == DBNull.Value) ? (int?)null : Convert.ToInt32(o);
-                }
-
-                //bool prviUpdate = prazniDokumentId.HasValue;
-                //InsertFakture ins = new InsertFakture();
-
-                //// 2) Obradi sve izabrane fajlove
-                //foreach (string fajl in ofd.FileNames)
-                //{
-                //    string nazivFajla = Path.GetFileName(fajl);
-                //    string destinacija = Path.Combine(destinacijaFolder, nazivFajla);
-
-                //    // Kopiraj fajl
-                //    File.Copy(fajl, destinacija, true);
-
-                //    if (prviUpdate)
-                //    {
-                //        // Ažuriraj postojeći "prazan" red -> postavi putanju, tip, dodao, datum..
-                //        ins.UpdateFajlaUBazi(
-                //            radniNalogID,
-                //            txtNaslov.Text.Trim(),
-                //            txtBeleske.Text.Trim(),
-                //            destinacija,
-                //            zaposleniID,
-                //            nazivFajla
-                //        );
-
-                //        // prviUpdate postaje false — sledeći fajlovi će ići kao INSERT
-                //        prviUpdate = false;
-                //    }
-                //    else
-                //    {
-                //        // Nema praznog reda ili je već iskorišćen -> insertuj novi zapis
-                //        ins.SnimiUFajlBazu(
-                //            radniNalogID,    
-                //            txtNaslov.Text.Trim(),
-                //            txtBeleske.Text.Trim(),
-                //            zaposleniID,
-                //            destinacija,
-                //            nazivFajla,
-                //            1); // tip
-                //    }
-
-                //    txtNazivDodatihFajlova.AppendText(nazivFajla + Environment.NewLine);
-                bool prviUpdate = prazniDokumentId.HasValue;
-                InsertFakture ins = new InsertFakture();
-
-                // Lista postojećih fajlova iz textbox-a (već učitanih iz baze)
-                var postojecePutanje = txtNazivDodatihFajlova.Text
+                // već dodati fajlovi u textbox-u
+                var postojece = txtNazivDodatihFajlova.Text
                     .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(p => p.Trim())
                     .ToList();
 
-                // 2) Obradi sve izabrane fajlove
-                foreach (string fajl in ofd.FileNames)
+                // fajlovi koji su već u bazi
+                List<string> fajloviUBazi = new List<string>();
+                using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                using (var cmd = new SqlCommand(@"
+                    SELECT NazivDokumenta
+                    FROM DokumentaFaktureDrumski
+                    WHERE FakturaDrumskiID = @fid AND Tip = 1", con))
                 {
-                    string nazivFajla = Path.GetFileName(fajl);
-                    string destinacija = Path.Combine(destinacijaFolder, nazivFajla);
-
-                    // Proveri da li već postoji
-                    if (postojecePutanje.Contains(nazivFajla, StringComparer.OrdinalIgnoreCase))
-                        continue; // preskoči duplikat
-
-                    // Kopiraj fajl
-                    File.Copy(fajl, destinacija, true);
-
-                    if (prviUpdate)
+                    cmd.Parameters.AddWithValue("@fid", radniNalogID);
+                    con.Open();
+                    using (var rdr = cmd.ExecuteReader())
                     {
-                        // Ažuriraj postojeći "prazan" red
-                        ins.UpdateFajlaUBazi(
-                            radniNalogID,
-                            txtNaslov.Text.Trim(),
-                            txtBeleske.Text.Trim(),
-                            destinacija,
-                            zaposleniID,
-                            nazivFajla,
-                            1
-                        );
-
-                        prviUpdate = false;
+                        while (rdr.Read())
+                            fajloviUBazi.Add(rdr.GetString(0));
                     }
-                    else
+                }
+
+                foreach (string fullPath in ofd.FileNames)
+                {
+                    string nazivFajla = Path.GetFileName(fullPath);
+
+                    if (postojece.Contains(nazivFajla, StringComparer.OrdinalIgnoreCase))
+                        continue; // već u textboxu
+
+                    if (fajloviUBazi.Contains(nazivFajla, StringComparer.OrdinalIgnoreCase))
                     {
-                        // Ubaci novi zapis
-                        ins.SnimiUFajlBazu(
-                            radniNalogID,
-                            txtNaslov.Text.Trim(),
-                            txtBeleske.Text.Trim(),
-                            zaposleniID,
-                            destinacija,
-                            nazivFajla,
-                            1
-                        );
+                        MessageBox.Show($"Fajl '{nazivFajla}' već postoji u bazi.");
+                        continue;
                     }
 
-                    if (!txtNazivDodatihFajlova.Text.EndsWith(Environment.NewLine))
+                    // zapamti putanju u dictionary
+                    fajloviZaUpload[nazivFajla] = fullPath;
+
+                    // upiši u textbox
+                    if (!string.IsNullOrEmpty(txtNazivDodatihFajlova.Text) &&
+                        !txtNazivDodatihFajlova.Text.EndsWith(Environment.NewLine))
                     {
                         txtNazivDodatihFajlova.AppendText(Environment.NewLine);
                     }
-
-                    // Dodaj u textbox i u listu postojećih fajlova
                     txtNazivDodatihFajlova.AppendText(nazivFajla + Environment.NewLine);
-                    postojecePutanje.Add(nazivFajla);
                 }
-
-                MessageBox.Show("Fajlovi su uspešno dodati.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Greška: " + ex.Message);
+                MessageBox.Show("Greška prilikom izbora fajlova: " + ex.Message);
             }
         }
+
 
         private int PostaviVrednostZaposleni()
         {
@@ -321,76 +248,86 @@ namespace Saobracaj.Drumski
                     {
                         txtPrevoznik.Text = dr["PaNaziv"].ToString().Trim();
                         txtRegBr.Text = dr["RegBr"].ToString().Trim();
-                        txtNaslov.Text = dr["Naslov"].ToString().Trim();
-                        txtBeleske.Text = dr["Napomena"].ToString().Trim();
-                        // Dodaj putanju iz prvog reda
-                        string nazivDokumenata = dr["NazivDokumenta"]?.ToString().Trim();
-                        if (!string.IsNullOrEmpty(nazivDokumenata))
-                            putanje.Add(nazivDokumenata);
-
-                        // Prođi kroz ostatak redova samo za Putanja
-                        while (dr.Read())
-                        {
-                            nazivDokumenata = dr["NazivDokumenta"]?.ToString().Trim();
-                            if (!string.IsNullOrEmpty(nazivDokumenata))
-                                putanje.Add(nazivDokumenata);
-                        }
 
                     }
 
                 }
-                txtNazivDodatihFajlova.Text = string.Join(Environment.NewLine, putanje);
                 
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void btnSnimi_Click(object sender, EventArgs e)
         {
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-
-            // 1. Provera da li postoji barem jedan zapis u DokumentaFaktureDrumski
-            bool postoji;
-            using (var con = new SqlConnection(s_connection))
-            using (var cmd = new SqlCommand(@"
-                SELECT COUNT(*) 
-                FROM DokumentaFaktureDrumski 
-                WHERE FakturaDrumskiID = @fid AND tip = 1;", con))
+            try
             {
-                cmd.Parameters.AddWithValue("@fid", radniNalogID);
-                con.Open();
-                postoji = (int)cmd.ExecuteScalar() > 0;
+                int zaposleniID = PostaviVrednostZaposleni();
+                int brojSnimljenihFajlova = 0;
+                string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\Prevoznica\ID_{radniNalogID}";
+
+                if (!Directory.Exists(destinacijaFolder))
+                    Directory.CreateDirectory(destinacijaFolder);
+
+                InsertFakture ins = new InsertFakture();
+
+                // svi fajlovi iz textboxa
+                var fajlovi = txtNazivDodatihFajlova.Text
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(p => p.Trim())
+                    .ToList();
+
+                if (fajloviZaUpload.Count == 0)
+                {
+                    MessageBox.Show("Nijedan fajl nije izabran za dodavanje.");
+                    return;
+                }
+
+                foreach (string nazivFajla in fajlovi)
+                {
+                    if (!fajloviZaUpload.TryGetValue(nazivFajla, out string sourcePath))
+                        MessageBox.Show($"Fajl „{nazivFajla}” već postoji i neće biti dodat ponovo.");
+
+                    bool postojiUBazi = false;
+                    using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                    using (var cmd = new SqlCommand(@"
+                            SELECT COUNT(*) 
+                            FROM DokumentaFaktureDrumski
+                            WHERE FakturaDrumskiID = @fid AND NazivDokumenta = @naziv AND Tip = 1", con))
+                    {
+                        cmd.Parameters.AddWithValue("@fid", radniNalogID);
+                        cmd.Parameters.AddWithValue("@naziv", nazivFajla);
+                        con.Open();
+                        postojiUBazi = (int)cmd.ExecuteScalar() > 0;
+                    }
+
+                    if (postojiUBazi)
+                        continue; // već postoji u bazi sa tim nazivomDokumenta, preskoči
+
+                    string destinacija = Path.Combine(destinacijaFolder, nazivFajla);
+
+                    // kopiranje fajla
+                    File.Copy(sourcePath, destinacija, true);
+
+                    // snimanje u bazu
+                    ins.SnimiUFajlBazu(
+                        radniNalogID,
+                        txtNaslov.Text.Trim(),
+                        txtBeleske.Text.Trim(),
+                        zaposleniID,
+                        destinacija,
+                        nazivFajla,
+                        1
+                    );
+                    brojSnimljenihFajlova++;
+                }
+
+                if (brojSnimljenihFajlova > 0)
+                    MessageBox.Show("Fajlovi su uspešno sačuvani.");
             }
-
-            // 2. Poziv odgovarajuće procedure
-            InsertFakture ins = new InsertFakture();
-
-            if (postoji)
+            catch (Exception ex)
             {
-                // UPDATE — ako već postoji barem jedan fajl za tu fakturu
-                ins.UpdateFajlaUBazi(
-                    radniNalogID,
-                    txtNaslov.Text.Trim(),
-                    txtBeleske.Text.Trim(),
-                    null,
-                    null,
-                    null,
-                    1
-                );
+                MessageBox.Show("Greška prilikom snimanja fajlova: " + ex.Message);
             }
-            else
-            {
-                // INSERT — ako ne postoji nijedan fajl za tu fakturu
-                ins.SnimiUFajlBazu(
-                    radniNalogID,
-                    txtNaslov.Text.Trim(),
-                    txtBeleske.Text.Trim(),
-                    null, // Putanja
-                    null, // DodaoKorisnik
-                    null, // naziv fajla
-                    1  // Tip
-                );
-            }
-
         }
     }
 }

@@ -1,29 +1,23 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
-using Syncfusion.Grouping;
-using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+﻿using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
 {
-    public partial class frmPregledSkeniranihDokumenata: Form
+    public partial class frmPregledDokumenataKamiona: Form
     {
         public int RadniNalogID;
         private bool cellClickHandlerAttached = false;
-        public frmPregledSkeniranihDokumenata(int radniNalogId)
+        public frmPregledDokumenataKamiona(int radniNalogId)
         {
             InitializeComponent();
             RadniNalogID = radniNalogId;
@@ -222,7 +216,7 @@ namespace Saobracaj.Drumski
                 SqlDataAdapter da = new SqlDataAdapter(select, conn);
                 da.SelectCommand.Parameters.AddWithValue("@RadniNalogID", RadniNalogID);
 
-               
+
                 var ds = new System.Data.DataSet();
                 da.Fill(ds);
                 dataGridView1.ReadOnly = true;
@@ -377,7 +371,7 @@ namespace Saobracaj.Drumski
             brisanjeBtn.UseColumnTextForButtonValue = true;
             brisanjeBtn.Width = 100;
 
-           
+
             // Dodaj ako već ne postoje
             if (!dataGridView1.Columns.Contains("Preuzimanje"))
                 dataGridView1.Columns.Add(preuzimanjeBtn);

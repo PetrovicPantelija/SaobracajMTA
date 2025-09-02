@@ -22,7 +22,7 @@ namespace Saobracaj.Drumski
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
                     int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz,
-                    string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt)
+                    string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni)
 
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -294,6 +294,13 @@ namespace Saobracaj.Drumski
             odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
             cmd.Parameters.Add(odredisnaSpedicijaKontakt);
 
+            SqlParameter nalogIzmenio = new SqlParameter();
+            nalogIzmenio.ParameterName = "@NalogIzmenioZaposleni";
+            nalogIzmenio.SqlDbType = SqlDbType.Int;
+            nalogIzmenio.Direction = ParameterDirection.Input;
+            nalogIzmenio.Value = NalogIzmenioZaposleni;
+            cmd.Parameters.Add(nalogIzmenio);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -332,7 +339,7 @@ namespace Saobracaj.Drumski
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
                  string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz,
-                 string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt)
+                 string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni)
 
         {
             int IDPom = 0;
@@ -604,6 +611,13 @@ namespace Saobracaj.Drumski
             odredisnaSpedicijaKontakt.Direction = ParameterDirection.Input;
             odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
             cmd.Parameters.Add(odredisnaSpedicijaKontakt);
+
+            SqlParameter nalogKreirao = new SqlParameter();
+            nalogKreirao.ParameterName = "@NalogKreiraoZaposleni";
+            nalogKreirao.SqlDbType = SqlDbType.Int;
+            nalogKreirao.Direction = ParameterDirection.Input;
+            nalogKreirao.Value = NalogKreiraoZaposleni;
+            cmd.Parameters.Add(nalogKreirao);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
@@ -1452,7 +1466,105 @@ namespace Saobracaj.Drumski
             {
             }
         }
-        
+
+        public void SnimiToken(int? RadniNalogDrumskiID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertTokens";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@RadniNalogDrumskiID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = RadniNalogDrumskiID;
+            cmd.Parameters.Add(iD);
+
+            
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
+        public void PoslateInstrukcije(int? ID, int? InstrukcijePoslaoKorisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiPoslateInstrukcije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@ID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = ID;
+            cmd.Parameters.Add(iD);
+
+            SqlParameter korisnikID = new SqlParameter();
+            korisnikID.ParameterName = "@InstrukcijePoslaoKorisnik";
+            korisnikID.SqlDbType = SqlDbType.Int;
+            korisnikID.Direction = ParameterDirection.Input;
+            korisnikID.Value = InstrukcijePoslaoKorisnik.HasValue ? (object)InstrukcijePoslaoKorisnik.Value : DBNull.Value;
+            cmd.Parameters.Add(korisnikID);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
 
     }
 }

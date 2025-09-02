@@ -1544,6 +1544,12 @@
     <Compile Include="Drumski\frmAutomobiliDrumski.Designer.cs">
       <DependentUpon>frmAutomobiliDrumski.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmBrojFaktureModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmBrojFaktureModal.Designer.cs">
+      <DependentUpon>frmBrojFaktureModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmDrumski.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1562,6 +1568,12 @@
     <Compile Include="Drumski\frmKursnaLista.Designer.cs">
       <DependentUpon>frmKursnaLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.Designer.cs">
+      <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPakovanjeKamiona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1573,6 +1585,18 @@
     </Compile>
     <Compile Include="Drumski\frmPregledArhiviranihNalogaDrumski.Designer.cs">
       <DependentUpon>frmPregledArhiviranihNalogaDrumski.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drumski\frmPregledDokumenataKamiona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPregledDokumenataKamiona.Designer.cs">
+      <DependentUpon>frmPregledDokumenataKamiona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drumski\frmPregledDokumenataVozaca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPregledDokumenataVozaca.Designer.cs">
+      <DependentUpon>frmPregledDokumenataVozaca.cs</DependentUpon>
     </Compile>
     <Compile Include="Drumski\frmPregledFajlova.cs">
       <SubType>Form</SubType>
@@ -1968,6 +1992,26 @@
     <Compile Include="Izvoz\VaganjePregled.Designer.cs">
       <DependentUpon>VaganjePregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kapija\frmKamionDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kapija\frmKamionDetalji.Designer.cs">
+      <DependentUpon>frmKamionDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kapija\frmPregledKamiona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kapija\frmPregledKamiona.Designer.cs">
+      <DependentUpon>frmPregledKamiona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kapija\frmStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kapija\frmStatus.Designer.cs">
+      <DependentUpon>frmStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kapija\InsertKapija.cs" />
+    <Compile Include="Kapija\InsertStatus.cs" />
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -2709,6 +2753,12 @@
     <Compile Include="Sifarnici\frmTerminalProces.Designer.cs">
       <DependentUpon>frmTerminalProces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmTipKomercijalnogDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmTipKomercijalnogDokumenta.Designer.cs">
+      <DependentUpon>frmTipKomercijalnogDokumenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmVagoniSerije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2926,6 +2976,7 @@
     <Compile Include="Sifarnici\InsertStausiUsluga.cs" />
     <Compile Include="Sifarnici\InsertTelegrami.cs" />
     <Compile Include="Sifarnici\InsertTimovi.cs" />
+    <Compile Include="Sifarnici\InsertTipKomercijalnogDokumenta.cs" />
     <Compile Include="Sifarnici\InsertTipPrevoza.cs" />
     <Compile Include="Sifarnici\InsertTipSaobPrevoza.cs" />
     <Compile Include="Sifarnici\InsertTipTelegrama.cs" />
@@ -4526,6 +4577,9 @@
     <EmbeddedResource Include="Drumski\frmAutomobiliDrumski.resx">
       <DependentUpon>frmAutomobiliDrumski.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmBrojFaktureModal.resx">
+      <DependentUpon>frmBrojFaktureModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmDrumski.resx">
       <DependentUpon>frmDrumski.cs</DependentUpon>
     </EmbeddedResource>
@@ -4535,11 +4589,20 @@
     <EmbeddedResource Include="Drumski\frmKursnaLista.resx">
       <DependentUpon>frmKursnaLista.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.resx">
+      <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPakovanjeKamiona.resx">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledArhiviranihNalogaDrumski.resx">
       <DependentUpon>frmPregledArhiviranihNalogaDrumski.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmPregledDokumenataKamiona.resx">
+      <DependentUpon>frmPregledDokumenataKamiona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmPregledDokumenataVozaca.resx">
+      <DependentUpon>frmPregledDokumenataVozaca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledFaktura.resx">
       <DependentUpon>frmPregledFaktura.cs</DependentUpon>
@@ -4753,6 +4816,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\VaganjeRpt.rdlc" />
     <EmbeddedResource Include="Izvoz\VaganjeRptCirada.rdlc" />
+    <EmbeddedResource Include="Kapija\frmKamionDetalji.resx">
+      <DependentUpon>frmKamionDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kapija\frmPregledKamiona.resx">
+      <DependentUpon>frmPregledKamiona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kapija\frmStatus.resx">
+      <DependentUpon>frmStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -5069,6 +5141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmTerminalProces.resx">
       <DependentUpon>frmTerminalProces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmTipKomercijalnogDokumenta.resx">
+      <DependentUpon>frmTipKomercijalnogDokumenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmVagoniSerije.resx">
       <DependentUpon>frmVagoniSerije.cs</DependentUpon>

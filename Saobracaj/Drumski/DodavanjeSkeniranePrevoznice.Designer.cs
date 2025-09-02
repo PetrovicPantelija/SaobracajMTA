@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodavanjeSkeniranePrevoznice));
             this.lblBeleške = new System.Windows.Forms.Label();
-            this.txtRegBr = new System.Windows.Forms.TextBox();
             this.lblUlaznaFaktura = new System.Windows.Forms.Label();
-            this.txtPrevoznik = new System.Windows.Forms.TextBox();
             this.lblIzlaznaFaktura = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -45,6 +43,8 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.txtNazivDodatihFajlova = new System.Windows.Forms.TextBox();
+            this.txtPrevoznik = new System.Windows.Forms.Label();
+            this.txtRegBr = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
@@ -59,14 +59,6 @@
             this.lblBeleške.TabIndex = 14;
             this.lblBeleške.Text = "Napomena:";
             // 
-            // txtRegBr
-            // 
-            this.txtRegBr.Location = new System.Drawing.Point(635, 66);
-            this.txtRegBr.Name = "txtRegBr";
-            this.txtRegBr.ReadOnly = true;
-            this.txtRegBr.Size = new System.Drawing.Size(308, 22);
-            this.txtRegBr.TabIndex = 17;
-            // 
             // lblUlaznaFaktura
             // 
             this.lblUlaznaFaktura.AutoSize = true;
@@ -75,14 +67,6 @@
             this.lblUlaznaFaktura.Size = new System.Drawing.Size(53, 16);
             this.lblUlaznaFaktura.TabIndex = 18;
             this.lblUlaznaFaktura.Text = "Naslov:";
-            // 
-            // txtPrevoznik
-            // 
-            this.txtPrevoznik.Location = new System.Drawing.Point(149, 66);
-            this.txtPrevoznik.Name = "txtPrevoznik";
-            this.txtPrevoznik.ReadOnly = true;
-            this.txtPrevoznik.Size = new System.Drawing.Size(308, 22);
-            this.txtPrevoznik.TabIndex = 21;
             // 
             // lblIzlaznaFaktura
             // 
@@ -133,7 +117,7 @@
             this.button2.TabIndex = 16;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // label1
             // 
@@ -167,7 +151,7 @@
             this.button1.TabIndex = 481;
             this.button1.Text = "Odabir dokumenata";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // commandBarController1
             // 
@@ -194,11 +178,29 @@
             this.txtNazivDodatihFajlova.Size = new System.Drawing.Size(308, 70);
             this.txtNazivDodatihFajlova.TabIndex = 487;
             // 
+            // txtPrevoznik
+            // 
+            this.txtPrevoznik.AutoSize = true;
+            this.txtPrevoznik.Location = new System.Drawing.Point(149, 69);
+            this.txtPrevoznik.Name = "txtPrevoznik";
+            this.txtPrevoznik.Size = new System.Drawing.Size(0, 16);
+            this.txtPrevoznik.TabIndex = 488;
+            // 
+            // txtRegBr
+            // 
+            this.txtRegBr.AutoSize = true;
+            this.txtRegBr.Location = new System.Drawing.Point(635, 69);
+            this.txtRegBr.Name = "txtRegBr";
+            this.txtRegBr.Size = new System.Drawing.Size(0, 16);
+            this.txtRegBr.TabIndex = 489;
+            // 
             // DodavanjeSkeniranePrevoznice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 346);
+            this.Controls.Add(this.txtRegBr);
+            this.Controls.Add(this.txtPrevoznik);
             this.Controls.Add(this.txtNazivDodatihFajlova);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -207,9 +209,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBeleske);
             this.Controls.Add(this.lblBeleške);
-            this.Controls.Add(this.txtRegBr);
             this.Controls.Add(this.lblUlaznaFaktura);
-            this.Controls.Add(this.txtPrevoznik);
             this.Controls.Add(this.lblIzlaznaFaktura);
             this.Name = "DodavanjeSkeniranePrevoznice";
             this.Text = "DodavanjeSkeniranePrevoznice";
@@ -223,9 +223,7 @@
 
         #endregion
         private System.Windows.Forms.Label lblBeleške;
-        private System.Windows.Forms.TextBox txtRegBr;
         private System.Windows.Forms.Label lblUlaznaFaktura;
-        private System.Windows.Forms.TextBox txtPrevoznik;
         private System.Windows.Forms.Label lblIzlaznaFaktura;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel3;
@@ -237,5 +235,7 @@
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.TextBox txtNazivDodatihFajlova;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label txtRegBr;
+        private System.Windows.Forms.Label txtPrevoznik;
     }
 }

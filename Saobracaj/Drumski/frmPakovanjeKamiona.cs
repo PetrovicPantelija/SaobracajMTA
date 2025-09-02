@@ -977,6 +977,28 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("Morate selektovati makar jedan red!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            int? poslataNajava = 0;
+
+            int? radniNalogDrumskiID = 0;
+            if (dataGridView3.SelectedRows[0].Cells["ID"].Value != DBNull.Value && int.TryParse(dataGridView3.SelectedRows[0].Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
+                radniNalogDrumskiID = parsedRadniNalogDrumskiID;
+
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            poslataNajava = ProveriDaLiJeNajavaPoslata (radniNalogDrumskiID);
+            if (poslataNajava > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                       "Najava za ovaj nalog je već poslata.\nDa li želite da je ponovo pošaljete?",
+                       "Upozorenje",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    return; // prekida dalje izvršavanje metode
+                }
+            }
+
             int temp = PostaviVrednostZaposleni();
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
 
@@ -1005,9 +1027,7 @@ namespace Saobracaj.Drumski
              datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
             else if(Uvoz == 1 || Uvoz == 3)
                 datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumIstovara"].Value?.ToString();
-            int? radniNalogDrumskiID = 0;
-            if (dataGridView3.SelectedRows[0].Cells["ID"].Value != DBNull.Value && int.TryParse(dataGridView3.SelectedRows[0].Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
-                radniNalogDrumskiID = parsedRadniNalogDrumskiID;
+           
             //  Uvodni tekst
             htmlBuilder.AppendLine("<p>Poštovani,</p>");
             htmlBuilder.AppendLine($"<p>Podaci vozila koje danas preuzima kontejner za <b>{nalogodavac}</b>,</p>");
@@ -1040,7 +1060,6 @@ namespace Saobracaj.Drumski
 
                 int Id = Convert.ToInt32(row.Cells["ID"].Value);
 
-                InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
                 ins.UpdateRadniNalogDrumskiPoslataNajava(Id, NajavuPoslaoKorisnik);
                 InsertFakture insf = new InsertFakture();
                 int? vecPostojiFaktura = 0;
@@ -1071,6 +1090,23 @@ namespace Saobracaj.Drumski
             {
                 conn.Open();
                 string query = "SELECT COUNT(*) FROM FakturaDrumski WHERE RadniNalogDrumskiID = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", radniNalogDrumskiID);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0 ? 1 : 0;
+                }
+            }
+        }
+
+        private int ProveriDaLiJeNajavaPoslata(int? radniNalogDrumskiID)
+        {
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM RadniNalogDrumski WHERE ID = @ID and PoslataNajava = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -1206,6 +1242,9 @@ namespace Saobracaj.Drumski
                         var row = dataGridView3.Rows[e.RowIndex];
 
                         // Čitanje vrednosti iz reda
+                        int? radniNalogDrumskiID = 0;
+                        if (row.Cells["ID"].Value != DBNull.Value && int.TryParse(row.Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
+                            radniNalogDrumskiID = parsedRadniNalogDrumskiID;
                         string kontejnerString = row.Cells["BrojKontejnera"].Value?.ToString() ?? "";
                         if (!string.IsNullOrEmpty(row.Cells["BrojKontejnera2"].Value?.ToString()))
                             kontejnerString += ", " + row.Cells["BrojKontejnera2"].Value?.ToString();
@@ -1234,6 +1273,11 @@ namespace Saobracaj.Drumski
                                         $"Posebni uslovi transporta: {napomenaZaPozicioniranje}\n" +
                                         $"Broj naloga: {brojNaloga}";
 
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.SnimiToken(radniNalogDrumskiID);
+                        int temp = PostaviVrednostZaposleni();
+                        int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
+                        ins.PoslateInstrukcije(radniNalogDrumskiID, NajavuPoslaoKorisnik);
                         // Prikaz
                         MessageBox.Show(poruka, "Tekst za Viber", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

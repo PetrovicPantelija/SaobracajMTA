@@ -23,6 +23,7 @@ namespace Saobracaj.Izvoz
         {
             InitializeComponent();
             txtSifraUvoza.Text = sifra;
+            FillCombo();
             RefreshDataGrid();
         }
 
@@ -32,12 +33,11 @@ namespace Saobracaj.Izvoz
             txtSifraUvoza.Text = sifra;
             txtSifraUvoza2.Text = Buking;
             txtSifraUvoza3.Text = Voz;
+            FillCombo();
             RefreshDataGrid();
             RefreshDataGrid2();
             RefreshDataGrid3();
         }
-
-
 
         private void RefreshDataGrid()
         {
@@ -179,6 +179,41 @@ namespace Saobracaj.Izvoz
             dataGridView3.Columns[2].Width = 550;
         }
 
+        public void FillCombo()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var val = "Select ID, Naziv, PotrebnoZaFakturu from TipKomercijalnogDokumenta order by Naziv";
+            var valSAD = new SqlDataAdapter(val, myConnection);
+            var valSDS = new DataSet();
+            valSAD.Fill(valSDS);
+            DataTable dt = valSDS.Tables[0];
+
+            // novi red
+            DataRow newRow = dt.NewRow();
+            newRow["ID"] = 0;
+            newRow["Naziv"] = ""; // prazan naziv
+            newRow["PotrebnoZaFakturu"] = DBNull.Value;
+            dt.Rows.InsertAt(newRow, 0);
+
+            // vezivanje za combo
+            cboTipDokumenta1.BindingContext = new BindingContext();
+            cboTipDokumenta1.DataSource = dt;
+            cboTipDokumenta1.DisplayMember = "Naziv";
+            cboTipDokumenta1.ValueMember = "ID";
+
+            cboTipDokumenta2.BindingContext = new BindingContext();
+            cboTipDokumenta2.DataSource = dt;
+            cboTipDokumenta2.DisplayMember = "Naziv";
+            cboTipDokumenta2.ValueMember = "ID";
+
+            cboTipDokumenta3.BindingContext = new BindingContext();
+            cboTipDokumenta3.DataSource = dt;
+            cboTipDokumenta3.DisplayMember = "Naziv";
+            cboTipDokumenta3.ValueMember = "ID";
+        }
+
+
         private void KopirajFajlPoTipu(string putanja, string FolderDestinacije, int Tip)
         {
             string fileName = ofd1.FileName; //Ovde ce trebati promena
@@ -214,7 +249,6 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-
 
         private void KopirajFajlPoTipu2(string putanja, string FolderDestinacije, int Tip)
         {
@@ -319,7 +353,15 @@ namespace Saobracaj.Izvoz
             // {
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu(txtPutanja.Text, txtSifraUvoza.Text, 6);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza.Text), txtPutanja.Text, 1);
+            // uzmi vrednost iz combo
+            int? tipDokValue = null;
+            if (cboTipDokumenta1.SelectedValue != null &&
+                int.TryParse(cboTipDokumenta1.SelectedValue.ToString(), out int tipID) &&
+                tipID > 0)
+            {
+                tipDokValue = tipID;
+            }
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza.Text), txtPutanja.Text, 1, tipDokValue);
             RefreshDataGrid();
 
             status = true;
@@ -352,8 +394,6 @@ namespace Saobracaj.Izvoz
 
                     }
                 }
-
-
             }
             catch
             {
@@ -405,7 +445,15 @@ namespace Saobracaj.Izvoz
             // 2 - buking
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu2(txtPutanja2.Text, txtSifraUvoza2.Text, 6);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza2.Text), txtPutanja2.Text, 2);
+            // uzmi vrednost iz combo
+            int? tipDokValue = null;
+            if (cboTipDokumenta2.SelectedValue != null &&
+                int.TryParse(cboTipDokumenta2.SelectedValue.ToString(), out int tipID) &&
+                tipID > 0)
+            {
+                tipDokValue = tipID;
+            }
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza2.Text), txtPutanja2.Text, 2, tipDokValue);
             RefreshDataGrid2();
 
             status = true;
@@ -421,7 +469,14 @@ namespace Saobracaj.Izvoz
             //Po vozu
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu3(txtPutanja3.Text, txtSifraUvoza3.Text, 3);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza3.Text), txtPutanja3.Text, 3);
+            int? tipDokValue = null;
+            if (cboTipDokumenta3.SelectedValue != null &&
+                int.TryParse(cboTipDokumenta3.SelectedValue.ToString(), out int tipID) &&
+                tipID > 0)
+            {
+                tipDokValue = tipID;
+            }
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza3.Text), txtPutanja3.Text, 3, tipDokValue);
             RefreshDataGrid3();
 
             status = true;
@@ -458,8 +513,6 @@ namespace Saobracaj.Izvoz
 
                     }
                 }
-
-
             }
             catch
             {
@@ -480,8 +533,6 @@ namespace Saobracaj.Izvoz
 
                     }
                 }
-
-
             }
             catch
             {
