@@ -20,6 +20,7 @@ namespace Saobracaj.Drumski
         {
             InitializeComponent();
             IzlaznaFaktura = izlaznaFaktura;
+            ChangeTextBox();
             RefreshDataGrid1();
             this.Text = "Objedinjena dokumentacija po izlaznoj fakturi " + IzlaznaFaktura;
         }
@@ -225,25 +226,7 @@ namespace Saobracaj.Drumski
 
             PodesiDatagridView(dataGridView1);
 
-            dataGridView1.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
-
-
-            //if (dataGridView1.Columns.Contains("Putanja"))
-            //{
-            //    dataGridView1.Columns["Putanja"].Visible = false;
-            //}
-            //if (dataGridView1.Columns.Contains("DokumentID"))
-            //{
-            //    dataGridView1.Columns["DokumentID"].Visible = false;
-            //}
-
-            //int ukupnaSirina = dataGridView1.Width;
-            //int sirinaKolone = (int)(ukupnaSirina * 0.25);
-
-            //if (dataGridView1.Columns["NazivDokumenta"] != null)
-            //{
-            //    dataGridView1.Columns["NazivDokumenta"].Width = sirinaKolone;
-            //}
+            dataGridView1.RowHeadersWidth = 30; 
 
         }
 

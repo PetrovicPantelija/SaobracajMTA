@@ -326,7 +326,7 @@ namespace Saobracaj.Drumski
                 a.RegBr,
                 a.BrojTelefona,
                 p.PaNaziv AS Prevoznik,
-                REPLACE(CONVERT(varchar, rn.InstrukcijePoslateDatum, 104) + ' ' + CONVERT(varchar, rn.InstrukcijePoslateDatum, 108), ':', '.') AS porukaPoslata,
+                REPLACE(CONVERT(varchar, rn.InstrukcijePoslateDatum, 104) + ' ' + CONVERT(varchar, rn.InstrukcijePoslateDatum, 108), ':', '.') AS porukaPoslata
             FROM RadniNalogDrumski rn
             INNER JOIN Automobili a ON rn.KamionID = a.ID
             INNER JOIN Partnerji p ON a.PartnerID = p.PaSifra AND p.DrumskiPrevoz = 1

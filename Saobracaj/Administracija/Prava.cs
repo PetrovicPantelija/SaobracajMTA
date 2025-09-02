@@ -187,7 +187,7 @@ namespace Saobracaj.Administracija
             }
             frm.SetProgressBarMaximum(max);
 
-            ins.DeletePravo(comboBox1.SelectedValue.ToString().TrimEnd());
+          //  ins.DeletePravo(comboBox1.SelectedValue.ToString().TrimEnd());
 
             foreach (var i in formeList)
             {

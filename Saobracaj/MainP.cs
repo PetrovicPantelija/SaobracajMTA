@@ -30,6 +30,7 @@ using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Administracija;
 using Saobracaj.Uvoz;
 using Saobracaj.Dokumenta;
+using Saobracaj.Kapija;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -38,9 +39,9 @@ namespace Saobracaj
         public MainP()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-            InitializeComponent();  
-       
-           
+            InitializeComponent();
+
+
         }
 
         public MainP(string Logovan, int Lozinka)
@@ -864,7 +865,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
-                autom.Show(); 
+                autom.Show();
             }
         }
 
@@ -2249,7 +2250,7 @@ namespace Saobracaj
 
         private void toolStripEx36_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-           
+
         }
 
         private void toolStripButton120_Click(object sender, EventArgs e)
@@ -2430,7 +2431,7 @@ namespace Saobracaj
                     snac.Show();
                 }
             }
-                
+
         }
 
         private void toolStripButton127_Click(object sender, EventArgs e)
@@ -6053,7 +6054,7 @@ namespace Saobracaj
                 frm.Show();
             }
 
-           
+
 
 
 
@@ -6321,8 +6322,8 @@ namespace Saobracaj
             foreach (Form frm in fc)
             {
                 //iterate through
-               // if (frm.Name == "TerminalOpredeljenje")
-                    if (frm.Name == "frmIzvozTerminalPovezi")
+                // if (frm.Name == "TerminalOpredeljenje")
+                if (frm.Name == "frmIzvozTerminalPovezi")
                 {
                     bFormNameOpen = true;
                     frm.Activate();
@@ -6560,12 +6561,12 @@ namespace Saobracaj
             }
 
 
-           
+
         }
 
         private void toolStripButton364_Click_2(object sender, EventArgs e)
         {
-            Izvoz.frmDopunaPlanaPraznimIzvoz ddd = new frmDopunaPlanaPraznimIzvoz();    
+            Izvoz.frmDopunaPlanaPraznimIzvoz ddd = new frmDopunaPlanaPraznimIzvoz();
             ddd.Show();
         }
 
@@ -6638,7 +6639,7 @@ namespace Saobracaj
 
         private void toolStripButton337_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton371_Click(object sender, EventArgs e)
@@ -7011,11 +7012,100 @@ namespace Saobracaj
 
         private void toolStripButton398_Click_1(object sender, EventArgs e)
         {
-         
-                Finansije.ObradaUvoznihUsluga ouu = new Finansije.ObradaUvoznihUsluga();
-                ouu.Show();
-           
+
+            Finansije.ObradaUvoznihUsluga ouu = new Finansije.ObradaUvoznihUsluga();
+            ouu.Show();
+
+        }
+
+
+        private void toolStripButton403_Click(object sender, EventArgs e)
+        {
+            Drumski.frmPregledFaktura mu = new Drumski.frmPregledFaktura();
+            mu.Show();
+        }
+
+        private void toolStripButton405_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledKamiona")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPregledKamiona sklad = new frmPregledKamiona();
+                sklad.Show();
+            }
+        }
+        private void toolStripButton402_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTipKomercijalnogDokumenta")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmTipKomercijalnogDokumenta frm = new frmTipKomercijalnogDokumenta();
+                frm.Show();
+            }
+        }
+
+        private void toolStripButton401_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmStatus")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmStatus sklad = new frmStatus();
+                sklad.Show();
+            }
+        }
+        private void toolStripButton400_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTipKomercijalnogDokumenta")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmTipKomercijalnogDokumenta frm = new frmTipKomercijalnogDokumenta();
+                frm.Show();
+            }
         }
     }
-    }
+}
 
