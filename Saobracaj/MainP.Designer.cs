@@ -539,6 +539,7 @@ namespace Saobracaj
             this.toolStripButton102 = new System.Windows.Forms.ToolStripButton();
             this.imageListAdv1 = new Syncfusion.Windows.Forms.Tools.ImageListAdv(this.components);
             this.toolStripButton386 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton410 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backStage1)).BeginInit();
@@ -7014,7 +7015,8 @@ namespace Saobracaj
             this.toolStripEx55.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx55.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton408,
-            this.toolStripButton409});
+            this.toolStripButton409,
+             this.toolStripButton410});
             this.toolStripEx55.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx55.Location = new System.Drawing.Point(45, 1);
             this.toolStripEx55.Name = "toolStripEx55";
@@ -7391,6 +7393,17 @@ namespace Saobracaj
             this.toolStripButton386.Name = "toolStripButton386";
             this.toolStripButton386.Size = new System.Drawing.Size(132, 27);
             this.toolStripButton386.Text = "Mesta utovara |";
+            // 
+            // toolStripButton410
+            // 
+            this.toolStripButton410.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton410.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton410.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton410.Image")));
+            this.toolStripButton410.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton410.Name = "toolStripButton410";
+            this.toolStripButton410.Size = new System.Drawing.Size(190, 27);
+            this.toolStripButton410.Text = "Lista arhiviranih naloga";
+            this.toolStripButton410.Click += new System.EventHandler(this.toolStripButton410_Click);
             // 
             // MainP
             // 
@@ -8055,5 +8068,6 @@ namespace Saobracaj
         private System.Windows.Forms.ToolStripButton toolStripButton401;
         private System.Windows.Forms.ToolStripButton toolStripButton400;
         private System.Windows.Forms.ToolStripButton toolStripButton402;
+        private System.Windows.Forms.ToolStripButton toolStripButton410;
     }
 }
