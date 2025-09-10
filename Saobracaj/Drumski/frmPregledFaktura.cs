@@ -159,10 +159,10 @@ namespace Saobracaj.Drumski
                         VZ AS
                         (
                             SELECT 
-                                uf.NalogId AS RNID,
+                                uf.RadniNalogDrumskiID AS RNID,
                                 count(uf.Id) AS BrojDokumenata
                             FROM UploadedFiles uf
-                            GROUP BY uf.NalogId
+                            GROUP BY uf.RadniNalogDrumskiID
                         )
                         -- 1)
                         SELECT  
@@ -700,7 +700,7 @@ namespace Saobracaj.Drumski
             object idONalog = record.GetValue("NalogID");
             if (idONalog == null || idONalog == DBNull.Value)
             {
-                MessageBox.Show("ID je nevažeći.");
+                MessageBox.Show("NalogID je nevažeći.");
                 return;
             }
 
@@ -708,6 +708,33 @@ namespace Saobracaj.Drumski
             int idNalog = Convert.ToInt32(idONalog);
 
             using (var frm = new frmPregledDokumenataVozaca(id, idNalog))
+                frm.ShowDialog();
+        }
+
+        private void toolStripDokumentaKamiona_Click(object sender, EventArgs e)
+        {
+            
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            object idONalog = record.GetValue("NalogID");
+            if (idONalog == null || idONalog == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            int id = Convert.ToInt32(idObj);
+            int idNalog = Convert.ToInt32(idONalog);
+
+            using (var frm = new frmPregledDokumenataKamiona(id))
                 frm.ShowDialog();
         }
     }

@@ -1117,7 +1117,22 @@ namespace Saobracaj.Drumski
             }
         }
 
+        private int ProveriDaLiJePorukaPoslata(int? radniNalogDrumskiID)
+        {
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM RadniNalogDrumski WHERE ID = @ID and InstrukcijePoslate = 1";
 
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", radniNalogDrumskiID);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0 ? 1 : 0;
+                }
+            }
+        }
         private void SetClipboardHtml(string html)
         {
             string header =
@@ -1230,7 +1245,8 @@ namespace Saobracaj.Drumski
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 )
             {
- 
+
+                int poslateInstrukcije = 0;
                 var grid = dataGridView3;
                 var kolona = grid.Columns[e.ColumnIndex].Name;
 
@@ -1240,12 +1256,28 @@ namespace Saobracaj.Drumski
                     if (dataGridView3.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
                     {
                         var row = dataGridView3.Rows[e.RowIndex];
-
-                        // Čitanje vrednosti iz reda
                         int? radniNalogDrumskiID = 0;
                         if (row.Cells["ID"].Value != DBNull.Value && int.TryParse(row.Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
                             radniNalogDrumskiID = parsedRadniNalogDrumskiID;
                         string kontejnerString = row.Cells["BrojKontejnera"].Value?.ToString() ?? "";
+
+                        poslateInstrukcije = ProveriDaLiJePorukaPoslata(radniNalogDrumskiID);
+                        if (poslateInstrukcije > 0)
+                        {
+                            DialogResult result = MessageBox.Show(
+                                   "Za ovaj nalog instrukcije su već poslate.\nDa li želite da je ponovo pošaljete?",
+                                   "Upozorenje",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+
+                            if (result == DialogResult.No)
+                            {
+                                return; // prekida dalje izvršavanje metode
+                            }
+                        }
+
+                        // Čitanje vrednosti iz reda
+                      
                         if (!string.IsNullOrEmpty(row.Cells["BrojKontejnera2"].Value?.ToString()))
                             kontejnerString += ", " + row.Cells["BrojKontejnera2"].Value?.ToString();
                         string datumUtovara = row.Cells["DatumUtovara"].Value?.ToString();

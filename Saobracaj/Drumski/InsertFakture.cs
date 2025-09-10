@@ -447,6 +447,83 @@ namespace Saobracaj.Drumski
             }
         }
 
+        public void SnimiUFajlBazuKamioni(string NazivDokumenta, string Putanja, int? DodaoKorisnik, int RadniNalogID, int DodaoVozac)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertDokumentaUploadedFiles";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter nazivDokumenta = new SqlParameter();
+            nazivDokumenta.ParameterName = "@NazivDokumenta";
+            nazivDokumenta.SqlDbType = SqlDbType.NVarChar;
+            nazivDokumenta.Size = 255;
+            nazivDokumenta.Direction = ParameterDirection.Input;
+            nazivDokumenta.Value = (object)NazivDokumenta ?? DBNull.Value;
+            cmd.Parameters.Add(nazivDokumenta);
+
+            SqlParameter putanja = new SqlParameter();
+            putanja.ParameterName = "@Putanja";
+            putanja.SqlDbType = SqlDbType.NVarChar;
+            putanja.Size = 500;
+            putanja.Direction = ParameterDirection.Input;
+            putanja.Value = (object)Putanja ?? DBNull.Value;
+            cmd.Parameters.Add(putanja);
+
+            SqlParameter dodaoKorisnik = new SqlParameter();
+            dodaoKorisnik.ParameterName = "@DodaoKorisnik";
+            dodaoKorisnik.SqlDbType = SqlDbType.Int;
+            dodaoKorisnik.Direction = ParameterDirection.Input;
+            dodaoKorisnik.Value = DodaoKorisnik.HasValue ? (object)DodaoKorisnik.Value : DBNull.Value;
+            cmd.Parameters.Add(dodaoKorisnik);
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@RadniNalogID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = RadniNalogID;
+            cmd.Parameters.Add(iD);
+
+
+            SqlParameter dodaoVozac = new SqlParameter();
+            dodaoVozac.ParameterName = "@DodaoVozac";
+            dodaoVozac.SqlDbType = SqlDbType.Int;
+            dodaoVozac.Direction = ParameterDirection.Input;
+            dodaoVozac.Value = DodaoVozac;
+            cmd.Parameters.Add(dodaoVozac);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
 
         public void UpdateFajlaUBazi(int FakturaDrumskogID, string Naslov, string Napomena, string Putanja, int? DodaoKorisnik, string NazivDokumenta, int Tip)
 
@@ -542,7 +619,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public void UpdateStatusFajla(int ID, string Status)
+        public void UpdateStatusFajla(int ID, string Status, string Tabela)
 
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -564,6 +641,14 @@ namespace Saobracaj.Drumski
             status.Direction = ParameterDirection.Input;
             status.Value = (object)Status ?? DBNull.Value;
             cmd.Parameters.Add(status);
+
+            SqlParameter tabela = new SqlParameter();
+            tabela.ParameterName = "@Tabela";
+            tabela.SqlDbType = SqlDbType.NVarChar;
+            tabela.Size = 100;
+            tabela.Direction = ParameterDirection.Input;
+            tabela.Value = Tabela;
+            cmd.Parameters.Add(tabela);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
@@ -648,7 +733,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public void DelDokumentVozaca(int ID)
+        public void DelDokumentVozaca(int ID, string Tabela)
         {
 
             SqlConnection myConnection = new SqlConnection(connect);
@@ -663,6 +748,14 @@ namespace Saobracaj.Drumski
             id.Value = ID;
             myCommand.Parameters.Add(id);
 
+            SqlParameter tabela = new SqlParameter();
+            tabela.ParameterName = "@Tabela";
+            tabela.SqlDbType = SqlDbType.NVarChar;
+            tabela.Size = 100;
+            tabela.Direction = ParameterDirection.Input;
+            tabela.Value = Tabela;
+            myCommand.Parameters.Add(tabela);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -675,9 +768,11 @@ namespace Saobracaj.Drumski
                 myCommand.Transaction = myTransaction;
             }
 
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešna promena podataka");
+                //throw new Exception("Neuspešna promena podataka");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                myTransaction.Rollback(); // Ne zaboravi i rollback
             }
 
             finally
@@ -687,6 +782,7 @@ namespace Saobracaj.Drumski
                     myTransaction.Commit();
                     MessageBox.Show("Neuspešna promena podataka", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
                 }
                 myConnection.Close();

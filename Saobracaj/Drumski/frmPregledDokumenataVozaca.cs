@@ -1,16 +1,9 @@
-﻿using Saobracaj.Testiranje;
-using Syncfusion.Windows.Forms;
+﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -351,13 +344,21 @@ namespace Saobracaj.Drumski
 
                 // --- Dokumenta ---
                 string queryDocs = @"
-                SELECT u.ID AS DokumentID,
-                       u.FileName,
-                       u.FilePath,
-                       REPLACE(CONVERT(varchar, u.UploadedAT, 104) + ' ' + CONVERT(varchar, u.UploadedAT, 108), ':', '.') AS DatumDodavanja,
-                       Status as Status
-                FROM UploadedFiles u
-                WHERE u.NalogID = @RadniNalogID";
+                    SELECT u.ID AS DokumentID,
+                           u.FileName AS NazivFajla,
+                           u.FilePath AS FilePath,
+                           REPLACE(CONVERT(varchar, u.UploadedAT, 104) + ' ' + CONVERT(varchar, u.UploadedAT, 108), ':', '.') AS DatumDodavanja,
+                           Status, 'UploadedFiles' as Tabela
+                    FROM UploadedFiles u
+                    WHERE u.RadniNalogDrumskiID = @RadniNalogID
+                    UNION
+		            SELECT u.ID AS DokumentID,
+		                    u.NazivFajla,
+		                    u.Putanja as FilePath,
+		                    REPLACE(CONVERT(varchar, u.DatumDodavanja, 104) + ' ' + CONVERT(varchar, u.DatumDodavanja, 108), ':', '.') AS DatumDodavanja,
+		                    Status, 'DokumentaRadnogNalogaDrumski' as Tabela
+		            FROM DokumentaRadnogNalogaDrumski u
+		            WHERE u.RadniNalogDrumskiID = @RadniNalogID";
 
                 DataTable dtDocs = new DataTable();
                 using (SqlDataAdapter daDocs = new SqlDataAdapter(queryDocs, conn))
@@ -392,7 +393,8 @@ namespace Saobracaj.Drumski
                 // Sakrij interne kolone
                 dataGridView1.Columns["FilePath"].Visible = false;
                 dataGridView1.Columns["DokumentID"].Visible = false;
-                dataGridView1.Columns["FileName"].Visible = false;
+                dataGridView1.Columns["NazivFajla"].Visible = false;
+                dataGridView1.Columns["Tabela"].Visible = false;
 
                 // Stilizacija
                 dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -487,16 +489,18 @@ namespace Saobracaj.Drumski
             var dgv = sender as DataGridView;
             DataRowView row = dgv.Rows[e.RowIndex].DataBoundItem as DataRowView;
             var ins = new InsertFakture();
+            string tabela = row["Tabela"].ToString();
+            int dokumentId = Convert.ToInt32(row["DokumentID"]);
 
             if (dgv.Columns[e.ColumnIndex].Name == "Akcija")
             {
                 if (e.Location.X >= 5 && e.Location.X <= 50)
                 {
-                    ins.UpdateStatusFajla(Convert.ToInt32(row["DokumentID"]), "Dobar");
+                    ins.UpdateStatusFajla(dokumentId, "Dobar",  tabela);
                 }
                 else if (e.Location.X >= 60 && e.Location.X <= 100)
                 {
-                    ins.UpdateStatusFajla(Convert.ToInt32(row["DokumentID"]), "Loš");
+                    ins.UpdateStatusFajla(dokumentId, "Loš", tabela);
                 }
                 RefreshData();
             }
@@ -544,12 +548,11 @@ namespace Saobracaj.Drumski
                 var ins = new InsertFakture();
                 int dokumentID = Convert.ToInt32(row["DokumentID"]);
                 string putanja = row["FilePath"].ToString();
-         
-
+                string tabela = row["Tabela"].ToString();
                 if (File.Exists(putanja))
                 {
+                    ins.DelDokumentVozaca(dokumentID, tabela);
                     File.Delete(putanja);
-                    ins.DelDokumentVozaca(dokumentID);
                     MessageBox.Show("Dokument je uspešno obrisan.");
                     RefreshData();
                 }

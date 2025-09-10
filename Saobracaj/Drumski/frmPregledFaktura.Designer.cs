@@ -166,6 +166,7 @@
             this.toolStripDokumentaKamiona.Name = "toolStripDokumentaKamiona";
             this.toolStripDokumentaKamiona.Size = new System.Drawing.Size(422, 24);
             this.toolStripDokumentaKamiona.Text = "Pregled dokumenata vezanih za ovaj kamion";
+            this.toolStripDokumentaKamiona.Click += new System.EventHandler(this.toolStripDokumentaKamiona_Click);
             // 
             // toolStripSkeniranaDokumentacija
             // 
