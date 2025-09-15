@@ -1243,7 +1243,7 @@ namespace Saobracaj.Dokumenta
                 Convert.ToInt32(cboPosiljalac.SelectedValue), "",
                 Convert.ToInt32(cboPrimalac.SelectedValue), "", Convert.ToInt32(cboVlasnikKontejnera.SelectedValue),
                 "", 0, 0, Convert.ToInt32(0),
-                "",0, Convert.ToDecimal(txtTaraTerminal.Value), 0,0,0,0,0,0,0,0, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(DateTime.Now), 0, 0, Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now));
+                "",0, Convert.ToDecimal(txtTaraTerminal.Value), 0,0,0,0,0,0,0,0, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(DateTime.Now), 0, 0, Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now),0);
 
 //
            // TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value),  TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value), 

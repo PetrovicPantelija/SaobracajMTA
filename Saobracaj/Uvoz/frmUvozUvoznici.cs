@@ -42,7 +42,7 @@ namespace Saobracaj.Uvoz
             {
                 txtID.Text = "0";
             }
-            var select = " SELECT     UvozUvoznici.ID, Naziv  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
+            var select = " SELECT     UvozUvoznici.ID, Naziv, PaDMAtSt as PIB  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -300,7 +300,7 @@ namespace Saobracaj.Uvoz
 
 
                 InsertUvozKonacna ins = new InsertUvozKonacna();
-                ins.InsUvozUvoznici(Convert.ToInt32(txtID.Text), row.Cells[0].Value.ToString());
+                ins.InsUvozUvoznici(Convert.ToInt32(txtID.Text), row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
 
 
             }

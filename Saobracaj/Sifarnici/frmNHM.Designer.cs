@@ -119,10 +119,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 462);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 585);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(728, 156);
+            this.dataGridView1.Size = new System.Drawing.Size(728, 33);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -131,13 +131,13 @@
             this.txtNaziv.Location = new System.Drawing.Point(288, 98);
             this.txtNaziv.Multiline = true;
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(233, 58);
+            this.txtNaziv.Size = new System.Drawing.Size(447, 138);
             this.txtNaziv.TabIndex = 3;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(285, 66);
+            this.lblNaziv.Location = new System.Drawing.Point(285, 82);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(37, 13);
             this.lblNaziv.TabIndex = 8;
@@ -336,7 +336,7 @@
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(726, 202);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(726, 325);
             this.gridGroupingControl1.TabIndex = 468;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;

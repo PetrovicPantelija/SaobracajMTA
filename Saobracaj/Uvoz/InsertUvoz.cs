@@ -19,7 +19,7 @@ namespace Saobracaj.Uvoz
 string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, int Terminalska, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3,
 int PotvrdioKlijent, int UradilaCarina,
              int TFDobijenNalog, int TFDobijenNalogodavac1, DateTime dtpDobijenNalogodavac1, int TFDobijenNalogodavac2, DateTime dtpDobijenNalogodavac2,
-                int TFDobijenNalogodavac3, DateTime dtpDobijenNalogodavac3 , int TFFCL, int TFLCL, DateTime dtpPotvrdioKlijent, DateTime dtpSlobodanDaNapusti)
+                int TFDobijenNalogodavac3, DateTime dtpDobijenNalogodavac3 , int TFFCL, int TFLCL, DateTime dtpPotvrdioKlijent, DateTime dtpSlobodanDaNapusti, int DrumskaUsluga)
         {
 
 
@@ -255,7 +255,7 @@ int PotvrdioKlijent, int UradilaCarina,
             SqlParameter mail = new SqlParameter();
             mail.ParameterName = "@Email";
             mail.SqlDbType = SqlDbType.NVarChar;
-            mail.Size = 50;
+            mail.Size = 300;
             mail.Direction = ParameterDirection.Input;
             mail.Value = Mail;
             cmd.Parameters.Add(mail);
@@ -604,6 +604,13 @@ int PotvrdioKlijent, int UradilaCarina,
             lcl.Direction = ParameterDirection.Input;
             lcl.Value = TFLCL;
             cmd.Parameters.Add(lcl);
+
+            SqlParameter drumskausluga  = new SqlParameter();
+            drumskausluga.ParameterName = "@DrumskaUsluga";
+            drumskausluga.SqlDbType = SqlDbType.Int;
+            drumskausluga.Direction = ParameterDirection.Input;
+            drumskausluga.Value = DrumskaUsluga;
+            cmd.Parameters.Add(drumskausluga);
 
 
 

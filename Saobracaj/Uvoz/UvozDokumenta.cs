@@ -20,6 +20,7 @@ namespace Saobracaj.Uvoz
         string pomNadredjeni = "0";
         string pomSifra = "0";
         string pomUsluga = "0";
+        int IzForme = 0;
         public UvozDokumenta()
         {
             InitializeComponent();
@@ -165,6 +166,7 @@ namespace Saobracaj.Uvoz
            
             pomNadredjeni = Nadredjeni;
             pomSifra = sifra;
+            IzForme = 1;
         
         }
 
@@ -257,7 +259,7 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (txtPlanID.Text == "0")
             { 
-            select = "select ID, BrojKontejnera from Uvoz";
+            select = "select ID, BrojKontejnera from Uvoz where BrojKontejnera is not null";
             
             }
             else
@@ -288,9 +290,27 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column2 = dataGridView4.Columns[1];
             dataGridView4.Columns[1].HeaderText = "Kontejner";
             dataGridView4.Columns[1].Width = 150;
+            if (IzForme == 1)
+            {
+                SelektujPozvaniKontejner();
+            }
+      
 
         }
+        private void SelektujPozvaniKontejner()
+        {
+            dataGridView4.ClearSelection();
 
+            // Select rows where the value in the first cell is greater than 10
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[0].Value) == Convert.ToInt32(txtSifraUvoza.Text))
+                {
+                    row.Selected = true;
+                }
+            }
+
+        }
 
         private void RefreshDataGridUslugaSvePoVozu()
         {
@@ -617,7 +637,7 @@ namespace Saobracaj.Uvoz
                     if (row.Selected)
                     {
                         KopirajFajlPoTipu(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
-                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text);
+                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text,0);
                         
 
                     }

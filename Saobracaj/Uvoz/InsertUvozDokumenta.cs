@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertUvozDokumenta
     {
-        public void InsUvozDokumenta(int IDUvoz, string Putanja)
+        public void InsUvozDokumenta(int IDUvoz, string Putanja, int TipDokValue)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -32,6 +32,13 @@ namespace Saobracaj.Uvoz
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@TipDokValue";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = TipDokValue;
+            myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

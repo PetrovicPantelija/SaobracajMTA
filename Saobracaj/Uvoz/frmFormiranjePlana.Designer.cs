@@ -226,7 +226,7 @@ namespace Saobracaj.Uvoz
             this.nmrTrenutnaTezina.Location = new System.Drawing.Point(481, 147);
             this.nmrTrenutnaTezina.Margin = new System.Windows.Forms.Padding(2);
             this.nmrTrenutnaTezina.Maximum = new decimal(new int[] {
-            99999,
+            999999999,
             0,
             0,
             0});
@@ -240,7 +240,7 @@ namespace Saobracaj.Uvoz
             this.nmrMAXTezina.Location = new System.Drawing.Point(361, 147);
             this.nmrMAXTezina.Margin = new System.Windows.Forms.Padding(2);
             this.nmrMAXTezina.Maximum = new decimal(new int[] {
-            99999,
+            999999999,
             0,
             0,
             0});
@@ -459,7 +459,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1171, 279);
+            this.dataGridView2.Size = new System.Drawing.Size(1171, 280);
             this.dataGridView2.TabIndex = 59;
             // 
             // commandBarController1
