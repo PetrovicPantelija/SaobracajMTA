@@ -134,15 +134,16 @@ namespace Saobracaj.Drumski
             int? izlaznaID = null;
             int? ulaznaID = null;
             int? fakturaDrumskogID = null;
+            int izmena = 0;
 
             // 1. Provera da li postoje zapisi
             using (var con = new SqlConnection(s_connection))
             using (var cmd = new SqlCommand(@"
-        SELECT MAX(rn.ID) as ID,
-            MAX(CASE WHEN f.TipFakture = 0 THEN f.ID END) AS IzlaznaID,
-            MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
-        FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
-        WHERE rn.RadniNalogDrumskiID = @fid;", con))
+            SELECT MAX(rn.ID) as ID,
+                MAX(CASE WHEN f.TipFakture = 0 THEN f.ID END) AS IzlaznaID,
+                MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
+            FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+            WHERE rn.RadniNalogDrumskiID = @fid;", con))
             {
                 cmd.Parameters.AddWithValue("@fid", @RadniNalogID);
 
@@ -171,11 +172,13 @@ namespace Saobracaj.Drumski
                 {
                     // Insert
                     ins.InsStavkeFakture(0, fakturaDrumskogID, txtIzlaznaFaktura.Text.Trim(), null, null, datumIzlazne);
+                    izmena = 1;
                 }
                 else
                 {
                     // Update
                     ins.UpdateFakturaDrumskiStavka(0, izlaznaID, txtIzlaznaFaktura.Text.Trim(), datumIzlazne, null);
+                    izmena = 1;
                 }
             }
 
@@ -187,13 +190,17 @@ namespace Saobracaj.Drumski
                 {
                     // Insert
                     ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtUlaznaFaktura.Text.Trim(), txtBeleske.Text.Trim(), null);
+                    izmena = 1;
                 }
                 else
                 {
                     // Update
                     ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtUlaznaFaktura.Text.Trim(), null, txtBeleske.Text.Trim());
+                    izmena = 1;
                 }
             }
+            if (izmena == 1)
+                MessageBox.Show("Podaci su uspešno sačuvani.");
         }
 
         private void VratiPodatke()
@@ -269,7 +276,7 @@ namespace Saobracaj.Drumski
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (var frm = new DodavanjeSkeniranePrevoznice(RadniNalogID, FakturaID))
+            using (var frm = new DodavanjeSkeniranePrevoznice(RadniNalogID))
                 frm.ShowDialog();
         }
 
@@ -283,6 +290,21 @@ namespace Saobracaj.Drumski
         {
             using (var frm = new frmPregledSkeniranihDokumenata(RadniNalogID))
                 frm.ShowDialog();
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Da li ste sigurni da želite obrisati detalje fakture?", "Potvrda",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+
+                // Ovde ide DELETE 
+                var ins = new InsertFakture();
+                ins.DelStavkaFakture(FakturaID);
+                VratiPodatke();
+
+                MessageBox.Show("Uspešno obrisani podaci.");
+            }
         }
     }
 }

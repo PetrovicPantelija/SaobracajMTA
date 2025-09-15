@@ -40,6 +40,7 @@
             this.toolStripDokumentiVozaca = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripObjedinjenaDokumenta = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDokumentaKamiona = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSkeniranaDokumentacija = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
@@ -66,6 +67,7 @@
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
             this.gridGroupingControl1.Size = new System.Drawing.Size(1401, 564);
             this.gridGroupingControl1.TabIndex = 476;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
@@ -119,9 +121,10 @@
             this.toolStripPregledKamiona,
             this.toolStripDokumentiVozaca,
             this.toolStripObjedinjenaDokumenta,
-            this.toolStripDokumentaKamiona});
+            this.toolStripDokumentaKamiona,
+            this.toolStripSkeniranaDokumentacija});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(423, 148);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(423, 200);
             // 
             // toolStripPregledFakture
             // 
@@ -149,18 +152,27 @@
             this.toolStripDokumentiVozaca.Name = "toolStripDokumentiVozaca";
             this.toolStripDokumentiVozaca.Size = new System.Drawing.Size(422, 24);
             this.toolStripDokumentiVozaca.Text = "Pregled skeniranih dokumenata vozača";
+            this.toolStripDokumentiVozaca.Click += new System.EventHandler(this.toolStripDokumentiVozaca_Click);
             // 
             // toolStripObjedinjenaDokumenta
             // 
             this.toolStripObjedinjenaDokumenta.Name = "toolStripObjedinjenaDokumenta";
             this.toolStripObjedinjenaDokumenta.Size = new System.Drawing.Size(422, 24);
             this.toolStripObjedinjenaDokumenta.Text = "Objedinjena dokumentacija po broju izlazne fakture";
+            this.toolStripObjedinjenaDokumenta.Click += new System.EventHandler(this.toolStripObjedinjenaDokumenta_Click);
             // 
             // toolStripDokumentaKamiona
             // 
             this.toolStripDokumentaKamiona.Name = "toolStripDokumentaKamiona";
             this.toolStripDokumentaKamiona.Size = new System.Drawing.Size(422, 24);
             this.toolStripDokumentaKamiona.Text = "Pregled dokumenata vezanih za ovaj kamion";
+            this.toolStripDokumentaKamiona.Click += new System.EventHandler(this.toolStripDokumentaKamiona_Click);
+            // 
+            // toolStripSkeniranaDokumentacija
+            // 
+            this.toolStripSkeniranaDokumentacija.Name = "toolStripSkeniranaDokumentacija";
+            this.toolStripSkeniranaDokumentacija.Size = new System.Drawing.Size(422, 24);
+            this.toolStripSkeniranaDokumentacija.Text = "Dodaj skeniranu dokumentaciju";
             // 
             // frmPregledFaktura
             // 
@@ -193,5 +205,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripObjedinjenaDokumenta;
         private System.Windows.Forms.ToolStripMenuItem toolStripDokumentaKamiona;
         private System.Windows.Forms.ToolStripMenuItem toolStripPregledNaloga;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSkeniranaDokumentacija;
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Linq;
 using Saobracaj.Sifarnici;
 using Saobracaj.Izvoz;
+using System.Windows.Controls;
 
 namespace Saobracaj.Drumski
 {
@@ -67,7 +68,7 @@ namespace Saobracaj.Drumski
                 //}
 
 
-                foreach (Control control in this.Controls)
+                foreach (System.Windows.Forms.Control control in this.Controls)
                 {
 
                     if (control is System.Windows.Forms.TextBox textBox)
@@ -749,6 +750,8 @@ namespace Saobracaj.Drumski
             if (Uvoz != 1 && Uvoz != 0)
                 odredisnaSpedicijaKontakt = string.IsNullOrWhiteSpace(txtOdredisnaSpedicijaKontakt.Text) ? null : txtOdredisnaSpedicijaKontakt.Text.Trim();
 
+            int zaposleniID = PostaviVrednostZaposleni();
+
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             if (status == true)
             {
@@ -760,7 +763,7 @@ namespace Saobracaj.Drumski
 
                 int noviID = ins.InsRadniNalogDrumski(tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
-                   bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt);
+                   bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
 
                 txtID.Text = noviID.ToString();
                 status = false;
@@ -769,7 +772,7 @@ namespace Saobracaj.Drumski
             {
                 ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
-                   brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt);
+                   brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
             }
         }
 
@@ -1121,6 +1124,97 @@ namespace Saobracaj.Drumski
             stavke.Add((ID));
             isu.PostaviNalogIDNaRedove(stavke);
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            int radniNalogDrumskiID = Convert.ToInt32(txtID.Text);
+            int zaposleniID = PostaviVrednostZaposleni();
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Odaberite fajl za upload";
+            ofd.Filter = "Svi fajlovi|*.*";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string izabraniFajl = ofd.FileName;
+                string ekstenzija = Path.GetExtension(izabraniFajl);
+                string cleanName = Path.GetFileNameWithoutExtension(izabraniFajl);
+
+                // Očisti naziv fajla od nedozvoljenih karaktera
+                string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
+
+                // Putanja na server
+                string targetPath = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
+                string destinacija = Path.Combine(targetPath, nazivFajla);
+
+                try
+                {
+                    // Ako ne postoji folder, napravi ga
+                    if (!Directory.Exists(targetPath))
+                        Directory.CreateDirectory(targetPath);
+
+                    // Provera da li fajl već postoji
+                    if (File.Exists(destinacija))
+                    {
+                        DialogResult result = MessageBox.Show("Fajl sa istim imenom već postoji. Da li želite da ga zamenite?",
+                                                              "Upozorenje",
+                                                              MessageBoxButtons.YesNo,
+                                                              MessageBoxIcon.Warning);
+
+                        if (result != DialogResult.Yes)
+                            return; // korisnik ne želi da zameni fajl
+                    }
+
+                    // Kopiraj fajl
+                    File.Copy(izabraniFajl, destinacija, true);
+
+                    // Snimi u bazu
+                    InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                    ins.SnimiUFajlBazu(radniNalogDrumskiID, nazivFajla, destinacija, zaposleniID);
+
+                    MessageBox.Show("Fajl uspešno sačuvan i evidentiran u bazi.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greška prilikom kopiranja fajla: " + ex.Message);
+                }
+            }
+        }
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            int radniNalogID = Convert.ToInt32(txtID.Text);
+
+            frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
+            pregled.ShowDialog();
+            
         }
     }
 }

@@ -1,33 +1,27 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
-using Syncfusion.Grouping;
-using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+﻿using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
 {
-    public partial class frmPregledSkeniranihDokumenata: Form
+    public partial class frmPregledDokumenataKamiona: Form
     {
         public int RadniNalogID;
-        private bool cellClickHandlerAttached = false;
-        public frmPregledSkeniranihDokumenata(int radniNalogId)
+        private Dictionary<string, string> fajloviZaUpload =
+           new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        public frmPregledDokumenataKamiona(int radniNalogId)
         {
             InitializeComponent();
             RadniNalogID = radniNalogId;
-            RefreshDataGrid();
             ChangeTextBox();
         }
 
@@ -193,198 +187,201 @@ namespace Saobracaj.Drumski
             }
         }
 
-
-        private void RefreshDataGrid()
+        private void btnOdaberi_Click(object sender, EventArgs e)
         {
-            string s_connection = Sifarnici.frmLogovanje.connectionString;
-            SqlConnection conn = new SqlConnection(s_connection);
-            List<string> statusi = new List<string>();
-            using (conn)
+            using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                conn.Open();
+                ofd.Multiselect = true;
+                ofd.Title = "Odabir dokumenata";
+                ofd.Filter = "Svi fajlovi|*.*";
 
-                var select = @"
-                        SELECT  d.id as DokumentID,
-                            CASE WHEN tip = 1 THEN 'Prevoznica' ELSE 'Faktura' END AS TipDokumenta,
-                            d.NazivDokumenta,
-                            d.Naslov,
-                             CONVERT(varchar, d.DatumDodavanja,104) AS DatumDodavanja,
-                            LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Korisnik,
-                            d.Putanja
-                        FROM RadniNalogDrumski rn
-                        INNER JOIN Automobili a ON rn.KamionID = a.ID
-                        INNER JOIN Partnerji p ON a.PartnerID = p.PaSifra AND p.DrumskiPrevoz = 1
-                        INNER JOIN DokumentaFaktureDrumski d ON d.FakturaDrumskiID = rn.ID
-                        INNER JOIN Delavci k ON d.Dodao = k.DeSifra
-                        WHERE rn.ID = @RadniNalogID";
-
-                // Bind baze
-                SqlDataAdapter da = new SqlDataAdapter(select, conn);
-                da.SelectCommand.Parameters.AddWithValue("@RadniNalogID", RadniNalogID);
-
-               
-                var ds = new System.Data.DataSet();
-                da.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
-            }
-
-            DodajDugmadKolonu();
-            if (!cellClickHandlerAttached)
-            {
-                dataGridView1.CellClick += dataGridView1_CellContentClick;
-                cellClickHandlerAttached = true;
-            }
-
-            PodesiDatagridView(dataGridView1);
-
-            dataGridView1.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
-
-
-            if (dataGridView1.Columns.Contains("Putanja"))
-            {
-                dataGridView1.Columns["Putanja"].Visible = false;
-            }
-            if (dataGridView1.Columns.Contains("DokumentID"))
-            {
-                dataGridView1.Columns["DokumentID"].Visible = false;
-            }
-
-            int ukupnaSirina = dataGridView1.Width;
-            int sirinaKolone = (int)(ukupnaSirina * 0.25);
-
-            if (dataGridView1.Columns["NazivDokumenta"] != null)
-            {
-                dataGridView1.Columns["NazivDokumenta"].Width = sirinaKolone;
-            }
-
-        }
-
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-
-                var grid = dataGridView1;
-                var kolona = grid.Columns[e.ColumnIndex].Name;
-                var ins = new InsertFakture();
-
-                if (kolona == "Brisanje")
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-
-                    if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                    foreach (string fajl in ofd.FileNames)
                     {
-                        var row = dataGridView1.Rows[e.RowIndex];
-
-                        // Čitanje vrednosti iz reda
-                        int dokumentID = row.Cells["DokumentID"].Value == null ? 0 : Convert.ToInt32(row.Cells["DokumentID"].Value);
-                        string putanja = row.Cells["Putanja"].Value?.ToString() ?? "";
-
-                        if (File.Exists(putanja))
-                        {
-                            File.Delete(putanja);
-                            ins.DelDokument(dokumentID);
-                            MessageBox.Show("Dokument je uspešno obrisan.");
-                            RefreshDataGrid();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Dokument ne postoji na zadatoj lokaciji.");
-                        }
-                    }
-                }
-
-                if (kolona == "Preuzimanje")
-                {
-                    if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-                    {
-                        var row = dataGridView1.Rows[e.RowIndex];
-                        {
-                            string putanja = row.Cells["Putanja"].Value?.ToString() ?? "";
-
-                            if (!string.IsNullOrEmpty(putanja) && File.Exists(putanja))
-                            {
-                                using (SaveFileDialog sfd = new SaveFileDialog())
-                                {
-                                    sfd.FileName = Path.GetFileName(putanja);
-                                    sfd.Filter = "Svi fajlovi|*.*";
-
-                                    if (sfd.ShowDialog() == DialogResult.OK)
-                                    {
-                                        try
-                                        {
-                                            File.Copy(putanja, sfd.FileName, true);
-                                            MessageBox.Show("Fajl je uspešno preuzet.");
-                                        }
-                                        catch (IOException ex)
-                                        {
-                                            MessageBox.Show("Greška pri preuzimanju fajla: " + ex.Message);
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Fajl ne postoji na serveru.");
-                            }
-                        }
+                        DodajFajlUListu(fajl);
                     }
                 }
             }
         }
 
-        private void PodesiDatagridView(DataGridView dgv)
+        //private void btnObrisi_Click(object sender, EventArgs e)
+        //{
+        //    if (lstFajlovi.SelectedItem != null)
+        //    {
+        //        lstFajlovi.Items.Remove(lstFajlovi.SelectedItem);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Odaberite fajl iz liste koji želite da obrišete.");
+        //    }
+        //}
+        private void btnObrisi_Click(object sender, EventArgs e)
         {
+            if (lstFajlovi.SelectedItem != null)
+            {
+                string nazivFajla = lstFajlovi.SelectedItem.ToString();
 
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
+                // ukloni iz dictionary
+                if (fajloviZaUpload.ContainsKey(nazivFajla))
+                {
+                    fajloviZaUpload.Remove(nazivFajla);
+                }
 
-            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+                // ukloni iz liste
+                lstFajlovi.Items.Remove(lstFajlovi.SelectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Odaberite fajl iz liste koji želite da obrišete.");
+            }
+        }
+        private void panelDrop_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;  // ovo dozvoljava drop
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
 
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 30;
         }
 
-
-        private void DodajDugmadKolonu()
+        private void panelDrop_DragDrop(object sender, DragEventArgs e)
         {
-            // Kolona za instrukcije
-            DataGridViewButtonColumn preuzimanjeBtn = new DataGridViewButtonColumn();
-            preuzimanjeBtn.Name = "Preuzimanje";
-            preuzimanjeBtn.HeaderText = "Preuzimanje";
-            preuzimanjeBtn.Text = "Preuzmi";
-            preuzimanjeBtn.UseColumnTextForButtonValue = true;
-            preuzimanjeBtn.Width = 100;
+            string[] fajlovi = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-            // Kolona za upload
-            DataGridViewButtonColumn brisanjeBtn = new DataGridViewButtonColumn();
-            brisanjeBtn.Name = "Brisanje";
-            brisanjeBtn.HeaderText = "Brisanje";
-            brisanjeBtn.Text = "Briši";
-            brisanjeBtn.UseColumnTextForButtonValue = true;
-            brisanjeBtn.Width = 100;
+            foreach (string fajl in fajlovi)
+            {
+                DodajFajlUListu(fajl);
+            }
+            ;
+            MessageBox.Show("Prevuceno fajlova: " + fajlovi.Length);
+            // ovde možeš dodati logiku za upload
+        }
 
-           
-            // Dodaj ako već ne postoje
-            if (!dataGridView1.Columns.Contains("Preuzimanje"))
-                dataGridView1.Columns.Add(preuzimanjeBtn);
+        //private void DodajFajlUListu(string fajl)
+        //{
+        //    if (!lstFajlovi.Items.Contains(fajl))
+        //    {
+        //        lstFajlovi.Items.Add(fajl);
+        //        fajloviZaUpload.Add();
+        //    }
+        //}
+        private void DodajFajlUListu(string fajl)
+        {
+            string nazivFajla = Path.GetFileName(fajl);
 
-            if (!dataGridView1.Columns.Contains("Brisanje"))
-                dataGridView1.Columns.Add(brisanjeBtn);
+            if (!fajloviZaUpload.ContainsKey(nazivFajla))
+            {
+                // Dodaj u dictionary (ključ = naziv, vrednost = puna putanja)
+                fajloviZaUpload[nazivFajla] = fajl;
+
+                // Dodaj u listbox za prikaz
+                lstFajlovi.Items.Add(nazivFajla);
+            }
+            else
+            {
+                MessageBox.Show($"Fajl „{nazivFajla}” je već dodat.");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int zaposleniID = PostaviVrednostZaposleni();
+                int brojSnimljenihFajlova = 0;
+                string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\Kamion\ID_{RadniNalogID}";
+
+                if (!Directory.Exists(destinacijaFolder))
+                    Directory.CreateDirectory(destinacijaFolder);
+
+                InsertFakture ins = new InsertFakture();
+
+                // svi fajlovi iz textboxa
+                var fajlovi = lstFajlovi.Text
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(p => p.Trim())
+                    .ToList();
+
+                if (fajloviZaUpload.Count == 0)
+                {
+                    MessageBox.Show("Nijedan fajl nije izabran za dodavanje.");
+                    return;
+                }
+                foreach (var kvp in fajloviZaUpload)
+                {
+                    string nazivFajla = kvp.Key;
+                    string sourcePath = kvp.Value;
+
+                    bool postojiUBazi = false;
+                    using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                    using (var cmd = new SqlCommand(@"
+                            SELECT COUNT(*) 
+                            FROM UploadedFiles
+                            WHERE RadniNalogDrumskiID = @fid 
+                              AND FileName = @naziv 
+                              AND (UploadedByVozac = 0 OR UploadedByVozac IS NULL)", con))
+                    {
+                        cmd.Parameters.AddWithValue("@fid", RadniNalogID);
+                        cmd.Parameters.AddWithValue("@naziv", nazivFajla);
+                        con.Open();
+                        postojiUBazi = (int)cmd.ExecuteScalar() > 0;
+                    }
+
+                    if (postojiUBazi)
+                        continue;
+
+                    string destinacija = Path.Combine(destinacijaFolder, nazivFajla);
+
+                    // kopiraj fajl
+                    File.Copy(sourcePath, destinacija, true);
+
+                    // snimi u bazu
+                    ins.SnimiUFajlBazuKamioni(        
+                        nazivFajla,
+                        destinacija,
+                        zaposleniID,
+                        RadniNalogID,
+                        0
+                    );
+                    brojSnimljenihFajlova++;
+                }
+                if (brojSnimljenihFajlova > 0)
+                    MessageBox.Show("Fajlovi su uspešno sačuvani.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška prilikom snimanja fajlova: " + ex.Message);
+            }
+        }
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            "FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "WHERE Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
         }
 
     }
 }
+

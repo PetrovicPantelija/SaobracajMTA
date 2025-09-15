@@ -12,6 +12,7 @@ using Syncfusion.Grouping;
 using System.Xml;
 using System.Net.Http;
 using Saobracaj.Dokumenta;
+using Syncfusion.Windows.Forms.Grid;
 
 namespace Saobracaj.Drumski
 {
@@ -24,6 +25,7 @@ namespace Saobracaj.Drumski
         public frmPregledFaktura()
         {
             InitializeComponent();
+            gridGroupingControl1.TableDescriptor.AllowEdit = false;
             ChangeTextBox();
             RefreshGrid();
         }
@@ -144,11 +146,29 @@ namespace Saobracaj.Drumski
                             FROM FakturaDrumski fd
                             LEFT JOIN FakturaDrumskiStavka fs ON fs.FaktureDrumskogID = fd.ID
                             GROUP BY fd.RadniNalogDrumskiID
+                        ),
+                        BR AS
+                        (
+                            SELECT 
+                                df.FakturaDrumskiID AS RNID,
+                                SUM(CASE WHEN df.Tip = 2 THEN 1 ELSE 0 END) AS BrojFaktura,
+                                SUM(CASE WHEN df.Tip = 1 THEN 1 ELSE 0 END) AS BrojPrevoznica
+                            FROM DokumentaFaktureDrumski df
+                            GROUP BY df.FakturaDrumskiID
+                        ),
+                        VZ AS
+                        (
+                            SELECT 
+                                uf.RadniNalogDrumskiID AS RNID,
+                                count(uf.Id) AS BrojDokumenata
+                            FROM UploadedFiles uf
+                            GROUP BY uf.RadniNalogDrumskiID
                         )
                         -- 1)
                         SELECT  
                             rn.ID,
                             rn.NalogID,
+                            VZ.BrojDokumenata AS VozacSken,
                             CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
                             F.UlaznaFaktura,
                             F.BeleskaUlazneFakture,
@@ -179,7 +199,8 @@ namespace Saobracaj.Drumski
                             rn.DatumKreiranjaNaloga,
                             F.IzlaznaFaktura,
                             CASE WHEN F.IzlaznaFaktura IS NOT NULL THEN CONVERT(varchar, rn.DatumIstovara,104)  ELSE  NULL END AS DatumPrometa,
-                            a.ID as KamionID
+                            a.ID as KamionID, LTRIM(RTRIM(de.DePriimek)) +' '+  LTRIM(RTRIM(de.DeIme)) AS PosledniIzmenio,
+                            BR.BrojFaktura, BR.BrojPrevoznica
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -194,12 +215,17 @@ namespace Saobracaj.Drumski
                         LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena
                         LEFT JOIN Voz v ON v.ID = ukz.IDVoza
                         LEFT JOIN F ON F.RNID = rn.ID
+                        OUTER APPLY ( SELECT TOP 1 rni.Izmenio FROM RadniNalogDrumskiIzmene rni  WHERE rni.RadniNalogDrumskiID = rn.ID  ORDER BY rni.ID DESC ) rndi
+                        LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
+                        LEFT JOIN BR ON BR.RNID = rn.ID
+                        LEFT JOIN VZ ON VZ.RNID = rn.ID
                         WHERE rn.Uvoz = 0  AND ISNULL(rn.PoslataNajava, 0) = 1   
 
                         UNION ALL
                         -- 2)
                         SELECT rn.ID,
                                rn.NalogID,
+                               VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
@@ -230,7 +256,9 @@ namespace Saobracaj.Drumski
                                rn.DatumKreiranjaNaloga,
                                F.IzlaznaFaktura,
                                CASE WHEN F.IzlaznaFaktura IS NOT NULL THEN CONVERT(varchar, rn.DatumIstovara,104)  ELSE  NULL END AS DatumPrometa,
-                               a.ID as KamionID
+                               a.ID as KamionID, 
+                               LTRIM(RTRIM(de.DePriimek)) +' '+  LTRIM(RTRIM(de.DeIme)) AS PosledniIzmenio,
+                               BR.BrojFaktura, BR.BrojPrevoznica
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -243,12 +271,17 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
                         LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
                         LEFT JOIN F ON F.RNID = rn.ID
+                        OUTER APPLY ( SELECT TOP 1 rni.Izmenio FROM RadniNalogDrumskiIzmene rni  WHERE rni.RadniNalogDrumskiID = rn.ID  ORDER BY rni.ID DESC ) rndi
+                        LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
+                        LEFT JOIN BR ON BR.RNID = rn.ID
+                        LEFT JOIN VZ ON VZ.RNID = rn.ID
                         WHERE rn.Uvoz = 0 AND ISNULL(rn.PoslataNajava, 0) = 1  
 
                         UNION ALL
                         -- 3)
                         SELECT rn.ID, 
                                rn.NalogID,
+                               VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
@@ -279,7 +312,9 @@ namespace Saobracaj.Drumski
                                rn.DatumKreiranjaNaloga,
                                F.IzlaznaFaktura,
                                CASE WHEN F.IzlaznaFaktura IS NOT NULL THEN CONVERT(varchar, rn.DatumIstovara,104)  ELSE  NULL END AS DatumPrometa,
-                               a.ID as KamionID
+                               a.ID as KamionID, 
+                               LTRIM(RTRIM(de.DePriimek)) +' '+  LTRIM(RTRIM(de.DeIme)) AS PosledniIzmenio,
+                               BR.BrojFaktura, BR.BrojPrevoznica
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -294,12 +329,17 @@ namespace Saobracaj.Drumski
                         LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = uk.IDNadredjeni 
                         LEFT JOIN Voz v ON v.ID = ukz.IDVoza
                         LEFT JOIN F ON F.RNID = rn.ID
+                        OUTER APPLY ( SELECT TOP 1 rni.Izmenio FROM RadniNalogDrumskiIzmene rni  WHERE rni.RadniNalogDrumskiID = rn.ID  ORDER BY rni.ID DESC ) rndi
+                        LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
+                        LEFT JOIN BR ON BR.RNID = rn.ID
+                        LEFT JOIN VZ ON VZ.RNID = rn.ID
                         WHERE rn.Uvoz = 1 AND ISNULL(rn.PoslataNajava, 0) = 1  
 
                         UNION ALL
                         -- 4)
                         SELECT rn.ID, 
                                rn.NalogID,
+                               VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
@@ -330,7 +370,9 @@ namespace Saobracaj.Drumski
                                rn.DatumKreiranjaNaloga,
                                F.IzlaznaFaktura,
                                CASE WHEN F.IzlaznaFaktura IS NOT NULL THEN CONVERT(varchar, rn.DatumIstovara,104)  ELSE  NULL END AS DatumPrometa,
-                               a.ID as KamionID
+                               a.ID as KamionID, 
+                               LTRIM(RTRIM(de.DePriimek)) +' '+  LTRIM(RTRIM(de.DeIme)) AS PosledniIzmenio,
+                               BR.BrojFaktura, BR.BrojPrevoznica
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -343,12 +385,17 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
                         LEFT JOIN F ON F.RNID = rn.ID
+                        OUTER APPLY ( SELECT TOP 1 rni.Izmenio FROM RadniNalogDrumskiIzmene rni  WHERE rni.RadniNalogDrumskiID = rn.ID  ORDER BY rni.ID DESC ) rndi
+                        LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
+                        LEFT JOIN BR ON BR.RNID = rn.ID
+                        LEFT JOIN VZ ON VZ.RNID = rn.ID
                         WHERE rn.Uvoz = 1 AND ISNULL(rn.PoslataNajava, 0) = 1  
 
                         UNION ALL
                         -- 5)
                         SELECT rn.ID, 
                                rn.NalogID,
+                               VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
@@ -379,7 +426,9 @@ namespace Saobracaj.Drumski
                                rn.DatumKreiranjaNaloga,
                                F.IzlaznaFaktura,
                                CASE WHEN F.IzlaznaFaktura IS NOT NULL THEN CONVERT(varchar, rn.DatumIstovara,104)  ELSE  NULL END AS DatumPrometa,
-                               a.ID as KamionID
+                               a.ID as KamionID,
+                               LTRIM(RTRIM(de.DePriimek)) +' '+  LTRIM(RTRIM(de.DeIme)) AS PosledniIzmenio,
+                               BR.BrojFaktura, BR.BrojPrevoznica
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN MestaUtovara mu ON mu.ID = rn.MestoUtovara 
@@ -390,6 +439,10 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
                         LEFT JOIN VrstaVozila vv ON vv.ID = rn.TipTransporta
                         LEFT JOIN F ON F.RNID = rn.ID
+                        OUTER APPLY ( SELECT TOP 1 rni.Izmenio FROM RadniNalogDrumskiIzmene rni  WHERE rni.RadniNalogDrumskiID = rn.ID  ORDER BY rni.ID DESC ) rndi
+                        LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
+                        LEFT JOIN BR ON BR.RNID = rn.ID
+                        LEFT JOIN VZ ON VZ.RNID = rn.ID
                         WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.PoslataNajava, 0) = 1 
                         ORDER BY ID DESC";
 
@@ -497,10 +550,10 @@ namespace Saobracaj.Drumski
                     td.VisibleColumns.Add("TrosakEUR");
                     td.VisibleColumns.Add("TrosakRSD");
 
-                    if (td.Columns.Contains("ID"))
-                    {
-                        td.VisibleColumns.Remove("ID"); // Skida je sa prikaza
-                    }
+                    //if (td.Columns.Contains("ID"))
+                    //{
+                    //    td.VisibleColumns.Remove("ID"); // Skida je sa prikaza
+                    //}
 
                     if (td.Columns.Contains("DatumKreiranjaNaloga"))
                     {
@@ -573,49 +626,12 @@ namespace Saobracaj.Drumski
             string klijent = Convert.ToString(record.GetValue("Klijent"));
 
             using (var frm = new frmFaktureDetalji(id, nalogId, klijent))
+            {
                 frm.ShowDialog();
-
-        }
-
-
-        public async Task UcitajKurseveZaGrid(System.Data.DataTable tabela)
-        {
-
-            var kombinacije = tabela.AsEnumerable()
-                            .Select(r => (
-                                valuta: r.Field<string>("Valuta"),
-                                datum: r.Field<DateTime?>("DatumKreiranjaNaloga")?.Date // Nullable!
-                            ))
-                            .Where(x => !string.IsNullOrEmpty(x.valuta) && x.datum.HasValue)
-                            .Select(x => (x.valuta, x.datum.Value)) // 
-                            .Distinct();
-
-            foreach (var (valuta, datum) in kombinacije)
-            {
-                _ = await KursHelper.VratiSrednjiKurs(valuta, datum);
             }
+            RefreshGrid();
         }
 
-        public async Task ObracunajVrednostiUGridu(System.Data.DataTable tabela)
-        {
-            if (!tabela.Columns.Contains("CenaRSD"))
-                tabela.Columns.Add("CenaRSD", typeof(decimal));
-            if (!tabela.Columns.Contains("TrosakRSD"))
-                tabela.Columns.Add("TrosakRSD", typeof(decimal));
-
-            foreach (DataRow row in tabela.Rows)
-            {
-                var valuta = row["Valuta"].ToString();
-                var datum = Convert.ToDateTime(row["DatumUtovara"]);
-                var cena = Convert.ToDecimal(row["Cena"]);
-                var trosak = Convert.ToDecimal(row["Trosak"]);
-
-                var kurs = await KursHelper.VratiSrednjiKurs(valuta, datum);
-
-                row["CenaRSD"] = Math.Round(cena * kurs, 2);
-                row["TrosakRSD"] = Math.Round(trosak * kurs, 2);
-            }
-        }
 
         private void toolStripPregledNaloga_Click(object sender, EventArgs e)
         {
@@ -653,60 +669,73 @@ namespace Saobracaj.Drumski
                 frm.ShowDialog();
         }
 
-    }
-}
-
-public static class KursHelper
-{
-    private static Dictionary<(string valuta, DateTime datum), decimal> kursCache = new Dictionary<(string valuta, DateTime datum), decimal>();
-
-    public static async Task<decimal> VratiSrednjiKurs(string valuta, DateTime datum)
-    {
-        if (valuta == "RSD") return 1;
-
-        var key = (valuta, datum.Date);
-
-        if (kursCache.TryGetValue(key, out var kurs))
+        private void toolStripObjedinjenaDokumenta_Click(object sender, EventArgs e)
         {
-            return kurs;
-        }
-
-        // TODO: ovde ide poziv ka NBS
-        kurs = await PreuzmiKursSaNBS(valuta, datum);
-        kursCache[key] = kurs;
-        return kurs;
-    }
-
-    private static async Task<decimal> PreuzmiKursSaNBS(string valuta, DateTime datum)
-    {
-        string url = $"https://www.nbs.rs/kursnaListaModul/srednjiKurs.do?date={datum:dd.MM.yyyy}";
-
-        using (HttpClient client = new HttpClient())
-        {
-            string xml = await client.GetStringAsync(url);
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-
-            XmlNodeList nodes = doc.SelectNodes("//item");
-
-            foreach (XmlNode node in nodes)
+            using (var frmUnos = new frmBrojFaktureModal())
             {
-                string xmlValuta = node["valuta"]?.InnerText;
-                if (xmlValuta == valuta)
+                if (frmUnos.ShowDialog() == DialogResult.OK)
                 {
-                    string srednji = node["sred"]?.InnerText;
+                    string brojFakture = frmUnos.BrojFakture;
 
-                    if (decimal.TryParse(srednji, System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture, out decimal kurs))
+                    using (var frm = new frmObjedinjenaDokumentIzlaznaFakura(brojFakture))
                     {
-                        return kurs;
+                        frm.ShowDialog();
                     }
                 }
             }
+        }
 
-            throw new Exception($"Kurs za valutu {valuta} na datum {datum:dd.MM.yyyy} nije pronađen.");
+        private void toolStripDokumentiVozaca_Click(object sender, EventArgs e)
+        {
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            object idONalog = record.GetValue("NalogID");
+            if (idONalog == null || idONalog == DBNull.Value)
+            {
+                MessageBox.Show("NalogID je nevažeći.");
+                return;
+            }
+
+            int id = Convert.ToInt32(idObj);
+            int idNalog = Convert.ToInt32(idONalog);
+
+            using (var frm = new frmPregledDokumenataVozaca(id, idNalog))
+                frm.ShowDialog();
+        }
+
+        private void toolStripDokumentaKamiona_Click(object sender, EventArgs e)
+        {
+            
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            object idONalog = record.GetValue("NalogID");
+            if (idONalog == null || idONalog == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            int id = Convert.ToInt32(idObj);
+            int idNalog = Convert.ToInt32(idONalog);
+
+            using (var frm = new frmPregledDokumenataKamiona(id))
+                frm.ShowDialog();
         }
     }
-
 }

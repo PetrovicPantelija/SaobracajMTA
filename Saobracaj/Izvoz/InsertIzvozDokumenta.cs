@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
     class InsertIzvozDokumenta
     {
 
-        public void InsIzvozDokumenta(int IDIzvoz, string Putanja, int TipDokumenta)
+        public void InsIzvozDokumenta(int IDIzvoz, string Putanja, int TipDokumenta, int? TipDokValue)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -40,6 +40,14 @@ namespace Saobracaj.Izvoz
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = TipDokumenta;
             myCommand.Parameters.Add(parameter3);
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@TipDokValue";
+            parameter4.SqlDbType = SqlDbType.Int;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = TipDokValue.HasValue ? (object)TipDokValue.Value : DBNull.Value; 
+            myCommand.Parameters.Add(parameter4);
+            
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

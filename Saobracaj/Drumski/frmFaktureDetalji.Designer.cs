@@ -236,14 +236,14 @@
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button21.Location = new System.Drawing.Point(49, 4);
+            this.button21.Location = new System.Drawing.Point(54, 4);
             this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
             this.button21.TabIndex = 19;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
-            this.button21.Visible = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // button2
             // 
