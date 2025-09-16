@@ -772,6 +772,12 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             }
 
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            frmPrijemnicaCarinskaStampa pcs = new frmPrijemnicaCarinskaStampa(txtID.Text);
+            pcs.Show();
+        }
     }
 }
 

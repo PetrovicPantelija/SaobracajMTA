@@ -2680,8 +2680,6 @@ namespace Saobracaj.Uvoz
             // 
             // chkDobijenBZ
             // 
-            this.chkDobijenBZ.Checked = true;
-            this.chkDobijenBZ.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDobijenBZ.Location = new System.Drawing.Point(272, 182);
             this.chkDobijenBZ.Margin = new System.Windows.Forms.Padding(2);
             this.chkDobijenBZ.Name = "chkDobijenBZ";
@@ -2693,8 +2691,6 @@ namespace Saobracaj.Uvoz
             // 
             // chkPrioritet
             // 
-            this.chkPrioritet.Checked = true;
-            this.chkPrioritet.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPrioritet.Location = new System.Drawing.Point(272, 288);
             this.chkPrioritet.Margin = new System.Windows.Forms.Padding(2);
             this.chkPrioritet.Name = "chkPrioritet";

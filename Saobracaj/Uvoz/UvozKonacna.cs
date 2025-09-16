@@ -841,7 +841,7 @@ namespace Saobracaj.Uvoz
             while (dr.Read())
             {
 
-                dtEtaRijeka.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
+                dtpETAbroda.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
                 dtAtaRijeka.Value = Convert.ToDateTime(dr["AtaBroda"].ToString());
                 txtStatus.Text = dr["StatusPrijema"].ToString();
                 txtBrKont.Text = dr["BrojKontejnera"].ToString();
