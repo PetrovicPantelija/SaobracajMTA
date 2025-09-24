@@ -33,24 +33,29 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.lstFajlovi = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.panelHeader = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lblPregledDokumenata = new System.Windows.Forms.Label();
             this.panelDrop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
-            this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOdabir
             // 
             this.lblOdabir.AutoSize = true;
-            this.lblOdabir.Location = new System.Drawing.Point(48, 71);
+            this.lblOdabir.Location = new System.Drawing.Point(22, 57);
             this.lblOdabir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOdabir.Name = "lblOdabir";
-            this.lblOdabir.Size = new System.Drawing.Size(129, 16);
+            this.lblOdabir.Size = new System.Drawing.Size(214, 16);
             this.lblOdabir.TabIndex = 0;
-            this.lblOdabir.Text = "Odabir dokumenata:";
+            this.lblOdabir.Text = "Odabir dokumenata za dodavanje:";
             // 
             // btnOdaberi
             // 
@@ -69,7 +74,7 @@
             this.panelDrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDrop.Controls.Add(this.lblDrop);
             this.panelDrop.Controls.Add(this.btnOdaberi);
-            this.panelDrop.Location = new System.Drawing.Point(51, 105);
+            this.panelDrop.Location = new System.Drawing.Point(25, 91);
             this.panelDrop.Margin = new System.Windows.Forms.Padding(4);
             this.panelDrop.Name = "panelDrop";
             this.panelDrop.Size = new System.Drawing.Size(514, 57);
@@ -99,14 +104,14 @@
             // 
             this.lstFajlovi.FormattingEnabled = true;
             this.lstFajlovi.ItemHeight = 16;
-            this.lstFajlovi.Location = new System.Drawing.Point(51, 186);
+            this.lstFajlovi.Location = new System.Drawing.Point(25, 172);
             this.lstFajlovi.Name = "lstFajlovi";
             this.lstFajlovi.Size = new System.Drawing.Size(326, 132);
             this.lstFajlovi.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(401, 183);
+            this.button1.Location = new System.Drawing.Point(384, 184);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(164, 31);
@@ -114,19 +119,6 @@
             this.button1.Text = "Obriši";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnObrisi_Click);
-            // 
-            // panelHeader
-            // 
-            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelHeader.Controls.Add(this.panel3);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(615, 40);
-            this.panelHeader.TabIndex = 481;
             // 
             // panel3
             // 
@@ -157,11 +149,56 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel3);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(867, 40);
+            this.panelHeader.TabIndex = 481;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Location = new System.Drawing.Point(25, 364);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(823, 249);
+            this.panel2.TabIndex = 485;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeight = 29;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(823, 249);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // lblPregledDokumenata
+            // 
+            this.lblPregledDokumenata.AutoSize = true;
+            this.lblPregledDokumenata.Location = new System.Drawing.Point(22, 332);
+            this.lblPregledDokumenata.Name = "lblPregledDokumenata";
+            this.lblPregledDokumenata.Size = new System.Drawing.Size(223, 16);
+            this.lblPregledDokumenata.TabIndex = 486;
+            this.lblPregledDokumenata.Text = "Pregled već postojećih dokumenata";
+            // 
             // frmPregledDokumenataKamiona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 344);
+            this.ClientSize = new System.Drawing.Size(867, 625);
+            this.Controls.Add(this.lblPregledDokumenata);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lstFajlovi);
@@ -171,11 +208,14 @@
             this.Name = "frmPregledDokumenataKamiona";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dodavanje dokumenata";
+            this.Load += new System.EventHandler(this.frmPregledDokumenataKamiona_Load);
             this.panelDrop.ResumeLayout(false);
             this.panelDrop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
-            this.panelHeader.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panelHeader.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +233,8 @@
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lblPregledDokumenata;
     }
 }

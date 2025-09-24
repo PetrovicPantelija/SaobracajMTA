@@ -13,7 +13,8 @@ using System.Windows.Forms;
 using System.Linq;
 using Saobracaj.Sifarnici;
 using Saobracaj.Izvoz;
-using System.Windows.Controls;
+using System.Globalization;
+using System.Threading;
 
 namespace Saobracaj.Drumski
 {
@@ -137,7 +138,7 @@ namespace Saobracaj.Drumski
         public frmDrumski(int ID)
         {
             this.id = ID;
-            InitializeComponent();
+            InitializeComponent();       
             FillCombo();
             this.BindingContext = new BindingContext();
             ChangeTextBox();
@@ -401,14 +402,17 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
-                    button21.Visible = NalogID > 0 ? false : true;
-                  //  button3.Visible = NalogID > 0 ? false : true;
+                    button21.Visible =  true;
+                    //delete je bilo vidljivo jedino ako nije dodeljeno nekom nalogu
+                   // button21.Visible = NalogID > 0 ? false : true;
+                    //  button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 3)
                 {
                     btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
-                    button21.Visible = NalogID > 0 ? false : true;
-               //     button3.Visible = NalogID > 0 ? false : true;
+                    button21.Visible = true;
+                    //button21.Visible = NalogID > 0 ? false : true;
+                    //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;

@@ -1007,7 +1007,7 @@ namespace Saobracaj.Drumski
 
             //  Podaci iz baze
             string nalogodavac = dataGridView3.SelectedRows[0].Cells["Nalogodavac"].Value?.ToString() ?? "";
-            string datumPreuzimanja = dataGridView3.SelectedRows[0].Cells["DtPreuzimanjaPraznogKontejnera"].Value?.ToString();
+            string datumPreuzimanja = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
 
             string odredisnaCarinarnica = dataGridView3.SelectedRows[0].Cells["OdredisnaCarina"].Value?.ToString();
             string napomenaZaPozicioniranje = dataGridView3.SelectedRows[0].Cells["NapomenaZaPozicioniranje"].Value?.ToString();

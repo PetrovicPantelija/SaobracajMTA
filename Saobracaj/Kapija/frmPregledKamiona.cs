@@ -196,5 +196,49 @@ namespace Saobracaj.Kapija
         {
             RefreshGrid();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            panelStatus.Visible = true;
+            var stv = "select ID, Naziv from StatusKapija order by Naziv";
+            var stvAD = new SqlDataAdapter(stv, conn);
+            var stvDS = new DataSet();
+            stvAD.Fill(stvDS);
+
+            System.Data.DataTable dt = stvDS.Tables[0];
+            DataRow prazanRed = dt.NewRow();
+            prazanRed["ID"] = DBNull.Value;
+            prazanRed["Naziv"] = "";
+            dt.Rows.InsertAt(prazanRed, 0);
+
+            cboStatus.DataSource = dt;
+            cboStatus.DisplayMember = "Naziv";
+            cboStatus.ValueMember = "ID";
+        }
+
+
+        private void btnSnimi_Click(object sender, EventArgs e)
+        {
+            int noviStatusId;
+            if (cboStatus.SelectedValue != null && int.TryParse(cboStatus.SelectedValue.ToString(), out noviStatusId))
+            {
+                foreach (SelectedRecord record in gridGroupingControl1.Table.SelectedRecords)
+                {
+                    Record rec = record.Record;
+
+                    var id = rec.GetValue("ID");
+                    InsertKapija upd = new InsertKapija();
+                    upd.UpdateStatusKapija(Convert.ToInt32(id), noviStatusId);
+                }
+            }
+            panelStatus.Visible = false;
+            RefreshGrid();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panelStatus.Visible = false;
+        }
     }
 }
