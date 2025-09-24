@@ -651,7 +651,7 @@ namespace Saobracaj.Uvoz
 
 
             var select = "";
-           
+           /*
                 select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
               "  inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID inner join Scenario on UvozKonacna.Scenario = Scenario.ID " +
               "  where Uradjen not in (1, 2) " +
@@ -660,8 +660,50 @@ namespace Saobracaj.Uvoz
               "  inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
               "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
               "  where Uradjen not in (1, 2)";
-           
-
+           */
+       select = "    SELECT UvozKonacna.ID,UvozKonacna.IDNAdredjeni, Voz.NAzivVoza as Voz , EtaBroda, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, " +
+" KontejnerskiTerminali.Naziv as T1, " +
+" k2.Naziv as T2, k3.Naziv as T3, " +
+" (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
+" (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join UvozKonacna uv on UvozKonacna.ID = UvozNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+" Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL, " +
+" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2, " +
+" p1.PaNaziv as Uvoznik, p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC,VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
+" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica, " +
+" Email, NetoRobe, BrutoRobe,  TaraKontejnera, BrutoKontejnera,     Koleta , " +
+" CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+" CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+" Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, " +
+"  DobijeBZ as DatumBZ ,PIN,     pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
+"   Ref3 as Ref3,         VrstaPregleda as InsTret, " +
+" UvozKonacna.Napomena as Napomena2, " +
+" MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, " +
+" BrojPlombe1, BrojPlombe2 FROM UvozKonacna inner join Partnerji on PaSifra = VlasnikKontejnera" +
+" inner join Partnerji p1 on p1.PaSifra = Uvoznik" +
+" inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC" +
+" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica" +
+" inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera" +
+" inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina" +
+"  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak" +
+"  inner join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje" +
+"  inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali" +
+"   inner join KontejnerskiTerminali k2 on k2.ID = UvozKonacna.RLTErminali2" +
+"    inner join KontejnerskiTerminali k3 on k3.ID = UvozKonacna.RLTErminali3" +
+"  inner join Partnerji n1 on n1.PaSifra = Nalogodavac1" +
+"  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2" +
+"  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3" +
+"  inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar" +
+"  inner join  DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa" +
+"  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda" +
+"  inner join VrstaRobeADR on VrstaRobeADR.ID = ADR" +
+"  inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom" +
+"  inner join MestaUtovara on UvozKonacna.MestoIstovara = MestaUtovara.ID" +
+"  inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja" +
+"  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija" +
+"  inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
+" inner join UvozKonacnaZaglavlje on UvozKonacna.IDNAdredjeni = UvozKonacnaZaglavlje.ID "+
+ " inner Join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+               " order by UvozKonacna.ID desc";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -1229,6 +1271,164 @@ namespace Saobracaj.Uvoz
             //
             //Napraviti novi kontejner
             //Napraviti uslugu izvoznu
+        }
+
+        private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl2.Table.CurrentRecord != null)
+                {
+                    textBox1.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("ID").ToString();
+                    //Sve usluge za odredjeni kontejner
+
+                    var select = "";
+                   
+                        select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv,   [Uradjen],  " +
+                            " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                            " (select Top 1 stNapomene from UvozKonacnaNapomenePozicioniranja inner join UvozKonacna  on UvozKonacna.ID = UvozKonacnaNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = rn.BrojOsnov order by UvozKonacnaNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+                            " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje " +
+        " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+        "  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ," +
+        " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
+         " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
+        " [OJIzdavanja]      , o1.Naziv as Izdao " +
+        " ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
+        " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
+        " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
+        "  rn.Pokret,  rn.TipDokPrevoza, " +
+        " rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
+        " FROM [RadniNalogInterni] rn " +
+        " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
+        " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
+        " inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge " +
+        " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
+        " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
+        " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera  " +
+                   " where OJIzdavanja = 1 and  rn.brojosnov = " + textBox1.Text + 
+                   " order by rn.ID desc";
+                   
+
+
+
+
+                    var s_connection = Sifarnici.frmLogovanje.connectionString;
+                    SqlConnection myConnection = new SqlConnection(s_connection);
+                    var c = new SqlConnection(s_connection);
+                    var dataAdapter = new SqlDataAdapter(select, c);
+
+                    var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                    var ds = new DataSet();
+                    dataAdapter.Fill(ds);
+                    gridGroupingControl1.DataSource = ds.Tables[0];
+                    gridGroupingControl1.ShowGroupDropArea = true;
+                    gridGroupingControl1.TableDescriptor.FrozenColumn = "ID";
+                    gridGroupingControl1.TableDescriptor.FrozenColumn = "BrojKontejnera";
+                    gridGroupingControl1.TableDescriptor.FrozenColumn = "Naziv";
+                    this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+                    GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+                    gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+                    gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+                    gcfd3.Expression = "[Uradjen] =  '1'";
+                    this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+
+                    GridConditionalFormatDescriptor gcfd31 = new GridConditionalFormatDescriptor();
+                    gcfd31.Appearance.AnyRecordFieldCell.BackColor = Color.Blue;
+                    gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+                    gcfd31.Expression = "[Uradjen] =  '2'";
+                    this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd31);
+
+
+
+
+                    GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
+                    gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.Orange;
+                    gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+                    gcfd.Expression = "[StatusIzdavanja] =  'DOPUNA'";
+
+                    //To add the conditional format instances to the ConditionalFormats collection. 
+                    this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd);
+
+                    GridConditionalFormatDescriptor gcfd2 = new GridConditionalFormatDescriptor();
+                    gcfd2.Appearance.AnyRecordFieldCell.BackColor = Color.DarkRed;
+                    gcfd2.Appearance.AnyRecordFieldCell.TextColor = Color.White;
+
+                    gcfd2.Expression = "[StatusIzdavanja] =  'STORNO'";
+                    this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd2);
+
+
+                    //To add the conditional format instances to the ConditionalFormats collection. 
+
+
+                    this.gridGroupingControl1.TableDescriptor.Columns[0].Width = 50;
+                    this.gridGroupingControl1.TableDescriptor.Columns[1].Width = 120;
+
+                    this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJIzdavanja");
+                    this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJRealizacije");
+                    this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("IDVrstaManipulacije");
+
+                    /*
+                    this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
+                    GridConditionalFormatDescriptor format1 = new GridConditionalFormatDescriptor();
+                    format1.Appearance.AnyRecordFieldCell.Interior = new BrushInfo(Color.FromArgb(255, 191, 52));
+                    format1.Appearance.AnyRecordFieldCell.TextColor = Color.White;
+                    format1.Expression = "[Uradjen]  =  '1'";
+                    format1.Name = "ConditionalFormat 1";
+
+                    // Add the descriptor to the TableDescriptor.ConditionalFormats property.
+                    this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(format1);
+                    */
+                    this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
+
+                    //To set '1' and '0' instead of "True" and "False" 
+                    this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CheckBoxOptions = new GridCheckBoxCellInfo("1", "0", "", true);
+                    this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.ReadOnly = false;
+                    this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.Enabled = true;
+                    /*
+                    GridSummaryColumnDescriptor summaryColumnDescriptor = new GridSummaryColumnDescriptor();
+                    summaryColumnDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(192, 255, 162));
+                    summaryColumnDescriptor.DataMember = "Uradjen";
+                    summaryColumnDescriptor.Format = "{Sum}";
+                    summaryColumnDescriptor.Name = "Uradjeno";
+                    summaryColumnDescriptor.SummaryType = Syncfusion.Grouping.SummaryType.Int32Aggregate;
+
+                    GridSummaryRowDescriptor summaryRowDescriptor = new GridSummaryRowDescriptor();
+                    summaryRowDescriptor.SummaryColumns.Add(summaryColumnDescriptor);
+                    summaryRowDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(255, 231, 162));
+
+                    this.gridGroupingControl1.TableDescriptor.SummaryRows.Add(summaryRowDescriptor);
+                    */
+
+                    foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+                    {
+                        column.AllowFilter = true;
+                    }
+
+                    GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+                    //Wiring GridExcelFilter to GridGroupingControl
+                    gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+                    GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+                    dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+                    RefreshDataGrid2PoScenariju();
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

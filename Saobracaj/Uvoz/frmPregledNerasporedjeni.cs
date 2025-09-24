@@ -1,7 +1,10 @@
-﻿using Syncfusion.GridHelperClasses;
+﻿using iTextSharp.text.pdf.parser.clipper;
+using Microsoft.Office.Interop.Excel;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.XlsIO.Parser.Biff_Records.Formula;
 using System;
 using System.Configuration;
 using System.Data;
@@ -45,39 +48,39 @@ namespace Saobracaj.Uvoz
                 foreach (Control control in this.Controls)
                 {
 
-                    if (control is TextBox textBox)
+                    if (control is System.Windows.Forms.TextBox textBox)
                     {
 
                         textBox.BackColor = Color.White;// Example: Change background color
                         textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
-                        textBox.Font = new Font("Helvetica", 9);
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9);
                         // Example: Change font
                     }
 
 
-                    if (control is Label label)
+                    if (control is System.Windows.Forms.Label label)
                     {
                         // Change properties here
                         label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        label.Font = new Font("Helvetica", 9);  // Example: Change font
+                        label.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
 
                         // textBox.ReadOnly = true;              // Example: Make text boxes read-only
                     }
                     if (control is DateTimePicker dtp)
                     {
                         dtp.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        dtp.Font = new Font("Helvetica", 9);
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9);
                     }
-                    if (control is CheckBox chk)
+                    if (control is System.Windows.Forms.CheckBox chk)
                     {
                         chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        chk.Font = new Font("Helvetica", 9);
+                        chk.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
-                    if (control is ListBox lb)
+                    if (control is System.Windows.Forms.ListBox lb)
                     {
                         lb.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        lb.Font = new Font("Helvetica", 9);
+                        lb.Font = new System.Drawing.Font("Helvetica", 9);
                     }
 
                 }
@@ -99,7 +102,7 @@ namespace Saobracaj.Uvoz
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
             dgv.BackgroundColor = Color.White;
 
-            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
             dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
             dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
@@ -130,39 +133,47 @@ namespace Saobracaj.Uvoz
         private void RefreshDataGrid()
         {
 
-            var select = "SELECT Uvoz.ID, " +
-                " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
-                " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
-                " [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,   Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
-" n1.PaNaziv as NalogodavacZaVoz, Ref1 as Ref1,n2.PaNaziv as NalogodavacZaUsluge, Ref2 as Ref2,n3.PaNaziv as NalogodavacZaDrumski,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,  " +
-" Napomena1 as Napomena1,  DobijeBZ as DatumBZ ,PIN,    KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
-" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,pv.PaNaziv as VlasnikKontejnera,     Ref3 as Ref3,         VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  " +
-" p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
-" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
-" Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
-" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, Email, " +
-" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
+            var select = "SELECT Uvoz.ID, EtaBroda, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, " +
+" KontejnerskiTerminali.Naziv as T1,  " +
+" k2.Naziv as T2, k3.Naziv as T3,  " +
+" (select Top 1 Naziv from Scenario inner join Uvoz uv on uv.Scenario = Scenario.ID  where Uvoz.ID = uv.ID) as ScenarioNaziv, "+
+" (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join Uvoz uv on Uvoz.ID = UvozNapomenePozicioniranja.IDNadredjena  where Uvoz.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+" Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL,  " +
+" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2,  " +
+" p1.PaNaziv as Uvoznik, p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC,VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica,   " +
+" Email, NetoRobe, BrutoRobe,  TaraKontejnera, BrutoKontejnera,     Koleta ," +
+" CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet ,  " +
+" CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ ,   " +
+" Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,   " +
+"  DobijeBZ as DatumBZ ,PIN,     pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica,  " +
+"   Ref3 as Ref3,         VrstaPregleda as InsTret,   " +
+" Napomena as Napomena2,  " +
+" MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, " +
+" BrojPlombe1, BrojPlombe2 FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
 " inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
 " inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
 " inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
 " inner join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina " +
-" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
-" inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje " +
-" inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
-" inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
-" inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
-" inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
-" inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
-" inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
-" inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
-" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
-" inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
-" inner join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
-" inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
-" inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
-" inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
-"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
+"  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
+"  inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje " +
+"  inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
+"   inner join KontejnerskiTerminali k2 on k2.ID = Uvoz.RLTErminali2 " +
+"    inner join KontejnerskiTerminali k3 on k3.ID = Uvoz.RLTErminali3 " +
+"  inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+"  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
+"  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
+"  inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
+"  inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
+"  inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
+"  inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+"  inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
+"  inner join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
+"  inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
+"  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+"  inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
+"   order by Uvoz.Prioritet desc, Uvoz.ID desc ";
 
 
 

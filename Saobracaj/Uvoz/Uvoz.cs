@@ -650,7 +650,8 @@ namespace Saobracaj.Uvoz
             cbVlasnikKont.DisplayMember = "PaNaziv";
             cbVlasnikKont.ValueMember = "PaSifra";
             //uvoznik
-            var partner2 = "Select PaSifra,(Rtrim(PaNaziv) + '-' + PaDmatst) as PaNaziv From Partnerji where UvoznikCH = 1 order by PaNaziv";
+            
+            var partner2 = "Select PaSifra,(Rtrim(PaNaziv) + '-' + RTRIM(ISNULL(PaDmatst, ''))) as PaNaziv From Partnerji  order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -770,7 +771,7 @@ namespace Saobracaj.Uvoz
             cboRLTerminal3.DisplayMember = "Naziv";
             cboRLTerminal3.ValueMember = "ID";
 
-            var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
+            var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
             var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
             var nal1DS = new DataSet();
             nal1AD.Fill(nal1DS);
@@ -778,7 +779,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.DisplayMember = "PaNaziv";
             cboNalogodavac1.ValueMember = "PaSifra";
 
-            var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
+            var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
             var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
             var nal2DS = new DataSet();
             nal2AD.Fill(nal2DS);
@@ -786,7 +787,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac2.DisplayMember = "PaNaziv";
             cboNalogodavac2.ValueMember = "PaSifra";
 
-            var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
+            var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
             var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
             var nal3DS = new DataSet();
             nal3AD.Fill(nal3DS);
@@ -1129,7 +1130,7 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue),
                 PotvrdioKlijent, UradilaCarina,
                               TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
-                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value),0);
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
@@ -1328,14 +1329,14 @@ namespace Saobracaj.Uvoz
      " RLTErminali , RLTErminali2 ,RLTErminali3 ,Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, " +
      "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer, Scenario , PotvrdioKlijent, UradilaCarina," +
      "  [chkDobijenNalogBrodara]     ,[chkDobijenNalogodavac1]      ,[DatumNalogodavac1]     ,[chkDobijenNalogodavac2]     ,[DatumNalogodavac2]     ,[chkDobijenNalogodavac3]  " +
-     "   ,[DatumNalogodavac3]      ,[DatumPotvrdioKlijent]     ,[DatumSlobasodanDaNapusti]     ,[FCL]     ,[LCL]" +
+     "   ,[DatumNalogodavac3]      ,[DatumPotvrdioKlijent]     ,[DatumSlobasodanDaNapusti]     ,[FCL]     ,[LCL], DrumskaUsluga" +
  "  FROM [Uvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
 
-                dtEtaRijeka.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
+                dtpETAbroda.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
                 dtAtaRijeka.Value = Convert.ToDateTime(dr["AtaBroda"].ToString());
                 txtStatus.Text = dr["StatusPrijema"].ToString();
                 txtBrKont.Text = dr["BrojKontejnera"].ToString();
@@ -1511,6 +1512,12 @@ namespace Saobracaj.Uvoz
                 {
                     chkLCL.Checked = true;
                 }
+
+                if (dr["DrumskaUsluga"].ToString() == "1")
+                {
+                    chkDrumskaUsluga.Checked = true;
+                }
+
                 dtpDobijenNalogodavac1.Value = Convert.ToDateTime(dr["DatumNalogodavac1"].ToString());
                 dtpDobijenNalogodavac2.Value = Convert.ToDateTime(dr["DatumNalogodavac2"].ToString());
                 dtpDobijenNalogodavac3.Value = Convert.ToDateTime(dr["DatumNalogodavac3"].ToString());
@@ -1940,7 +1947,7 @@ namespace Saobracaj.Uvoz
         private void button1_Click(object sender, EventArgs e)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
-            uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+           // uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue), txtKomercijalniNaziv.Text, txtTarifniBroj.Text, Convert.ToDouble(txtBrojKoleta.Text), Convert.ToDouble(txtBruto.Text), Convert.ToDouble(txtVrednost.Text), txtValuta.Text, Convert.ToDouble(txtNeto.Text));
             VratiADRIzNHM(Convert.ToInt32(cboNHM.SelectedValue));
 
             FillDG2();
@@ -3210,7 +3217,7 @@ namespace Saobracaj.Uvoz
             {
                 txtID.Text = "0";
             }
-            var select = " SELECT     UvozUvoznici.ID, Naziv  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
+            var select = " SELECT     UvozUvoznici.ID, Naziv, PaDMAtSt as PIB  FROM UvozUvoznici where UvozUvoznici.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozUvoznici.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -3238,7 +3245,11 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column2 = dataGridView8.Columns[1];
             dataGridView8.Columns[1].HeaderText = "Naziv";
-            dataGridView8.Columns[1].Width = 400;
+            dataGridView8.Columns[1].Width = 200;
+
+            DataGridViewColumn column3 = dataGridView8.Columns[2];
+            dataGridView8.Columns[2].HeaderText = "PIB";
+            dataGridView8.Columns[2].Width = 100;
 
 
 
@@ -3508,6 +3519,10 @@ namespace Saobracaj.Uvoz
             GetID();
             tsNew.Enabled = false;
             txtBrKont.Text = "";
+            txtMail.Text = "";
+            txtNetoR.Value = 0;
+            txtBrutoR.Value = 0;
+            txtBrutoK.Value = 0;
             FillDG2();
             FillDGUsluge();
             FillDG4();
@@ -3533,6 +3548,7 @@ namespace Saobracaj.Uvoz
             int tDobijenBZ = 0;
             int tPrioritet = 0;
             int Terminalska = 0;
+
 
 
 
@@ -3681,7 +3697,12 @@ namespace Saobracaj.Uvoz
             { TFLCL = 1; };
 
 
-           
+            int drumska= 0;
+            if (chkDrumskaUsluga.Checked == true)
+            { drumska = 1; };
+
+
+
 
 
 
@@ -3711,7 +3732,7 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina,
                 TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value),  TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value), 
-                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value), drumska);
                     //  FillGV();
                     //  RefreshDataGridColor();
                     tsNew.Enabled = true;
@@ -3723,7 +3744,7 @@ namespace Saobracaj.Uvoz
             }
             else
             {
-                ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
+                ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtpETAbroda.Value.ToString()),
              Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
              Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
              txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
@@ -3739,7 +3760,7 @@ namespace Saobracaj.Uvoz
              Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
              Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), PotvrdioKlijent, UradilaCarina,
                           TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
-                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value));
+                TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value),drumska);
             }
 
          
@@ -4095,6 +4116,8 @@ namespace Saobracaj.Uvoz
             int TcbOcarina = Convert.ToInt32(cbOcarina.SelectedValue);
             int TtxtMesto = Convert.ToInt32(txtMesto.SelectedValue);
             int TtxtAdresaMestaUtovara = Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue);
+           // int TtxtUvoznik = Convert.ToInt32(cboUvoznik.SelectedValue);
+         
             FillCombo();
             cbBrod.SelectedValue = TcbBrod;
             txtTipKont.SelectedValue = TtxtTipKont;
@@ -4454,6 +4477,23 @@ namespace Saobracaj.Uvoz
         {
             frmPregledKontejneraDrumskeUsluge ppDU = new frmPregledKontejneraDrumskeUsluge(Convert.ToInt32(0), Convert.ToInt32(txtID.Text));
             ppDU.Show();
+        }
+
+        private void chkDrumskaUsluga_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            if (chkDrumskaUsluga.Checked == true)
+            {
+                InsertUvozKonacna uvK = new InsertUvozKonacna();
+                uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), 84, 0, 1, 6, 0, 0, "/", 0, KorisnikTekuci, "/");
+
+            }
+            else
+            {
+                InsertUvozKonacna uvK = new InsertUvozKonacna();
+                uvK.DelUvozUslugaKamionska(Convert.ToInt32(txtID.Text));
+            }
+           
         }
     }
 }

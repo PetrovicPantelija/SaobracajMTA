@@ -634,5 +634,11 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                 updst.updetePrijemnicaCarinskaStatus(Convert.ToInt32(txtID.Text), "OTVOREN");
             }
         }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            frmOtpremnicaCarinskaStampa ocs = new frmOtpremnicaCarinskaStampa(txtID.Text);
+            ocs.Show();
+        }
     }
 }

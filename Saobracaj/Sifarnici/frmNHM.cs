@@ -400,7 +400,7 @@ namespace Saobracaj.Sifarnici
                     {
                         txtADR.SelectedValue = 0;
                     }
-                    if (gridGroupingControl1.Table.CurrentRecord.GetValue("UVozni").ToString() == "1")
+                    if (gridGroupingControl1.Table.CurrentRecord.GetValue("Uvozni").ToString() == "1")
                     {
                         chkUvozni.Checked = true;
                     }

@@ -255,7 +255,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter mail = new SqlParameter();
             mail.ParameterName = "@Email";
             mail.SqlDbType = SqlDbType.NVarChar;
-            mail.Size = 50;
+            mail.Size = 390;
             mail.Direction = ParameterDirection.Input;
             mail.Value = Mail;
             cmd.Parameters.Add(mail);
@@ -525,7 +525,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, decimal TaraKontejneraT, decimal KoletaTer, int Scenario, int RLTerminali2, int RLTerminali3,
 int PotvrdioKlijent, int UradilaCarina,
              int TFDobijenNalog, int TFDobijenNalogodavac1, DateTime dtpDobijenNalogodavac1, int TFDobijenNalogodavac2, DateTime dtpDobijenNalogodavac2,
-                int TFDobijenNalogodavac3, DateTime dtpDobijenNalogodavac3, int TFFCL, int TFLCL, DateTime dtpPotvrdioKlijent, DateTime dtpSlobodanDaNapusti)
+                int TFDobijenNalogodavac3, DateTime dtpDobijenNalogodavac3, int TFFCL, int TFLCL, DateTime dtpPotvrdioKlijent, DateTime dtpSlobodanDaNapusti, int DrumskaUsluga)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -763,7 +763,7 @@ int PotvrdioKlijent, int UradilaCarina,
             SqlParameter mail = new SqlParameter();
             mail.ParameterName = "@Email";
             mail.SqlDbType = SqlDbType.NVarChar;
-            mail.Size = 50;
+            mail.Size = 300;
             mail.Direction = ParameterDirection.Input;
             mail.Value = Mail;
             cmd.Parameters.Add(mail);
@@ -1103,6 +1103,14 @@ int PotvrdioKlijent, int UradilaCarina,
             lcl.Value = TFLCL;
             cmd.Parameters.Add(lcl);
 
+
+            SqlParameter drumskausluga = new SqlParameter();
+            drumskausluga.ParameterName = "@DrumskaUsluga";
+            drumskausluga.SqlDbType = SqlDbType.Int;
+            drumskausluga.Direction = ParameterDirection.Input;
+            drumskausluga.Value = DrumskaUsluga;
+            cmd.Parameters.Add(drumskausluga);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1191,6 +1199,153 @@ int PotvrdioKlijent, int UradilaCarina,
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "DeleteUvozVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelUvozUslugaKamionska(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteUvozVrstaManipulacijeKamionska";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UbaciURadniNalogInterniBeyScenarija(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UbaciURadniNalogInterniBeyScenarija";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@PlanID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelUvozKonacnaUslugaKamionska(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteUvozKonacnaVrstaManipulacijeKamionska";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();
@@ -2225,7 +2380,7 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void InsUvozNHM(int IDNadredjena, int idNHM)
+        public void InsUvozNHM(int IDNadredjena, int idNHM, string KomercijalniNaziv, string TarifniBroj, double BrojKoleta, double Bruto, double Vrednost, string Valuta, double Neto )
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2245,6 +2400,67 @@ int PotvrdioKlijent, int UradilaCarina,
             idnhm.Direction = ParameterDirection.Input;
             idnhm.Value = idNHM;
             cmd.Parameters.Add(idnhm);
+
+
+            SqlParameter komercijalninaziv = new SqlParameter();
+            komercijalninaziv.ParameterName = "@KomercijalniNaziv";
+            komercijalninaziv.SqlDbType = SqlDbType.NVarChar;
+            komercijalninaziv.Size = 500;
+            komercijalninaziv.Direction = ParameterDirection.Input;
+            komercijalninaziv.Value = KomercijalniNaziv;
+            cmd.Parameters.Add(komercijalninaziv);
+
+            SqlParameter tarifnibroj = new SqlParameter();
+            tarifnibroj.ParameterName = "@TarifniBroj";
+            tarifnibroj.SqlDbType = SqlDbType.NVarChar;
+            tarifnibroj.Size = 10;
+            tarifnibroj.Direction = ParameterDirection.Input;
+            tarifnibroj.Value = TarifniBroj;
+            cmd.Parameters.Add(tarifnibroj);
+
+            SqlParameter brojkoleta = new SqlParameter();
+            brojkoleta.ParameterName = "@BrojKoleta";
+            brojkoleta.SqlDbType = SqlDbType.Decimal;
+            brojkoleta.Direction = ParameterDirection.Input;
+            brojkoleta.Value = BrojKoleta;
+            cmd.Parameters.Add(brojkoleta);
+
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.SqlDbType = SqlDbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost;
+            cmd.Parameters.Add(vrednost);
+
+
+
+            SqlParameter valute = new SqlParameter();
+            valute.ParameterName = "@Valuta";
+            valute.SqlDbType = SqlDbType.NVarChar;
+            valute.Size = 3;
+            valute.Direction = ParameterDirection.Input;
+            valute.Value = Valuta;
+            cmd.Parameters.Add(valute);
+
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
+
+
+            // string KomercijalniNaziv, string TarifniBroj, double BrojKoleta, double Bruto, double Vrednost, string Valuta, double Neto
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -2586,7 +2802,7 @@ int PotvrdioKlijent, int UradilaCarina,
         }
 
 
-        public void InsUvozUvoznici(int IDNadredjena, string Naziv)
+        public void InsUvozUvoznici(int IDNadredjena, string Naziv, string PIB)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2607,6 +2823,14 @@ int PotvrdioKlijent, int UradilaCarina,
             komercijalnibroj.Direction = ParameterDirection.Input;
             komercijalnibroj.Value = Naziv;
             cmd.Parameters.Add(komercijalnibroj);
+
+            SqlParameter pib = new SqlParameter();
+            pib.ParameterName = "@PIB";
+            pib.SqlDbType = SqlDbType.NVarChar;
+            pib.Size = 35;
+            pib.Direction = ParameterDirection.Input;
+            pib.Value = PIB;
+            cmd.Parameters.Add(pib);
 
 
             conn.Open();

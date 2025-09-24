@@ -548,7 +548,7 @@ namespace Saobracaj.Uvoz
         private void button1_Click(object sender, EventArgs e)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
-            uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue), txtKomercijalniNaziv.Text, txtTarifniBroj.Text,Convert.ToDouble(txtBrojKoleta.Text), Convert.ToDouble(txtBruto.Text), Convert.ToDouble(txtVrednost.Text),  txtValuta.Text, Convert.ToDouble(txtNeto.Text) );
           //  VratiADRIzNHM(Convert.ToInt32(cboNHM.SelectedValue)); // Nije potrebno jer ovde ionako ne mo\e da se vrati
 
             if (chkNerasporedjeni.Checked == true )

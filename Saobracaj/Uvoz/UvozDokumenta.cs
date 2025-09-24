@@ -20,6 +20,7 @@ namespace Saobracaj.Uvoz
         string pomNadredjeni = "0";
         string pomSifra = "0";
         string pomUsluga = "0";
+        int IzForme = 0;
         public UvozDokumenta()
         {
             InitializeComponent();
@@ -162,11 +163,10 @@ namespace Saobracaj.Uvoz
             InitializeComponent();
           
             ChangeTextBox();
-
-            FillCombo();
-
+           
             pomNadredjeni = Nadredjeni;
             pomSifra = sifra;
+            IzForme = 1;
         
         }
 
@@ -231,6 +231,7 @@ namespace Saobracaj.Uvoz
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
+
             PodesiDatagridView(dataGridView2);
 
             DataGridViewColumn column = dataGridView2.Columns[0];
@@ -246,28 +247,6 @@ namespace Saobracaj.Uvoz
             dataGridView2.Columns[2].Width = 550;
         }
 
-        public void FillCombo()
-        {
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var val = "Select ID, Naziv, PotrebnoZaFakturu from TipKomercijalnogDokumenta order by Naziv";
-            var valSAD = new SqlDataAdapter(val, myConnection);
-            var valSDS = new DataSet();
-            valSAD.Fill(valSDS);
-            DataTable dt = valSDS.Tables[0];
-
-            // novi red
-            DataRow newRow = dt.NewRow();
-            newRow["ID"] = 0;
-            newRow["Naziv"] = ""; // prazan naziv
-            newRow["PotrebnoZaFakturu"] = DBNull.Value; 
-            dt.Rows.InsertAt(newRow, 0);
-
-            // vezivanje za combo
-            cboTipDokumenta.DataSource = dt;
-            cboTipDokumenta.DisplayMember = "Naziv";
-            cboTipDokumenta.ValueMember = "ID";
-        }
 
         private void RefreshDataGridKontejnere()
         {
@@ -280,7 +259,7 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (txtPlanID.Text == "0")
             { 
-            select = "select ID, BrojKontejnera from Uvoz";
+            select = "select ID, BrojKontejnera from Uvoz where BrojKontejnera is not null";
             
             }
             else
@@ -311,9 +290,27 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column2 = dataGridView4.Columns[1];
             dataGridView4.Columns[1].HeaderText = "Kontejner";
             dataGridView4.Columns[1].Width = 150;
+            if (IzForme == 1)
+            {
+                SelektujPozvaniKontejner();
+            }
+      
 
         }
+        private void SelektujPozvaniKontejner()
+        {
+            dataGridView4.ClearSelection();
 
+            // Select rows where the value in the first cell is greater than 10
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[0].Value) == Convert.ToInt32(txtSifraUvoza.Text))
+                {
+                    row.Selected = true;
+                }
+            }
+
+        }
 
         private void RefreshDataGridUslugaSvePoVozu()
         {
@@ -467,7 +464,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new System.Data.DataSet();
+            var ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
@@ -624,19 +621,12 @@ namespace Saobracaj.Uvoz
             //  if (status == true)
             // {
             InsertUvozDokumenta ins = new InsertUvozDokumenta();
+           
 
-            // uzmi vrednost iz combo
-            int? tipDokValue = null;
-            if (cboTipDokumenta.SelectedValue != null &&
-                int.TryParse(cboTipDokumenta.SelectedValue.ToString(), out int tipID) &&
-                tipID > 0)
-            {
-                tipDokValue = tipID;
-            }
             if (chkZaVoz.Checked == true)
             {
                 KopirajFajlPoTipuCeoVoz(txtPutanja.Text, txtPlanID.Text, 6);
-                ins.InsUvozDokumentaCeoVoz(Convert.ToInt32(txtPlanID.Text), txtPutanja.Text, tipDokValue);
+                ins.InsUvozDokumentaCeoVoz(Convert.ToInt32(txtPlanID.Text), txtPutanja.Text);
                 RefreshDataGridCeoVoz();
 
             }
@@ -647,7 +637,9 @@ namespace Saobracaj.Uvoz
                     if (row.Selected)
                     {
                         KopirajFajlPoTipu(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
-                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text, tipDokValue);           
+                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text,0);
+                        
+
                     }
                 }
                 RefreshDataGrid();
@@ -660,12 +652,17 @@ namespace Saobracaj.Uvoz
                     if (row.Selected)
                     {
                         KopirajFajlPoTipuUsluga(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
-                        ins.InsUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text, tipDokValue);
+                        ins.InsUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text);
+
+
                     }
                 }
               
                 RefreshDataGridUsluga();
-            }     
+            }
+          
+
+          
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -676,23 +673,13 @@ namespace Saobracaj.Uvoz
                 {
                     if (row.Selected)
                     {
-                        cboTipDokumenta.SelectedValue = 0;
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtPutanja.Text = row.Cells[2].Value.ToString();
 
-                        if (dataGridView1.Columns.Contains("TipKomercijalnogDokumentaID"))
-                        {
-                            var cellValue = row.Cells["TipKomercijalnogDokumentaID"].Value;
-                            if (cellValue != null && cellValue != DBNull.Value)
-                            {
-                                if (int.TryParse(cellValue.ToString(), out int tipID) && tipID > 0)
-                                {
-                                    cboTipDokumenta.SelectedValue = tipID;                                                
-                                }
-                            }
-                        }
                     }
                 }
+
+
             }
             catch
             {
@@ -734,6 +721,9 @@ namespace Saobracaj.Uvoz
                 RefreshDataGridUsluga();
             }
 
+
+
+
             status = true;
 
         }
@@ -751,24 +741,12 @@ namespace Saobracaj.Uvoz
                 {
                     if (row.Selected)
                     {
-                        cboTipDokumenta.SelectedValue = 0;
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtPutanja.Text = row.Cells[2].Value.ToString();
 
-                        if (dataGridView2.Columns.Contains("TipKomercijalnogDokumentaID"))
-                        {
-                            var cellValue = row.Cells["TipKomercijalnogDokumentaID"].Value;
-                            if (cellValue != null && cellValue != DBNull.Value)
-                            {
-                                if (int.TryParse(cellValue.ToString(), out int tipID) && tipID > 0)
-                                {
-                                    cboTipDokumenta.SelectedValue = tipID;
-                                }
-                            }
-                        }
                     }
                 }
-                
+
 
             }
             catch
@@ -786,7 +764,9 @@ namespace Saobracaj.Uvoz
                 chkUsluge.Checked = false;
                 RefreshDataGridKontejnere();
 
-            }      
+            }
+
+          
         }
 
         private void dataGridView4_SelectionChanged(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertUvozDokumenta
     {
-        public void InsUvozDokumenta(int IDUvoz, string Putanja, int? TipDokValue)
+        public void InsUvozDokumenta(int IDUvoz, string Putanja, int TipDokValue)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -37,7 +37,7 @@ namespace Saobracaj.Uvoz
             parameter3.ParameterName = "@TipDokValue";
             parameter3.SqlDbType = SqlDbType.Int;
             parameter3.Direction = ParameterDirection.Input;
-            parameter3.Value = TipDokValue.HasValue ? (object)TipDokValue.Value : DBNull.Value;
+            parameter3.Value = TipDokValue;
             myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
@@ -77,7 +77,7 @@ namespace Saobracaj.Uvoz
 
         }
 
-        public void InsUvozDokumentaCeoVoz(int IDPlan, string Putanja,int? TipDokValue)
+        public void InsUvozDokumentaCeoVoz(int IDPlan, string Putanja)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -102,13 +102,6 @@ namespace Saobracaj.Uvoz
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
 
-            SqlParameter parameter3 = new SqlParameter();
-            parameter3.ParameterName = "@TipDokValue";
-            parameter3.SqlDbType = SqlDbType.Int;
-            parameter3.Direction = ParameterDirection.Input;
-            parameter3.Value = TipDokValue.HasValue ? (object)TipDokValue.Value : DBNull.Value;
-            myCommand.Parameters.Add(parameter3);
-
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -147,7 +140,7 @@ namespace Saobracaj.Uvoz
         }
 
 
-        public void InsUvozDokumentaUsluga(int IDUsluge, string Putanja, int? TipDokValue)
+        public void InsUvozDokumentaUsluga(int IDUsluge, string Putanja)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -171,13 +164,6 @@ namespace Saobracaj.Uvoz
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
-
-            SqlParameter parameter3 = new SqlParameter();
-            parameter3.ParameterName = "@TipDokValue";
-            parameter3.SqlDbType = SqlDbType.Int;
-            parameter3.Direction = ParameterDirection.Input;
-            parameter3.Value = TipDokValue.HasValue ? (object)TipDokValue.Value : DBNull.Value;
-            myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
