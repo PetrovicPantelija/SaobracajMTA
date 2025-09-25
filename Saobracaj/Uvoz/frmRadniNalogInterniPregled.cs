@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Saobracaj.Dokumenta;
 using Saobracaj.Izvoz;
+using Saobracaj.RadniNalozi;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
@@ -661,16 +662,22 @@ namespace Saobracaj.Uvoz
               "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
               "  where Uradjen not in (1, 2)";
            */
-       select = "    SELECT UvozKonacna.ID,UvozKonacna.IDNAdredjeni, Voz.NAzivVoza as Voz , EtaBroda, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, " +
+       select = "    SELECT UvozKonacna.ID,UvozKonacna.IDNAdredjeni, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera," +
+                " b.PaNaziv as Brodar, p1.PaNaziv as Uvoznik,Voz.NAzivVoza as Voz ,  " +
+" (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
+" VrstaCarinskogPostupka.Naziv as CarinskiPostupak, VrstePostupakaUvoz.Naziv as PostupakSaRobom, NetoRobe, BrutoRobe,  Koleta ,TaraKontejnera, BrutoKontejnera,      " +
+" (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join UvozKonacna uv on UvozKonacna.ID = UvozNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+ " (SELECT  STUFF((SELECT distinct   '/' + '*' + TarifniBroj + '-' + (KomercijalniNaziv) " +
+" from UvozKonacnaNHM " +
+"  where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+" FOR XML PATH('')), 1, 1, '') As Skupljen2)    as NHM, " +
+" Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL, " +
 " KontejnerskiTerminali.Naziv as T1, " +
 " k2.Naziv as T2, k3.Naziv as T3, " +
-" (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
-" (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join UvozKonacna uv on UvozKonacna.ID = UvozNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
-" Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL, " +
-" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2, " +
-" p1.PaNaziv as Uvoznik, p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC,VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
-" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica, " +
-" Email, NetoRobe, BrutoRobe,  TaraKontejnera, BrutoKontejnera,     Koleta , " +
+" VrstaRobeADR.Naziv as ADR, n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2, " +
+"  p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC," +
+" uvNacinPakovanja.Naziv as NacinPakovanja, EtaBroda, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica, " +
+" Email,  " +
 " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
 " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
 " Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, " +
@@ -1065,10 +1072,44 @@ namespace Saobracaj.Uvoz
 
         }
 
+        string TipRN = "";
+        int BrojRN = 0;
+        int ProveriDaLijeVecGenerisanaOperacija(string Nalog)
+        {
+            int Uradjen = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 TipRN, BrojRN from RadniNalogInterni where ID = " + txtNALOGID.Text , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                   Uradjen = 1; 
+                   TipRN =  dr["TipRN"].ToString().TrimEnd();
+                   BrojRN = Convert.ToInt32(dr["BrojRN"].ToString().TrimEnd());
+                if (BrojRN == 0)
+                {
+                    Uradjen = 0;
+                }
+            }
+            con.Close();
+            return Uradjen;
+
+        }
+
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             int i = 0;
-
+            int j = 0;
+            j = ProveriDaLijeVecGenerisanaOperacija(txtNALOGID.Text);
+            if (j > 0)
+            {
+            MessageBox.Show("Za ovu uslugu već je generisan RN, " + TipRN + " broj :" + BrojRN);
+            return;
+            }
             i = ProveriDaLiJeUradjenaPredhodnaOperacija(txtNALOGID.Text);
             if (i == 0)
             {
@@ -1429,6 +1470,55 @@ namespace Saobracaj.Uvoz
 
                 throw ex;
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (txtRNTip.Text == "RN1")
+            { 
+             RN1PrijemVoza rn1o = new RN1PrijemVoza(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+            if (txtRNTip.Text == "RN2")
+            {
+                RN2OtpremaVoza rn1o = new RN2OtpremaVoza(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+
+
+            if (txtRNTip.Text == "RN4")
+            {
+                RN4PrijemPlatforme rn1o = new RN4PrijemPlatforme(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            } 
+            if (txtRNTip.Text == "RN5")
+            {
+                RN5PrijemPlatforme2 rn1o = new RN5PrijemPlatforme2(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+
+            if (txtRNTip.Text == "RN6")
+            {
+                RN6OtpremaPlatforme rn1o = new RN6OtpremaPlatforme(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+
+            if (txtRNTip.Text == "RN7")
+            {
+                RN7OtpremaPlatforme2 rn1o = new RN7OtpremaPlatforme2(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+
+
+
+
+            if (txtRNTip.Text == "RN12")
+            {
+                RN12MedjuskladisniKontejnera rn1o = new RN12MedjuskladisniKontejnera(Convert.ToInt16(txtRNBroj.Text));
+                rn1o.Show();
+            }
+
+     
         }
     }
 }

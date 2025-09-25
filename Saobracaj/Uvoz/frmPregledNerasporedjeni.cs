@@ -139,14 +139,19 @@ namespace Saobracaj.Uvoz
 " (select Top 1 Naziv from Scenario inner join Uvoz uv on uv.Scenario = Scenario.ID  where Uvoz.ID = uv.ID) as ScenarioNaziv, "+
 " (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join Uvoz uv on Uvoz.ID = UvozNapomenePozicioniranja.IDNadredjena  where Uvoz.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
 " Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL,  " +
-" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2,  " +
-" p1.PaNaziv as Uvoznik, p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC,VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+" VrstaRobeADR.Naziv as ADR, PIN,b.PaNaziv as Brodar,n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2,  " +
+" p1.PaNaziv as Uvoznik, " +
+ " (SELECT  STUFF((SELECT distinct   '/' + '*' + TarifniBroj + '-' + (KomercijalniNaziv) " +
+" from UvozNHM " +
+"  where UvozNHM.IDNadredjena = Uvoz.ID " +
+" FOR XML PATH('')), 1, 1, '') As Skupljen2)    as NHM, " +
+" p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC,VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
 " VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica,   " +
 " Email, NetoRobe, BrutoRobe,  TaraKontejnera, BrutoKontejnera,     Koleta ," +
 " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet ,  " +
 " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ ,   " +
-" Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,   " +
-"  DobijeBZ as DatumBZ ,PIN,     pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica,  " +
+" Ref1 as Ref1, Ref2 as Ref2,ATABroda,   " +
+"  DobijeBZ as DatumBZ ,       " +
 "   Ref3 as Ref3,         VrstaPregleda as InsTret,   " +
 " Napomena as Napomena2,  " +
 " MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, " +

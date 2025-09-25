@@ -77,7 +77,7 @@ namespace Saobracaj.Uvoz
 
         }
 
-        public void InsUvozDokumentaCeoVoz(int IDPlan, string Putanja)
+        public void InsUvozDokumentaCeoVoz(int IDPlan, string Putanja, int TipDokumenta)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -101,6 +101,14 @@ namespace Saobracaj.Uvoz
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
+
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@TipDokValue";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = TipDokumenta;
+            myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -140,7 +148,7 @@ namespace Saobracaj.Uvoz
         }
 
 
-        public void InsUvozDokumentaUsluga(int IDUsluge, string Putanja)
+        public void InsUvozDokumentaUsluga(int IDUsluge, string Putanja, int TipDokumenta)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -164,6 +172,13 @@ namespace Saobracaj.Uvoz
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@TipDokValue";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = TipDokumenta;
+            myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

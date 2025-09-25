@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Data;
@@ -155,6 +156,7 @@ namespace Saobracaj.Uvoz
             pomNadredjeni = Nadredjeni;
             pomSifra = sifra;
             pomUsluga = Usluga;
+            FillCombo();
 
         }
 
@@ -167,7 +169,23 @@ namespace Saobracaj.Uvoz
             pomNadredjeni = Nadredjeni;
             pomSifra = sifra;
             IzForme = 1;
-        
+            FillCombo();
+        }
+
+        private void FillCombo()
+        {
+           string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+           SqlConnection conn = new SqlConnection(connection);
+
+            var dir = "Select ID,Naziv from TipKomercijalnogDokumenta order by Naziv";
+            var dirAD = new SqlDataAdapter(dir, conn);
+            var dirDS = new System.Data.DataSet();
+            dirAD.Fill(dirDS);
+            cboTipDokumenta.DataSource = dirDS.Tables[0];
+            cboTipDokumenta.DisplayMember = "Naziv";
+            cboTipDokumenta.ValueMember = "ID";
+
+
         }
 
         private void RefreshDataGrid()
@@ -181,11 +199,11 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (txtPlanID.Text == "0")
             {
-                select = "select * from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz where IDUvoz = " + txtSifraUvoza.Text;
+                select = "select UvozDokumenta.* from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz where IDUvoz = " + txtSifraUvoza.Text;
             }
             else
             {
-                select = "select * from UvozDokumenta  inner join UvozKonacna on UvozKonacna.ID = UvozDokumenta.IDUvoz where IdNadredjeni = " + txtPlanID.Text;
+                select = "select UvozDokumenta.* from UvozDokumenta  inner join UvozKonacna on UvozKonacna.ID = UvozDokumenta.IDUvoz where IdNadredjeni = " + txtPlanID.Text;
             }
            
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -194,7 +212,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -226,7 +244,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
@@ -275,7 +293,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
@@ -337,7 +355,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
@@ -380,7 +398,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
@@ -416,7 +434,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
@@ -464,7 +482,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
@@ -626,7 +644,7 @@ namespace Saobracaj.Uvoz
             if (chkZaVoz.Checked == true)
             {
                 KopirajFajlPoTipuCeoVoz(txtPutanja.Text, txtPlanID.Text, 6);
-                ins.InsUvozDokumentaCeoVoz(Convert.ToInt32(txtPlanID.Text), txtPutanja.Text);
+                ins.InsUvozDokumentaCeoVoz(Convert.ToInt32(txtPlanID.Text), txtPutanja.Text, Convert.ToInt32(cboTipDokumenta.SelectedValue));
                 RefreshDataGridCeoVoz();
 
             }
@@ -652,7 +670,7 @@ namespace Saobracaj.Uvoz
                     if (row.Selected)
                     {
                         KopirajFajlPoTipuUsluga(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
-                        ins.InsUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text);
+                        ins.InsUvozDokumentaUsluga(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text, Convert.ToInt32(cboTipDokumenta.SelectedValue));
 
 
                     }

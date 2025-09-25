@@ -79,6 +79,7 @@ namespace Saobracaj.RadniNalozi
             this.button23 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button22 = new System.Windows.Forms.Button();
+            this.chkDrumskaUsluga = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -560,7 +561,7 @@ namespace Saobracaj.RadniNalozi
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button6.Location = new System.Drawing.Point(147, 0);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(147, 31);
+            this.button6.Size = new System.Drawing.Size(131, 31);
             this.button6.TabIndex = 17;
             this.button6.Text = "Štampa pretovara";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -615,12 +616,27 @@ namespace Saobracaj.RadniNalozi
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // chkDrumskaUsluga
+            // 
+            this.chkDrumskaUsluga.AutoSize = true;
+            this.chkDrumskaUsluga.Checked = true;
+            this.chkDrumskaUsluga.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDrumskaUsluga.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkDrumskaUsluga.Location = new System.Drawing.Point(5, 226);
+            this.chkDrumskaUsluga.Margin = new System.Windows.Forms.Padding(2);
+            this.chkDrumskaUsluga.Name = "chkDrumskaUsluga";
+            this.chkDrumskaUsluga.Size = new System.Drawing.Size(52, 19);
+            this.chkDrumskaUsluga.TabIndex = 536;
+            this.chkDrumskaUsluga.Text = "Uvoz";
+            this.chkDrumskaUsluga.UseVisualStyleBackColor = true;
+            // 
             // Prijemnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1267, 871);
+            this.Controls.Add(this.chkDrumskaUsluga);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cboGrupaPolja);
@@ -719,5 +735,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.CheckBox chkDrumskaUsluga;
     }
 }

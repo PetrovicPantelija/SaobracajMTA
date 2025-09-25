@@ -45,13 +45,14 @@ namespace Saobracaj.RadniNalozi
             this.chkGateInKamionUvoz = new System.Windows.Forms.CheckBox();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.chkInterniPrenos = new System.Windows.Forms.CheckBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.chkInterniPrenos = new System.Windows.Forms.CheckBox();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabSplitterContainer1.SuspendLayout();
@@ -59,6 +60,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -100,7 +102,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView2.Location = new System.Drawing.Point(0, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1423, 380);
+            this.dataGridView2.Size = new System.Drawing.Size(1423, 377);
             this.dataGridView2.TabIndex = 181;
             // 
             // label5
@@ -248,6 +250,18 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "Polja";
             // 
+            // chkInterniPrenos
+            // 
+            this.chkInterniPrenos.AutoSize = true;
+            this.chkInterniPrenos.BackColor = System.Drawing.Color.White;
+            this.chkInterniPrenos.ForeColor = System.Drawing.Color.Black;
+            this.chkInterniPrenos.Location = new System.Drawing.Point(327, 95);
+            this.chkInterniPrenos.Name = "chkInterniPrenos";
+            this.chkInterniPrenos.Size = new System.Drawing.Size(118, 17);
+            this.chkInterniPrenos.TabIndex = 388;
+            this.chkInterniPrenos.Text = "INTERNI PRENOS";
+            this.chkInterniPrenos.UseVisualStyleBackColor = false;
+            // 
             // txtID
             // 
             this.txtID.Enabled = false;
@@ -262,6 +276,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
+            this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
             this.tabSplitterPage2.Controls.Add(this.dataGridView2);
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 423);
@@ -305,17 +320,38 @@ namespace Saobracaj.RadniNalozi
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
-            // chkInterniPrenos
+            // gridGroupingControl1
             // 
-            this.chkInterniPrenos.AutoSize = true;
-            this.chkInterniPrenos.BackColor = System.Drawing.Color.White;
-            this.chkInterniPrenos.ForeColor = System.Drawing.Color.Black;
-            this.chkInterniPrenos.Location = new System.Drawing.Point(327, 95);
-            this.chkInterniPrenos.Name = "chkInterniPrenos";
-            this.chkInterniPrenos.Size = new System.Drawing.Size(118, 17);
-            this.chkInterniPrenos.TabIndex = 388;
-            this.chkInterniPrenos.Text = "INTERNI PRENOS";
-            this.chkInterniPrenos.UseVisualStyleBackColor = false;
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl1.ApplyVisualStyles = false;
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(3, 3);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1420, 377);
+            this.gridGroupingControl1.TabIndex = 238;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl2";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             // 
             // frmDodelaSkladista
             // 
@@ -338,6 +374,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +403,6 @@ namespace Saobracaj.RadniNalozi
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.CheckBox chkInterniPrenos;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
     }
 }

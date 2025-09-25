@@ -327,8 +327,11 @@ namespace Saobracaj.RadniNalozi
             dataGridView1.Columns.Add(cbo2);
             if (frmLogovanje.Firma == "Leget")
             {
-                
-                var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM where Interni = 1 order by ID";
+
+                // var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM where Interni = 1 order by ID";
+                var queryMP = " select IDNHM as MpSifra, (TArifniBRoj + ' ' + KomercijalniNaziv) as MpNaziv from UvozKonacnaNHM where IDNadredjena = " +
+ " (Select BrojOSnov from RadniNalogInterni where OJIZdavanja = 1 and ID = " + txtNalogID.Text + ") " +
+ " union select ID, Naziv from NHM where ID = 12409 ";
                 SqlDataAdapter daMP = new SqlDataAdapter(queryMP, conn);
                 System.Data.DataSet dsMP = new System.Data.DataSet();
                 daMP.Fill(dsMP);

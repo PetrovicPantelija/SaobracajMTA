@@ -15,6 +15,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string KorisnikTekuce = frmLogovanje.user;
+        int BrojRN = 0;
 
         private void ChangeTextBox()
         {
@@ -146,6 +147,15 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+        public RN2OtpremaVoza(int brojrn)
+        {
+            InitializeComponent();
+            BrojRN = brojrn;
+            FillGVIzRNI();
+            FillCombo();
+            ChangeTextBox();
+        }
+
         private void VratiSkladisteIzTekuceg(string ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -246,6 +256,25 @@ namespace Saobracaj.RadniNalozi
                 "RNOtpremaVoza.NalogID, RNOtpremaVoza.SaSkladista, Skladista.Naziv AS SkladisteNaziv FROM           RNOtpremaVoza INNER JOIN" +
                 "                        TipKontenjera ON RNOtpremaVoza.VrstaKontejnera = TipKontenjera.ID INNER JOIN   " +
                 "  Voz ON RNOtpremaVoza.NaVoznoSredstvo = Voz.ID INNER JOIN  Skladista ON RNOtpremaVoza.SaSkladista = Skladista.ID order by RNOtpremaVoza.ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
+        }
+
+        private void FillGVIzRNI()
+        {
+            var select = "SELECT RNOtpremaVoza.ID, RNOtpremaVoza.DatumRasporeda, RNOtpremaVoza.BrojKontejnera, RNOtpremaVoza.VrstaKontejnera," +
+                " TipKontenjera.ID AS TKID, TipKontenjera.Naziv, RNOtpremaVoza.NalogIzdao, " +
+                " RNOtpremaVoza.DatumRealizacije, RNOtpremaVoza.NaVoznoSredstvo, Voz.BrVoza, Voz.Relacija, RNOtpremaVoza.BrojPlombe, RNOtpremaVoza.BrojVagona, " +
+                "RNOtpremaVoza.Zavrsen,   RNOtpremaVoza.IdUsluge, RNOtpremaVoza.NalogRealizovao, RNOtpremaVoza.Napomena, RNOtpremaVoza.OtpremaID, " +
+                "RNOtpremaVoza.NalogID, RNOtpremaVoza.SaSkladista, Skladista.Naziv AS SkladisteNaziv FROM           RNOtpremaVoza INNER JOIN" +
+                "                        TipKontenjera ON RNOtpremaVoza.VrstaKontejnera = TipKontenjera.ID INNER JOIN   " +
+                "  Voz ON RNOtpremaVoza.NaVoznoSredstvo = Voz.ID INNER JOIN  Skladista ON RNOtpremaVoza.SaSkladista = Skladista.ID where RNOtpremaVoza.ID =" + BrojRN;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

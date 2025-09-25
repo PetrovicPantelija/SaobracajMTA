@@ -87,6 +87,7 @@ namespace Saobracaj.Uvoz
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -480,7 +481,7 @@ namespace Saobracaj.Uvoz
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button2.Location = new System.Drawing.Point(21, 632);
+            this.button2.Location = new System.Drawing.Point(22, 658);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 35);
             this.button2.TabIndex = 221;
@@ -492,7 +493,7 @@ namespace Saobracaj.Uvoz
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(22, 591);
+            this.button1.Location = new System.Drawing.Point(22, 578);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 35);
             this.button1.TabIndex = 220;
@@ -551,7 +552,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1136, 693);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1138, 693);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.tabSplitterContainer1.SplitterPosition = 606;
             this.tabSplitterContainer1.TabIndex = 10;
@@ -565,7 +566,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1136, 606);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1138, 606);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
             // 
@@ -588,7 +589,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1133, 600);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1135, 600);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -611,7 +612,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 626);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1136, 67);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1138, 67);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
@@ -634,7 +635,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1130, 62);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1132, 65);
             this.gridGroupingControl2.TabIndex = 237;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -673,6 +674,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
@@ -854,6 +856,27 @@ namespace Saobracaj.Uvoz
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // button6
+            // 
+            this.button6.AutoSize = true;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button6.Location = new System.Drawing.Point(886, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(79, 31);
+            this.button6.TabIndex = 24;
+            this.button6.Text = "Otvori RN";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -960,5 +983,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

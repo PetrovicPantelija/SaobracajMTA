@@ -137,7 +137,7 @@ namespace Saobracaj.Uvoz
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
               
-                foreach (Control control in splitContainer1.Panel1.Controls)
+                foreach (Control control in tabSplitterContainer1.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
@@ -216,7 +216,7 @@ namespace Saobracaj.Uvoz
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
 
-                foreach (Control control in splitContainer1.Panel2.Controls)
+                foreach (Control control in tabSplitterContainer1.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
@@ -637,7 +637,7 @@ namespace Saobracaj.Uvoz
             var select = "";
 
            
-                select = " select  Distinct PrStDokumenta from Promet where VrstaDokumenta = 'PRI' and NalogID =  " + NalogID;
+                select = " select  Distinct PrStDokumenta, BrojKontejnera from Promet where VrstaDokumenta = 'PRI' and NalogID =  " + NalogID;
            
 
             SqlConnection conn = new SqlConnection(connection);
@@ -662,8 +662,8 @@ namespace Saobracaj.Uvoz
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[0].HeaderText = "Postojeca prijemnica";
+            dataGridView1.Columns[0].Width = 100;
 
             
 
@@ -677,7 +677,7 @@ namespace Saobracaj.Uvoz
             var select = "";
 
 
-            select = " Select  Distinct PrStDokumenta from Promet where VrstaDokumenta = 'OTP' and NalogID =  " + NalogID;
+            select = " Select  Distinct PrStDokumenta,  BrojKontejnera from Promet where VrstaDokumenta = 'OTP' and NalogID =  " + NalogID;
 
 
             SqlConnection conn = new SqlConnection(connection);
@@ -702,8 +702,8 @@ namespace Saobracaj.Uvoz
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns[0].HeaderText = "Postojeća otpremnica";
+            dataGridView2.Columns[0].Width = 100;
 
 
 
@@ -1008,8 +1008,57 @@ namespace Saobracaj.Uvoz
                 System.Windows.MessageBox.Show("RN ZA KALMARISTU POSTAVKA U PRIVREMENU ZONU - RN PRIJEM CIRADE ");
         }
 
+        int pc = 0; // Potvrdila carina
+        int pk = 0;
+
+        int PotvrdioKlijent(int RNI)
+        {
+            int pk = 0;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select UVozKonacna.PotvrdioKlijent, UvozKonacna.UradilaCarina  from RadniNalogInterni inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID where RadniNalogInterni.ID = " + RNI, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+               pk = Convert.ToInt32(dr["PotvrdioKlijent"].ToString());
+            }
+            conn.Close();
+            dr.Close();
+            return pk;
+        }
+        int UradilaCarina(int RNI)
+        {
+            int pk = 0;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select UVozKonacna.PotvrdioKlijent, UvozKonacna.UradilaCarina  from RadniNalogInterni inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID where RadniNalogInterni.ID = " + RNI, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                pk = Convert.ToInt32(dr["UradilaCarina"].ToString());
+            }
+            conn.Close();
+            dr.Close();
+            return pk;
+        }
+
         private void button10_Click(object sender, EventArgs e)
         {
+            
+            int i = PotvrdioKlijent(Convert.ToInt32(txtID.Text));
+            int j = UradilaCarina(Convert.ToInt32(txtID.Text));
+            if (i == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije potvrdio klijent");
+                return;
+            }
+            if (j == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uradila carina");
+                return;
+            }
+
+
             RN12MedjuskladisniKontejnera rn12 = new RN12MedjuskladisniKontejnera(Convert.ToInt16(txtID.Text), txtKontejner.Text, txtNapomena.Text);
             rn12.Show();
            // RN12MedjuskladisniKontejnera(int NalogID, string BrojKontejnera, string Napomena)
@@ -1017,6 +1066,20 @@ namespace Saobracaj.Uvoz
 
         private void button11_Click(object sender, EventArgs e)
         {
+            int i = PotvrdioKlijent(Convert.ToInt32(txtID.Text));
+            int j = UradilaCarina(Convert.ToInt32(txtID.Text));
+            if (i == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije potvrdio klijent");
+                return;
+            }
+            if (j == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uradila carina");
+                return;
+            }
+
+
             if (txtID.Text != "")
             {
                 Prijemnica frm = new Prijemnica(Convert.ToInt32(txtID.Text), txtKontejner.Text.ToString().TrimEnd(), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue));
@@ -1027,6 +1090,20 @@ namespace Saobracaj.Uvoz
 
         private void button12_Click(object sender, EventArgs e)
         {
+            int i = PotvrdioKlijent(Convert.ToInt32(txtID.Text));
+            int j = UradilaCarina(Convert.ToInt32(txtID.Text));
+            if (i == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije potvrdio klijent");
+                return;
+            }
+            if (j == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uradila carina");
+                return;
+            }
+
+
             if (txtID.Text == "")
             {
                 return;
@@ -1038,6 +1115,20 @@ namespace Saobracaj.Uvoz
 
         private void button13_Click(object sender, EventArgs e)
         {
+            int i = PotvrdioKlijent(Convert.ToInt32(txtID.Text));
+            int j = UradilaCarina(Convert.ToInt32(txtID.Text));
+            if (i == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije potvrdio klijent");
+                return;
+            }
+            if (j == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uradila carina");
+                return;
+            }
+
+
             int Ciradatmp = 0;
             int ModulPorekla = 0;
             if (chkUvoz.Checked == true)
@@ -1064,6 +1155,19 @@ namespace Saobracaj.Uvoz
 
         private void button14_Click(object sender, EventArgs e)
         {
+            int i = PotvrdioKlijent(Convert.ToInt32(txtID.Text));
+            int j = UradilaCarina(Convert.ToInt32(txtID.Text));
+            if (i == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije potvrdio klijent");
+                return;
+            }
+            if (j == 0)
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uradila carina");
+                return;
+            }
+
             RN12MedjuskladisniKontejnera rn12 = new RN12MedjuskladisniKontejnera(Convert.ToInt16(txtID.Text), txtKontejner.Text, txtNapomena.Text);
             rn12.Show();
         }
@@ -1253,6 +1357,34 @@ namespace Saobracaj.Uvoz
             {
                 InsertUvozKonacna ins = new InsertUvozKonacna();
                 ins.UpdUvozKonacnaUC(Convert.ToInt32(txtOsnov.Text));
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text != "")
+            {
+                Otpremnica frm = new Otpremnica(Convert.ToInt32(txtID.Text), txtKontejner.Text.ToString().TrimEnd(),txtReg.Text, txtVozac.Text, SelektovanaOtpremnica);
+                frm.Show();
+
+            }
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        SelektovanaOtpremnica = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    }
+                }
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
 

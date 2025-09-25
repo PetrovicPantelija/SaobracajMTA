@@ -13,6 +13,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string KorisnikTekuci;
+        int BrojRN = 0;
 
         private void ChangeTextBox()
         {
@@ -142,6 +143,14 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+        public RN7OtpremaPlatforme2(int brojrn)
+        {
+            InitializeComponent();
+            FillGVIzRNI();
+            FillCombo();
+            ChangeTextBox();
+        }
+
         public RN7OtpremaPlatforme2(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz)
         {
             //Uvoz = 0
@@ -239,6 +248,18 @@ namespace Saobracaj.RadniNalozi
         private void FillGV()
         {
             var select = "Select * from RNOtpremaPlatforme2 order by ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            PodesiDatagridView(dataGridView1);
+        }
+
+        private void FillGVIzRNI()
+        {
+            var select = "Select * from RNOtpremaPlatforme2 where ID = " + BrojRN;
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

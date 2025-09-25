@@ -14,7 +14,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string KorisnikTekuci = Sifarnici.frmLogovanje.user;
-
+        int BrojRN = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -142,6 +142,15 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+        public RN6OtpremaPlatforme(int brojrn)
+        {
+            InitializeComponent();
+            BrojRN = brojrn;
+            FillGVIZRNI();
+            FillCombo();
+            ChangeTextBox();
+        }
+
         private void VratiOstaloIzTekuceg(string BrojKontejnera)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -257,6 +266,36 @@ namespace Saobracaj.RadniNalozi
 " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
 " inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
 " where Uvoz = 0 order by [RNOtpremaPlatforme].ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 20;
+        }
+
+        private void FillGVIZRNI()
+        {
+
+            var select = " SELECT       [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]   " +
+                "   ,[BrojKontejnera]  ,TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao]   " +
+" ,[DatumRealizacije], Komitenti_3.PaNaziv as [Uvoznik]    ,VrstaCarinskogPostupka.[Naziv] as CarinskiPostupak        , Komitenti_2.PaNaziv as [SpedicijaRTC] " +
+" ,Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
+" ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
+" ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
+" INNER JOIN  Partnerji AS Komitenti_1 ON[RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
+" INNER JOIN  Partnerji AS Komitenti_2 ON[RNOtpremaPlatforme].SpedicijaRTC = Komitenti_2.PaSifra " +
+" INNER JOIN  Partnerji AS Komitenti_3 ON[RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
+" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
+" inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
+" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+" where [RNOtpremaPlatforme].ID = " + BrojRN + " order by [RNOtpremaPlatforme].ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -556,7 +595,7 @@ namespace Saobracaj.RadniNalozi
 
             DataGridViewColumn column4 = dataGridView3.Columns[3];
             dataGridView3.Columns[3].HeaderText = "NHM";
-            dataGridView3.Columns[3].Width = 150;
+            dataGridView3.Columns[3].Width = 350;
 
 
         }

@@ -12,6 +12,7 @@ using System.Drawing;
 using Saobracaj.Dokumenta;
 using Syncfusion.Windows.Forms;
 using System.Drawing.Imaging;
+using Saobracaj.Sifarnici;
 
 //
 namespace Saobracaj.RadniNalozi
@@ -21,6 +22,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
+        int BrojRN = 0;
 
         private void ChangeTextBox()
         {
@@ -166,6 +168,22 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+
+        public RN1PrijemVoza(int brojRN)
+        {
+            //Prijem voza iz Otvori Radni nalozi Interni
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
+            InitializeComponent();
+            BrojRN = brojRN;
+            FillGVOtvoriIzRadnogNalogaInterni();
+          //  FillGV();
+            FillCombo();
+            KorisnikTekuci = frmLogovanje.user.ToString();
+            txtDatumRasporeda.Value = DateTime.Now;
+            ChangeTextBox();
+        }
+
         public RN1PrijemVoza(string Korisnik, string IDVOza, string IDUsluge, string PrijemID)
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3tib3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
@@ -242,7 +260,7 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGVPoVozu()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, Voz.NazivVoza, " +
                 "NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe," +
                 " RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacijeVP, NalogRealizovaoVP, ZavrsenVP, NapomenaPlombe1, NapomenaPlombe2, " +
                 "DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
@@ -262,11 +280,30 @@ namespace Saobracaj.RadniNalozi
             dataGridView1.DataSource = ds.Tables[0];
             PodesiDatagridView(dataGridView1);
         }
-
+        private void FillGVOtvoriIzRadnogNalogaInterni()
+        {
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, " +
+                " Voz.BrVoza, Voz.NazivVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, BrojPlombe2,  NapomenaPlombe1, NapomenaPlombe2, " +
+                " RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+" inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
+" inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
+" inner join Skladista on Skladista.ID = NaSkladiste " +
+" inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge " +
+" where RNPrijemVoza.ID = " + BrojRN + "order by RNPrijemVoza.ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            PodesiDatagridView(dataGridView1);
+        }
         private void FillGV()
         {
             var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, " +
-                " Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, BrojPlombe2,  NapomenaPlombe1, NapomenaPlombe2, " +
+                " Voz.BrVoza, Voz.NazivVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, BrojPlombe2,  NapomenaPlombe1, NapomenaPlombe2, " +
                 " RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
@@ -315,7 +352,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogIzdao.Text = Sifarnici.frmLogovanje.user.ToString().TrimEnd();
             //usluge->Manipulacije
 
-            var vSredstvo = "Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz";
+            var vSredstvo = "Select Distinct ID, (Cast(NAzivVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz";
             var daVS = new SqlDataAdapter(vSredstvo, conn);
             var dsVS = new DataSet();
             daVS.Fill(dsVS);
@@ -364,6 +401,16 @@ namespace Saobracaj.RadniNalozi
             cboNaPoziciju.DataSource = dsPoz.Tables[0];
             cboNaPoziciju.DisplayMember = "Opis";
             cboNaPoziciju.ValueMember = "ID";
+
+
+
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from VrstaManipulacije ";
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluge.DataSource = dsUsluge.Tables[0];
+            cboUsluge.DisplayMember = "Naziv";
+            cboUsluge.ValueMember = "ID";
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -544,9 +591,9 @@ namespace Saobracaj.RadniNalozi
             con.Open();
 
             SqlCommand cmd = new SqlCommand(" select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
-                " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
+                " NalogIzdao, Voz.BrVoza, Voz.ID as VozID, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
                 "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
-                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP,  NapomenaPlombe1, NapomenaPlombe2, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR, BrojPlombe2 from RNPrijemVoza " +
+                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, VrstaManipulacije.ID as VMID, NapomenaVP, DatumRealizacijeVP,  NapomenaPlombe1, NapomenaPlombe2, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR, BrojPlombe2 from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -559,6 +606,8 @@ namespace Saobracaj.RadniNalozi
 
             while (dr.Read())
             {
+                cboUsluge.SelectedValue = Convert.ToInt32(dr["VMID"].ToString());
+                cboSaVoznog.SelectedValue = Convert.ToInt32(dr["VozID"].ToString());
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());

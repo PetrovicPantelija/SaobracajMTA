@@ -70,10 +70,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 87);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(14, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.Size = new System.Drawing.Size(105, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "Lokomotiva šifra";
             // 
@@ -84,11 +83,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 302);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 245);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(979, 329);
+            this.dataGridView1.Size = new System.Drawing.Size(734, 267);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -96,11 +94,10 @@
             // 
             this.chkAktivna.AutoSize = true;
             this.chkAktivna.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAktivna.Location = new System.Drawing.Point(15, 257);
-            this.chkAktivna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAktivna.Location = new System.Drawing.Point(11, 209);
             this.chkAktivna.Name = "chkAktivna";
             this.chkAktivna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkAktivna.Size = new System.Drawing.Size(85, 24);
+            this.chkAktivna.Size = new System.Drawing.Size(70, 20);
             this.chkAktivna.TabIndex = 188;
             this.chkAktivna.Text = "Aktivna";
             this.chkAktivna.UseVisualStyleBackColor = true;
@@ -109,11 +106,10 @@
             // 
             this.chkDizel.AutoSize = true;
             this.chkDizel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDizel.Location = new System.Drawing.Point(145, 257);
-            this.chkDizel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkDizel.Location = new System.Drawing.Point(109, 209);
             this.chkDizel.Name = "chkDizel";
             this.chkDizel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDizel.Size = new System.Drawing.Size(70, 24);
+            this.chkDizel.Size = new System.Drawing.Size(56, 20);
             this.chkDizel.TabIndex = 199;
             this.chkDizel.Text = "Dizel";
             this.chkDizel.UseVisualStyleBackColor = true;
@@ -122,10 +118,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 166);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(12, 135);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.Size = new System.Drawing.Size(56, 16);
             this.label5.TabIndex = 201;
             this.label5.Text = "Lozinka:";
             // 
@@ -133,10 +128,9 @@
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(16, 191);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Location = new System.Drawing.Point(12, 155);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(316, 22);
+            this.txtPassword.Size = new System.Drawing.Size(233, 20);
             this.txtPassword.TabIndex = 200;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -144,10 +138,9 @@
             // 
             this.txtLokomotiva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtLokomotiva.ForeColor = System.Drawing.Color.White;
-            this.txtLokomotiva.Location = new System.Drawing.Point(23, 112);
-            this.txtLokomotiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLokomotiva.Location = new System.Drawing.Point(17, 91);
             this.txtLokomotiva.Name = "txtLokomotiva";
-            this.txtLokomotiva.Size = new System.Drawing.Size(309, 22);
+            this.txtLokomotiva.Size = new System.Drawing.Size(228, 20);
             this.txtLokomotiva.TabIndex = 202;
             this.txtLokomotiva.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -157,10 +150,9 @@
             this.btnRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRacun.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRacun.ForeColor = System.Drawing.Color.White;
-            this.btnRacun.Location = new System.Drawing.Point(763, 212);
-            this.btnRacun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRacun.Location = new System.Drawing.Point(594, 205);
             this.btnRacun.Name = "btnRacun";
-            this.btnRacun.Size = new System.Drawing.Size(203, 33);
+            this.btnRacun.Size = new System.Drawing.Size(152, 27);
             this.btnRacun.TabIndex = 203;
             this.btnRacun.Text = "Promeni podatke";
             this.btnRacun.UseVisualStyleBackColor = false;
@@ -170,44 +162,40 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(373, 190);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(280, 154);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 20);
+            this.label4.Size = new System.Drawing.Size(134, 16);
             this.label4.TabIndex = 205;
             this.label4.Text = "Masa teretnog vozila:";
             // 
             // txtMasa
             // 
             this.txtMasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtMasa.Location = new System.Drawing.Point(376, 219);
-            this.txtMasa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMasa.Location = new System.Drawing.Point(282, 178);
             this.txtMasa.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtMasa.Name = "txtMasa";
-            this.txtMasa.Size = new System.Drawing.Size(120, 24);
+            this.txtMasa.Size = new System.Drawing.Size(90, 21);
             this.txtMasa.TabIndex = 204;
             // 
             // cboSerija
             // 
             this.cboSerija.FormattingEnabled = true;
-            this.cboSerija.Location = new System.Drawing.Point(376, 111);
-            this.cboSerija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSerija.Location = new System.Drawing.Point(282, 90);
             this.cboSerija.Name = "cboSerija";
-            this.cboSerija.Size = new System.Drawing.Size(309, 24);
+            this.cboSerija.Size = new System.Drawing.Size(233, 21);
             this.cboSerija.TabIndex = 207;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(372, 87);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(279, 71);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 20);
+            this.label7.Size = new System.Drawing.Size(42, 16);
             this.label7.TabIndex = 208;
             this.label7.Text = "Serija";
             // 
@@ -216,10 +204,9 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(504, 224);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(378, 182);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 17);
+            this.label9.Size = new System.Drawing.Size(21, 13);
             this.label9.TabIndex = 209;
             this.label9.Text = "kg";
             // 
@@ -236,7 +223,7 @@
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
             this.meniHeader.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.meniHeader.Size = new System.Drawing.Size(1011, 27);
+            this.meniHeader.Size = new System.Drawing.Size(758, 27);
             this.meniHeader.TabIndex = 210;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -247,7 +234,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -258,7 +245,7 @@
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -269,7 +256,7 @@
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -277,7 +264,7 @@
             // 
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton1
             // 
@@ -286,26 +273,24 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(134, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(109, 24);
             this.toolStripButton1.Text = "Aktivne/Neaktivne";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(376, 161);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNaziv.Location = new System.Drawing.Point(282, 131);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(309, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(233, 20);
             this.txtNaziv.TabIndex = 211;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(373, 138);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(280, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 212;
             this.label2.Text = "Naziv";
             // 
@@ -318,9 +303,8 @@
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1011, 43);
+            this.panelHeader.Size = new System.Drawing.Size(758, 35);
             this.panelHeader.TabIndex = 466;
             // 
             // button23
@@ -335,10 +319,9 @@
             this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button23.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button23.Location = new System.Drawing.Point(144, 0);
-            this.button23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button23.Location = new System.Drawing.Point(108, 0);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(175, 41);
+            this.button23.Size = new System.Drawing.Size(131, 33);
             this.button23.TabIndex = 17;
             this.button23.Text = "Aktivne/Neaktivne";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -353,9 +336,8 @@
             this.panel3.Controls.Add(this.button22);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 41);
+            this.panel3.Size = new System.Drawing.Size(108, 33);
             this.panel3.TabIndex = 2;
             // 
             // button20
@@ -368,10 +350,9 @@
             this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button20.Location = new System.Drawing.Point(93, 4);
-            this.button20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button20.Location = new System.Drawing.Point(70, 3);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(36, 33);
+            this.button20.Size = new System.Drawing.Size(27, 27);
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
@@ -386,10 +367,9 @@
             this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Location = new System.Drawing.Point(52, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button21.Location = new System.Drawing.Point(39, 3);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(36, 33);
+            this.button21.Size = new System.Drawing.Size(27, 27);
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
@@ -404,11 +384,11 @@
             this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Location = new System.Drawing.Point(13, 4);
-            this.button22.Margin = new System.Windows.Forms.Padding(12, 7, 8, 7);
+            this.button22.Location = new System.Drawing.Point(10, 3);
+            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
             this.button22.Name = "button22";
-            this.button22.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.button22.Size = new System.Drawing.Size(36, 33);
+            this.button22.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
@@ -423,10 +403,10 @@
             // 
             // frmLokomotive
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1011, 644);
+            this.ClientSize = new System.Drawing.Size(758, 523);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNaziv);
@@ -445,7 +425,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmLokomotive";
             this.Text = "Lokomotive";
             this.Load += new System.EventHandler(this.frmLokomotive_Load);
