@@ -250,6 +250,13 @@ namespace Saobracaj.Drumski
                     MessageBox.Show("Fajl ne postoji na lokaciji: " + fajl.Putanja, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else
+            {
+                MessageBox.Show("Neophodno je da izaberete fajl koji želite da otvorite.",
+                                "Obaveštenje",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
         }
     }
 }

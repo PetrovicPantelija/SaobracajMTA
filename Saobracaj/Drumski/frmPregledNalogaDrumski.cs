@@ -1,4 +1,5 @@
 ﻿using Saobracaj.Uvoz;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid;
@@ -328,6 +329,10 @@ namespace Saobracaj.Drumski
                 {
                     column.AllowFilter = true;
                 }
+
+                GridExcelFilter excelFilter = new GridExcelFilter();
+                excelFilter.WireGrid(gridGroupingControl1);
+
                 if (gridGroupingControl1.TableDescriptor.Columns.Contains("Status"))
                 {
                     gridGroupingControl1.TableDescriptor.Columns["Status"].Width = 130;

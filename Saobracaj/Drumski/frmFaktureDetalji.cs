@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.Uvoz;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -208,51 +209,86 @@ namespace Saobracaj.Drumski
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
             using (SqlConnection con = new SqlConnection(s_connection))
+            //    using (SqlCommand cmd = new SqlCommand(@"
+            //SELECT 
+            //        fd.ID AS FakturaDrumskogID,
+            //       ISNULL(NULLIF(v.NazivVoza, ''), '/') AS NazivVoza,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
+            //FROM    FakturaDrumski fd
+            //        INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
+            //        LEFT JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID 
+            //        LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
+            //        LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena
+            //        LEFT JOIN Voz v ON v.ID = ukz.IDVoza 
+            //WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz = 0
+            //GROUP BY fd.id, Isnull(NULLIF(v.nazivvoza, ''), '/')
+            //UNION
+            //SELECT 
+            //        fd.ID AS FakturaDrumskogID,
+            //        ISNULL(NULLIF(v.NazivVoza, ''), '/') AS NazivVoza,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
+            //FROM    FakturaDrumski fd
+            //        INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
+            //        INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID
+            //        LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
+            //        LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = uk.IDNadredjeni
+            //        LEFT JOIN Voz v ON v.ID = ukz.IDVoza 
+            //WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz = 1
+            //GROUP BY fd.id, Isnull(NULLIF(v.nazivvoza, ''), '/')
+            //UNION
+            //SELECT 
+            //        fd.ID AS FakturaDrumskogID,
+            //        ISNULL(NULLIF(rn.BrojVoza, ''), '/') AS NazivVoza,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
+            //        MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
+            //FROM    FakturaDrumski fd
+            //        INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
+            //        LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
+            //WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz in (2,3)
+            //GROUP BY fd.id, Isnull(NULLIF(rn.BrojVoza, ''), '/');", con))
             using (SqlCommand cmd = new SqlCommand(@"
-        SELECT 
-                fd.ID AS FakturaDrumskogID,
-               ISNULL(NULLIF(v.NazivVoza, ''), '/') AS NazivVoza,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
-        FROM    FakturaDrumski fd
-                INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
-                INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID 
-                LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
-                LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena
-                LEFT JOIN Voz v ON v.ID = ukz.IDVoza 
-        WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz = 0
-        GROUP BY fd.id, Isnull(NULLIF(v.nazivvoza, ''), '/')
-        UNION
-        SELECT 
-                fd.ID AS FakturaDrumskogID,
-                ISNULL(NULLIF(v.NazivVoza, ''), '/') AS NazivVoza,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
-        FROM    FakturaDrumski fd
-                INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
-                INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID
-                LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
-                LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = uk.IDNadredjeni
-                LEFT JOIN Voz v ON v.ID = ukz.IDVoza 
-        WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz = 1
-        GROUP BY fd.id, Isnull(NULLIF(v.nazivvoza, ''), '/')
-        UNION
-        SELECT 
-                fd.ID AS FakturaDrumskogID,
-                ISNULL(NULLIF(rn.BrojVoza, ''), '/') AS NazivVoza,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
-                MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
-        FROM    FakturaDrumski fd
-                INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
-                LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
-        WHERE   fd.RadniNalogDrumskiID = @RadniNalogID  AND rn.Uvoz in (2,3)
-        GROUP BY fd.id, Isnull(NULLIF(rn.BrojVoza, ''), '/');", con))
+                        SELECT
+                            fd.ID AS FakturaDrumskogID,
+                            CASE
+                                WHEN rn.Uvoz = 0 THEN ISNULL(NULLIF(v_izvoz.NazivVoza, ''), '/')
+                                WHEN rn.Uvoz = 1 THEN ISNULL(NULLIF(v_uvoz.NazivVoza, ''), '/')
+                                WHEN rn.Uvoz IN(2,3) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
+                                ELSE '/'
+                            END AS NazivVoza,
+                            MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
+                            MAX(CASE WHEN f.TipFakture = 0 THEN f.DatumSlanja END) AS DatumSlanja,
+                            MAX(CASE WHEN f.TipFakture = 1 THEN f.UlaznaFaktura END) AS UlaznaFaktura,
+                            MAX(CASE WHEN f.TipFakture = 1 THEN f.BeleskaUlazneFakture END) AS BeleskaUlazneFakture
+                        FROM FakturaDrumski fd
+                        INNER JOIN RadniNalogDrumski rn ON fd.RadniNalogDrumskiID = rn.ID
+                        LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = fd.ID
+
+                        -- izvoz
+                        LEFT JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID AND rn.Uvoz = 0
+                        LEFT JOIN IzvozKonacnaZaglavlje ukz_izvoz ON ukz_izvoz.ID = ik.IDNadredjena
+                        LEFT JOIN Voz v_izvoz ON v_izvoz.ID = ukz_izvoz.IDVoza
+
+                        -- uvoz
+                        LEFT JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID AND rn.Uvoz = 1
+                        LEFT JOIN UvozKonacnaZaglavlje ukz_uvoz ON ukz_uvoz.ID = uk.IDNadredjeni
+                        LEFT JOIN Voz v_uvoz ON v_uvoz.ID = ukz_uvoz.IDVoza
+
+                        WHERE fd.RadniNalogDrumskiID = @RadniNalogID
+                        GROUP BY fd.ID,
+                                    CASE
+                                    WHEN rn.Uvoz = 0 THEN ISNULL(NULLIF(v_izvoz.NazivVoza, ''), '/')
+                                    WHEN rn.Uvoz = 1 THEN ISNULL(NULLIF(v_uvoz.NazivVoza, ''), '/')
+                                    WHEN rn.Uvoz IN(2,3) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
+                                    ELSE '/'
+                                    END ", con))
             {
                 cmd.Parameters.AddWithValue("@RadniNalogID", RadniNalogID);
 

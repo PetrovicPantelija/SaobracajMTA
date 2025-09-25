@@ -1007,7 +1007,7 @@ namespace Saobracaj.Drumski
 
             //  Podaci iz baze
             string nalogodavac = dataGridView3.SelectedRows[0].Cells["Nalogodavac"].Value?.ToString() ?? "";
-            string datumPreuzimanja = dataGridView3.SelectedRows[0].Cells["DtPreuzimanjaPraznogKontejnera"].Value?.ToString();
+            string datumPreuzimanja = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
 
             string odredisnaCarinarnica = dataGridView3.SelectedRows[0].Cells["OdredisnaCarina"].Value?.ToString();
             string napomenaZaPozicioniranje = dataGridView3.SelectedRows[0].Cells["NapomenaZaPozicioniranje"].Value?.ToString();
@@ -1023,9 +1023,9 @@ namespace Saobracaj.Drumski
             if (cellValue != DBNull.Value && int.TryParse(cellValue.ToString(), out int parsedUvozID))
                 Uvoz = parsedUvozID;
             string datumUtovara = "";
-            if (Uvoz == 0 || Uvoz == 2)
+            if (Uvoz == 0 || Uvoz == 3)
              datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumUtovara"].Value?.ToString();
-            else if(Uvoz == 1 || Uvoz == 3)
+            else if(Uvoz == 1 || Uvoz == 2)
                 datumUtovara = dataGridView3.SelectedRows[0].Cells["DatumIstovara"].Value?.ToString();
            
             //  Uvodni tekst

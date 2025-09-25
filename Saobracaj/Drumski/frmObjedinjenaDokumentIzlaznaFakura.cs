@@ -1,4 +1,6 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf.IO;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using PdfSharp.Pdf;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -198,13 +200,17 @@ namespace Saobracaj.Drumski
 
                 var select = @"
                   SELECT 
-                        CASE WHEN d.tip = 1 THEN 'Prevoznica'  WHEN tip = 2 THEN 'Faktura' END AS TipDokumenta,
+                        CASE WHEN d.tip = 1 THEN 'Prevoznica'
+                             WHEN d.tip = 2 THEN 'Faktura'
+                             WHEN d.tip = 3 THEN 'Skenirana prevoznica'
+                             WHEN d.tip = 4 THEN 'Skenirana faktura' END AS TipDokumenta,
                         CONVERT(varchar, d.DatumDodavanja,104) AS DatumUpisa,
                         LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Skenirao,
                         rn.RadniNalogDrumskiID,  
                         p.PaNaziv AS Prevoznik, 
                         a.RegBr AS RegistarskiBroj, 
-                        a.Vozac AS PodaciVozaca
+                        a.Vozac AS PodaciVozaca,
+                        d.Putanja
                    FROM FakturaDrumski rn 
                         INNER JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
                         INNER JOIN RadniNalogDrumski rnd on rn.RadniNalogDrumskiID = rnd.ID
@@ -212,7 +218,59 @@ namespace Saobracaj.Drumski
                         INNER JOIN Partnerji p on  a.PartnerID = p.PaSifra
                         INNER JOIN DokumentaFaktureDrumski d ON d.FakturaDrumskiID = rn.RadniNalogDrumskiID
                         INNER JOIN Delavci k ON d.Dodao = k.DeSifra
-                  WHERE f.IzlaznaFaktura like @IzlaznaFaktura";
+                  WHERE f.IzlaznaFaktura like @IzlaznaFaktura
+                  UNION 
+                  SELECT  'TS'  AS TipDokumenta,
+                        CONVERT(varchar, d.DatumDodavanja,104) AS DatumUpisa,
+                        LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Skenirao,
+                        rn.RadniNalogDrumskiID,  
+                        p.PaNaziv AS Prevoznik, 
+                        a.RegBr AS RegistarskiBroj, 
+                        a.Vozac AS PodaciVozaca,
+                        d.Putanja
+                  FROM FakturaDrumski rn 
+                        INNER JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+                        INNER JOIN RadniNalogDrumski rnd on rn.RadniNalogDrumskiID = rnd.ID
+	                    INNER JOIN Automobili a ON a.ID = rnd.KamionID  and a.VoziloDrumskog = 1
+                        INNER JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        INNER JOIN DokumentaRadnogNalogaDrumski d ON d.RadniNalogDrumskiID = rn.RadniNalogDrumskiID
+                        INNER JOIN Delavci k ON d.DodaoKorisnik = k.DeSifra
+                  WHERE f.IzlaznaFaktura like @IzlaznaFaktura
+
+                  UNION 
+                  SELECT  'Vozac sken'  AS TipDokumenta,
+                        CONVERT(varchar, d.UploadedAt,104) AS DatumUpisa,
+                        a.Vozac AS Skenirao,
+                        rn.RadniNalogDrumskiID,  
+                        p.PaNaziv AS Prevoznik, 
+                        a.RegBr AS RegistarskiBroj, 
+                        a.Vozac AS PodaciVozaca,
+                        d.FilePath as Putanja
+                  FROM FakturaDrumski rn 
+                        INNER JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+                        INNER JOIN RadniNalogDrumski rnd on rn.RadniNalogDrumskiID = rnd.ID
+	                    INNER JOIN Automobili a ON a.ID = rnd.KamionID  and a.VoziloDrumskog = 1
+                        INNER JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        INNER JOIN UploadedFiles d ON d.RadniNalogDrumskiID = rn.RadniNalogDrumskiID AND UploadedByVozac = 1
+                  WHERE f.IzlaznaFaktura like @IzlaznaFaktura
+
+                  UNION 
+                  SELECT 'Kamion sken'  AS TipDokumenta,
+                        CONVERT(varchar, d.UploadedAt,104) AS DatumUpisa,
+                        LTRIM(RTRIM(k.DeIme)) + ' ' + LTRIM(RTRIM(k.DePriimek)) AS Skenirao,
+                        rn.RadniNalogDrumskiID,  
+                        p.PaNaziv AS Prevoznik, 
+                        a.RegBr AS RegistarskiBroj, 
+                        a.Vozac AS PodaciVozaca,
+                        d.FilePath as Putanja
+                   FROM FakturaDrumski rn 
+                        INNER JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+                        INNER JOIN RadniNalogDrumski rnd on rn.RadniNalogDrumskiID = rnd.ID
+	                    INNER JOIN Automobili a ON a.ID = rnd.KamionID  and a.VoziloDrumskog = 1
+                        INNER JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        INNER JOIN UploadedFiles d ON d.RadniNalogDrumskiID = rn.RadniNalogDrumskiID AND UploadedByVozac = 0
+	                    INNER JOIN Delavci k ON d.UploadedBy = k.DeSifra
+                   WHERE f.IzlaznaFaktura like @IzlaznaFaktura";
 
                 // Bind baze
                 SqlDataAdapter da = new SqlDataAdapter(select, conn);
@@ -226,7 +284,12 @@ namespace Saobracaj.Drumski
 
             PodesiDatagridView(dataGridView1);
 
-            dataGridView1.RowHeadersWidth = 30; 
+            dataGridView1.RowHeadersWidth = 30;
+
+            if (dataGridView1.Columns.Contains("Putanja"))
+            {
+                dataGridView1.Columns["Putanja"].Visible = false;
+            }
 
         }
 
@@ -328,6 +391,64 @@ namespace Saobracaj.Drumski
             dgv.ColumnHeadersHeight = 30;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF fajl|*.pdf";
+                sfd.FileName = "Kombinovani.pdf";
+                if (sfd.ShowDialog() != DialogResult.OK) return;
 
+                PdfDocument outputDoc = new PdfDocument();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string filePath = row.Cells["Putanja"].Value?.ToString();
+                    if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
+                        continue;
+
+                    string ext = Path.GetExtension(filePath).ToLower();
+
+                    if (ext == ".pdf")
+                    {
+                        PdfDocument inputDoc = PdfReader.Open(filePath, PdfDocumentOpenMode.Import);
+                        for (int i = 0; i < inputDoc.PageCount; i++)
+                            outputDoc.AddPage(inputDoc.Pages[i]);
+                    }
+                    else if (ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp")
+                    {
+                        PdfPage page = outputDoc.AddPage();
+                        XGraphics gfx = XGraphics.FromPdfPage(page);
+                        XImage img = XImage.FromFile(filePath);
+
+                        // Izračunavanje dimenzija slike u PDF jedinicama (72 dpi)
+                        double imgWidth = img.PixelWidth * 72 / img.HorizontalResolution;
+                        double imgHeight = img.PixelHeight * 72 / img.VerticalResolution;
+
+                        // Definisanje margina (npr. 20 poena sa svih strana)
+                        double margin = 20;
+                        double maxWidth = page.Width - 2 * margin;
+                        double maxHeight = page.Height - 2 * margin;
+
+                        // Skaliranje slike da stane unutar margina
+                        double scale = Math.Min(maxWidth / imgWidth, maxHeight / imgHeight);
+
+                        double drawWidth = imgWidth * scale;
+                        double drawHeight = imgHeight * scale;
+
+                        // Centriranje slike na strani
+                        double x = (page.Width - drawWidth) / 2;
+                        double y = (page.Height - drawHeight) / 2;
+
+                        gfx.DrawImage(img, x, y, drawWidth, drawHeight);
+                    }
+                }
+
+                outputDoc.Save(sfd.FileName);
+                MessageBox.Show("PDF kreiran!");
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.Testiranje;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Saobracaj.Drumski
 {
@@ -358,7 +360,17 @@ namespace Saobracaj.Drumski
 		                    REPLACE(CONVERT(varchar, u.DatumDodavanja, 104) + ' ' + CONVERT(varchar, u.DatumDodavanja, 108), ':', '.') AS DatumDodavanja,
 		                    Status, 'DokumentaRadnogNalogaDrumski' as Tabela
 		            FROM DokumentaRadnogNalogaDrumski u
-		            WHERE u.RadniNalogDrumskiID = @RadniNalogID";
+		            WHERE u.RadniNalogDrumskiID = @RadniNalogID
+                UNION
+                SELECT u.ID AS DokumentID,
+		                    u.NazivDokumenta AS NazivFajla,
+		                    u.Putanja as FilePath,
+		                    REPLACE(CONVERT(varchar, u.DatumDodavanja, 104) + ' ' + CONVERT(varchar, u.DatumDodavanja, 108), ':', '.') AS DatumDodavanja,
+                            Status,
+                            'DokumentaFaktureDrumski' AS Tabela
+                    FROM DokumentaFaktureDrumski u
+
+                    WHERE u.FakturaDrumskiID = @RadniNalogID";
 
                 DataTable dtDocs = new DataTable();
                 using (SqlDataAdapter daDocs = new SqlDataAdapter(queryDocs, conn))
@@ -369,23 +381,68 @@ namespace Saobracaj.Drumski
 
                 // Dodaj kolonu za slike
                 if (!dtDocs.Columns.Contains("Slika"))
+                {
                     dtDocs.Columns.Add("Slika", typeof(Image));
+                }
 
+                // Prolazi kroz sve redove
                 foreach (DataRow row in dtDocs.Rows)
                 {
                     string putanja = row["FilePath"].ToString();
+
                     if (File.Exists(putanja))
                     {
-                        using (Image img = Image.FromFile(putanja))
+                        string ext = Path.GetExtension(putanja).ToLower();
+                        Image docImage = null;
+
+                        if (ext == ".pdf")
                         {
-                            row["Slika"] = new Bitmap(img, new Size(180, 140));
+                            try
+                            {
+                                // Učitaj prvu stranicu PDF-a kao sliku
+                                using (var document = PdfiumViewer.PdfDocument.Load(putanja))
+                                {
+                                    docImage = document.Render(0, 180, 140,true);
+                                }
+                            }
+                            catch
+                            {
+                                // U slučaju greške, postavi fallback ikonicu
+                                // docImage = Properties.Resources.pdf_icon;
+                                // Ako nema, ostavi null
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                // Učitaj sliku i napravi thumbnail
+                                using (Image originalImage = Image.FromFile(putanja))
+                                {
+                                    docImage = new Bitmap(originalImage, new Size(180, 140));
+                                }
+                            }
+                            catch
+                            {
+                                // U slučaju greške, ostavi null
+                            }
+                        }
+
+                        // Postavi kreiranu sliku u DataTable
+                        if (docImage != null)
+                        {
+                            row["Slika"] = docImage;
                         }
                     }
                     else
                     {
-                        row["Slika"] = DBNull.Value; // nema crvenog X
+                        // Ako fajl ne postoji, prikaži nešto drugo ili ostavi prazno
+                        row["Slika"] = DBNull.Value;
                     }
                 }
+
+                // Poveži DataTable sa DataGridView-om
+                dataGridView1.DataSource = dtDocs;
 
                 dataGridView1.DataSource = dtDocs;
                 PodesiDatagridView(dataGridView1);
@@ -515,31 +572,93 @@ namespace Saobracaj.Drumski
             // Klik na sliku
             if (dgv.Columns[e.ColumnIndex].Name == "Slika")
             {
-                string putanja = row["FilePath"].ToString(); // ovde se povlači prava putanja iz baze
+                string putanja = row["FilePath"].ToString();
+
                 if (File.Exists(putanja))
                 {
-                    using (Image fullImg = Image.FromFile(putanja))
+                    string ekstenzija = Path.GetExtension(putanja).ToLower();
+
+                   if (ekstenzija == ".pdf")
                     {
-                        Form preview = new Form();
-                        preview.StartPosition = FormStartPosition.CenterParent;
-                        preview.Size = new Size(800, 600);
+                        Form pdfForm = new Form();
+                        pdfForm.Text = "Pregled PDF dokumenta";
+                        pdfForm.StartPosition = FormStartPosition.CenterParent;
+                        pdfForm.Size = new Size(800, 600);
                         if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
                         {
-                            preview.Icon = Saobracaj.Properties.Resources.LegetIconPNG; 
-                            preview.BackColor = Color.White; 
-                            preview.Text = "Pregled slike";
+                            pdfForm.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                            pdfForm.BackColor = Color.White;
+                            pdfForm.Text = "Pregled slike";
 
                         }
 
-                        PictureBox pb = new PictureBox();
-                        pb.Image = new Bitmap(fullImg); // prikaži originalnu rezoluciju
-                        pb.SizeMode = PictureBoxSizeMode.Zoom;
-                        pb.Dock = DockStyle.Fill;
+                        try
+                        {
+                            // Koristimo Load() metodu koja radi za otvaranje dokumenta
+                            var document = PdfiumViewer.PdfDocument.Load(putanja);
+                            var pdfRenderer = new PdfiumViewer.PdfRenderer();
+                            pdfRenderer.Load(document);
+                            pdfRenderer.Dock = DockStyle.Fill;
+                            pdfForm.Controls.Add(pdfRenderer);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Greška pri učitavanju PDF dokumenta: " + ex.Message);
+                        }
 
-                        preview.Controls.Add(pb);
-                        preview.ShowDialog();
+                        pdfForm.ShowDialog();
+                    }
+                   else if (ekstenzija == ".jpg" || ekstenzija == ".jpeg" || ekstenzija == ".png" || ekstenzija == ".gif")
+                    {
+                        // Tvoj postojeći kod za prikaz slike
+                        using (Image fullImg = Image.FromFile(putanja))
+                        {
+                            Form preview = new Form();
+                            preview.StartPosition = FormStartPosition.CenterParent;
+                            preview.Size = new Size(800, 600);
+                            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+                            {
+                                preview.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                                preview.BackColor = Color.White;
+                                preview.Text = "Pregled slike";
+
+                            }
+
+                            PictureBox pb = new PictureBox();
+                            pb.Image = new Bitmap(fullImg);
+                            pb.SizeMode = PictureBoxSizeMode.Zoom;
+                            pb.Dock = DockStyle.Fill;
+
+                            preview.Controls.Add(pb);
+                            preview.ShowDialog();
+                        }
                     }
                 }
+                //string putanja = row["FilePath"].ToString(); // ovde se povlači prava putanja iz baze
+                //if (File.Exists(putanja))
+                //{
+                //    using (Image fullImg = Image.FromFile(putanja))
+                //    {
+                //        Form preview = new Form();
+                //        preview.StartPosition = FormStartPosition.CenterParent;
+                //        preview.Size = new Size(800, 600);
+                //        if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+                //        {
+                //            preview.Icon = Saobracaj.Properties.Resources.LegetIconPNG; 
+                //            preview.BackColor = Color.White; 
+                //            preview.Text = "Pregled slike";
+
+                //        }
+
+                //        PictureBox pb = new PictureBox();
+                //        pb.Image = new Bitmap(fullImg); // prikaži originalnu rezoluciju
+                //        pb.SizeMode = PictureBoxSizeMode.Zoom;
+                //        pb.Dock = DockStyle.Fill;
+
+                //        preview.Controls.Add(pb);
+                //        preview.ShowDialog();
+                //    }
+                //}
             }
 
             // Klik na dugme Obriši

@@ -1,16 +1,8 @@
-﻿using Saobracaj.Carinsko;
-using Saobracaj.Dokumenta.TrainListItem;
-using Saobracaj.Drumski;
-using Syncfusion.Windows.Forms;
+﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Kapija
@@ -20,6 +12,7 @@ namespace Saobracaj.Kapija
 
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         bool status = false;
+        int? oldStatusID = null;
         int id = 0;
 
         public frmKamionDetalji()
@@ -220,15 +213,18 @@ namespace Saobracaj.Kapija
                     if (int.TryParse(dr["StatusID"].ToString(), out int statusID))
                     {
                         cboStatus.SelectedValue = statusID;
+                        oldStatusID = statusID;
                     }
                     else
                     {
                         cboStatus.SelectedIndex = 0;
+                        oldStatusID = null;
                     }
                 }
                 else
                 {
                     cboStatus.SelectedIndex = 0;
+                    oldStatusID = null;
                 }
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtRegistarskiBroj.Text = dr["RegistarskiBroj"].ToString();
@@ -284,6 +280,11 @@ namespace Saobracaj.Kapija
             string razlogDolaska = string.IsNullOrWhiteSpace(txtRazlogDolaska.Text) ? null : txtRazlogDolaska.Text.Trim();
             string kontaktUnutarFirme = string.IsNullOrWhiteSpace(txtKontaktUFirmi.Text) ? null : txtKontaktUFirmi.Text.Trim();
             DateTime? datumDolaska = null;
+            DateTime? datumPromeneStatusa = null;
+            if (status1 != oldStatusID)  //  samo ako je promenjen
+            {
+                datumPromeneStatusa = DateTime.Now;
+            }
             if (dtpDatum.Checked)
             {
                 datumDolaska = dtpDatum.Value;
@@ -309,7 +310,8 @@ namespace Saobracaj.Kapija
             }
             else
             {
-                ins.UpdeteKapija(iD,datumDolaska, status1, vozac, registarskiBroj, kontakt, razlogDolaska, datumZakazanogDolaska, kontaktUnutarFirme, datumOdlaska);
+                ins.UpdeteKapija(iD,datumDolaska, status1, vozac, registarskiBroj, kontakt, razlogDolaska, datumZakazanogDolaska, kontaktUnutarFirme, datumOdlaska, datumPromeneStatusa);
+                oldStatusID = status1; // postavi na novi status
                 status = false;
             }
         }

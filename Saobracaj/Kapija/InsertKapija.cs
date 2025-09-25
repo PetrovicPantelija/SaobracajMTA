@@ -138,7 +138,7 @@ namespace Saobracaj.Kapija
         }
 
         public void UpdeteKapija(int ID, DateTime? @DatumDolaska, int? Status, string Vozac, string RegistarskiBroj, string Kontakt,
-                                            string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, DateTime? @DatumOdlaska)
+                                            string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, DateTime? @DatumOdlaska, DateTime? @DatumPromeneStatusa)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -219,6 +219,13 @@ namespace Saobracaj.Kapija
             datumOdlaska.Direction = ParameterDirection.Input;
             datumOdlaska.Value = DatumOdlaska.HasValue ? (object)DatumOdlaska.Value : DBNull.Value;
             myCommand.Parameters.Add(datumOdlaska);
+
+            SqlParameter datumPromeneStatusa = new SqlParameter();
+            datumPromeneStatusa.ParameterName = "@DatumPromeneStatusa";
+            datumPromeneStatusa.SqlDbType = SqlDbType.DateTime;
+            datumPromeneStatusa.Direction = ParameterDirection.Input;
+            datumPromeneStatusa.Value = DatumPromeneStatusa.HasValue ? (object)DatumPromeneStatusa.Value : DBNull.Value;
+            myCommand.Parameters.Add(datumPromeneStatusa);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -304,6 +311,57 @@ namespace Saobracaj.Kapija
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
+            }
+        }
+
+        public void UpdateStatusKapija(int ID, int? Status)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateStatusKamionaKapija";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@ID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = ID;
+            cmd.Parameters.Add(iD);
+
+            SqlParameter status = new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.Int;
+            status.Direction = ParameterDirection.Input;
+            status.Value = Status.HasValue ? (object)Status.Value : DBNull.Value;
+            cmd.Parameters.Add(status);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
             }
         }
     }

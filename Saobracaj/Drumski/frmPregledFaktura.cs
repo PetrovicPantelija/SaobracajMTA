@@ -13,6 +13,7 @@ using System.Xml;
 using System.Net.Http;
 using Saobracaj.Dokumenta;
 using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.GridHelperClasses;
 
 namespace Saobracaj.Drumski
 {
@@ -25,7 +26,14 @@ namespace Saobracaj.Drumski
         public frmPregledFaktura()
         {
             InitializeComponent();
-            gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            //// Onemogući editovanjeAllowEdit
+            //gridGroupingControl1.TableDescriptor. = false;
+
+            // Selektuje se ceo red
+            //gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+         //   gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.Row;
+
+
             ChangeTextBox();
             RefreshGrid();
         }
@@ -152,7 +160,8 @@ namespace Saobracaj.Drumski
                             SELECT 
                                 df.FakturaDrumskiID AS RNID,
                                 SUM(CASE WHEN df.Tip = 2 THEN 1 ELSE 0 END) AS BrojFaktura,
-                                SUM(CASE WHEN df.Tip = 1 THEN 1 ELSE 0 END) AS BrojPrevoznica
+                                SUM(CASE WHEN df.Tip = 1 THEN 1 ELSE 0 END) AS BrojPrevoznica,
+                                SUM(CASE WHEN df.Tip in (3,4) THEN 1 ELSE 0 END) AS BrojSkeniranihDokumenata
                             FROM DokumentaFaktureDrumski df
                             GROUP BY df.FakturaDrumskiID
                         ),
@@ -162,6 +171,7 @@ namespace Saobracaj.Drumski
                                 uf.RadniNalogDrumskiID AS RNID,
                                 count(uf.Id) AS BrojDokumenata
                             FROM UploadedFiles uf
+                            WHERE UploadedByVozac = 1
                             GROUP BY uf.RadniNalogDrumskiID
                         )
                         -- 1)
@@ -170,6 +180,7 @@ namespace Saobracaj.Drumski
                             rn.NalogID,
                             VZ.BrojDokumenata AS VozacSken,
                             CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
+                            CASE WHEN BR.BrojSkeniranihDokumenata > 0 THEN BR.BrojSkeniranihDokumenata ELSE NULL END AS SkenDokumenta,
                             F.UlaznaFaktura,
                             F.BeleskaUlazneFakture,
                             p.PaNaziv AS Prevoznik,
@@ -227,6 +238,7 @@ namespace Saobracaj.Drumski
                                rn.NalogID,
                                VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
+                               CASE WHEN BR.BrojSkeniranihDokumenata > 0 THEN BR.BrojSkeniranihDokumenata ELSE NULL END AS SkenDokumenta,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
                                p.PaNaziv AS Prevoznik,
@@ -283,6 +295,7 @@ namespace Saobracaj.Drumski
                                rn.NalogID,
                                VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
+                               CASE WHEN BR.BrojSkeniranihDokumenata > 0 THEN BR.BrojSkeniranihDokumenata ELSE NULL END AS SkenDokumenta,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
                                p.PaNaziv AS Prevoznik,
@@ -341,6 +354,7 @@ namespace Saobracaj.Drumski
                                rn.NalogID,
                                VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
+                               CASE WHEN BR.BrojSkeniranihDokumenata > 0 THEN BR.BrojSkeniranihDokumenata ELSE NULL END AS SkenDokumenta,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
                                p.PaNaziv AS Prevoznik,
@@ -397,6 +411,7 @@ namespace Saobracaj.Drumski
                                rn.NalogID,
                                VZ.BrojDokumenata AS VozacSken,
                                CASE  WHEN EXISTS ( SELECT 1  FROM DokumentaRadnogNalogaDrumski d  WHERE d.RadniNalogDrumskiID = rn.ID ) THEN 'TS'ELSE '' END AS TS,
+                               CASE WHEN BR.BrojSkeniranihDokumenata > 0 THEN BR.BrojSkeniranihDokumenata ELSE NULL END AS SkenDokumenta,
                                F.UlaznaFaktura,
                                F.BeleskaUlazneFakture,
                                p.PaNaziv AS Prevoznik,
@@ -525,6 +540,8 @@ namespace Saobracaj.Drumski
                     }
 
                     gridGroupingControl1.DataSource = mainTable;
+                   gridGroupingControl1.TableDescriptor.AllowEdit = false; // onemogući editovanje
+                    gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
 
                     if (mainTable.Columns.Contains("BrojVoza"))
                     {
@@ -542,7 +559,10 @@ namespace Saobracaj.Drumski
                     {
                         column.AllowFilter = true;
                     }
-                     
+
+                    GridExcelFilter excelFilter = new GridExcelFilter();
+                    excelFilter.WireGrid(gridGroupingControl1);            
+
                     var td = gridGroupingControl1.TableDescriptor;
 
                     td.VisibleColumns.Add("CenaEUR");
@@ -576,13 +596,16 @@ namespace Saobracaj.Drumski
                         td.VisibleColumns.Remove("Valuta");
                     }
 
+                    gridGroupingControl1.TableControlCurrentCellActivated -= GridGroupingControl1_TableControlCurrentCellActivated;
+                    gridGroupingControl1.TableControlCurrentCellActivated += GridGroupingControl1_TableControlCurrentCellActivated;
+
                 }
             }
         }
 
         private void GridGroupingControl1_TableControlMouseDown(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventArgs e)
         {
-           
+
             if (System.Windows.Forms.Control.MouseButtons == MouseButtons.Right)
             {
                 // Dobavljanje pozicije kliknutog reda i kolone
@@ -605,6 +628,22 @@ namespace Saobracaj.Drumski
             }
         }
 
+
+        private void GridGroupingControl1_TableControlCurrentCellActivated(object sender, GridTableControlEventArgs e)
+        {
+            var currentCell = gridGroupingControl1.TableControl.CurrentCell;
+            if (currentCell == null)
+                return;
+
+            // Provera da li je u pitanju filter red
+            var cellInfo = e.TableControl.Model[currentCell.RowIndex, currentCell.ColIndex];
+            if (cellInfo.TableCellIdentity.TableCellType == GridTableCellType.FilterBarCell)
+            {
+                // Dozvoli edit filter ćelije
+                return;
+            }
+                gridGroupingControl1.TableControl.CurrentCell.MoveTo(-1, -1);
+        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -737,5 +776,24 @@ namespace Saobracaj.Drumski
             using (var frm = new frmPregledDokumenataKamiona(id))
                 frm.ShowDialog();
         }
+
+        private void toolStripSkeniranaDokumentacija_Click(object sender, EventArgs e)
+        {
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            int id = Convert.ToInt32(idObj);
+
+            using (var frm = new frmSeniranjeDokumenata(id))
+                frm.ShowDialog();
+        }
+
     }
 }

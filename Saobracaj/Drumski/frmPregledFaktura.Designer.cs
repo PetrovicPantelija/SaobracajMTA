@@ -151,7 +151,7 @@
             // 
             this.toolStripDokumentiVozaca.Name = "toolStripDokumentiVozaca";
             this.toolStripDokumentiVozaca.Size = new System.Drawing.Size(422, 24);
-            this.toolStripDokumentiVozaca.Text = "Pregled skeniranih dokumenata vozača";
+            this.toolStripDokumentiVozaca.Text = "Pregled skeniranih dokumenata";
             this.toolStripDokumentiVozaca.Click += new System.EventHandler(this.toolStripDokumentiVozaca_Click);
             // 
             // toolStripObjedinjenaDokumenta
@@ -173,6 +173,7 @@
             this.toolStripSkeniranaDokumentacija.Name = "toolStripSkeniranaDokumentacija";
             this.toolStripSkeniranaDokumentacija.Size = new System.Drawing.Size(422, 24);
             this.toolStripSkeniranaDokumentacija.Text = "Dodaj skeniranu dokumentaciju";
+            this.toolStripSkeniranaDokumentacija.Click += new System.EventHandler(this.toolStripSkeniranaDokumentacija_Click);
             // 
             // frmPregledFaktura
             // 
