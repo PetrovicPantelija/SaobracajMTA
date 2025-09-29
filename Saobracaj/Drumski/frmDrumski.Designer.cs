@@ -122,6 +122,7 @@
             this.txtKontaktOsobaUtovara = new System.Windows.Forms.TextBox();
             this.txtAdresaUtovara = new System.Windows.Forms.TextBox();
             this.txtAdresaIstovara = new System.Windows.Forms.TextBox();
+            this.cboNapomenaPoz = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -234,7 +235,7 @@
             // 
             // dtPreuzimanjaPraznogKontejnera
             // 
-            this.dtPreuzimanjaPraznogKontejnera.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtPreuzimanjaPraznogKontejnera.CustomFormat = "dd.MM.yyyy ";
             this.dtPreuzimanjaPraznogKontejnera.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtPreuzimanjaPraznogKontejnera.Location = new System.Drawing.Point(748, 661);
             this.dtPreuzimanjaPraznogKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -263,7 +264,7 @@
             // 
             // dtIstovara
             // 
-            this.dtIstovara.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtIstovara.CustomFormat = "dd.MM.yyyy";
             this.dtIstovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtIstovara.Location = new System.Drawing.Point(395, 514);
             this.dtIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -283,7 +284,7 @@
             // 
             // dtpUtovara
             // 
-            this.dtpUtovara.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpUtovara.CustomFormat = "dd.MM.yyyy";
             this.dtpUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpUtovara.Location = new System.Drawing.Point(396, 460);
             this.dtpUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -411,6 +412,7 @@
             this.txtBrutoK.Size = new System.Drawing.Size(176, 22);
             this.txtBrutoK.TabIndex = 82;
             this.txtBrutoK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBrutoK.Enter += new System.EventHandler(this.txtBrutoK_Enter);
             // 
             // txtBrutoR
             // 
@@ -426,6 +428,7 @@
             this.txtBrutoR.Size = new System.Drawing.Size(173, 22);
             this.txtBrutoR.TabIndex = 170;
             this.txtBrutoR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBrutoR.Enter += new System.EventHandler(this.txtBrutoR_Enter);
             // 
             // label36
             // 
@@ -1113,11 +1116,24 @@
             this.txtAdresaIstovara.Size = new System.Drawing.Size(308, 22);
             this.txtAdresaIstovara.TabIndex = 627;
             // 
+            // cboNapomenaPoz
+            // 
+            this.cboNapomenaPoz.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNapomenaPoz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboNapomenaPoz.FormattingEnabled = true;
+            this.cboNapomenaPoz.ItemHeight = 16;
+            this.cboNapomenaPoz.Location = new System.Drawing.Point(1104, 668);
+            this.cboNapomenaPoz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboNapomenaPoz.Name = "cboNapomenaPoz";
+            this.cboNapomenaPoz.Size = new System.Drawing.Size(308, 24);
+            this.cboNapomenaPoz.TabIndex = 628;
+            // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 871);
+            this.Controls.Add(this.cboNapomenaPoz);
             this.Controls.Add(this.txtAdresaIstovara);
             this.Controls.Add(this.txtAdresaUtovara);
             this.Controls.Add(this.txtKontaktOsobaUtovara);
@@ -1311,5 +1327,6 @@
         private System.Windows.Forms.Button btnFormiranjeNaloga;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox cboNapomenaPoz;
     }
 }

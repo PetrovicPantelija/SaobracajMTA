@@ -3,6 +3,7 @@ using Microsoft.Office.Interop.Excel;
 using Microsoft.ReportingServices.Diagnostics.Internal;
 using Saobracaj.Carinko;
 using Saobracaj.Carinsko;
+using Saobracaj.Drumski;
 using Saobracaj.Pantheon_Export;
 using Saobracaj.RadniNalozi;
 using Saobracaj.Sifarnici;
@@ -20,6 +21,7 @@ using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Net;
 using System.Windows.Forms;
 using static Syncfusion.WinForms.Core.NativeScroll;
 
@@ -32,6 +34,8 @@ namespace Saobracaj.Carinsko
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string OtpremnicaID = "0";
+        bool promenaUFakturi = false;
+
 
         bool status = false;
 
@@ -315,7 +319,7 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
 
             DataGridViewTextBoxColumn prijemnicastavkaid = new DataGridViewTextBoxColumn();
             prijemnicastavkaid.HeaderText = "PrijemnicaStavkaID";
-            prijemnicastavkaid.Name = "PrijekmnicaStavkaID";
+            prijemnicastavkaid.Name = "PrijemnicaStavkaID";
             prijemnicastavkaid.Width = 150;
 
             dataGridView1.Columns.Add(ID);
@@ -355,56 +359,104 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             RefreshDataGrid();
             //  RefreshsfDataGrid();
         }
-
         private void RefreshDataGrid()
         {
-            var select = "";
-            select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,[JM]      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
-      ,[BrojKontejnera]      ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije], PrijemnicaStavkaID
-  FROM [dbo].[OtpremnicaCarinskaStavke] where IDNadredjena =" + txtID.Text;
+            string select = @"SELECT [ID],[IDNadredjena],[Artikal],[JM],[Koleta],[Bruto],[Pozicija],
+                             [Vrednost],[Valuta],[BrojKontejnera],[Paleta],[VrstaPalete],
+                             [Dimenzije],PrijemnicaStavkaID
+                      FROM [dbo].[OtpremnicaCarinskaStavke] 
+                      WHERE IDNadredjena = " + txtID.Text;
 
-            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+            string s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new System.Data.DataSet();
+            System.Data.DataSet ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = false;
-            dataGridView1.DataSource = ds.Tables[0];
+            System.Data.DataTable dt = ds.Tables[0];
 
-            int row = ds.Tables[0].Rows.Count - 1;
+            // ovde ne koristimo DataSource, jer već imamo definisane kolone
+            dataGridView1.Rows.Clear();
 
-            for (int r = 0; r <= row; r++)
+            foreach (DataRow dr in dt.Rows)
             {
-                //dataGridView1.Rows.Add();
+                int rowIndex = dataGridView1.Rows.Add();
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
 
-                //1 - NHM'), ('2 - LOT'), ('3 - ZBIRNI'
-
-
-                dataGridView1.Rows[r].Cells[0].Value = ds.Tables[0].Rows[r].ItemArray[0];
-                dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
-                dataGridView1.Rows[r].Cells[2].Value = ds.Tables[0].Rows[r].ItemArray[2];
-                dataGridView1.Rows[r].Cells[3].Value = ds.Tables[0].Rows[r].ItemArray[3];
-                dataGridView1.Rows[r].Cells[4].Value = ds.Tables[0].Rows[r].ItemArray[4];
-                dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
-                dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
-
-                dataGridView1.Rows[r].Cells[7].Value = ds.Tables[0].Rows[r].ItemArray[7];
-                dataGridView1.Rows[r].Cells[8].Value = ds.Tables[0].Rows[r].ItemArray[8];
-                dataGridView1.Rows[r].Cells[9].Value = ds.Tables[0].Rows[r].ItemArray[9];
-                dataGridView1.Rows[r].Cells[10].Value = ds.Tables[0].Rows[r].ItemArray[10];
-                dataGridView1.Rows[r].Cells[11].Value = ds.Tables[0].Rows[r].ItemArray[11];
-                dataGridView1.Rows[r].Cells[12].Value = ds.Tables[0].Rows[r].ItemArray[12];
-                dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
-
+                row.Cells["ID"].Value = dr["ID"];
+                row.Cells["IDNadredjena"].Value = dr["IDNadredjena"];
+                row.Cells["Artikal"].Value = dr["Artikal"];
+                row.Cells["JM"].Value = dr["JM"];   // combo
+                row.Cells["Koleta"].Value = dr["Koleta"];
+                row.Cells["Bruto"].Value = dr["Bruto"];
+                row.Cells["Pozicija"].Value = dr["Pozicija"]; // combo
+                row.Cells["Vrednost"].Value = dr["Vrednost"];
+                row.Cells["Valuta"].Value = dr["Valuta"]; // combo
+                row.Cells["BrojKontejnera"].Value = dr["BrojKontejnera"];
+                row.Cells["Paleta"].Value = dr["Paleta"];
+                row.Cells["VrstaPalete"].Value = dr["VrstaPalete"];
+                row.Cells["Dimenzije"].Value = dr["Dimenzije"];
+                row.Cells["PrijemnicaStavkaID"].Value = dr["PrijemnicaStavkaID"];
             }
 
+            // Zaključaj kolone koje ne želiš menjati
+            dataGridView1.Columns["ID"].ReadOnly = true;
+            dataGridView1.Columns["IDNadredjena"].ReadOnly = true;
+
         }
+        //private void RefreshDataGrid()
+        //{
+        //    var select = "";
+        //    select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,[JM]      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
+        //    ,[BrojKontejnera]      ,[Paleta]      ,[VrstaPalete]      ,[Dimenzije], PrijemnicaStavkaID
+        //    FROM [dbo].[OtpremnicaCarinskaStavke] where IDNadredjena =" + txtID.Text;
+
+        //    //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+
+
+        //    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        //    SqlConnection myConnection = new SqlConnection(s_connection);
+        //    var c = new SqlConnection(s_connection);
+        //    var dataAdapter = new SqlDataAdapter(select, c);
+
+        //    var commandBuilder = new SqlCommandBuilder(dataAdapter);
+        //    var ds = new System.Data.DataSet();
+        //    dataAdapter.Fill(ds);
+        //    dataGridView1.ReadOnly = false;
+        //    dataGridView1.DataSource = ds.Tables[0];
+
+        //    int row = ds.Tables[0].Rows.Count - 1;
+
+        //    for (int r = 0; r <= row; r++)
+        //    {
+        //        //dataGridView1.Rows.Add();
+
+        //        //1 - NHM'), ('2 - LOT'), ('3 - ZBIRNI'
+
+
+        //        dataGridView1.Rows[r].Cells[0].Value = ds.Tables[0].Rows[r].ItemArray[0];
+        //        dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
+        //        dataGridView1.Rows[r].Cells[2].Value = ds.Tables[0].Rows[r].ItemArray[2];
+        //        dataGridView1.Rows[r].Cells[3].Value = ds.Tables[0].Rows[r].ItemArray[3];
+        //        dataGridView1.Rows[r].Cells[4].Value = ds.Tables[0].Rows[r].ItemArray[4];
+        //        dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
+        //        dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
+
+        //        dataGridView1.Rows[r].Cells[7].Value = ds.Tables[0].Rows[r].ItemArray[7];
+        //        dataGridView1.Rows[r].Cells[8].Value = ds.Tables[0].Rows[r].ItemArray[8];
+        //        dataGridView1.Rows[r].Cells[9].Value = ds.Tables[0].Rows[r].ItemArray[9];
+        //        dataGridView1.Rows[r].Cells[10].Value = ds.Tables[0].Rows[r].ItemArray[10];
+        //        dataGridView1.Rows[r].Cells[11].Value = ds.Tables[0].Rows[r].ItemArray[11];
+        //        dataGridView1.Rows[r].Cells[12].Value = ds.Tables[0].Rows[r].ItemArray[12];
+        //        dataGridView1.Rows[r].Cells[13].Value = ds.Tables[0].Rows[r].ItemArray[13];
+
+        //    }
+        //    if (dataGridView1.Columns.Contains("ID"))
+        //        dataGridView1.Columns["ID"].ReadOnly = true;
+        //    if (dataGridView1.Columns.Contains("IDNadredjena"))
+        //        dataGridView1.Columns["IDNadredjena"].ReadOnly = true;
+
+        //}
 
         private void VratiPodatke(string PrijemnicaID)
         {
@@ -639,6 +691,176 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
         {
             frmOtpremnicaCarinskaStampa ocs = new frmOtpremnicaCarinskaStampa(txtID.Text);
             ocs.Show();
+        }
+
+        private void dataGridView1_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = dataGridView1.Rows[e.RowIndex];
+            if (row.IsNewRow) return;
+
+            dataGridView1.EndEdit();
+            // Provjeri je li bilo stvarnih promjena
+            if (promenaUFakturi)
+            {
+                SaveRow(row);
+                // Nakon uspješnog spremanja, resetiraj zastavicu
+                promenaUFakturi = false;
+            }
+        }
+
+        private void SaveRow(DataGridViewRow row)
+        {
+            // Provjeri je li red potpuno prazan
+            bool isEmpty = true;
+            foreach (DataGridViewCell cell in row.Cells)
+            {
+                if (cell.ReadOnly || cell.Value == null || cell.Value == DBNull.Value)
+                    continue;
+
+                if (!string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                {
+                    isEmpty = false;
+                    break;
+                }
+            }
+
+            if (isEmpty)
+            {
+                // Red je prazan, ne radi ništa.
+                return;
+            }
+
+            // Učitaj ID
+            var idCell = row.Cells["ID"].Value;
+            bool isNew = (idCell == null || idCell == DBNull.Value || string.IsNullOrWhiteSpace(idCell.ToString()) || idCell.ToString() == "0");
+
+            int id = 0;
+            if (!isNew)
+            {
+                id = Convert.ToInt32(idCell);
+            }
+
+       
+            int idNadredjena = Convert.ToInt32(txtID.Text);
+
+            string artikal = row.Cells["Artikal"].Value?.ToString() ?? "";
+            string jm = row.Cells["JM"].Value?.ToString() ?? "";
+            string valuta = row.Cells["Valuta"].Value?.ToString() ?? "";
+            string brojKontejnera = row.Cells["BrojKontejnera"].Value?.ToString() ?? "";
+            string paleta = row.Cells["Paleta"].Value?.ToString() ?? "";
+            string vrstaPalete = row.Cells["VrstaPalete"].Value?.ToString() ?? "";
+            string dimenzije = row.Cells["Dimenzije"].Value?.ToString() ?? "";
+
+            double koleta = double.TryParse(row.Cells["Koleta"].Value?.ToString(), out var tmpKoleta) ? tmpKoleta : 0;
+            double bruto = double.TryParse(row.Cells["Bruto"].Value?.ToString(), out var tmpBruto) ? tmpBruto : 0;
+            int pozicija = int.TryParse(row.Cells["Pozicija"].Value?.ToString(), out var tmpPozicija) ? tmpPozicija : 0;
+            double vrednost = double.TryParse(row.Cells["Vrednost"].Value?.ToString(), out var tmpVrednost) ? tmpVrednost : 0;
+            int prijemnicaStavkaID = int.TryParse(row.Cells["PrijemnicaStavkaID"].Value?.ToString(), out var tmpPrijemnica) ? tmpPrijemnica : 0;
+
+            try
+            {
+                InsertOtpremnicaCarinskaStavke ins = new InsertOtpremnicaCarinskaStavke();
+
+                if (isNew)
+                {
+                    // INSERT
+                    int noviID = ins.InsOtpremnicaCarinskaStavke(0, idNadredjena, artikal, jm, koleta, bruto, pozicija, vrednost, valuta, brojKontejnera, paleta, vrstaPalete,
+                                                                 dimenzije, prijemnicaStavkaID);
+                    // Postavi novi ID u ćeliju
+                    row.Cells["ID"].Value = noviID;
+                    row.Cells["idNadredjena"].Value = idNadredjena;
+                }
+                else
+                {
+                    // UPDATE
+                    // Pozovi metodu za UPDATE
+                    int rezultat = ins.InsOtpremnicaCarinskaStavke(id, idNadredjena, artikal, jm, koleta, bruto, pozicija, vrednost, valuta, brojKontejnera, paleta, vrstaPalete,
+                                                                 dimenzije, prijemnicaStavkaID);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri snimanju: " + ex.Message);
+            }
+        }
+
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            promenaUFakturi = true;
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Provjeri je li pritisnuta tipka Delete
+            if (e.KeyCode == Keys.Delete)
+            {
+                // Provjeri ima li odabranih redova
+                if (this.dataGridView1.SelectedRows.Count > 0)
+                {
+                    // Prikaži dijalog za potvrdu
+                    DialogResult dr = MessageBox.Show("Jeste li sigurni da želite obrisati odabrani red?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        // Uzmi ID retka koji se briše
+                        int idZaBrisanje = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells["ID"].Value);
+
+                        // Pozovi metodu za brisanje iz baze
+                        InsertOtpremnicaCarinskaStavke ins = new InsertOtpremnicaCarinskaStavke();
+                        ins.DelOtpremnicaCarinskaStavke(idZaBrisanje);
+
+                        // Ukloni red iz DataGridView-a
+                        this.dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
+
+                        MessageBox.Show("Red je uspješno obrisan.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nije odabran nijedan red za brisanje.");
+                }
+            }
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                      "Da li ste sigurni da želite da obrišete ovu otremnicu?",
+                      "Potvrda brisanja",
+                     MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Warning
+                        );
+
+            if (result == DialogResult.Yes)
+            {
+                insertOtpremnicaCarinsko ins = new insertOtpremnicaCarinsko();
+                ins.DelOtpremnicaCarinsko(Convert.ToInt32(txtID.Text));
+                ClearControls(this);
+            }
+        }
+
+        private void ClearControls(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is System.Windows.Forms.TextBox tb)
+                    tb.Clear();
+                else if (c is ComboBox cb)
+                    cb.SelectedIndex = -1;
+                else if (c is System.Windows.Forms.CheckBox chk)
+                    chk.Checked = false;
+                else if (c is DataGridView dgv)
+                    dgv.DataSource = null; // ili gridGroupingControl1.DataSource = null
+                else if (c.HasChildren)
+                    ClearControls(c); // rekurzija za panel, groupbox itd.
+            }
+
+            dataGridView1.DataSource = null;  
+            dataGridView1.Rows.Clear();        
+            dataGridView1.ClearSelection();
         }
     }
 }

@@ -639,7 +639,7 @@ namespace Saobracaj.Drumski
                         int? bookingBrodara = null;
                         string adresaIstovara = null;
                         string adresaUtovara = null;
-                        string napomenaPoz = null;
+                        int? napomenaPoz = null;
                         decimal? trosak = null;
                         decimal? cena = null;
                         int? status = null;
@@ -713,8 +713,12 @@ namespace Saobracaj.Drumski
 
                         brodskaTeretnica = dr["BrodskaTeretnica"] == DBNull.Value ? null : dr["BrodskaTeretnica"].ToString();
                         brodskaPlomba = dr["BrojPlombe"] == DBNull.Value ? null : dr["BrojPlombe"].ToString();
-                        napomenaPoz = dr["NapomenaZaPozicioniranje"] == DBNull.Value ? null : dr["NapomenaZaPozicioniranje"].ToString();
 
+                        if (dr["NapomenaZaPozicioniranje"] != DBNull.Value &&
+                            int.TryParse(dr["NapomenaZaPozicioniranje"].ToString(), out int parsedValue))
+                        {
+                            napomenaPoz = parsedValue;
+                        }
                         isu.DuplirajRadniNalogDrumski( uvoz, autoDan, msetoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
                             trosak, valuta, status, opis, cena, kontaktOsobaNaIstovaru, pdv, tipTransporta, brojVoza, bttoKontejnera, bttoRobe, bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz);
                     }         
