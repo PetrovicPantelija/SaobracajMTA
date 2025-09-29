@@ -28,7 +28,7 @@ namespace Saobracaj.Uvoz
         int pomOrgJed = 0;
         int Usao = 0;
         string KorisnikTekuci = "";
-        int terminal;
+        
         string relacija;
         int ZelezninaUneta = 0;
         int RepozicijaUneta = 0;
@@ -36,7 +36,7 @@ namespace Saobracaj.Uvoz
         int ADRSC = 0;
         int ScenarioGL = 0;
         int PunPrazan = 0;
-
+int terminal;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;

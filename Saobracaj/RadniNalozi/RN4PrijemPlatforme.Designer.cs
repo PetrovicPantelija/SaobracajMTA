@@ -336,7 +336,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1610, 158);
+            this.dataGridView1.Size = new System.Drawing.Size(1610, 171);
             this.dataGridView1.TabIndex = 318;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -484,7 +484,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2});
             this.tabSplitterContainer1.Size = new System.Drawing.Size(1610, 577);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
-            this.tabSplitterContainer1.SplitterPosition = 399;
+            this.tabSplitterContainer1.SplitterPosition = 386;
             this.tabSplitterContainer1.TabIndex = 348;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
@@ -556,7 +556,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1610, 399);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1610, 386);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPSTE";
             this.tabSplitterPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabSplitterPage1_Paint);
@@ -1033,9 +1033,9 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.Controls.Add(this.dataGridView1);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 419);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 406);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1610, 158);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1610, 171);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "TABELA";
             // 

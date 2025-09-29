@@ -12,6 +12,11 @@ using System.Drawing;
 using Saobracaj.Dokumenta;
 using Syncfusion.Windows.Forms;
 using System.Drawing.Imaging;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.Grouping;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace Saobracaj.RadniNalozi
 {
@@ -139,12 +144,14 @@ namespace Saobracaj.RadniNalozi
 
         public frmDodelaSkladista()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
             ChangeTextBox();
         }
 
         public frmDodelaSkladista(string Prijem, int TipRN)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
             ChangeTextBox();
             TipRadnogNaloga = TipRN;
@@ -270,6 +277,47 @@ namespace Saobracaj.RadniNalozi
             PodesiDatagridView(dataGridView2);
 
             dataGridView2.Columns["Sklad"].DefaultCellStyle.BackColor = Color.LightBlue;
+
+        }
+
+        private void FillDGRN1SF()
+        {
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, NaSkladiste,Skladista.Naziv as Sklad, DatumRasporeda, NalogIzdao, Voz.BrVoza, Voz.NazivVoza,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+   " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
+   " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
+   " inner join Skladista on Skladista.ID = NaSkladiste " +
+   " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
+   " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
+   " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemVoza.PrijemID = " + textBox1.Text +
+   " order by RNPrijemVoza.ID  ";
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+         
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+        
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
         }
 
@@ -451,24 +499,60 @@ namespace Saobracaj.RadniNalozi
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (TipRadnogNaloga == 1)
-            FillDGRN1(); // RNPRIJEMVOZA
+            {
+                // FillDGRN1();
+                dataGridView2.Visible = false;
+                gridGroupingControl1.Visible = true;
+                FillDGRN1SF();
+            }    
+            // RNPRIJEMVOZA
 
             if (TipRadnogNaloga == 2)
-                FillDGRN2(); // RN PRIJEM PLATFORME IZVOZ
+            {
+                FillDGRN2();
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+            }
+            // RN PRIJEM PLATFORME IZVOZ
 
             if (TipRadnogNaloga == 22)
-                FillDGRN4(); // RN PRIJEM PLATFORME IZVOZ
+            { 
+             FillDGRN4(); // RN PRIJEM PLATFORME IZVOZ
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+            }
+
 
             if (TipRadnogNaloga == 21)
-                FillDGRN21(); // RN PRIJEM PLATFORME BRODAR
-           
+            {   FillDGRN21(); // 
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+
+            }
+            //   RN PRIJEM PLATFORME BRODAR
+
             if (TipRadnogNaloga == 6)
-                FillDGRN6();
+            { 
+            FillDGRN6();
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+            }
+
 
             if (TipRadnogNaloga == 5)
-                FillDGRN5();
-            if (TipRadnogNaloga == 12)  // MEDJUSKLADISNI
-                FillDGRN12();
+            { 
+             FillDGRN5();
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+            }
+
+            if (TipRadnogNaloga == 12)
+            { 
+                 FillDGRN12();
+                dataGridView2.Visible = true;
+                gridGroupingControl1.Visible = false;
+            }// MEDJUSKLADISNI
+              
         }
 
         private void btnUnesi_Click(object sender, EventArgs e)
@@ -493,7 +577,34 @@ namespace Saobracaj.RadniNalozi
 
                     // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
                 }
-                FillDGRN1();
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+                        {
+                            foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                            {
+                               
+                                ins.UpdateRN1Skladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+                                //To get the cell value of particular column of selected records   
+                                //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                                // MessageBox.Show(cellValue);
+                            }
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+
+
+               
+
+               // FillDGRN1();
+               dataGridView2.Visible = false;
+
+                FillDGRN1SF();
 
             }
             // Dodeljujemo privremeno skladiste na koje Kalmarista spusta

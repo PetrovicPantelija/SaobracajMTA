@@ -140,12 +140,22 @@ namespace Saobracaj.RadniNalozi
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv.ColumnHeadersHeight = 30;
         }
-
+        int BrojRN = 0;
 
         public RN4PrijemPlatforme()
         {
             InitializeComponent();
+           
             FillGV();
+            FillCombo();
+            ChangeTextBox();
+        }
+
+        public RN4PrijemPlatforme(int brojRN)
+        {
+            InitializeComponent();
+            BrojRN = brojRN;
+            FillGVIZRNI();
             FillCombo();
             ChangeTextBox();
         }
@@ -215,6 +225,19 @@ namespace Saobracaj.RadniNalozi
         private void FillGV()
         {
             var select = "Select * from RNPrijemPlatforme order by ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
+        }
+
+        private void FillGVIZRNI()
+        {
+            var select = "Select * from RNPrijemPlatforme where ID = " + BrojRN ;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

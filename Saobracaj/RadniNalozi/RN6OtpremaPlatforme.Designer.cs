@@ -228,7 +228,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1379, 142);
+            this.dataGridView1.Size = new System.Drawing.Size(1379, 180);
             this.dataGridView1.TabIndex = 396;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -238,7 +238,7 @@ namespace Saobracaj.RadniNalozi
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label41.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(281, 209);
+            this.label41.Location = new System.Drawing.Point(319, 209);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(92, 14);
             this.label41.TabIndex = 408;
@@ -264,7 +264,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView3.Location = new System.Drawing.Point(284, 232);
+            this.dataGridView3.Location = new System.Drawing.Point(322, 232);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -286,7 +286,7 @@ namespace Saobracaj.RadniNalozi
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label10.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(684, 212);
+            this.label10.Location = new System.Drawing.Point(797, 209);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 14);
             this.label10.TabIndex = 413;
@@ -312,7 +312,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.Location = new System.Drawing.Point(687, 232);
+            this.dataGridView2.Location = new System.Drawing.Point(800, 232);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -341,7 +341,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2});
             this.tabSplitterContainer1.Size = new System.Drawing.Size(1383, 629);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
-            this.tabSplitterContainer1.SplitterPosition = 440;
+            this.tabSplitterContainer1.SplitterPosition = 402;
             this.tabSplitterContainer1.TabIndex = 417;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
@@ -399,7 +399,7 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1383, 440);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1383, 402);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "OPSTE";
             // 
@@ -442,9 +442,9 @@ namespace Saobracaj.RadniNalozi
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(183, 335);
+            this.button2.Location = new System.Drawing.Point(172, 335);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 46);
+            this.button2.Size = new System.Drawing.Size(96, 46);
             this.button2.TabIndex = 457;
             this.button2.Text = "Dodela polja";
             this.button2.UseVisualStyleBackColor = false;
@@ -850,9 +850,9 @@ namespace Saobracaj.RadniNalozi
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.Controls.Add(this.dataGridView1);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 460);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 422);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1383, 169);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1383, 207);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "TABELA";
             // 

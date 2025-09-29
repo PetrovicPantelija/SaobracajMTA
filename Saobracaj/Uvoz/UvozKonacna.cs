@@ -3,6 +3,7 @@ using iTextSharp.text.pdf.parser.clipper;
 using Microsoft.Office.Interop.Excel;
 using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Diagram;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.XlsIO.Implementation.XmlSerialization;
 using Syncfusion.XlsIO.Parser.Biff_Records.Formula;
@@ -69,7 +70,7 @@ namespace Saobracaj.Uvoz
 
                         textBox.BackColor = Color.White;// Example: Change background color
                         textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
-                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                         // Example: Change font
                     }
 
@@ -78,39 +79,39 @@ namespace Saobracaj.Uvoz
                     {
                         // Change properties here
                         label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
 
                         // textBox.ReadOnly = true;              // Example: Make text boxes read-only
                     }
                     if (control is DateTimePicker dtp)
                     {
                         dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
                     if (control is System.Windows.Forms.CheckBox chk)
                     {
                         chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
 
                     if (control is System.Windows.Forms.ListBox lb)
                     {
                         lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
-                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
 
                     if (control is System.Windows.Forms.ComboBox cb)
                     {
                         cb.ForeColor = Color.FromArgb(51, 51, 54);
                         cb.BackColor = Color.White;// Example: Change background color
-                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
 
                     if (control is System.Windows.Forms.NumericUpDown nu)
                     {
                         nu.ForeColor = Color.FromArgb(51, 51, 54);
                         nu.BackColor = Color.White;// Example: Change background color
-                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                     }
                 }
             }
@@ -1327,7 +1328,7 @@ namespace Saobracaj.Uvoz
             SqlCommand cmd = new SqlCommand("SELECT [ADR] ," +
              " [TipKontejnera] , " +
              " RLTErminali , RLTErminali2 ,RLTErminali3 , Scenario " +
-        "  FROM [Uvoz] where ID=" + UvozID, con);
+        "  FROM [UvozKonacna] where ID=" + UvozID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -3593,7 +3594,7 @@ namespace Saobracaj.Uvoz
             con.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT Scenario" +
-  " FROM [Uvoz] where ID=" + txtID.Text, con);
+  " FROM [UvozKonacna] where ID=" + txtID.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -4177,7 +4178,7 @@ namespace Saobracaj.Uvoz
                 }
                 VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
-
+                FillComboScenario();
                 RefreshScenario();
                 FillDG2();
                 FillDG8();
@@ -4193,6 +4194,20 @@ namespace Saobracaj.Uvoz
 
                 throw ex;
             }
+        }
+
+        private void FillComboScenario()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+            var partAD22 = new SqlDataAdapter(partner22, conn);
+            var partDS22 = new DataSet();
+            partAD22.Fill(partDS22);
+            cboScenario.DataSource = partDS22.Tables[0];
+            cboScenario.DisplayMember = "Naziv";
+            cboScenario.ValueMember = "ID";
+
+
         }
 
         private void button32_Click(object sender, EventArgs e)
@@ -4247,6 +4262,889 @@ namespace Saobracaj.Uvoz
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             uvK.UbaciURadniNalogInterniBeyScenarija(Convert.ToInt32(txtNadredjeni.Text));
         }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            pp = ProveriPrazanPun();
+            if (pp == 0)
+            {
+                VratiRepoziciju(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+            }
+            else
+            {
+
+
+                VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+
+            }
+
+
+            ADR = Convert.ToInt32(txtADR.SelectedValue);
+            int terminal = 0;
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+            if (chkTerminalski.Checked)
+            {
+                terminal = 1;
+            }
+            //Terminali
+            //  Zeleznina = 
+            relacija = cboRLTerminal.Text.ToString().TrimEnd();
+            relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
+            relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
+
+            if (txtBrKont.Text.StartsWith("ROB-"))
+            {
+
+                ScenarioGl = 4; /// CIRADA U CIRADU
+            }
+            else if (relacija3 == "KAMION")
+            {
+                ScenarioGl = 5; //DOLAZAK KAMIONA IZ POLJSKE I PRETOVAR
+            }
+
+            else
+            {
+                MoguciScenario();
+            }
+            //  MoguciScenario();
+
+            if (terminal == 1)
+            {
+                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where OJIzdavanje=4 group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (ScenarioGl == 1 && ADR == 0 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (1,2,27) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (ScenarioGl == 1 && ADR == 1 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (18,19,30) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+
+            else if (ScenarioGl == 2 && ADR == 0 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (3,4,28) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+
+
+            }
+            else if (ScenarioGl == 2 && ADR == 0 && pp == 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (6) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (ScenarioGl == 2 && ADR == 1 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (20,21,31) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+
+
+            else if (ScenarioGl == 3 && ADR == 0 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (5) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (ScenarioGl == 3 && ADR == 1 && pp > 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (22) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+
+            else if (ScenarioGl == 4)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (32) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+
+            else if (ScenarioGl == 5)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (33) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+        }
+
+        private void FillDG10Scenario()
+        {
+
+            var select = " SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+ " VrstaManipulacije.[JM] " +
+" ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+" ,VrstaManipulacije.[Cena] ,Scenario.Pokret,Scenario.StatusKontejnera,KontejnerStatus.Naziv, Scenario.Forma, " +
+" VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+" inner join Scenario on Scenario.Usluga = VrstaManipulacije.ID " +
+" inner join kontejnerStatus on KontejnerStatus.ID = Scenario.statusKOntejnera " +
+"  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Scenario.ID = " + Convert.ToInt32(cboScenario.SelectedValue) + " order by Scenario.RB asc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView10.ReadOnly = false;
+            dataGridView10.DataSource = ds.Tables[0];
+
+
+            // PodesiDatagridView(dataGridView6);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView10.Columns[0];
+            dataGridView10.Columns[0].HeaderText = "ID";
+            dataGridView10.Columns[0].Width = 70;
+
+            DataGridViewColumn column2 = dataGridView10.Columns[1];
+            dataGridView10.Columns[1].HeaderText = "Naziv";
+            dataGridView10.Columns[1].Width = 250;
+
+
+
+        }
+
+        private void IzbaciPostojeceManipulacije()
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.DelUvozTerminalskeUslugeKonacna(Convert.ToInt32(txtID.Text));
+        }
+
+
+        int VratiBrojManipulacija(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Dodatna = 0 and Administrativna = 0and IDNadredjena= ";
+
+
+            SqlCommand cmd = new SqlCommand(Komanda + txtID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int VratiBrojScenario(int ID)
+        {
+            int pomBZ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int VratiBrojScenarioS(int ID)
+        {
+            int pomBZ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+
+        int ProveriDaLiSuIsteManipulacije(int ID, int SC)
+        {
+            int postoji = 0;
+            int konacan = 1;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + SC, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()), Convert.ToInt32(txtID.Text));
+                if (postoji == 0)
+                {
+                    konacan = 0;
+                }
+            }
+            con.Close();
+            return konacan;
+
+        }
+
+        int VratiPostojiUsluga(int usluga, int kontejnerid)
+        {
+            int postoji = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije where IDNadredjena = " + kontejnerid + " and IDVrstaManipulacije = " + usluga;
+
+
+            SqlCommand cmd = new SqlCommand(Komanda, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                if (Convert.ToInt32(dr["Broj"].ToString()) == 1)
+                {
+                    postoji = 1;
+                }
+            }
+            con.Close();
+            return postoji;
+
+
+        }
+
+        private void ProveriScenario(int ID)
+        {
+            //Panta 2
+            // broj Zapisa za kontejner
+            //Izab raniScenario
+            int IzabraniScenario = 0;
+            int PronadjenSC = 0;
+            int BrojZapisaKontejnera = VratiBrojManipulacija(ID);
+            int BSC1 = VratiBrojScenario(1);
+            int BSC2 = VratiBrojScenario(2);
+            int BSC3 = VratiBrojScenario(3);
+            int BSC3S = VratiBrojScenarioS(3);
+            int BSC4 = VratiBrojScenario(4);
+            int BSC5 = VratiBrojScenario(5);
+            int BSC6 = VratiBrojScenario(6);
+            int BSC15 = VratiBrojScenario(15);
+            int BSC18 = VratiBrojScenario(18);
+            int BSC19 = VratiBrojScenario(19);
+            int BSC20 = VratiBrojScenario(20);
+            int BSC21 = VratiBrojScenario(21);
+            int BSC22 = VratiBrojScenario(22);
+            int BSC27 = VratiBrojScenario(27);
+            int BSC28 = VratiBrojScenario(28);
+            int BSC30 = VratiBrojScenario(30);
+            int BSC31 = VratiBrojScenario(31);
+            int BSC32 = VratiBrojScenario(32);  //CIRADA
+            int BSC33 = VratiBrojScenario(33); // KAMION IZ POLJSKE
+            //  int BSC6 = VratiBrojScenario(6);
+
+            int rasporedjen = 0;
+
+            rasporedjen = 0;
+
+            if (BrojZapisaKontejnera == BSC1 && ADR == 0 && pp > 0 && PronadjenSC == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 1);
+
+                if (IzabraniScenario == 1 && ADR == 0 && pp > 0)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    PronadjenSC = 1;
+                    isc.UpdScenarioKontejnera(1, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 1");
+                }
+            }
+            if (BrojZapisaKontejnera == BSC2 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 2);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(2, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 2");
+                }
+            }
+            if (BrojZapisaKontejnera == BSC3 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(3, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 3");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC3S && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(3, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 3");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC4 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 4);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(4, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 4");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC5 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 5);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(5, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 5");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC6 && ADR == 0 && pp == 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 6);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(6, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 6");
+                }
+            }
+
+
+            if (BrojZapisaKontejnera == BSC18 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 18);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(18, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 18");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC19 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 19);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(19, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 19");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC20 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 20);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(20, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 20");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC21 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 21);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(21, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 21");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC22 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 22);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(22, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 22");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC27 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 27);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(27, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 27");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC28 && ADR == 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 28);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(28, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 28");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC30 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 30);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(30, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 30");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC31 && ADR > 0 && pp > 0 && IzabraniScenario == 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 31);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(31, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 31");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC32)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 32);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(32, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 32");
+                }
+            }
+            if (BrojZapisaKontejnera == BSC33)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 33);
+                if (IzabraniScenario == 1)
+                {
+                    PronadjenSC = 1;
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(33, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 33");
+                }
+            }
+            int Terminal = 0;
+            if (chkTerminalski.Checked == true)
+            { Terminal = 1; };
+            if (Terminal == 1)
+            {
+                PronadjenSC = 1;
+                InsertScenario isc = new InsertScenario();
+                isc.UpdScenarioKontejnera(15, ID, 1, rasporedjen);
+                System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 15");
+
+            }
+            if (PronadjenSC == 0)
+            {
+                InsertScenario isc = new InsertScenario();
+                isc.UpdScenarioKontejnera(0, ID, 1, rasporedjen);
+                System.Windows.Forms.MessageBox.Show("Ne postoji scenario koji odgovara preostalim uslugama");
+
+            }
+
+            // Proveri da li je isti broj 
+            // Proveri da lii su iste manipulacije
+
+        }
+
+        private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena, double Kolicina, int OrgJed, int pomPlatilac, string pomPokret, int pomStatusKontejnera, string pomForma)
+        {
+
+            if (txtNadredjeni.Text != "0")
+            {
+                InsertUvozKonacna uvK = new InsertUvozKonacna();
+                uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, pomPlatilac, 0, pomPokret, pomStatusKontejnera, KorisnikTekuci, pomForma);
+            }
+
+
+        }
+
+        int VratiOrgJed(int Manipulacija)
+        {
+            int pomOJ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select OrgJed from VrstaManipulacije  where ID= " + Manipulacija, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomOJ = Convert.ToInt32(dr["OrgJed"].ToString());
+            }
+            con.Close();
+            return pomOJ;
+
+        }
+
+        private void UbaciIzDatagrida()
+        {
+            int pomID = 0;
+            int pomManupulacija = 0;
+            double pomkolicina = 1;
+            string pomPokret = "";
+            int pomStatusKontejnera = 0;
+            string pomForma = "";
+            int pomOrgJed = 0;
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView10.Rows)
+                {
+
+                    pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
+
+                    pomPokret = row.Cells[7].Value.ToString();
+                    pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                    pomForma = row.Cells[10].Value.ToString();
+                    pomOrgJed = VratiOrgJed(pomManupulacija);
+                    pomID = Convert.ToInt32(txtID.Text);//Panta
+                                                        //Ako je usluga prevoz drumskim 
+                    UbaciStavkuUsluge(pomID, pomManupulacija, 0, pomkolicina, pomOrgJed, 0, pomPokret, pomStatusKontejnera, pomForma);
+
+                }
+
+
+                //ProveriScenario(pomID);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
+            }
+
+
+
+        }
+
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            FillDG10Scenario();
+            dataGridView10.SelectAll();
+            IzbaciPostojeceManipulacije();
+
+            UbaciIzDatagrida();
+
+            FillDGUsluge();
+            ProveriScenario(Convert.ToInt32(txtID.Text));
+        }
+        private void StornirajRNIStiKontejner(string RNI)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.Storniraj(RNI);
+        }
+
+        int VratiUsluguNovog(int ScenarioNovi, int RB)
+        {
+            string Komanda = "";
+            int usluga = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            Komanda = "select Usluga from Scenario  where ID =  " + ScenarioNovi + " and rb =" + RB;
+
+            SqlCommand cmd = new SqlCommand(Komanda, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                usluga = Convert.ToInt32(dr["Usluga"].ToString());
+            }
+            con.Close();
+            if (usluga > 0)
+            { return usluga; }
+            else
+            {
+                return 0;
+            }
+
+
+        }
+
+        private void FillDG6ScenarioPoRB(int rb)
+        {
+
+            var select = " SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+ " VrstaManipulacije.[JM] " +
+" ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+" ,VrstaManipulacije.[Cena] ,Scenario.Pokret,Scenario.StatusKontejnera,KontejnerStatus.Naziv, Scenario.Forma, " +
+" VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+" inner join Scenario on Scenario.Usluga = VrstaManipulacije.ID " +
+" inner join kontejnerStatus on KontejnerStatus.ID = Scenario.statusKOntejnera " +
+"  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Scenario.ID = " + Convert.ToInt32(cboScenario.SelectedValue) + " and RB >= " + rb + " order by Scenario.RB asc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView10.ReadOnly = false;
+            dataGridView10.DataSource = ds.Tables[0];
+
+
+            PodesiDatagridView(dataGridView10);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView10.Columns[0];
+            dataGridView10.Columns[0].HeaderText = "ID";
+            dataGridView10.Columns[0].Width = 70;
+
+            DataGridViewColumn column2 = dataGridView10.Columns[1];
+            dataGridView10.Columns[1].HeaderText = "Naziv";
+            dataGridView10.Columns[1].Width = 250;
+
+            DataGridViewColumn column3 = dataGridView10.Columns[2];
+            dataGridView10.Columns[2].HeaderText = "JM";
+            dataGridView10.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView10.Columns[3];
+            dataGridView10.Columns[3].HeaderText = "Tip manipulacije";
+            dataGridView10.Columns[3].Width = 50;
+            dataGridView10.Columns[3].Visible = false;
+
+
+            DataGridViewColumn column5 = dataGridView10.Columns[4];
+            dataGridView10.Columns[4].HeaderText = "OJ";
+            dataGridView10.Columns[4].Width = 30;
+
+            DataGridViewColumn column6 = dataGridView10.Columns[5];
+            dataGridView10.Columns[5].HeaderText = "OJ naziv";
+            dataGridView10.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView10.Columns[6];
+            dataGridView10.Columns[6].HeaderText = "Cena";
+            dataGridView10.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView10.Columns[7];
+            dataGridView10.Columns[7].HeaderText = "Pokret";
+            dataGridView10.Columns[7].Width = 150;
+
+            DataGridViewColumn column9 = dataGridView10.Columns[8];
+            dataGridView10.Columns[8].HeaderText = "StatusID";
+            dataGridView10.Columns[8].Width = 30;
+
+            DataGridViewColumn column10 = dataGridView10.Columns[9];
+            dataGridView10.Columns[9].HeaderText = "Status";
+            dataGridView10.Columns[9].Width = 130;
+
+            DataGridViewColumn column11 = dataGridView10.Columns[10];
+            dataGridView10.Columns[10].HeaderText = "Otvara formu";
+            dataGridView10.Columns[10].Width = 100;
+
+        }
+
+        private void IzbrisiUslugeScenarija(int KonkretnaUsluga, int RB)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.IzbrisiUvozKonacna(KonkretnaUsluga);
+            FillDG6ScenarioPoRB(RB);
+            dataGridView10.SelectAll();
+            button26_Click(new object(), new EventArgs());
+        }
+        private void button42_Click(object sender, EventArgs e)
+        {
+            string RN = "";
+            string Scenario = "";
+            string RB = "";
+            string Usluga = "";
+            string RadniNalogInterni = "";
+            string Uradjen = "";
+            string KonkretaIDUsluge = "";
+            int ScenarioNovi = Convert.ToInt16(cboScenario.SelectedValue);
+
+            string pomJM = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int statusobrade = 0;
+            int IStiSu = 0;
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select DISTINCT UvozKonacna.Scenario, Scenario.RB, Scenario.Usluga, RadniNalogInterni.ID as RNID, Uradjen, BrojRN, IDManipulacijaJed, KonkretaIDUsluge from UvozKonacna inner join Scenario on Scenario.ID = UvozKonacna.Scenario inner join RadniNalogInterni on RadniNalogInterni.BrojOsnov = UvozKonacna.ID and Scenario.Usluga = IDManipulacijaJed " +
+                " inner join VrstaManipulacije on Scenario.Usluga = VrstaManipulacije.ID where UvozKonacna.ID =  " + txtID.Text + " and VrstaManipulacije.Dodatna = 0 and VrstaManipulacije.Administrativna = 0 AND OJIzdavanja = 1 And StatusIzdavanja <> 'STORNO'", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (statusobrade == 1)
+                {
+                    System.Windows.MessageBox.Show("Postoji manipulacija za koju je izdat RN");
+                }
+                else if (statusobrade == 2)
+                {
+                    // storniraj sve naredne usluge
+                    StornirajRNIStiKontejner(RadniNalogInterni);
+                    IzbrisiUslugeScenarija(Convert.ToInt32(KonkretaIDUsluge), Convert.ToInt32(RB));
+                    // uvaci sve usluge novog Scenarija
+                    // IZdaj naloge
+                }
+                else
+                {
+                    //Izmenjeno
+                    // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                    RN = dr["BrojRN"].ToString();
+                    Scenario = dr["Scenario"].ToString();
+                    RB = dr["RB"].ToString();
+                    Usluga = dr["Usluga"].ToString();
+                    RadniNalogInterni = dr["RNID"].ToString();
+                    Uradjen = dr["Uradjen"].ToString();
+                    KonkretaIDUsluge = dr["KonkretaIDUsluge"].ToString();
+                    int UslugaNovog = VratiUsluguNovog(ScenarioNovi, Convert.ToInt32(RB));
+                    if (UslugaNovog != Convert.ToInt32(Usluga))
+                    {
+                        IStiSu = 0;
+                    }
+                    else
+                    {
+                        IStiSu = 1;
+                    }
+                    if (IStiSu == 1) ;
+                    {
+                        statusobrade = 0;
+                        //IDEMO DALJE
+                    }
+                    if (IStiSu == 0 && RN != "0")
+                    {
+                        statusobrade = 1; // Postoji pustena operacija koja nije ista kao u Scenariju mora terminal
+
+
+                    }
+                    if (IStiSu == 0 && RN == "0")
+                    {
+                        statusobrade = 2; // Storniraj sve RN, Obrisi usluge i formiraj nove posle ove
+
+                    }
+
+                }
+
+
+
+
+
+
+            }
+            con.Close();
+
+        }
     }
-}
+  }
+
 

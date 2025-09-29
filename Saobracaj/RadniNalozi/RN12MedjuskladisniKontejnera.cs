@@ -16,7 +16,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
-
+        int BrojRN = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -144,6 +144,15 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
             ChangeTextBox();
         }
+
+        public RN12MedjuskladisniKontejnera(int brojrn)
+        {
+            InitializeComponent();
+            BrojRN = brojrn;
+            FillGVIzRNI();
+            FillCombo();
+            ChangeTextBox();
+        }
         private void NapuniVrstuUsluge(string IDUsluga)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -186,6 +195,25 @@ namespace Saobracaj.RadniNalozi
                " TipKontenjera ON RNMedjuskladisni.VrstaKontejnera = TipKontenjera.ID INNER JOIN" +
                " Skladista ON RNMedjuskladisni.SaSkladista = Skladista.ID INNER JOIN                         Skladista AS Skladista_1 " +
                " ON RNMedjuskladisni.NaSkladiste = Skladista_1.ID Order by  RNMedjuskladisni.ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            PodesiDatagridView(dataGridView1);
+        }
+
+        private void FillGVIzRNI()
+        {
+            var select = "SELECT       RNMedjuskladisni.ID as ID,  RNMedjuskladisni.BrojKontejnera,  RNMedjuskladisni.VrstaKontejnera,TipKontenjera.Naziv, " +
+                "Skladista.ID as SaID, Skladista.Naziv AS SkladSa, Skladista_1.ID AS NaID, Skladista_1.Naziv AS NaSkladiste," +
+                "                     RNMedjuskladisni.DatumRasporeda, " +
+               " RNMedjuskladisni.NalogIzdao, RNMedjuskladisni.DatumRealizacije, RNMedjuskladisni.NalogRealizovao, RNMedjuskladisni.Napomena, " +
+               " RNMedjuskladisni.Zavrsen FROM            RNMedjuskladisni INNER JOIN" +
+               " TipKontenjera ON RNMedjuskladisni.VrstaKontejnera = TipKontenjera.ID INNER JOIN" +
+               " Skladista ON RNMedjuskladisni.SaSkladista = Skladista.ID INNER JOIN                         Skladista AS Skladista_1 " +
+               " ON RNMedjuskladisni.NaSkladiste = Skladista_1.ID where RNMedjuskladisni.ID = " + BrojRN;
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

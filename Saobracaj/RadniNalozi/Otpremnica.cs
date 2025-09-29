@@ -14,6 +14,7 @@ namespace Saobracaj.RadniNalozi
         string connect = frmLogovanje.connectionString;
         string korisnik;
         bool dgvComboEnabled = true;
+        int OtpremnicaID = 0;
 
         private void ChangeTextBox()
         {
@@ -127,6 +128,20 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+        public Otpremnica(int NalogID, string Kontejner, string Registracija, string Vozac, int SelektovanaOtpremnica)
+        {
+            InitializeComponent();
+            nalog = NalogID;
+            kontejner = Kontejner;
+            txtBrojKontejnera.Text = kontejner;
+            txtVozilo.Text = Registracija;
+            txtVozac.Text = Vozac;
+            btn_Povuci.Visible = false;
+            cbo_MestoTroska.Visible = false;
+            OtpremnicaID = SelektovanaOtpremnica;
+            ChangeTextBox();
+        }
+
         private void Otpremnica_Load(object sender, EventArgs e)
         {
             korisnik = frmLogovanje.user;
@@ -148,8 +163,16 @@ namespace Saobracaj.RadniNalozi
                 korisink = frmLogovanje.user;
 
                 dgvComboEnabled = false;
-
-                PovuciIzPrijemnice();
+                if (OtpremnicaID != 0)
+                {
+                    PovuciVecUnete();
+                
+                }
+                else
+                {
+                    PovuciIzPrijemnice();
+                }
+               
                 var selectSvi = "Select BrojKontejnera,DatumTransakcije,VrstaDokumenta,PrStDokumenta,PrOznSled,PrPrimKol,PrIzdKol,SkladisteU,LokacijaU,SkladisteIz,LokacijaIz,MpSifra," +
                    "RTrim(Naziv) as MpNaziv,JedinicaMere,Lot,Skladisteno " +
                    "From Promet " +
@@ -182,6 +205,65 @@ namespace Saobracaj.RadniNalozi
             dataGridView1.DataSource = dt;
 
             dataGridView1.Columns["PrIzdKol"].DefaultCellStyle.BackColor = Color.LightGreen;
+        }
+
+        private void PovuciVecUnete()
+        {
+            var select = "";
+            select = "Select BrojKontejnera,DatumTransakcije,VrstaDokumenta,PrStDokumenta,PrOznSled,PrPrimKol,PrIzdKol,SkladisteU,LokacijaU,SkladisteIz,LokacijaIz,MpSifra," +
+                "RTrim(Naziv) as MpNaziv,JedinicaMere,Lot,Skladisteno " +
+                "From Promet " +
+                "Inner Join NHM on Promet.MpSifra=NHM.ID " +
+                " Where PrStDokumenta =" + OtpremnicaID;
+
+            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = false;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            int row = ds.Tables[0].Rows.Count - 1;
+
+            for (int r = 0; r <= row; r++)
+            {
+                //dataGridView1.Rows.Add();
+
+                //1 - NHM'), ('2 - LOT'), ('3 - ZBIRNI'
+
+
+                dataGridView1.Rows[r].Cells[0].Value = ds.Tables[0].Rows[r].ItemArray[0];
+                dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
+                dataGridView1.Rows[r].Cells[2].Value = ds.Tables[0].Rows[r].ItemArray[2];
+                dataGridView1.Rows[r].Cells[3].Value = ds.Tables[0].Rows[r].ItemArray[3];
+                dataGridView1.Rows[r].Cells[4].Value = ds.Tables[0].Rows[r].ItemArray[4];
+                dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
+                dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
+
+            }
+            /*
+            var select = "Select BrojKontejnera,DatumTransakcije,VrstaDokumenta,PrStDokumenta,PrOznSled,PrPrimKol,PrIzdKol,SkladisteU,LokacijaU,SkladisteIz,LokacijaIz,MpSifra," +
+                "RTrim(Naziv) as MpNaziv,JedinicaMere,Lot,Skladisteno " +
+                "From Promet " +
+                "Inner Join NHM on Promet.MpSifra=NHM.ID " +
+                "Where PrIzdKol<PrPrimKol and BrojKontejnera='" + kontejner + "'";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(select, conn);
+            dt.Load(cmd.ExecuteReader());
+            conn.Close();
+            dataGridView1.DataSource = dt;
+
+            dataGridView1.Columns["PrIzdKol"].DefaultCellStyle.BackColor = Color.LightGreen;
+       
+            */
         }
         private void RefreshGV()
         {

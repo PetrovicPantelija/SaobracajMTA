@@ -15,6 +15,7 @@ namespace Saobracaj.RadniNalozi
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         string kor = Sifarnici.frmLogovanje.user;
+        int BrojRN = 0;
 
         private void ChangeTextBox()
         {
@@ -145,6 +146,18 @@ namespace Saobracaj.RadniNalozi
             ChangeTextBox();
         }
 
+
+        public RN5PrijemPlatforme2(int brojrn)
+        {
+            InitializeComponent();
+            BrojRN = brojrn;
+  
+            FillGVIZRNI();
+            FillCombo();
+            txtDatumRasporeda.Value = DateTime.Now;
+            ChangeTextBox();
+        }
+
         public RN5PrijemPlatforme2(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz, int NalogID)
         {
             InitializeComponent();
@@ -207,6 +220,27 @@ namespace Saobracaj.RadniNalozi
   " INNER JOIN  Partnerji AS Partnerji_3 ON[RNPrijemPlatforme2].NazivBrodara = Partnerji_3.PaSifra " +
 " INNER JOIN TipKontenjera ON[RNPrijemPlatforme2].VrstaKontejnera = TipKontenjera.ID " +
 " inner join Skladista on Skladista.ID = [USkladiste] order by RNPrijemPlatforme2.ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView1);
+        }
+
+        private void FillGVIZRNI()
+        {
+            var select = " SELECT [RNPrijemPlatforme2].[ID] as ID      ,[DatumRasporeda] " +
+    " ,[NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]      ,[BrojKontejnera] " +
+    "   ,TipKontenjera.Naziv as VrstaKontejnera      ,Partnerji_3.PaNaziv as Brodar " +
+     "  ,[VrstaRobe]      ,[USkladiste]      ,[UPozicijaSklad]      ,[IdUsluge]      ,[NalogRealizovao] " +
+     "  ,[Napomena]      ,[PrijemID]      ,[Kamion]      ,[Zavrsen] " +
+     "  ,[NalogID]           FROM [dbo].[RNPrijemPlatforme2] " +
+  " INNER JOIN  Partnerji AS Partnerji_3 ON[RNPrijemPlatforme2].NazivBrodara = Partnerji_3.PaSifra " +
+" INNER JOIN TipKontenjera ON[RNPrijemPlatforme2].VrstaKontejnera = TipKontenjera.ID " +
+" inner join Skladista on Skladista.ID = [USkladiste] where  RNPrijemPlatforme2.ID  = " + BrojRN;
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

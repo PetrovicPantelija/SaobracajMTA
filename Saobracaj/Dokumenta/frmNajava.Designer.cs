@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNajava));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable4 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable5 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable3 = new Syncfusion.Windows.Forms.MetroColorTable();
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable4 = new Syncfusion.Windows.Forms.MetroColorTable();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nedraDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nedraDataSet = new Saobracaj.NedraDataSet();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
@@ -202,9 +202,28 @@
             this.label49 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.txtADR = new System.Windows.Forms.ComboBox();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet)).BeginInit();
-            this.toolStrip1.SuspendLayout();
+            this.meniHeader.SuspendLayout();
             this.tabNajave.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -237,6 +256,10 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // nedraDataSetBindingSource
@@ -253,7 +276,7 @@
             // 
             this.txtSifra.Location = new System.Drawing.Point(62, 22);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.Size = new System.Drawing.Size(85, 20);
             this.txtSifra.TabIndex = 1;
             // 
             // label1
@@ -265,11 +288,11 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Šifra:";
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
             this.tsDelete,
@@ -291,11 +314,11 @@
             this.toolStripButton10,
             this.toolStripButton12,
             this.toolStripButton13});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1498, 27);
-            this.toolStrip1.TabIndex = 5;
-            this.toolStrip1.Text = "Štampaj izveštaj";
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(1498, 27);
+            this.meniHeader.TabIndex = 5;
+            this.meniHeader.Text = "Štampaj izveštaj";
             // 
             // tsNew
             // 
@@ -500,15 +523,15 @@
             // 
             // txtOpis
             // 
-            this.txtOpis.Location = new System.Drawing.Point(228, 65);
+            this.txtOpis.Location = new System.Drawing.Point(208, 65);
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(65, 20);
+            this.txtOpis.Size = new System.Drawing.Size(85, 20);
             this.txtOpis.TabIndex = 2;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(225, 49);
+            this.lblNaziv.Location = new System.Drawing.Point(205, 49);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(58, 13);
             this.lblNaziv.TabIndex = 6;
@@ -548,9 +571,9 @@
             this.cboUputna.BackColor = System.Drawing.Color.White;
             this.cboUputna.ForeColor = System.Drawing.Color.Black;
             this.cboUputna.FormattingEnabled = true;
-            this.cboUputna.Location = new System.Drawing.Point(65, 44);
+            this.cboUputna.Location = new System.Drawing.Point(61, 44);
             this.cboUputna.Name = "cboUputna";
-            this.cboUputna.Size = new System.Drawing.Size(238, 21);
+            this.cboUputna.Size = new System.Drawing.Size(231, 21);
             this.cboUputna.TabIndex = 8;
             // 
             // label5
@@ -567,9 +590,9 @@
             this.cboOtpravna.BackColor = System.Drawing.Color.White;
             this.cboOtpravna.ForeColor = System.Drawing.Color.Black;
             this.cboOtpravna.FormattingEnabled = true;
-            this.cboOtpravna.Location = new System.Drawing.Point(65, 18);
+            this.cboOtpravna.Location = new System.Drawing.Point(61, 18);
             this.cboOtpravna.Name = "cboOtpravna";
-            this.cboOtpravna.Size = new System.Drawing.Size(239, 21);
+            this.cboOtpravna.Size = new System.Drawing.Size(231, 21);
             this.cboOtpravna.TabIndex = 7;
             // 
             // cboNHM
@@ -596,7 +619,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 106);
+            this.label8.Location = new System.Drawing.Point(1, 101);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 13);
             this.label8.TabIndex = 38;
@@ -606,10 +629,10 @@
             // 
             this.txtRelacija.BackColor = System.Drawing.Color.LightGray;
             this.txtRelacija.ForeColor = System.Drawing.Color.Black;
-            this.txtRelacija.Location = new System.Drawing.Point(65, 97);
+            this.txtRelacija.Location = new System.Drawing.Point(61, 101);
             this.txtRelacija.Multiline = true;
             this.txtRelacija.Name = "txtRelacija";
-            this.txtRelacija.Size = new System.Drawing.Size(233, 30);
+            this.txtRelacija.Size = new System.Drawing.Size(231, 30);
             this.txtRelacija.TabIndex = 12;
             // 
             // label9
@@ -694,7 +717,7 @@
             // 
             this.dtpStvarnoPrimanje.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpStvarnoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStvarnoPrimanje.Location = new System.Drawing.Point(117, 32);
+            this.dtpStvarnoPrimanje.Location = new System.Drawing.Point(127, 31);
             this.dtpStvarnoPrimanje.Name = "dtpStvarnoPrimanje";
             this.dtpStvarnoPrimanje.ShowUpDown = true;
             this.dtpStvarnoPrimanje.Size = new System.Drawing.Size(108, 20);
@@ -734,7 +757,7 @@
             // 
             this.dtpStvarnaPredaja.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpStvarnaPredaja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStvarnaPredaja.Location = new System.Drawing.Point(117, 71);
+            this.dtpStvarnaPredaja.Location = new System.Drawing.Point(127, 70);
             this.dtpStvarnaPredaja.Name = "dtpStvarnaPredaja";
             this.dtpStvarnaPredaja.ShowUpDown = true;
             this.dtpStvarnaPredaja.Size = new System.Drawing.Size(108, 20);
@@ -744,7 +767,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(115, 15);
+            this.label17.Location = new System.Drawing.Point(134, 15);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(46, 13);
             this.label17.TabIndex = 71;
@@ -784,11 +807,11 @@
             this.tabNajave.Controls.Add(this.tabPage6);
             this.tabNajave.Controls.Add(this.tabPage7);
             this.tabNajave.Controls.Add(this.tabPage8);
-            this.tabNajave.Location = new System.Drawing.Point(4, 384);
+            this.tabNajave.Location = new System.Drawing.Point(1, 455);
             this.tabNajave.Name = "tabNajave";
             this.tabNajave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabNajave.SelectedIndex = 0;
-            this.tabNajave.Size = new System.Drawing.Size(1483, 277);
+            this.tabNajave.Size = new System.Drawing.Size(1486, 206);
             this.tabNajave.TabIndex = 75;
             this.tabNajave.SelectedIndexChanged += new System.EventHandler(this.tabNajave_SelectedIndexChanged);
             // 
@@ -798,7 +821,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage1.Size = new System.Drawing.Size(1478, 180);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Poslovi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -812,7 +835,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1469, 245);
+            this.dataGridView1.Size = new System.Drawing.Size(1472, 174);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -823,7 +846,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage2.Size = new System.Drawing.Size(1478, 180);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Prevoznici";
             // 
@@ -844,7 +867,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage3.Size = new System.Drawing.Size(1478, 180);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Verzije";
             // 
@@ -853,7 +876,7 @@
             this.tabPage4.Controls.Add(this.dataGridView3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage4.Size = new System.Drawing.Size(1478, 180);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Vagoni";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -878,7 +901,7 @@
             this.tabPage5.Controls.Add(this.reportViewer1);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage5.Size = new System.Drawing.Size(1478, 180);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Štampa";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -888,9 +911,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.nedraDataSetBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource3.Name = "DataSet1";
+            reportDataSource3.Value = this.nedraDataSetBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(5, 0);
             this.reportViewer1.Name = "reportViewer1";
@@ -905,7 +928,7 @@
             this.tabPage6.Controls.Add(this.txtKomentar);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage6.Size = new System.Drawing.Size(1478, 180);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Komentar";
             // 
@@ -927,7 +950,7 @@
             this.tabPage7.Controls.Add(this.label34);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage7.Size = new System.Drawing.Size(1478, 180);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Dodatne usluge";
             // 
@@ -966,7 +989,7 @@
             this.multiColumnComboBox2.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox2.Name = "multiColumnComboBox2";
             this.multiColumnComboBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.multiColumnComboBox2.ScrollMetroColorTable = metroColorTable1;
+            this.multiColumnComboBox2.ScrollMetroColorTable = metroColorTable4;
             this.multiColumnComboBox2.Size = new System.Drawing.Size(154, 21);
             this.multiColumnComboBox2.TabIndex = 159;
             this.multiColumnComboBox2.Click += new System.EventHandler(this.multiColumnComboBox2_Click);
@@ -996,7 +1019,7 @@
             this.tabPage8.Controls.Add(this.label38);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1475, 251);
+            this.tabPage8.Size = new System.Drawing.Size(1478, 180);
             this.tabPage8.TabIndex = 8;
             this.tabPage8.Text = "Deljenje voza";
             // 
@@ -1104,7 +1127,7 @@
             this.multiColumnComboBox3.Location = new System.Drawing.Point(93, 15);
             this.multiColumnComboBox3.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox3.Name = "multiColumnComboBox3";
-            this.multiColumnComboBox3.ScrollMetroColorTable = metroColorTable2;
+            this.multiColumnComboBox3.ScrollMetroColorTable = metroColorTable5;
             this.multiColumnComboBox3.Size = new System.Drawing.Size(154, 21);
             this.multiColumnComboBox3.TabIndex = 163;
             // 
@@ -1123,40 +1146,40 @@
             this.txtNetoTezina.BackColor = System.Drawing.Color.LightGray;
             this.txtNetoTezina.DecimalPlaces = 2;
             this.txtNetoTezina.ForeColor = System.Drawing.Color.Black;
-            this.txtNetoTezina.Location = new System.Drawing.Point(107, 26);
+            this.txtNetoTezina.Location = new System.Drawing.Point(91, 26);
             this.txtNetoTezina.Maximum = new decimal(new int[] {
             1410065408,
             2,
             0,
             0});
             this.txtNetoTezina.Name = "txtNetoTezina";
-            this.txtNetoTezina.Size = new System.Drawing.Size(69, 20);
+            this.txtNetoTezina.Size = new System.Drawing.Size(85, 20);
             this.txtNetoTezina.TabIndex = 13;
             this.txtNetoTezina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDuzinaM
             // 
-            this.txtDuzinaM.Location = new System.Drawing.Point(107, 51);
+            this.txtDuzinaM.Location = new System.Drawing.Point(91, 51);
             this.txtDuzinaM.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtDuzinaM.Name = "txtDuzinaM";
-            this.txtDuzinaM.Size = new System.Drawing.Size(69, 20);
+            this.txtDuzinaM.Size = new System.Drawing.Size(85, 20);
             this.txtDuzinaM.TabIndex = 14;
             this.txtDuzinaM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtBrojKola
             // 
-            this.txtBrojKola.Location = new System.Drawing.Point(107, 76);
+            this.txtBrojKola.Location = new System.Drawing.Point(91, 76);
             this.txtBrojKola.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtBrojKola.Name = "txtBrojKola";
-            this.txtBrojKola.Size = new System.Drawing.Size(69, 20);
+            this.txtBrojKola.Size = new System.Drawing.Size(85, 20);
             this.txtBrojKola.TabIndex = 15;
             this.txtBrojKola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1166,13 +1189,13 @@
             this.txtVerzija.ForeColor = System.Drawing.Color.Black;
             this.txtVerzija.Location = new System.Drawing.Point(168, 22);
             this.txtVerzija.Name = "txtVerzija";
-            this.txtVerzija.Size = new System.Drawing.Size(53, 20);
+            this.txtVerzija.Size = new System.Drawing.Size(85, 20);
             this.txtVerzija.TabIndex = 79;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1095, 28);
+            this.label20.Location = new System.Drawing.Point(1086, 71);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(43, 13);
             this.label20.TabIndex = 81;
@@ -1184,7 +1207,7 @@
             this.txtRazlog.BackColor = System.Drawing.Color.SlateGray;
             this.txtRazlog.ForeColor = System.Drawing.Color.White;
             this.txtRazlog.FormattingEnabled = true;
-            this.txtRazlog.Location = new System.Drawing.Point(1153, 25);
+            this.txtRazlog.Location = new System.Drawing.Point(1144, 68);
             this.txtRazlog.Name = "txtRazlog";
             this.txtRazlog.Size = new System.Drawing.Size(125, 21);
             this.txtRazlog.TabIndex = 22;
@@ -1192,15 +1215,15 @@
             // 
             // txtUgovor
             // 
-            this.txtUgovor.Location = new System.Drawing.Point(387, 347);
+            this.txtUgovor.Location = new System.Drawing.Point(368, 417);
             this.txtUgovor.Name = "txtUgovor";
-            this.txtUgovor.Size = new System.Drawing.Size(214, 20);
+            this.txtUgovor.Size = new System.Drawing.Size(231, 20);
             this.txtUgovor.TabIndex = 3;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(327, 350);
+            this.label22.Location = new System.Drawing.Point(311, 417);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(46, 13);
             this.label22.TabIndex = 85;
@@ -1278,9 +1301,9 @@
             this.cboGranicna.BackColor = System.Drawing.Color.White;
             this.cboGranicna.ForeColor = System.Drawing.Color.Black;
             this.cboGranicna.FormattingEnabled = true;
-            this.cboGranicna.Location = new System.Drawing.Point(65, 70);
+            this.cboGranicna.Location = new System.Drawing.Point(61, 68);
             this.cboGranicna.Name = "cboGranicna";
-            this.cboGranicna.Size = new System.Drawing.Size(238, 21);
+            this.cboGranicna.Size = new System.Drawing.Size(231, 21);
             this.cboGranicna.TabIndex = 92;
             // 
             // button2
@@ -1311,7 +1334,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button4.Location = new System.Drawing.Point(309, 18);
+            this.button4.Location = new System.Drawing.Point(300, 16);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(10, 23);
             this.button4.TabIndex = 99;
@@ -1322,7 +1345,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button5.Location = new System.Drawing.Point(308, 45);
+            this.button5.Location = new System.Drawing.Point(298, 44);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(10, 23);
             this.button5.TabIndex = 100;
@@ -1333,7 +1356,7 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button6.Location = new System.Drawing.Point(309, 73);
+            this.button6.Location = new System.Drawing.Point(298, 68);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(10, 23);
             this.button6.TabIndex = 101;
@@ -1362,7 +1385,7 @@
             // chkCIM
             // 
             this.chkCIM.AutoSize = true;
-            this.chkCIM.Location = new System.Drawing.Point(982, 28);
+            this.chkCIM.Location = new System.Drawing.Point(973, 71);
             this.chkCIM.Name = "chkCIM";
             this.chkCIM.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkCIM.Size = new System.Drawing.Size(97, 17);
@@ -1372,9 +1395,9 @@
             // 
             // txtDispecerRID
             // 
-            this.txtDispecerRID.Location = new System.Drawing.Point(13, 295);
+            this.txtDispecerRID.Location = new System.Drawing.Point(5, 295);
             this.txtDispecerRID.Name = "txtDispecerRID";
-            this.txtDispecerRID.Size = new System.Drawing.Size(200, 20);
+            this.txtDispecerRID.Size = new System.Drawing.Size(222, 20);
             this.txtDispecerRID.TabIndex = 111;
             this.txtDispecerRID.Visible = false;
             this.txtDispecerRID.TextChanged += new System.EventHandler(this.txtDispecerRID_TextChanged);
@@ -1382,7 +1405,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(10, 278);
+            this.label29.Location = new System.Drawing.Point(6, 279);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(74, 13);
             this.label29.TabIndex = 112;
@@ -1412,14 +1435,14 @@
             // txtNetoTezinaM
             // 
             this.txtNetoTezinaM.DecimalPlaces = 2;
-            this.txtNetoTezinaM.Location = new System.Drawing.Point(107, 126);
+            this.txtNetoTezinaM.Location = new System.Drawing.Point(91, 126);
             this.txtNetoTezinaM.Maximum = new decimal(new int[] {
             1215752192,
             23,
             0,
             0});
             this.txtNetoTezinaM.Name = "txtNetoTezinaM";
-            this.txtNetoTezinaM.Size = new System.Drawing.Size(69, 20);
+            this.txtNetoTezinaM.Size = new System.Drawing.Size(85, 20);
             this.txtNetoTezinaM.TabIndex = 151;
             this.txtNetoTezinaM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1459,7 +1482,7 @@
             this.multiColumnComboBox1.Location = new System.Drawing.Point(85, 144);
             this.multiColumnComboBox1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox1.Name = "multiColumnComboBox1";
-            this.multiColumnComboBox1.ScrollMetroColorTable = metroColorTable3;
+            this.multiColumnComboBox1.ScrollMetroColorTable = metroColorTable1;
             this.multiColumnComboBox1.Size = new System.Drawing.Size(204, 21);
             this.multiColumnComboBox1.TabIndex = 157;
             this.multiColumnComboBox1.Click += new System.EventHandler(this.multiColumnComboBox1_Click);
@@ -1505,13 +1528,13 @@
             // 
             this.cboTehnologijaID.AllowFiltering = false;
             this.cboTehnologijaID.BackColor = System.Drawing.Color.LightGray;
-            this.cboTehnologijaID.BeforeTouchSize = new System.Drawing.Size(205, 21);
+            this.cboTehnologijaID.BeforeTouchSize = new System.Drawing.Size(208, 21);
             this.cboTehnologijaID.Filter = null;
-            this.cboTehnologijaID.Location = new System.Drawing.Point(12, 335);
+            this.cboTehnologijaID.Location = new System.Drawing.Point(5, 334);
             this.cboTehnologijaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboTehnologijaID.Name = "cboTehnologijaID";
-            this.cboTehnologijaID.ScrollMetroColorTable = metroColorTable4;
-            this.cboTehnologijaID.Size = new System.Drawing.Size(205, 21);
+            this.cboTehnologijaID.ScrollMetroColorTable = metroColorTable2;
+            this.cboTehnologijaID.Size = new System.Drawing.Size(208, 21);
             this.cboTehnologijaID.TabIndex = 162;
             // 
             // label35
@@ -1530,24 +1553,24 @@
             this.dataGridView5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.ColumnHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView5.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView5.Location = new System.Drawing.Point(914, 236);
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView5.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView5.Location = new System.Drawing.Point(905, 279);
             this.dataGridView5.Name = "dataGridView5";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView5.RowHeadersWidth = 21;
             this.dataGridView5.Size = new System.Drawing.Size(416, 117);
             this.dataGridView5.TabIndex = 163;
@@ -1605,11 +1628,11 @@
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtRelacija);
-            this.groupBox2.Location = new System.Drawing.Point(322, 213);
+            this.groupBox2.Location = new System.Drawing.Point(307, 256);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(339, 129);
+            this.groupBox2.Size = new System.Drawing.Size(325, 147);
             this.groupBox2.TabIndex = 169;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Stanice";
@@ -1645,7 +1668,7 @@
             this.groupBox3.Controls.Add(this.txtRIDBroj);
             this.groupBox3.Controls.Add(this.chkRID);
             this.groupBox3.Controls.Add(this.chkAdHoc);
-            this.groupBox3.Location = new System.Drawing.Point(668, 29);
+            this.groupBox3.Location = new System.Drawing.Point(659, 72);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -1666,14 +1689,14 @@
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(106, 100);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(91, 100);
             this.txtBrojKontejnera.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
-            this.txtBrojKontejnera.Size = new System.Drawing.Size(69, 20);
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(84, 20);
             this.txtBrojKontejnera.TabIndex = 166;
             this.txtBrojKontejnera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1709,11 +1732,11 @@
             this.groupBox4.Controls.Add(this.dtpPredvidjenaPredaja);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.dtpStvarnaPredaja);
-            this.groupBox4.Location = new System.Drawing.Point(28, 287);
+            this.groupBox4.Location = new System.Drawing.Point(11, 341);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(235, 96);
+            this.groupBox4.Size = new System.Drawing.Size(261, 96);
             this.groupBox4.TabIndex = 171;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Vreme";
@@ -1725,7 +1748,7 @@
             this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Controls.Add(this.txtZadatak);
             this.groupBox5.Controls.Add(this.txtNHMPorudzbina);
-            this.groupBox5.Location = new System.Drawing.Point(913, 54);
+            this.groupBox5.Location = new System.Drawing.Point(904, 97);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
@@ -1760,7 +1783,7 @@
             this.groupBox6.Controls.Add(this.cboTipPrevoza);
             this.groupBox6.Controls.Add(this.cmbVoz);
             this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Location = new System.Drawing.Point(18, 29);
+            this.groupBox6.Location = new System.Drawing.Point(9, 72);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
@@ -1793,7 +1816,7 @@
             this.txtOznakaBroj.BackColor = System.Drawing.Color.Bisque;
             this.txtOznakaBroj.Location = new System.Drawing.Point(62, 94);
             this.txtOznakaBroj.Name = "txtOznakaBroj";
-            this.txtOznakaBroj.Size = new System.Drawing.Size(79, 20);
+            this.txtOznakaBroj.Size = new System.Drawing.Size(85, 20);
             this.txtOznakaBroj.TabIndex = 161;
             // 
             // txtOznakaPrefix
@@ -1801,14 +1824,14 @@
             this.txtOznakaPrefix.BackColor = System.Drawing.Color.Bisque;
             this.txtOznakaPrefix.Location = new System.Drawing.Point(62, 70);
             this.txtOznakaPrefix.Name = "txtOznakaPrefix";
-            this.txtOznakaPrefix.Size = new System.Drawing.Size(79, 20);
+            this.txtOznakaPrefix.Size = new System.Drawing.Size(85, 20);
             this.txtOznakaPrefix.TabIndex = 160;
             // 
             // txtOznaka
             // 
             this.txtOznaka.Location = new System.Drawing.Point(62, 47);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(120, 20);
+            this.txtOznaka.Size = new System.Drawing.Size(85, 20);
             this.txtOznaka.TabIndex = 1;
             this.txtOznaka.Leave += new System.EventHandler(this.txtOznaka_Leave);
             // 
@@ -1824,7 +1847,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(913, 364);
+            this.comboBox1.Location = new System.Drawing.Point(904, 407);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(214, 21);
             this.comboBox1.TabIndex = 108;
@@ -1832,7 +1855,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(326, 52);
+            this.label47.Location = new System.Drawing.Point(307, 91);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(61, 13);
             this.label47.TabIndex = 191;
@@ -1841,16 +1864,16 @@
             // cboOpportunity
             // 
             this.cboOpportunity.FormattingEnabled = true;
-            this.cboOpportunity.Location = new System.Drawing.Point(388, 48);
+            this.cboOpportunity.Location = new System.Drawing.Point(374, 91);
             this.cboOpportunity.Name = "cboOpportunity";
-            this.cboOpportunity.Size = new System.Drawing.Size(253, 21);
+            this.cboOpportunity.Size = new System.Drawing.Size(231, 21);
             this.cboOpportunity.TabIndex = 190;
             this.cboOpportunity.SelectionChangeCommitted += new System.EventHandler(this.cboOpportunity_SelectionChangeCommitted);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button1.Location = new System.Drawing.Point(642, 105);
+            this.button1.Location = new System.Drawing.Point(629, 144);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 23);
             this.button1.TabIndex = 180;
@@ -1862,15 +1885,15 @@
             this.cboPrevoznik.BackColor = System.Drawing.Color.White;
             this.cboPrevoznik.ForeColor = System.Drawing.Color.Black;
             this.cboPrevoznik.FormattingEnabled = true;
-            this.cboPrevoznik.Location = new System.Drawing.Point(399, 102);
+            this.cboPrevoznik.Location = new System.Drawing.Point(374, 148);
             this.cboPrevoznik.Name = "cboPrevoznik";
-            this.cboPrevoznik.Size = new System.Drawing.Size(227, 21);
+            this.cboPrevoznik.Size = new System.Drawing.Size(231, 21);
             this.cboPrevoznik.TabIndex = 175;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(327, 105);
+            this.label3.Location = new System.Drawing.Point(304, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 178;
@@ -1878,7 +1901,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(631, 105);
+            this.button9.Location = new System.Drawing.Point(613, 148);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(10, 23);
             this.button9.TabIndex = 186;
@@ -1890,15 +1913,15 @@
             this.cboPrevoznikZa.BackColor = System.Drawing.Color.White;
             this.cboPrevoznikZa.ForeColor = System.Drawing.Color.Black;
             this.cboPrevoznikZa.FormattingEnabled = true;
-            this.cboPrevoznikZa.Location = new System.Drawing.Point(399, 132);
+            this.cboPrevoznikZa.Location = new System.Drawing.Point(374, 175);
             this.cboPrevoznikZa.Name = "cboPrevoznikZa";
-            this.cboPrevoznikZa.Size = new System.Drawing.Size(227, 21);
+            this.cboPrevoznikZa.Size = new System.Drawing.Size(231, 21);
             this.cboPrevoznikZa.TabIndex = 187;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(327, 132);
+            this.label27.Location = new System.Drawing.Point(308, 175);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(60, 13);
             this.label27.TabIndex = 188;
@@ -1907,7 +1930,7 @@
             // button10
             // 
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button10.Location = new System.Drawing.Point(631, 129);
+            this.button10.Location = new System.Drawing.Point(613, 175);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(10, 23);
             this.button10.TabIndex = 189;
@@ -1919,15 +1942,15 @@
             this.cboPrimalac.BackColor = System.Drawing.Color.White;
             this.cboPrimalac.ForeColor = System.Drawing.Color.Black;
             this.cboPrimalac.FormattingEnabled = true;
-            this.cboPrimalac.Location = new System.Drawing.Point(383, 161);
+            this.cboPrimalac.Location = new System.Drawing.Point(374, 204);
             this.cboPrimalac.Name = "cboPrimalac";
-            this.cboPrimalac.Size = new System.Drawing.Size(243, 21);
+            this.cboPrimalac.Size = new System.Drawing.Size(231, 21);
             this.cboPrimalac.TabIndex = 176;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(327, 161);
+            this.label6.Location = new System.Drawing.Point(318, 204);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 179;
@@ -1936,7 +1959,7 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button7.Location = new System.Drawing.Point(631, 157);
+            this.button7.Location = new System.Drawing.Point(613, 204);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(10, 23);
             this.button7.TabIndex = 184;
@@ -1948,15 +1971,15 @@
             this.cboPlatilac.BackColor = System.Drawing.Color.White;
             this.cboPlatilac.ForeColor = System.Drawing.Color.Black;
             this.cboPlatilac.FormattingEnabled = true;
-            this.cboPlatilac.Location = new System.Drawing.Point(383, 187);
+            this.cboPlatilac.Location = new System.Drawing.Point(374, 230);
             this.cboPlatilac.Name = "cboPlatilac";
-            this.cboPlatilac.Size = new System.Drawing.Size(243, 21);
+            this.cboPlatilac.Size = new System.Drawing.Size(231, 21);
             this.cboPlatilac.TabIndex = 181;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(328, 188);
+            this.label26.Location = new System.Drawing.Point(319, 231);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(44, 13);
             this.label26.TabIndex = 182;
@@ -1965,7 +1988,7 @@
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button8.Location = new System.Drawing.Point(631, 183);
+            this.button8.Location = new System.Drawing.Point(613, 228);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(10, 23);
             this.button8.TabIndex = 185;
@@ -1977,15 +2000,15 @@
             this.cboPosiljalac.BackColor = System.Drawing.Color.White;
             this.cboPosiljalac.ForeColor = System.Drawing.Color.Black;
             this.cboPosiljalac.FormattingEnabled = true;
-            this.cboPosiljalac.Location = new System.Drawing.Point(389, 78);
+            this.cboPosiljalac.Location = new System.Drawing.Point(374, 121);
             this.cboPosiljalac.Name = "cboPosiljalac";
-            this.cboPosiljalac.Size = new System.Drawing.Size(237, 21);
+            this.cboPosiljalac.Size = new System.Drawing.Size(231, 21);
             this.cboPosiljalac.TabIndex = 174;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(329, 81);
+            this.label12.Location = new System.Drawing.Point(320, 124);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 13);
             this.label12.TabIndex = 177;
@@ -1994,7 +2017,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
-            this.button3.Location = new System.Drawing.Point(631, 79);
+            this.button3.Location = new System.Drawing.Point(613, 121);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(10, 23);
             this.button3.TabIndex = 183;
@@ -2005,7 +2028,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(327, 33);
+            this.label48.Location = new System.Drawing.Point(317, 68);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(46, 13);
             this.label48.TabIndex = 29;
@@ -2025,7 +2048,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1286, 364);
+            this.comboBox2.Location = new System.Drawing.Point(1287, 411);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(183, 21);
             this.comboBox2.TabIndex = 193;
@@ -2033,7 +2056,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(1189, 368);
+            this.label49.Location = new System.Drawing.Point(1190, 412);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(91, 13);
             this.label49.TabIndex = 194;
@@ -2042,7 +2065,7 @@
             // button13
             // 
             this.button13.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button13.Location = new System.Drawing.Point(1471, 368);
+            this.button13.Location = new System.Drawing.Point(1476, 415);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(16, 17);
             this.button13.TabIndex = 195;
@@ -2060,12 +2083,365 @@
             this.dataGridView8.Size = new System.Drawing.Size(155, 60);
             this.dataGridView8.TabIndex = 196;
             // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel2);
+            this.panelHeader.Controls.Add(this.panel3);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1498, 33);
+            this.panelHeader.TabIndex = 461;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button18);
+            this.panel2.Controls.Add(this.button16);
+            this.panel2.Controls.Add(this.button15);
+            this.panel2.Controls.Add(this.button14);
+            this.panel2.Controls.Add(this.button29);
+            this.panel2.Controls.Add(this.button17);
+            this.panel2.Controls.Add(this.button27);
+            this.panel2.Controls.Add(this.button26);
+            this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.button24);
+            this.panel2.Controls.Add(this.button23);
+            this.panel2.Location = new System.Drawing.Point(114, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1206, 31);
+            this.panel2.TabIndex = 6;
+            // 
+            // button18
+            // 
+            this.button18.AutoSize = true;
+            this.button18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button18.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button18.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button18.FlatAppearance.BorderSize = 0;
+            this.button18.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button18.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button18.Location = new System.Drawing.Point(968, 0);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(242, 31);
+            this.button18.TabIndex = 26;
+            this.button18.Text = "Prevozni nalog - Trase i Lokomotive";
+            this.button18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.toolStripButton10_Click);
+            // 
+            // button16
+            // 
+            this.button16.AutoSize = true;
+            this.button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button16.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button16.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button16.FlatAppearance.BorderSize = 0;
+            this.button16.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button16.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button16.Location = new System.Drawing.Point(871, 0);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(97, 31);
+            this.button16.TabIndex = 25;
+            this.button16.Text = "Novi train list";
+            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // button15
+            // 
+            this.button15.AutoSize = true;
+            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button15.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button15.FlatAppearance.BorderSize = 0;
+            this.button15.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button15.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button15.Location = new System.Drawing.Point(763, 0);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(108, 31);
+            this.button15.TabIndex = 24;
+            this.button15.Text = "Otvori train list";
+            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
+            // button14
+            // 
+            this.button14.AutoSize = true;
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button14.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button14.FlatAppearance.BorderSize = 0;
+            this.button14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button14.Location = new System.Drawing.Point(649, 0);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(114, 31);
+            this.button14.TabIndex = 23;
+            this.button14.Text = "Excel kašnjenja";
+            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // button29
+            // 
+            this.button29.AutoSize = true;
+            this.button29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button29.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button29.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button29.FlatAppearance.BorderSize = 0;
+            this.button29.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button29.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button29.Location = new System.Drawing.Point(608, 0);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(41, 31);
+            this.button29.TabIndex = 22;
+            this.button29.Text = "Log";
+            this.button29.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
+            // button17
+            // 
+            this.button17.AutoSize = true;
+            this.button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button17.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button17.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button17.FlatAppearance.BorderSize = 0;
+            this.button17.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button17.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button17.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button17.Location = new System.Drawing.Point(498, 0);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(110, 31);
+            this.button17.TabIndex = 21;
+            this.button17.Text = "Pronađi Vagon";
+            this.button17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // button27
+            // 
+            this.button27.AutoSize = true;
+            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button27.Location = new System.Drawing.Point(389, 0);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(109, 31);
+            this.button27.TabIndex = 20;
+            this.button27.Text = "Pregled arhiva";
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.toolStripButton11_Click);
+            // 
+            // button26
+            // 
+            this.button26.AutoSize = true;
+            this.button26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button26.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button26.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button26.FlatAppearance.BorderSize = 0;
+            this.button26.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button26.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button26.Location = new System.Drawing.Point(282, 0);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(107, 31);
+            this.button26.TabIndex = 19;
+            this.button26.Text = "Pregled tekući";
+            this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // button25
+            // 
+            this.button25.AutoSize = true;
+            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button25.FlatAppearance.BorderSize = 0;
+            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button25.Location = new System.Drawing.Point(214, 0);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(68, 31);
+            this.button25.TabIndex = 18;
+            this.button25.Text = "Štampaj";
+            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // button24
+            // 
+            this.button24.AutoSize = true;
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(127, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(87, 31);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Pošalji mail";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // button23
+            // 
+            this.button23.AutoSize = true;
+            this.button23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button23.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button23.FlatAppearance.BorderSize = 0;
+            this.button23.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button23.Location = new System.Drawing.Point(0, 0);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(127, 31);
+            this.button23.TabIndex = 16;
+            this.button23.Text = "Dokumenta posla";
+            this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button20);
+            this.panel3.Controls.Add(this.button21);
+            this.panel3.Controls.Add(this.button22);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(108, 31);
+            this.panel3.TabIndex = 2;
+            // 
+            // button20
+            // 
+            this.button20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button20.BackgroundImage")));
+            this.button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button20.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button20.FlatAppearance.BorderSize = 0;
+            this.button20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button20.Location = new System.Drawing.Point(70, 3);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(27, 27);
+            this.button20.TabIndex = 15;
+            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Location = new System.Drawing.Point(39, 3);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(27, 27);
+            this.button21.TabIndex = 14;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // button22
+            // 
+            this.button22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button22.BackgroundImage")));
+            this.button22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button22.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button22.FlatAppearance.BorderSize = 0;
+            this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(10, 3);
+            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
+            this.button22.Name = "button22";
+            this.button22.Padding = new System.Windows.Forms.Padding(9);
+            this.button22.Size = new System.Drawing.Size(27, 27);
+            this.button22.TabIndex = 13;
+            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // txtADR
+            // 
+            this.txtADR.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtADR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtADR.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtADR.FormattingEnabled = true;
+            this.txtADR.ItemHeight = 15;
+            this.txtADR.Location = new System.Drawing.Point(663, 432);
+            this.txtADR.Margin = new System.Windows.Forms.Padding(2);
+            this.txtADR.Name = "txtADR";
+            this.txtADR.Size = new System.Drawing.Size(231, 23);
+            this.txtADR.TabIndex = 462;
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // frmNajava
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1498, 662);
+            this.Controls.Add(this.txtADR);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.dataGridView8);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.label49);
@@ -2101,7 +2477,7 @@
             this.Controls.Add(this.txtRazlog);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.tabNajave);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.txtUgovor);
             this.Controls.Add(this.label22);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2111,8 +2487,8 @@
             this.Load += new System.EventHandler(this.frmNajava_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
             this.tabNajave.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -2153,6 +2529,11 @@
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2162,7 +2543,7 @@
 
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip meniHeader;
         private System.Windows.Forms.ToolStripButton tsNew;
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
@@ -2325,5 +2706,24 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.ToolStripButton toolStripButton13;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.ComboBox txtADR;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }
