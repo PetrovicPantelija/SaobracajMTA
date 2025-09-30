@@ -813,7 +813,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmOtpremnicaCarinsko";
             this.Text = "Otpremnica carinsko";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmOtpremnicaCarinsko_Load);
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
