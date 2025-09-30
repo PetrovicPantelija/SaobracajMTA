@@ -1,4 +1,5 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Saobracaj.Testiranje;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
@@ -131,7 +132,7 @@ namespace Saobracaj.Uvoz
             dgv.DefaultCellStyle.SelectionForeColor = Color.White;
             dgv.BackgroundColor = Color.White;
 
-            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 10F, GraphicsUnit.Pixel);
             dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
             dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
@@ -197,15 +198,22 @@ namespace Saobracaj.Uvoz
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
             var select = "";
+            /*
+            select UvozDokumentaCeoVoz.ID, PlanID, Putanja, TipKomercijalnogDokumentaID, TipKomercijalnogDokumenta.Naziv, TipKomercijalnogDokumenta.PotrebnoZaFakturu from UvozDokumentaCeoVoz " +
+                " Inner join TipKomercijalnogDokumenta on TipKomercijalnogDokumenta.ID = TipKomercijalnogDokumentaID" +
+                " where UvozDokumentaCeoVoz.PlanID =  " + txtPlanID.Text
+            */
             if (txtPlanID.Text == "0")
             {
-                select = "select UvozDokumenta.* from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz where IDUvoz = " + txtSifraUvoza.Text;
+                select = "select UvozDokumenta.ID, Uvoz.ID, Putanja, TipKomercijalnogDokumenta.ID, TipKomercijalnogDokumenta.Naziv, TipKomercijalnogDokumenta.PotrebnoZaFakturu as Fakturno from UvozDokumenta  inner join Uvoz on Uvoz.ID = UvozDokumenta.IDUvoz inner Join TipKomercijalnogDokumenta on TipKomercijalnogDokumentaID = TipKomercijalnogDokumenta.ID  where IDUvoz = " + txtSifraUvoza.Text;
             }
             else
             {
-                select = "select UvozDokumenta.* from UvozDokumenta  inner join UvozKonacna on UvozKonacna.ID = UvozDokumenta.IDUvoz where IdNadredjeni = " + txtPlanID.Text;
+                select = "select UvozDokumenta.ID, UvozKonacna.ID, Putanja, TipKomercijalnogDokumenta.ID, TipKomercijalnogDokumenta.Naziv, TipKomercijalnogDokumenta.PotrebnoZaFakturu as Fakturno from UvozDokumenta  inner join UvozKonacna on UvozKonacna.ID = UvozDokumenta.IDUvoz inner Join TipKomercijalnogDokumenta on TipKomercijalnogDokumentaID = TipKomercijalnogDokumenta.ID   where IdNadredjeni = " + txtPlanID.Text;
             }
-           
+
+            //PAnta tacka
+
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -230,14 +238,26 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Putanja";
-            dataGridView1.Columns[2].Width = 550;
+            dataGridView1.Columns[2].Width = 450;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ID2";
+            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Tip dok";
+            dataGridView1.Columns[4].Width = 150;
+           // dataGridView1.Columns[4].Visible = false;
         }
 
         private void RefreshDataGridCeoVoz()
         {
            
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
-            var select = "select * from UvozDokumentaCeoVoz  where UvozDokumentaCeoVoz.PlanID =  " + txtPlanID.Text;
+            var select = "select UvozDokumentaCeoVoz.ID, PlanID, Putanja, TipKomercijalnogDokumentaID, TipKomercijalnogDokumenta.Naziv, TipKomercijalnogDokumenta.PotrebnoZaFakturu from UvozDokumentaCeoVoz " +
+                " Inner join TipKomercijalnogDokumenta on TipKomercijalnogDokumenta.ID = TipKomercijalnogDokumentaID" +
+                " where UvozDokumentaCeoVoz.PlanID =  " + txtPlanID.Text;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -257,12 +277,26 @@ namespace Saobracaj.Uvoz
             dataGridView2.Columns[0].Width = 30;
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "PlanID";
+            dataGridView2.Columns[1].HeaderText = "Plan ID";
             dataGridView2.Columns[1].Width = 50;
+            dataGridView2.Columns[1].Visible = false;
 
             DataGridViewColumn column3 = dataGridView2.Columns[2];
             dataGridView2.Columns[2].HeaderText = "Putanja";
-            dataGridView2.Columns[2].Width = 550;
+            dataGridView2.Columns[2].Width = 450;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Tip ID";
+            dataGridView2.Columns[3].Width = 50;
+            dataGridView2.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "Tip";
+            dataGridView2.Columns[4].Width = 150;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "Fakturno";
+            dataGridView2.Columns[5].Width = 30;
         }
 
 
@@ -380,43 +414,60 @@ namespace Saobracaj.Uvoz
         private void RefreshDataGridUsluga()
         {
             var select = "";
-            if (txtSifraUsluge.Text == "")
-            {
-                select = " select UvozDokumentaUsluge.* from UvozVrstaManipulacije " +
- " inner join UvozDokumentaUsluge On UvozVrstaManipulacije.ID = UvozDokumentaUsluge.IDUsluge " +
- " where UvozVrstaManipulacije.IDNadredjena = " + txtSifraUvoza.Text;
+            if (txtSifraUsluge.Text.Trim() != "")
+           {
+                select = " select UvozDokumentaUsluge.ID, UvozDokumentaUsluge.IDUsluge, UvozDokumentaUsluge.Putanja,VrstaManipulacije.Naziv, TipKomercijalnogDokumenta.ID, TipKomercijalnogDokumenta.Naziv, TipKomercijalnogDokumenta.PotrebnoZaFakturu from UvozDokumentaUsluge " +
+" inner Join TipKomercijalnogDokumenta on TipKomercijalnogDokumentaID = TipKomercijalnogDokumenta.ID " +
+" inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = UvozDokumentaUsluge.IDUsluge " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+                " where UvozDokumentaUsluge.IDUsluge = " + txtSifraUsluge.Text;
+
+                int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
+
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new System.Data.DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView3.ReadOnly = true;
+                dataGridView3.DataSource = ds.Tables[0];
+
+
+                PodesiDatagridView(dataGridView3);
+
+                DataGridViewColumn column = dataGridView3.Columns[0];
+                dataGridView3.Columns[0].HeaderText = "ID";
+                dataGridView3.Columns[0].Width = 30;
+
+                DataGridViewColumn column2 = dataGridView3.Columns[1];
+                dataGridView3.Columns[1].HeaderText = "UslugaID";
+                dataGridView3.Columns[1].Width = 50;
+
+                DataGridViewColumn column3 = dataGridView3.Columns[2];
+                dataGridView3.Columns[2].HeaderText = "Putanja";
+                dataGridView3.Columns[2].Width = 450;
+
+                DataGridViewColumn column4 = dataGridView3.Columns[3];
+                dataGridView3.Columns[3].HeaderText = "Usluga";
+                dataGridView3.Columns[3].Width = 250;
+
+                DataGridViewColumn column5 = dataGridView3.Columns[4];
+                dataGridView3.Columns[4].HeaderText = "Tip ID";
+                dataGridView3.Columns[4].Width = 50;
+                dataGridView3.Columns[4].Visible = false;
+
+                DataGridViewColumn column6 = dataGridView3.Columns[5];
+                dataGridView3.Columns[5].HeaderText = "Tip dok";
+                dataGridView3.Columns[5].Width = 100;
+               
+
             }
-            else
-            {
-               select =  "select * from UvozDokumentaUsluge  where UvozDokumentaUsluge.IDUsluge =  " + txtSifraUsluge.Text;
-            }
-            int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
+
+         
            
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new System.Data.DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView3.ReadOnly = true;
-            dataGridView3.DataSource = ds.Tables[0];
-
-
-            PodesiDatagridView(dataGridView3);
-
-            DataGridViewColumn column = dataGridView3.Columns[0];
-            dataGridView3.Columns[0].HeaderText = "ID";
-            dataGridView3.Columns[0].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView3.Columns[1];
-            dataGridView3.Columns[1].HeaderText = "UslugaID";
-            dataGridView3.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView3.Columns[2];
-            dataGridView3.Columns[2].HeaderText = "Putanja";
-            dataGridView3.Columns[2].Width = 550;
         }
 
         private void RefreshDataGridUslugaWindows()
@@ -458,7 +509,7 @@ namespace Saobracaj.Uvoz
 
         private void PozoviUslugu(string KontejnerID)
         {
-            if (txtSifraUvoza.Text == "")
+            if (KontejnerID == "")
             {
                 MessageBox.Show("Odaberite stavku");
                 return;
@@ -655,7 +706,7 @@ namespace Saobracaj.Uvoz
                     if (row.Selected)
                     {
                         KopirajFajlPoTipu(txtPutanja.Text, row.Cells[0].Value.ToString(), 6);
-                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text,0);
+                        ins.InsUvozDokumenta(Convert.ToInt32(row.Cells[0].Value.ToString()), txtPutanja.Text,Convert.ToInt32(cboTipDokumenta.SelectedValue));
                         
 
                     }
@@ -761,7 +812,7 @@ namespace Saobracaj.Uvoz
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtPutanja.Text = row.Cells[2].Value.ToString();
-
+                        cboTipDokumenta.SelectedValue = Convert.ToInt32(row.Cells[3].Value.ToString());
                     }
                 }
 
@@ -791,9 +842,11 @@ namespace Saobracaj.Uvoz
         {
             foreach (DataGridViewRow row in dataGridView4.Rows)
             {
-                if (row.Selected)
+                if (row.Selected )
                 {
-                    PozoviUslugu(row.Cells[0].Value.ToString()); 
+                    var cell = row.Cells[0].Value;
+                    if (cell != null)
+                    { PozoviUslugu(row.Cells[0].Value.ToString()); }
                 }
             }
           
@@ -806,6 +859,7 @@ namespace Saobracaj.Uvoz
                 if (row.Selected)
                 {
                    txtSifraUsluge.Text = row.Cells[0].Value.ToString();
+                    RefreshDataGridUsluga();
                 }
             }
         }
@@ -845,6 +899,7 @@ namespace Saobracaj.Uvoz
             }
             else
             {
+                RefreshDataGridCeoVoz();
                 RefreshDataGridUslugaSvePoVozu();
                 RefreshDataGridUsluga();
                 chkKontejner.Checked = false;
@@ -866,6 +921,56 @@ namespace Saobracaj.Uvoz
            // RefreshDataGridCeoVoz();
             RefreshDataGrid();
             RefreshDataGridKontejnere();
+        }
+
+        private void chkZaVoz_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (chkZaVoz.Checked == true)
+            {
+                chkKontejner.Checked = false;
+                chkUsluge.Checked=false;
+
+            }
+            if (chkKontejner.Checked == true)
+            {
+                chkZaVoz.Checked = false;
+                chkUsluge.Checked = false;
+
+            }
+
+            if (chkUsluge.Checked == true)
+            {
+                chkZaVoz.Checked = false;
+                chkKontejner.Checked = false;
+
+            }
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+                        txtPutanja.Text = row.Cells[2].Value.ToString();
+
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
         }
     }
 }
