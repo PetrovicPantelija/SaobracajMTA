@@ -516,52 +516,121 @@ namespace Saobracaj.Drumski
 
         private void RefreshDataGrid2()
         {
-            var select = "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
-                                   "pa.PaNaziv as Nalogodavac, " +
-                                   "i.BrojKontejnera," +
-                                   "'' AS Kamion " +
-                         "from     RadniNalogDrumski rn " +
-                                   "inner join Izvoz i ON i.ID = rn.KontejnerID " +
-                                   "left join Partnerji pa ON pa.PaSifra = i.Klijent3 " +
-                                   "where rn.Uvoz = 0 and (rn.KamionID is NULL or rn.KamionID = 0) " +
-                         "union all " +
-                         "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
-                                   "pa.PaNaziv as Nalogodavac, " +
-                                   "ik.BrojKontejnera," +
-                                   "'' AS Kamion " +
-                         "from     RadniNalogDrumski rn " +
-                                   "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
-                                   "inner join IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
-                                   "left join Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
-                                   "where rn.Uvoz = 0 and (rn.KamionID is NULL or rn.KamionID = 0) "+
-                         "union all " +
-                         "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
-                                   "pa.PaNaziv as Nalogodavac, " +
-                                   "uk.BrojKontejnera," +
-                                   "'' AS Kamion " +
-                         "from     RadniNalogDrumski rn " +
-                                   "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
-                                   "inner join UvozKonacna uk ON uk.ID = rn.KontejnerID " +
-                                   "left join Partnerji pa ON pa.PaSifra = uk.Nalogodavac3 " +
-                                   "where rn.Uvoz = 1 and (rn.KamionID is NULL or rn.KamionID = 0) " +
-                         "union all " +
-                         "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
-                                   "pa.PaNaziv as Nalogodavac, " +
-                                   "u.BrojKontejnera," +
-                                   "'' AS Kamion " +
-                         "from     RadniNalogDrumski rn " +
-                                   "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
-                                   "inner join Uvoz u ON u.ID = rn.KontejnerID " +
-                                   "left join Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
-                                   "where rn.Uvoz = 1 and (rn.KamionID is NULL or rn.KamionID = 0) " +
-                         "union all " +
-                         "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
-                                   "pa.PaNaziv as Nalogodavac, " +
-                                   "rn.BrojKontejnera," +
-                                   "'' AS Kamion " +
-                         "from     RadniNalogDrumski rn " +
-                                   "left join Partnerji pa ON pa.PaSifra = rn.Klijent " +
-                                   "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and (rn.KamionID is NULL or rn.KamionID = 0)";
+            //var select = "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
+            //                       "pa.PaNaziv as Nalogodavac, " +
+            //                       "i.BrojKontejnera," +
+            //                       "'' AS Kamion " +
+            //             "from     RadniNalogDrumski rn " +
+            //                       "inner join Izvoz i ON i.ID = rn.KontejnerID " +
+            //                       "left join Partnerji pa ON pa.PaSifra = i.Klijent3 " +
+            //                       "where rn.Uvoz = 0 and (rn.KamionID is NULL or rn.KamionID = 0) " +
+            //             "union all " +
+            //             "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
+            //                       "pa.PaNaziv as Nalogodavac, " +
+            //                       "ik.BrojKontejnera," +
+            //                       "'' AS Kamion " +
+            //             "from     RadniNalogDrumski rn " +
+            //                       "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
+            //                       "inner join IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
+            //                       "left join Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
+            //                       "where rn.Uvoz = 0 and (rn.KamionID is NULL or rn.KamionID = 0) "+
+            //             "union all " +
+            //             "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
+            //                       "pa.PaNaziv as Nalogodavac, " +
+            //                       "uk.BrojKontejnera," +
+            //                       "'' AS Kamion " +
+            //             "from     RadniNalogDrumski rn " +
+            //                       "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
+            //                       "inner join UvozKonacna uk ON uk.ID = rn.KontejnerID " +
+            //                       "left join Partnerji pa ON pa.PaSifra = uk.Nalogodavac3 " +
+            //                       "where rn.Uvoz = 1 and (rn.KamionID is NULL or rn.KamionID = 0) " +
+            //             "union all " +
+            //             "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
+            //                       "pa.PaNaziv as Nalogodavac, " +
+            //                       "u.BrojKontejnera," +
+            //                       "'' AS Kamion " +
+            //             "from     RadniNalogDrumski rn " +
+            //                       "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
+            //                       "inner join Uvoz u ON u.ID = rn.KontejnerID " +
+            //                       "left join Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
+            //                       "where rn.Uvoz = 1 and (rn.KamionID is NULL or rn.KamionID = 0) " +
+            //             "union all " +
+            //             "select   rn.ID, rn.NalogID, rn.KontejnerID ,  " +
+            //                       "pa.PaNaziv as Nalogodavac, " +
+            //                       "rn.BrojKontejnera," +
+            //                       "'' AS Kamion " +
+            //             "from     RadniNalogDrumski rn " +
+            //                       "left join Partnerji pa ON pa.PaSifra = rn.Klijent " +
+            //                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and (rn.KamionID is NULL or rn.KamionID = 0)";
+
+            var select = @"
+                        SELECT *
+                        FROM
+                        (
+                            SELECT rn.ID, rn.NalogID, rn.KontejnerID,
+                                   pa.PaNaziv AS Nalogodavac,
+                                   i.BrojKontejnera,
+                                   '' AS Kamion, 
+                                    rn.KamionID
+                            FROM RadniNalogDrumski rn
+                            INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
+                            WHERE rn.Uvoz = 0
+
+                            UNION ALL
+
+                            SELECT rn.ID, rn.NalogID, rn.KontejnerID,
+                                   pa.PaNaziv AS Nalogodavac,
+                                   ik.BrojKontejnera,
+                                   '' AS Kamion, 
+                                    rn.KamionID
+                            FROM RadniNalogDrumski rn
+                            INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
+                            INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
+                            WHERE rn.Uvoz = 0
+
+                            UNION ALL
+
+                            SELECT rn.ID, rn.NalogID, rn.KontejnerID,
+                                   pa.PaNaziv AS Nalogodavac,
+                                   uk.BrojKontejnera,
+                                   '' AS Kamion, 
+                                    rn.KamionID
+                            FROM RadniNalogDrumski rn
+                            INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
+                            INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
+                            WHERE rn.Uvoz = 1
+
+                            UNION ALL
+
+                            SELECT rn.ID, rn.NalogID, rn.KontejnerID,
+                                   pa.PaNaziv AS Nalogodavac,
+                                   u.BrojKontejnera,
+                                   '' AS Kamion, 
+                                    rn.KamionID
+                            FROM RadniNalogDrumski rn
+                            INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
+                            INNER JOIN Uvoz u ON u.ID = rn.KontejnerID
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = u.Nalogodavac3
+                            WHERE rn.Uvoz = 1
+
+                            UNION ALL
+
+                            SELECT rn.ID, rn.NalogID, rn.KontejnerID,
+                                   pa.PaNaziv AS Nalogodavac,
+                                   rn.BrojKontejnera,
+                                   '' AS Kamion, 
+                                    rn.KamionID
+                            FROM RadniNalogDrumski rn
+                            LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
+                            WHERE rn.Uvoz IN (2, 3) AND rn.NalogID > 0
+                        ) AS x
+                        WHERE x.ID IS NOT NULL
+                          AND (x.KamionID IS NULL OR x.KamionID = 0)
+                        Order by NalogID desc
+                        ";
 
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -576,6 +645,10 @@ namespace Saobracaj.Drumski
             if (dataGridView2.Columns.Contains("ID"))
             {
                 dataGridView2.Columns["ID"].Visible = false;
+            }
+            if (dataGridView2.Columns.Contains("KamionID"))
+            {
+                dataGridView2.Columns["KamionID"].Visible = false;
             }
         }
 
@@ -731,7 +804,7 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,  mi.Naziv AS MestoIstovara , rn.AdresaIstovara AS AdresaIstovara, " +
                                        "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                       "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, rn.NalogID, rn.OdredisnaCarinarnica as OdredisnaCarina," +
+                                       "dp.Napomena as NapomenaZaPozicioniranje, rn.NalogID, rn.OdredisnaCarinarnica as OdredisnaCarina," +
                                        "rn.PolaznaCarinarnica as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija, " +
                                        "ISNULL(rn.PDV, 0) AS PDV, rn.Uvoz " +
                              " from     RadniNalogDrumski rn " +
@@ -742,6 +815,7 @@ namespace Saobracaj.Drumski
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  rn.MestoIstovara = mi.ID  " +
+                                       "left join DrumskiPozicioniranje dp ON dp.id = rn.NapomenaZaPozicioniranje " + 
                                        "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and rn.KamionID is not NULL AND rn.KamionID != 0" +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))";
 
@@ -1386,11 +1460,6 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void btnUploadDokumenta_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click_1(object sender, EventArgs e)
         {
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
@@ -1417,6 +1486,35 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
 
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati red koji želite da obrišete!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int radniNalogDrumskiID = 0;
+            if (dataGridView2.SelectedRows[0].Cells["ID"].Value != DBNull.Value && int.TryParse(dataGridView2.SelectedRows[0].Cells["ID"].Value.ToString(), out int parsedRadniNalogDrumskiID))
+                radniNalogDrumskiID = parsedRadniNalogDrumskiID;
+
+            
+            DialogResult result = MessageBox.Show(
+                        "Da li ste sigurni da želite da obrišete ovaj zapis?",
+                        "Potvrda brisanja",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Warning
+                        );
+
+            if (result == DialogResult.Yes)
+            {
+                InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                // Pozovi metodu za brisanje
+                ins.DelRadniNalogDrumski(radniNalogDrumskiID);
+            }
+             RefreshDataGrid2();
         }
     }
 }

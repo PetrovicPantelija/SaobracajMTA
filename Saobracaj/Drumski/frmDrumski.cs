@@ -15,6 +15,7 @@ using Saobracaj.Sifarnici;
 using Saobracaj.Izvoz;
 using System.Globalization;
 using System.Threading;
+using Testiranje.Sifarnici;
 
 namespace Saobracaj.Drumski
 {
@@ -231,7 +232,7 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
              " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
-             "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
+             "CAST(rn.NapomenaZaPozicioniranje AS varchar(50)) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, rn.OdredisnaCarinarnica as OdredisnaCarina,rn.PolaznaCarinarnica as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
@@ -298,8 +299,21 @@ namespace Saobracaj.Drumski
                 else
                     cboTipTransporta.SelectedIndex = -1;
 
-                txtNapomenaPoz.Text = dr["NapomenaZaPozicioniranje"].ToString();
-                txtVozac.Text = dr["Vozac"].ToString();
+
+                if (Uvoz != 1 && Uvoz != 0)
+                {
+                    if (dr["NapomenaZaPozicioniranje"] != DBNull.Value && int.TryParse(dr["NapomenaZaPozicioniranje"].ToString(), out int parsedNapomenaZaPozicioniranjeID))
+                    {
+                        cboNapomenaPoz.SelectedValue = parsedNapomenaZaPozicioniranjeID;
+                    }
+                    else 
+                    {
+                        cboNapomenaPoz.SelectedValue = -1;
+                    }
+                }
+                else if (Uvoz == 1 || Uvoz == 0)
+                    txtNapomenaPoz.Text = dr["NapomenaZaPozicioniranje"].ToString();
+
                 txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
                 txtBrojLK.Text = dr["LicnaKarta"].ToString();
                 txtGranicniPrelaz.Text = dr["GranicniPrelaz"].ToString();
@@ -365,7 +379,9 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
-                   // button3.Visible = NalogID > 0 ? false : true;
+                    cboNapomenaPoz.Visible = false;
+                    txtNapomenaPoz.Visible = true;
+                    // button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 1)
                 {
@@ -392,7 +408,9 @@ namespace Saobracaj.Drumski
                     txtPolaznaSpedicijaKontakt.Enabled = false;
                     txtOdredisnaCarinarnica.Enabled = false;
                     txtOdredisnaSpedicijaKontakt.Enabled = false;
-                 //   button3.Visible = NalogID > 0 ? false : true;
+                    cboNapomenaPoz.Visible = false;
+                    txtNapomenaPoz.Visible = true;
+                    //   button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 2)
                 {
@@ -403,8 +421,10 @@ namespace Saobracaj.Drumski
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
                     button21.Visible =  true;
+                    cboNapomenaPoz.Visible = true;
+                    txtNapomenaPoz.Visible = false;
                     //delete je bilo vidljivo jedino ako nije dodeljeno nekom nalogu
-                   // button21.Visible = NalogID > 0 ? false : true;
+                    // button21.Visible = NalogID > 0 ? false : true;
                     //  button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 3)
@@ -417,6 +437,8 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboNapomenaPoz.Visible = true;
+                    txtNapomenaPoz.Visible = false;
                 }
                 else
                 {
@@ -424,6 +446,8 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboNapomenaPoz.Visible = true;
+                    txtNapomenaPoz.Visible = false;
                 }
             }
             con.Close();
@@ -515,6 +539,21 @@ namespace Saobracaj.Drumski
             cboMestoIstovara.DataSource = muDS.Tables[0];
             cboMestoIstovara.DisplayMember = "Naziv";
             cboMestoIstovara.ValueMember = "ID";
+
+            var poz = "Select ID,Napomena from DrumskiPozicioniranje order by Napomena";
+            var pozAD = new SqlDataAdapter(poz, conn);
+            var pozDS = new DataSet();
+            pozAD.Fill(pozDS);
+
+            System.Data.DataTable dt3 = pozDS.Tables[0];
+            DataRow prazanRed3 = dt3.NewRow();
+            prazanRed3["ID"] = DBNull.Value;
+            prazanRed3["Napomena"] = "/";
+            dt3.Rows.InsertAt(prazanRed3, 0);
+
+            cboNapomenaPoz.DataSource = pozDS.Tables[0];
+            cboNapomenaPoz.DisplayMember = "Napomena";
+            cboNapomenaPoz.ValueMember = "ID";
         }
 
 
@@ -621,7 +660,7 @@ namespace Saobracaj.Drumski
             int? bookingBrodara = null;
             string adresaIstovara = null;
             string adresaUtovara = null;
-            string napomenaPoz = null;
+            int? napomenaPoz = null;
             string polaznaCarinarnica = null;
             string odredisnaCarinarnica = null;
             string odredisnaSpedicijaKontakt = null;
@@ -743,9 +782,25 @@ namespace Saobracaj.Drumski
                 brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text.Trim();
             if (Uvoz != 1)
                 brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();
-            if (Uvoz != 1 && Uvoz != 0)
-                napomenaPoz = string.IsNullOrWhiteSpace(txtNapomenaPoz.Text) ? null : txtNapomenaPoz.Text.Trim();
-            if (Uvoz != 1 && Uvoz != 0)
+            if (Uvoz != 1 && Uvoz != 0 && !string.IsNullOrWhiteSpace(cboNapomenaPoz.Text))
+            {
+                int parsedNapomenaPoz = -1;
+
+                if (cboNapomenaPoz.SelectedValue != null &&
+                    int.TryParse(cboNapomenaPoz.SelectedValue.ToString(), out int val))
+                {
+                    // Korisnik je izabrao postojeću stavku
+                    parsedNapomenaPoz = val;
+                    napomenaPoz = parsedNapomenaPoz;
+                }
+                else
+                {
+                    // Korisnik je uneo novu vrednost u combo
+                    int pozicija = InsertPozicijaUsifarnik();
+                    napomenaPoz = pozicija > 0 ? pozicija : (int?)null;
+                }
+            }
+            if (Uvoz != 1 && Uvoz != 0) 
                 polaznaCarinarnica = string.IsNullOrWhiteSpace(txtCarinjenjeUvozno.Text) ? null : txtCarinjenjeUvozno.Text.Trim();
             if (Uvoz != 1 && Uvoz != 0)
                 odredisnaCarinarnica = string.IsNullOrWhiteSpace(txtOdredisnaCarinarnica.Text) ? null : txtOdredisnaCarinarnica.Text.Trim();
@@ -849,6 +904,28 @@ namespace Saobracaj.Drumski
             return mestoIstovara;
         }
 
+        public int InsertPozicijaUsifarnik()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int pozicijaID = -1;
+
+            con.Open();
+            string napomena = cboNapomenaPoz.Text.Trim().ToUpper();
+            SqlCommand cmd = new SqlCommand("Select ID,Napomena " +
+                "FROM DrumskiPozicioniranje " +
+                "WHERE UPPER(LTRIM(RTRIM(Napomena))) LIKE UPPER(@Napomena)", con);
+
+            cmd.Parameters.AddWithValue("@Napomena", napomena);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (!dr.HasRows)
+            {
+                InsertNapomena ins = new InsertNapomena();
+                pozicijaID = ins.InsNapomena(cboNapomenaPoz.Text.Trim());
+            }
+            return pozicijaID;
+        }
 
         private void ResetujVrednostiPolja()
         {
@@ -862,12 +939,12 @@ namespace Saobracaj.Drumski
             cboTipNaloga.Enabled = true;
             txtBokingBrodara.Text = "";
             txtBokingBrodara.Enabled = true;
-            txtMestoPreuzimanja.Text = "";
+            txtMestoPreuzimanja.Text = "Leget";
             cboKlijent.SelectedValue = -1;
             cboKlijent.Enabled = true;
-            cboMestoUtovara.SelectedValue = -1;
+            cboMestoUtovara.SelectedValue = 8;
             cboMestoUtovara.Enabled = true;
-            txtAdresaUtovara.Text = "";
+            txtAdresaUtovara.Text = "Jarački put";
             txtAdresaUtovara.Enabled = true;
             txtAdresaIstovara.Enabled = true;
 
@@ -919,8 +996,8 @@ namespace Saobracaj.Drumski
         {
             status = true;
             Uvoz = -1;
-            ResetujVrednostiPolja();
             FillCombo();
+            ResetujVrednostiPolja();
             button21.Visible = true;
         }
 
@@ -1219,6 +1296,22 @@ namespace Saobracaj.Drumski
             frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
             pregled.ShowDialog();
             
+        }
+
+        private void txtBrutoR_Enter(object sender, EventArgs e)
+        {
+            if (txtBrutoR.Value == 0)
+            {
+                txtBrutoR.ResetText(); // obriše prikazani tekst, ali ne menja Value
+            }
+        }
+
+        private void txtBrutoK_Enter(object sender, EventArgs e)
+        {
+            if (txtBrutoK.Value == 0)
+            {
+                txtBrutoK.ResetText(); // obriše prikazani tekst, ali ne menja Value
+            }
         }
     }
 }

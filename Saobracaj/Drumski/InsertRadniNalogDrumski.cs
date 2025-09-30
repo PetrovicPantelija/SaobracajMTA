@@ -21,7 +21,7 @@ namespace Saobracaj.Drumski
         public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, int? MestoUtovara, string AdresaUtovara,
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
-                    int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz,
+                    int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
                     string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni)
 
         {
@@ -256,10 +256,9 @@ namespace Saobracaj.Drumski
             
             SqlParameter napomenaPoz = new SqlParameter();
             napomenaPoz.ParameterName = "@NapomenaPoz";
-            napomenaPoz.SqlDbType = SqlDbType.NVarChar;
-            napomenaPoz.Size = 100;
+            napomenaPoz.SqlDbType = SqlDbType.Int;
             napomenaPoz.Direction = ParameterDirection.Input;
-            napomenaPoz.Value = (object)NapomenaPoz ?? DBNull.Value;
+            napomenaPoz.Value = NapomenaPoz.HasValue ? (object)NapomenaPoz.Value : DBNull.Value;
             cmd.Parameters.Add(napomenaPoz);
 
             SqlParameter polaznaCarinarnica = new SqlParameter();
@@ -338,7 +337,7 @@ namespace Saobracaj.Drumski
         public int InsRadniNalogDrumski(int? TipNaloga, int AutoDan, string Ref, string MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
-                 string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz,
+                 string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
                  string PolaznaCarinarnica, string OdredisnaCarinarnica, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni)
 
         {
@@ -574,10 +573,9 @@ namespace Saobracaj.Drumski
 
             SqlParameter napomenaPoz = new SqlParameter();
             napomenaPoz.ParameterName = "@NapomenaPoz";
-            napomenaPoz.SqlDbType = SqlDbType.NVarChar;
-            napomenaPoz.Size = 100;
+            napomenaPoz.SqlDbType = SqlDbType.Int;
             napomenaPoz.Direction = ParameterDirection.Input;
-            napomenaPoz.Value = (object)NapomenaPoz ?? DBNull.Value;
+            napomenaPoz.Value = NapomenaPoz.HasValue ? (object)NapomenaPoz.Value : DBNull.Value;
             cmd.Parameters.Add(napomenaPoz);
 
             SqlParameter polaznaCarinarnica = new SqlParameter();
@@ -1051,7 +1049,7 @@ namespace Saobracaj.Drumski
 
         public int DuplirajRadniNalogDrumski(int? TipNaloga,int? AutoDan, string MestoPreuzimanja, int? Klijent, int? MestoUtovara, string AdresaUtovara, int? MestoIstovara, DateTime? DatumIstovara, string AdresaIstovara, 
                         DateTime? DtPreuzimanjaPraznogKontejnera, string GranicniPrelaz, decimal? Trosak, string Valuta, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, 
-                        int? PDV, int? TipTransporta, string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, int? BookingBrodara, string BrodskaTeretnica, string BrodskaPlomba, string NapomenaPoz)
+                        int? PDV, int? TipTransporta, string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, int? BookingBrodara, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz)
 
         {
             int IDPom = 0;
@@ -1251,10 +1249,9 @@ namespace Saobracaj.Drumski
 
             SqlParameter napomenaPoz = new SqlParameter();
             napomenaPoz.ParameterName = "@NapomenaPoz";
-            napomenaPoz.SqlDbType = SqlDbType.NVarChar;
-            napomenaPoz.Size = 100;
+            napomenaPoz.SqlDbType = SqlDbType.Int;
             napomenaPoz.Direction = ParameterDirection.Input;
-            napomenaPoz.Value = (object)NapomenaPoz ?? DBNull.Value;
+            napomenaPoz.Value = TipTransporta.HasValue ? (object)NapomenaPoz.Value : DBNull.Value; 
             cmd.Parameters.Add(napomenaPoz);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);

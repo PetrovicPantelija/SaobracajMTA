@@ -1654,6 +1654,7 @@
     </Compile>
     <Compile Include="Drumski\InsertFakture.cs" />
     <Compile Include="Drumski\InsertKurs.cs" />
+    <Compile Include="Drumski\InsertNapomena.cs" />
     <Compile Include="Drumski\InsertRadniNalogDrumski.cs" />
     <Compile Include="Drumski\InsertStatus.cs" />
     <Compile Include="Drumski\InsertVrstaVozila.cs" />

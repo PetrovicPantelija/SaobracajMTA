@@ -47,6 +47,7 @@ namespace Saobracaj.Drumski
             this.innerLayout = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dugmePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.button4 = new System.Windows.Forms.Button();
             this.panelLevo = new System.Windows.Forms.Panel();
             this.panelFilter = new System.Windows.Forms.Panel();
             this.cboPrevoznik = new System.Windows.Forms.ComboBox();
@@ -155,7 +156,7 @@ namespace Saobracaj.Drumski
             this.btnUploadDokumenta.BackColor = System.Drawing.Color.SteelBlue;
             this.btnUploadDokumenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUploadDokumenta.ForeColor = System.Drawing.Color.White;
-            this.btnUploadDokumenta.Location = new System.Drawing.Point(7, 116);
+            this.btnUploadDokumenta.Location = new System.Drawing.Point(7, 84);
             this.btnUploadDokumenta.Name = "btnUploadDokumenta";
             this.btnUploadDokumenta.Size = new System.Drawing.Size(140, 35);
             this.btnUploadDokumenta.TabIndex = 0;
@@ -276,16 +277,32 @@ namespace Saobracaj.Drumski
             this.dugmePanel.BackColor = System.Drawing.Color.LightGray;
             this.dugmePanel.ColumnCount = 1;
             this.dugmePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
-            this.dugmePanel.Controls.Add(this.btnUploadDokumenta, 0, 1);
+            this.dugmePanel.Controls.Add(this.btnUploadDokumenta, 0, 2);
+            this.dugmePanel.Controls.Add(this.button4, 0, 3);
             this.dugmePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dugmePanel.Location = new System.Drawing.Point(1032, 3);
             this.dugmePanel.Name = "dugmePanel";
-            this.dugmePanel.RowCount = 3;
-            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dugmePanel.RowCount = 5;
+            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.25641F));
             this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.74359F));
+            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.dugmePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.dugmePanel.Size = new System.Drawing.Size(154, 268);
             this.dugmePanel.TabIndex = 1;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button4.BackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(7, 134);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(140, 35);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Obriši zapis";
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // panelLevo
             // 
@@ -463,5 +480,6 @@ namespace Saobracaj.Drumski
         private TableLayoutPanel innerLayout;
         private TableLayoutPanel dugmePanel;
         private Button button2;
+        private Button button4;
     }
 }
