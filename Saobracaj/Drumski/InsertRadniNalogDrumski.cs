@@ -18,7 +18,7 @@ namespace Saobracaj.Drumski
     {
         public string connect = frmLogovanje.connectionString;
             
-        public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, string MestoPreuzimanja, int? MestoUtovara, string AdresaUtovara,
+        public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, int? MestoPreuzimanja, int? MestoUtovara, string AdresaUtovara,
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
                     int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
@@ -54,10 +54,9 @@ namespace Saobracaj.Drumski
 
             SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
             mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
-            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.NVarChar;
-            mestoPreuzimanjaKontejnera.Size = 100;
+            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.Int;
             mestoPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
-            mestoPreuzimanjaKontejnera.Value = (object)MestoPreuzimanja ?? DBNull.Value;
+            mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
             cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
 
             SqlParameter mestoUtovara = new SqlParameter();
@@ -334,7 +333,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        public int InsRadniNalogDrumski(int? TipNaloga, int AutoDan, string Ref, string MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
+        public int InsRadniNalogDrumski(int? TipNaloga, int AutoDan, string Ref, int? MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
                  string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
@@ -372,10 +371,9 @@ namespace Saobracaj.Drumski
 
             SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
             mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
-            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.NVarChar;
-            mestoPreuzimanjaKontejnera.Size = 100;
+            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.Int;
             mestoPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
-            mestoPreuzimanjaKontejnera.Value = (object)MestoPreuzimanja ?? DBNull.Value;
+            mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
             cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
 
             SqlParameter klijent = new SqlParameter();
@@ -1047,7 +1045,7 @@ namespace Saobracaj.Drumski
             MessageBox.Show("Stavke su uspešno dodate u postojeći nalog.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public int DuplirajRadniNalogDrumski(int? TipNaloga,int? AutoDan, string MestoPreuzimanja, int? Klijent, int? MestoUtovara, string AdresaUtovara, int? MestoIstovara, DateTime? DatumIstovara, string AdresaIstovara, 
+        public int DuplirajRadniNalogDrumski(int? TipNaloga,int? AutoDan, int? MestoPreuzimanja, int? Klijent, int? MestoUtovara, string AdresaUtovara, int? MestoIstovara, DateTime? DatumIstovara, string AdresaIstovara, 
                         DateTime? DtPreuzimanjaPraznogKontejnera, string GranicniPrelaz, decimal? Trosak, string Valuta, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, 
                         int? PDV, int? TipTransporta, string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, int? BookingBrodara, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz)
 
@@ -1076,10 +1074,9 @@ namespace Saobracaj.Drumski
 
             SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
             mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
-            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.NVarChar;
-            mestoPreuzimanjaKontejnera.Size = 100;
+            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.TinyInt;
             mestoPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
-            mestoPreuzimanjaKontejnera.Value = (object)MestoPreuzimanja ?? DBNull.Value;
+            mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
             cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
 
             SqlParameter klijent = new SqlParameter();
@@ -1251,7 +1248,7 @@ namespace Saobracaj.Drumski
             napomenaPoz.ParameterName = "@NapomenaPoz";
             napomenaPoz.SqlDbType = SqlDbType.Int;
             napomenaPoz.Direction = ParameterDirection.Input;
-            napomenaPoz.Value = TipTransporta.HasValue ? (object)NapomenaPoz.Value : DBNull.Value; 
+            napomenaPoz.Value = NapomenaPoz.HasValue ? (object)NapomenaPoz.Value : DBNull.Value; 
             cmd.Parameters.Add(napomenaPoz);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
@@ -1274,9 +1271,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis");
-                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //tran.Rollback(); // Ne zaboravi i rollback
+               /* throw new Exception("Neuspešan upis")*/;
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -1299,6 +1296,55 @@ namespace Saobracaj.Drumski
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "DeleteRadniNalogDrumski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRadniNalogDrumskiOtkazi(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiOtkazi";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

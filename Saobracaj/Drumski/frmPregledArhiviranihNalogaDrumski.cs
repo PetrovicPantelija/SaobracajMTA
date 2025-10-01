@@ -173,7 +173,7 @@ namespace Saobracaj.Drumski
                             INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
                             LEFT JOIN TipKontenjera tk ON ik.VrstaKontejnera = tk.ID
-                            WHERE rn.Uvoz = 0  AND  ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                            WHERE rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 AND  ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
                                     
                             union all
                                     SELECT rn.ID,
@@ -195,7 +195,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
                         LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
-                        WHERE rn.Uvoz = 0   AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz = 0  AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
 
                         union all
                         SELECT rn.ID, 
@@ -217,7 +217,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -239,7 +239,7 @@ namespace Saobracaj.Drumski
                         INNER JOIN Uvoz uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -259,7 +259,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                        WHERE rn.Uvoz in (-1,2, 3)  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
                         ORDER BY ID DESC"
             ;
                 //WHERE rn.Uvoz in (-1, 2, 3)  AND UPPER(rn.BrojKontejnera) LIKE UPPER('%{txtBrKontejnera.Text}%') AND(rn.Arhiviran = 1  OR  rn.Status IN( { statusiZaUpit}))

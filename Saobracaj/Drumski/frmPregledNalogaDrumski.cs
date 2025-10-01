@@ -163,14 +163,16 @@ namespace Saobracaj.Drumski
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
                                     pa.PaNaziv as Nalogodavac,
-                                    rn.KontejnerID, 'KONACAN' as Trenutno
+                                    rn.KontejnerID, 'KONACAN' as Trenutno,
+                                    ri.ID AS RadniNalogInterniID
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
                             LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                             INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
                             LEFT JOIN TipKontenjera tk ON ik.VrstaKontejnera = tk.ID
-                            WHERE rn.Uvoz = 0  AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                            LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
+                            WHERE rn.Uvoz = 0  AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                             union all
                                     SELECT rn.ID,
@@ -185,14 +187,16 @@ namespace Saobracaj.Drumski
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
                                     pa.PaNaziv as Nalogodavac,
-                            rn.KontejnerID, 'NEODREDJEN' as Trenutno
+                                    rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                                    ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
                         LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
-                        WHERE rn.Uvoz = 0 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
+                        WHERE rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                         SELECT rn.ID, 
@@ -207,14 +211,16 @@ namespace Saobracaj.Drumski
                                rn.Status AS StatusID, 
                                CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
                                pa.PaNaziv as Nalogodavac,
-                               rn.KontejnerID, 'KONACAN' as Trenutno
+                               rn.KontejnerID, 'KONACAN' as Trenutno,
+                               ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -229,14 +235,16 @@ namespace Saobracaj.Drumski
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
                                pa.PaNaziv as Nalogodavac,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno
+                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                               ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         INNER JOIN Uvoz uk ON uk.ID = rn.KontejnerID
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
-                        WHERE rn.Uvoz = 1 AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
 
                         union all
                                SELECT rn.ID, 
@@ -251,12 +259,14 @@ namespace Saobracaj.Drumski
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
                                pa.PaNaziv as Nalogodavac,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno
+                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                               ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
+                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
                         ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);
@@ -312,7 +322,7 @@ namespace Saobracaj.Drumski
                 cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
 
                 // Ukloni kolone koje ne želiš da se vide
-                var colsToRemove = new[] { "KontejnerID", "StatusID" }; // "Status" je Naziv
+                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID" }; // "Status" je Naziv
                 foreach (var col in colsToRemove)
                 {
                     if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
@@ -423,19 +433,82 @@ namespace Saobracaj.Drumski
         {
             panelStatus.Visible = false;
         }
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
+        }
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             int noviStatusId;
             if (cboStatus.SelectedValue != null && int.TryParse(cboStatus.SelectedValue.ToString(), out noviStatusId))
             {
+                // učitavanje statusa iz SistemskePostavke
+                var statusi = new List<int>();
+                var s_connection = Sifarnici.frmLogovanje.connectionString;
+                using (var connection = new SqlConnection(s_connection))
+                {
+                    connection.Open();
+                    var cmd1 = new SqlCommand("SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", connection);
+
+                    using (var reader = cmd1.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (int.TryParse(reader.GetString(0).Trim(), out int parsed))
+                            {
+                                statusi.Add(parsed);
+                            }
+                        }
+                    }
+                }
+
+                // sada se zna da li noviStatusId spada u tu listu
+                bool trebaOkidatiInterni = statusi.Contains(noviStatusId);
+                InsertRadniNalogDrumski upd = new InsertRadniNalogDrumski();
+                InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
                 foreach (SelectedRecord record in gridGroupingControl1.Table.SelectedRecords)
                 {
                     Record rec = record.Record;
 
                     var id = rec.GetValue("ID");
-                    InsertRadniNalogDrumski upd = new InsertRadniNalogDrumski();
+
+                    int? radniNalogInterniID = null;
+                    var interniVal = rec.GetValue("RadniNalogInterniID");
+                    if (interniVal != null && interniVal != DBNull.Value)
+                    {
+                        if (int.TryParse(interniVal.ToString(), out int parsedInterni))
+                        {
+                            radniNalogInterniID = parsedInterni;
+                        }
+                    }
+                   
                     upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId);
+
+                    if (trebaOkidatiInterni && radniNalogInterniID.HasValue)
+                    {
+                          updi.UpdRadniNalogInterniZavrsen(Convert.ToInt32(radniNalogInterniID.Value), Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                    }
                 }
             }
             panelStatus.Visible = false;
@@ -656,8 +729,8 @@ namespace Saobracaj.Drumski
 
                         if (dr["AutoDan"] != DBNull.Value && int.TryParse(dr["AutoDan"].ToString(), out int parseAutoDan))
                            autoDan  = parseAutoDan;
- 
-                        string msetoPreuzimanja = dr["MestoPreuzimanjaKontejnera"] == DBNull.Value ? null : dr["MestoPreuzimanjaKontejnera"].ToString();
+
+                        int? mestoPreuzimanja = dr["MestoPreuzimanjaKontejnera"] == DBNull.Value  ? (int?)null : Convert.ToInt32(dr["MestoPreuzimanjaKontejnera"]);
 
                         if (dr["Klijent"] != DBNull.Value && int.TryParse(dr["Klijent"].ToString(), out int parsedKlijentID))
                             klijent = parsedKlijentID;
@@ -719,7 +792,7 @@ namespace Saobracaj.Drumski
                         {
                             napomenaPoz = parsedValue;
                         }
-                        isu.DuplirajRadniNalogDrumski( uvoz, autoDan, msetoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
+                        isu.DuplirajRadniNalogDrumski( uvoz, autoDan, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
                             trosak, valuta, status, opis, cena, kontaktOsobaNaIstovaru, pdv, tipTransporta, brojVoza, bttoKontejnera, bttoRobe, bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz);
                     }         
                 }
