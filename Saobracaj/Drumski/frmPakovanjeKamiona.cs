@@ -75,7 +75,7 @@ namespace Saobracaj.Drumski
                 //        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
                 //    }
 
-                //    if (control is System.Windows.Forms.CheckBox chk)
+                //    if (control is System.Windows.Forms.CheckBdatagridviewox chk)
                 //    {
                 //        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
                 //        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
@@ -571,7 +571,8 @@ namespace Saobracaj.Drumski
                                    pa.PaNaziv AS Nalogodavac,
                                    i.BrojKontejnera,
                                    '' AS Kamion, 
-                                    rn.KamionID
+                                    rn.KamionID,
+                                    ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
@@ -583,12 +584,13 @@ namespace Saobracaj.Drumski
                                    pa.PaNaziv AS Nalogodavac,
                                    ik.BrojKontejnera,
                                    '' AS Kamion, 
-                                    rn.KamionID
+                                    rn.KamionID,
+                                    ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
-                            WHERE rn.Uvoz = 0
+                            WHERE rn.Uvoz = 0  and ISNULL(rn.RadniNalogOtkazan, 0) <> 1
 
                             UNION ALL
 
@@ -596,12 +598,13 @@ namespace Saobracaj.Drumski
                                    pa.PaNaziv AS Nalogodavac,
                                    uk.BrojKontejnera,
                                    '' AS Kamion, 
-                                    rn.KamionID
+                                    rn.KamionID,
+                                    ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
-                            WHERE rn.Uvoz = 1
+                            WHERE rn.Uvoz = 1 and ISNULL(rn.RadniNalogOtkazan, 0) <> 1
 
                             UNION ALL
 
@@ -609,12 +612,13 @@ namespace Saobracaj.Drumski
                                    pa.PaNaziv AS Nalogodavac,
                                    u.BrojKontejnera,
                                    '' AS Kamion, 
-                                    rn.KamionID
+                                    rn.KamionID,
+                                    ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN Uvoz u ON u.ID = rn.KontejnerID
                             LEFT JOIN Partnerji pa ON pa.PaSifra = u.Nalogodavac3
-                            WHERE rn.Uvoz = 1
+                            WHERE rn.Uvoz = 1 and ISNULL(rn.RadniNalogOtkazan, 0) <> 1
 
                             UNION ALL
 
@@ -622,12 +626,13 @@ namespace Saobracaj.Drumski
                                    pa.PaNaziv AS Nalogodavac,
                                    rn.BrojKontejnera,
                                    '' AS Kamion, 
-                                    rn.KamionID
+                                    rn.KamionID,
+                                    ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
                             WHERE rn.Uvoz IN (2, 3) AND rn.NalogID > 0
                         ) AS x
-                        WHERE x.ID IS NOT NULL
+                        WHERE x.ID IS NOT NULL and RadniNalogOtkazan <> 1
                           AND (x.KamionID IS NULL OR x.KamionID = 0)
                         Order by NalogID desc
                         ";
@@ -650,6 +655,11 @@ namespace Saobracaj.Drumski
             {
                 dataGridView2.Columns["KamionID"].Visible = false;
             }
+            if (dataGridView2.Columns.Contains("RadniNalogOtkazan"))
+            {
+                dataGridView2.Columns["RadniNalogOtkazan"].Visible = false;
+            }
+            
         }
 
         private void RefreshDataGrid3()
@@ -699,7 +709,7 @@ namespace Saobracaj.Drumski
                                      "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                      "left join MestaUtovara mu on i.MesoUtovara = mu.ID  " +
                                      "left join MestaUtovara mi on rn.MestoIstovara = mi.ID  " +
-                                     "where rn.Uvoz = 0 and rn.KamionID is not NULL AND rn.KamionID != 0  " +
+                                     "where rn.Uvoz = 0 and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID is not NULL AND rn.KamionID != 0  " +
                                      "      AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))" +
                              " union all " +
                              " select  rn.ID, " +
@@ -727,7 +737,7 @@ namespace Saobracaj.Drumski
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                        "left join MestaUtovara mu on ik.MesoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on rn.MestoIstovara = mi.ID  " +
-                                       "where rn.Uvoz = 0 and rn.KamionID is NOT NULL AND rn.KamionID != 0 " +
+                                       "where rn.Uvoz = 0 and rn.KamionID is NOT NULL and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 " +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))" +
                              " union all " +
                              " select  rn.ID,  " +
@@ -759,7 +769,7 @@ namespace Saobracaj.Drumski
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  uk.MestoIstovara = mi.ID  " +
-                                       "where rn.Uvoz = 1 and rn.KamionID is NOT NULL AND rn.KamionID != 0 " +
+                                       "where rn.Uvoz = 1 and rn.KamionID is NOT NULL  and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 " +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))" +
                              " union all " +
                              " select   rn.ID,  " +
@@ -789,7 +799,7 @@ namespace Saobracaj.Drumski
                                        "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  u.MestoIstovara = mi.ID  " +
-                                       "where rn.Uvoz = 1 and rn.KamionID is NOT NULL and rn.KamionID != 0 " +
+                                       "where rn.Uvoz = 1 and rn.KamionID is NOT NULL  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID != 0 " +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))" +
                              " union all " +
                              " select   rn.ID,  " +
@@ -815,8 +825,8 @@ namespace Saobracaj.Drumski
                                        "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  rn.MestoIstovara = mi.ID  " +
-                                       "left join DrumskiPozicioniranje dp ON dp.id = rn.NapomenaZaPozicioniranje " + 
-                                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0 and rn.KamionID is not NULL AND rn.KamionID != 0" +
+                                       "left join DrumskiPozicioniranje dp ON dp.id = rn.NapomenaZaPozicioniranje " +
+                                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID is not NULL AND rn.KamionID != 0" +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))";
 
                 var da = new SqlDataAdapter(select, conn);
@@ -1488,7 +1498,7 @@ namespace Saobracaj.Drumski
 
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void obrisiRadniNalog_Click(object sender, EventArgs e)
         {
             if (dataGridView2.SelectedRows.Count == 0)
             {
@@ -1512,7 +1522,7 @@ namespace Saobracaj.Drumski
             {
                 InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
                 // Pozovi metodu za brisanje
-                ins.DelRadniNalogDrumski(radniNalogDrumskiID);
+                ins.UpdRadniNalogDrumskiOtkazi(radniNalogDrumskiID);
             }
              RefreshDataGrid2();
         }

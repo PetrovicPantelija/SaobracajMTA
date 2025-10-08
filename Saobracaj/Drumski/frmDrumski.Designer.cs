@@ -73,7 +73,6 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.txtMestoPreuzimanja = new System.Windows.Forms.TextBox();
             this.txtNapomenaPoz = new System.Windows.Forms.TextBox();
             this.txtCarinjenjeUvozno = new System.Windows.Forms.TextBox();
             this.txtGranicniPrelaz = new System.Windows.Forms.TextBox();
@@ -123,6 +122,11 @@
             this.txtAdresaUtovara = new System.Windows.Forms.TextBox();
             this.txtAdresaIstovara = new System.Windows.Forms.TextBox();
             this.cboNapomenaPoz = new System.Windows.Forms.ComboBox();
+            this.cboMestoPreuzimanja = new System.Windows.Forms.ComboBox();
+            this.cboOCarinarnica = new System.Windows.Forms.ComboBox();
+            this.cboCarinjenjeUvozno = new System.Windows.Forms.ComboBox();
+            this.txtPrevoznik = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -559,14 +563,6 @@
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(189, 24);
             this.cboStatus.TabIndex = 10;
-            // 
-            // txtMestoPreuzimanja
-            // 
-            this.txtMestoPreuzimanja.Location = new System.Drawing.Point(19, 285);
-            this.txtMestoPreuzimanja.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txtMestoPreuzimanja.Name = "txtMestoPreuzimanja";
-            this.txtMestoPreuzimanja.Size = new System.Drawing.Size(308, 22);
-            this.txtMestoPreuzimanja.TabIndex = 40;
             // 
             // txtNapomenaPoz
             // 
@@ -1128,11 +1124,73 @@
             this.cboNapomenaPoz.Size = new System.Drawing.Size(308, 24);
             this.cboNapomenaPoz.TabIndex = 628;
             // 
+            // cboMestoPreuzimanja
+            // 
+            this.cboMestoPreuzimanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMestoPreuzimanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboMestoPreuzimanja.FormattingEnabled = true;
+            this.cboMestoPreuzimanja.ItemHeight = 16;
+            this.cboMestoPreuzimanja.Location = new System.Drawing.Point(19, 285);
+            this.cboMestoPreuzimanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoPreuzimanja.Name = "cboMestoPreuzimanja";
+            this.cboMestoPreuzimanja.Size = new System.Drawing.Size(305, 24);
+            this.cboMestoPreuzimanja.TabIndex = 629;
+            // 
+            // cboOCarinarnica
+            // 
+            this.cboOCarinarnica.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboOCarinarnica.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboOCarinarnica.FormattingEnabled = true;
+            this.cboOCarinarnica.ItemHeight = 16;
+            this.cboOCarinarnica.Location = new System.Drawing.Point(11, 817);
+            this.cboOCarinarnica.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboOCarinarnica.Name = "cboOCarinarnica";
+            this.cboOCarinarnica.Size = new System.Drawing.Size(305, 24);
+            this.cboOCarinarnica.TabIndex = 630;
+            this.cboOCarinarnica.Visible = false;
+            // 
+            // cboCarinjenjeUvozno
+            // 
+            this.cboCarinjenjeUvozno.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCarinjenjeUvozno.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCarinjenjeUvozno.FormattingEnabled = true;
+            this.cboCarinjenjeUvozno.ItemHeight = 16;
+            this.cboCarinjenjeUvozno.Location = new System.Drawing.Point(11, 683);
+            this.cboCarinjenjeUvozno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboCarinjenjeUvozno.Name = "cboCarinjenjeUvozno";
+            this.cboCarinjenjeUvozno.Size = new System.Drawing.Size(305, 24);
+            this.cboCarinjenjeUvozno.TabIndex = 631;
+            this.cboCarinjenjeUvozno.Visible = false;
+            // 
+            // txtPrevoznik
+            // 
+            this.txtPrevoznik.ForeColor = System.Drawing.Color.Black;
+            this.txtPrevoznik.Location = new System.Drawing.Point(911, 351);
+            this.txtPrevoznik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPrevoznik.Name = "txtPrevoznik";
+            this.txtPrevoznik.Size = new System.Drawing.Size(305, 22);
+            this.txtPrevoznik.TabIndex = 633;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(911, 331);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.TabIndex = 632;
+            this.label7.Text = "Prevoznik";
+            // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 871);
+            this.Controls.Add(this.txtPrevoznik);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cboCarinjenjeUvozno);
+            this.Controls.Add(this.cboOCarinarnica);
+            this.Controls.Add(this.cboMestoPreuzimanja);
             this.Controls.Add(this.cboNapomenaPoz);
             this.Controls.Add(this.txtAdresaIstovara);
             this.Controls.Add(this.txtAdresaUtovara);
@@ -1170,7 +1228,6 @@
             this.Controls.Add(this.txtGranicniPrelaz);
             this.Controls.Add(this.txtCarinjenjeUvozno);
             this.Controls.Add(this.txtNapomenaPoz);
-            this.Controls.Add(this.txtMestoPreuzimanja);
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cboKamion);
@@ -1278,7 +1335,6 @@
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtMestoPreuzimanja;
         private System.Windows.Forms.TextBox txtCarinjenjeUvozno;
         private System.Windows.Forms.TextBox txtNapomenaPoz;
         private System.Windows.Forms.TextBox txtGranicniPrelaz;
@@ -1328,5 +1384,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox cboNapomenaPoz;
+        private System.Windows.Forms.ComboBox cboMestoPreuzimanja;
+        private System.Windows.Forms.ComboBox cboOCarinarnica;
+        private System.Windows.Forms.ComboBox cboCarinjenjeUvozno;
+        private System.Windows.Forms.TextBox txtPrevoznik;
+        private System.Windows.Forms.Label label7;
     }
 }

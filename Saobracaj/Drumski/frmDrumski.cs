@@ -13,9 +13,7 @@ using System.Windows.Forms;
 using System.Linq;
 using Saobracaj.Sifarnici;
 using Saobracaj.Izvoz;
-using System.Globalization;
-using System.Threading;
-using Testiranje.Sifarnici;
+using Saobracaj.Uvoz;
 
 namespace Saobracaj.Drumski
 {
@@ -33,6 +31,14 @@ namespace Saobracaj.Drumski
             FillCombo();
             this.BindingContext = new BindingContext();
             VratiPodatke();
+            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
+            {
+
+                cboMestoPreuzimanja.SelectedValue = 8;
+                cboMestoUtovara.SelectedValue = 8;
+                txtAdresaUtovara.Text = "Jarački put";
+            }
+
         }
 
         private void ChangeTextBox()
@@ -158,17 +164,18 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
-             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
+             "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS OdredisnaCarina, '' as polaznaCarinarnica, '' as polaznaSpedicija, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                      "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = ik.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = ik.MestoCarinjenja " +
                       "LEFT JOIN IzvozKonacnaZaglavlje ukz ON ukz.ID = ik.IDNadredjena " +
                       "LEFT JOIN Voz v ON v.ID = ukz.IDVoza " +
-             "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
+             "where rn.ID=" + id + " AND rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 " +
              "UNION " +
              "SELECT	rn.ID ," +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref, rn.MestoPreuzimanjaKontejnera, " +
@@ -176,15 +183,16 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
-             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
+             "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , '' AS  OdredisnaCarina,'' as polaznaCarinarnica, '' as polaznaSpedicija, '' as OdredisnaSpedicija, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
                       "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                      "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
                       "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
                       "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
-             "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
+             "where rn.ID=" + id + " AND rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 " +
              "UNION " +
              "SELECT rn.ID ," +
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,uk.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
@@ -192,20 +200,21 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  uk.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
              " uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
              "'' AS NapomenaCarinskiPostupak,c.Naziv as OdredisnaCarina , '' as polaznaCarinarnica, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija,  rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
                     "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
                     "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                    "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
                     "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = uk.PostupakSaRobom " +
                     "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = uk.CarinskiPostupak " +
                     "LEFT JOIN Carinarnice c on c.ID = uk.OdredisnaCarina " +
                     "LEFT JOIN Partnerji p2 on p2.PaSifra = uk.OdredisnaSpedicija " +
                     "LEFT JOIN UvozKonacnaZaglavlje ukz ON ukz.ID = uk.IDNadredjeni " +
                     "LEFT JOIN Voz v ON v.ID = ukz.IDVoza " +
-             "where rn.ID= " + id + " AND rn.Uvoz = 1 " +
+             "where rn.ID= " + id + " AND rn.Uvoz = 1  AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 " +
              "UNION " +
              "SELECT rn.ID ," +
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,u.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
@@ -213,18 +222,19 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  u.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
              "u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, " +
-             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
+             " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, c.Naziv as OdredisnaCarina,'' as polaznaCarinarnica, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,'' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
                     "LEFT JOIN NapomenaZaPozicioniranje np ON np.ID = u.NapomenaZaPozicioniranje " +
                     "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
+                    "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
                     "LEFT JOIN VrstePostupakaUvoz pr ON pr.ID = u.PostupakSaRobom " +
                     "LEFT JOIN VrstaCarinskogPostupka vcp on vcp.ID = u.CarinskiPostupak " +
                     "LEFT JOIN Carinarnice c on c.ID = u.OdredisnaCarina " +
                     "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
-             "where rn.ID= " + id + " AND rn.Uvoz = 1" +
+             "where rn.ID= " + id + " AND rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 " +
              "UNION " +
              "SELECT rn.ID ," +
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
@@ -232,11 +242,12 @@ namespace Saobracaj.Drumski
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
              "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
              " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
-             "CAST(rn.NapomenaZaPozicioniranje AS varchar(50)) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
+             "CAST(rn.NapomenaZaPozicioniranje AS varchar(50)) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, rn.OdredisnaCarinarnica as OdredisnaCarina,rn.PolaznaCarinarnica as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
-             "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3)", con);
+              "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
+             "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 ", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -254,7 +265,11 @@ namespace Saobracaj.Drumski
                 txtReferenca.Text = dr["Ref"].ToString();
                 txtBL.Text = dr["BrodskaTeretnica"].ToString();
                 txtBrodskaPlomba.Text = dr["BrojPlombe"].ToString();
-                txtMestoPreuzimanja.Text = dr["MestoPreuzimanjaKontejnera"].ToString();
+                
+                if (dr["MestoPreuzimanjaKontejnera"] != DBNull.Value && int.TryParse(dr["MestoPreuzimanjaKontejnera"].ToString(), out int parsedMestoPreuzimanjaID))
+                    cboMestoPreuzimanja.SelectedValue = parsedMestoPreuzimanjaID;
+                else
+                    cboMestoPreuzimanja.SelectedIndex = -1;
 
                 if (dr["Klijent"] != DBNull.Value && int.TryParse(dr["Klijent"].ToString(), out int parsedKlijentID))
                     cboKlijent.SelectedValue = parsedKlijentID;
@@ -316,6 +331,7 @@ namespace Saobracaj.Drumski
 
                 txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
                 txtBrojLK.Text = dr["LicnaKarta"].ToString();
+                txtPrevoznik.Text = dr["Prevoznik"].ToString();
                 txtGranicniPrelaz.Text = dr["GranicniPrelaz"].ToString();
                 //    txtKontaktOsobeSpeditera.Text = dr["KontaktSpeditera"].ToString();
                 if (dr["Trosak"] != DBNull.Value)
@@ -524,6 +540,15 @@ namespace Saobracaj.Drumski
             cboKlijent.DisplayMember = "PaNaziv";
             cboKlijent.ValueMember = "PaSifra";
 
+
+            var dip = "Select ID,Naziv from MestaUtovara order by Naziv";
+            var dipAD = new SqlDataAdapter(dip, conn);
+            var dipDS = new DataSet();
+            dipAD.Fill(dipDS);
+            cboMestoPreuzimanja.DataSource = dipDS.Tables[0];
+            cboMestoPreuzimanja.DisplayMember = "Naziv";
+            cboMestoPreuzimanja.ValueMember = "ID";
+
             var dir = "Select ID,Naziv from MestaUtovara order by Naziv";
             var dirAD = new SqlDataAdapter(dir, conn);
             var dirDS = new DataSet();
@@ -545,15 +570,32 @@ namespace Saobracaj.Drumski
             var pozDS = new DataSet();
             pozAD.Fill(pozDS);
 
-            System.Data.DataTable dt3 = pozDS.Tables[0];
-            DataRow prazanRed3 = dt3.NewRow();
-            prazanRed3["ID"] = DBNull.Value;
-            prazanRed3["Napomena"] = "/";
-            dt3.Rows.InsertAt(prazanRed3, 0);
+            //System.Data.DataTable dt3 = pozDS.Tables[0];
+            //DataRow prazanRed3 = dt3.NewRow();
+            //prazanRed3["ID"] = DBNull.Value;
+            //prazanRed3["Napomena"] = "/";
+            //dt3.Rows.InsertAt(prazanRed3, 0);
 
             cboNapomenaPoz.DataSource = pozDS.Tables[0];
             cboNapomenaPoz.DisplayMember = "Napomena";
             cboNapomenaPoz.ValueMember = "ID";
+
+            var car = "Select ID, Naziv From Carinarnice order by Naziv";
+            var carAD = new SqlDataAdapter(car, conn);
+            var carDS = new DataSet();
+            carAD.Fill(carDS);
+            cboOCarinarnica.DataSource = carDS.Tables[0];
+            cboOCarinarnica.DisplayMember = "Naziv";
+            cboOCarinarnica.ValueMember = "ID";
+
+
+            var caru= "Select ID, Naziv From Carinarnice order by Naziv";
+            var caruAD = new SqlDataAdapter(caru, conn);
+            var caruDS = new DataSet();
+            carAD.Fill(caruDS);
+            cboCarinjenjeUvozno.DataSource = caruDS.Tables[0];
+            cboCarinjenjeUvozno.DisplayMember = "Naziv";
+            cboCarinjenjeUvozno.ValueMember = "ID";
         }
 
 
@@ -642,7 +684,6 @@ namespace Saobracaj.Drumski
             VratiPodatke();
         }
 
-
         private void button21_Click(object sender, EventArgs e)
         {
             string referenca = null;
@@ -671,117 +712,115 @@ namespace Saobracaj.Drumski
             {
                 iD = parsedID;
             }
-            int autoDan = 0;
-            if (chkAutoDan.Checked == true)
+            int autoDan = chkAutoDan.Checked ? 1 : 0;
+            int PDV = chkPDV.Checked ? 1 : 0;
+
+            int? mestoPreuzimanja = null;
+            if (cboMestoPreuzimanja.SelectedValue != null
+                && Uvoz != 0
+                && int.TryParse(cboMestoPreuzimanja.SelectedValue.ToString(), out int parsedMestoPreuzimanjaID))
             {
-                autoDan = 1;
+                mestoPreuzimanja = parsedMestoPreuzimanjaID;
             }
-            int PDV = 0;
-            if (chkPDV.Checked == true)
+            else if (!string.IsNullOrWhiteSpace(cboMestoUtovara.Text))
             {
-                PDV = 1;
+                int mestoP = InsertMestoUtovaraUSifarnik();
+                mestoPreuzimanja = mestoP > -1 ? mestoP : (int?)null;
             }
-            string mestoPreuzimanja = string.IsNullOrWhiteSpace(txtMestoPreuzimanja.Text) ? null : txtMestoPreuzimanja.Text.Trim();
+
             string kontaktOsobaistovara = string.IsNullOrWhiteSpace(txtkontaktNaIstovaru.Text) ? null : txtkontaktNaIstovaru.Text.Trim();
 
             if (dtpUtovara.Checked)
-            {
                 datumUtovara = dtpUtovara.Value;
-            }
+
             if (dtIstovara.Checked)
-            {
                 datumIstovara = dtIstovara.Value;
-            }
 
             DateTime? dtPreuzimanjaPraznogKont = null;
             if (dtPreuzimanjaPraznogKontejnera.Checked)
-            {
                 dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
-            }
+
             string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text.Trim();
+
             decimal? trosak = null;
             decimal? cena = null;
             if (!string.IsNullOrWhiteSpace(txtTrosak.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedTrosak))
-            {
                 trosak = parsedTrosak;
-            }
+
             if (!string.IsNullOrWhiteSpace(txtCena.Text) && decimal.TryParse(txtCena.Text, out decimal parsedCena))
-            {
                 cena = parsedCena;
-            }
+
             string valutaID = null;
             if (txtValuta.SelectedValue != null)
-            {
                 valutaID = txtValuta.SelectedValue.ToString();
-            }
+
             int? kamionID = null;
             if (cboKamion.SelectedValue != null && int.TryParse(cboKamion.SelectedValue.ToString(), out int parsedKamionID))
-            {
                 kamionID = parsedKamionID;
-            }
+
             int? statusID = null;
             if (cboStatus.SelectedValue != null && int.TryParse(cboStatus.SelectedValue.ToString(), out int parsedStatusID))
-            {
                 statusID = parsedStatusID;
-            }
+
             int? tipNaloga = null;
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int parsedTipNaloga))
-            {
                 tipNaloga = parsedTipNaloga;
-            }
+
             int? tipTransportaID = null;
             if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
-            {
                 tipTransportaID = parsedTipTransportaID;
-            }
 
             string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
             string brojKontejnera2 = string.IsNullOrWhiteSpace(txtBrojKontejnera2.Text) ? null : txtBrojKontejnera2.Text.Trim();
 
             adresaUtovara = string.IsNullOrWhiteSpace(txtAdresaUtovara.Text) ? null : txtAdresaUtovara.Text.Trim();
             adresaIstovara = string.IsNullOrWhiteSpace(txtAdresaIstovara.Text) ? null : txtAdresaIstovara.Text.Trim();
+
             if (cboMestoUtovara.SelectedValue != null && Uvoz != 0 && int.TryParse(cboMestoUtovara.SelectedValue.ToString(), out int parsedMestoUtovaraID))
-            {
                 mestoUtovara = parsedMestoUtovaraID;
-            }
             else if (!string.IsNullOrWhiteSpace(cboMestoUtovara.Text))
             {
                 int mestoU = InsertMestoUtovaraUSifarnik();
                 mestoUtovara = mestoU > -1 ? mestoU : (int?)null;
             }
+
             if (cboMestoIstovara.SelectedValue != null && Uvoz != 1 && int.TryParse(cboMestoIstovara.SelectedValue.ToString(), out int parsedMestoIstovaraID))
-            {
                 mestoIstovara = parsedMestoIstovaraID;
-            }
             else if (!string.IsNullOrWhiteSpace(cboMestoIstovara.Text))
             {
-               int mesto = InsertMestoIstovaraUSifarnik();
-               mestoIstovara = mesto > -1 ? mesto : (int?)null; 
+                int mesto = InsertMestoIstovaraUSifarnik();
+                mestoIstovara = mesto > -1 ? mesto : (int?)null;
             }
+
             if (Uvoz != 1)
                 referenca = string.IsNullOrWhiteSpace(txtReferenca.Text) ? null : txtReferenca.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0 && cboKlijent.SelectedValue != null && int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
-            {
                 klijent = parsedKlijentID;
-            }
             else if (!string.IsNullOrWhiteSpace(cboKlijent.Text))
-            { 
                 klijent = InsertKlijentaUSifarnik();
-            }
+
             if (Uvoz != 1 && Uvoz != 0 && txtBokingBrodara.Text != null && int.TryParse(txtBokingBrodara.Text.ToString(), out int parsedBookingBrodara))
                 bookingBrodara = parsedBookingBrodara;
+
             if (Uvoz != 1 && Uvoz != 0 && decimal.TryParse(txtBrutoK.Text, out decimal parsedBrutoK))
                 bttoKontejnera = parsedBrutoK;
+
             if (Uvoz != 1 && Uvoz != 0 && decimal.TryParse(txtBrutoR.Text, out decimal parsedBrutoR))
                 bttoRobe = parsedBrutoR;
+
             if (Uvoz != 1 && Uvoz != 0)
                 brojKontejnera = string.IsNullOrWhiteSpace(txtBrojKontejnera.Text) ? null : txtBrojKontejnera.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0)
                 brojVoza = string.IsNullOrWhiteSpace(txtBrojVoza.Text) ? null : txtBrojVoza.Text.Trim();
+
             if (Uvoz != 0)
                 brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text.Trim();
+
             if (Uvoz != 1)
                 brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0 && !string.IsNullOrWhiteSpace(cboNapomenaPoz.Text))
             {
                 int parsedNapomenaPoz = -1;
@@ -789,51 +828,316 @@ namespace Saobracaj.Drumski
                 if (cboNapomenaPoz.SelectedValue != null &&
                     int.TryParse(cboNapomenaPoz.SelectedValue.ToString(), out int val))
                 {
-                    // Korisnik je izabrao postojeću stavku
                     parsedNapomenaPoz = val;
                     napomenaPoz = parsedNapomenaPoz;
                 }
                 else
                 {
-                    // Korisnik je uneo novu vrednost u combo
                     int pozicija = InsertPozicijaUsifarnik();
                     napomenaPoz = pozicija > 0 ? pozicija : (int?)null;
                 }
             }
-            if (Uvoz != 1 && Uvoz != 0) 
+
+            if (Uvoz != 1 && Uvoz != 0)
                 polaznaCarinarnica = string.IsNullOrWhiteSpace(txtCarinjenjeUvozno.Text) ? null : txtCarinjenjeUvozno.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0)
                 odredisnaCarinarnica = string.IsNullOrWhiteSpace(txtOdredisnaCarinarnica.Text) ? null : txtOdredisnaCarinarnica.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0)
                 polaznaSpedicijaKontakt = string.IsNullOrWhiteSpace(txtPolaznaSpedicijaKontakt.Text) ? null : txtPolaznaSpedicijaKontakt.Text.Trim();
+
             if (Uvoz != 1 && Uvoz != 0)
                 odredisnaSpedicijaKontakt = string.IsNullOrWhiteSpace(txtOdredisnaSpedicijaKontakt.Text) ? null : txtOdredisnaSpedicijaKontakt.Text.Trim();
 
             int zaposleniID = PostaviVrednostZaposleni();
 
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
             if (status == true)
             {
                 if (cboTipNaloga.SelectedValue == null || (int)cboTipNaloga.SelectedValue == -1)
                 {
                     MessageBox.Show("Polje 'Tip naloga' je obavezno!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // prekida dalje izvršavanje
+                    return;
                 }
 
                 int noviID = ins.InsRadniNalogDrumski(tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                   dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
-                   bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
+                    bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
 
                 txtID.Text = noviID.ToString();
                 status = false;
             }
             else
             {
+                // 1. Proveri stari status i RadniNalogInterniID
+                int? stariStatusID = null;
+                int? radniNalogInterniID = null;
+                using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand(@"
+                                    SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
+                                    FROM RadniNalogDrumski rn
+                                    LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
+                                    WHERE rn.ID = @ID", connection);
+                    cmd.Parameters.AddWithValue("@ID", iD);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (reader["Status"] != DBNull.Value)
+                                stariStatusID = Convert.ToInt32(reader["Status"]);
+                            if (reader["RadniNalogInterniID"] != DBNull.Value)
+                                radniNalogInterniID = Convert.ToInt32(reader["RadniNalogInterniID"]);
+                        }
+                    }
+                }
+
+                // 2. Učitaj listu završnih statusa
+                var statusiZavrsni = new List<int>();
+                using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+                {
+                    connection.Open();
+                    var cmd = new SqlCommand("SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", connection);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (int.TryParse(reader.GetString(0).Trim(), out int parsed))
+                                statusiZavrsni.Add(parsed);
+                        }
+                    }
+                }
+
+                // 3. Update glavnog naloga
                 ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                   dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
-                   brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent,
+                    bttoKontejnera, bttoRobe, brojVoza, brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica,
+                    polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+
+                // 4. Ako se status promenio i novi spada u završne onda ide update internog
+                if (statusID.HasValue &&
+                   (!stariStatusID.HasValue || statusID.Value != stariStatusID.Value))
+                {
+                    if (statusiZavrsni.Contains(statusID.Value) && radniNalogInterniID.HasValue)
+                    {
+                        
+                        updi.UpdRadniNalogInterniZavrsen(
+                            radniNalogInterniID.Value,
+                            Saobracaj.Sifarnici.frmLogovanje.user.Trim()
+                        );
+                    }
+                }
             }
         }
+
+        //private void button21_Click(object sender, EventArgs e)
+        //{
+        //    string referenca = null;
+        //    int? mestoIstovara = null;
+        //    int? mestoUtovara = null;
+        //    int? klijent = null;
+        //    decimal? bttoKontejnera = null;
+        //    decimal? bttoRobe = null;
+        //    string brojVoza = null;
+        //    string brojKontejnera = null;
+        //    string brodskaPlomba = null;
+        //    string brodskaTeretnica = null;
+        //    DateTime? datumIstovara = null;
+        //    DateTime? datumUtovara = null;
+        //    int? bookingBrodara = null;
+        //    string adresaIstovara = null;
+        //    string adresaUtovara = null;
+        //    int? napomenaPoz = null;
+        //    string polaznaCarinarnica = null;
+        //    string odredisnaCarinarnica = null;
+        //    string odredisnaSpedicijaKontakt = null;
+        //    string polaznaSpedicijaKontakt = null;
+
+        //    int iD = 0;
+        //    if (txtID.Text != null && int.TryParse(txtID.Text, out int parsedID))
+        //    {
+        //        iD = parsedID;
+        //    }
+        //    int autoDan = 0;
+        //    if (chkAutoDan.Checked == true)
+        //    {
+        //        autoDan = 1;
+        //    }
+        //    int PDV = 0;
+        //    if (chkPDV.Checked == true)
+        //    {
+        //        PDV = 1;
+        //    }
+        //    int? mestoPreuzimanja = null;
+
+        //    if (cboMestoPreuzimanja.SelectedValue != null
+        //        && Uvoz != 0
+        //        && int.TryParse(cboMestoPreuzimanja.SelectedValue.ToString(), out int parsedMestoPreuzimanjaID))
+        //    {
+        //        mestoPreuzimanja = parsedMestoPreuzimanjaID;
+        //    }
+        //    else if (!string.IsNullOrWhiteSpace(cboMestoUtovara.Text))
+        //    {
+        //        int mestoP = InsertMestoUtovaraUSifarnik();
+        //        mestoPreuzimanja = mestoP > -1 ? mestoP : (int?)null;
+        //    }
+        //    string kontaktOsobaistovara = string.IsNullOrWhiteSpace(txtkontaktNaIstovaru.Text) ? null : txtkontaktNaIstovaru.Text.Trim();
+
+        //    if (dtpUtovara.Checked)
+        //    {
+        //        datumUtovara = dtpUtovara.Value;
+        //    }
+        //    if (dtIstovara.Checked)
+        //    {
+        //        datumIstovara = dtIstovara.Value;
+        //    }
+
+        //    DateTime? dtPreuzimanjaPraznogKont = null;
+        //    if (dtPreuzimanjaPraznogKontejnera.Checked)
+        //    {
+        //        dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
+        //    }
+        //    string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text.Trim();
+        //    decimal? trosak = null;
+        //    decimal? cena = null;
+        //    if (!string.IsNullOrWhiteSpace(txtTrosak.Text) && decimal.TryParse(txtTrosak.Text, out decimal parsedTrosak))
+        //    {
+        //        trosak = parsedTrosak;
+        //    }
+        //    if (!string.IsNullOrWhiteSpace(txtCena.Text) && decimal.TryParse(txtCena.Text, out decimal parsedCena))
+        //    {
+        //        cena = parsedCena;
+        //    }
+        //    string valutaID = null;
+        //    if (txtValuta.SelectedValue != null)
+        //    {
+        //        valutaID = txtValuta.SelectedValue.ToString();
+        //    }
+        //    int? kamionID = null;
+        //    if (cboKamion.SelectedValue != null && int.TryParse(cboKamion.SelectedValue.ToString(), out int parsedKamionID))
+        //    {
+        //        kamionID = parsedKamionID;
+        //    }
+        //    int? statusID = null;
+        //    if (cboStatus.SelectedValue != null && int.TryParse(cboStatus.SelectedValue.ToString(), out int parsedStatusID))
+        //    {
+        //        statusID = parsedStatusID;
+        //    }
+        //    int? tipNaloga = null;
+        //    if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int parsedTipNaloga))
+        //    {
+        //        tipNaloga = parsedTipNaloga;
+        //    }
+        //    int? tipTransportaID = null;
+        //    if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
+        //    {
+        //        tipTransportaID = parsedTipTransportaID;
+        //    }
+
+        //    string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
+        //    string brojKontejnera2 = string.IsNullOrWhiteSpace(txtBrojKontejnera2.Text) ? null : txtBrojKontejnera2.Text.Trim();
+
+        //    adresaUtovara = string.IsNullOrWhiteSpace(txtAdresaUtovara.Text) ? null : txtAdresaUtovara.Text.Trim();
+        //    adresaIstovara = string.IsNullOrWhiteSpace(txtAdresaIstovara.Text) ? null : txtAdresaIstovara.Text.Trim();
+        //    if (cboMestoUtovara.SelectedValue != null && Uvoz != 0 && int.TryParse(cboMestoUtovara.SelectedValue.ToString(), out int parsedMestoUtovaraID))
+        //    {
+        //        mestoUtovara = parsedMestoUtovaraID;
+        //    }
+        //    else if (!string.IsNullOrWhiteSpace(cboMestoUtovara.Text))
+        //    {
+        //        int mestoU = InsertMestoUtovaraUSifarnik();
+        //        mestoUtovara = mestoU > -1 ? mestoU : (int?)null;
+        //    }
+        //    if (cboMestoIstovara.SelectedValue != null && Uvoz != 1 && int.TryParse(cboMestoIstovara.SelectedValue.ToString(), out int parsedMestoIstovaraID))
+        //    {
+        //        mestoIstovara = parsedMestoIstovaraID;
+        //    }
+        //    else if (!string.IsNullOrWhiteSpace(cboMestoIstovara.Text))
+        //    {
+        //       int mesto = InsertMestoIstovaraUSifarnik();
+        //       mestoIstovara = mesto > -1 ? mesto : (int?)null; 
+        //    }
+        //    if (Uvoz != 1)
+        //        referenca = string.IsNullOrWhiteSpace(txtReferenca.Text) ? null : txtReferenca.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0 && cboKlijent.SelectedValue != null && int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
+        //    {
+        //        klijent = parsedKlijentID;
+        //    }
+        //    else if (!string.IsNullOrWhiteSpace(cboKlijent.Text))
+        //    { 
+        //        klijent = InsertKlijentaUSifarnik();
+        //    }
+        //    if (Uvoz != 1 && Uvoz != 0 && txtBokingBrodara.Text != null && int.TryParse(txtBokingBrodara.Text.ToString(), out int parsedBookingBrodara))
+        //        bookingBrodara = parsedBookingBrodara;
+        //    if (Uvoz != 1 && Uvoz != 0 && decimal.TryParse(txtBrutoK.Text, out decimal parsedBrutoK))
+        //        bttoKontejnera = parsedBrutoK;
+        //    if (Uvoz != 1 && Uvoz != 0 && decimal.TryParse(txtBrutoR.Text, out decimal parsedBrutoR))
+        //        bttoRobe = parsedBrutoR;
+        //    if (Uvoz != 1 && Uvoz != 0)
+        //        brojKontejnera = string.IsNullOrWhiteSpace(txtBrojKontejnera.Text) ? null : txtBrojKontejnera.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0)
+        //        brojVoza = string.IsNullOrWhiteSpace(txtBrojVoza.Text) ? null : txtBrojVoza.Text.Trim();
+        //    if (Uvoz != 0)
+        //        brodskaTeretnica = string.IsNullOrWhiteSpace(txtBL.Text) ? null : txtBL.Text.Trim();
+        //    if (Uvoz != 1)
+        //        brodskaPlomba = string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0 && !string.IsNullOrWhiteSpace(cboNapomenaPoz.Text))
+        //    {
+        //        int parsedNapomenaPoz = -1;
+
+        //        if (cboNapomenaPoz.SelectedValue != null &&
+        //            int.TryParse(cboNapomenaPoz.SelectedValue.ToString(), out int val))
+        //        {
+        //            // Korisnik je izabrao postojeću stavku
+        //            parsedNapomenaPoz = val;
+        //            napomenaPoz = parsedNapomenaPoz;
+        //        }
+        //        else
+        //        {
+        //            // Korisnik je uneo novu vrednost u combo
+        //            int pozicija = InsertPozicijaUsifarnik();
+        //            napomenaPoz = pozicija > 0 ? pozicija : (int?)null;
+        //        }
+        //    }
+        //    if (Uvoz != 1 && Uvoz != 0) 
+        //        polaznaCarinarnica = string.IsNullOrWhiteSpace(txtCarinjenjeUvozno.Text) ? null : txtCarinjenjeUvozno.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0)
+        //        odredisnaCarinarnica = string.IsNullOrWhiteSpace(txtOdredisnaCarinarnica.Text) ? null : txtOdredisnaCarinarnica.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0)
+        //        polaznaSpedicijaKontakt = string.IsNullOrWhiteSpace(txtPolaznaSpedicijaKontakt.Text) ? null : txtPolaznaSpedicijaKontakt.Text.Trim();
+        //    if (Uvoz != 1 && Uvoz != 0)
+        //        odredisnaSpedicijaKontakt = string.IsNullOrWhiteSpace(txtOdredisnaSpedicijaKontakt.Text) ? null : txtOdredisnaSpedicijaKontakt.Text.Trim();
+
+        //    int zaposleniID = PostaviVrednostZaposleni();
+
+        //    InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+        //    if (status == true)
+        //    {
+        //        if (cboTipNaloga.SelectedValue == null || (int)cboTipNaloga.SelectedValue == -1)
+        //        {
+        //            MessageBox.Show("Polje 'Tip naloga' je obavezno!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            return; // prekida dalje izvršavanje
+        //        }
+
+        //        int noviID = ins.InsRadniNalogDrumski(tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+        //           dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
+        //           bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+
+        //        txtID.Text = noviID.ToString();
+        //        status = false;
+        //    }
+        //    else
+        //    {
+        //        ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+        //           dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent, bttoKontejnera, bttoRobe, brojVoza,
+        //           brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+        //    }
+        //    if()
+        //}
 
         public int InsertKlijentaUSifarnik()
         {
@@ -939,12 +1243,14 @@ namespace Saobracaj.Drumski
             cboTipNaloga.Enabled = true;
             txtBokingBrodara.Text = "";
             txtBokingBrodara.Enabled = true;
-            txtMestoPreuzimanja.Text = "Leget";
+            cboMestoPreuzimanja.SelectedValue = -1;
+           // txtMestoPreuzimanja.Text = "Leget";
             cboKlijent.SelectedValue = -1;
             cboKlijent.Enabled = true;
             cboMestoUtovara.SelectedValue = 8;
             cboMestoUtovara.Enabled = true;
-            txtAdresaUtovara.Text = "Jarački put";
+           // txtAdresaUtovara.Text = "Jarački put";
+            txtAdresaUtovara.Text = "";
             txtAdresaUtovara.Enabled = true;
             txtAdresaIstovara.Enabled = true;
 
@@ -1046,17 +1352,19 @@ namespace Saobracaj.Drumski
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT	 LicnaKarta, Vozac,BrojTelefona " +
-                 "FROM   Automobili  " +
+                SqlCommand cmd = new SqlCommand("SELECT	 LicnaKarta, Vozac,BrojTelefona, p.PaNaziv AS Prevoznik " +
+                 "FROM   Automobili a " + 
+                 "LEFT join Partnerji p on  a.PartnerID = p.PaSifra  " +
                  "where ID =  " + parsedKamionId, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    txtBrojLK.Text = (dr["LicnaKarta"].ToString());
-                    txtVozac.Text = (dr["Vozac"].ToString());
-                    txtBrojTelefona.Text = (dr["BrojTelefona"].ToString());
+                    txtBrojLK.Text = dr["LicnaKarta"].ToString();
+                    txtVozac.Text = dr["Vozac"].ToString();
+                    txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
+                    txtPrevoznik.Text = dr["Prevoznik"].ToString();
                 }
             }
             else
@@ -1064,6 +1372,7 @@ namespace Saobracaj.Drumski
                 txtBrojLK.Text = "";
                 txtVozac.Text = "";
                 txtBrojTelefona.Text = "";
+                txtPrevoznik.Text = "";
             }
         }
 
@@ -1162,9 +1471,21 @@ namespace Saobracaj.Drumski
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId > 0)
             {
                 if (tipNalogaId == 3)
+                {
                     label12.Text = "Kontakt osoba na utovaru";
+                    cboMestoPreuzimanja.SelectedValue = -1;
+                    cboMestoUtovara.SelectedValue = -1;
+                    txtAdresaUtovara.Text = "";
+
+                }
                 else
+                {
                     label12.Text = "Kontakt osoba na istovaru";
+                    cboMestoPreuzimanja.SelectedValue = 8;
+                    cboMestoUtovara.SelectedValue = 8;
+                    txtAdresaUtovara.Text = "Jarački put";
+
+                }
             }
         }
 

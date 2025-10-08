@@ -1,13 +1,8 @@
 ﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -186,7 +181,7 @@ namespace Saobracaj.Drumski
         private void tsSave_Click(object sender, EventArgs e)
         {
             int iD = 0;
-            if (txtID.Text != null && int.TryParse(txtID.Text, out int parsedID))
+            if (!string.IsNullOrWhiteSpace(txtID.Text) && int.TryParse(txtID.Text, out int parsedID))
             {
                 iD = parsedID;
             }
@@ -200,7 +195,7 @@ namespace Saobracaj.Drumski
                 txtID.Text = noviID.ToString();
                 status = false;
             }
-            else
+            else if(iD > 0)
             {
                 ins.UpdNapomena(iD, napomena);
             }
@@ -218,7 +213,6 @@ namespace Saobracaj.Drumski
                     {
                         txtID.Text = row.Cells["ID"].Value.ToString();
                         txtNapomena.Text = row.Cells["Napomena"].Value.ToString();
-
                     }
                 }
             }
@@ -236,7 +230,7 @@ namespace Saobracaj.Drumski
                 iD = parsedID;
             }
             InsertNapomena del = new InsertNapomena();
-           del.DelNapomena(iD);
+            del.DelNapomena(iD);
 
             txtID.Text = "";
             txtNapomena.Text = "";

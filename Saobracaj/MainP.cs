@@ -6874,8 +6874,24 @@ namespace Saobracaj
 
         private void toolStripButton399_Click(object sender, EventArgs e)
         {
-            Drumski.frmKursnaLista mu = new Drumski.frmKursnaLista();
-            mu.Show();
+           
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPartnerji")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Drumski.frmPozicioniranje part = new  Drumski.frmPozicioniranje();
+                part.Show();
+            }
         }
 
         private void toolStripButton398_Click(object sender, EventArgs e)
