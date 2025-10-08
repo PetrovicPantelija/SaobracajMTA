@@ -663,7 +663,7 @@ namespace Saobracaj.Izvoz
         private void FillCombo()
         {
             var planutovara = "select IzvozKonacnaZaglavlje.ID, ( 'P:' + Cast(IzvozKonacnaZaglavlje.ID as nvarchar(4)) + ' T:' " +
- " + Cast(Convert(Nvarchar(10), Voz.VremePolaska, 104) as nvarchar(12)) + ' V:' + Cast(BrVoza as nvarchar(15)) + ' ' + Relacija) as Naziv " +
+ " + Cast(Convert(Nvarchar(10), Voz.VremePolaska, 104) as nvarchar(12)) + ' V:' + Cast(NazivVoza as nvarchar(15)) + ' ' + Relacija) as Naziv " +
 " from IzvozKonacnaZaglavlje " +
 " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);

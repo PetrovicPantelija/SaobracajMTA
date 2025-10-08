@@ -673,7 +673,8 @@ namespace Saobracaj.Uvoz
 
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
-            korisnik.SqlDbType = SqlDbType.Int;
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
             korisnik.Direction = ParameterDirection.Input;
             korisnik.Value = Korisnik;
             cmd.Parameters.Add(korisnik);

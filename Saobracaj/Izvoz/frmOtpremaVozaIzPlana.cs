@@ -524,5 +524,42 @@ namespace Saobracaj.Izvoz
                     }
             }
         }
+
+        string VratiKontejner(string NalogID)
+        {/*
+            select
+    CASE
+WHEN RadniNalogInterni.OJIzdavanja = 1 THEN(Select BrojKontejnera from UvozKOnacna inner join RadniNalogInterni on UvozKOnacna.ID = RadniNalogInterni.BrojOsnov where RadniNalogInterni.ID = 222)
+WHEN RadniNalogInterni.OJIzdavanja = 2 THEN(Select BrojKontejnera from IzvozKonacna inner join RadniNalogInterni on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov where RadniNalogInterni.ID = 222)
+else 'NEMA'
+END AS BrojKontejnera
+from RadniNalogInterni where RadniNalogInterni.ID = 222
+            */
+
+            string Konkretan = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select   CASE WHEN RadniNalogInterni.OJIzdavanja = 1 THEN(Select BrojKontejnera from UvozKOnacna inner join RadniNalogInterni on UvozKOnacna.ID = RadniNalogInterni.BrojOsnov where RadniNalogInterni.ID = " + txtNalogID.Text + ") WHEN RadniNalogInterni.OJIzdavanja = 2 THEN(Select BrojKontejnera from IzvozKonacna inner join RadniNalogInterni on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov where RadniNalogInterni.ID = " + txtNalogID.Text + ") else 'NEMA' END AS BrojKontejnera from RadniNalogInterni where RadniNalogInterni.ID =  " + txtNalogID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Konkretan = dr["BrojKontejnera"].ToString().TrimEnd();
+
+
+
+            }
+            con.Close();
+            return Konkretan;
+
+        }
+
+        private void txtNalogID_TextChanged(object sender, EventArgs e)
+        {
+            VratiKontejner(txtNalogID.Text);
+        }
     }
 }

@@ -269,6 +269,10 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                return;
+            }
             frmUvozKonacna pUvoz = new frmUvozKonacna(Convert.ToInt32(txtSifra.Text), KorisnikF);
             pUvoz.Show();
         }

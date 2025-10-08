@@ -4462,6 +4462,7 @@ int terminal;
 
         private void button29_Click(object sender, EventArgs e)
         {
+            //ne radi ako je usluga vise
             string RN = "";
             string Scenario  = "";
             string RB = "";
@@ -4484,20 +4485,8 @@ int terminal;
 
             while (dr.Read())
             {
-                if (statusobrade == 1)
-                {
-                    System.Windows.MessageBox.Show("Postoji manipulacija za koju je izdat RN");
-                }
-                else if (statusobrade == 2)
-                {
-                    // storniraj sve naredne usluge
-                    StornirajRNIStiKontejner(RadniNalogInterni);
-                    IzbrisiUslugeScenarija(Convert.ToInt32(KonkretaIDUsluge), Convert.ToInt32(RB));
-                  // uvaci sve usluge novog Scenarija
-                  // IZdaj naloge
-                }
-                else
-                {
+                //Za svaku uslugu koja je vec uneta
+            
                     //Izmenjeno
                     // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                     RN = dr["BrojRN"].ToString();
@@ -4533,16 +4522,41 @@ int terminal;
 
                     }
 
+                if (statusobrade == 1)
+                {
+                    System.Windows.MessageBox.Show("Postoji manipulacija za koju je izdat RN");
                 }
-
-
+                else if (statusobrade == 2)
+                {
+                    // storniraj sve naredne usluge
+                    StornirajRNIStiKontejner(RadniNalogInterni);
+                    IzbrisiUslugeScenarija(Convert.ToInt32(KonkretaIDUsluge), Convert.ToInt32(RB));
+                    // uvaci sve usluge novog Scenarija
+                    // IZdaj naloge
+                }
               
 
 
 
-            }
+
+
+
+                }
+
+            
+
             con.Close();
            
+        }
+
+       
+        private void GenerisiNoveUsluge()
+        {
+            //Uporedi
+            int scenarioNoviBroj = 0;
+
+
+        
         }
     }
 }

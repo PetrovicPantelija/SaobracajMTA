@@ -531,7 +531,7 @@ namespace Saobracaj.Uvoz
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
 
-            RefreshDataGridColor();
+            //RefreshDataGridColor();
 
         }
         private void FillCombo()
@@ -1179,7 +1179,10 @@ namespace Saobracaj.Uvoz
             int PotvrdioKlijent = 0;
             int UradilaCarina = 0;
 
-
+            if (txtID.Text == "")
+                return;
+            
+            
             if (chkDobijenBZ.Checked == true)
             { tDobijenBZ = 1; };
             if (chkPrioritet.Checked == true)
@@ -1299,7 +1302,7 @@ namespace Saobracaj.Uvoz
                  TFDobijenNalog, TFDobijenNalogodavac1, Convert.ToDateTime(dtpDobijenNalogodavac1.Value), TFDobijenNalogodavac2, Convert.ToDateTime(dtpDobijenNalogodavac2.Value),
                 TFDobijenNalogodavac3, Convert.ToDateTime(dtpDobijenNalogodavac3.Value), TFFCL, TFLCL, Convert.ToDateTime(dtpPotvrdioKlijent.Value), Convert.ToDateTime(dtpSlobodanDaNapusti.Value), drumska);
             FillGV();
-            RefreshDataGridColor();
+            //RefreshDataGridColor();
         }
 
         int ProveriBiloIzmena(string UvozID)
@@ -4177,7 +4180,7 @@ namespace Saobracaj.Uvoz
 
                 }
                 VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
-                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+              //  VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 FillComboScenario();
                 RefreshScenario();
                 FillDG2();
@@ -4449,6 +4452,41 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column2 = dataGridView10.Columns[1];
             dataGridView10.Columns[1].HeaderText = "Naziv";
             dataGridView10.Columns[1].Width = 250;
+
+
+
+        }
+
+
+        private void FillDG11Scenario()
+        {
+
+            var select = " SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+ " VrstaManipulacije.[JM] " +
+" ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+" ,VrstaManipulacije.[Cena] ,Scenario.Pokret,Scenario.StatusKontejnera,KontejnerStatus.Naziv, Scenario.Forma, " +
+" VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+" inner join Scenario on Scenario.Usluga = VrstaManipulacije.ID " +
+" inner join kontejnerStatus on KontejnerStatus.ID = Scenario.statusKOntejnera " +
+"  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Scenario.ID = " + Convert.ToInt32(cboScenario.SelectedValue) + " order by Scenario.RB asc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView11.ReadOnly = false;
+            dataGridView11.DataSource = ds.Tables[0];
+
+
+            // PodesiDatagridView(dataGridView6);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView11.Columns[0];
+            dataGridView11.Columns[0].HeaderText = "ID";
+            dataGridView11.Columns[0].Width = 70;
+
+            DataGridViewColumn column2 = dataGridView11.Columns[1];
+            dataGridView11.Columns[1].HeaderText = "Naziv";
+            dataGridView11.Columns[1].Width = 250;
 
 
 
@@ -5076,6 +5114,7 @@ namespace Saobracaj.Uvoz
             SqlConnection con = new SqlConnection(s_connection);
             int statusobrade = 0;
             int IStiSu = 0;
+            FillDG11Scenario();
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select DISTINCT UvozKonacna.Scenario, Scenario.RB, Scenario.Usluga, RadniNalogInterni.ID as RNID, Uradjen, BrojRN, IDManipulacijaJed, KonkretaIDUsluge from UvozKonacna inner join Scenario on Scenario.ID = UvozKonacna.Scenario inner join RadniNalogInterni on RadniNalogInterni.BrojOsnov = UvozKonacna.ID and Scenario.Usluga = IDManipulacijaJed " +
@@ -5136,15 +5175,81 @@ namespace Saobracaj.Uvoz
                 }
 
 
-
+                
 
 
 
             }
+            GenerisiNoveUsluge();
+            int IzabraniScenario = Convert.ToInt32(cboScenario.SelectedValue);
+            InsertScenario isc = new InsertScenario();
+            isc.UpdScenarioKontejnera(Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(txtID.Text), 1, 1);
+            FillComboScenario();
+            cboScenario.SelectedValue = IzabraniScenario;
+            //RefreshScenario();
             con.Close();
 
         }
+        int ProveriVecUneta(int IDVrstaManipilacije, int IDKontejnera)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            Komanda = "select count(*) as Broj from UvozKonacnaVrstaManipulacije where IDVrstaManipulacije = " + IDVrstaManipilacije + " and IDNadredjena =  " + IDKontejnera;
+
+
+            SqlCommand cmd = new SqlCommand(Komanda , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        private void GenerisiNoveUsluge()
+        {
+            //Uporedi
+            int scenarioNoviBroj = 0;
+            int Postoji = 0;
+            int pomID = 0;
+       
+            double pomCena = 0;
+            double pomkolicina = 1;
+            int pomPlatilac = 0;
+            string pomPokret = "";
+            int pomStatusKontejnera = 0;
+            string pomForma = "";
+            int pomOrgJed = 0;
+            foreach (DataGridViewRow row in dataGridView11.Rows)
+            {
+                //Proveri da li postoji
+                int pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
+
+                Postoji = ProveriVecUneta(pomManupulacija, Convert.ToInt32(txtID.Text));
+                if (Postoji == 0)
+                {
+                    pomPokret = row.Cells[7].Value.ToString();
+                    pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                    pomForma = row.Cells[10].Value.ToString();
+                    pomOrgJed = VratiOrgJed(pomManupulacija);
+                    UbaciStavkuUsluge(Convert.ToInt32(txtID.Text), pomManupulacija, pomCena, 1, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                }
+                }
+                //Ako ne onda dodaj
+
+            }
     }
-  }
+}
+
 
 
