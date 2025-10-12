@@ -809,8 +809,8 @@ namespace Saobracaj.Drumski
                 return;
             }
             int id = Convert.ToInt32(idObj); // ili Convert.ToInt32(txtID.Text);
-            //frmIzvestajNalogZaPrevoz f = new frmIzvestajNalogZaPrevoz(id);
-          //  f.ShowDialog(); 
+            frmIzvestajNalogZaPrevoz f = new frmIzvestajNalogZaPrevoz(id);
+            f.ShowDialog();
         }
     
     }

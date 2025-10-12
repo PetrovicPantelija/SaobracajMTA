@@ -1463,7 +1463,7 @@ IIf(IsNothing(First(Fields!OdredisnaSpedicijaKontakt.Value, "DataSet1")) Or Firs
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(First(Fields!datumUtovara.Value, "DataSet1"), "dd.MM.yyyy")</Value>
+                                  <Value>=First(Fields!datumUtovara.Value, "DataSet1")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1597,7 +1597,7 @@ IIf(IsNothing(First(Fields!OdredisnaSpedicijaKontakt.Value, "DataSet1")) Or Firs
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(First(Fields!datumIstovara.Value, "DataSet1"), "dd.MM.yyyy.")</Value>
+                                  <Value>=First(Fields!datumIstovara.Value, "DataSet1")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1617,7 +1617,6 @@ IIf(IsNothing(First(Fields!OdredisnaSpedicijaKontakt.Value, "DataSet1")) Or Firs
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1819,6 +1818,7 @@ IIf(IsNothing(First(Fields!OdredisnaSpedicijaKontakt.Value, "DataSet1")) Or Firs
                           </Style>
                         </Textbox>
                         <ColSpan>7</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

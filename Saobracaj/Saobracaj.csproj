@@ -1574,6 +1574,12 @@
     <Compile Include="Drumski\frmFaktureDetalji.Designer.cs">
       <DependentUpon>frmFaktureDetalji.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmIzvestajNalogZaPrevoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmIzvestajNalogZaPrevoz.Designer.cs">
+      <DependentUpon>frmIzvestajNalogZaPrevoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmKursnaLista.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4617,6 +4623,9 @@
     <EmbeddedResource Include="Drumski\frmFaktureDetalji.resx">
       <DependentUpon>frmFaktureDetalji.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmIzvestajNalogZaPrevoz.resx">
+      <DependentUpon>frmIzvestajNalogZaPrevoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmKursnaLista.resx">
       <DependentUpon>frmKursnaLista.cs</DependentUpon>
     </EmbeddedResource>
@@ -4660,6 +4669,7 @@
     <EmbeddedResource Include="Drumski\MestaUtovaraDrumski.resx">
       <DependentUpon>MestaUtovaraDrumski.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="EDokumenta\EAvansni.resx">
       <DependentUpon>EAvansni.cs</DependentUpon>
     </EmbeddedResource>
@@ -5104,6 +5114,7 @@
     <EmbeddedResource Include="ReportingOperatika\PoLokomotivama.resx">
       <DependentUpon>PoLokomotivama.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="Servis\frmEvidencijaKvarova.resx">
       <DependentUpon>frmEvidencijaKvarova.cs</DependentUpon>
     </EmbeddedResource>
