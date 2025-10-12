@@ -91,6 +91,8 @@ namespace Saobracaj.Uvoz
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtPostoji = new System.Windows.Forms.TextBox();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -555,6 +557,7 @@ namespace Saobracaj.Uvoz
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(86, 20);
             this.txtNalogID.TabIndex = 260;
+            this.txtNalogID.TextChanged += new System.EventHandler(this.txtNalogID_TextChanged);
             // 
             // label4
             // 
@@ -840,12 +843,34 @@ namespace Saobracaj.Uvoz
             this.txtPostoji.TabIndex = 514;
             this.txtPostoji.Visible = false;
             // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(101, 293);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(231, 20);
+            this.txtBrojKontejnera.TabIndex = 515;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(98, 277);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 13);
+            this.label7.TabIndex = 516;
+            this.label7.Text = "Broj kontejnera:";
+            // 
             // frmPrijemVozaIzPlana
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1145, 448);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.txtPostoji);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelHeader);
@@ -966,5 +991,7 @@ namespace Saobracaj.Uvoz
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtPostoji;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
     }
 }

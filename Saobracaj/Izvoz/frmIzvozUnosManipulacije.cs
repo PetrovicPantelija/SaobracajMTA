@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using Microsoft.Office.Interop.Excel;
 using Saobracaj.Sifarnici;
 using Saobracaj.Uvoz;
@@ -1743,7 +1744,10 @@ namespace Saobracaj.Izvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
 
-         //Ovde mora da se ukluci Pun Prazan
+        
+          
+           
+            //Ovde mora da se ukluci Pun Prazan
             if (terminal == 1)
             {
                 var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID = 15 group by ID order by ID";
@@ -1764,7 +1768,7 @@ namespace Saobracaj.Izvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (scenariogl == 1 && PunPrazan > 0 && adr == 1)
+            else if (scenariogl == 1 && PunPrazan > 0 && adr >= 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (23,24,25) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -1775,10 +1779,9 @@ namespace Saobracaj.Izvoz
                 cboScenario.ValueMember = "ID";
                 //leget,leget,drugi terminal
             }
-
-            else if (scenariogl== 2 && adr == 0)
-            {
-                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (11,12,13,14,29) group by ID order by ID";
+            else if (scenariogl == 2 && adr == 0 && PunPrazan == 0)
+            {//13
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (12,29) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);
@@ -1786,7 +1789,18 @@ namespace Saobracaj.Izvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (scenariogl == 2 && adr == 1)
+
+            else if (scenariogl== 2 && adr == 0 && PunPrazan > 1)
+            {//13
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (13) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (scenariogl == 2 && adr >= 1 && PunPrazan == 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (25,26) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -1796,9 +1810,20 @@ namespace Saobracaj.Izvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
+            else if (scenariogl == 3 && adr == 0 && PunPrazan == 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (14) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
 
 
-           
+
+
 
 
         }

@@ -129,13 +129,13 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.Refresh();
             var select = "";
             select = "Select RNOtpremaPlatforme.ID, RNOtpremaPlatforme.BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv, NalogIZdao, SaSkladista, Skladista.Naziv,Kamion, " +
-                " NalogID, OtpremaID from RNOtpremaPlatforme " +
+                " NalogID, OtpremaID, 'Komercijala' from RNOtpremaPlatforme " +
 " inner join Skladista on Skladista.ID = SaSkladista " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera" +
 " where Zavrsen is null or Zavrsen = 0" +
 " union " +
   " Select RNOtpremaPlatforme2.ID, RNOtpremaPlatforme2.BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv, NalogIZdao, SaSkladista, Skladista.Naziv,Kamion, " +
-                " NalogID,  OtpremaID from RNOtpremaPlatforme2 " +
+                " NalogID,  OtpremaID, Terminal from RNOtpremaPlatforme2 " +
 " inner join Skladista on Skladista.ID = SaSkladista " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera" +
 " where Zavrsen is null or Zavrsen = 0";

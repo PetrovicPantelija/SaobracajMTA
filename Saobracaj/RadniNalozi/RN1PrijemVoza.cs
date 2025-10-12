@@ -611,7 +611,7 @@ namespace Saobracaj.RadniNalozi
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
-                cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
+               // cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
                 txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
                 txtNalogRealizovaoVP.Text = dr["NalogRealizovaoVP"].ToString();
                 txtNapomenaPlombe.Text = dr["NapomenaPlombe1"].ToString();

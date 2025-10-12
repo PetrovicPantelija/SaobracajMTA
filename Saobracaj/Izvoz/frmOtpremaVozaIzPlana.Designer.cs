@@ -72,6 +72,8 @@ namespace Saobracaj.Izvoz
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -216,6 +218,7 @@ namespace Saobracaj.Izvoz
             this.txtNalogID.Size = new System.Drawing.Size(86, 20);
             this.txtNalogID.TabIndex = 267;
             this.txtNalogID.Visible = false;
+            this.txtNalogID.TextChanged += new System.EventHandler(this.txtNalogID_TextChanged);
             // 
             // checkBox2
             // 
@@ -488,7 +491,7 @@ namespace Saobracaj.Izvoz
             this.panel7.Controls.Add(this.button24);
             this.panel7.Location = new System.Drawing.Point(84, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(105, 31);
+            this.panel7.Size = new System.Drawing.Size(224, 31);
             this.panel7.TabIndex = 6;
             // 
             // button24
@@ -505,7 +508,7 @@ namespace Saobracaj.Izvoz
             this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button24.Location = new System.Drawing.Point(0, 0);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(71, 31);
+            this.button24.Size = new System.Drawing.Size(55, 31);
             this.button24.TabIndex = 17;
             this.button24.Text = "Otvori";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -566,12 +569,36 @@ namespace Saobracaj.Izvoz
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(604, 216);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(231, 20);
+            this.txtBrojKontejnera.TabIndex = 514;
+            this.txtBrojKontejnera.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(601, 200);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 515;
+            this.label7.Text = "Broj kontejnera";
+            this.label7.Visible = false;
+            // 
             // frmOtpremaVozaIzPlana
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1072, 641);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNapomena);
             this.Controls.Add(this.txtNalogID);
@@ -662,5 +689,7 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
     }
 }

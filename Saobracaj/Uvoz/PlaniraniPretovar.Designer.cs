@@ -61,78 +61,78 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
-            this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
-            this.dataGridView7 = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.sparkLine1 = new Syncfusion.Windows.Forms.Chart.SparkLine();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button28 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.cboSaPoz = new System.Windows.Forms.ComboBox();
-            this.cboSaSklad = new System.Windows.Forms.ComboBox();
-            this.txtSAPozicijeskladista = new System.Windows.Forms.Label();
-            this.txtSASkladista = new System.Windows.Forms.Label();
-            this.chkIzvoz = new System.Windows.Forms.CheckBox();
-            this.chkPlatforma = new System.Windows.Forms.CheckBox();
-            this.chkUvoz = new System.Windows.Forms.CheckBox();
-            this.chkCirada = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.txtPlanUtovara = new System.Windows.Forms.TextBox();
-            this.txtOsnov = new System.Windows.Forms.TextBox();
-            this.txtReg = new System.Windows.Forms.TextBox();
-            this.txtKontejner = new System.Windows.Forms.TextBox();
-            this.txtVozac = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtNapomena = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtReg = new System.Windows.Forms.TextBox();
+            this.txtPlanUtovara = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtOsnov = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtKontejner = new System.Windows.Forms.TextBox();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.txtVozac = new System.Windows.Forms.TextBox();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
+            this.cboSaPoz = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkPlatforma = new System.Windows.Forms.CheckBox();
+            this.cboSaSklad = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkIzvoz = new System.Windows.Forms.CheckBox();
+            this.txtSAPozicijeskladista = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSASkladista = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.sparkLine1 = new Syncfusion.Windows.Forms.Chart.SparkLine();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.tabSplitterContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.tabSplitterPage1.SuspendLayout();
-            this.tabSplitterPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabSplitterPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -390,40 +390,6 @@
             this.tabSplitterContainer1.TabIndex = 488;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
-            // gridGroupingControl1
-            // 
-            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridGroupingControl1.ApplyVisualStyles = false;
-            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(3, 3);
-            this.gridGroupingControl1.Name = "gridGroupingControl1";
-            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
-            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
-            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
-            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1529, 347);
-            this.gridGroupingControl1.TabIndex = 489;
-            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
-            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Text = "gridGroupingControl1";
-            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
-            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
-            // 
             // tabSplitterPage1
             // 
             this.tabSplitterPage1.AutoScroll = true;
@@ -435,16 +401,589 @@
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "Zaglavlje";
             // 
-            // tabSplitterPage2
+            // flowLayoutPanel1
             // 
-            this.tabSplitterPage2.AutoScroll = true;
-            this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
-            this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 307);
-            this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1535, 353);
-            this.tabSplitterPage2.TabIndex = 2;
-            this.tabSplitterPage2.Text = "Tabela";
+            this.flowLayoutPanel1.Controls.Add(this.panel4);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Controls.Add(this.panel3);
+            this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.panel5);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1535, 287);
+            this.flowLayoutPanel1.TabIndex = 492;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.txtReg);
+            this.panel4.Controls.Add(this.txtPlanUtovara);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.txtOsnov);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.txtID);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.txtKontejner);
+            this.panel4.Controls.Add(this.txtNapomena);
+            this.panel4.Controls.Add(this.chkCirada);
+            this.panel4.Controls.Add(this.txtVozac);
+            this.panel4.Controls.Add(this.chkUvoz);
+            this.panel4.Controls.Add(this.cboSaPoz);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.chkPlatforma);
+            this.panel4.Controls.Add(this.cboSaSklad);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.chkIzvoz);
+            this.panel4.Controls.Add(this.txtSAPozicijeskladista);
+            this.panel4.Controls.Add(this.dateTimePicker1);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.txtSASkladista);
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(529, 246);
+            this.panel4.TabIndex = 0;
+            // 
+            // txtReg
+            // 
+            this.txtReg.Location = new System.Drawing.Point(300, 29);
+            this.txtReg.Name = "txtReg";
+            this.txtReg.Size = new System.Drawing.Size(217, 20);
+            this.txtReg.TabIndex = 480;
+            // 
+            // txtPlanUtovara
+            // 
+            this.txtPlanUtovara.Location = new System.Drawing.Point(116, 28);
+            this.txtPlanUtovara.Name = "txtPlanUtovara";
+            this.txtPlanUtovara.Size = new System.Drawing.Size(86, 20);
+            this.txtPlanUtovara.TabIndex = 482;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(113, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 16);
+            this.label3.TabIndex = 485;
+            this.label3.Text = "Plan utovara";
+            // 
+            // txtOsnov
+            // 
+            this.txtOsnov.Location = new System.Drawing.Point(208, 29);
+            this.txtOsnov.Name = "txtOsnov";
+            this.txtOsnov.Size = new System.Drawing.Size(86, 20);
+            this.txtOsnov.TabIndex = 481;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 16);
+            this.label1.TabIndex = 474;
+            this.label1.Text = "ID:";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(16, 28);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(86, 20);
+            this.txtID.TabIndex = 483;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(208, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 16);
+            this.label8.TabIndex = 476;
+            this.label8.Text = "Osnov:";
+            // 
+            // txtKontejner
+            // 
+            this.txtKontejner.Location = new System.Drawing.Point(16, 80);
+            this.txtKontejner.Name = "txtKontejner";
+            this.txtKontejner.Size = new System.Drawing.Size(231, 20);
+            this.txtKontejner.TabIndex = 477;
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Location = new System.Drawing.Point(16, 132);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(231, 39);
+            this.txtNapomena.TabIndex = 478;
+            // 
+            // chkCirada
+            // 
+            this.chkCirada.AutoSize = true;
+            this.chkCirada.BackColor = System.Drawing.Color.Transparent;
+            this.chkCirada.Checked = true;
+            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCirada.ForeColor = System.Drawing.Color.Black;
+            this.chkCirada.Location = new System.Drawing.Point(381, 178);
+            this.chkCirada.Name = "chkCirada";
+            this.chkCirada.Size = new System.Drawing.Size(56, 17);
+            this.chkCirada.TabIndex = 488;
+            this.chkCirada.Text = "Cirada";
+            this.chkCirada.UseVisualStyleBackColor = false;
+            // 
+            // txtVozac
+            // 
+            this.txtVozac.Location = new System.Drawing.Point(300, 80);
+            this.txtVozac.Name = "txtVozac";
+            this.txtVozac.Size = new System.Drawing.Size(217, 20);
+            this.txtVozac.TabIndex = 479;
+            // 
+            // chkUvoz
+            // 
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.BackColor = System.Drawing.Color.Transparent;
+            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkUvoz.Location = new System.Drawing.Point(466, 178);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkUvoz.TabIndex = 487;
+            this.chkUvoz.Text = "Uvoz";
+            this.chkUvoz.UseVisualStyleBackColor = false;
+            // 
+            // cboSaPoz
+            // 
+            this.cboSaPoz.FormattingEnabled = true;
+            this.cboSaPoz.ItemHeight = 13;
+            this.cboSaPoz.Location = new System.Drawing.Point(265, 201);
+            this.cboSaPoz.Margin = new System.Windows.Forms.Padding(2);
+            this.cboSaPoz.Name = "cboSaPoz";
+            this.cboSaPoz.Size = new System.Drawing.Size(98, 21);
+            this.cboSaPoz.TabIndex = 461;
+            this.cboSaPoz.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(297, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.TabIndex = 475;
+            this.label5.Text = "Vozač:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(14, 113);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 16);
+            this.label7.TabIndex = 471;
+            this.label7.Text = "Napomena:";
+            // 
+            // chkPlatforma
+            // 
+            this.chkPlatforma.AutoSize = true;
+            this.chkPlatforma.BackColor = System.Drawing.Color.Transparent;
+            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
+            this.chkPlatforma.Location = new System.Drawing.Point(381, 201);
+            this.chkPlatforma.Name = "chkPlatforma";
+            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
+            this.chkPlatforma.TabIndex = 489;
+            this.chkPlatforma.Text = "Platforma";
+            this.chkPlatforma.UseVisualStyleBackColor = false;
+            // 
+            // cboSaSklad
+            // 
+            this.cboSaSklad.FormattingEnabled = true;
+            this.cboSaSklad.ItemHeight = 13;
+            this.cboSaSklad.Location = new System.Drawing.Point(16, 201);
+            this.cboSaSklad.Margin = new System.Windows.Forms.Padding(2);
+            this.cboSaSklad.Name = "cboSaSklad";
+            this.cboSaSklad.Size = new System.Drawing.Size(231, 21);
+            this.cboSaSklad.TabIndex = 460;
+            this.cboSaSklad.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(14, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 16);
+            this.label2.TabIndex = 484;
+            this.label2.Text = "Kont:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(297, 113);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 16);
+            this.label6.TabIndex = 472;
+            this.label6.Text = "ETA:";
+            // 
+            // chkIzvoz
+            // 
+            this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.BackColor = System.Drawing.Color.Transparent;
+            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkIzvoz.Location = new System.Drawing.Point(466, 201);
+            this.chkIzvoz.Name = "chkIzvoz";
+            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkIzvoz.TabIndex = 490;
+            this.chkIzvoz.Text = "Izvoz";
+            this.chkIzvoz.UseVisualStyleBackColor = false;
+            // 
+            // txtSAPozicijeskladista
+            // 
+            this.txtSAPozicijeskladista.AutoSize = true;
+            this.txtSAPozicijeskladista.ForeColor = System.Drawing.Color.Black;
+            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(262, 186);
+            this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
+            this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
+            this.txtSAPozicijeskladista.TabIndex = 459;
+            this.txtSAPozicijeskladista.Text = "Na Poziciju skladista";
+            this.txtSAPozicijeskladista.Visible = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(300, 135);
+            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
+            this.dateTimePicker1.TabIndex = 486;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(297, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 16);
+            this.label4.TabIndex = 473;
+            this.label4.Text = "Reg. Broj:";
+            // 
+            // txtSASkladista
+            // 
+            this.txtSASkladista.AutoSize = true;
+            this.txtSASkladista.ForeColor = System.Drawing.Color.Black;
+            this.txtSASkladista.Location = new System.Drawing.Point(14, 183);
+            this.txtSASkladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txtSASkladista.Name = "txtSASkladista";
+            this.txtSASkladista.Size = new System.Drawing.Size(30, 13);
+            this.txtSASkladista.TabIndex = 458;
+            this.txtSASkladista.Text = "Polje";
+            this.txtSASkladista.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.sparkLine1);
+            this.panel2.Controls.Add(this.button21);
+            this.panel2.Controls.Add(this.button20);
+            this.panel2.Controls.Add(this.button14);
+            this.panel2.Controls.Add(this.button13);
+            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.button11);
+            this.panel2.Controls.Add(this.button10);
+            this.panel2.Location = new System.Drawing.Point(538, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(222, 207);
+            this.panel2.TabIndex = 477;
+            // 
+            // sparkLine1
+            // 
+            this.sparkLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.sparkLine1.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.White);
+            this.sparkLine1.EndPoint = 10D;
+            this.sparkLine1.HighPoint = 90D;
+            this.sparkLine1.Location = new System.Drawing.Point(193, 46);
+            this.sparkLine1.LowPoint = 10D;
+            this.sparkLine1.Name = "sparkLine1";
+            this.sparkLine1.NegativeItem = new double[] {
+        0D,
+        0D,
+        0D,
+        0D,
+        0D};
+            this.sparkLine1.Size = new System.Drawing.Size(10, 111);
+            this.sparkLine1.Source = new double[] {
+        20D,
+        90D,
+        30D,
+        60D,
+        10D};
+            this.sparkLine1.StartPoint = 20D;
+            this.sparkLine1.TabIndex = 481;
+            this.sparkLine1.Text = "sparkLine1";
+            this.sparkLine1.Type = Syncfusion.Windows.Forms.Chart.SparkLineType.Line;
+            // 
+            // button21
+            // 
+            this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
+            this.button21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button21.Location = new System.Drawing.Point(193, 164);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(25, 34);
+            this.button21.TabIndex = 480;
+            this.button21.Text = "Z";
+            this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
+            this.button20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button20.Location = new System.Drawing.Point(193, 4);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(25, 36);
+            this.button20.TabIndex = 479;
+            this.button20.Text = "Z";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.button14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button14.Location = new System.Drawing.Point(12, 164);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(175, 34);
+            this.button14.TabIndex = 466;
+            this.button14.Text = "KALMARISTA PREMESTAJ KONTEJNERA / CIR";
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button13.Location = new System.Drawing.Point(12, 125);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(175, 34);
+            this.button13.TabIndex = 465;
+            this.button13.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button12.Location = new System.Drawing.Point(12, 90);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(175, 34);
+            this.button12.TabIndex = 464;
+            this.button12.Text = "OTPREMA UTOVAR CIRADA";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button11.Location = new System.Drawing.Point(12, 46);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(175, 43);
+            this.button11.TabIndex = 463;
+            this.button11.Text = "PRETOVAR ROBE - PRIJEM / SKLADISTENJE";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(162)))), ((int)(((byte)(213)))));
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button10.Location = new System.Drawing.Point(12, 3);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(175, 42);
+            this.button10.TabIndex = 14;
+            this.button10.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button23);
+            this.panel3.Controls.Add(this.button22);
+            this.panel3.Controls.Add(this.button16);
+            this.panel3.Controls.Add(this.button15);
+            this.panel3.Controls.Add(this.button17);
+            this.panel3.Controls.Add(this.button18);
+            this.panel3.Controls.Add(this.button19);
+            this.panel3.Location = new System.Drawing.Point(766, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(224, 208);
+            this.panel3.TabIndex = 478;
+            // 
+            // button23
+            // 
+            this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
+            this.button23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button23.Location = new System.Drawing.Point(194, 164);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(22, 34);
+            this.button23.TabIndex = 481;
+            this.button23.Text = "Z";
+            this.button23.UseVisualStyleBackColor = false;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // button22
+            // 
+            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
+            this.button22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button22.Location = new System.Drawing.Point(194, 5);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(22, 32);
+            this.button22.TabIndex = 480;
+            this.button22.Text = "Z";
+            this.button22.UseVisualStyleBackColor = false;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button16.Location = new System.Drawing.Point(12, 88);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(176, 38);
+            this.button16.TabIndex = 467;
+            this.button16.Text = "PRIJEM ROBE - ISTOVAR ROBE";
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.button15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button15.Location = new System.Drawing.Point(12, 164);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(176, 34);
+            this.button15.TabIndex = 466;
+            this.button15.Text = "KALMARISTA PREMESTAJ KONTEJNERA";
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button17
+            // 
+            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button17.Location = new System.Drawing.Point(12, 127);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(176, 34);
+            this.button17.TabIndex = 464;
+            this.button17.Text = "OTPREMA / UTOVAR U KONTEJNER";
+            this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button18.Location = new System.Drawing.Point(12, 46);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(176, 38);
+            this.button18.TabIndex = 463;
+            this.button18.Text = "DOLAZAK KAMION CIRADA";
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button19
+            // 
+            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(162)))), ((int)(((byte)(213)))));
+            this.button19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button19.Location = new System.Drawing.Point(12, 3);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(176, 37);
+            this.button19.TabIndex = 14;
+            this.button19.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
+            this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button24);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.button25);
+            this.panel1.Controls.Add(this.button28);
+            this.panel1.Location = new System.Drawing.Point(996, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(193, 208);
+            this.panel1.TabIndex = 482;
+            // 
+            // button24
+            // 
+            this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button24.Location = new System.Drawing.Point(12, 135);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(176, 34);
+            this.button24.TabIndex = 469;
+            this.button24.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
+            this.button24.UseVisualStyleBackColor = false;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button5.Location = new System.Drawing.Point(12, 93);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(176, 34);
+            this.button5.TabIndex = 468;
+            this.button5.Text = "OTPREMA UTOVAR CIRADA";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button25
+            // 
+            this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button25.Location = new System.Drawing.Point(12, 49);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(176, 38);
+            this.button25.TabIndex = 467;
+            this.button25.Text = "PRIJEM ROBE - ISTOVAR ROBE";
+            this.button25.UseVisualStyleBackColor = false;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button28
+            // 
+            this.button28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
+            this.button28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button28.Location = new System.Drawing.Point(12, 8);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(176, 38);
+            this.button28.TabIndex = 463;
+            this.button28.Text = "DOLAZAK KAMION CIRADA";
+            this.button28.UseVisualStyleBackColor = false;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.dataGridView7);
+            this.panel5.Controls.Add(this.tableLayoutPanel1);
+            this.panel5.Location = new System.Drawing.Point(1195, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(291, 246);
+            this.panel5.TabIndex = 483;
             // 
             // dataGridView7
             // 
@@ -485,288 +1024,19 @@
             this.dataGridView7.Size = new System.Drawing.Size(275, 97);
             this.dataGridView7.TabIndex = 479;
             // 
-            // panel3
+            // tableLayoutPanel1
             // 
-            this.panel3.Controls.Add(this.button23);
-            this.panel3.Controls.Add(this.button22);
-            this.panel3.Controls.Add(this.button16);
-            this.panel3.Controls.Add(this.button15);
-            this.panel3.Controls.Add(this.button17);
-            this.panel3.Controls.Add(this.button18);
-            this.panel3.Controls.Add(this.button19);
-            this.panel3.Location = new System.Drawing.Point(766, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(224, 208);
-            this.panel3.TabIndex = 478;
-            // 
-            // button19
-            // 
-            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(162)))), ((int)(((byte)(213)))));
-            this.button19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button19.Location = new System.Drawing.Point(12, 3);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(176, 37);
-            this.button19.TabIndex = 14;
-            this.button19.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
-            this.button19.UseVisualStyleBackColor = false;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // button18
-            // 
-            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button18.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button18.Location = new System.Drawing.Point(12, 46);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(176, 38);
-            this.button18.TabIndex = 463;
-            this.button18.Text = "DOLAZAK KAMION CIRADA";
-            this.button18.UseVisualStyleBackColor = false;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // button17
-            // 
-            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button17.Location = new System.Drawing.Point(12, 127);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(176, 34);
-            this.button17.TabIndex = 464;
-            this.button17.Text = "OTPREMA / UTOVAR U KONTEJNER";
-            this.button17.UseVisualStyleBackColor = false;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button15
-            // 
-            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.button15.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button15.Location = new System.Drawing.Point(12, 164);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(176, 34);
-            this.button15.TabIndex = 466;
-            this.button15.Text = "KALMARISTA PREMESTAJ KONTEJNERA";
-            this.button15.UseVisualStyleBackColor = false;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button16.Location = new System.Drawing.Point(12, 88);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(176, 38);
-            this.button16.TabIndex = 467;
-            this.button16.Text = "PRIJEM ROBE - ISTOVAR ROBE";
-            this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button22
-            // 
-            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.button22.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button22.Location = new System.Drawing.Point(194, 5);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(22, 32);
-            this.button22.TabIndex = 480;
-            this.button22.Text = "Z";
-            this.button22.UseVisualStyleBackColor = false;
-            this.button22.Click += new System.EventHandler(this.button22_Click);
-            // 
-            // button23
-            // 
-            this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.button23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button23.Location = new System.Drawing.Point(194, 164);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(22, 34);
-            this.button23.TabIndex = 481;
-            this.button23.Text = "Z";
-            this.button23.UseVisualStyleBackColor = false;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.sparkLine1);
-            this.panel2.Controls.Add(this.button21);
-            this.panel2.Controls.Add(this.button20);
-            this.panel2.Controls.Add(this.button14);
-            this.panel2.Controls.Add(this.button13);
-            this.panel2.Controls.Add(this.button12);
-            this.panel2.Controls.Add(this.button11);
-            this.panel2.Controls.Add(this.button10);
-            this.panel2.Location = new System.Drawing.Point(538, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(222, 207);
-            this.panel2.TabIndex = 477;
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(162)))), ((int)(((byte)(213)))));
-            this.button10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button10.Location = new System.Drawing.Point(12, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(175, 42);
-            this.button10.TabIndex = 14;
-            this.button10.Text = "PLANIRANI PRETOVAR - POSTAVKA KONTEJNERA";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button11.Location = new System.Drawing.Point(12, 46);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(175, 43);
-            this.button11.TabIndex = 463;
-            this.button11.Text = "PRETOVAR ROBE - PRIJEM / SKLADISTENJE";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button12.Location = new System.Drawing.Point(12, 90);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(175, 34);
-            this.button12.TabIndex = 464;
-            this.button12.Text = "OTPREMA UTOVAR CIRADA";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button13.Location = new System.Drawing.Point(12, 125);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(175, 34);
-            this.button13.TabIndex = 465;
-            this.button13.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.button14.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button14.Location = new System.Drawing.Point(12, 164);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(175, 34);
-            this.button14.TabIndex = 466;
-            this.button14.Text = "KALMARISTA PREMESTAJ KONTEJNERA / CIR";
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button20
-            // 
-            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.button20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button20.Location = new System.Drawing.Point(193, 4);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(25, 36);
-            this.button20.TabIndex = 479;
-            this.button20.Text = "Z";
-            this.button20.UseVisualStyleBackColor = false;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
-            // 
-            // button21
-            // 
-            this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.button21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button21.Location = new System.Drawing.Point(193, 164);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(25, 34);
-            this.button21.TabIndex = 480;
-            this.button21.Text = "Z";
-            this.button21.UseVisualStyleBackColor = false;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // sparkLine1
-            // 
-            this.sparkLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.sparkLine1.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.White);
-            this.sparkLine1.EndPoint = 10D;
-            this.sparkLine1.HighPoint = 90D;
-            this.sparkLine1.Location = new System.Drawing.Point(193, 46);
-            this.sparkLine1.LowPoint = 10D;
-            this.sparkLine1.Name = "sparkLine1";
-            this.sparkLine1.NegativeItem = new double[] {
-        0D,
-        0D,
-        0D,
-        0D,
-        0D};
-            this.sparkLine1.Size = new System.Drawing.Size(10, 111);
-            this.sparkLine1.Source = new double[] {
-        20D,
-        90D,
-        30D,
-        60D,
-        10D};
-            this.sparkLine1.StartPoint = 20D;
-            this.sparkLine1.TabIndex = 481;
-            this.sparkLine1.Text = "sparkLine1";
-            this.sparkLine1.Type = Syncfusion.Windows.Forms.Chart.SparkLineType.Line;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button24);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button25);
-            this.panel1.Controls.Add(this.button28);
-            this.panel1.Location = new System.Drawing.Point(996, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(193, 208);
-            this.panel1.TabIndex = 482;
-            // 
-            // button28
-            // 
-            this.button28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button28.Location = new System.Drawing.Point(12, 8);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(176, 38);
-            this.button28.TabIndex = 463;
-            this.button28.Text = "DOLAZAK KAMION CIRADA";
-            this.button28.UseVisualStyleBackColor = false;
-            this.button28.Click += new System.EventHandler(this.button28_Click);
-            // 
-            // button25
-            // 
-            this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button25.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button25.Location = new System.Drawing.Point(12, 49);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(176, 38);
-            this.button25.TabIndex = 467;
-            this.button25.Text = "PRIJEM ROBE - ISTOVAR ROBE";
-            this.button25.UseVisualStyleBackColor = false;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button5.Location = new System.Drawing.Point(12, 93);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(176, 34);
-            this.button5.TabIndex = 468;
-            this.button5.Text = "OTPREMA UTOVAR CIRADA";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // button24
-            // 
-            this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(210)))), ((int)(((byte)(80)))));
-            this.button24.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button24.Location = new System.Drawing.Point(12, 135);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(176, 34);
-            this.button24.TabIndex = 469;
-            this.button24.Text = "ZAVRSEN PRETOVAR UTOVAR CIRADA";
-            this.button24.UseVisualStyleBackColor = false;
-            this.button24.Click += new System.EventHandler(this.button24_Click);
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 104);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(277, 139);
+            this.tableLayoutPanel1.TabIndex = 491;
             // 
             // dataGridView1
             // 
@@ -850,320 +1120,50 @@
             this.dataGridView2.TabIndex = 484;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
-            // cboSaPoz
+            // tabSplitterPage2
             // 
-            this.cboSaPoz.FormattingEnabled = true;
-            this.cboSaPoz.ItemHeight = 13;
-            this.cboSaPoz.Location = new System.Drawing.Point(265, 201);
-            this.cboSaPoz.Margin = new System.Windows.Forms.Padding(2);
-            this.cboSaPoz.Name = "cboSaPoz";
-            this.cboSaPoz.Size = new System.Drawing.Size(98, 21);
-            this.cboSaPoz.TabIndex = 461;
-            this.cboSaPoz.Visible = false;
+            this.tabSplitterPage2.AutoScroll = true;
+            this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
+            this.tabSplitterPage2.Hide = false;
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 307);
+            this.tabSplitterPage2.Name = "tabSplitterPage2";
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1535, 353);
+            this.tabSplitterPage2.TabIndex = 2;
+            this.tabSplitterPage2.Text = "Tabela";
             // 
-            // cboSaSklad
+            // gridGroupingControl1
             // 
-            this.cboSaSklad.FormattingEnabled = true;
-            this.cboSaSklad.ItemHeight = 13;
-            this.cboSaSklad.Location = new System.Drawing.Point(16, 201);
-            this.cboSaSklad.Margin = new System.Windows.Forms.Padding(2);
-            this.cboSaSklad.Name = "cboSaSklad";
-            this.cboSaSklad.Size = new System.Drawing.Size(231, 21);
-            this.cboSaSklad.TabIndex = 460;
-            this.cboSaSklad.Visible = false;
-            // 
-            // txtSAPozicijeskladista
-            // 
-            this.txtSAPozicijeskladista.AutoSize = true;
-            this.txtSAPozicijeskladista.ForeColor = System.Drawing.Color.Black;
-            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(262, 186);
-            this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
-            this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
-            this.txtSAPozicijeskladista.TabIndex = 459;
-            this.txtSAPozicijeskladista.Text = "Na Poziciju skladista";
-            this.txtSAPozicijeskladista.Visible = false;
-            // 
-            // txtSASkladista
-            // 
-            this.txtSASkladista.AutoSize = true;
-            this.txtSASkladista.ForeColor = System.Drawing.Color.Black;
-            this.txtSASkladista.Location = new System.Drawing.Point(14, 183);
-            this.txtSASkladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txtSASkladista.Name = "txtSASkladista";
-            this.txtSASkladista.Size = new System.Drawing.Size(30, 13);
-            this.txtSASkladista.TabIndex = 458;
-            this.txtSASkladista.Text = "Polje";
-            this.txtSASkladista.Visible = false;
-            // 
-            // chkIzvoz
-            // 
-            this.chkIzvoz.AutoSize = true;
-            this.chkIzvoz.BackColor = System.Drawing.Color.Transparent;
-            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkIzvoz.Location = new System.Drawing.Point(466, 201);
-            this.chkIzvoz.Name = "chkIzvoz";
-            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkIzvoz.TabIndex = 490;
-            this.chkIzvoz.Text = "Izvoz";
-            this.chkIzvoz.UseVisualStyleBackColor = false;
-            // 
-            // chkPlatforma
-            // 
-            this.chkPlatforma.AutoSize = true;
-            this.chkPlatforma.BackColor = System.Drawing.Color.Transparent;
-            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
-            this.chkPlatforma.Location = new System.Drawing.Point(381, 201);
-            this.chkPlatforma.Name = "chkPlatforma";
-            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
-            this.chkPlatforma.TabIndex = 489;
-            this.chkPlatforma.Text = "Platforma";
-            this.chkPlatforma.UseVisualStyleBackColor = false;
-            // 
-            // chkUvoz
-            // 
-            this.chkUvoz.AutoSize = true;
-            this.chkUvoz.BackColor = System.Drawing.Color.Transparent;
-            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkUvoz.Location = new System.Drawing.Point(466, 178);
-            this.chkUvoz.Name = "chkUvoz";
-            this.chkUvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkUvoz.TabIndex = 487;
-            this.chkUvoz.Text = "Uvoz";
-            this.chkUvoz.UseVisualStyleBackColor = false;
-            // 
-            // chkCirada
-            // 
-            this.chkCirada.AutoSize = true;
-            this.chkCirada.BackColor = System.Drawing.Color.Transparent;
-            this.chkCirada.Checked = true;
-            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkCirada.ForeColor = System.Drawing.Color.Black;
-            this.chkCirada.Location = new System.Drawing.Point(381, 178);
-            this.chkCirada.Name = "chkCirada";
-            this.chkCirada.Size = new System.Drawing.Size(56, 17);
-            this.chkCirada.TabIndex = 488;
-            this.chkCirada.Text = "Cirada";
-            this.chkCirada.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(13, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 16);
-            this.label1.TabIndex = 474;
-            this.label1.Text = "ID:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(208, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 16);
-            this.label8.TabIndex = 476;
-            this.label8.Text = "Osnov:";
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(16, 28);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(86, 20);
-            this.txtID.TabIndex = 483;
-            // 
-            // txtPlanUtovara
-            // 
-            this.txtPlanUtovara.Location = new System.Drawing.Point(116, 28);
-            this.txtPlanUtovara.Name = "txtPlanUtovara";
-            this.txtPlanUtovara.Size = new System.Drawing.Size(86, 20);
-            this.txtPlanUtovara.TabIndex = 482;
-            // 
-            // txtOsnov
-            // 
-            this.txtOsnov.Location = new System.Drawing.Point(208, 29);
-            this.txtOsnov.Name = "txtOsnov";
-            this.txtOsnov.Size = new System.Drawing.Size(86, 20);
-            this.txtOsnov.TabIndex = 481;
-            // 
-            // txtReg
-            // 
-            this.txtReg.Location = new System.Drawing.Point(300, 29);
-            this.txtReg.Name = "txtReg";
-            this.txtReg.Size = new System.Drawing.Size(217, 20);
-            this.txtReg.TabIndex = 480;
-            // 
-            // txtKontejner
-            // 
-            this.txtKontejner.Location = new System.Drawing.Point(16, 80);
-            this.txtKontejner.Name = "txtKontejner";
-            this.txtKontejner.Size = new System.Drawing.Size(231, 20);
-            this.txtKontejner.TabIndex = 477;
-            // 
-            // txtVozac
-            // 
-            this.txtVozac.Location = new System.Drawing.Point(300, 80);
-            this.txtVozac.Name = "txtVozac";
-            this.txtVozac.Size = new System.Drawing.Size(217, 20);
-            this.txtVozac.TabIndex = 479;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(297, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
-            this.label5.TabIndex = 475;
-            this.label5.Text = "Vozač:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(14, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 16);
-            this.label2.TabIndex = 484;
-            this.label2.Text = "Kont:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(300, 135);
-            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
-            this.dateTimePicker1.TabIndex = 486;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(297, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 16);
-            this.label4.TabIndex = 473;
-            this.label4.Text = "Reg. Broj:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(297, 113);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 16);
-            this.label6.TabIndex = 472;
-            this.label6.Text = "ETA:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(14, 113);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 16);
-            this.label7.TabIndex = 471;
-            this.label7.Text = "Napomena:";
-            // 
-            // txtNapomena
-            // 
-            this.txtNapomena.Location = new System.Drawing.Point(16, 132);
-            this.txtNapomena.Multiline = true;
-            this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(231, 39);
-            this.txtNapomena.TabIndex = 478;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(113, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 16);
-            this.label3.TabIndex = 485;
-            this.label3.Text = "Plan utovara";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 104);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(277, 139);
-            this.tableLayoutPanel1.TabIndex = 491;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.panel4);
-            this.flowLayoutPanel1.Controls.Add(this.panel2);
-            this.flowLayoutPanel1.Controls.Add(this.panel3);
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
-            this.flowLayoutPanel1.Controls.Add(this.panel5);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1535, 287);
-            this.flowLayoutPanel1.TabIndex = 492;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.txtReg);
-            this.panel4.Controls.Add(this.txtPlanUtovara);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.txtOsnov);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtID);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.txtKontejner);
-            this.panel4.Controls.Add(this.txtNapomena);
-            this.panel4.Controls.Add(this.chkCirada);
-            this.panel4.Controls.Add(this.txtVozac);
-            this.panel4.Controls.Add(this.chkUvoz);
-            this.panel4.Controls.Add(this.cboSaPoz);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.chkPlatforma);
-            this.panel4.Controls.Add(this.cboSaSklad);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.chkIzvoz);
-            this.panel4.Controls.Add(this.txtSAPozicijeskladista);
-            this.panel4.Controls.Add(this.dateTimePicker1);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.txtSASkladista);
-            this.panel4.Location = new System.Drawing.Point(3, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(529, 246);
-            this.panel4.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.dataGridView7);
-            this.panel5.Controls.Add(this.tableLayoutPanel1);
-            this.panel5.Location = new System.Drawing.Point(1195, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(291, 246);
-            this.panel5.TabIndex = 483;
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl1.ApplyVisualStyles = false;
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(3, 3);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1529, 347);
+            this.gridGroupingControl1.TabIndex = 489;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // PlaniraniPretovar
             // 
@@ -1196,20 +1196,20 @@
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.tabSplitterContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.tabSplitterPage1.ResumeLayout(false);
-            this.tabSplitterPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabSplitterPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

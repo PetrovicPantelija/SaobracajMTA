@@ -129,7 +129,7 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.Refresh();
             var select = "";
             select = "SELECT RNPrijemVoza.[ID]      ,[DatumRasporeda]      ,[BrojKontejnera]      ,TipKontenjera.Naziv,  [NalogIzdao]      ,[DatumRealizacije]    " +
-                "  ,[SaVoznogSredstva]  , VOZ.BrVoza   , " +
+                "  ,[SaVoznogSredstva]  , VOZ.BrVoza   , Voz.NazivVoza," +
 " Skladista.Naziv as Skladiste      ,[BrojPlombe]      ,[NalogRealizovao]  , NaSkladiste   ,[Zavrsen] " +
 " ,RNPrijemVoza.[Napomena]      ,[DatumRealizacije]      ,[PrijemID]   ,[NalogID] " +
  "            from RNPrijemVoza inner join TipKontenjera on TipKontenjera.ID = [VrstaKontejnera] " +
@@ -165,7 +165,7 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.Refresh();
             var select = "";
             select = "SELECT RNPrijemVoza.[ID]      ,[DatumRasporeda]      ,[BrojKontejnera]      ,TipKontenjera.Naziv, " +
-     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza " +
+     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza ,Voz.NazivVoza" +
      "  , Skladista.Naziv as Skladiste      ,[BrojPlombe]      ,[NalogRealizovao]	  , NaSkladiste " +
      "  ,[Zavrsen]      ,RNPrijemVoza.[Napomena]      ,[DatumRealizacije]      ,[PrijemID] " +
      "  ,[NalogID]            from RNPrijemVoza " +

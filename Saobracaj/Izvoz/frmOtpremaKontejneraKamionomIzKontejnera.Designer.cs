@@ -409,6 +409,7 @@ namespace Saobracaj.Izvoz
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(79, 21);
             this.txtNalogID.TabIndex = 294;
+            this.txtNalogID.TextChanged += new System.EventHandler(this.txtNalogID_TextChanged);
             // 
             // label7
             // 

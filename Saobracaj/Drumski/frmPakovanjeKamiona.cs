@@ -814,8 +814,8 @@ namespace Saobracaj.Drumski
                                        "CONVERT(varchar,rn.DatumIstovara,104) AS DatumIstovara,  mi.Naziv AS MestoIstovara , rn.AdresaIstovara AS AdresaIstovara, " +
                                        "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
                                        " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera," +
-                                       "dp.Napomena as NapomenaZaPozicioniranje, rn.NalogID, rn.OdredisnaCarinarnica as OdredisnaCarina," +
-                                       "rn.PolaznaCarinarnica as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija, " +
+                                       "dp.Napomena as NapomenaZaPozicioniranje, rn.NalogID, Cast(rn.OdredisnaCarinarnica as Nvarchar(30)) as OdredisnaCarina," +
+                                       "Cast(rn.PolaznaCarinarnica as NVarchar(30)) as polaznaCarinarnica, rn.PolaznaSpedicijaKontakt as polaznaSpedicija,rn.OdredisnaSpedicijaKontakt as OdredisnaSpedicija, " +
                                        "ISNULL(rn.PDV, 0) AS PDV, rn.Uvoz " +
                              " from     RadniNalogDrumski rn " +
                                        "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +

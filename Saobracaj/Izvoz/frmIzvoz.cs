@@ -2281,7 +2281,11 @@ namespace Saobracaj.Izvoz
             {
                 ScenarioGL = 2; //Drugi terminal - Leget - Krajnja destinacija
             }
-          
+            else if (pickUp != "Leget -" && pickUp3 == "Leget -")
+            {
+                ScenarioGL = 3; //Drugi terminal - Leget - Krajnja destinacija
+            }
+
             else
             {
                 MessageBox.Show("Relacije ne pripadaju ni jednom scenariju");
@@ -2309,13 +2313,18 @@ namespace Saobracaj.Izvoz
             }
             else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
             {
-                Moguce = "12,14,29"; // PUN Ostaje na terminalu \"11,12,13,14,29
+                Moguce = "12,29"; // PUN Ostaje na terminalu \"11,12,13,14,29
             }
             else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
             {
                 Moguce = "25,26";
             }
-          
+
+            else if (ScenarioGL == 3 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
+            {
+                Moguce = "14";
+            }
+
 
             int poklapase = 0;
             string[] split = Moguce.Split(',');

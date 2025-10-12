@@ -674,7 +674,7 @@ namespace Saobracaj.Uvoz
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
             korisnik.SqlDbType = SqlDbType.NVarChar;
-            korisnik.Size = 50;
+            korisnik.Size = 30;
             korisnik.Direction = ParameterDirection.Input;
             korisnik.Value = Korisnik;
             cmd.Parameters.Add(korisnik);
@@ -713,7 +713,6 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-
 
         public void UpdRadniNalogInterniFormiran(int ID)
         {

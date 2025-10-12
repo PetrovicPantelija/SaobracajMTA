@@ -130,9 +130,9 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "SELECT RNPrijemVoza.[ID] , VOZ.BrVoza , Voz.Relacija    ,[BrojKontejnera], TipKontenjera.Naziv,DatumRasporeda          , " +
+            select = "SELECT RNPrijemVoza.[ID] , VOZ.BrVoza ,  Voz.NazivVoza, Voz.Relacija    ,[BrojKontejnera], TipKontenjera.Naziv,DatumRasporeda          , " +
      " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	   " +
-     "  ,[BrojPlombe]      ,[NalogRealizovaoVP]      ,[ZavrsenVP]      ,[NapomenaVP] " +
+     "  ,[BrojPlombe]      ,[NalogRealizovaoVP]      ,[ZavrsenVP]      ,[NapomenaVP] , NapomenaPlombe1, NapomenaPlombe2" +
      "  ,[DatumRealizacijeVP]      ,[PrijemID] " +
      "  ,[NalogID]            from RNPrijemVoza " +
       "       inner join TipKontenjera on TipKontenjera.ID = [VrstaKontejnera] " +
@@ -166,8 +166,8 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.Refresh();
             var select = "";
             select = "SELECT RNPrijemVoza.[ID]      ,[DatumRasporeda]      ,[BrojKontejnera]      ,TipKontenjera.Naziv, " +
-     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza " +
-     "  ,[BrojPlombe]      ,[NalogRealizovaoVP]      ,[ZavrsenVP]      ,[NapomenaVP] " +
+     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza, Voz.NazivVoza " +
+     "  ,[BrojPlombe]      ,[NalogRealizovaoVP]      ,[ZavrsenVP]      ,[NapomenaVP], NapomenaPlombe1, NapomenaPlombe2 " +
      "  ,[DatumRealizacijeVP]      ,[PrijemID] " +
      "  ,[NalogID]            from RNPrijemVoza " +
       "       inner join TipKontenjera on TipKontenjera.ID = [VrstaKontejnera] " +
