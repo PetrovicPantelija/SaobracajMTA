@@ -134,6 +134,53 @@ namespace Saobracaj.Drumski
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
+            //// 1. Popuni DataTable iz procedure
+            //DataTable dt = new DataTable();
+            //string s_connection = Sifarnici.frmLogovanje.connectionString;
+
+            //using (SqlConnection conn = new SqlConnection(s_connection))
+            //using (SqlCommand cmd = new SqlCommand("rpt_RNalogDrumskiObavljanjePrevoza", conn))
+            //{
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    cmd.Parameters.AddWithValue("@ID", _id);
+
+            //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //    da.Fill(dt);
+            //}
+
+            //// 2. Poveži sa ReportViewer-om
+            //reportViewer1.LocalReport.DataSources.Clear();
+            //reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+            //reportViewer1.LocalReport.ReportPath = "rptNalogPrevoza.rdlc";
+            //reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
+            //reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+
+
+            //reportViewer1.LocalReport.DataSources.Clear();
+            //reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+
+            //// umesto ReportPath:
+
+
+            //reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
+            //reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+
+            //// 3. Pronadji RDLC u podfolderu 'drumski'
+            //string rdlcPath = Path.Combine(Application.StartupPath, "Drumski", "rptNalogPrevoza.rdlc");
+            //if (!File.Exists(rdlcPath))
+            //{
+            //    MessageBox.Show("RDLC fajl nije pronađen: " + rdlcPath);
+            //    return;
+            //}
+            //reportViewer1.LocalReport.ReportPath = rdlcPath;
+
+            //// 4. Prosledi parametar direktno
+            //reportViewer1.LocalReport.SetParameters(
+            //    new ReportParameter("ID", _id.ToString())
+            //);
+
+            //// 5. Osveži prikaz
+            //reportViewer1.RefreshReport();
             // 1. Popuni DataTable iz procedure
             DataTable dt = new DataTable();
             string s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -151,26 +198,16 @@ namespace Saobracaj.Drumski
             // 2. Poveži sa ReportViewer-om
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
-            reportViewer1.LocalReport.ReportPath = "rptNalogPrevoza.rdlc";
-            reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
-            reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
+            reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Drumski.rptNalogPrevoza.rdlc";
 
-
-            // 3. Pronadji RDLC u podfolderu 'drumski'
-            string rdlcPath = Path.Combine(Application.StartupPath, "Drumski", "rptNalogPrevoza.rdlc");
-            if (!File.Exists(rdlcPath))
-            {
-                MessageBox.Show("RDLC fajl nije pronađen: " + rdlcPath);
-                return;
-            }
-            reportViewer1.LocalReport.ReportPath = rdlcPath;
-
-            // 4. Prosledi parametar direktno
+            // 3. Prosledi parametar direktno
             reportViewer1.LocalReport.SetParameters(
                 new ReportParameter("ID", _id.ToString())
             );
 
-            // 5. Osveži prikaz
+            // 4. Prikaži
+            reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
             reportViewer1.RefreshReport();
         }
     }
