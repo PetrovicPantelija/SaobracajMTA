@@ -14,6 +14,8 @@ using System.Net.Http;
 using Saobracaj.Dokumenta;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.GridHelperClasses;
+using Microsoft.Reporting.WinForms;
+using Microsoft.Reporting.WebForms;
 
 namespace Saobracaj.Drumski
 {
@@ -794,6 +796,22 @@ namespace Saobracaj.Drumski
             using (var frm = new frmSeniranjeDokumenata(id))
                 frm.ShowDialog();
         }
+ 
+        private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
+        {
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
 
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+            int id = Convert.ToInt32(idObj); // ili Convert.ToInt32(txtID.Text);
+            //frmIzvestajNalogZaPrevoz f = new frmIzvestajNalogZaPrevoz(id);
+          //  f.ShowDialog(); 
+        }
+    
     }
 }

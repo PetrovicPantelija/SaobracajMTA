@@ -266,7 +266,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
                         ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);
@@ -609,7 +609,7 @@ namespace Saobracaj.Drumski
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT	rn.ID ," +
+                 SqlCommand cmd = new SqlCommand("SELECT	rn.ID ," +
                  " rn.Uvoz, rn.Status, rn.AutoDan,  rn.MestoPreuzimanjaKontejnera, " +
                  "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara,  (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, rn.KontaktOsobaNaIstovaru,  rn.DatumIstovara, rn.AdresaIstovara,  " +
                  "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,  " +
@@ -636,7 +636,7 @@ namespace Saobracaj.Drumski
                  " '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
                  "FROM    RadniNalogDrumski rn " +
                           "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
-                           "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
+                          "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
                           "LEFT JOIN VrstaCarinskogPostupka ccp on ccp.ID = i.NapomenaReexport " +
                           "LEFT JOIN Carinarnice cc on cc.ID = i.MestoCarinjenja " +
                  "where rn.ID=" + id + " AND rn.Uvoz = 0 " +
@@ -688,7 +688,7 @@ namespace Saobracaj.Drumski
                  "rn.NapomenaZaPozicioniranje as NapomenaZaPozicioniranje,  rn.Cena,'' as CarinjenjeIzvozno, " +
                  "rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
                  "FROM  RadniNalogDrumski rn " +
-                 "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3)", con);
+                 "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3, 4, 5)", con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
                 try
