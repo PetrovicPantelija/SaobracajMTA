@@ -855,8 +855,15 @@ namespace Saobracaj.Drumski
                 statusID = parsedStatusID;
 
             int? tipNaloga = null;
-            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int parsedTipNaloga))
-                tipNaloga = parsedTipNaloga;
+            if (Uvoz != 1 && Uvoz != 0)
+            {
+                if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int parsedTipNaloga))
+                    tipNaloga = parsedTipNaloga;
+            }
+            else
+            {
+                tipNaloga = Uvoz;
+            }
 
             int? tipTransportaID = null;
             if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
@@ -1011,7 +1018,7 @@ namespace Saobracaj.Drumski
                 }
 
                 // 3. Update glavnog naloga
-                ins.UpdateRadniNalogDrumski(iD, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+                ins.UpdateRadniNalogDrumski(iD, tipNaloga, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                     dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent,
                     bttoKontejnera, bttoRobe, brojVoza, brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija,
                     polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
@@ -1572,24 +1579,27 @@ namespace Saobracaj.Drumski
         {
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId > 0)
             {
-                if (tipNalogaId == 3 || tipNalogaId == 5)
+                if ((tipNalogaId == 3 || tipNalogaId == 5) )
                 {
                     label12.Text = "Kontakt osoba na utovaru";
-                    cboMestoPreuzimanja.SelectedValue = -1;
-                    cboMestoUtovara.SelectedValue = -1;
-                    txtAdresaUtovara.Text = "";
+                    if (status == true)
+                    {
+                        cboMestoPreuzimanja.SelectedValue = -1;
+                        cboMestoUtovara.SelectedValue = -1;
+                        txtAdresaUtovara.Text = "";
+                    }
 
                 }
                 else
                 {
                     label12.Text = "Kontakt osoba na istovaru";
-                    if (tipNalogaId == 2)
+                    if (tipNalogaId == 2 && status == true)
                     {
                         cboMestoPreuzimanja.SelectedValue = 8;
                         cboMestoUtovara.SelectedValue = 8;
                         txtAdresaUtovara.Text = "Jarački put";
                     }
-                    else 
+                    else if( status == true)
                     {
                         cboMestoPreuzimanja.SelectedValue = -1;
                         cboMestoUtovara.SelectedValue = -1;

@@ -18,7 +18,7 @@ namespace Saobracaj.Drumski
     {
         public string connect = frmLogovanje.connectionString;
             
-        public void UpdateRadniNalogDrumski(int ID, int AutoDan, string Ref, int? MestoPreuzimanja, int? MestoUtovara, string AdresaUtovara,
+        public void UpdateRadniNalogDrumski(int ID, int? TipNaloga, int AutoDan, string Ref, int? MestoPreuzimanja, int? MestoUtovara, string AdresaUtovara,
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
                     int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
@@ -36,6 +36,13 @@ namespace Saobracaj.Drumski
             iD.Direction = ParameterDirection.Input;
             iD.Value = ID;
             cmd.Parameters.Add(iD);
+
+            SqlParameter tipNaloga = new SqlParameter();
+            tipNaloga.ParameterName = "@TipNaloga";
+            tipNaloga.SqlDbType = SqlDbType.Int;
+            tipNaloga.Direction = ParameterDirection.Input;
+            tipNaloga.Value = TipNaloga.HasValue ? (object)TipNaloga : DBNull.Value;
+            cmd.Parameters.Add(tipNaloga);
 
             SqlParameter autoDan = new SqlParameter();
             autoDan.ParameterName = "@AutoDan";

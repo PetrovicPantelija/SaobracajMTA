@@ -460,7 +460,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Delavci de on rndi.Izmenio = de.DeSifra
                         LEFT JOIN BR ON BR.RNID = rn.ID
                         LEFT JOIN VZ ON VZ.RNID = rn.ID
-                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.PoslataNajava, 0) = 1 
+                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.PoslataNajava, 0) = 1 
                         ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);

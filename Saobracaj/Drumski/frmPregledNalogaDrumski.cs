@@ -152,6 +152,7 @@ namespace Saobracaj.Drumski
                 //samo oni koji imaju raspored voya
                 var select = $@"
                             SELECT rn.ID,
+                                    pa.PaNaziv as Nalogodavac,
                                     ik.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
                                     rn.NalogID,
@@ -162,7 +163,6 @@ namespace Saobracaj.Drumski
                                     rn.Status,   
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                                    pa.PaNaziv as Nalogodavac,
                                     rn.KontejnerID, 'KONACAN' as Trenutno,
                                     ri.ID AS RadniNalogInterniID
                             FROM RadniNalogDrumski rn
@@ -176,6 +176,7 @@ namespace Saobracaj.Drumski
 
                             union all
                                     SELECT rn.ID,
+                                    pa.PaNaziv as Nalogodavac,
                                     i.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
                                     rn.NalogID,
@@ -186,7 +187,6 @@ namespace Saobracaj.Drumski
                                     rn.Status,   
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                                    pa.PaNaziv as Nalogodavac,
                                     rn.KontejnerID, 'NEODREDJEN' as Trenutno,
                                     ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
@@ -200,6 +200,7 @@ namespace Saobracaj.Drumski
 
                         union all
                         SELECT rn.ID, 
+                               pa.PaNaziv as Nalogodavac,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
@@ -210,7 +211,6 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                               pa.PaNaziv as Nalogodavac,
                                rn.KontejnerID, 'KONACAN' as Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
@@ -224,6 +224,7 @@ namespace Saobracaj.Drumski
 
                         union all
                                SELECT rn.ID, 
+                               pa.PaNaziv as Nalogodavac,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
@@ -234,7 +235,6 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               pa.PaNaziv as Nalogodavac,
                                rn.KontejnerID, 'NEODREDJEN' as Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
@@ -248,6 +248,7 @@ namespace Saobracaj.Drumski
 
                         union all
                                SELECT rn.ID, 
+                               pa.PaNaziv as Nalogodavac,
                                rn.BrojKontejnera as BrojKontejnera,
                                '' AS TipKontejnera,
                                rn.NalogID,
@@ -258,7 +259,6 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               pa.PaNaziv as Nalogodavac,
                                rn.KontejnerID, 'NEODREDJEN' as Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn

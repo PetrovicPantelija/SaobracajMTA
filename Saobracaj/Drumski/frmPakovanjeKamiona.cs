@@ -19,6 +19,7 @@ namespace Saobracaj.Drumski
         private bool cellClickHandlerAttached = false;
         private Form aktivnaFormaPregleda;
         System.Windows.Forms.Label dragLabel = null;
+        private string izabranaRegistracija = null;
 
         private void ChangeTextBox()
         {
@@ -630,7 +631,7 @@ namespace Saobracaj.Drumski
                                     ISNULL(rn.RadniNalogOtkazan, 0) AS RadniNalogOtkazan
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                            WHERE rn.Uvoz IN (2, 3) AND rn.NalogID > 0
+                            WHERE rn.Uvoz IN (2, 3, 4, 5 ) AND rn.NalogID > 0
                         ) AS x
                         WHERE x.ID IS NOT NULL and RadniNalogOtkazan <> 1
                           AND (x.KamionID IS NULL OR x.KamionID = 0)
@@ -826,7 +827,7 @@ namespace Saobracaj.Drumski
                                        "left join MestaUtovara mu on  rn.MestoUtovara = mu.ID  " +
                                        "left join MestaUtovara mi on  rn.MestoIstovara = mi.ID  " +
                                        "left join DrumskiPozicioniranje dp ON dp.id = rn.NapomenaZaPozicioniranje " +
-                                       "where rn.Uvoz in (2, 3) and rn.NalogID > 0  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID is not NULL AND rn.KamionID != 0" +
+                                       "where rn.Uvoz in (2, 3, 4, 5) and rn.NalogID > 0  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID is not NULL AND rn.KamionID != 0" +
                                        "       AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( " + statusiZaUpit + "))";
 
                 var da = new SqlDataAdapter(select, conn);
@@ -919,45 +920,73 @@ namespace Saobracaj.Drumski
             RefreshDataGrid3();
         }
 
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var colName = "RegBr";
+
+            if (dataGridView1.Columns.Contains(colName))
+            {
+                var cellValue = dataGridView1.Rows[e.RowIndex].Cells[colName].Value;
+                if (cellValue != null)
+                {
+                    izabranaRegistracija = cellValue.ToString();
+                }
+            }
+        }
         private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-            // Proveri da li je kliknuta kolona "Registracija"
-            var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
-            if (columnName != "RegBr")
+            //if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            //// Proveri da li je kliknuta kolona "Registracija"
+            //var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+            //if (columnName != "RegBr")
+            //{
+            //    txtIzabran.Text = "";
+            //    dragLabel = null;
+            //    return;
+            //}
+            //dragRow = e.RowIndex;
+            //if (dragLabel == null) dragLabel = new System.Windows.Forms.Label();
+            //dragLabel.Text = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
+            //txtIzabran.Text = dragLabel.Text;
+        }
+        private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (string.IsNullOrWhiteSpace(izabranaRegistracija))
             {
-                txtIzabran.Text = "";
-                dragLabel = null;
+                MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            dragRow = e.RowIndex;
-            if (dragLabel == null) dragLabel = new System.Windows.Forms.Label();
-            dragLabel.Text = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
-            txtIzabran.Text = dragLabel.Text;
+
+            // Upisuje registraciju u kolonu "Kamion" bez obzira gde se klikne
+            dataGridView2.Rows[e.RowIndex].Cells["Kamion"].Value = izabranaRegistracija;
         }
 
         private void dataGridView2_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-            //dragRow = e.RowIndex;
-            //if (dragLabel == null) dragLabel = new System.Windows.Forms.Label();
+            //if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            ////dragRow = e.RowIndex;
+            ////if (dragLabel == null) dragLabel = new System.Windows.Forms.Label();
+            ////dataGridView2[e.ColumnIndex, e.RowIndex].Value = txtIzabran.Text;
+            //var columnName = dataGridView2.Columns[e.ColumnIndex].Name;
+            //if (columnName != "Kamion") return; // Dozvoli upis samo u kolonu Kamion
+
+            //if (string.IsNullOrWhiteSpace(txtIzabran.Text))
+            //{
+            //    MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+
+            //if (string.IsNullOrEmpty(txtIzabran.Text))
+            //{
+            //    MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+
             //dataGridView2[e.ColumnIndex, e.RowIndex].Value = txtIzabran.Text;
-            var columnName = dataGridView2.Columns[e.ColumnIndex].Name;
-            if (columnName != "Kamion") return; // Dozvoli upis samo u kolonu Kamion
-
-            if (string.IsNullOrWhiteSpace(txtIzabran.Text))
-            {
-                MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtIzabran.Text))
-            {
-                MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            dataGridView2[e.ColumnIndex, e.RowIndex].Value = txtIzabran.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)
