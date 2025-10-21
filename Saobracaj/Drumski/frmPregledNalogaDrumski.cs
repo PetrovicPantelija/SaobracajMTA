@@ -22,6 +22,8 @@ namespace Saobracaj.Drumski
         private string _prethodnaVrednost = null;
         private SqlDataAdapter dataAdapter;
         private DataTable mainTable;
+        int? Nalogodavac = null;
+        string dan = null;
         private int? nalogID;
         public frmPregledNalogaDrumski()
         {
@@ -30,9 +32,11 @@ namespace Saobracaj.Drumski
             RefreshGrid();
         }
 
-        public frmPregledNalogaDrumski(int NalogID)
+        public frmPregledNalogaDrumski(int NalogID, int NalogodavacID, string Dan)
         {
             nalogID = NalogID;
+            Nalogodavac = NalogodavacID;
+            dan = Dan;
             InitializeComponent();
             ChangeTextBox();
             RefreshGrid();
@@ -161,9 +165,27 @@ namespace Saobracaj.Drumski
                 }
 
                 String conditionRadniNalogID = "";
+                String conditionNalogodavac = " 1 = 1 ";
                 if (nalogID !=null && nalogID > 0 )
                 {
                     conditionRadniNalogID = " AND rn.NalogID  = @NalogID ";
+                }
+                if (Nalogodavac != null)
+                {
+                    conditionNalogodavac += $" AND  x.NalogodavacID = {Nalogodavac} ";
+
+                    if (dan == "D")
+                    {
+                        conditionRadniNalogID += $" AND rn.DatumIstovara >= CAST(GetDate() AS DATE) AND rn.DatumIstovara < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
+                        // Alternativno, ako je DatumIstovara samo datum:
+                        // conditionRadniNalogID += $" AND rn.DatumIstovara = CAST(GetDate() AS DATE)";
+                    }
+                    else
+                    {
+                  
+                        conditionRadniNalogID += $" x.DatumIstovara >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND x.DatumIstovara < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
+
+                    }
                 }
 
                 // 2. Priprema statusa za upit
@@ -172,8 +194,11 @@ namespace Saobracaj.Drumski
                     .Where(s => int.TryParse(s, out _)));
                 //samo oni koji imaju raspored voya
                 var select = $@"
+                    SELECT *
+                    FROM (
                             SELECT rn.ID,
                                     pa.PaNaziv as Nalogodavac,
+                                    ik.Klijent3 AS NalogodavacID,
                                     ik.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
                                     rn.NalogID,
@@ -198,6 +223,7 @@ namespace Saobracaj.Drumski
                             union all
                                     SELECT rn.ID,
                                     pa.PaNaziv as Nalogodavac,
+                                    i.Klijent3 AS NalogodavacID,
                                     i.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
                                     rn.NalogID,
@@ -222,6 +248,7 @@ namespace Saobracaj.Drumski
                         union all
                         SELECT rn.ID, 
                                pa.PaNaziv as Nalogodavac,
+                               uk.Nalogodavac3 AS NalogodavacID,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
@@ -246,6 +273,7 @@ namespace Saobracaj.Drumski
                         union all
                                SELECT rn.ID, 
                                pa.PaNaziv as Nalogodavac,
+                               uk.Nalogodavac3 AS NalogodavacID,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
@@ -270,6 +298,7 @@ namespace Saobracaj.Drumski
                         union all
                                SELECT rn.ID, 
                                pa.PaNaziv as Nalogodavac,
+                               rn.Klijent ASNalogodavac,
                                rn.BrojKontejnera as BrojKontejnera,
                                '' AS TipKontejnera,
                                rn.NalogID,
@@ -288,7 +317,9 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
                         WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
-                        ORDER BY ID DESC";
+                      ) x
+                    WHERE {conditionNalogodavac}
+                    ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);
                 if (nalogID!=0 && nalogID > 0)
@@ -347,7 +378,7 @@ namespace Saobracaj.Drumski
                 cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
 
                 // Ukloni kolone koje ne želiš da se vide
-                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID" }; // "Status" je Naziv
+                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID", "NalogodavacID" }; // "Status" je Naziv
                 foreach (var col in colsToRemove)
                 {
                     if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))

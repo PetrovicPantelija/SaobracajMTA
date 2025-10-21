@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.Uvoz;
+using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.XlsIO.Implementation;
@@ -617,6 +618,7 @@ namespace Saobracaj.Drumski
                             -- STRING_AGG funkcija za spajanje svih ID-jeva u jedan string, odvojen zarezom
                             STRING_AGG(CONVERT(VARCHAR(MAX), x.ID), ',') AS IdsRadniNalogDrumski,
                             LTRIM(RTRIM(x.Nalogodavac)) AS Nalogodavac,
+                            x.NalogodavacID,
                             x.Kamion,
                              CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                             x.NalogID
@@ -624,6 +626,7 @@ namespace Saobracaj.Drumski
                         FROM
                         (
                             SELECT pa.PaNaziv AS Nalogodavac,
+                                   i.Klijent3 AS NalogodavacID,
                                    '' AS Kamion,
                                    rn.DatumIstovara,
                                    rn.NalogID,
@@ -635,6 +638,7 @@ namespace Saobracaj.Drumski
 
                             UNION ALL
                             SELECT pa.PaNaziv AS Nalogodavac,
+                                   ik.Klijent3 AS NalogodavacID,
                                    '' AS Kamion,
                                    rn.DatumIstovara,
                                    rn.NalogID,
@@ -647,6 +651,7 @@ namespace Saobracaj.Drumski
 
                             UNION ALL
                             SELECT pa.PaNaziv AS Nalogodavac,
+                                   uk.Nalogodavac3 AS NalogodavacID,
                                    '' AS Kamion,
                                    rn.DatumIstovara,
                                    rn.NalogID,
@@ -659,6 +664,7 @@ namespace Saobracaj.Drumski
 
                             UNION ALL
                             SELECT pa.PaNaziv AS Nalogodavac,
+                                   u.Nalogodavac3 AS NalogodavacID,
                                    '' AS Kamion,
                                    rn.DatumIstovara,
                                    rn.NalogID,
@@ -671,6 +677,7 @@ namespace Saobracaj.Drumski
 
                             UNION ALL
                             SELECT pa.PaNaziv AS Nalogodavac,
+                                   rn.Klijent AS NalogodavacID,
                                    '' AS Kamion,
                                    rn.DatumIstovara,
                                    rn.NalogID,
@@ -682,6 +689,7 @@ namespace Saobracaj.Drumski
                         WHERE CONVERT(date, DatumIstovara) = CONVERT(date, {datumZaProveru})
                         GROUP BY
                             x.Nalogodavac,
+                            x.NalogodavacID,
                             x.Kamion,
                             x.DatumIstovara,
                             x.NalogID
@@ -713,6 +721,11 @@ namespace Saobracaj.Drumski
             {
                 dataGridView2.Columns["IdsRadniNalogDrumski"].Visible = false;
             }
+            if (dataGridView2.Columns.Contains("NalogodavacID"))
+            {
+                dataGridView2.Columns["NalogodavacID"].Visible = false;
+            }
+            
         }
 
         private void RefreshDataGrid3()
@@ -1166,10 +1179,16 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("NalogID nije pronađen ili je nevažeći za izabrani red.");
                 return;
             }
-
+            string dan = "";
             int nalogID = Convert.ToInt32(selectedRow.Cells["NalogID"].Value);
+            int NalogodavacID = Convert.ToInt32(selectedRow.Cells["NalogodavacID"].Value.ToString());
+            if (chkDatumD.Checked == true)
+                 dan = "D";
+            else
+                 dan = "S";
 
-            frmPregledNalogaDrumski dr = new frmPregledNalogaDrumski(nalogID);
+
+                frmPregledNalogaDrumski dr = new frmPregledNalogaDrumski(nalogID, NalogodavacID, dan);
             dr.FormClosed += (s, args) =>
             {
                 RefreshDataGrid2();
@@ -1393,6 +1412,7 @@ namespace Saobracaj.Drumski
                     MessageBox.Show("Greška pri snimanju statusa: " + ex.Message);
                 }
             }
+            RefreshDataGrid3();
         }
 
 
