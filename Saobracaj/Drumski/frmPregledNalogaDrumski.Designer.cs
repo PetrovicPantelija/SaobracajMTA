@@ -34,7 +34,7 @@
             this.btnDopunaNaloga = new System.Windows.Forms.Button();
             this.btnFormiranjeNaloga = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDodeliKamion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
@@ -62,7 +62,7 @@
             this.panel2.Controls.Add(this.btnDopunaNaloga);
             this.panel2.Controls.Add(this.btnFormiranjeNaloga);
             this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.btnDodeliKamion);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -158,27 +158,27 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // btnDodeliKamion
             // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(57, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 38);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Dodeli kamion";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnDodeliKamion.AutoSize = true;
+            this.btnDodeliKamion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDodeliKamion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnDodeliKamion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnDodeliKamion.FlatAppearance.BorderSize = 0;
+            this.btnDodeliKamion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnDodeliKamion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnDodeliKamion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDodeliKamion.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnDodeliKamion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnDodeliKamion.Location = new System.Drawing.Point(57, 0);
+            this.btnDodeliKamion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDodeliKamion.Name = "btnDodeliKamion";
+            this.btnDodeliKamion.Size = new System.Drawing.Size(110, 38);
+            this.btnDodeliKamion.TabIndex = 19;
+            this.btnDodeliKamion.Text = "Dodeli kamion";
+            this.btnDodeliKamion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDodeliKamion.UseVisualStyleBackColor = true;
+            this.btnDodeliKamion.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -359,7 +359,7 @@
         #endregion
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDodeliKamion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;

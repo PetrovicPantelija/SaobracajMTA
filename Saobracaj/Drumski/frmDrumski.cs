@@ -23,6 +23,8 @@ namespace Saobracaj.Drumski
         int? Uvoz = null;
         int id = 0;
         bool status = false;
+        private string noviZapisSaNovimNalogID = "";
+        private int? mainNalogID;
 
         public frmDrumski()
         {
@@ -34,12 +36,38 @@ namespace Saobracaj.Drumski
             txtNapomenaPoz.Visible = false;
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
             {
-
                 cboMestoPreuzimanja.SelectedValue = 8;
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
             }
 
+        }
+
+        public frmDrumski(string noviNalogID, int? NalogID)
+        {
+            noviZapisSaNovimNalogID = noviNalogID;
+            mainNalogID = NalogID;
+            InitializeComponent();
+            ChangeTextBox();
+            FillCombo();
+            this.BindingContext = new BindingContext();
+            VratiPodatke();
+            txtNapomenaPoz.Visible = false;
+            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
+            {
+                cboMestoPreuzimanja.SelectedValue = 8;
+                cboMestoUtovara.SelectedValue = 8;
+                txtAdresaUtovara.Text = "Jarački put";
+            }
+        }
+
+        public frmDrumski(int ID)
+        {
+            this.id = ID;
+            InitializeComponent();
+            FillCombo();
+            this.BindingContext = new BindingContext();
+            ChangeTextBox();
         }
 
         private void ChangeTextBox()
@@ -143,14 +171,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        public frmDrumski(int ID)
-        {
-            this.id = ID;
-            InitializeComponent();       
-            FillCombo();
-            this.BindingContext = new BindingContext();
-            ChangeTextBox();
-        }
+     
         private void VratiPodatke()
         {
 
@@ -432,6 +453,7 @@ namespace Saobracaj.Drumski
                     txtKontaktOSpedicije.Enabled = false;
                     cboNapomenaPoz.Visible = false;
                     txtNapomenaPoz.Visible = true;
+                    btnFormiranjeNaloga.Visible = false;
                     // button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 1)
@@ -463,12 +485,13 @@ namespace Saobracaj.Drumski
                     txtKontaktOSpedicije.Enabled = true;
                     cboNapomenaPoz.Visible = false;
                     txtNapomenaPoz.Visible = true;
+                    btnFormiranjeNaloga.Visible = false;
                     //   button3.Visible = NalogID > 0 ? false : true;
                 }
                 else if (Uvoz == 2)
                 {
-
-                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
+                    //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na istovaru";
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
@@ -485,7 +508,8 @@ namespace Saobracaj.Drumski
                 else if (Uvoz == 3)
                 {
                     txtBL.Visible = true;
-                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
                     button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
@@ -499,7 +523,8 @@ namespace Saobracaj.Drumski
                 else if (Uvoz == 4)
                 {
                     txtBokingBrodara.Enabled = false;
-                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
+                    //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
@@ -513,7 +538,8 @@ namespace Saobracaj.Drumski
                 else if (Uvoz == 5)
                 {
                     txtBL.Visible = true;
-                    btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
+                    btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
+                    //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
@@ -798,6 +824,8 @@ namespace Saobracaj.Drumski
             int? odredisnaSpedicija = null;
             string odredisnaSpedicijaKontakt = null;
             string polaznaSpedicijaKontakt = null;
+            int kreirajNalogID = 0;
+            int? nalogID = null;
 
             int iD = 0;
             if (txtID.Text != null && int.TryParse(txtID.Text, out int parsedID))
@@ -966,10 +994,18 @@ namespace Saobracaj.Drumski
                     MessageBox.Show("Polje 'Tip naloga' je obavezno!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if (noviZapisSaNovimNalogID == "NOVINALOG")
+                {
+                    kreirajNalogID = 1;
+                }
+                else if (mainNalogID != null && mainNalogID > 0)
+                {
+                    nalogID = mainNalogID;
+                }
 
-                int noviID = ins.InsRadniNalogDrumski(tipNaloga, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
-                    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
-                    bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+                    int noviID = ins.InsRadniNalogDrumski(tipNaloga, kreirajNalogID, nalogID, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
+                        dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
+                        bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
 
                 txtID.Text = noviID.ToString();
                 status = false;

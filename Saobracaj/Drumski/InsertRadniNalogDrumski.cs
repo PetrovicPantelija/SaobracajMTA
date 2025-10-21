@@ -332,9 +332,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-                //throw new Exception("Neuspešan upis");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tran.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -352,7 +352,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        public int InsRadniNalogDrumski(int? TipNaloga, int AutoDan, string Ref, int? MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
+        public int InsRadniNalogDrumski(int? TipNaloga, int KreirajNalogID, int? NalogID, int AutoDan, string Ref, int? MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
                  string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
@@ -366,12 +366,26 @@ namespace Saobracaj.Drumski
             cmd.CommandText = "InsertRadniNalogDrumski";
             cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter kreirajNalogID = new SqlParameter();
+            kreirajNalogID.ParameterName = "@KreirajNalogID";
+            kreirajNalogID.SqlDbType = SqlDbType.Int;
+            kreirajNalogID.Direction = ParameterDirection.Input;
+            kreirajNalogID.Value = KreirajNalogID;
+            cmd.Parameters.Add(kreirajNalogID);
+
             SqlParameter tipNaloga = new SqlParameter();
             tipNaloga.ParameterName = "@TipNaloga";
             tipNaloga.SqlDbType = SqlDbType.Int;
             tipNaloga.Direction = ParameterDirection.Input;
             tipNaloga.Value = TipNaloga.HasValue ? (object)TipNaloga.Value : DBNull.Value;
             cmd.Parameters.Add(tipNaloga);
+
+            SqlParameter nalogID = new SqlParameter();
+            nalogID.ParameterName = "@NalogID";
+            nalogID.SqlDbType = SqlDbType.Int;
+            nalogID.Direction = ParameterDirection.Input;
+            nalogID.Value = NalogID.HasValue ? (object)NalogID.Value : DBNull.Value;
+            cmd.Parameters.Add(nalogID);
 
             SqlParameter autoDan = new SqlParameter();
             autoDan.ParameterName = "@AutoDan";
@@ -667,9 +681,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-               // throw new Exception("Neuspešan upis");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tran.Rollback(); // Ne zaboravi i rollback
+                 throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -803,6 +817,185 @@ namespace Saobracaj.Drumski
             }
 
         }
+        
+        public void AzurirajStatusViseKontejera(List<int> listaIdjeva, int? Status)
+        {
+            string idsString = string.Join(",", listaIdjeva);
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiViseStatusa";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDsString";
+            id.SqlDbType = SqlDbType.NVarChar;
+            id.Size = 4000;
+            id.Direction = ParameterDirection.Input;
+            id.Value = idsString;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter status = new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.Int;
+            status.Direction = ParameterDirection.Input;
+            status.Value = Status.HasValue ? (object)Status.Value : DBNull.Value;
+            cmd.Parameters.Add(status);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //myTransaction.Rollback();
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void DodeliKamionP(List<int> listaIdjeva, string RegBr)
+        {
+            string idsString = string.Join(",", listaIdjeva);
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DodeliKamionZaViseRadnihNalogaDrumskiP";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDsString";
+            id.SqlDbType = SqlDbType.NVarChar;
+            id.Size = 4000;
+            id.Direction = ParameterDirection.Input;
+            id.Value = idsString; 
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter kamionID = new SqlParameter();
+            kamionID.ParameterName = "@RegBr";
+            kamionID.SqlDbType = SqlDbType.NVarChar;
+            kamionID.Size = 50;
+            kamionID.Direction = ParameterDirection.Input;
+            kamionID.Value = RegBr;
+            cmd.Parameters.Add(kamionID);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //myTransaction.Rollback();
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+        public void VratiKamionUNerasporedjeneLista(List<int> listaIdjeva)
+        {
+            string idsString = string.Join(",", listaIdjeva);
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiListaKamionID";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDsString";
+            id.SqlDbType = SqlDbType.NVarChar;
+            id.Size = 4000;
+            id.Direction = ParameterDirection.Input;
+            id.Value = idsString;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
 
         public void VratiKamionUNerasporedjene(int ID, int KamionID)
         {
@@ -891,9 +1084,9 @@ namespace Saobracaj.Drumski
 
             catch (SqlException ex)
             {
-               // throw new Exception("Neuspešan upis ");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                myTransaction.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis ");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //myTransaction.Rollback(); // Ne zaboravi i rollback
 
             }
 
@@ -1076,9 +1269,10 @@ namespace Saobracaj.Drumski
             MessageBox.Show("Stavke su uspešno dodate u postojeći nalog.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public int DuplirajRadniNalogDrumski(int? TipNaloga,int? AutoDan, int? MestoPreuzimanja, int? Klijent, int? MestoUtovara, string AdresaUtovara, int? MestoIstovara, DateTime? DatumIstovara, string AdresaIstovara, 
+        public int DuplirajRadniNalogDrumski(int? NalogID, int? TipNaloga,int? AutoDan, int? MestoPreuzimanja, int? Klijent, int? MestoUtovara, string AdresaUtovara, DateTime? DatumUtovara, int? MestoIstovara, DateTime? DatumIstovara, string AdresaIstovara, 
                         DateTime? DtPreuzimanjaPraznogKontejnera, string GranicniPrelaz, decimal? Trosak, string Valuta, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, 
-                        int? PDV, int? TipTransporta, string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, int? BookingBrodara, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz)
+                        int? PDV, int? TipTransporta, string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, int? BookingBrodara, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
+                        string Referenca, int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt)
 
         {
             int IDPom = 0;
@@ -1088,6 +1282,12 @@ namespace Saobracaj.Drumski
             cmd.CommandText = "DuplirajZapisRadniNalogDrumski";
             cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter nalogID = new SqlParameter();
+            nalogID.ParameterName = "@NalogID";
+            nalogID.SqlDbType = SqlDbType.Int;
+            nalogID.Direction = ParameterDirection.Input;
+            nalogID.Value = NalogID.HasValue ? (object)NalogID.Value : DBNull.Value;
+            cmd.Parameters.Add(nalogID);
 
             SqlParameter uvoz = new SqlParameter();
             uvoz.ParameterName = "@TipNaloga";
@@ -1105,7 +1305,7 @@ namespace Saobracaj.Drumski
 
             SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
             mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
-            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.TinyInt;
+            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.Int;
             mestoPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
             mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
             cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
@@ -1131,6 +1331,13 @@ namespace Saobracaj.Drumski
             adresaUtovara.Direction = ParameterDirection.Input;
             adresaUtovara.Value = (object)AdresaUtovara ?? DBNull.Value;
             cmd.Parameters.Add(adresaUtovara);
+
+            SqlParameter datumUtovara = new SqlParameter();
+            datumUtovara.ParameterName = "@DatumUtovara";
+            datumUtovara.SqlDbType = SqlDbType.DateTime;
+            datumUtovara.Direction = ParameterDirection.Input;
+            datumUtovara.Value = DatumUtovara.HasValue ? (object)DatumUtovara.Value : DBNull.Value;
+            cmd.Parameters.Add(datumUtovara);
 
             SqlParameter mestoIstovara = new SqlParameter();
             mestoIstovara.ParameterName = "@MestoIstovara";
@@ -1270,7 +1477,7 @@ namespace Saobracaj.Drumski
             SqlParameter brodskaPlomba = new SqlParameter();
             brodskaPlomba.ParameterName = "@BrodskaPlomba";
             brodskaPlomba.SqlDbType = SqlDbType.NVarChar;
-            brodskaPlomba.Size = 50;
+            brodskaPlomba.Size = 30;
             brodskaPlomba.Direction = ParameterDirection.Input;
             brodskaPlomba.Value = (object)BrodskaPlomba ?? DBNull.Value;
             cmd.Parameters.Add(brodskaPlomba);
@@ -1282,6 +1489,58 @@ namespace Saobracaj.Drumski
             napomenaPoz.Value = NapomenaPoz.HasValue ? (object)NapomenaPoz.Value : DBNull.Value; 
             cmd.Parameters.Add(napomenaPoz);
 
+            SqlParameter referenca = new SqlParameter();
+            referenca.ParameterName = "@Referenca";
+            referenca.SqlDbType = SqlDbType.NVarChar;
+            referenca.Size = 100;
+            referenca.Direction = ParameterDirection.Input;
+            referenca.Value = (object)Referenca ?? DBNull.Value;
+            cmd.Parameters.Add(referenca);
+
+            SqlParameter pCarinarnica = new SqlParameter();
+            pCarinarnica.ParameterName = "@PolaznaCarinarnica";
+            pCarinarnica.SqlDbType = SqlDbType.Int;
+            pCarinarnica.Direction = ParameterDirection.Input;
+            pCarinarnica.Value = PolaznaCarinarnica.HasValue ? (object)PolaznaCarinarnica.Value : DBNull.Value;
+            cmd.Parameters.Add(pCarinarnica);
+
+            SqlParameter oCarinarnica = new SqlParameter();
+            oCarinarnica.ParameterName = "@OdredisnaCarinarnica";
+            oCarinarnica.SqlDbType = SqlDbType.Int;
+            oCarinarnica.Direction = ParameterDirection.Input;
+            oCarinarnica.Value = OdredisnaCarinarnica.HasValue ? (object)OdredisnaCarinarnica.Value : DBNull.Value;
+            cmd.Parameters.Add(oCarinarnica);
+
+            SqlParameter pSpedicija = new SqlParameter();
+            pSpedicija.ParameterName = "@PolaznaSpedicija";
+            pSpedicija.SqlDbType = SqlDbType.Int;
+            pSpedicija.Direction = ParameterDirection.Input;
+            pSpedicija.Value = PolaznaSpedicija.HasValue ? (object)PolaznaSpedicija.Value : DBNull.Value;
+            cmd.Parameters.Add(pSpedicija);
+
+            SqlParameter oSpedicija = new SqlParameter();
+            oSpedicija.ParameterName = "@OdredisnaSpedicija";
+            oSpedicija.SqlDbType = SqlDbType.Int;
+            oSpedicija.Direction = ParameterDirection.Input;
+            oSpedicija.Value = OdredisnaSpedicija.HasValue ? (object)OdredisnaSpedicija.Value : DBNull.Value;
+            cmd.Parameters.Add(oSpedicija);
+
+            SqlParameter pSpedicijaKontakt = new SqlParameter();
+            pSpedicijaKontakt.ParameterName = "@PolaznaSpedicijaKontakt";
+            pSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            pSpedicijaKontakt.Size = 100;
+            pSpedicijaKontakt.Direction = ParameterDirection.Input;
+            pSpedicijaKontakt.Value = (object)PolaznaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(pSpedicijaKontakt);
+
+            SqlParameter oSpedicijaKontakt = new SqlParameter();
+            oSpedicijaKontakt.ParameterName = "@OdredisnaSpedicijaKontakt";
+            oSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            oSpedicijaKontakt.Size = 100;
+            oSpedicijaKontakt.Direction = ParameterDirection.Input;
+            oSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(oSpedicijaKontakt);
+
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
             cmd.Parameters.Add(idParam);
@@ -1292,6 +1551,9 @@ namespace Saobracaj.Drumski
             bool error = true;
             try
             {
+                Console.WriteLine("Parametri koji se šalju:");
+                foreach (SqlParameter p in cmd.Parameters)
+                    Console.WriteLine($"{p.ParameterName} = {p.Value} ({p.Direction})");
                 cmd.ExecuteNonQuery();
                 tran.Commit();
                 error = false;
@@ -1302,9 +1564,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-               /* throw new Exception("Neuspešan upis")*/;
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tran.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -1522,9 +1784,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-                //throw new Exception("Neuspešan upis");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tran.Rollback(); // Ne zaboravi i rollback
+               throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -1569,9 +1831,9 @@ namespace Saobracaj.Drumski
             }
             catch (SqlException ex)
             {
-                //throw new Exception("Neuspešan upis");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tran.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {

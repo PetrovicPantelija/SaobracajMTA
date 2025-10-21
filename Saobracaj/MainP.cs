@@ -6843,9 +6843,24 @@ namespace Saobracaj
         }
 
         private void toolStripButton409_Click(object sender, EventArgs e)
-        {
-            Drumski.frmPakovanjeKamiona fppp = new Drumski.frmPakovanjeKamiona();
-            fppp.Show();
+        {        
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "PakovanjeKamiona1")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Drumski.PakovanjeKamiona1 part = new Drumski.PakovanjeKamiona1();
+                part.Show();
+            }
         }
 
         private void toolStripButton410_Click(object sender, EventArgs e)
