@@ -58,6 +58,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnArhiva = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -81,10 +83,11 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1892, 802);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -100,7 +103,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1886, 407);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1886, 403);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel1
@@ -115,7 +118,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1031, 401);
+            this.panel1.Size = new System.Drawing.Size(1031, 397);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -151,7 +154,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1031, 337);
+            this.dataGridView1.Size = new System.Drawing.Size(1031, 333);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
@@ -275,7 +278,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(1040, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(843, 401);
+            this.panel2.Size = new System.Drawing.Size(843, 397);
             this.panel2.TabIndex = 1;
             // 
             // dataGridView2
@@ -289,7 +292,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(843, 337);
+            this.dataGridView2.Size = new System.Drawing.Size(843, 333);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
             // 
@@ -336,30 +339,34 @@
             this.dataGridView3.AllowUserToDeleteRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 466);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 462);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1886, 333);
+            this.dataGridView3.Size = new System.Drawing.Size(1886, 328);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellValueChanged);
             this.dataGridView3.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView3_CurrentCellDirtyStateChanged);
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 7;
+            this.tableLayoutPanel3.ColumnCount = 9;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 234F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 599F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.Controls.Add(this.button2, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.button1, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button3, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button3, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button4, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnArhiva, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 416);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 412);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -368,9 +375,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(867, 3);
+            this.button2.Location = new System.Drawing.Point(855, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(237, 38);
+            this.button2.Size = new System.Drawing.Size(236, 38);
             this.button2.TabIndex = 3;
             this.button2.Text = "UPARI KAMION I KONTEJNER";
             this.button2.UseVisualStyleBackColor = true;
@@ -378,7 +385,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(609, 3);
+            this.button1.Location = new System.Drawing.Point(593, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(227, 38);
             this.button1.TabIndex = 2;
@@ -402,6 +409,25 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1531, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(169, 38);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "INSTRUKCIJE";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnArhiva
+            // 
+            this.btnArhiva.Location = new System.Drawing.Point(3, 3);
+            this.btnArhiva.Name = "btnArhiva";
+            this.btnArhiva.Size = new System.Drawing.Size(169, 38);
+            this.btnArhiva.TabIndex = 6;
+            this.btnArhiva.Text = "ARHIVIRAJ";
+            this.btnArhiva.UseVisualStyleBackColor = true;
+            this.btnArhiva.Click += new System.EventHandler(this.btnArhiva_Click);
             // 
             // PakovanjeKamiona1
             // 
@@ -461,5 +487,7 @@
         private System.Windows.Forms.Button btnKreiraj;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnArhiva;
     }
 }

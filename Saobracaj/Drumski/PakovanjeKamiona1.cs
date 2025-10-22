@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -917,10 +918,10 @@ namespace Saobracaj.Drumski
                                 -- Agregirana kolona (Spojeni ID-jevi)
                                 STRING_AGG(CONVERT(VARCHAR(MAX), x.ID), ',') AS IdsRadniNalogDrumski, 
                                 LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac, 
-                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
+                                LTRIM(RTRIM(x.Kamion)) AS Kamion, 
                                 x.DatumIstovara, 
                                 x.NalogID, 
-                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
+                                LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 x.PoslataNajava,
                                 x.NajavuPoslao, 
                                 x.SlanjeNajave, 
@@ -1124,7 +1125,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski"
+                    "ID", "KamionID", "Uvoz","StatusID"/*, "IdsRadniNalogDrumski"*/
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -1643,42 +1644,35 @@ namespace Saobracaj.Drumski
                 return;
             }
 
+            DataRow prviRed = detaljnaTabela.Rows[0];
+            string datumIstovara = prviRed["DatumIstovara"] != DBNull.Value ? prviRed["DatumIstovara"].ToString() : "";
+            string datumUtovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
+            string datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
+            string carinjenje = " na carinjenju";
+
+            string odredisnaCarinarnica = prviRed["OdredisnaCarina"] != DBNull.Value ? prviRed["OdredisnaCarina"].ToString() : "";
+            string napomenaZaPozicioniranje = prviRed["NapomenaZaPozicioniranje"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : ""; 
+            string polaznaCarinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
+            int PDV = Convert.ToInt32(dataGridView3.SelectedRows[0].Cells["PDV"].Value);
+            if (PDV == 1 && string.IsNullOrEmpty(polaznaCarinarnica) && string.IsNullOrEmpty(odredisnaCarinarnica))
+                carinjenje = " na istovaru";
+
+            string cena = prviRed["Cena"] != DBNull.Value? prviRed["Cena"].ToString() : "";
+
             htmlBuilder.AppendLine("<p>Poštovani,</p>");
-            htmlBuilder.AppendLine($"<p>Podaci vozila za najavu za <b>{nalogodavac}</b>:</p>");
+            htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>:</p>");
+            htmlBuilder.AppendLine($"<p>Na utovaru je  <b>{datumUtovara}</b> u  {carinjenje}</p>");
+            htmlBuilder.AppendLine($"<p>buking <b>{datumUtovara}</b>");
+            htmlBuilder.AppendLine($"<p>Izvozno carinjenje <b>  {carinjenje}</b></p>");
+
+            htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
+
 
 
             // --- 2. Iteracija kroz SVE Redove (Radne Naloge) ---
-     
+
             foreach (DataRow row in detaljnaTabela.Rows)
             {
-                // --- ČITANJE VARIJABILNIH PODATAKA ZA TRENUTNI NALOG ---
-
-                // Čitanje datuma i rute
-                string datumIstovara = row["DatumIstovara"] != DBNull.Value ? row["DatumIstovara"].ToString() : "";
-                string datumUtovara =  row["DatumUtovara"] != DBNull.Value ? row["DatumUtovara"].ToString() : "";
-                string datumPreuzimanjaPraznog = row["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? row["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
-
-                //// Rute i status
-                string odredisnaCarinarnica = row["OdredisnaCarina"] != DBNull.Value ? row["OdredisnaCarina"].ToString() : "";
-                string napomenaZaPozicioniranje = row["NapomenaZaPozicioniranje"] != DBNull.Value ?  row["NapomenaZaPozicioniranje"].ToString() : "";
-                string polaznaCarinarnica = row["polaznaCarinarnica"] != DBNull.Value ? row["polaznaCarinarnica"].ToString() : "";
-                int PDV = GetInt(row, "PDV");
-                int Uvoz = GetInt(row, "Uvoz");
-
-
-                // Logika za carinjenje i datum rute
-                string datumRuteZaCarinjenje = "";
-                string carinjenje = " na carinjenju";
-
-                // Logika za ispis teksta 'na istovaru' umesto 'na carinjenju'
-                if (PDV == 1 && string.IsNullOrEmpty(polaznaCarinarnica) && string.IsNullOrEmpty(odredisnaCarinarnica))
-                    carinjenje = " na istovaru";
-
-                // Logika koji datum ide uz tekst 'carinjenje'
-                if (Uvoz == 0 || Uvoz == 3) // IZVOZ
-                    datumRuteZaCarinjenje = datumUtovara;
-                else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4 || Uvoz == 5) // UVOZ i OSTALI
-                    datumRuteZaCarinjenje = datumIstovara;
 
                 // Podaci o vozilu
                 string kontejnerString = row["BrojKontejnera"] != DBNull.Value ? row["BrojKontejnera"].ToString() : ""; 
@@ -1686,7 +1680,6 @@ namespace Saobracaj.Drumski
                 if (!string.IsNullOrEmpty(kontejner2))
                    kontejnerString += ", " + kontejner2;
 
-                string cena = row["Cena"] != DBNull.Value ? row["Cena"].ToString() : "";
                 string tipVozila = row["TipVozila"] != DBNull.Value ? row["TipVozila"].ToString() : "";
                 string tablice = row["Kamion"] != DBNull.Value ? row["Kamion"].ToString() : ""; 
                 int kamionID = GetInt(row, "KamionID");
@@ -1694,27 +1687,12 @@ namespace Saobracaj.Drumski
                 //// Dohvatanje vozača
                 (string vozac, string brLK, string telefon) = DobaviVozaca(kamionID);
 
-
-                // --- Generisanje Teksta za Trenutni Nalog (Iznad Tabele) ---
-
-                //htmlBuilder.AppendLine($"<h3>Radni nalog ID: {GetString(row, "ID")} ({kontejnerString})</h3>");
-
-                // DtPreuzimanjaPraznogKontejnera
-                htmlBuilder.AppendLine($"<p>Kontejner preuzima <b>{datumPreuzimanjaPraznog}</b></p>");
-                // Datum Istovara (rok za isporuku)
-                htmlBuilder.AppendLine($"<p>Rok za isporuku je <b>{datumIstovara}</b></p>");
-
-                // Linija Carinjenja - KORISTI KRITIČNU LOGIKU DATUMA
-                htmlBuilder.AppendLine($"<p>Na <b>{odredisnaCarinarnica}</b> je <b>{datumRuteZaCarinjenje}</b> {carinjenje}</p>");
-                htmlBuilder.AppendLine($"<p><b>Napomena za pozicioniranje: {napomenaZaPozicioniranje}</b></p>");
-
-                htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
-
+             
 
                 // --- Generisanje HTML Tabele sa Detaljima o Vozilu ---
                 htmlBuilder.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse; font-family: Arial; font-size: 14px; margin-bottom: 25px;'>");
                 htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td>{kontejnerString}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>Kamion i vrsta:</b></td><td>{tipVozila}</td></tr>");
+                htmlBuilder.AppendLine($"<tr><td><b>Kamion - vrsta:</b></td><td>{tipVozila}</td></tr>");
                 htmlBuilder.AppendLine($"<tr><td><b>Kamion - tablice:</b></td><td>{tablice}</td></tr>");
                 htmlBuilder.AppendLine($"<tr><td><b>Vozač:</b></td><td>{vozac}</td></tr>");
                 htmlBuilder.AppendLine($"<tr><td><b>BR. L.K:</b></td><td>{brLK}</td></tr>");
@@ -2059,5 +2037,60 @@ namespace Saobracaj.Drumski
             }
         }
 
+        private void btnArhiva_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+                {
+                    // Proveri da li red nije novi prazan red
+                    if (row.IsNewRow) continue;
+
+                    //  (int) i KamionID (int)
+             
+                    string idsString = row.Cells["IdsRadniNalogDrumski"].Value?.ToString();
+
+                    List<int> idjeviZaNajavu;
+                    try
+                    {
+                        idjeviZaNajavu = idsString
+                            // 1. Razdvaja string po zarezima (i uklanja prazne elemente)
+                            .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                            // 2. Za svaki dobijeni string element, pokušava da ga parsira u int
+                            .Select(s => int.Parse(s.Trim()))
+                            // 3. Rezultat pretvara u List<int>
+                            .ToList();
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Greška u formatu ID-jeva naloga. Proverite podatke.");
+                        return;
+                    }
+
+                    foreach (int id in idjeviZaNajavu)
+                    {
+                        try
+                        {
+                            ins.ArhiviranRadniNalogDrumski(id);
+                        }
+                        catch (Exception ex)
+                        {
+                            // po želji možeš prijaviti grešku za pojedinačni ID
+                            MessageBox.Show($"Greška pri arhiviranju naloga ID={id}: {ex.Message}");
+                        }
+                    }
+                }
+                RefreshDataGrid3();
+                RefreshDataGrid1();
+                dataGridView2.ClearSelection();
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
     }
 }
