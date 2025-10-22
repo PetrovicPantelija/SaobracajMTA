@@ -260,7 +260,7 @@ namespace Saobracaj.Drumski
                             CASE
                                 WHEN rn.Uvoz = 0 THEN ISNULL(NULLIF(v_izvoz.NazivVoza, ''), '/')
                                 WHEN rn.Uvoz = 1 THEN ISNULL(NULLIF(v_uvoz.NazivVoza, ''), '/')
-                                WHEN rn.Uvoz IN(2,3) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
+                                WHEN rn.Uvoz IN(2,3, 4, 5) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
                                 ELSE '/'
                             END AS NazivVoza,
                             MAX(CASE WHEN f.TipFakture = 0 THEN f.IzlaznaFaktura END) AS IzlaznaFaktura,
@@ -286,7 +286,7 @@ namespace Saobracaj.Drumski
                                     CASE
                                     WHEN rn.Uvoz = 0 THEN ISNULL(NULLIF(v_izvoz.NazivVoza, ''), '/')
                                     WHEN rn.Uvoz = 1 THEN ISNULL(NULLIF(v_uvoz.NazivVoza, ''), '/')
-                                    WHEN rn.Uvoz IN(2,3) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
+                                    WHEN rn.Uvoz IN(2,3, 4,5) THEN ISNULL(NULLIF(rn.BrojVoza, ''), '/')
                                     ELSE '/'
                                     END ", con))
             {

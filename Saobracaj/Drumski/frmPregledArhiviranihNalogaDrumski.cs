@@ -259,7 +259,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
-                        WHERE rn.Uvoz in (-1,2, 3) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
+                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ( rn.Arhiviran = 1  OR  rn.Status IN ( {statusiZaUpit}))
                         ORDER BY ID DESC"
             ;
                 //WHERE rn.Uvoz in (-1, 2, 3)  AND UPPER(rn.BrojKontejnera) LIKE UPPER('%{txtBrKontejnera.Text}%') AND(rn.Arhiviran = 1  OR  rn.Status IN( { statusiZaUpit}))

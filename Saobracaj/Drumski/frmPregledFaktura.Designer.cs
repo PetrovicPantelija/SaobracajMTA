@@ -32,6 +32,7 @@
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnFormiranjeNaloga = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripPregledFakture = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.toolStripSkeniranaDokumentacija = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,11 +101,34 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnFormiranjeNaloga);
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(767, 38);
             this.panel2.TabIndex = 6;
+            // 
+            // btnFormiranjeNaloga
+            // 
+            this.btnFormiranjeNaloga.AutoSize = true;
+            this.btnFormiranjeNaloga.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFormiranjeNaloga.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnFormiranjeNaloga.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnFormiranjeNaloga.FlatAppearance.BorderSize = 0;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnFormiranjeNaloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormiranjeNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnFormiranjeNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnFormiranjeNaloga.Location = new System.Drawing.Point(0, 0);
+            this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFormiranjeNaloga.Name = "btnFormiranjeNaloga";
+            this.btnFormiranjeNaloga.Size = new System.Drawing.Size(244, 38);
+            this.btnFormiranjeNaloga.TabIndex = 23;
+            this.btnFormiranjeNaloga.Text = "Nalog za obavljanje prevoza";
+            this.btnFormiranjeNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormiranjeNaloga.UseVisualStyleBackColor = true;
+            this.btnFormiranjeNaloga.Click += new System.EventHandler(this.btnFormiranjeNaloga_Click);
             // 
             // commandBarController1
             // 
@@ -124,7 +149,7 @@
             this.toolStripDokumentaKamiona,
             this.toolStripSkeniranaDokumentacija});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(423, 200);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(423, 172);
             // 
             // toolStripPregledFakture
             // 
@@ -187,6 +212,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panelHeader.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -207,5 +234,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripDokumentaKamiona;
         private System.Windows.Forms.ToolStripMenuItem toolStripPregledNaloga;
         private System.Windows.Forms.ToolStripMenuItem toolStripSkeniranaDokumentacija;
+        private System.Windows.Forms.Button btnFormiranjeNaloga;
     }
 }
