@@ -1,7 +1,10 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using Saobracaj.Pantheon_Export;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Windows.Forms.Grid;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +14,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+using System.IdentityModel.Metadata;
+using System.Security.Cryptography.Xml;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace Saobracaj.Sifarnici
 {
@@ -165,7 +171,8 @@ namespace Saobracaj.Sifarnici
         }
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+         //   RefreshDataGrid();
+            RefreshGridControl();
             ChecBoxVisible(this.Controls);
             panel1.Visible = false;
             panel4.Visible = false;
@@ -288,7 +295,7 @@ namespace Saobracaj.Sifarnici
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in c.Rows)
                 {
                     if (row.Selected)
                     {
@@ -391,6 +398,48 @@ namespace Saobracaj.Sifarnici
             }
         }
 
+        private void RefreshGridControl()
+        {
+            var select = " Select PaSifra as PaID, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun, " +
+              " PaOpomba as Napomena, PaDMatSt as Maticni, PaEMai as EMaill, PaEMatSt1 as PIB, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
+          " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+         
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+          
+
+    
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+
+
+        }
+
         private void RefreshDataGrid()
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
@@ -420,121 +469,121 @@ namespace Saobracaj.Sifarnici
             */
 
 
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            this.c.ReadOnly = true;
+            this.c.DataSource = ds.Tables[0];
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
-                PodesiDatagridView(dataGridView1);
+                PodesiDatagridView(this.c);
             }
             else
             {
-                dataGridView1.BorderStyle = BorderStyle.None;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView1.BackgroundColor = Color.White;
+                this.c.BorderStyle = BorderStyle.None;
+                this.c.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                this.c.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                this.c.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                this.c.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                this.c.BackgroundColor = Color.White;
 
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                this.c.EnableHeadersVisualStyles = false;
+                this.c.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                this.c.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                this.c.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             }
 
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Šifra";
-            dataGridView1.Columns[0].Width = 50;
+            DataGridViewColumn column = this.c.Columns[0];
+            this.c.Columns[0].HeaderText = "Šifra";
+            this.c.Columns[0].Width = 50;
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 250;
+            DataGridViewColumn column2 = this.c.Columns[1];
+            this.c.Columns[1].HeaderText = "Naziv";
+            this.c.Columns[1].Width = 250;
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Ulica";
-            dataGridView1.Columns[2].Width = 100;
+            DataGridViewColumn column3 = this.c.Columns[2];
+            this.c.Columns[2].HeaderText = "Ulica";
+            this.c.Columns[2].Width = 100;
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Mesto";
-            dataGridView1.Columns[3].Width = 100;
+            DataGridViewColumn column4 = this.c.Columns[3];
+            this.c.Columns[3].HeaderText = "Mesto";
+            this.c.Columns[3].Width = 100;
 
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Oblast";
-            dataGridView1.Columns[4].Width = 70;
+            DataGridViewColumn column5 = this.c.Columns[4];
+            this.c.Columns[4].HeaderText = "Oblast";
+            this.c.Columns[4].Width = 70;
 
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Pošta";
-            dataGridView1.Columns[5].Width = 60;
+            DataGridViewColumn column6 = this.c.Columns[5];
+            this.c.Columns[5].HeaderText = "Pošta";
+            this.c.Columns[5].Width = 60;
 
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Država";
-            dataGridView1.Columns[6].Width = 60;
+            DataGridViewColumn column7 = this.c.Columns[6];
+            this.c.Columns[6].HeaderText = "Država";
+            this.c.Columns[6].Width = 60;
 
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Telefon";
-            dataGridView1.Columns[7].Width = 100;
+            DataGridViewColumn column8 = this.c.Columns[7];
+            this.c.Columns[7].HeaderText = "Telefon";
+            this.c.Columns[7].Width = 100;
 
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Tekući račun";
-            dataGridView1.Columns[8].Width = 100;
+            DataGridViewColumn column9 = this.c.Columns[8];
+            this.c.Columns[8].HeaderText = "Tekući račun";
+            this.c.Columns[8].Width = 100;
 
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Napomena";
-            dataGridView1.Columns[9].Width = 250;
+            DataGridViewColumn column10 = this.c.Columns[9];
+            this.c.Columns[9].HeaderText = "Napomena";
+            this.c.Columns[9].Width = 250;
 
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "PIB";
-            dataGridView1.Columns[10].Width = 70;
+            DataGridViewColumn column11 = this.c.Columns[10];
+            this.c.Columns[10].HeaderText = "PIB";
+            this.c.Columns[10].Width = 70;
 
-            DataGridViewColumn column12 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "E mail";
-            dataGridView1.Columns[11].Width = 80;
-
-
-            DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Matični broj";
-            dataGridView1.Columns[12].Width = 70;
-
-            DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "UIC";
-            dataGridView1.Columns[13].Width = 50;
-
-            DataGridViewColumn column15 = dataGridView1.Columns[14];
-            dataGridView1.Columns[14].HeaderText = "Prevoznik";
-            dataGridView1.Columns[14].Width = 40;
-
-            DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "Pošiljalac";
-            dataGridView1.Columns[15].Width = 40;
-
-            DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = "Primalac";
-            dataGridView1.Columns[16].Width = 40;
-
-            DataGridViewColumn column18 = dataGridView1.Columns[17];
-            dataGridView1.Columns[17].HeaderText = "UIC DRZAVA";
-            dataGridView1.Columns[17].Width = 60;
-
-            DataGridViewColumn column19 = dataGridView1.Columns[18];
-            dataGridView1.Columns[18].HeaderText = "TR2";
-            dataGridView1.Columns[18].Width = 60;
+            DataGridViewColumn column12 = this.c.Columns[11];
+            this.c.Columns[11].HeaderText = "E mail";
+            this.c.Columns[11].Width = 80;
 
 
-            DataGridViewColumn column20 = dataGridView1.Columns[19];
-            dataGridView1.Columns[19].HeaderText = "FAKS";
-            dataGridView1.Columns[19].Width = 60;
+            DataGridViewColumn column13 = this.c.Columns[12];
+            this.c.Columns[12].HeaderText = "Matični broj";
+            this.c.Columns[12].Width = 70;
 
-            DataGridViewColumn column21 = dataGridView1.Columns[20];
-            dataGridView1.Columns[20].HeaderText = "Izvoznik";
-            dataGridView1.Columns[20].Width = 60;
+            DataGridViewColumn column14 = this.c.Columns[13];
+            this.c.Columns[13].HeaderText = "UIC";
+            this.c.Columns[13].Width = 50;
 
-            dataGridView1.Columns["Currency"].Visible = false;
+            DataGridViewColumn column15 = this.c.Columns[14];
+            this.c.Columns[14].HeaderText = "Prevoznik";
+            this.c.Columns[14].Width = 40;
+
+            DataGridViewColumn column16 = this.c.Columns[15];
+            this.c.Columns[15].HeaderText = "Pošiljalac";
+            this.c.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = this.c.Columns[16];
+            this.c.Columns[16].HeaderText = "Primalac";
+            this.c.Columns[16].Width = 40;
+
+            DataGridViewColumn column18 = this.c.Columns[17];
+            this.c.Columns[17].HeaderText = "UIC DRZAVA";
+            this.c.Columns[17].Width = 60;
+
+            DataGridViewColumn column19 = this.c.Columns[18];
+            this.c.Columns[18].HeaderText = "TR2";
+            this.c.Columns[18].Width = 60;
+
+
+            DataGridViewColumn column20 = this.c.Columns[19];
+            this.c.Columns[19].HeaderText = "FAKS";
+            this.c.Columns[19].Width = 60;
+
+            DataGridViewColumn column21 = this.c.Columns[20];
+            this.c.Columns[20].HeaderText = "Izvoznik";
+            this.c.Columns[20].Width = 60;
+
+            this.c.Columns["Currency"].Visible = false;
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
             {
-                dataGridView1.Columns["Logisticar"].Visible = false;
-                dataGridView1.Columns["Kamioner"].Visible = false;
-                dataGridView1.Columns["AgentBrodara"].Visible = false;
+                this.c.Columns["Logisticar"].Visible = false;
+                this.c.Columns["Kamioner"].Visible = false;
+                this.c.Columns["AgentBrodara"].Visible = false;
             }
 
         }
@@ -1031,6 +1080,204 @@ namespace Saobracaj.Sifarnici
             panel5.Visible = true;
         }
 
+        private void VratiPodatkeSelect(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [PaSifra]      ,[PaNaziv]      ,[PaUlicaHisnaSt]      ,[PaKraj] " +
+   "   , [PaDelDrzave], [PaPostnaSt], [PaSifDrzave], [PaTelefon1] " +
+   "     ,  [PaZiroRac] " +
+   "     , [PaOpomba], [PaDMatSt], [PaEMail], [PaEMatSt1] " +
+   "     , " +
+   "     , [UIC], [Prevoznik], [Posiljalac], [Primalac] " +
+   "     , [Brodar], [Vlasnik], [Spediter], [Platilac] " +
+   "     , [Organizator], [NalogodavacCH], [UvoznikCH]," +
+   "  [UICDrzava], [TR2], [Faks], " +
+   "      [PomIzvoznik] " +
+   "     , [Logisticar], [Kamioner], [AgentBrodara], [Buyer] " +
+   "     , [WayOfSale], [Currency], [Supplier], [SuppSaleMet] " +
+   "     , [SuppCurr], [Clerk], [SuppClerk], [Status] " +
+   "     , [Referent], [FREC], [DrumskiPrevoz], [ERPID],[MUAdresa] " +
+   "     , [MUKontakt], [PaTelefon2], [PaFaks], [PaSifVrst][PaEDavStDDV], [PaDDV], [PaRegija] " +
+  "   FROM [dbo].[Partnerji] where PaSifra =" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtNaziv.Text = dr["PaNaziv"].ToString();
+                txtUlica.Text = dr["PaUlicaHisnaSt"].ToString();
+                txtMesto.Text = dr["PaKraj"].ToString();
+                txtOblast.Text = dr["PaDelDrzave"].ToString();
+                txtPosta.Text = dr["PaPostnaSt"].ToString();
+                txtDrzava.Text = dr["PaSifDrzave"].ToString();
+                txtTelefon.Text = dr["PaTelefon1"].ToString();
+                txtTR.Text = dr["PaZiroRac"].ToString();
+                txtNapomena.Text = dr["PaOpomba"].ToString();
+                txtMaticniBroj.Text = dr["PaDMatSt"].ToString();
+                txtEmail.Text = dr["PaEMail"].ToString();
+                txtPIB.Text = dr["PaEMatSt1"].ToString();
+                txtUIC.Text = dr["UIC"].ToString();
+                txtUICDrzava.Text = dr["UICDrzava"].ToString();
+                txtTR2.Text = dr["TR2"].ToString();
+                txtFaks.Text = dr["Faks"].ToString();
+                if (dr["PomIzvoznik"].ToString() == "1")
+                { chkIzvoznik.Checked = true; }
+                else
+                { chkIzvoznik.Checked = false; }
+
+                if (dr["Logisticar"].ToString() == "1")
+                { chkLogisitcar.Checked = true; }
+                else
+                { chkLogisitcar.Checked = false; }
+
+                if (dr["Kamioner"].ToString() == "1")
+                { chkKamioner.Checked = true; }
+                else
+                { chkKamioner.Checked = false; }
+
+                if (dr["AgentBrodara"].ToString() == "1")
+                { chkAgentBrodara.Checked = true; }
+                else
+                { chkAgentBrodara.Checked = false; }
+
+                if (dr["Supplier"].ToString() == "1")
+                { cbDobavljac.Checked = true; }
+                else
+                { cbDobavljac.Checked = false; }
+
+                if (dr["Buyer"].ToString() == "1")
+                { cboKupac.Checked = true; }
+                else
+                { cboKupac.Checked = false; }
+
+                if (dr["WayOfSale"].ToString() == "Z")
+                { cbObveznik.Checked = true; }
+                else
+                { cbObveznik.Checked = false; }
+
+ cboValuta.SelectedValue = dr["Currency"].ToString();
+
+
+
+
+               
+                numFREC.Value = Convert.ToInt32(dr["FREC"].ToString());
+                if (dr["DrumskiPrevoz"].ToString() == "1")
+                { chkDrumskiPrevoz.Checked = true; }
+                else
+                { chkDrumskiPrevoz.Checked = false; }
+
+              
+                txtERPID.Text = dr["ERPID"].ToString();
+
+                if (dr["UvoznikCH"].ToString() == "1")
+                { chkUvoznik.Checked = true; }
+                else
+                { chkUvoznik.Checked = false; }
+
+                if (dr["NalogodavacCH"].ToString() == "1")
+                { chkNalogodavac.Checked = true; }
+                else
+                { chkNalogodavac.Checked = false; }
+
+                if (dr["Organizator"].ToString() == "1")
+                { chkOrganizator.Checked = true; }
+                else
+                { chkOrganizator.Checked = false; }
+
+                if (dr["Platilac"].ToString() == "1")
+                { chkPlatilac.Checked = true; }
+                else
+                { chkPlatilac.Checked = false; }
+
+                if (dr["Spediter"].ToString() == "1")
+                { chkSpediter.Checked = true; }
+                else
+                { chkSpediter.Checked = false; }
+
+                if (dr["Vlasnik"].ToString() == "1")
+                { chkVlasnik.Checked = true; }
+                else
+                {chkVlasnik.Checked = false; }
+                    
+               
+
+                if (dr["Brodar"].ToString() == "1")
+                {
+                    chkBrodar.Checked = true;
+                }
+                else
+                {
+                    chkBrodar.Checked = false;
+                }
+                if (dr["Primalac"].ToString() == "1")
+                {
+                    chkPrimalac.Checked = true;
+                }
+                else
+                {
+                    chkPrimalac.Checked = false;
+                }
+
+                if (dr["Prevoznik"].ToString() == "1")
+                {
+                    chkPrevoznik.Checked = true;
+                }
+                else
+                {
+                    chkPrevoznik.Checked = false;
+                }
+
+                if (dr["Posiljalac"].ToString() == "1")
+                {
+                    chkPosiljalac.Checked = true;
+                }
+                else
+                {
+                    chkPosiljalac.Checked = false;
+                }
+
+               
+               
+               
+
+             
+
+
+           
+
+            }
+
+
+
+            con.Close();
+
+
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                   
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaID").ToString();
+                    VratiPodatkeSelect(Convert.ToInt32(txtSifra.Text));
+
+
+                   
+                        RefreshDataGrid2(txtSifra.Text);
+                    }
+                
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
     }
 }

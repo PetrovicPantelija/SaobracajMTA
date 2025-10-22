@@ -17,6 +17,7 @@ namespace Saobracaj.Izvoz
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         int NHMObrni = 0;
         int PlanZaPrebacivanje = 0;
+        int IDTrenutni = 0;
 
         private void ChangeTextBox()
         {
@@ -214,49 +215,38 @@ namespace Saobracaj.Izvoz
         {
             InitializeComponent();
             ChangeTextBox();
-            FillDG2();
-            FillDG4();
-            RefreshGV();
+          
         }
         public frmIzvoz(string Korisnik)
         {
             InitializeComponent();
-            FillDG2();
-            FillDG4();
+            ChangeTextBox();
+          
             tslKreirao.Text = Korisnik;
             tKorisnik = Korisnik;
-            ChangeTextBox();
-            RefreshGV();
+         
+          
         }
 
         public frmIzvoz(int Terminal, int PlanTerminala)
         {
             InitializeComponent();
+            ChangeTextBox();
             // FillDG();
-
-            FillCombo();
-            FillDG2();
-            FillDG4();
             chkTerminal.Checked = true;
             PlanZaPrebacivanje = PlanTerminala;
-            ChangeTextBox() ;
-            RefreshGV();
-
-            //  FillDG4();
-
+           
+           
         }
 
         public frmIzvoz(int ID)
         {
             InitializeComponent();
            // FillDG();
-          ChangeTextBox() ;
-            FillCombo();
-            VratiPodatke(ID);
-            FillDG2();
-            FillDG3();
-            FillDG4();
-            RefreshGV();
+            ChangeTextBox() ;
+            IDTrenutni = ID;
+
+
 
         }
 
@@ -298,13 +288,13 @@ namespace Saobracaj.Izvoz
                 dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
                     txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
                     txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
-                    txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
+                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
                 txtKoleta.Value = Convert.ToInt32(dr["BrojKoleta"].ToString());
                 txtKoletaO.Value = Convert.ToInt32(dr["BrojKoletaO"].ToString());
                 txtCBM.Value = Convert.ToDecimal(dr["CBM"].ToString());
                 txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
-                    txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
+                txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
                 txtValuta.Text = dr["Valuta"].ToString();
                 cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
                 cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
@@ -511,7 +501,14 @@ namespace Saobracaj.Izvoz
         private void frmIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
-       
+            VratiPodatke(IDTrenutni);
+            FillDG2();
+            FillDG3();
+            FillDG4();
+            RefreshGV();
+
+           
+
 
             //  FillDG();
 
@@ -630,7 +627,6 @@ namespace Saobracaj.Izvoz
             RefreshDataGridColor();
 */
         }
-
 
 
         private void FillCombo()
@@ -904,8 +900,6 @@ namespace Saobracaj.Izvoz
             cboScenario.ValueMember = "ID";
 
         }
-
-
 
 
         private void GetID()
@@ -2293,7 +2287,6 @@ namespace Saobracaj.Izvoz
             }
 
 
-
             //Provera SCENARIJA UKLJUCITI ADR
             if (chkTerminal.Checked == true)
             {
@@ -2311,11 +2304,11 @@ namespace Saobracaj.Izvoz
             {
                 Moguce = "13"; // PUN Ostaje na terminalu \"11,12,13,14,29
             }
-            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
+            else if (ScenarioGL == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
             {
-                Moguce = "12,29"; // PUN Ostaje na terminalu \"11,12,13,14,29
+                Moguce = "12,29"; // PRAYAN
             }
-            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
+            else if (ScenarioGL == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp > 1)
             {
                 Moguce = "25,26";
             }

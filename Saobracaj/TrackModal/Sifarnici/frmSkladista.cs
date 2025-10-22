@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Saobracaj.TrackModal.Sifarnici;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Data;
@@ -19,6 +20,7 @@ namespace Testiranje.Sifarnici
         bool update;
         bool delete;
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string niz = "";
 
         string KorisnikCene;
@@ -173,17 +175,24 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int tmpAktivna = 0;
+
+
+
+
+            if (chkAktivna.Checked == true)
+            { tmpAktivna = 1; };
             if (status == true)
             {
                 InsertSkladista ins = new InsertSkladista();
-                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue));
+                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue),Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertSkladista upd = new InsertSkladista();
-                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue));
+                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
             }
             RefreshDataGrid();
         }
@@ -208,8 +217,16 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT Skladista.[ID] ,Skladista.Naziv,Kapacitet, SkladistaGrupa.Naziv as Grupa, [Datum],[Korisnik] FROM [dbo].[Skladista]" +
-                " inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID order by ID";
+            var select = " SELECT Skladista.[ID] ,Skladista.Oznaka, Skladista.SkNaziv, Skladista.Naziv, SkladistaGrupa.Oznaka as LokacijaOznaka,SkladistaGrupa.Naziv as Lokacija, " +
+                "  Partnerji.PaNaziv as Brodar, TipKontenjera.Naziv as TipKontejnera, " +
+                            " uvKvalitetKontejnera.Naziv as KValitetKontejnera, TipPalete.Naziv as TipPalete, CASE WHEN Skladista.Aktivan > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, Kapacitet" +
+                            " FROM [dbo].[Skladista] " +
+                            " inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID " +
+                            " inner join Partnerji on PArtnerji.PaSifra = Skladista.Brodar " +
+                            " inner join TipKontenjera on TipKontenjera.ID = Skladista.TipKontejnera " +
+                            " inner join uvKvalitetKontejnera on uvKvalitetKontejnera.ID = Skladista.KvalitetKontejnera " +
+                            " inner join TipPalete on TipPalete.ID = Skladista.TipPalete " +
+                            " order by Skladista.ID";
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -229,25 +246,48 @@ namespace Testiranje.Sifarnici
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].Width = 100;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kapacitet";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].HeaderText = "SkNaziv";
+            dataGridView1.Columns[2].Width = 80;
 
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Grupa";
-            dataGridView1.Columns[3].Width = 100;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 200;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Datum";
+            dataGridView1.Columns[4].HeaderText = "Lokacija oznaka";
             dataGridView1.Columns[4].Width = 100;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "korisnik";
-            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[5].HeaderText = "Lokacija";
+            dataGridView1.Columns[5].Width = 200;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Brodar";
+            dataGridView1.Columns[6].Width = 200;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Tip kontejnera";
+            dataGridView1.Columns[7].Width = 100;
+
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Kvalitet kontejnera";
+            dataGridView1.Columns[8].Width = 150;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Tip palete";
+            dataGridView1.Columns[9].Width = 150;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Aktivan";
+            dataGridView1.Columns[10].Width = 80;
+
+
         }
 
         private void VratiPodatke(string ID)
@@ -257,15 +297,33 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv,Kapacitet, GrupaPoljaID from Skladista where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT Skladista.[ID] ,Skladista.Naziv,Skladista.SkNaziv, Skladista.Oznaka, Skladista.Kapacitet, " +
+                " SkladistaGrupa.ID as Lokacija,  Partnerji.PaSifra as Brodar, TipKontenjera.ID as TipKontejnera, uvKvalitetKontejnera.ID as KValitetKontejnera, TipPalete.ID as TipPalete, [Skladista].Aktivan FROM [dbo].[Skladista] inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID inner join Partnerji on PArtnerji.PaSifra = Skladista.Brodar " +
+                "inner join TipKontenjera on TipKontenjera.ID = Skladista.TipKontejnera " +
+                "inner join uvKvalitetKontejnera on uvKvalitetKontejnera.ID = Skladista.KvalitetKontejnera inner join TipPalete on TipPalete.ID = Skladista.TipPalete where Skladista.ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtNaziv.Text = dr["Naziv"].ToString();
+                txtOznaka.Text = dr["Oznaka"].ToString();
                 txtKapacitet.Text = dr["Kapacitet"].ToString();
-                cboGrupaPolja.SelectedValue = Convert.ToInt32(dr["GrupaPoljaID"].ToString());
+                cboGrupaPolja.SelectedValue = Convert.ToInt32(dr["Lokacija"].ToString());
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                cboTipKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                cboKvalitet.SelectedValue = Convert.ToInt32(dr["KValitetKontejnera"].ToString());
+                cboTipPalete.SelectedValue = Convert.ToInt32(dr["TipPalete"].ToString());
+                txtSKNaziv.Text = dr["SkNaziv"].ToString();
+
+                if (dr["Aktivan"].ToString() == "1")
+                {
+                    chkAktivna.Checked = true;
+                }
+                else
+                {
+                    chkAktivna.Checked = false;
+                }
             }
 
             con.Close();
@@ -423,6 +481,46 @@ namespace Testiranje.Sifarnici
             cboGrupaPolja.DataSource = ds4.Tables[0];
             cboGrupaPolja.DisplayMember = "Naziv";
             cboGrupaPolja.ValueMember = "ID";
+
+
+
+            var dir2 = "Select PaSifra,  PaNaziv from Partnerji where Brodar = 1";
+            var dirAD2 = new SqlDataAdapter(dir2, connection);
+            var dirDS2 = new System.Data.DataSet();
+            dirAD2.Fill(dirDS2);
+            cboBrodar.DataSource = dirDS2.Tables[0];
+            cboBrodar.DisplayMember = "PaNaziv";
+            cboBrodar.ValueMember = "PaSifra";
+
+
+            var partner22 = "SELECT ID, Naziv  FROM uvKvalitetKontejnera order by Naziv";
+            var partAD22 = new SqlDataAdapter(partner22, connection);
+            var partDS22 = new DataSet();
+            partAD22.Fill(partDS22);
+            cboKvalitet.DataSource = partDS22.Tables[0];
+            cboKvalitet.DisplayMember = "Naziv";
+            cboKvalitet.ValueMember = "ID";
+
+
+            var mu = "select ID, SkNaziv from TipKontenjera order by SkNaziv";
+            var muAD = new SqlDataAdapter(mu, connection);
+            var muDS = new DataSet();
+            muAD.Fill(muDS);
+            cboTipKontejnera.DataSource = muDS.Tables[0];
+            cboTipKontejnera.DisplayMember = "SkNaziv";
+            cboTipKontejnera.ValueMember = "ID";
+
+
+            var it = "select ID, Naziv from TipPalete order by Naziv";
+            var itAD = new SqlDataAdapter(it, connection);
+            var itDS = new DataSet();
+            itAD.Fill(itDS);
+            cboTipPalete.DataSource = itDS.Tables[0];
+            cboTipPalete.DisplayMember = "Naziv";
+            cboTipPalete.ValueMember = "ID";
+
+
+
 
 
 

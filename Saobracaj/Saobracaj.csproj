@@ -3581,6 +3581,24 @@
     <Compile Include="TrackModal\Sifarnici\frmTipKontejnera.Designer.cs">
       <DependentUpon>frmTipKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipPalete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipPalete.Designer.cs">
+      <DependentUpon>frmTipPalete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipSkladista.Designer.cs">
+      <DependentUpon>frmTipSkladista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipZone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipZone.Designer.cs">
+      <DependentUpon>frmTipZone.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\frmVrstaManipulacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3605,6 +3623,12 @@
     <Compile Include="TrackModal\Sifarnici\frmZastitnaOdeca.Designer.cs">
       <DependentUpon>frmZastitnaOdeca.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmZone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmZone.Designer.cs">
+      <DependentUpon>frmZone.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\InsertCene.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertCIR.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertDelovi.cs" />
@@ -3623,16 +3647,27 @@
     <Compile Include="TrackModal\Sifarnici\InsertPravoPristupaFormi.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertPredefinisanePoruke.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladista.cs" />
+    <Compile Include="TrackModal\Sifarnici\InsertSkladistaGrupa.cs" />
+    <Compile Include="TrackModal\Sifarnici\SkladisteGrupa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\SkladisteGrupa.Designer.cs">
+      <DependentUpon>SkladisteGrupa.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\InsertSkolskaSprema.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertStanice.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertStatusRobe.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertStrucniIspiti.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertTipCenovnika.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertTipKontejnera.cs" />
+    <Compile Include="TrackModal\Sifarnici\InsertTipPalete.cs" />
+    <Compile Include="TrackModal\Sifarnici\InsertTipSkladista.cs" />
+    <Compile Include="TrackModal\Sifarnici\InsertTipZone.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertVrstaManipulacije.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertVrstaRobe.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertZaposleni.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertZastitnaOdeca.cs" />
+    <Compile Include="TrackModal\Sifarnici\InsertZone.cs" />
     <Compile Include="TrackModal\Sifarnici\PrvaProbaForma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5536,6 +5571,15 @@
     <EmbeddedResource Include="TrackModal\Sifarnici\frmTipKontejnera.resx">
       <DependentUpon>frmTipKontejnera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmTipPalete.resx">
+      <DependentUpon>frmTipPalete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmTipSkladista.resx">
+      <DependentUpon>frmTipSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmTipZone.resx">
+      <DependentUpon>frmTipZone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\frmVrstaManipulacije.resx">
       <DependentUpon>frmVrstaManipulacije.cs</DependentUpon>
     </EmbeddedResource>
@@ -5548,8 +5592,14 @@
     <EmbeddedResource Include="TrackModal\Sifarnici\frmZastitnaOdeca.resx">
       <DependentUpon>frmZastitnaOdeca.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmZone.resx">
+      <DependentUpon>frmZone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\PrvaProbaForma.resx">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\SkladisteGrupa.resx">
+      <DependentUpon>SkladisteGrupa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\Brodovi.resx">
       <DependentUpon>Brodovi.cs</DependentUpon>

@@ -150,7 +150,7 @@ namespace Saobracaj.Izvoz
         {
 
 
-            var select = "Select IzvozKonacnaZaglavlje.ID, IzvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija, IzvozKonacnaZaglavlje.Napomena from IzvozKonacnaZaglavlje " +
+            var select = "Select IzvozKonacnaZaglavlje.ID, IzvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.NazivVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija, IzvozKonacnaZaglavlje.Napomena from IzvozKonacnaZaglavlje " +
                 " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
                 " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
                 " inner join stanice s2 on s2.ID = Voz.StanicaDo " +

@@ -117,6 +117,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.tabSplitterContainer1.SuspendLayout();
@@ -309,6 +310,7 @@
             this.toolStripButton1,
             this.toolStripButton4,
             this.toolStripButton3,
+            this.toolStripButton5,
             this.toolStripButton2});
             this.panelHeader.Location = new System.Drawing.Point(3, 0);
             this.panelHeader.Name = "panelHeader";
@@ -362,8 +364,8 @@
             this.toolStripButton2.ForeColor = System.Drawing.Color.Black;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(83, 22);
-            this.toolStripButton2.Text = "Uradila carina";
+            this.toolStripButton2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton2.Text = "Potvrdio klijent";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // commandBarController1
@@ -1165,6 +1167,15 @@
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.ForeColor = System.Drawing.Color.Black;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(83, 22);
+            this.toolStripButton5.Text = "Uradila carina";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
             // PlaniraniPretovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1294,5 +1305,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }

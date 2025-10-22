@@ -488,7 +488,9 @@ namespace Saobracaj.Uvoz
 " union " +
 " SELECT rn.[ID] , IzvozKonacna.BrojKontejnera,VrstaManipulacije.Naziv,[Uradjen]," +
  " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
-" '0' as PotvrdioKlijent,  '0' as UradilaCarina, TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
+  " CASE WHEN IzvozKonacna.PotvrdioKlijent = 0 THEN 'ČEKA SE'    WHEN IzvozKonacna.PotvrdioKlijent = 1 THEN 'ODOBREN POČETAK – BEZ DODATNIH INSTRUKCIJA ' ELSE 'ODOBREN POČETAK – UZ DODATNE INSTRUKCIJE' END AS PotvrdioKlijent, " +
+                " CASE WHEN IzvozKonacna.UradilaCarina = 0 THEN 'ČEKA SE'    ELSE 'Potvrđen carinski postupak'END AS UradilaCarina, " +
+"TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv as KS, " +
 " (select Top 1 OperacijaUradjena from KontejnerTekuce inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuce.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov) as ZadnjaOperacija, " +
 " (select Top 1 Operacija from KontejnerTekuceOperacije inner join IzvozKonacna  on IzvozKonacna.BrojKontejnera = KontejnerTekuceOperacije.Kontejner  where IzvozKonacna.ID = rn.BrojOsnov order by KontejnerTekuceOperacije.ID DESC) as LogOperacija, " +
 "  rn.BrojDokPrevoza, " +
@@ -1371,10 +1373,20 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            if (txtOsnov.Text != "") 
+            if (txtOsnov.Text == "")
             {
-                InsertUvozKonacna ins = new InsertUvozKonacna();
-                ins.UpdUvozKonacnaUC(Convert.ToInt32(txtOsnov.Text));
+                return;
+            }
+            if (chkUvoz.Checked == true)
+            {
+                InsertUvozKonacna uc = new InsertUvozKonacna();
+                uc.UpdUvozKonacnaPK(Convert.ToInt32(txtOsnov.Text), 1);
+
+            }
+            else if (chkIzvoz.Checked == true)
+            {
+                InsertUvozKonacna uc = new InsertUvozKonacna();
+                uc.UpdUvozKonacnaPK(Convert.ToInt32(txtOsnov.Text), 2);
             }
         }
 
@@ -1403,6 +1415,25 @@ namespace Saobracaj.Uvoz
             catch
             {
                 System.Windows.MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            if (txtOsnov.Text == "")
+            {
+                return;
+            }
+            if (chkUvoz.Checked == true)
+            {
+                InsertUvozKonacna uc = new InsertUvozKonacna();
+                uc.UpdUvozKonacnaUC(Convert.ToInt32(txtOsnov.Text), 1);
+            
+            }
+            else if (chkIzvoz.Checked == true)
+            {
+                InsertUvozKonacna uc = new InsertUvozKonacna();
+                uc.UpdUvozKonacnaUC(Convert.ToInt32(txtOsnov.Text), 2);
             }
         }
 

@@ -2698,5 +2698,28 @@ namespace Saobracaj.Izvoz
             frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(0));
             ppDU.Show();
         }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                }
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                FillDGUsluge();
+                FillDG2();
+            }
+
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

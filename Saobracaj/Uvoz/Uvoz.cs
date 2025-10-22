@@ -158,6 +158,7 @@ namespace Saobracaj.Uvoz
             //  UcitajNHMoveCombo();
             FillCombo();
             // RefreshDataGridColor();
+            /*
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
             cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
@@ -167,7 +168,7 @@ namespace Saobracaj.Uvoz
             cboBrodar.GotFocus += (sender, args) => cboBrodar.DroppedDown = true;
             cbVlasnikKont.GotFocus += (sender, args) => cbVlasnikKont.DroppedDown = true;
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
-            cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+         //   cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
             //cboUvoznik.GotFocus += (sender, args) => cboUvoznik. = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
@@ -181,7 +182,7 @@ namespace Saobracaj.Uvoz
             cbOspedicija.GotFocus += (sender, args) => cbOspedicija.DroppedDown = true;
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
-
+            */
         }
 
         public Uvoz(int sifra, string Korisnik)
@@ -203,6 +204,7 @@ namespace Saobracaj.Uvoz
             FillDG4();
             FillNHM();
             KorisnikTekuci = Korisnik;
+            /*
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
             cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
@@ -212,7 +214,8 @@ namespace Saobracaj.Uvoz
             cboBrodar.GotFocus += (sender, args) => cboBrodar.DroppedDown = true;
             cbVlasnikKont.GotFocus += (sender, args) => cbVlasnikKont.DroppedDown = true;
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
-            cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+            //DropDown
+          //  cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
             //cboUvoznik.GotFocus += (sender, args) => cboUvoznik.DroppedDown = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
@@ -227,6 +230,7 @@ namespace Saobracaj.Uvoz
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
             //  RefreshDataGridColor();
+            */
         }
 
         public Uvoz(int Terminalski, int Plan)
@@ -241,6 +245,7 @@ namespace Saobracaj.Uvoz
             cboPlanUtovara.SelectedValue = Plan;
             chkTerminalski.Checked = true;
             this.Text = "Primljeni kontejneri od strane terminala";
+            /*
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
@@ -251,7 +256,8 @@ namespace Saobracaj.Uvoz
             cboBrodar.GotFocus += (sender, args) => cboBrodar.DroppedDown = true;
             cbVlasnikKont.GotFocus += (sender, args) => cbVlasnikKont.DroppedDown = true;
             cboNalogodavac1.GotFocus += (sender, args) => cboNalogodavac1.DroppedDown = true;
-            cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+          //  cboNalogodavac2.GotFocus += (sender, args) => cboNalogodavac2.DroppedDown = true;
+            //DropDown
             cboNalogodavac3.GotFocus += (sender, args) => cboNalogodavac3.DroppedDown = true;
             //cboUvoznik.GotFocus += (sender, args) => cboUvoznik.ShowPopupAsync = true;
             txtVrstaPregleda.GotFocus += (sender, args) => txtVrstaPregleda.DroppedDown = true;
@@ -266,6 +272,7 @@ namespace Saobracaj.Uvoz
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
             // cboScenario.SelectedValue = 15;
+            */
             
             //  RefreshDataGridColor();
         }
