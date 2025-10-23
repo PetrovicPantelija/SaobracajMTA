@@ -652,68 +652,91 @@ namespace Saobracaj.Uvoz
 
 
             var select = "";
-           /*
-                select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
-              "  inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID inner join Scenario on UvozKonacna.Scenario = Scenario.ID " +
-              "  where Uradjen not in (1, 2) " +
-               " union " +
-              "  select Distinct RadniNalogInterni.PlanID, IzvozKonacna.BrojKontejnera, Scenario.Naziv , 'Izvozni' as OJ  from RadniNalogInterni " +
-              "  inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
-              "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
-              "  where Uradjen not in (1, 2)";
-           */
-       select = "    SELECT UvozKonacna.ID,UvozKonacna.IDNAdredjeni, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera," +
-                " b.PaNaziv as Brodar, p1.PaNaziv as Uvoznik,Voz.NAzivVoza as Voz ,  " +
-" (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
-" VrstaCarinskogPostupka.Naziv as CarinskiPostupak, VrstePostupakaUvoz.Naziv as PostupakSaRobom, NetoRobe, BrutoRobe,  Koleta ,TaraKontejnera, BrutoKontejnera,      " +
-" (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join UvozKonacna uv on UvozKonacna.ID = UvozNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
- " (SELECT  STUFF((SELECT distinct   '/' + '*' + TarifniBroj + '-' + (KomercijalniNaziv) " +
-" from UvozKonacnaNHM " +
-"  where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
-" FOR XML PATH('')), 1, 1, '') As Skupljen2)    as NHM, " +
-" Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL, " +
-" KontejnerskiTerminali.Naziv as T1, " +
-" k2.Naziv as T2, k3.Naziv as T3, " +
-" VrstaRobeADR.Naziv as ADR, n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2, " +
-"  p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC," +
-" uvNacinPakovanja.Naziv as NacinPakovanja, EtaBroda, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica, " +
-" Email,  " +
-" CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
-" CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
-" Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, " +
-"  DobijeBZ as DatumBZ ,PIN,     pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
-"   Ref3 as Ref3,         VrstaPregleda as InsTret, " +
-" UvozKonacna.Napomena as Napomena2, " +
-" MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, " +
-" BrojPlombe1, BrojPlombe2 FROM UvozKonacna inner join Partnerji on PaSifra = VlasnikKontejnera" +
-" inner join Partnerji p1 on p1.PaSifra = Uvoznik" +
-" inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC" +
-" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica" +
-" inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera" +
-" inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina" +
-"  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak" +
-"  inner join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje" +
-"  inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali" +
-"   inner join KontejnerskiTerminali k2 on k2.ID = UvozKonacna.RLTErminali2" +
-"    inner join KontejnerskiTerminali k3 on k3.ID = UvozKonacna.RLTErminali3" +
-"  inner join Partnerji n1 on n1.PaSifra = Nalogodavac1" +
-"  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2" +
-"  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3" +
-"  inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar" +
-"  inner join  DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa" +
-"  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda" +
-"  inner join VrstaRobeADR on VrstaRobeADR.ID = ADR" +
-"  inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom" +
-"  inner join MestaUtovara on UvozKonacna.MestoIstovara = MestaUtovara.ID" +
-"  inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja" +
-"  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija" +
-"  inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
-" inner join UvozKonacnaZaglavlje on UvozKonacna.IDNAdredjeni = UvozKonacnaZaglavlje.ID "+
- " inner Join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
-               " order by UvozKonacna.ID desc";
+            /*
+                 select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
+               "  inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID inner join Scenario on UvozKonacna.Scenario = Scenario.ID " +
+               "  where Uradjen not in (1, 2) " +
+                " union " +
+               "  select Distinct RadniNalogInterni.PlanID, IzvozKonacna.BrojKontejnera, Scenario.Naziv , 'Izvozni' as OJ  from RadniNalogInterni " +
+               "  inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
+               "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
+               "  where Uradjen not in (1, 2)";
+            */
+            if (cboIzdatOd.Text == "Uvoz")
+            {
+                                            select = "    SELECT UvozKonacna.ID, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera," +
+                                            " b.PaNaziv as Brodar, p1.PaNaziv as Uvoznik,Voz.NAzivVoza as Voz ,  " +
+                            " (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
+                            " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, VrstePostupakaUvoz.Naziv as PostupakSaRobom, NetoRobe, BrutoRobe,  Koleta ,TaraKontejnera, BrutoKontejnera,      " +
+                            " (select Top 1 stNapomene from UvozNapomenePozicioniranja inner join UvozKonacna uv on UvozKonacna.ID = UvozNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = uv.ID order by UvozNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+                             " (SELECT  STUFF((SELECT distinct   '/' + '*' + TarifniBroj + '-' + (KomercijalniNaziv) " +
+                            " from UvozKonacnaNHM " +
+                            "  where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+                            " FOR XML PATH('')), 1, 1, '') As Skupljen2)    as NHM, " +
+                            " Napomena1 as Napomena1, Brodovi.Naziv as Brod,  BrodskaTeretnica as BL, " +
+                            " KontejnerskiTerminali.Naziv as T1, " +
+                            " k2.Naziv as T2, k3.Naziv as T3, " +
+                            " VrstaRobeADR.Naziv as ADR, n1.PaNaziv as NalogodavacZaVoz, n2.PaNaziv as Logisticar1,n3.PaNaziv as Logisticar2, " +
+                            "  p3.PaNaziv as SpedicijaGranica,p2.PaNaziv as SpedicijaRTC," +
+                            " uvNacinPakovanja.Naziv as NacinPakovanja, EtaBroda, p4.PaNaziv as OdredisnaSpedicija, Carinarnice.Naziv as Carinarnica, " +
+                            " Email,  " +
+                            " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+                            " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+                            " Ref1 as Ref1, Ref2 as Ref2,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, " +
+                            "  DobijeBZ as DatumBZ ,PIN,     pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
+                            "   Ref3 as Ref3,         VrstaPregleda as InsTret, " +
+                            " UvozKonacna.Napomena as Napomena2, " +
+                            " MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, " +
+                            " BrojPlombe1, BrojPlombe2 FROM UvozKonacna inner join Partnerji on PaSifra = VlasnikKontejnera" +
+                            " inner join Partnerji p1 on p1.PaSifra = Uvoznik" +
+                            " inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC" +
+                            " inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica" +
+                            " inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera" +
+                            " inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina" +
+                            "  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak" +
+                            "  inner join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje" +
+                            "  inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali" +
+                            "   inner join KontejnerskiTerminali k2 on k2.ID = UvozKonacna.RLTErminali2" +
+                            "    inner join KontejnerskiTerminali k3 on k3.ID = UvozKonacna.RLTErminali3" +
+                            "  inner join Partnerji n1 on n1.PaSifra = Nalogodavac1" +
+                            "  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2" +
+                            "  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3" +
+                            "  inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar" +
+                            "  inner join  DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa" +
+                            "  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda" +
+                            "  inner join VrstaRobeADR on VrstaRobeADR.ID = ADR" +
+                            "  inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom" +
+                            "  inner join MestaUtovara on UvozKonacna.MestoIstovara = MestaUtovara.ID" +
+                            "  inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja" +
+                            "  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija" +
+                            "  inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
+                            " inner join UvozKonacnaZaglavlje on UvozKonacna.IDNAdredjeni = UvozKonacnaZaglavlje.ID " +
+                             " inner Join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+                                           " order by UvozKonacna.ID desc";
+            }
+            else if (cboIzdatOd.Text == "Izvoz")
+            {
+                select = "     SELECT IzvozKonacna.ID,[BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, " +
+ "     b.PaNaziv as Brodar, p1.PaNaziv as Izvoznik,Voz.NAzivVoza as Voz ,  n1.PaNaziv as Nalogodavac1, n2.PaNaziv as Nalogodavac2, n3.PaNaziv as Nalogodavac3, " +
+ "     (select Top 1 Naziv from Scenario inner join IzvozKonacna uv on uv.Scenario = Scenario.ID  where IzvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
+ "      NetoRobe, BrutoRobe, IzvozKonacna.BrojKoleta, KontejnerskiTerminali.Naziv as Terminal1, k2.Naziv as Terminal2, k3.Naziv as Terminal3 " +
+"     FROM IzvozKonacna " +
+"     inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.ID = IzvozKonacna.IDNadredjena " +
+"      inner join Partnerji p1 on p1.PaSifra = Izvoznik " +
+"     inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
+"     inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = IzvozKonacna.MestoPreuzimanja " +
+"     inner join KontejnerskiTerminali k2 on k2.ID = IzvozKonacna.MestoPreuzimanja2 " +
+"     inner join KontejnerskiTerminali k3 on k3.ID = IzvozKonacna.MestoPreuzimanja3 " +
+"     inner join Partnerji n1 on n1.PaSifra = Klijent1 " +
+"     inner join Partnerji n2 on n2.PaSifra = Klijent2 " +
+"     inner join Partnerji n3 on n3.PaSifra = Klijent3 " +
+"     inner join Partnerji b on b.PaSifra = IzvozKonacna.Brodar " +
+"     inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+"     inner Join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
+"     order by IzvozKonacna.ID desc ";
+            }
 
-
-            var s_connection = Sifarnici.frmLogovanje.connectionString;
+                var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -1060,7 +1083,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select top 1 ID, BrojOsnov, Uradjen from RadniNalogInterni where ID < " + txtNALOGID.Text + " and ID > "  + txtNALOGID.Text + " -10 and BrojOsnov = (Select BrojOsnov from RadniNalogInterni where ID = "  + txtNALOGID.Text + ") order by ID DEsc ", con);
+            SqlCommand cmd = new SqlCommand("select top 1 ID, BrojOsnov, Uradjen from RadniNalogInterni where IDManipulacijaJed <> 84 and  ID < " + txtNALOGID.Text + " and ID > "  + txtNALOGID.Text + " -10 and BrojOsnov = (Select BrojOsnov from RadniNalogInterni where ID = "  + txtNALOGID.Text + ") order by ID DEsc ", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1318,42 +1341,75 @@ namespace Saobracaj.Uvoz
         {
             try
             {
+
                 if (gridGroupingControl2.Table.CurrentRecord != null)
                 {
                     textBox1.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("ID").ToString();
                     //Sve usluge za odredjeni kontejner
 
                     var select = "";
-                   
+
+                    if (cboIzdatOd.Text == "Uvoz")
+                    {
                         select = "  SELECT rn.[ID]  ,UvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv,   [Uradjen],  " +
-                            " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
-                            " (select Top 1 stNapomene from UvozKonacnaNapomenePozicioniranja inner join UvozKonacna  on UvozKonacna.ID = UvozKonacnaNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = rn.BrojOsnov order by UvozKonacnaNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
-                            " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje " +
-        " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
-        "  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ," +
-        " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
-         " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
-        " [OJIzdavanja]      , o1.Naziv as Izdao " +
-        " ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
-        " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
-        " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
-        "  rn.Pokret,  rn.TipDokPrevoza, " +
-        " rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
-        " FROM [RadniNalogInterni] rn " +
-        " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
-        " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
-        " inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge " +
-        " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
-        " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
-        " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera  " +
-                   " where OJIzdavanja = 1 and  rn.brojosnov = " + textBox1.Text + 
-                   " order by rn.ID desc";
-                   
+                                          " (select Top 1 Naziv from Scenario  inner join UvozKonacna  on UvozKonacna.Scenario = Scenario.ID  where UvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                                          " (select Top 1 stNapomene from UvozKonacnaNapomenePozicioniranja inner join UvozKonacna  on UvozKonacna.ID = UvozKonacnaNapomenePozicioniranja.IDNadredjena  where UvozKonacna.ID = rn.BrojOsnov order by UvozKonacnaNapomenePozicioniranja.ID DEsc) as ScenarioNapomena, " +
+                                          " (select Top 1 Voz.NAzivVoza as OznakaVoza from UvozKonacnaZaglavlje " +
+                      " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+                      "  where UvozKonacnaZaglavlje.ID = rn.PlanID) as VozDolaska ," +
+                      " TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]  ," +
+                       " (select Top 1 PaNaziv from Partnerji  inner join UvozKonacna  on UvozKonacna.Brodar = Partnerji.PaSifra  where UvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
+                      " [OJIzdavanja]      , o1.Naziv as Izdao " +
+                      " ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,rn.[Napomena]  , " +
+                      " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov]   ," +
+                      " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
+                      "  rn.Pokret,  rn.TipDokPrevoza, " +
+                      " rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
+                      " FROM [RadniNalogInterni] rn " +
+                      " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
+                      " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
+                      " inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge " +
+                      " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
+                      " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
+                      " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera  " +
+                                 " where OJIzdavanja = 1 and  rn.brojosnov = " + textBox1.Text +
+                                 " order by rn.ID desc";
+
+                    }
+
+                    else if (cboIzdatOd.Text == "Izvoz")
+                    {
+
+                        select = "   SELECT rn.[ID]  ,IzvozKonacna.BrojKontejnera , VrstaManipulacije.Naziv, [Uradjen]  , " +
+                  " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
+                  " '' as ScenarioNapomena, " +
+                  "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
+       " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
+                  "   where IzvozKonacnaZaglavlje.ID = rn.PlanID) as VozOdlaska , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]," +
+                   " (select Top 1 PaNaziv from Partnerji  inner join IzvozKonacna  on IzvozKonacna.Brodar = Partnerji.PaSifra  where izvozKonacna.ID = rn.BrojOsnov) as Brodar, " +
+                  " [OJIzdavanja]    " +
+                  ", o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]   " +
+                  "   ,[DatumRealizacije]  ,rn.[Napomena] " +
+    " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, [Osnov], PlanID as PlanUtovara " +
+    " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
+    " , rn.Pokret,  rn.TipDokPrevoza, rn.BrojDokPrevoza," +
+    " rn.TipRN, rn.BrojRN   FROM RadniNalogInterni rn " +
+    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
+          " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge" +
+     " inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaVrstaManipulacije.IDNAdredjena " +
+    " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+    " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
+       " Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera " +
+    " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera" +
+            " where OJIzdavanja = 2 and rn.brojosnov = " + textBox1.Text  +
+            " order by rn.ID desc";
+                    }
 
 
 
 
-                    var s_connection = Sifarnici.frmLogovanje.connectionString;
+                        var s_connection = Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);

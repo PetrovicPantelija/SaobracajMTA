@@ -463,11 +463,11 @@ namespace Saobracaj.Izvoz
 
              DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Naziv";
-            dataGridView6.Columns[1].Width = 180;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "JM";
@@ -573,7 +573,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
@@ -621,11 +621,11 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -670,11 +670,11 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -720,11 +720,11 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -769,11 +769,11 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
-            dataGridView6.Columns[0].Width = 20;
+            dataGridView6.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView6.Columns[1];
             dataGridView6.Columns[1].HeaderText = "Man";
-            dataGridView6.Columns[1].Width = 120;
+            dataGridView6.Columns[1].Width = 250;
 
             DataGridViewColumn column3 = dataGridView6.Columns[2];
             dataGridView6.Columns[2].HeaderText = "Cena";
@@ -865,7 +865,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView7.Columns[0];
             dataGridView7.Columns[0].HeaderText = "ID";
-            dataGridView7.Columns[0].Width = 20;
+            dataGridView7.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView7.Columns[1];
             dataGridView7.Columns[1].HeaderText = "KontID";
@@ -886,7 +886,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column6 = dataGridView7.Columns[5];
             dataGridView7.Columns[5].HeaderText = "Usluga";
-            dataGridView7.Columns[5].Width = 220;
+            dataGridView7.Columns[5].Width = 250;
 
             DataGridViewColumn column7 = dataGridView7.Columns[6];
             dataGridView7.Columns[6].HeaderText = "Cena";
@@ -983,7 +983,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 20;
+            dataGridView2.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "KontID";
@@ -1004,7 +1004,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column6 = dataGridView2.Columns[5];
             dataGridView2.Columns[5].HeaderText = "Usluga";
-            dataGridView2.Columns[5].Width = 220;
+            dataGridView2.Columns[5].Width = 250;
 
             DataGridViewColumn column7 = dataGridView2.Columns[6];
             dataGridView2.Columns[6].HeaderText = "Cena";
@@ -1096,7 +1096,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView3.Columns[0];
             dataGridView3.Columns[0].HeaderText = "ID";
-            dataGridView3.Columns[0].Width = 20;
+            dataGridView3.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView3.Columns[1];
             dataGridView3.Columns[1].HeaderText = "KontID";
@@ -1117,7 +1117,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column6 = dataGridView3.Columns[5];
             dataGridView3.Columns[5].HeaderText = "Usluga";
-            dataGridView3.Columns[5].Width = 220;
+            dataGridView3.Columns[5].Width = 250;
 
             DataGridViewColumn column7 = dataGridView3.Columns[6];
             dataGridView3.Columns[6].HeaderText = "Cena";
@@ -1779,7 +1779,7 @@ namespace Saobracaj.Izvoz
                 cboScenario.ValueMember = "ID";
                 //leget,leget,drugi terminal
             }
-            else if (scenariogl == 2 && adr == 0 && PunPrazan == 0)
+            else if (scenariogl == 1 && adr == 0 && PunPrazan == 0)
             {//13
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (12,29) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -1800,7 +1800,7 @@ namespace Saobracaj.Izvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (scenariogl == 2 && adr >= 1 && PunPrazan == 1)
+            else if (scenariogl == 2 && adr >= 1 && PunPrazan > 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (25,26) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);

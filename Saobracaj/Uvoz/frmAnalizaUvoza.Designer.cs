@@ -102,7 +102,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1182, 31);
+            this.panel2.Size = new System.Drawing.Size(1195, 31);
             this.panel2.TabIndex = 238;
             // 
             // button25

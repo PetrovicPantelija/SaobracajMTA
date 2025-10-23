@@ -31,6 +31,7 @@ using Saobracaj.Administracija;
 using Saobracaj.Uvoz;
 using Saobracaj.Dokumenta;
 using Saobracaj.Kapija;
+using Saobracaj.TrackModal.Sifarnici;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -7136,6 +7137,36 @@ namespace Saobracaj
                 frmTipKomercijalnogDokumenta frm = new frmTipKomercijalnogDokumenta();
                 frm.Show();
             }
+        }
+
+        private void toolStripButton404_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.frmTipZone jm = new frmTipZone();
+            jm.Show();
+        }
+
+        private void toolStripButton406_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.frmTipPalete jm = new frmTipPalete();
+            jm.Show();
+        }
+
+        private void toolStripButton407_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.frmTipSkladista jm = new frmTipSkladista();
+            jm.Show();
+        }
+
+        private void toolStripButton411_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.frmZone jm = new frmZone();
+            jm.Show();
+        }
+
+        private void toolStripButton412_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.SkladisteGrupa jm = new SkladisteGrupa();
+            jm.Show();
         }
     }
 }

@@ -238,6 +238,7 @@ namespace Saobracaj.Uvoz
             FillCheck();
             UcitajNHMoveCombo();
             FillCombo();
+            /*
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
             cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
@@ -261,6 +262,7 @@ namespace Saobracaj.Uvoz
             cbOspedicija.GotFocus += (sender, args) => cbOspedicija.DroppedDown = true;
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
+            */
         }
 
         public frmUvozKonacna(int Sifra, string Korisnik)
@@ -278,6 +280,7 @@ namespace Saobracaj.Uvoz
 
             // FillGV();
             KorisnikTekuci = Korisnik;
+            /*
             this.cbBrod.GotFocus += (sender, args) => cbBrod.DroppedDown = true;
             txtTipKont.GotFocus += (sender, args) => txtTipKont.DroppedDown = true;
             cboRLTerminal.GotFocus += (sender, args) => cboRLTerminal.DroppedDown = true;
@@ -301,6 +304,7 @@ namespace Saobracaj.Uvoz
             cbOspedicija.GotFocus += (sender, args) => cbOspedicija.DroppedDown = true;
             txtMesto.GotFocus += (sender, args) => txtMesto.DroppedDown = true;
             txtAdresaMestaUtovara.GotFocus += (sender, args) => txtAdresaMestaUtovara.DroppedDown = true;
+            */
             // FillDG2(); jos nemam ID
             // FillDG3();
         }

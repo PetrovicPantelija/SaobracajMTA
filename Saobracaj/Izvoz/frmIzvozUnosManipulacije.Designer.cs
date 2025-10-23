@@ -318,7 +318,7 @@ namespace Saobracaj.Izvoz
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(554, 190);
+            this.label58.Location = new System.Drawing.Point(597, 190);
             this.label58.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(64, 13);
@@ -347,7 +347,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView7.Location = new System.Drawing.Point(555, 205);
+            this.dataGridView7.Location = new System.Drawing.Point(600, 205);
             this.dataGridView7.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView7.Name = "dataGridView7";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -360,7 +360,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView7.RowHeadersWidth = 22;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(802, 157);
+            this.dataGridView7.Size = new System.Drawing.Size(757, 157);
             this.dataGridView7.TabIndex = 229;
             this.dataGridView7.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView7_CellClick);
             this.dataGridView7.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView7_CellLeave);
@@ -371,7 +371,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button12.Location = new System.Drawing.Point(500, 571);
+            this.button12.Location = new System.Drawing.Point(542, 571);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(50, 28);
             this.button12.TabIndex = 228;
@@ -439,14 +439,14 @@ namespace Saobracaj.Izvoz
             this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView6.RowHeadersWidth = 22;
             this.dataGridView6.RowTemplate.Height = 24;
-            this.dataGridView6.Size = new System.Drawing.Size(489, 523);
+            this.dataGridView6.Size = new System.Drawing.Size(531, 523);
             this.dataGridView6.TabIndex = 224;
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(500, 605);
+            this.button6.Location = new System.Drawing.Point(542, 605);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(50, 33);
             this.button6.TabIndex = 249;
@@ -459,7 +459,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(500, 644);
+            this.button7.Location = new System.Drawing.Point(542, 644);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(50, 34);
             this.button7.TabIndex = 250;
@@ -496,7 +496,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button10.Location = new System.Drawing.Point(500, 657);
+            this.button10.Location = new System.Drawing.Point(542, 657);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(50, 30);
             this.button10.TabIndex = 253;
@@ -705,7 +705,7 @@ namespace Saobracaj.Izvoz
             this.button22.FlatAppearance.BorderSize = 0;
             this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Location = new System.Drawing.Point(500, 205);
+            this.button22.Location = new System.Drawing.Point(542, 205);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(50, 341);
             this.button22.TabIndex = 274;
@@ -735,7 +735,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView2.Location = new System.Drawing.Point(557, 389);
+            this.dataGridView2.Location = new System.Drawing.Point(600, 389);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -748,7 +748,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView2.RowHeadersWidth = 22;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(802, 157);
+            this.dataGridView2.Size = new System.Drawing.Size(759, 157);
             this.dataGridView2.TabIndex = 275;
             // 
             // dataGridView3
@@ -773,7 +773,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView3.Location = new System.Drawing.Point(557, 571);
+            this.dataGridView3.Location = new System.Drawing.Point(600, 571);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -786,13 +786,13 @@ namespace Saobracaj.Izvoz
             this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView3.RowHeadersWidth = 22;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(800, 157);
+            this.dataGridView3.Size = new System.Drawing.Size(757, 157);
             this.dataGridView3.TabIndex = 276;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(554, 370);
+            this.label3.Location = new System.Drawing.Point(597, 369);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
@@ -802,7 +802,7 @@ namespace Saobracaj.Izvoz
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(554, 556);
+            this.label5.Location = new System.Drawing.Point(597, 556);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);

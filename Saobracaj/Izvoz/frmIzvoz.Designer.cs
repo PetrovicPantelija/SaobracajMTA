@@ -2976,6 +2976,7 @@ namespace Saobracaj.Izvoz
             this.chkNajavaVozila.TabIndex = 55;
             this.chkNajavaVozila.Text = "Najava vozila i vozača";
             this.chkNajavaVozila.UseVisualStyleBackColor = true;
+            this.chkNajavaVozila.CheckedChanged += new System.EventHandler(this.chkNajavaVozila_CheckedChanged);
             // 
             // cboScenario
             // 

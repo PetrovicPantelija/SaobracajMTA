@@ -58,6 +58,7 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -80,7 +81,7 @@
             this.tsPoslednja});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(786, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1005, 27);
             this.meniHeader.TabIndex = 110;
             this.meniHeader.Text = "Štampaj izveštaj";
             // 
@@ -169,14 +170,14 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 257);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(764, 259);
+            this.dataGridView1.Size = new System.Drawing.Size(983, 259);
             this.dataGridView1.TabIndex = 136;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtOznaka
             // 
             this.txtOznaka.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtOznaka.Location = new System.Drawing.Point(12, 216);
+            this.txtOznaka.Location = new System.Drawing.Point(12, 162);
             this.txtOznaka.Name = "txtOznaka";
             this.txtOznaka.Size = new System.Drawing.Size(231, 22);
             this.txtOznaka.TabIndex = 134;
@@ -186,7 +187,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 198);
+            this.label2.Location = new System.Drawing.Point(9, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 135;
@@ -205,7 +206,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(8, 81);
+            this.label1.Location = new System.Drawing.Point(8, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 133;
@@ -216,25 +217,25 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(9, 142);
+            this.label6.Location = new System.Drawing.Point(376, 142);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 15);
+            this.label6.Size = new System.Drawing.Size(38, 15);
             this.label6.TabIndex = 138;
-            this.label6.Text = "Skladište:";
+            this.label6.Text = "Polje:";
             // 
             // cboSkladiste
             // 
             this.cboSkladiste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladiste.FormattingEnabled = true;
-            this.cboSkladiste.Location = new System.Drawing.Point(11, 162);
+            this.cboSkladiste.Location = new System.Drawing.Point(379, 160);
             this.cboSkladiste.Name = "cboSkladiste";
-            this.cboSkladiste.Size = new System.Drawing.Size(200, 24);
+            this.cboSkladiste.Size = new System.Drawing.Size(231, 24);
             this.cboSkladiste.TabIndex = 137;
             // 
             // txtOpis
             // 
             this.txtOpis.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtOpis.Location = new System.Drawing.Point(453, 110);
+            this.txtOpis.Location = new System.Drawing.Point(12, 224);
             this.txtOpis.Name = "txtOpis";
             this.txtOpis.Size = new System.Drawing.Size(231, 22);
             this.txtOpis.TabIndex = 139;
@@ -244,18 +245,18 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(450, 83);
+            this.label3.Location = new System.Drawing.Point(12, 206);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 15);
+            this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 140;
-            this.label3.Text = "Opis:";
+            this.label3.Text = "Naziv:";
             // 
             // txtNamena
             // 
             this.txtNamena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNamena.Location = new System.Drawing.Point(453, 167);
+            this.txtNamena.Location = new System.Drawing.Point(379, 110);
             this.txtNamena.Name = "txtNamena";
-            this.txtNamena.Size = new System.Drawing.Size(231, 22);
+            this.txtNamena.Size = new System.Drawing.Size(87, 22);
             this.txtNamena.TabIndex = 141;
             // 
             // label4
@@ -263,11 +264,11 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(450, 142);
+            this.label4.Location = new System.Drawing.Point(376, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 15);
+            this.label4.Size = new System.Drawing.Size(55, 15);
             this.label4.TabIndex = 142;
-            this.label4.Text = "Namena:";
+            this.label4.Text = "Sk naziv:";
             // 
             // btnPretraziPoSkladistu
             // 
@@ -275,7 +276,7 @@
             this.btnPretraziPoSkladistu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPretraziPoSkladistu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPretraziPoSkladistu.ForeColor = System.Drawing.Color.White;
-            this.btnPretraziPoSkladistu.Location = new System.Drawing.Point(217, 164);
+            this.btnPretraziPoSkladistu.Location = new System.Drawing.Point(624, 157);
             this.btnPretraziPoSkladistu.Name = "btnPretraziPoSkladistu";
             this.btnPretraziPoSkladistu.Size = new System.Drawing.Size(49, 25);
             this.btnPretraziPoSkladistu.TabIndex = 143;
@@ -293,7 +294,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(786, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1005, 33);
             this.panelHeader.TabIndex = 469;
             // 
             // panel2
@@ -303,7 +304,7 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Location = new System.Drawing.Point(126, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(659, 31);
+            this.panel2.Size = new System.Drawing.Size(878, 31);
             this.panel2.TabIndex = 7;
             // 
             // panel3
@@ -379,12 +380,28 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // chkAktivna
+            // 
+            this.chkAktivna.AutoSize = true;
+            this.chkAktivna.BackColor = System.Drawing.Color.Transparent;
+            this.chkAktivna.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkAktivna.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkAktivna.ForeColor = System.Drawing.Color.Black;
+            this.chkAktivna.Location = new System.Drawing.Point(379, 224);
+            this.chkAktivna.Margin = new System.Windows.Forms.Padding(2);
+            this.chkAktivna.Name = "chkAktivna";
+            this.chkAktivna.Size = new System.Drawing.Size(64, 19);
+            this.chkAktivna.TabIndex = 495;
+            this.chkAktivna.Text = "Aktivna";
+            this.chkAktivna.UseVisualStyleBackColor = false;
+            // 
             // frmPozicija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(786, 528);
+            this.ClientSize = new System.Drawing.Size(1005, 528);
+            this.Controls.Add(this.chkAktivna);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.btnPretraziPoSkladistu);
             this.Controls.Add(this.txtNamena);
@@ -446,5 +463,6 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.CheckBox chkAktivna;
     }
 }

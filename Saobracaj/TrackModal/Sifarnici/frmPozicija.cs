@@ -176,12 +176,16 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int tmpAktivna = 0;
+
+            if (chkAktivna.Checked == true)
+            { tmpAktivna = 1; };
             if (status == true)
             {
                 InsertPozicija ins = new InsertPozicija();
-                ins.InsPozicija(Convert.ToInt32(cboSkladiste.SelectedValue), txtOznaka.Text, txtOpis.Text, txtNamena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                ins.InsPozicija(Convert.ToInt32(cboSkladiste.SelectedValue), txtOznaka.Text, txtOpis.Text, txtNamena.Text, Convert.ToDateTime(DateTime.Now), Kor, tmpAktivna);
                 status = false;
-                RefreshDataGrid();
+               
             }
             else
             {
@@ -189,9 +193,9 @@ namespace Testiranje.Sifarnici
                 { txtOpis.Text = " "; }
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertPozicija upd = new InsertPozicija();
-                upd.UpdPozicija(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSkladiste.SelectedValue), txtOznaka.Text, txtOpis.Text, txtNamena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                upd.UpdPozicija(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSkladiste.SelectedValue), txtOznaka.Text, txtOpis.Text, txtNamena.Text, Convert.ToDateTime(DateTime.Now), Kor, tmpAktivna);
                 status = false;
-                RefreshDataGrid();
+             
             }
             RefreshDataGrid();
         }
@@ -216,7 +220,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = "SELECT Pozicija.ID, Pozicija.Skladiste, Skladista.Naziv ,Oznaka, Opis, Namena, Pozicija.Datum, Pozicija.Korisnik from Pozicija inner join Skladista on Pozicija.Skladiste= Skladista.ID order by Pozicija.ID";
+            var select = "SELECT Pozicija.ID, Pozicija.Oznaka, Pozicija.Namena as SkNaziv,Pozicija.Opis as Naziv,  Skladista.Naziv as Lokacija, CASE WHEN Pozicija.Aktivna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, " +
+                " Pozicija.Datum, Pozicija.Korisnik from Pozicija inner join Skladista on Pozicija.Skladiste= Skladista.ID order by Pozicija.ID";
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -236,23 +241,23 @@ namespace Testiranje.Sifarnici
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Skladiste";
-            dataGridView1.Columns[1].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].Width = 100;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Skladiste naziv";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].HeaderText = "SkNaziv";
+            dataGridView1.Columns[2].Width = 80;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Oznaka";
-            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Opis";
-            dataGridView1.Columns[4].Width = 150;
+            dataGridView1.Columns[4].HeaderText = "Lokacija";
+            dataGridView1.Columns[4].Width = 250;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Namena";
+            dataGridView1.Columns[5].HeaderText = "Aktivna";
             dataGridView1.Columns[5].Width = 50;
 
 
@@ -272,7 +277,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT Pozicija.ID, Pozicija.Skladiste, Skladista.Naziv ,Oznaka, Opis, Namena from Pozicija inner join Skladista on Pozicija.Skladiste= Skladista.ID where Pozicija.ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT Pozicija.ID, Pozicija.Skladiste, Skladista.Naziv ,Pozicija.Oznaka, Pozicija.Opis, Pozicija.Namena, Aktivna from Pozicija inner join Skladista on Pozicija.Skladiste= Skladista.ID where Pozicija.ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -281,6 +286,15 @@ namespace Testiranje.Sifarnici
                 txtOznaka.Text = dr["Oznaka"].ToString();
                 txtOpis.Text = dr["Opis"].ToString();
                 txtNamena.Text = dr["Namena"].ToString();
+
+                if (dr["Aktivna"].ToString() == "1")
+                {
+                    chkAktivna.Checked = true;
+                }
+                else
+                {
+                    chkAktivna.Checked = false;
+                }
             }
 
             con.Close();
