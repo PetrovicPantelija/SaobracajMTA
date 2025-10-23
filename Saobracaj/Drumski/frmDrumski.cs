@@ -616,9 +616,9 @@ namespace Saobracaj.Drumski
             prazanRed2["Naziv"] = "";
             dt2.Rows.InsertAt(prazanRed2, 0);
 
-            cboVrstaKontejnera.DataSource = dt2;
-            cboVrstaKontejnera.DisplayMember = "Naziv";
-            cboVrstaKontejnera.ValueMember = "ID";
+            cboTipTransporta.DataSource = dt2;
+            cboTipTransporta.DisplayMember = "Naziv";
+            cboTipTransporta.ValueMember = "ID";
 
             DataTable dt1 = new DataTable();
             dt1.Columns.Add("ID", typeof(int));
@@ -925,7 +925,7 @@ namespace Saobracaj.Drumski
             }
 
             int? tipTransportaID = null;
-            if (cboVrstaKontejnera.SelectedValue != null && int.TryParse(cboVrstaKontejnera.SelectedValue.ToString(), out int parsedTipTransportaID))
+            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
                 tipTransportaID = parsedTipTransportaID;
 
             string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
