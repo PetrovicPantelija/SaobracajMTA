@@ -1640,6 +1640,12 @@
     <Compile Include="Drumski\frmPregledNalogaDrumski.Designer.cs">
       <DependentUpon>frmPregledNalogaDrumski.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmPregledPorukeVozacu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPregledPorukeVozacu.Designer.cs">
+      <DependentUpon>frmPregledPorukeVozacu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPregledSkeniranihDokumenata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4695,6 +4701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledNalogaDrumski.resx">
       <DependentUpon>frmPregledNalogaDrumski.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmPregledPorukeVozacu.resx">
+      <DependentUpon>frmPregledPorukeVozacu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledSkeniranihDokumenata.resx">
       <DependentUpon>frmPregledSkeniranihDokumenata.cs</DependentUpon>

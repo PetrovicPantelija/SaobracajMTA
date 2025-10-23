@@ -1567,9 +1567,84 @@ namespace Saobracaj.Drumski
 
         private void btnInstrukcije_Click(object sender, EventArgs e)
         {
+            if (dataGridView3.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati makar jedan red!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridView3.SelectedRows[0];
+            string idsString = selectedRow.Cells["IdsRadniNalogDrumski"].Value?.ToString();
 
+            if (string.IsNullOrEmpty(idsString))
+            {
+                MessageBox.Show("Nema ID-jeva za odabrani red.");
+                return;
+            }
+
+            // Izvlacimo prvi ID iz stringa (samo za proveru statusa PoslataNajava)
+            int? radniNalogDrumskiID = 0;
+            string prviIdString = idsString.Split(',').First().Trim();
+
+            if (int.TryParse(prviIdString, out int parsedID))
+            {
+                radniNalogDrumskiID = parsedID;
+            }
+            else
+            {
+                MessageBox.Show("Greška pri parsiranju ID-ja za proveru statusa.");
+                return;
+            }
+            int? poslateInstrukcije = 0;
+            poslateInstrukcije = ProveriDaLiJePorukaPoslata(radniNalogDrumskiID);
+            if (poslateInstrukcije > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                       "Za ovaj nalog instrukcije su već poslate.\nDa li želite da je ponovo pošaljete?",
+                       "Upozorenje",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    return; // prekida dalje izvršavanje metode
+                }
+            }
+            List<int> idjeviZaNajavu;
+            try
+            {
+                idjeviZaNajavu = idsString
+                    // 1. Razdvaja string po zarezima (i uklanja prazne elemente)
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    // 2. Za svaki dobijeni string element, pokušava da ga parsira u int
+                    .Select(s => int.Parse(s.Trim()))
+                    // 3. Rezultat pretvara u List<int>
+                    .ToList();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Greška u formatu ID-jeva naloga. Proverite podatke.");
+                return;
+            }
+            DataTable detaljnaTabela = DobaviDetaljeZaNajavu(idjeviZaNajavu);
+            string nalogodavac = dataGridView3.SelectedRows[0].Cells["Nalogodavac"].Value?.ToString() ?? "";
+
+
+            if (detaljnaTabela.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema detaljnih podataka za odabrane naloge.");
+                return;
+            }
+
+            frmPregledPorukeVozacu pe = new frmPregledPorukeVozacu(detaljnaTabela);
+            pe.StartPosition = FormStartPosition.CenterParent;
+            pe.ShowDialog(this);   
+   
+            //if (!string.IsNullOrEmpty(row.Cells["BrojKontejnera2"].Value?.ToString()))
+            //    kontejnerString += ", " + row.Cells["BrojKontejnera2"].Value?.ToString();
+
+            // Formiranje poruke
+          
         }
-
         private void btnNajava_Click(object sender, EventArgs e)
         {
             if (dataGridView3.SelectedRows.Count == 0)
