@@ -56,10 +56,10 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnNajava = new System.Windows.Forms.Button();
+            this.btnInstrukcije = new System.Windows.Forms.Button();
             this.btnArhiva = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -362,8 +362,8 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.Controls.Add(this.button2, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.button1, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button3, 8, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button4, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnNajava, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnInstrukcije, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnArhiva, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 412);
@@ -393,31 +393,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
+            // btnNajava
             // 
-            this.button3.Location = new System.Drawing.Point(1710, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(169, 38);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "NAJAVA VOZILA";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnNajava.Location = new System.Drawing.Point(1710, 3);
+            this.btnNajava.Name = "btnNajava";
+            this.btnNajava.Size = new System.Drawing.Size(169, 38);
+            this.btnNajava.TabIndex = 4;
+            this.btnNajava.Text = "NAJAVA VOZILA";
+            this.btnNajava.UseVisualStyleBackColor = true;
+            this.btnNajava.Click += new System.EventHandler(this.btnNajava_Click);
             // 
-            // commandBarController1
+            // btnInstrukcije
             // 
-            this.commandBarController1.HostForm = this;
-            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
-            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
-            this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(1531, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(169, 38);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "INSTRUKCIJE";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnInstrukcije.Location = new System.Drawing.Point(1531, 3);
+            this.btnInstrukcije.Name = "btnInstrukcije";
+            this.btnInstrukcije.Size = new System.Drawing.Size(169, 38);
+            this.btnInstrukcije.TabIndex = 5;
+            this.btnInstrukcije.Text = "INSTRUKCIJE";
+            this.btnInstrukcije.UseVisualStyleBackColor = true;
             // 
             // btnArhiva
             // 
@@ -428,6 +421,13 @@
             this.btnArhiva.Text = "ARHIVIRAJ";
             this.btnArhiva.UseVisualStyleBackColor = true;
             this.btnArhiva.Click += new System.EventHandler(this.btnArhiva_Click);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // PakovanjeKamiona1
             // 
@@ -486,8 +486,8 @@
         private System.Windows.Forms.CheckBox chkDatumS;
         private System.Windows.Forms.Button btnKreiraj;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnNajava;
+        private System.Windows.Forms.Button btnInstrukcije;
         private System.Windows.Forms.Button btnArhiva;
     }
 }

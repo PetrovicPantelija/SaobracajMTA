@@ -184,7 +184,7 @@ namespace Saobracaj.Drumski
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
-             "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
+             "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.VrstaKontejnera AS TipKontejnera, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , 0 AS OdredisnaCarina, ik.MestoCarinjenja as polaznaCarinarnica, ik.Spedicija as polaznaSpedicija, 0 as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt,'' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
@@ -203,7 +203,7 @@ namespace Saobracaj.Drumski
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref, rn.MestoPreuzimanjaKontejnera, " +
              "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, rn.DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
-             "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
+             "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2,i.VrstaKontejnera AS TipKontejnera, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
              "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , 0 AS  OdredisnaCarina,i.MestoCarinjenja as polaznaCarinarnica,  i.Spedicija as polaznaSpedicija, 0 as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
@@ -220,7 +220,7 @@ namespace Saobracaj.Drumski
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,uk.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "uk.Nalogodavac3 AS Klijent,  rn.MestoUtovara,-1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,uk.MestoIstovara AS MestoIstovara,uk.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara, (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara, " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
-             "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  uk.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
+             "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  uk.BrojKontejnera,rn.BrojKontejnera2, uk.TipKontejnera, '' AS BrojPlombe,  uk.BrodskaTeretnica,  " +
              " uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
              "'' AS NapomenaCarinskiPostupak,uk.OdredisnaCarina as OdredisnaCarina , 0 as polaznaCarinarnica, 0 as polaznaSpedicija, uk.OdredisnaSpedicija as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta AS TipTransportaDrumski " +
@@ -242,7 +242,7 @@ namespace Saobracaj.Drumski
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,u.Ref3 AS Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "u.Nalogodavac3 AS Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,u.MestoIstovara AS MestoIstovara,u.KontaktOsobe as KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,(Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
-             "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  u.BrojKontejnera,rn.BrojKontejnera2, '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
+             "rn.Trosak,rn.Valuta,0 AS BookingBrodara,  u.BrojKontejnera,rn.BrojKontejnera2, u.TipKontejnera AS TipKontejnera, '' AS BrojPlombe,  u.BrodskaTeretnica,   " +
              "u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, " +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, u.OdredisnaCarina as OdredisnaCarina,0 as polaznaCarinarnica, 0 as polaznaSpedicija, u.OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,'' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski " +
@@ -262,7 +262,7 @@ namespace Saobracaj.Drumski
              "ISNULL(rn.NalogID, -1) AS NalogID,rn.Uvoz,rn.KontejnerID,rn.Status,rn.IDVrstaManipulacije,rn.AutoDan,rn.Ref,  rn.MestoPreuzimanjaKontejnera, " +
              "rn.Klijent, rn.MestoUtovara, -1 as KontaktOsobaUtovarInt, rn.AdresaUtovara,rn.MestoIstovara AS MestoIstovara,rn.KontaktOsobaNaIstovaru AS KontaktOsobaUtovarIstovar, rn.DatumUtovara,rn.DatumIstovara,rn.AdresaIstovara AS AdresaIstovara,  " +
              "rn.DtPreuzimanjaPraznogKontejnera,rn.GranicniPrelaz,rn.KontaktSpeditera, " +
-             "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
+             "rn.Trosak,rn.Valuta,rn.BookingBrodara,  rn.BrojKontejnera,rn.BrojKontejnera2, rn.TipKontejnera AS TipKontejnera, rn.BrodskaPlomba AS BrojPlombe,   rn.BrodskaTeretnica,  " +
              " rn.BrutoKontejnera AS BTTKontejnetra, rn.BrutoRobe AS BTTRobe,  " +
              "CAST(rn.NapomenaZaPozicioniranje AS varchar(50)) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, rn.OdredisnaCarinarnica as OdredisnaCarina,rn.PolaznaCarinarnica , rn.PolaznaSpedicija ,rn.OdredisnaSpedicija, rn.PolaznaSpedicijaKontakt, rn.OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, " +
@@ -382,7 +382,12 @@ namespace Saobracaj.Drumski
 
                 if (dr["KamionID"] != DBNull.Value)
                     cboKamion.SelectedValue = (dr["KamionID"].ToString());
-             
+
+                if (dr["TipKontejnera"] != DBNull.Value)
+                    cboVrstaKontejnera.SelectedValue = (dr["TipKontejnera"].ToString());
+                else
+                    cboVrstaKontejnera.SelectedIndex = -1;
+
                 txtDodatniOpis.Text = dr["DodatniOpis"].ToString();
 
                 if (dr["OdredisnaCarina"] != DBNull.Value && int.TryParse(dr["OdredisnaCarina"].ToString(), out int parsedOdredisnaCarina))
@@ -437,6 +442,7 @@ namespace Saobracaj.Drumski
                     cboMestoUtovara.Enabled = false;
                     txtAdresaUtovara.Enabled = false;
                     cboKlijent.Enabled = false;
+                    cboVrstaKontejnera.Enabled = false;
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
                     txtBrojVoza.Enabled = false;
@@ -469,6 +475,7 @@ namespace Saobracaj.Drumski
                     txtkontaktNaIstovaru.Enabled = false;
                     txtBL.Enabled = false;
                     cboKlijent.Enabled = false;
+                    cboVrstaKontejnera.Enabled = false;
                     txtBrutoK.Enabled = false;
                     txtBrutoR.Enabled = false;
                     txtBrojVoza.Enabled = false;
@@ -496,6 +503,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboVrstaKontejnera.Enabled = true;
                     button21.Visible =  true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
@@ -517,6 +525,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboVrstaKontejnera.Enabled = true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
                 }
@@ -532,6 +541,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboVrstaKontejnera.Enabled = true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
                 }
@@ -547,6 +557,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboVrstaKontejnera.Enabled = true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
                 }
@@ -556,6 +567,7 @@ namespace Saobracaj.Drumski
                     cboTipNaloga.Visible = true;
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
+                    cboVrstaKontejnera.Enabled = true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
                 }
@@ -604,9 +616,9 @@ namespace Saobracaj.Drumski
             prazanRed2["Naziv"] = "";
             dt2.Rows.InsertAt(prazanRed2, 0);
 
-            cboTipTransporta.DataSource = dt2;
-            cboTipTransporta.DisplayMember = "Naziv";
-            cboTipTransporta.ValueMember = "ID";
+            cboVrstaKontejnera.DataSource = dt2;
+            cboVrstaKontejnera.DisplayMember = "Naziv";
+            cboVrstaKontejnera.ValueMember = "ID";
 
             DataTable dt1 = new DataTable();
             dt1.Columns.Add("ID", typeof(int));
@@ -712,6 +724,14 @@ namespace Saobracaj.Drumski
             cboPolaznaSpedicija.DataSource = partDS4.Tables[0];
             cboPolaznaSpedicija.DisplayMember = "PaNaziv";
             cboPolaznaSpedicija.ValueMember = "PaSifra";
+
+            var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
+            var tkAD = new SqlDataAdapter(tipkontejnera, conn);
+            var tkDS = new DataSet();
+            tkAD.Fill(tkDS);
+            cboVrstaKontejnera.DataSource = tkDS.Tables[0];
+            cboVrstaKontejnera.DisplayMember = "SkNaziv";
+            cboVrstaKontejnera.ValueMember = "ID";
         }
        
 
@@ -893,8 +913,19 @@ namespace Saobracaj.Drumski
                 tipNaloga = Uvoz;
             }
 
+            int? vrstaKontejnera = null;
+            if (Uvoz != 1 && Uvoz != 0)
+            {
+                if (cboVrstaKontejnera.SelectedValue != null && int.TryParse(cboVrstaKontejnera.SelectedValue.ToString(), out int parsedVrstaKontejnera))
+                    vrstaKontejnera = parsedVrstaKontejnera;
+            }
+            else
+            {
+                vrstaKontejnera = null;
+            }
+
             int? tipTransportaID = null;
-            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
+            if (cboVrstaKontejnera.SelectedValue != null && int.TryParse(cboVrstaKontejnera.SelectedValue.ToString(), out int parsedTipTransportaID))
                 tipTransportaID = parsedTipTransportaID;
 
             string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
@@ -1005,7 +1036,7 @@ namespace Saobracaj.Drumski
 
                     int noviID = ins.InsRadniNalogDrumski(tipNaloga, kreirajNalogID, nalogID, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                         dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
-                        bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+                        bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera);
 
                 txtID.Text = noviID.ToString();
                 status = false;
@@ -1057,7 +1088,7 @@ namespace Saobracaj.Drumski
                 ins.UpdateRadniNalogDrumski(iD, tipNaloga, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                     dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent,
                     bttoKontejnera, bttoRobe, brojVoza, brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija,
-                    polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID);
+                    polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera);
 
                 // 4. Ako se status promenio i novi spada u završne onda ide update internog
                 if (statusID.HasValue &&
@@ -1388,6 +1419,8 @@ namespace Saobracaj.Drumski
            // txtMestoPreuzimanja.Text = "Leget";
             cboKlijent.SelectedValue = -1;
             cboKlijent.Enabled = true;
+            cboVrstaKontejnera.SelectedValue = -1;
+            cboVrstaKontejnera.Enabled = true;
             cboMestoUtovara.SelectedValue = 8;
             cboMestoUtovara.Enabled = true;
            // txtAdresaUtovara.Text = "Jarački put";
@@ -1408,7 +1441,7 @@ namespace Saobracaj.Drumski
             txtReferenca.Text = "";
             txtReferenca.Enabled = true;
             txtBL.Text = "";
-            cboTipTransporta.SelectedValue = -1;
+            cboVrstaKontejnera.SelectedValue = -1;
             txtBrojKontejnera.Text = "";
             txtBrojKontejnera.Enabled = true;
             txtBrojKontejnera2.Text = "";
