@@ -32,7 +32,7 @@ namespace Saobracaj.Drumski
             RefreshGrid();
         }
 
-        public frmPregledNalogaDrumski(int NalogID, int NalogodavacID, string Dan)
+        public frmPregledNalogaDrumski(int NalogID, int? NalogodavacID, string Dan)
         {
             nalogID = NalogID;
             Nalogodavac = NalogodavacID;
@@ -300,7 +300,7 @@ namespace Saobracaj.Drumski
                                pa.PaNaziv as Nalogodavac,
                                rn.Klijent ASNalogodavac,
                                rn.BrojKontejnera as BrojKontejnera,
-                               '' AS TipKontejnera,
+                               tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
                                CONVERT(varchar, rn.DatumKreiranjaNaloga, 104) AS KreiranjeNaloga,
                                rn.KamionID,
@@ -315,6 +315,7 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
+                        LEFT JOIN TipKontenjera tk ON rn.TipKontejnera = tk.ID
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
                         WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
                       ) x

@@ -99,7 +99,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.txtBL = new System.Windows.Forms.TextBox();
-            this.cboTipTransporta = new System.Windows.Forms.ComboBox();
+            this.cboVrstaKontejnera = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
             this.chkPDV = new System.Windows.Forms.CheckBox();
             this.txtBrojKontejnera2 = new System.Windows.Forms.TextBox();
@@ -129,6 +129,8 @@
             this.txtKontaktOSpedicije = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.cboPolaznaSpedicija = new System.Windows.Forms.ComboBox();
+            this.cboTipTransporta = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -263,7 +265,7 @@
             // 
             this.dtIstovara.CustomFormat = "dd.MM.yyyy";
             this.dtIstovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtIstovara.Location = new System.Drawing.Point(395, 514);
+            this.dtIstovara.Location = new System.Drawing.Point(395, 575);
             this.dtIstovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtIstovara.Name = "dtIstovara";
             this.dtIstovara.Size = new System.Drawing.Size(196, 22);
@@ -273,7 +275,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(396, 493);
+            this.label3.Location = new System.Drawing.Point(396, 554);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 513;
@@ -283,7 +285,7 @@
             // 
             this.dtpUtovara.CustomFormat = "dd.MM.yyyy";
             this.dtpUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpUtovara.Location = new System.Drawing.Point(396, 460);
+            this.dtpUtovara.Location = new System.Drawing.Point(396, 521);
             this.dtpUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpUtovara.Name = "dtpUtovara";
             this.dtpUtovara.Size = new System.Drawing.Size(192, 22);
@@ -293,7 +295,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(396, 435);
+            this.label22.Location = new System.Drawing.Point(396, 496);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(94, 16);
             this.label22.TabIndex = 511;
@@ -688,7 +690,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(396, 380);
+            this.label18.Location = new System.Drawing.Point(396, 439);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(23, 16);
@@ -887,34 +889,33 @@
             // 
             // txtBL
             // 
-            this.txtBL.Location = new System.Drawing.Point(395, 401);
+            this.txtBL.Location = new System.Drawing.Point(395, 462);
             this.txtBL.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtBL.Name = "txtBL";
             this.txtBL.Size = new System.Drawing.Size(308, 22);
             this.txtBL.TabIndex = 140;
             // 
-            // cboTipTransporta
+            // cboVrstaKontejnera
             // 
-            this.cboTipTransporta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboTipTransporta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboTipTransporta.FormattingEnabled = true;
-            this.cboTipTransporta.ItemHeight = 16;
-            this.cboTipTransporta.Location = new System.Drawing.Point(395, 224);
-            this.cboTipTransporta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboTipTransporta.Name = "cboTipTransporta";
-            this.cboTipTransporta.Size = new System.Drawing.Size(240, 24);
-            this.cboTipTransporta.TabIndex = 110;
-            this.cboTipTransporta.SelectedIndexChanged += new System.EventHandler(this.cboTipTransporta_SelectedIndexChanged);
+            this.cboVrstaKontejnera.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVrstaKontejnera.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboVrstaKontejnera.FormattingEnabled = true;
+            this.cboVrstaKontejnera.ItemHeight = 16;
+            this.cboVrstaKontejnera.Location = new System.Drawing.Point(395, 285);
+            this.cboVrstaKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKontejnera.Name = "cboVrstaKontejnera";
+            this.cboVrstaKontejnera.Size = new System.Drawing.Size(240, 24);
+            this.cboVrstaKontejnera.TabIndex = 110;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(391, 207);
+            this.label19.Location = new System.Drawing.Point(391, 268);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(90, 16);
+            this.label19.Size = new System.Drawing.Size(104, 16);
             this.label19.TabIndex = 604;
-            this.label19.Text = "Tip transporta";
+            this.label19.Text = "Vrsta kontejnera";
             // 
             // chkPDV
             // 
@@ -930,7 +931,7 @@
             // txtBrojKontejnera2
             // 
             this.txtBrojKontejnera2.ForeColor = System.Drawing.Color.Black;
-            this.txtBrojKontejnera2.Location = new System.Drawing.Point(394, 342);
+            this.txtBrojKontejnera2.Location = new System.Drawing.Point(394, 403);
             this.txtBrojKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojKontejnera2.Name = "txtBrojKontejnera2";
             this.txtBrojKontejnera2.Size = new System.Drawing.Size(305, 22);
@@ -939,7 +940,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(394, 321);
+            this.label20.Location = new System.Drawing.Point(394, 382);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(107, 16);
@@ -949,7 +950,7 @@
             // txtBrojKontejnera
             // 
             this.txtBrojKontejnera.ForeColor = System.Drawing.Color.Black;
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(395, 283);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(395, 344);
             this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(305, 22);
@@ -958,7 +959,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(395, 262);
+            this.label21.Location = new System.Drawing.Point(395, 323);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(97, 16);
@@ -1205,11 +1206,36 @@
             this.cboPolaznaSpedicija.Size = new System.Drawing.Size(304, 24);
             this.cboPolaznaSpedicija.TabIndex = 642;
             // 
+            // cboTipTransporta
+            // 
+            this.cboTipTransporta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboTipTransporta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboTipTransporta.FormattingEnabled = true;
+            this.cboTipTransporta.ItemHeight = 16;
+            this.cboTipTransporta.Location = new System.Drawing.Point(395, 226);
+            this.cboTipTransporta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboTipTransporta.Name = "cboTipTransporta";
+            this.cboTipTransporta.Size = new System.Drawing.Size(240, 24);
+            this.cboTipTransporta.TabIndex = 643;
+            this.cboTipTransporta.SelectedIndexChanged += new System.EventHandler(this.cboTipTransporta_SelectedIndexChanged);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(391, 205);
+            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(90, 16);
+            this.label33.TabIndex = 644;
+            this.label33.Text = "Tip transporta";
+            // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 871);
+            this.Controls.Add(this.cboTipTransporta);
+            this.Controls.Add(this.label33);
             this.Controls.Add(this.cboPolaznaSpedicija);
             this.Controls.Add(this.txtKontaktOSpedicije);
             this.Controls.Add(this.label28);
@@ -1238,7 +1264,7 @@
             this.Controls.Add(this.txtBrojKontejnera2);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.chkPDV);
-            this.Controls.Add(this.cboTipTransporta);
+            this.Controls.Add(this.cboVrstaKontejnera);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
@@ -1383,7 +1409,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox cboTipTransporta;
+        private System.Windows.Forms.ComboBox cboVrstaKontejnera;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtBL;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
@@ -1418,5 +1444,7 @@
         private System.Windows.Forms.TextBox txtKontaktPolazneSpedicije;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cboPolaznaSpedicija;
+        private System.Windows.Forms.ComboBox cboTipTransporta;
+        private System.Windows.Forms.Label label33;
     }
 }
