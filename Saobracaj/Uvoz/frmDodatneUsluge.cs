@@ -43,7 +43,7 @@ namespace Saobracaj.Uvoz
                 //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
 
                 this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 // toolStripHeader.Visible = false;
 
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
@@ -123,7 +123,7 @@ namespace Saobracaj.Uvoz
             else
             {
              
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
