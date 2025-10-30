@@ -195,12 +195,19 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
+          
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertVrstePostupakaUvoz ins = new InsertVrstePostupakaUvoz();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsVrstePostupakaUvoz(txtNaziv.Text.ToString().TrimEnd());

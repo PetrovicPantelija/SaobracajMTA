@@ -195,15 +195,23 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtMeSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 InsertMerskeEnote ins = new InsertMerskeEnote();
                 ins.InsMerskeEnote(txtMeSifra.Text.TrimEnd(), txtMeNaziv.Text.TrimEnd());
+                status = false;
             }
             else
             {
                 InsertMerskeEnote upd = new InsertMerskeEnote();
                 upd.UpdMerskeEnote(txtMeSifra.Text.TrimEnd(), txtMeNaziv.Text.TrimEnd());
+                status = false;
             }
             RefreshDataGrid();
         }

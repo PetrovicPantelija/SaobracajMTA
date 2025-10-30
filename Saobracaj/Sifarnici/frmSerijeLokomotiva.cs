@@ -1,4 +1,5 @@
-﻿using Saobracaj.Uvoz;
+﻿using Saobracaj.Kapija;
+using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Configuration;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    class frmSerijeLokomotiva : Syncfusion.Windows.Forms.Office2010Form
+    class frmSerijeLokomotiva : Form
     {
         public static string code = "frmSerijaLokomotiva";
         public bool Pravo;
@@ -532,23 +533,29 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 InsertLokomotivaSerija ins = new InsertLokomotivaSerija();
                 ins.InsLokomotivaSerija(txtOznaka.Text, txtOpis.Text, Convert.ToDouble(txtTezina.Value), Convert.ToDouble(txtSnaga.Text));
-                RefreshDataGrid();
-                status = false;
+              
             }
             else
             {
                 InsertLokomotivaSerija upd = new InsertLokomotivaSerija();
                 upd.UpdLokomotivaSerija(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, txtOpis.Text, Convert.ToDouble(txtTezina.Value), Convert.ToDouble(txtSnaga.Text));
-                status = false;
-                txtSifra.Enabled = false;
-                RefreshDataGrid();
+               
 
 
             }
+            status = false;
+            txtSifra.Enabled = false;
+            RefreshDataGrid();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

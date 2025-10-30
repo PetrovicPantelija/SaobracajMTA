@@ -215,22 +215,29 @@ namespace Saobracaj.Izvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
-          //  txtSifra.Enabled = false;
+            //  txtSifra.Enabled = false;
+            txtSifra.Text = ""; 
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
 
             if (status == true)
             {
                 InsertValute ins = new InsertValute();
                 ins.InsValute(txtSifra.Text, txtNaziv.Text);
+                status = false;
             }
             else
             {
                 InsertValute upd = new InsertValute();
                 upd.UpdValute(txtSifra.Text, txtNaziv.Text);
+                status = false;
             }
             RefreshDataGrid();
         }

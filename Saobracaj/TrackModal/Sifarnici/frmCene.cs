@@ -495,6 +495,12 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 InsertCene ins = new InsertCene();
@@ -506,6 +512,8 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertCene upd = new InsertCene();
                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue), txtNazivCenovnika.Text, cboRazred.Text, txtOznakaManipulacije.Text, Convert.ToInt32(cboOrgJed.SelectedValue));
+                status = false;
+
             }
             RefreshDataGrid();
         }

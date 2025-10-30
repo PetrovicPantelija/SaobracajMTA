@@ -183,10 +183,15 @@ namespace Saobracaj.Uvoz
         {
             tsNew.Enabled = false;
             status = true;
+            txtID.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             InsertBrodovi ins = new InsertBrodovi();
             if (status == true)
             {
@@ -230,46 +235,51 @@ namespace Saobracaj.Uvoz
 
         }
 
-      /*  private void sfButton1_Paint(object sender, PaintEventArgs e)
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
-            int radius = 5;
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            Rectangle rect = new Rectangle(this.sfButton1.ClientRectangle.X + 1,
-                                           this.sfButton1.ClientRectangle.Y + 1,
-                                           this.sfButton1.ClientRectangle.Width - 2,
-                                           this.sfButton1.ClientRectangle.Height - 2);
-            sfButton1.Region = new Region(GetRoundedRect(rect, radius));
-            rect = new Rectangle(rect.X + 1, rect.Y + 1, rect.Width - 2, rect.Height - 2);
-            e.Graphics.DrawPath(new Pen(Color.Red), GetRoundedRect(rect, radius));
-        }
-        private GraphicsPath GetRoundedRect(Rectangle bounds, int radius)
-        {
-            int diameter = radius * 2;
-            Size size = new Size(diameter, diameter);
-            Rectangle arc = new Rectangle(bounds.Location, size);
-            GraphicsPath path = new GraphicsPath();
 
-            if (radius == 0)
-            {
-                path.AddRectangle(bounds);
-                return path;
-            }
-
-            // top left arc  
-            path.AddArc(arc, 180, 90);
-            // top right arc  
-            arc.X = bounds.Right - diameter;
-            path.AddArc(arc, 270, 90);
-            // bottom right arc  
-            arc.Y = bounds.Bottom - diameter;
-            path.AddArc(arc, 0, 90);
-            // bottom left arc 
-            arc.X = bounds.Left;
-            path.AddArc(arc, 90, 90);
-            path.CloseFigure();
-            return path;
         }
-      */
+
+        /*  private void sfButton1_Paint(object sender, PaintEventArgs e)
+          {
+              int radius = 5;
+              e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+              Rectangle rect = new Rectangle(this.sfButton1.ClientRectangle.X + 1,
+                                             this.sfButton1.ClientRectangle.Y + 1,
+                                             this.sfButton1.ClientRectangle.Width - 2,
+                                             this.sfButton1.ClientRectangle.Height - 2);
+              sfButton1.Region = new Region(GetRoundedRect(rect, radius));
+              rect = new Rectangle(rect.X + 1, rect.Y + 1, rect.Width - 2, rect.Height - 2);
+              e.Graphics.DrawPath(new Pen(Color.Red), GetRoundedRect(rect, radius));
+          }
+          private GraphicsPath GetRoundedRect(Rectangle bounds, int radius)
+          {
+              int diameter = radius * 2;
+              Size size = new Size(diameter, diameter);
+              Rectangle arc = new Rectangle(bounds.Location, size);
+              GraphicsPath path = new GraphicsPath();
+
+              if (radius == 0)
+              {
+                  path.AddRectangle(bounds);
+                  return path;
+              }
+
+              // top left arc  
+              path.AddArc(arc, 180, 90);
+              // top right arc  
+              arc.X = bounds.Right - diameter;
+              path.AddArc(arc, 270, 90);
+              // bottom right arc  
+              arc.Y = bounds.Bottom - diameter;
+              path.AddArc(arc, 0, 90);
+              // bottom left arc 
+              arc.X = bounds.Left;
+              path.AddArc(arc, 90, 90);
+              path.CloseFigure();
+              return path;
+          }
+        */
     }
 }
 

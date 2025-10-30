@@ -2061,6 +2061,8 @@ namespace Saobracaj.Uvoz
                 cboScenario.SelectedValue = 15;
 
             }
+            lblUser.Text = "Korisnik: " + Sifarnici.frmLogovanje.user + "Vreme:" + DateTime.Now;
+            
             FillSvi();
         }
 

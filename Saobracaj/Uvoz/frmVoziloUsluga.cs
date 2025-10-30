@@ -236,6 +236,13 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtBrojTelefona.Text = "";
+            txtNapomena.Text = "";
+            txtVozac.Text = "";
+            txtVozilo.Text = "";
+
+
             status = true;
         }
 
@@ -247,6 +254,10 @@ namespace Saobracaj.Uvoz
             else
             {
                 Modultmp = 1;
+            }
+            if (txtID.Text == "")
+            {
+                status = true;
             }
             InsertVoziloUsluga ins = new InsertVoziloUsluga();
             if (status == true)

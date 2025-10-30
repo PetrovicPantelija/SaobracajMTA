@@ -65,7 +65,7 @@ namespace Saobracaj.Izvoz
             this.toolStripSeparator1});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(610, 27);
+            this.meniHeader.Size = new System.Drawing.Size(733, 27);
             this.meniHeader.TabIndex = 203;
             this.meniHeader.Text = "Osveži";
             // 
@@ -111,16 +111,16 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 132);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 162);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(588, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(711, 294);
             this.dataGridView1.TabIndex = 247;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(71, 66);
+            this.txtID.Location = new System.Drawing.Point(12, 87);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(86, 20);
             this.txtID.TabIndex = 246;
@@ -136,7 +136,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(71, 93);
+            this.txtNaziv.Location = new System.Drawing.Point(12, 136);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(231, 20);
             this.txtNaziv.TabIndex = 244;
@@ -144,7 +144,7 @@ namespace Saobracaj.Izvoz
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(7, 93);
+            this.lblNaziv.Location = new System.Drawing.Point(12, 110);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(28, 13);
             this.lblNaziv.TabIndex = 243;
@@ -159,7 +159,7 @@ namespace Saobracaj.Izvoz
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(610, 33);
+            this.panelHeader.Size = new System.Drawing.Size(733, 33);
             this.panelHeader.TabIndex = 463;
             // 
             // panel3
@@ -240,7 +240,7 @@ namespace Saobracaj.Izvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(610, 436);
+            this.ClientSize = new System.Drawing.Size(733, 457);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtID);
@@ -249,7 +249,7 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.meniHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmInspekciskiTretman";
             this.Text = "Inspekciski tretman";
             this.Load += new System.EventHandler(this.frmInspekciskiTretman_Load);

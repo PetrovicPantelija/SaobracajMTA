@@ -194,6 +194,10 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 Saobracaj.Sifarnici.InsertKontejnerStatus ins = new Saobracaj.Sifarnici.InsertKontejnerStatus();
@@ -205,6 +209,7 @@ namespace Saobracaj.Sifarnici
                 upd.UpdKontejnerStatus(Convert.ToInt32(txtSifra.Text), txtNaziv.Text);
             }
             RefreshDataGrid();
+            status = false;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

@@ -205,6 +205,10 @@ namespace Testiranje.Sifarnici
                 potvrdauradio = 1;
 
             }
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
 
             if (status == true)
             {
@@ -218,6 +222,7 @@ namespace Testiranje.Sifarnici
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
                 upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
             }
+            status = false;
             RefreshDataGrid();
         }
 

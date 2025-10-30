@@ -197,21 +197,28 @@ namespace Saobracaj.Izvoz
         {
 
             status = true;
+            txtID.Text = "";
             txtID.Enabled = false;
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 InsertAdresaStatusVozila ins = new InsertAdresaStatusVozila();
                 ins.InsAdresaStatusVozila(txtNaziv.Text);
+                status = false;
             }
             else
             {
                 InsertAdresaStatusVozila upd = new InsertAdresaStatusVozila();
                 upd.UpdAdresaStatusVozila(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                status = false;
             }
             RefreshDataGrid();
         }

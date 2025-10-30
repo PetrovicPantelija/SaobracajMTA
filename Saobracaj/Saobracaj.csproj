@@ -78,6 +78,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LegetIconPNG2.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxMin">
       <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
@@ -3039,6 +3042,12 @@
     <Compile Include="Sifarnici\KrajnjeDestinacije.Designer.cs">
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\PartnerjiPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\PartnerjiPregled.Designer.cs">
+      <DependentUpon>PartnerjiPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleScheduleDataProvider.cs" />
     <Compile Include="SyncForm\frmAnalizaAktivnosti.cs">
       <SubType>Form</SubType>
@@ -5351,6 +5360,9 @@
     <EmbeddedResource Include="Sifarnici\KrajnjeDestinacije.resx">
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\PartnerjiPregled.resx">
+      <DependentUpon>PartnerjiPregled.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmAnalizaAktivnosti.resx">
       <DependentUpon>frmAnalizaAktivnosti.cs</DependentUpon>
     </EmbeddedResource>
@@ -6512,6 +6524,10 @@
     </Content>
     <Content Include="Dokumenta\map.html" />
     <Content Include="itextsharp.dll" />
+    <Content Include="Leget plus.ico" />
+    <Content Include="LegetIcon.ico" />
+    <Content Include="LegetIconPNG %281%29.ico" />
+    <Content Include="LegetIconPNG2.ico" />
     <Content Include="Resources\chat.png" />
     <Content Include="Resources\error.png" />
     <Content Include="Resources\exclamation.png" />

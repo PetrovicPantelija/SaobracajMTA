@@ -160,6 +160,11 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertGrupaVrsteManipulacije ins = new InsertGrupaVrsteManipulacije();

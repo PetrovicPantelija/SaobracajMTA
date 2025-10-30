@@ -113,7 +113,7 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(10, 224);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -124,7 +124,7 @@ namespace Saobracaj.Uvoz
             // txtOznaka
             // 
             this.txtOznaka.Location = new System.Drawing.Point(14, 177);
-            this.txtOznaka.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtOznaka.Margin = new System.Windows.Forms.Padding(2);
             this.txtOznaka.Name = "txtOznaka";
             this.txtOznaka.Size = new System.Drawing.Size(233, 20);
             this.txtOznaka.TabIndex = 54;
@@ -132,7 +132,7 @@ namespace Saobracaj.Uvoz
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(14, 131);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(233, 20);
             this.txtNaziv.TabIndex = 55;
@@ -142,7 +142,7 @@ namespace Saobracaj.Uvoz
             this.txtID.BackColor = System.Drawing.Color.White;
             this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(14, 80);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(99, 20);
             this.txtID.TabIndex = 56;
@@ -217,6 +217,7 @@ namespace Saobracaj.Uvoz
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // button21
             // 
@@ -233,6 +234,7 @@ namespace Saobracaj.Uvoz
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // button22
             // 
@@ -251,6 +253,7 @@ namespace Saobracaj.Uvoz
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.tsNew_Click);
             // 
             // commandBarController1
             // 
@@ -275,7 +278,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.label1);
             this.Controls.Add(this.meniHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmVrstaCarinskogPostupka";
             this.Text = "Vrsta carinskih postupaka";
             this.meniHeader.ResumeLayout(false);

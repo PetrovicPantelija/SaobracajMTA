@@ -197,12 +197,18 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtNaziv.Text = "";
+            txtID.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertNapomenaZaPozioniranje ins = new InsertNapomenaZaPozioniranje();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsNapomenaZaPozicioniranje(txtNaziv.Text.ToString().TrimEnd());

@@ -209,12 +209,18 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertSerijeKola ins = new InsertSerijeKola();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsSerijeKola(txtNaziv.Text.ToString().TrimEnd(), Convert.ToInt32(txtBroj20.Value));

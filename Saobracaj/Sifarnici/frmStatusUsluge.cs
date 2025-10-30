@@ -12,6 +12,8 @@ namespace Saobracaj.Sifarnici
     {
         bool status = false;
 
+        //STA JE OVO RADI SA JEDINICAMA MERE
+
         private void ChangeTextBox()
         {
             panelHeader.Visible = false;
@@ -207,6 +209,12 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtMeSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 InsertMerskeEnote ins = new InsertMerskeEnote();

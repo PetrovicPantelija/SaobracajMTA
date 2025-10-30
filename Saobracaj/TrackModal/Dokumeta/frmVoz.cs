@@ -491,10 +491,13 @@ namespace Testiranje.Dokumeta
             Subota = 1;
               if (chkNedelja.Checked ==true)  
             Nedelja = 1;
-         
-			
-            
-            
+
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
             InsertVoz ins = new InsertVoz();

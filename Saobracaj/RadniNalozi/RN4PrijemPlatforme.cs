@@ -339,6 +339,7 @@ namespace Saobracaj.RadniNalozi
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtID.Text = "";
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
@@ -378,7 +379,10 @@ namespace Saobracaj.RadniNalozi
             {
                 Zavrsen = 1;
             }
-
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
 
             InsertRN rn = new InsertRN();
             if (status == true)

@@ -289,6 +289,12 @@ namespace Saobracaj.Carinko
 
         private void button21_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
+
+
 
             if (status == true)
             {
@@ -303,7 +309,7 @@ txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboNalogodavac.SelectedValue));
 
-                RefreshDataGrid();
+              
                 //  RefrechDataGridT();
                 status = false;
             }
@@ -320,9 +326,10 @@ txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboNalogodavac.SelectedValue));
                 status = false;
 
-                RefreshDataGrid();
+   
                 // RefrechDataGridT();
             }
+            RefreshDataGrid();
         }
 
         private void frmPrijemnicaCarinsko_Load(object sender, EventArgs e)

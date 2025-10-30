@@ -137,7 +137,10 @@
             this.txtERPID = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.chkDrumskiPrevoz = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.c)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.meniHeader.SuspendLayout();
@@ -151,6 +154,7 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -225,14 +229,12 @@
             // c
             // 
             this.c.AllowUserToAddRows = false;
-            this.c.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.c.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.c.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.c.Location = new System.Drawing.Point(12, 817);
+            this.c.Location = new System.Drawing.Point(1326, 399);
             this.c.Name = "c";
             this.c.RowHeadersWidth = 51;
-            this.c.Size = new System.Drawing.Size(1340, 36);
+            this.c.Size = new System.Drawing.Size(26, 25);
             this.c.TabIndex = 16;
             this.c.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -749,8 +751,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.panel5);
@@ -763,7 +764,7 @@
             this.panel1.Controls.Add(this.label20);
             this.panel1.Location = new System.Drawing.Point(721, 61);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(574, 647);
+            this.panel1.Size = new System.Drawing.Size(574, 358);
             this.panel1.TabIndex = 217;
             // 
             // button4
@@ -991,7 +992,7 @@
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(297, 59);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(274, 585);
+            this.dataGridView4.Size = new System.Drawing.Size(274, 296);
             this.dataGridView4.TabIndex = 0;
             // 
             // dataGridView3
@@ -1001,7 +1002,7 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(3, 58);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(256, 586);
+            this.dataGridView3.Size = new System.Drawing.Size(253, 297);
             this.dataGridView3.TabIndex = 0;
             // 
             // label20
@@ -1094,6 +1095,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button27);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
@@ -1148,6 +1150,7 @@
             this.button20.Size = new System.Drawing.Size(27, 27);
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip1.SetToolTip(this.button20, "Izbriši");
             this.button20.UseVisualStyleBackColor = true;
             this.button20.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -1165,6 +1168,7 @@
             this.button21.Size = new System.Drawing.Size(27, 27);
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip1.SetToolTip(this.button21, "Sačuvaj");
             this.button21.UseVisualStyleBackColor = true;
             this.button21.Click += new System.EventHandler(this.tsSave_Click_1);
             // 
@@ -1184,6 +1188,7 @@
             this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip1.SetToolTip(this.button22, "Novi");
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -1223,6 +1228,14 @@
             this.chkDrumskiPrevoz.Text = "DrumskiPrevoz";
             this.chkDrumskiPrevoz.UseVisualStyleBackColor = true;
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.gridGroupingControl1);
+            this.panel6.Location = new System.Drawing.Point(261, 452);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(973, 336);
+            this.panel6.TabIndex = 468;
+            // 
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -1236,13 +1249,13 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(11, 425);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(16, 3);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1341, 386);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(948, 330);
             this.gridGroupingControl1.TabIndex = 467;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -1250,7 +1263,7 @@
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
@@ -1258,13 +1271,34 @@
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
+            // button6
+            // 
+            this.button6.AutoSize = true;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button6.Location = new System.Drawing.Point(108, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(116, 31);
+            this.button6.TabIndex = 21;
+            this.button6.Text = "PartneriPregled";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // frmPartnerji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1364, 844);
-            this.Controls.Add(this.gridGroupingControl1);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.chkDrumskiPrevoz);
             this.Controls.Add(this.txtERPID);
             this.Controls.Add(this.label31);
@@ -1355,6 +1389,7 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1469,6 +1504,9 @@
         private System.Windows.Forms.TextBox txtERPID;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.CheckBox chkDrumskiPrevoz;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel panel6;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.Button button6;
     }
 }
