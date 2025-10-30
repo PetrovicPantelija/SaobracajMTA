@@ -1,14 +1,8 @@
-﻿using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms;
+﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -200,6 +194,41 @@ namespace Saobracaj.Drumski
             //   txtMeSifra.Enabled = false;
             txtSifra.Text = "";
             txtNaziv.Text = "";
+
+            if (ActivateExistingForm("frmStatusVozilaDetalji"))
+            {
+                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                return;
+            }
+
+            frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji();
+            pnd.SnimanjeZavrseno += frmStatusVozila_SnimanjeZavrseno;
+            pnd.Show();
+        }
+
+        private bool ActivateExistingForm(string formName)
+        {
+            // Prolazi kroz sve otvorene forme u aplikaciji
+            foreach (Form frm in Application.OpenForms)
+            {
+                // Upoređujemo ime forme koju tražimo
+                if (frm.Name == formName)
+                {
+                    // Forma je pronađena!
+
+                    // 1. Dovedite je u prvi plan
+                    frm.Activate();
+
+                    // 2. Vratite je iz minimizovanog stanja, ako je minimizovana
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+
+                    return true; // Vraćamo true jer je forma aktivirana
+                }
+            }
+            return false; // Forma nije pronađena
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -242,6 +271,50 @@ namespace Saobracaj.Drumski
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        int txtID = 0;
+                        if (row.Cells[0].Value != DBNull.Value)
+                            txtID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        string txtNapomena = row.Cells[1].Value.ToString();
+
+                        if (ActivateExistingForm("frmStatusVozilaDetalji"))
+                        {
+                            // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                            return;
+                        }
+
+                        frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji(txtID, txtNapomena);
+                        pnd.SnimanjeZavrseno += frmStatusVozila_SnimanjeZavrseno;
+                        pnd.Show();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void frmStatusVozila_SnimanjeZavrseno(int noviID)
+        {
+            RefreshDataGrid();
+            if (noviID > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
+                    {
+                        dataGridView1.ClearSelection();
+                        row.Selected = true;
+                        dataGridView1.CurrentCell = row.Cells[0];
+                        dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                        break;
+                    }
+                }
         }
     }
 }

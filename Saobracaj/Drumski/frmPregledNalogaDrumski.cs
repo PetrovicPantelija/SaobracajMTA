@@ -183,7 +183,7 @@ namespace Saobracaj.Drumski
                     else
                     {
                   
-                        conditionRadniNalogID += $" x.DatumIstovara >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND x.DatumIstovara < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
+                        conditionRadniNalogID += $" AND rn.DatumIstovara >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND rn.DatumIstovara < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
 
                     }
                 }

@@ -1550,6 +1550,12 @@
     <Compile Include="Drumski\DodavanjeSkeniranePrevoznice.Designer.cs">
       <DependentUpon>DodavanjeSkeniranePrevoznice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmAutomobilEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmAutomobilEdit.Designer.cs">
+      <DependentUpon>frmAutomobilEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmAutomobiliDrumski.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1603,6 +1609,12 @@
     </Compile>
     <Compile Include="Drumski\frmPozicioniranje.Designer.cs">
       <DependentUpon>frmPozicioniranje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drumski\frmPozicioniranjeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPozicioniranjeEdit.Designer.cs">
+      <DependentUpon>frmPozicioniranjeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Drumski\frmPregledArhiviranihNalogaDrumski.cs">
       <SubType>Form</SubType>
@@ -1664,11 +1676,23 @@
     <Compile Include="Drumski\frmStatusVozila.Designer.cs">
       <DependentUpon>frmStatusVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmStatusVozilaDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmStatusVozilaDetalji.Designer.cs">
+      <DependentUpon>frmStatusVozilaDetalji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmVrstaVozila.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Drumski\frmVrstaVozila.Designer.cs">
       <DependentUpon>frmVrstaVozila.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drumski\frmVrstaVozilaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmVrstaVozilaEdit.Designer.cs">
+      <DependentUpon>frmVrstaVozilaEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Drumski\InsertFakture.cs" />
     <Compile Include="Drumski\InsertKurs.cs" />
@@ -4659,6 +4683,9 @@
     <EmbeddedResource Include="Drumski\DodavanjeSkeniranePrevoznice.resx">
       <DependentUpon>DodavanjeSkeniranePrevoznice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmAutomobilEdit.resx">
+      <DependentUpon>frmAutomobilEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmAutomobiliDrumski.resx">
       <DependentUpon>frmAutomobiliDrumski.cs</DependentUpon>
     </EmbeddedResource>
@@ -4685,6 +4712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPozicioniranje.resx">
       <DependentUpon>frmPozicioniranje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmPozicioniranjeEdit.resx">
+      <DependentUpon>frmPozicioniranjeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledArhiviranihNalogaDrumski.resx">
       <DependentUpon>frmPregledArhiviranihNalogaDrumski.cs</DependentUpon>
@@ -4714,8 +4744,14 @@
     <EmbeddedResource Include="Drumski\frmStatusVozila.resx">
       <DependentUpon>frmStatusVozila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmStatusVozilaDetalji.resx">
+      <DependentUpon>frmStatusVozilaDetalji.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmVrstaVozila.resx">
       <DependentUpon>frmVrstaVozila.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmVrstaVozilaEdit.resx">
+      <DependentUpon>frmVrstaVozilaEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\MestaUtovaraDrumski.resx">
       <DependentUpon>MestaUtovaraDrumski.cs</DependentUpon>

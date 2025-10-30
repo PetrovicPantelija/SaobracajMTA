@@ -11,8 +11,9 @@ namespace Saobracaj.Drumski
 {
     class InsertStatus
     {
-        public void InsStatusVozila(string Naziv)
+        public int InsStatusVozila(string Naziv)
         {
+            int IDPom = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -27,6 +28,10 @@ namespace Saobracaj.Drumski
             name.Value = Naziv;
             myCommand.Parameters.Add(name);
 
+            SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
+            idParam.Direction = ParameterDirection.Output;
+            myCommand.Parameters.Add(idParam);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -36,6 +41,7 @@ namespace Saobracaj.Drumski
             {
                 myCommand.ExecuteNonQuery();
                 myTransaction.Commit();
+                IDPom = (int)myCommand.Parameters["@IDPom"].Value;
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
@@ -61,6 +67,7 @@ namespace Saobracaj.Drumski
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
+            return IDPom;
         }
 
         public void UpdStatusVozila(int ID, string Naziv)
