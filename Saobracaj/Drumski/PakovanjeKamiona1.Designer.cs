@@ -60,6 +60,7 @@
             this.btnInstrukcije = new System.Windows.Forms.Button();
             this.btnArhiva = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.ukloniDodeljenKamionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -94,8 +95,8 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.72427F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.27573F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -118,7 +119,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1031, 397);
+            this.panel1.Size = new System.Drawing.Size(856, 397);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -148,13 +149,16 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1031, 333);
+            this.dataGridView1.Size = new System.Drawing.Size(856, 333);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
@@ -170,7 +174,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 29);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1031, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(856, 35);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label4
@@ -276,15 +280,16 @@
             this.panel2.Controls.Add(this.btnKreiraj);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(1040, 3);
+            this.panel2.Location = new System.Drawing.Point(865, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(843, 397);
+            this.panel2.Size = new System.Drawing.Size(1018, 397);
             this.panel2.TabIndex = 1;
             // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.ContextMenuStrip = this.contextMenuStripNalozi;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -292,7 +297,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(843, 333);
+            this.dataGridView2.Size = new System.Drawing.Size(1018, 333);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
             // 
@@ -300,9 +305,10 @@
             // 
             this.contextMenuStripNalozi.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripNalozi.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripItemPregledNaloga});
+            this.toolStripItemPregledNaloga,
+            this.ukloniDodeljenKamionToolStripMenuItem});
             this.contextMenuStripNalozi.Name = "contextMenuStripNalozi";
-            this.contextMenuStripNalozi.Size = new System.Drawing.Size(180, 28);
+            this.contextMenuStripNalozi.Size = new System.Drawing.Size(237, 52);
             // 
             // toolStripItemPregledNaloga
             // 
@@ -337,6 +343,7 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 462);
@@ -352,19 +359,19 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 9;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 234F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 241F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
-            this.tableLayoutPanel3.Controls.Add(this.button2, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnNajava, 8, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnInstrukcije, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnArhiva, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button1, 3, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 412);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -375,9 +382,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(855, 3);
+            this.button2.Location = new System.Drawing.Point(614, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(236, 38);
+            this.button2.Size = new System.Drawing.Size(235, 38);
             this.button2.TabIndex = 3;
             this.button2.Text = "UPARI KAMION I KONTEJNER";
             this.button2.UseVisualStyleBackColor = true;
@@ -385,7 +392,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(593, 3);
+            this.button1.Location = new System.Drawing.Point(876, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(227, 38);
             this.button1.TabIndex = 2;
@@ -401,7 +408,6 @@
             this.btnNajava.TabIndex = 4;
             this.btnNajava.Text = "NAJAVA VOZILA";
             this.btnNajava.UseVisualStyleBackColor = true;
-            this.btnNajava.Click += new System.EventHandler(this.btnNajava_Click);
             // 
             // btnInstrukcije
             // 
@@ -428,6 +434,13 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // ukloniDodeljenKamionToolStripMenuItem
+            // 
+            this.ukloniDodeljenKamionToolStripMenuItem.Name = "ukloniDodeljenKamionToolStripMenuItem";
+            this.ukloniDodeljenKamionToolStripMenuItem.Size = new System.Drawing.Size(236, 24);
+            this.ukloniDodeljenKamionToolStripMenuItem.Text = "Ukloni dodeljen kamion";
+            this.ukloniDodeljenKamionToolStripMenuItem.Click += new System.EventHandler(this.ukloniDodeljenKamionToolStripMenuItem_Click);
             // 
             // PakovanjeKamiona1
             // 
@@ -489,5 +502,6 @@
         private System.Windows.Forms.Button btnNajava;
         private System.Windows.Forms.Button btnInstrukcije;
         private System.Windows.Forms.Button btnArhiva;
+        private System.Windows.Forms.ToolStripMenuItem ukloniDodeljenKamionToolStripMenuItem;
     }
 }

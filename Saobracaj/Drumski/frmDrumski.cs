@@ -40,7 +40,10 @@ namespace Saobracaj.Drumski
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
             }
-
+            lbtHederTekst.Text = "";
+            lbtHederTekst.Visible = true;
+            button1.Visible = false;
+            button4.Visible = false;
         }
 
         public frmDrumski(string noviNalogID, int? NalogID)
@@ -58,6 +61,17 @@ namespace Saobracaj.Drumski
                 cboMestoPreuzimanja.SelectedValue = 8;
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
+            }
+            if (noviNalogID == "NOVINALOG")
+            {
+                status = true;
+                lbtHederTekst.Text = "UNOS NOVOG ZAPISA JE U TOKU!";
+                lbtHederTekst.Visible = true;
+            }
+            else
+            {
+                lbtHederTekst.Text = "IZMENA ZAPISA JE U TOKU";
+                lbtHederTekst.Visible = true;
             }
         }
 
@@ -648,7 +662,6 @@ namespace Saobracaj.Drumski
             cboKlijent.DisplayMember = "PaNaziv";
             cboKlijent.ValueMember = "PaSifra";
 
-
             var dip = "Select ID,Naziv from MestaUtovara order by Naziv";
             var dipAD = new SqlDataAdapter(dip, conn);
             var dipDS = new DataSet();
@@ -696,6 +709,18 @@ namespace Saobracaj.Drumski
             cboOCarinarnica.DisplayMember = "Naziv";
             cboOCarinarnica.ValueMember = "ID";
 
+            // --- AutoComplete podesavanja ---
+            cboOCarinarnica.DropDownStyle = ComboBoxStyle.DropDown;
+            cboOCarinarnica.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboOCarinarnica.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            AutoCompleteStringCollection autoSrc = new AutoCompleteStringCollection();
+            foreach (DataRow row in carDS.Tables[0].Rows)
+            {
+                autoSrc.Add(row["Naziv"].ToString());
+            }
+            cboOCarinarnica.AutoCompleteCustomSource = autoSrc;
+
 
             var caru= "Select ID, Naziv From Carinarnice order by Naziv";
             var caruAD = new SqlDataAdapter(caru, conn);
@@ -733,8 +758,187 @@ namespace Saobracaj.Drumski
             cboVrstaKontejnera.DisplayMember = "SkNaziv";
             cboVrstaKontejnera.ValueMember = "ID";
         }
-       
 
+        private void ComboBox_SearchAndPosition_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            // Ne želimo da reagujemo na kontrolne tastere ili na već rešene unose
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape || e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || isSearching)
+            {
+                return;
+            }
+
+            ComboBox cbo = (ComboBox)sender;
+            string currentText = cbo.Text;
+
+            // Provera da li je ComboBox fokusiran i da li ima teksta za pretragu
+            if (!string.IsNullOrEmpty(currentText))
+            {
+                string lowerSearchText = currentText.ToLower();
+
+                isSearching = true; // Uključujemo flag
+
+                // **KLJUČNO ZA STABILNOST:** Privremeno postavljamo SelectionStart pre bilo kakve manipulacije
+                // da bismo 'zaključali' kursor i sprecili automatsko dopisivanje.
+                cbo.SelectionStart = currentText.Length;
+                cbo.SelectionLength = 0;
+
+                bool found = false;
+                int foundIndex = -1;
+
+                // KORAK 1: PRONALAZENJE
+                for (int i = 0; i < cbo.Items.Count; i++)
+                {
+                    DataRowView item = (DataRowView)cbo.Items[i];
+                    string itemText = item[cbo.DisplayMember].ToString().ToLower();
+
+                    if (itemText.StartsWith(lowerSearchText))
+                    {
+                        foundIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    // KORAK 2: POZICIONIRANJE I OTVARANJE
+
+                    // Postavljamo SelectedIndex (ovo NEĆE automatski dopisati reč jer smo 
+                    // PRETHODNO zaključali kursor SelectionStart/Length).
+                    cbo.SelectedIndex = foundIndex;
+
+                    // AKO SE I DALJE DEDESI AUTOMATSKO DOPISIVANJE, OVO PONIŠTAVA:
+                    cbo.Text = currentText;
+
+                    // Postavljamo kursor na kraj (ova provera je u KeyUp robustnija nego u TextChanged)
+                    cbo.SelectionStart = currentText.Length;
+                    cbo.SelectionLength = 0;
+
+                    // Otvaramo padajuću listu (sada kada je pozicija kursora stabilna)
+                    if (!cbo.DroppedDown)
+                    {
+                        cbo.DroppedDown = true;
+                    }
+                }
+                else
+                {
+                    // Ako nema podudaranja, zatvorimo listu da se ne bi prikazivala
+                    // cbo.DroppedDown = false; // Možda je bolje zadržati je otvorenom?
+                }
+
+                isSearching = false; // Isključujemo flag
+                e.Handled = true; // Potvrđujemo da smo mi obradili ovaj unos (opcionalno)
+            }
+            // Ako se tekst obriše
+            else if (string.IsNullOrEmpty(currentText))
+            {
+                isSearching = true;
+                cbo.DroppedDown = false;
+                cbo.SelectedIndex = -1;
+                isSearching = false;
+            }
+        }
+
+        private void ComboBox_SearchAndPosition(object sender)
+        {
+            // === GUARD FLAG: Sprecava rekurziju ===
+            if (isSearching)
+            {
+                return;
+            }
+
+            ComboBox cbo = (ComboBox)sender;
+
+            // Provera da li je ComboBox fokusiran i da li ima teksta za pretragu
+            if (cbo.Focused && !string.IsNullOrEmpty(cbo.Text))
+            {
+                string currentText = cbo.Text;
+                string lowerSearchText = currentText.ToLower();
+
+                // Postavljamo flag na true pre programskih promena
+                isSearching = true;
+
+                bool found = false;
+
+                // Prolazimo kroz sve stavke
+                // (Pretpostavljamo da su svi combobox-ovi vezani za DataTable sa DisplayMember "Naziv")
+                foreach (DataRowView item in cbo.Items)
+                {
+                    string itemText = item[cbo.DisplayMember].ToString().ToLower(); // Koristi DisplayMember!
+
+                    if (itemText.StartsWith(lowerSearchText))
+                    {
+                        // KORAK 1: POZICIONIRANJE
+                        cbo.SelectedIndex = cbo.Items.IndexOf(item);
+
+                        // KORAK 2: VRAĆANJE TEKSTA I KURORA
+                        cbo.Text = currentText;
+                        cbo.SelectionStart = currentText.Length;
+                        cbo.SelectionLength = 0;
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                // KORAK 3: OTVARANJE COMBOBOX-A
+                if (found && !cbo.DroppedDown)
+                {
+                    cbo.DroppedDown = true;
+                }
+
+                // Resetujemo flag na false
+                isSearching = false;
+            }
+            // Ako se tekst obriše (polje je prazno)
+            else if (string.IsNullOrEmpty(cbo.Text))
+            {
+                isSearching = true;
+                cbo.DroppedDown = false;
+                cbo.SelectedIndex = -1; // Resetujemo selekciju
+                isSearching = false;
+            }
+        } 
+        private void cboMestoPreuzimanja_TextChanged(object sender, EventArgs e)
+        {
+            //// Trenutno uneti tekst (koristimo ToLower() za pretragu bez obzira na velika/mala slova)
+            //string searchText = cboMestoPreuzimanja.Text.ToLower();
+
+            //// Proveravamo da li je ComboBox fokusiran i da li ima teksta za pretragu
+            //if (cboMestoPreuzimanja.Focused && !string.IsNullOrEmpty(searchText))
+            //{
+            //    // Cuvamo trenutnu poziciju kursora i duzinu selekcije
+            //    int selectionStart = cboMestoPreuzimanja.SelectionStart;
+
+            //    // Prolazimo kroz sve stavke
+            //    foreach (DataRowView item in cboMestoPreuzimanja.Items)
+            //    {
+            //        // Dohvatamo vrednost DisplayMember-a (Naziv)
+            //        string itemText = item["Naziv"].ToString().ToLower();
+
+            //        if (itemText.StartsWith(searchText))
+
+            //            cboMestoPreuzimanja.SelectedIndex = cboMestoPreuzimanja.Items.IndexOf(item);
+
+
+            //            cboMestoPreuzimanja.Text = searchText; // Samo tekst koji je korisnik ukucao
+
+            //            // 2. Postavite kursor na kraj unetog teksta
+            //            cboMestoPreuzimanja.SelectionStart = cboMestoPreuzimanja.Text.Length;
+
+            //            // Opcionalno: Otvorite padajuću listu da biste prikazali rezultat
+            //            // if (!cboMestoPreuzimanja.DroppedDown)
+            //            // {
+            //            //     cboMestoPreuzimanja.DroppedDown = true;
+            //            // }
+
+            //            return;
+            //     }
+            //  }
+
+            ComboBox_SearchAndPosition(sender);
+        }
+        
         private void UcitajKamione(int? tipTransportaId)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -817,6 +1021,12 @@ namespace Saobracaj.Drumski
 
         private void frmDrumski_Load(object sender, EventArgs e)
         {
+            toolTip1.SetToolTip(button3, "Kreiranje novog zapisa");
+            toolTip1.SetToolTip(button2, "Snimanje izmena");
+            toolTip1.SetToolTip(button21, "Brisanje zapisa");
+            dtpUtovara.Value = DateTime.Today;
+            dtIstovara.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             VratiPodatke();
         }
 
@@ -1039,7 +1249,10 @@ namespace Saobracaj.Drumski
                         bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera);
 
                 txtID.Text = noviID.ToString();
+                lbtHederTekst.Text = "Unos novog zapisa završen!";
                 status = false;
+                button1.Visible = true;
+                button4.Visible = true;
             }
             else
             {
@@ -1465,7 +1678,7 @@ namespace Saobracaj.Drumski
             txtBrojTelefona.Enabled = false;
             txtPrevoznik.Text = "";
             txtPrevoznik.Enabled = false;
-            txtValuta.SelectedValue = -1;
+            txtValuta.SelectedValue = "EUR";
             txtTrosak.Value = 0.00m;
             txtCena.Value = 0.00m;
             chkPDV.Checked = false;
@@ -1483,6 +1696,10 @@ namespace Saobracaj.Drumski
             FillCombo();
             ResetujVrednostiPolja();
             button21.Visible = true;
+            lbtHederTekst.Text = "UNOS NOVOG ZAPISA JE U TOKU!";
+            lbtHederTekst.Visible = true;
+            button1.Visible = false;
+            button4.Visible = false;
         }
 
         private void cboTipTransporta_SelectedIndexChanged(object sender, EventArgs e)
@@ -1721,7 +1938,12 @@ namespace Saobracaj.Drumski
         private void button1_Click(object sender, EventArgs e)
         {
             
-            int radniNalogDrumskiID = Convert.ToInt32(txtID.Text);
+          
+            if (!int.TryParse(txtID.Text, out int radniNalogDrumskiID))
+            {
+                MessageBox.Show("ID ne postoji.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int zaposleniID = PostaviVrednostZaposleni();
 
             OpenFileDialog ofd = new OpenFileDialog();
@@ -1802,7 +2024,12 @@ namespace Saobracaj.Drumski
         private void button4_Click(object sender, EventArgs e)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            int radniNalogID = Convert.ToInt32(txtID.Text);
+
+            if (!int.TryParse(txtID.Text, out int radniNalogID))
+            {
+                MessageBox.Show("ID ne postoji.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }        
 
             frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
             pregled.ShowDialog();
@@ -1828,6 +2055,129 @@ namespace Saobracaj.Drumski
         private void cboOCarinarnica_SelectedValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtCena_Enter(object sender, EventArgs e)
+        {
+            if (txtCena.Value == 0)
+            {
+                txtCena.ResetText(); // obriše prikazani tekst, ali ne menja Value
+            }
+        }
+
+        private void txtTrosak_Enter(object sender, EventArgs e)
+        {
+            if (txtTrosak.Value == 0)
+            {
+                txtTrosak.ResetText(); // obriše prikazani tekst, ali ne menja Value
+            }
+        }
+
+        private bool isSearching = false;
+        //private void cboPolaznaCarinarnica_TextChanged(object sender, EventArgs e)
+        //{
+        //    // 1. Guard Flag: Sprečava rekurziju
+        //    if (isSearching)
+        //    {
+        //        return;
+        //    }
+
+        //    string searchText = cboPolaznaCarinarnica.Text;
+
+        //    if (cboPolaznaCarinarnica.Focused && !string.IsNullOrEmpty(searchText))
+        //    {
+        //        string lowerSearchText = searchText.ToLower();
+
+        //        // Postavljamo flag na true
+        //        isSearching = true;
+
+        //        bool found = false;
+
+        //        // Prolazimo kroz sve stavke
+        //        foreach (DataRowView item in cboPolaznaCarinarnica.Items)
+        //        {
+        //            string itemText = item["Naziv"].ToString().ToLower();
+
+        //            if (itemText.StartsWith(lowerSearchText))
+        //            {
+        //                // **2. POZICIONIRANJE:**
+        //                cboPolaznaCarinarnica.SelectedIndex = cboPolaznaCarinarnica.Items.IndexOf(item);
+
+        //                // Vraćamo originalno ukucan tekst i kursor
+        //                cboPolaznaCarinarnica.Text = searchText;
+        //                cboPolaznaCarinarnica.SelectionStart = searchText.Length;
+
+        //                found = true;
+        //                break; // Prekidamo pretragu nakon pronalaska prvog podudaranja
+        //            }
+        //        }
+
+        //        // **3. OTVARANJE COMBOBOX-A:**
+        //        // Otvori padajuću listu samo ako je pronađeno podudaranje ILI ako želite da se uvek otvori
+        //        // dok se kuca (ja predlažem da se uvek otvori ako je tekst prisutan).
+        //        if (!cboPolaznaCarinarnica.DroppedDown)
+        //        {
+        //            // Ova linija otvara padajuću listu
+        //            cboPolaznaCarinarnica.DroppedDown = true;
+        //        }
+
+        //        // Resetujemo flag na false nakon sto smo zavrsili programsku promenu
+        //        isSearching = false;
+        //    }
+        //    else if (string.IsNullOrEmpty(searchText))
+        //    {
+        //        // Ako se tekst obriše, možemo zatvoriti padajuću listu
+        //        cboPolaznaCarinarnica.DroppedDown = false;
+
+        //        // Takođe resetujte selekciju kada je polje prazno
+        //        cboPolaznaCarinarnica.SelectedIndex = -1;
+        //    }
+        //}
+
+        private void cboPolaznaCarinarnica_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+
+        private void cboMestoUtovara_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cboMestoIstovara_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cboOCarinarnica_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cboMestoPreuzimanja_KeyUp(object sender, KeyEventArgs e)
+        {
+            ComboBox_SearchAndPosition_OnKeyUp(sender, e);
+        }
+
+        private void cboKlijent_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cboMestoUtovara_KeyUp(object sender, KeyEventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cboPolaznaSpedicija_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
+        }
+
+        private void cbOspedicija_TextChanged(object sender, EventArgs e)
+        {
+            ComboBox_SearchAndPosition(sender);
         }
     }
 }

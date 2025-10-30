@@ -204,43 +204,67 @@ namespace Saobracaj.Drumski
 
             int Uvoz = prviRed["Uvoz"] != DBNull.Value ? Convert.ToInt32(prviRed["Uvoz"].ToString()) : -1;
 
-            string datumUtovaraIstovara = "";
-            string adresaUtovaraIstovara = "";
+            string datumUtovara = "";
+            string adresaUtovara = "";
             string datumPreuzimanjaPraznog = "";
+            string datumIstovara = "";
             string mestoPreuzimanjaPraznog = "";
-            string carinarnica = "";
+            string polazncarinarnica = "";
+            string odredisnacarinarnica = "";
             string mestoIstovara = "";
-            string mestoUtovaraIstovara = "";
+            string mestoUtovara = "";
             string adresaIstovara = "";
             string kontaktOsobaUtovarIstovar = "";
+            string poruka = "";
+            string odredisnaSpedicijaKontakt = "";
+            string napomenaZaPozicioniranje = "";
+            string dodatniOpis = "";
+            string nalogID = "";
+            string polaznaSpedicija = "";
+            string polaznaSpedicijaKontakt = "";
+            datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
+            mestoPreuzimanjaPraznog = prviRed["MestoPreuzimanjaKontejnera"] != DBNull.Value ? prviRed["MestoPreuzimanjaKontejnera"].ToString() : "";
+            polazncarinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
+            datumUtovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
+            mestoUtovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
+            mestoIstovara = prviRed["MestoIstovara"] != DBNull.Value ? prviRed["MestoIstovara"].ToString() : "";
+            adresaIstovara = prviRed["AdresaIstovara"] != DBNull.Value ? prviRed["AdresaIstovara"].ToString() : "";
+            kontaktOsobaUtovarIstovar = prviRed["KontaktOsobaUtovarIstovar"] != DBNull.Value ? prviRed["KontaktOsobaUtovarIstovar"].ToString() : "";
+            adresaUtovara = prviRed["AdresaUtovara"] != DBNull.Value ? prviRed["AdresaUtovara"].ToString() : "";
+            napomenaZaPozicioniranje = prviRed["KontaktOsobaUtovarIsNapomenaZaPozicioniranjetovar"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : "";
+            datumIstovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
+            odredisnacarinarnica = prviRed["OdredisnaCarina"] != DBNull.Value ? prviRed["OdredisnaCarina"].ToString() : "";
+            odredisnaSpedicijaKontakt = prviRed["OdredisnaSpedicijaKontakt"] != DBNull.Value ? prviRed["OdredisnaSpedicijaKontakt"].ToString() : "";
+            dodatniOpis = prviRed["DodatniOpis"] != DBNull.Value ? prviRed["DodatniOpis"].ToString() : "";
+            nalogID = prviRed["NalogID"] != DBNull.Value ? prviRed["NalogID"].ToString() : "";
+            polaznaSpedicija = prviRed["PolaznaSpedicija"] != DBNull.Value ? prviRed["PolaznaSpedicija"].ToString() : "";
+            polaznaSpedicijaKontakt = prviRed["PolaznaSpedicijaKontakt"] != DBNull.Value ? prviRed["PolaznaSpedicijaKontakt"].ToString() : "";
+
+
             //izvoz
             if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
-            {
-                datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
-                mestoPreuzimanjaPraznog = prviRed["MestoPreuzimanjaKontejnera"] != DBNull.Value ? prviRed["MestoPreuzimanjaKontejnera"].ToString() : ""; 
-                datumUtovaraIstovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
-                kontaktOsobaUtovarIstovar = prviRed["KontaktOsobaUtovarIstovar"] != DBNull.Value ? prviRed["KontaktOsobaUtovarIstovar"].ToString() : "";
-                mestoUtovaraIstovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
-                adresaUtovaraIstovara = prviRed["AdresaUtovara"] != DBNull.Value ? prviRed["AdresaUtovara"].ToString() : "";
-                carinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
-                mestoIstovara = prviRed["MestoIstovara"] != DBNull.Value ? prviRed["MestoIstovara"].ToString() : "";
-                adresaIstovara = prviRed["AdresaIstovara"] != DBNull.Value ? prviRed["AdresaIstovara"].ToString() : "";
-                
+            {                                                                
+                 poruka = $"Kontejner  preuzimate {datumPreuzimanjaPraznog} na {mestoPreuzimanjaPraznog}\n" +
+                         $"Utovarate {datumUtovara} u {mestoUtovara}, adresa utovara {adresaUtovara} {kontaktOsobaUtovarIstovar} \n" +
+                         $"Kontakt na utovaru: {kontaktOsobaUtovarIstovar} \n" +
+                         $"Izvozno carinjenje radite u {polazncarinarnica} \n" +
+                         $"Pun kontejner spustate na {mestoIstovara} , {adresaIstovara} \n" +
+                         $"\n" +
+                         $"Posebni uslovi transporta:{napomenaZaPozicioniranje} {dodatniOpis} \n" +
+                         $"Broj naloga: {nalogID}";
+
             }
             //uvoz
             else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4)
-            {
-              
+            {               
+                poruka = $"Kontejner  preuzimate {datumUtovara} na {mestoUtovara}\n" +
+                           $"Propratnicu Vam radi {polazncarinarnica} {polaznaSpedicija}\n" +
+                           $"Javite se {datumIstovara} na {odredisnacarinarnica} {odredisnaSpedicijaKontakt} \n" +
+                           $"Kontejner istovarate {mestoIstovara}, {adresaIstovara}, {kontaktOsobaUtovarIstovar} \n" +
+                           $"\n" +
+                           $"Posebni uslovi transporta: {napomenaZaPozicioniranje}\n" +
+                           $"\n " ;
             }
-
-            string poruka = $"Kontejner  preuzimate {datumPreuzimanjaPraznog} na {mestoPreuzimanjaPraznog}\n" +
-                          $"Utovarate {datumUtovaraIstovara} u {mestoUtovaraIstovara}, adresa utovara {adresaUtovaraIstovara} \n" +
-                          $"Kontakt na utovaru: {kontaktOsobaUtovarIstovar} \n" +
-                          $"Izvozno carinjenje radite u {carinarnica} \n" +
-                          $"Pun kontejner spustate na {mestoIstovara} , {adresaIstovara} \n" +
-                          $"\n" +
-                          $"Posebni uslovi transporta:\n" +
-                          $"Broj naloga: ";
 
             lblPoruka.Text = poruka;
         }

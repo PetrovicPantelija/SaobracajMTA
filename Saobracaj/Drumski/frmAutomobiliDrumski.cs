@@ -1,5 +1,8 @@
-﻿using Saobracaj.Sifarnici;
+﻿using Saobracaj.Drumski;
+using Saobracaj.Sifarnici;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
@@ -191,7 +194,44 @@ namespace Saobracaj.Dokumenta
             status = true;
             txtSifra.Enabled = false;
             ResetujVrednostiPolja();
+
+            if (ActivateExistingForm("frmAutomobilEdit"))
+            {
+                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                return;
+            }
+      
+            frmAutomobilEdit pnd = new frmAutomobilEdit();
+            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+            pnd.Show();
+              
         }
+ 
+        private bool ActivateExistingForm(string formName)
+        {
+            // Prolazi kroz sve otvorene forme u aplikaciji
+            foreach (Form frm in Application.OpenForms)
+            {
+                // Upoređujemo ime forme koju tražimo
+                if (frm.Name == formName)
+                {
+                    // Forma je pronađena!
+
+                    // 1. Dovedite je u prvi plan
+                    frm.Activate();
+
+                    // 2. Vratite je iz minimizovanog stanja, ako je minimizovana
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+
+                    return true; // Vraćamo true jer je forma aktivirana
+                }
+            }
+            return false; // Forma nije pronađena
+        }
+
 
         private void frmAutomobiliDrumski_Load(object sender, EventArgs e)
         {
@@ -243,7 +283,6 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGRid()
         {
            
-
             var select = " select a.ID as ID, " +
            "a.RegBr,vv.Naziv AS Vozilo,  Vozac, p.PaNaziv AS Prevoznik, BrojTelefona, LicnaKarta," +
            "Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
@@ -439,9 +478,54 @@ namespace Saobracaj.Dokumenta
 
                 }
             }
+
+
+        }
+        private DataRow VratiPodatke(string ID, string a)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                con.Open();
+
+                txtSifra.Text = !string.IsNullOrWhiteSpace(ID) ? ID : txtSifra.Text;
+
+
+
+                string query = @"SELECT [ID] 
+                  ,[Zaposleni],[RegBr] ,[Marka],[Sluzbeni] 
+                  ,[Model],[DatumRegistracije],[GodinaProizvodnje],[Gorivo]
+                  ,[ZapreminaMotora],[Kategorija] ,[VServisUradjen],[VServisKM] 
+                  ,[VServisSledeci],[MServisUradjen] ,[MServisKM],[MServisSledeci]
+                  ,[PPAparatSeriski],[PRvaPomocDatumIsteka] ,[TrougaoIma],[SajlaZaVucu] 
+                  ,[Marker],[Lanci] ,[LokacijaLanci],[ZGDOT] 
+                  ,[ZGLokacija],[ZGDubinaSare],[LGDot],[LGLokacija] 
+                  ,[LGDubinaSare],[Napomena],[CistocaSpolja],[CistocaUnutra] 
+                  ,[NivoUlja],[Nepravilnosti] ,[MestoTroska], [VlasnistvoLegeta], [Vozac], [BrojTelefona], [LicnaKarta], [PartnerID] 
+                   FROM [Automobili] 
+                   WHERE ID = @ID";
+
+
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", ID);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                            return dt.Rows[0];
+                        else
+                            return null;
+                    }
+                }
+            }
         }
 
-      
+
         public void IstekPP()
         {
             var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -535,9 +619,19 @@ namespace Saobracaj.Dokumenta
                 {
                     if (row.Selected)
                     {
+                        string a = "aa";
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
+                       DataRow rowPodataka =  VratiPodatke(txtSifra.Text, a );
 
+                        if (ActivateExistingForm("frmAutomobilEdit"))
+                        {
+                            // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                            return;
+                        }
+
+                        frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
+                        pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                        pnd.Show();
                         //DateTime danas = DateTime.Now;
                         //DateTime PP = Convert.ToDateTime(row.Cells[8].Value);
                         //DateTime pPomoc = Convert.ToDateTime(row.Cells[9].Value);
@@ -569,6 +663,22 @@ namespace Saobracaj.Dokumenta
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+        private void FrmAutomobilEdit_SnimanjeZavrseno(int noviID)
+        {
+            RefreshDataGRid(); 
+            if (noviID > 0 )
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
+                {
+                    dataGridView1.ClearSelection();
+                    row.Selected = true;
+                    dataGridView1.CurrentCell = row.Cells[0];
+                    dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                    break;
+                }
             }
         }
     }

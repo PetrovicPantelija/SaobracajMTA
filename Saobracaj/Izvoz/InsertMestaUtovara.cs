@@ -32,7 +32,7 @@ namespace Saobracaj.Izvoz
             postanskiBroj.SqlDbType = SqlDbType.NVarChar;
             postanskiBroj.Size = 6;
             postanskiBroj.Direction = ParameterDirection.Input;
-            postanskiBroj.Value = PostanskiBroj;
+            postanskiBroj.Value = (object)PostanskiBroj ?? DBNull.Value;
             cmd.Parameters.Add(postanskiBroj);
 
             SqlParameter idParam = new SqlParameter("@IDPomVer", SqlDbType.Int);
@@ -103,7 +103,7 @@ namespace Saobracaj.Izvoz
             postanskiBroj.SqlDbType = SqlDbType.NVarChar;
             postanskiBroj.Size = 6;
             postanskiBroj.Direction = ParameterDirection.Input;
-            postanskiBroj.Value = PostanskiBroj;
+            postanskiBroj.Value = (object)PostanskiBroj ?? DBNull.Value;
             cmd.Parameters.Add(postanskiBroj);
 
             conn.Open();
