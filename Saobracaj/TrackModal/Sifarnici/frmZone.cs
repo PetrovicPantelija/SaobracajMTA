@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Testiranje.Sifarnici;
 
 namespace Saobracaj.TrackModal.Sifarnici
 {
@@ -48,7 +49,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -126,7 +127,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -168,7 +169,11 @@ namespace Saobracaj.TrackModal.Sifarnici
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpAktivna = 0;
+            if (txtSifra.Text == "")
+            {
 
+                status = true;
+            }
 
 
 
@@ -191,7 +196,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete, biće izbrisane i sve podredjene lokacije, polja i pozicije?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -331,6 +336,57 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
 
             FillCombo();
+            RefreshDataGrid();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertZone poz = new InsertZone();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+
+                        poz.ProglasiAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertZone poz = new InsertZone();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+
+                        poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             RefreshDataGrid();
         }
     }

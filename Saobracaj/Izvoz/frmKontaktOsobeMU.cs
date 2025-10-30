@@ -32,7 +32,7 @@ namespace Saobracaj.Izvoz
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 panelHeader.Visible = false;
                 this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 meniHeader.Visible = false;
                 panelHeader.Visible = true;
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
@@ -106,7 +106,7 @@ namespace Saobracaj.Izvoz
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
         }
 

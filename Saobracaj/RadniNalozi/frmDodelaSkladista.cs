@@ -34,7 +34,7 @@ namespace Saobracaj.RadniNalozi
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
      
             this.ControlBox = true;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -112,7 +112,7 @@ namespace Saobracaj.RadniNalozi
             else
             {
             
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;

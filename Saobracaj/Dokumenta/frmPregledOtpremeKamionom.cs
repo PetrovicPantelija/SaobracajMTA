@@ -42,7 +42,7 @@ namespace TrackModal.Dokumeta
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -122,7 +122,7 @@ namespace TrackModal.Dokumeta
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
            
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;

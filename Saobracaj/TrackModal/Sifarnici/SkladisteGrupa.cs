@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Testiranje.Sifarnici;
 
 namespace Saobracaj.TrackModal.Sifarnici
 {
@@ -48,7 +49,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -126,7 +127,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -160,6 +161,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
             status = true;
             txtSifra.Enabled = false;
+            txtSifra.Text = "";
             txtOznaka.Text = "";
             txtNaziv.Text = "";
             txtAdresa.Text = "";
@@ -171,7 +173,11 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
             int tmpAktivna = 0;
 
-
+            if (txtSifra.Text == "")
+            {
+                status = true;
+              
+            }
 
 
             if (chkAktivna.Checked == true)
@@ -184,6 +190,8 @@ namespace Saobracaj.TrackModal.Sifarnici
             }
             else
             {
+                if (txtSifra.Text == "")
+                { return; }
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertSkladistaGrupa upd = new InsertSkladistaGrupa();
                 upd.UpdLokacija(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtOznaka.Text, Convert.ToInt32(cboZonaID.SelectedValue), txtDrzava.Text, txtGrad.Text, txtAdresa.Text, tmpAktivna, Convert.ToInt32(cboTipSkladista.SelectedValue));
@@ -193,7 +201,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete, brišu se i poljai pozicije?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -379,6 +387,57 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+
+                        poz.ProglasiAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+
+                        poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
         }
     }
 }
