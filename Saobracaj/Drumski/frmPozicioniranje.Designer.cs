@@ -56,15 +56,13 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 234);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 333);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 580);
             this.dataGridView1.TabIndex = 496;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -76,6 +74,7 @@
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(113, 22);
             this.txtID.TabIndex = 495;
+            this.txtID.Visible = false;
             // 
             // label3
             // 
@@ -86,6 +85,7 @@
             this.label3.Size = new System.Drawing.Size(34, 16);
             this.label3.TabIndex = 494;
             this.label3.Text = "Šifra";
+            this.label3.Visible = false;
             // 
             // txtNapomena
             // 
@@ -94,6 +94,7 @@
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(304, 22);
             this.txtNapomena.TabIndex = 493;
+            this.txtNapomena.Visible = false;
             // 
             // lblNapomena
             // 
@@ -104,6 +105,7 @@
             this.lblNapomena.Size = new System.Drawing.Size(75, 16);
             this.lblNapomena.TabIndex = 492;
             this.lblNapomena.Text = "Napomena";
+            this.lblNapomena.Visible = false;
             // 
             // commandBarController1
             // 
@@ -119,7 +121,7 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 31);
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(800, 43);
@@ -155,7 +157,8 @@
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.tsDelete_Click);
+            this.button20.Visible = false;
+           
             // 
             // button21
             // 
@@ -173,7 +176,7 @@
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.tsSave_Click);
+            this.button21.Visible = false;
             // 
             // button22
             // 
@@ -205,7 +208,7 @@
             this.toolStripSeparator1});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(800, 31);
+            this.meniHeader.Size = new System.Drawing.Size(800, 27);
             this.meniHeader.TabIndex = 497;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -215,7 +218,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 36);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             // 
             // tsSave
@@ -224,7 +227,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 36);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -233,13 +236,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 36);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // frmPozicioniranje
             // 

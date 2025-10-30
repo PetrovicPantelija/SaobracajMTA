@@ -176,6 +176,40 @@ namespace Saobracaj.Drumski
 
             txtID.Text = "";
             txtNapomena.Text = "";
+            if (ActivateExistingForm("frmPozicioniranjeEdit"))
+            {
+                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                return;
+            }
+
+            frmPozicioniranjeEdit pnd = new frmPozicioniranjeEdit();
+            pnd.SnimanjeZavrseno += frmPozicioniranjeEdit_SnimanjeZavrseno;
+            pnd.Show();
+        }
+
+        private bool ActivateExistingForm(string formName)
+        {
+            // Prolazi kroz sve otvorene forme u aplikaciji
+            foreach (Form frm in Application.OpenForms)
+            {
+                // Upoređujemo ime forme koju tražimo
+                if (frm.Name == formName)
+                {
+                    // Forma je pronađena!
+
+                    // 1. Dovedite je u prvi plan
+                    frm.Activate();
+
+                    // 2. Vratite je iz minimizovanog stanja, ako je minimizovana
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+
+                    return true; // Vraćamo true jer je forma aktivirana
+                }
+            }
+            return false; // Forma nije pronađena
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -211,8 +245,20 @@ namespace Saobracaj.Drumski
                 {
                     if (row.Selected)
                     {
-                        txtID.Text = row.Cells["ID"].Value.ToString();
-                        txtNapomena.Text = row.Cells["Napomena"].Value.ToString();
+                        int txtID = 0;
+                        if (row.Cells["ID"].Value != DBNull.Value)
+                            txtID = Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                        string txtNapomena = row.Cells["Napomena"].Value.ToString();
+                         
+                        if (ActivateExistingForm("frmPozicioniranjeEdit"))
+                        {
+                            // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                            return;
+                        }
+
+                        frmPozicioniranjeEdit pnd = new frmPozicioniranjeEdit(txtID, txtNapomena);
+                        pnd.SnimanjeZavrseno += frmPozicioniranjeEdit_SnimanjeZavrseno;
+                        pnd.Show();
                     }
                 }
             }
@@ -247,6 +293,24 @@ namespace Saobracaj.Drumski
         {
             txtID.Enabled = false;
         }
+
+        private void frmPozicioniranjeEdit_SnimanjeZavrseno(int noviID)
+        {
+            RefreshDataGrid();
+            if (noviID > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
+                    {
+                        dataGridView1.ClearSelection();
+                        row.Selected = true;
+                        dataGridView1.CurrentCell = row.Cells[0];
+                        dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                        break;
+                    }
+                }
+        }
+
     }
 
 }

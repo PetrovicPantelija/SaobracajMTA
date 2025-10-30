@@ -93,7 +93,7 @@
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.tsDelete_Click);
+            this.button20.Visible = false;
             // 
             // button21
             // 
@@ -111,7 +111,7 @@
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.tsSave_Click);
+            this.button21.Visible = false;
             // 
             // button22
             // 
@@ -135,16 +135,14 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 217);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 31);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(752, 310);
+            this.dataGridView1.Size = new System.Drawing.Size(783, 504);
             this.dataGridView1.TabIndex = 473;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -156,6 +154,7 @@
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(125, 22);
             this.txtSifra.TabIndex = 472;
+            this.txtSifra.Visible = false;
             // 
             // label3
             // 
@@ -166,6 +165,7 @@
             this.label3.Size = new System.Drawing.Size(20, 16);
             this.label3.TabIndex = 471;
             this.label3.Text = "ID";
+            this.label3.Visible = false;
             // 
             // txtNaziv
             // 
@@ -174,6 +174,7 @@
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(308, 22);
             this.txtNaziv.TabIndex = 470;
+            this.txtNaziv.Visible = false;
             // 
             // lblNaziv
             // 
@@ -184,6 +185,7 @@
             this.lblNaziv.Size = new System.Drawing.Size(41, 16);
             this.lblNaziv.TabIndex = 469;
             this.lblNaziv.Text = "Naziv";
+            this.lblNaziv.Visible = false;
             // 
             // meniHeader
             // 

@@ -189,7 +189,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -199,7 +199,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -209,14 +209,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -224,7 +224,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -233,7 +233,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 28);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -242,7 +242,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 28);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -251,7 +251,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // meniHeader
@@ -285,7 +285,7 @@
             this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(179, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(179, 24);
             this.toolStripButton1.Text = "Skenirana dokumentacija";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -296,7 +296,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(130, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(130, 24);
             this.toolStripButton2.Text = "Evidencija Servisa";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -307,7 +307,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(157, 28);
+            this.toolStripButton3.Size = new System.Drawing.Size(157, 24);
             this.toolStripButton3.Text = "Evidencija registracija";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -342,7 +342,7 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(186, 28);
+            this.toolStripButton6.Size = new System.Drawing.Size(186, 24);
             this.toolStripButton6.Text = "Evidencija prijava i odjava";
             // 
             // panel1
@@ -373,8 +373,8 @@
             // panel5
             // 
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.button2);
+            this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.button3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
@@ -393,13 +393,14 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(93, 4);
+            this.button1.Location = new System.Drawing.Point(61, 3);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(36, 33);
             this.button1.TabIndex = 15;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // button2
@@ -411,13 +412,14 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(52, 4);
+            this.button2.Location = new System.Drawing.Point(108, 3);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(36, 33);
             this.button2.TabIndex = 14;
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // button3
@@ -442,17 +444,15 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 279);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 71);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1151, 551);
+            this.dataGridView1.Size = new System.Drawing.Size(1180, 772);
             this.dataGridView1.TabIndex = 706;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -465,6 +465,7 @@
             this.label40.Size = new System.Drawing.Size(68, 16);
             this.label40.TabIndex = 705;
             this.label40.Text = "Tip vozila:";
+            this.label40.Visible = false;
             // 
             // cboTipVozila
             // 
@@ -475,6 +476,7 @@
             this.cboTipVozila.Name = "cboTipVozila";
             this.cboTipVozila.Size = new System.Drawing.Size(308, 24);
             this.cboTipVozila.TabIndex = 704;
+            this.cboTipVozila.Visible = false;
             // 
             // txtVozacTelefon
             // 
@@ -483,6 +485,7 @@
             this.txtVozacTelefon.Name = "txtVozacTelefon";
             this.txtVozacTelefon.Size = new System.Drawing.Size(308, 22);
             this.txtVozacTelefon.TabIndex = 702;
+            this.txtVozacTelefon.Visible = false;
             // 
             // label41
             // 
@@ -493,6 +496,7 @@
             this.label41.Size = new System.Drawing.Size(129, 16);
             this.label41.TabIndex = 703;
             this.label41.Text = "Broj telefona vozača";
+            this.label41.Visible = false;
             // 
             // label43
             // 
@@ -503,6 +507,7 @@
             this.label43.Size = new System.Drawing.Size(122, 16);
             this.label43.TabIndex = 700;
             this.label43.Text = "Lična karta vozača:";
+            this.label43.Visible = false;
             // 
             // txtVozac
             // 
@@ -511,6 +516,7 @@
             this.txtVozac.Name = "txtVozac";
             this.txtVozac.Size = new System.Drawing.Size(308, 22);
             this.txtVozac.TabIndex = 701;
+            this.txtVozac.Visible = false;
             // 
             // txtRegBr
             // 
@@ -519,6 +525,7 @@
             this.txtRegBr.Name = "txtRegBr";
             this.txtRegBr.Size = new System.Drawing.Size(308, 22);
             this.txtRegBr.TabIndex = 699;
+            this.txtRegBr.Visible = false;
             // 
             // label45
             // 
@@ -529,6 +536,7 @@
             this.label45.Size = new System.Drawing.Size(48, 16);
             this.label45.TabIndex = 696;
             this.label45.Text = "Vozač:";
+            this.label45.Visible = false;
             // 
             // txtLKVozaca
             // 
@@ -537,6 +545,7 @@
             this.txtLKVozaca.Name = "txtLKVozaca";
             this.txtLKVozaca.Size = new System.Drawing.Size(308, 22);
             this.txtLKVozaca.TabIndex = 697;
+            this.txtLKVozaca.Visible = false;
             // 
             // label46
             // 
@@ -547,6 +556,7 @@
             this.label46.Size = new System.Drawing.Size(70, 16);
             this.label46.TabIndex = 695;
             this.label46.Text = "Zaposleni:";
+            this.label46.Visible = false;
             // 
             // label47
             // 
@@ -557,6 +567,7 @@
             this.label47.Size = new System.Drawing.Size(80, 16);
             this.label47.TabIndex = 694;
             this.label47.Text = "Šifra zapisa:";
+            this.label47.Visible = false;
             // 
             // txtZaposleni
             // 
@@ -565,6 +576,7 @@
             this.txtZaposleni.Name = "txtZaposleni";
             this.txtZaposleni.Size = new System.Drawing.Size(308, 22);
             this.txtZaposleni.TabIndex = 708;
+            this.txtZaposleni.Visible = false;
             // 
             // txtZaposleniID
             // 
@@ -584,6 +596,7 @@
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(113, 22);
             this.txtSifra.TabIndex = 710;
+            this.txtSifra.Visible = false;
             // 
             // label44
             // 
@@ -594,6 +607,7 @@
             this.label44.Size = new System.Drawing.Size(104, 16);
             this.label44.TabIndex = 698;
             this.label44.Text = "Registarski broj:";
+            this.label44.Visible = false;
             // 
             // label1
             // 
@@ -604,6 +618,7 @@
             this.label1.Size = new System.Drawing.Size(69, 16);
             this.label1.TabIndex = 712;
             this.label1.Text = "Prevoznik:";
+            this.label1.Visible = false;
             // 
             // cboPrevoznik
             // 
@@ -615,6 +630,7 @@
             this.cboPrevoznik.Name = "cboPrevoznik";
             this.cboPrevoznik.Size = new System.Drawing.Size(308, 24);
             this.cboPrevoznik.TabIndex = 711;
+            this.cboPrevoznik.Visible = false;
             // 
             // frmAutomobiliDrumski
             // 
