@@ -125,8 +125,17 @@ namespace Saobracaj.Sifarnici
                 if (myString.TrimEnd() == cboKorisnik.Text)
                 {
                     frmLogovanje.user = myString;
-                    MainP mainf = new MainP(cboKorisnik.Text, 1);
-                    mainf.Show();
+                    if (checkBox1.Checked)
+                    {
+                        MainP mainf = new MainP(cboKorisnik.Text, 1);
+                        mainf.Show();
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        NewMain frm = new NewMain();
+                        frm.Show();
+                    }
+                    
                 }
                 else
                 {
