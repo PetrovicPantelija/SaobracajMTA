@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.IdentityModel.Metadata;
 using System.Security.Cryptography.Xml;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Security.Cryptography;
 
 namespace Saobracaj.Sifarnici
 {
@@ -401,13 +402,14 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshGridControl()
         {
-            var select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta," +
-                " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill," +
-                " PaEMatSt1 as PIB, Rtrim(UIC) as UIC, Prevoznik, " +
-               " Posiljalac, " +
-              " Primalac,  " +
-              "  Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik," +
-              "  Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc ";
+            var select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
+            " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, " +
+            " Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, " +
+            " (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, " +
+            " (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac,  " +
+            " Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik, " +
+            " Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency,  DrumskiPrevoz " +
+            " from Partnerji order by PaSifra desc ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -421,6 +423,11 @@ namespace Saobracaj.Sifarnici
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            foreach (var column in gridGroupingControl1.TableDescriptor.Columns)
+            {
+                MessageBox.Show(column.Name);
+            }
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
@@ -1272,8 +1279,8 @@ namespace Saobracaj.Sifarnici
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Sifarnici.PartnerjiPregled p = new PartnerjiPregled();
-            p.Show();
+         //   Sifarnici.PartnerjiPregled p = new PartnerjiPregled();
+           // p.Show();
         }
     }
 }

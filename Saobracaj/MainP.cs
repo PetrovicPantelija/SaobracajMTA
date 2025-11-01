@@ -7168,6 +7168,11 @@ namespace Saobracaj
             Saobracaj.TrackModal.Sifarnici.SkladisteGrupa jm = new SkladisteGrupa();
             jm.Show();
         }
+
+        private void chartControl1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

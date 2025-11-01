@@ -59,10 +59,9 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label17.Location = new System.Drawing.Point(279, 22);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(209, 18);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 18);
+            this.label17.Size = new System.Drawing.Size(67, 15);
             this.label17.TabIndex = 75;
             this.label17.Text = "*VremeDo:";
             // 
@@ -71,10 +70,9 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label16.Location = new System.Drawing.Point(13, 22);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(10, 18);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(81, 18);
+            this.label16.Size = new System.Drawing.Size(67, 15);
             this.label16.TabIndex = 74;
             this.label16.Text = "*VremeOd:";
             // 
@@ -82,11 +80,10 @@
             // 
             this.dtpVremeDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(364, 22);
-            this.dtpVremeDo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpVremeDo.Location = new System.Drawing.Point(273, 18);
             this.dtpVremeDo.Name = "dtpVremeDo";
             this.dtpVremeDo.ShowUpDown = true;
-            this.dtpVremeDo.Size = new System.Drawing.Size(145, 22);
+            this.dtpVremeDo.Size = new System.Drawing.Size(110, 20);
             this.dtpVremeDo.TabIndex = 73;
             this.dtpVremeDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -94,11 +91,10 @@
             // 
             this.dtpVremeOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(99, 22);
-            this.dtpVremeOd.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpVremeOd.Location = new System.Drawing.Point(74, 18);
             this.dtpVremeOd.Name = "dtpVremeOd";
             this.dtpVremeOd.ShowUpDown = true;
-            this.dtpVremeOd.Size = new System.Drawing.Size(145, 22);
+            this.dtpVremeOd.Size = new System.Drawing.Size(110, 20);
             this.dtpVremeOd.TabIndex = 72;
             this.dtpVremeOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -106,10 +102,9 @@
             // 
             this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.btnStampa.ForeColor = System.Drawing.Color.White;
-            this.btnStampa.Location = new System.Drawing.Point(533, 15);
-            this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStampa.Location = new System.Drawing.Point(400, 12);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(196, 46);
+            this.btnStampa.Size = new System.Drawing.Size(147, 37);
             this.btnStampa.TabIndex = 90;
             this.btnStampa.Text = "Štampaj";
             this.btnStampa.UseVisualStyleBackColor = false;
@@ -121,10 +116,10 @@
             reportDataSource1.Value = this.SelectSumVremeAktivnostiBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.rptUkupnoZaPeriod.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(13, 93);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
+            this.reportViewer1.Location = new System.Drawing.Point(10, 76);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1042, 349);
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(782, 284);
             this.reportViewer1.TabIndex = 91;
             // 
             // SelectSumVremeAktivnostiTableAdapter
@@ -133,10 +128,10 @@
             // 
             // frmZaposleniUkupno
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1068, 455);
+            this.ClientSize = new System.Drawing.Size(801, 370);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
             this.Controls.Add(this.label17);
@@ -144,7 +139,6 @@
             this.Controls.Add(this.dtpVremeDo);
             this.Controls.Add(this.dtpVremeOd);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmZaposleniUkupno";
             this.Text = "Zaposleni ukupno";
             this.Load += new System.EventHandler(this.frmZaposleniUkupno_Load);

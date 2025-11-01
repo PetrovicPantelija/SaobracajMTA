@@ -62,6 +62,9 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -88,7 +91,7 @@
             this.tsPoslednja});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(786, 27);
+            this.meniHeader.Size = new System.Drawing.Size(960, 27);
             this.meniHeader.TabIndex = 109;
             this.meniHeader.Text = "Štampaj izveštaj";
             // 
@@ -179,7 +182,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 185);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(764, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(938, 254);
             this.dataGridView1.TabIndex = 131;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -372,7 +375,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(786, 34);
+            this.panelHeader.Size = new System.Drawing.Size(960, 34);
             this.panelHeader.TabIndex = 469;
             // 
             // panel3
@@ -448,12 +451,51 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox1.Location = new System.Drawing.Point(697, 69);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(230, 23);
+            this.textBox1.TabIndex = 470;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(609, 69);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 15);
+            this.label8.TabIndex = 471;
+            this.label8.Text = "ISO oznaka:";
+            // 
+            // chkAktivna
+            // 
+            this.chkAktivna.AutoSize = true;
+            this.chkAktivna.BackColor = System.Drawing.Color.Transparent;
+            this.chkAktivna.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkAktivna.Checked = true;
+            this.chkAktivna.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAktivna.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkAktivna.ForeColor = System.Drawing.Color.Black;
+            this.chkAktivna.Location = new System.Drawing.Point(618, 130);
+            this.chkAktivna.Margin = new System.Windows.Forms.Padding(2);
+            this.chkAktivna.Name = "chkAktivna";
+            this.chkAktivna.Size = new System.Drawing.Size(64, 19);
+            this.chkAktivna.TabIndex = 486;
+            this.chkAktivna.Text = "Aktivan";
+            this.chkAktivna.UseVisualStyleBackColor = false;
+            // 
             // frmTipKontejnera
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(786, 451);
+            this.ClientSize = new System.Drawing.Size(960, 451);
+            this.Controls.Add(this.chkAktivna);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.txtVelicina);
             this.Controls.Add(this.label7);
@@ -528,5 +570,8 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chkAktivna;
     }
 }

@@ -30,6 +30,8 @@
         {
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -47,8 +49,6 @@
             this.btnPti = new System.Windows.Forms.Button();
             this.btnLogistikaIzvoza = new System.Windows.Forms.Button();
             this.btnLogistikaUvoza = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,15 +90,32 @@
             this.splitContainer1.SplitterDistance = 76;
             this.splitContainer1.TabIndex = 3;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1176, 22);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(180, 23);
+            this.textBox1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1477, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(48, 37);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Info";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Unicode MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(270, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(705, 36);
+            this.label1.Size = new System.Drawing.Size(701, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
             // 
@@ -143,7 +160,7 @@
             // 
             this.btnPrijemKamion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemKamion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrijemKamion.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrijemKamion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrijemKamion.ForeColor = System.Drawing.Color.White;
             this.btnPrijemKamion.Image = global::Saobracaj.Properties.Resources.transportation;
             this.btnPrijemKamion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -158,7 +175,7 @@
             // 
             this.btnPretovar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPretovar.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPretovar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPretovar.ForeColor = System.Drawing.Color.White;
             this.btnPretovar.Image = global::Saobracaj.Properties.Resources.forklift;
             this.btnPretovar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,7 +190,7 @@
             // 
             this.btnPrijemVoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemVoz.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrijemVoz.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrijemVoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrijemVoz.ForeColor = System.Drawing.Color.White;
             this.btnPrijemVoz.Image = global::Saobracaj.Properties.Resources.cargo_train;
             this.btnPrijemVoz.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -188,7 +205,7 @@
             // 
             this.btnSkladista.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnSkladista.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSkladista.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSkladista.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSkladista.ForeColor = System.Drawing.Color.White;
             this.btnSkladista.Image = global::Saobracaj.Properties.Resources.inventory_management;
             this.btnSkladista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,7 +220,7 @@
             // 
             this.btnZeleznicki.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnZeleznicki.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnZeleznicki.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeleznicki.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeleznicki.ForeColor = System.Drawing.Color.White;
             this.btnZeleznicki.Image = global::Saobracaj.Properties.Resources.train_cargo;
             this.btnZeleznicki.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,7 +235,7 @@
             // 
             this.btnDrumski.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDrumski.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDrumski.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDrumski.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDrumski.ForeColor = System.Drawing.Color.White;
             this.btnDrumski.Image = global::Saobracaj.Properties.Resources.deliveryS;
             this.btnDrumski.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -233,7 +250,7 @@
             // 
             this.btnKlijenti.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnKlijenti.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnKlijenti.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKlijenti.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKlijenti.ForeColor = System.Drawing.Color.White;
             this.btnKlijenti.Image = global::Saobracaj.Properties.Resources.dealS;
             this.btnKlijenti.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,7 +265,7 @@
             // 
             this.btnPodesavanje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPodesavanje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPodesavanje.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPodesavanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPodesavanje.ForeColor = System.Drawing.Color.White;
             this.btnPodesavanje.Image = global::Saobracaj.Properties.Resources.settings;
             this.btnPodesavanje.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -263,7 +280,7 @@
             // 
             this.btnFinansije.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnFinansije.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFinansije.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinansije.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinansije.ForeColor = System.Drawing.Color.White;
             this.btnFinansije.Image = global::Saobracaj.Properties.Resources.money;
             this.btnFinansije.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -278,7 +295,7 @@
             // 
             this.btnKapija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnKapija.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnKapija.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKapija.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKapija.ForeColor = System.Drawing.Color.White;
             this.btnKapija.Image = global::Saobracaj.Properties.Resources.home_button;
             this.btnKapija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -293,7 +310,7 @@
             // 
             this.btnOdrzavanje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOdrzavanje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOdrzavanje.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdrzavanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOdrzavanje.ForeColor = System.Drawing.Color.White;
             this.btnOdrzavanje.Image = global::Saobracaj.Properties.Resources.maintanance;
             this.btnOdrzavanje.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -308,7 +325,7 @@
             // 
             this.btnPti.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPti.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPti.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPti.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPti.ForeColor = System.Drawing.Color.White;
             this.btnPti.Image = global::Saobracaj.Properties.Resources.crane;
             this.btnPti.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -323,7 +340,7 @@
             // 
             this.btnLogistikaIzvoza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvoza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogistikaIzvoza.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogistikaIzvoza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogistikaIzvoza.ForeColor = System.Drawing.Color.White;
             this.btnLogistikaIzvoza.Image = global::Saobracaj.Properties.Resources.exportS;
             this.btnLogistikaIzvoza.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -338,7 +355,7 @@
             // 
             this.btnLogistikaUvoza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaUvoza.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogistikaUvoza.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogistikaUvoza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogistikaUvoza.ForeColor = System.Drawing.Color.White;
             this.btnLogistikaUvoza.Image = global::Saobracaj.Properties.Resources.importS;
             this.btnLogistikaUvoza.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -348,23 +365,6 @@
             this.btnLogistikaUvoza.TabIndex = 0;
             this.btnLogistikaUvoza.Text = "Logistika uvoza";
             this.btnLogistikaUvoza.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1477, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 37);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Info";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(1176, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 23);
-            this.textBox1.TabIndex = 3;
             // 
             // NewMain
             // 
