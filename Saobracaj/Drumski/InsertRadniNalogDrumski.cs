@@ -832,17 +832,18 @@ namespace Saobracaj.Drumski
 
         }
         
-        public void AzurirajStatusViseKontejera(List<int> listaIdjeva, int? Status)
+        public void AzurirajStatusViseKontejera(int listaIdjeva, int? Status)
         {
             string idsString = string.Join(",", listaIdjeva);
 
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdateRadniNalogDrumskiViseStatusa";
+            //cmd.CommandText = "UpdateRadniNalogDrumskiViseStatusa";
+            cmd.CommandText = "UpdateStatusRadniNalogDrumski";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDsString";
+            id.ParameterName = "@ID";
             id.SqlDbType = SqlDbType.NVarChar;
             id.Size = 4000;
             id.Direction = ParameterDirection.Input;
@@ -1748,8 +1749,9 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public void SnimiUFajlBazu(int RadniNalogDrumskiID, string NazivFajla, string Putanja, int DodaoKorisnik)
+        public void SnimiUFajlBazu(int? RadniNalogDrumskiID, string NazivFajla, string Putanja, int DodaoKorisnik)
         {
+           
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertDokumentaRadniNalogDrumski";
@@ -1817,8 +1819,9 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public void SnimiToken(int? RadniNalogDrumskiID)
+        public string SnimiToken(int? RadniNalogDrumskiID)
         {
+            string token = "";
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertTokens";
@@ -1831,7 +1834,10 @@ namespace Saobracaj.Drumski
             iD.Value = RadniNalogDrumskiID;
             cmd.Parameters.Add(iD);
 
-            
+            SqlParameter tokenp = new SqlParameter("@Token", SqlDbType.UniqueIdentifier);
+            tokenp.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(tokenp);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -1840,8 +1846,7 @@ namespace Saobracaj.Drumski
             {
                 cmd.ExecuteNonQuery();
                 tran.Commit();
-                tran = conn.BeginTransaction();
-                cmd.Transaction = tran;
+                token = cmd.Parameters["@Token"].Value.ToString();
             }
             catch (SqlException ex)
             {
@@ -1862,6 +1867,8 @@ namespace Saobracaj.Drumski
             if (error)
             {
             }
+
+            return token;
         }
 
         public void PoslateInstrukcije(int? ID, int? InstrukcijePoslaoKorisnik)

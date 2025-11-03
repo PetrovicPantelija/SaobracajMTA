@@ -50,17 +50,16 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.contextMenuStripNalozi = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripItemPregledNaloga = new System.Windows.Forms.ToolStripMenuItem();
+            this.ukloniDodeljenKamionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnKreiraj = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNajava = new System.Windows.Forms.Button();
+            this.btnArhiva = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnNajava = new System.Windows.Forms.Button();
-            this.btnInstrukcije = new System.Windows.Forms.Button();
-            this.btnArhiva = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.ukloniDodeljenKamionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -313,9 +312,16 @@
             // toolStripItemPregledNaloga
             // 
             this.toolStripItemPregledNaloga.Name = "toolStripItemPregledNaloga";
-            this.toolStripItemPregledNaloga.Size = new System.Drawing.Size(179, 24);
+            this.toolStripItemPregledNaloga.Size = new System.Drawing.Size(236, 24);
             this.toolStripItemPregledNaloga.Text = "Pregled naloga";
             this.toolStripItemPregledNaloga.Click += new System.EventHandler(this.toolStripItemPregledNaloga_Click);
+            // 
+            // ukloniDodeljenKamionToolStripMenuItem
+            // 
+            this.ukloniDodeljenKamionToolStripMenuItem.Name = "ukloniDodeljenKamionToolStripMenuItem";
+            this.ukloniDodeljenKamionToolStripMenuItem.Size = new System.Drawing.Size(236, 24);
+            this.ukloniDodeljenKamionToolStripMenuItem.Text = "Ukloni dodeljen kamion";
+            this.ukloniDodeljenKamionToolStripMenuItem.Click += new System.EventHandler(this.ukloniDodeljenKamionToolStripMenuItem_Click);
             // 
             // btnKreiraj
             // 
@@ -368,7 +374,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel3.Controls.Add(this.btnNajava, 8, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnInstrukcije, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnArhiva, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.button1, 3, 0);
@@ -379,6 +384,26 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1886, 44);
             this.tableLayoutPanel3.TabIndex = 3;
+            // 
+            // btnNajava
+            // 
+            this.btnNajava.Location = new System.Drawing.Point(1710, 3);
+            this.btnNajava.Name = "btnNajava";
+            this.btnNajava.Size = new System.Drawing.Size(169, 38);
+            this.btnNajava.TabIndex = 4;
+            this.btnNajava.Text = "NAJAVA VOZILA";
+            this.btnNajava.UseVisualStyleBackColor = true;
+            this.btnNajava.Click += new System.EventHandler(this.btnNajava_Click);
+            // 
+            // btnArhiva
+            // 
+            this.btnArhiva.Location = new System.Drawing.Point(3, 3);
+            this.btnArhiva.Name = "btnArhiva";
+            this.btnArhiva.Size = new System.Drawing.Size(169, 38);
+            this.btnArhiva.TabIndex = 6;
+            this.btnArhiva.Text = "ARHIVIRAJ";
+            this.btnArhiva.UseVisualStyleBackColor = true;
+            this.btnArhiva.Click += new System.EventHandler(this.btnArhiva_Click);
             // 
             // button2
             // 
@@ -400,47 +425,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnNajava
-            // 
-            this.btnNajava.Location = new System.Drawing.Point(1710, 3);
-            this.btnNajava.Name = "btnNajava";
-            this.btnNajava.Size = new System.Drawing.Size(169, 38);
-            this.btnNajava.TabIndex = 4;
-            this.btnNajava.Text = "NAJAVA VOZILA";
-            this.btnNajava.UseVisualStyleBackColor = true;
-            // 
-            // btnInstrukcije
-            // 
-            this.btnInstrukcije.Location = new System.Drawing.Point(1531, 3);
-            this.btnInstrukcije.Name = "btnInstrukcije";
-            this.btnInstrukcije.Size = new System.Drawing.Size(169, 38);
-            this.btnInstrukcije.TabIndex = 5;
-            this.btnInstrukcije.Text = "INSTRUKCIJE";
-            this.btnInstrukcije.UseVisualStyleBackColor = true;
-            // 
-            // btnArhiva
-            // 
-            this.btnArhiva.Location = new System.Drawing.Point(3, 3);
-            this.btnArhiva.Name = "btnArhiva";
-            this.btnArhiva.Size = new System.Drawing.Size(169, 38);
-            this.btnArhiva.TabIndex = 6;
-            this.btnArhiva.Text = "ARHIVIRAJ";
-            this.btnArhiva.UseVisualStyleBackColor = true;
-            this.btnArhiva.Click += new System.EventHandler(this.btnArhiva_Click);
-            // 
             // commandBarController1
             // 
             this.commandBarController1.HostForm = this;
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // ukloniDodeljenKamionToolStripMenuItem
-            // 
-            this.ukloniDodeljenKamionToolStripMenuItem.Name = "ukloniDodeljenKamionToolStripMenuItem";
-            this.ukloniDodeljenKamionToolStripMenuItem.Size = new System.Drawing.Size(236, 24);
-            this.ukloniDodeljenKamionToolStripMenuItem.Text = "Ukloni dodeljen kamion";
-            this.ukloniDodeljenKamionToolStripMenuItem.Click += new System.EventHandler(this.ukloniDodeljenKamionToolStripMenuItem_Click);
             // 
             // PakovanjeKamiona1
             // 
@@ -500,7 +490,6 @@
         private System.Windows.Forms.Button btnKreiraj;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnNajava;
-        private System.Windows.Forms.Button btnInstrukcije;
         private System.Windows.Forms.Button btnArhiva;
         private System.Windows.Forms.ToolStripMenuItem ukloniDodeljenKamionToolStripMenuItem;
     }

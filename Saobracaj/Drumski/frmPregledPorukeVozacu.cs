@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,11 +15,15 @@ namespace Saobracaj.Drumski
     public partial class frmPregledPorukeVozacu: Form
     {
         private DataTable detaljnaTabela;
-        public frmPregledPorukeVozacu(DataTable table)
+        int? radniNalogDrumskiID = 0;
+        private string poruka = "";
+
+        public frmPregledPorukeVozacu(DataTable table, int? RadniNalogDrumskiID)
         {
             InitializeComponent();
             ChangeTextBox();
             detaljnaTabela = table;
+            radniNalogDrumskiID = RadniNalogDrumskiID;
             //this.Padding = new Padding(20);
             //this.ShowInTaskbar = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -215,13 +220,15 @@ namespace Saobracaj.Drumski
             string mestoUtovara = "";
             string adresaIstovara = "";
             string kontaktOsobaUtovarIstovar = "";
-            string poruka = "";
             string odredisnaSpedicijaKontakt = "";
             string napomenaZaPozicioniranje = "";
             string dodatniOpis = "";
             string nalogID = "";
             string polaznaSpedicija = "";
             string polaznaSpedicijaKontakt = "";
+            string datumSlanjaPoruke = "";
+            string brojKontejnera = "";
+           
             datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
             mestoPreuzimanjaPraznog = prviRed["MestoPreuzimanjaKontejnera"] != DBNull.Value ? prviRed["MestoPreuzimanjaKontejnera"].ToString() : "";
             polazncarinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
@@ -229,9 +236,10 @@ namespace Saobracaj.Drumski
             mestoUtovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
             mestoIstovara = prviRed["MestoIstovara"] != DBNull.Value ? prviRed["MestoIstovara"].ToString() : "";
             adresaIstovara = prviRed["AdresaIstovara"] != DBNull.Value ? prviRed["AdresaIstovara"].ToString() : "";
+           
             kontaktOsobaUtovarIstovar = prviRed["KontaktOsobaUtovarIstovar"] != DBNull.Value ? prviRed["KontaktOsobaUtovarIstovar"].ToString() : "";
             adresaUtovara = prviRed["AdresaUtovara"] != DBNull.Value ? prviRed["AdresaUtovara"].ToString() : "";
-            napomenaZaPozicioniranje = prviRed["KontaktOsobaUtovarIsNapomenaZaPozicioniranjetovar"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : "";
+            napomenaZaPozicioniranje = prviRed["NapomenaZaPozicioniranje"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : "";
             datumIstovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
             odredisnacarinarnica = prviRed["OdredisnaCarina"] != DBNull.Value ? prviRed["OdredisnaCarina"].ToString() : "";
             odredisnaSpedicijaKontakt = prviRed["OdredisnaSpedicijaKontakt"] != DBNull.Value ? prviRed["OdredisnaSpedicijaKontakt"].ToString() : "";
@@ -239,34 +247,83 @@ namespace Saobracaj.Drumski
             nalogID = prviRed["NalogID"] != DBNull.Value ? prviRed["NalogID"].ToString() : "";
             polaznaSpedicija = prviRed["PolaznaSpedicija"] != DBNull.Value ? prviRed["PolaznaSpedicija"].ToString() : "";
             polaznaSpedicijaKontakt = prviRed["PolaznaSpedicijaKontakt"] != DBNull.Value ? prviRed["PolaznaSpedicijaKontakt"].ToString() : "";
+          
+            string kontejner1 = prviRed["BrojKontejnera"] != DBNull.Value ? prviRed["BrojKontejnera"].ToString() : "";
+            string kontejner2 = prviRed["BrojKontejnera2"] != DBNull.Value ? prviRed["BrojKontejnera2"].ToString() : "";
+            datumSlanjaPoruke = prviRed["DatumKreiranjaTokena"] != DBNull.Value ? prviRed["DatumKreiranjaTokena"].ToString() : ""; 
 
+
+
+            if (!string.IsNullOrWhiteSpace(kontejner1) && !string.IsNullOrWhiteSpace(kontejner2))
+                brojKontejnera = $"{kontejner1}, {kontejner2}";
+            else
+                brojKontejnera = !string.IsNullOrWhiteSpace(kontejner1) ? kontejner1 : kontejner2;
 
             //izvoz
             if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
             {                                                                
-                 poruka = $"Kontejner  preuzimate {datumPreuzimanjaPraznog} na {mestoPreuzimanjaPraznog}\n" +
+                 poruka = $"Kontejner {brojKontejnera} preuzimate {datumPreuzimanjaPraznog} na {mestoPreuzimanjaPraznog}\n" +
                          $"Utovarate {datumUtovara} u {mestoUtovara}, adresa utovara {adresaUtovara} {kontaktOsobaUtovarIstovar} \n" +
                          $"Kontakt na utovaru: {kontaktOsobaUtovarIstovar} \n" +
                          $"Izvozno carinjenje radite u {polazncarinarnica} \n" +
                          $"Pun kontejner spustate na {mestoIstovara} , {adresaIstovara} \n" +
                          $"\n" +
                          $"Posebni uslovi transporta:{napomenaZaPozicioniranje} {dodatniOpis} \n" +
-                         $"Broj naloga: {nalogID}";
+                         $"Broj naloga: {nalogID}" + $"\n " +
+                         $"Poslednje slanje viber poruke: {datumSlanjaPoruke}";
 
             }
             //uvoz
             else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4)
             {               
-                poruka = $"Kontejner  preuzimate {datumUtovara} na {mestoUtovara}\n" +
+                poruka =   $"Kontejner {brojKontejnera} preuzimate {datumUtovara} na {mestoUtovara}\n" +
                            $"Propratnicu Vam radi {polazncarinarnica} {polaznaSpedicija}\n" +
                            $"Javite se {datumIstovara} na {odredisnacarinarnica} {odredisnaSpedicijaKontakt} \n" +
                            $"Kontejner istovarate {mestoIstovara}, {adresaIstovara}, {kontaktOsobaUtovarIstovar} \n" +
                            $"\n" +
                            $"Posebni uslovi transporta: {napomenaZaPozicioniranje}\n" +
-                           $"\n " ;
+                           $"\n " +
+                           $"Poslednje slanje viber poruke: {datumSlanjaPoruke}";
             }
 
             lblPoruka.Text = poruka;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            string token = ins.SnimiToken(radniNalogDrumskiID);
+            int temp = PostaviVrednostZaposleni();
+            int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
+            ins.PoslateInstrukcije(radniNalogDrumskiID, NajavuPoslaoKorisnik);
+
+            linkLabel1.Text = $"http://legetvozaci.hibint.rs/upload/{token}";
+            linkLabel1.Visible = true;
+
+        }
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            " INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            " where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
         }
     }
 }
