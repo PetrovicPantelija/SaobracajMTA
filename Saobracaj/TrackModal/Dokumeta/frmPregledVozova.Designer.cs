@@ -159,9 +159,9 @@
             this.mainHeder.BackColor = System.Drawing.Color.Transparent;
             this.mainHeder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainHeder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainHeder.Location = new System.Drawing.Point(973, 0);
+            this.mainHeder.Location = new System.Drawing.Point(891, 0);
             this.mainHeder.Name = "mainHeder";
-            this.mainHeder.Size = new System.Drawing.Size(74, 31);
+            this.mainHeder.Size = new System.Drawing.Size(156, 31);
             this.mainHeder.TabIndex = 7;
             // 
             // panel2
@@ -191,13 +191,14 @@
             this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button26.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button26.Location = new System.Drawing.Point(254, 0);
+            this.button26.Location = new System.Drawing.Point(236, 0);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(108, 31);
             this.button26.TabIndex = 19;
             this.button26.Text = "Kopiraj";
             this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Visible = false;
             this.button26.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // button25
@@ -212,7 +213,7 @@
             this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button25.Location = new System.Drawing.Point(162, 0);
+            this.button25.Location = new System.Drawing.Point(144, 0);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(92, 31);
             this.button25.TabIndex = 18;
@@ -233,9 +234,9 @@
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button24.Location = new System.Drawing.Point(79, 0);
+            this.button24.Location = new System.Drawing.Point(73, 0);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(83, 31);
+            this.button24.Size = new System.Drawing.Size(71, 31);
             this.button24.TabIndex = 17;
             this.button24.Text = "Dolazeći";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -255,7 +256,7 @@
             this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button23.Location = new System.Drawing.Point(0, 0);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(79, 31);
+            this.button23.Size = new System.Drawing.Size(73, 31);
             this.button23.TabIndex = 16;
             this.button23.Text = "Otvori";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

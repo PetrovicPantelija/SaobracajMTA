@@ -215,23 +215,30 @@ namespace Saobracaj.Izvoz
         {
             status = true;
             txtID.Enabled = false;
+            txtID.Text = "";
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
 
             if (status == true)
             {
                 InsertInspekciskiTretman ins = new InsertInspekciskiTretman();
                 ins.InsInspekciskiTretman(txtNaziv.Text);
+                status = false;
             }
             else
             {
                 InsertInspekciskiTretman upd = new InsertInspekciskiTretman();
                 upd.UpdInspekciskiTretman(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                status = false;
             }
-            status = false;
+         
             RefreshDataGrid();
         }
 

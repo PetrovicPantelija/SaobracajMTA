@@ -163,12 +163,18 @@ namespace Saobracaj.TrackModal.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertTipPalete ins = new InsertTipPalete();
@@ -180,6 +186,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertTipPalete upd = new InsertTipPalete();
                 upd.UpdTipPalete(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), Kor);
+                status = false;
             }
 
             RefreshDataGrid();

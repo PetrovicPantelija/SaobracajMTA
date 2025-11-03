@@ -201,12 +201,21 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
+            txtOznaka.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertKontejnerskiTerminali ins = new InsertKontejnerskiTerminali();
+
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 ins.InsKontejnerskiTerminali(txtNaziv.Text.ToString().TrimEnd(), txtOznaka.Text.ToString().TrimEnd());

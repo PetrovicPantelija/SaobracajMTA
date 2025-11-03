@@ -177,6 +177,11 @@ namespace Testiranje.Dokumeta
             if (chkUradjenTromesecni.Checked == true)
             { Tromesecni = 1; }
 
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertVozila ins = new InsertVozila();

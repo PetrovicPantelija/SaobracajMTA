@@ -314,7 +314,7 @@ namespace Saobracaj.Sifarnici
             // chkManevrista
             // 
             this.chkManevrista.AutoSize = true;
-            this.chkManevrista.Location = new System.Drawing.Point(723, 194);
+            this.chkManevrista.Location = new System.Drawing.Point(635, 193);
             this.chkManevrista.Name = "chkManevrista";
             this.chkManevrista.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkManevrista.Size = new System.Drawing.Size(78, 17);
@@ -325,7 +325,7 @@ namespace Saobracaj.Sifarnici
             // chkPregledacKola
             // 
             this.chkPregledacKola.AutoSize = true;
-            this.chkPregledacKola.Location = new System.Drawing.Point(704, 166);
+            this.chkPregledacKola.Location = new System.Drawing.Point(616, 165);
             this.chkPregledacKola.Name = "chkPregledacKola";
             this.chkPregledacKola.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkPregledacKola.Size = new System.Drawing.Size(97, 17);
@@ -336,7 +336,7 @@ namespace Saobracaj.Sifarnici
             // chkVozovodja
             // 
             this.chkVozovodja.AutoSize = true;
-            this.chkVozovodja.Location = new System.Drawing.Point(726, 142);
+            this.chkVozovodja.Location = new System.Drawing.Point(638, 141);
             this.chkVozovodja.Name = "chkVozovodja";
             this.chkVozovodja.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkVozovodja.Size = new System.Drawing.Size(75, 17);
@@ -347,7 +347,7 @@ namespace Saobracaj.Sifarnici
             // chkPomocnik
             // 
             this.chkPomocnik.AutoSize = true;
-            this.chkPomocnik.Location = new System.Drawing.Point(728, 119);
+            this.chkPomocnik.Location = new System.Drawing.Point(640, 118);
             this.chkPomocnik.Name = "chkPomocnik";
             this.chkPomocnik.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkPomocnik.Size = new System.Drawing.Size(73, 17);
@@ -358,7 +358,7 @@ namespace Saobracaj.Sifarnici
             // chkMasinovodja
             // 
             this.chkMasinovodja.AutoSize = true;
-            this.chkMasinovodja.Location = new System.Drawing.Point(717, 95);
+            this.chkMasinovodja.Location = new System.Drawing.Point(629, 94);
             this.chkMasinovodja.Name = "chkMasinovodja";
             this.chkMasinovodja.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkMasinovodja.Size = new System.Drawing.Size(85, 17);

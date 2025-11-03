@@ -67,7 +67,7 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator1});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(446, 27);
+            this.meniHeader.Size = new System.Drawing.Size(598, 27);
             this.meniHeader.TabIndex = 48;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -117,7 +117,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(420, 212);
+            this.dataGridView1.Size = new System.Drawing.Size(572, 267);
             this.dataGridView1.TabIndex = 57;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
@@ -186,7 +186,7 @@ namespace Saobracaj.Uvoz
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(446, 35);
+            this.panelHeader.Size = new System.Drawing.Size(598, 35);
             this.panelHeader.TabIndex = 463;
             // 
             // panel3
@@ -267,7 +267,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(446, 417);
+            this.ClientSize = new System.Drawing.Size(598, 472);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtOznaka);

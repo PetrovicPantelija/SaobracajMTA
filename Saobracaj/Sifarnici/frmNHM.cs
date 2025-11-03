@@ -281,12 +281,17 @@ namespace Saobracaj.Sifarnici
                 tmpInterni = 0;
             }
 
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 Insertnhm ins = new Insertnhm();
                 ins.InsNHM(txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni, tmpInterni);
                 // RefreshDataGrid();
-                RefrechDataGridT();
+        
                 status = false;
             }
             else
@@ -296,8 +301,9 @@ namespace Saobracaj.Sifarnici
                 status = false;
                 txtSifra.Enabled = false;
                // RefreshDataGrid();
-                RefrechDataGridT();
+               
             }
+            RefrechDataGridT();
         }
 
         private void tsNew_Click(object sender, EventArgs e)

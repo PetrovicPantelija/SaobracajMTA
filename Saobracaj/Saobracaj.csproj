@@ -375,6 +375,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.16.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.16.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -430,6 +431,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -2097,6 +2099,24 @@
     </Compile>
     <Compile Include="Main2.Designer.cs">
       <DependentUpon>Main2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\UvozMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\UvozMain.Designer.cs">
+      <DependentUpon>UvozMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Info.Designer.cs">
+      <DependentUpon>Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\NewMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\NewMain.Designer.cs">
+      <DependentUpon>NewMain.cs</DependentUpon>
     </Compile>
     <Compile Include="MainP.cs">
       <SubType>Form</SubType>
@@ -4973,6 +4993,15 @@
     <EmbeddedResource Include="Main2.resx">
       <DependentUpon>Main2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\UvozMain.resx">
+      <DependentUpon>UvozMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Info.resx">
+      <DependentUpon>Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\NewMain.resx">
+      <DependentUpon>NewMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainP.resx">
       <DependentUpon>MainP.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -6549,10 +6578,35 @@
     </Content>
     <Content Include="Dokumenta\map.html" />
     <Content Include="itextsharp.dll" />
+    <None Include="Resources\baner.png" />
+    <None Include="Resources\cargo-train.png" />
     <Content Include="Resources\chat.png" />
+    <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
+    <None Include="Resources\drumskiW.png" />
+    <None Include="Resources\drumskiW1.png" />
+    <None Include="Resources\drumski.png" />
+    <None Include="Resources\drumski1.png" />
+    <None Include="Resources\dealS.png" />
+    <None Include="Resources\deliveryS.png" />
+    <None Include="Resources\crane.png" />
     <Content Include="Resources\error.png" />
     <Content Include="Resources\exclamation.png" />
+    <None Include="Resources\image.png" />
+    <None Include="Resources\image1.png" />
+    <None Include="Resources\importS.png" />
+    <None Include="Resources\exportS.png" />
+    <None Include="Resources\forklift.png" />
+    <None Include="Resources\home-button.png" />
     <Content Include="Resources\information.png" />
+    <None Include="Resources\uvozIzvoz.png" />
+    <None Include="Resources\uvozIzvoz1.png" />
+    <None Include="Resources\uvozIzvoz2.png" />
+    <None Include="Resources\train-cargo.png" />
+    <None Include="Resources\inventory-management.png" />
+    <None Include="Resources\transportation.png" />
+    <None Include="Resources\maintanance.png" />
+    <None Include="Resources\money.png" />
+    <None Include="Resources\settings.png" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll" />
     <None Include="Resources\LegetIcon.bmp" />

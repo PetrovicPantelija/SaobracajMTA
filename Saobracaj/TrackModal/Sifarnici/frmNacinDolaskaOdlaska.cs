@@ -168,12 +168,18 @@ namespace Testiranje.Sifarnici
         {
             status = true;
             txtSifra.Enabled = false;
+            txtSifra.Text = "";
             txtNaziv.Text = "";
             ChangeTextBox();
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 InsertNacinDolaskaOdlaska ins = new InsertNacinDolaskaOdlaska();
@@ -185,6 +191,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertNacinDolaskaOdlaska upd = new InsertNacinDolaskaOdlaska();
                 upd.UpdNacinDolaskaOdlaska(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
             }
             RefreshDataGrid();
         }

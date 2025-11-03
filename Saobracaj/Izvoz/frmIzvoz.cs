@@ -2906,11 +2906,12 @@ namespace Saobracaj.Izvoz
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     txtID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                    FillDGUsluge();
+                    FillDG2();
 
                 }
-                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
-                FillDGUsluge();
-                FillDG2();
+               
             }
 
 

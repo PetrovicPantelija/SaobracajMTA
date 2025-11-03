@@ -194,12 +194,18 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertCarinarnice ins = new InsertCarinarnice();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsCarinarnice(txtNaziv.Text.ToString().TrimEnd(), txtCINaziv.Text, txtCIOznaka.Text, txtCIEmail.Text, txtCITelefon.Text);

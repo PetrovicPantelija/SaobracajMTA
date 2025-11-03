@@ -204,6 +204,7 @@ namespace Saobracaj.Kapija
             else
             {
                   ins.UpdeteStatus(iD, naziv);
+                status = false;
             }
             RefreshDataGrid();
         }

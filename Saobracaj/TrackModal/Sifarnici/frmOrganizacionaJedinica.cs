@@ -163,11 +163,18 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
+            
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertOrganizacionaJedinica ins = new InsertOrganizacionaJedinica();
@@ -179,6 +186,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertOrganizacionaJedinica upd = new InsertOrganizacionaJedinica();
                 upd.UpdOrganizaciona(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = true;
             }
             RefreshDataGrid();
         }

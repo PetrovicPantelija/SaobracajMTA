@@ -179,12 +179,18 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InertDirigacijaKontejneraZa ins = new InertDirigacijaKontejneraZa();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsDirigacijaKontejneraZa(txtNaziv.Text.ToString().TrimEnd());

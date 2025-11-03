@@ -163,12 +163,19 @@ namespace Saobracaj.Izvoz
         {
             status = true;
             txtID.Enabled = false;
+            txtID.Text = "";
             txtNapomena.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpZatvoren = 0;
+
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
+
             if (chkZavrsen.Checked == true)
             {
                 tmpZatvoren = 1;
@@ -183,7 +190,7 @@ namespace Saobracaj.Izvoz
             {
                 InsertDogovorenoIzvoz ins = new InsertDogovorenoIzvoz();
                 ins.UpdDogovorenoIzvoz(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPartner.SelectedValue), Convert.ToDateTime(dtpPeriodOd.Value), Convert.ToDateTime(dtpPeriodDo.Value), Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(txtBrojIsporucenih.Value), txtNapomena.Text, tmpZatvoren);
-
+                status = false;
             }
             RefreshDataGrid();
         }

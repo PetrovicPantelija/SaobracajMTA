@@ -198,12 +198,19 @@ namespace Saobracaj.Uvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             tsNew.Enabled = false;
+            txtID.Text = "";
+            txtNaziv.Text = "";
+            txtOznaka.Text = "";
             status = true;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertuvKvalitetKontejnera ins = new InsertuvKvalitetKontejnera();
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 ins.InsuvKvalitetKontejnera(txtNaziv.Text.ToString().TrimEnd(), txtOznaka.Text.ToString().TrimEnd());

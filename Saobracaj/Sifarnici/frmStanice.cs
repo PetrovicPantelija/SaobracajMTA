@@ -160,6 +160,11 @@ namespace Saobracaj.Sifarnici
                 pomGranicna = 1;
             }
 
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertStanice ins = new InsertStanice();

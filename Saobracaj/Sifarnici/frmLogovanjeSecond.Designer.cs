@@ -30,18 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogovanjeSecond));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.cboKorisnik = new System.Windows.Forms.ComboBox();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.button1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.cboKorisnik);
             this.panel1.Controls.Add(this.sfButton1);
@@ -53,10 +57,43 @@
             this.panel1.Size = new System.Drawing.Size(440, 572);
             this.panel1.TabIndex = 0;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(216, 540);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(78, 17);
+            this.checkBox2.TabIndex = 5;
+            this.checkBox2.Text = "Novi izgled";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(106, 540);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Stari izgled";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.Color.White;
+            this.txtPassword.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtPassword.Location = new System.Drawing.Point(71, 329);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(282, 28);
+            this.txtPassword.TabIndex = 2;
+            // 
             // cboKorisnik
             // 
             this.cboKorisnik.BackColor = System.Drawing.Color.White;
-            this.cboKorisnik.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cboKorisnik.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboKorisnik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
             this.cboKorisnik.FormattingEnabled = true;
             this.cboKorisnik.Location = new System.Drawing.Point(71, 274);
@@ -69,7 +106,7 @@
             // 
             this.sfButton1.AccessibleName = "Button";
             this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.sfButton1.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.sfButton1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.sfButton1.ForeColor = System.Drawing.Color.White;
             this.sfButton1.Location = new System.Drawing.Point(71, 469);
             this.sfButton1.Name = "sfButton1";
@@ -85,7 +122,7 @@
             // 
             this.button1.AccessibleName = "Button";
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(120)))), ((int)(((byte)(246)))));
-            this.button1.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(71, 412);
             this.button1.Name = "button1";
@@ -93,21 +130,9 @@
             this.button1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(120)))), ((int)(((byte)(246)))));
             this.button1.Style.ForeColor = System.Drawing.Color.White;
             this.button1.TabIndex = 3;
-            this.button1.Text = "KRENI";
+            this.button1.Text = "POKRENI";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Helvetica", 19.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.label1.Location = new System.Drawing.Point(88, 179);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 68);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Prijava na Leget plus nalog";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
             // 
             // panel2
             // 
@@ -118,16 +143,17 @@
             this.panel2.Size = new System.Drawing.Size(233, 176);
             this.panel2.TabIndex = 1;
             // 
-            // txtPassword
+            // label1
             // 
-            this.txtPassword.BackColor = System.Drawing.Color.White;
-            this.txtPassword.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.Location = new System.Drawing.Point(71, 329);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(282, 29);
-            this.txtPassword.TabIndex = 2;
+            this.label1.Font = new System.Drawing.Font("Arial", 19.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.label1.Location = new System.Drawing.Point(88, 179);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(251, 68);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Prijava na Leget plus nalog";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
             // 
             // frmLogovanjeSecond
             // 
@@ -160,5 +186,7 @@
         private Syncfusion.WinForms.Controls.SfButton button1;
         private System.Windows.Forms.ComboBox cboKorisnik;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

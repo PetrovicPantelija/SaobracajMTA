@@ -175,6 +175,8 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+          
+
             if (status == true)
             {
                 InsertVrstaRobe ins = new InsertVrstaRobe();
@@ -187,6 +189,7 @@ namespace Testiranje.Sifarnici
                 InsertVrstaRobe upd = new InsertVrstaRobe();
                 upd.UpdVrstaRobe(Convert.ToInt32(txtSifra.Text), txtNKM.Text, txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
             }
+            status = false;
             RefreshDataGrid();
         }
 

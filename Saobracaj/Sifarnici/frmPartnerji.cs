@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.IdentityModel.Metadata;
 using System.Security.Cryptography.Xml;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Security.Cryptography;
 
 namespace Saobracaj.Sifarnici
 {
@@ -172,7 +173,7 @@ namespace Saobracaj.Sifarnici
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
          //   RefreshDataGrid();
-            RefreshGridControl();
+           
             ChecBoxVisible(this.Controls);
             panel1.Visible = false;
             panel4.Visible = false;
@@ -186,6 +187,7 @@ namespace Saobracaj.Sifarnici
             cboValuta.DataSource = valutaDS.Tables[0];
             cboValuta.DisplayMember = "VaNaziv";
             cboValuta.ValueMember = "VaSifra";
+            RefreshGridControl();
 
         }
         private void ChecBoxVisible(Control.ControlCollection ctrlCollection)
@@ -400,9 +402,14 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshGridControl()
         {
-            var select = " Select PaSifra as PaID, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun, " +
-              " PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-          " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
+            var select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
+            " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, " +
+            " Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, " +
+            " (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, " +
+            " (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac,  " +
+            " Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik, " +
+            " Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency,  DrumskiPrevoz " +
+            " from Partnerji order by PaSifra desc ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -415,26 +422,20 @@ namespace Saobracaj.Sifarnici
             dataAdapter.Fill(ds);
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
-         
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
-          
-
-    
+            foreach (var column in gridGroupingControl1.TableDescriptor.Columns)
+            {
+                MessageBox.Show(column.Name);
+            }
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
             }
 
-            GridExcelFilter gridExcelFilter = new GridExcelFilter();
-
-            //Wiring GridExcelFilter to GridGroupingControl
-            gridExcelFilter.WireGrid(this.gridGroupingControl1);
-
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
-
 
 
 
@@ -840,6 +841,12 @@ namespace Saobracaj.Sifarnici
             {
                 cboValuta.SelectedValue = "RSD";
             }
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
@@ -1142,7 +1149,7 @@ namespace Saobracaj.Sifarnici
                 { chkAgentBrodara.Checked = true; }
                 else
                 { chkAgentBrodara.Checked = false; }
-
+                /*
                 if (dr["Supplier"].ToString() == "1")
                 { cbDobavljac.Checked = true; }
                 else
@@ -1157,7 +1164,7 @@ namespace Saobracaj.Sifarnici
                 { cbObveznik.Checked = true; }
                 else
                 { cbObveznik.Checked = false; }
-
+                */
  cboValuta.SelectedValue = dr["Currency"].ToString();
 
 
@@ -1239,16 +1246,6 @@ namespace Saobracaj.Sifarnici
                 {
                     chkPosiljalac.Checked = false;
                 }
-
-               
-               
-               
-
-             
-
-
-           
-
             }
 
 
@@ -1265,7 +1262,7 @@ namespace Saobracaj.Sifarnici
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                    
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaID").ToString();
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaSifra").ToString();
                     VratiPodatkeSelect(Convert.ToInt32(txtSifra.Text));
 
 
@@ -1278,6 +1275,12 @@ namespace Saobracaj.Sifarnici
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+         //   Sifarnici.PartnerjiPregled p = new PartnerjiPregled();
+           // p.Show();
         }
     }
 }

@@ -160,12 +160,16 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
-            txtSifra.Enabled = false;
+            txtSifra.Enabled = false;txtSifra.Text = "";
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 InsertTipCenovnika ins = new InsertTipCenovnika();
@@ -177,6 +181,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertTipCenovnika upd = new InsertTipCenovnika();
                 upd.UpdTipCenovnika(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
             }
             RefreshDataGrid();
         }

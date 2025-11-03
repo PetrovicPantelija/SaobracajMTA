@@ -163,6 +163,7 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtNaziv.Text = "";
             txtDuzina.Value = 0;
@@ -173,6 +174,10 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 InsertTipKontejnera ins = new InsertTipKontejnera();
@@ -184,6 +189,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertTipKontejnera upd = new InsertTipKontejnera();
                 upd.UpdTipKontejnera(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtSirina.Text), Convert.ToDouble(txtVisina.Text), Convert.ToDouble(txtTara.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtSkNaziv.Text, txtVelicina.Text);
+                status=false;
             }
             RefreshDataGrid();
         }

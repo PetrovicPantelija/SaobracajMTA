@@ -322,6 +322,10 @@ namespace Saobracaj.Sifarnici
             {
                 PomMasinovodja = 0;
             }
+            if (txtDeSifra.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
