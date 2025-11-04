@@ -709,17 +709,17 @@ namespace Saobracaj.Drumski
             cboOCarinarnica.DisplayMember = "Naziv";
             cboOCarinarnica.ValueMember = "ID";
 
-            // --- AutoComplete podesavanja ---
-            cboOCarinarnica.DropDownStyle = ComboBoxStyle.DropDown;
-            cboOCarinarnica.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cboOCarinarnica.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            //// --- AutoComplete podesavanja ---
+            //cboOCarinarnica.DropDownStyle = ComboBoxStyle.DropDown;
+            //cboOCarinarnica.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            //cboOCarinarnica.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
-            AutoCompleteStringCollection autoSrc = new AutoCompleteStringCollection();
-            foreach (DataRow row in carDS.Tables[0].Rows)
-            {
-                autoSrc.Add(row["Naziv"].ToString());
-            }
-            cboOCarinarnica.AutoCompleteCustomSource = autoSrc;
+            //AutoCompleteStringCollection autoSrc = new AutoCompleteStringCollection();
+            //foreach (DataRow row in carDS.Tables[0].Rows)
+            //{
+            //    autoSrc.Add(row["Naziv"].ToString());
+            //}
+            //cboOCarinarnica.AutoCompleteCustomSource = autoSrc;
 
 
             var caru= "Select ID, Naziv From Carinarnice order by Naziv";
@@ -853,7 +853,7 @@ namespace Saobracaj.Drumski
             if (cbo.Focused && !string.IsNullOrEmpty(cbo.Text))
             {
                 string currentText = cbo.Text;
-                string lowerSearchText = currentText.ToLower();
+                string lowerSearchText = currentText.Trim();
 
                 // Postavljamo flag na true pre programskih promena
                 isSearching = true;
@@ -864,9 +864,9 @@ namespace Saobracaj.Drumski
                 // (Pretpostavljamo da su svi combobox-ovi vezani za DataTable sa DisplayMember "Naziv")
                 foreach (DataRowView item in cbo.Items)
                 {
-                    string itemText = item[cbo.DisplayMember].ToString().ToLower(); // Koristi DisplayMember!
-
-                    if (itemText.StartsWith(lowerSearchText))
+                    string itemText = item[cbo.DisplayMember].ToString().Trim();
+                    //string itemText = item[cbo.DisplayMember].ToString().ToLower();
+                    if (itemText.StartsWith(lowerSearchText, StringComparison.OrdinalIgnoreCase))
                     {
                         // KORAK 1: POZICIONIRANJE
                         cbo.SelectedIndex = cbo.Items.IndexOf(item);
@@ -2052,11 +2052,6 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void cboOCarinarnica_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtCena_Enter(object sender, EventArgs e)
         {
             if (txtCena.Value == 0)
@@ -2165,10 +2160,10 @@ namespace Saobracaj.Drumski
             ComboBox_SearchAndPosition(sender);
         }
 
-        private void cboMestoUtovara_KeyUp(object sender, KeyEventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
+        //private void cboMestoUtovara_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    ComboBox_SearchAndPosition(sender);
+        //}
 
         private void cboPolaznaSpedicija_TextChanged(object sender, EventArgs e)
         {
@@ -2178,6 +2173,6 @@ namespace Saobracaj.Drumski
         private void cbOspedicija_TextChanged(object sender, EventArgs e)
         {
             ComboBox_SearchAndPosition(sender);
-        }
+        }       
     }
 }

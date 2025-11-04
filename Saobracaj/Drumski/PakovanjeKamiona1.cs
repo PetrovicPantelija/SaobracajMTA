@@ -2454,7 +2454,7 @@ namespace Saobracaj.Drumski
             //    kontejnerString += ", " + row.Cells["BrojKontejnera2"].Value?.ToString();
 
             // Formiranje poruke
-        }    
+        }
     }
     class NajavaGrupa
     {

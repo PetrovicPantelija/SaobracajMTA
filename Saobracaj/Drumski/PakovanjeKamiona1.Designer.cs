@@ -60,6 +60,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -275,6 +276,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnRefresh);
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Controls.Add(this.btnKreiraj);
             this.panel2.Controls.Add(this.label5);
@@ -432,6 +434,17 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(884, 29);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(130, 26);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Osveži prikaz";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnResetuj_Click);
+            // 
             // PakovanjeKamiona1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -492,5 +505,6 @@
         private System.Windows.Forms.Button btnNajava;
         private System.Windows.Forms.Button btnArhiva;
         private System.Windows.Forms.ToolStripMenuItem ukloniDodeljenKamionToolStripMenuItem;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
