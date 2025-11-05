@@ -33,21 +33,23 @@
             this.button2 = new System.Windows.Forms.Button();
             this.lblPoruka = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(165, 208);
+            this.button1.Location = new System.Drawing.Point(159, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 36);
             this.button1.TabIndex = 1;
             this.button1.Text = "Pošalji";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(321, 208);
+            this.button2.Location = new System.Drawing.Point(315, 258);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 36);
             this.button2.TabIndex = 2;
@@ -71,11 +73,23 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(12, 208);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(68, 16);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.Visible = false;
+            // 
             // frmPregledPorukeVozacu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 261);
+            this.ClientSize = new System.Drawing.Size(667, 306);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblPoruka);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -95,5 +109,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblPoruka;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
