@@ -41,6 +41,7 @@ namespace Saobracaj
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            this.Load += MainP_Load;
 
 
         }
@@ -49,7 +50,116 @@ namespace Saobracaj
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            this.Load += MainP_Load;
             Korisnik = Logovan;
+
+            //Office 13
+
+            Office2013ColorTable color = new Office2013ColorTable();
+
+            //To set backstage caption color
+            color.BackStageCaptionColor = Color.CornflowerBlue;
+            /*
+            //To set button background when pressed
+            color.ButtonBackgroundPressed = Color.White;
+
+            //To set button background when selected
+            color.ButtonBackgroundSelected = Color.White;
+
+            //To set caption background color
+            color.CaptionBackColor = Color.Orange;
+
+            //To set caption fore color
+            color.CaptionForeColor = Color.White;
+
+            //To set checked tab color
+            color.CheckedTabColor = Color.LightBlue;
+
+            //To set checked tab text color
+            color.CheckedTabForeColor = Color.White;
+
+            //To set close button color
+            color.CloseButtonColor = Color.Red;
+
+            //To set context menu back color
+            color.ContextMenuBackColor = Color.CadetBlue;
+
+            //To set context menu item color when selected
+            color.ContextMenuItemSelected = Color.Black;
+
+            //To set header color
+            color.HeaderColor = Color.White;
+
+            //To set tab hover text color
+            color.HoverTabForeColor = Color.White;
+
+            //To set launcher back color when selected
+            color.LauncherBackColorSelected = Color.White;
+
+            //To set launcher normal color
+            color.LauncherColorNormal = Color.White;
+
+            //To set launcher selected color
+            color.LauncherColorSelected = Color.LightBlue;
+
+            //To set maximize button color
+            color.MaximizeButtonColor = Color.Gray;
+
+            //To set minimize button color
+            color.MinimizeButtonColor = Color.Gray;
+
+            //To set panel back color
+            color.PanelBackColor = Color.White;
+
+            //To set restore button color
+            color.RestoreButtonColor = Color.Gray;
+
+            //To set ribbon panel border color
+            color.RibbonPanelBorderColor = Color.Black;
+
+            //To set selected tab border color
+            color.SelectedTabBorderColor = Color.LightBlue;
+
+            //To set selected tab color
+            color.SelectedTabColor = Color.Blue;
+
+            //To set split button background color when pressed
+            color.SplitButtonBackgroundPressed = Color.LightBlue;
+
+            //To set split button background color when selected
+            color.SplitButtonBackgroundSelected = Color.LightBlue;
+
+            //To set system button background color
+            color.SystemButtonBackground = Color.Gray;
+
+            //To set tab back color
+            color.TabBackColor = Color.LightBlue;
+
+            //To set tab text color
+            color.TabForeColor = Color.White;
+
+            //To set title color
+            color.TitleColor = Color.LightBlue;
+
+            //To set tool strip back color
+            color.ToolStripBackColor = Color.LightBlue;
+
+            //To set tool strip border color
+            color.ToolStripBorderColor = Color.Black;
+
+            //To set toolstrip item text color
+            color.ToolStripItemForeColor = Color.White;
+
+            //To set toolstrip splitter color
+            color.ToolStripSpliterColor = Color.White;
+
+            //To set updown button back color
+            color.UpDownButtonBackColor = Color.White;
+            */
+
+            this.ribbonControlAdv1.Office2013ColorTable = color;
+
+
             if (Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 toolStripTabItem10.Visible = true;
@@ -6760,6 +6870,7 @@ namespace Saobracaj
 
         private void MainP_Load(object sender, EventArgs e)
         {
+            //this.backStageView1.ShowBackStage();
 
         }
 
@@ -7172,6 +7283,64 @@ namespace Saobracaj
         private void chartControl1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void sfButton5_Click(object sender, EventArgs e)
+        {
+           
+            txtModul.Text = "Logistika direktnih klijenata";
+        }
+
+        private void backStageTab3_Click(object sender, EventArgs e)
+        {
+            txtModul.Text = "Logistika uvoza";
+
+        }
+
+        private void backStageTab1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtModul_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void backStageTab1_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtModul.Text = "Logistika Direktnih klijenata";
+            txtModul2.Text = "Logistika Direktnih klijenata";
+
+        }
+
+        private void backStageTab3_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtModul.Text = "Logistika Uvoz";
+            txtModul2.Text = "Logistika Uvoz";
+        }
+
+        private void backStageTab1_Click_1(object sender, EventArgs e)
+        {
+           
+            txtModul.Text = "Logistika Direktnih klijenata";
+            txtModul2.Text = "Logistika Direktnih klijenata";
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Klik na picturebox");
+        }
+
+        private void backStage1_TabIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tab se promenio");
+        }
+
+        private void backStageButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Button se promenio");
         }
     }
 }

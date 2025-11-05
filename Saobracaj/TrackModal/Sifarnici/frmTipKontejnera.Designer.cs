@@ -62,7 +62,7 @@
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtISO = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
@@ -179,10 +179,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 185);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 196);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(938, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(938, 243);
             this.dataGridView1.TabIndex = 131;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -451,13 +451,13 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
-            // textBox1
+            // txtISO
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(697, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 23);
-            this.textBox1.TabIndex = 470;
+            this.txtISO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtISO.Location = new System.Drawing.Point(697, 69);
+            this.txtISO.Name = "txtISO";
+            this.txtISO.Size = new System.Drawing.Size(230, 23);
+            this.txtISO.TabIndex = 470;
             // 
             // label8
             // 
@@ -479,7 +479,7 @@
             this.chkAktivna.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAktivna.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkAktivna.ForeColor = System.Drawing.Color.Black;
-            this.chkAktivna.Location = new System.Drawing.Point(618, 130);
+            this.chkAktivna.Location = new System.Drawing.Point(612, 120);
             this.chkAktivna.Margin = new System.Windows.Forms.Padding(2);
             this.chkAktivna.Name = "chkAktivna";
             this.chkAktivna.Size = new System.Drawing.Size(64, 19);
@@ -494,7 +494,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(960, 451);
             this.Controls.Add(this.chkAktivna);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtISO);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.txtVelicina);
@@ -570,7 +570,7 @@
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtISO;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkAktivna;
     }

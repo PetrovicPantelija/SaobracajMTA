@@ -132,7 +132,7 @@ namespace Saobracaj.Sifarnici
                     }
                     if (checkBox2.Checked)
                     {
-                        NewMain frm = new NewMain();
+                        LogistikaIzvoza1 frm = new LogistikaIzvoza1();
                         frm.Show();
                     }
                     
