@@ -27,6 +27,7 @@ namespace Saobracaj.Drumski
         private bool cellClickHandlerAttached = false;
         private Form aktivnaFormaPregleda;
         private DataTable mainTable;
+        private string upozorenjeTehnickiNeispravni = "";
 
         public PakovanjeKamiona1()
         {
@@ -40,8 +41,17 @@ namespace Saobracaj.Drumski
             RefreshDataGrid2();
             RefreshDataGrid3();
 
-            this.Text = "Pakovanje kamiona";
+            this.Text = "Formiranje transportnog naloga";
             this.dataGridView2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDown);
+            if (!string.IsNullOrWhiteSpace(upozorenjeTehnickiNeispravni))
+            {
+                MessageBox.Show(
+                    "Upozorenje!\n\n" + upozorenjeTehnickiNeispravni,
+                    "Upareni tehnički neispravni kamioni",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
 
         }
         private void ChangeTextBox()
@@ -502,30 +512,40 @@ namespace Saobracaj.Drumski
                 if ((prikaziRaspolozive || prikaziNeraspolozive) && !string.IsNullOrEmpty(datumZaProveru))
                 {
                     // Baza upita za provjeru raspoloživosti/neraspoloživosti
-                    string subQuery = $@"
-                        SELECT DISTINCT ISNULL(KamionID,0) AS KamionID
+                    string subQueryNaloga = $@"
+                        SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
                         FROM RadniNalogDrumski
-                        WHERE CONVERT(date, DatumIstovara) = CONVERT(date, {datumZaProveru})";
+                        WHERE CONVERT(date, DatumIstovara) = CONVERT(date, {datumZaProveru}) ";
 
+                     // Subquery za vozila koja su u tehničkom problemu (neraspoloživa zbog kvara)
+                     string subQueryKvarova = $@"
+                        SELECT DISTINCT ISNULL(VoziloID, 0) AS VoziloID
+                        FROM AutomobiliTehnickiProblem
+                        WHERE CAST(Datum AS date) = CAST({datumZaProveru} AS date)";
                     if (prikaziRaspolozive && !prikaziNeraspolozive)
                     {
-                        // Samo raspoloživi – koji NISU vezani za nalog na odabrani datum
-                        joinLogika = $@" AND a.ID NOT IN ({subQuery})";
+                        // Samo raspoloživa vozila – koja NISU ni u nalogu ni u kvaru
+                         joinLogika = $@"
+                            AND a.ID NOT IN ({subQueryNaloga})
+                            AND a.ID NOT IN ({subQueryKvarova}) ";
                     }
                     else if (!prikaziRaspolozive && prikaziNeraspolozive)
                     {
-                        // Samo neraspoloživi – koji JESU vezani za nalog na odabrani datum
-                        joinLogika = $@" AND a.ID IN ({subQuery})";
+                         // Samo neraspoloživa vozila – koja JESU u nalogu ili kvaru
+                         joinLogika = $@"
+                            AND (
+                                a.ID IN ({subQueryNaloga})
+                                OR a.ID IN ({subQueryKvarova})
+                            ) ";
                     }
-
                     // 3. Konačan SELECT
                 }
                 var select = $@" SELECT a.ID,  LTRIM(RTRIM(vv.Naziv)) AS TipVozila, a.VlasnistvoLegeta as TipTransporta, LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik, LTRIM(RTRIM(a.Vozac)) AS Vozac, LTRIM(RTRIM(a.RegBr)) AS RegBr   , LTRIM(RTRIM(BrojTelefona)) as TelefonVozaca
                             FROM Automobili a 
                             LEFT JOIN VrstaVozila vv on a.VlasnistvoLegeta = vv.ID 
                             LEFT JOIN Partnerji p on a.PartnerID = p.PaSifra  
+                            LEFT JOIN AutomobiliTehnickiProblem ap ON  a.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                             WHERE VoziloDrumskog = 1  {condition}  {joinLogika}" ;
-
 
                 SqlCommand cmd = new SqlCommand(select, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -813,7 +833,8 @@ namespace Saobracaj.Drumski
                                 x.NajavuPoslao, 
                                 x.SlanjeNajave, 
                                 x.Status AS Status,
-                                x.StatusID
+                                x.StatusID,
+                                x.TehnickiNeispravan
 
                             FROM 
                             (
@@ -827,7 +848,7 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID 
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -837,6 +858,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3 
                                 LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra 
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
+                                LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                       AND CONVERT(date, rn.DatumIstovara) = CONVERT(date, {datumZaProveru} )
@@ -852,7 +874,7 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID 
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -862,6 +884,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3 
                                 LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra 
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
+                                LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                       AND CONVERT(date, rn.DatumIstovara) = CONVERT(date, {datumZaProveru} )
@@ -877,7 +900,7 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID 
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -887,6 +910,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3 
                                 LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra 
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
+                                LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                       AND CONVERT(date, rn.DatumIstovara) = CONVERT(date, {datumZaProveru} )
@@ -902,7 +926,7 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID 
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -912,6 +936,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
                                 LEFT JOIN MestaUtovara mu on  rn.MestoUtovara = mu.ID
                                 LEFT JOIN MestaUtovara mi on  u.MestoIstovara = mi.ID
+                                LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                       AND CONVERT(date, rn.DatumIstovara) = CONVERT(date, {datumZaProveru} )
@@ -927,7 +952,7 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID 
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -936,6 +961,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN MestaUtovara mu on  rn.MestoUtovara = mu.ID
                                 LEFT JOIN MestaUtovara mi on  rn.MestoIstovara = mi.ID
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
+                                LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.NalogID > 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                       AND CONVERT(date, rn.DatumIstovara) = CONVERT(date, {datumZaProveru} )
@@ -954,7 +980,8 @@ namespace Saobracaj.Drumski
                                 x.NajavuPoslao, 
                                 x.SlanjeNajave, 
                                 x.Status,
-                                x.StatusID
+                                x.StatusID,
+                                x.TehnickiNeispravan
 
                             ORDER BY 
                                 x.NalogID DESC
@@ -1033,14 +1060,28 @@ namespace Saobracaj.Drumski
             // Ubaci novu kolonu na isto mesto
             dataGridView3.Columns.Insert(colIndex, chk);
 
-            
+            upozorenjeTehnickiNeispravni = ""; // reset pre svakog punjenja
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Cells["TehnickiNeispravan"] != null &&
+                    row.Cells["TehnickiNeispravan"].Value != DBNull.Value &&
+                    row.Cells["TehnickiNeispravan"].Value.ToString() == "1")
+                {
+                    string regBr = row.Cells["Kamion"].Value?.ToString();
+                    if (!string.IsNullOrWhiteSpace(regBr))
+                    {
+                        upozorenjeTehnickiNeispravni += $"- Kamion {regBr} koji je već dodeljen je tehnički neispravan.\n";
+                    }
+                }
+            }
 
             PodesiDatagridView(dataGridView3);
 
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",

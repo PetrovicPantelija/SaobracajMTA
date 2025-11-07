@@ -1378,5 +1378,110 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
+
+        public void InsAutomobiliTehnickiProblem(int VoziloID)
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertAutomobiliTehnickiProblem";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@VoziloID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = VoziloID;
+            myCommand.Parameters.Add(parameter);
+
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+            //    MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    myTransaction.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis dokumenta u Bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo snimanje vozila kao nedostupnog", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelAutomobiliTehnickiProblem(int VoziloID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteAutomobiliTehnickiProblem";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@VoziloID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = VoziloID;
+            myCommand.Parameters.Add(parameter);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje nije uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
     }
 }
