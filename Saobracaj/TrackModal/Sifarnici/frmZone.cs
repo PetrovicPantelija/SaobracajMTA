@@ -168,7 +168,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-            int tmpAktivna = 0;
+           
             if (txtSifra.Text == "")
             {
 
@@ -176,7 +176,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             }
 
 
-
+ int tmpAktivna = 0;
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
             if (status == true)

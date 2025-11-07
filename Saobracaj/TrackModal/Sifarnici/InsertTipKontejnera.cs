@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertTipKontejnera
     {
 
-        public void InsTipKontejnera(string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina)
+        public void InsTipKontejnera(string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina, string ISO, int Aktivan)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -87,6 +87,22 @@ namespace Testiranje.Sifarnici
             myCommand.Parameters.Add(parameter18);
 
 
+            SqlParameter parameter19= new SqlParameter();
+            parameter19.ParameterName = "@ISO";
+            parameter19.SqlDbType = SqlDbType.NVarChar;
+            parameter18.Size = 20;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = ISO;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Aktivan";
+            parameter20.SqlDbType = SqlDbType.Int;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Aktivan;
+            myCommand.Parameters.Add(parameter20);
+
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -125,7 +141,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdTipKontejnera(int ID, string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina)
+        public void UpdTipKontejnera(int ID, string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina, string ISO, int Aktivan)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -208,6 +224,21 @@ namespace Testiranje.Sifarnici
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Velicina;
             myCommand.Parameters.Add(parameter18);
+
+            SqlParameter parameter19 = new SqlParameter();
+            parameter19.ParameterName = "@ISO";
+            parameter19.SqlDbType = SqlDbType.NVarChar;
+            parameter18.Size = 20;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = ISO;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Aktivan";
+            parameter20.SqlDbType = SqlDbType.Int;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Aktivan;
+            myCommand.Parameters.Add(parameter20);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

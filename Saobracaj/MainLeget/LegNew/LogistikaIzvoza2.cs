@@ -1,6 +1,4 @@
-﻿using Saobracaj.Drumski;
-using Saobracaj.MainLeget;
-using Saobracaj.TrackModal.Sifarnici;
+﻿using Saobracaj.MainLeget;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,18 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Saobracaj
+namespace Saobracaj.MainLeget.LegNew
 {
-    public partial class LogistikaIzvoza1 : Form
+    public partial class LogistikaIzvoza2 : Form
     {
-        private Form _activeChild;
-        public LogistikaIzvoza1()
+        
+        public LogistikaIzvoza2()
         {
             InitializeComponent();
            // OpenInPanel2(new MainLeget.Info(OpenInPanel2));
 
            // btnLogistikaUvoza.Click += (s, e) => OpenInPanel2(new MainLeget.UvozMain(OpenInPanel2));
-        }
+        }/*
         public void OpenInPanel2(Form child)
         {
             if(_activeChild != null)
@@ -44,6 +42,7 @@ namespace Saobracaj
             child.BringToFront();
             child.Focus();
         }
+        */
         #region Boje
         private void MainLeget_Load(object sender, EventArgs e)
         {
@@ -207,27 +206,15 @@ namespace Saobracaj
 
         private void sfButton1_Click(object sender, EventArgs e)
         {
-            Saobracaj.MainLeget.LegNew.LogistikaIzvoza1 li = new Saobracaj.MainLeget.LegNew.LogistikaIzvoza1();
-            li.Show();
+            
     
-          
+            
+            lblNaslov.Text = "Logistika izvoza";
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnPodesavanja_Click(object sender, EventArgs e)
-        {
-            Saobracaj.MainLeget.LegNew.PodesavanjeSistema1 ps = new MainLeget.LegNew.PodesavanjeSistema1();
-            ps.Show();
-        }
-
-        private void btnDrumski_Click(object sender, EventArgs e)
-        {
-            Saobracaj.MainLeget.LegNew.Drumski1 drumski = new Saobracaj.MainLeget.LegNew.Drumski1();
-            drumski.Show();
         }
     }
 }

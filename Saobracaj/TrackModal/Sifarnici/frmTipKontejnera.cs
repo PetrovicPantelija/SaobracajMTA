@@ -170,6 +170,8 @@ namespace Testiranje.Sifarnici
             txtSirina.Value = 0;
             txtVisina.Value = 0;
             txtTara.Value = 0;
+            txtISO.Text = "";
+            //chkAktivna.Checked = false;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -178,17 +180,21 @@ namespace Testiranje.Sifarnici
             {
                 status = true;
             }
+            int tmpAktivna = 0;
+            if (chkAktivna.Checked == true)
+            { tmpAktivna = 1; };
+
             if (status == true)
             {
                 InsertTipKontejnera ins = new InsertTipKontejnera();
-                ins.InsTipKontejnera(txtNaziv.Text, Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtSirina.Text), Convert.ToDouble(txtVisina.Text), Convert.ToDouble(txtTara.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtSkNaziv.Text, txtVelicina.Text);
+                ins.InsTipKontejnera(txtNaziv.Text, Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtSirina.Text), Convert.ToDouble(txtVisina.Text), Convert.ToDouble(txtTara.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtSkNaziv.Text, txtVelicina.Text, txtISO.Text, tmpAktivna);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertTipKontejnera upd = new InsertTipKontejnera();
-                upd.UpdTipKontejnera(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtSirina.Text), Convert.ToDouble(txtVisina.Text), Convert.ToDouble(txtTara.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtSkNaziv.Text, txtVelicina.Text);
+                upd.UpdTipKontejnera(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtSirina.Text), Convert.ToDouble(txtVisina.Text), Convert.ToDouble(txtTara.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtSkNaziv.Text, txtVelicina.Text ,txtISO.Text, tmpAktivna);
                 status=false;
             }
             RefreshDataGrid();
@@ -214,7 +220,7 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT [ID] ,Naziv,Duzina, Sirina, Visina, Tara, [Datum],[Korisnik], SkNaziv, Velicina FROM [dbo].[TipKontenjera]";
+            var select = " SELECT [ID] ,Naziv,Duzina, Sirina, Visina, Tara, [Datum],[Korisnik], SkNaziv, Velicina, ISO, Aktivan FROM [dbo].[TipKontenjera]";
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -294,7 +300,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT [ID] ,Naziv,Duzina, Sirina, Visina, Tara, [Datum],[Korisnik], SkNaziv, Velicina FROM [dbo].[TipKontenjera] where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("SELECT [ID] ,Naziv,Duzina, Sirina, Visina, Tara, [Datum],[Korisnik], SkNaziv, Velicina, ISO, Aktivan FROM [dbo].[TipKontenjera] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -307,6 +313,15 @@ namespace Testiranje.Sifarnici
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtSkNaziv.Text = dr["SkNaziv"].ToString();
                 txtVelicina.Text = dr["Velicina"].ToString();
+                txtISO.Text = dr["ISO"].ToString();
+                if (dr["Aktivan"].ToString() == "1")
+                {
+                    chkAktivna.Checked = true;
+                }
+                else
+                {
+                    chkAktivna.Checked = false;
+                }
             }
             txtSifra.Text = ID;
 
