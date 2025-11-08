@@ -209,7 +209,9 @@ namespace Saobracaj.Drumski
                                     rn.Status,   
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                                    rn.KontejnerID, 'KONACAN' as Trenutno,
+                                    rn.KontejnerID,  
+                                    CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                                    ELSE 'Neraspoređen' END AS Trenutno,
                                     ri.ID AS RadniNalogInterniID
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -234,7 +236,9 @@ namespace Saobracaj.Drumski
                                     rn.Status,   
                                     rn.Status AS StatusID, 
                                     CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                                    rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                                    rn.KontejnerID, 
+                                    CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                                    ELSE 'Neraspoređen' END AS Trenutno,
                                     ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -259,7 +263,9 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                               rn.KontejnerID, 'KONACAN' as Trenutno,
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -284,7 +290,9 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -309,7 +317,9 @@ namespace Saobracaj.Drumski
                                rn.Status,   
                                rn.Status AS StatusID, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID

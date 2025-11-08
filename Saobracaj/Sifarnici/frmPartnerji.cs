@@ -424,10 +424,10 @@ namespace Saobracaj.Sifarnici
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
-            foreach (var column in gridGroupingControl1.TableDescriptor.Columns)
-            {
-                MessageBox.Show(column.Name);
-            }
+            //foreach (var column in gridGroupingControl1.TableDescriptor.Columns)
+            //{
+            //    MessageBox.Show(column.Name);
+            //}
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
@@ -663,6 +663,70 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column6 = dataGridView2.Columns[5];
             dataGridView2.Columns[5].HeaderText = "Napomena";
             dataGridView2.Columns[5].Width = 250;
+        }
+
+
+        private void RefreshDataGrid1(string SifraPartnera)
+        {
+            var select = " SELECT [PartnerID],[SifraApp],[Firma]   FROM [TESTIRANJE].[dbo].[PartnerjiFirma] WHERE PartnerID = "  + SifraPartnera;
+            SqlConnection myConnection = new SqlConnection(connect);
+            var c = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            /*
+            var select4 = " Select Distinct PaSifra, RTrim(PaNaziv) as Partner From Partnerji";
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboPrevoznik.DataSource = ds4.Tables[0];
+            cboPrevoznik.DisplayMember = "Partner";
+            cboPrevoznik.ValueMember = "PaSifra";
+            */
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                PodesiDatagridView(dataGridView1);
+            }
+            else
+            {
+                dataGridView1.BorderStyle = BorderStyle.None;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.White;
+
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            }
+
+            DataGridViewColumn column = dataGridView1.Columns[1];
+            dataGridView1.Columns[0].HeaderText = "Šifra";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Šifra APP";
+            dataGridView1.Columns[1].Width = 150;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Firma";
+            dataGridView1.Columns[2].Width = 150;
+  
         }
 
         private void cboPartneri_SelectedIndexChanged(object sender, EventArgs e)
@@ -1098,11 +1162,10 @@ namespace Saobracaj.Sifarnici
    "   , [PaDelDrzave], [PaPostnaSt], [PaSifDrzave], [PaTelefon1] " +
    "     ,  [PaZiroRac] " +
    "     , [PaOpomba], [PaDMatSt], [PaEMail], [PaEMatSt1] " +
-   "     , " +
    "     , [UIC], [Prevoznik], [Posiljalac], [Primalac] " +
    "     , [Brodar], [Vlasnik], [Spediter], [Platilac] " +
    "     , [Organizator], [NalogodavacCH], [UvoznikCH]," +
-   "  [UICDrzava], [TR2], [Faks], " +
+   "       [UICDrzava], [TR2], [Faks], " +
    "      [PomIzvoznik] " +
    "     , [Logisticar], [Kamioner], [AgentBrodara], [Buyer] " +
    "     , [WayOfSale], [Currency], [Supplier], [SuppSaleMet] " +
@@ -1165,7 +1228,7 @@ namespace Saobracaj.Sifarnici
                 else
                 { cbObveznik.Checked = false; }
                 */
- cboValuta.SelectedValue = dr["Currency"].ToString();
+                cboValuta.SelectedValue = dr["Currency"].ToString();
 
 
 
@@ -1265,10 +1328,9 @@ namespace Saobracaj.Sifarnici
                     txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaSifra").ToString();
                     VratiPodatkeSelect(Convert.ToInt32(txtSifra.Text));
 
-
-                   
                         RefreshDataGrid2(txtSifra.Text);
-                    }
+                        RefreshDataGrid1(txtSifra.Text);
+                }
                 
             }
             catch
@@ -1281,6 +1343,15 @@ namespace Saobracaj.Sifarnici
         {
          //   Sifarnici.PartnerjiPregled p = new PartnerjiPregled();
            // p.Show();
+        }
+
+        private void btnFirme_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSifra.Text))
+            {
+                Sifarnici.frmPartnerjiFirme pko = new Sifarnici.frmPartnerjiFirme(Convert.ToInt32(txtSifra.Text));
+                pko.Show();
+            }
         }
     }
 }

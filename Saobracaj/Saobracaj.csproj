@@ -1606,6 +1606,12 @@
     <Compile Include="Drumski\frmPakovanjeKamiona.Designer.cs">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmPodesavanjeRaspolozivosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmPodesavanjeRaspolozivosti.Designer.cs">
+      <DependentUpon>frmPodesavanjeRaspolozivosti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPozicioniranje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2864,6 +2870,12 @@
     <Compile Include="Sifarnici\frmLogovanjeSecond.Designer.cs">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmPartnerjiFirme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmPartnerjiFirme.Designer.cs">
+      <DependentUpon>frmPartnerjiFirme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmScenario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3094,6 +3106,7 @@
     <Compile Include="Sifarnici\Insertnhm.cs" />
     <Compile Include="Sifarnici\InsertParametri.cs" />
     <Compile Include="Sifarnici\InsertPartnerji.cs" />
+    <Compile Include="Sifarnici\InsertPartnerjiFirme.cs" />
     <Compile Include="Sifarnici\InsertProdSkup.cs" />
     <Compile Include="Sifarnici\InsertPruga.cs" />
     <Compile Include="Sifarnici\InsertPrugaStavke.cs" />
@@ -4767,6 +4780,9 @@
     <EmbeddedResource Include="Drumski\frmPakovanjeKamiona.resx">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmPodesavanjeRaspolozivosti.resx">
+      <DependentUpon>frmPodesavanjeRaspolozivosti.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPozicioniranje.resx">
       <DependentUpon>frmPozicioniranje.cs</DependentUpon>
     </EmbeddedResource>
@@ -5357,6 +5373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmLogovanjeSecond.resx">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmPartnerjiFirme.resx">
+      <DependentUpon>frmPartnerjiFirme.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmScenario.resx">
       <DependentUpon>frmScenario.cs</DependentUpon>

@@ -1,14 +1,16 @@
-﻿using Saobracaj.Drumski;
+﻿
+using Saobracaj.Drumski;
 using Saobracaj.Sifarnici;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -18,13 +20,15 @@ namespace Saobracaj.Dokumenta
         string Poruka = "";
         bool status = false;
         string id = "0";
-
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmAutomobiliDrumski()
         {
             InitializeComponent();
             ChangeTextBox();
             ucitajComboBoxove();
+            UcitajFiltere();
+            chkDatumD.Checked = true;
 
         }
         public frmAutomobiliDrumski(int ID)
@@ -33,6 +37,8 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             ChangeTextBox();
             ucitajComboBoxove();
+            UcitajFiltere();
+            chkDatumD.Checked = true;
             VratiPodatke(id);
 
         }
@@ -282,68 +288,147 @@ namespace Saobracaj.Dokumenta
         }
         private void RefreshDataGRid()
         {
-           
-            var select = " select a.ID as ID, " +
-           "a.RegBr,vv.Naziv AS Vozilo,  Vozac, p.PaNaziv AS Prevoznik, BrojTelefona, LicnaKarta," +
-           "Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
-           "Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as ZaposleniKreirao " +
-           "from Automobili a " +
-           "inner join Delavci d on d.DeSifra = a.Zaposleni " +
-           "inner join Delavci dk on dk.DeSifra = a.KreiraoZaposleni " +
-           "left join VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
-           "left join Partnerji p on  a.PartnerID = p.PaSifra  " +
-           "WHERE a.VoziloDrumskog = 1 ";
+            List<string> statusi = new List<string>();
+            SqlConnection conn = new SqlConnection(connection);
+            using (conn)
+            {
+                conn.Open();
 
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+                // 1. Učitaj status vrednosti iz SistemskePostavke
+                SqlCommand cmd1 = new SqlCommand("SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", conn);
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        statusi.Add(reader.GetString(0));
+                    }
+                }
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+                // 2. Priprema statusa za upit
+                string statusiZaUpit = string.Join(",", statusi
+                    .Select(s => s.Trim())
+                    .Where(s => int.TryParse(s, out _)));
 
+                // 1. Određivanje datuma za proveru (DatumIstovara)
+                string datumZaProveru = "";
+                bool prikaziZaDanas = chkDatumD.Checked;
+                bool prikaziZaSutra = chkDatumS.Checked;
+                if (prikaziZaDanas)
+                {
+                    // CONVERT(date, GETDATE())
+                    datumZaProveru = "GETDATE()";
+                }
+                else if (prikaziZaSutra)
+                {
+                    // CONVERT(date, DATEADD(day, 1, GETDATE()))
+                    datumZaProveru = "DATEADD(day, 1, GETDATE())";
+                }
+                string condition = "";
+
+                if (cboPrevoznikFilter.SelectedValue != null && int.TryParse(cboPrevoznikFilter.SelectedValue.ToString(), out int parsedPrevoznik) && parsedPrevoznik > -1)
+                    condition = condition + " AND  a.PartnerID = " + parsedPrevoznik;
+
+                // var select = " select a.ID as ID,  LTRIM(RTRIM(vv.Naziv)) AS TipVozila, " +
+                //" LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik, LTRIM(RTRIM(Vozac)) AS Vozac, a.RegBr,  LTRIM(RTRIM(BrojTelefona)) as BrojTelefona, LTRIM(RTRIM(LicnaKarta)) AS LicnaKarta," +
+                //"Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
+                //"Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as ZaposleniKreirao, a.VlasnistvoLegeta as TipTransporta " +
+                //"from Automobili a " +
+                //"inner join Delavci d on d.DeSifra = a.Zaposleni " +
+                //"inner join Delavci dk on dk.DeSifra = a.KreiraoZaposleni " +
+                //"left join VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
+                //"left join Partnerji p on  a.PartnerID = p.PaSifra  " +
+                //"WHERE a.VoziloDrumskog = 1 ";
+
+
+                var select = $@" SELECT a.ID AS ID,
+                     LTRIM(RTRIM(vv.Naziv)) AS TipVozila,
+                     LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
+                     LTRIM(RTRIM(a.Vozac)) AS Vozac,
+                     a.RegBr,
+                     LTRIM(RTRIM(a.BrojTelefona)) AS BrojTelefona,
+                     LTRIM(RTRIM(a.LicnaKarta)) AS LicnaKarta,
+                     RTRIM(d.DeIme) + ' ' + RTRIM(d.DePriimek) AS ZaposleniIzmenio,
+                     RTRIM(dk.DeIme) + ' ' + RTRIM(dk.DePriimek) AS ZaposleniKreirao,
+                     a.VlasnistvoLegeta AS TipTransporta,
+                     CASE
+                         WHEN atp.VoziloID IS NOT NULL THEN 'Tehnički Problem'
+                         WHEN rnd.KamionID IS NOT NULL THEN 'N'
+                         ELSE 'R' 
+                     END AS Raspoloziv
+                     FROM Automobili a
+                     INNER JOIN Delavci d ON d.DeSifra = a.Zaposleni
+                     INNER JOIN Delavci dk ON dk.DeSifra = a.KreiraoZaposleni
+                     LEFT JOIN VrstaVozila vv ON a.VlasnistvoLegeta = vv.ID
+                     LEFT JOIN Partnerji p ON a.PartnerID = p.PaSifra
+                     LEFT JOIN AutomobiliTehnickiProblem atp ON
+                     a.ID = atp.VoziloID AND CONVERT(date, atp.Datum) = CONVERT(date, {datumZaProveru})
+                     LEFT JOIN RadniNalogDrumski rnd ON
+                     a.ID = rnd.KamionID
+                     AND CONVERT(date, rnd.DatumIstovara) = CONVERT(date, {datumZaProveru})
+                     AND ISNULL(rnd.Arhiviran, 0) <> 1
+                     AND (rnd.Status IS NULL OR rnd.Status NOT IN ( {statusiZaUpit} ))
+
+                     WHERE a.VoziloDrumskog = 1 {condition}";
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+            }
             PodesiDatagridView(dataGridView1);
 
             int totalWidth = dataGridView1.Width;
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Šifra";
-            dataGridView1.Columns[0].Width = 60;
+            dataGridView1.Columns[0].Width = 50;
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Reg br";
-            dataGridView1.Columns[1].Width = (int)(totalWidth * 0.09);
+            DataGridViewColumn column3 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Tip vozila";
+            dataGridView1.Columns[1].Width = (int)(totalWidth * 0.07);
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Tip vozila";
-            dataGridView1.Columns[2].Width = (int)(totalWidth * 0.11);
+            DataGridViewColumn column5 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevoznik";
+            dataGridView1.Columns[2].Width = (int)(totalWidth * 0.12);
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Vozač";
-            dataGridView1.Columns[3].Width = (int)(totalWidth * 0.13);
+            dataGridView1.Columns[3].Width = (int)(totalWidth * 0.11);
 
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Prevoznik";
-            dataGridView1.Columns[4].Width = (int)(totalWidth * 0.13);
+            DataGridViewColumn column2 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Reg br";
+            dataGridView1.Columns[4].Width = (int)(totalWidth * 0.12);
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Broj telefona";
-            dataGridView1.Columns[5].Width = (int)(totalWidth * 0.13);
+            dataGridView1.Columns[5].Width = (int)(totalWidth * 0.10);
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Lična karta";
-            dataGridView1.Columns[6].Width = (int)(totalWidth * 0.09);
+            dataGridView1.Columns[6].Width = (int)(totalWidth * 0.08);
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Zadnja izmena";
-            dataGridView1.Columns[7].Width = (int)(totalWidth * 0.13);
+            dataGridView1.Columns[7].Width = (int)(totalWidth * 0.10);
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Kreirao";
-            dataGridView1.Columns[8].Width = (int)(totalWidth * 0.13);
+            dataGridView1.Columns[8].Width = (int)(totalWidth * 0.10);
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Raspoloziv";
+            dataGridView1.Columns[9].Width = (int)(totalWidth * 0.10);
+           
+
+            if (dataGridView1.Columns.Contains("TipTransporta"))
+            {
+                dataGridView1.Columns["TipTransporta"].Visible = false;
+            }
 
         }
         private void tsSave_Click(object sender, EventArgs e)
@@ -680,6 +765,80 @@ namespace Saobracaj.Dokumenta
                     break;
                 }
             }
+        }
+
+
+        private void UcitajFiltere()
+        {
+          
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+           
+            var partner = "Select PaSifra,PaNaziv From Partnerji WHERE DrumskiPrevoz = 1 AND ISNULL(Kamioner, 0) = 1 order by PaNaziv";
+            var partAD = new SqlDataAdapter(partner, s_connection);
+            var partDS = new DataSet();
+            partAD.Fill(partDS);
+
+            DataTable dt1 = partDS.Tables[0];
+
+            // Kreiraj novi red sa praznim tekstom i ID -1
+            DataRow prazanRed1 = dt1.NewRow();
+            prazanRed1["PaNaziv"] = "All";
+            prazanRed1["PaSifra"] = -1;
+
+            // Ubaci kao prvi red
+            dt1.Rows.InsertAt(prazanRed1, 0);
+
+            cboPrevoznikFilter.DataSource = dt1;
+            cboPrevoznikFilter.DisplayMember = "PaNaziv";
+            cboPrevoznikFilter.ValueMember = "PaSifra";
+
+    
+        }
+
+        private void btnFiltriraj_Click(object sender, EventArgs e)
+        {
+            RefreshDataGRid();
+        }
+
+        private void chkDatumD_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox s = (CheckBox)sender;
+
+            // 1.Ako se jedan čeka, drugi se automatski odčeka.
+            if (s == chkDatumD && chkDatumD.Checked)
+            {
+                chkDatumS.Checked = false;
+            }
+            else if (s == chkDatumS && chkDatumS.Checked)
+            {
+                chkDatumD.Checked = false;
+            }
+
+            // 2.Sprečava da oba budu odčekirana.
+            if (s.Checked == false)
+            {
+
+                if (s == chkDatumD && chkDatumS.Checked == false)
+                {
+                    chkDatumD.Checked = true;
+                    return;
+                }
+
+                else if (s == chkDatumS && chkDatumD.Checked == false)
+                {
+                    chkDatumS.Checked = true;
+                    return;
+                }
+            }
+            // Osveži DataGrid samo ako je došlo do STVARNE promene
+            RefreshDataGRid();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            Drumski.frmPodesavanjeRaspolozivosti pko = new Drumski.frmPodesavanjeRaspolozivosti();
+            pko.Show();
         }
     }
 }
