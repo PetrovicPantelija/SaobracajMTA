@@ -908,13 +908,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -922,7 +922,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1073,7 +1073,6 @@
             this.cboMestoUtovara.Size = new System.Drawing.Size(230, 21);
             this.cboMestoUtovara.TabIndex = 60;
             this.cboMestoUtovara.TextChanged += new System.EventHandler(this.cboMestoUtovara_TextChanged);
-            this.cboMestoUtovara.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboMestoUtovara_KeyUp);
             // 
             // cboMestoIstovara
             // 
@@ -1182,7 +1181,6 @@
             // 
             // cbOspedicija
             // 
-            this.cbOspedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOspedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOspedicija.FormattingEnabled = true;
             this.cbOspedicija.Location = new System.Drawing.Point(299, 641);
