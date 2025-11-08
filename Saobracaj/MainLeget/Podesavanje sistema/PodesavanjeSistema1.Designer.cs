@@ -1,6 +1,6 @@
 ﻿namespace Saobracaj.MainLeget.LegNew
 {
-    partial class LogistikaIzvoza2
+    partial class PodesavanjeSistema1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogistikaIzvoza2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PodesavanjeSistema1));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblNaslov = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPodesavanja = new Syncfusion.WinForms.Controls.SfButton();
@@ -51,23 +52,22 @@
             this.btnLogistikaIzvoza = new Syncfusion.WinForms.Controls.SfButton();
             this.label2 = new System.Windows.Forms.Label();
             this.panelIz1 = new System.Windows.Forms.Panel();
-            this.sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton4 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton3 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfUV_KreirajNovi = new Syncfusion.WinForms.Controls.SfButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.sfButton9 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton8 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton7 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.sfPPozicije = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfPPolja = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfPLokacije = new Syncfusion.WinForms.Controls.SfButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.sfPZone = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -75,7 +75,6 @@
             this.panel1.SuspendLayout();
             this.panelIz1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitter1
@@ -99,9 +98,9 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.lblNaslov);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             // 
             // splitContainer1.Panel2
             // 
@@ -121,9 +120,9 @@
             this.lblNaslov.ForeColor = System.Drawing.Color.White;
             this.lblNaslov.Location = new System.Drawing.Point(567, 14);
             this.lblNaslov.Name = "lblNaslov";
-            this.lblNaslov.Size = new System.Drawing.Size(227, 29);
+            this.lblNaslov.Size = new System.Drawing.Size(242, 29);
             this.lblNaslov.TabIndex = 4;
-            this.lblNaslov.Text = "LOGISTIKA IZVOZA";
+            this.lblNaslov.Text = "Podešavanje sistema";
             // 
             // pictureBox2
             // 
@@ -138,6 +137,18 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(9, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(122, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // splitContainer2
             // 
@@ -605,142 +616,20 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(10, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(361, 39);
+            this.label2.Size = new System.Drawing.Size(0, 39);
             this.label2.TabIndex = 486;
-            this.label2.Text = "Nalog klijenta za izvoz";
             // 
             // panelIz1
             // 
-            this.panelIz1.Controls.Add(this.sfButton5);
-            this.panelIz1.Controls.Add(this.sfButton4);
-            this.panelIz1.Controls.Add(this.sfButton3);
-            this.panelIz1.Controls.Add(this.sfButton2);
-            this.panelIz1.Controls.Add(this.sfButton6);
-            this.panelIz1.Controls.Add(this.sfUV_KreirajNovi);
-            this.panelIz1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelIz1.Location = new System.Drawing.Point(0, 0);
+            this.panelIz1.Controls.Add(this.sfPPozicije);
+            this.panelIz1.Controls.Add(this.sfPPolja);
+            this.panelIz1.Controls.Add(this.sfPLokacije);
+            this.panelIz1.Controls.Add(this.label1);
+            this.panelIz1.Controls.Add(this.sfPZone);
+            this.panelIz1.Location = new System.Drawing.Point(2, 3);
             this.panelIz1.Name = "panelIz1";
-            this.panelIz1.Size = new System.Drawing.Size(1310, 898);
+            this.panelIz1.Size = new System.Drawing.Size(1105, 892);
             this.panelIz1.TabIndex = 3;
-            // 
-            // sfButton5
-            // 
-            this.sfButton5.AccessibleName = "Button";
-            this.sfButton5.AllowWrapText = true;
-            this.sfButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton5.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton5.ForeColor = System.Drawing.Color.White;
-            this.sfButton5.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton5.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton5.Location = new System.Drawing.Point(693, 339);
-            this.sfButton5.Name = "sfButton5";
-            this.sfButton5.Size = new System.Drawing.Size(287, 225);
-            this.sfButton5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton5.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image14")));
-            this.sfButton5.TabIndex = 482;
-            this.sfButton5.Text = "Lista SVIH naloga";
-            this.sfButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton5.UseVisualStyleBackColor = false;
-            // 
-            // sfButton4
-            // 
-            this.sfButton4.AccessibleName = "Button";
-            this.sfButton4.AllowWrapText = true;
-            this.sfButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton4.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton4.ForeColor = System.Drawing.Color.White;
-            this.sfButton4.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton4.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton4.Location = new System.Drawing.Point(364, 339);
-            this.sfButton4.Name = "sfButton4";
-            this.sfButton4.Size = new System.Drawing.Size(288, 225);
-            this.sfButton4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton4.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image15")));
-            this.sfButton4.TabIndex = 481;
-            this.sfButton4.Text = "Lista REALIZOVANIH naloga";
-            this.sfButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton4.UseVisualStyleBackColor = false;
-            // 
-            // sfButton3
-            // 
-            this.sfButton3.AccessibleName = "Button";
-            this.sfButton3.AllowWrapText = true;
-            this.sfButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton3.ForeColor = System.Drawing.Color.White;
-            this.sfButton3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton3.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton3.Location = new System.Drawing.Point(42, 339);
-            this.sfButton3.Name = "sfButton3";
-            this.sfButton3.Size = new System.Drawing.Size(289, 225);
-            this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image16")));
-            this.sfButton3.TabIndex = 480;
-            this.sfButton3.Text = "Lista OTVORENIH naloga";
-            this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton3.UseVisualStyleBackColor = false;
-            // 
-            // sfButton2
-            // 
-            this.sfButton2.AccessibleName = "Button";
-            this.sfButton2.AllowWrapText = true;
-            this.sfButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton2.ForeColor = System.Drawing.Color.White;
-            this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton2.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton2.Location = new System.Drawing.Point(693, 100);
-            this.sfButton2.Name = "sfButton2";
-            this.sfButton2.Size = new System.Drawing.Size(287, 225);
-            this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton2.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image17")));
-            this.sfButton2.TabIndex = 479;
-            this.sfButton2.Text = "Otkaži postojeći";
-            this.sfButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton2.UseVisualStyleBackColor = false;
-            // 
-            // sfButton6
-            // 
-            this.sfButton6.AccessibleName = "Button";
-            this.sfButton6.AllowWrapText = true;
-            this.sfButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton6.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton6.ForeColor = System.Drawing.Color.White;
-            this.sfButton6.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton6.ImageSize = new System.Drawing.Size(90, 80);
-            this.sfButton6.Location = new System.Drawing.Point(364, 100);
-            this.sfButton6.Name = "sfButton6";
-            this.sfButton6.Size = new System.Drawing.Size(288, 225);
-            this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton6.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image18")));
-            this.sfButton6.TabIndex = 478;
-            this.sfButton6.Text = "Izmeni postojeći";
-            this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton6.UseVisualStyleBackColor = false;
-            // 
-            // sfUV_KreirajNovi
-            // 
-            this.sfUV_KreirajNovi.AccessibleName = "Button";
-            this.sfUV_KreirajNovi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfUV_KreirajNovi.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfUV_KreirajNovi.ForeColor = System.Drawing.Color.White;
-            this.sfUV_KreirajNovi.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfUV_KreirajNovi.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfUV_KreirajNovi.Location = new System.Drawing.Point(43, 100);
-            this.sfUV_KreirajNovi.Name = "sfUV_KreirajNovi";
-            this.sfUV_KreirajNovi.Size = new System.Drawing.Size(288, 225);
-            this.sfUV_KreirajNovi.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfUV_KreirajNovi.Style.ForeColor = System.Drawing.Color.White;
-            this.sfUV_KreirajNovi.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image19")));
-            this.sfUV_KreirajNovi.TabIndex = 477;
-            this.sfUV_KreirajNovi.Text = "Kreiraj novi";
-            this.sfUV_KreirajNovi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfUV_KreirajNovi.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
@@ -777,7 +666,7 @@
             this.sfButton9.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
             this.sfButton9.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage12")));
             this.sfButton9.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.sfButton9.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image20")));
+            this.sfButton9.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image14")));
             this.sfButton9.Style.ImageForeColor = System.Drawing.Color.White;
             this.sfButton9.TabIndex = 56;
             this.sfButton9.Text = "Logout";
@@ -807,7 +696,7 @@
             this.sfButton8.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
             this.sfButton8.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage13")));
             this.sfButton8.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.sfButton8.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image21")));
+            this.sfButton8.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image15")));
             this.sfButton8.Style.ImageForeColor = System.Drawing.Color.White;
             this.sfButton8.TabIndex = 55;
             this.sfButton8.Text = "Dashboard";
@@ -837,7 +726,7 @@
             this.sfButton7.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
             this.sfButton7.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage14")));
             this.sfButton7.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.sfButton7.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image22")));
+            this.sfButton7.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image16")));
             this.sfButton7.Style.ImageForeColor = System.Drawing.Color.White;
             this.sfButton7.TabIndex = 54;
             this.sfButton7.Text = "Početni meni";
@@ -867,26 +756,100 @@
             this.sfButton1.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
             this.sfButton1.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage15")));
             this.sfButton1.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.sfButton1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image23")));
+            this.sfButton1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image17")));
             this.sfButton1.Style.ImageForeColor = System.Drawing.Color.White;
             this.sfButton1.TabIndex = 53;
             this.sfButton1.Text = "Povratak na predhodni meni";
             this.sfButton1.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.sfButton1.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // sfPPozicije
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(122, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.sfPPozicije.AccessibleName = "Button";
+            this.sfPPozicije.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPPozicije.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfPPozicije.ForeColor = System.Drawing.Color.White;
+            this.sfPPozicije.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfPPozicije.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfPPozicije.Location = new System.Drawing.Point(37, 238);
+            this.sfPPozicije.Name = "sfPPozicije";
+            this.sfPPozicije.Size = new System.Drawing.Size(288, 41);
+            this.sfPPozicije.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPPozicije.Style.ForeColor = System.Drawing.Color.White;
+            this.sfPPozicije.TabIndex = 500;
+            this.sfPPozicije.Text = "Pozicije";
+            this.sfPPozicije.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfPPozicije.UseVisualStyleBackColor = false;
             // 
-            // LogistikaIzvoza2
+            // sfPPolja
+            // 
+            this.sfPPolja.AccessibleName = "Button";
+            this.sfPPolja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPPolja.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfPPolja.ForeColor = System.Drawing.Color.White;
+            this.sfPPolja.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfPPolja.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfPPolja.Location = new System.Drawing.Point(37, 191);
+            this.sfPPolja.Name = "sfPPolja";
+            this.sfPPolja.Size = new System.Drawing.Size(288, 41);
+            this.sfPPolja.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPPolja.Style.ForeColor = System.Drawing.Color.White;
+            this.sfPPolja.TabIndex = 499;
+            this.sfPPolja.Text = "Polja";
+            this.sfPPolja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfPPolja.UseVisualStyleBackColor = false;
+            // 
+            // sfPLokacije
+            // 
+            this.sfPLokacije.AccessibleName = "Button";
+            this.sfPLokacije.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPLokacije.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfPLokacije.ForeColor = System.Drawing.Color.White;
+            this.sfPLokacije.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfPLokacije.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfPLokacije.Location = new System.Drawing.Point(37, 144);
+            this.sfPLokacije.Name = "sfPLokacije";
+            this.sfPLokacije.Size = new System.Drawing.Size(288, 41);
+            this.sfPLokacije.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPLokacije.Style.ForeColor = System.Drawing.Color.White;
+            this.sfPLokacije.TabIndex = 498;
+            this.sfPLokacije.Text = "Lokacije";
+            this.sfPLokacije.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfPLokacije.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(30, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 39);
+            this.label1.TabIndex = 497;
+            this.label1.Text = "Šifarnici";
+            // 
+            // sfPZone
+            // 
+            this.sfPZone.AccessibleName = "Button";
+            this.sfPZone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPZone.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfPZone.ForeColor = System.Drawing.Color.White;
+            this.sfPZone.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfPZone.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfPZone.Location = new System.Drawing.Point(37, 97);
+            this.sfPZone.Name = "sfPZone";
+            this.sfPZone.Size = new System.Drawing.Size(288, 41);
+            this.sfPZone.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPZone.Style.ForeColor = System.Drawing.Color.White;
+            this.sfPZone.TabIndex = 496;
+            this.sfPZone.Text = "Zone";
+            this.sfPZone.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfPZone.UseVisualStyleBackColor = false;
+            // 
+            // PodesavanjeSistema1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -897,7 +860,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "LogistikaIzvoza2";
+            this.Name = "PodesavanjeSistema1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "MainLeget";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -908,6 +871,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
@@ -915,8 +879,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelIz1.ResumeLayout(false);
+            this.panelIz1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -925,6 +889,7 @@
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaUvoza;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaIzvoza;
         private System.Windows.Forms.Panel panel1;
@@ -947,14 +912,12 @@
         private Syncfusion.WinForms.Controls.SfButton sfButton7;
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
         private System.Windows.Forms.Panel panelIz1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton5;
-        private Syncfusion.WinForms.Controls.SfButton sfButton4;
-        private Syncfusion.WinForms.Controls.SfButton sfButton3;
-        private Syncfusion.WinForms.Controls.SfButton sfButton2;
-        private Syncfusion.WinForms.Controls.SfButton sfButton6;
-        private Syncfusion.WinForms.Controls.SfButton sfUV_KreirajNovi;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNaslov;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Syncfusion.WinForms.Controls.SfButton sfPPozicije;
+        private Syncfusion.WinForms.Controls.SfButton sfPPolja;
+        private Syncfusion.WinForms.Controls.SfButton sfPLokacije;
+        private System.Windows.Forms.Label label1;
+        private Syncfusion.WinForms.Controls.SfButton sfPZone;
     }
 }

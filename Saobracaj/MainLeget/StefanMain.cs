@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace Saobracaj.MainLeget
 {
-    public partial class UvozMain : Form
+    public partial class StefanMain : Form
     {
-        private readonly Action<Form> _open;
-        public UvozMain(Action<Form> open)
+        public StefanMain()
         {
             InitializeComponent();
-            _open = open;
+        }
+
+        private void btnPodesavanja_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

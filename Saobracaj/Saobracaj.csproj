@@ -2100,41 +2100,47 @@
     <Compile Include="Main2.Designer.cs">
       <DependentUpon>Main2.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLeget\LegNew\Drumski1.cs">
+    <Compile Include="MainLeget\Drumski\Cerade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainLeget\LegNew\Drumski1.Designer.cs">
+    <Compile Include="MainLeget\Drumski\Cerade.Designer.cs">
+      <DependentUpon>Cerade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\NalogZaDrumski.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\NalogZaDrumski.Designer.cs">
+      <DependentUpon>NalogZaDrumski.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\GlavniEkran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\GlavniEkran.Designer.cs">
+      <DependentUpon>GlavniEkran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\Drumski1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\Drumski1.Designer.cs">
       <DependentUpon>Drumski1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLeget\LegNew\Form1.cs">
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainLeget\LegNew\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainLeget\LegNew\LogistikaIzvoza1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainLeget\LegNew\LogistikaIzvoza1.Designer.cs">
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza1.Designer.cs">
       <DependentUpon>LogistikaIzvoza1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLeget\LegNew\LogistikaIzvoza2.cs">
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainLeget\LegNew\LogistikaIzvoza2.Designer.cs">
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza2.Designer.cs">
       <DependentUpon>LogistikaIzvoza2.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLeget\LegNew\PodesavanjeSistema1.cs">
+    <Compile Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainLeget\LegNew\PodesavanjeSistema1.Designer.cs">
+    <Compile Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.Designer.cs">
       <DependentUpon>PodesavanjeSistema1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainLeget\UvozMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainLeget\UvozMain.Designer.cs">
-      <DependentUpon>UvozMain.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\Info.cs">
       <SubType>Form</SubType>
@@ -5023,20 +5029,26 @@
     <EmbeddedResource Include="Main2.resx">
       <DependentUpon>Main2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\LegNew\Drumski1.resx">
+    <EmbeddedResource Include="MainLeget\Drumski\Cerade.resx">
+      <DependentUpon>Cerade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Drumski\NalogZaDrumski.resx">
+      <DependentUpon>NalogZaDrumski.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\GlavniEkran.resx">
+      <DependentUpon>GlavniEkran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Drumski\Drumski1.resx">
       <DependentUpon>Drumski1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\LegNew\LogistikaIzvoza1.resx">
+    <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza1.resx">
       <DependentUpon>LogistikaIzvoza1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\LegNew\LogistikaIzvoza2.resx">
+    <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza2.resx">
       <DependentUpon>LogistikaIzvoza2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\LegNew\PodesavanjeSistema1.resx">
+    <EmbeddedResource Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.resx">
       <DependentUpon>PodesavanjeSistema1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\UvozMain.resx">
-      <DependentUpon>UvozMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>

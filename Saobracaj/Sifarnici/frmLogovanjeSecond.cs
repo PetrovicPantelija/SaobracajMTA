@@ -20,6 +20,7 @@ using Saobracaj.Pantheon_Export;
 using Microsoft.Identity.Client;
 using Saobracaj.Uvoz;
 using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.LegNew;
 
 namespace Saobracaj.Sifarnici
 {
@@ -132,7 +133,12 @@ namespace Saobracaj.Sifarnici
                     }
                     if (checkBox2.Checked)
                     {
+                        /*
                         LogistikaIzvoza1 frm = new LogistikaIzvoza1();
+                        frm.Show(); Drumski1 frm = new Drumski1();
+                        frm.Show();
+                        */
+                        NewMain frm = new NewMain();
                         frm.Show();
                     }
                     

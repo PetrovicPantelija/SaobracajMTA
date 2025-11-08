@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Saobracaj.MainLeget
+namespace Saobracaj.MainLeget.Drumski
 {
-    public partial class Info : Form
+    public partial class NalogZaDrumski : Form
     {
-        private readonly Action<Form> _open;
-        public Info()
+        public NalogZaDrumski()
         {
             InitializeComponent();
+        }
+
+        private void btnTransportIzvoz_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Saobracaj.MainLeget.LegNew
+namespace Saobracaj.MainLeget
 {
-    public partial class Form1 : Form
+    public partial class GlavniEkran : Form
     {
-        public Form1()
+        public GlavniEkran()
         {
             InitializeComponent();
         }

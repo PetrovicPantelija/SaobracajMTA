@@ -1,5 +1,7 @@
 ﻿using Saobracaj.Drumski;
 using Saobracaj.MainLeget;
+using Saobracaj.MainLeget.LegNew;
+using Saobracaj.Sifarnici;
 using Saobracaj.TrackModal.Sifarnici;
 using System;
 using System.Collections.Generic;
@@ -14,41 +16,118 @@ using System.Windows.Forms;
 
 namespace Saobracaj
 {
-    public partial class LogistikaIzvoza1 : Form
+    public partial class NewMain : Form
     {
-        private Form _activeChild;
-        public LogistikaIzvoza1()
+        private readonly Stack<Form> nav = new Stack<Form>();
+        private Form aktivna = null;
+        private List<Control> homeCtrl;
+        public NewMain()
         {
             InitializeComponent();
-           // OpenInPanel2(new MainLeget.Info(OpenInPanel2));
-
-           // btnLogistikaUvoza.Click += (s, e) => OpenInPanel2(new MainLeget.UvozMain(OpenInPanel2));
+            ShowHome();
         }
-        public void OpenInPanel2(Form child)
+        private void MainLeget_Load(object sender, EventArgs e)
         {
-            if(_activeChild != null)
-            {
-                _activeChild.Close();
-                _activeChild.Dispose();
-                _activeChild = null;
-            }
-            _activeChild = child;
-            child.TopLevel = false;
-            child.FormBorderStyle=FormBorderStyle.None;
-            child.Dock = DockStyle.Fill;
-            child.AutoScaleMode=AutoScaleMode.None;
 
-            splitContainer2.Panel2.Controls.Clear();
-            splitContainer2.Panel2.Controls.Add(child);
+        }
+        public void ShowChild(Form child,bool addToHistory = true)
+        {
+            if(aktivna != null)
+            {
+                if (addToHistory) nav.Push(aktivna);
+                aktivna.Hide();
+                RemoveChildFromPanel1();
+            }
+            aktivna = child;
+            child.TopLevel = false;
+            child.FormBorderStyle = FormBorderStyle.None;
+            child.Dock = DockStyle.Fill;
+            splitContainer3.Panel1.Controls.Add(child);
             child.Show();
             child.BringToFront();
             child.Focus();
+            UpdateBackEnabled();
+
         }
-        #region Boje
-        private void MainLeget_Load(object sender, EventArgs e)
+        public void NavigateBack()
         {
-           // Paneli();
+
+            if (nav.Count == 0)
+            {
+                ShowHome();
+                return;
+            }
+
+            var prev = nav.Pop();
+
+            if (aktivna != null)
+            {
+                aktivna.Hide();
+                RemoveChildFromPanel1();
+                aktivna = null;
+            }
+
+            prev.TopLevel = false;
+            prev.FormBorderStyle = FormBorderStyle.None;
+            prev.Dock = DockStyle.Fill;
+
+            splitContainer3.Panel1.Controls.Add(prev);
+            prev.Show();
+            prev.BringToFront();
+            prev.Focus();
+
+            aktivna = prev;
+            UpdateBackEnabled();
         }
+        private void ShowHome()
+        {
+            if (aktivna != null)
+            {
+                aktivna.Hide();
+                RemoveChildFromPanel1();
+                aktivna = null;
+            }
+            while (nav.Count > 0) nav.Pop().Hide();
+
+            var home = new GlavniEkran();
+            aktivna = home;
+
+            home.TopLevel = false;
+            home.FormBorderStyle = FormBorderStyle.None;
+            home.Dock = DockStyle.Fill;
+
+            splitContainer3.Panel1.Controls.Clear();
+            splitContainer3.Panel1.Controls.Add(home);
+            home.Show();
+            home.BringToFront();
+            home.Focus();
+            splitContainer3.Panel2.Hide();
+
+        }
+        private void RemoveChildFromPanel1()
+        {
+            var toRemove = new List<Control>();
+            foreach (Control c in splitContainer3.Panel1.Controls)
+                if (c is Form) toRemove.Add(c);
+
+            foreach (var c in toRemove)
+                splitContainer3.Panel1.Controls.Remove(c);
+        }
+        private void UpdateBackEnabled() => btnNazad.Enabled = nav.Count > 0;
+        private void btnNazad_Click(object sender, EventArgs e) => NavigateBack();
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            ShowHome();
+        }
+        private void btnLogistikaIzvoza_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new LogistikaIzvoza1(), true);
+            splitContainer3.Panel2.Show();
+        }
+
+        #region Boje
+
         public void Paneli()
         {
             Color formBg = ColorTranslator.FromHtml("#EEF2F6");
@@ -195,23 +274,11 @@ namespace Saobracaj
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-           //OpenInPanel2(new MainLeget.Info(OpenInPanel2));
-        }
-
         private void btnLogistikaUvoza_Click(object sender, EventArgs e)
         {
-            //panel1.Visible = false;
+
         }
 
-        private void sfButton1_Click(object sender, EventArgs e)
-        {
-            Saobracaj.MainLeget.LegNew.LogistikaIzvoza1 li = new Saobracaj.MainLeget.LegNew.LogistikaIzvoza1();
-            li.Show();
-    
-          
-        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -220,15 +287,24 @@ namespace Saobracaj
 
         private void btnPodesavanja_Click(object sender, EventArgs e)
         {
-            Saobracaj.MainLeget.LegNew.PodesavanjeSistema1 ps = new MainLeget.LegNew.PodesavanjeSistema1();
-            ps.Show();
+
         }
 
         private void btnDrumski_Click(object sender, EventArgs e)
         {
-            Saobracaj.MainLeget.LegNew.Drumski1 drumski = new Saobracaj.MainLeget.LegNew.Drumski1();
-            drumski.Show();
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Drumski1(), true);
+            splitContainer3.Panel2.Show();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }
 
