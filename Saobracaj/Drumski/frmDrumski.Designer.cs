@@ -908,13 +908,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton2
             // 
@@ -922,7 +922,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(24, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1052,6 +1052,7 @@
             // 
             // cboKlijent
             // 
+            this.cboKlijent.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboKlijent.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKlijent.FormattingEnabled = true;
             this.cboKlijent.ItemHeight = 13;
@@ -1060,10 +1061,10 @@
             this.cboKlijent.Name = "cboKlijent";
             this.cboKlijent.Size = new System.Drawing.Size(230, 21);
             this.cboKlijent.TabIndex = 50;
-            this.cboKlijent.TextChanged += new System.EventHandler(this.cboKlijent_TextChanged);
             // 
             // cboMestoUtovara
             // 
+            this.cboMestoUtovara.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboMestoUtovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovara.FormattingEnabled = true;
             this.cboMestoUtovara.ItemHeight = 13;
@@ -1072,10 +1073,10 @@
             this.cboMestoUtovara.Name = "cboMestoUtovara";
             this.cboMestoUtovara.Size = new System.Drawing.Size(230, 21);
             this.cboMestoUtovara.TabIndex = 60;
-            this.cboMestoUtovara.TextChanged += new System.EventHandler(this.cboMestoUtovara_TextChanged);
             // 
             // cboMestoIstovara
             // 
+            this.cboMestoIstovara.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboMestoIstovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoIstovara.FormattingEnabled = true;
             this.cboMestoIstovara.ItemHeight = 13;
@@ -1084,7 +1085,6 @@
             this.cboMestoIstovara.Name = "cboMestoIstovara";
             this.cboMestoIstovara.Size = new System.Drawing.Size(230, 21);
             this.cboMestoIstovara.TabIndex = 80;
-            this.cboMestoIstovara.TextChanged += new System.EventHandler(this.cboMestoIstovara_TextChanged);
             // 
             // txtKontaktOsobaUtovara
             // 
@@ -1127,6 +1127,7 @@
             // 
             // cboMestoPreuzimanja
             // 
+            this.cboMestoPreuzimanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboMestoPreuzimanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoPreuzimanja.FormattingEnabled = true;
             this.cboMestoPreuzimanja.ItemHeight = 13;
@@ -1135,10 +1136,10 @@
             this.cboMestoPreuzimanja.Name = "cboMestoPreuzimanja";
             this.cboMestoPreuzimanja.Size = new System.Drawing.Size(230, 21);
             this.cboMestoPreuzimanja.TabIndex = 40;
-            this.cboMestoPreuzimanja.TextChanged += new System.EventHandler(this.cboMestoPreuzimanja_TextChanged);
             // 
             // cboOCarinarnica
             // 
+            this.cboOCarinarnica.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboOCarinarnica.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboOCarinarnica.FormattingEnabled = true;
             this.cboOCarinarnica.ItemHeight = 13;
@@ -1147,10 +1148,10 @@
             this.cboOCarinarnica.Name = "cboOCarinarnica";
             this.cboOCarinarnica.Size = new System.Drawing.Size(230, 21);
             this.cboOCarinarnica.TabIndex = 120;
-            this.cboOCarinarnica.TextChanged += new System.EventHandler(this.cboOCarinarnica_TextChanged);
             // 
             // cboPolaznaCarinarnica
             // 
+            this.cboPolaznaCarinarnica.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboPolaznaCarinarnica.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPolaznaCarinarnica.FormattingEnabled = true;
             this.cboPolaznaCarinarnica.ItemHeight = 13;
@@ -1159,7 +1160,6 @@
             this.cboPolaznaCarinarnica.Name = "cboPolaznaCarinarnica";
             this.cboPolaznaCarinarnica.Size = new System.Drawing.Size(230, 21);
             this.cboPolaznaCarinarnica.TabIndex = 110;
-            this.cboPolaznaCarinarnica.TextChanged += new System.EventHandler(this.cboPolaznaCarinarnica_TextChanged);
             // 
             // txtPrevoznik
             // 
@@ -1181,6 +1181,7 @@
             // 
             // cbOspedicija
             // 
+            this.cbOspedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOspedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOspedicija.FormattingEnabled = true;
             this.cbOspedicija.Location = new System.Drawing.Point(299, 641);
@@ -1188,7 +1189,6 @@
             this.cbOspedicija.Name = "cbOspedicija";
             this.cbOspedicija.Size = new System.Drawing.Size(229, 21);
             this.cbOspedicija.TabIndex = 240;
-            this.cbOspedicija.TextChanged += new System.EventHandler(this.cbOspedicija_TextChanged);
             // 
             // txtKontaktPolazneSpedicije
             // 
@@ -1230,6 +1230,7 @@
             // 
             // cboPolaznaSpedicija
             // 
+            this.cboPolaznaSpedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboPolaznaSpedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPolaznaSpedicija.FormattingEnabled = true;
             this.cboPolaznaSpedicija.Location = new System.Drawing.Point(299, 595);
@@ -1237,7 +1238,6 @@
             this.cboPolaznaSpedicija.Name = "cboPolaznaSpedicija";
             this.cboPolaznaSpedicija.Size = new System.Drawing.Size(229, 21);
             this.cboPolaznaSpedicija.TabIndex = 230;
-            this.cboPolaznaSpedicija.TextChanged += new System.EventHandler(this.cboPolaznaSpedicija_TextChanged);
             // 
             // cboTipTransporta
             // 
