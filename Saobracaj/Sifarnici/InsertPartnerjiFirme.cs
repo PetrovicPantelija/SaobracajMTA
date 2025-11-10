@@ -47,12 +47,13 @@ namespace Saobracaj.Sifarnici
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
-            IDPom = (int)myCommand.Parameters["@IDPom"].Value;
+            
             bool error = true;
             try
             {
                 myCommand.ExecuteNonQuery();
                 myTransaction.Commit();
+                IDPom = (int)myCommand.Parameters["@IDPom"].Value;
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }

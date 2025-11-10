@@ -1350,8 +1350,13 @@ namespace Saobracaj.Sifarnici
             if (!string.IsNullOrWhiteSpace(txtSifra.Text))
             {
                 Sifarnici.frmPartnerjiFirme pko = new Sifarnici.frmPartnerjiFirme(Convert.ToInt32(txtSifra.Text));
+                pko.FormClosed += pko_FormClosed;
                 pko.Show();
             }
+        }
+        private void pko_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshDataGrid1(txtSifra.Text);
         }
     }
 }
