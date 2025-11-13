@@ -2019,6 +2019,12 @@
     <Compile Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.Designer.cs">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmProdajniNalogIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmProdajniNalogIzvoz.Designer.cs">
+      <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmValute.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2041,6 +2047,7 @@
     <Compile Include="Izvoz\InsertKrajnjaDestinacija.cs" />
     <Compile Include="Izvoz\InsertMestaUtovara.cs" />
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
+    <Compile Include="Izvoz\InsertProdajniNalogIzvoz.cs" />
     <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="Izvoz\InsertVrstePlombi.cs" />
     <Compile Include="Izvoz\IzvestajVaganja.cs">
@@ -2142,12 +2149,6 @@
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza2.Designer.cs">
       <DependentUpon>LogistikaIzvoza2.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.Designer.cs">
-      <DependentUpon>PodesavanjeSistema1.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainLeget\Info.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2159,6 +2160,12 @@
     </Compile>
     <Compile Include="MainLeget\NewMain.Designer.cs">
       <DependentUpon>NewMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Podesavanjesistema\Podesavanje1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Podesavanjesistema\Podesavanje1.Designer.cs">
+      <DependentUpon>Podesavanje1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainP.cs">
       <SubType>Form</SubType>
@@ -5007,6 +5014,9 @@
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.resx">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvoz.resx">
+      <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmValute.resx">
       <DependentUpon>frmValute.cs</DependentUpon>
     </EmbeddedResource>
@@ -5063,14 +5073,14 @@
     <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza2.resx">
       <DependentUpon>LogistikaIzvoza2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainLeget\Podesavanje sistema\PodesavanjeSistema1.resx">
-      <DependentUpon>PodesavanjeSistema1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\NewMain.resx">
       <DependentUpon>NewMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Podesavanjesistema\Podesavanje1.resx">
+      <DependentUpon>Podesavanje1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainP.resx">
       <DependentUpon>MainP.cs</DependentUpon>

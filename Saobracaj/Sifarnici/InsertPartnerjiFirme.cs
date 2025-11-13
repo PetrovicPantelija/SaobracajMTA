@@ -47,7 +47,7 @@ namespace Saobracaj.Sifarnici
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
-            IDPom = (int)myCommand.Parameters["@IDPom"].Value;
+           // IDPom = (int)myCommand.Parameters["@IDPom"].Value;
             bool error = true;
             try
             {
@@ -55,6 +55,7 @@ namespace Saobracaj.Sifarnici
                 myTransaction.Commit();
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
+                
             }
 
             catch (SqlException ex)

@@ -1,4 +1,5 @@
-﻿using Saobracaj.MainLeget;
+﻿using Saobracaj.Izvoz;
+using Saobracaj.MainLeget;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,6 +69,13 @@ namespace Saobracaj.MainLeget.LegNew
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void sfButton1_Click_1(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvoz(), true);
+    
         }
     }
 }

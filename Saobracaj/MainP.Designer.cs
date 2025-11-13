@@ -5186,8 +5186,8 @@ namespace Saobracaj
             this.toolStripButton133.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton133.Image")));
             this.toolStripButton133.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton133.Name = "toolStripButton133";
-            this.toolStripButton133.Size = new System.Drawing.Size(112, 23);
-            this.toolStripButton133.Text = "Pozicije skladišta";
+            this.toolStripButton133.Size = new System.Drawing.Size(56, 23);
+            this.toolStripButton133.Text = "Pozicije";
             this.toolStripButton133.Click += new System.EventHandler(this.toolStripButton133_Click);
             // 
             // toolStripButton134

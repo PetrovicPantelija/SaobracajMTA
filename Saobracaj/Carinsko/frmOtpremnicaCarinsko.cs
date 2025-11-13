@@ -862,5 +862,10 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             dataGridView1.Rows.Clear();        
             dataGridView1.ClearSelection();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
