@@ -76,7 +76,7 @@
             this.sfButton7.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
             this.sfButton7.ForeColor = System.Drawing.Color.White;
             this.sfButton7.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton7.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton7.ImageSize = new System.Drawing.Size(150, 80);
             this.sfButton7.Location = new System.Drawing.Point(347, 173);
             this.sfButton7.Name = "sfButton7";
             this.sfButton7.Size = new System.Drawing.Size(288, 228);

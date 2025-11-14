@@ -1,6 +1,7 @@
 ﻿using Saobracaj.Drumski;
 using Saobracaj.MainLeget;
 using Saobracaj.MainLeget.LegNew;
+using Saobracaj.MainLeget.LegNew.Podesavanjesistema;
 using Saobracaj.Sifarnici;
 using Saobracaj.TrackModal.Sifarnici;
 using System;
@@ -122,8 +123,10 @@ namespace Saobracaj
         private void btnLogistikaIzvoza_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new LogistikaIzvoza1(), true);
+            parent?.ShowChild(new MainLeget.LegNew.LogistikaIzvoza1(), true);
             splitContainer3.Panel2.Show();
+            lblNaslov.Text = "LOGISTIKA IZVOZA";
+
         }
 
         #region Boje
@@ -287,7 +290,10 @@ namespace Saobracaj
 
         private void btnPodesavanja_Click(object sender, EventArgs e)
         {
-
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Podesavanje1(), true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "PODEŠAVANJE SISTEMA";
         }
 
         private void btnDrumski_Click(object sender, EventArgs e)
@@ -295,6 +301,7 @@ namespace Saobracaj
             var parent = this.TopLevelControl as NewMain;
             parent?.ShowChild(new Drumski1(), true);
             splitContainer3.Panel2.Show();
+            lblNaslov.Text = "DRUMSKI TRANSPORT";
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -302,9 +309,15 @@ namespace Saobracaj
 
         }
 
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            lblNaslov.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
+        }
 
-
-
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

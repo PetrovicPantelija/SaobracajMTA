@@ -69,6 +69,7 @@
             this.sfButton1.Text = "Kreiraj novi";
             this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton1.UseVisualStyleBackColor = false;
+            this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click_1);
             // 
             // sfButton2
             // 

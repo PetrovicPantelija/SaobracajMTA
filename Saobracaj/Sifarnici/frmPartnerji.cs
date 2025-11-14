@@ -225,21 +225,30 @@ namespace Saobracaj.Sifarnici
                     chkBrodar.Visible = true;
                     chkBrodar.Location = new Point(prviRedX, prviRedY + 60);
 
+
                     chkAgentBrodara.Visible = true;
                     chkAgentBrodara.Location = new Point(prviRedX, prviRedY + 90);
+                    chkAgentBrodara.Text = "Ostali";
 
                     chkUvoznik.Visible = true;
                     chkUvoznik.Location = new Point(drugiRedX, drugiRedY);
-
-                    chkIzvoznik.Visible = true;
-                    chkIzvoznik.Location = new Point(drugiRedX, drugiRedY + 30);
+                    chkUvoznik.Text = "Direktni";
+                   
+                    chkIzvoznik.Visible = false;
+                    chkDrumskiPrevoz.Text = "Vozar/Transporter";
+                    chkDrumskiPrevoz.Location = new Point(drugiRedX, drugiRedY + 30);
 
                     chkKamioner.Visible = true;
                     chkKamioner.Location = new Point(drugiRedX, drugiRedY + 60);
+                    chkKamioner.Text = "InterCompany";
 
                     chkOrganizator.Text = "Železnički operater";
                     chkOrganizator.Visible = true;
                     chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
+
+                    chkDrumskiPrevoz.Text = "Vozar/Transporter";
+                    label2.Text = "ISO Code";
+                    label17.Text = "ISO Drzava";
 
                     //Nije vidljivo za Leget
                     toolStripButton2.Visible = false; //Export PAnteon
@@ -247,6 +256,8 @@ namespace Saobracaj.Sifarnici
                     label22.Visible = false;
                     numFREC.Visible = false; // FREC
                     chkDrumskiPrevoz.Visible = true;
+                    label31.Text = "Jedinstveni ID";
+                    label14.Text = "Domicilni ID";
                     break;
 
                 case "TA":
