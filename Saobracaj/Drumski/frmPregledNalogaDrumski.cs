@@ -706,16 +706,22 @@ namespace Saobracaj.Drumski
             var result = MessageBox.Show(
                     $"Da li pravite kopiju za nalog {nalogID}?",
                     "Potvrda kopiranja",
-                    MessageBoxButtons.YesNo,
+                    MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question
                 );
 
-                        int? duplikatNalogID;
+            // Ako korisnik zatvori dijalog (klik na X), ne radi ništa
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
 
-                        if (result == DialogResult.Yes)
-                            duplikatNalogID = nalogID;   // ako je korisnik kliknuo "Da"
-                        else
-                            duplikatNalogID = null;
+            int? duplikatNalogID;
+
+            if (result == DialogResult.Yes)
+                duplikatNalogID = nalogID;   // ako je korisnik kliknuo "Da"
+            else
+                duplikatNalogID = null;
             bool sveUspešno = true;
             InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
