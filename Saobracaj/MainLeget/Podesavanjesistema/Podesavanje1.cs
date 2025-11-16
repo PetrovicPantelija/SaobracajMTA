@@ -144,6 +144,32 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
             frmTipKontejnera tk = new frmTipKontejnera(Korisnik);
             tk.Show();
         }
+
+        private void sfButton1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfPartnerji_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPArtnerji")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmPartnerji poz = new Sifarnici.frmPartnerji();
+                poz.Show();
+            }
+        }
     }
 }
 

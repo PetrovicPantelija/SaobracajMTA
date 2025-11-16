@@ -36,6 +36,7 @@
             this.btnLogistikaIzvozaPM4 = new Syncfusion.WinForms.Controls.SfButton();
             this.btnLogistikaIzvozaPM3 = new Syncfusion.WinForms.Controls.SfButton();
             this.btnLogistikaIzvozaPM1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfPartnerji = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // splitter1
@@ -115,7 +116,7 @@
             this.btnLogistikaIzvozaPM4.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM4.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
             this.btnLogistikaIzvozaPM4.TabIndex = 495;
             this.btnLogistikaIzvozaPM4.Text = "Pozicije";
             this.btnLogistikaIzvozaPM4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -136,7 +137,7 @@
             this.btnLogistikaIzvozaPM3.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
             this.btnLogistikaIzvozaPM3.TabIndex = 494;
             this.btnLogistikaIzvozaPM3.Text = "Polja";
             this.btnLogistikaIzvozaPM3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -168,12 +169,34 @@
             this.btnLogistikaIzvozaPM1.UseVisualStyleBackColor = false;
             this.btnLogistikaIzvozaPM1.Click += new System.EventHandler(this.btnLogistikaIzvozaPM1_Click);
             // 
+            // sfPartnerji
+            // 
+            this.sfPartnerji.AccessibleName = "Button";
+            this.sfPartnerji.AllowWrapText = true;
+            this.sfPartnerji.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPartnerji.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfPartnerji.ForeColor = System.Drawing.Color.White;
+            this.sfPartnerji.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfPartnerji.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfPartnerji.Location = new System.Drawing.Point(670, 346);
+            this.sfPartnerji.Name = "sfPartnerji";
+            this.sfPartnerji.Size = new System.Drawing.Size(288, 225);
+            this.sfPartnerji.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfPartnerji.Style.ForeColor = System.Drawing.Color.White;
+            this.sfPartnerji.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfPartnerji.TabIndex = 500;
+            this.sfPartnerji.Text = "Partneri";
+            this.sfPartnerji.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfPartnerji.UseVisualStyleBackColor = false;
+            this.sfPartnerji.Click += new System.EventHandler(this.sfPartnerji_Click);
+            // 
             // Podesavanje1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1056, 638);
+            this.Controls.Add(this.sfPartnerji);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogistikaIzvozaPM2);
             this.Controls.Add(this.btnLogistikaIzvozaPM5);
@@ -202,5 +225,6 @@
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaIzvozaPM4;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaIzvozaPM3;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaIzvozaPM1;
+        private Syncfusion.WinForms.Controls.SfButton sfPartnerji;
     }
 }

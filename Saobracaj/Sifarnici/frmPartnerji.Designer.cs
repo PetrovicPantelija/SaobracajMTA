@@ -130,7 +130,6 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnFirme = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button20 = new System.Windows.Forms.Button();
@@ -624,7 +623,7 @@
             // 
             // txtMUAdresa
             // 
-            this.txtMUAdresa.Location = new System.Drawing.Point(441, 347);
+            this.txtMUAdresa.Location = new System.Drawing.Point(441, 369);
             this.txtMUAdresa.Name = "txtMUAdresa";
             this.txtMUAdresa.Size = new System.Drawing.Size(216, 20);
             this.txtMUAdresa.TabIndex = 206;
@@ -632,7 +631,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(309, 347);
+            this.label1.Location = new System.Drawing.Point(309, 369);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 205;
@@ -640,7 +639,7 @@
             // 
             // txtMUKontakt
             // 
-            this.txtMUKontakt.Location = new System.Drawing.Point(441, 373);
+            this.txtMUKontakt.Location = new System.Drawing.Point(441, 395);
             this.txtMUKontakt.Name = "txtMUKontakt";
             this.txtMUKontakt.Size = new System.Drawing.Size(216, 20);
             this.txtMUKontakt.TabIndex = 208;
@@ -648,7 +647,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(309, 373);
+            this.label15.Location = new System.Drawing.Point(309, 395);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(114, 13);
             this.label15.TabIndex = 207;
@@ -1054,7 +1053,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(400, 401);
+            this.label21.Location = new System.Drawing.Point(400, 423);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(37, 13);
             this.label21.TabIndex = 207;
@@ -1063,7 +1062,7 @@
             // cboValuta
             // 
             this.cboValuta.FormattingEnabled = true;
-            this.cboValuta.Location = new System.Drawing.Point(441, 398);
+            this.cboValuta.Location = new System.Drawing.Point(441, 420);
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(79, 21);
             this.cboValuta.TabIndex = 220;
@@ -1080,7 +1079,7 @@
             // 
             // numFREC
             // 
-            this.numFREC.Location = new System.Drawing.Point(593, 399);
+            this.numFREC.Location = new System.Drawing.Point(593, 421);
             this.numFREC.Name = "numFREC";
             this.numFREC.Size = new System.Drawing.Size(77, 20);
             this.numFREC.TabIndex = 221;
@@ -1088,7 +1087,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(550, 401);
+            this.label22.Location = new System.Drawing.Point(550, 423);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(35, 13);
             this.label22.TabIndex = 222;
@@ -1113,7 +1112,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.btnFirme);
-            this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button27);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
@@ -1132,7 +1130,7 @@
             this.btnFirme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirme.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnFirme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnFirme.Location = new System.Drawing.Point(224, 0);
+            this.btnFirme.Location = new System.Drawing.Point(108, 0);
             this.btnFirme.Name = "btnFirme";
             this.btnFirme.Size = new System.Drawing.Size(53, 31);
             this.btnFirme.TabIndex = 22;
@@ -1140,27 +1138,6 @@
             this.btnFirme.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFirme.UseVisualStyleBackColor = true;
             this.btnFirme.Click += new System.EventHandler(this.btnFirme_Click);
-            // 
-            // button6
-            // 
-            this.button6.AutoSize = true;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button6.Location = new System.Drawing.Point(108, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(116, 31);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "PartneriPregled";
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button27
             // 
@@ -1244,7 +1221,7 @@
             this.button22.Location = new System.Drawing.Point(10, 3);
             this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
             this.button22.Name = "button22";
-            this.button22.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button22.Padding = new System.Windows.Forms.Padding(9);
             this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -1290,7 +1267,8 @@
             // 
             // panel6
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.Controls.Add(this.gridGroupingControl1);
             this.panel6.Location = new System.Drawing.Point(14, 452);
@@ -1324,7 +1302,7 @@
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
@@ -1550,7 +1528,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel panel6;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button btnFirme;
     }
 }

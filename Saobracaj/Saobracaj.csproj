@@ -2031,6 +2031,12 @@
     <Compile Include="Izvoz\frmProdajniNalogIzvoz.Designer.cs">
       <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmProdajniNalogIzvozTabela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmProdajniNalogIzvozTabela.Designer.cs">
+      <DependentUpon>frmProdajniNalogIzvozTabela.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmValute.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2143,6 +2149,7 @@
     <Compile Include="MainLeget\Drumski\Drumski1.Designer.cs">
       <DependentUpon>Drumski1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\InsertKontejnerTekuce.cs" />
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5025,6 +5032,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvoz.resx">
       <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvozTabela.resx">
+      <DependentUpon>frmProdajniNalogIzvozTabela.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmValute.resx">
       <DependentUpon>frmValute.cs</DependentUpon>

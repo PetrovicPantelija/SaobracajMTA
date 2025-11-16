@@ -413,14 +413,30 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshGridControl()
         {
-            var select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
-            " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, " +
-            " Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, " +
-            " (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, " +
-            " (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac,  " +
-            " Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik, " +
-            " Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency,  DrumskiPrevoz " +
-            " from Partnerji order by PaSifra desc ";
+            var select = "";
+            string firma = Sifarnici.frmLogovanje.Firma;
+            switch (firma)
+            {
+                case "Leget":
+                    select = " Select PaSifra , Rtrim(PaNaziv) as Naziv,  ERPID as JedinstveniID, PaTelefon2 as Drzava,  PaEMatSt1 as DomicilniID,  " +
+" Rtrim(UICDrzava) as ISODrzava, Rtrim(UIC) as ISOCode, (CASE WHEN Logisticar > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Logisticar, " +
+" (CASE WHEN Brodar > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Brodar,  (CASE WHEN Spediter > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Spediter,  " + 
+" (CASE WHEN Organizator > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as ZeleznickiOperater,   (CASE WHEN UvoznikCH > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Direktni, " + 
+" (CASE WHEN DrumskiPrevoz > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as VOZAR_TRANSPORTER,   (CASE WHEN Kamioner > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as INTERCOMPANY, " +
+" (CASE WHEN AgentBrodara > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Ostali  from Partnerji order by PaSifra desc  ";
+                    break;
+                default:
+                    select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
+           " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, " +
+           " Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, " +
+           " (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, " +
+           " (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac,  " +
+           " Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik, " +
+           " Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency,  DrumskiPrevoz " +
+           " from Partnerji order by PaSifra desc ";
+                    break;
+            }
+
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -454,7 +470,7 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
+            var select = " Select PaSifra as Sifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
             " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
             SqlConnection myConnection = new SqlConnection(connect);

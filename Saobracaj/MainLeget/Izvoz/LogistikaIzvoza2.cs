@@ -77,6 +77,12 @@ namespace Saobracaj.MainLeget.LegNew
             parent?.ShowChild(new Izvoz.frmProdajniNalogIzvoz(), true);
     
         }
+
+        private void sfButton4_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(), true);
+        }
     }
 }
 

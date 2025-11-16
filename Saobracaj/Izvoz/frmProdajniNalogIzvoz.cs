@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Saobracaj.Carinsko;
+using Saobracaj.MainLeget;
 
 namespace Saobracaj.Izvoz
 {
@@ -234,6 +235,7 @@ namespace Saobracaj.Izvoz
         {
             InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
             ins.InsProdajniNalogIzvoz(tKorisnik , Convert.ToInt32(cboNalogodavac.SelectedValue), txtOpisPosla.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), txtLink.Text, Convert.ToDateTime(dtpCutOffPort.Value), txtBoking.Text);
+           
             UnesiStavke();
         }
 
@@ -412,6 +414,7 @@ namespace Saobracaj.Izvoz
         private void UnesiStavke()
         {
             InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
+            InsertKontejnerTekuce ikt = new InsertKontejnerTekuce();
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -446,14 +449,25 @@ namespace Saobracaj.Izvoz
 
                 }
                 // Convert.ToInt32(postojeciID),
-
+                string refer = "";
                 if (row.Cells[2].Value != null)
                 {
+                    if (row.Cells[7].Value== null)
+                    {
+                        refer = " ";
+                    }
+                    else { refer = row.Cells[7].Value.ToString(); };
                     ins.InsProdajniNalogIzvozStavke(Convert.ToInt32(txtBrojDokumenta.Text), Convert.ToDouble(row.Cells[2].Value),
                         row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[6].Value),
-                       row.Cells[7].Value.ToString())
+                       refer, "OTVOREN")
                        ;
+
+                    ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, Convert.ToInt32(row.Cells[6].Value), Convert.ToInt32(row.Cells[4].Value), Convert.ToDouble(row.Cells[2].Value));
+                    MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
+                
                 }
+
+
 
 
             }

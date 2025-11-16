@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProdajniNalogIzvoz));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogistikaIzvozaPM1 = new Syncfusion.WinForms.Controls.SfButton();
             this.panelHeader.SuspendLayout();
@@ -90,8 +90,20 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(91, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(745, 30);
+            this.panel2.Size = new System.Drawing.Size(854, 30);
             this.panel2.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(310, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(220, 20);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "NALOG KLIJENTA ZA IZVOZ";
             // 
             // panel3
             // 
@@ -373,18 +385,6 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(310, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(220, 20);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "NALOG KLIJENTA ZA IZVOZ";
             // 
             // pictureBox1
             // 

@@ -1,4 +1,5 @@
-﻿using Saobracaj.Uvoz;
+﻿using Microsoft.IdentityModel.Tokens;
+using Saobracaj.Uvoz;
 using System;
 using System.Configuration;
 using System.Data;
@@ -118,7 +119,7 @@ namespace Saobracaj.Izvoz
         }
 
 
-        public void InsProdajniNalogIzvozStavke( int IDNadredjena, double  Kolicina, string JM, int TipKontejnera, int KvalitetKontejnera,  string RefZaFakturisanje)
+        public void InsProdajniNalogIzvozStavke( int IDNadredjena, double  Kolicina, string JM, int TipKontejnera, int KvalitetKontejnera,  string RefZaFakturisanje, string StatusStavke)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -167,9 +168,19 @@ namespace Saobracaj.Izvoz
             refZaFakturisanje.Size = 300;
             refZaFakturisanje.Direction = ParameterDirection.Input;
             refZaFakturisanje.Value = RefZaFakturisanje;
+           // refZaFakturisanje.Value = RefZaFakturisanje;
             cmd.Parameters.Add(refZaFakturisanje);
 
-   
+            SqlParameter statusstavke = new SqlParameter();
+            statusstavke.ParameterName = "@StatusStavke";
+            statusstavke.SqlDbType = SqlDbType.NVarChar;
+            statusstavke.Size = 30;
+            statusstavke.Direction = ParameterDirection.Input;
+            statusstavke.Value = StatusStavke;
+            // refZaFakturisanje.Value = RefZaFakturisanje;
+            cmd.Parameters.Add(statusstavke);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

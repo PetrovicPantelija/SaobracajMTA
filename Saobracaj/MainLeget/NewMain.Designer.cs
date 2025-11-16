@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewMain));
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnExit = new Syncfusion.WinForms.Controls.SfButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblNaslov = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -54,7 +55,6 @@
             this.btnNazad = new Syncfusion.WinForms.Controls.SfButton();
             this.btnHome = new Syncfusion.WinForms.Controls.SfButton();
             this.btnDashboard = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnExit = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,6 +102,32 @@
             this.splitContainer1.SplitterDistance = 56;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // btnExit
+            // 
+            this.btnExit.AccessibleName = "Button";
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.ImageMargin = new System.Windows.Forms.Padding(2);
+            this.btnExit.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnExit.Location = new System.Drawing.Point(1576, 9);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(45, 33);
+            this.btnExit.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.btnExit.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnExit.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnExit.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnExit.Style.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnExit.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnExit.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnExit.TabIndex = 494;
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // pictureBox1
             // 
@@ -582,6 +608,7 @@
             this.btnLogistikaIzvoza.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnLogistikaIzvoza.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image14")));
             this.btnLogistikaIzvoza.Style.ImageForeColor = System.Drawing.Color.White;
+            this.btnLogistikaIzvoza.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogistikaIzvoza.TabIndex = 52;
             this.btnLogistikaIzvoza.Text = "Logistika izvoza";
             this.btnLogistikaIzvoza.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
@@ -727,32 +754,6 @@
             this.btnDashboard.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.UseVisualStyleBackColor = false;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.AccessibleName = "Button";
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExit.ImageMargin = new System.Windows.Forms.Padding(2);
-            this.btnExit.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnExit.Location = new System.Drawing.Point(1576, 9);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(45, 33);
-            this.btnExit.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.btnExit.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnExit.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnExit.Style.FocusedForeColor = System.Drawing.Color.White;
-            this.btnExit.Style.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnExit.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnExit.Style.PressedForeColor = System.Drawing.Color.White;
-            this.btnExit.TabIndex = 494;
-            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // NewMain
             // 

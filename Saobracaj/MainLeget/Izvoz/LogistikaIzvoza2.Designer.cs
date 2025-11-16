@@ -36,13 +36,14 @@
             this.sfButton4 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 1003);
+            this.splitter1.Size = new System.Drawing.Size(3, 638);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -54,7 +55,7 @@
             this.sfButton1.ForeColor = System.Drawing.Color.White;
             this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton1.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton1.Location = new System.Drawing.Point(68, 49);
+            this.sfButton1.Location = new System.Drawing.Point(69, 121);
             this.sfButton1.Name = "sfButton1";
             this.sfButton1.Size = new System.Drawing.Size(288, 225);
             this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -80,7 +81,7 @@
             this.sfButton2.ForeColor = System.Drawing.Color.White;
             this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton2.ImageSize = new System.Drawing.Size(90, 80);
-            this.sfButton2.Location = new System.Drawing.Point(389, 49);
+            this.sfButton2.Location = new System.Drawing.Point(390, 121);
             this.sfButton2.Name = "sfButton2";
             this.sfButton2.Size = new System.Drawing.Size(288, 225);
             this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -100,7 +101,7 @@
             this.sfButton3.ForeColor = System.Drawing.Color.White;
             this.sfButton3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton3.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton3.Location = new System.Drawing.Point(718, 49);
+            this.sfButton3.Location = new System.Drawing.Point(719, 121);
             this.sfButton3.Name = "sfButton3";
             this.sfButton3.Size = new System.Drawing.Size(287, 225);
             this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -120,7 +121,7 @@
             this.sfButton4.ForeColor = System.Drawing.Color.White;
             this.sfButton4.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton4.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton4.Location = new System.Drawing.Point(67, 288);
+            this.sfButton4.Location = new System.Drawing.Point(68, 360);
             this.sfButton4.Name = "sfButton4";
             this.sfButton4.Size = new System.Drawing.Size(289, 225);
             this.sfButton4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -130,6 +131,7 @@
             this.sfButton4.Text = "Lista OTVORENIH naloga";
             this.sfButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton4.UseVisualStyleBackColor = false;
+            this.sfButton4.Click += new System.EventHandler(this.sfButton4_Click);
             // 
             // sfButton5
             // 
@@ -140,7 +142,7 @@
             this.sfButton5.ForeColor = System.Drawing.Color.White;
             this.sfButton5.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton5.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton5.Location = new System.Drawing.Point(389, 288);
+            this.sfButton5.Location = new System.Drawing.Point(390, 360);
             this.sfButton5.Name = "sfButton5";
             this.sfButton5.Size = new System.Drawing.Size(288, 225);
             this.sfButton5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -160,7 +162,7 @@
             this.sfButton6.ForeColor = System.Drawing.Color.White;
             this.sfButton6.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton6.ImageSize = new System.Drawing.Size(80, 80);
-            this.sfButton6.Location = new System.Drawing.Point(718, 288);
+            this.sfButton6.Location = new System.Drawing.Point(719, 360);
             this.sfButton6.Name = "sfButton6";
             this.sfButton6.Size = new System.Drawing.Size(287, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -171,12 +173,27 @@
             this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton6.UseVisualStyleBackColor = false;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(62, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(361, 39);
+            this.label2.TabIndex = 500;
+            this.label2.Text = "Nalog klijenta za izvoz";
+            // 
             // LogistikaIzvoza2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1364, 1003);
+            this.ClientSize = new System.Drawing.Size(1056, 638);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.sfButton6);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.sfButton5);
@@ -193,6 +210,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainLeget_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -204,5 +222,6 @@
         private Syncfusion.WinForms.Controls.SfButton sfButton4;
         private Syncfusion.WinForms.Controls.SfButton sfButton5;
         private Syncfusion.WinForms.Controls.SfButton sfButton6;
+        private System.Windows.Forms.Label label2;
     }
 }
