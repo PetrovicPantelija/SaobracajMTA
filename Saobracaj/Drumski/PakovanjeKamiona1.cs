@@ -515,7 +515,7 @@ namespace Saobracaj.Drumski
                     string subQueryNaloga = $@"
                         SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
                         FROM RadniNalogDrumski
-                        WHERE CONVERT(date, DatumIstovara) = CONVERT(date, {datumZaProveru}) ";
+                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) ";
 
                      // Subquery za vozila koja su u tehničkom problemu (neraspoloživa zbog kvara)
                      string subQueryKvarova = $@"
@@ -609,6 +609,7 @@ namespace Saobracaj.Drumski
                            x.Kamion,
 	                       CONVERT(VARCHAR,x.DatumUtovara,104) AS DatumUtovara,
                            CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
+                           CONVERT(VARCHAR,x.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera,
                            x.Relacija,
                            x.TipTransporta
                            
@@ -621,6 +622,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         rn.DatumUtovara,
                                      rn.DatumIstovara,
+                                     rn.DtPreuzimanjaPraznogKontejnera,
                                      rn.ID,
                                      LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                     rn.TipTransporta
@@ -639,6 +641,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         rn.DatumUtovara,
                                      rn.DatumIstovara,
+                                     rn.DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                      LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                     rn.TipTransporta
@@ -658,6 +661,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         rn.DatumUtovara,
                                      rn.DatumIstovara,
+                                     rn.DtPreuzimanjaPraznogKontejnera,
                                      rn.ID,
                                      LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija ,
                                     rn.TipTransporta
@@ -677,6 +681,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         rn.DatumUtovara,
                                      rn.DatumIstovara,
+                                     rn.DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                      LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija ,
                                     rn.TipTransporta
@@ -696,6 +701,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         rn.DatumUtovara,
                                      rn.DatumIstovara,
+                                     rn.DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                      CASE 
                                             WHEN rn.Uvoz IN (1, 2, 4) 
@@ -711,7 +717,7 @@ namespace Saobracaj.Drumski
                             LEFT JOIN MestaUtovara mu ON mu.id = rn.MestoUtovara
                             WHERE rn.Uvoz IN (2, 3, 4, 5 ) AND rn.NalogID > 0 AND ISNULL(rn.KamionID,0) = 0 {dodatniUslovTipTransporta}
                         ) AS x
-                        WHERE CONVERT(date, DatumIstovara) = CONVERT(date, {datumZaProveru})
+                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru})
                      
                         ORDER BY NalogID DESC
                         ";
@@ -755,6 +761,11 @@ namespace Saobracaj.Drumski
             {
                 dataGridView2.Columns["TipTransporta"].Visible = false;
             }
+            if (dataGridView2.Columns.Contains("DtPreuzimanjaPraznogKontejnera"))
+            {
+                dataGridView2.Columns["DtPreuzimanjaPraznogKontejnera"].Visible = false;
+            }
+            
             // Postavi proporcije samo za vidljive kolone
             float totalWeight = 100f;
             float relacijaWeight = 20f;
@@ -1808,20 +1819,25 @@ namespace Saobracaj.Drumski
 
             // grupisanje po zajedničkim zaglavljima
             var grupe = detaljnaTabela.AsEnumerable()
-                .GroupBy(r =>
-                {
-                    var podaci = VratiPodatkeZaglavlja(r);
-                    return new
-                    {
-                        Nalogodavac = r["Nalogodavac"]?.ToString(),
-                        DatumUtovaraIstovara = podaci.datum,
-                        MestoUtovaraIstovara = podaci.mesto,
-                        BookingBrodara = r["BookingBrodara"]?.ToString(),
-                        Carinjenje = podaci.carinjenje
-                    };
-                })
-                .ToList();
+              .GroupBy(r =>
+              {
+                  int uvoz = r["Uvoz"] != DBNull.Value ? Convert.ToInt32(r["Uvoz"]) : -1;
 
+                  return new
+                  {
+                      Tip = (uvoz == 1 || uvoz == 2 || uvoz == 4) ? "Uvoz" :
+                            (uvoz == 0 || uvoz == 3 || uvoz == 5) ? "Izvoz" : "Nepoznato",
+                      Klijent = r["Nalogodavac"]?.ToString(),
+                      DatumPreuzimanjaPraznog = (uvoz == 1 || uvoz == 2 || uvoz == 4)
+                          ? r["DtPreuzimanjaPraznogKontejnera"]?.ToString() : "",
+                      OdredisnaCarina = (uvoz == 1 || uvoz == 2 || uvoz == 4)
+                          ? r["OdredisnaCarina"]?.ToString() : "",
+                      DatumIstovara = r["DatumIstovara"]?.ToString(),
+                      MestoUtovara = (uvoz == 0 || uvoz == 3 || uvoz == 5)
+                          ? r["MestoUtovara"]?.ToString() : ""
+                  };
+              })
+              .ToList();
             StringBuilder htmlBuilder = new StringBuilder();
             htmlBuilder.AppendLine("<html><body>");
 
@@ -1833,102 +1849,123 @@ namespace Saobracaj.Drumski
                 string nalogodavac = dataGridView3.SelectedRows[0].Cells["Nalogodavac"].Value?.ToString() ?? "";
 
 
-            if (detaljnaTabela.Rows.Count == 0)
-            {
-                MessageBox.Show("Nema detaljnih podataka za odabrane naloge.");
-                return;
-            }
-
-            DataRow prviRed = grupa.First();
-            int Uvoz = prviRed["Uvoz"] != DBNull.Value ? Convert.ToInt32(prviRed["Uvoz"].ToString()) : -1;
-            string datumUtovaraIstovara = "";
-            string utovarIstovar = "";
-            string datumPreuzimanjaPraznog = "";
-            string carinjenje = "";
-            string carinarnica = "";
-            string mestoUtovaraIstovara = "";
-            string bookingBrodara = "";
-            //izvoz
-            if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
-            {
-                datumUtovaraIstovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
-                utovarIstovar = " utovaru";
-                mestoUtovaraIstovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
-                carinjenje = "Izvozno ";
-                carinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
-            }
-            //uvoz
-            else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4)
-            {
-                datumUtovaraIstovara = prviRed["DatumIstovara"] != DBNull.Value ? prviRed["DatumIstovara"].ToString() : "";
-                utovarIstovar = " istovaru";
-                mestoUtovaraIstovara = prviRed["MestoIstovara"] != DBNull.Value ? prviRed["MestoIstovara"].ToString() : "";
-                carinjenje = "Uvozno ";
-                carinarnica = prviRed["odredisnaCarina"] != DBNull.Value ? prviRed["odredisnaCarina"].ToString() : "";
-            }
-            bookingBrodara = prviRed["bookingBrodara"] != DBNull.Value ? prviRed["bookingBrodara"].ToString() : "";
-            datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
-
-            string napomenaZaPozicioniranje = prviRed["NapomenaZaPozicioniranje"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : "";
-            string cena = prviRed["Cena"] != DBNull.Value ? prviRed["Cena"].ToString() : "";
-
-            htmlBuilder.AppendLine("<p>Poštovani,</p>");
-            htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
-            htmlBuilder.AppendLine($"<p>Na {utovarIstovar} je  <b>{datumUtovaraIstovara}</b> u  {mestoUtovaraIstovara}</p>");
-            htmlBuilder.AppendLine($"<p>buking {bookingBrodara}<b></b>");
-            htmlBuilder.AppendLine($"<p>{carinjenje} carinjenje <b>  {carinarnica}</b></p>");
-
-            htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
-
-
-
-            // --- 2. Iteracija kroz SVE Redove (Radne Naloge) ---
-
-            foreach (var row in grupa)
-            {
-
-                // Podaci o vozilu
-                string kontejnerString = row["BrojKontejnera"] != DBNull.Value ? row["BrojKontejnera"].ToString() : "";
-                string kontejner2 = row["BrojKontejnera2"] != DBNull.Value ? row["BrojKontejnera2"].ToString() : "";
-                string tipKontejnera = row["TipKontejnera"] != DBNull.Value ? row["TipKontejnera"].ToString() : "";
-                if (!string.IsNullOrEmpty(kontejner2))
-                    kontejnerString += ", " + kontejner2;
-
-                string tipVozila = row["TipVozila"] != DBNull.Value ? row["TipVozila"].ToString() : "";
-                string tablice = row["Kamion"] != DBNull.Value ? row["Kamion"].ToString() : "";
-                int kamionID = GetInt(row, "KamionID");
-
-                //// Dohvatanje vozača
-                (string vozac, string brLK, string telefon) = DobaviVozaca(kamionID);
-
-                htmlBuilder.AppendLine($"<p>{tipKontejnera} </p>");
-
-                // --- Generisanje HTML Tabele sa Detaljima o Vozilu ---
-                htmlBuilder.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse; font-family: Arial; font-size: 14px; margin-bottom: 25px;'>");
-                htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td>{kontejnerString}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>Datum preuzimanja:</b></td><td>{datumPreuzimanjaPraznog}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>Kamion - vrsta:</b></td><td>{tipVozila}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>Kamion - tablice:</b></td><td>{tablice}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>Vozač:</b></td><td>{vozac}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>BR. L.K:</b></td><td>{brLK}</td></tr>");
-                htmlBuilder.AppendLine($"<tr><td><b>MOB VOZAČA:</b></td><td>{telefon}</td></tr>");
-                htmlBuilder.AppendLine("</table>");
-
-
-                // --- UPDATE i INSERT Logika ---
-                int ID = GetInt(row, "ID");
-                if (ID > 0)
+                if (detaljnaTabela.Rows.Count == 0)
                 {
-                    InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                    ins.UpdateRadniNalogDrumskiPoslataNajava(ID, NajavuPoslaoKorisnik);
-
-                    InsertFakture insf = new InsertFakture();
-                    int? vecPostojiFaktura = ProveriPostojanjeRadnogNaloga(ID);
-
-                    if (vecPostojiFaktura == 0)
-                        insf.InsFaktura(ID);
+                    MessageBox.Show("Nema detaljnih podataka za odabrane naloge.");
+                    return;
                 }
-            }
+
+                DataRow prviRed = grupa.First();
+                int Uvoz = prviRed["Uvoz"] != DBNull.Value ? Convert.ToInt32(prviRed["Uvoz"].ToString()) : -1;
+                string datumUtovaraIstovara = "";
+                string utovarIstovar = "";
+                string datumPreuzimanjaPraznog = "";
+                string carinjenje = "";
+                string carinarnica = "";
+                string mestoUtovaraIstovara = "";
+                string bookingBrodara = "";
+
+                string cena = prviRed["Cena"] != DBNull.Value ? prviRed["Cena"].ToString() : "";
+                datumPreuzimanjaPraznog = prviRed["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value ? prviRed["DtPreuzimanjaPraznogKontejnera"].ToString() : "";
+                //izvoz
+                if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
+                {
+                    datumUtovaraIstovara = prviRed["DatumIstovara"] != DBNull.Value ? prviRed["DatumIstovara"].ToString() : "";
+                    utovarIstovar = " utovaru";
+                    mestoUtovaraIstovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
+                    carinjenje = "Izvozno ";
+                    carinarnica = prviRed["polaznaCarinarnica"] != DBNull.Value ? prviRed["polaznaCarinarnica"].ToString() : "";
+
+                    htmlBuilder.AppendLine("<p>Poštovani,</p>");
+                    htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
+                    htmlBuilder.AppendLine($"<p>Na {utovarIstovar} je  <b>{datumUtovaraIstovara}</b> u  {mestoUtovaraIstovara}</p>");
+
+                    htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
+                }
+                //uvoz
+                else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4)
+                {
+                    datumUtovaraIstovara = prviRed["DatumIstovara"] != DBNull.Value ? prviRed["DatumIstovara"].ToString() : "";
+                    mestoUtovaraIstovara = prviRed["MestoIstovara"] != DBNull.Value ? prviRed["MestoIstovara"].ToString() : "";
+                    carinarnica = prviRed["odredisnaCarina"] != DBNull.Value ? prviRed["odredisnaCarina"].ToString() : "";
+
+                    htmlBuilder.AppendLine("<p>Poštovani,</p>");
+                    htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
+                    htmlBuilder.AppendLine($"<p>Kontejner preuzima {datumPreuzimanjaPraznog}</p>");
+                    htmlBuilder.AppendLine($"<p>Na {carinarnica} je {datumUtovaraIstovara} </p>");
+
+                    htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
+                }
+                bookingBrodara = prviRed["bookingBrodara"] != DBNull.Value ? prviRed["bookingBrodara"].ToString() : "";
+
+
+                string napomenaZaPozicioniranje = prviRed["NapomenaZaPozicioniranje"] != DBNull.Value ? prviRed["NapomenaZaPozicioniranje"].ToString() : "";
+
+
+                //htmlBuilder.AppendLine("<p>Poštovani,</p>");
+                //htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
+                //htmlBuilder.AppendLine($"<p>Na {utovarIstovar} je  <b>{datumUtovaraIstovara}</b> u  {mestoUtovaraIstovara}</p>");
+                //htmlBuilder.AppendLine($"<p>buking {bookingBrodara}<b></b>");
+                //htmlBuilder.AppendLine($"<p>{carinjenje} carinjenje <b>  {carinarnica}</b></p>");
+
+                //htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
+
+
+
+
+                //htmlBuilder.AppendLine("<p>Poštovani,</p>");
+                //htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
+                //htmlBuilder.AppendLine($"<p>Na {utovarIstovar} je  <b>{datumUtovaraIstovara}</b> u  {mestoUtovaraIstovara}</p>");
+
+                //htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} EUR</p>");
+                // --- 2. Iteracija kroz SVE Redove (Radne Naloge) ---
+
+                foreach (var row in grupa)
+                {
+
+                    // Podaci o vozilu
+                    string kontejnerString = row["BrojKontejnera"] != DBNull.Value ? row["BrojKontejnera"].ToString() : "";
+                    string kontejner2 = row["BrojKontejnera2"] != DBNull.Value ? row["BrojKontejnera2"].ToString() : "";
+                    string tipKontejnera = row["TipKontejnera"] != DBNull.Value ? row["TipKontejnera"].ToString() : "";
+                    if (!string.IsNullOrEmpty(kontejner2))
+                        kontejnerString += ", " + kontejner2;
+
+                    string tipVozila = row["TipVozila"] != DBNull.Value ? row["TipVozila"].ToString() : "";
+                    string tablice = row["Kamion"] != DBNull.Value ? row["Kamion"].ToString() : "";
+                    int kamionID = GetInt(row, "KamionID");
+
+                    //// Dohvatanje vozača
+                    (string vozac, string brLK, string telefon) = DobaviVozaca(kamionID);
+
+                    //htmlBuilder.AppendLine($"<p>{tipKontejnera} </p>");
+
+                    // --- Generisanje HTML Tabele sa Detaljima o Vozilu ---
+                    htmlBuilder.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse; font-family: Arial; font-size: 14px; margin-bottom: 25px;'>");
+                    htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td><b>{kontejnerString}</b></td></tr>");
+                    if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
+                        htmlBuilder.AppendLine($"<tr><td><b>Datum preuzimanja:</b></td><td>{datumPreuzimanjaPraznog}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>Kamion - vrsta:</b></td><td>{tipVozila}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>Kamion - tablice:</b></td><td>{tablice}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>Vozač:</b></td><td>{vozac}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>BR. L.K:</b></td><td>{brLK}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>MOB VOZAČA:</b></td><td>{telefon}</td></tr>");
+                    htmlBuilder.AppendLine("</table>");
+
+
+                    // --- UPDATE i INSERT Logika ---
+                    int ID = GetInt(row, "ID");
+                    if (ID > 0)
+                    {
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.UpdateRadniNalogDrumskiPoslataNajava(ID, NajavuPoslaoKorisnik);
+
+                        InsertFakture insf = new InsertFakture();
+                        int? vecPostojiFaktura = ProveriPostojanjeRadnogNaloga(ID);
+
+                        if (vecPostojiFaktura == 0)
+                            insf.InsFaktura(ID);
+                    }
+                }
 
                 //// razdvajanje grupa u HTML-u
                 //htmlBuilder.AppendLine("<hr style='margin:30px 0; border:1px dashed gray;'>");
@@ -1940,33 +1977,6 @@ namespace Saobracaj.Drumski
             MessageBox.Show("Podaci su kopirani u clipboard.");
 
             RefreshDataGrid3();
-        }
-
-
-        private (string datum, string mesto, string carinjenje) VratiPodatkeZaglavlja(DataRow r)
-        {
-            string datum = "";
-            string mesto = "";
-            string carinjenje = "";
-
-            int Uvoz = r["Uvoz"] != DBNull.Value ? Convert.ToInt32(r["Uvoz"]) : -1;
-
-            if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
-            {
-                // izvoz
-                datum = r["DatumUtovara"] != DBNull.Value ? r["DatumUtovara"].ToString() : "";
-                mesto = r["MestoUtovara"] != DBNull.Value ? r["MestoUtovara"].ToString() : "";
-                carinjenje = "Izvozno";
-            }
-            else if (Uvoz == 1 || Uvoz == 2 || Uvoz == 4)
-            {
-                // uvoz
-                datum = r["DatumIstovara"] != DBNull.Value ? r["DatumIstovara"].ToString() : "";
-                mesto = r["MestoIstovara"] != DBNull.Value ? r["MestoIstovara"].ToString() : "";
-                carinjenje = "Uvozno";
-            }
-
-            return (datum, mesto, carinjenje);
         }
 
         private int GetInt(DataRow row, string colName)
@@ -2180,7 +2190,7 @@ namespace Saobracaj.Drumski
                                    "left join TipKontenjera tk ON rn.TipKontejnera = tk.ID " +
                                    "left join StatusVozila sv ON sv.ID = rn.Status  " +
                                    "LEFT JOIN Carinarnice cp ON cp.ID = rn.PolaznaCarinarnica " +
-                                   "LEFT JOIN Carinarnice co ON co.ID = rn.PolaznaCarinarnica " +
+                                   "LEFT JOIN Carinarnice co ON co.ID = rn.OdredisnaCarinarnica " +
                                    "LEFT JOIN Partnerji po ON po.PaSifra = rn.odredisnaspedicija " +
                                    "LEFT JOIN Partnerji pp ON pp.PaSifra = rn.polaznaspedicija " +
                                    "LEFT JOIN (SELECT ut1.*  FROM UploadTokens ut1   WHERE ut1.ID = (SELECT MAX(ID)  FROM UploadTokens ut2  WHERE ut2.RadniNalogDrumskiID = ut1.RadniNalogDrumskiID )) ut ON rn.ID = ut.RadniNalogDrumskiID " +

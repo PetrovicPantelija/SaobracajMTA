@@ -364,7 +364,7 @@ namespace Saobracaj.Dokumenta
                      a.ID = atp.VoziloID AND CONVERT(date, atp.Datum) = CONVERT(date, {datumZaProveru})
                      LEFT JOIN RadniNalogDrumski rnd ON
                      a.ID = rnd.KamionID
-                     AND CONVERT(date, rnd.DatumIstovara) = CONVERT(date, {datumZaProveru})
+                     AND CONVERT(date, rnd.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru})
                      AND ISNULL(rnd.Arhiviran, 0) <> 1
                      AND (rnd.Status IS NULL OR rnd.Status NOT IN ( {statusiZaUpit} ))
 
