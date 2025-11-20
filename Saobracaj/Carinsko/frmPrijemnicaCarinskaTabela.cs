@@ -173,8 +173,14 @@ namespace Saobracaj.Carinko
         private void button23_Click(object sender, EventArgs e)
         {
             frmPrijemnicaCarinsko car = new frmPrijemnicaCarinsko();
+            car.FormClosed += car_FormClosed;
             car.Show();
         }
+        private void car_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshDataGrid();
+        }
+
 
         private void button25_Click(object sender, EventArgs e)
         {
@@ -201,6 +207,7 @@ namespace Saobracaj.Carinko
         private void button24_Click(object sender, EventArgs e)
         {
             frmPrijemnicaCarinsko pc = new frmPrijemnicaCarinsko(txtSifra.Text);
+            pc.FormClosed += car_FormClosed;
             pc.Show();
         }
 

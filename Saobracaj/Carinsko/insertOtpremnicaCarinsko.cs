@@ -548,8 +548,10 @@ namespace Saobracaj.Carinsko
                 myCommand.Transaction = myTransaction;
             }
 
-            catch (SqlException)
+            catch (SqlException ex)
             {
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //myTransaction.Rollback(); // Ne zaboravi i rollback
                 throw new Exception("Neuspešan upis zaglavlje");
             }
 

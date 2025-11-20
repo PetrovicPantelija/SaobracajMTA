@@ -17,11 +17,15 @@ namespace Saobracaj.Drumski
         private bool cellClickHandlerAttached = false;
         private Form aktivnaFormaPregleda;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-        public frmStatus()
+        int tipPrevoza = 0;
+
+
+        public frmStatus(int tip)
         {
             InitializeComponent();
             ChangeTextBox();
             this.Text = "Status";
+            tipPrevoza = tip;
             RefreshDataGrid3();
             if (!string.IsNullOrWhiteSpace(upozorenjeTehnickiNeispravni))
             {
@@ -212,7 +216,8 @@ namespace Saobracaj.Drumski
                                 x.SlanjeNajave, 
                                 x.Status AS Status,
                                 x.StatusID,
-                                x.TehnickiNeispravan
+                                x.TehnickiNeispravan,
+                                x.VoziloDrumskog
 
                             FROM 
                             (
@@ -222,6 +227,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -248,6 +254,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -274,6 +281,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -300,6 +308,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, 
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VoziloDrumskog,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -326,6 +335,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VoziloDrumskog,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -345,6 +355,7 @@ namespace Saobracaj.Drumski
                                       AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
 
                             ) AS x
+                            WHERE x.VoziloDrumskog = {tipPrevoza}
                             GROUP BY 
                                 x.ID,
                                 x.Nalogodavac, 
@@ -359,7 +370,8 @@ namespace Saobracaj.Drumski
                                 x.SlanjeNajave, 
                                 x.Status,
                                 x.StatusID,
-                                x.TehnickiNeispravan
+                                x.TehnickiNeispravan,
+                                x.vozilodrumskog
 
                             ORDER BY 
                                 x.NalogID DESC
@@ -459,7 +471,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan", "VoziloDrumskog"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
