@@ -1163,10 +1163,23 @@ namespace Saobracaj.Drumski
             if (Uvoz != 1)
                 referenca = string.IsNullOrWhiteSpace(txtReferenca.Text) ? null : txtReferenca.Text.Trim();
 
-            if (Uvoz != 1 && Uvoz != 0 && cboKlijent.SelectedValue != null && int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
+            //if (Uvoz != 1 && Uvoz != 0 && cboKlijent.SelectedValue != null && int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
+            //    klijent = parsedKlijentID;
+            //else if (!string.IsNullOrWhiteSpace(cboKlijent.Text))
+            //    klijent = InsertKlijentaUSifarnik();
+
+            if (cboKlijent.SelectedValue != null &&
+                int.TryParse(cboKlijent.SelectedValue.ToString(), out int parsedKlijentID))
+            {
+                // Klijent je validan → upiši ga
                 klijent = parsedKlijentID;
-            else if (!string.IsNullOrWhiteSpace(cboKlijent.Text))
-                klijent = InsertKlijentaUSifarnik();
+            }
+            else
+            {
+                // Nije izabrao ništa iz liste → NE sme se snimi
+                MessageBox.Show("Morate izabrati klijenta iz liste.");
+                return; // prekida snimanje
+            }
 
             if (Uvoz != 1 && Uvoz != 0 && txtBokingBrodara.Text != null && int.TryParse(txtBokingBrodara.Text.ToString(), out int parsedBookingBrodara))
                 bookingBrodara = parsedBookingBrodara;

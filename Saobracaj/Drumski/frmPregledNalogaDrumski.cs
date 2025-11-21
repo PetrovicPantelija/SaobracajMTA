@@ -486,8 +486,8 @@ namespace Saobracaj.Drumski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmPakovanjeKamiona kam = new frmPakovanjeKamiona();
-            kam.Show();
+            //frmPakovanjeKamiona kam = new frmPakovanjeKamiona();
+            //kam.Show();
             PakovanjeKamiona1 pk = new PakovanjeKamiona1();
             pk.Show();
         }

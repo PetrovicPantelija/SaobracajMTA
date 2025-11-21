@@ -17,15 +17,16 @@ namespace Saobracaj.Drumski
         private bool cellClickHandlerAttached = false;
         private Form aktivnaFormaPregleda;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-        int tipPrevoza = 0;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
 
-
-        public frmStatus(int tip)
+        public frmStatus(List<int> tipoviIn, List<int> tipoviNotIn)
         {
             InitializeComponent();
             ChangeTextBox();
             this.Text = "Status";
-            tipPrevoza = tip;
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
             RefreshDataGrid3();
             if (!string.IsNullOrWhiteSpace(upozorenjeTehnickiNeispravni))
             {
@@ -200,6 +201,20 @@ namespace Saobracaj.Drumski
                 //    datumZaProveru = "DATEADD(day, 1, GETDATE())";
                 //}
 
+                string uslovTipVozila = "1 = 1 ";
+
+                if (_tipoviIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviIn);
+                    uslovTipVozila += $" AND x.VoziloDrumskog IN ({lista}) ";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviNotIn);
+                    uslovTipVozila += $" AND x.VoziloDrumskog NOT IN ({lista}) ";
+                }
+
                 var select = $@"
                             SELECT   
                                 -- Agregirana kolona (Spojeni ID-jevi)
@@ -355,7 +370,7 @@ namespace Saobracaj.Drumski
                                       AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
 
                             ) AS x
-                            WHERE x.VoziloDrumskog = {tipPrevoza}
+                            WHERE  {uslovTipVozila} 
                             GROUP BY 
                                 x.ID,
                                 x.Nalogodavac, 

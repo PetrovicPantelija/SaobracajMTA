@@ -1672,6 +1672,12 @@
     <Compile Include="Drumski\frmPregledSkeniranihDokumenata.Designer.cs">
       <DependentUpon>frmPregledSkeniranihDokumenata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmRaspolozivostVozila.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmRaspolozivostVozila.Designer.cs">
+      <DependentUpon>frmRaspolozivostVozila.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmSeniranjeDokumenata.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4831,6 +4837,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledSkeniranihDokumenata.resx">
       <DependentUpon>frmPregledSkeniranihDokumenata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmRaspolozivostVozila.resx">
+      <DependentUpon>frmRaspolozivostVozila.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmSeniranjeDokumenata.resx">
       <DependentUpon>frmSeniranjeDokumenata.cs</DependentUpon>

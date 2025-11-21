@@ -54,6 +54,32 @@ namespace Saobracaj.Drumski
             }
 
         }
+
+        public PakovanjeKamiona1(int TipVozila)
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            ChangeTextBoxTable();
+            UcitajFiltere();
+            chkDatumD.Checked = true;
+            chkR.Checked = true;
+            RefreshDataGrid1();
+            RefreshDataGrid2();
+            RefreshDataGrid3();
+
+            this.Text = "Formiranje transportnog naloga";
+            this.dataGridView2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDown);
+            if (!string.IsNullOrWhiteSpace(upozorenjeTehnickiNeispravni))
+            {
+                MessageBox.Show(
+                    "Upozorenje!\n\n" + upozorenjeTehnickiNeispravni,
+                    "Upareni tehnički neispravni kamioni",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+
+        }
         private void ChangeTextBox()
         {
 
@@ -2503,6 +2529,18 @@ namespace Saobracaj.Drumski
             //    kontejnerString += ", " + row.Cells["BrojKontejnera2"].Value?.ToString();
 
             // Formiranje poruke
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmStatus pe = new frmStatus(tipoviIn: new List<int> { 1 }, tipoviNotIn: null );
+            pe.StartPosition = FormStartPosition.CenterParent;
+            pe.ShowDialog(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
     class NajavaGrupa
