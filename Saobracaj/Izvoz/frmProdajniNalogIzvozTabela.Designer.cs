@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.lblNaslov = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,13 +46,13 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 12);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 101);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1142, 466);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1142, 377);
             this.gridGroupingControl1.TabIndex = 468;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -64,23 +65,43 @@
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCurrentCellEditingComplete += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlEventHandler(this.gridGroupingControl1_TableControlCurrentCellEditingComplete);
+            this.gridGroupingControl1.TableControlCurrentCellChanging += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCancelEventHandler(this.gridGroupingControl1_TableControlCurrentCellChanging);
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // lblNaslov
+            // 
+            this.lblNaslov.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNaslov.AutoSize = true;
+            this.lblNaslov.BackColor = System.Drawing.Color.Transparent;
+            this.lblNaslov.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaslov.ForeColor = System.Drawing.Color.Black;
+            this.lblNaslov.Location = new System.Drawing.Point(12, 24);
+            this.lblNaslov.Name = "lblNaslov";
+            this.lblNaslov.Size = new System.Drawing.Size(457, 39);
+            this.lblNaslov.TabIndex = 501;
+            this.lblNaslov.Text = "LISTA OTVORENIH STAVKI";
             // 
             // frmProdajniNalogIzvozTabela
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 490);
+            this.Controls.Add(this.lblNaslov);
             this.Controls.Add(this.gridGroupingControl1);
             this.Name = "frmProdajniNalogIzvozTabela";
             this.Text = "Prodajni nalog izvoz tabela - otvorene stavke";
             this.Load += new System.EventHandler(this.frmProdajniNalogIzvozTabela_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.Label lblNaslov;
     }
 }

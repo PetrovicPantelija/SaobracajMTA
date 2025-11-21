@@ -21,9 +21,11 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmProdajniNalogIzvozTabela : Form
     {
-        public frmProdajniNalogIzvozTabela()
+        int statusizmene = 0; // 0 - Readonly 1- Updejt status
+        public frmProdajniNalogIzvozTabela(int st)
         {
             InitializeComponent();
+            statusizmene = st;
         }
 
         private void RefreshGridControl()
@@ -33,7 +35,7 @@ namespace Saobracaj.Izvoz
             switch (firma)
             {
                 case "Leget":
-                    select = "select ProdajniNalogIzvozStavke.ID, ProdajniNalogIzvozStavke.IDNAdredjenog, ProdajniNalogIzvoz.Korisnik,  Kolicina, JM, TipKontenjera.SkNaziv as TipKontejnera, PArtnerji.PANAziv as Nalogodavac " +
+                    select = "select ProdajniNalogIzvozStavke.ID as ID, ProdajniNalogIzvozStavke.IDNAdredjenog as BrojDokumenta, ProdajniNalogIzvoz.Korisnik,  Kolicina, JM, TipKontenjera.SkNaziv as TipKontejnera, PArtnerji.PANAziv as Nalogodavac " +
                 " , p2.PaNaziv as Brodar, p3.PaNaziv as Izvoznik , OpisPosla, BukingNumber, uvKvalitetKontejnera.Naziv as Kvalitet from ProdajniNalogIzvoz " +
                 " inner join ProdajniNalogIzvozStavke on ProdajniNalogIzvoz.ID = ProdajniNalogIzvozStavke.IDNAdredjenog " +
                 " inner   join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera " +
@@ -82,6 +84,89 @@ namespace Saobracaj.Izvoz
         private void frmProdajniNalogIzvozTabela_Load(object sender, EventArgs e)
         {
             RefreshGridControl();
+            if (statusizmene == 0)
+            {
+                lblNaslov.Text = "LISTA OTVORENIH STAVKI";
+            }
+            else if (statusizmene == 1)
+            {
+                lblNaslov.Text = "IZMENA VREDNOSTI KOLICINE";
+            }
+            else if (statusizmene == 2)
+            {
+                lblNaslov.Text = "STORNIRANJE STAVKE";
+            }
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            int id = 0;
+            if (statusizmene == 2)
+            {
+
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
+
+                    InsertProdajniNalogIzvoz ipnk = new InsertProdajniNalogIzvoz();
+
+                    DialogResult result = MessageBox.Show(
+                    "Da li ste sigurni da želite da stornirate stavku?", // Message text
+                    "Potvrdite", // Title
+                    MessageBoxButtons.YesNoCancel, // Buttons
+                    MessageBoxIcon.Question // Icon
+                    );
+
+                    // Handle the result based on user selection
+                    if (result == DialogResult.Yes)
+                    {
+                        ipnk.UpdStornirajStavku(id);
+                        // Add logic to save changes here
+                    }
+
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+            }
+        }
+
+        private void gridGroupingControl1_TableControlCurrentCellChanging(object sender, GridTableControlCancelEventArgs e)
+        {
+          
+        }
+
+        private void gridGroupingControl1_TableControlCurrentCellEditingComplete(object sender, GridTableControlEventArgs e)
+        {
+            int id = 0;
+            double Kolicina = 0;
+            try
+            {
+                if (statusizmene == 0)
+                {
+                    return;
+                }
+                else if (statusizmene == 1)
+                {
+                    if (gridGroupingControl1.Table.CurrentRecord != null)
+                    {
+                        id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
+                        Kolicina = Convert.ToDouble(gridGroupingControl1.Table.CurrentRecord.GetValue("Kolicina"));
+                        InsertProdajniNalogIzvoz ipnk = new InsertProdajniNalogIzvoz();
+                        ipnk.UpdKolicinaStavke(id, Kolicina);
+
+                        // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    }
+                }
+               
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -217,30 +217,81 @@ namespace Saobracaj.Izvoz
             }
         }
 
-
-
-        public void UpdValute(string Sifra, string Naziv)
+        public void UpdKolicinaStavke(int ID, double Kolicina)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdateValute";
+            cmd.CommandText = "UpdateProdajniNalogStavkeKolicina";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter sifra = new SqlParameter();
-            sifra.ParameterName = "@Sifra";
-            sifra.SqlDbType = SqlDbType.NVarChar;
-            sifra.Size = 3;
+            sifra.ParameterName = "@ID";
+            sifra.SqlDbType = SqlDbType.Int;
             sifra.Direction = ParameterDirection.Input;
-            sifra.Value = Sifra;
+            sifra.Value = ID;
             cmd.Parameters.Add(sifra);
 
             SqlParameter naziv = new SqlParameter();
-            naziv.ParameterName = "@Naziv";
-            naziv.SqlDbType = SqlDbType.NVarChar;
+            naziv.ParameterName = "@Kolicina";
+            naziv.SqlDbType = SqlDbType.Decimal;
             naziv.Size = 35;
             naziv.Direction = ParameterDirection.Input;
-            naziv.Value = Naziv;
+            naziv.Value = Kolicina;
             cmd.Parameters.Add(naziv);
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void UpdStornirajStavku(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateProdajniNalogStavkeStorno";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter sifra = new SqlParameter();
+            sifra.ParameterName = "@ID";
+            sifra.SqlDbType = SqlDbType.Int;
+            sifra.Direction = ParameterDirection.Input;
+            sifra.Value = ID;
+            cmd.Parameters.Add(sifra);
+
+           
 
 
 

@@ -231,8 +231,7 @@ namespace Saobracaj.Drumski
                                 x.SlanjeNajave, 
                                 x.Status AS Status,
                                 x.StatusID,
-                                x.TehnickiNeispravan,
-                                x.VoziloDrumskog
+                                x.TehnickiNeispravan
 
                             FROM 
                             (
@@ -242,7 +241,6 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -269,7 +267,6 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -296,7 +293,6 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -323,7 +319,6 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, 
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -350,7 +345,6 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -385,8 +379,7 @@ namespace Saobracaj.Drumski
                                 x.SlanjeNajave, 
                                 x.Status,
                                 x.StatusID,
-                                x.TehnickiNeispravan,
-                                x.vozilodrumskog
+                                x.TehnickiNeispravan
 
                             ORDER BY 
                                 x.NalogID DESC
@@ -486,7 +479,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan", "VoziloDrumskog"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",

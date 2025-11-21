@@ -120,7 +120,7 @@ namespace Saobracaj.Uvoz
         {
             var select = "";
 
-            select = "  Select KontejnerTekuce.Kontejner, KontejnerStatus.Naziv as Status, KontejnerTekuce.Pokret as Pokret, Skladista.Naziv as Skladiste, " +
+            select = "  Select KontejnerTekuce.Kontejner, KontejnerTekuce.Kolicina,KontejnerStatus.Naziv as Status, KontejnerTekuce.Pokret as Pokret, Skladista.Naziv as Skladiste, " +
 " Skladista.Kapacitet, Pozicija.Opis as Pozicija, VizuelniNapomena, " +
 " Ostecenja as Ispravnost, KontejnerskiTerminali.Naziv as RLSRB, Kvalitet, CIR, STATUSIzvoz , " +
 " PArtnerji.PaNaziv as Brodar, puv.PaNAziv as Uvoznik, UlazniBroj as KontejnerID_UVoz, DatumGIN as DATUM_GATEIN, DatumOtpremaPlat  as DATUM_OTP_PLAT, OperacijaUradjena as ZadnjaOperacija, Skladisnina, SkladisninaOd, SkladisninaDo " +

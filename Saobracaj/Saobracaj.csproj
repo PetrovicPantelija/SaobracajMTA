@@ -4338,7 +4338,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmPrijemnicaCarinsko.resx">
       <DependentUpon>frmPrijemnicaCarinsko.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Carinsko\frmPrijemnicaStavke.resx">
       <DependentUpon>frmPrijemnicaStavke.cs</DependentUpon>

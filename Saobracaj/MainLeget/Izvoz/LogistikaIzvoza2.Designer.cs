@@ -91,6 +91,7 @@
             this.sfButton2.Text = "Izmeni postojeći";
             this.sfButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton2.UseVisualStyleBackColor = false;
+            this.sfButton2.Click += new System.EventHandler(this.sfButton2_Click);
             // 
             // sfButton3
             // 
@@ -106,11 +107,12 @@
             this.sfButton3.Size = new System.Drawing.Size(287, 225);
             this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.sfButton3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.sfButton3.TabIndex = 485;
             this.sfButton3.Text = "Otkaži postojeći";
             this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton3.UseVisualStyleBackColor = false;
+            this.sfButton3.Click += new System.EventHandler(this.sfButton3_Click);
             // 
             // sfButton4
             // 

@@ -183,7 +183,7 @@
             this.sfPartnerji.Size = new System.Drawing.Size(288, 225);
             this.sfPartnerji.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfPartnerji.Style.ForeColor = System.Drawing.Color.White;
-            this.sfPartnerji.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfPartnerji.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
             this.sfPartnerji.TabIndex = 500;
             this.sfPartnerji.Text = "Partneri";
             this.sfPartnerji.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

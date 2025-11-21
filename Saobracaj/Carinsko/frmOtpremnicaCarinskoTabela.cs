@@ -200,20 +200,13 @@ namespace Saobracaj.Carinsko
         private void button23_Click(object sender, EventArgs e)
         {
             frmOtpremnicaCarinsko car = new frmOtpremnicaCarinsko();
-            car.FormClosed += car_FormClosed;
             car.Show();
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
             frmOtpremnicaCarinsko pc = new frmOtpremnicaCarinsko(txtSifra.Text);
-            pc.FormClosed += car_FormClosed;
             pc.Show();
-        }
-
-        private void car_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            RefreshDataGrid();
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
