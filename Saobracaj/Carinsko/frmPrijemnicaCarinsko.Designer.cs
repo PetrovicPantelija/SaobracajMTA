@@ -271,6 +271,9 @@
             this.cboSektor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSektor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboSektor.FormattingEnabled = true;
+            this.cboSektor.Items.AddRange(new object[] {
+            "UVOZ",
+            "IZVOZ"});
             this.cboSektor.Location = new System.Drawing.Point(589, 249);
             this.cboSektor.Margin = new System.Windows.Forms.Padding(2);
             this.cboSektor.Name = "cboSektor";

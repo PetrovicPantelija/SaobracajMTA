@@ -204,6 +204,12 @@ namespace Saobracaj.Carinko
         private void RefreshDataGrid()
         {
             dataGridView1.AutoGenerateColumns = false;
+            if (PrijemnicaID.ToString() == "0".ToString()) 
+            {
+
+                txtID.Text = "0";
+            }
+
            
             var select = "";
             select = @" SELECT [ID]      ,[IDNadredjena]      ,[Artikal]      ,[JM]      ,[Koleta]      ,[Bruto]      ,[Pozicija]      ,[Vrednost]      ,[Valuta]
@@ -665,13 +671,33 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
 
 
                 }
+                double vrednost = 0;
+                string valuta = "RSD";
 
-                if (row.Cells[2].Value != null)
+                if (row.Cells[7].Value == null)
+                {
+                    vrednost = 0;
+                }
+                else
+                {
+                    vrednost = Convert.ToDouble(row.Cells[7].Value);
+                }
+
+                if (row.Cells[8].Value == null)
+                {
+                    valuta = "RSD";
+                }
+                else
+                {
+                    valuta = row.Cells[8].Value.ToString();
+                }
+
+                if (row.Cells[1].Value == null)
                 {
                     ins.InsPrijemnicaCarinskaStavke(Convert.ToInt32(postojeciID), Convert.ToInt32(txtID.Text),
                         row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), Convert.ToDouble(row.Cells[4].Value),
                         Convert.ToDouble(row.Cells[5].Value)
-                        , Convert.ToInt32(row.Cells[6].Value), Convert.ToDouble(row.Cells[7].Value), row.Cells[8].Value.ToString(),
+                        , Convert.ToInt32(row.Cells[6].Value), vrednost, valuta,
                         brk, paleta, vrstp, dim);
                 }
 

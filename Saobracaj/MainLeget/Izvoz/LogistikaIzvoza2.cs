@@ -81,7 +81,19 @@ namespace Saobracaj.MainLeget.LegNew
         private void sfButton4_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(), true);
+            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(0), true);
+        }
+
+        private void sfButton2_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(1), true);
+        }
+
+        private void sfButton3_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(2), true);
         }
     }
 }

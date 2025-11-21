@@ -250,14 +250,15 @@
             this.btnFinansije.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnFinansije.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnFinansije.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage1")));
+            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnFinansije.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnFinansije.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnFinansije.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnFinansije.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnFinansije.TabIndex = 63;
             this.btnFinansije.Text = "Finansije";
             this.btnFinansije.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnFinansije.UseVisualStyleBackColor = false;
+            this.btnFinansije.Click += new System.EventHandler(this.btnFinansije_Click);
             // 
             // btnKapija
             // 
@@ -279,14 +280,15 @@
             this.btnKapija.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnKapija.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnKapija.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage2")));
+            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnKapija.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnKapija.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnKapija.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnKapija.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnKapija.TabIndex = 62;
             this.btnKapija.Text = "Kapija";
             this.btnKapija.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnKapija.UseVisualStyleBackColor = false;
+            this.btnKapija.Click += new System.EventHandler(this.btnKapija_Click);
             // 
             // btnOdrzavanje
             // 
@@ -308,14 +310,15 @@
             this.btnOdrzavanje.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOdrzavanje.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnOdrzavanje.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage3")));
+            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnOdrzavanje.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnOdrzavanje.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnOdrzavanje.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnOdrzavanje.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnOdrzavanje.TabIndex = 61;
             this.btnOdrzavanje.Text = "Održavanje";
             this.btnOdrzavanje.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnOdrzavanje.UseVisualStyleBackColor = false;
+            this.btnOdrzavanje.Click += new System.EventHandler(this.btnOdrzavanje_Click);
             // 
             // btnPTI
             // 
@@ -337,14 +340,15 @@
             this.btnPTI.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPTI.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPTI.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage4")));
+            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnPTI.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPTI.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.btnPTI.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPTI.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnPTI.TabIndex = 60;
             this.btnPTI.Text = "PTI";
             this.btnPTI.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnPTI.UseVisualStyleBackColor = false;
+            this.btnPTI.Click += new System.EventHandler(this.btnPTI_Click);
             // 
             // btnPrijemIOtpremaKamiona
             // 
@@ -366,14 +370,15 @@
             this.btnPrijemIOtpremaKamiona.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage5")));
+            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnPrijemIOtpremaKamiona.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPrijemIOtpremaKamiona.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            this.btnPrijemIOtpremaKamiona.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaKamiona.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtpremaKamiona.TabIndex = 59;
             this.btnPrijemIOtpremaKamiona.Text = "Prijem i otprema kamiona";
             this.btnPrijemIOtpremaKamiona.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnPrijemIOtpremaKamiona.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona_Click);
             // 
             // btnPrijemIOtpremaVozova
             // 
@@ -395,14 +400,15 @@
             this.btnPrijemIOtpremaVozova.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPrijemIOtpremaVozova.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPrijemIOtpremaVozova.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage6")));
+            this.btnPrijemIOtpremaVozova.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnPrijemIOtpremaVozova.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPrijemIOtpremaVozova.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
+            this.btnPrijemIOtpremaVozova.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtpremaVozova.TabIndex = 58;
             this.btnPrijemIOtpremaVozova.Text = "Prijem i otprema vozova";
             this.btnPrijemIOtpremaVozova.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnPrijemIOtpremaVozova.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova_Click);
             // 
             // btnPretovari
             // 
@@ -424,14 +430,15 @@
             this.btnPretovari.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovari.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPretovari.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPretovari.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage7")));
+            this.btnPretovari.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnPretovari.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPretovari.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image8")));
+            this.btnPretovari.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPretovari.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnPretovari.TabIndex = 57;
             this.btnPretovari.Text = "Pretovari";
             this.btnPretovari.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnPretovari.UseVisualStyleBackColor = false;
+            this.btnPretovari.Click += new System.EventHandler(this.btnPretovari_Click);
             // 
             // btnSkladista
             // 
@@ -453,14 +460,15 @@
             this.btnSkladista.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnSkladista.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnSkladista.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnSkladista.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage8")));
+            this.btnSkladista.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnSkladista.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSkladista.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image9")));
+            this.btnSkladista.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnSkladista.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnSkladista.TabIndex = 56;
             this.btnSkladista.Text = "Skladišta";
             this.btnSkladista.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnSkladista.UseVisualStyleBackColor = false;
+            this.btnSkladista.Click += new System.EventHandler(this.btnSkladista_Click);
             // 
             // btnZeleznicki
             // 
@@ -482,14 +490,15 @@
             this.btnZeleznicki.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnZeleznicki.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnZeleznicki.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnZeleznicki.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage9")));
+            this.btnZeleznicki.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnZeleznicki.Style.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnZeleznicki.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image10")));
+            this.btnZeleznicki.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnZeleznicki.Style.ImageForeColor = System.Drawing.Color.White;
             this.btnZeleznicki.TabIndex = 55;
             this.btnZeleznicki.Text = "Železnički transport";
             this.btnZeleznicki.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnZeleznicki.UseVisualStyleBackColor = false;
+            this.btnZeleznicki.Click += new System.EventHandler(this.btnZeleznicki_Click);
             // 
             // btnDrumski
             // 
@@ -549,6 +558,7 @@
             this.btnLogistikaDirektnih.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogistikaDirektnih.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogistikaDirektnih.UseVisualStyleBackColor = false;
+            this.btnLogistikaDirektnih.Click += new System.EventHandler(this.btnLogistikaDirektnih_Click);
             // 
             // btnLogistikaUvoza
             // 

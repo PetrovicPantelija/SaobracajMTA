@@ -126,6 +126,7 @@ namespace Saobracaj
             parent?.ShowChild(new MainLeget.LegNew.LogistikaIzvoza1(), true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "LOGISTIKA IZVOZA";
+            BackColorKliknut(1);
 
         }
 
@@ -279,7 +280,64 @@ namespace Saobracaj
 
         private void btnLogistikaUvoza_Click(object sender, EventArgs e)
         {
+            BackColorKliknut(0);
 
+        }
+        private void BackColorKliknut(int Dugme)
+        {
+            btnLogistikaUvoza.BackColor = Color.FromArgb(32, 61, 85);
+            btnLogistikaIzvoza.BackColor = Color.FromArgb(32, 61, 85);
+            btnLogistikaDirektnih.BackColor = Color.FromArgb(32, 61, 85);
+            btnDrumski.BackColor = Color.FromArgb(32, 61, 85);
+            btnZeleznicki.BackColor = Color.FromArgb(32, 61, 85);
+            btnSkladista.BackColor = Color.FromArgb(32, 61, 85);
+            btnPretovari.BackColor = Color.FromArgb(32, 61, 85);
+            btnPrijemIOtpremaVozova.BackColor = Color.FromArgb(32, 61, 85);
+            btnPrijemIOtpremaKamiona.BackColor = Color.FromArgb(32, 61, 85);
+            btnPTI.BackColor = Color.FromArgb(32, 61, 85);
+            btnOdrzavanje.BackColor = Color.FromArgb(32, 61, 85);
+            btnKapija.BackColor = Color.FromArgb(32, 61, 85);
+            btnFinansije.BackColor = Color.FromArgb(32, 61, 85);
+            btnPodesavanja.BackColor = Color.FromArgb(32, 61, 85);
+            switch (Dugme)
+            {
+                case 0:
+                    {
+                        btnLogistikaUvoza.BackColor = Color.FromArgb(1, 115, 199);break;
+                    }
+                case 1:
+                    {  btnLogistikaIzvoza.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 2:
+                    { btnLogistikaDirektnih.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 3:
+                    { btnDrumski.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 4:
+                    { btnZeleznicki.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 5:
+                    { btnSkladista.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 6:
+                    { btnPretovari.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 7:
+                    { btnPrijemIOtpremaVozova.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 8:
+                    { btnPrijemIOtpremaKamiona.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 9:
+                    { btnPTI.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 10:
+                    { btnOdrzavanje.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 11:
+                    { btnKapija.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 12:
+                    { btnFinansije.BackColor = Color.FromArgb(1, 115, 199); break; }
+                case 13:
+                    { btnPodesavanja.BackColor = Color.FromArgb(1, 115, 199); break; }
+                default:
+                    {
+                        break;
+                    }
+                    
+            }
+        
         }
 
 
@@ -294,6 +352,7 @@ namespace Saobracaj
             parent?.ShowChild(new Podesavanje1(), true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "PODEŠAVANJE SISTEMA";
+            BackColorKliknut(13);
         }
 
         private void btnDrumski_Click(object sender, EventArgs e)
@@ -302,6 +361,7 @@ namespace Saobracaj
             parent?.ShowChild(new Drumski1(), true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "DRUMSKI TRANSPORT";
+            BackColorKliknut(3);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -317,6 +377,56 @@ namespace Saobracaj
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLogistikaDirektnih_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(2);
+        }
+
+        private void btnZeleznicki_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(4);
+        }
+
+        private void btnSkladista_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(5);
+        }
+
+        private void btnPretovari_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(6);
+        }
+
+        private void btnPrijemIOtpremaVozova_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(7);
+        }
+
+        private void btnPrijemIOtpremaKamiona_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(8);
+        }
+
+        private void btnPTI_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(9);
+        }
+
+        private void btnOdrzavanje_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(10);
+        }
+
+        private void btnKapija_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(11);
+        }
+
+        private void btnFinansije_Click(object sender, EventArgs e)
+        {
+            BackColorKliknut(12);
         }
     }
 }
