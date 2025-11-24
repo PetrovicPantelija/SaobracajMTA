@@ -22,6 +22,8 @@ namespace Saobracaj
         private readonly Stack<Form> nav = new Stack<Form>();
         private Form aktivna = null;
         private List<Control> homeCtrl;
+        // The form that should be shown when clicking the Home button (invoked from left panel)
+        private Form menuHome = null;
         public NewMain()
         {
             InitializeComponent();
@@ -31,8 +33,11 @@ namespace Saobracaj
         {
 
         }
-        public void ShowChild(Form child,bool addToHistory = true)
+        // Added optional parameter setAsMenuHome to mark a form as the "menu home"
+        public void ShowChild(Form child,bool addToHistory = true, bool setAsMenuHome = false)
         {
+            if (setAsMenuHome) menuHome = child;
+
             if(aktivna != null)
             {
                 if (addToHistory) nav.Push(aktivna);
@@ -118,12 +123,21 @@ namespace Saobracaj
         private void btnNazad_Click(object sender, EventArgs e) => NavigateBack();
         private void btnHome_Click(object sender, EventArgs e)
         {
+            // If a menu-home form was set (form opened from left panel), show that form.
+            if (menuHome != null)
+            {
+                ShowChild(menuHome, false);
+                splitContainer3.Panel2.Show();
+                return;
+            }
+
             ShowHome();
         }
         private void btnLogistikaIzvoza_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new MainLeget.LegNew.LogistikaIzvoza1(), true);
+            // Mark this form as the menu home so Home button will return here
+            parent?.ShowChild(new MainLeget.LegNew.LogistikaIzvoza1(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "LOGISTIKA IZVOZA";
             BackColorKliknut(1);
@@ -349,7 +363,7 @@ namespace Saobracaj
         private void btnPodesavanja_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Podesavanje1(), true);
+            parent?.ShowChild(new Podesavanje1(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "PODEŠAVANJE SISTEMA";
             BackColorKliknut(13);
@@ -358,7 +372,7 @@ namespace Saobracaj
         private void btnDrumski_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Drumski1(), true);
+            parent?.ShowChild(new Drumski1(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "DRUMSKI TRANSPORT";
             BackColorKliknut(3);
@@ -371,7 +385,9 @@ namespace Saobracaj
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
+            // Dashboard should show the main dashboard screen
             lblNaslov.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
+            ShowHome();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
