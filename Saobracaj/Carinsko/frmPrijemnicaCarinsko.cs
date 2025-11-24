@@ -162,12 +162,31 @@ namespace Saobracaj.Carinko
         public frmPrijemnicaCarinsko()
         {
             InitializeComponent();
+            this.FormClosing += frmPrijemnicaCarinsko_FormClosing;
         }
         public frmPrijemnicaCarinsko(string Prijemnica)
         {
             InitializeComponent();
             ChangeTextBox();
             PrijemnicaID = Prijemnica;
+            this.FormClosing += frmPrijemnicaCarinsko_FormClosing;
+        }
+
+        private void frmPrijemnicaCarinsko_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Ensure the form is allowed to close and resources are released.
+            // If some other logic attempted to cancel closing, force the close.
+            try
+            {
+                e.Cancel = false;
+                // detach handlers if needed and dispose
+                this.FormClosing -= frmPrijemnicaCarinsko_FormClosing;
+                this.Dispose();
+            }
+            catch
+            {
+                // ignore errors during disposal
+            }
         }
 
         private void PodesiDatagridView2(DataGridView dgv)
