@@ -35,6 +35,7 @@ namespace Saobracaj.Carinsko
         string niz = "";
         string OtpremnicaID = "0";
         bool promenaUFakturi = false;
+        private object staraVrednost;
 
 
         bool status = false;
@@ -194,7 +195,7 @@ txtPrevoznik.Text, txtBrojKamiona.Text,
 txtNapomena1.Text, txtNapomena2.Text,
 txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt32(cboPrijemnicaId.SelectedValue));
 
-                //RefreshDataGrid();
+                RefreshDataGrid();
                 //  RefrechDataGridT();
                 status = false;
             }
@@ -344,8 +345,9 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             txtID.Text = "";
             txtID.Enabled = false;
 
-
             status = true;
+            dataGridView1.Rows.Clear();
+            dataGridView1.ReadOnly = true;
         }
 
         private void frmOtpremnicaCarinsko_Load(object sender, EventArgs e)
@@ -361,6 +363,19 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
         }
         private void RefreshDataGrid()
         {
+            dataGridView1.Rows.Clear();
+
+            bool idValid = !string.IsNullOrWhiteSpace(txtID.Text) &&
+                           int.TryParse(txtID.Text, out int id) &&
+                           id != 0;
+
+            // 1) Ako ID NIJE validan nema SELECT, grid prazan i ceo read-only
+            if (!idValid)
+            {
+                dataGridView1.ReadOnly = true;
+                return;
+            }
+
             string select = @"SELECT [ID],[IDNadredjena],[Artikal],[JM],[Koleta],[Bruto],[Pozicija],
                              [Vrednost],[Valuta],[BrojKontejnera],[Paleta],[VrstaPalete],
                              [Dimenzije],PrijemnicaStavkaID
@@ -399,9 +414,11 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
                 row.Cells["PrijemnicaStavkaID"].Value = dr["PrijemnicaStavkaID"];
             }
 
+            dataGridView1.ReadOnly = false;
             // Zaključaj kolone koje ne želiš menjati
             dataGridView1.Columns["ID"].ReadOnly = true;
             dataGridView1.Columns["IDNadredjena"].ReadOnly = true;
+            PodesiDatagridView(dataGridView1);
 
         }
         //private void RefreshDataGrid()
@@ -460,6 +477,12 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
 
         private void VratiPodatke(string PrijemnicaID)
         {
+            if (string.IsNullOrWhiteSpace(txtID.Text) || !int.TryParse(txtID.Text, out int id))
+            {
+                // Ako nije validno – očisti grid i prekini
+                sfDataGrid1.DataSource = null;
+                return;
+            }
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -701,6 +724,8 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             if (row.IsNewRow) return;
 
             dataGridView1.EndEdit();
+            if (!dataGridView1.IsCurrentRowDirty)
+                return;
             // Provjeri je li bilo stvarnih promjena
             if (promenaUFakturi)
             {
@@ -753,11 +778,11 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             string vrstaPalete = row.Cells["VrstaPalete"].Value?.ToString() ?? "";
             string dimenzije = row.Cells["Dimenzije"].Value?.ToString() ?? "";
 
-            double koleta = double.TryParse(row.Cells["Koleta"].Value?.ToString(), out var tmpKoleta) ? tmpKoleta : 0;
-            double bruto = double.TryParse(row.Cells["Bruto"].Value?.ToString(), out var tmpBruto) ? tmpBruto : 0;
-            int pozicija = int.TryParse(row.Cells["Pozicija"].Value?.ToString(), out var tmpPozicija) ? tmpPozicija : 0;
-            double vrednost = double.TryParse(row.Cells["Vrednost"].Value?.ToString(), out var tmpVrednost) ? tmpVrednost : 0;
-            int prijemnicaStavkaID = int.TryParse(row.Cells["PrijemnicaStavkaID"].Value?.ToString(), out var tmpPrijemnica) ? tmpPrijemnica : 0;
+            double? koleta = double.TryParse(row.Cells["Koleta"].Value?.ToString(), out var tmpKoleta) ? tmpKoleta : (double?)null;
+            double? bruto = double.TryParse(row.Cells["Bruto"].Value?.ToString(), out var tmpBruto) ? tmpBruto : (double?)null;
+            int? pozicija = int.TryParse(row.Cells["Pozicija"].Value?.ToString(), out var tmpPozicija) ? tmpPozicija : (int?)null;
+            double? vrednost = double.TryParse(row.Cells["Vrednost"].Value?.ToString(), out var tmpVrednost) ? tmpVrednost : (double?)null;
+            int? prijemnicaStavkaID = int.TryParse(row.Cells["PrijemnicaStavkaID"].Value?.ToString(), out var tmpPrijemnica) ? tmpPrijemnica : (int?)null;
 
             try
             {
@@ -789,7 +814,13 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            promenaUFakturi = true;
+            var nova = dataGridView1[e.ColumnIndex, e.RowIndex].Value;
+
+            if ((staraVrednost == null && nova != null) ||
+                (staraVrednost != null && !staraVrednost.Equals(nova)))
+            {
+                promenaUFakturi = true;
+            }
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -797,30 +828,33 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
             // Provjeri je li pritisnuta tipka Delete
             if (e.KeyCode == Keys.Delete)
             {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
                 // Provjeri ima li odabranih redova
                 if (this.dataGridView1.SelectedRows.Count > 0)
                 {
                     // Prikaži dijalog za potvrdu
-                    DialogResult dr = MessageBox.Show("Jeste li sigurni da želite obrisati odabrani red?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show("Jeste li sigurni da želite obrisati odabranu stavku?", "Potvrda brisanja", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (dr == DialogResult.Yes)
                     {
                         // Uzmi ID retka koji se briše
                         int idZaBrisanje = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells["ID"].Value);
+                        int iDNadredjena = Convert.ToInt32(this.dataGridView1.SelectedRows[0].Cells["IDNadredjena"].Value);
 
                         // Pozovi metodu za brisanje iz baze
                         InsertOtpremnicaCarinskaStavke ins = new InsertOtpremnicaCarinskaStavke();
-                        ins.DelOtpremnicaCarinskaStavke(idZaBrisanje);
+                        ins.DelOtpremnicaCarinskaStavke(idZaBrisanje, iDNadredjena);
 
                         // Ukloni red iz DataGridView-a
                         this.dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
 
-                        MessageBox.Show("Red je uspješno obrisan.");
+                        MessageBox.Show("Stavka je uspješno obrisana.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nije odabran nijedan red za brisanje.");
+                    MessageBox.Show("Nije odabrana nijedana stavka za brisanje.");
                 }
             }
         }
@@ -866,6 +900,11 @@ txtTransportNo.Text, Convert.ToDateTime(dtpOcekivanoVreme.Value), Convert.ToInt3
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            staraVrednost = dataGridView1[e.ColumnIndex, e.RowIndex].Value;
         }
     }
 }
