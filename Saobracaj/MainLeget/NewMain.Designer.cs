@@ -82,8 +82,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Location = new System.Drawing.Point(3, 0);
@@ -120,12 +120,26 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // lblNaslov
+            // 
+            this.lblNaslov.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNaslov.BackColor = System.Drawing.Color.Transparent;
+            this.lblNaslov.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaslov.ForeColor = System.Drawing.Color.White;
+            this.lblNaslov.Location = new System.Drawing.Point(264, 18);
+            this.lblNaslov.Name = "lblNaslov";
+            this.lblNaslov.Size = new System.Drawing.Size(1080, 24);
+            this.lblNaslov.TabIndex = 1;
+            this.lblNaslov.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
+            this.lblNaslov.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnMinimize
             // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
             this.btnMinimize.Location = new System.Drawing.Point(1500, 14);
             this.btnMinimize.Name = "btnMinimize";
@@ -138,9 +152,9 @@
             // btnMaximize
             // 
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.ForeColor = System.Drawing.Color.White;
             this.btnMaximize.Location = new System.Drawing.Point(1540, 14);
             this.btnMaximize.Name = "btnMaximize";
@@ -153,9 +167,9 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(1580, 14);
             this.btnClose.Name = "btnClose";
@@ -165,23 +179,9 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblNaslov
-            // 
-            this.lblNaslov.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNaslov.BackColor = System.Drawing.Color.Transparent;
-            this.lblNaslov.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaslov.ForeColor = System.Drawing.Color.White;
-            this.lblNaslov.Location = new System.Drawing.Point(264, 18);
-            this.lblNaslov.Name = "lblNaslov";
-            this.lblNaslov.Size = new System.Drawing.Size(1080, 24);
-            this.lblNaslov.TabIndex = 1;
-            this.lblNaslov.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
-            this.lblNaslov.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -196,7 +196,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1001);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1004);
             this.splitContainer2.SplitterDistance = 260;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -222,7 +222,7 @@
             this.panel1.Controls.Add(this.btnLogistikaIzvoza);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 997);
+            this.panel1.Size = new System.Drawing.Size(258, 1000);
             this.panel1.TabIndex = 53;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -652,7 +652,9 @@
             // 
             // splitContainer3
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
