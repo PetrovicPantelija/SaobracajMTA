@@ -113,6 +113,7 @@ namespace Saobracaj.Uvoz
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            ChangeTextBox();
         }
 
         private void button1_Click(object sender, EventArgs e)

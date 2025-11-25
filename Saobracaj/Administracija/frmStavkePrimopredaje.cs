@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using Saobracaj.Properties;
 
 namespace Saobracaj.Administracija
 {

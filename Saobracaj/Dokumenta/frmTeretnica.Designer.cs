@@ -352,7 +352,7 @@
             // toolStripButton8
             // 
             this.toolStripButton8.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton8.Image = global::Saobracaj.Properties.Resources.kontejners;
+            this.toolStripButton8.Image = global::Saobracaj.Properties.Resources.Finansije;
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
             this.toolStripButton8.Size = new System.Drawing.Size(168, 24);

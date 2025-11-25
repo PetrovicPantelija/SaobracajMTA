@@ -2564,6 +2564,11 @@
     <Compile Include="Promet\InsertPopis.cs" />
     <Compile Include="Promet\InsertPromet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PropertyGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4052,12 +4057,6 @@
     <Compile Include="Uvoz\frmPregledPlanoviUtovaraDrumski.Designer.cs">
       <DependentUpon>frmPregledPlanoviUtovaraDrumski.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uvoz\frmPregledRadnihNalogaInterni.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Uvoz\frmPregledRadnihNalogaInterni.Designer.cs">
-      <DependentUpon>frmPregledRadnihNalogaInterni.cs</DependentUpon>
-    </Compile>
     <Compile Include="Uvoz\frmPrijemKamionaIzPlana.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5239,14 +5238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="PropertyGridForm.resx">
       <DependentUpon>PropertyGridForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -5864,9 +5858,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPregledPlanoviUtovaraDrumski.resx">
       <DependentUpon>frmPregledPlanoviUtovaraDrumski.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Uvoz\frmPregledRadnihNalogaInterni.resx">
-      <DependentUpon>frmPregledRadnihNalogaInterni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPrijemKamionaIzPlana.resx">
       <DependentUpon>frmPrijemKamionaIzPlana.cs</DependentUpon>
@@ -6691,6 +6682,10 @@
     <Content Include="itextsharp.dll" />
     <None Include="Resources\baner.png" />
     <None Include="Resources\cargo-train.png" />
+    <None Include="Resources\1.PovratakNaPredhodniMeni.png" />
+    <None Include="Resources\2.PocetniMeni.png" />
+    <None Include="Resources\3.DashBoard.png" />
+    <None Include="Resources\4.LogOut.png" />
     <Content Include="Resources\chat.png" />
     <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
     <None Include="Resources\drumskiW.png" />
@@ -6700,6 +6695,9 @@
     <None Include="Resources\dealS.png" />
     <None Include="Resources\deliveryS.png" />
     <None Include="Resources\crane.png" />
+    <None Include="Resources\Direktni.png" />
+    <None Include="Resources\Drumski2.png" />
+    <None Include="Resources\Drumski3.png" />
     <Content Include="Resources\error.png" />
     <Content Include="Resources\exclamation.png" />
     <None Include="Resources\image.png" />
@@ -6708,6 +6706,7 @@
     <None Include="Resources\exportS.png" />
     <None Include="Resources\forklift.png" />
     <None Include="Resources\home-button.png" />
+    <None Include="Resources\Finansije.png" />
     <Content Include="Resources\information.png" />
     <None Include="Resources\uvozIzvoz.png" />
     <None Include="Resources\uvozIzvoz1.png" />
@@ -6718,6 +6717,13 @@
     <None Include="Resources\maintanance.png" />
     <None Include="Resources\money.png" />
     <None Include="Resources\settings.png" />
+    <None Include="Resources\PrijemOtpremaKamiona.png" />
+    <None Include="Resources\PTI.png" />
+    <None Include="Resources\ODryavanje.png" />
+    <None Include="Resources\Kapija.png" />
+    <None Include="Resources\PodešavanjeSistema.png" />
+    <None Include="Resources\Uvoz.png" />
+    <None Include="Resources\Izvoz.png" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll" />
     <None Include="Resources\LegetIcon.bmp" />

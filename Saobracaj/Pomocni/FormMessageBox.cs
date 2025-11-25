@@ -262,7 +262,7 @@ public partial class FormMessageBox : Form
                 this.btnClose.FlatAppearance.MouseOverBackColor = Color.Crimson;
                 break;
             case MessageBoxIcon.Information: //Information
-                this.pictureBoxIcon.Image = Properties.Resources.information;
+                this.pictureBoxIcon.Image = Properties.Resources.exclamation;
                 PrimaryColor = Color.FromArgb(38, 191, 166);
                 break;
             case MessageBoxIcon.Question://Question

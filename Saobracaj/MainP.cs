@@ -4222,8 +4222,8 @@ namespace Saobracaj
 
         private void toolStripButton206_Click(object sender, EventArgs e)
         {
-            Uvoz.frmPregledRadnihNalogaInterni frnp = new Uvoz.frmPregledRadnihNalogaInterni();
-            frnp.Show();
+           // Uvoz.frmRAdniNalogInterniPUvoz frnp = new Uvoz.frmRAdniNalogInterniPUvoz();
+            //frnp.Show();
         }
 
         private void toolStripButton207_Click(object sender, EventArgs e)

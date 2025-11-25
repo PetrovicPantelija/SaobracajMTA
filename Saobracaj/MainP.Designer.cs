@@ -5395,7 +5395,7 @@ namespace Saobracaj
             this.toolStripButton139.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripButton139.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.toolStripButton139.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.toolStripButton139.Image = global::Saobracaj.Properties.Resources.deliveryS;
+            this.toolStripButton139.Image = global::Saobracaj.Properties.Resources.Kapija;
             this.toolStripButton139.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton139.Name = "toolStripButton139";
             this.toolStripButton139.Size = new System.Drawing.Size(259, 24);
@@ -7067,7 +7067,7 @@ namespace Saobracaj
             // toolStripButton187
             // 
             this.toolStripButton187.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.toolStripButton187.Image = global::Saobracaj.Properties.Resources.forklift;
+            this.toolStripButton187.Image = global::Saobracaj.Properties.Resources.inventory_management;
             this.toolStripButton187.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton187.Name = "toolStripButton187";
             this.toolStripButton187.Size = new System.Drawing.Size(225, 24);

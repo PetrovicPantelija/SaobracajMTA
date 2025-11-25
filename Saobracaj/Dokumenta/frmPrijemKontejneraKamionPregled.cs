@@ -980,18 +980,18 @@ namespace TrackModal.Dokumeta
                     {
                         RefreshDataGridPrijemiLeget();
                         return;
-
+                        break;
                     }
                 default:
                     {
                         RefreshDataGridPrijemi();
                         return;
-
+                        break;
                     }
-                    break;
+                   
             }
+            
 
-           
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)

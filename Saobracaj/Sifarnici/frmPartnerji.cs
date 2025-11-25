@@ -58,7 +58,20 @@ namespace Saobracaj.Sifarnici
                 this.ControlBox = true;
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
-                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                
+                // If you have a Resources.resx file in the Properties folder, ensure it is set to generate the Resources class.
+                // If not, you need to add a Resources.resx file to the Properties folder and add LegetIconPNG to it.
+                try
+                {
+                    this.Icon = this.Icon = new Icon("LegetIconPNG.ico");
+                    // 
+                }
+                catch
+                {
+                    // Handle missing resource gracefully, e.g., do nothing or set a default icon
+                    // this.Icon = SystemIcons.Application;
+                }
+
                 // this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);

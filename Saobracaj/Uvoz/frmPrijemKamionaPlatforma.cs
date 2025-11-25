@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPrijemKamionaPlatforma : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmPrijemKamionaPlatforma : Form
     {
         bool status = false;
         string KorisnikCene = "Panta";

@@ -444,6 +444,35 @@ namespace Saobracaj
         {
             BackColorKliknut(12);
         }
+
+        // Top window control buttons
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                // restore rounded corners
+                ApplyRoundedRegion(this, 14);
+                if (this.btnMaximize != null) this.btnMaximize.Text = "▢";
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                // remove region so form fills screen without rounded corners
+                this.Region = null;
+                if (this.btnMaximize != null) this.btnMaximize.Text = "❐";
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

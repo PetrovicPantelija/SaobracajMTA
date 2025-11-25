@@ -1461,14 +1461,14 @@ namespace TrackModal.Dokumeta
                                 {
                                     ChekurajModulIPoreklo(txtSifra.Text);
                                     return;
-
+                                    break;
                                 }
                             default:
                                 {
 
 
                                     return;
-
+                                    break;
                                 }
                                 break;
                         }
