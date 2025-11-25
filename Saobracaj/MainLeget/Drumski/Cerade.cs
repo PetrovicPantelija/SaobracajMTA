@@ -1,4 +1,5 @@
-﻿using Saobracaj.MainLeget.LegNew;
+﻿using Saobracaj.Drumski;
+using Saobracaj.MainLeget.LegNew;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,25 @@ namespace Saobracaj.MainLeget.Drumski
         {
             var parent = this.TopLevelControl as NewMain;
             parent?.ShowChild(new NalogZaDrumski(), true);
+        }
+
+        private void btnStatusi_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new frmStatus(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
+        }
+
+        private void btnProvera_Click(object sender, EventArgs e)
+        {
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
+
+        }
+
+        private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
+        {
+            //var parent = this.TopLevelControl as NewMain;
+            //parent?.ShowChild(new PakovanjeKamiona1(), true);
         }
     }
 }
