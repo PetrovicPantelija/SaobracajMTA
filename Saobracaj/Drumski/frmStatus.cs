@@ -206,13 +206,13 @@ namespace Saobracaj.Drumski
                 if (_tipoviIn?.Any() == true)
                 {
                     string lista = string.Join(",", _tipoviIn);
-                    uslovTipVozila += $" AND x.VoziloDrumskog IN ({lista}) ";
+                    uslovTipVozila += $" AND x.VlasnistvoLegeta IN ({lista}) ";
                 }
 
                 if (_tipoviNotIn?.Any() == true)
                 {
                     string lista = string.Join(",", _tipoviNotIn);
-                    uslovTipVozila += $" AND x.VoziloDrumskog NOT IN ({lista}) ";
+                    uslovTipVozila += $" AND x.VlasnistvoLegeta NOT IN ({lista}) ";
                 }
 
                 var select = $@"
@@ -225,7 +225,6 @@ namespace Saobracaj.Drumski
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
-                                x.VoziloDrumskog,
                                 x.NalogID, 
                                 x.PoslataNajava,
                                 x.NajavuPoslao, 
@@ -242,7 +241,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -269,7 +268,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -296,7 +295,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -323,7 +322,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, 
                                        au.Vozac,
                                        au.RegBr AS Kamion,
-                                       au.VoziloDrumskog, 
+                                       au.VlasnistvoLegeta, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -350,7 +349,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
-                                       au.VoziloDrumskog,
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -377,7 +376,6 @@ namespace Saobracaj.Drumski
                                 x.Relacija,
                                 x.Vozac,
                                 x.Kamion, 
-                                x.VoziloDrumskog,
                                 x.DatumIstovara, 
                                 x.NalogID, 
                                 x.Prevoznik, 
@@ -504,35 +502,35 @@ namespace Saobracaj.Drumski
         }
         private void DodajDugmadKolonu()
         {
-            // Kolona za instrukcije
-            DataGridViewButtonColumn instrukcijeBtn = new DataGridViewButtonColumn();
-            instrukcijeBtn.Name = "Instrukcije";
-            instrukcijeBtn.HeaderText = "Instrukcije";
-            instrukcijeBtn.Text = "Pošalji";
-            instrukcijeBtn.UseColumnTextForButtonValue = true;
-            instrukcijeBtn.Width = 100;
+            //// Kolona za instrukcije
+            //DataGridViewButtonColumn instrukcijeBtn = new DataGridViewButtonColumn();
+            //instrukcijeBtn.Name = "Instrukcije";
+            //instrukcijeBtn.HeaderText = "Instrukcije";
+            //instrukcijeBtn.Text = "Pošalji";
+            //instrukcijeBtn.UseColumnTextForButtonValue = true;
+            //instrukcijeBtn.Width = 100;
 
-            DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
-            uploadBtn.Name = "Upload";
-            uploadBtn.HeaderText = "Dokumenta";
-            uploadBtn.Text = "Dodaj";
-            uploadBtn.UseColumnTextForButtonValue = true;
-            uploadBtn.Width = 100;
+            //DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
+            //uploadBtn.Name = "Upload";
+            //uploadBtn.HeaderText = "Dokumenta";
+            //uploadBtn.Text = "Dodaj";
+            //uploadBtn.UseColumnTextForButtonValue = true;
+            //uploadBtn.Width = 100;
 
             DataGridViewButtonColumn openUploadedBtn = new DataGridViewButtonColumn();
             openUploadedBtn.Name = "Dokumenta";
-            openUploadedBtn.HeaderText = ""; // prazno
+            openUploadedBtn.HeaderText = "Dokumenta"; 
             openUploadedBtn.Text = "Otvori";
             openUploadedBtn.UseColumnTextForButtonValue = true;
             openUploadedBtn.Width = 100;
 
-            uploadBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //uploadBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             // Dodaj ako već ne postoje
-            if (!dataGridView3.Columns.Contains("Instrukcije"))
-                dataGridView3.Columns.Add(instrukcijeBtn);
+            //if (!dataGridView3.Columns.Contains("Instrukcije"))
+            //    dataGridView3.Columns.Add(instrukcijeBtn);
 
-            if (!dataGridView3.Columns.Contains("Upload"))
-                dataGridView3.Columns.Add(uploadBtn);
+            //if (!dataGridView3.Columns.Contains("Upload"))
+            //    dataGridView3.Columns.Add(uploadBtn);
 
             if (!dataGridView3.Columns.Contains("Dokumenta"))
                 dataGridView3.Columns.Add(openUploadedBtn);
@@ -668,17 +666,18 @@ namespace Saobracaj.Drumski
                 //        }
                 //    }
                 //}
-                //else if (kolona == "Dokumenta")
-                //{
-                //    if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
-                //    {
-                //        var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                //        int radniNalogID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
+                //else
+                if (kolona == "Dokumenta")
+                {
+                    if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
+                    {
+                        var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                        int radniNalogID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
 
-                //        frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
-                //        pregled.ShowDialog();
-                //    }
-                //}
+                        frmPregledFajlova pregled = new frmPregledFajlova(radniNalogID);
+                        pregled.ShowDialog();
+                    }
+                }
             }
         }
 

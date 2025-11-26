@@ -1,13 +1,8 @@
 ﻿using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms;
-using Syncfusion.Windows.Forms.Diagram;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.XlsIO.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -28,6 +23,9 @@ namespace Saobracaj.Drumski
         private Form aktivnaFormaPregleda;
         private DataTable mainTable;
         private string upozorenjeTehnickiNeispravni = "";
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
+        private bool _filtersLoaded = false;
 
         public PakovanjeKamiona1()
         {
@@ -55,17 +53,20 @@ namespace Saobracaj.Drumski
 
         }
 
-        public PakovanjeKamiona1(int TipVozila)
+        public PakovanjeKamiona1(List<int> tipoviIn, List<int> tipoviNotIn)
         {
             InitializeComponent();
             ChangeTextBox();
             ChangeTextBoxTable();
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
             UcitajFiltere();
             chkDatumD.Checked = true;
             chkR.Checked = true;
             RefreshDataGrid1();
             RefreshDataGrid2();
             RefreshDataGrid3();
+          
 
             this.Text = "Formiranje transportnog naloga";
             this.dataGridView2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDown);
@@ -408,7 +409,20 @@ namespace Saobracaj.Drumski
 
         private void UcitajFiltere()
         {
-            var select = " select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila";
+            string uslovTipVozila = "1 = 1 ";
+            if (_tipoviIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviIn);
+                uslovTipVozila += $" AND ID IN ({lista}) ";
+            }
+
+            if (_tipoviNotIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviNotIn);
+                uslovTipVozila += $" AND ID NOT IN ({lista}) ";
+            }
+            // ogranici na odredjeni tip vozila u zavisnosti od menija iz kog dolazi
+            var select = $" select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila WHERE {uslovTipVozila}";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -421,12 +435,15 @@ namespace Saobracaj.Drumski
             DataTable dt = ds.Tables[0];
 
             // Kreiraj novi red sa praznim tekstom i ID -1
-            DataRow prazanRed = dt.NewRow();
-            prazanRed["Naziv"] = "All";
-            prazanRed["ID"] = -1;
+            if (_tipoviIn?.Any() == null)
+            {
+                DataRow prazanRed = dt.NewRow();
+                prazanRed["Naziv"] = "All";
+                prazanRed["ID"] = -1;
 
-            // Ubaci kao prvi red
-            dt.Rows.InsertAt(prazanRed, 0);
+                // Ubaci kao prvi red
+                dt.Rows.InsertAt(prazanRed, 0);
+            }
 
             cboTipVozila.DataSource = dt;
             cboTipVozila.DisplayMember = "Naziv";
@@ -439,13 +456,16 @@ namespace Saobracaj.Drumski
 
             DataTable dt1 = partDS.Tables[0];
 
+          
             // Kreiraj novi red sa praznim tekstom i ID -1
             DataRow prazanRed1 = dt1.NewRow();
             prazanRed1["PaNaziv"] = "All";
             prazanRed1["PaSifra"] = -1;
 
+
             // Ubaci kao prvi red
             dt1.Rows.InsertAt(prazanRed1, 0);
+            
 
             cboPrevoznik.DataSource = dt1;
             cboPrevoznik.DisplayMember = "PaNaziv";
@@ -473,6 +493,8 @@ namespace Saobracaj.Drumski
             cboRegistracija.DataSource = dt2;
             cboRegistracija.DisplayMember = "RegBr";
             cboRegistracija.ValueMember = "ID";
+
+            _filtersLoaded = true;
         }
 
 
@@ -500,10 +522,29 @@ namespace Saobracaj.Drumski
                     .Where(s => int.TryParse(s, out _)));
                 string condition = "";
 
-                if (cboTipVozila.SelectedValue != null && int.TryParse(cboTipVozila.SelectedValue.ToString(), out int parsedTipNaloga) && parsedTipNaloga > -1)
-                    condition = condition + " AND  a.VlasnistvoLegeta = " + parsedTipNaloga;
+
+                if (_tipoviIn?.Any() == true)
+                {
+                    string listaIn = string.Join(",", _tipoviIn);
+                    condition += $" AND a.VlasnistvoLegeta IN ({listaIn})";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string listaNotIn = string.Join(",", _tipoviNotIn);
+                    condition += $" AND a.VlasnistvoLegeta NOT IN ({listaNotIn})";
+                }
+
+                // Ako nema _tipoviIn i _tipoviNotIn, koristi selektovani combo box (regularni način)
+                if ((_tipoviIn == null || !_tipoviIn.Any()) && (_tipoviNotIn == null || !_tipoviNotIn.Any()))
+                {
+                    if (cboTipVozila.SelectedValue != null && int.TryParse(cboTipVozila.SelectedValue.ToString(), out int parsedTipNaloga) && parsedTipNaloga > -1)
+                        condition += " AND a.VlasnistvoLegeta = " + parsedTipNaloga;
+                }
+                //if (cboTipVozila.SelectedValue != null && int.TryParse(cboTipVozila.SelectedValue.ToString(), out int parsedTipNaloga) && parsedTipNaloga > -1)
+                //    condition = condition + " AND  a.VlasnistvoLegeta = " + parsedTipNaloga;
                 if (cboPrevoznik.SelectedValue != null && int.TryParse(cboPrevoznik.SelectedValue.ToString(), out int parsedPrevoznik) && parsedPrevoznik > -1)
-                    condition = condition + " AND  a.PartnerID = " + parsedPrevoznik;
+                    condition += " AND  a.PartnerID = " + parsedPrevoznik;
                 if (cboRegistracija.SelectedValue != null && int.TryParse(cboRegistracija.SelectedValue.ToString(), out int parsedRegistracija) && parsedRegistracija > -1)
                 {
                     string regBr = cboRegistracija.Text.Trim();
@@ -795,7 +836,7 @@ namespace Saobracaj.Drumski
             // Postavi proporcije samo za vidljive kolone
             float totalWeight = 100f;
             float relacijaWeight = 20f;
-            float nalogodavacWeight = 20f;
+            float nalogodavacWeight = 15f;
 
             // Postavi dve glavne
             if (dataGridView2.Columns.Contains("Relacija"))
@@ -853,6 +894,20 @@ namespace Saobracaj.Drumski
                     datumZaProveru = "DATEADD(day, 1, GETDATE())";
                 }
 
+                string uslovTipVozila = "1 = 1 ";
+
+                if (_tipoviIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviIn);
+                    uslovTipVozila += $" AND x.VlasnistvoLegeta IN ({lista}) ";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviNotIn);
+                    uslovTipVozila += $" AND x.VlasnistvoLegeta NOT IN ({lista}) ";
+                }
+
                 var select = $@"
                             SELECT   
                                 -- Agregirana kolona (Spojeni ID-jevi)
@@ -863,6 +918,7 @@ namespace Saobracaj.Drumski
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
+                                x.VlasnistvoLegeta,
                                 x.NalogID, 
                                 x.PoslataNajava,
                                 x.NajavuPoslao, 
@@ -879,6 +935,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -905,6 +962,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -930,7 +988,8 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
-                                       au.RegBr AS Kamion, 
+                                       au.RegBr AS Kamion,
+                                       au.VlasnistvoLegeta, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -957,6 +1016,7 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, 
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
+                                       au.VlasnistvoLegeta,
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -982,7 +1042,8 @@ namespace Saobracaj.Drumski
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        au.Vozac,
-                                       au.RegBr AS Kamion, 
+                                       au.RegBr AS Kamion,
+                                       au.VlasnistvoLegeta, 
                                        CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
@@ -1002,12 +1063,14 @@ namespace Saobracaj.Drumski
                                       AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
 
                             ) AS x
+                             WHERE  {uslovTipVozila} 
                             GROUP BY 
                                 x.ID,
                                 x.Nalogodavac, 
                                 x.Relacija,
                                 x.Vozac,
                                 x.Kamion, 
+                                x.VlasnistvoLegeta,
                                 x.DatumIstovara, 
                                 x.NalogID, 
                                 x.Prevoznik, 
@@ -1116,7 +1179,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan", "VoziloDrumskog"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -2531,6 +2594,12 @@ namespace Saobracaj.Drumski
             // Formiranje poruke
         }
 
+        private void ApplyFilters()
+        {
+            RefreshDataGrid1();
+            RefreshDataGrid2();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             frmStatus pe = new frmStatus(tipoviIn: new List<int> { 1 }, tipoviNotIn: null );
@@ -2541,6 +2610,30 @@ namespace Saobracaj.Drumski
         private void button4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cboRegistracija_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_filtersLoaded) return;
+            ApplyFilters();
+        }
+
+        private void cboPrevoznik_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_filtersLoaded) return;
+            ApplyFilters();
+
+        }
+
+        private void cboTipVozila_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_filtersLoaded) return;
+            ApplyFilters();
         }
     }
     class NajavaGrupa

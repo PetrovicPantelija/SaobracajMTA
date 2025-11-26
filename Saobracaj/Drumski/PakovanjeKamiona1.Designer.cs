@@ -40,7 +40,8 @@
             this.cboRegistracija = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboPrevoznik = new System.Windows.Forms.ComboBox();
-            this.btnFiltriraj = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboTipVozila = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkR = new System.Windows.Forms.CheckBox();
             this.chkN = new System.Windows.Forms.CheckBox();
@@ -54,15 +55,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnNajava = new System.Windows.Forms.Button();
-            this.btnArhiva = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.cboTipVozila = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -91,7 +88,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1892, 802);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1559, 802);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -106,7 +103,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1886, 403);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1553, 403);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel1
@@ -121,14 +118,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(856, 397);
+            this.panel1.Size = new System.Drawing.Size(704, 397);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // chkDatumS
             // 
             this.chkDatumS.AutoSize = true;
-            this.chkDatumS.Location = new System.Drawing.Point(341, 3);
+            this.chkDatumS.Location = new System.Drawing.Point(341, 4);
             this.chkDatumS.Name = "chkDatumS";
             this.chkDatumS.Size = new System.Drawing.Size(60, 20);
             this.chkDatumS.TabIndex = 19;
@@ -139,7 +136,7 @@
             // chkDatumD
             // 
             this.chkDatumD.AutoSize = true;
-            this.chkDatumD.Location = new System.Drawing.Point(262, 3);
+            this.chkDatumD.Location = new System.Drawing.Point(262, 4);
             this.chkDatumD.Name = "chkDatumD";
             this.chkDatumD.Size = new System.Drawing.Size(69, 20);
             this.chkDatumD.TabIndex = 18;
@@ -160,8 +157,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(856, 333);
+            this.dataGridView1.Size = new System.Drawing.Size(704, 333);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // flowLayoutPanel1
@@ -172,11 +170,10 @@
             this.flowLayoutPanel1.Controls.Add(this.cboPrevoznik);
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.cboTipVozila);
-            this.flowLayoutPanel1.Controls.Add(this.btnFiltriraj);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 29);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(856, 35);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(704, 35);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label4
@@ -194,13 +191,14 @@
             this.cboRegistracija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRegistracija.Location = new System.Drawing.Point(109, 3);
             this.cboRegistracija.Name = "cboRegistracija";
-            this.cboRegistracija.Size = new System.Drawing.Size(150, 24);
+            this.cboRegistracija.Size = new System.Drawing.Size(137, 24);
             this.cboRegistracija.TabIndex = 10;
+            this.cboRegistracija.SelectedIndexChanged += new System.EventHandler(this.cboRegistracija_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(265, 0);
+            this.label3.Location = new System.Drawing.Point(252, 0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label3.Size = new System.Drawing.Size(66, 22);
@@ -210,19 +208,30 @@
             // cboPrevoznik
             // 
             this.cboPrevoznik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrevoznik.Location = new System.Drawing.Point(337, 3);
+            this.cboPrevoznik.Location = new System.Drawing.Point(324, 3);
             this.cboPrevoznik.Name = "cboPrevoznik";
-            this.cboPrevoznik.Size = new System.Drawing.Size(185, 24);
+            this.cboPrevoznik.Size = new System.Drawing.Size(158, 24);
             this.cboPrevoznik.TabIndex = 15;
+            this.cboPrevoznik.SelectedIndexChanged += new System.EventHandler(this.cboPrevoznik_SelectedIndexChanged);
             // 
-            // btnFiltriraj
+            // label2
             // 
-            this.btnFiltriraj.Location = new System.Drawing.Point(755, 3);
-            this.btnFiltriraj.Name = "btnFiltriraj";
-            this.btnFiltriraj.Size = new System.Drawing.Size(94, 24);
-            this.btnFiltriraj.TabIndex = 11;
-            this.btnFiltriraj.Text = "Filtriraj";
-            this.btnFiltriraj.Click += new System.EventHandler(this.btnFiltriraj_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(488, 0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label2.Size = new System.Drawing.Size(65, 22);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Tip vozila";
+            // 
+            // cboTipVozila
+            // 
+            this.cboTipVozila.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipVozila.Location = new System.Drawing.Point(559, 3);
+            this.cboTipVozila.Name = "cboTipVozila";
+            this.cboTipVozila.Size = new System.Drawing.Size(137, 24);
+            this.cboTipVozila.TabIndex = 9;
+            this.cboTipVozila.SelectedIndexChanged += new System.EventHandler(this.cboTipVozila_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -239,7 +248,7 @@
             // chkR
             // 
             this.chkR.AutoSize = true;
-            this.chkR.Location = new System.Drawing.Point(138, 3);
+            this.chkR.Location = new System.Drawing.Point(138, 4);
             this.chkR.Name = "chkR";
             this.chkR.Size = new System.Drawing.Size(39, 20);
             this.chkR.TabIndex = 16;
@@ -250,7 +259,7 @@
             // chkN
             // 
             this.chkN.AutoSize = true;
-            this.chkN.Location = new System.Drawing.Point(194, 3);
+            this.chkN.Location = new System.Drawing.Point(194, 4);
             this.chkN.Name = "chkN";
             this.chkN.Size = new System.Drawing.Size(39, 20);
             this.chkN.TabIndex = 17;
@@ -265,17 +274,17 @@
             this.panel2.Controls.Add(this.btnKreiraj);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(865, 3);
+            this.panel2.Location = new System.Drawing.Point(713, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1018, 397);
+            this.panel2.Size = new System.Drawing.Size(837, 397);
             this.panel2.TabIndex = 1;
             // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(884, 29);
+            this.btnRefresh.Location = new System.Drawing.Point(573, 26);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(130, 26);
+            this.btnRefresh.Size = new System.Drawing.Size(180, 26);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Osveži prikaz";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -293,7 +302,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1018, 333);
+            this.dataGridView2.Size = new System.Drawing.Size(837, 333);
             this.dataGridView2.TabIndex = 2;
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
             // 
@@ -322,7 +331,7 @@
             // 
             // btnKreiraj
             // 
-            this.btnKreiraj.Location = new System.Drawing.Point(0, 32);
+            this.btnKreiraj.Location = new System.Drawing.Point(0, 30);
             this.btnKreiraj.Name = "btnKreiraj";
             this.btnKreiraj.Size = new System.Drawing.Size(130, 26);
             this.btnKreiraj.TabIndex = 1;
@@ -353,7 +362,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1886, 328);
+            this.dataGridView3.Size = new System.Drawing.Size(1553, 328);
             this.dataGridView3.TabIndex = 2;
             this.dataGridView3.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellValueChanged);
             this.dataGridView3.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView3_CurrentCellDirtyStateChanged);
@@ -362,87 +371,45 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 9;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 266F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 241F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 177F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
-            this.tableLayoutPanel3.Controls.Add(this.btnNajava, 8, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnArhiva, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 267F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel3.Controls.Add(this.button5, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button2, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.button1, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button3, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button4, 6, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 412);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1886, 44);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1553, 44);
             this.tableLayoutPanel3.TabIndex = 3;
-            // 
-            // btnNajava
-            // 
-            this.btnNajava.Location = new System.Drawing.Point(1710, 3);
-            this.btnNajava.Name = "btnNajava";
-            this.btnNajava.Size = new System.Drawing.Size(169, 38);
-            this.btnNajava.TabIndex = 4;
-            this.btnNajava.Text = "NAJAVA VOZILA";
-            this.btnNajava.UseVisualStyleBackColor = true;
-            this.btnNajava.Click += new System.EventHandler(this.btnNajava_Click);
-            // 
-            // btnArhiva
-            // 
-            this.btnArhiva.Location = new System.Drawing.Point(3, 3);
-            this.btnArhiva.Name = "btnArhiva";
-            this.btnArhiva.Size = new System.Drawing.Size(169, 38);
-            this.btnArhiva.TabIndex = 6;
-            this.btnArhiva.Text = "ARHIVIRAJ";
-            this.btnArhiva.UseVisualStyleBackColor = true;
-            this.btnArhiva.Click += new System.EventHandler(this.btnArhiva_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(614, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(235, 38);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "UPARI KAMION I KONTEJNER";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(876, 3);
+            this.button1.Location = new System.Drawing.Point(712, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 38);
+            this.button1.Size = new System.Drawing.Size(210, 38);
             this.button1.TabIndex = 2;
             this.button1.Text = "VRATI U NERASPOREĐENE";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
+            // button2
             // 
-            this.button3.Location = new System.Drawing.Point(1112, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(227, 38);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "STATUS";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(1354, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(171, 38);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "PROVERA RASPOLOŽIVOSTI";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
+            this.button2.Location = new System.Drawing.Point(446, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(253, 38);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "UPARI KAMION I KONTEJNER";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // commandBarController1
             // 
@@ -451,33 +418,34 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
-            // cboTipVozila
+            // button4
             // 
-            this.cboTipVozila.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipVozila.Location = new System.Drawing.Point(599, 3);
-            this.cboTipVozila.Name = "cboTipVozila";
-            this.cboTipVozila.Size = new System.Drawing.Size(150, 24);
-            this.cboTipVozila.TabIndex = 9;
+            this.button4.Location = new System.Drawing.Point(3, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(154, 38);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "ARHIVIRAJ";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnArhiva_Click);
             // 
-            // label2
+            // button5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(528, 0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label2.Size = new System.Drawing.Size(65, 22);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Tip vozila";
+            this.button5.Location = new System.Drawing.Point(1286, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(187, 38);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "NAJAVA VOZILA";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.btnNajava_Click);
             // 
             // PakovanjeKamiona1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1892, 802);
+            this.ClientSize = new System.Drawing.Size(1559, 802);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PakovanjeKamiona1";
             this.Text = "PakovanjeKamiona1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -508,7 +476,6 @@
         private System.Windows.Forms.ComboBox cboPrevoznik;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboRegistracija;
-        private System.Windows.Forms.Button btnFiltriraj;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.CheckBox chkDatumD;
@@ -524,13 +491,11 @@
         private System.Windows.Forms.CheckBox chkDatumS;
         private System.Windows.Forms.Button btnKreiraj;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnNajava;
-        private System.Windows.Forms.Button btnArhiva;
         private System.Windows.Forms.ToolStripMenuItem ukloniDodeljenKamionToolStripMenuItem;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboTipVozila;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

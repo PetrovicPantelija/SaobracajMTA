@@ -40,8 +40,8 @@ namespace Saobracaj.MainLeget.Drumski
 
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
         {
-            //var parent = this.TopLevelControl as NewMain;
-            //parent?.ShowChild(new PakovanjeKamiona1(), true);
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new PakovanjeKamiona1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
         }
     }
 }
