@@ -837,7 +837,15 @@ namespace Saobracaj.Drumski
             float totalWeight = 100f;
             float relacijaWeight = 20f;
             float nalogodavacWeight = 15f;
-
+            if (dataGridView2.Columns.Contains("NalogID"))
+            {
+                var col = dataGridView2.Columns["NalogID"];
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;  // ključno!
+                col.Width = 60;
+                col.MinimumWidth = 60;  // opciono
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
             // Postavi dve glavne
             if (dataGridView2.Columns.Contains("Relacija"))
                 dataGridView2.Columns["Relacija"].FillWeight = relacijaWeight;
@@ -846,10 +854,10 @@ namespace Saobracaj.Drumski
 
             // Izračunaj preostalo za ostale kolone
             var visibleCols = dataGridView2.Columns.Cast<DataGridViewColumn>()
-                .Where(c => c.Visible && c.Name != "Relacija" && c.Name != "Nalogodavac")
+                .Where(c => c.Visible && c.Name != "Relacija" && c.Name != "Nalogodavac" && c.Name != "NalogID")
                 .ToList();
 
-            float preostalo = totalWeight - relacijaWeight - nalogodavacWeight;
+            float preostalo = totalWeight - relacijaWeight - nalogodavacWeight ;
             float weightPoKoloni = visibleCols.Count > 0 ? preostalo / visibleCols.Count : 0;
 
             foreach (var col in visibleCols)
@@ -918,7 +926,6 @@ namespace Saobracaj.Drumski
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
-                                x.VlasnistvoLegeta,
                                 x.NalogID, 
                                 x.PoslataNajava,
                                 x.NajavuPoslao, 
@@ -1070,7 +1077,6 @@ namespace Saobracaj.Drumski
                                 x.Relacija,
                                 x.Vozac,
                                 x.Kamion, 
-                                x.VlasnistvoLegeta,
                                 x.DatumIstovara, 
                                 x.NalogID, 
                                 x.Prevoznik, 
@@ -1193,6 +1199,19 @@ namespace Saobracaj.Drumski
                 {
                     dataGridView3.Columns[kolona].Visible = false;
                 }
+            }
+
+            if (dataGridView3.Columns.Contains("NalogID"))
+            {
+                dataGridView3.Columns["NalogID"].Width = 60;   
+                dataGridView3.Columns["NalogID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView3.Columns["NalogID"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (dataGridView3.Columns.Contains("PoslataNajava"))
+            {
+                dataGridView3.Columns["PoslataNajava"].Width = 60;
+                dataGridView3.Columns["PoslataNajava"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView3.Columns["PoslataNajava"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -1348,21 +1367,21 @@ namespace Saobracaj.Drumski
             instrukcijeBtn.HeaderText = "Instrukcije";
             instrukcijeBtn.Text = "Pošalji";
             instrukcijeBtn.UseColumnTextForButtonValue = true;
-            instrukcijeBtn.Width = 100;
+            instrukcijeBtn.Width = 70;
 
             DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
             uploadBtn.Name = "Upload";
             uploadBtn.HeaderText = "Dokumenta";
             uploadBtn.Text = "Dodaj";
             uploadBtn.UseColumnTextForButtonValue = true;
-            uploadBtn.Width = 100;
+            uploadBtn.Width = 75;
 
             DataGridViewButtonColumn openUploadedBtn = new DataGridViewButtonColumn();
             openUploadedBtn.Name = "Dokumenta";
             openUploadedBtn.HeaderText = ""; // prazno
             openUploadedBtn.Text = "Otvori";
             openUploadedBtn.UseColumnTextForButtonValue = true;
-            openUploadedBtn.Width = 100;
+            openUploadedBtn.Width = 70;
 
             uploadBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             // Dodaj ako već ne postoje
