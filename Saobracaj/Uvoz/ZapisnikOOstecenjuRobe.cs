@@ -14,7 +14,7 @@ namespace Saobracaj.Uvoz
     public partial class ZapisnikOOstecenjuRobe : Form
     {
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
-        bool status = false;
+       // bool status = false;
         string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string nalog = "";
         private void ChangeTextBox()

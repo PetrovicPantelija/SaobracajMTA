@@ -13,7 +13,7 @@ namespace Saobracaj.Uvoz
     public partial class ZapisnikONepravilnosti : Form
     {
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
-        bool status = false;
+      //  bool status = false;
         string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string nalog = "";
 
@@ -168,7 +168,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiNapomenu()
         {
-            int PlanID = 0;
+           // int PlanID = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
