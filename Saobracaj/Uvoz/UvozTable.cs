@@ -16,8 +16,8 @@ namespace Saobracaj.Uvoz
 {
     public partial class UvozTable : Form
     {
-        int Selektovani = 0;
-        private Keys keyData;
+       // int Selektovani = 0;
+      // private Keys keyData;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int terminal = 0;
 

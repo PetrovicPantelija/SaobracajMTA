@@ -124,7 +124,7 @@ namespace Saobracaj
                 splitContainer3.Panel1.Controls.Remove(c);
         }
         private void UpdateBackEnabled() => btnNazad.Enabled = nav.Count > 0;
-        private void btnNazad_Click(object sender, EventArgs e) => NavigateBack();
+        private void BtnNazad_Click(object sender, EventArgs e) => NavigateBack();
         private void btnHome_Click(object sender, EventArgs e)
         {
             // If a menu-home form was set (form opened from left panel), show that form.

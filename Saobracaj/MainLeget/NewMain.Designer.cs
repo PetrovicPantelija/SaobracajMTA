@@ -749,7 +749,7 @@
             this.btnNazad.Text = "Povratak na predhodni meni";
             this.btnNazad.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnNazad.UseVisualStyleBackColor = false;
-            this.btnNazad.Click += new System.EventHandler(this.btnNazad_Click);
+            this.btnNazad.Click += new System.EventHandler(this.BtnNazad_Click);
             // 
             // btnHome
             // 

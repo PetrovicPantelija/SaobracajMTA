@@ -78,6 +78,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxMin">
       <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
@@ -6693,6 +6697,7 @@
     <None Include="Resources\2Ponude.png" />
     <None Include="Resources\2NalogZaDrumski.png" />
     <None Include="Resources\2NalogZaFakturisanje.png" />
+    <Content Include="LegetIconPNG.ico" />
     <Content Include="Resources\chat.png" />
     <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
     <None Include="Resources\drumskiW.png" />

@@ -56,7 +56,6 @@
             this.txtKorisnik = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogistikaIzvozaPM1 = new Syncfusion.WinForms.Controls.SfButton();
@@ -369,16 +368,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(930, 122);
             this.dataGridView1.TabIndex = 534;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(371, 370);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(357, 13);
-            this.label3.TabIndex = 535;
-            this.label3.Text = "Gde smestiti?????? NA KOJE POLJE; YONU, LOKACIJU PO DEFOULTU";
-            // 
             // commandBarController1
             // 
             this.commandBarController1.HostForm = this;
@@ -426,7 +415,6 @@
             this.ClientSize = new System.Drawing.Size(959, 544);
             this.Controls.Add(this.btnLogistikaIzvozaPM1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
@@ -490,7 +478,6 @@
         private System.Windows.Forms.TextBox txtKorisnik;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label3;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
