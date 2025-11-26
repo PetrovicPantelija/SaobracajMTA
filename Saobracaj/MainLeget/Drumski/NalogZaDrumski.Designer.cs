@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NalogZaDrumski));
             this.btnNovi = new Syncfusion.WinForms.Controls.SfButton();
             this.btnIzmeni = new Syncfusion.WinForms.Controls.SfButton();
             this.btnOtkazi = new Syncfusion.WinForms.Controls.SfButton();
@@ -54,7 +53,7 @@
             this.btnNovi.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnNovi.Style.FocusedForeColor = System.Drawing.Color.White;
             this.btnNovi.Style.ForeColor = System.Drawing.Color.White;
-            this.btnNovi.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnNovi.Style.Image = global::Saobracaj.Properties.Resources.CiradeNovi;
             this.btnNovi.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnNovi.Style.PressedForeColor = System.Drawing.Color.White;
             this.btnNovi.TabIndex = 484;
@@ -76,7 +75,7 @@
             this.btnIzmeni.Size = new System.Drawing.Size(288, 225);
             this.btnIzmeni.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnIzmeni.Style.ForeColor = System.Drawing.Color.White;
-            this.btnIzmeni.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnIzmeni.Style.Image = global::Saobracaj.Properties.Resources.CiradeIzmeni;
             this.btnIzmeni.TabIndex = 485;
             this.btnIzmeni.Text = "Izmeni postojeći";
             this.btnIzmeni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -96,7 +95,7 @@
             this.btnOtkazi.Size = new System.Drawing.Size(287, 225);
             this.btnOtkazi.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOtkazi.Style.ForeColor = System.Drawing.Color.White;
-            this.btnOtkazi.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnOtkazi.Style.Image = global::Saobracaj.Properties.Resources.CiradeOtkazi;
             this.btnOtkazi.TabIndex = 486;
             this.btnOtkazi.Text = "Otkaži postojeći";
             this.btnOtkazi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -116,7 +115,7 @@
             this.btnTransportUvoz.Size = new System.Drawing.Size(287, 225);
             this.btnTransportUvoz.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnTransportUvoz.Style.ForeColor = System.Drawing.Color.White;
-            this.btnTransportUvoz.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnTransportUvoz.Style.Image = global::Saobracaj.Properties.Resources.CiradeUvoz;
             this.btnTransportUvoz.TabIndex = 489;
             this.btnTransportUvoz.Text = "TRANSPORTNI NALOZI UVOZ";
             this.btnTransportUvoz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -136,7 +135,7 @@
             this.btnTransportIzvoz.Size = new System.Drawing.Size(288, 225);
             this.btnTransportIzvoz.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnTransportIzvoz.Style.ForeColor = System.Drawing.Color.White;
-            this.btnTransportIzvoz.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnTransportIzvoz.Style.Image = global::Saobracaj.Properties.Resources.CiradeIzvoz;
             this.btnTransportIzvoz.TabIndex = 489;
             this.btnTransportIzvoz.Text = "TRANSPORTNI NALOZI IZVOZ";
             this.btnTransportIzvoz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -157,9 +156,9 @@
             this.btnTransportDirektni.Size = new System.Drawing.Size(288, 225);
             this.btnTransportDirektni.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnTransportDirektni.Style.ForeColor = System.Drawing.Color.White;
-            this.btnTransportDirektni.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.btnTransportDirektni.Style.Image = global::Saobracaj.Properties.Resources.Cirade3P;
             this.btnTransportDirektni.TabIndex = 489;
-            this.btnTransportDirektni.Text = "TRANSPORTNI NALOZI DIREKTNI";
+            this.btnTransportDirektni.Text = "TRANSPORTNI NALOZI DIREKTNI (3P)";
             this.btnTransportDirektni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTransportDirektni.UseVisualStyleBackColor = false;
             // 
@@ -193,6 +192,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NalogZaDrumski";
             this.Text = "NalogZaDrumski";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
             this.PerformLayout();
 

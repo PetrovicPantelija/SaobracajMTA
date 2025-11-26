@@ -83,6 +83,66 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _2FormiranjeTransportnogNaloga {
+            get {
+                object obj = ResourceManager.GetObject("2FormiranjeTransportnogNaloga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _2NalogZaDrumski {
+            get {
+                object obj = ResourceManager.GetObject("2NalogZaDrumski", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _2NalogZaFakturisanje {
+            get {
+                object obj = ResourceManager.GetObject("2NalogZaFakturisanje", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _2Ponude {
+            get {
+                object obj = ResourceManager.GetObject("2Ponude", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _2ProveraRaspolozivosti {
+            get {
+                object obj = ResourceManager.GetObject("2ProveraRaspolozivosti", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _2StatusiVozila {
+            get {
+                object obj = ResourceManager.GetObject("2StatusiVozila", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap _3_DashBoard {
             get {
                 object obj = ResourceManager.GetObject("3.DashBoard", resourceCulture);
@@ -156,6 +216,66 @@ namespace Saobracaj.Properties {
         public static System.Drawing.Bitmap chat {
             get {
                 object obj = ResourceManager.GetObject("chat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Cirade3P {
+            get {
+                object obj = ResourceManager.GetObject("Cirade3P", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CiradeIzmeni {
+            get {
+                object obj = ResourceManager.GetObject("CiradeIzmeni", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CiradeIzvoz {
+            get {
+                object obj = ResourceManager.GetObject("CiradeIzvoz", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CiradeNovi {
+            get {
+                object obj = ResourceManager.GetObject("CiradeNovi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CiradeOtkazi {
+            get {
+                object obj = ResourceManager.GetObject("CiradeOtkazi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CiradeUvoz {
+            get {
+                object obj = ResourceManager.GetObject("CiradeUvoz", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

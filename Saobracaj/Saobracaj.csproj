@@ -6687,6 +6687,12 @@
     <None Include="Resources\2.PocetniMeni.png" />
     <None Include="Resources\3.DashBoard.png" />
     <None Include="Resources\4.LogOut.png" />
+    <None Include="Resources\2StatusiVozila.png" />
+    <None Include="Resources\2ProveraRaspolozivosti.png" />
+    <None Include="Resources\2FormiranjeTransportnogNaloga.png" />
+    <None Include="Resources\2Ponude.png" />
+    <None Include="Resources\2NalogZaDrumski.png" />
+    <None Include="Resources\2NalogZaFakturisanje.png" />
     <Content Include="Resources\chat.png" />
     <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
     <None Include="Resources\drumskiW.png" />
@@ -6699,6 +6705,12 @@
     <None Include="Resources\Direktni.png" />
     <None Include="Resources\Drumski2.png" />
     <None Include="Resources\Drumski3.png" />
+    <None Include="Resources\CiradeNovi.png" />
+    <None Include="Resources\CiradeIzmeni.png" />
+    <None Include="Resources\CiradeOtkazi.png" />
+    <None Include="Resources\CiradeUvoz.png" />
+    <None Include="Resources\CiradeIzvoz.png" />
+    <None Include="Resources\Cirade3P.png" />
     <Content Include="Resources\error.png" />
     <Content Include="Resources\exclamation.png" />
     <None Include="Resources\image.png" />

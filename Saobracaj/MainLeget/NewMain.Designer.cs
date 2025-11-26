@@ -36,6 +36,7 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnToggleLeftPanel = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPodesavanja = new Syncfusion.WinForms.Controls.SfButton();
@@ -82,10 +83,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(3, 0);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer1.Name = "splitContainer1";
@@ -99,11 +98,12 @@
             this.splitContainer1.Panel1.Controls.Add(this.btnMinimize);
             this.splitContainer1.Panel1.Controls.Add(this.btnMaximize);
             this.splitContainer1.Panel1.Controls.Add(this.btnClose);
+            this.splitContainer1.Panel1.Controls.Add(this.btnToggleLeftPanel);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1633, 994);
+            this.splitContainer1.Size = new System.Drawing.Size(1633, 1003);
             this.splitContainer1.SplitterDistance = 54;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 3;
@@ -179,10 +179,26 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnToggleLeftPanel
+            // 
+            this.btnToggleLeftPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToggleLeftPanel.BackColor = System.Drawing.Color.Transparent;
+            this.btnToggleLeftPanel.FlatAppearance.BorderSize = 0;
+            this.btnToggleLeftPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToggleLeftPanel.ForeColor = System.Drawing.Color.White;
+            this.btnToggleLeftPanel.Location = new System.Drawing.Point(1460, 14);
+            this.btnToggleLeftPanel.Name = "btnToggleLeftPanel";
+            this.btnToggleLeftPanel.Size = new System.Drawing.Size(36, 28);
+            this.btnToggleLeftPanel.TabIndex = 8;
+            this.btnToggleLeftPanel.Text = "≡";
+            this.btnToggleLeftPanel.UseVisualStyleBackColor = false;
+            this.btnToggleLeftPanel.Click += new System.EventHandler(this.btnToggleLeftPanel_Click);
+            // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -196,7 +212,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1004);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1019);
             this.splitContainer2.SplitterDistance = 260;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -222,7 +238,7 @@
             this.panel1.Controls.Add(this.btnLogistikaIzvoza);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 1000);
+            this.panel1.Size = new System.Drawing.Size(258, 1015);
             this.panel1.TabIndex = 53;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -300,7 +316,7 @@
             this.btnKapija.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnKapija.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnKapija.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnKapija.Location = new System.Drawing.Point(-2, 553);
+            this.btnKapija.Location = new System.Drawing.Point(-2, 552);
             this.btnKapija.Name = "btnKapija";
             this.btnKapija.Size = new System.Drawing.Size(258, 45);
             this.btnKapija.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -659,6 +675,10 @@
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.BackColor = System.Drawing.Color.Azure;
+            // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -666,8 +686,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1369, 1001);
-            this.splitContainer3.SplitterDistance = 879;
+            this.splitContainer3.Size = new System.Drawing.Size(1369, 1016);
+            this.splitContainer3.SplitterDistance = 891;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -683,14 +703,14 @@
             this.btnLogout.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLogout.Location = new System.Drawing.Point(993, 9);
+            this.btnLogout.Location = new System.Drawing.Point(999, 2);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(300, 44);
+            this.btnLogout.Size = new System.Drawing.Size(215, 44);
             this.btnLogout.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogout.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogout.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage12")));
+            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnLogout.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnLogout.Style.Image = global::Saobracaj.Properties.Resources._4_LogOut;
             this.btnLogout.Style.ImageForeColor = System.Drawing.Color.White;
@@ -713,14 +733,14 @@
             this.btnNazad.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNazad.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnNazad.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnNazad.Location = new System.Drawing.Point(27, 10);
+            this.btnNazad.Location = new System.Drawing.Point(6, 6);
             this.btnNazad.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnNazad.Name = "btnNazad";
-            this.btnNazad.Size = new System.Drawing.Size(300, 44);
+            this.btnNazad.Size = new System.Drawing.Size(259, 44);
             this.btnNazad.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnNazad.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnNazad.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage13")));
+            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage1")));
             this.btnNazad.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnNazad.Style.Image = global::Saobracaj.Properties.Resources._1_PovratakNaPredhodniMeni;
             this.btnNazad.Style.ImageForeColor = System.Drawing.Color.White;
@@ -744,14 +764,14 @@
             this.btnHome.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHome.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnHome.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnHome.Location = new System.Drawing.Point(350, 10);
+            this.btnHome.Location = new System.Drawing.Point(325, 7);
             this.btnHome.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(300, 44);
+            this.btnHome.Size = new System.Drawing.Size(235, 44);
             this.btnHome.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnHome.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnHome.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage14")));
+            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage2")));
             this.btnHome.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnHome.Style.Image = global::Saobracaj.Properties.Resources._2_PocetniMeni;
             this.btnHome.Style.ImageForeColor = System.Drawing.Color.White;
@@ -775,14 +795,14 @@
             this.btnDashboard.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnDashboard.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDashboard.Location = new System.Drawing.Point(692, 10);
+            this.btnDashboard.Location = new System.Drawing.Point(675, 7);
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(300, 44);
+            this.btnDashboard.Size = new System.Drawing.Size(248, 44);
             this.btnDashboard.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDashboard.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDashboard.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage15")));
+            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage3")));
             this.btnDashboard.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDashboard.Style.Image = global::Saobracaj.Properties.Resources._3_DashBoard;
             this.btnDashboard.Style.ImageForeColor = System.Drawing.Color.White;
@@ -854,5 +874,6 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnToggleLeftPanel;
     }
 }

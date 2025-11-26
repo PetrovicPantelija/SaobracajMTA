@@ -24,6 +24,7 @@ namespace Saobracaj
         private List<Control> homeCtrl;
         // The form that should be shown when clicking the Home button (invoked from left panel)
         private Form menuHome = null;
+        private int _savedLeftPanelWidth = 260; // default
         public NewMain()
         {
             InitializeComponent();
@@ -472,6 +473,54 @@ namespace Saobracaj
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnToggleLeftPanel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // If panel is currently visible (SplitterDistance > 0 and panel not collapsed)
+                if (!splitContainer2.Panel1Collapsed && splitContainer2.SplitterDistance > 0)
+                {
+                    // Save current width
+                    _savedLeftPanelWidth = splitContainer2.SplitterDistance;
+                    // Collapse panel
+                    splitContainer2.Panel1Collapsed = true;
+                }
+                else
+                {
+                    // Restore panel
+                    splitContainer2.Panel1Collapsed = false;
+
+                    // Determine valid min and max for SplitterDistance
+                    int min = Math.Max(0, splitContainer2.Panel1MinSize);
+                    int panel2Min = Math.Max(0, splitContainer2.Panel2MinSize);
+                    int max = 0;
+
+                    // Calculate max allowed SplitterDistance based on current control width
+                    if (splitContainer2.Width > 0)
+                    {
+                        max = splitContainer2.Width - panel2Min - splitContainer2.SplitterWidth;
+                        if (max < min) max = min;
+                    }
+                    else
+                    {
+                        // fallback if width not yet measured
+                        max = Math.Max(min, _savedLeftPanelWidth);
+                    }
+
+                    int toSet = _savedLeftPanelWidth;
+                    if (toSet < min) toSet = min;
+                    if (toSet > max) toSet = max;
+
+                    // Finally set SplitterDistance
+                    splitContainer2.SplitterDistance = toSet;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška prilikom menjanja panela: " + ex.Message);
+            }
         }
     }
 }
