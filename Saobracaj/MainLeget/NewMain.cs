@@ -25,6 +25,9 @@ namespace Saobracaj
         // The form that should be shown when clicking the Home button (invoked from left panel)
         private Form menuHome = null;
         private int _savedLeftPanelWidth = 260; // default
+        private readonly Dictionary<Control, Image> _originalButtonImages = new Dictionary<Control, Image>();
+        private readonly Dictionary<Control, Font> _originalButtonFonts = new Dictionary<Control, Font>();
+
         public NewMain()
         {
             InitializeComponent();
@@ -216,6 +219,7 @@ namespace Saobracaj
                                          splitContainer2.Panel1.Width - 1, splitContainer2.Panel1.Height);
             }
             ApplyGradientToAllButtonsInPanel();
+            AttachFocusHandlersToLeftPanelButtons();
 
         }
         private void ApplyGradientToAllButtonsInPanel()
@@ -522,6 +526,193 @@ namespace Saobracaj
                 MessageBox.Show("Greška prilikom menjanja panela: " + ex.Message);
             }
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Close any child forms hosted in splitContainer3.Panel1
+                foreach (Control c in splitContainer3.Panel1.Controls)
+                {
+                    if (c is Form f)
+                    {
+                        try { f.Close(); } catch { }
+                    }
+                }
+
+                // Close any other open forms in the application except this one
+                var openForms = new List<Form>();
+                foreach (Form frm in Application.OpenForms)
+                {
+                    if (frm != this)
+                        openForms.Add(frm);
+                }
+
+                foreach (var frm in openForms)
+                {
+                    try { frm.Close(); } catch { }
+                }
+
+                // Finally close main form and exit
+                this.Close();
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška prilikom izlaska: " + ex.Message);
+            }
+        }
+
+        private void AttachFocusHandlersToLeftPanelButtons()
+        {
+            foreach (Control ctrl in splitContainer2.Panel1.Controls)
+            {
+                if (!(ctrl is Control)) continue;
+
+                // store original font
+                if (!_originalButtonFonts.ContainsKey(ctrl))
+                    _originalButtonFonts[ctrl] = ctrl.Font;
+
+                // try to get original image (from Image property or Style.Image)
+                var img = GetButtonImage(ctrl);
+                if (img != null && !_originalButtonImages.ContainsKey(ctrl))
+                    _originalButtonImages[ctrl] = img;
+
+                // attach handlers (use Enter/Leave so keyboard focus triggers too)
+                ctrl.Enter -= LeftPanelButton_Enter;
+                ctrl.Leave -= LeftPanelButton_Leave;
+                ctrl.Enter += LeftPanelButton_Enter;
+                ctrl.Leave += LeftPanelButton_Leave;
+            }
+        }
+
+        private void LeftPanelButton_Enter(object sender, EventArgs e)
+        {
+            if (!(sender is Control ctrl)) return;
+
+            // increase font size to 14
+            try
+            {
+                if (!_originalButtonFonts.ContainsKey(ctrl))
+                    _originalButtonFonts[ctrl] = ctrl.Font;
+                ctrl.Font = new Font(ctrl.Font.FontFamily, 14F, ctrl.Font.Style);
+            }
+            catch { }
+
+            // scale image by 10%
+            try
+            {
+                Image orig = null;
+                if (!_originalButtonImages.TryGetValue(ctrl, out orig))
+                {
+                    orig = GetButtonImage(ctrl);
+                    if (orig != null)
+                        _originalButtonImages[ctrl] = orig;
+                }
+
+                if (orig != null)
+                {
+                    int newW = Math.Max(1, (int)(orig.Width * 1.1));
+                    int newH = Math.Max(1, (int)(orig.Height * 1.1));
+                    var scaled = new Bitmap(orig, new Size(newW, newH));
+                    SetButtonImage(ctrl, scaled);
+                    // don't dispose orig here (we keep reference). Dispose scaled when reverting
+                }
+            }
+            catch { }
+        }
+
+        private void LeftPanelButton_Leave(object sender, EventArgs e)
+        {
+            if (!(sender is Control ctrl)) return;
+
+            // restore original font
+            try
+            {
+                if (_originalButtonFonts.TryGetValue(ctrl, out var of))
+                {
+                    ctrl.Font = of;
+                }
+            }
+            catch { }
+
+            // restore original image
+            try
+            {
+                if (_originalButtonImages.TryGetValue(ctrl, out var orig))
+                {
+                    SetButtonImage(ctrl, orig);
+                }
+            }
+            catch { }
+        }
+
+        private Image GetButtonImage(Control ctrl)
+        {
+            if (ctrl == null) return null;
+            try
+            {
+                var t = ctrl.GetType();
+                var imgProp = t.GetProperty("Image");
+                if (imgProp != null && imgProp.CanRead)
+                {
+                    var img = imgProp.GetValue(ctrl) as Image;
+                    if (img != null) return img;
+                }
+
+                // try Style.Image (for Syncfusion SfButton)
+                var styleProp = t.GetProperty("Style");
+                if (styleProp != null)
+                {
+                    var styleObj = styleProp.GetValue(ctrl);
+                    if (styleObj != null)
+                    {
+                        var sType = styleObj.GetType();
+                        var sImgProp = sType.GetProperty("Image");
+                        if (sImgProp != null && sImgProp.CanRead)
+                        {
+                            var img = sImgProp.GetValue(styleObj) as Image;
+                            if (img != null) return img;
+                        }
+                    }
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        private void SetButtonImage(Control ctrl, Image img)
+        {
+            if (ctrl == null) return;
+            try
+            {
+                var t = ctrl.GetType();
+                var imgProp = t.GetProperty("Image");
+                if (imgProp != null && imgProp.CanWrite)
+                {
+                    imgProp.SetValue(ctrl, img);
+                    return;
+                }
+
+                var styleProp = t.GetProperty("Style");
+                if (styleProp != null)
+                {
+                    var styleObj = styleProp.GetValue(ctrl);
+                    if (styleObj != null)
+                    {
+                        var sType = styleObj.GetType();
+                        var sImgProp = sType.GetProperty("Image");
+                        if (sImgProp != null && sImgProp.CanWrite)
+                        {
+                            sImgProp.SetValue(styleObj, img);
+                            return;
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
     }
 }
 

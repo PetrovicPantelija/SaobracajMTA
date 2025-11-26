@@ -212,7 +212,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1019);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1022);
             this.splitContainer2.SplitterDistance = 260;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -238,7 +238,7 @@
             this.panel1.Controls.Add(this.btnLogistikaIzvoza);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 1015);
+            this.panel1.Size = new System.Drawing.Size(258, 1018);
             this.panel1.TabIndex = 53;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -520,13 +520,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnZeleznicki.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnZeleznicki.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnZeleznicki.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnZeleznicki.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnZeleznicki.ForeColor = System.Drawing.SystemColors.Window;
             this.btnZeleznicki.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnZeleznicki.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnZeleznicki.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnZeleznicki.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnZeleznicki.Location = new System.Drawing.Point(-1, 209);
+            this.btnZeleznicki.Location = new System.Drawing.Point(-1, 205);
             this.btnZeleznicki.Name = "btnZeleznicki";
             this.btnZeleznicki.Size = new System.Drawing.Size(258, 45);
             this.btnZeleznicki.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -686,8 +686,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1369, 1016);
-            this.splitContainer3.SplitterDistance = 891;
+            this.splitContainer3.Size = new System.Drawing.Size(1369, 1019);
+            this.splitContainer3.SplitterDistance = 893;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -703,14 +703,14 @@
             this.btnLogout.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLogout.Location = new System.Drawing.Point(999, 2);
+            this.btnLogout.Location = new System.Drawing.Point(999, 3);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(215, 44);
             this.btnLogout.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogout.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogout.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
+            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage12")));
             this.btnLogout.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnLogout.Style.Image = global::Saobracaj.Properties.Resources._4_LogOut;
             this.btnLogout.Style.ImageForeColor = System.Drawing.Color.White;
@@ -718,6 +718,7 @@
             this.btnLogout.Text = "Logout";
             this.btnLogout.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnNazad
             // 
@@ -740,7 +741,7 @@
             this.btnNazad.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnNazad.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnNazad.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage1")));
+            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage13")));
             this.btnNazad.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnNazad.Style.Image = global::Saobracaj.Properties.Resources._1_PovratakNaPredhodniMeni;
             this.btnNazad.Style.ImageForeColor = System.Drawing.Color.White;
@@ -771,7 +772,7 @@
             this.btnHome.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnHome.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnHome.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage2")));
+            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage14")));
             this.btnHome.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnHome.Style.Image = global::Saobracaj.Properties.Resources._2_PocetniMeni;
             this.btnHome.Style.ImageForeColor = System.Drawing.Color.White;
@@ -802,7 +803,7 @@
             this.btnDashboard.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDashboard.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDashboard.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage3")));
+            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage15")));
             this.btnDashboard.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDashboard.Style.Image = global::Saobracaj.Properties.Resources._3_DashBoard;
             this.btnDashboard.Style.ImageForeColor = System.Drawing.Color.White;
