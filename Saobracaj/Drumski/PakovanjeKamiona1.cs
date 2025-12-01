@@ -1561,13 +1561,30 @@ namespace Saobracaj.Drumski
             }
             if (bFormNameOpen == false)
             {
-                Drumski.frmDrumski part = new Drumski.frmDrumski("NOVINALOG", null);
-                part.FormClosed += (s, args) =>
+                if ((_tipoviIn == null || !_tipoviIn.Any()) && (_tipoviNotIn == null || !_tipoviNotIn.Any()))
                 {
-                    RefreshDataGrid2();
-                };
+                    Drumski.frmDrumski part = new Drumski.frmDrumski("NOVINALOG", null);
+                    part.FormClosed += (s, args) =>
+                    {
+                        RefreshDataGrid2();
+                    };
 
-                part.Show();
+                    part.Show();
+                }
+                else
+                {
+                    
+                    //var parent = this.TopLevelControl as NewMain;
+                    //parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "NOVINALOG", null), true);
+                    Drumski.frmDrumski part = new Drumski.frmDrumski(tipoviIn: _tipoviIn, tipoviNotIn: _tipoviNotIn, "NOVINALOG", null);
+                    part.FormClosed += (s, args) =>
+                    {
+                        RefreshDataGrid2();
+                    };
+
+                    part.Show();
+                }
+              
             }
 
         }
