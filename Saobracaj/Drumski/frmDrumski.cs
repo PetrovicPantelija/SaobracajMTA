@@ -25,13 +25,20 @@ namespace Saobracaj.Drumski
         bool status = false;
         private string noviZapisSaNovimNalogID = "";
         private int? mainNalogID;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
 
         public frmDrumski()
         {
             InitializeComponent();
             ChangeTextBox();
-            FillCombo();
+           
             this.BindingContext = new BindingContext();
+            dtpUtovara.Value = DateTime.Today;
+            dtIstovara.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Checked = true;
+            FillCombo();
             VratiPodatke();
             txtNapomenaPoz.Visible = false;
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
@@ -52,8 +59,13 @@ namespace Saobracaj.Drumski
             mainNalogID = NalogID;
             InitializeComponent();
             ChangeTextBox();
-            FillCombo();
             this.BindingContext = new BindingContext();
+            dtpUtovara.Value = DateTime.Today;
+            dtIstovara.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Checked = true;
+            FillCombo();
+            
             VratiPodatke();
             txtNapomenaPoz.Visible = false;
             if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
@@ -73,6 +85,42 @@ namespace Saobracaj.Drumski
                 lbtHederTekst.Text = "IZMENA ZAPISA JE U TOKU";
                 lbtHederTekst.Visible = true;
             }
+        }
+
+        public frmDrumski(List<int> tipoviIn, List<int> tipoviNotIn, string noviNalogID, int? NalogID)
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            this.BindingContext = new BindingContext();
+            dtpUtovara.Value = DateTime.Today;
+            dtIstovara.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            dtPreuzimanjaPraznogKontejnera.Checked = true;
+            FillCombo();
+            VratiPodatke();
+            txtNapomenaPoz.Visible = false;
+            if (noviNalogID == "NOVINALOG")
+            {
+                status = true;
+                lbtHederTekst.Text = "UNOS NOVOG ZAPISA JE U TOKU!";
+                lbtHederTekst.Visible = true;
+            }
+            else
+            {
+                lbtHederTekst.Text = "IZMENA ZAPISA JE U TOKU";
+                lbtHederTekst.Visible = true;
+            }
+            if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
+            {
+                cboMestoPreuzimanja.SelectedValue = 8;
+                cboMestoUtovara.SelectedValue = 8;
+                txtAdresaUtovara.Text = "Jarački put";
+            }
+            button3.Visible = false;
+            button1.Visible = false;
+            button4.Visible = false;
         }
 
         public frmDrumski(int ID)
@@ -619,16 +667,32 @@ namespace Saobracaj.Drumski
             cboStatus.DisplayMember = "Naziv";
             cboStatus.ValueMember = "ID";
 
-            var tpv = " select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila";
+            string uslovTipVozila = "1 = 1 ";
+            if (_tipoviIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviIn);
+                uslovTipVozila += $" AND ID IN ({lista}) ";
+            }
+
+            if (_tipoviNotIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviNotIn);
+                uslovTipVozila += $" AND ID NOT IN ({lista}) ";
+            }
+
+            var tpv = $" select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila  WHERE {uslovTipVozila}";
             var tpvAD = new SqlDataAdapter(tpv, conn);
             var tpvDS = new DataSet();
             tpvAD.Fill(tpvDS);
 
             System.Data.DataTable dt2 = tpvDS.Tables[0];
-            DataRow prazanRed2 = dt2.NewRow();
-            prazanRed2["ID"] = DBNull.Value;
-            prazanRed2["Naziv"] = "";
-            dt2.Rows.InsertAt(prazanRed2, 0);
+            if (_tipoviIn?.Any() == null)
+            {
+                DataRow prazanRed2 = dt2.NewRow();
+                prazanRed2["ID"] = DBNull.Value;
+                prazanRed2["Naziv"] = "";
+                dt2.Rows.InsertAt(prazanRed2, 0);
+            }
 
             cboTipTransporta.DataSource = dt2;
             cboTipTransporta.DisplayMember = "Naziv";
@@ -967,9 +1031,26 @@ namespace Saobracaj.Drumski
                 int radniNalogID = 0;
                 int.TryParse(txtID.Text, out radniNalogID);
 
+                DateTime? datumPakovanja = null;
+                if (dtPreuzimanjaPraznogKontejnera.Checked)
+                    datumPakovanja = dtPreuzimanjaPraznogKontejnera.Value;
+
+                string uslovTipVozila = "1 = 1 ";
+                if (_tipoviIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta IN ({lista}) ";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviNotIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta NOT IN ({lista}) ";
+                } 
                 // 3. Kreiraj glavni SQL upit
-                
-                string kam = $@" SELECT a.ID, a.Marka, a.RegBr, a.Vozac
+                if (datumPakovanja != null)
+                {
+                    string kam = $@" SELECT a.ID, a.Marka, a.RegBr, a.Vozac
                                 FROM Automobili a
                                 WHERE a.VoziloDrumskog = 1  AND (
                                     -- Nema NIJEDAN radni nalog sa statusom različitim od 7
@@ -979,42 +1060,45 @@ namespace Saobracaj.Drumski
                                         WHERE  r.KamionID = a.ID
                                           AND  (r.Status IS NULL OR r.Status NOT IN ({statusiZaUpit}))
                                           AND  r.ID <> @ID
+                                          AND CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum
                                     )
                                     OR
                                     EXISTS (
                                         -- ILI je već dodeljen ovom nalogu
                                         SELECT 1
                                         FROM   RadniNalogDrumski r
-                                        WHERE  r.KamionID = a.ID AND r.ID = @ID
-                                    )
-                                )";
+                                        WHERE  r.KamionID = a.ID AND r.ID = @ID  AND CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum
+                                    ) 
+                                )AND {uslovTipVozila}";
 
-                SqlCommand cmd = new SqlCommand(kam, conn);
-                cmd.Parameters.AddWithValue("@ID", radniNalogID);
-                if (tipTransportaId.HasValue && tipTransportaId.Value > 0)
-                {
-                    kam += " AND VlasnistvoLegeta = @TipTransporta";
-                    cmd.Parameters.AddWithValue("@TipTransporta", tipTransportaId.Value);
-                    cmd.CommandText = kam; // ponovo postavi CommandText ako si dodao AND
-                }
+                    SqlCommand cmd = new SqlCommand(kam, conn);
+                    cmd.Parameters.AddWithValue("@ID", radniNalogID);
+                    cmd.Parameters.AddWithValue("@Datum", datumPakovanja.Value);
+                    if (tipTransportaId.HasValue && tipTransportaId.Value > 0)
+                    {
+                        kam += " AND VlasnistvoLegeta = @TipTransporta";
+                        cmd.Parameters.AddWithValue("@TipTransporta", tipTransportaId.Value);
+                        cmd.CommandText = kam; // ponovo postavi CommandText ako si dodao AND
+                    }
 
-                SqlDataAdapter kamAD = new SqlDataAdapter(cmd);
-                DataSet kmaDS = new DataSet();
-                kamAD.Fill(kmaDS);
+                    SqlDataAdapter kamAD = new SqlDataAdapter(cmd);
+                    DataSet kmaDS = new DataSet();
+                    kamAD.Fill(kmaDS);
 
-                DataTable dt1 = kmaDS.Tables[0];
-                DataRow prazanR = dt1.NewRow();
-                prazanR["ID"] = DBNull.Value;
-                prazanR["RegBr"] = "";
-                dt1.Rows.InsertAt(prazanR, 0);
+                    DataTable dt1 = kmaDS.Tables[0];
+                    DataRow prazanR = dt1.NewRow();
+                    prazanR["ID"] = DBNull.Value;
+                    prazanR["RegBr"] = "";
+                    dt1.Rows.InsertAt(prazanR, 0);
 
-                cboKamion.DataSource = dt1;
-                cboKamion.DisplayMember = "RegBr";
-                cboKamion.ValueMember = "ID";
+                    cboKamion.DataSource = dt1;
+                    cboKamion.DisplayMember = "RegBr";
+                    cboKamion.ValueMember = "ID";
 
-                foreach (DataRowView item in cboKamion.Items)
-                {
-                    Console.WriteLine($"Combo item: ID={item["ID"]}, RegBr={item["RegBr"]}");
+                    foreach (DataRowView item in cboKamion.Items)
+                    {
+                        Console.WriteLine($"Combo item: ID={item["ID"]}, RegBr={item["RegBr"]}");
+                    }
                 }
             }
         }
@@ -1024,9 +1108,10 @@ namespace Saobracaj.Drumski
             toolTip1.SetToolTip(button3, "Kreiranje novog zapisa");
             toolTip1.SetToolTip(button2, "Snimanje izmena");
             toolTip1.SetToolTip(button21, "Brisanje zapisa");
-            dtpUtovara.Value = DateTime.Today;
-            dtIstovara.Value = DateTime.Today;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            //dtpUtovara.Value = DateTime.Today;
+            //dtIstovara.Value = DateTime.Today;
+            //dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            //dtPreuzimanjaPraznogKontejnera.Checked = true;
             VratiPodatke();
         }
 
@@ -1266,6 +1351,7 @@ namespace Saobracaj.Drumski
                 status = false;
                 button1.Visible = true;
                 button4.Visible = true;
+                button21.Visible = true;
             }
             else
             {
@@ -1705,6 +1791,7 @@ namespace Saobracaj.Drumski
         private void button3_Click(object sender, EventArgs e)
         {
             status = true;
+            id = 0;
             Uvoz = -1;
             FillCombo();
             ResetujVrednostiPolja();
@@ -1725,20 +1812,35 @@ namespace Saobracaj.Drumski
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT	rn.KamionID " +
+                SqlCommand cmd = new SqlCommand("SELECT	ISNULL(rn.KamionID, 0) AS KamionID " +
                  "FROM    RadniNalogDrumski rn " +
                  "INNER JOIN Automobili a on a.ID = rn.KamionID " +
-                 "where rn.ID=" + id + " AND a.VoziloDrumskog =  " + cboTipTransporta.SelectedValue, con);
+                 "where rn.ID=" + id + " AND a.VlasnistvoLegeta =  " + cboTipTransporta.SelectedValue, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
+                bool found = false;
                 while (dr.Read())
+
                 {
                     cboKamion.SelectedValue = Convert.ToInt32(dr["KamionID"]);
+                    found = true;
+                }
+
+                if (!found)
+                {
+                    txtVozac.Text = "";
+                    txtBrojLK.Text = "";
+                    txtBrojTelefona.Text = "";
+                    txtPrevoznik.Text = "";
                 }
             }
             else
             {
                 UcitajKamione(null); // Ako nije validan ID, učitaj sve kamione bez filtera
+                txtVozac.Text = "";
+                txtBrojLK.Text = "";
+                txtBrojTelefona.Text = "";
+                txtPrevoznik.Text = "";
             }
         }
 

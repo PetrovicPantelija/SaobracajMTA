@@ -154,7 +154,7 @@
             this.txtValuta.Location = new System.Drawing.Point(1264, 106);
             this.txtValuta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValuta.Name = "txtValuta";
-            this.txtValuta.Size = new System.Drawing.Size(240, 24);
+            this.txtValuta.Size = new System.Drawing.Size(176, 24);
             this.txtValuta.TabIndex = 300;
             // 
             // label15
@@ -206,7 +206,7 @@
             this.txtDodatniOpis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDodatniOpis.Multiline = true;
             this.txtDodatniOpis.Name = "txtDodatniOpis";
-            this.txtDodatniOpis.Size = new System.Drawing.Size(323, 43);
+            this.txtDodatniOpis.Size = new System.Drawing.Size(308, 43);
             this.txtDodatniOpis.TabIndex = 380;
             // 
             // label63
@@ -714,26 +714,26 @@
             this.panelHeader.Controls.Add(this.btnFormiranjeNaloga);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1529, 40);
+            this.panelHeader.Size = new System.Drawing.Size(1461, 40);
             this.panelHeader.TabIndex = 600;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbtHederTekst);
-            this.panel1.Location = new System.Drawing.Point(617, 0);
+            this.panel1.Location = new System.Drawing.Point(678, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(251, 36);
+            this.panel1.Size = new System.Drawing.Size(211, 36);
             this.panel1.TabIndex = 25;
             // 
             // lbtHederTekst
             // 
             this.lbtHederTekst.AutoSize = true;
             this.lbtHederTekst.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbtHederTekst.Location = new System.Drawing.Point(72, 0);
+            this.lbtHederTekst.Location = new System.Drawing.Point(32, 0);
             this.lbtHederTekst.Name = "lbtHederTekst";
             this.lbtHederTekst.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
             this.lbtHederTekst.Size = new System.Drawing.Size(179, 28);
@@ -753,7 +753,7 @@
             this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button4.Location = new System.Drawing.Point(508, 0);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(177, 38);
             this.button4.TabIndex = 24;
@@ -775,7 +775,7 @@
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button1.Location = new System.Drawing.Point(343, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(165, 38);
             this.button1.TabIndex = 23;
@@ -797,7 +797,7 @@
             this.btnFormiranjeNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnFormiranjeNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.btnFormiranjeNaloga.Location = new System.Drawing.Point(163, 0);
-            this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormiranjeNaloga.Name = "btnFormiranjeNaloga";
             this.btnFormiranjeNaloga.Size = new System.Drawing.Size(180, 38);
             this.btnFormiranjeNaloga.TabIndex = 22;
@@ -815,7 +815,7 @@
             this.panel3.Controls.Add(this.button3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(163, 38);
             this.panel3.TabIndex = 2;
@@ -831,7 +831,7 @@
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button21.Location = new System.Drawing.Point(95, 2);
-            this.button21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
             this.button21.TabIndex = 19;
@@ -850,7 +850,7 @@
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(56, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(36, 33);
             this.button2.TabIndex = 16;
@@ -887,7 +887,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1529, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1461, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -897,13 +897,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -911,7 +911,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1259,7 +1259,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1529, 871);
+            this.ClientSize = new System.Drawing.Size(1461, 871);
             this.Controls.Add(this.cboTipTransporta);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.cboPolaznaSpedicija);
