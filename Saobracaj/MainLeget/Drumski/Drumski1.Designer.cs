@@ -87,6 +87,7 @@
             this.sfButton7.Text = "Platforme";
             this.sfButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton7.UseVisualStyleBackColor = false;
+            this.sfButton7.Click += new System.EventHandler(this.sfButton7_Click);
             // 
             // label1
             // 
@@ -116,11 +117,12 @@
             this.sfButton6.Size = new System.Drawing.Size(288, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton6.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.sfButton6.TabIndex = 497;
             this.sfButton6.Text = "Van Gabaritni";
             this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton6.UseVisualStyleBackColor = false;
+            this.sfButton6.Click += new System.EventHandler(this.sfButton6_Click);
             // 
             // Drumski1
             // 

@@ -60,6 +60,7 @@
             this.btnNovi.Text = "Kreiraj novi";
             this.btnNovi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNovi.UseVisualStyleBackColor = false;
+            this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);
             // 
             // btnIzmeni
             // 
@@ -80,6 +81,7 @@
             this.btnIzmeni.Text = "Izmeni postojeći";
             this.btnIzmeni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIzmeni.UseVisualStyleBackColor = false;
+            this.btnIzmeni.Click += new System.EventHandler(this.btnIzmeni_Click);
             // 
             // btnOtkazi
             // 
@@ -100,6 +102,7 @@
             this.btnOtkazi.Text = "Otkaži postojeći";
             this.btnOtkazi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOtkazi.UseVisualStyleBackColor = false;
+            this.btnOtkazi.Click += new System.EventHandler(this.btnOtkazi_Click);
             // 
             // btnTransportUvoz
             // 
@@ -120,6 +123,7 @@
             this.btnTransportUvoz.Text = "TRANSPORTNI NALOZI UVOZ";
             this.btnTransportUvoz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTransportUvoz.UseVisualStyleBackColor = false;
+            this.btnTransportUvoz.Click += new System.EventHandler(this.btnTransportUvoz_Click);
             // 
             // btnTransportIzvoz
             // 
@@ -161,6 +165,7 @@
             this.btnTransportDirektni.Text = "TRANSPORTNI NALOZI DIREKTNI (3P)";
             this.btnTransportDirektni.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTransportDirektni.UseVisualStyleBackColor = false;
+            this.btnTransportDirektni.Click += new System.EventHandler(this.btnTransportDirektni_Click);
             // 
             // label1
             // 

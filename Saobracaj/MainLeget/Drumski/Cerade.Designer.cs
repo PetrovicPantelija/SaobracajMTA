@@ -133,6 +133,7 @@
             this.btnNalogFakturisanje.Text = "NALOG ZA FAKTURISANJE";
             this.btnNalogFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNalogFakturisanje.UseVisualStyleBackColor = false;
+            this.btnNalogFakturisanje.Click += new System.EventHandler(this.btnNalogFakturisanje_Click);
             // 
             // label1
             // 
@@ -167,6 +168,7 @@
             this.btnPonude.Text = "PONUDE";
             this.btnPonude.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPonude.UseVisualStyleBackColor = false;
+            this.btnPonude.Click += new System.EventHandler(this.btnPonude_Click);
             // 
             // btnNalogDrumski
             // 

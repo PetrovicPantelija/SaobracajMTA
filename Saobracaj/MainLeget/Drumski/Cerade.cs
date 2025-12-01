@@ -21,27 +21,58 @@ namespace Saobracaj.MainLeget.Drumski
 
         private void btnNalogDrumski_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new NalogZaDrumski(), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnNalogDrumski.Text,
+                () => new NalogZaDrumski()
+            );
+
         }
 
         private void btnStatusi_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmStatus(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnStatusi.Text,
+                () => new  frmStatus(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            );
         }
 
         private void btnProvera_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnProvera.Text,
+                () => new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            );
 
         }
 
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new PakovanjeKamiona1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnFormiranjeNaloga.Text,
+                () =>new PakovanjeKamiona1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            );
+        }
+
+        private void btnNalogFakturisanje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPonude_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

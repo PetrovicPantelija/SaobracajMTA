@@ -80,6 +80,7 @@
             this.btnLogistikaIzvozaPM2.Text = "Formiranje naloga za otpremu";
             this.btnLogistikaIzvozaPM2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM2.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM2.Click += new System.EventHandler(this.btnLogistikaIzvozaPM2_Click);
             // 
             // btnLogistikaIzvozaPM6
             // 
@@ -99,6 +100,7 @@
             this.btnLogistikaIzvozaPM6.Text = "Nalog za fakturisanje";
             this.btnLogistikaIzvozaPM6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM6.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM6.Click += new System.EventHandler(this.btnLogistikaIzvozaPM6_Click);
             // 
             // btnLogistikaIzvozaPM5
             // 
@@ -114,11 +116,12 @@
             this.btnLogistikaIzvozaPM5.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM5.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnLogistikaIzvozaPM5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnLogistikaIzvozaPM5.TabIndex = 496;
             this.btnLogistikaIzvozaPM5.Text = "Formiranje praznog voza";
             this.btnLogistikaIzvozaPM5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM5.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM5.Click += new System.EventHandler(this.btnLogistikaIzvozaPM5_Click);
             // 
             // btnLogistikaIzvozaPM4
             // 
@@ -133,11 +136,12 @@
             this.btnLogistikaIzvozaPM4.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM4.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnLogistikaIzvozaPM4.TabIndex = 495;
             this.btnLogistikaIzvozaPM4.Text = "Izvoz prazne opreme";
             this.btnLogistikaIzvozaPM4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM4.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM4.Click += new System.EventHandler(this.btnLogistikaIzvozaPM4_Click);
             // 
             // btnLogistikaIzvozaPM3
             // 
@@ -153,11 +157,12 @@
             this.btnLogistikaIzvozaPM3.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnLogistikaIzvozaPM3.TabIndex = 494;
             this.btnLogistikaIzvozaPM3.Text = "Prijem i izdavanje robe";
             this.btnLogistikaIzvozaPM3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM3.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM3.Click += new System.EventHandler(this.btnLogistikaIzvozaPM3_Click);
             // 
             // btnLogistikaIzvozaPM1
             // 

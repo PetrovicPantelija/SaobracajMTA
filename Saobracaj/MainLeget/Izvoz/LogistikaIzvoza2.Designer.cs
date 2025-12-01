@@ -107,7 +107,7 @@
             this.sfButton3.Size = new System.Drawing.Size(287, 225);
             this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfButton3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
             this.sfButton3.TabIndex = 485;
             this.sfButton3.Text = "Otkaži postojeći";
             this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -154,6 +154,7 @@
             this.sfButton5.Text = "Lista REALIZOVANIH naloga";
             this.sfButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton5.UseVisualStyleBackColor = false;
+            this.sfButton5.Click += new System.EventHandler(this.sfButton5_Click);
             // 
             // sfButton6
             // 
@@ -169,11 +170,12 @@
             this.sfButton6.Size = new System.Drawing.Size(287, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton6.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.sfButton6.TabIndex = 488;
             this.sfButton6.Text = "Lista SVIH naloga";
             this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton6.UseVisualStyleBackColor = false;
+            this.sfButton6.Click += new System.EventHandler(this.sfButton6_Click);
             // 
             // label2
             // 
