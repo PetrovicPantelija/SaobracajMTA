@@ -2178,6 +2178,12 @@
     <Compile Include="MainLeget\Info.Designer.cs">
       <DependentUpon>Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Kapija\frmKapija1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Kapija\frmKapija1.Designer.cs">
+      <DependentUpon>frmKapija1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\NewMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5108,6 +5114,9 @@
     <EmbeddedResource Include="MainLeget\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Kapija\frmKapija1.resx">
+      <DependentUpon>frmKapija1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\NewMain.resx">
       <DependentUpon>NewMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -6742,6 +6751,8 @@
     <None Include="Resources\PodešavanjeSistema.png" />
     <None Include="Resources\Uvoz.png" />
     <None Include="Resources\Izvoz.png" />
+    <None Include="Resources\PromeniPostojeći.png" />
+    <None Include="Resources\Obrišipostojeci.png" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll" />
     <None Include="Resources\LegetIcon.bmp" />

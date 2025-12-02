@@ -443,6 +443,11 @@ namespace Saobracaj
         private void btnKapija_Click(object sender, EventArgs e)
         {
             BackColorKliknut(11);
+            var parent = this.TopLevelControl as NewMain;
+            parent?.ShowChild(new MainLeget.Kapija.frmKapija1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Kapija";
+           
         }
 
         private void btnFinansije_Click(object sender, EventArgs e)

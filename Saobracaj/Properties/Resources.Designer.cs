@@ -463,6 +463,16 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Obrišipostojeci {
+            get {
+                object obj = ResourceManager.GetObject("Obrišipostojeci", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ODryavanje {
             get {
                 object obj = ResourceManager.GetObject("ODryavanje", resourceCulture);
@@ -486,6 +496,16 @@ namespace Saobracaj.Properties {
         public static System.Drawing.Bitmap PrijemOtpremaKamiona {
             get {
                 object obj = ResourceManager.GetObject("PrijemOtpremaKamiona", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PromeniPostojeći {
+            get {
+                object obj = ResourceManager.GetObject("PromeniPostojeći", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -34,7 +34,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblKomercijalnaZona = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.radialGauge1 = new Syncfusion.Windows.Forms.Gauge.RadialGauge();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -66,7 +66,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.radialGauge7 = new Syncfusion.Windows.Forms.Gauge.RadialGauge();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -77,6 +76,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.radialGauge6 = new Syncfusion.Windows.Forms.Gauge.RadialGauge();
+            this.chartControl1 = new Syncfusion.Windows.Forms.Chart.ChartControl();
+            this.sparkLine1 = new Syncfusion.Windows.Forms.Chart.SparkLine();
             this.panel11.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -133,7 +134,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblKomercijalnaZona);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.radialGauge1);
             this.panel2.Location = new System.Drawing.Point(12, 12);
@@ -144,32 +145,32 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 18);
+            this.label1.Size = new System.Drawing.Size(94, 32);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Kontejnera na term";
+            this.label1.Text = "IZVOZ";
             // 
-            // label2
+            // lblKomercijalnaZona
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(161, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 72);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "57";
+            this.lblKomercijalnaZona.AutoSize = true;
+            this.lblKomercijalnaZona.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKomercijalnaZona.Location = new System.Drawing.Point(173, 76);
+            this.lblKomercijalnaZona.Name = "lblKomercijalnaZona";
+            this.lblKomercijalnaZona.Size = new System.Drawing.Size(102, 72);
+            this.lblKomercijalnaZona.TabIndex = 7;
+            this.lblKomercijalnaZona.Text = "57";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(148, 34);
+            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(169, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(144, 24);
+            this.label3.Size = new System.Drawing.Size(106, 58);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Pošiljke u toku";
+            this.label3.Text = "Komercijalna zona";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radialGauge1
             // 
@@ -183,7 +184,7 @@
             this.radialGauge1.GaugeLabel = "Gauge";
             this.radialGauge1.GaugeLableFont = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radialGauge1.GaugeValueFont = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radialGauge1.Location = new System.Drawing.Point(17, 22);
+            this.radialGauge1.Location = new System.Drawing.Point(9, 18);
             this.radialGauge1.MinimumSize = new System.Drawing.Size(125, 125);
             this.radialGauge1.Name = "radialGauge1";
             this.radialGauge1.ScaleLabelColor = System.Drawing.Color.Black;
@@ -534,10 +535,10 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.chartControl1);
             this.panel8.Controls.Add(this.label19);
             this.panel8.Controls.Add(this.label20);
             this.panel8.Controls.Add(this.label21);
-            this.panel8.Controls.Add(this.radialGauge7);
             this.panel8.Location = new System.Drawing.Point(341, 12);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(301, 200);
@@ -547,7 +548,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(3, 162);
+            this.label19.Location = new System.Drawing.Point(3, 173);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(139, 18);
             this.label19.TabIndex = 8;
@@ -557,7 +558,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(161, 58);
+            this.label20.Location = new System.Drawing.Point(172, 42);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(102, 72);
             this.label20.TabIndex = 7;
@@ -567,36 +568,11 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(148, 34);
+            this.label21.Location = new System.Drawing.Point(148, 18);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(144, 24);
+            this.label21.Size = new System.Drawing.Size(151, 24);
             this.label21.TabIndex = 6;
-            this.label21.Text = "Pošiljke u toku";
-            // 
-            // radialGauge7
-            // 
-            this.radialGauge7.ArcThickness = 2F;
-            this.radialGauge7.BackgroundGradientStartColor = System.Drawing.Color.Black;
-            this.radialGauge7.EnableCustomNeedles = false;
-            this.radialGauge7.FillColor = System.Drawing.Color.IndianRed;
-            this.radialGauge7.FrameThickness = 20;
-            this.radialGauge7.FrameType = Syncfusion.Windows.Forms.Gauge.FrameType.Fill;
-            this.radialGauge7.GaugeArcColor = System.Drawing.SystemColors.ActiveCaption;
-            this.radialGauge7.GaugeLabel = "Gauge";
-            this.radialGauge7.GaugeLableFont = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radialGauge7.GaugeValueFont = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radialGauge7.Location = new System.Drawing.Point(17, 22);
-            this.radialGauge7.MinimumSize = new System.Drawing.Size(125, 125);
-            this.radialGauge7.Name = "radialGauge7";
-            this.radialGauge7.ScaleLabelColor = System.Drawing.Color.Black;
-            this.radialGauge7.ShowGaugeValue = true;
-            this.radialGauge7.ShowTicks = true;
-            this.radialGauge7.Size = new System.Drawing.Size(125, 125);
-            this.radialGauge7.StartAngle = 0;
-            this.radialGauge7.SweepAngle = 360;
-            this.radialGauge7.TabIndex = 5;
-            this.radialGauge7.ThemeStyle.ArcThickness = 20F;
-            this.radialGauge7.Value = 27F;
+            this.label21.Text = "Nerasporedjeni";
             // 
             // panel6
             // 
@@ -732,12 +708,67 @@
             this.radialGauge6.ThemeStyle.ArcThickness = 20F;
             this.radialGauge6.Value = 27F;
             // 
+            // chartControl1
+            // 
+            this.chartControl1.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
+            this.chartControl1.ChartArea.CursorReDraw = false;
+            this.chartControl1.DataSourceName = "[none]";
+            this.chartControl1.IsWindowLess = false;
+            // 
+            // 
+            // 
+            this.chartControl1.Legend.Location = new System.Drawing.Point(81, 97);
+            this.chartControl1.Localize = null;
+            this.chartControl1.Location = new System.Drawing.Point(6, 3);
+            this.chartControl1.Name = "chartControl1";
+            this.chartControl1.PrimaryXAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.chartControl1.PrimaryXAxis.Margin = true;
+            this.chartControl1.PrimaryYAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.chartControl1.PrimaryYAxis.Margin = true;
+            this.chartControl1.Size = new System.Drawing.Size(136, 177);
+            this.chartControl1.TabIndex = 9;
+            this.chartControl1.Text = "chartControl1";
+            // 
+            // 
+            // 
+            this.chartControl1.Title.Name = "Default";
+            this.chartControl1.Titles.Add(this.chartControl1.Title);
+            this.chartControl1.VisualTheme = "";
+            // 
+            // sparkLine1
+            // 
+            this.sparkLine1.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.White);
+            this.sparkLine1.EndPoint = 10D;
+            this.sparkLine1.HighPoint = 90D;
+            this.sparkLine1.Location = new System.Drawing.Point(657, 223);
+            this.sparkLine1.LowPoint = 10D;
+            this.sparkLine1.Name = "sparkLine1";
+            this.sparkLine1.NegativeItem = new double[] {
+        0D,
+        0D,
+        0D,
+        0D,
+        0D};
+            this.sparkLine1.Size = new System.Drawing.Size(274, 103);
+            this.sparkLine1.Source = new double[] {
+        20D,
+        90D,
+        30D,
+        60D,
+        10D};
+            this.sparkLine1.StartPoint = 20D;
+            this.sparkLine1.TabIndex = 30;
+            this.sparkLine1.Text = "sparkLine1";
+            this.sparkLine1.Type = Syncfusion.Windows.Forms.Chart.SparkLineType.Line;
+            this.sparkLine1.Click += new System.EventHandler(this.sparkLine1_Click);
+            // 
             // GlavniEkran
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1021, 751);
+            this.Controls.Add(this.sparkLine1);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel10);
@@ -751,6 +782,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GlavniEkran";
             this.Text = "GlavniEkran";
+            this.Load += new System.EventHandler(this.GlavniEkran_Load);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -783,7 +815,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblKomercijalnaZona;
         private System.Windows.Forms.Label label3;
         private Syncfusion.Windows.Forms.Gauge.RadialGauge radialGauge1;
         private System.Windows.Forms.Panel panel10;
@@ -815,7 +847,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private Syncfusion.Windows.Forms.Gauge.RadialGauge radialGauge7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -826,5 +857,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private Syncfusion.Windows.Forms.Gauge.RadialGauge radialGauge6;
+        private Syncfusion.Windows.Forms.Chart.ChartControl chartControl1;
+        private Syncfusion.Windows.Forms.Chart.SparkLine sparkLine1;
     }
 }
