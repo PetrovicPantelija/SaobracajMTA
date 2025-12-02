@@ -54,29 +54,6 @@ namespace Saobracaj.MainLeget.Drumski
             parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, null, true), true);
         }
 
-        private void btnNovi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnIzmeni_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnOtkazi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTransportUvoz_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTransportDirektni_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
