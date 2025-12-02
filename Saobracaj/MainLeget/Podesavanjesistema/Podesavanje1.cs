@@ -1,4 +1,5 @@
 ﻿using Saobracaj.MainLeget;
+using Saobracaj.MainLeget.Drumski;
 using Saobracaj.TrackModal.Sifarnici;
 using System;
 using System.Collections.Generic;
@@ -81,8 +82,14 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
 
         private void btnLogistikaIzvozaPM1_Click(object sender, EventArgs e)
         {
-            Saobracaj.TrackModal.Sifarnici.frmZone zone = new TrackModal.Sifarnici.frmZone();
-            zone.Show();
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM1.Text,
+                () => new TrackModal.Sifarnici.frmZone()
+            );
+
         }
 
         private void btnPodesavanja_Click(object sender, EventArgs e)
@@ -92,8 +99,13 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
 
         private void btnLogistikaIzvozaPM2_Click(object sender, EventArgs e)
         {
-            Saobracaj.TrackModal.Sifarnici.SkladisteGrupa jm = new SkladisteGrupa();
-            jm.Show();
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM2.Text,
+                () => new TrackModal.Sifarnici.SkladisteGrupa()
+            );
         }
 
         private void btnLogistikaIzvozaPM3_Click(object sender, EventArgs e)
@@ -141,8 +153,14 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
 
         private void btnLogistikaIzvozaPM5_Click(object sender, EventArgs e)
         {
-            frmTipKontejnera tk = new frmTipKontejnera(Korisnik);
-            tk.Show();
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM5.Text,
+                () => new frmTipKontejnera(Korisnik)
+            );
+
         }
 
         private void sfButton1_Click_1(object sender, EventArgs e)
@@ -152,6 +170,15 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
 
         private void sfPartnerji_Click(object sender, EventArgs e)
         {
+
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfPartnerji.Text,
+                () => new Sifarnici.frmPartnerji()
+            );
+            /*
             FormCollection fc = Application.OpenForms;
             bool bFormNameOpen = false;
             foreach (Form frm in fc)
@@ -168,7 +195,7 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
             {
                 Sifarnici.frmPartnerji poz = new Sifarnici.frmPartnerji();
                 poz.Show();
-            }
+            }*/
         }
     }
 }

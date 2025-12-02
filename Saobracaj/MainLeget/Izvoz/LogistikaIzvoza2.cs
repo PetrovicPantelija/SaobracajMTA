@@ -73,27 +73,58 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void sfButton1_Click_1(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvoz(), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton1.Text,
+                () => new frmProdajniNalogIzvoz()
+            );
     
         }
 
         private void sfButton4_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(0), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new Izvoz.frmProdajniNalogIzvozTabela(0)
+            );
+
         }
 
         private void sfButton2_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(1), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton2.Text,
+                () => new frmProdajniNalogIzvozTabela(1)
+            );
         }
 
         private void sfButton3_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Izvoz.frmProdajniNalogIzvozTabela(2), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new Izvoz.frmProdajniNalogIzvozTabela(2)
+            );
+        }
+
+        private void sfButton5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

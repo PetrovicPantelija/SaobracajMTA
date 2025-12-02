@@ -138,7 +138,7 @@ namespace Saobracaj.Sifarnici
                         frm.Show(); Drumski1 frm = new Drumski1();
                         frm.Show();
                         */
-                        NewMain frm = new NewMain();
+                        NewMain frm = new NewMain(cboKorisnik.Text.ToString().TrimEnd());
                         frm.Show();
                     }
                     

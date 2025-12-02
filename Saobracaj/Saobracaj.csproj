@@ -2135,6 +2135,12 @@
     <Compile Include="Main2.Designer.cs">
       <DependentUpon>Main2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\AdministracijaPravoPristupa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\AdministracijaPravoPristupa.Designer.cs">
+      <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Drumski\Cerade.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5092,6 +5098,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main2.resx">
       <DependentUpon>Main2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\AdministracijaPravoPristupa.resx">
+      <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Drumski\Cerade.resx">
       <DependentUpon>Cerade.cs</DependentUpon>

@@ -39,6 +39,8 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemOtvori = new System.Windows.Forms.ToolStripMenuItem();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -49,6 +51,7 @@
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
@@ -252,6 +255,7 @@
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.ApplyVisualStyles = false;
             this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.ContextMenuStrip = this.contextMenuStrip1;
             this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -278,6 +282,23 @@
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlMouseDown += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventHandler(this.GridGroupingControl1_TableControlMouseDown);
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOtvori});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 28);
+            this.contextMenuStrip1.Text = "Otvori";
+            // 
+            // toolStripMenuItemOtvori
+            // 
+            this.toolStripMenuItemOtvori.Name = "toolStripMenuItemOtvori";
+            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(119, 24);
+            this.toolStripMenuItemOtvori.Text = "Otvori";
             // 
             // panelStatus
             // 
@@ -344,11 +365,13 @@
             this.Name = "frmPregledNalogaDrumski";
             this.Text = "Lista naloga";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPregledNalogaDrumski_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
@@ -373,5 +396,7 @@
         private System.Windows.Forms.Button btnFormiranjeNaloga;
         private System.Windows.Forms.Button btnDopunaNaloga;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOtvori;
     }
 }

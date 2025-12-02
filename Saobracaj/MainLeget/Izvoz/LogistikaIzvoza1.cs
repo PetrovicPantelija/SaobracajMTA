@@ -79,11 +79,48 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void btnLogistikaIzvozaPM1_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new LogistikaIzvoza2(), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM1.Text,
+                () => new LogistikaIzvoza2() 
+            );
         }
+        
 
         private void btnPodesavanja_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogistikaIzvozaPM2_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM2.Text,
+                () => new LogistikaIzvoza2()
+            );
+        }
+
+        private void btnLogistikaIzvozaPM3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogistikaIzvozaPM4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogistikaIzvozaPM5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogistikaIzvozaPM6_Click(object sender, EventArgs e)
         {
 
         }

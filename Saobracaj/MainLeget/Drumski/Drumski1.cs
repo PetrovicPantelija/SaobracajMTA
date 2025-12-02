@@ -25,8 +25,23 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new Cerade(), true);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnForm1.Text,
+                () => new Cerade()
+            );
+        }
+
+        private void sfButton7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
