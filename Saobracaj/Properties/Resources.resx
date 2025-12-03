@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LegetIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LegetIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="uvozIzvoz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uvozIzvoz2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BAcground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BAcground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,8 +133,8 @@
   <data name="PrijemOtpremaKamiona" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PrijemOtpremaKamiona.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="uvozIzvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\uvozIzvoz1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mtaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mtaLogo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,23 +154,20 @@
   <data name="baner" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\baner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Direktni" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Direktni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cirade3P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cirade3P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Obrišipostojeci" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Obrišipostojeci.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CiradeOtkazi" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CiradeOtkazi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="2FormiranjeTransportnogNaloga" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2FormiranjeTransportnogNaloga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Background5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="3.VanGabaritni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3.VanGabaritni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PromeniPostojeći" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PromeniPostojeći.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,8 +187,11 @@
   <data name="Finansije" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Finansije.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="excel-icon-transparent-10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\excel-icon-transparent-101.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2.PocetniMeni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.PocetniMeni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LegetIconPNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LegetIconPNG.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CiradeNovi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CiradeNovi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,11 +205,11 @@
   <data name="CiradeUvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CiradeUvoz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mtaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mtaLogo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CiradeOtkazi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CiradeOtkazi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="uvozIzvoz1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\uvozIzvoz2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="excel-icon-transparent-10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excel-icon-transparent-101.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ODryavanje" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ODryavanje.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +235,11 @@
   <data name="exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="2.PocetniMeni" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2.PocetniMeni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Direktni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Direktni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LegetIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LegetIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="4.LogOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4.LogOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,11 +247,14 @@
   <data name="3.DashBoard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3.DashBoard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="2Ponude" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2Ponude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="drumskiW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\drumskiW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bacground2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bacground2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2NalogZaDrumski" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2NalogZaDrumski.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,19 +265,19 @@
   <data name="Izvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Izvoz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LegetIconPNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LegetIconPNG.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2Ponude" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2Ponude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2ProveraRaspolozivosti" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2ProveraRaspolozivosti.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cirade3P" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cirade3P.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Background5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Background5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Bacground2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bacground2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="uvozIzvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uvozIzvoz1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Obrišipostojeci" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Obrišipostojeci.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2.Platforma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.Platforma1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

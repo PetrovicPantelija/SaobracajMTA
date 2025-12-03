@@ -82,7 +82,7 @@
             this.sfButton7.Size = new System.Drawing.Size(288, 228);
             this.sfButton7.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton7.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton7.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfButton7.Style.Image = global::Saobracaj.Properties.Resources._2_Platforma;
             this.sfButton7.TabIndex = 498;
             this.sfButton7.Text = "Platforme";
             this.sfButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -117,7 +117,7 @@
             this.sfButton6.Size = new System.Drawing.Size(288, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton6.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.sfButton6.Style.Image = global::Saobracaj.Properties.Resources._3_VanGabaritni;
             this.sfButton6.TabIndex = 497;
             this.sfButton6.Text = "Van Gabaritni";
             this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

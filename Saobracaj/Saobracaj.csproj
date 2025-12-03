@@ -2153,6 +2153,12 @@
     <Compile Include="MainLeget\Drumski\NalogZaDrumski.Designer.cs">
       <DependentUpon>NalogZaDrumski.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Drumski\Platforma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\Platforma.Designer.cs">
+      <DependentUpon>Platforma.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\GlavniEkran.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5108,6 +5114,9 @@
     <EmbeddedResource Include="MainLeget\Drumski\NalogZaDrumski.resx">
       <DependentUpon>NalogZaDrumski.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Drumski\Platforma.resx">
+      <DependentUpon>Platforma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\GlavniEkran.resx">
       <DependentUpon>GlavniEkran.cs</DependentUpon>
     </EmbeddedResource>
@@ -6716,6 +6725,9 @@
     <None Include="Resources\2NalogZaDrumski.png" />
     <None Include="Resources\2NalogZaFakturisanje.png" />
     <Content Include="LegetIconPNG.ico" />
+    <None Include="Resources\2.Platforma.png" />
+    <None Include="Resources\3.VanGabaritni.png" />
+    <None Include="Resources\2.Platforma1.png" />
     <Content Include="Resources\chat.png" />
     <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
     <None Include="Resources\drumskiW.png" />

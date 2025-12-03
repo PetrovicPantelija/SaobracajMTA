@@ -73,6 +73,16 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _2_Platforma {
+            get {
+                object obj = ResourceManager.GetObject("2.Platforma", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap _2_PocetniMeni {
             get {
                 object obj = ResourceManager.GetObject("2.PocetniMeni", resourceCulture);
@@ -146,6 +156,16 @@ namespace Saobracaj.Properties {
         public static System.Drawing.Bitmap _3_DashBoard {
             get {
                 object obj = ResourceManager.GetObject("3.DashBoard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _3_VanGabaritni {
+            get {
+                object obj = ResourceManager.GetObject("3.VanGabaritni", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
