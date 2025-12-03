@@ -291,14 +291,15 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemOtvori});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
             this.contextMenuStrip1.Text = "Otvori";
             // 
             // toolStripMenuItemOtvori
             // 
             this.toolStripMenuItemOtvori.Name = "toolStripMenuItemOtvori";
-            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(119, 24);
+            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(210, 24);
             this.toolStripMenuItemOtvori.Text = "Otvori";
+            this.toolStripMenuItemOtvori.Click += new System.EventHandler(this.button23_Click);
             // 
             // panelStatus
             // 

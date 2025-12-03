@@ -229,7 +229,7 @@
             this.cboTipVozila.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipVozila.Location = new System.Drawing.Point(553, 3);
             this.cboTipVozila.Name = "cboTipVozila";
-            this.cboTipVozila.Size = new System.Drawing.Size(140, 24);
+            this.cboTipVozila.Size = new System.Drawing.Size(143, 24);
             this.cboTipVozila.TabIndex = 9;
             this.cboTipVozila.SelectedIndexChanged += new System.EventHandler(this.cboTipVozila_SelectedIndexChanged);
             // 
@@ -282,9 +282,9 @@
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(657, 30);
+            this.btnRefresh.Location = new System.Drawing.Point(662, 30);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(180, 26);
+            this.btnRefresh.Size = new System.Drawing.Size(175, 26);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Osveži prikaz";
             this.btnRefresh.UseVisualStyleBackColor = true;

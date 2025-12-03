@@ -13,45 +13,54 @@ namespace Saobracaj.MainLeget.Drumski
 {
     public partial class NalogZaDrumski : Form
     {
+        private int _tipVozila = 0;
+
         public NalogZaDrumski()
         {
             InitializeComponent();
         }
 
+        public NalogZaDrumski(int tipVozila)
+        {
+            InitializeComponent();
+            _tipVozila = tipVozila;
+        }
+
+
         private void btnTransportIzvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, tipoviNaloga: new List<int> { 1 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, tipoviNaloga: new List<int> { 1 }, false), true);
         }
 
         private void btnNovi_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "NOVINALOG", null), true);
+            parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, "NOVINALOG", null), true);
         }
 
         private void btnIzmeni_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, null, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, null, false), true);
         }
 
         private void btnTransportUvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, tipoviNaloga: new List<int> { 0 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, tipoviNaloga: new List<int> { 0 }, false), true);
         }
 
         private void btnTransportDirektni_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, tipoviNaloga: new List<int> { 2, 3, 4, 5 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, tipoviNaloga: new List<int> { 2, 3, 4, 5 }, false), true);
         }
 
         private void btnOtkazi_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, null, true), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: new List<int> { _tipVozila }, tipoviNotIn: null, null, true), true);
         }
 
         
