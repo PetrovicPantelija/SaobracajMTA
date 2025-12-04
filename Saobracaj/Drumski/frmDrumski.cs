@@ -88,7 +88,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public frmDrumski(List<int> tipoviIn, List<int> tipoviNotIn, string noviNalogID, int? NalogID)
+        public frmDrumski(List<int> tipoviIn, List<int> tipoviNotIn, string noviNalogID, int? ID)
         {
             InitializeComponent();
             ChangeTextBox();
@@ -99,6 +99,10 @@ namespace Saobracaj.Drumski
             dtIstovara.Value = DateTime.Today;
             dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             dtPreuzimanjaPraznogKontejnera.Checked = true;
+            if (ID.HasValue && ID.Value > 0)
+            {
+                this.id = ID.Value; 
+            }
             FillCombo();
             VratiPodatke();
             txtNapomenaPoz.Visible = false;
@@ -119,6 +123,7 @@ namespace Saobracaj.Drumski
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
             }
+        
             drumskiNew = true;
             button3.Visible = false;
             button1.Visible = false;
