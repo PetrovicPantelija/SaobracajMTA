@@ -33,6 +33,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> tipNaloga = null;
         private bool dozvoliContextMenu = false;
         private bool dozvoliOtkazivanjeZapisa = false;
+        private bool drumskiNew = false; 
 
 
         public frmPregledNalogaDrumski()
@@ -76,6 +77,7 @@ namespace Saobracaj.Drumski
             btnFormiranjeNaloga.Visible = false;
             btnDopunaNaloga.Visible = false;
             button6.Visible = false;
+            drumskiNew = true;
             if (otkaziZapis == true)
                 button1.Visible = false;
 
@@ -485,11 +487,11 @@ namespace Saobracaj.Drumski
 
         private void button23_Click(object sender, EventArgs e)
         {
-            if (ActivateExistingForm("frmDrumski"))
-            {
-                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
-                return;
-            }
+            //if (ActivateExistingForm("frmDrumski"))
+            //{
+            //    // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+            //    return;
+            //}
 
             if (gridGroupingControl1.Table.SelectedRecords.Count > 0)
             {
@@ -499,9 +501,18 @@ namespace Saobracaj.Drumski
                 if (rec != null)
                 {
                     int ID = Convert.ToInt32(rec.GetValue("ID"));
-                    frmDrumski pnd = new frmDrumski(ID);
-                    pnd.FormClosed += pnd_FormClosed;
-                    pnd.Show();
+                    if (drumskiNew == true)
+                    {
+                        frmDrumski pnd = new frmDrumski(_tipoviIn,  _tipoviNotIn, "", ID );
+                        pnd.FormClosed += pnd_FormClosed;
+                        pnd.Show();
+                    }
+                    else
+                    {
+                        frmDrumski pnd = new frmDrumski(ID);
+                        pnd.FormClosed += pnd_FormClosed;
+                        pnd.Show();
+                    }
                     //var parent = this.TopLevelControl as NewMain;
                     //parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "", null), true);
                 }
@@ -1089,12 +1100,12 @@ namespace Saobracaj.Drumski
                     // Handle the result based on user selection
                     if (result == DialogResult.Yes)
                     {
-                        //ipnk.UpdStornirajStavku(id);
-                        // Add logic to save changes here
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.DelRadniNalogDrumski(id);
                     }
 
 
-                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    RefreshGrid();
                 }
             }
         }

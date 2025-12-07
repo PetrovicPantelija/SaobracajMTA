@@ -27,6 +27,7 @@ namespace Saobracaj.Drumski
         private int? mainNalogID;
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
+        private bool drumskiNew = false;
 
         public frmDrumski()
         {
@@ -87,7 +88,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-        public frmDrumski(List<int> tipoviIn, List<int> tipoviNotIn, string noviNalogID, int? NalogID)
+        public frmDrumski(List<int> tipoviIn, List<int> tipoviNotIn, string noviNalogID, int? ID)
         {
             InitializeComponent();
             ChangeTextBox();
@@ -98,6 +99,10 @@ namespace Saobracaj.Drumski
             dtIstovara.Value = DateTime.Today;
             dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             dtPreuzimanjaPraznogKontejnera.Checked = true;
+            if (ID.HasValue && ID.Value > 0)
+            {
+                this.id = ID.Value; 
+            }
             FillCombo();
             VratiPodatke();
             txtNapomenaPoz.Visible = false;
@@ -118,8 +123,11 @@ namespace Saobracaj.Drumski
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
             }
+        
+            drumskiNew = true;
             button3.Visible = false;
             button1.Visible = false;
+            button21.Visible = false;
             button4.Visible = false;
         }
 
@@ -566,7 +574,8 @@ namespace Saobracaj.Drumski
                     txtTipNaloga1.Visible = false;
                     cboKlijent.Enabled = true;
                     cboVrstaKontejnera.Enabled = true;
-                    button21.Visible =  true;
+                    if(drumskiNew == false)
+                        button21.Visible =  true;
                     cboNapomenaPoz.Visible = true;
                     txtNapomenaPoz.Visible = false;
                     txtBokingBrodara.Enabled = false;
@@ -580,7 +589,8 @@ namespace Saobracaj.Drumski
                     txtBL.Visible = true;
                     //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
                     btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
-                    button21.Visible = true;
+                    if (drumskiNew == false)
+                        button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
@@ -596,7 +606,8 @@ namespace Saobracaj.Drumski
                     txtBokingBrodara.Enabled = false;
                     btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
                     //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
-                    button21.Visible = true;
+                    if (drumskiNew == false)
+                        button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
@@ -612,7 +623,8 @@ namespace Saobracaj.Drumski
                     txtBL.Visible = true;
                     btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
                     //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
-                    button21.Visible = true;
+                    if (drumskiNew == false)
+                        button21.Visible = true;
                     //button21.Visible = NalogID > 0 ? false : true;
                     //     button3.Visible = NalogID > 0 ? false : true;
                     label12.Text = "Kontakt osoba na utovaru";
