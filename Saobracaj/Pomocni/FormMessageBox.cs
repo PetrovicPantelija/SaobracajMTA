@@ -302,5 +302,10 @@ public partial class FormMessageBox : Form
         {
 
         }
+
+        private void FormMessageBox_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
