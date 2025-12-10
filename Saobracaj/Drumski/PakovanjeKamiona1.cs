@@ -26,6 +26,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
         private bool _filtersLoaded = false;
+        private List<int> _arhivskiStatusi;
 
         public PakovanjeKamiona1()
         {
@@ -581,11 +582,11 @@ namespace Saobracaj.Drumski
                     // Baza upita za provjeru raspoloživosti/neraspoloživosti
                     string subQueryNaloga = $@"
                         SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
-                        FROM RadniNalogDrumski
-                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) ";
-
-                     // Subquery za vozila koja su u tehničkom problemu (neraspoloživa zbog kvara)
-                     string subQueryKvarova = $@"
+                        FROM RadniNalogDrumski rn
+                        WHERE  (CONVERT(date, DatumUtovara) = CONVERT(date, {datumZaProveru}) AND rn.TipTransporta = 2 ) OR CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) ";
+              
+                    // Subquery za vozila koja su u tehničkom problemu (neraspoloživa zbog kvara)
+                    string subQueryKvarova = $@"
                         SELECT DISTINCT ISNULL(VoziloID, 0) AS VoziloID
                         FROM AutomobiliTehnickiProblem
                         WHERE CAST(Datum AS date) = CAST({datumZaProveru} AS date)";
@@ -784,7 +785,7 @@ namespace Saobracaj.Drumski
                             LEFT JOIN MestaUtovara mu ON mu.id = rn.MestoUtovara
                             WHERE rn.Uvoz IN (2, 3, 4, 5 ) AND rn.NalogID > 0 AND ISNULL(rn.KamionID,0) = 0 {dodatniUslovTipTransporta}
                         ) AS x
-                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru})
+                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) OR ( CONVERT(date, DatumUtovara) = CONVERT(date, {datumZaProveru}) AND TipTransporta = 2)
                      
                         ORDER BY NalogID DESC
                         ";
@@ -918,7 +919,6 @@ namespace Saobracaj.Drumski
 
                 var select = $@"
                             SELECT   
-                                -- Agregirana kolona (Spojeni ID-jevi)
                                 x.ID,
                                 LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac, 
                                 x.Relacija,
@@ -960,7 +960,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
-                                      AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
+                                      AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
     
                                 UNION ALL 
                                 -- Deo 2 (IzvozKonacna)
@@ -987,7 +987,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
-                                      AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
+                                      AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
     
                                 UNION ALL 
                                 -- Deo 3 (UvozKonacna)
@@ -1014,7 +1014,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
-                                      AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
+                                      AND ( CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )  OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
     
                                 UNION ALL 
                                 -- Deo 4 (Uvoz)
@@ -1041,7 +1041,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
-                                      AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
+                                      AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )  OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
     
                                 UNION ALL 
                                 -- Deo 5 (Ostali drumski)
@@ -1067,7 +1067,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.NalogID > 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
-                                      AND CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )
+                                      AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} )  OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
 
                             ) AS x
                              WHERE  {uslovTipVozila} 
@@ -1447,7 +1447,7 @@ namespace Saobracaj.Drumski
                  dan = "S";
 
 
-            frmPregledNalogaDrumski dr = new frmPregledNalogaDrumski(nalogID, NalogodavacID, dan);
+            frmPregledNalogaDrumski dr = new frmPregledNalogaDrumski(_tipoviIn,_tipoviNotIn,nalogID, NalogodavacID, dan);
             dr.FormClosed += (s, args) =>
             {
                 RefreshDataGrid2();
@@ -1687,8 +1687,27 @@ namespace Saobracaj.Drumski
                     return;
                 }
 
-                int? noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
+                int noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
                 string idsString = row.Cells["ID"].Value.ToString();
+
+                if (_arhivskiStatusi.Contains(noviStatusID))
+                {
+                    // Učitaj naziv statusa (iz StatusVozila)
+                    string nazivStatusa = VratiNazivStatusa(noviStatusID);
+
+                    var result = MessageBox.Show(
+                        $"Da li ste sigurni da želite da promenite status u '{nazivStatusa}'?\n" +
+                        $"Ova akcija će arhivirati stavku naloga!",
+                        "Potvrda",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        RefreshDataGrid3();
+                        return;
+                    }
+                }
 
                 int id;
 
@@ -1706,9 +1725,25 @@ namespace Saobracaj.Drumski
                 }
                 
             }
+
             RefreshDataGrid3();
         }
+        private string VratiNazivStatusa(int statusID)
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT Naziv FROM StatusVozila WHERE ID = @ID", conn);
+
+                cmd.Parameters.AddWithValue("@ID", statusID);
+
+                var result = cmd.ExecuteScalar();
+
+                return result?.ToString() ?? "(nepoznat status)";
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -2670,6 +2705,39 @@ namespace Saobracaj.Drumski
         {
             if (!_filtersLoaded) return;
             ApplyFilters();
+        }
+
+        private List<int> UcitajArhivskeStatuse()
+        {
+            List<int> statusi = new List<int>();
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd1 = new SqlCommand(
+                    "SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", conn);
+
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string vrednost = reader.GetString(0).Trim();
+
+                        if (int.TryParse(vrednost, out int broj))
+                        {
+                            statusi.Add(broj);
+                        }
+                    }
+                }
+            }
+
+            return statusi;
+        }
+
+        private void PakovanjeKamiona1_Load(object sender, EventArgs e)
+        {
+            _arhivskiStatusi = UcitajArhivskeStatuse();
         }
     }
     class NajavaGrupa

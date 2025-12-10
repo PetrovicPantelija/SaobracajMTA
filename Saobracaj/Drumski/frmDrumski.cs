@@ -502,8 +502,10 @@ namespace Saobracaj.Drumski
                 int NalogID = -1;
                 if (dr["NalogID"] != DBNull.Value && int.TryParse(dr["NalogID"].ToString(), out int conertedNalogID))
                      NalogID = conertedNalogID;
-                
-                    
+
+                if (dr["TipTransportaDrumski"] != DBNull.Value && int.TryParse(dr["TipTransportaDrumski"].ToString(), out int conTipT) && conTipT == 2)
+                     dtPreuzimanjaPraznogKontejnera.Enabled = false;
+
                 if (Uvoz == 0)
                 {
                     txtBokingBrodara.Enabled = false;
@@ -531,6 +533,7 @@ namespace Saobracaj.Drumski
                     txtNapomenaPoz.Visible = true;
                     btnFormiranjeNaloga.Visible = false;
                     // button3.Visible = NalogID > 0 ? false : true;
+                   
                 }
                 else if (Uvoz == 1)
                 {
@@ -1072,14 +1075,14 @@ namespace Saobracaj.Drumski
                                         WHERE  r.KamionID = a.ID
                                           AND  (r.Status IS NULL OR r.Status NOT IN ({statusiZaUpit}))
                                           AND  r.ID <> @ID
-                                          AND CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum
+                                          AND ( CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum  OR (CONVERT(date, r.DatumUtovara) = @Datum AND TipTransporta = 2))
                                     )
                                     OR
                                     EXISTS (
                                         -- ILI je već dodeljen ovom nalogu
                                         SELECT 1
                                         FROM   RadniNalogDrumski r
-                                        WHERE  r.KamionID = a.ID AND r.ID = @ID  AND CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum
+                                        WHERE  r.KamionID = a.ID AND r.ID = @ID  AND (CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum OR (CONVERT(date, r.DatumUtovara) = @Datum AND TipTransporta = 2))
                                     ) 
                                 )AND {uslovTipVozila}";
 
@@ -1183,10 +1186,29 @@ namespace Saobracaj.Drumski
             if (dtIstovara.Checked)
                 datumIstovara = dtIstovara.Value;
 
-            DateTime? dtPreuzimanjaPraznogKont = null;
-            if (dtPreuzimanjaPraznogKontejnera.Checked)
-                dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
+            int? tipTransportaID = null;
+            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
+                tipTransportaID = parsedTipTransportaID;
 
+            DateTime? dtPreuzimanjaPraznogKont = null;
+
+            //if ( dtPreuzimanjaPraznogKontejnera.Checked)
+            //    dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
+     
+            if (tipTransportaID == 2)
+            {
+                if (dtpUtovara.Checked)
+                {
+                    dtPreuzimanjaPraznogKont = (DateTime?)dtpUtovara.Value;
+                    dtPreuzimanjaPraznogKontejnera.Value = dtpUtovara.Value;
+                }
+            }
+            else
+            {
+                // ako DateTimePicker ima checkbox i označen je, uzmi vrednost, inače null
+                dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Checked  ? (DateTime?)dtPreuzimanjaPraznogKontejnera.Value  : null;
+            }
+           
             string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text.Trim();
 
             decimal? trosak = null;
@@ -1230,10 +1252,6 @@ namespace Saobracaj.Drumski
             {
                 vrstaKontejnera = null;
             }
-
-            int? tipTransportaID = null;
-            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
-                tipTransportaID = parsedTipTransportaID;
 
             string dodatniOpis = string.IsNullOrWhiteSpace(txtDodatniOpis.Text) ? null : txtDodatniOpis.Text.Trim();
             string brojKontejnera2 = string.IsNullOrWhiteSpace(txtBrojKontejnera2.Text) ? null : txtBrojKontejnera2.Text.Trim();
