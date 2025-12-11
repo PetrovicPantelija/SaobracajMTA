@@ -191,14 +191,14 @@
             this.cboRegistracija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRegistracija.Location = new System.Drawing.Point(88, 3);
             this.cboRegistracija.Name = "cboRegistracija";
-            this.cboRegistracija.Size = new System.Drawing.Size(155, 24);
+            this.cboRegistracija.Size = new System.Drawing.Size(145, 24);
             this.cboRegistracija.TabIndex = 10;
             this.cboRegistracija.SelectedIndexChanged += new System.EventHandler(this.cboRegistracija_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(249, 0);
+            this.label3.Location = new System.Drawing.Point(239, 0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label3.Size = new System.Drawing.Size(66, 22);
@@ -208,16 +208,16 @@
             // cboPrevoznik
             // 
             this.cboPrevoznik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPrevoznik.Location = new System.Drawing.Point(321, 3);
+            this.cboPrevoznik.Location = new System.Drawing.Point(311, 3);
             this.cboPrevoznik.Name = "cboPrevoznik";
-            this.cboPrevoznik.Size = new System.Drawing.Size(155, 24);
+            this.cboPrevoznik.Size = new System.Drawing.Size(151, 24);
             this.cboPrevoznik.TabIndex = 15;
             this.cboPrevoznik.SelectedIndexChanged += new System.EventHandler(this.cboPrevoznik_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(482, 0);
+            this.label2.Location = new System.Drawing.Point(468, 0);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label2.Size = new System.Drawing.Size(65, 22);
@@ -227,9 +227,9 @@
             // cboTipVozila
             // 
             this.cboTipVozila.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipVozila.Location = new System.Drawing.Point(553, 3);
+            this.cboTipVozila.Location = new System.Drawing.Point(539, 3);
             this.cboTipVozila.Name = "cboTipVozila";
-            this.cboTipVozila.Size = new System.Drawing.Size(143, 24);
+            this.cboTipVozila.Size = new System.Drawing.Size(131, 24);
             this.cboTipVozila.TabIndex = 9;
             this.cboTipVozila.SelectedIndexChanged += new System.EventHandler(this.cboTipVozila_SelectedIndexChanged);
             // 
@@ -282,7 +282,7 @@
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(662, 30);
+            this.btnRefresh.Location = new System.Drawing.Point(662, 29);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(175, 26);
             this.btnRefresh.TabIndex = 3;
@@ -330,7 +330,7 @@
             // 
             // btnKreiraj
             // 
-            this.btnKreiraj.Location = new System.Drawing.Point(0, 30);
+            this.btnKreiraj.Location = new System.Drawing.Point(0, 29);
             this.btnKreiraj.Name = "btnKreiraj";
             this.btnKreiraj.Size = new System.Drawing.Size(130, 26);
             this.btnKreiraj.TabIndex = 1;
@@ -444,6 +444,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PakovanjeKamiona1";
             this.Text = "PakovanjeKamiona1";
+            this.Load += new System.EventHandler(this.PakovanjeKamiona1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

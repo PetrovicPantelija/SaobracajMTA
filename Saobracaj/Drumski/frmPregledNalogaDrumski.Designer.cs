@@ -47,6 +47,7 @@
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.toolStripMenuItemDuplirajZapis = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
@@ -289,9 +290,10 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemOtvori});
+            this.toolStripMenuItemOtvori,
+            this.toolStripMenuItemDuplirajZapis});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 52);
             this.contextMenuStrip1.Text = "Otvori";
             // 
             // toolStripMenuItemOtvori
@@ -357,6 +359,13 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // toolStripMenuItemDuplirajZapis
+            // 
+            this.toolStripMenuItemDuplirajZapis.Name = "toolStripMenuItemDuplirajZapis";
+            this.toolStripMenuItemDuplirajZapis.Size = new System.Drawing.Size(169, 24);
+            this.toolStripMenuItemDuplirajZapis.Text = "Dupliraj zapis";
+            this.toolStripMenuItemDuplirajZapis.Click += new System.EventHandler(this.button6_Click);
+            // 
             // frmPregledNalogaDrumski
             // 
             this.ClientSize = new System.Drawing.Size(1401, 564);
@@ -399,5 +408,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOtvori;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplirajZapis;
     }
 }

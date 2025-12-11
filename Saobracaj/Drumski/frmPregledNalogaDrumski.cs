@@ -33,8 +33,8 @@ namespace Saobracaj.Drumski
         private readonly List<int> tipNaloga = null;
         private bool dozvoliContextMenu = false;
         private bool dozvoliOtkazivanjeZapisa = false;
-        private bool drumskiNew = false; 
-
+        private bool drumskiNew = false; // nova verzija programa
+        private bool duplirajZapisVisible = false;
 
         public frmPregledNalogaDrumski()
         {
@@ -57,6 +57,28 @@ namespace Saobracaj.Drumski
             btnDodeliKamion.Visible = false;
             this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
 
+        }
+        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, int NalogID, int? NalogodavacID, string Dan)
+        {
+            nalogID = NalogID;
+            Nalogodavac = NalogodavacID;
+            dan = Dan;
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            InitializeComponent();
+            ChangeTextBox();
+            RefreshGrid();
+
+            // vec imaju kreiran nalog id pa nema potrebe da budu vidljva sledeca dugmad
+            btnFormiranjeNaloga.Visible = false;
+            btnDopunaNaloga.Visible = false;
+            btnDodeliKamion.Visible = false;
+
+            this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
+            dozvoliContextMenu = true;
+            dozvoliOtkazivanjeZapisa = false;
+            drumskiNew = true;
+            duplirajZapisVisible = true;
         }
 
         public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, List<int> tipoviNaloga, bool otkaziZapis)
@@ -212,15 +234,18 @@ namespace Saobracaj.Drumski
                     if (dan == "D")
                     {
                         // svi kojima je datum preuzimanja kontejnera danas
-                        conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GetDate() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
+                        //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GetDate() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
                         // Alternativno, ako je DatumIstovara samo datum:
                         // conditionRadniNalogID += $" AND rn.DatumIstovara = CAST(GetDate() AS DATE)";
+                        conditionRadniNalogID += $" AND ( (TipTransporta = 2  AND rn.DatumUtovara >= CAST(GETDATE() AS DATE) AND rn.DatumUtovara < DATEADD(DAY, 1, CAST(GETDATE() AS DATE)))" +
+                                                 $" OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GETDATE() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) )";
                     }
                     else
                     {
                         // svi kojima je datum preuzimanja kontejnera sutra
-                        conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
-
+                        //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
+                        conditionRadniNalogID += $" AND ((TipTransporta = 2  AND rn.DatumUtovara >= DATEADD(DAY, 1, CAST(GETDATE() AS DATE)) AND rn.DatumUtovara < DATEADD(DAY, 2, CAST(GETDATE() AS DATE)))" +
+                                                $"  OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GETDATE() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GETDATE() AS DATE))) )";
                     }
                 }
                 string conditionTipPrevoza = " 1 = 1";
@@ -517,17 +542,33 @@ namespace Saobracaj.Drumski
                     //parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "", null), true);
                 }
             }
-            else if (nalogID > 0)
+            else if (nalogID > 0 )
             {
-                frmDrumski pnd = new frmDrumski("", nalogID);
-                pnd.FormClosed += pnd_FormClosed;
-                pnd.Show();
+                if (drumskiNew == true)
+                {
+                    System.Windows.Forms.MessageBox.Show("Niste selektovali nijedan red.");
+                    return;
+                }
+                else 
+                {
+                    frmDrumski pnd = new frmDrumski("", nalogID);
+                    pnd.FormClosed += pnd_FormClosed;
+                    pnd.Show();
+                }
             }
             else
             {
-                frmDrumski pnd = new frmDrumski();
-                pnd.FormClosed += pnd_FormClosed;
-                pnd.Show();
+                if (drumskiNew == true)
+                {
+                    System.Windows.Forms.MessageBox.Show("Niste selektovali nijedan red.");
+                    return;
+                }
+                else
+                {
+                    frmDrumski pnd = new frmDrumski(_tipoviIn, _tipoviNotIn, "", null);
+                    pnd.FormClosed += pnd_FormClosed;
+                    pnd.Show();
+                }
             }
         }
 
@@ -1049,7 +1090,10 @@ namespace Saobracaj.Drumski
         private void frmPregledNalogaDrumski_Load(object sender, EventArgs e)
         {
             if (dozvoliContextMenu)
+            {
                 gridGroupingControl1.ContextMenuStrip = contextMenuStrip1;
+                toolStripMenuItemDuplirajZapis.Visible = duplirajZapisVisible;
+            }
             else
                 gridGroupingControl1.ContextMenuStrip = null;
         }
