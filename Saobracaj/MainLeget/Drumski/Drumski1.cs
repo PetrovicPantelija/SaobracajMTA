@@ -47,7 +47,13 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void sfButton6_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            main.OtvoriFormuSaPravom(
+                btnForm1.Text,
+                () => new VanGabaritni()
+            );
         }
     }
 }

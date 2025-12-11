@@ -2159,6 +2159,12 @@
     <Compile Include="MainLeget\Drumski\Platforma.Designer.cs">
       <DependentUpon>Platforma.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Drumski\VanGabaritni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Drumski\VanGabaritni.Designer.cs">
+      <DependentUpon>VanGabaritni.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\GlavniEkran.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2189,6 +2195,12 @@
     </Compile>
     <Compile Include="MainLeget\Info.Designer.cs">
       <DependentUpon>Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Izvoz\NalogIzvozaZaOtpremu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Izvoz\NalogIzvozaZaOtpremu.Designer.cs">
+      <DependentUpon>NalogIzvozaZaOtpremu.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\Kapija\frmKapija1.cs">
       <SubType>Form</SubType>
@@ -2471,6 +2483,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Pomocni\CustomMessageBox.cs" />
+    <Compile Include="Pomocni\CustomOkMessageBox.cs" />
     <Compile Include="Pomocni\FormMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5117,6 +5131,9 @@
     <EmbeddedResource Include="MainLeget\Drumski\Platforma.resx">
       <DependentUpon>Platforma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Drumski\VanGabaritni.resx">
+      <DependentUpon>VanGabaritni.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\GlavniEkran.resx">
       <DependentUpon>GlavniEkran.cs</DependentUpon>
     </EmbeddedResource>
@@ -5131,6 +5148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Izvoz\NalogIzvozaZaOtpremu.resx">
+      <DependentUpon>NalogIzvozaZaOtpremu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Kapija\frmKapija1.resx">
       <DependentUpon>frmKapija1.cs</DependentUpon>
@@ -6774,6 +6794,10 @@
     <None Include="Resources\Izvoz.png" />
     <None Include="Resources\PromeniPostojeći.png" />
     <None Include="Resources\Obrišipostojeci.png" />
+    <None Include="Resources\SC13.png" />
+    <None Include="Resources\SC7.png" />
+    <None Include="Resources\SC8.png" />
+    <None Include="Resources\SC9.png" />
     <Content Include="x64\pdfium.dll" />
     <Content Include="x86\pdfium.dll" />
     <None Include="Resources\LegetIcon.bmp" />

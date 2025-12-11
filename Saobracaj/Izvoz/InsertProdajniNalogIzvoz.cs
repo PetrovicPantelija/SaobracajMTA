@@ -330,6 +330,128 @@ namespace Saobracaj.Izvoz
             }
 
         }
+
+        public void UpdDrumski(int ID, int Drumski)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateProdajniNalogStavkeDrumski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter sifra = new SqlParameter();
+            sifra.ParameterName = "@ID";
+            sifra.SqlDbType = SqlDbType.Int;
+            sifra.Direction = ParameterDirection.Input;
+            sifra.Value = ID;
+            cmd.Parameters.Add(sifra);
+
+            SqlParameter drumski = new SqlParameter();
+            drumski.ParameterName = "@Drumski";
+            drumski.SqlDbType = SqlDbType.Int;
+            drumski.Direction = ParameterDirection.Input;
+            drumski.Value = Drumski;
+            cmd.Parameters.Add(drumski);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void UpdScenario(int ID, int Scenario)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateProdajniNalogStavkeScenario";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter sifra = new SqlParameter();
+            sifra.ParameterName = "@ID";
+            sifra.SqlDbType = SqlDbType.Int;
+            sifra.Direction = ParameterDirection.Input;
+            sifra.Value = ID;
+            cmd.Parameters.Add(sifra);
+
+            SqlParameter scenario = new SqlParameter();
+            scenario.ParameterName = "@Scenario";
+            scenario.SqlDbType = SqlDbType.Int;
+            scenario.Direction = ParameterDirection.Input;
+            scenario.Value = Scenario;
+            cmd.Parameters.Add(scenario);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
         public void DelValute(string Sifra)
         {
             SqlConnection conn = new SqlConnection(connection);
