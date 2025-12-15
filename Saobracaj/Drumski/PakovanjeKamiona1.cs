@@ -537,7 +537,7 @@ namespace Saobracaj.Drumski
                 }
 
                 // Ako nema _tipoviIn i _tipoviNotIn, koristi selektovani combo box (regularni način)
-                if ((_tipoviIn == null || !_tipoviIn.Any()) && (_tipoviNotIn == null || !_tipoviNotIn.Any()))
+                if ((_tipoviIn == null || !_tipoviIn.Any()) /*&& (_tipoviNotIn == null || !_tipoviNotIn.Any())*/)
                 {
                     if (cboTipVozila.SelectedValue != null && int.TryParse(cboTipVozila.SelectedValue.ToString(), out int parsedTipNaloga) && parsedTipNaloga > -1)
                         condition += " AND a.VlasnistvoLegeta = " + parsedTipNaloga;
@@ -657,6 +657,7 @@ namespace Saobracaj.Drumski
             string dodatniUslovTipTransporta = "";
             bool koristiFilterTipa = false;
             int selektovaniTip = 0;
+            string lista = "";
 
             if (cboTipVozila.SelectedValue != null && int.TryParse(cboTipVozila.SelectedValue.ToString(), out selektovaniTip))
             {
@@ -664,6 +665,11 @@ namespace Saobracaj.Drumski
                 {
                     koristiFilterTipa = true;
                     dodatniUslovTipTransporta = " AND rn.TipTransporta = @TipTransporta ";
+                }
+                else if (_tipoviNotIn?.Any() == true)
+                {                   
+                    lista = string.Join(",", _tipoviNotIn);
+                    dodatniUslovTipTransporta = $" AND rn.TipTransporta  NOT IN ( {lista}) ";
                 }
             }
             var select = $@"
@@ -794,6 +800,7 @@ namespace Saobracaj.Drumski
             {
                 if (koristiFilterTipa)
                     cmd.Parameters.AddWithValue("@TipTransporta", selektovaniTip);
+ 
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();

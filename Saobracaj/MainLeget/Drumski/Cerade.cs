@@ -26,7 +26,7 @@ namespace Saobracaj.MainLeget.Drumski
 
             main.OtvoriFormuSaPravom(
                 btnNalogDrumski.Text,
-                () => new NalogZaDrumski(2)
+                () => new NalogZaDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
             );
 
         }

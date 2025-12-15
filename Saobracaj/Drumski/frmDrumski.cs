@@ -1186,9 +1186,25 @@ namespace Saobracaj.Drumski
             if (dtIstovara.Checked)
                 datumIstovara = dtIstovara.Value;
 
+            //int? tipTransportaID = null;
+            //if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
+            //    tipTransportaID = parsedTipTransportaID;
             int? tipTransportaID = null;
-            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
-                tipTransportaID = parsedTipTransportaID;
+
+            if (cboTipTransporta.SelectedValue == null || !int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int parsedTipTransportaID))
+            {
+                MessageBox.Show(
+                    "Tip transporta je obavezno polje.",
+                    "Upozorenje",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                cboTipTransporta.Focus();
+                return;
+            }
+
+            tipTransportaID = parsedTipTransportaID;
+            
 
             DateTime? dtPreuzimanjaPraznogKont = null;
 
@@ -1381,7 +1397,8 @@ namespace Saobracaj.Drumski
                 status = false;
                 button1.Visible = true;
                 button4.Visible = true;
-                button21.Visible = true;
+                if(!drumskiNew)
+                    button21.Visible = true;
             }
             else
             {

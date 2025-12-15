@@ -58,7 +58,7 @@ namespace Saobracaj.MainLeget.Drumski
 
             main.OtvoriFormuSaPravom(
                 btnNalogDrumski.Text,
-                () => new NalogZaDrumski(1)
+                () => new NalogZaDrumski(tipoviIn: new List<int> { 1 }, tipoviNotIn: null)
             );
         }
     }

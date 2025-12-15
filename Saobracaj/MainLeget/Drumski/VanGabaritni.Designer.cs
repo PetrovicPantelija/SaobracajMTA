@@ -70,6 +70,7 @@
             this.btnNalogDrumski.Text = "NALOG ZA DRUMSKI TRANSPORT";
             this.btnNalogDrumski.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNalogDrumski.UseVisualStyleBackColor = false;
+            this.btnNalogDrumski.Click += new System.EventHandler(this.btnNalogDrumski_Click);
             // 
             // btnPonude
             // 
@@ -114,6 +115,7 @@
             this.btnFormiranjeNaloga.Text = "FORMIRANJE\r\nTRANSPORTNOG NALOGA";
             this.btnFormiranjeNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFormiranjeNaloga.UseVisualStyleBackColor = false;
+            this.btnFormiranjeNaloga.Click += new System.EventHandler(this.btnFormiranjeNaloga_Click);
             // 
             // btnProvera
             // 
@@ -138,6 +140,7 @@
             this.btnProvera.Text = "PROVERA \r\nRASPOLOŽIVOSTI VOZILA";
             this.btnProvera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnProvera.UseVisualStyleBackColor = false;
+            this.btnProvera.Click += new System.EventHandler(this.btnProvera_Click);
             // 
             // btnNalogFakturisanje
             // 
@@ -184,6 +187,7 @@
             this.btnStatusi.Text = "STATUSI VOZILA";
             this.btnStatusi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnStatusi.UseVisualStyleBackColor = false;
+            this.btnStatusi.Click += new System.EventHandler(this.btnStatusi_Click);
             // 
             // VanGabaritni
             // 
