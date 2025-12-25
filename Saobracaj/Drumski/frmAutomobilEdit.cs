@@ -52,7 +52,9 @@ namespace Saobracaj.Drumski
             cboTipVozila.DisplayMember = "Naziv";
             cboTipVozila.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji  WHERE DrumskiPrevoz = 1 AND ISNULL(Kamioner, 0) = 1 order by PaNaziv";
+            // DrumskiPrevoz 
+            //var partner = "Select PaSifra,PaNaziv From Partnerji  WHERE DrumskiPrevoz = 1 AND ISNULL(Kamioner, 0) = 1 order by PaNaziv";
+            var partner = "Select PaSifra,PaNaziv From Partnerji  WHERE DrumskiPrevoz = 1 order by PaNaziv";
             var partAD = new SqlDataAdapter(partner, s_connection5);
             var partDS = new DataSet();
             partAD.Fill(partDS);
