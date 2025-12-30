@@ -1604,6 +1604,12 @@
     <Compile Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.Designer.cs">
       <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmObradaUlaznihFaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmObradaUlaznihFaktura.Designer.cs">
+      <DependentUpon>frmObradaUlaznihFaktura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPakovanjeKamiona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4837,6 +4843,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.resx">
       <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmObradaUlaznihFaktura.resx">
+      <DependentUpon>frmObradaUlaznihFaktura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPakovanjeKamiona.resx">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>

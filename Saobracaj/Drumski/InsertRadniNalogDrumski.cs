@@ -22,7 +22,7 @@ namespace Saobracaj.Drumski
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
                     int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
-                    int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni, int? VrstaKontejnera)
+                    int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni, int? VrstaKontejnera, int? DodatniTrosak)
 
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -325,6 +325,13 @@ namespace Saobracaj.Drumski
             vrstaKontejnera.Value = VrstaKontejnera.HasValue ? (object)VrstaKontejnera.Value : DBNull.Value;
             cmd.Parameters.Add(vrstaKontejnera);
 
+            SqlParameter dodatniTrosak = new SqlParameter();
+            dodatniTrosak.ParameterName = "@DodatniTrosak";
+            dodatniTrosak.SqlDbType = SqlDbType.Int;
+            dodatniTrosak.Direction = ParameterDirection.Input;
+            dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
+            cmd.Parameters.Add(dodatniTrosak);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -363,7 +370,7 @@ namespace Saobracaj.Drumski
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
                  string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
-                 int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni, int? VrstaKontejnera)
+                 int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni, int? VrstaKontejnera, int? DodatniTrosak)
 
         {
             int IDPom = 0;
@@ -674,6 +681,13 @@ namespace Saobracaj.Drumski
             vrstaKontejnera.Direction = ParameterDirection.Input;
             vrstaKontejnera.Value = VrstaKontejnera.HasValue ? (object)VrstaKontejnera.Value : DBNull.Value;
             cmd.Parameters.Add(vrstaKontejnera);
+
+            SqlParameter dodatniTrosak = new SqlParameter();
+            dodatniTrosak.ParameterName = "@DodatniTrosak";
+            dodatniTrosak.SqlDbType = SqlDbType.Int;
+            dodatniTrosak.Direction = ParameterDirection.Input;
+            dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
+            cmd.Parameters.Add(dodatniTrosak);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;

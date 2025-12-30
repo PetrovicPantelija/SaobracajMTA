@@ -576,10 +576,10 @@ namespace Saobracaj.Drumski
 
                 string joinLogika = "";
 
-                // Logika se primjenjuje samo ako je odabran datum (Danas ili Sutra)
+                // Logika se primenjuje samo ako je odabran datum (Danas ili Sutra)
                 if ((prikaziRaspolozive || prikaziNeraspolozive) && !string.IsNullOrEmpty(datumZaProveru))
                 {
-                    // Baza upita za provjeru raspoloživosti/neraspoloživosti
+                    // Baza upita za proveru raspoloživosti/neraspoloživosti
                     string subQueryNaloga = $@"
                         SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
                         FROM RadniNalogDrumski rn

@@ -134,6 +134,7 @@
             this.cboTipTransporta = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkDodatniTrosak = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -947,7 +948,7 @@
             // chkPDV
             // 
             this.chkPDV.AutoSize = true;
-            this.chkPDV.Location = new System.Drawing.Point(1264, 286);
+            this.chkPDV.Location = new System.Drawing.Point(1264, 285);
             this.chkPDV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkPDV.Name = "chkPDV";
             this.chkPDV.Size = new System.Drawing.Size(57, 20);
@@ -1067,7 +1068,6 @@
             this.cboMestoUtovara.Name = "cboMestoUtovara";
             this.cboMestoUtovara.Size = new System.Drawing.Size(305, 24);
             this.cboMestoUtovara.TabIndex = 60;
-            this.cboMestoUtovara.TextChanged += new System.EventHandler(this.cboMestoUtovara_TextChanged);
             // 
             // cboMestoIstovara
             // 
@@ -1255,11 +1255,23 @@
             this.label33.TabIndex = 644;
             this.label33.Text = "Tip transporta";
             // 
+            // chkDodatniTrosak
+            // 
+            this.chkDodatniTrosak.AutoSize = true;
+            this.chkDodatniTrosak.Location = new System.Drawing.Point(911, 402);
+            this.chkDodatniTrosak.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkDodatniTrosak.Name = "chkDodatniTrosak";
+            this.chkDodatniTrosak.Size = new System.Drawing.Size(179, 20);
+            this.chkDodatniTrosak.TabIndex = 645;
+            this.chkDodatniTrosak.Text = "Dodatni trošak transporta";
+            this.chkDodatniTrosak.UseVisualStyleBackColor = true;
+            // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1461, 871);
+            this.Controls.Add(this.chkDodatniTrosak);
             this.Controls.Add(this.cboTipTransporta);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.cboPolaznaSpedicija);
@@ -1477,5 +1489,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbtHederTekst;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox chkDodatniTrosak;
     }
 }
