@@ -121,17 +121,17 @@
   <data name="BAcground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BAcground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PromeniPostojeći" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PromeniPostojeći.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LEGET-colorP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LEGET-colorP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SC9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SC9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dpt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dpt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PrijemOtpremaKamiona" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PrijemOtpremaKamiona.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mtaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mtaLogo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,9 +160,6 @@
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CiradeIzvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CiradeIzvoz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Bacground2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bacground2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -172,6 +169,12 @@
   <data name="3.VanGabaritni" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3.VanGabaritni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CiradeIzmeni" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CiradeIzmeni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PromeniPostojeći" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PromeniPostojeći.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="2StatusiVozila" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2StatusiVozila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -180,6 +183,9 @@
   </data>
   <data name="PodešavanjeSistema" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PodešavanjeSistema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2.2Platforma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2.2Platforma.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SC7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SC7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +241,8 @@
   <data name="1.PovratakNaPredhodniMeni" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1.PovratakNaPredhodniMeni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LEGET-colorP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LEGET-colorP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CiradeIzvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CiradeIzvoz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,8 +277,8 @@
   <data name="2NalogZaDrumski" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2NalogZaDrumski.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CiradeIzmeni" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CiradeIzmeni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mtaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mtaLogo.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Izvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Izvoz.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -289,7 +295,7 @@
   <data name="uvozIzvoz" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uvozIzvoz1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SC9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SC9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2Kontrolatroskovapng" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2Kontrolatroskovapng.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

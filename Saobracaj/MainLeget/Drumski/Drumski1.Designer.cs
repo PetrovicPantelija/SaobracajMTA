@@ -34,6 +34,7 @@
             this.sfButton7 = new Syncfusion.WinForms.Controls.SfButton();
             this.label1 = new System.Windows.Forms.Label();
             this.sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // splitter1
@@ -52,7 +53,7 @@
             this.btnForm1.ForeColor = System.Drawing.Color.White;
             this.btnForm1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnForm1.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnForm1.Location = new System.Drawing.Point(40, 173);
+            this.btnForm1.Location = new System.Drawing.Point(40, 115);
             this.btnForm1.Name = "btnForm1";
             this.btnForm1.Size = new System.Drawing.Size(288, 225);
             this.btnForm1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -76,13 +77,13 @@
             this.sfButton7.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
             this.sfButton7.ForeColor = System.Drawing.Color.White;
             this.sfButton7.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton7.ImageSize = new System.Drawing.Size(150, 80);
-            this.sfButton7.Location = new System.Drawing.Point(347, 173);
+            this.sfButton7.ImageSize = new System.Drawing.Size(100, 80);
+            this.sfButton7.Location = new System.Drawing.Point(347, 115);
             this.sfButton7.Name = "sfButton7";
             this.sfButton7.Size = new System.Drawing.Size(288, 228);
             this.sfButton7.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton7.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton7.Style.Image = global::Saobracaj.Properties.Resources._2_Platforma;
+            this.sfButton7.Style.Image = global::Saobracaj.Properties.Resources._2_2Platforma;
             this.sfButton7.TabIndex = 498;
             this.sfButton7.Text = "Platforme";
             this.sfButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -112,7 +113,7 @@
             this.sfButton6.ForeColor = System.Drawing.Color.White;
             this.sfButton6.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton6.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton6.Location = new System.Drawing.Point(662, 173);
+            this.sfButton6.Location = new System.Drawing.Point(662, 115);
             this.sfButton6.Name = "sfButton6";
             this.sfButton6.Size = new System.Drawing.Size(288, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -124,12 +125,33 @@
             this.sfButton6.UseVisualStyleBackColor = false;
             this.sfButton6.Click += new System.EventHandler(this.sfButton6_Click);
             // 
+            // sfButton1
+            // 
+            this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.AllowWrapText = true;
+            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.sfButton1.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton1.ImageSize = new System.Drawing.Size(90, 80);
+            this.sfButton1.Location = new System.Drawing.Point(347, 354);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(288, 228);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.Style.Image = global::Saobracaj.Properties.Resources._2Kontrolatroskovapng;
+            this.sfButton1.TabIndex = 499;
+            this.sfButton1.Text = "Kontrola i obračun transporta";
+            this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton1.UseVisualStyleBackColor = false;
+            // 
             // Drumski1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1048, 594);
+            this.Controls.Add(this.sfButton1);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.sfButton7);
             this.Controls.Add(this.label1);
@@ -153,5 +175,6 @@
         private Syncfusion.WinForms.Controls.SfButton sfButton7;
         private System.Windows.Forms.Label label1;
         private Syncfusion.WinForms.Controls.SfButton sfButton6;
+        private Syncfusion.WinForms.Controls.SfButton sfButton1;
     }
 }

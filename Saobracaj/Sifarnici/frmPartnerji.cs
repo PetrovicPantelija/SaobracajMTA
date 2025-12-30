@@ -224,10 +224,10 @@ namespace Saobracaj.Sifarnici
                     cboValuta.Visible = false;
                     cboValuta.SelectedValue= "RSD";
                     int prviRedX = 16;
-                    int prviRedY = 245;
+                    int prviRedY = 345;
 
                     int drugiRedX = 159;
-                    int drugiRedY = 245;
+                    int drugiRedY = 345;
 
                     chkLogisitcar.Visible = true;
                     chkLogisitcar.Location = new Point(prviRedX, prviRedY);

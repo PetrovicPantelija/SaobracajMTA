@@ -196,7 +196,7 @@
             // 
             this.chkPosiljalac.AutoSize = true;
             this.chkPosiljalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPosiljalac.Location = new System.Drawing.Point(18, 298);
+            this.chkPosiljalac.Location = new System.Drawing.Point(17, 308);
             this.chkPosiljalac.Name = "chkPosiljalac";
             this.chkPosiljalac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPosiljalac.Size = new System.Drawing.Size(71, 19);
@@ -208,7 +208,7 @@
             // 
             this.chkPrevoznik.AutoSize = true;
             this.chkPrevoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPrevoznik.Location = new System.Drawing.Point(18, 275);
+            this.chkPrevoznik.Location = new System.Drawing.Point(17, 285);
             this.chkPrevoznik.Name = "chkPrevoznik";
             this.chkPrevoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrevoznik.Size = new System.Drawing.Size(75, 19);
@@ -220,7 +220,7 @@
             // 
             this.chkPrimalac.AutoSize = true;
             this.chkPrimalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPrimalac.Location = new System.Drawing.Point(18, 320);
+            this.chkPrimalac.Location = new System.Drawing.Point(17, 330);
             this.chkPrimalac.Name = "chkPrimalac";
             this.chkPrimalac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrimalac.Size = new System.Drawing.Size(67, 19);
@@ -535,7 +535,7 @@
             this.chkVlasnik.AutoSize = true;
             this.chkVlasnik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkVlasnik.ForeColor = System.Drawing.Color.Black;
-            this.chkVlasnik.Location = new System.Drawing.Point(18, 370);
+            this.chkVlasnik.Location = new System.Drawing.Point(17, 380);
             this.chkVlasnik.Name = "chkVlasnik";
             this.chkVlasnik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkVlasnik.Size = new System.Drawing.Size(115, 19);
@@ -548,7 +548,7 @@
             this.chkOrganizator.AutoSize = true;
             this.chkOrganizator.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkOrganizator.ForeColor = System.Drawing.Color.Black;
-            this.chkOrganizator.Location = new System.Drawing.Point(160, 298);
+            this.chkOrganizator.Location = new System.Drawing.Point(159, 308);
             this.chkOrganizator.Name = "chkOrganizator";
             this.chkOrganizator.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkOrganizator.Size = new System.Drawing.Size(69, 19);
@@ -561,7 +561,7 @@
             this.chkPlatilac.AutoSize = true;
             this.chkPlatilac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPlatilac.ForeColor = System.Drawing.Color.Black;
-            this.chkPlatilac.Location = new System.Drawing.Point(160, 274);
+            this.chkPlatilac.Location = new System.Drawing.Point(159, 284);
             this.chkPlatilac.Name = "chkPlatilac";
             this.chkPlatilac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPlatilac.Size = new System.Drawing.Size(61, 19);
@@ -574,7 +574,7 @@
             this.chkSpediter.AutoSize = true;
             this.chkSpediter.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkSpediter.ForeColor = System.Drawing.Color.Black;
-            this.chkSpediter.Location = new System.Drawing.Point(18, 395);
+            this.chkSpediter.Location = new System.Drawing.Point(17, 405);
             this.chkSpediter.Name = "chkSpediter";
             this.chkSpediter.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkSpediter.Size = new System.Drawing.Size(66, 19);
@@ -587,7 +587,7 @@
             this.chkBrodar.AutoSize = true;
             this.chkBrodar.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkBrodar.ForeColor = System.Drawing.Color.Black;
-            this.chkBrodar.Location = new System.Drawing.Point(17, 345);
+            this.chkBrodar.Location = new System.Drawing.Point(16, 355);
             this.chkBrodar.Name = "chkBrodar";
             this.chkBrodar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkBrodar.Size = new System.Drawing.Size(59, 19);
@@ -600,7 +600,7 @@
             this.chkNalogodavac.AutoSize = true;
             this.chkNalogodavac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkNalogodavac.ForeColor = System.Drawing.Color.Black;
-            this.chkNalogodavac.Location = new System.Drawing.Point(160, 320);
+            this.chkNalogodavac.Location = new System.Drawing.Point(159, 330);
             this.chkNalogodavac.Name = "chkNalogodavac";
             this.chkNalogodavac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkNalogodavac.Size = new System.Drawing.Size(87, 19);
@@ -613,7 +613,7 @@
             this.chkUvoznik.AutoSize = true;
             this.chkUvoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUvoznik.ForeColor = System.Drawing.Color.Black;
-            this.chkUvoznik.Location = new System.Drawing.Point(160, 345);
+            this.chkUvoznik.Location = new System.Drawing.Point(159, 355);
             this.chkUvoznik.Name = "chkUvoznik";
             this.chkUvoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkUvoznik.Size = new System.Drawing.Size(68, 19);
@@ -706,7 +706,7 @@
             this.chkIzvoznik.AutoSize = true;
             this.chkIzvoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIzvoznik.ForeColor = System.Drawing.Color.Black;
-            this.chkIzvoznik.Location = new System.Drawing.Point(160, 370);
+            this.chkIzvoznik.Location = new System.Drawing.Point(159, 380);
             this.chkIzvoznik.Name = "chkIzvoznik";
             this.chkIzvoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkIzvoznik.Size = new System.Drawing.Size(69, 19);
@@ -719,7 +719,7 @@
             this.chkLogisitcar.AutoSize = true;
             this.chkLogisitcar.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkLogisitcar.ForeColor = System.Drawing.Color.Black;
-            this.chkLogisitcar.Location = new System.Drawing.Point(160, 395);
+            this.chkLogisitcar.Location = new System.Drawing.Point(159, 405);
             this.chkLogisitcar.Name = "chkLogisitcar";
             this.chkLogisitcar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkLogisitcar.Size = new System.Drawing.Size(73, 19);
@@ -732,7 +732,7 @@
             this.chkAgentBrodara.AutoSize = true;
             this.chkAgentBrodara.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkAgentBrodara.ForeColor = System.Drawing.Color.Black;
-            this.chkAgentBrodara.Location = new System.Drawing.Point(261, 301);
+            this.chkAgentBrodara.Location = new System.Drawing.Point(260, 311);
             this.chkAgentBrodara.Name = "chkAgentBrodara";
             this.chkAgentBrodara.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAgentBrodara.Size = new System.Drawing.Size(94, 19);
@@ -745,7 +745,7 @@
             this.chkKamioner.AutoSize = true;
             this.chkKamioner.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkKamioner.ForeColor = System.Drawing.Color.Black;
-            this.chkKamioner.Location = new System.Drawing.Point(261, 275);
+            this.chkKamioner.Location = new System.Drawing.Point(260, 285);
             this.chkKamioner.Name = "chkKamioner";
             this.chkKamioner.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkKamioner.Size = new System.Drawing.Size(73, 19);
@@ -1257,7 +1257,7 @@
             this.chkDrumskiPrevoz.AutoSize = true;
             this.chkDrumskiPrevoz.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkDrumskiPrevoz.ForeColor = System.Drawing.Color.Black;
-            this.chkDrumskiPrevoz.Location = new System.Drawing.Point(17, 420);
+            this.chkDrumskiPrevoz.Location = new System.Drawing.Point(16, 430);
             this.chkDrumskiPrevoz.Name = "chkDrumskiPrevoz";
             this.chkDrumskiPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkDrumskiPrevoz.Size = new System.Drawing.Size(102, 19);
