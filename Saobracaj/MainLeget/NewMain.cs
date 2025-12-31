@@ -1,7 +1,11 @@
 ﻿using Saobracaj.Drumski;
 using Saobracaj.MainLeget;
+using Saobracaj.MainLeget.Depocnt;
 using Saobracaj.MainLeget.LegNew;
 using Saobracaj.MainLeget.LegNew.Podesavanjesistema;
+using Saobracaj.MainLeget.Pretovari;
+using Saobracaj.MainLeget.PrijemIOtpremaKamiona;
+using Saobracaj.MainLeget.Prijemiotpremavozova;
 using Saobracaj.Sifarnici;
 using Saobracaj.TrackModal.Sifarnici;
 using Syncfusion.Windows.Forms.Tools;
@@ -408,16 +412,61 @@ namespace Saobracaj
 
         private void btnPretovari_Click(object sender, EventArgs e)
         {
+            string key = btnPretovari.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Pretovari' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new Pretovari1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Pretovari";
+
             BackColorKliknut(6);
         }
 
         private void btnPrijemIOtpremaVozova_Click(object sender, EventArgs e)
         {
+            string key = btnPrijemIOtpremaVozova.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Prijem i otprema vozova' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new PrijemIOtpremaVozova1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Prijem i otprema vozova";
+
             BackColorKliknut(7);
         }
 
         private void btnPrijemIOtpremaKamiona_Click(object sender, EventArgs e)
         {
+            string key = btnPrijemIOtpremaKamiona.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Prijem i otprema kamiona' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new frmPrijemIOtpremaKamiona1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Prijem i otprema kamiona";
+
             BackColorKliknut(8);
         }
 
@@ -606,7 +655,7 @@ namespace Saobracaj
             btnKapija.BackColor = Color.FromArgb(32, 61, 85);
             btnFinansije.BackColor = Color.FromArgb(32, 61, 85);
             btnPodesavanja.BackColor = Color.FromArgb(32, 61, 85);
-
+            btnDepocnt.BackColor = Color.FromArgb(32, 61, 85);
             switch (Dugme)
             {
                 case 0: btnLogistikaUvoza.BackColor = Color.FromArgb(1, 115, 199); break;
@@ -623,6 +672,7 @@ namespace Saobracaj
                 case 11: btnKapija.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 12: btnFinansije.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 13: btnPodesavanja.BackColor = Color.FromArgb(1, 115, 199); break;
+                case 14: btnDepocnt.BackColor = Color.FromArgb(1, 115, 199); break;
                 default: break;
             }
         }
@@ -916,6 +966,26 @@ namespace Saobracaj
         {
             AdministracijaPravoPristupa frm = new AdministracijaPravoPristupa(Korisnik);
             frm.Show();
+        }
+
+        private void btnDepocnt_Click(object sender, EventArgs e)
+        {
+            string key = btnDepocnt.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Podešavanje sistema' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new frmDepoCnt1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Depo cnt";
+            BackColorKliknut(14);
+      
         }
     }
 }

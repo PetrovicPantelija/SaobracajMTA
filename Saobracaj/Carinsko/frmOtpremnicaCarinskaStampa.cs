@@ -214,8 +214,8 @@ namespace Saobracaj.Carinsko
 
             Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter taa = new Saobracaj.CarinskaOtpremnicaStavkeDataSetTableAdapters.SelectCarinskaOtpremnicaStavkeTableAdapter();
 
-            // Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable dta = new Saobracaj.CarinskaPrijemnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable();
-            /*
+             Saobracaj.CarinskaOtpremnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable dta = new Saobracaj.CarinskaOtpremnicaStavkeDataSet.SelectCarinskaOtpremnicaStavkeDataTable();
+            
              taa.Fill(dta, Convert.ToInt32(txtSifra.Text));
              ReportDataSource rdsa = new ReportDataSource();
              rdsa.Name = "DataSet2";
