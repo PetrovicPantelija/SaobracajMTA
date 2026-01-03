@@ -68,6 +68,7 @@
             this.btnPrijemIOtpremaVozova22.Text = "Popis cnt";
             this.btnPrijemIOtpremaVozova22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova22.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova22.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova22_Click);
             // 
             // btnPrijemIOtpremaVozova23
             // 
@@ -88,6 +89,7 @@
             this.btnPrijemIOtpremaVozova23.Text = "CIR";
             this.btnPrijemIOtpremaVozova23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova23.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova23.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova23_Click);
             // 
             // btnPrijemIOtpremaVozova21
             // 
@@ -113,6 +115,7 @@
             this.btnPrijemIOtpremaVozova21.Text = "Pregled skladišta";
             this.btnPrijemIOtpremaVozova21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova21.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova21.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova21_Click);
             // 
             // frmPrijemIOtpremaVozova2
             // 

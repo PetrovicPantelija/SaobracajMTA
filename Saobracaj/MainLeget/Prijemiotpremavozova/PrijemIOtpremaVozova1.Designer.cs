@@ -107,11 +107,12 @@
             this.btnPrijemIOtpremaVozova5.Size = new System.Drawing.Size(288, 225);
             this.btnPrijemIOtpremaVozova5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova5.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnPrijemIOtpremaVozova5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova5.TabIndex = 504;
             this.btnPrijemIOtpremaVozova5.Text = "Dodatne usluge";
             this.btnPrijemIOtpremaVozova5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova5.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova5.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova5_Click);
             // 
             // btnPrijemIOtpremaVozova4
             // 
@@ -147,11 +148,12 @@
             this.btnPrijemIOtpremaVozova3.Size = new System.Drawing.Size(288, 225);
             this.btnPrijemIOtpremaVozova3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnPrijemIOtpremaVozova3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova3.TabIndex = 502;
-            this.btnPrijemIOtpremaVozova3.Text = "Termial central (arhiv)";
+            this.btnPrijemIOtpremaVozova3.Text = "Terminal central (arhiv)";
             this.btnPrijemIOtpremaVozova3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova3.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova3.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova3_Click);
             // 
             // btnPrijemIOtpremaVozova1
             // 
@@ -195,6 +197,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PrijemIOtpremaVozova1";
             this.Text = "PrijemIOtpremaVozova1";
+            this.Load += new System.EventHandler(this.PrijemIOtpremaVozova1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

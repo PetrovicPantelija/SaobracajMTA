@@ -72,6 +72,7 @@
             this.btnPrijemIOtpremaKamiona2.Text = "Zadaci terminalski službenik";
             this.btnPrijemIOtpremaKamiona2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona2.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona2.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona2_Click);
             // 
             // btnPrijemIOtpremaKamiona4
             // 
@@ -91,6 +92,7 @@
             this.btnPrijemIOtpremaKamiona4.Text = "Izvoz";
             this.btnPrijemIOtpremaKamiona4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona4.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona4.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona4_Click);
             // 
             // btnPrijemIOtpremaKamiona3
             // 
@@ -111,6 +113,7 @@
             this.btnPrijemIOtpremaKamiona3.Text = "Terminal central (arhiv)";
             this.btnPrijemIOtpremaKamiona3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona3.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona3.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona3_Click);
             // 
             // btnPrijemIOtpremaKamiona1
             // 
@@ -136,6 +139,7 @@
             this.btnPrijemIOtpremaKamiona1.Text = "Neraspoređeni cnt scenario SC15";
             this.btnPrijemIOtpremaKamiona1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona1.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona1.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona1_Click);
             // 
             // btnPrijemIOtpremaKamiona5
             // 
@@ -150,11 +154,12 @@
             this.btnPrijemIOtpremaKamiona5.Size = new System.Drawing.Size(288, 225);
             this.btnPrijemIOtpremaKamiona5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaKamiona5.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnPrijemIOtpremaKamiona5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaKamiona5.TabIndex = 517;
             this.btnPrijemIOtpremaKamiona5.Text = "Brodar";
             this.btnPrijemIOtpremaKamiona5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona5.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona5.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona5_Click);
             // 
             // btnPrijemIOtpremaKamiona6
             // 
@@ -169,11 +174,12 @@
             this.btnPrijemIOtpremaKamiona6.Size = new System.Drawing.Size(288, 225);
             this.btnPrijemIOtpremaKamiona6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaKamiona6.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.btnPrijemIOtpremaKamiona6.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaKamiona6.TabIndex = 518;
             this.btnPrijemIOtpremaKamiona6.Text = "Vaganje pregled";
             this.btnPrijemIOtpremaKamiona6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona6.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona6.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona6_Click);
             // 
             // btnPrijemIOtpremaKamiona7
             // 
@@ -193,6 +199,7 @@
             this.btnPrijemIOtpremaKamiona7.Text = "RN";
             this.btnPrijemIOtpremaKamiona7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona7.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona7.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona7_Click);
             // 
             // frmPrijemIOtpremaKamiona1
             // 

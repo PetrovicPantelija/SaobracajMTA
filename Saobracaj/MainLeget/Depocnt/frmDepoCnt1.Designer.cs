@@ -71,6 +71,7 @@
             this.btnDepoCNT6.Text = "Pregled dogovorenih poslova izvoza";
             this.btnDepoCNT6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT6.UseVisualStyleBackColor = false;
+            this.btnDepoCNT6.Click += new System.EventHandler(this.btnDepoCNT6_Click);
             // 
             // btnDepoCNT5
             // 
@@ -90,6 +91,7 @@
             this.btnDepoCNT5.Text = "CIR";
             this.btnDepoCNT5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT5.UseVisualStyleBackColor = false;
+            this.btnDepoCNT5.Click += new System.EventHandler(this.btnDepoCNT5_Click);
             // 
             // btnDepoCNT2
             // 
@@ -110,6 +112,7 @@
             this.btnDepoCNT2.Text = "Terminal central (arhiv)";
             this.btnDepoCNT2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT2.UseVisualStyleBackColor = false;
+            this.btnDepoCNT2.Click += new System.EventHandler(this.btnDepoCNT2_Click);
             // 
             // btnDepoCNT4
             // 
@@ -129,6 +132,7 @@
             this.btnDepoCNT4.Text = "Dodatne usluge";
             this.btnDepoCNT4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT4.UseVisualStyleBackColor = false;
+            this.btnDepoCNT4.Click += new System.EventHandler(this.btnDepoCNT4_Click);
             // 
             // btnDepoCNT3
             // 
@@ -149,6 +153,7 @@
             this.btnDepoCNT3.Text = "Popis cnt";
             this.btnDepoCNT3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT3.UseVisualStyleBackColor = false;
+            this.btnDepoCNT3.Click += new System.EventHandler(this.btnDepoCNT3_Click);
             // 
             // btnDepoCNT1
             // 
@@ -174,6 +179,7 @@
             this.btnDepoCNT1.Text = "Pregled skladišta";
             this.btnDepoCNT1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDepoCNT1.UseVisualStyleBackColor = false;
+            this.btnDepoCNT1.Click += new System.EventHandler(this.btnDepoCNT1_Click);
             // 
             // frmDepoCnt1
             // 

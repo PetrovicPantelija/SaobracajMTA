@@ -67,6 +67,7 @@
             this.btnPrijemIOtpremaKamiona2.Text = "Dolazak";
             this.btnPrijemIOtpremaKamiona2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona2.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona2.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona2_Click);
             // 
             // btnPrijemIOtpremaKamiona1
             // 
@@ -92,6 +93,7 @@
             this.btnPrijemIOtpremaKamiona1.Text = "Odlazak";
             this.btnPrijemIOtpremaKamiona1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaKamiona1.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaKamiona1.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona1_Click);
             // 
             // frmPrijemIOtpremaKamiona3
             // 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Saobracaj.Izvoz;
+using Saobracaj.RadniNalozi;
+using Saobracaj.TerminalMap;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,48 @@ namespace Saobracaj.MainLeget.Depocnt
         public frmDepocnt2()
         {
             InitializeComponent();
+        }
+
+  
+
+        
+
+        private void btnDepocnt21_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("U izradi ne zan se šta je ovo");
+        }
+
+        private void btnDepocnt22_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnDepocnt22.Text,
+                () => new TerminalMapFRM()
+            );
+        }
+
+        private void btnDepocnt25_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnDepocnt25.Text,
+                () => new RN12MedjuskladisniKontejnera()
+            );
+            
+        }
+
+        private void btnDepocnt23_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("U izradi ne zan se šta je ovo");
+        }
+
+        private void btnDepocnt24_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("U izradi ne zan se šta je ovo");
         }
     }
 }

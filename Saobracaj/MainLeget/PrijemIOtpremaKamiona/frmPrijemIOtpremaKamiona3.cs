@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Saobracaj.Izvoz;
+using Saobracaj.Uvoz;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,29 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
         public frmPrijemIOtpremaKamiona3()
         {
             InitializeComponent();
+        }
+
+        private void btnPrijemIOtpremaKamiona1_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPrijemIOtpremaKamiona1.Text,
+                () => new frmPlanoviIzvoza(1)
+            );
+        }
+
+        private void btnPrijemIOtpremaKamiona2_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPrijemIOtpremaKamiona2.Text,
+                () => new frmPregledPlanovaUtovara(1)
+            );
+            
         }
     }
 }

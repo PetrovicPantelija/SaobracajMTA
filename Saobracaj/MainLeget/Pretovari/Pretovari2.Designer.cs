@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pretovari2));
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPrijemIOtpremaKamiona2 = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnPrijemIOtpremaKamiona3 = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnPrijemIOtpremaKamiona1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovari22 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovari23 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovari21 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovari25 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovari24 = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // label2
@@ -51,126 +51,132 @@
             this.label2.TabIndex = 503;
             this.label2.Text = "Prijem i otprema kamiona";
             // 
-            // btnPrijemIOtpremaKamiona2
+            // btnPretovari22
             // 
-            this.btnPrijemIOtpremaKamiona2.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona2.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona2.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona2.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona2.Location = new System.Drawing.Point(363, 121);
-            this.btnPrijemIOtpremaKamiona2.Name = "btnPrijemIOtpremaKamiona2";
-            this.btnPrijemIOtpremaKamiona2.Size = new System.Drawing.Size(288, 228);
-            this.btnPrijemIOtpremaKamiona2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona2.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona2.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnPrijemIOtpremaKamiona2.TabIndex = 519;
-            this.btnPrijemIOtpremaKamiona2.Text = "Prijem robe pretovar";
-            this.btnPrijemIOtpremaKamiona2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona2.UseVisualStyleBackColor = false;
+            this.btnPretovari22.AccessibleName = "Button";
+            this.btnPretovari22.AllowWrapText = true;
+            this.btnPretovari22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari22.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovari22.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari22.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovari22.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovari22.Location = new System.Drawing.Point(363, 121);
+            this.btnPretovari22.Name = "btnPretovari22";
+            this.btnPretovari22.Size = new System.Drawing.Size(288, 228);
+            this.btnPretovari22.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari22.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari22.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnPretovari22.TabIndex = 519;
+            this.btnPretovari22.Text = "Prijem robe pretovar";
+            this.btnPretovari22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovari22.UseVisualStyleBackColor = false;
+            this.btnPretovari22.Click += new System.EventHandler(this.btnPretovari22_Click);
             // 
-            // btnPrijemIOtpremaKamiona3
+            // btnPretovari23
             // 
-            this.btnPrijemIOtpremaKamiona3.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona3.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona3.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona3.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona3.Location = new System.Drawing.Point(671, 121);
-            this.btnPrijemIOtpremaKamiona3.Name = "btnPrijemIOtpremaKamiona3";
-            this.btnPrijemIOtpremaKamiona3.Size = new System.Drawing.Size(288, 228);
-            this.btnPrijemIOtpremaKamiona3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            this.btnPrijemIOtpremaKamiona3.TabIndex = 518;
-            this.btnPrijemIOtpremaKamiona3.Text = "Otprema robe pretovar ";
-            this.btnPrijemIOtpremaKamiona3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona3.UseVisualStyleBackColor = false;
+            this.btnPretovari23.AccessibleName = "Button";
+            this.btnPretovari23.AllowWrapText = true;
+            this.btnPretovari23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari23.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovari23.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari23.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovari23.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovari23.Location = new System.Drawing.Point(671, 121);
+            this.btnPretovari23.Name = "btnPretovari23";
+            this.btnPretovari23.Size = new System.Drawing.Size(288, 228);
+            this.btnPretovari23.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari23.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari23.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnPretovari23.TabIndex = 518;
+            this.btnPretovari23.Text = "Otprema robe pretovar ";
+            this.btnPretovari23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovari23.UseVisualStyleBackColor = false;
+            this.btnPretovari23.Click += new System.EventHandler(this.btnPretovari23_Click);
             // 
-            // btnPrijemIOtpremaKamiona1
+            // btnPretovari21
             // 
-            this.btnPrijemIOtpremaKamiona1.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona1.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona1.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona1.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona1.Location = new System.Drawing.Point(55, 124);
-            this.btnPrijemIOtpremaKamiona1.Name = "btnPrijemIOtpremaKamiona1";
-            this.btnPrijemIOtpremaKamiona1.Size = new System.Drawing.Size(288, 225);
-            this.btnPrijemIOtpremaKamiona1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.FocusedForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.btnPrijemIOtpremaKamiona1.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.PressedForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.TabIndex = 517;
-            this.btnPrijemIOtpremaKamiona1.Text = "Zadaci IPU dispečer";
-            this.btnPrijemIOtpremaKamiona1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona1.UseVisualStyleBackColor = false;
+            this.btnPretovari21.AccessibleName = "Button";
+            this.btnPretovari21.AllowWrapText = true;
+            this.btnPretovari21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari21.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovari21.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari21.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovari21.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovari21.Location = new System.Drawing.Point(55, 124);
+            this.btnPretovari21.Name = "btnPretovari21";
+            this.btnPretovari21.Size = new System.Drawing.Size(288, 225);
+            this.btnPretovari21.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari21.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari21.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari21.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnPretovari21.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari21.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnPretovari21.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari21.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnPretovari21.TabIndex = 517;
+            this.btnPretovari21.Text = "Zadaci IPU dispečer";
+            this.btnPretovari21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovari21.UseVisualStyleBackColor = false;
+            this.btnPretovari21.Click += new System.EventHandler(this.btnPretovari21_Click);
             // 
-            // sfButton1
+            // btnPretovari25
             // 
-            this.sfButton1.AccessibleName = "Button";
-            this.sfButton1.AllowWrapText = true;
-            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton1.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton1.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton1.Location = new System.Drawing.Point(529, 375);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(288, 228);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            this.sfButton1.TabIndex = 521;
-            this.sfButton1.Text = "Radni nalog otprma cirade";
-            this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton1.UseVisualStyleBackColor = false;
+            this.btnPretovari25.AccessibleName = "Button";
+            this.btnPretovari25.AllowWrapText = true;
+            this.btnPretovari25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari25.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovari25.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari25.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovari25.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovari25.Location = new System.Drawing.Point(529, 375);
+            this.btnPretovari25.Name = "btnPretovari25";
+            this.btnPretovari25.Size = new System.Drawing.Size(288, 228);
+            this.btnPretovari25.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari25.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari25.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnPretovari25.TabIndex = 521;
+            this.btnPretovari25.Text = "Radni nalog otprema cirade";
+            this.btnPretovari25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovari25.UseVisualStyleBackColor = false;
+            this.btnPretovari25.Click += new System.EventHandler(this.btnPretovari25_Click);
             // 
-            // sfButton2
+            // btnPretovari24
             // 
-            this.sfButton2.AccessibleName = "Button";
-            this.sfButton2.AllowWrapText = true;
-            this.sfButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton2.ForeColor = System.Drawing.Color.White;
-            this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton2.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton2.Location = new System.Drawing.Point(221, 378);
-            this.sfButton2.Name = "sfButton2";
-            this.sfButton2.Size = new System.Drawing.Size(288, 225);
-            this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Style.FocusedForeColor = System.Drawing.Color.White;
-            this.sfButton2.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton2.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            this.sfButton2.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton2.Style.PressedForeColor = System.Drawing.Color.White;
-            this.sfButton2.TabIndex = 520;
-            this.sfButton2.Text = "Radni nalog prijem cirade";
-            this.sfButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton2.UseVisualStyleBackColor = false;
+            this.btnPretovari24.AccessibleName = "Button";
+            this.btnPretovari24.AllowWrapText = true;
+            this.btnPretovari24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari24.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovari24.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari24.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovari24.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovari24.Location = new System.Drawing.Point(221, 378);
+            this.btnPretovari24.Name = "btnPretovari24";
+            this.btnPretovari24.Size = new System.Drawing.Size(288, 225);
+            this.btnPretovari24.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari24.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari24.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari24.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnPretovari24.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovari24.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnPretovari24.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovari24.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnPretovari24.TabIndex = 520;
+            this.btnPretovari24.Text = "Radni nalog prijem cirade";
+            this.btnPretovari24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovari24.UseVisualStyleBackColor = false;
+            this.btnPretovari24.Click += new System.EventHandler(this.btnPretovari24_Click);
             // 
             // Pretovari2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1177, 629);
-            this.Controls.Add(this.sfButton1);
-            this.Controls.Add(this.sfButton2);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona2);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona3);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona1);
+            this.Controls.Add(this.btnPretovari25);
+            this.Controls.Add(this.btnPretovari24);
+            this.Controls.Add(this.btnPretovari22);
+            this.Controls.Add(this.btnPretovari23);
+            this.Controls.Add(this.btnPretovari21);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Pretovari2";
@@ -183,10 +189,10 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona2;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona3;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton2;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovari22;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovari23;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovari21;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovari25;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovari24;
     }
 }

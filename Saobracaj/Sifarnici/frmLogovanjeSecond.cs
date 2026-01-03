@@ -159,8 +159,7 @@ namespace Saobracaj.Sifarnici
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TerminalMap.TerminalMapFRM frm = new TerminalMap.TerminalMapFRM();
-            frm.Show();
+           
         }
     }
 }

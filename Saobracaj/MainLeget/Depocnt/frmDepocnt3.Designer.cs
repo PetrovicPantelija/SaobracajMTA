@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepocnt3));
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPrijemIOtpremaKamiona2 = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnPrijemIOtpremaKamiona3 = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnPrijemIOtpremaKamiona1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnDepocnt32 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnDepocnt33 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnDepocnt31 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnDepocnt34 = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // label2
@@ -50,105 +50,110 @@
             this.label2.TabIndex = 505;
             this.label2.Text = "Popis cnt";
             // 
-            // btnPrijemIOtpremaKamiona2
+            // btnDepocnt32
             // 
-            this.btnPrijemIOtpremaKamiona2.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona2.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona2.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona2.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona2.Location = new System.Drawing.Point(362, 110);
-            this.btnPrijemIOtpremaKamiona2.Name = "btnPrijemIOtpremaKamiona2";
-            this.btnPrijemIOtpremaKamiona2.Size = new System.Drawing.Size(288, 228);
-            this.btnPrijemIOtpremaKamiona2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona2.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona2.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.btnPrijemIOtpremaKamiona2.TabIndex = 522;
-            this.btnPrijemIOtpremaKamiona2.Text = "Redovan dnevni";
-            this.btnPrijemIOtpremaKamiona2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona2.UseVisualStyleBackColor = false;
+            this.btnDepocnt32.AccessibleName = "Button";
+            this.btnDepocnt32.AllowWrapText = true;
+            this.btnDepocnt32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt32.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnDepocnt32.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt32.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnDepocnt32.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnDepocnt32.Location = new System.Drawing.Point(362, 110);
+            this.btnDepocnt32.Name = "btnDepocnt32";
+            this.btnDepocnt32.Size = new System.Drawing.Size(288, 228);
+            this.btnDepocnt32.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt32.Style.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt32.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.btnDepocnt32.TabIndex = 522;
+            this.btnDepocnt32.Text = "Redovan dnevni";
+            this.btnDepocnt32.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDepocnt32.UseVisualStyleBackColor = false;
+            this.btnDepocnt32.Click += new System.EventHandler(this.btnDepocnt32_Click);
             // 
-            // btnPrijemIOtpremaKamiona3
+            // btnDepocnt33
             // 
-            this.btnPrijemIOtpremaKamiona3.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona3.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona3.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona3.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona3.Location = new System.Drawing.Point(670, 110);
-            this.btnPrijemIOtpremaKamiona3.Name = "btnPrijemIOtpremaKamiona3";
-            this.btnPrijemIOtpremaKamiona3.Size = new System.Drawing.Size(288, 228);
-            this.btnPrijemIOtpremaKamiona3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            this.btnPrijemIOtpremaKamiona3.TabIndex = 521;
-            this.btnPrijemIOtpremaKamiona3.Text = "Vanredni pregled";
-            this.btnPrijemIOtpremaKamiona3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona3.UseVisualStyleBackColor = false;
+            this.btnDepocnt33.AccessibleName = "Button";
+            this.btnDepocnt33.AllowWrapText = true;
+            this.btnDepocnt33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt33.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnDepocnt33.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt33.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnDepocnt33.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnDepocnt33.Location = new System.Drawing.Point(670, 110);
+            this.btnDepocnt33.Name = "btnDepocnt33";
+            this.btnDepocnt33.Size = new System.Drawing.Size(288, 228);
+            this.btnDepocnt33.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt33.Style.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt33.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnDepocnt33.TabIndex = 521;
+            this.btnDepocnt33.Text = "Vanredni pregled";
+            this.btnDepocnt33.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDepocnt33.UseVisualStyleBackColor = false;
+            this.btnDepocnt33.Click += new System.EventHandler(this.btnDepocnt33_Click);
             // 
-            // btnPrijemIOtpremaKamiona1
+            // btnDepocnt31
             // 
-            this.btnPrijemIOtpremaKamiona1.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona1.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.btnPrijemIOtpremaKamiona1.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona1.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona1.Location = new System.Drawing.Point(54, 113);
-            this.btnPrijemIOtpremaKamiona1.Name = "btnPrijemIOtpremaKamiona1";
-            this.btnPrijemIOtpremaKamiona1.Size = new System.Drawing.Size(288, 225);
-            this.btnPrijemIOtpremaKamiona1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.FocusedForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            this.btnPrijemIOtpremaKamiona1.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona1.Style.PressedForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona1.TabIndex = 520;
-            this.btnPrijemIOtpremaKamiona1.Text = "Redovan periodični";
-            this.btnPrijemIOtpremaKamiona1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona1.UseVisualStyleBackColor = false;
+            this.btnDepocnt31.AccessibleName = "Button";
+            this.btnDepocnt31.AllowWrapText = true;
+            this.btnDepocnt31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt31.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnDepocnt31.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt31.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnDepocnt31.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnDepocnt31.Location = new System.Drawing.Point(54, 113);
+            this.btnDepocnt31.Name = "btnDepocnt31";
+            this.btnDepocnt31.Size = new System.Drawing.Size(288, 225);
+            this.btnDepocnt31.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt31.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt31.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt31.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnDepocnt31.Style.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt31.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnDepocnt31.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt31.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnDepocnt31.TabIndex = 520;
+            this.btnDepocnt31.Text = "Redovan periodični";
+            this.btnDepocnt31.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDepocnt31.UseVisualStyleBackColor = false;
+            this.btnDepocnt31.Click += new System.EventHandler(this.btnDepocnt31_Click);
             // 
-            // sfButton1
+            // btnDepocnt34
             // 
-            this.sfButton1.AccessibleName = "Button";
-            this.sfButton1.AllowWrapText = true;
-            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
-            this.sfButton1.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.sfButton1.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton1.Location = new System.Drawing.Point(362, 375);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(288, 225);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Style.FocusedForeColor = System.Drawing.Color.White;
-            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
-            this.sfButton1.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            this.sfButton1.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.sfButton1.Style.PressedForeColor = System.Drawing.Color.White;
-            this.sfButton1.TabIndex = 523;
-            this.sfButton1.Text = "Pregled urađenih popisa";
-            this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.sfButton1.UseVisualStyleBackColor = false;
+            this.btnDepocnt34.AccessibleName = "Button";
+            this.btnDepocnt34.AllowWrapText = true;
+            this.btnDepocnt34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt34.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnDepocnt34.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt34.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnDepocnt34.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnDepocnt34.Location = new System.Drawing.Point(362, 375);
+            this.btnDepocnt34.Name = "btnDepocnt34";
+            this.btnDepocnt34.Size = new System.Drawing.Size(288, 225);
+            this.btnDepocnt34.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt34.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt34.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt34.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnDepocnt34.Style.ForeColor = System.Drawing.Color.White;
+            this.btnDepocnt34.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnDepocnt34.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnDepocnt34.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnDepocnt34.TabIndex = 523;
+            this.btnDepocnt34.Text = "Pregled urađenih popisa";
+            this.btnDepocnt34.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDepocnt34.UseVisualStyleBackColor = false;
+            this.btnDepocnt34.Click += new System.EventHandler(this.btnDepocnt34_Click);
             // 
             // frmDepocnt3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 639);
-            this.Controls.Add(this.sfButton1);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona2);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona3);
-            this.Controls.Add(this.btnPrijemIOtpremaKamiona1);
+            this.BackColor = System.Drawing.Color.Azure;
+            this.ClientSize = new System.Drawing.Size(1061, 639);
+            this.Controls.Add(this.btnDepocnt34);
+            this.Controls.Add(this.btnDepocnt32);
+            this.Controls.Add(this.btnDepocnt33);
+            this.Controls.Add(this.btnDepocnt31);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDepocnt3";
@@ -161,9 +166,9 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona2;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona3;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnDepocnt32;
+        private Syncfusion.WinForms.Controls.SfButton btnDepocnt33;
+        private Syncfusion.WinForms.Controls.SfButton btnDepocnt31;
+        private Syncfusion.WinForms.Controls.SfButton btnDepocnt34;
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.Prijemiotpremavozova;
+using Saobracaj.Uvoz;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +22,48 @@ namespace Saobracaj.MainLeget.Pretovari
 
         private void btnPretovari1_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            main.OtvoriFormuSaPravom(
+                btnPretovari1.Text,
+                () => new Pretovari2()
+            );
+        }
+
+        private void btnPretovari2_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPretovari2.Text,
+                () => new frmKontejnerTekuceArhiv()
+            );
+        }
+
+        private void btnPretovari3_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPretovari3.Text,
+                () => new VaganjePregled()
+            );
+     
+        }
+
+        private void btnPretovari4_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPretovari4.Text,
+                () => new frmDodatneUsluge()
+            );
+           
         }
     }
 }

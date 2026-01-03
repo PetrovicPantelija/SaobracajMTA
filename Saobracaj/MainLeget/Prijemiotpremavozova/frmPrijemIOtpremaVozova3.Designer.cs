@@ -67,6 +67,7 @@
             this.btnPrijemIOtpremaVozova32.Text = "Dogovoreni poslovi izvoza";
             this.btnPrijemIOtpremaVozova32.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova32.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova32.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova32_Click);
             // 
             // btnPrijemIOtpremaVozova31
             // 
@@ -92,6 +93,7 @@
             this.btnPrijemIOtpremaVozova31.Text = "Pregled radnih naloga ";
             this.btnPrijemIOtpremaVozova31.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova31.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova31.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova31_Click);
             // 
             // frmPrijemIOtpremaVozova3
             // 

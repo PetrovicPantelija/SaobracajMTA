@@ -72,6 +72,7 @@
             this.btnPrijemIOtpremaVozova42.Text = "RN prijem voza";
             this.btnPrijemIOtpremaVozova42.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova42.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova42.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova42_Click);
             // 
             // btnPrijemIOtpremaVozova41
             // 
@@ -113,11 +114,12 @@
             this.btnPrijemIOtpremaVozova43.Size = new System.Drawing.Size(288, 228);
             this.btnPrijemIOtpremaVozova43.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova43.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova43.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            this.btnPrijemIOtpremaVozova43.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova43.TabIndex = 514;
             this.btnPrijemIOtpremaVozova43.Text = "RN otprema voza";
             this.btnPrijemIOtpremaVozova43.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova43.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova43.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova43_Click);
             // 
             // btnPrijemIOtpremaVozova44
             // 
@@ -133,11 +135,12 @@
             this.btnPrijemIOtpremaVozova44.Size = new System.Drawing.Size(288, 228);
             this.btnPrijemIOtpremaVozova44.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova44.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova44.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            this.btnPrijemIOtpremaVozova44.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova44.TabIndex = 515;
             this.btnPrijemIOtpremaVozova44.Text = "Vozovi";
             this.btnPrijemIOtpremaVozova44.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova44.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova44.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova44_Click);
             // 
             // btnPrijemIOtpremaVozova45
             // 
@@ -153,11 +156,12 @@
             this.btnPrijemIOtpremaVozova45.Size = new System.Drawing.Size(288, 228);
             this.btnPrijemIOtpremaVozova45.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova45.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova45.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnPrijemIOtpremaVozova45.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova45.TabIndex = 516;
             this.btnPrijemIOtpremaVozova45.Text = "Pregled vozova";
             this.btnPrijemIOtpremaVozova45.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova45.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova45.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova45_Click);
             // 
             // btnPrijemIOtpremaVozova46
             // 
@@ -173,11 +177,12 @@
             this.btnPrijemIOtpremaVozova46.Size = new System.Drawing.Size(288, 228);
             this.btnPrijemIOtpremaVozova46.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova46.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova46.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            this.btnPrijemIOtpremaVozova46.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova46.TabIndex = 517;
             this.btnPrijemIOtpremaVozova46.Text = "Gate in voz";
             this.btnPrijemIOtpremaVozova46.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova46.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova46.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova46_Click);
             // 
             // btnPrijemIOtpremaVozova47
             // 
@@ -193,11 +198,12 @@
             this.btnPrijemIOtpremaVozova47.Size = new System.Drawing.Size(288, 228);
             this.btnPrijemIOtpremaVozova47.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova47.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaVozova47.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            this.btnPrijemIOtpremaVozova47.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnPrijemIOtpremaVozova47.TabIndex = 518;
             this.btnPrijemIOtpremaVozova47.Text = "Gate out voz";
             this.btnPrijemIOtpremaVozova47.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova47.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova47.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova47_Click);
             // 
             // frmPrijemIOtpremaVozova4
             // 

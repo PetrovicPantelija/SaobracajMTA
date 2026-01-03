@@ -69,6 +69,7 @@
             this.btnPretovari2.Text = "Terminal central (arhiv)";
             this.btnPretovari2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPretovari2.UseVisualStyleBackColor = false;
+            this.btnPretovari2.Click += new System.EventHandler(this.btnPretovari2_Click);
             // 
             // btnPretovari4
             // 
@@ -88,6 +89,7 @@
             this.btnPretovari4.Text = "Dodatne usluge";
             this.btnPretovari4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPretovari4.UseVisualStyleBackColor = false;
+            this.btnPretovari4.Click += new System.EventHandler(this.btnPretovari4_Click);
             // 
             // btnPretovari3
             // 
@@ -108,6 +110,7 @@
             this.btnPretovari3.Text = "Vaganje pregled";
             this.btnPretovari3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPretovari3.UseVisualStyleBackColor = false;
+            this.btnPretovari3.Click += new System.EventHandler(this.btnPretovari3_Click);
             // 
             // btnPretovari1
             // 
@@ -139,6 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1085, 623);
             this.Controls.Add(this.btnPretovari2);
             this.Controls.Add(this.btnPretovari4);
