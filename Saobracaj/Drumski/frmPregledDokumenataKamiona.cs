@@ -349,7 +349,7 @@ namespace Saobracaj.Drumski
             {
                 int zaposleniID = PostaviVrednostZaposleni();
                 int brojSnimljenihFajlova = 0;
-                string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\Kamion\ID_{RadniNalogID}";
+                string destinacijaFolder = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\Kamion\ID_{RadniNalogID}";
 
                 if (!Directory.Exists(destinacijaFolder))
                     Directory.CreateDirectory(destinacijaFolder);

@@ -1316,7 +1316,7 @@ namespace Saobracaj.Drumski
                         string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
 
                         // Putanja na server
-                        string targetPath = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
+                        string targetPath = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
                         string destinacija = Path.Combine(targetPath, nazivFajla);
 
                         try

@@ -61,7 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(981, 62);
+            this.dataGridView1.Location = new System.Drawing.Point(535, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(55, 20);
@@ -70,7 +70,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 62);
+            this.textBox1.Location = new System.Drawing.Point(971, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(64, 20);
             this.textBox1.TabIndex = 275;
@@ -125,6 +125,8 @@
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.txtSifra);
+            this.panelHeader.Controls.Add(this.dataGridView1);
+            this.panelHeader.Controls.Add(this.textBox1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 25);
             this.panelHeader.Name = "panelHeader";
@@ -246,13 +248,13 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(6, 88);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 58);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1030, 434);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1048, 464);
             this.gridGroupingControl1.TabIndex = 475;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -276,8 +278,6 @@
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCIRPregled";
             this.Text = "PREGLED POSTOJECIH CIR";
