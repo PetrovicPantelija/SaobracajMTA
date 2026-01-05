@@ -2147,6 +2147,30 @@
     <Compile Include="MainLeget\AdministracijaPravoPristupa.Designer.cs">
       <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepoCnt1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepoCnt1.Designer.cs">
+      <DependentUpon>frmDepoCnt1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt2.Designer.cs">
+      <DependentUpon>frmDepocnt2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt3.Designer.cs">
+      <DependentUpon>frmDepocnt3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\frmDepocnt4.Designer.cs">
+      <DependentUpon>frmDepocnt4.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Drumski\Cerade.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2225,6 +2249,66 @@
     </Compile>
     <Compile Include="MainLeget\Podesavanjesistema\Podesavanje1.Designer.cs">
       <DependentUpon>Podesavanje1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\Pretovari1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\Pretovari1.Designer.cs">
+      <DependentUpon>Pretovari1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\Pretovari2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\Pretovari2.Designer.cs">
+      <DependentUpon>Pretovari2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaKamiona1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona2.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaKamiona2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona3.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaKamiona3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova2.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaVozova2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova3.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaVozova3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova4.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaVozova4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\PrijemIOtpremaVozova1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\PrijemIOtpremaVozova1.Designer.cs">
+      <DependentUpon>PrijemIOtpremaVozova1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainP.cs">
       <SubType>Form</SubType>
@@ -3296,6 +3380,20 @@
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
     <Compile Include="Tehnologija\InsertTerminalOperacije.cs" />
     <Compile Include="Tehnologija\InsertTestoviPitanja.cs" />
+    <Compile Include="TerminalMap\HangarRegion.cs" />
+    <Compile Include="TerminalMap\HangarRegionDto.cs" />
+    <Compile Include="TerminalMap\ImageQuadrants.cs" />
+    <Compile Include="TerminalMap\Prompt.cs" />
+    <Compile Include="TerminalMap\RegionStorage.cs" />
+    <Compile Include="TerminalMap\TerminalMapControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TerminalMap\TerminalMapFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminalMap\TerminalMapFRM.Designer.cs">
+      <DependentUpon>TerminalMapFRM.cs</DependentUpon>
+    </Compile>
     <Compile Include="TESTIRANJEDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5131,6 +5229,18 @@
     <EmbeddedResource Include="MainLeget\AdministracijaPravoPristupa.resx">
       <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Depocnt\frmDepoCnt1.resx">
+      <DependentUpon>frmDepoCnt1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Depocnt\frmDepocnt2.resx">
+      <DependentUpon>frmDepocnt2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Depocnt\frmDepocnt3.resx">
+      <DependentUpon>frmDepocnt3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Depocnt\frmDepocnt4.resx">
+      <DependentUpon>frmDepocnt4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Drumski\Cerade.resx">
       <DependentUpon>Cerade.cs</DependentUpon>
     </EmbeddedResource>
@@ -5169,6 +5279,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Podesavanjesistema\Podesavanje1.resx">
       <DependentUpon>Podesavanje1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\Pretovari1.resx">
+      <DependentUpon>Pretovari1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\Pretovari2.resx">
+      <DependentUpon>Pretovari2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.resx">
+      <DependentUpon>frmPrijemIOtpremaKamiona1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona2.resx">
+      <DependentUpon>frmPrijemIOtpremaKamiona2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona3.resx">
+      <DependentUpon>frmPrijemIOtpremaKamiona3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.resx">
+      <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova2.resx">
+      <DependentUpon>frmPrijemIOtpremaVozova2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova3.resx">
+      <DependentUpon>frmPrijemIOtpremaVozova3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova4.resx">
+      <DependentUpon>frmPrijemIOtpremaVozova4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\PrijemIOtpremaVozova1.resx">
+      <DependentUpon>PrijemIOtpremaVozova1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainP.resx">
       <DependentUpon>MainP.cs</DependentUpon>
@@ -5624,6 +5764,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tehnologija\frmTerminalOperacije.resx">
       <DependentUpon>frmTerminalOperacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TerminalMap\TerminalMapFRM.resx">
+      <DependentUpon>TerminalMapFRM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Testiranje\frmGenerisanjeTestaKorisnik.resx">
       <DependentUpon>frmGenerisanjeTestaKorisnik.cs</DependentUpon>

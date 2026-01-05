@@ -494,7 +494,7 @@ namespace Saobracaj.Drumski
 
             // 1. Generiši naziv fajla
             string nazivFajla = GenerisiNazivFajlaZaKontejner();
-            string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\SkeniranaPrevoznica\ID_{radniNalogID}";
+            string destinacijaFolder = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\SkeniranaPrevoznica\ID_{radniNalogID}";
            
 
             try

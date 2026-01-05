@@ -563,7 +563,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\" + FolderDestinacije + @"\Uvoz";
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\" + FolderDestinacije + @"\Uvoz";
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -599,7 +599,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\Voz\" + FolderDestinacije ;
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\Voz\" + FolderDestinacije ;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -635,7 +635,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\Usluga\" + FolderDestinacije;
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\Usluga\" + FolderDestinacije;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);

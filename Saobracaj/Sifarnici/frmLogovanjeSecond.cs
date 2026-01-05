@@ -156,5 +156,10 @@ namespace Saobracaj.Sifarnici
             Administracija.frmSistemskaTabela sis = new Administracija.frmSistemskaTabela();
             sis.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
