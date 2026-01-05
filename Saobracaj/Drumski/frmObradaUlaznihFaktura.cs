@@ -17,6 +17,7 @@ namespace Saobracaj.Drumski
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         private DataTable dtRadniNalozi;
         int brojRedova = 0;
+        private int RadniNalogID;
 
         public frmObradaUlaznihFaktura()
         {
@@ -26,6 +27,8 @@ namespace Saobracaj.Drumski
             panel3.Visible = false;
             gridGroupingControl1.TableControl.CellDoubleClick += Grid_TableControl_CellDoubleClick;
             this.KeyPreview = true;
+            dtpPregleda.Value = DateTime.Today;
+            btnIzadjiBezPromena.Visible = false;
         }
 
         private void ChangeTextBox()
@@ -164,26 +167,43 @@ namespace Saobracaj.Drumski
             }
 
 
-            select = $@" SELECT de.ID AS KontejnerID, 
-                                de.NalogID AS CNTBroj, 
+            select = $@" 
+
+                        WITH Dokumenti AS (
+                            SELECT
+                                RadniNalogDrumskiID,
+                                STRING_AGG(NazivFajla, ', ') AS SviFajlovi
+                            FROM DokumentaRadnogNalogaDrumski
+                            GROUP BY RadniNalogDrumskiID
+                        )
+
+                        SELECT 
+                                de.ID AS KontejnerID, 
+                                de.NalogID AS CNTBroj,
                                 de.Prevoznik, 
-                                de.Klijent,
                                 de.Kamioner,
+                                de.Klijent as Nalogodavac,
+                                pa.ArtikalNaziv,
+                                de.Relacija,
                                 de.Cena,
+                                fds.UlaznaFaktura, 
                                 de.BL,
                                 de.Booking,
+                                IsNull(fds.DatumIzmeneUlazne, GETDATE())  AS DatumIzmene,
                                 de.MestoUtovara,
                                 de.MestoIstovara,
                                 de.BrojKontejnera,
-                                de.Relacija,
-                                pa.ArtikalSifra, pa.ArtikalNaziv,
+                                pa.ArtikalSifra,
                                 de.TipTransporta,
                                 de.AutoDan,
                                 de.PDV,
                                 de.DodatniTrosakTransporta,
                                 de.Uvoz,
                                 de.DatumUtovara,
-                                de.DtPreuzimanjaPraznogKontejnera
+                                de.DtPreuzimanjaPraznogKontejnera,
+                                doc.SviFajlovi AS Dokumenta
+                                
+                                
                          FROM
                            ( SELECT  
                             rn.ID,
@@ -358,8 +378,18 @@ namespace Saobracaj.Drumski
                                          AND ISNULL(pa.AutoDan, 0) = ISNULL(de.AutoDan, 0)
                                          AND ISNULL(pa.PDV, 0) = ISNULL(de.PDV, 0)
                                          AND ISNULL(pa.DodatniTrosak, 0)  = ISNULL(de.DodatniTrosakTransporta, 0) 
+                LEFT JOIN FakturaDrumski fd ON fd.RadniNalogDrumskiID = de.ID
+                LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
+
                 
                 ";
+
+
+            //SELECT MAX(rn.ID) as ID,
+            //       MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
+            //FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+            //WHERE rn.RadniNalogDrumskiID = @fid; ", con))
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(connection);
@@ -406,20 +436,27 @@ namespace Saobracaj.Drumski
             {
                 panel2.Visible = true;
                 panel3.Visible = false;
-               
+                btnIzadjiBezPromena.Visible = true;
+
             }
-            else if(brojRedova == 1)
+            else if (brojRedova == 1)
             {
                 panel2.Visible = false;
                 panel3.Visible = true;
-               
+                btnIzadjiBezPromena.Visible = false;
+
                 DataRow red = dtRadniNalozi.Rows[0];
                 int id = Convert.ToInt32(red["KontejnerID"]);
 
                 PrikaziDetalje(id);
             }
+            else 
+            {
+                panel2.Visible = false;
+                panel3.Visible = false;
+            }
 
-            gridGroupingControl1.DataSource = ds.Tables[0];
+                gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
@@ -427,6 +464,17 @@ namespace Saobracaj.Drumski
             {
                 column.AllowFilter = true;
             }
+
+            // Ukloni kolone koje ne želiš da se vide
+            var colsToRemove = new[] { "MestoUtovara", "MestoIstovara", "BrojKontejnera", "ArtikalSifra", "TipTransporta", "AutoDan", "PDV", "DodatniTrosakTransporta", "Uvoz", "DatumUtovara", "DtPreuzimanjaPraznogKontejnera" }; // "Status" je Naziv
+            foreach (var col in colsToRemove)
+            {
+                if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
+                {
+                    gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
+                }
+            }
+
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(gridGroupingControl1);
@@ -463,17 +511,25 @@ namespace Saobracaj.Drumski
         {
             // Iz memorisane tabele uzmi red
             DataRow[] rows = dtRadniNalozi.Select($"KontejnerID = {radniNalogID}");
+            RadniNalogID = radniNalogID;
             if (rows.Length == 1)
             {
                 var red = rows[0];
 
                 // Popuni kontrole u panel3
                 txtKamioner.Text = red["Prevoznik"].ToString();
-                txtNalogodavac.Text = red["Klijent"].ToString();
+                txtNalogodavac.Text = red["Nalogodavac"].ToString();
                 txtCenaTransporta.Text = red["Cena"].ToString();
                 txtRelacija.Text = red["Relacija"].ToString();
                 txtArtikal.Text = red["ArtikalNaziv"].ToString();
+                txtBrojUlazneFakture.Text = red["UlaznaFaktura"].ToString();
+                txtPrilozenaDokumenta.Text = red["Dokumenta"].ToString();
 
+                if (red["DatumIzmene"] != DBNull.Value)
+                {
+                    dtpPregleda.Value = Convert.ToDateTime(red["DatumIzmene"]);
+                }
+                
                 // cerada (TipTransporta = 2) onda je datumUtovara u suprotnom DtPreuzimanjaPraznogKontejnera
                 if (int.TryParse(red["TipTransporta"]?.ToString(), out int tip) && tip == 2)
                 {
@@ -540,10 +596,87 @@ namespace Saobracaj.Drumski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            panel3.Visible = false;
-            panel2.Visible = true;
-        }
+           
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
+            int? ulaznaID = null;
+            int? fakturaDrumskogID = null;
+            int izmena = 0;
+            int FakturaID = -1;
+
+            // 1. Provera da li postoje zapisi
+            using (var con = new SqlConnection(s_connection))
+            using (var cmd = new SqlCommand(@"
+            SELECT MAX(rn.ID) as ID,
+                   MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
+            FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+            WHERE rn.RadniNalogDrumskiID = @fid;", con))
+            {
+                cmd.Parameters.AddWithValue("@fid", @RadniNalogID);
+
+                con.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        ulaznaID = dr["UlaznaID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["UlaznaID"]);
+                        fakturaDrumskogID = dr["ID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["ID"]);
+                        FakturaID = dr["ID"] == DBNull.Value ? -1 : Convert.ToInt32(dr["ID"]);
+                    }
+                }
+            }
+
+            var ins = new InsertFakture();
+            int zaposleni = PostaviVrednostZaposleni();
+
+            // 2. ULAZNA FAKTURA
+
+            if (ulaznaID == null)
+            {
+                // Insert
+                ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+                izmena = 1;
+            }
+            else
+            {
+                // Update
+                ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+                izmena = 1;
+            }
+
+            if (izmena == 1)
+                MessageBox.Show("Podaci su uspešno sačuvani.");
+
+            if (brojRedova > 1)
+            {
+                panel3.Visible = false;
+                panel2.Visible = true;
+            }
+        }
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
+        }
         private void frmObradaUlaznihFaktura_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -552,5 +685,14 @@ namespace Saobracaj.Drumski
                 SendKeys.Send("{TAB}");
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (brojRedova > 1)
+            {
+                panel3.Visible = false;
+                panel2.Visible = true;
+            }
+        }      
     }
 }

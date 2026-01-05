@@ -42,6 +42,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnIzadjiBezPromena = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dtpPregleda = new System.Windows.Forms.DateTimePicker();
             this.dtpPrometa = new System.Windows.Forms.DateTimePicker();
@@ -56,7 +57,7 @@
             this.txtPrilozenaDokumenta = new System.Windows.Forms.TextBox();
             this.txtKamioner = new System.Windows.Forms.TextBox();
             this.lblCena = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtBrojUlazneFakture = new System.Windows.Forms.TextBox();
             this.lblPrilozenaDokumenta = new System.Windows.Forms.Label();
             this.lblDatumPrometa = new System.Windows.Forms.Label();
             this.txtCenaTransporta = new System.Windows.Forms.TextBox();
@@ -207,6 +208,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnIzadjiBezPromena);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.dtpPregleda);
             this.panel3.Controls.Add(this.dtpPrometa);
@@ -221,7 +223,7 @@
             this.panel3.Controls.Add(this.txtPrilozenaDokumenta);
             this.panel3.Controls.Add(this.txtKamioner);
             this.panel3.Controls.Add(this.lblCena);
-            this.panel3.Controls.Add(this.txtEmail);
+            this.panel3.Controls.Add(this.txtBrojUlazneFakture);
             this.panel3.Controls.Add(this.lblPrilozenaDokumenta);
             this.panel3.Controls.Add(this.lblDatumPrometa);
             this.panel3.Controls.Add(this.txtCenaTransporta);
@@ -231,11 +233,21 @@
             this.panel3.Size = new System.Drawing.Size(1213, 489);
             this.panel3.TabIndex = 2;
             // 
+            // btnIzadjiBezPromena
+            // 
+            this.btnIzadjiBezPromena.Location = new System.Drawing.Point(348, 318);
+            this.btnIzadjiBezPromena.Name = "btnIzadjiBezPromena";
+            this.btnIzadjiBezPromena.Size = new System.Drawing.Size(154, 27);
+            this.btnIzadjiBezPromena.TabIndex = 483;
+            this.btnIzadjiBezPromena.Text = "Izađi bez promena";
+            this.btnIzadjiBezPromena.UseVisualStyleBackColor = true;
+            this.btnIzadjiBezPromena.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(194, 313);
+            this.button2.Location = new System.Drawing.Point(170, 318);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 23);
+            this.button2.Size = new System.Drawing.Size(154, 27);
             this.button2.TabIndex = 70;
             this.button2.Text = "Potvrdi ulaznu fakturu";
             this.button2.UseVisualStyleBackColor = true;
@@ -370,13 +382,13 @@
             this.lblCena.TabIndex = 476;
             this.lblCena.Text = "Cena transporta";
             // 
-            // txtEmail
+            // txtBrojUlazneFakture
             // 
-            this.txtEmail.Location = new System.Drawing.Point(194, 270);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(287, 22);
-            this.txtEmail.TabIndex = 65;
+            this.txtBrojUlazneFakture.Location = new System.Drawing.Point(194, 270);
+            this.txtBrojUlazneFakture.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBrojUlazneFakture.Name = "txtBrojUlazneFakture";
+            this.txtBrojUlazneFakture.Size = new System.Drawing.Size(287, 22);
+            this.txtBrojUlazneFakture.TabIndex = 65;
             // 
             // lblPrilozenaDokumenta
             // 
@@ -488,7 +500,7 @@
         private System.Windows.Forms.TextBox txtPrilozenaDokumenta;
         private System.Windows.Forms.TextBox txtKamioner;
         private System.Windows.Forms.Label lblCena;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtBrojUlazneFakture;
         private System.Windows.Forms.Label lblPrilozenaDokumenta;
         private System.Windows.Forms.Label lblDatumPrometa;
         private System.Windows.Forms.TextBox txtCenaTransporta;
@@ -499,5 +511,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem detaljiToolStripMenuItem;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnIzadjiBezPromena;
     }
 }
