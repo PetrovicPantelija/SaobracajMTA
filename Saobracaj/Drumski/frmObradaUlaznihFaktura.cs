@@ -180,8 +180,7 @@ namespace Saobracaj.Drumski
                         SELECT 
                                 de.ID AS KontejnerID, 
                                 de.NalogID AS CNTBroj,
-                                de.Prevoznik, 
-                                de.Kamioner,
+                                ISNULL(de.Prevoznik, '')   + ' / '  + ISNULL(de.Kamioner, '') AS [Prevoznik / Kamioner],
                                 de.Klijent as Nalogodavac,
                                 pa.ArtikalNaziv,
                                 de.Relacija,
@@ -510,7 +509,7 @@ namespace Saobracaj.Drumski
                 var red = rows[0];
 
                 // Popuni kontrole u panel3
-                txtKamioner.Text = red["Prevoznik"].ToString();
+                txtKamioner.Text = red["Prevoznik / Kamioner"].ToString();
                 txtNalogodavac.Text = red["Nalogodavac"].ToString();
                 txtCenaTransporta.Text = red["Cena"].ToString();
                 txtRelacija.Text = red["Relacija"].ToString();

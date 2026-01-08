@@ -291,7 +291,7 @@
             this.txtNalogodavac.Margin = new System.Windows.Forms.Padding(4);
             this.txtNalogodavac.Name = "txtNalogodavac";
             this.txtNalogodavac.ReadOnly = true;
-            this.txtNalogodavac.Size = new System.Drawing.Size(287, 22);
+            this.txtNalogodavac.Size = new System.Drawing.Size(332, 22);
             this.txtNalogodavac.TabIndex = 45;
             // 
             // lblDatumPregleda
@@ -320,7 +320,7 @@
             this.txtArtikal.Margin = new System.Windows.Forms.Padding(4);
             this.txtArtikal.Name = "txtArtikal";
             this.txtArtikal.ReadOnly = true;
-            this.txtArtikal.Size = new System.Drawing.Size(287, 22);
+            this.txtArtikal.Size = new System.Drawing.Size(332, 22);
             this.txtArtikal.TabIndex = 50;
             // 
             // lblNalogodavac
@@ -349,7 +349,7 @@
             this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Name = "txtRelacija";
             this.txtRelacija.ReadOnly = true;
-            this.txtRelacija.Size = new System.Drawing.Size(287, 22);
+            this.txtRelacija.Size = new System.Drawing.Size(332, 22);
             this.txtRelacija.TabIndex = 55;
             // 
             // lblArtikal
@@ -368,7 +368,7 @@
             this.txtPrilozenaDokumenta.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrilozenaDokumenta.Name = "txtPrilozenaDokumenta";
             this.txtPrilozenaDokumenta.ReadOnly = true;
-            this.txtPrilozenaDokumenta.Size = new System.Drawing.Size(287, 22);
+            this.txtPrilozenaDokumenta.Size = new System.Drawing.Size(332, 22);
             this.txtPrilozenaDokumenta.TabIndex = 40;
             // 
             // txtKamioner
@@ -377,7 +377,7 @@
             this.txtKamioner.Margin = new System.Windows.Forms.Padding(4);
             this.txtKamioner.Name = "txtKamioner";
             this.txtKamioner.ReadOnly = true;
-            this.txtKamioner.Size = new System.Drawing.Size(287, 22);
+            this.txtKamioner.Size = new System.Drawing.Size(332, 22);
             this.txtKamioner.TabIndex = 35;
             // 
             // lblCena
@@ -395,7 +395,7 @@
             this.txtBrojUlazneFakture.Location = new System.Drawing.Point(194, 270);
             this.txtBrojUlazneFakture.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojUlazneFakture.Name = "txtBrojUlazneFakture";
-            this.txtBrojUlazneFakture.Size = new System.Drawing.Size(287, 22);
+            this.txtBrojUlazneFakture.Size = new System.Drawing.Size(332, 22);
             this.txtBrojUlazneFakture.TabIndex = 65;
             // 
             // lblPrilozenaDokumenta
@@ -424,7 +424,7 @@
             this.txtCenaTransporta.Margin = new System.Windows.Forms.Padding(4);
             this.txtCenaTransporta.Name = "txtCenaTransporta";
             this.txtCenaTransporta.ReadOnly = true;
-            this.txtCenaTransporta.Size = new System.Drawing.Size(287, 22);
+            this.txtCenaTransporta.Size = new System.Drawing.Size(332, 22);
             this.txtCenaTransporta.TabIndex = 60;
             // 
             // lblBrojUlazneFakture
