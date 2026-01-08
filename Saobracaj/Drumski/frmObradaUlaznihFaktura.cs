@@ -172,7 +172,7 @@ namespace Saobracaj.Drumski
                         WITH Dokumenti AS (
                             SELECT
                                 RadniNalogDrumskiID,
-                                STRING_AGG(NazivFajla, ', ') AS SviFajlovi
+                                 COUNT(*) AS BrojDokumenata
                             FROM DokumentaRadnogNalogaDrumski
                             GROUP BY RadniNalogDrumskiID
                         )
@@ -189,7 +189,8 @@ namespace Saobracaj.Drumski
                                 fds.UlaznaFaktura, 
                                 de.BL,
                                 de.Booking,
-                                IsNull(fds.DatumIzmeneUlazne, GETDATE())  AS DatumIzmene,
+                                CONVERT(varchar,
+                                ISNULL(fds.DatumIzmeneUlazne, GETDATE()),104) AS DatumIzmene,
                                 de.MestoUtovara,
                                 de.MestoIstovara,
                                 de.BrojKontejnera,
@@ -201,7 +202,7 @@ namespace Saobracaj.Drumski
                                 de.Uvoz,
                                 de.DatumUtovara,
                                 de.DtPreuzimanjaPraznogKontejnera,
-                                doc.SviFajlovi AS Dokumenta
+                                doc.BrojDokumenata AS Dokumenta
                                 
                                 
                          FROM
@@ -381,15 +382,7 @@ namespace Saobracaj.Drumski
                 LEFT JOIN FakturaDrumski fd ON fd.RadniNalogDrumskiID = de.ID
                 LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
                 LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
-
-                
                 ";
-
-
-            //SELECT MAX(rn.ID) as ID,
-            //       MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
-            //FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
-            //WHERE rn.RadniNalogDrumskiID = @fid; ", con))
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(connection);
@@ -456,7 +449,7 @@ namespace Saobracaj.Drumski
                 panel3.Visible = false;
             }
 
-                gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 

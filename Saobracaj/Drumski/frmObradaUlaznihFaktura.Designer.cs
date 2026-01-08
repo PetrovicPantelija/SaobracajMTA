@@ -165,6 +165,9 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.gridGroupingControl1);
             this.panel2.Location = new System.Drawing.Point(4, 116);
             this.panel2.Name = "panel2";
@@ -174,9 +177,11 @@
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl1.ApplyVisualStyles = false;
             this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
@@ -208,6 +213,9 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.btnIzadjiBezPromena);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.dtpPregleda);
@@ -230,12 +238,12 @@
             this.panel3.Controls.Add(this.lblBrojUlazneFakture);
             this.panel3.Location = new System.Drawing.Point(4, 100);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1213, 489);
+            this.panel3.Size = new System.Drawing.Size(1213, 469);
             this.panel3.TabIndex = 2;
             // 
             // btnIzadjiBezPromena
             // 
-            this.btnIzadjiBezPromena.Location = new System.Drawing.Point(348, 318);
+            this.btnIzadjiBezPromena.Location = new System.Drawing.Point(372, 318);
             this.btnIzadjiBezPromena.Name = "btnIzadjiBezPromena";
             this.btnIzadjiBezPromena.Size = new System.Drawing.Size(154, 27);
             this.btnIzadjiBezPromena.TabIndex = 483;
@@ -245,7 +253,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(170, 318);
+            this.button2.Location = new System.Drawing.Point(194, 318);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(154, 27);
             this.button2.TabIndex = 70;

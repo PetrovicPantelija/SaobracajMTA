@@ -14,6 +14,7 @@ using System.Linq;
 using Saobracaj.Sifarnici;
 using Saobracaj.Izvoz;
 using Saobracaj.Uvoz;
+using Saobracaj.MainLeget.LegNew;
 
 namespace Saobracaj.Drumski
 {
@@ -2134,8 +2135,9 @@ namespace Saobracaj.Drumski
                 // Očisti naziv fajla od nedozvoljenih karaktera
                 string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
 
-                // Putanja na server
-                string targetPath = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
+                // Putanja na server   192.168.99.10
+                // Leget\DRUMSKI\DOKUMENTA
+                string targetPath = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
                 string destinacija = Path.Combine(targetPath, nazivFajla);
 
                 try

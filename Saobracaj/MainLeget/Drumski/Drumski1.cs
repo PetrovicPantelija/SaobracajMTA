@@ -1,4 +1,5 @@
-﻿using Saobracaj.MainLeget.Drumski;
+﻿using Saobracaj.Drumski;
+using Saobracaj.MainLeget.Drumski;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -54,6 +55,18 @@ namespace Saobracaj.MainLeget.LegNew
                 btnForm1.Text,
                 () => new VanGabaritni()
             );
+        }
+
+        private void sfButton1_Click_1(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnForm1.Text,
+                () => new frmObradaUlaznihFaktura()
+            );
+         
         }
     }
 }
