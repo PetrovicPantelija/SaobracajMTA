@@ -60,6 +60,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.otvoriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label40 = new System.Windows.Forms.Label();
             this.cboTipVozila = new System.Windows.Forms.ComboBox();
             this.txtVozacTelefon = new System.Windows.Forms.TextBox();
@@ -96,6 +98,7 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -289,7 +292,7 @@
             this.toolStripButton6});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1322, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1322, 31);
             this.meniHeader.TabIndex = 194;
             this.meniHeader.Text = "Osveži";
             // 
@@ -367,7 +370,7 @@
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1322, 40);
@@ -487,13 +490,29 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Location = new System.Drawing.Point(0, 113);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1322, 730);
             this.dataGridView1.TabIndex = 706;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDown);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.otvoriToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 56);
+            // 
+            // otvoriToolStripMenuItem
+            // 
+            this.otvoriToolStripMenuItem.Name = "otvoriToolStripMenuItem";
+            this.otvoriToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.otvoriToolStripMenuItem.Text = "Detalji";
+            this.otvoriToolStripMenuItem.Click += new System.EventHandler(this.otvoriToolStripMenuItem_Click);
             // 
             // label40
             // 
@@ -684,7 +703,7 @@
             this.panel6.Controls.Add(this.lblVozac);
             this.panel6.Controls.Add(this.lblBrojNaloga);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 67);
+            this.panel6.Location = new System.Drawing.Point(0, 71);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1322, 47);
             this.panel6.TabIndex = 713;
@@ -819,6 +838,7 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
@@ -885,5 +905,7 @@
         private System.Windows.Forms.CheckBox chkDatumS;
         private System.Windows.Forms.CheckBox chkDatumD;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem otvoriToolStripMenuItem;
     }
 }

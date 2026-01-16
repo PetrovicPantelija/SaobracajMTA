@@ -697,7 +697,7 @@ namespace Saobracaj.Dokumenta
             kvar.Show();
         }
 
- 
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -708,7 +708,7 @@ namespace Saobracaj.Dokumenta
                     {
                         string a = "aa";
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                       DataRow rowPodataka =  VratiPodatke(txtSifra.Text, a );
+                        DataRow rowPodataka = VratiPodatke(txtSifra.Text, a);
 
                         if (ActivateExistingForm("frmAutomobilEdit"))
                         {
@@ -843,5 +843,71 @@ namespace Saobracaj.Dokumenta
             Drumski.frmPodesavanjeRaspolozivosti pko = new Drumski.frmPodesavanjeRaspolozivosti();
             pko.Show();
         }
+
+        private void otvoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sifra = dataGridView1.CurrentRow.Cells[0].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(sifra))
+                return;
+
+            // 2️⃣ Pripremi dodatni parametar
+            string a = "aa";
+
+            // 3️⃣ Dohvati podatke iz baze
+            DataRow rowPodataka = VratiPodatke(sifra, a);
+            if (rowPodataka == null)
+            {
+                MessageBox.Show("Podaci nisu pronađeni.");
+                return;
+            }
+
+            // 4️⃣ Provera da li je forma već otvorena
+            if (ActivateExistingForm("frmAutomobilEdit"))
+                return;
+
+            // 5️⃣ Otvori edit formu
+            frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
+            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+            pnd.Show();
+            //if (dataGridView1.CurrentRow == null)
+            //    return;
+
+            //DataRowView drv = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+            //if (drv == null)
+            //    return;
+
+            //DataRow row = drv.Row;
+
+
+
+            //frmAutomobilEdit pnd = new frmAutomobilEdit(row);
+            //pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+            //pnd.Show();
+
+        }
+
+        private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Provera da li je klik na validan red (ne header)
+                if (e.RowIndex >= 0)
+                {
+                    // Očisti prethodnu selekciju
+                    dataGridView1.ClearSelection();
+
+                    // Selektuj kliknuti red
+                    dataGridView1.Rows[e.RowIndex].Selected = true;
+
+                    // Postavi current cell (bitno za dalje operacije)
+                    dataGridView1.CurrentCell =
+                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex >= 0 ? e.ColumnIndex : 0];
+
+                    // Prikaži context menu
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
     }
+    
 }

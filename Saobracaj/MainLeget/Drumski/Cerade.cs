@@ -1,4 +1,5 @@
-﻿using Saobracaj.Drumski;
+﻿using Saobracaj.Dokumenta;
+using Saobracaj.Drumski;
 using Saobracaj.MainLeget.LegNew;
 using System;
 using System.Collections.Generic;
@@ -75,10 +76,15 @@ namespace Saobracaj.MainLeget.Drumski
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
+            //main.OtvoriFormuSaPravom(
+            //    btnPonude.Text,
+            //    () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
+            //);
+
             main.OtvoriFormuSaPravom(
-                btnPonude.Text,
-                () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
-            );
+               btnPonude.Text,
+               () => new frmAutomobiliDrumski()
+           );
         }
     }
 }
