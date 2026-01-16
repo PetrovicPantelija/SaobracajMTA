@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBezUlazneFakture = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.lblBooking = new System.Windows.Forms.Label();
             this.lblBL = new System.Windows.Forms.Label();
@@ -75,6 +77,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnBezUlazneFakture);
+            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lblBooking);
             this.panel1.Controls.Add(this.lblBL);
@@ -86,12 +90,29 @@
             this.panel1.Controls.Add(this.txtKontejnerID);
             this.panel1.Location = new System.Drawing.Point(4, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1213, 81);
+            this.panel1.Size = new System.Drawing.Size(1213, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // btnBezUlazneFakture
+            // 
+            this.btnBezUlazneFakture.Location = new System.Drawing.Point(187, 64);
+            this.btnBezUlazneFakture.Name = "btnBezUlazneFakture";
+            this.btnBezUlazneFakture.Size = new System.Drawing.Size(198, 27);
+            this.btnBezUlazneFakture.TabIndex = 22;
+            this.btnBezUlazneFakture.Text = "Nalozi  bez ulazne fakture";
+            this.btnBezUlazneFakture.UseVisualStyleBackColor = true;
+            this.btnBezUlazneFakture.Click += new System.EventHandler(this.btnBezUlazneFakture_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(8, 66);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(163, 22);
+            this.dateTimePicker1.TabIndex = 21;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(787, 35);
+            this.button1.Location = new System.Drawing.Point(787, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(158, 27);
             this.button1.TabIndex = 20;
@@ -102,7 +123,7 @@
             // lblBooking
             // 
             this.lblBooking.AutoSize = true;
-            this.lblBooking.Location = new System.Drawing.Point(549, 18);
+            this.lblBooking.Location = new System.Drawing.Point(549, 10);
             this.lblBooking.Name = "lblBooking";
             this.lblBooking.Size = new System.Drawing.Size(57, 16);
             this.lblBooking.TabIndex = 7;
@@ -111,7 +132,7 @@
             // lblBL
             // 
             this.lblBL.AutoSize = true;
-            this.lblBL.Location = new System.Drawing.Point(395, 18);
+            this.lblBL.Location = new System.Drawing.Point(395, 10);
             this.lblBL.Name = "lblBL";
             this.lblBL.Size = new System.Drawing.Size(23, 16);
             this.lblBL.TabIndex = 6;
@@ -120,7 +141,7 @@
             // lbBrojCNT
             // 
             this.lbBrojCNT.AutoSize = true;
-            this.lbBrojCNT.Location = new System.Drawing.Point(184, 18);
+            this.lbBrojCNT.Location = new System.Drawing.Point(184, 10);
             this.lbBrojCNT.Name = "lbBrojCNT";
             this.lbBrojCNT.Size = new System.Drawing.Size(62, 16);
             this.lbBrojCNT.TabIndex = 5;
@@ -129,7 +150,7 @@
             // lblContainerID
             // 
             this.lblContainerID.AutoSize = true;
-            this.lblContainerID.Location = new System.Drawing.Point(10, 18);
+            this.lblContainerID.Location = new System.Drawing.Point(10, 10);
             this.lblContainerID.Name = "lblContainerID";
             this.lblContainerID.Size = new System.Drawing.Size(79, 16);
             this.lblContainerID.TabIndex = 4;
@@ -137,28 +158,28 @@
             // 
             // txtBooking
             // 
-            this.txtBooking.Location = new System.Drawing.Point(552, 37);
+            this.txtBooking.Location = new System.Drawing.Point(552, 29);
             this.txtBooking.Name = "txtBooking";
             this.txtBooking.Size = new System.Drawing.Size(196, 22);
             this.txtBooking.TabIndex = 15;
             // 
             // txtBL
             // 
-            this.txtBL.Location = new System.Drawing.Point(391, 37);
+            this.txtBL.Location = new System.Drawing.Point(391, 29);
             this.txtBL.Name = "txtBL";
             this.txtBL.Size = new System.Drawing.Size(155, 22);
             this.txtBL.TabIndex = 10;
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(187, 37);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(187, 29);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(198, 22);
             this.txtBrojKontejnera.TabIndex = 5;
             // 
             // txtKontejnerID
             // 
-            this.txtKontejnerID.Location = new System.Drawing.Point(8, 37);
+            this.txtKontejnerID.Location = new System.Drawing.Point(8, 29);
             this.txtKontejnerID.Name = "txtKontejnerID";
             this.txtKontejnerID.Size = new System.Drawing.Size(168, 22);
             this.txtKontejnerID.TabIndex = 0;
@@ -236,9 +257,9 @@
             this.panel3.Controls.Add(this.lblDatumPrometa);
             this.panel3.Controls.Add(this.txtCenaTransporta);
             this.panel3.Controls.Add(this.lblBrojUlazneFakture);
-            this.panel3.Location = new System.Drawing.Point(4, 100);
+            this.panel3.Location = new System.Drawing.Point(4, 119);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1213, 469);
+            this.panel3.Size = new System.Drawing.Size(1213, 450);
             this.panel3.TabIndex = 2;
             // 
             // btnIzadjiBezPromena
@@ -520,5 +541,7 @@
         private System.Windows.Forms.ToolStripMenuItem detaljiToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnIzadjiBezPromena;
+        private System.Windows.Forms.Button btnBezUlazneFakture;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

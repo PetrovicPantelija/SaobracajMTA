@@ -91,9 +91,10 @@
             this.btnPonude.Style.ForeColor = System.Drawing.Color.White;
             this.btnPonude.Style.Image = global::Saobracaj.Properties.Resources._2Ponude;
             this.btnPonude.TabIndex = 505;
-            this.btnPonude.Text = "PONUDE";
+            this.btnPonude.Text = "UNOS PREVOZNIK/KAMIONER";
             this.btnPonude.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPonude.UseVisualStyleBackColor = false;
+            this.btnPonude.Click += new System.EventHandler(this.btnPonude_Click);
             // 
             // btnFormiranjeNaloga
             // 

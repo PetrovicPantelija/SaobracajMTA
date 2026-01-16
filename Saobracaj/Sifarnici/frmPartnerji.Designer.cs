@@ -163,7 +163,7 @@
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(91, 110);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(287, 22);
             this.txtNaziv.TabIndex = 9;
@@ -181,7 +181,7 @@
             // txtUIC
             // 
             this.txtUIC.Location = new System.Drawing.Point(120, 238);
-            this.txtUIC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUIC.Margin = new System.Windows.Forms.Padding(4);
             this.txtUIC.Name = "txtUIC";
             this.txtUIC.Size = new System.Drawing.Size(189, 22);
             this.txtUIC.TabIndex = 11;
@@ -201,7 +201,7 @@
             this.chkPosiljalac.AutoSize = true;
             this.chkPosiljalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPosiljalac.Location = new System.Drawing.Point(23, 379);
-            this.chkPosiljalac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPosiljalac.Margin = new System.Windows.Forms.Padding(4);
             this.chkPosiljalac.Name = "chkPosiljalac";
             this.chkPosiljalac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPosiljalac.Size = new System.Drawing.Size(85, 21);
@@ -214,7 +214,7 @@
             this.chkPrevoznik.AutoSize = true;
             this.chkPrevoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrevoznik.Location = new System.Drawing.Point(23, 351);
-            this.chkPrevoznik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPrevoznik.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrevoznik.Name = "chkPrevoznik";
             this.chkPrevoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrevoznik.Size = new System.Drawing.Size(88, 21);
@@ -227,7 +227,7 @@
             this.chkPrimalac.AutoSize = true;
             this.chkPrimalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrimalac.Location = new System.Drawing.Point(23, 406);
-            this.chkPrimalac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPrimalac.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrimalac.Name = "chkPrimalac";
             this.chkPrimalac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrimalac.Size = new System.Drawing.Size(82, 21);
@@ -241,7 +241,7 @@
             this.c.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.c.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.c.Location = new System.Drawing.Point(1768, 491);
-            this.c.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c.Margin = new System.Windows.Forms.Padding(4);
             this.c.Name = "c";
             this.c.RowHeadersWidth = 51;
             this.c.Size = new System.Drawing.Size(35, 31);
@@ -251,7 +251,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(91, 75);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(123, 22);
             this.txtSifra.TabIndex = 18;
@@ -273,7 +273,7 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(969, 75);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.Size = new System.Drawing.Size(833, 217);
@@ -286,7 +286,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(969, 306);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(833, 180);
@@ -295,7 +295,7 @@
             // txtUlica
             // 
             this.txtUlica.Location = new System.Drawing.Point(89, 142);
-            this.txtUlica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUlica.Margin = new System.Windows.Forms.Padding(4);
             this.txtUlica.Name = "txtUlica";
             this.txtUlica.Size = new System.Drawing.Size(287, 22);
             this.txtUlica.TabIndex = 22;
@@ -313,7 +313,7 @@
             // txtMesto
             // 
             this.txtMesto.Location = new System.Drawing.Point(89, 174);
-            this.txtMesto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMesto.Margin = new System.Windows.Forms.Padding(4);
             this.txtMesto.Name = "txtMesto";
             this.txtMesto.Size = new System.Drawing.Size(287, 22);
             this.txtMesto.TabIndex = 24;
@@ -331,7 +331,7 @@
             // txtOblast
             // 
             this.txtOblast.Location = new System.Drawing.Point(89, 206);
-            this.txtOblast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOblast.Margin = new System.Windows.Forms.Padding(4);
             this.txtOblast.Name = "txtOblast";
             this.txtOblast.Size = new System.Drawing.Size(287, 22);
             this.txtOblast.TabIndex = 26;
@@ -349,7 +349,7 @@
             // txtPosta
             // 
             this.txtPosta.Location = new System.Drawing.Point(588, 138);
-            this.txtPosta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPosta.Margin = new System.Windows.Forms.Padding(4);
             this.txtPosta.Name = "txtPosta";
             this.txtPosta.Size = new System.Drawing.Size(287, 22);
             this.txtPosta.TabIndex = 28;
@@ -367,7 +367,7 @@
             // txtDrzava
             // 
             this.txtDrzava.Location = new System.Drawing.Point(588, 108);
-            this.txtDrzava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDrzava.Margin = new System.Windows.Forms.Padding(4);
             this.txtDrzava.Name = "txtDrzava";
             this.txtDrzava.Size = new System.Drawing.Size(287, 22);
             this.txtDrzava.TabIndex = 30;
@@ -385,7 +385,7 @@
             // txtTelefon
             // 
             this.txtTelefon.Location = new System.Drawing.Point(588, 167);
-            this.txtTelefon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefon.Name = "txtTelefon";
             this.txtTelefon.Size = new System.Drawing.Size(287, 22);
             this.txtTelefon.TabIndex = 32;
@@ -403,7 +403,7 @@
             // txtTR
             // 
             this.txtTR.Location = new System.Drawing.Point(588, 198);
-            this.txtTR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTR.Margin = new System.Windows.Forms.Padding(4);
             this.txtTR.Name = "txtTR";
             this.txtTR.Size = new System.Drawing.Size(287, 22);
             this.txtTR.TabIndex = 34;
@@ -421,7 +421,7 @@
             // txtNapomena
             // 
             this.txtNapomena.Location = new System.Drawing.Point(588, 262);
-            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(287, 22);
             this.txtNapomena.TabIndex = 36;
@@ -439,7 +439,7 @@
             // txtMaticniBroj
             // 
             this.txtMaticniBroj.Location = new System.Drawing.Point(588, 294);
-            this.txtMaticniBroj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMaticniBroj.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaticniBroj.Name = "txtMaticniBroj";
             this.txtMaticniBroj.Size = new System.Drawing.Size(287, 22);
             this.txtMaticniBroj.TabIndex = 38;
@@ -457,7 +457,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(588, 326);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(287, 22);
             this.txtEmail.TabIndex = 40;
@@ -475,7 +475,7 @@
             // txtPIB
             // 
             this.txtPIB.Location = new System.Drawing.Point(588, 358);
-            this.txtPIB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPIB.Margin = new System.Windows.Forms.Padding(4);
             this.txtPIB.Name = "txtPIB";
             this.txtPIB.Size = new System.Drawing.Size(287, 22);
             this.txtPIB.TabIndex = 42;
@@ -570,7 +570,7 @@
             this.chkVlasnik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkVlasnik.ForeColor = System.Drawing.Color.Black;
             this.chkVlasnik.Location = new System.Drawing.Point(23, 468);
-            this.chkVlasnik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkVlasnik.Margin = new System.Windows.Forms.Padding(4);
             this.chkVlasnik.Name = "chkVlasnik";
             this.chkVlasnik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkVlasnik.Size = new System.Drawing.Size(139, 21);
@@ -584,7 +584,7 @@
             this.chkOrganizator.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkOrganizator.ForeColor = System.Drawing.Color.Black;
             this.chkOrganizator.Location = new System.Drawing.Point(212, 379);
-            this.chkOrganizator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkOrganizator.Margin = new System.Windows.Forms.Padding(4);
             this.chkOrganizator.Name = "chkOrganizator";
             this.chkOrganizator.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkOrganizator.Size = new System.Drawing.Size(83, 21);
@@ -598,7 +598,7 @@
             this.chkPlatilac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPlatilac.ForeColor = System.Drawing.Color.Black;
             this.chkPlatilac.Location = new System.Drawing.Point(212, 350);
-            this.chkPlatilac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPlatilac.Margin = new System.Windows.Forms.Padding(4);
             this.chkPlatilac.Name = "chkPlatilac";
             this.chkPlatilac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPlatilac.Size = new System.Drawing.Size(73, 21);
@@ -612,7 +612,7 @@
             this.chkSpediter.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkSpediter.ForeColor = System.Drawing.Color.Black;
             this.chkSpediter.Location = new System.Drawing.Point(23, 498);
-            this.chkSpediter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSpediter.Margin = new System.Windows.Forms.Padding(4);
             this.chkSpediter.Name = "chkSpediter";
             this.chkSpediter.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkSpediter.Size = new System.Drawing.Size(78, 21);
@@ -626,7 +626,7 @@
             this.chkBrodar.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkBrodar.ForeColor = System.Drawing.Color.Black;
             this.chkBrodar.Location = new System.Drawing.Point(21, 437);
-            this.chkBrodar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkBrodar.Margin = new System.Windows.Forms.Padding(4);
             this.chkBrodar.Name = "chkBrodar";
             this.chkBrodar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkBrodar.Size = new System.Drawing.Size(71, 21);
@@ -640,7 +640,7 @@
             this.chkNalogodavac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkNalogodavac.ForeColor = System.Drawing.Color.Black;
             this.chkNalogodavac.Location = new System.Drawing.Point(212, 406);
-            this.chkNalogodavac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkNalogodavac.Margin = new System.Windows.Forms.Padding(4);
             this.chkNalogodavac.Name = "chkNalogodavac";
             this.chkNalogodavac.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkNalogodavac.Size = new System.Drawing.Size(107, 21);
@@ -654,7 +654,7 @@
             this.chkUvoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUvoznik.ForeColor = System.Drawing.Color.Black;
             this.chkUvoznik.Location = new System.Drawing.Point(212, 437);
-            this.chkUvoznik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkUvoznik.Margin = new System.Windows.Forms.Padding(4);
             this.chkUvoznik.Name = "chkUvoznik";
             this.chkUvoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkUvoznik.Size = new System.Drawing.Size(78, 21);
@@ -665,7 +665,7 @@
             // txtMUAdresa
             // 
             this.txtMUAdresa.Location = new System.Drawing.Point(588, 454);
-            this.txtMUAdresa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMUAdresa.Margin = new System.Windows.Forms.Padding(4);
             this.txtMUAdresa.Name = "txtMUAdresa";
             this.txtMUAdresa.Size = new System.Drawing.Size(287, 22);
             this.txtMUAdresa.TabIndex = 206;
@@ -683,7 +683,7 @@
             // txtMUKontakt
             // 
             this.txtMUKontakt.Location = new System.Drawing.Point(588, 486);
-            this.txtMUKontakt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMUKontakt.Margin = new System.Windows.Forms.Padding(4);
             this.txtMUKontakt.Name = "txtMUKontakt";
             this.txtMUKontakt.Size = new System.Drawing.Size(287, 22);
             this.txtMUKontakt.TabIndex = 208;
@@ -701,7 +701,7 @@
             // txtTR2
             // 
             this.txtTR2.Location = new System.Drawing.Point(588, 230);
-            this.txtTR2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTR2.Margin = new System.Windows.Forms.Padding(4);
             this.txtTR2.Name = "txtTR2";
             this.txtTR2.Size = new System.Drawing.Size(287, 22);
             this.txtTR2.TabIndex = 210;
@@ -719,7 +719,7 @@
             // txtUICDrzava
             // 
             this.txtUICDrzava.Location = new System.Drawing.Point(120, 270);
-            this.txtUICDrzava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUICDrzava.Margin = new System.Windows.Forms.Padding(4);
             this.txtUICDrzava.Name = "txtUICDrzava";
             this.txtUICDrzava.Size = new System.Drawing.Size(189, 22);
             this.txtUICDrzava.TabIndex = 212;
@@ -737,7 +737,7 @@
             // txtFaks
             // 
             this.txtFaks.Location = new System.Drawing.Point(588, 390);
-            this.txtFaks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFaks.Margin = new System.Windows.Forms.Padding(4);
             this.txtFaks.Name = "txtFaks";
             this.txtFaks.Size = new System.Drawing.Size(287, 22);
             this.txtFaks.TabIndex = 214;
@@ -758,7 +758,7 @@
             this.chkIzvoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIzvoznik.ForeColor = System.Drawing.Color.Black;
             this.chkIzvoznik.Location = new System.Drawing.Point(212, 468);
-            this.chkIzvoznik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkIzvoznik.Margin = new System.Windows.Forms.Padding(4);
             this.chkIzvoznik.Name = "chkIzvoznik";
             this.chkIzvoznik.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkIzvoznik.Size = new System.Drawing.Size(78, 21);
@@ -772,7 +772,7 @@
             this.chkLogisitcar.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkLogisitcar.ForeColor = System.Drawing.Color.Black;
             this.chkLogisitcar.Location = new System.Drawing.Point(212, 498);
-            this.chkLogisitcar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkLogisitcar.Margin = new System.Windows.Forms.Padding(4);
             this.chkLogisitcar.Name = "chkLogisitcar";
             this.chkLogisitcar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkLogisitcar.Size = new System.Drawing.Size(88, 21);
@@ -786,7 +786,7 @@
             this.chkAgentBrodara.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkAgentBrodara.ForeColor = System.Drawing.Color.Black;
             this.chkAgentBrodara.Location = new System.Drawing.Point(347, 383);
-            this.chkAgentBrodara.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAgentBrodara.Margin = new System.Windows.Forms.Padding(4);
             this.chkAgentBrodara.Name = "chkAgentBrodara";
             this.chkAgentBrodara.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAgentBrodara.Size = new System.Drawing.Size(115, 21);
@@ -800,7 +800,7 @@
             this.chkKamioner.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkKamioner.ForeColor = System.Drawing.Color.Black;
             this.chkKamioner.Location = new System.Drawing.Point(347, 351);
-            this.chkKamioner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkKamioner.Margin = new System.Windows.Forms.Padding(4);
             this.chkKamioner.Name = "chkKamioner";
             this.chkKamioner.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkKamioner.Size = new System.Drawing.Size(88, 21);
@@ -811,7 +811,7 @@
             // btnDrzava
             // 
             this.btnDrzava.Location = new System.Drawing.Point(897, 102);
-            this.btnDrzava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDrzava.Margin = new System.Windows.Forms.Padding(4);
             this.btnDrzava.Name = "btnDrzava";
             this.btnDrzava.Size = new System.Drawing.Size(15, 20);
             this.btnDrzava.TabIndex = 216;
@@ -833,7 +833,7 @@
             this.panel1.Controls.Add(this.dataGridView3);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Location = new System.Drawing.Point(961, 75);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(765, 441);
             this.panel1.TabIndex = 217;
@@ -841,7 +841,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(621, 6);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 44);
             this.button4.TabIndex = 5;
@@ -852,7 +852,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(513, 6);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 44);
             this.button3.TabIndex = 5;
@@ -871,7 +871,7 @@
             this.panel5.Controls.Add(this.label29);
             this.panel5.Controls.Add(this.label30);
             this.panel5.Location = new System.Drawing.Point(443, 95);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(303, 295);
             this.panel5.TabIndex = 4;
@@ -890,7 +890,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(57, 196);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(172, 33);
             this.button5.TabIndex = 2;
@@ -901,7 +901,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(76, 151);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 22);
             this.textBox1.TabIndex = 1;
@@ -909,7 +909,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(76, 96);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(123, 22);
             this.textBox2.TabIndex = 1;
@@ -917,7 +917,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(19, 36);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(243, 22);
             this.textBox3.TabIndex = 1;
@@ -964,7 +964,7 @@
             this.panel4.Controls.Add(this.label24);
             this.panel4.Controls.Add(this.label23);
             this.panel4.Location = new System.Drawing.Point(21, 95);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(303, 295);
             this.panel4.TabIndex = 4;
@@ -983,7 +983,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(57, 196);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(172, 33);
             this.button2.TabIndex = 2;
@@ -994,7 +994,7 @@
             // txtUnesiValutu
             // 
             this.txtUnesiValutu.Location = new System.Drawing.Point(76, 151);
-            this.txtUnesiValutu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUnesiValutu.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnesiValutu.Name = "txtUnesiValutu";
             this.txtUnesiValutu.Size = new System.Drawing.Size(123, 22);
             this.txtUnesiValutu.TabIndex = 1;
@@ -1002,7 +1002,7 @@
             // txtUnesiOznaku
             // 
             this.txtUnesiOznaku.Location = new System.Drawing.Point(76, 96);
-            this.txtUnesiOznaku.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUnesiOznaku.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnesiOznaku.Name = "txtUnesiOznaku";
             this.txtUnesiOznaku.Size = new System.Drawing.Size(123, 22);
             this.txtUnesiOznaku.TabIndex = 1;
@@ -1010,7 +1010,7 @@
             // txtUnesiDrzavu
             // 
             this.txtUnesiDrzavu.Location = new System.Drawing.Point(19, 36);
-            this.txtUnesiDrzavu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUnesiDrzavu.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnesiDrzavu.Name = "txtUnesiDrzavu";
             this.txtUnesiDrzavu.Size = new System.Drawing.Size(243, 22);
             this.txtUnesiDrzavu.TabIndex = 1;
@@ -1058,7 +1058,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(95, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 2;
@@ -1071,7 +1071,7 @@
             this.btnMin.BackColor = System.Drawing.Color.Linen;
             this.btnMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMin.Location = new System.Drawing.Point(4, 5);
-            this.btnMin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMin.Margin = new System.Windows.Forms.Padding(4);
             this.btnMin.Name = "btnMin";
             this.btnMin.Size = new System.Drawing.Size(71, 28);
             this.btnMin.TabIndex = 1;
@@ -1085,7 +1085,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(396, 73);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.Size = new System.Drawing.Size(365, 364);
@@ -1097,7 +1097,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(4, 71);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.Size = new System.Drawing.Size(337, 366);
@@ -1117,7 +1117,7 @@
             // 
             this.cbDobavljac.AutoSize = true;
             this.cbDobavljac.Location = new System.Drawing.Point(331, 287);
-            this.cbDobavljac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbDobavljac.Margin = new System.Windows.Forms.Padding(4);
             this.cbDobavljac.Name = "cbDobavljac";
             this.cbDobavljac.Size = new System.Drawing.Size(91, 20);
             this.cbDobavljac.TabIndex = 218;
@@ -1128,7 +1128,7 @@
             // 
             this.cbObveznik.AutoSize = true;
             this.cbObveznik.Location = new System.Drawing.Point(331, 262);
-            this.cbObveznik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbObveznik.Margin = new System.Windows.Forms.Padding(4);
             this.cbObveznik.Name = "cbObveznik";
             this.cbObveznik.Size = new System.Drawing.Size(132, 20);
             this.cbObveznik.TabIndex = 219;
@@ -1149,7 +1149,7 @@
             // 
             this.cboValuta.FormattingEnabled = true;
             this.cboValuta.Location = new System.Drawing.Point(588, 517);
-            this.cboValuta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboValuta.Margin = new System.Windows.Forms.Padding(4);
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(104, 24);
             this.cboValuta.TabIndex = 220;
@@ -1158,7 +1158,7 @@
             // 
             this.cboKupac.AutoSize = true;
             this.cboKupac.Location = new System.Drawing.Point(331, 310);
-            this.cboKupac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboKupac.Margin = new System.Windows.Forms.Padding(4);
             this.cboKupac.Name = "cboKupac";
             this.cboKupac.Size = new System.Drawing.Size(67, 20);
             this.cboKupac.TabIndex = 218;
@@ -1168,7 +1168,7 @@
             // numFREC
             // 
             this.numFREC.Location = new System.Drawing.Point(791, 518);
-            this.numFREC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numFREC.Margin = new System.Windows.Forms.Padding(4);
             this.numFREC.Name = "numFREC";
             this.numFREC.Size = new System.Drawing.Size(103, 22);
             this.numFREC.TabIndex = 221;
@@ -1192,7 +1192,7 @@
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 31);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1819, 40);
             this.panelHeader.TabIndex = 463;
@@ -1205,7 +1205,7 @@
             this.panel2.Controls.Add(this.btnFirme);
             this.panel2.Controls.Add(this.button27);
             this.panel2.Location = new System.Drawing.Point(152, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1354, 38);
             this.panel2.TabIndex = 7;
@@ -1223,7 +1223,7 @@
             this.btnFirme.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnFirme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.btnFirme.Location = new System.Drawing.Point(148, 0);
-            this.btnFirme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFirme.Margin = new System.Windows.Forms.Padding(4);
             this.btnFirme.Name = "btnFirme";
             this.btnFirme.Size = new System.Drawing.Size(75, 38);
             this.btnFirme.TabIndex = 22;
@@ -1245,7 +1245,7 @@
             this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(0, 0);
-            this.button27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button27.Margin = new System.Windows.Forms.Padding(4);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(148, 38);
             this.button27.TabIndex = 20;
@@ -1262,7 +1262,7 @@
             this.panel3.Controls.Add(this.button22);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(144, 38);
             this.panel3.TabIndex = 2;
@@ -1278,7 +1278,7 @@
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button20.Location = new System.Drawing.Point(93, 4);
-            this.button20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button20.Margin = new System.Windows.Forms.Padding(4);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(36, 33);
             this.button20.TabIndex = 15;
@@ -1297,7 +1297,7 @@
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.Location = new System.Drawing.Point(52, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
             this.button21.TabIndex = 14;
@@ -1336,7 +1336,7 @@
             // txtERPID
             // 
             this.txtERPID.Location = new System.Drawing.Point(588, 79);
-            this.txtERPID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtERPID.Margin = new System.Windows.Forms.Padding(4);
             this.txtERPID.Name = "txtERPID";
             this.txtERPID.Size = new System.Drawing.Size(287, 22);
             this.txtERPID.TabIndex = 465;
@@ -1357,7 +1357,7 @@
             this.chkDrumskiPrevoz.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkDrumskiPrevoz.ForeColor = System.Drawing.Color.Black;
             this.chkDrumskiPrevoz.Location = new System.Drawing.Point(21, 529);
-            this.chkDrumskiPrevoz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkDrumskiPrevoz.Margin = new System.Windows.Forms.Padding(4);
             this.chkDrumskiPrevoz.Name = "chkDrumskiPrevoz";
             this.chkDrumskiPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkDrumskiPrevoz.Size = new System.Drawing.Size(121, 21);
@@ -1372,7 +1372,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.Controls.Add(this.gridGroupingControl1);
             this.panel6.Location = new System.Drawing.Point(19, 556);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1800, 479);
             this.panel6.TabIndex = 468;
@@ -1391,7 +1391,7 @@
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
             this.gridGroupingControl1.Location = new System.Drawing.Point(21, 4);
-            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
@@ -1489,7 +1489,7 @@
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.lblNaziv);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPartnerji";
             this.Text = " PARTNERI";
             this.Load += new System.EventHandler(this.frmPartnerji_Load);

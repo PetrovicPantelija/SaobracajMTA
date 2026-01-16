@@ -18,6 +18,7 @@ namespace Saobracaj.Drumski
         private DataTable dtRadniNalozi;
         int brojRedova = 0;
         private int RadniNalogID;
+        int brojDokumenata;
 
         public frmObradaUlaznihFaktura()
         {
@@ -29,6 +30,9 @@ namespace Saobracaj.Drumski
             this.KeyPreview = true;
             dtpPregleda.Value = DateTime.Today;
             btnIzadjiBezPromena.Visible = false;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MMMM yyyy";
+            dateTimePicker1.ShowUpDown = false; // uklanja kalendar
         }
 
         private void ChangeTextBox()
@@ -211,7 +215,7 @@ namespace Saobracaj.Drumski
                             p.PaNaziv AS Prevoznik,
                             pa.PaNaziv AS Klijent,
                             a.Vozac AS Kamioner,
-                            rn.Cena,
+                            rn.Trosak AS Cena,
                             '' AS BL,
                             i.BookingBrodara AS Booking,
                             mu.Naziv AS MestoUtovara,
@@ -243,7 +247,7 @@ namespace Saobracaj.Drumski
                                p.PaNaziv AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                a.Vozac AS Kamioner,
-                               rn.Cena,
+                               rn.Trosak AS Cena,
                                '' AS BL,
                                i.BookingBrodara AS Booking,
                                mu.Naziv AS MestoUtovara,
@@ -276,7 +280,7 @@ namespace Saobracaj.Drumski
                                p.PaNaziv AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                a.Vozac AS Kamioner,
-                               rn.Cena,
+                               rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
                                mu.Naziv AS MestoUtovara,
@@ -310,7 +314,7 @@ namespace Saobracaj.Drumski
                                p.PaNaziv AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                a.Vozac AS Kamioner,
-                               rn.Cena,
+                               rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
                                mu.Naziv AS MestoUtovara,
@@ -344,7 +348,7 @@ namespace Saobracaj.Drumski
                                p.PaNaziv AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                a.Vozac AS Kamioner,
-                               rn.Cena,
+                               rn.Trosak AS Cena,
                                rn.BrodskaTeretnica AS BL,
                                rn.BookingBrodara AS Booking,
                                mu.Naziv AS MestoUtovara,
@@ -472,6 +476,297 @@ namespace Saobracaj.Drumski
             dynamicFilter.WireGrid(gridGroupingControl1);
         }
 
+        private void RefreshGridBezUlazneFakture()
+        {
+            var select = "";
+
+            DateTime izabraniMesec = dateTimePicker1.Value;
+            DateTime od = new DateTime(izabraniMesec.Year, izabraniMesec.Month, 1);
+            DateTime doo = od.AddMonths(1);
+
+            select = $@" 
+
+                        WITH Dokumenti AS (
+                            SELECT
+                                RadniNalogDrumskiID,
+                                 COUNT(*) AS BrojDokumenata
+                            FROM DokumentaRadnogNalogaDrumski
+                            GROUP BY RadniNalogDrumskiID
+                        )
+
+                        SELECT 
+                                de.ID AS KontejnerID, 
+                                de.NalogID AS CNTBroj,
+                                ISNULL(de.Prevoznik, '')   + ' / '  + ISNULL(de.Kamioner, '') AS [Prevoznik / Kamioner],
+                                de.Klijent as Nalogodavac,
+                                de.Relacija,
+                                pa.ArtikalNaziv,
+                                de.Cena,
+                                '' as UlaznaFaktura,
+                                de.BL,
+                                de.Booking,
+                                CONVERT(varchar, GETDATE(),104) AS DatumIzmene,
+                                de.MestoUtovara,
+                                de.MestoIstovara,
+                                de.BrojKontejnera,
+                                pa.ArtikalSifra,
+                                de.TipTransporta,
+                                de.AutoDan,
+                                de.PDV,
+                                de.DodatniTrosakTransporta,
+                                de.Uvoz,
+                                de.DatumUtovara,
+                                de.DtPreuzimanjaPraznogKontejnera,
+                                doc.BrojDokumenata AS Dokumenta
+                                
+                         FROM
+                           ( SELECT  
+                            rn.ID,
+                            rn.NalogID,
+                            p.PaNaziv AS Prevoznik,
+                            pa.PaNaziv AS Klijent,
+                            a.Vozac AS Kamioner,
+                            rn.Trosak AS Cena,
+                            '' AS BL,
+                            i.BookingBrodara AS Booking,
+                            mu.Naziv AS MestoUtovara,
+                            mi.Naziv AS MestoIstovara,
+                            i.BrojKontejnera,
+                            LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                            rn.TipTransporta,
+                            rn.AutoDan,
+                            rn.PDV,
+                            rn.DodatniTrosakTransporta,
+                            rn.Uvoz, 
+                            rn.DatumUtovara,
+                            rn.DtPreuzimanjaPraznogKontejnera
+                        FROM RadniNalogDrumski rn
+                        INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
+                        LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        INNER JOIN IzvozKonacna i ON i.ID = rn.KontejnerID
+                        LEFT JOIN MestaUtovara mu ON mu.ID = i.MesoUtovara
+                        LEFT JOIN MestaUtovara mi ON mi.ID = rn.MestoIstovara
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
+                        LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        WHERE rn.Uvoz = 0  AND ISNULL(rn.PoslataNajava, 0) = 1  AND fds.ID IS NULL  AND
+                             ( (rn.TipTransporta = 2 AND rn.DatumUtovara >= @Od AND rn.DatumUtovara <  @Do) OR (DtPreuzimanjaPraznogKontejnera >= @Od AND DtPreuzimanjaPraznogKontejnera <  @Do))
+
+                        UNION ALL
+                        -- 2)
+                        SELECT rn.ID,
+                               rn.NalogID,
+                               p.PaNaziv AS Prevoznik,
+                               pa.PaNaziv AS Klijent,
+                               a.Vozac AS Kamioner,
+                               rn.Trosak AS Cena,
+                               '' AS BL,
+                               i.BookingBrodara AS Booking,
+                               mu.Naziv AS MestoUtovara,
+                               mi.Naziv AS MestoIstovara,
+                               i.BrojKontejnera,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                               rn.TipTransporta,
+                               rn.AutoDan,
+                               rn.PDV,
+                               rn.DodatniTrosakTransporta,
+                               rn.Uvoz, 
+                               rn.DatumUtovara,
+                               rn.DtPreuzimanjaPraznogKontejnera
+                        FROM RadniNalogDrumski rn
+                        INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
+                        LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
+                        LEFT JOIN VrstaVozila vv ON vv.ID = i.Cirada
+                        LEFT JOIN MestaUtovara mu ON mu.ID = i.MesoUtovara 
+                        LEFT JOIN MestaUtovara mi ON mi.ID = rn.MestoIstovara
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
+                        LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        WHERE rn.Uvoz = 0 AND ISNULL(rn.PoslataNajava, 0) = 1  AND fds.ID IS NULL AND 
+                                ((rn.TipTransporta = 2 AND rn.DatumUtovara >= @Od AND rn.DatumUtovara <  @Do) OR (DtPreuzimanjaPraznogKontejnera >= @Od AND DtPreuzimanjaPraznogKontejnera <  @Do))
+                        UNION ALL
+                        -- 3)
+                        SELECT rn.ID, 
+                               rn.NalogID,
+                               p.PaNaziv AS Prevoznik,
+                               pa.PaNaziv AS Klijent,
+                               a.Vozac AS Kamioner,
+                               rn.Trosak AS Cena,
+                               i.BrodskaTeretnica AS BL,
+                               0  AS Booking,
+                               mu.Naziv AS MestoUtovara,
+                               mi.Naziv AS MestoIstovara,
+                               i.BrojKontejnera,
+                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               rn.TipTransporta,
+                               rn.AutoDan,
+                               rn.PDV,
+                               rn.DodatniTrosakTransporta,
+                               rn.Uvoz, 
+                               rn.DatumUtovara,
+                               rn.DtPreuzimanjaPraznogKontejnera
+                        FROM RadniNalogDrumski rn
+                        INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
+                        LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        INNER JOIN UvozKonacna i ON i.ID = rn.KontejnerID
+                        LEFT JOIN VrstaVozila vv ON vv.ID = rn.TipTransporta
+                        LEFT JOIN MestaUtovara mu ON mu.ID = rn.MestoUtovara 
+                        LEFT JOIN MestaUtovara mi ON mi.ID = i.MestoIstovara
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = i.Nalogodavac3
+                        LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.PoslataNajava, 0) = 1 AND fds.ID IS NULL AND
+                             (  (rn.TipTransporta = 2 AND rn.DatumUtovara >= @Od AND rn.DatumUtovara <  @Do) OR (DtPreuzimanjaPraznogKontejnera >= @Od AND DtPreuzimanjaPraznogKontejnera <  @Do))
+                        UNION ALL
+                        -- 4)
+
+                        SELECT rn.ID, 
+                               rn.NalogID,
+                               p.PaNaziv AS Prevoznik,
+                               pa.PaNaziv AS Klijent,
+                               a.Vozac AS Kamioner,
+                               rn.Trosak AS Cena,
+                               i.BrodskaTeretnica AS BL,
+                               0  AS Booking,
+                               mu.Naziv AS MestoUtovara,
+                               mi.Naziv AS MestoIstovara,
+                               i.BrojKontejnera,
+                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               rn.TipTransporta,
+                               rn.AutoDan,
+                               rn.PDV,
+                               rn.DodatniTrosakTransporta,
+                               rn.Uvoz, 
+                               rn.DatumUtovara,
+                               rn.DtPreuzimanjaPraznogKontejnera
+                              
+                        FROM RadniNalogDrumski rn
+                        INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
+                        LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
+                        INNER JOIN Uvoz i ON i.ID = rn.KontejnerID
+                        LEFT JOIN VrstaVozila vv ON vv.ID = rn.TipTransporta
+                        LEFT JOIN MestaUtovara mu ON mu.ID = rn.MestoUtovara 
+                        LEFT JOIN MestaUtovara mi ON mi.ID = i.MestoIstovara
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = i.Nalogodavac3
+                        LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.PoslataNajava, 0) = 1 AND fds.ID IS NULL AND
+                            (  (rn.TipTransporta = 2 AND rn.DatumUtovara >= @Od AND rn.DatumUtovara <  @Do) OR (DtPreuzimanjaPraznogKontejnera >= @Od AND DtPreuzimanjaPraznogKontejnera <  @Do))
+                        UNION ALL
+
+                           SELECT rn.ID, 
+                               rn.NalogID,
+                               p.PaNaziv AS Prevoznik,
+                               pa.PaNaziv AS Klijent,
+                               a.Vozac AS Kamioner,
+                               rn.Trosak AS Cena,
+                               rn.BrodskaTeretnica AS BL,
+                               rn.BookingBrodara AS Booking,
+                               mu.Naziv AS MestoUtovara,
+                               mi.Naziv AS MestoIstovara,
+                               rn.BrojKontejnera as BrojKontejnera,
+                               CASE WHEN rn.Uvoz IN (1, 2, 4) 
+                                            THEN LTRIM(RTRIM(mi.Naziv)) +' - ' + LTRIM(RTRIM(mu.Naziv))
+                                    WHEN rn.Uvoz IN (0, 3, 5) 
+                                            THEN LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
+                                    ELSE ''
+                               END AS Relacija,
+                               rn.TipTransporta,
+                               rn.AutoDan,
+                               rn.PDV,
+                               rn.DodatniTrosakTransporta,
+                               rn.Uvoz, 
+                               rn.DatumUtovara,
+                               rn.DtPreuzimanjaPraznogKontejnera
+                              
+                        FROM RadniNalogDrumski rn
+                        LEFT JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
+                        LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
+                        LEFT JOIN MestaUtovara mu ON mu.ID = rn.MestoUtovara 
+                        LEFT JOIN MestaUtovara mi ON mi.ID = rn.MestoIstovara
+                        LEFT JOIN Automobili a ON rn.KamionID = a.ID
+                        LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
+                        LEFT JOIN Partnerji p on  a.PartnerID = p.PaSifra
+                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.PoslataNajava, 0) = 1 AND fds.ID IS NULL AND
+                            (  (rn.TipTransporta = 2 AND rn.DatumUtovara >= @Od AND rn.DatumUtovara <  @Do) OR (DtPreuzimanjaPraznogKontejnera >= @Od AND DtPreuzimanjaPraznogKontejnera <  @Do))
+                ) de
+                  LEFT JOIN PraviloArtikla pa ON pa.TipNalogaID = de.Uvoz
+                                         AND pa.TipTransportaID = de.TipTransporta
+                                         AND ISNULL(pa.AutoDan, 0) = ISNULL(de.AutoDan, 0)
+                                         AND ISNULL(pa.PDV, 0) = ISNULL(de.PDV, 0)
+                                         AND ISNULL(pa.DodatniTrosak, 0)  = ISNULL(de.DodatniTrosakTransporta, 0)
+                  LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
+                ";
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(connection);
+
+            cmd.Parameters.Add("@Od", SqlDbType.DateTime).Value = od;
+            cmd.Parameters.Add("@Do", SqlDbType.DateTime).Value = doo;
+
+            cmd.CommandText = select;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            brojRedova = ds.Tables[0].Rows.Count;
+            dtRadniNalozi = ds.Tables[0];
+
+            // odlučivanje koji panel je vidljiv
+            if (brojRedova > 1)
+            {
+                panel2.Visible = true;
+                panel3.Visible = false;
+                btnIzadjiBezPromena.Visible = true;
+
+            }
+            else if (brojRedova == 1)
+            {
+                panel2.Visible = false;
+                panel3.Visible = true;
+                btnIzadjiBezPromena.Visible = false;
+
+                DataRow red = dtRadniNalozi.Rows[0];
+                int id = Convert.ToInt32(red["KontejnerID"]);
+
+                PrikaziDetalje(id);
+            }
+            else
+            {
+                panel2.Visible = false;
+                panel3.Visible = false;
+            }
+
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            // Ukloni kolone koje ne želiš da se vide
+            var colsToRemove = new[] { "MestoUtovara", "MestoIstovara", "BrojKontejnera", "ArtikalSifra", "TipTransporta", "AutoDan", "PDV", "DodatniTrosakTransporta", "Uvoz", "DatumUtovara", "DtPreuzimanjaPraznogKontejnera" }; // "Status" je Naziv
+            foreach (var col in colsToRemove)
+            {
+                if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
+                {
+                    gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
+                }
+            }
+
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(gridGroupingControl1);
+        }
+
         private void Grid_TableControl_CellDoubleClick(object sender, Syncfusion.Windows.Forms.Grid.GridCellClickEventArgs e)
         {
             // e.Inner.RowIndex > 0 znači da je kliknut red, ne header
@@ -516,7 +811,7 @@ namespace Saobracaj.Drumski
                 txtArtikal.Text = red["ArtikalNaziv"].ToString();
                 txtBrojUlazneFakture.Text = red["UlaznaFaktura"].ToString();
                 txtPrilozenaDokumenta.Text = red["Dokumenta"].ToString();
-
+                brojDokumenata = red["Dokumenta"] == DBNull.Value || string.IsNullOrWhiteSpace(red["Dokumenta"].ToString()) ? 0  : Convert.ToInt32(red["Dokumenta"]);
                 if (red["DatumIzmene"] != DBNull.Value)
                 {
                     dtpPregleda.Value = Convert.ToDateTime(red["DatumIzmene"]);
@@ -622,6 +917,7 @@ namespace Saobracaj.Drumski
             int zaposleni = PostaviVrednostZaposleni();
 
             // 2. ULAZNA FAKTURA
+          
 
             if (ulaznaID == null)
             {
@@ -634,6 +930,17 @@ namespace Saobracaj.Drumski
                 // Update
                 ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
                 izmena = 1;
+            }
+
+            if (brojDokumenata == 0)
+            {
+
+                MessageBox.Show(
+                  "Ova ulazna faktura nema dodatu ulaznu dokumentaciju!\n\n",
+                  "Upozorenje!",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Warning
+              );
             }
 
             if (izmena == 1)
@@ -685,6 +992,11 @@ namespace Saobracaj.Drumski
                 panel3.Visible = false;
                 panel2.Visible = true;
             }
-        }      
+        }
+
+        private void btnBezUlazneFakture_Click(object sender, EventArgs e)
+        {
+            RefreshGridBezUlazneFakture();
+        }
     }
 }

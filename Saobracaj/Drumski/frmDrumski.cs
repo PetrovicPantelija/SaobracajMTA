@@ -51,7 +51,7 @@ namespace Saobracaj.Drumski
             }
             lbtHederTekst.Text = "";
             lbtHederTekst.Visible = true;
-            button1.Visible = false;
+            button1.Visible = true;
             button4.Visible = false;
         }
 
@@ -81,6 +81,8 @@ namespace Saobracaj.Drumski
                 status = true;
                 lbtHederTekst.Text = "UNOS NOVOG ZAPISA JE U TOKU!";
                 lbtHederTekst.Visible = true;
+                button1.Visible = false;
+                button4.Visible = false;
             }
             else
             {
@@ -112,6 +114,8 @@ namespace Saobracaj.Drumski
                 status = true;
                 lbtHederTekst.Text = "UNOS NOVOG ZAPISA JE U TOKU!";
                 lbtHederTekst.Visible = true;
+                button1.Visible = false;
+                button4.Visible = false;
             }
             else
             {
@@ -126,10 +130,9 @@ namespace Saobracaj.Drumski
             }
         
             drumskiNew = true;
-            button3.Visible = false;
-            button1.Visible = false;
+            button3.Visible = false;      
             button21.Visible = false;
-            button4.Visible = false;
+            
         }
 
         public frmDrumski(int ID)

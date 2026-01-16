@@ -55,90 +55,21 @@ namespace Saobracaj.MainLeget.Drumski
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+                
             main.OtvoriFormuSaPravom(
                 btnNalogDrumski.Text,
                 () => new NalogZaDrumski(tipoviIn: null, tipoviNotIn: new List<int> { 1,2})
+            );
+        }
+
+        private void btnPonude_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPonude.Text,
+                () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
             );
         }
     }

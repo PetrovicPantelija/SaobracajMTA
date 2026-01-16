@@ -72,7 +72,13 @@ namespace Saobracaj.MainLeget.Drumski
 
         private void btnPonude_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            main.OtvoriFormuSaPravom(
+                btnPonude.Text,
+                () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
+            );
         }
     }
 }
