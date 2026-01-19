@@ -239,6 +239,9 @@ namespace Saobracaj.Sifarnici
                     int drugiRedX = 159;
                     int drugiRedY = 345;
 
+                    int treciRedX = 313;
+                    int treciRedY = 345;
+
                     chkLogisitcar.Visible = true;
                     chkLogisitcar.Location = new Point(prviRedX, prviRedY);
 
@@ -269,7 +272,10 @@ namespace Saobracaj.Sifarnici
                     chkOrganizator.Visible = true;
                     chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
 
-                    cbDobavljac.Location = new Point(drugiRedX, drugiRedY + 120);
+                    if(_currentMainId == 4)
+                        cbDobavljac.Location = new Point(treciRedX, treciRedY + 90);
+                    else
+                        cbDobavljac.Location = new Point(drugiRedX, drugiRedY + 120);
 
                     chkDrumskiPrevoz.Text = "Vozar/Transporter";
                     label2.Text = "ISO Code";

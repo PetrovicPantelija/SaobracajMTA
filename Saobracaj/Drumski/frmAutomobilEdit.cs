@@ -1,4 +1,5 @@
 ﻿using Saobracaj.Dokumenta;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
@@ -363,6 +364,12 @@ namespace Saobracaj.Drumski
             {
                 MessageBox.Show("Selektuj red za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnDodavanjePartnera_Click(object sender, EventArgs e)
+        {    
+            frmPartnerji pnd = new frmPartnerji(4);
+            pnd.Show();
         }
     }
 }
