@@ -48,10 +48,14 @@ namespace Saobracaj.MainLeget.Drumski
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
+            //main.OtvoriFormuSaPravom(
+            //    btnProvera.Text,
+            //    () => new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            //);
             main.OtvoriFormuSaPravom(
-                btnProvera.Text,
-                () => new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
-            );
+               btnProvera.Text,
+               () => new frmPodesavanjeRaspolozivosti(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+          );
 
         }
 
@@ -83,7 +87,7 @@ namespace Saobracaj.MainLeget.Drumski
 
             main.OtvoriFormuSaPravom(
                btnPonude.Text,
-               () => new frmAutomobiliDrumski()
+               () => new frmAutomobiliDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
            );
         }
     }

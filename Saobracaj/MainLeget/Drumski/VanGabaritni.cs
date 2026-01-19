@@ -14,6 +14,7 @@ namespace Saobracaj.MainLeget.Drumski
 {
     public partial class VanGabaritni : Form
     {
+
         public VanGabaritni()
         {
             InitializeComponent();
@@ -35,10 +36,14 @@ namespace Saobracaj.MainLeget.Drumski
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
+            //    main.OtvoriFormuSaPravom(
+            //        btnProvera.Text,
+            //        () => new frmRaspolozivostVozila(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
+            //    );
             main.OtvoriFormuSaPravom(
-                btnProvera.Text,
-                () => new frmRaspolozivostVozila(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
-            );
+                   btnProvera.Text,
+                   () => new frmPodesavanjeRaspolozivosti(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
+              );
         }
 
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
@@ -74,7 +79,7 @@ namespace Saobracaj.MainLeget.Drumski
             //);
             main.OtvoriFormuSaPravom(
                btnPonude.Text,
-               () => new frmAutomobiliDrumski()
+               () => new frmAutomobiliDrumski(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
            );
         }
     }

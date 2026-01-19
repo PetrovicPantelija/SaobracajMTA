@@ -19,6 +19,8 @@ namespace Saobracaj.Drumski
     public partial class frmPodesavanjeRaspolozivosti: Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
 
         public frmPodesavanjeRaspolozivosti()
         {
@@ -28,6 +30,18 @@ namespace Saobracaj.Drumski
             ucitajComboBox();
             RefreshDataGRid();
         }
+
+        public frmPodesavanjeRaspolozivosti(List<int> tipoviIn, List<int> tipoviNotIn)
+        {
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            InitializeComponent();
+            ChangeTextBox();
+            this.Text = "Tehnička dostupnost vozila";
+            ucitajComboBox();
+            RefreshDataGRid();
+        }
+
 
         private void ChangeTextBox()
         {
@@ -189,6 +203,20 @@ namespace Saobracaj.Drumski
               
                 string condition = "";
 
+                string uslovTipVozila = "";
+
+                if (_tipoviIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta IN ({lista}) ";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviNotIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta NOT IN ({lista}) ";
+                }
+
                 if (cboPrevoznikFilter.SelectedValue != null && int.TryParse(cboPrevoznikFilter.SelectedValue.ToString(), out int parsedPrevoznik) && parsedPrevoznik > -1)
                     condition = condition + " AND  a.PartnerID = " + parsedPrevoznik;
 
@@ -212,7 +240,7 @@ namespace Saobracaj.Drumski
                      LEFT JOIN AutomobiliTehnickiProblem atp ON
                      a.ID = atp.VoziloID AND CONVERT(date, atp.Datum) = CONVERT(date, GETDATE())
 
-                     WHERE a.VoziloDrumskog = 1 {condition}";
+                     WHERE a.VoziloDrumskog = 1 {condition} {uslovTipVozila}";
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
@@ -357,6 +385,11 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("Izabrano vozilo je označena kao raspoloživo.");
             RefreshDataGRid();
 
+        }
+
+        private void btnFiltriraj_Click(object sender, EventArgs e)
+        {
+            RefreshDataGRid();
         }
     }
 }

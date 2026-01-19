@@ -1416,6 +1416,7 @@ namespace Saobracaj.Drumski
                 button4.Visible = true;
                 if(!drumskiNew)
                     button21.Visible = true;
+                  btnFormiranjeNaloga.Visible = !(nalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
             }
             else
             {

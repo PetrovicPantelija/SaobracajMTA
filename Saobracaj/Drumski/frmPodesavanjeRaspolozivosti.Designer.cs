@@ -84,6 +84,8 @@
             // 
             // cboPrevoznikFilter
             // 
+            this.cboPrevoznikFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboPrevoznikFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPrevoznikFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrevoznikFilter.Location = new System.Drawing.Point(94, 15);
             this.cboPrevoznikFilter.Name = "cboPrevoznikFilter";
@@ -116,6 +118,7 @@
             this.btnFiltriraj.Size = new System.Drawing.Size(74, 23);
             this.btnFiltriraj.TabIndex = 10;
             this.btnFiltriraj.Text = "Filtriraj";
+            this.btnFiltriraj.Click += new System.EventHandler(this.btnFiltriraj_Click);
             // 
             // lblVremeSlanjaSMS
             // 

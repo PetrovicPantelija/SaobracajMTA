@@ -21,6 +21,9 @@ namespace Saobracaj.Dokumenta
         bool status = false;
         string id = "0";
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
+        int selekcijaPoTipuVozila = 0; 
 
         public frmAutomobiliDrumski()
         {
@@ -31,6 +34,21 @@ namespace Saobracaj.Dokumenta
             chkDatumD.Checked = true;
 
         }
+
+
+        public frmAutomobiliDrumski(List<int> tipoviIn, List<int> tipoviNotIn)
+        {
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            InitializeComponent();
+            ChangeTextBox();
+            ucitajComboBoxove();
+            UcitajFiltere();
+            chkDatumD.Checked = true;
+            selekcijaPoTipuVozila = 1;
+        }
+
+
         public frmAutomobiliDrumski(int ID)
         {
             id = ID.ToString();
@@ -195,6 +213,7 @@ namespace Saobracaj.Dokumenta
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv.ColumnHeadersHeight = 30;
         }
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -206,10 +225,18 @@ namespace Saobracaj.Dokumenta
                 // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
                 return;
             }
-      
-            frmAutomobilEdit pnd = new frmAutomobilEdit();
-            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
-            pnd.Show();
+            if (selekcijaPoTipuVozila == 1)
+            {
+                frmAutomobilEdit pnd = new frmAutomobilEdit(_tipoviIn, _tipoviNotIn);
+                pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                pnd.Show();
+            }
+            else
+            {
+                frmAutomobilEdit pnd = new frmAutomobilEdit();
+                pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                pnd.Show();
+            }
               
         }
  
@@ -237,7 +264,6 @@ namespace Saobracaj.Dokumenta
             }
             return false; // Forma nije pronađena
         }
-
 
         private void frmAutomobiliDrumski_Load(object sender, EventArgs e)
         {
@@ -341,6 +367,20 @@ namespace Saobracaj.Dokumenta
                 //"left join Partnerji p on  a.PartnerID = p.PaSifra  " +
                 //"WHERE a.VoziloDrumskog = 1 ";
 
+                string uslovTipVozila = "";
+
+                if (_tipoviIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta IN ({lista}) ";
+                }
+
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string lista = string.Join(",", _tipoviNotIn);
+                    uslovTipVozila += $" AND VlasnistvoLegeta NOT IN ({lista}) ";
+                }
+
 
                 var select = $@" SELECT a.ID AS ID,
                      LTRIM(RTRIM(vv.Naziv)) AS TipVozila,
@@ -370,7 +410,7 @@ namespace Saobracaj.Dokumenta
                      AND ISNULL(rnd.Arhiviran, 0) <> 1
                      AND (rnd.Status IS NULL OR rnd.Status NOT IN ( {statusiZaUpit} ))
 
-                     WHERE a.VoziloDrumskog = 1 {condition}";
+                     WHERE a.VoziloDrumskog = 1 {condition}  {uslovTipVozila}";
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
@@ -716,9 +756,19 @@ namespace Saobracaj.Dokumenta
                             return;
                         }
 
-                        frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
-                        pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
-                        pnd.Show();
+                        if (selekcijaPoTipuVozila == 1)
+                        {
+                            frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka,_tipoviIn, _tipoviNotIn);
+                            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                            pnd.Show();
+                        }
+                        else 
+                        {
+                            frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
+                            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                            pnd.Show();
+                        }
+                            
                         //DateTime danas = DateTime.Now;
                         //DateTime PP = Convert.ToDateTime(row.Cells[8].Value);
                         //DateTime pPomoc = Convert.ToDateTime(row.Cells[9].Value);
@@ -866,9 +916,18 @@ namespace Saobracaj.Dokumenta
                 return;
 
             // 5️⃣ Otvori edit formu
-            frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
-            pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
-            pnd.Show();
+            if (selekcijaPoTipuVozila == 1)
+            {
+                frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka, _tipoviIn, _tipoviNotIn);
+                pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                pnd.Show();
+            }
+            else
+            {
+                frmAutomobilEdit pnd = new frmAutomobilEdit(rowPodataka);
+                pnd.SnimanjeZavrseno += FrmAutomobilEdit_SnimanjeZavrseno;
+                pnd.Show();
+            }
             //if (dataGridView1.CurrentRow == null)
             //    return;
 

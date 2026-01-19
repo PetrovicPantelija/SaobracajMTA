@@ -397,6 +397,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "ARHIVIRAJ";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.btnArhiva_Click);
             // 
             // button2
