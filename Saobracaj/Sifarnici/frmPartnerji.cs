@@ -44,6 +44,7 @@ namespace Saobracaj.Sifarnici
         string Kupac = "";
         string Obveznik = "";
         int _currentMainId = 0;
+        public event EventHandler SnimanjeZavrseno;
 
         private void ChangeTextBox()
         {
@@ -1006,6 +1007,7 @@ namespace Saobracaj.Sifarnici
             status = false;
             RefreshDataGrid();
             RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -1015,6 +1017,7 @@ namespace Saobracaj.Sifarnici
             status = false;
             RefreshDataGrid();
             RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

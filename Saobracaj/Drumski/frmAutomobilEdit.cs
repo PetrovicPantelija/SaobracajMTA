@@ -369,7 +369,13 @@ namespace Saobracaj.Drumski
         private void btnDodavanjePartnera_Click(object sender, EventArgs e)
         {    
             frmPartnerji pnd = new frmPartnerji(4);
+            pnd.SnimanjeZavrseno += FrmPartnerji_SnimanjeZavrseno;
             pnd.Show();
+        }
+
+        private void FrmPartnerji_SnimanjeZavrseno(object sender, EventArgs e)
+        {
+            ucitajComboBoxove();
         }
     }
 }

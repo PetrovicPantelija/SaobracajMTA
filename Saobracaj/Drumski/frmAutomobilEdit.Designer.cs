@@ -83,6 +83,7 @@
             // 
             this.cboPrevoznik.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboPrevoznik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboPrevoznik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrevoznik.FormattingEnabled = true;
             this.cboPrevoznik.Location = new System.Drawing.Point(850, 112);
             this.cboPrevoznik.Margin = new System.Windows.Forms.Padding(4);
@@ -238,7 +239,7 @@
             this.panel1.Controls.Add(this.btnDodavanjePartnera);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 40);
@@ -308,7 +309,7 @@
             this.tsPoslednja});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1185, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1185, 31);
             this.meniHeader.TabIndex = 730;
             this.meniHeader.Text = "Osveži";
             // 
