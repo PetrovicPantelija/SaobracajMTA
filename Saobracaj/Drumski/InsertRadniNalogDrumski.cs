@@ -231,7 +231,7 @@ namespace Saobracaj.Drumski
             SqlParameter brojKontejnera = new SqlParameter();
             brojKontejnera.ParameterName = "@BrojKontejnera";
             brojKontejnera.SqlDbType = SqlDbType.NVarChar;
-            brojKontejnera.Size = 30;
+            brojKontejnera.Size = 200;
             brojKontejnera.Direction = ParameterDirection.Input;
             brojKontejnera.Value = (object)BrojKontejnera ?? DBNull.Value;
             cmd.Parameters.Add(brojKontejnera);
@@ -239,7 +239,7 @@ namespace Saobracaj.Drumski
             SqlParameter brojKontejnera2 = new SqlParameter();
             brojKontejnera2.ParameterName = "@BrojKontejnera2";
             brojKontejnera2.SqlDbType = SqlDbType.NVarChar;
-            brojKontejnera2.Size = 50;
+            brojKontejnera2.Size = 200;
             brojKontejnera2.Direction = ParameterDirection.Input;
             brojKontejnera2.Value = (object)BrojKontejnera2 ?? DBNull.Value;
             cmd.Parameters.Add(brojKontejnera2);
@@ -580,7 +580,7 @@ namespace Saobracaj.Drumski
             SqlParameter brojKontejnera = new SqlParameter();
             brojKontejnera.ParameterName = "@BrojKontejnera";
             brojKontejnera.SqlDbType = SqlDbType.NVarChar;
-            brojKontejnera.Size = 50;
+            brojKontejnera.Size = 200;
             brojKontejnera.Direction = ParameterDirection.Input;
             brojKontejnera.Value = (object)BrojKontejnera ?? DBNull.Value;
             cmd.Parameters.Add(brojKontejnera);
@@ -588,7 +588,7 @@ namespace Saobracaj.Drumski
             SqlParameter brojKontejnera2 = new SqlParameter();
             brojKontejnera2.ParameterName = "@BrojKontejnera2";
             brojKontejnera2.SqlDbType = SqlDbType.NVarChar;
-            brojKontejnera2.Size = 50;
+            brojKontejnera2.Size = 200;
             brojKontejnera2.Direction = ParameterDirection.Input;
             brojKontejnera2.Value = (object)BrojKontejnera2 ?? DBNull.Value;
             cmd.Parameters.Add(brojKontejnera2);

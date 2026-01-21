@@ -66,7 +66,7 @@ namespace Saobracaj.MainLeget.Drumski
 
             main.OtvoriFormuSaPravom(
                 btnFormiranjeNaloga.Text,
-                () =>new PakovanjeKamiona1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+                () =>new PakovanjeKamionaCerade(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
             );
         }
 

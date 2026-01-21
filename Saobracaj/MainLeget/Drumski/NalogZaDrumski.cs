@@ -32,7 +32,7 @@ namespace Saobracaj.MainLeget.Drumski
         private void btnTransportIzvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila, tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 1 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila, tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 1 }, false, "TransportIzvoz"), true);
         }
 
         private void btnNovi_Click(object sender, EventArgs e)
@@ -44,25 +44,25 @@ namespace Saobracaj.MainLeget.Drumski
         private void btnIzmeni_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila , tipoviNotIn: _listNotIn, null, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila , tipoviNotIn: _listNotIn, null, false, "Izmeni"), true);
         }
 
         private void btnTransportUvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 0 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 0 }, false, "TransportUvoz"), true);
         }
 
         private void btnTransportDirektni_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 2, 3, 4, 5 }, false), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 2, 3, 4, 5 }, false, "TransportDirektni"), true);
         }
 
         private void btnOtkazi_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, null, true), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, null, true, "Otkazi"), true);
         }
 
         

@@ -26,7 +26,7 @@ namespace Saobracaj.Drumski
         private SqlDataAdapter dataAdapter;
         private DataTable mainTable;
         int? Nalogodavac = null;
-        string dan = null;
+        int? dan = null;
         private int? nalogID;
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
@@ -35,6 +35,7 @@ namespace Saobracaj.Drumski
         private bool dozvoliOtkazivanjeZapisa = false;
         private bool drumskiNew = false; // nova verzija programa
         private bool duplirajZapisVisible = false;
+        private string forma;
 
         public frmPregledNalogaDrumski()
         {
@@ -43,7 +44,7 @@ namespace Saobracaj.Drumski
             RefreshGrid();
         }
 
-        public frmPregledNalogaDrumski(int NalogID, int? NalogodavacID, string Dan)
+        public frmPregledNalogaDrumski(int NalogID, int? NalogodavacID, int? Dan)
         {
             nalogID = NalogID;
             Nalogodavac = NalogodavacID;
@@ -58,7 +59,7 @@ namespace Saobracaj.Drumski
             this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
 
         }
-        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, int NalogID, int? NalogodavacID, string Dan)
+        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, int NalogID, int? NalogodavacID, int? Dan)
         {
             nalogID = NalogID;
             Nalogodavac = NalogodavacID;
@@ -76,12 +77,12 @@ namespace Saobracaj.Drumski
 
             this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
             dozvoliContextMenu = true;
-            dozvoliOtkazivanjeZapisa = false;
+            //dozvoliOtkazivanjeZapisa = false;
             drumskiNew = true;
             duplirajZapisVisible = true;
         }
 
-        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, List<int> tipoviNaloga, bool otkaziZapis)
+        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, List<int> tipoviNaloga, bool otkaziZapis, string nazivForme)
         {
             //nalogID = NalogID;
             //Nalogodavac = NalogodavacID;
@@ -90,19 +91,31 @@ namespace Saobracaj.Drumski
             tipNaloga = tipoviNaloga;
             _tipoviIn = tipoviIn;
             _tipoviNotIn = tipoviNotIn;
+            forma = nazivForme;
             ChangeTextBox();
             RefreshGrid();
             dozvoliContextMenu = true;
-            dozvoliOtkazivanjeZapisa = otkaziZapis;
+
+            //dozvoliOtkazivanjeZapisa = otkaziZapis;
             btnDodeliKamion.Visible = false;
             button3.Visible = false;
             btnFormiranjeNaloga.Visible = false;
             btnDopunaNaloga.Visible = false;
-            button6.Visible = false;
+           
             drumskiNew = true;
-            if (otkaziZapis == true)
+            //if (otkaziZapis == true)
+            //{
+            if (forma == "Otkazi")
+            {
                 button1.Visible = false;
+                button6.Visible = false;
 
+            }
+            else if (forma == "TransportUvoz" || forma == "TransportIzvoz")
+            {
+                button6.Visible = false;
+            }
+            
         }
 
         private void ChangeTextBox()
@@ -207,6 +220,9 @@ namespace Saobracaj.Drumski
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             var connection = new SqlConnection(s_connection);
             List<string> statusi = new List<string>();
+            DateTime datumOd = DateTime.MinValue;
+            DateTime datumDo = DateTime.MinValue;
+
             using (connection)
             {
                 connection.Open();
@@ -231,23 +247,40 @@ namespace Saobracaj.Drumski
                 {
                     conditionNalogodavac += $" AND  x.NalogodavacID = {Nalogodavac} ";
 
-                    if (dan == "D")
-                    {
-                        // svi kojima je datum preuzimanja kontejnera danas
-                        //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GetDate() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
-                        // Alternativno, ako je DatumIstovara samo datum:
-                        // conditionRadniNalogID += $" AND rn.DatumIstovara = CAST(GetDate() AS DATE)";
-                        conditionRadniNalogID += $" AND ( (TipTransporta = 2  AND rn.DatumUtovara >= CAST(GETDATE() AS DATE) AND rn.DatumUtovara < DATEADD(DAY, 1, CAST(GETDATE() AS DATE)))" +
-                                                 $" OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GETDATE() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) )";
-                    }
-                    else
-                    {
-                        // svi kojima je datum preuzimanja kontejnera sutra
-                        //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
-                        conditionRadniNalogID += $" AND ((TipTransporta = 2  AND rn.DatumUtovara >= DATEADD(DAY, 1, CAST(GETDATE() AS DATE)) AND rn.DatumUtovara < DATEADD(DAY, 2, CAST(GETDATE() AS DATE)))" +
-                                                $"  OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GETDATE() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GETDATE() AS DATE))) )";
-                    }
+                    //if (dan == 0)
+                    //{
+                    //    // svi kojima je datum preuzimanja kontejnera danas
+                    //    //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GetDate() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
+                    //    // Alternativno, ako je DatumIstovara samo datum:
+                    //    // conditionRadniNalogID += $" AND rn.DatumIstovara = CAST(GetDate() AS DATE)";
+                    //    conditionRadniNalogID += $" AND ( (TipTransporta = 2  AND rn.DatumUtovara >= CAST(GETDATE() AS DATE) AND rn.DatumUtovara < DATEADD(DAY, 1, CAST(GETDATE() AS DATE)))" +
+                    //                             $" OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= CAST(GETDATE() AS DATE) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) )";
+                    //}
+                    //else
+                    //{
+                    //    // svi kojima je datum preuzimanja kontejnera sutra
+                    //    //conditionRadniNalogID += $" AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
+                    //    conditionRadniNalogID += $" AND ((TipTransporta = 2  AND rn.DatumUtovara >= DATEADD(DAY, dan, CAST(GETDATE() AS DATE)) AND rn.DatumUtovara < DATEADD(DAY, 2, CAST(GETDATE() AS DATE)))" +
+                    //                            $"  OR (TipTransporta <> 2 AND rn.DtPreuzimanjaPraznogKontejnera >= DATEADD(DAY, 1, CAST(GETDATE() AS DATE)) AND rn.DtPreuzimanjaPraznogKontejnera < DATEADD(DAY, 2, CAST(GETDATE() AS DATE))) )";
+                    //}
                 }
+                if (dan.HasValue)
+                {
+                    int brojDana = Convert.ToInt32(dan);
+                    datumOd = DateTime.Today.AddDays(brojDana);
+                    datumDo = datumOd.AddDays(1);
+                    conditionRadniNalogID += @" AND (
+                                                   (TipTransporta = 2
+                                                    AND rn.DatumUtovara >= @DatumOd
+                                                    AND rn.DatumUtovara <  @DatumDo
+                                                   )
+                                                OR (TipTransporta <> 2
+                                                    AND rn.DtPreuzimanjaPraznogKontejnera >= @DatumOd
+                                                    AND rn.DtPreuzimanjaPraznogKontejnera <  @DatumDo
+                                                   )
+                                                 )";
+                }
+               
                 string conditionTipPrevoza = " 1 = 1";
                 if (_tipoviIn?.Any() == true)
                 {
@@ -427,6 +460,12 @@ namespace Saobracaj.Drumski
                 if (nalogID!=0 && nalogID > 0)
                 {
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@NalogID", nalogID);
+                }
+
+                if (dan.HasValue  && dan >= 0)
+                {
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@DatumOd", SqlDbType.DateTime).Value = datumOd;
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@DatumDo", SqlDbType.DateTime).Value = datumDo;
                 }
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
 
@@ -821,29 +860,80 @@ namespace Saobracaj.Drumski
                 System.Windows.Forms.MessageBox.Show("Nije selektovan nijedan red.");
                 return;
             }
-            var result = System.Windows.Forms.MessageBox.Show(
-                    $"Da li pravite kopiju za nalog {nalogID}?",
-                    "Potvrda kopiranja",
-                    MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question
-                );
 
-            // Ako korisnik zatvori dijalog (klik na X), ne radi ništa
-            if (result == DialogResult.Cancel)
+            foreach (SelectedRecord selectedRecord in gridGroupingControl1.Table.SelectedRecords)
             {
-                return;
+                var record = selectedRecord.Record;
+
+                int uvoz = 0;
+
+                var val = record.GetValue("Uvoz");
+
+                if (val != null && val != DBNull.Value)
+                    uvoz = Convert.ToInt32(val);
+
+                // ako je uvoz ili izvoz nema dupliranja
+                if (uvoz == 0 || uvoz == 1)
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "Nije moguće napraviti duplikat zapisa koji pripada Transportnom nalogu uvoza ili izvoza."
+                    );
+                    return; // prekidamo celu operaciju
+                }
             }
 
-            int? duplikatNalogID;
-
-            if (result == DialogResult.Yes)
-                duplikatNalogID = nalogID;   // ako je korisnik kliknuo "Da"
-            else
-                duplikatNalogID = null;
+           
             bool sveUspešno = true;
             InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
             {
+                int? nalogIDrow = null;
+                var value = selectedRecord.Record.GetValue("NalogID");
+
+                if (value != null && value != DBNull.Value)
+                {
+                    nalogIDrow = Convert.ToInt32(value);
+                }
+
+                // Ako postoji nalogID pitamo da li se pravi kopija ZA taj nalog
+                DialogResult result;
+                int? duplikatNalogID = null;
+
+                // SLUČAJ 1: postoji nalogID
+                if (nalogIDrow.HasValue)
+                {
+                    result = System.Windows.Forms.MessageBox.Show(
+                        $"Da li pravite kopiju za nalog {nalogIDrow}?",
+                        "Potvrda kopiranja",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Cancel)
+                        return;
+
+                    if (result == DialogResult.Yes)
+                        duplikatNalogID = nalogIDrow;
+                    else
+                        duplikatNalogID = null; // NO → novi nalog bez ID
+                }
+                else
+                {
+                    // SLUČAJ 2: nema nalogID
+                    result = System.Windows.Forms.MessageBox.Show(
+                        "Da li želite da napravite kopiju zapisa?",
+                        "Potvrda kopiranja",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.No)
+                        return;
+
+                    // YES → pravi se kopija bez nalogID
+                    duplikatNalogID = null;
+                }
+
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
@@ -1125,7 +1215,7 @@ namespace Saobracaj.Drumski
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {
             int id = 0;
-            if (dozvoliOtkazivanjeZapisa == true)
+            if (forma == "Otkazi")
             {
 
                 if (gridGroupingControl1.Table.CurrentRecord != null)
