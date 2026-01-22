@@ -175,6 +175,7 @@ namespace Saobracaj.Uvoz
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmKontejnerTekuce";
             this.Text = "Tekuci status kontejnera";
+            this.Load += new System.EventHandler(this.frmKontejnerTekuce_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

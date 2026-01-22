@@ -231,8 +231,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1037);
-            this.splitContainer2.SplitterDistance = 229;
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1040);
+            this.splitContainer2.SplitterDistance = 256;
             this.splitContainer2.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -257,7 +257,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnDepocnt);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(232, 1024);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(253, 1024);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnLogistikaUvoza
@@ -276,7 +276,7 @@
             this.btnLogistikaUvoza.ImageSize = new System.Drawing.Size(20, 20);
             this.btnLogistikaUvoza.Location = new System.Drawing.Point(3, 3);
             this.btnLogistikaUvoza.Name = "btnLogistikaUvoza";
-            this.btnLogistikaUvoza.Size = new System.Drawing.Size(232, 44);
+            this.btnLogistikaUvoza.Size = new System.Drawing.Size(250, 44);
             this.btnLogistikaUvoza.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaUvoza.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogistikaUvoza.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -307,7 +307,7 @@
             this.btnLogistikaIzvoza.ImageSize = new System.Drawing.Size(20, 20);
             this.btnLogistikaIzvoza.Location = new System.Drawing.Point(3, 53);
             this.btnLogistikaIzvoza.Name = "btnLogistikaIzvoza";
-            this.btnLogistikaIzvoza.Size = new System.Drawing.Size(232, 44);
+            this.btnLogistikaIzvoza.Size = new System.Drawing.Size(250, 44);
             this.btnLogistikaIzvoza.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvoza.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogistikaIzvoza.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -338,7 +338,7 @@
             this.btnLogistikaDirektnih.ImageSize = new System.Drawing.Size(20, 20);
             this.btnLogistikaDirektnih.Location = new System.Drawing.Point(3, 103);
             this.btnLogistikaDirektnih.Name = "btnLogistikaDirektnih";
-            this.btnLogistikaDirektnih.Size = new System.Drawing.Size(232, 45);
+            this.btnLogistikaDirektnih.Size = new System.Drawing.Size(250, 45);
             this.btnLogistikaDirektnih.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaDirektnih.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogistikaDirektnih.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -369,7 +369,7 @@
             this.btnDrumski.ImageSize = new System.Drawing.Size(20, 20);
             this.btnDrumski.Location = new System.Drawing.Point(3, 154);
             this.btnDrumski.Name = "btnDrumski";
-            this.btnDrumski.Size = new System.Drawing.Size(232, 45);
+            this.btnDrumski.Size = new System.Drawing.Size(250, 45);
             this.btnDrumski.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDrumski.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDrumski.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -398,7 +398,7 @@
             this.btnZeleznicki.ImageSize = new System.Drawing.Size(20, 20);
             this.btnZeleznicki.Location = new System.Drawing.Point(3, 205);
             this.btnZeleznicki.Name = "btnZeleznicki";
-            this.btnZeleznicki.Size = new System.Drawing.Size(232, 45);
+            this.btnZeleznicki.Size = new System.Drawing.Size(250, 45);
             this.btnZeleznicki.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnZeleznicki.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnZeleznicki.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -428,7 +428,7 @@
             this.btnSkladista.ImageSize = new System.Drawing.Size(20, 20);
             this.btnSkladista.Location = new System.Drawing.Point(3, 256);
             this.btnSkladista.Name = "btnSkladista";
-            this.btnSkladista.Size = new System.Drawing.Size(232, 45);
+            this.btnSkladista.Size = new System.Drawing.Size(250, 45);
             this.btnSkladista.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnSkladista.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnSkladista.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -458,7 +458,7 @@
             this.btnPretovari.ImageSize = new System.Drawing.Size(20, 20);
             this.btnPretovari.Location = new System.Drawing.Point(3, 307);
             this.btnPretovari.Name = "btnPretovari";
-            this.btnPretovari.Size = new System.Drawing.Size(232, 45);
+            this.btnPretovari.Size = new System.Drawing.Size(250, 45);
             this.btnPretovari.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovari.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPretovari.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -488,7 +488,7 @@
             this.btnPrijemIOtpremaVozova.ImageSize = new System.Drawing.Size(20, 20);
             this.btnPrijemIOtpremaVozova.Location = new System.Drawing.Point(3, 358);
             this.btnPrijemIOtpremaVozova.Name = "btnPrijemIOtpremaVozova";
-            this.btnPrijemIOtpremaVozova.Size = new System.Drawing.Size(232, 45);
+            this.btnPrijemIOtpremaVozova.Size = new System.Drawing.Size(250, 45);
             this.btnPrijemIOtpremaVozova.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaVozova.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPrijemIOtpremaVozova.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
@@ -518,11 +518,11 @@
             this.btnPrijemIOtpremaKamiona.ImageSize = new System.Drawing.Size(20, 20);
             this.btnPrijemIOtpremaKamiona.Location = new System.Drawing.Point(3, 409);
             this.btnPrijemIOtpremaKamiona.Name = "btnPrijemIOtpremaKamiona";
-            this.btnPrijemIOtpremaKamiona.Size = new System.Drawing.Size(232, 45);
+            this.btnPrijemIOtpremaKamiona.Size = new System.Drawing.Size(250, 45);
             this.btnPrijemIOtpremaKamiona.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage6")));
+            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
             this.btnPrijemIOtpremaKamiona.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPrijemIOtpremaKamiona.Style.Image = global::Saobracaj.Properties.Resources.PrijemOtpremaKamiona;
             this.btnPrijemIOtpremaKamiona.Style.ImageForeColor = System.Drawing.Color.White;
@@ -548,11 +548,11 @@
             this.btnPTI.ImageSize = new System.Drawing.Size(20, 20);
             this.btnPTI.Location = new System.Drawing.Point(3, 460);
             this.btnPTI.Name = "btnPTI";
-            this.btnPTI.Size = new System.Drawing.Size(232, 45);
+            this.btnPTI.Size = new System.Drawing.Size(250, 45);
             this.btnPTI.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPTI.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPTI.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage7")));
+            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage1")));
             this.btnPTI.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPTI.Style.Image = global::Saobracaj.Properties.Resources.PTI;
             this.btnPTI.Style.ImageForeColor = System.Drawing.Color.White;
@@ -578,11 +578,11 @@
             this.btnOdrzavanje.ImageSize = new System.Drawing.Size(20, 20);
             this.btnOdrzavanje.Location = new System.Drawing.Point(3, 511);
             this.btnOdrzavanje.Name = "btnOdrzavanje";
-            this.btnOdrzavanje.Size = new System.Drawing.Size(232, 45);
+            this.btnOdrzavanje.Size = new System.Drawing.Size(250, 45);
             this.btnOdrzavanje.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOdrzavanje.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnOdrzavanje.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage8")));
+            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage2")));
             this.btnOdrzavanje.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnOdrzavanje.Style.Image = global::Saobracaj.Properties.Resources.ODryavanje;
             this.btnOdrzavanje.Style.ImageForeColor = System.Drawing.Color.White;
@@ -608,11 +608,11 @@
             this.btnKapija.ImageSize = new System.Drawing.Size(20, 20);
             this.btnKapija.Location = new System.Drawing.Point(3, 562);
             this.btnKapija.Name = "btnKapija";
-            this.btnKapija.Size = new System.Drawing.Size(232, 45);
+            this.btnKapija.Size = new System.Drawing.Size(250, 45);
             this.btnKapija.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnKapija.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnKapija.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage9")));
+            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage3")));
             this.btnKapija.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnKapija.Style.Image = global::Saobracaj.Properties.Resources.Kapija;
             this.btnKapija.Style.ImageForeColor = System.Drawing.Color.White;
@@ -638,11 +638,11 @@
             this.btnFinansije.ImageSize = new System.Drawing.Size(20, 20);
             this.btnFinansije.Location = new System.Drawing.Point(3, 613);
             this.btnFinansije.Name = "btnFinansije";
-            this.btnFinansije.Size = new System.Drawing.Size(232, 45);
+            this.btnFinansije.Size = new System.Drawing.Size(250, 45);
             this.btnFinansije.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnFinansije.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnFinansije.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage10")));
+            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage4")));
             this.btnFinansije.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnFinansije.Style.Image = global::Saobracaj.Properties.Resources.Finansije;
             this.btnFinansije.Style.ImageForeColor = System.Drawing.Color.White;
@@ -668,11 +668,11 @@
             this.btnPodesavanja.ImageSize = new System.Drawing.Size(20, 20);
             this.btnPodesavanja.Location = new System.Drawing.Point(3, 664);
             this.btnPodesavanja.Name = "btnPodesavanja";
-            this.btnPodesavanja.Size = new System.Drawing.Size(232, 45);
+            this.btnPodesavanja.Size = new System.Drawing.Size(250, 45);
             this.btnPodesavanja.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPodesavanja.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPodesavanja.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPodesavanja.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage11")));
+            this.btnPodesavanja.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage5")));
             this.btnPodesavanja.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPodesavanja.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
             this.btnPodesavanja.Style.ImageForeColor = System.Drawing.Color.White;
@@ -698,11 +698,11 @@
             this.btnDepocnt.ImageSize = new System.Drawing.Size(20, 20);
             this.btnDepocnt.Location = new System.Drawing.Point(3, 715);
             this.btnDepocnt.Name = "btnDepocnt";
-            this.btnDepocnt.Size = new System.Drawing.Size(232, 45);
+            this.btnDepocnt.Size = new System.Drawing.Size(250, 45);
             this.btnDepocnt.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDepocnt.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDepocnt.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnDepocnt.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage12")));
+            this.btnDepocnt.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage6")));
             this.btnDepocnt.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDepocnt.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
             this.btnDepocnt.Style.ImageForeColor = System.Drawing.Color.White;
@@ -730,8 +730,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1400, 1037);
-            this.splitContainer3.SplitterDistance = 906;
+            this.splitContainer3.Size = new System.Drawing.Size(1373, 1040);
+            this.splitContainer3.SplitterDistance = 908;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -747,7 +747,7 @@
             this.btnLogout.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLogout.Location = new System.Drawing.Point(1015, 5);
+            this.btnLogout.Location = new System.Drawing.Point(1001, 6);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(215, 44);
@@ -778,7 +778,7 @@
             this.btnNazad.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNazad.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnNazad.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnNazad.Location = new System.Drawing.Point(22, 6);
+            this.btnNazad.Location = new System.Drawing.Point(8, 6);
             this.btnNazad.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnNazad.Name = "btnNazad";
             this.btnNazad.Size = new System.Drawing.Size(259, 44);
@@ -809,7 +809,7 @@
             this.btnHome.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnHome.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnHome.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnHome.Location = new System.Drawing.Point(341, 7);
+            this.btnHome.Location = new System.Drawing.Point(327, 7);
             this.btnHome.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(235, 44);
@@ -840,7 +840,7 @@
             this.btnDashboard.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnDashboard.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDashboard.Location = new System.Drawing.Point(691, 7);
+            this.btnDashboard.Location = new System.Drawing.Point(677, 7);
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(248, 44);

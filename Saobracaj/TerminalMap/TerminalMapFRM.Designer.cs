@@ -36,19 +36,27 @@
             this.btnResetViews = new System.Windows.Forms.ToolStripMenuItem();
             this.lblHangar = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbPrazniSe = new System.Windows.Forms.CheckBox();
-            this.cbPrazno = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.cbAktivan = new System.Windows.Forms.CheckBox();
+            this.cbPrazno = new System.Windows.Forms.CheckBox();
+            this.cbPrazniSe = new System.Windows.Forms.CheckBox();
+            this.btnPrijemIOtpremaKamiona3 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton4 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton3 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.dgvStock = new System.Windows.Forms.DataGridView();
             this.map1 = new Saobracaj.TerminalMap.TerminalMapControl();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pozadinaONToolStripMenuItem,
@@ -105,49 +113,42 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Azure;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.cbPrazniSe);
-            this.panel1.Controls.Add(this.cbPrazno);
-            this.panel1.Controls.Add(this.cbAktivan);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.dgvStock);
-            this.panel1.Location = new System.Drawing.Point(394, 301);
+            this.panel1.Location = new System.Drawing.Point(12, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(639, 239);
+            this.panel1.Size = new System.Drawing.Size(1031, 465);
             this.panel1.TabIndex = 2;
             // 
-            // cbPrazniSe
+            // panel2
             // 
-            this.cbPrazniSe.AutoSize = true;
-            this.cbPrazniSe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPrazniSe.ForeColor = System.Drawing.Color.White;
-            this.cbPrazniSe.Location = new System.Drawing.Point(542, 65);
-            this.cbPrazniSe.Name = "cbPrazniSe";
-            this.cbPrazniSe.Size = new System.Drawing.Size(81, 20);
-            this.cbPrazniSe.TabIndex = 1;
-            this.cbPrazniSe.Text = "Prazni se";
-            this.cbPrazniSe.UseVisualStyleBackColor = true;
-            this.cbPrazniSe.CheckStateChanged += new System.EventHandler(this.cbPrazniSe_CheckStateChanged);
-            // 
-            // cbPrazno
-            // 
-            this.cbPrazno.AutoSize = true;
-            this.cbPrazno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPrazno.ForeColor = System.Drawing.Color.White;
-            this.cbPrazno.Location = new System.Drawing.Point(542, 39);
-            this.cbPrazno.Name = "cbPrazno";
-            this.cbPrazno.Size = new System.Drawing.Size(68, 20);
-            this.cbPrazno.TabIndex = 1;
-            this.cbPrazno.Text = "Prazno";
-            this.cbPrazno.UseVisualStyleBackColor = true;
-            this.cbPrazno.CheckStateChanged += new System.EventHandler(this.cbPrazno_CheckStateChanged);
+            this.panel2.Controls.Add(this.cbAktivan);
+            this.panel2.Controls.Add(this.sfButton5);
+            this.panel2.Controls.Add(this.cbPrazno);
+            this.panel2.Controls.Add(this.sfButton4);
+            this.panel2.Controls.Add(this.cbPrazniSe);
+            this.panel2.Controls.Add(this.sfButton3);
+            this.panel2.Controls.Add(this.btnPrijemIOtpremaKamiona3);
+            this.panel2.Controls.Add(this.sfButton2);
+            this.panel2.Controls.Add(this.sfButton1);
+            this.panel2.Location = new System.Drawing.Point(845, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(179, 455);
+            this.panel2.TabIndex = 521;
             // 
             // cbAktivan
             // 
+            this.cbAktivan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbAktivan.AutoSize = true;
             this.cbAktivan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAktivan.ForeColor = System.Drawing.Color.White;
-            this.cbAktivan.Location = new System.Drawing.Point(542, 13);
+            this.cbAktivan.ForeColor = System.Drawing.Color.Black;
+            this.cbAktivan.Location = new System.Drawing.Point(11, 14);
             this.cbAktivan.Name = "cbAktivan";
             this.cbAktivan.Size = new System.Drawing.Size(70, 20);
             this.cbAktivan.TabIndex = 1;
@@ -155,15 +156,171 @@
             this.cbAktivan.UseVisualStyleBackColor = true;
             this.cbAktivan.CheckStateChanged += new System.EventHandler(this.cbAktivan_CheckStateChanged);
             // 
+            // cbPrazno
+            // 
+            this.cbPrazno.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPrazno.AutoSize = true;
+            this.cbPrazno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPrazno.ForeColor = System.Drawing.Color.Black;
+            this.cbPrazno.Location = new System.Drawing.Point(11, 40);
+            this.cbPrazno.Name = "cbPrazno";
+            this.cbPrazno.Size = new System.Drawing.Size(68, 20);
+            this.cbPrazno.TabIndex = 1;
+            this.cbPrazno.Text = "Prazno";
+            this.cbPrazno.UseVisualStyleBackColor = true;
+            this.cbPrazno.CheckStateChanged += new System.EventHandler(this.cbPrazno_CheckStateChanged);
+            // 
+            // cbPrazniSe
+            // 
+            this.cbPrazniSe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPrazniSe.AutoSize = true;
+            this.cbPrazniSe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPrazniSe.ForeColor = System.Drawing.Color.Black;
+            this.cbPrazniSe.Location = new System.Drawing.Point(11, 66);
+            this.cbPrazniSe.Name = "cbPrazniSe";
+            this.cbPrazniSe.Size = new System.Drawing.Size(81, 20);
+            this.cbPrazniSe.TabIndex = 1;
+            this.cbPrazniSe.Text = "Prazni se";
+            this.cbPrazniSe.UseVisualStyleBackColor = true;
+            this.cbPrazniSe.CheckStateChanged += new System.EventHandler(this.cbPrazniSe_CheckStateChanged);
+            // 
+            // btnPrijemIOtpremaKamiona3
+            // 
+            this.btnPrijemIOtpremaKamiona3.AccessibleName = "Button";
+            this.btnPrijemIOtpremaKamiona3.AllowWrapText = true;
+            this.btnPrijemIOtpremaKamiona3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPrijemIOtpremaKamiona3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrijemIOtpremaKamiona3.ForeColor = System.Drawing.Color.White;
+            this.btnPrijemIOtpremaKamiona3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPrijemIOtpremaKamiona3.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPrijemIOtpremaKamiona3.Location = new System.Drawing.Point(3, 145);
+            this.btnPrijemIOtpremaKamiona3.Name = "btnPrijemIOtpremaKamiona3";
+            this.btnPrijemIOtpremaKamiona3.Size = new System.Drawing.Size(170, 42);
+            this.btnPrijemIOtpremaKamiona3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPrijemIOtpremaKamiona3.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPrijemIOtpremaKamiona3.TabIndex = 515;
+            this.btnPrijemIOtpremaKamiona3.Text = "Definisanje";
+            this.btnPrijemIOtpremaKamiona3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPrijemIOtpremaKamiona3.UseVisualStyleBackColor = false;
+            // 
+            // sfButton5
+            // 
+            this.sfButton5.AccessibleName = "Button";
+            this.sfButton5.AllowWrapText = true;
+            this.sfButton5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton5.ForeColor = System.Drawing.Color.White;
+            this.sfButton5.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton5.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton5.Location = new System.Drawing.Point(3, 385);
+            this.sfButton5.Name = "sfButton5";
+            this.sfButton5.Size = new System.Drawing.Size(170, 42);
+            this.sfButton5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton5.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton5.TabIndex = 520;
+            this.sfButton5.Text = "Dodatne usluge";
+            this.sfButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton5.UseVisualStyleBackColor = false;
+            // 
+            // sfButton4
+            // 
+            this.sfButton4.AccessibleName = "Button";
+            this.sfButton4.AllowWrapText = true;
+            this.sfButton4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton4.ForeColor = System.Drawing.Color.White;
+            this.sfButton4.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton4.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton4.Location = new System.Drawing.Point(2, 337);
+            this.sfButton4.Name = "sfButton4";
+            this.sfButton4.Size = new System.Drawing.Size(171, 42);
+            this.sfButton4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton4.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton4.TabIndex = 519;
+            this.sfButton4.Text = "Interni prenos";
+            this.sfButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton4.UseVisualStyleBackColor = false;
+            // 
+            // sfButton3
+            // 
+            this.sfButton3.AccessibleName = "Button";
+            this.sfButton3.AllowWrapText = true;
+            this.sfButton3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton3.ForeColor = System.Drawing.Color.White;
+            this.sfButton3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton3.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton3.Location = new System.Drawing.Point(3, 289);
+            this.sfButton3.Name = "sfButton3";
+            this.sfButton3.Size = new System.Drawing.Size(169, 42);
+            this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton3.TabIndex = 518;
+            this.sfButton3.Text = "Terminal central";
+            this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton3.UseVisualStyleBackColor = false;
+            this.sfButton3.Click += new System.EventHandler(this.sfButton3_Click);
+            // 
+            // sfButton2
+            // 
+            this.sfButton2.AccessibleName = "Button";
+            this.sfButton2.AllowWrapText = true;
+            this.sfButton2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton2.ForeColor = System.Drawing.Color.White;
+            this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton2.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton2.Location = new System.Drawing.Point(3, 241);
+            this.sfButton2.Name = "sfButton2";
+            this.sfButton2.Size = new System.Drawing.Size(169, 42);
+            this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton2.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton2.TabIndex = 517;
+            this.sfButton2.Text = "Popis cnt detaljan";
+            this.sfButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton2.UseVisualStyleBackColor = false;
+            this.sfButton2.Click += new System.EventHandler(this.sfButton2_Click);
+            // 
+            // sfButton1
+            // 
+            this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.AllowWrapText = true;
+            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton1.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton1.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton1.Location = new System.Drawing.Point(3, 193);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(169, 42);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.TabIndex = 516;
+            this.sfButton1.Text = "Predefinisanje";
+            this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton1.UseVisualStyleBackColor = false;
+            // 
             // dgvStock
             // 
             this.dgvStock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStock.Location = new System.Drawing.Point(3, 3);
+            this.dgvStock.Location = new System.Drawing.Point(-2, -2);
             this.dgvStock.Name = "dgvStock";
-            this.dgvStock.Size = new System.Drawing.Size(533, 229);
+            this.dgvStock.Size = new System.Drawing.Size(841, 460);
             this.dgvStock.TabIndex = 0;
             // 
             // map1
@@ -180,6 +337,7 @@
             this.map1.StretchMode = Saobracaj.TerminalMap.MapStretchMode.Fill;
             this.map1.TabIndex = 1;
             this.map1.Text = "terminalMapControl1";
+            this.map1.Click += new System.EventHandler(this.map1_Click);
             // 
             // TerminalMapFRM
             // 
@@ -196,7 +354,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -217,5 +376,12 @@
         private System.Windows.Forms.CheckBox cbPrazno;
         private System.Windows.Forms.CheckBox cbAktivan;
         private System.Windows.Forms.ToolStripMenuItem pozadinaONToolStripMenuItem;
+        private Syncfusion.WinForms.Controls.SfButton sfButton5;
+        private Syncfusion.WinForms.Controls.SfButton sfButton4;
+        private Syncfusion.WinForms.Controls.SfButton sfButton3;
+        private Syncfusion.WinForms.Controls.SfButton sfButton2;
+        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona3;
+        private System.Windows.Forms.Panel panel2;
     }
 }

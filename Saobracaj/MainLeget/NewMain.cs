@@ -51,11 +51,55 @@ namespace Saobracaj
         {
             PravaMain();
 
+            // Adjust left panel button width to match FlowLayoutPanel available width
+            try
+            {
+                SetLeftButtonWidthToFlow(btnLogistikaUvoza);
+                SetLeftButtonWidthToFlow(btnLogistikaIzvoza);
+                SetLeftButtonWidthToFlow(btnLogistikaDirektnih);
+                SetLeftButtonWidthToFlow(btnDrumski);
+                SetLeftButtonWidthToFlow(btnZeleznicki);
+                SetLeftButtonWidthToFlow(btnSkladista);
+                SetLeftButtonWidthToFlow(btnPretovari);
+                SetLeftButtonWidthToFlow(btnPrijemIOtpremaVozova);
+                SetLeftButtonWidthToFlow(btnLogistikaUvoza);
+                SetLeftButtonWidthToFlow(btnPrijemIOtpremaKamiona);
+                SetLeftButtonWidthToFlow(btnPTI);
+                SetLeftButtonWidthToFlow(btnOdrzavanje);
+                SetLeftButtonWidthToFlow(btnKapija);
+                SetLeftButtonWidthToFlow(btnFinansije);
+                SetLeftButtonWidthToFlow(btnPodesavanja);
+                SetLeftButtonWidthToFlow(btnDepocnt);
+         
+            }
+            catch { }
+
             if (Korisnik != "test")
             {
                 button1.Visible = false;
             }
         }
+
+        private void SetLeftButtonWidthToFlow(Control button)
+        {
+            if (button == null) return;
+
+            // find first FlowLayoutPanel inside left panel
+            var flp = splitContainer2.Panel1.Controls.OfType<FlowLayoutPanel>().FirstOrDefault();
+            if (flp == null) return;
+
+            // calculate available width inside the flow panel
+            int available = flp.ClientSize.Width - flp.Padding.Left - flp.Padding.Right;
+
+            // subtract button margins
+            available -= button.Margin.Left + button.Margin.Right;
+
+            if (available > 0)
+            {
+                button.Width = available;
+            }
+        }
+
         private void PravaMain()
         {
             string query = @"
@@ -117,7 +161,7 @@ namespace Saobracaj
             {
                 char c = char.ToLowerInvariant(ch);
 
-                // sve vrste whitespace (razmak, \r, \n, \t...) u jedan space
+                // sve vrste whitespace (razmac, \r, \n, \t...) u jedan space
                 if (char.IsWhiteSpace(c))
                 {
                     if (!prevSpace)

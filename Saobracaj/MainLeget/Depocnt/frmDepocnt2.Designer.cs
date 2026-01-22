@@ -47,9 +47,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(68, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(282, 39);
+            this.label2.Size = new System.Drawing.Size(561, 39);
             this.label2.TabIndex = 504;
-            this.label2.Text = "Pregled skladišta";
+            this.label2.Text = "Pregled skladišta - NE KORISTI SE";
             // 
             // btnDepocnt22
             // 
@@ -133,7 +133,7 @@
             this.btnDepocnt25.Size = new System.Drawing.Size(288, 225);
             this.btnDepocnt25.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDepocnt25.Style.ForeColor = System.Drawing.Color.White;
-            this.btnDepocnt25.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnDepocnt25.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
             this.btnDepocnt25.TabIndex = 522;
             this.btnDepocnt25.Text = "Interni prenos";
             this.btnDepocnt25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -157,7 +157,7 @@
             this.btnDepocnt24.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDepocnt24.Style.FocusedForeColor = System.Drawing.Color.White;
             this.btnDepocnt24.Style.ForeColor = System.Drawing.Color.White;
-            this.btnDepocnt24.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnDepocnt24.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
             this.btnDepocnt24.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDepocnt24.Style.PressedForeColor = System.Drawing.Color.White;
             this.btnDepocnt24.TabIndex = 520;

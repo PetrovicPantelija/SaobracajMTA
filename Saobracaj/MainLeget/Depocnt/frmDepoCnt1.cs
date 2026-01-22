@@ -1,5 +1,6 @@
 ﻿using Saobracaj.Izvoz;
 using Saobracaj.MainLeget.LegNew;
+using Saobracaj.TerminalMap;
 using Saobracaj.Uvoz;
 using System;
 using System.Collections.Generic;
@@ -23,12 +24,13 @@ namespace Saobracaj.MainLeget.Depocnt
 
         private void btnDepoCNT1_Click(object sender, EventArgs e)
         {
+
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
             main.OtvoriFormuSaPravom(
                 btnDepoCNT1.Text,
-                () => new frmDepocnt2()
+                () => new TerminalMapFRM()
             );
         }
 

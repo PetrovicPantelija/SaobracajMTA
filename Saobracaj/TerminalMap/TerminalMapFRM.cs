@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Saobracaj.TrackModal.Sifarnici;
+using Saobracaj.Uvoz;
+using Syncfusion.Windows.Forms.Diagram;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Saobracaj.TerminalMap
 {
@@ -76,6 +81,38 @@ namespace Saobracaj.TerminalMap
                 map1.Regions.Add(ln);
 
             lblHangar.Text = "Polje: -";
+            // position panel2 to the right of dgvStock inside panel1 and keep it when panel1 resizes
+            void RepositionPanel2()
+            {
+                try
+                {
+                    if (dgvStock == null || panel2 == null || panel1 == null) return;
+
+                    int margin = 8;
+                    // dgvStock.Location is relative to panel1
+                    int newX = dgvStock.Location.X + dgvStock.Width + margin;
+                    int newY = dgvStock.Location.Y;
+
+                    // Ensure panel2 stays within panel1 bounds
+                    if (newX + panel2.Width > panel1.ClientSize.Width)
+                    {
+                        // place it at right edge minus margin
+                        newX = Math.Max(dgvStock.Location.X + dgvStock.Width + margin, panel1.ClientSize.Width - panel2.Width - margin);
+                    }
+
+                    if (newX < 0) newX = 0;
+                    if (newY < 0) newY = 0;
+
+                    panel2.Location = new Point(newX, newY);
+                    panel2.BringToFront();
+                }
+                catch { }
+            }
+
+            RepositionPanel2();
+            panel1.SizeChanged -= (s, ev) => RepositionPanel2();
+            panel1.SizeChanged += (s, ev) => RepositionPanel2();
+
             this.Resize += (_, __) => map1.FitToView();
         }
         private void ApplyRectColorsFromOverlay()
@@ -481,11 +518,45 @@ namespace Saobracaj.TerminalMap
         private void FillGV(string hangarID)
         {
             var select =
-                "Select Skladista.SkNaziv, Kontejner, TipKontenjera.SkNaziv, KontejnerStatus.Naziv from KontejnerTekuce " +
-                "inner join Skladista on KontejnerTekuce.Skladiste = Skladista.ID " +
-                "inner join TipKontenjera on TipKontenjera.ID = KontejnerTekuce.TipKontejnera " +
-                "inner join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera " +
-                "where Skladista.SkNaziv = '" + hangarID + "'";
+                "Select Zone.Oznaka as Zona, SkladistaGrupa.Oznaka as Lokacija, Skladista.SkNaziv as Polje, Kontejner,  KontejnerStatus.Naziv As StatusKontejnera ,TipKontenjera.SkNaziv as Vrsta,  Pozicija.Opis as Pozicija, " +
+" PArtnerji.PaNaziv as Brodar,  uvKvalitetKontejnera.Naziv as Kvalitet, KontejnerTekuce.Pokret as Pokret " +
+" from KontejnerTekuce inner join Skladista on KontejnerTekuce.Skladiste = Skladista.ID " +
+" inner join Pozicija on Pozicija.Id = KontejnerTekuce.Pozicija " +
+" inner join TipKontenjera on TipKontenjera.ID = KontejnerTekuce.TipKontejnera " +
+" inner join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera " +
+" inner join PArtnerji on KontejnerTekuce.Brodar = Partnerji.PaSifra " +
+" inner join uvKvalitetKontejnera on KontejnerTekuce.Kvalitet = uvKvalitetKontejnera.ID " +
+" inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID " +
+" inner join Zone on Zone.ID = SkladistaGrupa.ZonaID " +
+" where Skladista.SkNaziv = '" + hangarID + "'";
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dgvStock.ReadOnly = true;
+            dgvStock.DataSource = ds.Tables[0];
+        }
+
+        private void FillGVDetaljno(string hangarID)
+        {
+            var select =
+                "Select Zone.Oznaka as Zona, SkladistaGrupa.Oznaka as Lokacija, Skladista.SkNaziv as Polje, Kontejner,  KontejnerStatus.Naziv As StatusKontejnera , " +
+" TipKontenjera.SkNaziv as Vrsta,  Pozicija.Opis as Pozicija, " +
+" PArtnerji.PaNaziv as Brodar, 'NE ZNA SE ODAKLE I KOG POVUCI' as Nalogodavac, p1.PaNaziv as Uvoznik,  " +
+"  'NE ZNA SE ODAKLE I KOG POVUCI' as Booking, 'NE ZNA SE ODAKLE I KOG POVUCI' as Klijent, KontejnerTekuce.Pokret as Pokret, 'Da li sa Tipa kontejnera' as Tara, 'Koji je ovo podatak' as MAXIMUM, " +
+"  uvKvalitetKontejnera.Naziv as Kvalitet " +
+"  from KontejnerTekuce " +
+"  inner join Skladista on KontejnerTekuce.Skladiste = Skladista.ID " +
+"  inner join Pozicija on Pozicija.Id = KontejnerTekuce.Pozicija " +
+"  inner join TipKontenjera on TipKontenjera.ID = KontejnerTekuce.TipKontejnera " +
+"  inner join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera " +
+" inner join PArtnerji on KontejnerTekuce.Brodar = Partnerji.PaSifra " +
+" inner join PArtnerji p1 on KontejnerTekuce.Uvoznik = p1.PaSifra " +
+" inner join uvKvalitetKontejnera on KontejnerTekuce.Kvalitet = uvKvalitetKontejnera.ID " +
+" inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID " +
+" inner join Zone on Zone.ID = SkladistaGrupa.ZonaID " +
+" where Skladista.SkNaziv =  '" + hangarID + "'";
 
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -590,5 +661,37 @@ namespace Saobracaj.TerminalMap
         private void btnSaveRegions_Click(object sender, EventArgs e) { }
         private void btnResetView_Click(object sender, EventArgs e) { }
         private void lblHangar_Click(object sender, EventArgs e) { }
+
+        private void map1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton2_Click(object sender, EventArgs e)
+        {
+          
+            FillGVDetaljno(ID);
+        }
+
+        private void sfButton3_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmKontejnerTekuce")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Uvoz.frmKontejnerTekuce kt = new Uvoz.frmKontejnerTekuce(ID);
+                kt.Show();
+            }
+        }
     }
 }
