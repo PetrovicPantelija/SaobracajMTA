@@ -163,6 +163,7 @@ namespace Saobracaj.Drumski
             }
 
             var ins = new InsertFakture();
+            int zaposleni = PostaviVrednostZaposleni();
 
             DateTime? datumIzlazne = dtpDatumIzlazneFakture.Checked ? dtpDatumIzlazneFakture.Value : (DateTime?)null;
 
@@ -172,13 +173,13 @@ namespace Saobracaj.Drumski
                 if (izlaznaID == null)
                 {
                     // Insert
-                    ins.InsStavkeFakture(0, fakturaDrumskogID, txtIzlaznaFaktura.Text.Trim(), null, null, datumIzlazne);
+                    ins.InsStavkeFakture(0, fakturaDrumskogID, txtIzlaznaFaktura.Text.Trim(), null, null, datumIzlazne, null, null);
                     izmena = 1;
                 }
                 else
                 {
                     // Update
-                    ins.UpdateFakturaDrumskiStavka(0, izlaznaID, txtIzlaznaFaktura.Text.Trim(), datumIzlazne, null);
+                    ins.UpdateFakturaDrumskiStavka(0, izlaznaID, txtIzlaznaFaktura.Text.Trim(), datumIzlazne, null, null, null);
                     izmena = 1;
                 }
             }
@@ -190,18 +191,43 @@ namespace Saobracaj.Drumski
                 if (ulaznaID == null)
                 {
                     // Insert
-                    ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtUlaznaFaktura.Text.Trim(), txtBeleske.Text.Trim(), null);
+                    ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtUlaznaFaktura.Text.Trim(), txtBeleske.Text.Trim(), null, DateTime.Now, zaposleni);
                     izmena = 1;
                 }
                 else
                 {
                     // Update
-                    ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtUlaznaFaktura.Text.Trim(), null, txtBeleske.Text.Trim());
+                    ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtUlaznaFaktura.Text.Trim(), null, txtBeleske.Text.Trim(), DateTime.Now, zaposleni);
                     izmena = 1;
                 }
             }
             if (izmena == 1)
                 MessageBox.Show("Podaci su uspešno sačuvani.");
+        }
+
+        private int PostaviVrednostZaposleni()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
         }
 
         private void VratiPodatke()

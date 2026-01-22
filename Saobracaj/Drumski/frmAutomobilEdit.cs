@@ -1,9 +1,12 @@
 ﻿using Saobracaj.Dokumenta;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -13,6 +16,8 @@ namespace Saobracaj.Drumski
         DataRow rpod;
         bool status = false;
         public event Action<int> SnimanjeZavrseno;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
 
 
         public frmAutomobilEdit()
@@ -26,6 +31,19 @@ namespace Saobracaj.Drumski
             lblNaslov.Text = "UNOS NOVOG JE U TOKU";
 
         }
+        public frmAutomobilEdit(List<int> tipoviIn, List<int> tipoviNotIn)
+        {
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            InitializeComponent();
+            ChangeTextBox();
+            ucitajComboBoxove();
+            status = true;
+            txtSifra.Enabled = false;
+            button1.Visible = false;
+            lblNaslov.Text = "UNOS NOVOG JE U TOKU";
+        }
+
         public frmAutomobilEdit(DataRow r)
         {
             rpod = r;
@@ -37,9 +55,36 @@ namespace Saobracaj.Drumski
 
         }
 
+        public frmAutomobilEdit(DataRow r, List<int> tipoviIn, List<int> tipoviNotIn)
+        {
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            rpod = r;
+            InitializeComponent();
+            ChangeTextBox();
+            ucitajComboBoxove();
+            VratiPodatke(rpod);
+            lblNaslov.Text = "IZMENA ZAPISA JE U TOKU";
+
+        }
+
         private void ucitajComboBoxove()
         {
-            var select5 = " select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila";
+            string uslovTipVozila = "";
+
+            if (_tipoviIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviIn);
+                uslovTipVozila += $" WHERE ID IN ({lista}) ";
+            }
+
+            if (_tipoviNotIn?.Any() == true)
+            {
+                string lista = string.Join(",", _tipoviNotIn);
+                uslovTipVozila += $" WHERE ID NOT IN ({lista}) ";
+            }
+
+            var select5 = $@" select ID, LTRIM(RTRIM(Naziv)) as Naziv from VrstaVozila  {uslovTipVozila}";
             var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -319,6 +364,18 @@ namespace Saobracaj.Drumski
             {
                 MessageBox.Show("Selektuj red za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnDodavanjePartnera_Click(object sender, EventArgs e)
+        {    
+            frmPartnerji pnd = new frmPartnerji(4);
+            pnd.SnimanjeZavrseno += FrmPartnerji_SnimanjeZavrseno;
+            pnd.Show();
+        }
+
+        private void FrmPartnerji_SnimanjeZavrseno(object sender, EventArgs e)
+        {
+            ucitajComboBoxove();
         }
     }
 }

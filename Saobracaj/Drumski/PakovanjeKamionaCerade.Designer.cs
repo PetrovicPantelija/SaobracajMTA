@@ -1,6 +1,6 @@
 ﻿namespace Saobracaj.Drumski
 {
-    partial class PakovanjeKamiona1
+    partial class PakovanjeKamionaCerade
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkDatumS = new System.Windows.Forms.CheckBox();
-            this.chkDatumD = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -60,6 +58,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.cboDani = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -108,8 +107,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.chkDatumS);
-            this.panel1.Controls.Add(this.chkDatumD);
+            this.panel1.Controls.Add(this.cboDani);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.label1);
@@ -121,28 +119,6 @@
             this.panel1.Size = new System.Drawing.Size(704, 397);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // chkDatumS
-            // 
-            this.chkDatumS.AutoSize = true;
-            this.chkDatumS.Location = new System.Drawing.Point(341, 4);
-            this.chkDatumS.Name = "chkDatumS";
-            this.chkDatumS.Size = new System.Drawing.Size(60, 20);
-            this.chkDatumS.TabIndex = 19;
-            this.chkDatumS.Text = "Sutra";
-            this.chkDatumS.UseVisualStyleBackColor = true;
-            this.chkDatumS.CheckedChanged += new System.EventHandler(this.ChkDatum_CheckedChanged);
-            // 
-            // chkDatumD
-            // 
-            this.chkDatumD.AutoSize = true;
-            this.chkDatumD.Location = new System.Drawing.Point(262, 4);
-            this.chkDatumD.Name = "chkDatumD";
-            this.chkDatumD.Size = new System.Drawing.Size(69, 20);
-            this.chkDatumD.TabIndex = 18;
-            this.chkDatumD.Text = "Danas";
-            this.chkDatumD.UseVisualStyleBackColor = true;
-            this.chkDatumD.CheckedChanged += new System.EventHandler(this.ChkDatum_CheckedChanged);
             // 
             // dataGridView1
             // 
@@ -437,15 +413,23 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
-            // PakovanjeKamiona1
+            // cboDani
+            // 
+            this.cboDani.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDani.Location = new System.Drawing.Point(311, 2);
+            this.cboDani.Name = "cboDani";
+            this.cboDani.Size = new System.Drawing.Size(151, 24);
+            this.cboDani.TabIndex = 20;
+            this.cboDani.SelectionChangeCommitted += new System.EventHandler(this.cboDani_SelectionChangeCommitted);
+            // 
+            // PakovanjeKamionaCerade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1559, 802);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "PakovanjeKamiona1";
-            this.Text = "PakovanjeKamiona1";
-            this.Load += new System.EventHandler(this.PakovanjeKamiona1_Load);
+            this.Name = "PakovanjeKamionaCerade";
+            this.Text = "PakovanjeKamionaCerade";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -478,7 +462,6 @@
         private System.Windows.Forms.ComboBox cboRegistracija;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.CheckBox chkDatumD;
         private System.Windows.Forms.CheckBox chkR;
         private System.Windows.Forms.CheckBox chkN;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripNalozi;
@@ -488,7 +471,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.CheckBox chkDatumS;
         private System.Windows.Forms.Button btnKreiraj;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem ukloniDodeljenKamionToolStripMenuItem;
@@ -497,5 +479,6 @@
         private System.Windows.Forms.ComboBox cboTipVozila;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox cboDani;
     }
 }

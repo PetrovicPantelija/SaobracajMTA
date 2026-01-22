@@ -1,4 +1,5 @@
-﻿using Saobracaj.Drumski;
+﻿using Saobracaj.Dokumenta;
+using Saobracaj.Drumski;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace Saobracaj.MainLeget.Drumski
 {
     public partial class VanGabaritni : Form
     {
+
         public VanGabaritni()
         {
             InitializeComponent();
@@ -34,10 +36,14 @@ namespace Saobracaj.MainLeget.Drumski
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
+            //    main.OtvoriFormuSaPravom(
+            //        btnProvera.Text,
+            //        () => new frmRaspolozivostVozila(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
+            //    );
             main.OtvoriFormuSaPravom(
-                btnProvera.Text,
-                () => new frmRaspolozivostVozila(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
-            );
+                   btnProvera.Text,
+                   () => new frmPodesavanjeRaspolozivosti(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
+              );
         }
 
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
@@ -55,91 +61,26 @@ namespace Saobracaj.MainLeget.Drumski
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+                
             main.OtvoriFormuSaPravom(
                 btnNalogDrumski.Text,
                 () => new NalogZaDrumski(tipoviIn: null, tipoviNotIn: new List<int> { 1,2})
             );
+        }
+
+        private void btnPonude_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            //main.OtvoriFormuSaPravom(
+            //    btnPonude.Text,
+            //    () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
+            //);
+            main.OtvoriFormuSaPravom(
+               btnPonude.Text,
+               () => new frmAutomobiliDrumski(tipoviIn: null, tipoviNotIn: new List<int> { 1, 2 })
+           );
         }
     }
 }

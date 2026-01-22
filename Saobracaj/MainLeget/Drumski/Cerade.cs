@@ -1,4 +1,5 @@
-﻿using Saobracaj.Drumski;
+﻿using Saobracaj.Dokumenta;
+using Saobracaj.Drumski;
 using Saobracaj.MainLeget.LegNew;
 using System;
 using System.Collections.Generic;
@@ -47,10 +48,14 @@ namespace Saobracaj.MainLeget.Drumski
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
+            //main.OtvoriFormuSaPravom(
+            //    btnProvera.Text,
+            //    () => new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            //);
             main.OtvoriFormuSaPravom(
-                btnProvera.Text,
-                () => new frmRaspolozivostVozila(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
-            );
+               btnProvera.Text,
+               () => new frmPodesavanjeRaspolozivosti(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+          );
 
         }
 
@@ -61,7 +66,7 @@ namespace Saobracaj.MainLeget.Drumski
 
             main.OtvoriFormuSaPravom(
                 btnFormiranjeNaloga.Text,
-                () =>new PakovanjeKamiona1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+                () =>new PakovanjeKamionaCerade(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
             );
         }
 
@@ -72,7 +77,18 @@ namespace Saobracaj.MainLeget.Drumski
 
         private void btnPonude_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            //main.OtvoriFormuSaPravom(
+            //    btnPonude.Text,
+            //    () => new Sifarnici.frmPartnerji(4) //4 - mainId menja drumski
+            //);
+
+            main.OtvoriFormuSaPravom(
+               btnPonude.Text,
+               () => new frmAutomobiliDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+           );
         }
     }
 }

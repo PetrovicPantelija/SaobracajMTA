@@ -799,6 +799,8 @@ namespace Saobracaj.Drumski
  
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
         {
+            //frmObradaUlaznihFaktura ob = new frmObradaUlaznihFaktura();
+            //ob.ShowDialog();
             var record = gridGroupingControl1.Table.CurrentRecord;
             if (record == null) return;
 

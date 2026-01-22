@@ -1604,6 +1604,12 @@
     <Compile Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.Designer.cs">
       <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmObradaUlaznihFaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmObradaUlaznihFaktura.Designer.cs">
+      <DependentUpon>frmObradaUlaznihFaktura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmPakovanjeKamiona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1735,6 +1741,12 @@
     </Compile>
     <Compile Include="Drumski\PakovanjeKamiona1.Designer.cs">
       <DependentUpon>PakovanjeKamiona1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drumski\PakovanjeKamionaCerade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\PakovanjeKamionaCerade.Designer.cs">
+      <DependentUpon>PakovanjeKamionaCerade.cs</DependentUpon>
     </Compile>
     <Compile Include="EDokumenta\Const.cs" />
     <Compile Include="EDokumenta\EAvansni.cs">
@@ -4936,6 +4948,9 @@
     <EmbeddedResource Include="Drumski\frmObjedinjenaDokumentIzlaznaFakura.resx">
       <DependentUpon>frmObjedinjenaDokumentIzlaznaFakura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmObradaUlaznihFaktura.resx">
+      <DependentUpon>frmObradaUlaznihFaktura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPakovanjeKamiona.resx">
       <DependentUpon>frmPakovanjeKamiona.cs</DependentUpon>
     </EmbeddedResource>
@@ -4997,6 +5012,9 @@
     <EmbeddedResource Include="Drumski\PakovanjeKamiona1.resx">
       <DependentUpon>PakovanjeKamiona1.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\PakovanjeKamionaCerade.resx">
+      <DependentUpon>PakovanjeKamionaCerade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="EDokumenta\EAvansni.resx">
@@ -5646,6 +5664,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPartnerji.resx">
       <DependentUpon>frmPartnerji.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPravoZahtevZaNabavku.resx">
       <DependentUpon>frmPravoZahtevZaNabavku.cs</DependentUpon>

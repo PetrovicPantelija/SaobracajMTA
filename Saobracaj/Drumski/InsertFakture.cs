@@ -23,7 +23,7 @@ namespace Saobracaj.Drumski
         //  @Faktura nvarchar(50) = NULL,                -- IzlaznaFaktura ili UlaznaFaktura(zavisi od @Tip)
         //  @DatumSlanja datetime = NULL,                -- koristi se samo za @Tip = 0
         //  @BeleskaUlazneFakture nvarchar(500) = NULL    -- koristi se samo za @Tip = 1
-        public void UpdateFakturaDrumskiStavka(int Tip, int? ID, string Faktura, DateTime? DatumSlanja, string BeleskaUlazneFakture)
+        public void UpdateFakturaDrumskiStavka(int Tip, int? ID, string Faktura, DateTime? DatumSlanja, string BeleskaUlazneFakture, DateTime? DatumIzmeneUlazne, int? UlaznuIzmenio)
 
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -68,6 +68,20 @@ namespace Saobracaj.Drumski
             beleskaUlazneFakture.Direction = ParameterDirection.Input;
             beleskaUlazneFakture.Value = (object)BeleskaUlazneFakture ?? DBNull.Value;
             cmd.Parameters.Add(beleskaUlazneFakture);
+
+            SqlParameter datumIzmeneUlazne = new SqlParameter();
+            datumIzmeneUlazne.ParameterName = "@DatumIzmeneUlazne";
+            datumIzmeneUlazne.SqlDbType = SqlDbType.DateTime;
+            datumIzmeneUlazne.Direction = ParameterDirection.Input;
+            datumIzmeneUlazne.Value = DatumIzmeneUlazne.HasValue ? (object)DatumIzmeneUlazne.Value : DBNull.Value;
+            cmd.Parameters.Add(datumIzmeneUlazne);
+
+            SqlParameter ulaznuIzmenio = new SqlParameter();
+            ulaznuIzmenio.ParameterName = "@UlaznuIzmenio";
+            ulaznuIzmenio.SqlDbType = SqlDbType.Int;
+            ulaznuIzmenio.Direction = ParameterDirection.Input;
+            ulaznuIzmenio.Value = UlaznuIzmenio.HasValue ? (object)UlaznuIzmenio.Value : DBNull.Value;
+            cmd.Parameters.Add(ulaznuIzmenio);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
@@ -168,7 +182,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        public void InsStavkeFakture(int? TipFakture, int? FaktureDrumskogID, string IzlaznaFaktura, string UlaznaFaktura, string BeleskeFakture, DateTime? DatumSlanja)
+        public void InsStavkeFakture(int? TipFakture, int? FaktureDrumskogID, string IzlaznaFaktura, string UlaznaFaktura, string BeleskeFakture, DateTime? DatumSlanja, DateTime? DatumIzmeneUlazne, int? UlaznuIzmenio)
         {
 
             SqlConnection conn = new SqlConnection(connect);
@@ -220,6 +234,20 @@ namespace Saobracaj.Drumski
             datumSlanja.Direction = ParameterDirection.Input;
             datumSlanja.Value = DatumSlanja.HasValue ? (object)DatumSlanja.Value : DBNull.Value;
             cmd.Parameters.Add(datumSlanja);
+
+            SqlParameter datumIzmeneUlazne = new SqlParameter();
+            datumIzmeneUlazne.ParameterName = "@DatumIzmeneUlazne";
+            datumIzmeneUlazne.SqlDbType = SqlDbType.DateTime;
+            datumIzmeneUlazne.Direction = ParameterDirection.Input;
+            datumIzmeneUlazne.Value = DatumIzmeneUlazne.HasValue ? (object)DatumIzmeneUlazne.Value : DBNull.Value;
+            cmd.Parameters.Add(datumIzmeneUlazne);
+
+            SqlParameter ulaznuIzmenio = new SqlParameter();
+            ulaznuIzmenio.ParameterName = "@UlaznuIzmenio";
+            ulaznuIzmenio.SqlDbType = SqlDbType.Int;
+            ulaznuIzmenio.Direction = ParameterDirection.Input;
+            ulaznuIzmenio.Value = UlaznuIzmenio.HasValue ? (object)UlaznuIzmenio.Value : DBNull.Value;
+            cmd.Parameters.Add(ulaznuIzmenio);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

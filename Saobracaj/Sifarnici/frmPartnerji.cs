@@ -18,6 +18,7 @@ using System.IdentityModel.Metadata;
 using System.Security.Cryptography.Xml;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Security.Cryptography;
+using System.Linq;
 
 namespace Saobracaj.Sifarnici
 {
@@ -42,6 +43,8 @@ namespace Saobracaj.Sifarnici
         string Dobavljac = "";
         string Kupac = "";
         string Obveznik = "";
+        int _currentMainId = 0;
+        public event EventHandler SnimanjeZavrseno;
 
         private void ChangeTextBox()
         {
@@ -183,6 +186,14 @@ namespace Saobracaj.Sifarnici
             ChangeTextBox();
 
         }
+
+        public frmPartnerji(int currentMainId)
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            _currentMainId = currentMainId;
+        }
+
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
          //   RefreshDataGrid();
@@ -219,7 +230,7 @@ namespace Saobracaj.Sifarnici
                 case "Leget":
                     btnDrzava.Visible = false;
                     //btnPosta.Visible = false;
-                    cbDobavljac.Visible = false;
+                    cbDobavljac.Visible = true;
                     cbObveznik.Visible = false;
                     cboValuta.Visible = false;
                     cboValuta.SelectedValue= "RSD";
@@ -228,6 +239,9 @@ namespace Saobracaj.Sifarnici
 
                     int drugiRedX = 159;
                     int drugiRedY = 345;
+
+                    int treciRedX = 313;
+                    int treciRedY = 345;
 
                     chkLogisitcar.Visible = true;
                     chkLogisitcar.Location = new Point(prviRedX, prviRedY);
@@ -259,6 +273,11 @@ namespace Saobracaj.Sifarnici
                     chkOrganizator.Visible = true;
                     chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
 
+                    if(_currentMainId == 4)
+                        cbDobavljac.Location = new Point(treciRedX, treciRedY + 90);
+                    else
+                        cbDobavljac.Location = new Point(drugiRedX, drugiRedY + 120);
+
                     chkDrumskiPrevoz.Text = "Vozar/Transporter";
                     label2.Text = "ISO Code";
                     label17.Text = "ISO Drzava";
@@ -271,6 +290,10 @@ namespace Saobracaj.Sifarnici
                     chkDrumskiPrevoz.Visible = true;
                     label31.Text = "Jedinstveni ID";
                     label14.Text = "Domicilni ID";
+                    if (_currentMainId == 4)
+                    {
+                        SetCheckBoxesReadOnlyExcept(this, cbDobavljac, chkDrumskiPrevoz);
+                    }
                     break;
 
                 case "TA":
@@ -314,6 +337,24 @@ namespace Saobracaj.Sifarnici
                     cboKupac.Visible = true;
                     chkDrumskiPrevoz.Visible = false;
                     break;
+            }
+        }
+
+        private void SetCheckBoxesReadOnlyExcept(Control parent, params CheckBox[] exceptions)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is CheckBox cb)
+                {
+                    if (!exceptions.Contains(cb))
+                    {
+                        cb.AutoCheck = false; // read-only ponašanje
+                    }
+                }
+                else if (c.HasChildren)
+                {
+                    SetCheckBoxesReadOnlyExcept(c, exceptions);
+                }
             }
         }
 
@@ -436,7 +477,7 @@ namespace Saobracaj.Sifarnici
 " (CASE WHEN Brodar > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Brodar,  (CASE WHEN Spediter > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Spediter,  " + 
 " (CASE WHEN Organizator > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as ZeleznickiOperater,   (CASE WHEN UvoznikCH > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Direktni, " + 
 " (CASE WHEN DrumskiPrevoz > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as VOZAR_TRANSPORTER,   (CASE WHEN Kamioner > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as INTERCOMPANY, " +
-" (CASE WHEN AgentBrodara > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Ostali  from Partnerji order by PaSifra desc  ";
+" (CASE WHEN AgentBrodara > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Ostali, CASE  WHEN Supplier = 'T' THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END AS Dobaavljac  from Partnerji order by PaSifra desc  ";
                     break;
                 default:
                     select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
@@ -965,6 +1006,8 @@ namespace Saobracaj.Sifarnici
             }
             status = false;
             RefreshDataGrid();
+            RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -973,6 +1016,8 @@ namespace Saobracaj.Sifarnici
             del.DelPartneri(Convert.ToInt32(txtSifra.Text));
             status = false;
             RefreshDataGrid();
+            RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -1252,22 +1297,22 @@ namespace Saobracaj.Sifarnici
                 { chkAgentBrodara.Checked = true; }
                 else
                 { chkAgentBrodara.Checked = false; }
-                /*
-                if (dr["Supplier"].ToString() == "1")
+               
+                if (dr["Supplier"].ToString() == "T")
                 { cbDobavljac.Checked = true; }
                 else
                 { cbDobavljac.Checked = false; }
+                /*
+               if (dr["Buyer"].ToString() == "1")
+               { cboKupac.Checked = true; }
+               else
+               { cboKupac.Checked = false; }
 
-                if (dr["Buyer"].ToString() == "1")
-                { cboKupac.Checked = true; }
-                else
-                { cboKupac.Checked = false; }
-
-                if (dr["WayOfSale"].ToString() == "Z")
-                { cbObveznik.Checked = true; }
-                else
-                { cbObveznik.Checked = false; }
-                */
+               if (dr["WayOfSale"].ToString() == "Z")
+               { cbObveznik.Checked = true; }
+               else
+               { cbObveznik.Checked = false; }
+               */
                 cboValuta.SelectedValue = dr["Currency"].ToString();
 
 
