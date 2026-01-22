@@ -2046,7 +2046,7 @@ namespace Saobracaj.Drumski
                 //izvoz
                 if (Uvoz == 0 || Uvoz == 3 || Uvoz == 5)
                 {
-                    datumUtovaraIstovara = prviRed["DatumIstovara"] != DBNull.Value ? prviRed["DatumIstovara"].ToString() : "";
+                    datumUtovaraIstovara = prviRed["DatumUtovara"] != DBNull.Value ? prviRed["DatumUtovara"].ToString() : "";
                     utovarIstovar = " utovaru";
                     mestoUtovaraIstovara = prviRed["MestoUtovara"] != DBNull.Value ? prviRed["MestoUtovara"].ToString() : "";
                     carinjenje = "Izvozno ";
