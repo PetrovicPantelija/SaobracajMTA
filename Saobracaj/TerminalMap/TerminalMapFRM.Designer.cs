@@ -176,6 +176,7 @@
             this.sfButton5.Text = "Dodatne usluge";
             this.sfButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton5.UseVisualStyleBackColor = false;
+            this.sfButton5.Click += new System.EventHandler(this.sfButton5_Click);
             // 
             // cbPrazno
             // 

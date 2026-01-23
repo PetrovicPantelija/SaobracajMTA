@@ -699,5 +699,11 @@ namespace Saobracaj.TerminalMap
             frmRN12InterniPrenos rnp = new frmRN12InterniPrenos(ID);
             rnp.Show();
         }
+
+        private void sfButton5_Click(object sender, EventArgs e)
+        {
+            frmDodatneUsluge du = new frmDodatneUsluge();
+            du.Show();
+        }
     }
 }

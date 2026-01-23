@@ -317,13 +317,6 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
-
-
-
-           
-           
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -370,7 +363,7 @@ namespace Saobracaj.Uvoz
                 if (chkUvozniPosao.Checked == true )
                 {
 
-                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor.ToString().TrimEnd(), pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
                   
 
                 }

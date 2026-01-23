@@ -351,9 +351,9 @@
             this.chkUvoz.AutoSize = true;
             this.chkUvoz.Location = new System.Drawing.Point(24, 63);
             this.chkUvoz.Name = "chkUvoz";
-            this.chkUvoz.Size = new System.Drawing.Size(168, 17);
+            this.chkUvoz.Size = new System.Drawing.Size(143, 17);
             this.chkUvoz.TabIndex = 1;
-            this.chkUvoz.Text = "Usluge predefinisane od Uvoz";
+            this.chkUvoz.Text = "Usluge zadate od Uvoza";
             this.chkUvoz.UseVisualStyleBackColor = true;
             // 
             // chkIzvoz
@@ -361,9 +361,9 @@
             this.chkIzvoz.AutoSize = true;
             this.chkIzvoz.Location = new System.Drawing.Point(24, 31);
             this.chkIzvoz.Name = "chkIzvoz";
-            this.chkIzvoz.Size = new System.Drawing.Size(174, 17);
+            this.chkIzvoz.Size = new System.Drawing.Size(143, 17);
             this.chkIzvoz.TabIndex = 0;
-            this.chkIzvoz.Text = "Usluge predefinisane od Izvoza";
+            this.chkIzvoz.Text = "Usluge zadate od Izvoza";
             this.chkIzvoz.UseVisualStyleBackColor = true;
             // 
             // chkDodatne
@@ -418,7 +418,7 @@
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(879, 655);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(877, 655);
             this.gridGroupingControl1.TabIndex = 238;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
