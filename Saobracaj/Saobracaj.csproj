@@ -3386,6 +3386,12 @@
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
     <Compile Include="Tehnologija\InsertTerminalOperacije.cs" />
     <Compile Include="Tehnologija\InsertTestoviPitanja.cs" />
+    <Compile Include="TerminalMap\frmRN12InterniPrenos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminalMap\frmRN12InterniPrenos.Designer.cs">
+      <DependentUpon>frmRN12InterniPrenos.cs</DependentUpon>
+    </Compile>
     <Compile Include="TerminalMap\HangarRegion.cs" />
     <Compile Include="TerminalMap\HangarRegionDto.cs" />
     <Compile Include="TerminalMap\ImageQuadrants.cs" />
@@ -5774,6 +5780,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tehnologija\frmTerminalOperacije.resx">
       <DependentUpon>frmTerminalOperacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TerminalMap\frmRN12InterniPrenos.resx">
+      <DependentUpon>frmRN12InterniPrenos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TerminalMap\TerminalMapFRM.resx">
       <DependentUpon>TerminalMapFRM.cs</DependentUpon>
