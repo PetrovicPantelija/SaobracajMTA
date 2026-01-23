@@ -18,6 +18,7 @@ using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Diagram;
 
 namespace Saobracaj.Tehnologija
 {
@@ -130,6 +131,63 @@ namespace Saobracaj.Tehnologija
             InitializeComponent();
             ChangeTextBox();
         }
+        int Pozicija=0;
+        public frmDefinisiPoziciju(int pozicija) 
+        {
+            InitializeComponent();
+            Pozicija = pozicija;
+            ProveriPoziciju();
+        }
+        private void ProveriPoziciju()
+        {
+           /* if (Pozicija == 0)
+                return;
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(
+                    "SELECT ID FROM PredefinisanePozicije WHERE Skladiste1 = @poz",
+                    conn))
+                {
+                    cmd.Parameters.AddWithValue("@poz", Pozicija);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        
+                        if (!dr.HasRows)
+                        {
+                            splitContainer1.Panel2Collapsed = true;
+                            splitContainer1.Panel1Collapsed = false;
+                            
+                        }
+                        else
+                        {
+                            
+                            splitContainer1.Panel1Collapsed = true;
+                            splitContainer1.Panel2Collapsed = false;
+                        }
+                    }
+                }
+                conn.Close();
+            }*/
+        }
+        private void VratiZapisePozicije()
+        {
+            if (Pozicija == 0)
+                return;
+
+            cboNaSkladiste.SelectedValue = Pozicija;
+            cboNaSkladiste2.SelectedValue = Pozicija;
+            cboNaSkladiste3.SelectedValue = Pozicija;
+            cboNaSkladiste4.SelectedValue = Pozicija;
+            cboNaSkladiste5.SelectedValue = Pozicija;
+            cboNaSkladiste6.SelectedValue = Pozicija;
+            FillDG1Pozicija(Pozicija);
+            FillDG2Pozicija(Pozicija);
+        }
+
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -278,6 +336,8 @@ namespace Saobracaj.Tehnologija
 
             FillDG1();
             FillDG2();
+
+            VratiZapisePozicije();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -302,7 +362,9 @@ namespace Saobracaj.Tehnologija
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                 
+                    cboBrodar.SelectedValue= gridGroupingControl1.Table.CurrentRecord.GetValue("BrodarID");
+                    txtTipKont.SelectedValue = gridGroupingControl1.Table.CurrentRecord.GetValue("VrstaKontID");
+                    cboKvalitet.SelectedValue = gridGroupingControl1.Table.CurrentRecord.GetValue("KvalitetID");
                 }
 
             }
@@ -312,7 +374,6 @@ namespace Saobracaj.Tehnologija
                 throw ex;
             }
         }
-
         private void FillDG1()
         {
       
@@ -320,7 +381,7 @@ namespace Saobracaj.Tehnologija
         
                 select = "   SELECT        PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
                " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
-              " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara " +
+              " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara,PredefinisanePozicije.Brodar as BrodarID,PredefinisanePozicije.VrstaKontejnera as VrstaKontID,PredefinisanePozicije.Kvalitet as KvalitetID  " +
               "    FROM  PredefinisanePozicije INNER JOIN " +
                 "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
                 "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
@@ -346,28 +407,117 @@ namespace Saobracaj.Tehnologija
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("BrodarID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaKontID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("KvalitetID");
 
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
             }
-
-
-
-
-
-
         }
-
-        private void FillDG2()
+        private void FillDG1Pozicija(int pozicija)
         {
 
             var select = "";
 
             select = "   SELECT        PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
            " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
-          " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara " +
+          " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara," +
+          "PredefinisanePozicije.Brodar as BrodarID,PredefinisanePozicije.VrstaKontejnera as VrstaKontID,PredefinisanePozicije.Kvalitet as KvalitetID " +
+          "    FROM  PredefinisanePozicije INNER JOIN " +
+            "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
+            "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+            "           uvKvalitetKontejnera ON PredefinisanePozicije.Kvalitet = uvKvalitetKontejnera.ID INNER JOIN " +
+             "          Partnerji ON PredefinisanePozicije.Izvoznik = Partnerji.PaSifra INNER JOIN " +
+             "          Partnerji AS Partnerji_2 ON PredefinisanePozicije.NalogodavacZaVoz = Partnerji_2.PaSifra " +
+              "         inner join Skladista on Skladista.ID = Skladiste1 " +
+              "          inner join Skladista as S2 on S2.ID = Skladiste2 " +
+               "           inner join Skladista as S3 on S3.ID = Skladiste3 " +
+               "           where Opcija = 0 and Skladista.ID="+pozicija;
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("BrodarID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaKontID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("KvalitetID");
+
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+        private void FillDG2Pozicija(int pozicija)
+        {
+            var select = "";
+
+            select = "   SELECT PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
+           " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
+          " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara," +
+          "PredefinisanePozicije.Brodar as BrodarID,PredefinisanePozicije.VrstaKontejnera as VrstaKontID,PredefinisanePozicije.Kvalitet as KvalitetID," +
+          "PredefinisanePozicije.Izvoznik as IzvoznikID, PredefinisanePozicije.NalogodavacZaVoz as NalogodavacID " +
+          "    FROM  PredefinisanePozicije INNER JOIN " +
+            "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
+            "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+            "           uvKvalitetKontejnera ON PredefinisanePozicije.Kvalitet = uvKvalitetKontejnera.ID INNER JOIN " +
+             "          Partnerji ON PredefinisanePozicije.Izvoznik = Partnerji.PaSifra INNER JOIN " +
+             "          Partnerji AS Partnerji_2 ON PredefinisanePozicije.NalogodavacZaVoz = Partnerji_2.PaSifra " +
+              "         inner join Skladista on Skladista.ID = Skladiste1 " +
+              "          inner join Skladista as S2 on S2.ID = Skladiste2 " +
+               "           inner join Skladista as S3 on S3.ID = Skladiste3 " +
+               "           where Opcija = 1 and Skladista.ID="+pozicija;
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("BrodarID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaKontID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("KvalitetID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("NalogodavacID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("IzvoznikID");
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+        private void FillDG2()
+        {
+
+            var select = "";
+
+            select = "   SELECT PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
+           " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
+          " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara, " +
+           "PredefinisanePozicije.Brodar as BrodarID,PredefinisanePozicije.VrstaKontejnera as VrstaKontID,PredefinisanePozicije.Kvalitet as KvalitetID," +
+          "PredefinisanePozicije.Izvoznik as IzvoznikID, PredefinisanePozicije.NalogodavacZaVoz as NalogodavacID " +
           "    FROM  PredefinisanePozicije INNER JOIN " +
             "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
             "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
@@ -393,12 +543,19 @@ namespace Saobracaj.Tehnologija
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
+this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("BrodarID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaKontID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("KvalitetID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("NalogodavacID");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("IzvoznikID");
 
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
             }
+            
+
 
 
 
@@ -413,8 +570,13 @@ namespace Saobracaj.Tehnologija
             {
                 if (gridGroupingControl2.Table.CurrentRecord != null)
                 {
-                    textBox2.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-
+                    textBox2.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("ID").ToString();
+                    cboBrodar.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("BrodarID");
+                    cboBooking.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("BookingBrodara");
+                    txtTipKont2.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("VrstaKontID");
+                    cboKvalitet2.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("KvalitetID");
+                    cboIzvoznik.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("IzvoznikID");
+                    cboNalogodavac1.SelectedValue = gridGroupingControl2.Table.CurrentRecord.GetValue("NalogodavacID");
                 }
 
             }
@@ -429,6 +591,12 @@ namespace Saobracaj.Tehnologija
         {
             FillDG1();
             FillDG2();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmDefinisiPoziciju frm = new frmDefinisiPoziciju();
+            frm.Show();
         }
     }
 }

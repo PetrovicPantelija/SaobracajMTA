@@ -1,4 +1,6 @@
-﻿using Saobracaj.TrackModal.Sifarnici;
+﻿using Saobracaj.MainLeget.Drumski;
+using Saobracaj.Tehnologija;
+using Saobracaj.TrackModal.Sifarnici;
 using Saobracaj.Uvoz;
 using Syncfusion.Windows.Forms.Diagram;
 using System;
@@ -10,8 +12,10 @@ using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Web.UI.Design.WebControls;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Media.Animation;
 
 namespace Saobracaj.TerminalMap
 {
@@ -197,11 +201,12 @@ namespace Saobracaj.TerminalMap
             // UI refresh
             ApplyPozadinaUi();
         }
-
+        int sifra;
         private void Map_HangarClicked(object sender, string hangarId)
         {
             lblHangar.Text = $"Polje: {hangarId}";
             ID = hangarId;
+            
 
             FillGV(ID);
             LoadHangarStatus(hangarId);
@@ -692,6 +697,36 @@ namespace Saobracaj.TerminalMap
                 Uvoz.frmKontejnerTekuce kt = new Uvoz.frmKontejnerTekuce(ID);
                 kt.Show();
             }
+        }
+
+        private void btnPrijemIOtpremaKamiona3_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select ID from Skladista Where SkNaziv='" + ID + "'", conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                sifra = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
+
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                if (frm.Name == "frmDefinisiPoziciju")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmDefinisiPoziciju dp = new frmDefinisiPoziciju(sifra);
+                dp.Show();
+            } 
         }
     }
 }
