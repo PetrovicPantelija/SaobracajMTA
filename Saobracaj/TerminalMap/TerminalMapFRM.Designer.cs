@@ -43,9 +43,9 @@
             this.sfButton4 = new Syncfusion.WinForms.Controls.SfButton();
             this.cbPrazniSe = new System.Windows.Forms.CheckBox();
             this.sfButton3 = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnPrijemIOtpremaKamiona3 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
             this.dgvStock = new System.Windows.Forms.DataGridView();
+            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.map1 = new Saobracaj.TerminalMap.TerminalMapControl();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -132,7 +132,7 @@
             this.panel2.Controls.Add(this.sfButton4);
             this.panel2.Controls.Add(this.cbPrazniSe);
             this.panel2.Controls.Add(this.sfButton3);
-            this.panel2.Controls.Add(this.btnPrijemIOtpremaKamiona3);
+            this.panel2.Controls.Add(this.sfButton1);
             this.panel2.Controls.Add(this.sfButton2);
             this.panel2.Location = new System.Drawing.Point(845, 3);
             this.panel2.Name = "panel2";
@@ -215,6 +215,14 @@
             // 
             // cbPrazniSe
             // 
+            this.cbPrazniSe.AutoSize = true;
+            this.cbPrazniSe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPrazniSe.Location = new System.Drawing.Point(11, 66);
+            this.cbPrazniSe.Name = "cbPrazniSe";
+            this.cbPrazniSe.Size = new System.Drawing.Size(81, 20);
+            this.cbPrazniSe.TabIndex = 521;
+            this.cbPrazniSe.Text = "Prazni se";
+            // 
             // sfButton3
             // 
             this.sfButton3.AccessibleName = "Button";
@@ -248,7 +256,7 @@
             this.sfButton2.ForeColor = System.Drawing.Color.White;
             this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton2.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton2.Location = new System.Drawing.Point(3, 241);
+            this.sfButton2.Location = new System.Drawing.Point(4, 193);
             this.sfButton2.Name = "sfButton2";
             this.sfButton2.Size = new System.Drawing.Size(169, 42);
             this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -269,6 +277,28 @@
             this.dgvStock.Name = "dgvStock";
             this.dgvStock.Size = new System.Drawing.Size(841, 460);
             this.dgvStock.TabIndex = 0;
+            // 
+            // sfButton1
+            // 
+            this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.AllowWrapText = true;
+            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sfButton1.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.sfButton1.ImageSize = new System.Drawing.Size(70, 80);
+            this.sfButton1.Location = new System.Drawing.Point(4, 241);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(169, 42);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
+            this.sfButton1.TabIndex = 517;
+            this.sfButton1.Text = "Definiši/Predefiniši";
+            this.sfButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.sfButton1.UseVisualStyleBackColor = false;
+            this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click);
             // 
             // map1
             // 
@@ -327,7 +357,7 @@
         private Syncfusion.WinForms.Controls.SfButton sfButton4;
         private Syncfusion.WinForms.Controls.SfButton sfButton3;
         private Syncfusion.WinForms.Controls.SfButton sfButton2;
-        private Syncfusion.WinForms.Controls.SfButton btnPrijemIOtpremaKamiona3;
         private System.Windows.Forms.Panel panel2;
+        private Syncfusion.WinForms.Controls.SfButton sfButton1;
     }
 }
