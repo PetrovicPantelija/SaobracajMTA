@@ -468,7 +468,7 @@ namespace Saobracaj.Drumski
 
                 if (dr["KamionID"] != DBNull.Value)
                     cboKamion.SelectedValue = (dr["KamionID"].ToString());
-
+                string a = dr["KamionID"].ToString();
                 if (dr["TipKontejnera"] != DBNull.Value)
                     cboVrstaKontejnera.SelectedValue = (dr["TipKontejnera"].ToString());
                 else
@@ -519,8 +519,8 @@ namespace Saobracaj.Drumski
                 if (dr["NalogID"] != DBNull.Value && int.TryParse(dr["NalogID"].ToString(), out int conertedNalogID))
                      NalogID = conertedNalogID;
 
-                if (dr["TipTransportaDrumski"] != DBNull.Value && int.TryParse(dr["TipTransportaDrumski"].ToString(), out int conTipT) && conTipT == 2)
-                     dtPreuzimanjaPraznogKontejnera.Enabled = false;
+                //if (dr["TipTransportaDrumski"] != DBNull.Value && int.TryParse(dr["TipTransportaDrumski"].ToString(), out int conTipT) && conTipT == 2)
+                //     dtPreuzimanjaPraznogKontejnera.Enabled = false;
 
                 if (Uvoz == 0)
                 {
@@ -1059,8 +1059,19 @@ namespace Saobracaj.Drumski
                   .Select(s => int.TryParse(s.Trim(), out int broj) ? broj.ToString() : null)
                   .Where(s => s != null));
 
+                //int radniNalogID = 0;
+                //int.TryParse(txtID.Text, out radniNalogID);
+
                 int radniNalogID = 0;
-                int.TryParse(txtID.Text, out radniNalogID);
+
+                if (!string.IsNullOrWhiteSpace(txtID.Text))
+                {
+                    int.TryParse(txtID.Text, out radniNalogID);
+                }
+                else if (this.id > 0)
+                {
+                    radniNalogID = this.id;
+                }
 
                 DateTime? datumPakovanja = null;
                 if (dtPreuzimanjaPraznogKontejnera.Checked)
@@ -1225,22 +1236,24 @@ namespace Saobracaj.Drumski
 
             DateTime? dtPreuzimanjaPraznogKont = null;
 
-            //if ( dtPreuzimanjaPraznogKontejnera.Checked)
-            //    dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
-     
-            if (tipTransportaID == 2)
-            {
-                if (dtpUtovara.Checked)
-                {
-                    dtPreuzimanjaPraznogKont = (DateTime?)dtpUtovara.Value;
-                    dtPreuzimanjaPraznogKontejnera.Value = dtpUtovara.Value;
-                }
-            }
+            if (dtPreuzimanjaPraznogKontejnera.Checked)
+                dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Value;
             else
-            {
-                // ako DateTimePicker ima checkbox i označen je, uzmi vrednost, inače null
-                dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Checked  ? (DateTime?)dtPreuzimanjaPraznogKontejnera.Value  : null;
-            }
+                dtPreuzimanjaPraznogKont = null;
+
+            //if (tipTransportaID == 2)
+            //{
+            //    if (dtpUtovara.Checked)
+            //    {
+            //        dtPreuzimanjaPraznogKont = (DateTime?)dtpUtovara.Value;
+            //        dtPreuzimanjaPraznogKontejnera.Value = dtpUtovara.Value;
+            //    }
+            //}
+            //else
+            //{
+            //    // ako DateTimePicker ima checkbox i označen je, uzmi vrednost, inače null
+            //    dtPreuzimanjaPraznogKont = dtPreuzimanjaPraznogKontejnera.Checked ? (DateTime?)dtPreuzimanjaPraznogKontejnera.Value : null;
+            //}
            
             string granicniPrelaz = string.IsNullOrWhiteSpace(txtGranicniPrelaz.Text) ? null : txtGranicniPrelaz.Text.Trim();
 
