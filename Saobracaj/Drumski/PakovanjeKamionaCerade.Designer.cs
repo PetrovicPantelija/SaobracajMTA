@@ -32,6 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboDani = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.cboDani = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -119,6 +119,15 @@
             this.panel1.Size = new System.Drawing.Size(704, 397);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // cboDani
+            // 
+            this.cboDani.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDani.Location = new System.Drawing.Point(304, 2);
+            this.cboDani.Name = "cboDani";
+            this.cboDani.Size = new System.Drawing.Size(151, 24);
+            this.cboDani.TabIndex = 20;
+            this.cboDani.SelectionChangeCommitted += new System.EventHandler(this.cboDani_SelectionChangeCommitted);
             // 
             // dataGridView1
             // 
@@ -412,15 +421,6 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // cboDani
-            // 
-            this.cboDani.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDani.Location = new System.Drawing.Point(311, 2);
-            this.cboDani.Name = "cboDani";
-            this.cboDani.Size = new System.Drawing.Size(151, 24);
-            this.cboDani.TabIndex = 20;
-            this.cboDani.SelectionChangeCommitted += new System.EventHandler(this.cboDani_SelectionChangeCommitted);
             // 
             // PakovanjeKamionaCerade
             // 

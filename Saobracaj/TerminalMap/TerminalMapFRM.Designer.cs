@@ -174,6 +174,7 @@
             this.sfButton5.Text = "Dodatne usluge";
             this.sfButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton5.UseVisualStyleBackColor = false;
+            this.sfButton5.Click += new System.EventHandler(this.sfButton5_Click);
             // 
             // cbPrazno
             // 
@@ -210,21 +211,9 @@
             this.sfButton4.Text = "Interni prenos";
             this.sfButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton4.UseVisualStyleBackColor = false;
+            this.sfButton4.Click += new System.EventHandler(this.sfButton4_Click);
             // 
             // cbPrazniSe
-            // 
-            this.cbPrazniSe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPrazniSe.AutoSize = true;
-            this.cbPrazniSe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPrazniSe.ForeColor = System.Drawing.Color.Black;
-            this.cbPrazniSe.Location = new System.Drawing.Point(11, 66);
-            this.cbPrazniSe.Name = "cbPrazniSe";
-            this.cbPrazniSe.Size = new System.Drawing.Size(81, 20);
-            this.cbPrazniSe.TabIndex = 1;
-            this.cbPrazniSe.Text = "Prazni se";
-            this.cbPrazniSe.UseVisualStyleBackColor = true;
-            this.cbPrazniSe.CheckStateChanged += new System.EventHandler(this.cbPrazniSe_CheckStateChanged);
             // 
             // sfButton3
             // 
@@ -247,26 +236,6 @@
             this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton3.UseVisualStyleBackColor = false;
             this.sfButton3.Click += new System.EventHandler(this.sfButton3_Click);
-            // 
-            // btnPrijemIOtpremaKamiona3
-            // 
-            this.btnPrijemIOtpremaKamiona3.AccessibleName = "Button";
-            this.btnPrijemIOtpremaKamiona3.AllowWrapText = true;
-            this.btnPrijemIOtpremaKamiona3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrijemIOtpremaKamiona3.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
-            this.btnPrijemIOtpremaKamiona3.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaKamiona3.Location = new System.Drawing.Point(3, 193);
-            this.btnPrijemIOtpremaKamiona3.Name = "btnPrijemIOtpremaKamiona3";
-            this.btnPrijemIOtpremaKamiona3.Size = new System.Drawing.Size(170, 42);
-            this.btnPrijemIOtpremaKamiona3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
-            this.btnPrijemIOtpremaKamiona3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnPrijemIOtpremaKamiona3.TabIndex = 515;
-            this.btnPrijemIOtpremaKamiona3.Text = "Definisanje/Predefinisanje";
-            this.btnPrijemIOtpremaKamiona3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPrijemIOtpremaKamiona3.UseVisualStyleBackColor = false;
-            this.btnPrijemIOtpremaKamiona3.Click += new System.EventHandler(this.btnPrijemIOtpremaKamiona3_Click);
             // 
             // sfButton2
             // 

@@ -699,34 +699,16 @@ namespace Saobracaj.TerminalMap
             }
         }
 
-        private void btnPrijemIOtpremaKamiona3_Click(object sender, EventArgs e)
+        private void sfButton4_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("Select ID from Skladista Where SkNaziv='" + ID + "'", conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                sifra = Convert.ToInt32(dr[0].ToString());
-            }
-            conn.Close();
+            frmRN12InterniPrenos rnp = new frmRN12InterniPrenos(ID);
+            rnp.Show();
+        }
 
-            FormCollection fc = Application.OpenForms;
-            bool bFormNameOpen = false;
-            foreach (Form frm in fc)
-            {
-                if (frm.Name == "frmDefinisiPoziciju")
-                {
-                    bFormNameOpen = true;
-                    frm.Activate();
-                    frm.WindowState = FormWindowState.Normal;
-                }
-            }
-            if (bFormNameOpen == false)
-            {
-                frmDefinisiPoziciju dp = new frmDefinisiPoziciju(sifra);
-                dp.Show();
-            } 
+        private void sfButton5_Click(object sender, EventArgs e)
+        {
+            frmDodatneUsluge du = new frmDodatneUsluge();
+            du.Show();
         }
     }
 }
