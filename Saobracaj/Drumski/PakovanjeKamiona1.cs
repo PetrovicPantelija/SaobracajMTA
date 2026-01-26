@@ -2065,8 +2065,8 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine("<p>Poštovani,</p>");
                     htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
                     htmlBuilder.AppendLine($"<p>Na {utovarIstovar} je  <b>{datumUtovaraIstovara}</b> u  {mestoUtovaraIstovara}</p>");
-                    htmlBuilder.AppendLine($"<p>napomenaZaPozicioniranje</p>");
-                    htmlBuilder.AppendLine($"< p > &nbsp; </p >");
+                    htmlBuilder.AppendLine($"<p>{napomenaZaPozicioniranje}</p>");
+                    htmlBuilder.AppendLine($"<p> &nbsp; </p>");
                     htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} {valuta}</p>");
                 }
   
@@ -2081,8 +2081,8 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
                     htmlBuilder.AppendLine($"<p>Kontejner preuzima {datumPreuzimanjaPraznog}</p>");
                     htmlBuilder.AppendLine($"<p>Na {carinarnica} je {datumUtovaraIstovara} </p>");
-                    htmlBuilder.AppendLine($"<p>napomenaZaPozicioniranje</p>");
-                    htmlBuilder.AppendLine($"< p > &nbsp; </p >");
+                    htmlBuilder.AppendLine($"<p>{napomenaZaPozicioniranje}</p>");
+                    htmlBuilder.AppendLine($"<p> &nbsp; </p>");
                     htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} {valuta}</p>");
                 }
 
@@ -2096,8 +2096,8 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine($"<p>Podaci vozila koje preuzima kontejner za <b>{nalogodavac}</b>.</p>");
                     htmlBuilder.AppendLine($"<p>Kontejner preuzima {datumPreuzimanjaPraznog}</p>");
                     htmlBuilder.AppendLine($"<p>Na istovaru je {datumUtovaraIstovara} u {mestoUtovaraIstovara}.  </p>");
-                    htmlBuilder.AppendLine($"<p>napomenaZaPozicioniranje</p>");
-                    htmlBuilder.AppendLine($"< p > &nbsp; </p >");
+                    htmlBuilder.AppendLine($"<p>{napomenaZaPozicioniranje}</p>");
+                    htmlBuilder.AppendLine($"<p> &nbsp; </p>");
                     htmlBuilder.AppendLine($"<p style='color:red; font-weight:bold;'>Molimo vas notirajte, cena za ovu relaciju je {cena} {valuta}</p>");
                 }
                 bookingBrodara = prviRed["bookingBrodara"] != DBNull.Value ? prviRed["bookingBrodara"].ToString() : "";
