@@ -22,7 +22,7 @@ namespace Saobracaj.Drumski
                     int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                     string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru,
                     int? PDV, int? TipTransporta, int? BookingBrodara, int? Klijent, decimal? BttoKontejnera, decimal? BttoRobe, string BrojVoza, string BrojKontejnera, string BrojKontejnera2, string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
-                    int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni, int? VrstaKontejnera, int? DodatniTrosak)
+                    int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogIzmenioZaposleni, int? VrstaKontejnera, int? DodatniTrosak, string BrojPosiljke)
 
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -332,6 +332,14 @@ namespace Saobracaj.Drumski
             dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
             cmd.Parameters.Add(dodatniTrosak);
 
+            SqlParameter brojPosiljke = new SqlParameter();
+            brojPosiljke.ParameterName = "@BrojPosiljke";
+            brojPosiljke.SqlDbType = SqlDbType.NVarChar;
+            brojPosiljke.Size = 100;
+            brojPosiljke.Direction = ParameterDirection.Input;
+            brojPosiljke.Value = (object)BrojPosiljke ?? DBNull.Value;
+            cmd.Parameters.Add(brojPosiljke);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -370,7 +378,8 @@ namespace Saobracaj.Drumski
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta, int? KamionID, int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
                  string BrojVoza, decimal? BttoKontejnera, decimal? BttoRobe, string BrojKontejnera, string BrojKontejnera2, int? BookingBrodara,string BrodskaTeretnica, string BrodskaPlomba, int? NapomenaPoz,
-                 int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni, int? VrstaKontejnera, int? DodatniTrosak)
+                 int? PolaznaCarinarnica, int? OdredisnaCarinarnica, int? PolaznaSpedicija, int? OdredisnaSpedicija, string PolaznaSpedicijaKontakt, string OdredisnaSpedicijaKontakt, int NalogKreiraoZaposleni, 
+                 int? VrstaKontejnera, int? DodatniTrosak, string BrojPosiljke)
 
         {
             int IDPom = 0;
@@ -688,6 +697,14 @@ namespace Saobracaj.Drumski
             dodatniTrosak.Direction = ParameterDirection.Input;
             dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
             cmd.Parameters.Add(dodatniTrosak);
+
+            SqlParameter brojPosiljke = new SqlParameter();
+            brojPosiljke.ParameterName = "@BrojPosiljke";
+            brojPosiljke.SqlDbType = SqlDbType.NVarChar;
+            brojPosiljke.Size = 100;
+            brojPosiljke.Direction = ParameterDirection.Input;
+            brojPosiljke.Value = (object)BrojPosiljke ?? DBNull.Value;
+            cmd.Parameters.Add(brojPosiljke);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;

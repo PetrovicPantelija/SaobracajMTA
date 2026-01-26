@@ -192,8 +192,7 @@ namespace Saobracaj.Drumski
                                 fds.UlaznaFaktura, 
                                 de.BL,
                                 de.Booking,
-                                CONVERT(varchar,
-                                ISNULL(fds.DatumIzmeneUlazne, GETDATE()),104) AS DatumIzmene,
+                                ISNULL(fds.DatumIzmeneUlazne, GETDATE()) AS DatumIzmene,
                                 de.MestoUtovara,
                                 de.MestoIstovara,
                                 de.BrojKontejnera,
@@ -212,9 +211,9 @@ namespace Saobracaj.Drumski
                            ( SELECT  
                             rn.ID,
                             rn.NalogID,
-                            p.PaNaziv AS Prevoznik,
+                            LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                             pa.PaNaziv AS Klijent,
-                            a.Vozac AS Kamioner,
+                            LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                             rn.Trosak AS Cena,
                             '' AS BL,
                             i.BookingBrodara AS Booking,
@@ -244,9 +243,9 @@ namespace Saobracaj.Drumski
                         -- 2)
                         SELECT rn.ID,
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                '' AS BL,
                                i.BookingBrodara AS Booking,
@@ -277,9 +276,9 @@ namespace Saobracaj.Drumski
                         -- 3)
                         SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
@@ -311,9 +310,9 @@ namespace Saobracaj.Drumski
 
                         SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
@@ -345,9 +344,9 @@ namespace Saobracaj.Drumski
 
                            SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                rn.BrodskaTeretnica AS BL,
                                rn.BookingBrodara AS Booking,
@@ -456,6 +455,10 @@ namespace Saobracaj.Drumski
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "Static";
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "TextBox";
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.Format = "dd.MM.yyyy";
+
             foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
@@ -494,7 +497,7 @@ namespace Saobracaj.Drumski
                             GROUP BY RadniNalogDrumskiID
                         )
 
-                        SELECT 
+                        SELECT  DISTINCT 
                                 de.ID AS KontejnerID, 
                                 de.NalogID AS CNTBroj,
                                 ISNULL(de.Prevoznik, '')   + ' / '  + ISNULL(de.Kamioner, '') AS [Prevoznik / Kamioner],
@@ -505,7 +508,7 @@ namespace Saobracaj.Drumski
                                 '' as UlaznaFaktura,
                                 de.BL,
                                 de.Booking,
-                                CONVERT(varchar, GETDATE(),104) AS DatumIzmene,
+                                GETDATE() AS DatumIzmene,
                                 de.MestoUtovara,
                                 de.MestoIstovara,
                                 de.BrojKontejnera,
@@ -523,9 +526,9 @@ namespace Saobracaj.Drumski
                            ( SELECT  
                             rn.ID,
                             rn.NalogID,
-                            p.PaNaziv AS Prevoznik,
+                            LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                             pa.PaNaziv AS Klijent,
-                            a.Vozac AS Kamioner,
+                            LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                             rn.Trosak AS Cena,
                             '' AS BL,
                             i.BookingBrodara AS Booking,
@@ -557,9 +560,9 @@ namespace Saobracaj.Drumski
                         -- 2)
                         SELECT rn.ID,
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                '' AS BL,
                                i.BookingBrodara AS Booking,
@@ -591,9 +594,9 @@ namespace Saobracaj.Drumski
                         -- 3)
                         SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
@@ -626,9 +629,9 @@ namespace Saobracaj.Drumski
 
                         SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                i.BrodskaTeretnica AS BL,
                                0  AS Booking,
@@ -661,9 +664,9 @@ namespace Saobracaj.Drumski
 
                            SELECT rn.ID, 
                                rn.NalogID,
-                               p.PaNaziv AS Prevoznik,
+                               LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
-                               a.Vozac AS Kamioner,
+                               LTRIM(RTRIM(a.Vozac)) AS Kamioner,
                                rn.Trosak AS Cena,
                                rn.BrodskaTeretnica AS BL,
                                rn.BookingBrodara AS Booking,
@@ -752,6 +755,11 @@ namespace Saobracaj.Drumski
                 column.AllowFilter = true;
             }
 
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "Static";
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "TextBox";
+            gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.Format = "dd.MM.yyyy";
+       
+
             // Ukloni kolone koje ne želiš da se vide
             var colsToRemove = new[] { "MestoUtovara", "MestoIstovara", "BrojKontejnera", "ArtikalSifra", "TipTransporta", "AutoDan", "PDV", "DodatniTrosakTransporta", "Uvoz", "DatumUtovara", "DtPreuzimanjaPraznogKontejnera" }; // "Status" je Naziv
             foreach (var col in colsToRemove)
@@ -814,7 +822,7 @@ namespace Saobracaj.Drumski
                 brojDokumenata = red["Dokumenta"] == DBNull.Value || string.IsNullOrWhiteSpace(red["Dokumenta"].ToString()) ? 0  : Convert.ToInt32(red["Dokumenta"]);
                 if (red["DatumIzmene"] != DBNull.Value)
                 {
-                    dtpPregleda.Value = Convert.ToDateTime(red["DatumIzmene"]);
+                    dtpPregleda.Value = (DateTime)red["DatumIzmene"];
                 }
                 
                 // cerada (TipTransporta = 2) onda je datumUtovara u suprotnom DtPreuzimanjaPraznogKontejnera
@@ -822,7 +830,7 @@ namespace Saobracaj.Drumski
                 {
                     if (red["DatumUtovara"] != DBNull.Value)
                     {
-                        dtpPrometa.Value = Convert.ToDateTime(red["DatumUtovara"]);
+                        dtpPrometa.Value = (DateTime)red["DatumUtovara"];
                     }
                 }
                 else

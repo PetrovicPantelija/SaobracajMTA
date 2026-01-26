@@ -53,6 +53,8 @@ namespace Saobracaj.Drumski
             lbtHederTekst.Visible = true;
             button1.Visible = true;
             button4.Visible = false;
+
+
         }
 
         public frmDrumski(string noviNalogID, int? NalogID)
@@ -128,7 +130,10 @@ namespace Saobracaj.Drumski
                 cboMestoUtovara.SelectedValue = 8;
                 txtAdresaUtovara.Text = "Jarački put";
             }
-        
+
+            int? tipTransporta = tipoviIn != null && tipoviIn.Contains(2) ? 2 : (int?)null;
+            PodesiVidljivostPoTipuTransporta(tipTransporta);
+
             drumskiNew = true;
             button3.Visible = false;      
             button21.Visible = false;
@@ -243,8 +248,6 @@ namespace Saobracaj.Drumski
                 // toolStripHeader.Visible = true;
             }
         }
-
-
      
         private void VratiPodatke()
         {
@@ -262,7 +265,7 @@ namespace Saobracaj.Drumski
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              "ik.NapomenaZaRobu as NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , 0 AS OdredisnaCarina, ik.MestoCarinjenja as polaznaCarinarnica, ik.Spedicija as polaznaSpedicija, 0 as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt,'' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
-             "rn.DodatniTrosakTransporta " +
+             "rn.DodatniTrosakTransporta, rn.BrojPosiljke " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
@@ -282,7 +285,7 @@ namespace Saobracaj.Drumski
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
              "i.NapomenaZaRobu AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , 0 AS  OdredisnaCarina,i.MestoCarinjenja as polaznaCarinarnica,  i.Spedicija as polaznaSpedicija, 0 as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, '' AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski ," +
-             "rn.DodatniTrosakTransporta " +
+             "rn.DodatniTrosakTransporta, rn.BrojPosiljke " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
@@ -300,7 +303,7 @@ namespace Saobracaj.Drumski
              " uk.BrutoKontejnera AS BTTKontejnetra, uk.BrutoRobe AS BTTRobe," +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona , pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta, " +
              "'' AS NapomenaCarinskiPostupak,uk.OdredisnaCarina as OdredisnaCarina , 0 as polaznaCarinarnica, 0 as polaznaSpedicija, uk.OdredisnaSpedicija as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta AS TipTransportaDrumski," +
-             "rn.DodatniTrosakTransporta  " +
+             "rn.DodatniTrosakTransporta, rn.BrojPosiljke  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -323,7 +326,7 @@ namespace Saobracaj.Drumski
              "u.BrutoKontejnera AS BTTKontejnetra, u.BrutoRobe AS BTTRobe, " +
              " np.Naziv as NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, (vcp.Oznaka + ' ' + vcp.Naziv) as CarinjenjeIzvozno, pr.Naziv as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, u.OdredisnaCarina as OdredisnaCarina,0 as polaznaCarinarnica, 0 as polaznaSpedicija, u.OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,'' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
-             "rn.DodatniTrosakTransporta  " +
+             "rn.DodatniTrosakTransporta, rn.BrojPosiljke  " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -345,7 +348,7 @@ namespace Saobracaj.Drumski
              "CAST(rn.NapomenaZaPozicioniranje AS varchar(50)) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID, a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena,'' as CarinjenjeIzvozno, '' as TipTransporta," +
              " '' AS NapomenaCarinskiPostupak, rn.OdredisnaCarinarnica as OdredisnaCarina,rn.PolaznaCarinarnica , rn.PolaznaSpedicija ,rn.OdredisnaSpedicija, rn.PolaznaSpedicijaKontakt, rn.OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, " +
              "rn.PDV, rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
-             "rn.DodatniTrosakTransporta  " +
+             "rn.DodatniTrosakTransporta, rn.BrojPosiljke  " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
               "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
@@ -518,6 +521,8 @@ namespace Saobracaj.Drumski
                 int NalogID = -1;
                 if (dr["NalogID"] != DBNull.Value && int.TryParse(dr["NalogID"].ToString(), out int conertedNalogID))
                      NalogID = conertedNalogID;
+
+                txtBrojPosiljke.Text = dr["BrojPosiljke"].ToString();
 
                 //if (dr["TipTransportaDrumski"] != DBNull.Value && int.TryParse(dr["TipTransportaDrumski"].ToString(), out int conTipT) && conTipT == 2)
                 //     dtPreuzimanjaPraznogKontejnera.Enabled = false;
@@ -1155,6 +1160,9 @@ namespace Saobracaj.Drumski
             //dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             //dtPreuzimanjaPraznogKontejnera.Checked = true;
             VratiPodatke();
+
+            if (cboTipTransporta.SelectedValue != null)
+                ObradiPromenuTipaTransporta();
         }
 
         private void button21_Click(object sender, EventArgs e)
@@ -1183,6 +1191,7 @@ namespace Saobracaj.Drumski
             string polaznaSpedicijaKontakt = null;
             int kreirajNalogID = 0;
             int? nalogID = null;
+            string brojPosiljke = null;
 
             int iD = 0;
             if (txtID.Text != null && int.TryParse(txtID.Text, out int parsedID))
@@ -1286,6 +1295,10 @@ namespace Saobracaj.Drumski
             else
             {
                 tipNaloga = Uvoz;
+            }
+            if (tipNaloga == 2)
+            { 
+                brojPosiljke = string.IsNullOrWhiteSpace(txtBrojPosiljke.Text) ? null : txtBrojPosiljke.Text.Trim(); 
             }
 
             int? vrstaKontejnera = null;
@@ -1420,7 +1433,8 @@ namespace Saobracaj.Drumski
 
                     int noviID = ins.InsRadniNalogDrumski(tipNaloga, kreirajNalogID, nalogID, autoDan, referenca, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                         dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, brojKontejnera2,
-                        bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera, dodatniTrosak);
+                        bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, 
+                        vrstaKontejnera, dodatniTrosak, brojPosiljke);
 
                 txtID.Text = noviID.ToString();
                 lbtHederTekst.Text = "Unos novog zapisa završen!";
@@ -1478,7 +1492,7 @@ namespace Saobracaj.Drumski
                 ins.UpdateRadniNalogDrumski(iD, tipNaloga, autoDan, referenca, mestoPreuzimanja, mestoUtovara, adresaUtovara, mestoIstovara, datumUtovara, datumIstovara, adresaIstovara,
                     dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID, kamionID, statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, bookingBrodara, klijent,
                     bttoKontejnera, bttoRobe, brojVoza, brojKontejnera, brojKontejnera2, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija,
-                    polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera, dodatniTrosak);
+                    polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID, vrstaKontejnera, dodatniTrosak, brojPosiljke);
 
                 // 4. Ako se status promenio i novi spada u završne onda ide update internog
                 if (statusID.HasValue &&
@@ -1882,44 +1896,98 @@ namespace Saobracaj.Drumski
 
         private void cboTipTransporta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int tipTransportaId) && tipTransportaId > 0)
+            //if (cboTipTransporta.SelectedValue != null && int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int tipTransportaId) && tipTransportaId > 0)
+            //{
+            //    UcitajKamione(tipTransportaId);
+            //    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            //    SqlConnection con = new SqlConnection(s_connection);
+
+            //    con.Open();
+
+            //    SqlCommand cmd = new SqlCommand("SELECT	ISNULL(rn.KamionID, 0) AS KamionID " +
+            //     "FROM    RadniNalogDrumski rn " +
+            //     "INNER JOIN Automobili a on a.ID = rn.KamionID " +
+            //     "where rn.ID=" + id + " AND a.VlasnistvoLegeta =  " + cboTipTransporta.SelectedValue, con);
+
+            //    SqlDataReader dr = cmd.ExecuteReader();
+            //    bool found = false;
+            //    while (dr.Read())
+
+            //    {
+            //        cboKamion.SelectedValue = Convert.ToInt32(dr["KamionID"]);
+            //        found = true;
+            //    }
+
+            //    if (!found)
+            //    {
+            //        OcistiVozaca();
+            //    }
+            //}
+            //else
+            //{
+            //    UcitajKamione(null); // Ako nije validan ID, učitaj sve kamione bez filtera
+            //    OcistiVozaca();
+            //}
+        }
+
+        private void ObradiPromenuTipaTransporta()
+        {
+            if (cboTipTransporta.SelectedValue != null &&
+                int.TryParse(cboTipTransporta.SelectedValue.ToString(), out int tipTransportaId) &&
+                tipTransportaId > 0)
             {
                 UcitajKamione(tipTransportaId);
-                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                SqlConnection con = new SqlConnection(s_connection);
 
-                con.Open();
-
-                SqlCommand cmd = new SqlCommand("SELECT	ISNULL(rn.KamionID, 0) AS KamionID " +
-                 "FROM    RadniNalogDrumski rn " +
-                 "INNER JOIN Automobili a on a.ID = rn.KamionID " +
-                 "where rn.ID=" + id + " AND a.VlasnistvoLegeta =  " + cboTipTransporta.SelectedValue, con);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-                bool found = false;
-                while (dr.Read())
-
+                using (SqlConnection con = new SqlConnection(
+                    Saobracaj.Sifarnici.frmLogovanje.connectionString))
                 {
-                    cboKamion.SelectedValue = Convert.ToInt32(dr["KamionID"]);
-                    found = true;
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(
+                        "SELECT ISNULL(rn.KamionID, 0) AS KamionID " +
+                        "FROM RadniNalogDrumski rn " +
+                        "INNER JOIN Automobili a ON a.ID = rn.KamionID " +
+                        "WHERE rn.ID = @ID AND a.VlasnistvoLegeta = @Tip",
+                        con))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", id);
+                        cmd.Parameters.AddWithValue("@Tip", tipTransportaId);
+
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                cboKamion.SelectedValue = Convert.ToInt32(dr["KamionID"]);
+                            }
+                            else
+                            {
+                                OcistiVozaca();
+                            }
+                        }
+                    }
                 }
 
-                if (!found)
-                {
-                    txtVozac.Text = "";
-                    txtBrojLK.Text = "";
-                    txtBrojTelefona.Text = "";
-                    txtPrevoznik.Text = "";
-                }
+                // ovde možeš i logiku vidljivosti
+                PodesiVidljivostPoTipuTransporta(tipTransportaId);
             }
             else
             {
-                UcitajKamione(null); // Ako nije validan ID, učitaj sve kamione bez filtera
-                txtVozac.Text = "";
-                txtBrojLK.Text = "";
-                txtBrojTelefona.Text = "";
-                txtPrevoznik.Text = "";
+                UcitajKamione(null);
+                OcistiVozaca();
             }
+        }
+
+        private void cboTipTransporta_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ObradiPromenuTipaTransporta();
+        }
+
+        private void OcistiVozaca()
+        {
+            txtVozac.Text = "";
+            txtBrojLK.Text = "";
+            txtBrojTelefona.Text = "";
+            txtPrevoznik.Text = "";
         }
 
         private void btnKontaktOsobe_Click(object sender, EventArgs e)
@@ -2322,51 +2390,26 @@ namespace Saobracaj.Drumski
         //        cboPolaznaCarinarnica.SelectedIndex = -1;
         //    }
         //}
-
-        private void cboPolaznaCarinarnica_TextChanged(object sender, EventArgs e)
+        private void PodesiVidljivostPoTipuTransporta(int? tipTransporta)
         {
-            ComboBox_SearchAndPosition(sender);
+            bool jeTip2 = tipTransporta == 2;
+
+            lblKamion.Visible = !jeTip2;
+            cboKamion.Visible = !jeTip2;
+            lblVozac.Visible = !jeTip2;
+            txtVozac.Visible = !jeTip2;
+            lblBrojLK.Visible = !jeTip2;
+            txtBrojLK.Visible = !jeTip2;
+            lblBrojTelefona.Visible = !jeTip2;
+            txtBrojTelefona.Visible = !jeTip2;
+            lblPrevoznik.Visible = !jeTip2;
+            txtPrevoznik.Visible = !jeTip2;
+            lblMestoPreuzimanja.Visible = !jeTip2;
+            cboMestoPreuzimanja.Visible = !jeTip2;
+
+
+            txtBrojPosiljke.Visible = jeTip2;
+            lblBrojPosiljke.Visible = jeTip2;
         }
-
-
-        private void cboMestoUtovara_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
-
-        private void cboMestoIstovara_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
-
-        private void cboOCarinarnica_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
-
-        private void cboMestoPreuzimanja_KeyUp(object sender, KeyEventArgs e)
-        {
-            ComboBox_SearchAndPosition_OnKeyUp(sender, e);
-        }
-
-        private void cboKlijent_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
-
-        //private void cboMestoUtovara_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    ComboBox_SearchAndPosition(sender);
-        //}
-
-        private void cboPolaznaSpedicija_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }
-
-        private void cbOspedicija_TextChanged(object sender, EventArgs e)
-        {
-            ComboBox_SearchAndPosition(sender);
-        }       
     }
 }

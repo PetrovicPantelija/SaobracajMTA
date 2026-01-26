@@ -51,7 +51,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.lblMestoPreuzimanja = new System.Windows.Forms.Label();
             this.chkAutoDan = new System.Windows.Forms.CheckBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.txtTipNaloga1 = new System.Windows.Forms.TextBox();
             this.lblBL = new System.Windows.Forms.Label();
             this.cboKamion = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblKamion = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
@@ -80,11 +80,11 @@
             this.txtCena = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.txtVozac = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblVozac = new System.Windows.Forms.Label();
             this.txtBrojLK = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblBrojLK = new System.Windows.Forms.Label();
             this.txtBrojTelefona = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lblBrojTelefona = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -124,7 +124,7 @@
             this.cboOCarinarnica = new System.Windows.Forms.ComboBox();
             this.cboPolaznaCarinarnica = new System.Windows.Forms.ComboBox();
             this.txtPrevoznik = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblPrevoznik = new System.Windows.Forms.Label();
             this.cbOspedicija = new System.Windows.Forms.ComboBox();
             this.txtKontaktPolazneSpedicije = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -135,6 +135,8 @@
             this.label33 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.chkDodatniTrosak = new System.Windows.Forms.CheckBox();
+            this.lblBrojPosiljke = new System.Windows.Forms.Label();
+            this.txtBrojPosiljke = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTrosak)).BeginInit();
@@ -342,14 +344,14 @@
             this.label46.TabIndex = 503;
             this.label46.Text = "Klijent";
             // 
-            // label23
+            // lblMestoPreuzimanja
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(19, 265);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(186, 16);
-            this.label23.TabIndex = 501;
-            this.label23.Text = "Mesto preuzimanja kontejnera";
+            this.lblMestoPreuzimanja.AutoSize = true;
+            this.lblMestoPreuzimanja.Location = new System.Drawing.Point(19, 265);
+            this.lblMestoPreuzimanja.Name = "lblMestoPreuzimanja";
+            this.lblMestoPreuzimanja.Size = new System.Drawing.Size(186, 16);
+            this.lblMestoPreuzimanja.TabIndex = 501;
+            this.lblMestoPreuzimanja.Text = "Mesto preuzimanja kontejnera";
             // 
             // chkAutoDan
             // 
@@ -528,14 +530,14 @@
             this.cboKamion.TabIndex = 291;
             this.cboKamion.SelectionChangeCommitted += new System.EventHandler(this.cboKamion_SelectionChangeCommitted);
             // 
-            // label9
+            // lblKamion
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(911, 85);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 16);
-            this.label9.TabIndex = 569;
-            this.label9.Text = "Kamion";
+            this.lblKamion.AutoSize = true;
+            this.lblKamion.Location = new System.Drawing.Point(911, 85);
+            this.lblKamion.Name = "lblKamion";
+            this.lblKamion.Size = new System.Drawing.Size(52, 16);
+            this.lblKamion.TabIndex = 569;
+            this.lblKamion.Text = "Kamion";
             // 
             // commandBarController1
             // 
@@ -646,15 +648,15 @@
             this.txtVozac.Size = new System.Drawing.Size(305, 22);
             this.txtVozac.TabIndex = 292;
             // 
-            // label14
+            // lblVozac
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(911, 148);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(45, 16);
-            this.label14.TabIndex = 591;
-            this.label14.Text = "Vozac";
+            this.lblVozac.AutoSize = true;
+            this.lblVozac.Location = new System.Drawing.Point(911, 148);
+            this.lblVozac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVozac.Name = "lblVozac";
+            this.lblVozac.Size = new System.Drawing.Size(45, 16);
+            this.lblVozac.TabIndex = 591;
+            this.lblVozac.Text = "Vozac";
             // 
             // txtBrojLK
             // 
@@ -665,15 +667,15 @@
             this.txtBrojLK.Size = new System.Drawing.Size(305, 22);
             this.txtBrojLK.TabIndex = 293;
             // 
-            // label16
+            // lblBrojLK
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(911, 207);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(49, 16);
-            this.label16.TabIndex = 593;
-            this.label16.Text = "Broj LK";
+            this.lblBrojLK.AutoSize = true;
+            this.lblBrojLK.Location = new System.Drawing.Point(911, 207);
+            this.lblBrojLK.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBrojLK.Name = "lblBrojLK";
+            this.lblBrojLK.Size = new System.Drawing.Size(49, 16);
+            this.lblBrojLK.TabIndex = 593;
+            this.lblBrojLK.Text = "Broj LK";
             // 
             // txtBrojTelefona
             // 
@@ -684,15 +686,15 @@
             this.txtBrojTelefona.Size = new System.Drawing.Size(305, 22);
             this.txtBrojTelefona.TabIndex = 294;
             // 
-            // label17
+            // lblBrojTelefona
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(911, 265);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(82, 16);
-            this.label17.TabIndex = 595;
-            this.label17.Text = "Broj telefona";
+            this.lblBrojTelefona.AutoSize = true;
+            this.lblBrojTelefona.Location = new System.Drawing.Point(911, 265);
+            this.lblBrojTelefona.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBrojTelefona.Name = "lblBrojTelefona";
+            this.lblBrojTelefona.Size = new System.Drawing.Size(82, 16);
+            this.lblBrojTelefona.TabIndex = 595;
+            this.lblBrojTelefona.Text = "Broj telefona";
             // 
             // label18
             // 
@@ -715,7 +717,7 @@
             this.panelHeader.Controls.Add(this.btnFormiranjeNaloga);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1461, 40);
@@ -888,7 +890,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1461, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1461, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -898,13 +900,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -912,7 +914,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1168,15 +1170,15 @@
             this.txtPrevoznik.Size = new System.Drawing.Size(305, 22);
             this.txtPrevoznik.TabIndex = 295;
             // 
-            // label7
+            // lblPrevoznik
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(911, 331);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 16);
-            this.label7.TabIndex = 632;
-            this.label7.Text = "Prevoznik";
+            this.lblPrevoznik.AutoSize = true;
+            this.lblPrevoznik.Location = new System.Drawing.Point(911, 331);
+            this.lblPrevoznik.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrevoznik.Name = "lblPrevoznik";
+            this.lblPrevoznik.Size = new System.Drawing.Size(66, 16);
+            this.lblPrevoznik.TabIndex = 632;
+            this.lblPrevoznik.Text = "Prevoznik";
             // 
             // cbOspedicija
             // 
@@ -1247,6 +1249,7 @@
             this.cboTipTransporta.Size = new System.Drawing.Size(240, 24);
             this.cboTipTransporta.TabIndex = 150;
             this.cboTipTransporta.SelectedIndexChanged += new System.EventHandler(this.cboTipTransporta_SelectedIndexChanged);
+            this.cboTipTransporta.SelectionChangeCommitted += new System.EventHandler(this.cboTipTransporta_SelectionChangeCommitted);
             // 
             // label33
             // 
@@ -1269,11 +1272,32 @@
             this.chkDodatniTrosak.Text = "Dodatni trošak transporta";
             this.chkDodatniTrosak.UseVisualStyleBackColor = true;
             // 
+            // lblBrojPosiljke
+            // 
+            this.lblBrojPosiljke.AutoSize = true;
+            this.lblBrojPosiljke.Location = new System.Drawing.Point(911, 85);
+            this.lblBrojPosiljke.Name = "lblBrojPosiljke";
+            this.lblBrojPosiljke.Size = new System.Drawing.Size(81, 16);
+            this.lblBrojPosiljke.TabIndex = 647;
+            this.lblBrojPosiljke.Text = "Broj pošiljke";
+            this.lblBrojPosiljke.Visible = false;
+            // 
+            // txtBrojPosiljke
+            // 
+            this.txtBrojPosiljke.Location = new System.Drawing.Point(911, 106);
+            this.txtBrojPosiljke.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBrojPosiljke.Name = "txtBrojPosiljke";
+            this.txtBrojPosiljke.Size = new System.Drawing.Size(308, 22);
+            this.txtBrojPosiljke.TabIndex = 646;
+            this.txtBrojPosiljke.Visible = false;
+            // 
             // frmDrumski
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1461, 871);
+            this.Controls.Add(this.lblBrojPosiljke);
+            this.Controls.Add(this.txtBrojPosiljke);
             this.Controls.Add(this.chkDodatniTrosak);
             this.Controls.Add(this.cboTipTransporta);
             this.Controls.Add(this.label33);
@@ -1284,7 +1308,7 @@
             this.Controls.Add(this.label30);
             this.Controls.Add(this.cbOspedicija);
             this.Controls.Add(this.txtPrevoznik);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblPrevoznik);
             this.Controls.Add(this.cboPolaznaCarinarnica);
             this.Controls.Add(this.cboOCarinarnica);
             this.Controls.Add(this.cboMestoPreuzimanja);
@@ -1311,11 +1335,11 @@
             this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtBrojTelefona);
-            this.Controls.Add(this.label17);
+            this.Controls.Add(this.lblBrojTelefona);
             this.Controls.Add(this.txtBrojLK);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lblBrojLK);
             this.Controls.Add(this.txtVozac);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblVozac);
             this.Controls.Add(this.txtCena);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtkontaktNaIstovaru);
@@ -1325,7 +1349,7 @@
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cboKamion);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblKamion);
             this.Controls.Add(this.txtBL);
             this.Controls.Add(this.lblBL);
             this.Controls.Add(this.txtTipNaloga1);
@@ -1342,7 +1366,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtValuta);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.label23);
+            this.Controls.Add(this.lblMestoPreuzimanja);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label57);
             this.Controls.Add(this.txtID);
@@ -1409,7 +1433,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblMestoPreuzimanja;
         private System.Windows.Forms.CheckBox chkAutoDan;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label57;
@@ -1426,7 +1450,7 @@
         private System.Windows.Forms.TextBox txtTipNaloga1;
         private System.Windows.Forms.Label lblBL;
         private System.Windows.Forms.ComboBox cboKamion;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblKamion;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Label label11;
@@ -1438,11 +1462,11 @@
         private System.Windows.Forms.TextBox txtkontaktNaIstovaru;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtBrojTelefona;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblBrojTelefona;
         private System.Windows.Forms.TextBox txtBrojLK;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblBrojLK;
         private System.Windows.Forms.TextBox txtVozac;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblVozac;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel3;
@@ -1480,7 +1504,7 @@
         private System.Windows.Forms.ComboBox cboOCarinarnica;
         private System.Windows.Forms.ComboBox cboPolaznaCarinarnica;
         private System.Windows.Forms.TextBox txtPrevoznik;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPrevoznik;
         private System.Windows.Forms.ComboBox cbOspedicija;
         private System.Windows.Forms.TextBox txtKontaktOSpedicije;
         private System.Windows.Forms.Label label28;
@@ -1493,5 +1517,7 @@
         private System.Windows.Forms.Label lbtHederTekst;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkDodatniTrosak;
+        private System.Windows.Forms.Label lblBrojPosiljke;
+        private System.Windows.Forms.TextBox txtBrojPosiljke;
     }
 }
