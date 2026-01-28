@@ -381,6 +381,7 @@ namespace Saobracaj.Drumski
                 LEFT JOIN FakturaDrumski fd ON fd.RadniNalogDrumskiID = de.ID
                 LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
                 LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
+                ORDER BY de.ID desc
                 ";
 
             SqlCommand cmd = new SqlCommand();
@@ -460,6 +461,15 @@ namespace Saobracaj.Drumski
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
             // resize po sadržaju (ne samo header)
             gridGroupingControl1.TableModel.ColWidths.ResizeToFit(
                 GridRangeInfo.Table(),
@@ -491,9 +501,6 @@ namespace Saobracaj.Drumski
                 }
             }
 
-
-            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-            dynamicFilter.WireGrid(gridGroupingControl1);
         }
 
         private void RefreshGridBezUlazneFakture()
@@ -716,6 +723,8 @@ namespace Saobracaj.Drumski
                                          AND ISNULL(pa.PDV, 0) = ISNULL(de.PDV, 0)
                                          AND ISNULL(pa.DodatniTrosak, 0)  = ISNULL(de.DodatniTrosakTransporta, 0)
                   LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
+
+                  ORDER BY de.ID desc
                 ";
 
             SqlCommand cmd = new SqlCommand();
@@ -769,9 +778,14 @@ namespace Saobracaj.Drumski
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
-            gridGroupingControl1.DataSource = ds.Tables[0];
-            gridGroupingControl1.ShowGroupDropArea = true;
-            gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+
+            //Wiring GridExcelFilter to GridGroupingControl
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
 
             // resize po sadržaju (ne samo header)
             gridGroupingControl1.TableModel.ColWidths.ResizeToFit(
@@ -804,10 +818,6 @@ namespace Saobracaj.Drumski
                     gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
                 }
             }
-
-
-            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
-            dynamicFilter.WireGrid(gridGroupingControl1);
         }
 
         private void Grid_TableControl_CellDoubleClick(object sender, Syncfusion.Windows.Forms.Grid.GridCellClickEventArgs e)

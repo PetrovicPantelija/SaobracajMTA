@@ -430,6 +430,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PakovanjeKamionaCerade";
             this.Text = "PakovanjeKamionaCerade";
+            this.Load += new System.EventHandler(this.PakovanjeKamionaCerade_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

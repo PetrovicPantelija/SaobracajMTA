@@ -239,7 +239,8 @@ namespace Saobracaj.Drumski
                                 x.SlanjeNajave, 
                                 x.Status AS Status,
                                 x.StatusID,
-                                x.TehnickiNeispravan
+                                x.TehnickiNeispravan,
+                                isNull(d.BrojDokumenata,0) AS BrojDokumenata
 
                             FROM 
                             (
@@ -379,21 +380,6 @@ namespace Saobracaj.Drumski
                             ) AS x
                             LEFT JOIN Dokumenti d ON d.RadniNalogDrumskiID = x.id
                             WHERE  {uslovTipVozila}    AND (x.StatusID IS NULL OR x.StatusID NOT IN ( {statusiZaUpit} ) OR (x.statusID IN ({statusiZaUpit}) AND ISNULL(d.BrojDokumenata,0) = 0))
-                           -- GROUP BY 
-                           --     x.ID,
-                           --     x.Nalogodavac, 
-                           --     x.Relacija,
-                            --    x.Vozac,
-                            --    x.Kamion, 
-                            --    x.DatumIstovara, 
-                            --    x.NalogID, 
-                            --    x.Prevoznik, 
-                            --    x.PoslataNajava,
-                            --    x.NajavuPoslao, 
-                            --    x.SlanjeNajave, 
-                            --    x.Status,
-                            --    x.StatusID,
-                            --    x.TehnickiNeispravan
 
                             ORDER BY 
                                 x.NalogID DESC";
@@ -492,7 +478,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan","BrojDokumenata"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -505,6 +491,21 @@ namespace Saobracaj.Drumski
                 if (dataGridView3.Columns.Contains(kolona))
                 {
                     dataGridView3.Columns[kolona].Visible = false;
+                }
+            }
+
+            string[] koloneZaFiksiranje = { "poslataNajava", "nalogID" };
+
+            foreach (string nazivKolone in koloneZaFiksiranje)
+            {
+                // Proveravamo da li kolona sa tim imenom postoji u DataGridView-u
+                if (dataGridView3.Columns.Contains(nazivKolone))
+                {
+                    // Pristupamo koloni preko njenog imena i menjamo svojstva
+                    dataGridView3.Columns[nazivKolone].Width = 60;
+
+                    // Onemogućavamo korisniku da je ručno menja (ako želite)
+                    dataGridView3.Columns[nazivKolone].Resizable = DataGridViewTriState.False;
                 }
             }
         }
@@ -732,9 +733,10 @@ namespace Saobracaj.Drumski
                 }
 
                 int noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
+                int brojDokumenata = Convert.ToInt32(row.Cells["BrojDokumenata"].Value);
                 string idsString = row.Cells["ID"].Value.ToString();
 
-                if (_arhivskiStatusi.Contains(noviStatusID))
+                if (_arhivskiStatusi.Contains(noviStatusID) && brojDokumenata > 0)
                 {
                     // Učitaj naziv statusa (iz StatusVozila)
                     string nazivStatusa = VratiNazivStatusa(noviStatusID);
@@ -770,7 +772,7 @@ namespace Saobracaj.Drumski
 
             }
 
-            RefreshDataGrid3();
+            //RefreshDataGrid3();
         }
 
         private void frmStatus_Load(object sender, EventArgs e)
@@ -813,7 +815,7 @@ namespace Saobracaj.Drumski
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT Naziv FROM StatusVozila WHERE ID = @ID", conn);
+                    "SELECT LTRIM(RTRIM(Naziv)) AS Naziv FROM StatusVozila WHERE ID = @ID", conn);
 
                 cmd.Parameters.AddWithValue("@ID", statusID);
 

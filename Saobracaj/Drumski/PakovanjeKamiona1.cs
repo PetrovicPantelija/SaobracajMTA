@@ -2251,6 +2251,7 @@ namespace Saobracaj.Drumski
                     int kamionID = row["KamionID"] != DBNull.Value ? Convert.ToInt32(row["KamionID"]) : 0;
                     (string vozac, string brLK, string telefon) = DobaviVozaca(kamionID);
 
+
                     htmlBuilder.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse;font-family: Arial; font-size: 14px;'>");
                     htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td><b>{kontejnerString}</b></td></tr>");
                     if((Uvoz == 0 || Uvoz == 3 || Uvoz == 5) && tipTransporta != 2)
@@ -2261,10 +2262,9 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine($"<tr><td><b>BR. L.K:</b></td><td>{brLK}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>MOB VOZAČA:</b></td><td>{telefon}</td></tr>");
                     htmlBuilder.AppendLine("</table>");
-                    htmlBuilder.AppendLine("<table><tr><td style='height:20px;'>&nbsp;</td></tr></table>");
 
-                    htmlBuilder.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse: collapse; font-family: Arial; font-size: 14px;'>");
-                    htmlBuilder.AppendLine("<table><tr><td style='height:20px;'>&nbsp;</td></tr></table>");
+                    htmlBuilder.AppendLine("<div style='height:15px; line-height:15px;'>&nbsp;</div>");
+
 
                     // Ovde pozovi tvoju Update/Insert logiku
                     int ID = GetInt(row, "ID");
@@ -2820,7 +2820,7 @@ namespace Saobracaj.Drumski
         private void ApplyFilters()
         {
             RefreshDataGrid1();
-            RefreshDataGrid2();
+            //RefreshDataGrid2();
         }
 
         private void button3_Click(object sender, EventArgs e)

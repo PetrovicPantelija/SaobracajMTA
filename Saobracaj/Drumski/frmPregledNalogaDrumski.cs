@@ -114,8 +114,7 @@ namespace Saobracaj.Drumski
             else if (forma == "TransportUvoz" || forma == "TransportIzvoz")
             {
                 button6.Visible = false;
-            }
-            
+            }     
         }
 
         private void ChangeTextBox()
@@ -152,7 +151,6 @@ namespace Saobracaj.Drumski
 
                 foreach (Control control in this.Controls)
                 {
-
                     if (control is System.Windows.Forms.TextBox textBox)
                     {
 
@@ -536,6 +534,10 @@ namespace Saobracaj.Drumski
                 {
                     column.AllowFilter = true;
                 }
+
+                GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+                //Wiring the Dynamic Filter to GridGroupingControl
+                dynamicFilter.WireGrid(this.gridGroupingControl1); 
 
                 GridExcelFilter excelFilter = new GridExcelFilter();
                 excelFilter.WireGrid(gridGroupingControl1);
@@ -1161,6 +1163,10 @@ namespace Saobracaj.Drumski
                         {
                             odredisnaCarinarnica = parsedOdredisnaCarina;
                         }
+
+                       
+
+                        
                         isu.DuplirajRadniNalogDrumski(duplikatNalogID, uvoz, autoDan, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, datumUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
                             trosak, valuta, status, opis, cena, kontaktOsobaNaIstovaru, pdv, tipTransporta, brojVoza, bttoKontejnera, bttoRobe, bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, referenca,
                             polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt );

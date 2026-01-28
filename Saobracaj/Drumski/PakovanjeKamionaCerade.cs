@@ -1763,7 +1763,7 @@ namespace Saobracaj.Drumski
                 conn.Open();
 
                 SqlCommand cmd = new SqlCommand(
-                    "SELECT Naziv FROM StatusVozila WHERE ID = @ID", conn);
+                    "SELECT LTRIM(RTRIM(Naziv)) AS Naziv FROM StatusVozila WHERE ID = @ID", conn);
 
                 cmd.Parameters.AddWithValue("@ID", statusID);
 
@@ -2819,7 +2819,7 @@ namespace Saobracaj.Drumski
         private void ApplyFilters()
         {
             RefreshDataGrid1();
-            RefreshDataGrid2();
+          //  RefreshDataGrid2();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -2890,6 +2890,11 @@ namespace Saobracaj.Drumski
         {
             RefreshDataGrid1();
             RefreshDataGrid2();
+        }
+
+        private void PakovanjeKamionaCerade_Load(object sender, EventArgs e)
+        {
+            _arhivskiStatusi = UcitajArhivskeStatuse();
         }
     }
  
