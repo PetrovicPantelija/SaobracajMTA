@@ -67,6 +67,8 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detaljiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNalog = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -237,6 +239,8 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtNalog);
             this.panel3.Controls.Add(this.btnIzadjiBezPromena);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.dtpPregleda);
@@ -264,7 +268,7 @@
             // 
             // btnIzadjiBezPromena
             // 
-            this.btnIzadjiBezPromena.Location = new System.Drawing.Point(372, 318);
+            this.btnIzadjiBezPromena.Location = new System.Drawing.Point(372, 350);
             this.btnIzadjiBezPromena.Name = "btnIzadjiBezPromena";
             this.btnIzadjiBezPromena.Size = new System.Drawing.Size(154, 27);
             this.btnIzadjiBezPromena.TabIndex = 483;
@@ -274,7 +278,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(194, 318);
+            this.button2.Location = new System.Drawing.Point(194, 350);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(154, 27);
             this.button2.TabIndex = 70;
@@ -308,7 +312,7 @@
             // 
             // txtNalogodavac
             // 
-            this.txtNalogodavac.Location = new System.Drawing.Point(194, 142);
+            this.txtNalogodavac.Location = new System.Drawing.Point(194, 174);
             this.txtNalogodavac.Margin = new System.Windows.Forms.Padding(4);
             this.txtNalogodavac.Name = "txtNalogodavac";
             this.txtNalogodavac.ReadOnly = true;
@@ -328,7 +332,7 @@
             // lblRelacija
             // 
             this.lblRelacija.AutoSize = true;
-            this.lblRelacija.Location = new System.Drawing.Point(20, 206);
+            this.lblRelacija.Location = new System.Drawing.Point(20, 241);
             this.lblRelacija.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRelacija.Name = "lblRelacija";
             this.lblRelacija.Size = new System.Drawing.Size(57, 16);
@@ -337,7 +341,7 @@
             // 
             // txtArtikal
             // 
-            this.txtArtikal.Location = new System.Drawing.Point(194, 174);
+            this.txtArtikal.Location = new System.Drawing.Point(194, 206);
             this.txtArtikal.Margin = new System.Windows.Forms.Padding(4);
             this.txtArtikal.Name = "txtArtikal";
             this.txtArtikal.ReadOnly = true;
@@ -347,7 +351,7 @@
             // lblNalogodavac
             // 
             this.lblNalogodavac.AutoSize = true;
-            this.lblNalogodavac.Location = new System.Drawing.Point(19, 146);
+            this.lblNalogodavac.Location = new System.Drawing.Point(19, 178);
             this.lblNalogodavac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNalogodavac.Name = "lblNalogodavac";
             this.lblNalogodavac.Size = new System.Drawing.Size(90, 16);
@@ -357,7 +361,7 @@
             // lblPrevoznik
             // 
             this.lblPrevoznik.AutoSize = true;
-            this.lblPrevoznik.Location = new System.Drawing.Point(20, 82);
+            this.lblPrevoznik.Location = new System.Drawing.Point(20, 114);
             this.lblPrevoznik.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrevoznik.Name = "lblPrevoznik";
             this.lblPrevoznik.Size = new System.Drawing.Size(133, 16);
@@ -366,7 +370,7 @@
             // 
             // txtRelacija
             // 
-            this.txtRelacija.Location = new System.Drawing.Point(194, 206);
+            this.txtRelacija.Location = new System.Drawing.Point(194, 238);
             this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Name = "txtRelacija";
             this.txtRelacija.ReadOnly = true;
@@ -376,7 +380,7 @@
             // lblArtikal
             // 
             this.lblArtikal.AutoSize = true;
-            this.lblArtikal.Location = new System.Drawing.Point(19, 178);
+            this.lblArtikal.Location = new System.Drawing.Point(20, 209);
             this.lblArtikal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArtikal.Name = "lblArtikal";
             this.lblArtikal.Size = new System.Drawing.Size(44, 16);
@@ -385,7 +389,7 @@
             // 
             // txtPrilozenaDokumenta
             // 
-            this.txtPrilozenaDokumenta.Location = new System.Drawing.Point(194, 111);
+            this.txtPrilozenaDokumenta.Location = new System.Drawing.Point(194, 143);
             this.txtPrilozenaDokumenta.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrilozenaDokumenta.Name = "txtPrilozenaDokumenta";
             this.txtPrilozenaDokumenta.ReadOnly = true;
@@ -394,7 +398,7 @@
             // 
             // txtKamioner
             // 
-            this.txtKamioner.Location = new System.Drawing.Point(194, 82);
+            this.txtKamioner.Location = new System.Drawing.Point(194, 114);
             this.txtKamioner.Margin = new System.Windows.Forms.Padding(4);
             this.txtKamioner.Name = "txtKamioner";
             this.txtKamioner.ReadOnly = true;
@@ -404,7 +408,7 @@
             // lblCena
             // 
             this.lblCena.AutoSize = true;
-            this.lblCena.Location = new System.Drawing.Point(18, 238);
+            this.lblCena.Location = new System.Drawing.Point(18, 270);
             this.lblCena.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCena.Name = "lblCena";
             this.lblCena.Size = new System.Drawing.Size(102, 16);
@@ -413,7 +417,7 @@
             // 
             // txtBrojUlazneFakture
             // 
-            this.txtBrojUlazneFakture.Location = new System.Drawing.Point(194, 270);
+            this.txtBrojUlazneFakture.Location = new System.Drawing.Point(194, 302);
             this.txtBrojUlazneFakture.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojUlazneFakture.Name = "txtBrojUlazneFakture";
             this.txtBrojUlazneFakture.Size = new System.Drawing.Size(332, 22);
@@ -422,7 +426,7 @@
             // lblPrilozenaDokumenta
             // 
             this.lblPrilozenaDokumenta.AutoSize = true;
-            this.lblPrilozenaDokumenta.Location = new System.Drawing.Point(20, 114);
+            this.lblPrilozenaDokumenta.Location = new System.Drawing.Point(20, 146);
             this.lblPrilozenaDokumenta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrilozenaDokumenta.Name = "lblPrilozenaDokumenta";
             this.lblPrilozenaDokumenta.Size = new System.Drawing.Size(133, 16);
@@ -441,7 +445,7 @@
             // 
             // txtCenaTransporta
             // 
-            this.txtCenaTransporta.Location = new System.Drawing.Point(194, 238);
+            this.txtCenaTransporta.Location = new System.Drawing.Point(194, 270);
             this.txtCenaTransporta.Margin = new System.Windows.Forms.Padding(4);
             this.txtCenaTransporta.Name = "txtCenaTransporta";
             this.txtCenaTransporta.ReadOnly = true;
@@ -451,7 +455,7 @@
             // lblBrojUlazneFakture
             // 
             this.lblBrojUlazneFakture.AutoSize = true;
-            this.lblBrojUlazneFakture.Location = new System.Drawing.Point(19, 270);
+            this.lblBrojUlazneFakture.Location = new System.Drawing.Point(19, 302);
             this.lblBrojUlazneFakture.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBrojUlazneFakture.Name = "lblBrojUlazneFakture";
             this.lblBrojUlazneFakture.Size = new System.Drawing.Size(116, 16);
@@ -479,6 +483,25 @@
             this.detaljiToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.detaljiToolStripMenuItem.Text = "Detalji";
             this.detaljiToolStripMenuItem.Click += new System.EventHandler(this.detaljiToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 85);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 16);
+            this.label1.TabIndex = 485;
+            this.label1.Text = "Nalog ID";
+            // 
+            // txtNalog
+            // 
+            this.txtNalog.Location = new System.Drawing.Point(193, 85);
+            this.txtNalog.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNalog.Name = "txtNalog";
+            this.txtNalog.ReadOnly = true;
+            this.txtNalog.Size = new System.Drawing.Size(332, 22);
+            this.txtNalog.TabIndex = 484;
             // 
             // frmObradaUlaznihFaktura
             // 
@@ -543,5 +566,7 @@
         private System.Windows.Forms.Button btnIzadjiBezPromena;
         private System.Windows.Forms.Button btnBezUlazneFakture;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNalog;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Data;
@@ -183,7 +184,8 @@ namespace Saobracaj.Drumski
 
                         SELECT 
                                 de.ID AS KontejnerID, 
-                                de.NalogID AS CNTBroj,
+                                de.BrojKontejnera AS CNTBroj,
+                                de.NalogID AS Nalog,
                                 ISNULL(de.Prevoznik, '')   + ' / '  + ISNULL(de.Kamioner, '') AS [Prevoznik / Kamioner],
                                 de.Klijent as Nalogodavac,
                                 pa.ArtikalNaziv,
@@ -210,7 +212,6 @@ namespace Saobracaj.Drumski
                          FROM
                            ( SELECT  
                             rn.ID,
-                            rn.NalogID,
                             LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                             pa.PaNaziv AS Klijent,
                             LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -227,7 +228,8 @@ namespace Saobracaj.Drumski
                             rn.DodatniTrosakTransporta,
                             rn.Uvoz, 
                             rn.DatumUtovara,
-                            rn.DtPreuzimanjaPraznogKontejnera
+                            rn.DtPreuzimanjaPraznogKontejnera,
+                            rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -242,7 +244,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
                         -- 2)
                         SELECT rn.ID,
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -259,7 +260,8 @@ namespace Saobracaj.Drumski
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -275,7 +277,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
                         -- 3)
                         SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -285,14 +286,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                i.BrojKontejnera,
-                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
@@ -309,7 +311,6 @@ namespace Saobracaj.Drumski
                         -- 4)
 
                         SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -319,14 +320,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                i.BrojKontejnera,
-                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                               
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
@@ -343,7 +345,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
 
                            SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -353,19 +354,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                rn.BrojKontejnera as BrojKontejnera,
-                               CASE WHEN rn.Uvoz IN (1, 2, 4) 
-                                            THEN LTRIM(RTRIM(mi.Naziv)) +' - ' + LTRIM(RTRIM(mu.Naziv))
-                                    WHEN rn.Uvoz IN (0, 3, 5) 
-                                            THEN LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
-                                    ELSE ''
-                               END AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                               
                         FROM RadniNalogDrumski rn
                         LEFT JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
@@ -427,6 +424,7 @@ namespace Saobracaj.Drumski
             dtRadniNalozi = ds.Tables[0];
 
             // odlučivanje koji panel je vidljiv
+
             if (brojRedova > 1)
             {
                 panel2.Visible = true;
@@ -449,11 +447,30 @@ namespace Saobracaj.Drumski
             {
                 panel2.Visible = false;
                 panel3.Visible = false;
+
+                MessageBox.Show(
+                    "Nijedan zapis nije pronađen za zadate kriterijume.",
+                    "Obaveštenje",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
 
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            // resize po sadržaju (ne samo header)
+            gridGroupingControl1.TableModel.ColWidths.ResizeToFit(
+                GridRangeInfo.Table(),
+                GridResizeToFitOptions.IncludeHeaders
+            );
+
+            foreach (GridColumnDescriptor col in gridGroupingControl1.TableDescriptor.Columns)
+            {
+                if (col.Width < 90) col.Width = 60;
+                if (col.Width > 350) col.Width = 350;
+            }
 
             gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "Static";
             gridGroupingControl1.TableDescriptor.Columns["DatumIzmene"].Appearance.AnyRecordFieldCell.CellType = "TextBox";
@@ -499,7 +516,8 @@ namespace Saobracaj.Drumski
 
                         SELECT  DISTINCT 
                                 de.ID AS KontejnerID, 
-                                de.NalogID AS CNTBroj,
+                                de.BrojKontejnera AS CNTBroj,
+                                de.NalogID AS Nalog,
                                 ISNULL(de.Prevoznik, '')   + ' / '  + ISNULL(de.Kamioner, '') AS [Prevoznik / Kamioner],
                                 de.Klijent as Nalogodavac,
                                 de.Relacija,
@@ -525,7 +543,6 @@ namespace Saobracaj.Drumski
                          FROM
                            ( SELECT  
                             rn.ID,
-                            rn.NalogID,
                             LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                             pa.PaNaziv AS Klijent,
                             LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -542,7 +559,8 @@ namespace Saobracaj.Drumski
                             rn.DodatniTrosakTransporta,
                             rn.Uvoz, 
                             rn.DatumUtovara,
-                            rn.DtPreuzimanjaPraznogKontejnera
+                            rn.DtPreuzimanjaPraznogKontejnera,
+                            rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
@@ -559,7 +577,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
                         -- 2)
                         SELECT rn.ID,
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -576,7 +593,8 @@ namespace Saobracaj.Drumski
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
@@ -593,7 +611,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
                         -- 3)
                         SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -603,14 +620,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                i.BrojKontejnera,
-                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
@@ -628,7 +646,6 @@ namespace Saobracaj.Drumski
                         -- 4)
 
                         SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -638,14 +655,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                i.BrojKontejnera,
-                               LTRIM(RTRIM(mi.Naziv)) + ' - ' +  LTRIM(RTRIM(mu.Naziv)) AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID
                               
                         FROM RadniNalogDrumski rn
                         INNER JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
@@ -663,7 +681,6 @@ namespace Saobracaj.Drumski
                         UNION ALL
 
                            SELECT rn.ID, 
-                               rn.NalogID,
                                LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik,
                                pa.PaNaziv AS Klijent,
                                LTRIM(RTRIM(a.Vozac)) AS Kamioner,
@@ -673,20 +690,15 @@ namespace Saobracaj.Drumski
                                mu.Naziv AS MestoUtovara,
                                mi.Naziv AS MestoIstovara,
                                rn.BrojKontejnera as BrojKontejnera,
-                               CASE WHEN rn.Uvoz IN (1, 2, 4) 
-                                            THEN LTRIM(RTRIM(mi.Naziv)) +' - ' + LTRIM(RTRIM(mu.Naziv))
-                                    WHEN rn.Uvoz IN (0, 3, 5) 
-                                            THEN LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
-                                    ELSE ''
-                               END AS Relacija,
+                               LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                rn.TipTransporta,
                                rn.AutoDan,
                                rn.PDV,
                                rn.DodatniTrosakTransporta,
                                rn.Uvoz, 
                                rn.DatumUtovara,
-                               rn.DtPreuzimanjaPraznogKontejnera
-                              
+                               rn.DtPreuzimanjaPraznogKontejnera,
+                               rn.NalogID                              
                         FROM RadniNalogDrumski rn
                         LEFT JOIN FakturaDrumski fd ON rn.ID = fd.RadniNalogDrumskiID
                         LEFT JOIN FakturaDrumskiStavka fds ON fds.FaktureDrumskogID = fd.ID and fds.TipFakture = 1
@@ -744,11 +756,34 @@ namespace Saobracaj.Drumski
             {
                 panel2.Visible = false;
                 panel3.Visible = false;
+
+                MessageBox.Show(
+                    "Nijedan zapis nije pronađen za zadate kriterijume.",
+                    "Obaveštenje",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
 
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            // resize po sadržaju (ne samo header)
+            gridGroupingControl1.TableModel.ColWidths.ResizeToFit(
+                GridRangeInfo.Table(),
+                GridResizeToFitOptions.IncludeHeaders
+            );
+
+            foreach (GridColumnDescriptor col in gridGroupingControl1.TableDescriptor.Columns)
+            {
+                if (col.Width < 90) col.Width = 60;
+                if (col.Width > 350) col.Width = 350;
+            }
 
             foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
             {
@@ -812,6 +847,7 @@ namespace Saobracaj.Drumski
                 var red = rows[0];
 
                 // Popuni kontrole u panel3
+                txtNalog.Text = red["Nalog"].ToString();
                 txtKamioner.Text = red["Prevoznik / Kamioner"].ToString();
                 txtNalogodavac.Text = red["Nalogodavac"].ToString();
                 txtCenaTransporta.Text = red["Cena"].ToString();

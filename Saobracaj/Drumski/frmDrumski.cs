@@ -2393,20 +2393,19 @@ namespace Saobracaj.Drumski
         private void PodesiVidljivostPoTipuTransporta(int? tipTransporta)
         {
             bool jeTip2 = tipTransporta == 2;
-
-            lblKamion.Visible = !jeTip2;
-            cboKamion.Visible = !jeTip2;
-            lblVozac.Visible = !jeTip2;
-            txtVozac.Visible = !jeTip2;
-            lblBrojLK.Visible = !jeTip2;
-            txtBrojLK.Visible = !jeTip2;
-            lblBrojTelefona.Visible = !jeTip2;
-            txtBrojTelefona.Visible = !jeTip2;
-            lblPrevoznik.Visible = !jeTip2;
-            txtPrevoznik.Visible = !jeTip2;
+            // sve o kamionu sada je uvek visible = false
+            //lblKamion.Visible = !jeTip2;
+            //cboKamion.Visible = !jeTip2;
+            //lblVozac.Visible = !jeTip2;
+            //txtVozac.Visible = !jeTip2;
+            //lblBrojLK.Visible = !jeTip2;
+            //txtBrojLK.Visible = !jeTip2;
+            //lblBrojTelefona.Visible = !jeTip2;
+            //txtBrojTelefona.Visible = !jeTip2;
+            //lblPrevoznik.Visible = !jeTip2;
+            //txtPrevoznik.Visible = !jeTip2;
             lblMestoPreuzimanja.Visible = !jeTip2;
             cboMestoPreuzimanja.Visible = !jeTip2;
-
 
             txtBrojPosiljke.Visible = jeTip2;
             lblBrojPosiljke.Visible = jeTip2;

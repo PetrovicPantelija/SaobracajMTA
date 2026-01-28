@@ -19,6 +19,7 @@ namespace Saobracaj.Drumski
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
+        private List<int> _arhivskiStatusi;
 
         public frmStatus(List<int> tipoviIn, List<int> tipoviNotIn)
         {
@@ -216,6 +217,13 @@ namespace Saobracaj.Drumski
                 }
 
                 var select = $@"
+                        WITH Dokumenti AS (
+                            SELECT
+                                RadniNalogDrumskiID,
+                                 COUNT(*) AS BrojDokumenata
+                            FROM DokumentaRadnogNalogaDrumski
+                            GROUP BY RadniNalogDrumskiID
+                        )
                             SELECT   
                                 -- Agregirana kolona (Spojeni ID-jevi)
                                 x.ID,
@@ -258,7 +266,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0 
-                                      AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
+                                      AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                     --  AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru}) AND TipTransporta = 2))
     
                                 UNION ALL 
@@ -285,7 +293,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 0 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
-                                      AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
+                                      AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                  --     AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru})  OR (CONVERT(date, rn.DatumUtovara) = CONVERT(date, {datumZaProveru})  AND TipTransporta = 2))
     
                                 UNION ALL 
@@ -312,7 +320,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
-                                      AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
+                                      AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                    --   AND ( CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) =  CONVERT(date, {datumZaProveru})  AND TipTransporta = 2))
     
                                 UNION ALL 
@@ -339,7 +347,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN MestaUtovara mi on  u.MestoIstovara = mi.ID
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
-                                      AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
+                                      AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                    --   AND (CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) =  CONVERT(date, {datumZaProveru})  AND TipTransporta = 2))
     
                                 UNION ALL 
@@ -365,30 +373,30 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN StatusVozila sv ON sv.ID = rn.Status 
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.NalogID > 0 AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID IS NOT NULL AND rn.KamionID != 0
-                                      AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
+                                      AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit} )) 
                                     --  AND ( CONVERT(date, rn.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru} ) OR (CONVERT(date, rn.DatumUtovara) =  CONVERT(date, {datumZaProveru} ) AND TipTransporta = 2))
 
                             ) AS x
-                            WHERE  {uslovTipVozila} 
-                            GROUP BY 
-                                x.ID,
-                                x.Nalogodavac, 
-                                x.Relacija,
-                                x.Vozac,
-                                x.Kamion, 
-                                x.DatumIstovara, 
-                                x.NalogID, 
-                                x.Prevoznik, 
-                                x.PoslataNajava,
-                                x.NajavuPoslao, 
-                                x.SlanjeNajave, 
-                                x.Status,
-                                x.StatusID,
-                                x.TehnickiNeispravan
+                            LEFT JOIN Dokumenti d ON d.RadniNalogDrumskiID = x.id
+                            WHERE  {uslovTipVozila}    AND (x.StatusID IS NULL OR x.StatusID NOT IN ( {statusiZaUpit} ) OR (x.statusID IN ({statusiZaUpit}) AND ISNULL(d.BrojDokumenata,0) = 0))
+                           -- GROUP BY 
+                           --     x.ID,
+                           --     x.Nalogodavac, 
+                           --     x.Relacija,
+                            --    x.Vozac,
+                            --    x.Kamion, 
+                            --    x.DatumIstovara, 
+                            --    x.NalogID, 
+                            --    x.Prevoznik, 
+                            --    x.PoslataNajava,
+                            --    x.NajavuPoslao, 
+                            --    x.SlanjeNajave, 
+                            --    x.Status,
+                            --    x.StatusID,
+                            --    x.TehnickiNeispravan
 
                             ORDER BY 
-                                x.NalogID DESC
-";
+                                x.NalogID DESC";
                 var da = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
                 da.Fill(ds);
@@ -510,12 +518,12 @@ namespace Saobracaj.Drumski
             //instrukcijeBtn.UseColumnTextForButtonValue = true;
             //instrukcijeBtn.Width = 100;
 
-            //DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
-            //uploadBtn.Name = "Upload";
-            //uploadBtn.HeaderText = "Dokumenta";
-            //uploadBtn.Text = "Dodaj";
-            //uploadBtn.UseColumnTextForButtonValue = true;
-            //uploadBtn.Width = 100;
+            DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
+            uploadBtn.Name = "Upload";
+            uploadBtn.HeaderText = "Dokumenta";
+            uploadBtn.Text = "Dodaj";
+            uploadBtn.UseColumnTextForButtonValue = true;
+            uploadBtn.Width = 100;
 
             DataGridViewButtonColumn openUploadedBtn = new DataGridViewButtonColumn();
             openUploadedBtn.Name = "Dokumenta";
@@ -534,6 +542,9 @@ namespace Saobracaj.Drumski
 
             if (!dataGridView3.Columns.Contains("Dokumenta"))
                 dataGridView3.Columns.Add(openUploadedBtn);
+
+            if (!dataGridView3.Columns.Contains("Upload"))
+                dataGridView3.Columns.Add(uploadBtn);
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -611,62 +622,63 @@ namespace Saobracaj.Drumski
                 //    pe.StartPosition = FormStartPosition.CenterParent;
                 //    pe.ShowDialog(this);
                 //}
-                //else if (kolona == "Upload")
-                //{
-                //    radniNalogDrumskiID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
-                //    int zaposleniID = PostaviVrednostZaposleni();
+                if (kolona == "Upload")
+                {
+                    radniNalogDrumskiID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
+                    int zaposleniID = PostaviVrednostZaposleni();
 
-                //    OpenFileDialog ofd = new OpenFileDialog();
-                //    ofd.Title = "Odaberite fajl za upload";
-                //    ofd.Filter = "Svi fajlovi|*.*";
+                    OpenFileDialog ofd = new OpenFileDialog();
+                    ofd.Title = "Odaberite fajl za upload";
+                    ofd.Filter = "Svi fajlovi|*.*";
 
-                //    if (ofd.ShowDialog() == DialogResult.OK)
-                //    {
-                //        string izabraniFajl = ofd.FileName;
-                //        string ekstenzija = Path.GetExtension(izabraniFajl);
-                //        string cleanName = Path.GetFileNameWithoutExtension(izabraniFajl);
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        string izabraniFajl = ofd.FileName;
+                        string ekstenzija = Path.GetExtension(izabraniFajl);
+                        string cleanName = Path.GetFileNameWithoutExtension(izabraniFajl);
 
-                //        // Očisti naziv fajla od nedozvoljenih karaktera
-                //        string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
+                        // Očisti naziv fajla od nedozvoljenih karaktera
+                        string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
 
-                //        // Putanja na server
-                //        string targetPath = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
-                //        string destinacija = Path.Combine(targetPath, nazivFajla);
+                        // Putanja na server
+                        string targetPath = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
+                        string destinacija = Path.Combine(targetPath, nazivFajla);
 
-                //        try
-                //        {
-                //            // Ako ne postoji folder, napravi ga
-                //            if (!Directory.Exists(targetPath))
-                //                Directory.CreateDirectory(targetPath);
+                        try
+                        {
+                            // Ako ne postoji folder, napravi ga
+                            if (!Directory.Exists(targetPath))
+                                Directory.CreateDirectory(targetPath);
 
-                //            // Provera da li fajl već postoji
-                //            if (File.Exists(destinacija))
-                //            {
-                //                DialogResult result = MessageBox.Show("Fajl sa istim imenom već postoji. Da li želite da ga zamenite?",
-                //                                                      "Upozorenje",
-                //                                                      MessageBoxButtons.YesNo,
-                //                                                      MessageBoxIcon.Warning);
+                            // Provera da li fajl već postoji
+                            if (File.Exists(destinacija))
+                            {
+                                DialogResult result = MessageBox.Show("Fajl sa istim imenom već postoji. Da li želite da ga zamenite?",
+                                                                      "Upozorenje",
+                                                                      MessageBoxButtons.YesNo,
+                                                                      MessageBoxIcon.Warning);
 
-                //                if (result != DialogResult.Yes)
-                //                    return; // korisnik ne želi da zameni fajl
-                //            }
+                                if (result != DialogResult.Yes)
+                                    return; // korisnik ne želi da zameni fajl
+                            }
 
-                //            // Kopiraj fajl
-                //            File.Copy(izabraniFajl, destinacija, true);
+                            // Kopiraj fajl
+                            File.Copy(izabraniFajl, destinacija, true);
 
-                //            // Snimi u bazu
-                //            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                //            ins.SnimiUFajlBazu(radniNalogDrumskiID, nazivFajla, destinacija, zaposleniID);
+                            // Snimi u bazu
+                            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                            ins.SnimiUFajlBazu(radniNalogDrumskiID, nazivFajla, destinacija, zaposleniID);
 
-                //            MessageBox.Show("Fajl uspešno sačuvan i evidentiran u bazi.");
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            MessageBox.Show("Greška prilikom kopiranja fajla: " + ex.Message);
-                //        }
-                //    }
-                //}
-                //else
+                            MessageBox.Show("Fajl uspešno sačuvan i evidentiran u bazi.");
+                            RefreshDataGrid3();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Greška prilikom kopiranja fajla: " + ex.Message);
+                        }
+                    }
+                }
+                else
                 if (kolona == "Dokumenta")
                 {
                     if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
@@ -681,6 +693,142 @@ namespace Saobracaj.Drumski
             }
         }
 
+        private int PostaviVrednostZaposleni()
+        {
 
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int ulogovaniZaposleniID = 0;
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select  k.DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Zaposleni " +
+                                            " FROM Korisnici k " +
+                                            "INNER JOIN Delavci d ON k.DeSifra = d.DeSifra " +
+                                            "where Trim(Korisnik) like '" + Saobracaj.Sifarnici.frmLogovanje.user.Trim() + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (dr["ID"] != DBNull.Value)
+                    ulogovaniZaposleniID = Convert.ToInt32(dr["ID"].ToString());
+            }
+            return ulogovaniZaposleniID;
+
+        }
+
+        private void dataGridView3_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // 1. Provera da li je promenjena ćelija "Status" u ispravnom redu
+            if (e.RowIndex >= 0 && dataGridView3.Columns[e.ColumnIndex].Name == "Status")
+            {
+                DataGridViewRow row = dataGridView3.Rows[e.RowIndex];
+
+                // Provera da li su potrebne kolone dostupne
+                if (row.Cells["Status"].Value == DBNull.Value || row.Cells["ID"].Value == null)
+                {
+                    return;
+                }
+
+                int noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
+                string idsString = row.Cells["ID"].Value.ToString();
+
+                if (_arhivskiStatusi.Contains(noviStatusID))
+                {
+                    // Učitaj naziv statusa (iz StatusVozila)
+                    string nazivStatusa = VratiNazivStatusa(noviStatusID);
+
+                    var result = MessageBox.Show(
+                        $"Da li ste sigurni da želite da promenite status u '{nazivStatusa}'?\n" +
+                        $"Ova akcija će arhivirati stavku naloga!",
+                        "Potvrda",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.No)
+                    {
+                        RefreshDataGrid3();
+                        return;
+                    }
+                }
+
+                int id;
+
+                if (int.TryParse(idsString, out id))
+                {
+                    try
+                    {
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Greška pri snimanju statusa: " + ex.Message);
+                    }
+                }
+
+            }
+
+            RefreshDataGrid3();
+        }
+
+        private void frmStatus_Load(object sender, EventArgs e)
+        {
+            _arhivskiStatusi = UcitajArhivskeStatuse();
+        }
+
+        private List<int> UcitajArhivskeStatuse()
+        {
+            List<int> statusi = new List<int>();
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd1 = new SqlCommand(
+                    "SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", conn);
+
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string vrednost = reader.GetString(0).Trim();
+
+                        if (int.TryParse(vrednost, out int broj))
+                        {
+                            statusi.Add(broj);
+                        }
+                    }
+                }
+            }
+
+            return statusi;
+        }
+
+        private string VratiNazivStatusa(int statusID)
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT Naziv FROM StatusVozila WHERE ID = @ID", conn);
+
+                cmd.Parameters.AddWithValue("@ID", statusID);
+
+                var result = cmd.ExecuteScalar();
+
+                return result?.ToString() ?? "(nepoznat status)";
+            }
+        }
+
+        private void dataGridView3_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridView3.IsCurrentCellDirty)
+            {
+                dataGridView3.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
     }
 }
