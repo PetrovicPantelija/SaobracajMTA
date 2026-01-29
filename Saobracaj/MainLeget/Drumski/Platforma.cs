@@ -82,6 +82,17 @@ namespace Saobracaj.MainLeget.Drumski
                 () => new frmAutomobiliDrumski(tipoviIn: new List<int> { 1 }, tipoviNotIn: null)
             );
         }
+
+        private void btnNalogFakturisanje_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPonude.Text,
+                () => new frmNalogZaFakturisanje(tipoviIn: new List<int> { 1 }, tipoviNotIn: null)
+            );
+        }
     }
 }
 

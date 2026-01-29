@@ -72,7 +72,13 @@ namespace Saobracaj.MainLeget.Drumski
 
         private void btnNalogFakturisanje_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            main.OtvoriFormuSaPravom(
+                btnPonude.Text,
+                () => new frmNalogZaFakturisanje(tipoviIn: new List<int> { 2 }, tipoviNotIn: null)
+            );
         }
 
         private void btnPonude_Click(object sender, EventArgs e)

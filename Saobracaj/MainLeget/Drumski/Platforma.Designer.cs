@@ -171,6 +171,7 @@
             this.btnNalogFakturisanje.Text = "NALOG ZA FAKTURISANJE";
             this.btnNalogFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNalogFakturisanje.UseVisualStyleBackColor = false;
+            this.btnNalogFakturisanje.Click += new System.EventHandler(this.btnNalogFakturisanje_Click);
             // 
             // btnStatusi
             // 
