@@ -1256,6 +1256,57 @@ namespace Saobracaj.Drumski
             }
         }
 
+
+        public void UpdateStatusPoslat(List<int> ids)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdatePoslatStatus";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // Napravimo DataTable koji odgovara dbo.IntIdList
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+
+            foreach (int id in ids)
+                dt.Rows.Add(id);
+
+            SqlParameter p = new SqlParameter();
+            p.ParameterName = "@IDs";
+            p.SqlDbType = SqlDbType.Structured;
+            p.TypeName = "dbo.IntIdList";
+            p.Value = dt;
+
+            cmd.Parameters.Add(p);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+
+            bool error = false;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (SqlException ex)
+            {
+                error = true;
+                tran.Rollback();
+                MessageBox.Show(
+                    "Greška u SQL izvršavanju: " + ex.Message,
+                    "Greška",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
         public void PostaviNalogIDNaRedove(List<int> idrnLista)
         {
             DataTable tvp = new DataTable();

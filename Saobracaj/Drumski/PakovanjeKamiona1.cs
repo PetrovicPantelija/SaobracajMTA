@@ -458,7 +458,7 @@ namespace Saobracaj.Drumski
             cboTipVozila.DisplayMember = "Naziv";
             cboTipVozila.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji WHERE DrumskiPrevoz = 1 order by PaNaziv";
+            var partner = "Select PaSifra,PaNaziv From Partnerji WHERE DrumskiPrevoz = 1 AND Supplier = 'F' order by PaNaziv";
             var partAD = new SqlDataAdapter(partner, s_connection);
             var partDS = new DataSet();
             partAD.Fill(partDS);
@@ -2249,6 +2249,7 @@ namespace Saobracaj.Drumski
                     int Uvoz = GetInt(row, "Uvoz");
 
                     int kamionID = row["KamionID"] != DBNull.Value ? Convert.ToInt32(row["KamionID"]) : 0;
+                    string brojPosiljke = row["BrojPosiljke"]?.ToString() ?? "";
                     (string vozac, string brLK, string telefon) = DobaviVozaca(kamionID);
 
 
@@ -2256,6 +2257,7 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td><b>{kontejnerString}</b></td></tr>");
                     if((Uvoz == 0 || Uvoz == 3 || Uvoz == 5) && tipTransporta != 2)
                         htmlBuilder.AppendLine($"<tr><td><b>Datum preuzimanja:</b></td><td>{datumPreuzimanjaPraznog}</td></tr>");
+                    htmlBuilder.AppendLine($"<tr><td><b>Broj posiljke:</b></td><td>{brojPosiljke}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Kamion - vrsta:</b></td><td>{tipVozila}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Kamion - tablice:</b></td><td>{tablice}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Vozač:</b></td><td>{vozac}</td></tr>");
@@ -2358,7 +2360,7 @@ namespace Saobracaj.Drumski
                                  "i.NapomenaZaRobu AS NapomenaZaPozicioniranje ,  '' AS OdredisnaCarina, -1 as OdredisnaCarinaID," +
                                  "'' as polaznaCarinarnica, -1 AS PolaznaCarinaID, '' as polaznaSpedicija, '' as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt,  '' AS OdredisnaSpedicijaKontakt, " +
                                  "ISNULL(rn.PDV,0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,  rn.Opis AS DodatniOpis," +
-                                 "LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena, rn.Valuta, rn.TipTransporta   " +
+                                 "LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena, rn.Valuta, rn.TipTransporta, rn.BrojPosiljke   " +
                          " from  RadniNalogDrumski rn " +
                                  "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                  "inner join Automobili au on au.ID = rn.KamionID " +
@@ -2389,7 +2391,7 @@ namespace Saobracaj.Drumski
                                    "ik.NapomenaZaRobu as NapomenaZaPozicioniranje,  '' AS OdredisnaCarina, -1 as OdredisnaCarinaID, " +
                                    "'' as polaznaCarinarnica,-1 AS PolaznaCarinaID, '' as polaznaSpedicija, '' as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV,0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
-                                   " LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta  " +
+                                   " LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta, rn.BrojPosiljke  " +
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -2420,7 +2422,7 @@ namespace Saobracaj.Drumski
                                    " np.Naziv as NapomenaZaPozicioniranje, c.Naziv as OdredisnaCarina, uk.OdredisnaCarina as OdredisnaCarinaID, " +
                                    "'' as polaznaCarinarnica, -1 AS PolaznaCarinaID,'' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV,0) AS PDV , rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
-                                   "LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija , ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta  " +
+                                   "LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija , ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta, rn.BrojPosiljke  " +
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -2454,7 +2456,7 @@ namespace Saobracaj.Drumski
                                    " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
                                    "np.Naziv as NapomenaZaPozicioniranje, c.Naziv as OdredisnaCarina, u.OdredisnaCarina as OdredisnaCarinaID, '' as polaznaCarinarnica,-1 AS PolaznaCarinaID, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV, 0) AS PDV , rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,  rn.Opis AS DodatniOpis ," +
-                                   " LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta  " +
+                                   " LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta , rn.BrojPosiljke " +
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -2489,7 +2491,7 @@ namespace Saobracaj.Drumski
                                    "cp.Naziv AS polaznaCarinarnica, rn.PolaznaCarinarnica AS PolaznaCarinaID,pp.PaNaziv AS PolaznaSpedicija,  po.PaNaziv as OdredisnaSpedicija, rn.PolaznaSpedicijaKontakt, rn.OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV, 0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
                                    " LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))  AS Relacija," +
-                                   " ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena  , rn.Valuta, rn.TipTransporta " +
+                                   " ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena  , rn.Valuta, rn.TipTransporta, rn.BrojPosiljke " +
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +

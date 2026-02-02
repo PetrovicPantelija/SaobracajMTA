@@ -44,6 +44,9 @@
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblNapomena = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.chkCerade = new System.Windows.Forms.CheckBox();
+            this.chkPlatforme = new System.Windows.Forms.CheckBox();
+            this.chkVangabaritni = new System.Windows.Forms.CheckBox();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             this.meniHeader.SuspendLayout();
@@ -67,10 +70,10 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(459, 43);
+            this.panelHeader.Size = new System.Drawing.Size(533, 43);
             this.panelHeader.TabIndex = 733;
             // 
             // panel3
@@ -145,7 +148,7 @@
             this.toolStripSeparator1});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(459, 27);
+            this.meniHeader.Size = new System.Drawing.Size(533, 31);
             this.meniHeader.TabIndex = 732;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -155,7 +158,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -164,13 +167,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // label1
             // 
@@ -207,11 +210,47 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // chkCerade
+            // 
+            this.chkCerade.AutoSize = true;
+            this.chkCerade.Location = new System.Drawing.Point(22, 220);
+            this.chkCerade.Name = "chkCerade";
+            this.chkCerade.Size = new System.Drawing.Size(74, 20);
+            this.chkCerade.TabIndex = 735;
+            this.chkCerade.Text = "Cerade";
+            this.chkCerade.UseVisualStyleBackColor = true;
+            this.chkCerade.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            // 
+            // chkPlatforme
+            // 
+            this.chkPlatforme.AutoSize = true;
+            this.chkPlatforme.Location = new System.Drawing.Point(22, 259);
+            this.chkPlatforme.Name = "chkPlatforme";
+            this.chkPlatforme.Size = new System.Drawing.Size(86, 20);
+            this.chkPlatforme.TabIndex = 736;
+            this.chkPlatforme.Text = "Platforme";
+            this.chkPlatforme.UseVisualStyleBackColor = true;
+            this.chkPlatforme.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            // 
+            // chkVangabaritni
+            // 
+            this.chkVangabaritni.AutoSize = true;
+            this.chkVangabaritni.Location = new System.Drawing.Point(22, 297);
+            this.chkVangabaritni.Name = "chkVangabaritni";
+            this.chkVangabaritni.Size = new System.Drawing.Size(105, 20);
+            this.chkVangabaritni.TabIndex = 737;
+            this.chkVangabaritni.Text = "Vangabaritni";
+            this.chkVangabaritni.UseVisualStyleBackColor = true;
+            this.chkVangabaritni.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            // 
             // frmStatusVozilaDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 237);
+            this.ClientSize = new System.Drawing.Size(533, 378);
+            this.Controls.Add(this.chkVangabaritni);
+            this.Controls.Add(this.chkPlatforme);
+            this.Controls.Add(this.chkCerade);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
@@ -248,5 +287,8 @@
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblNapomena;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.CheckBox chkVangabaritni;
+        private System.Windows.Forms.CheckBox chkPlatforme;
+        private System.Windows.Forms.CheckBox chkCerade;
     }
 }

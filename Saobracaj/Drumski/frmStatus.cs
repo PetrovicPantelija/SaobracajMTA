@@ -7,6 +7,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using Saobracaj.Dokumenta.TrainListItem;
+using System.Text;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Net;
 
 namespace Saobracaj.Drumski
 {
@@ -20,6 +24,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
         private List<int> _arhivskiStatusi;
+        private int _stariStatusID = -1;
 
         public frmStatus(List<int> tipoviIn, List<int> tipoviNotIn)
         {
@@ -182,7 +187,7 @@ namespace Saobracaj.Drumski
                 string statusiZaUpit = string.Join(",", statusi
                     .Select(s => s.Trim())
                     .Where(s => int.TryParse(s, out _)));
-               
+
 
                 ////3.  Određivanje datuma za proveru (DatumIstovara)
                 //bool prikaziZaDanas = chkDatumD.Checked;
@@ -216,6 +221,24 @@ namespace Saobracaj.Drumski
                     uslovTipVozila += $" AND x.VlasnistvoLegeta NOT IN ({lista}) ";
                 }
 
+                int stringEmpty = 0;
+                int nalogID = 0;
+                if (string.IsNullOrWhiteSpace(txtNalogID.Text))
+                {
+
+                    stringEmpty = 1;
+                }
+
+                else if (!int.TryParse(txtNalogID.Text.ToString(), out nalogID))
+                {
+                    MessageBox.Show("Uneti ID nije validan broj.");
+                    return; // Prekidamo izvršavanje ako nije broj
+                }
+
+              if(stringEmpty != 1)
+                uslovTipVozila += $" AND x.NalogID = {nalogID} ";
+
+
                 var select = $@"
                         WITH Dokumenti AS (
                             SELECT
@@ -234,13 +257,14 @@ namespace Saobracaj.Drumski
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
                                 x.NalogID, 
-                                x.PoslataNajava,
-                                x.NajavuPoslao, 
-                                x.SlanjeNajave, 
                                 x.Status AS Status,
+                                x.DatumPromeneStatusa,
                                 x.StatusID,
                                 x.TehnickiNeispravan,
-                                isNull(d.BrojDokumenata,0) AS BrojDokumenata
+                                isNull(d.BrojDokumenata,0) AS BrojDokumenata,
+                                x.BrojKontejnera,
+                                x.BrojKontejnera2
+
 
                             FROM 
                             (
@@ -255,7 +279,8 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan, i.BrojKontejnera,rn.BrojKontejnera2,
+                                       rn.DatumPromeneStatusa
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -282,7 +307,8 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,  ik.BrojKontejnera,rn.BrojKontejnera2,
+                                       rn.DatumPromeneStatusa
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -309,7 +335,8 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan, uk.BrojKontejnera,rn.BrojKontejnera2,
+                                       rn.DatumPromeneStatusa
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -336,7 +363,8 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan, u.BrojKontejnera,rn.BrojKontejnera2,
+                                       rn.DatumPromeneStatusa
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -363,7 +391,8 @@ namespace Saobracaj.Drumski
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
-                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan
+                                       rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,  rn.BrojKontejnera,rn.BrojKontejnera2,
+                                       rn.DatumPromeneStatusa
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -403,9 +432,7 @@ namespace Saobracaj.Drumski
                 }
                 // Veži glavnu tabelu
                 dataGridView3.DataSource = mainTable;
-
-
-                DodajDugmadKolonu();
+              
                 if (!cellClickHandlerAttached)
                 {
                     dataGridView3.CellClick += dataGridView3_CellContentClick;
@@ -431,6 +458,9 @@ namespace Saobracaj.Drumski
                 // Dodaj ComboBox kolonu na kraj 
                 dataGridView3.Columns.Add(cmbStatus);
 
+
+                DodajDugmadKolonuPosaljiStatus();
+
                 // Omogući editovanje samo za tu kolonu
                 dataGridView3.ReadOnly = false;
                 foreach (DataGridViewColumn col in dataGridView3.Columns)
@@ -438,24 +468,7 @@ namespace Saobracaj.Drumski
                     if (col.Name != "Status")
                         col.ReadOnly = true;
                 }
-            }
-
-            int colIndex = dataGridView3.Columns["PoslataNajava"].Index;
-
-            // Ukloni originalnu kolonu
-            dataGridView3.Columns.RemoveAt(colIndex);
-
-            // Dodaj novu CheckBox kolonu
-            DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-            chk.Name = "PoslataNajava";
-            chk.HeaderText = "Poslata najava";
-            chk.DataPropertyName = "PoslataNajava"; // mora da se poklapa sa imenom kolone iz DataTable
-            chk.TrueValue = 1;
-            chk.FalseValue = 0;
-            chk.ThreeState = false;
-
-            // Ubaci novu kolonu na isto mesto
-            dataGridView3.Columns.Insert(colIndex, chk);
+            }    
 
             upozorenjeTehnickiNeispravni = ""; // reset pre svakog punjenja
 
@@ -478,7 +491,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan","BrojDokumenata"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan","BrojDokumenata", "BrojKontejnera", "BrojKontejnera2"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -494,7 +507,7 @@ namespace Saobracaj.Drumski
                 }
             }
 
-            string[] koloneZaFiksiranje = { "poslataNajava", "nalogID" };
+            string[] koloneZaFiksiranje = {  "nalogID" };
 
             foreach (string nazivKolone in koloneZaFiksiranje)
             {
@@ -508,6 +521,30 @@ namespace Saobracaj.Drumski
                     dataGridView3.Columns[nazivKolone].Resizable = DataGridViewTriState.False;
                 }
             }
+            if (dataGridView3.Columns.Contains("DatumPromeneStatusa"))
+            {
+                dataGridView3.Columns["DatumPromeneStatusa"].ValueType = typeof(DateTime);
+                dataGridView3.Columns["DatumPromeneStatusa"].DefaultCellStyle.Format = "dd.MM.yyyy";
+            }
+        }
+
+        private void DodajDugmadKolonuPosaljiStatus()
+        {
+            // Kolona za instrukcije
+            DataGridViewButtonColumn najavaBtn = new DataGridViewButtonColumn();
+            najavaBtn.Name = "PosaljiStatus";
+            najavaBtn.HeaderText = "Posalji";
+            najavaBtn.Text = "Trenutni status";
+            najavaBtn.UseColumnTextForButtonValue = true;
+            najavaBtn.Width = 100;
+
+
+
+            //uploadBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //Dodaj ako već ne postoje
+            if (!dataGridView3.Columns.Contains("PosaljiStatus"))
+                dataGridView3.Columns.Add(najavaBtn);
+
         }
         private void DodajDugmadKolonu()
         {
@@ -521,15 +558,17 @@ namespace Saobracaj.Drumski
 
             DataGridViewButtonColumn uploadBtn = new DataGridViewButtonColumn();
             uploadBtn.Name = "Upload";
-            uploadBtn.HeaderText = "Dokumenta";
+            uploadBtn.HeaderText = "";
             uploadBtn.Text = "Dodaj";
             uploadBtn.UseColumnTextForButtonValue = true;
+            uploadBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             uploadBtn.Width = 100;
 
             DataGridViewButtonColumn openUploadedBtn = new DataGridViewButtonColumn();
             openUploadedBtn.Name = "Dokumenta";
             openUploadedBtn.HeaderText = "Dokumenta"; 
             openUploadedBtn.Text = "Otvori";
+            openUploadedBtn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             openUploadedBtn.UseColumnTextForButtonValue = true;
             openUploadedBtn.Width = 100;
 
@@ -679,8 +718,7 @@ namespace Saobracaj.Drumski
                         }
                     }
                 }
-                else
-                if (kolona == "Dokumenta")
+                else if (kolona == "Dokumenta")
                 {
                     if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
                     {
@@ -691,6 +729,20 @@ namespace Saobracaj.Drumski
                         pregled.ShowDialog();
                     }
                 }
+                else if (kolona == "PosaljiStatus")
+                {
+                    if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
+                    {
+                        posaljiStatusKontejnera(grid.Rows[e.RowIndex]);
+                        int.TryParse( grid.Rows[e.RowIndex].Cells["ID"].Value.ToString(), out int idRN );
+
+                         List<int> ids = new List<int> { idRN };
+
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.UpdateStatusPoslat(ids);
+                    }
+                }
+                
             }
         }
 
@@ -721,6 +773,7 @@ namespace Saobracaj.Drumski
 
         private void dataGridView3_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            int postojiStavkaZaArhiviranje = 0;
             // 1. Provera da li je promenjena ćelija "Status" u ispravnom redu
             if (e.RowIndex >= 0 && dataGridView3.Columns[e.ColumnIndex].Name == "Status")
             {
@@ -735,6 +788,10 @@ namespace Saobracaj.Drumski
                 int noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
                 int brojDokumenata = Convert.ToInt32(row.Cells["BrojDokumenata"].Value);
                 string idsString = row.Cells["ID"].Value.ToString();
+
+                // ako su stari i novi status jednaki nista ne radimo
+                if (noviStatusID == _stariStatusID)
+                    return;
 
                 if (_arhivskiStatusi.Contains(noviStatusID) && brojDokumenata > 0)
                 {
@@ -753,6 +810,7 @@ namespace Saobracaj.Drumski
                         RefreshDataGrid3();
                         return;
                     }
+                    postojiStavkaZaArhiviranje++;
                 }
 
                 int id;
@@ -763,6 +821,13 @@ namespace Saobracaj.Drumski
                     {
                         InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
                         ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+
+                        posaljiStatusKontejnera(row);
+
+                  
+                        List<int> ids = new List<int> { id };
+
+                        ins.UpdateStatusPoslat(ids);
                     }
                     catch (Exception ex)
                     {
@@ -771,8 +836,107 @@ namespace Saobracaj.Drumski
                 }
 
             }
+            if (postojiStavkaZaArhiviranje > 0)
+                RefreshDataGrid3();
+        }
 
-            //RefreshDataGrid3();
+        private void posaljiStatusKontejnera(DataGridViewRow row)
+        {
+            if (row == null)
+            {
+                MessageBox.Show("Došlo je do greške prilikom pravljenja poruke o promeni statusa.", "Upozorenje",
+                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+  
+
+            // Osnovni podaci
+            string nalogodavac = row.Cells["Nalogodavac"]?.Value?.ToString();
+            if (string.IsNullOrWhiteSpace(nalogodavac))
+                return;
+
+            // Kontejneri
+            string k1 = row.Cells["BrojKontejnera"]?.Value?.ToString()?.Trim();
+            string k2 = row.Cells["BrojKontejnera2"]?.Value?.ToString()?.Trim();
+
+            string kontejner = !string.IsNullOrWhiteSpace(k2)
+                ? $"{k1}, {k2}"
+                : k1;
+
+            // Statusi – tekst
+            string noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
+
+            // Datum promene
+            DateTime? datumPromene = null;
+            var cellValue = row.Cells["DatumPromeneStatusa"]?.Value;
+
+            if (cellValue != null && cellValue != DBNull.Value)
+                datumPromene = Convert.ToDateTime(cellValue);
+
+            string datumZaPrikaz = datumPromene?.ToString("dd.MM.yyyy HH:mm") ?? "";
+
+            // Ostalo
+            string kamion = row.Cells["Kamion"]?.Value?.ToString();
+            string vozac = row.Cells["Vozac"]?.Value?.ToString();
+
+            // HTML
+            var sb = new StringBuilder();
+
+            sb.AppendLine(@"
+                        <div style='display:grid;
+                             grid-template-columns: 40px 140px 200px 1fr 1fr 1fr;
+                             grid-template-rows: auto auto;
+                             column-gap: 8px;
+                             row-gap: 4px;
+                             font-family: Arial;
+                             font-size: 14px;
+                             margin-bottom: 12px;'>
+
+                            <div style='grid-column:2;'><b>Nalogodavac:</b></div>
+                            <div style='grid-column:3;'>" + nalogodavac + @"</div>
+
+                            <div style='grid-column:2;'><b>Datum:</b></div>
+                            <div style='grid-column:3;'>" + DateTime.Now.ToString("dd.MM.yyyy") + @"</div>
+                        </div>
+                        ");
+
+            sb.AppendLine("<table cellpadding='4' cellspacing='0' style='border-collapse:collapse; border:1px solid #9fbbe7;'>");
+
+            sb.AppendLine("<tr style='background-color:#d9e8fb; color:#0b3c6d; font-weight:bold; text-align:center;'>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>RB</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>NOVI STATUS</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>UPDATE</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>REGISTARSKI BROJ</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>VOZAČ</th>");
+            sb.AppendLine("</tr>");
+
+            sb.AppendLine("<tr>");
+            sb.AppendLine("<td style='border:1px solid #9fbbe7;'>1</td>");
+            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{kontejner}</td>");
+            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{noviStatusTekst}</td>");
+            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{datumZaPrikaz}</td>");
+            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{kamion}</td>");
+            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{vozac}</td>");
+            sb.AppendLine("</tr>");
+
+            sb.AppendLine("</table>");
+
+            SetClipboardHtml(sb.ToString());
+            MessageBox.Show("Podaci su kopirani u clipboard.", "Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+         
+        }
+        private void dataGridView3_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView3.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var value = dataGridView3.Rows[e.RowIndex].Cells["Status"].Value;
+                _stariStatusID = value != null && value != DBNull.Value
+                    ? Convert.ToInt32(value)
+                    : -1;
+            }
         }
 
         private void frmStatus_Load(object sender, EventArgs e)
@@ -831,6 +995,197 @@ namespace Saobracaj.Drumski
             {
                 dataGridView3.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
+        }
+
+        private void btnPosaljiStatuse_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema podataka u gridu.", "Upozorenje",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<int> idjeviZaNajavu = new List<int>();
+            int? nalogId = null;
+            string nalogodavac = null;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                // ID
+                if (!int.TryParse(row.Cells["ID"].Value?.ToString(), out int id))
+                {
+                    MessageBox.Show("Postoji red bez validnog ID-a.", "Greška",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                idjeviZaNajavu.Add(id);
+
+                // NalogID
+                if (!int.TryParse(row.Cells["NalogID"].Value?.ToString(), out int trenutniNalogId))
+                {
+                    MessageBox.Show("Postoji red bez validnog NalogID-a.", "Greška",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (nalogId == null)
+                    nalogId = trenutniNalogId;
+                else if (nalogId != trenutniNalogId)
+                {
+                    MessageBox.Show("Svi redovi moraju imati isti nalog.", "Upozorenje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Nalogodavac (uzimamo iz prvog reda)
+                if (nalogodavac == null)
+                    nalogodavac = row.Cells["Nalogodavac"].Value?.ToString();
+
+                // Nalogodavac
+                string trenutniNalogodavac = row.Cells["Nalogodavac"].Value?.ToString()?.Trim();
+
+                if (string.IsNullOrEmpty(trenutniNalogodavac))
+                {
+                    MessageBox.Show("Postoji red bez popunjenog nalogodavca.", "Greška",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (nalogodavac == null)
+                    nalogodavac = trenutniNalogodavac;
+                else if (!string.Equals(nalogodavac, trenutniNalogodavac, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Svi redovi moraju imati istog nalogodavca.", "Upozorenje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            if (idjeviZaNajavu.Count == 0)
+            {
+                MessageBox.Show("Nema validnih redova za obradu.", "Greška",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var sb = new StringBuilder();
+
+            // Zaglavlje
+            sb.AppendLine(@"
+            <div style='display:grid;grid-template-columns: 40px 140px 200px 1fr 1fr 1fr; grid-template-rows: auto auto; column-gap: 8px;row-gap: 4px; font-family: Arial; font-size: 14px;
+                margin-bottom: 12px;'>
+
+                <!-- Red 1 -->
+                <div style='grid-column:2; grid-row:1;'><b>Nalogodavac:</b></div>
+                <div style='grid-column:3; grid-row:1;'>" + nalogodavac + @"</div>
+
+                <!-- Red 2 -->
+                <div style='grid-column:2; grid-row:2;'><b>Datum:</b></div>
+                <div style='grid-column:3; grid-row:2;'>" + DateTime.Now.ToString("dd.MM.yyyy") + @"</div>
+
+            </div>
+            ");
+
+            // Tabela
+            //sb.AppendLine("<table border='1' cellpadding='4' cellspacing='0' style='border-collapse:collapse;'>");
+            //sb.AppendLine("<tr style='background-color:#f0f0f0;'>");
+            //sb.AppendLine("<th>RB</th>");
+            //sb.AppendLine("<th>KONTEJNER</th>");
+            //sb.AppendLine("<th>STATUS</th>");
+            //sb.AppendLine("<th>UPDATE</th>");
+            //sb.AppendLine("<th>REGISTARSKI BROJ</th>");
+            //sb.AppendLine("<th>VOZAČ</th>");
+            //sb.AppendLine("</tr>");
+            sb.AppendLine("<table cellpadding='4' cellspacing='0' style='border-collapse:collapse; border:1px solid #9fbbe7;'>");
+
+            sb.AppendLine("<tr style='background-color:#d9e8fb; color:#0b3c6d; font-weight:bold; text-align:center;'>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>RB</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>NOVI STATUS</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>UPDATE</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>REGISTARSKI BROJ</th>");
+            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>VOZAČ</th>");
+            sb.AppendLine("</tr>");
+
+            int rb = 1;
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+                string kontejner1 = row.Cells["BrojKontejnera"]?.Value?.ToString()?.Trim();
+                string kontejner2 = row.Cells["BrojKontejnera2"]?.Value?.ToString()?.Trim();
+
+                string noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
+
+                DateTime? datumPromene = null;
+
+                var cellValue = row.Cells["DatumPromeneStatusa"]?.Value;
+
+                if (cellValue != null && cellValue != DBNull.Value)
+                {
+                    datumPromene = Convert.ToDateTime(cellValue);
+                }
+
+                string datumZaPrikaz = datumPromene.HasValue
+                    ? datumPromene.Value.ToString("dd.MM.yyyy HH:mm")
+                    : string.Empty;
+
+
+                string tekstKontejnera = kontejner1;
+
+                if (!string.IsNullOrWhiteSpace(kontejner2))
+                {
+                    tekstKontejnera = $"{kontejner1}, {kontejner2}";
+                }
+                sb.AppendLine("<tr>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{rb++}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{tekstKontejnera} </td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{noviStatusTekst}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{datumZaPrikaz}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row.Cells["Kamion"].Value}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row.Cells["Vozac"].Value}</td>");
+                sb.AppendLine("</tr>");
+            }
+            sb.AppendLine("</table>");
+            sb.AppendLine("</div>");
+
+            SetClipboardHtml(sb.ToString());
+
+            MessageBox.Show("Podaci su kopirani u clipboard.", "Info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            ins.UpdateStatusPoslat(idjeviZaNajavu);
+
+        }
+        private void SetClipboardHtml(string html)
+        {
+            string header =
+                "Version:0.9\r\nStartHTML:00000097\r\nEndHTML:{0:00000000}\r\nStartFragment:00000131\r\nEndFragment:{1:00000000}\r\n";
+
+            string pre = "<html><body><!--StartFragment-->";
+            string post = "<!--EndFragment--></body></html>";
+
+            string fullHtml = pre + html + post;
+
+            string final = string.Format(header, pre.Length + html.Length + post.Length, pre.Length + html.Length) + fullHtml;
+
+            Clipboard.Clear();
+            Clipboard.SetText(final, TextDataFormat.Html);
+
+            txtNalogID.Text = "";
+            RefreshDataGrid3();
+        }
+
+
+        private void btnFitriraj_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid3();
         }
     }
 }

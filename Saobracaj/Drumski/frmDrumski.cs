@@ -53,8 +53,6 @@ namespace Saobracaj.Drumski
             lbtHederTekst.Visible = true;
             button1.Visible = true;
             button4.Visible = false;
-
-
         }
 
         public frmDrumski(string noviNalogID, int? NalogID)
@@ -673,6 +671,29 @@ namespace Saobracaj.Drumski
             con.Close();
         }
 
+        public void FillComboSpedicija()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            var partner5 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1";
+            var partAD5 = new SqlDataAdapter(partner5, conn);
+
+            var partDS5 = new DataSet();
+            partAD5.Fill(partDS5);
+            cbOspedicija.DataSource = partDS5.Tables[0];
+            cbOspedicija.DisplayMember = "PaNaziv";
+            cbOspedicija.ValueMember = "PaSifra";
+
+
+            var partner4 = "SELECT PaSifra,PaNaziv From Partnerji where Spediter = 1";
+            var partAD4 = new SqlDataAdapter(partner4, conn);
+
+            var partDS4 = new DataSet();
+            partAD4.Fill(partDS4);
+            cboPolaznaSpedicija.DataSource = partDS4.Tables[0];
+            cboPolaznaSpedicija.DisplayMember = "PaNaziv";
+            cboPolaznaSpedicija.ValueMember = "PaSifra";
+
+        }
         public void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -830,25 +851,7 @@ namespace Saobracaj.Drumski
             cboPolaznaCarinarnica.DisplayMember = "Naziv";
             cboPolaznaCarinarnica.ValueMember = "ID";
 
-
-            var partner5 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1";
-            var partAD5 = new SqlDataAdapter(partner5, conn);
-
-            var partDS5 = new DataSet();
-            partAD5.Fill(partDS5);
-            cbOspedicija.DataSource = partDS5.Tables[0];
-            cbOspedicija.DisplayMember = "PaNaziv";
-            cbOspedicija.ValueMember = "PaSifra";
-
-
-            var partner4 = "SELECT PaSifra,PaNaziv From Partnerji where Spediter = 1";
-            var partAD4 = new SqlDataAdapter(partner4, conn);
-    
-            var partDS4 = new DataSet();
-            partAD4.Fill(partDS4);
-            cboPolaznaSpedicija.DataSource = partDS4.Tables[0];
-            cboPolaznaSpedicija.DisplayMember = "PaNaziv";
-            cboPolaznaSpedicija.ValueMember = "PaSifra";
+            FillComboSpedicija();
 
             var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
             var tkAD = new SqlDataAdapter(tipkontejnera, conn);
@@ -2409,6 +2412,17 @@ namespace Saobracaj.Drumski
 
             txtBrojPosiljke.Visible = jeTip2;
             lblBrojPosiljke.Visible = jeTip2;
+        }
+
+        private void btnPartner_Click(object sender, EventArgs e)
+        {
+            frmPartnerji pnd = new frmPartnerji(4);
+            pnd.SnimanjeZavrseno += FrmPartnerji_SnimanjeZavrseno;
+            pnd.Show();
+        }
+        private void FrmPartnerji_SnimanjeZavrseno(object sender, EventArgs e)
+        {
+            FillComboSpedicija();
         }
     }
 }

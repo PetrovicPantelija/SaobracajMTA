@@ -140,7 +140,7 @@ namespace Saobracaj.Drumski
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID, Naziv " +
+            var select = " SELECT ID, Naziv, StatusZaCerade, StatusZaPlatforme, StatusVangabaritni " +
                          " FROM  StatusVozila " + 
                          " ORDER BY ID ASC";
 
@@ -236,12 +236,12 @@ namespace Saobracaj.Drumski
             if (status == true)
             {
                 InsertStatus ins = new InsertStatus();
-                ins.InsStatusVozila( txtNaziv.Text.TrimEnd());
+                ins.InsStatusVozila( txtNaziv.Text.TrimEnd(), false, false, false);
             }
             else
             {
                 InsertStatus upd = new InsertStatus();
-                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString());
+                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString(), false, false, false);
             }
             RefreshDataGrid();
         }
@@ -288,7 +288,22 @@ namespace Saobracaj.Drumski
                             return;
                         }
 
-                        frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji(txtID, txtNapomena);
+                        // Status za Cerade
+                        bool statusCerade = false;
+                        if (row.Cells["StatusZaCerade"].Value != DBNull.Value)
+                            statusCerade = Convert.ToBoolean(row.Cells["StatusZaCerade"].Value);
+
+                        // Status za Platforme
+                        bool statusPlatforme = false;
+                        if (row.Cells["StatusZaPlatforme"].Value != DBNull.Value)
+                            statusPlatforme = Convert.ToBoolean(row.Cells["StatusZaPlatforme"].Value);
+
+                        // Status Vangabaritni
+                        bool statusVangabaritni = false;
+                        if (row.Cells["StatusVangabaritni"].Value != DBNull.Value)
+                            statusVangabaritni = Convert.ToBoolean(row.Cells["StatusVangabaritni"].Value);
+
+                        frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji(txtID, txtNapomena, statusCerade, statusPlatforme, statusVangabaritni);
                         pnd.SnimanjeZavrseno += frmStatusVozila_SnimanjeZavrseno;
                         pnd.Show();
                     }

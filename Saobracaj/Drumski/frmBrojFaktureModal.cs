@@ -1,19 +1,31 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Microsoft.Ajax.Utilities;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using WIA;
 namespace Saobracaj.Drumski
 {
     public partial class frmBrojFaktureModal: Form
     {
         public string BrojFakture { get; private set; }
+        private string _tekst = "";
 
         public frmBrojFaktureModal()
         {
             InitializeComponent();
             ChangeTextBox();
         }
+
+        public frmBrojFaktureModal(string tekst)
+        {
+            InitializeComponent();
+            _tekst = tekst;
+            lblStatus.Text = $"Unesite {_tekst} ID za koji želite da objedinite dokumenta: ";
+            ChangeTextBox();
+        }
+
 
         private void ChangeTextBox()
         {
@@ -114,7 +126,10 @@ namespace Saobracaj.Drumski
         {
             if (string.IsNullOrWhiteSpace(txtBrojFakture.Text))
             {
-                MessageBox.Show("Unesite broj fakture!");
+                if(string.IsNullOrWhiteSpace(_tekst))
+                    MessageBox.Show("Unesite broj fakture!");
+                else
+                    MessageBox.Show($"Unesite broj {_tekst}!");
                 return;
             }
 

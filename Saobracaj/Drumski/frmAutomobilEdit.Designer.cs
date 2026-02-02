@@ -48,6 +48,8 @@
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNaslov = new System.Windows.Forms.Label();
+            this.btnDodavanjePartnera = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -61,8 +63,6 @@
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
-            this.btnDodavanjePartnera = new System.Windows.Forms.Button();
-            this.lblNaslov = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.meniHeader.SuspendLayout();
@@ -239,11 +239,46 @@
             this.panel1.Controls.Add(this.btnDodavanjePartnera);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 40);
             this.panel1.TabIndex = 731;
+            // 
+            // lblNaslov
+            // 
+            this.lblNaslov.AutoSize = true;
+            this.lblNaslov.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblNaslov.Location = new System.Drawing.Point(484, 0);
+            this.lblNaslov.Name = "lblNaslov";
+            this.lblNaslov.Padding = new System.Windows.Forms.Padding(0, 11, 0, 0);
+            this.lblNaslov.Size = new System.Drawing.Size(37, 27);
+            this.lblNaslov.TabIndex = 24;
+            this.lblNaslov.Text = "label";
+            this.lblNaslov.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnDodavanjePartnera
+            // 
+            this.btnDodavanjePartnera.AutoSize = true;
+            this.btnDodavanjePartnera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDodavanjePartnera.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnDodavanjePartnera.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnDodavanjePartnera.FlatAppearance.BorderSize = 0;
+            this.btnDodavanjePartnera.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnDodavanjePartnera.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnDodavanjePartnera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDodavanjePartnera.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnDodavanjePartnera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnDodavanjePartnera.Location = new System.Drawing.Point(119, 0);
+            this.btnDodavanjePartnera.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDodavanjePartnera.Name = "btnDodavanjePartnera";
+            this.btnDodavanjePartnera.Size = new System.Drawing.Size(365, 38);
+            this.btnDodavanjePartnera.TabIndex = 23;
+            this.btnDodavanjePartnera.Text = "Novi prevoznik/kamioner";
+            this.btnDodavanjePartnera.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDodavanjePartnera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDodavanjePartnera.UseVisualStyleBackColor = true;
+            this.btnDodavanjePartnera.Click += new System.EventHandler(this.btnDodavanjePartnera_Click);
             // 
             // panel5
             // 
@@ -309,7 +344,7 @@
             this.tsPoslednja});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1185, 31);
+            this.meniHeader.Size = new System.Drawing.Size(1185, 27);
             this.meniHeader.TabIndex = 730;
             this.meniHeader.Text = "Osveži";
             // 
@@ -387,41 +422,6 @@
             this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
-            // 
-            // btnDodavanjePartnera
-            // 
-            this.btnDodavanjePartnera.AutoSize = true;
-            this.btnDodavanjePartnera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDodavanjePartnera.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnDodavanjePartnera.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.btnDodavanjePartnera.FlatAppearance.BorderSize = 0;
-            this.btnDodavanjePartnera.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnDodavanjePartnera.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnDodavanjePartnera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDodavanjePartnera.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnDodavanjePartnera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnDodavanjePartnera.Location = new System.Drawing.Point(119, 0);
-            this.btnDodavanjePartnera.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDodavanjePartnera.Name = "btnDodavanjePartnera";
-            this.btnDodavanjePartnera.Size = new System.Drawing.Size(365, 38);
-            this.btnDodavanjePartnera.TabIndex = 23;
-            this.btnDodavanjePartnera.Text = "Novi prevoznik/kamioner";
-            this.btnDodavanjePartnera.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDodavanjePartnera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDodavanjePartnera.UseVisualStyleBackColor = true;
-            this.btnDodavanjePartnera.Click += new System.EventHandler(this.btnDodavanjePartnera_Click);
-            // 
-            // lblNaslov
-            // 
-            this.lblNaslov.AutoSize = true;
-            this.lblNaslov.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblNaslov.Location = new System.Drawing.Point(484, 0);
-            this.lblNaslov.Name = "lblNaslov";
-            this.lblNaslov.Padding = new System.Windows.Forms.Padding(0, 11, 0, 0);
-            this.lblNaslov.Size = new System.Drawing.Size(37, 27);
-            this.lblNaslov.TabIndex = 24;
-            this.lblNaslov.Text = "label";
-            this.lblNaslov.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmAutomobilEdit
             // 

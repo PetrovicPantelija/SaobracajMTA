@@ -11,7 +11,7 @@ namespace Saobracaj.Drumski
 {
     class InsertStatus
     {
-        public int InsStatusVozila(string Naziv)
+        public int InsStatusVozila(string Naziv, bool StatusZaCerade, bool StatusZaPlatforme, bool StatusVangabaritni)
         {
             int IDPom = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -27,6 +27,24 @@ namespace Saobracaj.Drumski
             name.Direction = ParameterDirection.Input;
             name.Value = Naziv;
             myCommand.Parameters.Add(name);
+
+            // StatusZaCerade parametar
+            SqlParameter statusCerade = new SqlParameter("@StatusZaCerade", SqlDbType.Bit);
+            statusCerade.Direction = ParameterDirection.Input;
+            statusCerade.Value = StatusZaCerade;
+            myCommand.Parameters.Add(statusCerade);
+
+            // StatusZaPlatforme parametar
+            SqlParameter statusPlatforme = new SqlParameter("@StatusZaPlatforme", SqlDbType.Bit);
+            statusPlatforme.Direction = ParameterDirection.Input;
+            statusPlatforme.Value = StatusZaPlatforme;
+            myCommand.Parameters.Add(statusPlatforme);
+
+            // StatusVangabaritni parametar
+            SqlParameter statusVangabaritni = new SqlParameter("@StatusVangabaritni", SqlDbType.Bit);
+            statusVangabaritni.Direction = ParameterDirection.Input;
+            statusVangabaritni.Value = StatusVangabaritni;
+            myCommand.Parameters.Add(statusVangabaritni);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
@@ -70,7 +88,7 @@ namespace Saobracaj.Drumski
             return IDPom;
         }
 
-        public void UpdStatusVozila(int ID, string Naziv)
+        public void UpdStatusVozila(int ID, string Naziv, bool StatusZaCerade, bool StatusZaPlatforme, bool StatusVangabaritni)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -93,7 +111,23 @@ namespace Saobracaj.Drumski
             name.Value = Naziv;
             myCommand.Parameters.Add(name);
 
+            // StatusZaCerade parametar
+            SqlParameter statusCerade = new SqlParameter("@StatusZaCerade", SqlDbType.Bit);
+            statusCerade.Direction = ParameterDirection.Input;
+            statusCerade.Value = StatusZaCerade;
+            myCommand.Parameters.Add(statusCerade);
 
+            // StatusZaPlatforme parametar
+            SqlParameter statusPlatforme = new SqlParameter("@StatusZaPlatforme", SqlDbType.Bit);
+            statusPlatforme.Direction = ParameterDirection.Input;
+            statusPlatforme.Value = StatusZaPlatforme;
+            myCommand.Parameters.Add(statusPlatforme);
+
+            // StatusVangabaritni parametar
+            SqlParameter statusVangabaritni = new SqlParameter("@StatusVangabaritni", SqlDbType.Bit);
+            statusVangabaritni.Direction = ParameterDirection.Input;
+            statusVangabaritni.Value = StatusVangabaritni;
+            myCommand.Parameters.Add(statusVangabaritni);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

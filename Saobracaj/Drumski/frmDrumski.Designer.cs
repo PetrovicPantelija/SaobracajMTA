@@ -87,6 +87,7 @@
             this.lblBrojTelefona = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.btnPartner = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbtHederTekst = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -719,32 +720,55 @@
             this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.btnPartner);
             this.panelHeader.Controls.Add(this.panel1);
             this.panelHeader.Controls.Add(this.button4);
             this.panelHeader.Controls.Add(this.button1);
             this.panelHeader.Controls.Add(this.btnFormiranjeNaloga);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1461, 40);
             this.panelHeader.TabIndex = 600;
             // 
+            // btnPartner
+            // 
+            this.btnPartner.AutoSize = true;
+            this.btnPartner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPartner.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPartner.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnPartner.FlatAppearance.BorderSize = 0;
+            this.btnPartner.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPartner.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPartner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPartner.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnPartner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnPartner.Location = new System.Drawing.Point(537, 0);
+            this.btnPartner.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPartner.Name = "btnPartner";
+            this.btnPartner.Size = new System.Drawing.Size(147, 38);
+            this.btnPartner.TabIndex = 26;
+            this.btnPartner.Text = "Nova špedicija";
+            this.btnPartner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPartner.UseVisualStyleBackColor = true;
+            this.btnPartner.Click += new System.EventHandler(this.btnPartner_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lbtHederTekst);
-            this.panel1.Location = new System.Drawing.Point(678, 0);
+            this.panel1.Location = new System.Drawing.Point(704, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(243, 36);
+            this.panel1.Size = new System.Drawing.Size(225, 36);
             this.panel1.TabIndex = 25;
             // 
             // lbtHederTekst
             // 
             this.lbtHederTekst.AutoSize = true;
             this.lbtHederTekst.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbtHederTekst.Location = new System.Drawing.Point(64, 0);
+            this.lbtHederTekst.Location = new System.Drawing.Point(46, 0);
             this.lbtHederTekst.Name = "lbtHederTekst";
             this.lbtHederTekst.Padding = new System.Windows.Forms.Padding(0, 12, 0, 0);
             this.lbtHederTekst.Size = new System.Drawing.Size(179, 28);
@@ -763,10 +787,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(508, 0);
+            this.button4.Location = new System.Drawing.Point(399, 0);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(177, 38);
+            this.button4.Size = new System.Drawing.Size(138, 38);
             this.button4.TabIndex = 24;
             this.button4.Text = "Otvori dokumenta";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -785,10 +809,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(343, 0);
+            this.button1.Location = new System.Drawing.Point(273, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 38);
+            this.button1.Size = new System.Drawing.Size(126, 38);
             this.button1.TabIndex = 23;
             this.button1.Text = "Dodaj dokument";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -807,10 +831,10 @@
             this.btnFormiranjeNaloga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormiranjeNaloga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnFormiranjeNaloga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnFormiranjeNaloga.Location = new System.Drawing.Point(163, 0);
+            this.btnFormiranjeNaloga.Location = new System.Drawing.Point(135, 0);
             this.btnFormiranjeNaloga.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormiranjeNaloga.Name = "btnFormiranjeNaloga";
-            this.btnFormiranjeNaloga.Size = new System.Drawing.Size(180, 38);
+            this.btnFormiranjeNaloga.Size = new System.Drawing.Size(138, 38);
             this.btnFormiranjeNaloga.TabIndex = 22;
             this.btnFormiranjeNaloga.Text = "Formiranje naloga";
             this.btnFormiranjeNaloga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -828,7 +852,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(163, 38);
+            this.panel3.Size = new System.Drawing.Size(135, 38);
             this.panel3.TabIndex = 2;
             // 
             // button21
@@ -841,7 +865,7 @@
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button21.Location = new System.Drawing.Point(95, 2);
+            this.button21.Location = new System.Drawing.Point(94, 2);
             this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
@@ -860,7 +884,7 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(56, 2);
+            this.button2.Location = new System.Drawing.Point(55, 2);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(36, 33);
@@ -878,7 +902,7 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(17, 2);
+            this.button3.Location = new System.Drawing.Point(15, 2);
             this.button3.Margin = new System.Windows.Forms.Padding(12, 7, 8, 7);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
@@ -898,7 +922,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1461, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1461, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -908,13 +932,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -922,7 +946,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -1524,11 +1548,12 @@
         private System.Windows.Forms.ComboBox cboPolaznaSpedicija;
         private System.Windows.Forms.ComboBox cboTipTransporta;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbtHederTekst;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox chkDodatniTrosak;
         private System.Windows.Forms.Label lblBrojPosiljke;
         private System.Windows.Forms.TextBox txtBrojPosiljke;
+        private System.Windows.Forms.Button btnPartner;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbtHederTekst;
     }
 }

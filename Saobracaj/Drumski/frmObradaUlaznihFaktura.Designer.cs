@@ -44,6 +44,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNalog = new System.Windows.Forms.TextBox();
             this.btnIzadjiBezPromena = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dtpPregleda = new System.Windows.Forms.DateTimePicker();
@@ -67,8 +69,6 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detaljiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtNalog = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -265,6 +265,25 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1213, 450);
             this.panel3.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 85);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 16);
+            this.label1.TabIndex = 485;
+            this.label1.Text = "Nalog ID";
+            // 
+            // txtNalog
+            // 
+            this.txtNalog.Location = new System.Drawing.Point(193, 85);
+            this.txtNalog.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNalog.Name = "txtNalog";
+            this.txtNalog.ReadOnly = true;
+            this.txtNalog.Size = new System.Drawing.Size(332, 22);
+            this.txtNalog.TabIndex = 484;
             // 
             // btnIzadjiBezPromena
             // 
@@ -484,25 +503,6 @@
             this.detaljiToolStripMenuItem.Text = "Detalji";
             this.detaljiToolStripMenuItem.Click += new System.EventHandler(this.detaljiToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 85);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 16);
-            this.label1.TabIndex = 485;
-            this.label1.Text = "Nalog ID";
-            // 
-            // txtNalog
-            // 
-            this.txtNalog.Location = new System.Drawing.Point(193, 85);
-            this.txtNalog.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNalog.Name = "txtNalog";
-            this.txtNalog.ReadOnly = true;
-            this.txtNalog.Size = new System.Drawing.Size(332, 22);
-            this.txtNalog.TabIndex = 484;
-            // 
             // frmObradaUlaznihFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -513,6 +513,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmObradaUlaznihFaktura";
             this.Text = "frmObradaUlaznihFaktura";
+            this.Load += new System.EventHandler(this.frmObradaUlaznihFaktura_Load);
+            this.Shown += new System.EventHandler(this.frmObradaUlaznihFaktura_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmObradaUlaznihFaktura_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

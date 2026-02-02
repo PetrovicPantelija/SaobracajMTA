@@ -17,6 +17,9 @@ namespace Saobracaj.Drumski
         bool status = false;
         int id = 0;
         string naziv = "";
+        bool statusCerade ;
+        bool statusPlatforme;
+        bool statusVangabaritni;
 
         public frmStatusVozilaDetalji()
         {
@@ -27,10 +30,13 @@ namespace Saobracaj.Drumski
             lblNaslov.Text = "UNOS NOVOG JE U TOKU";
         }
 
-        public frmStatusVozilaDetalji(int Id, string Naziv)
+        public frmStatusVozilaDetalji(int Id, string Naziv,bool StatusCerade, bool StatusPlatforme, bool StatusVangabaritni)
         {
             id = Id;
             naziv = Naziv;
+            statusCerade = StatusCerade;
+            statusPlatforme = StatusPlatforme;
+            statusVangabaritni = StatusVangabaritni;
             InitializeComponent();
             ChangeTextBox();
             postaviVrednost();
@@ -41,6 +47,10 @@ namespace Saobracaj.Drumski
         {
             txtSifra.Text = id.ToString();
             txtNaziv.Text = naziv;
+            chkCerade.Checked = statusCerade;
+            chkPlatforme.Checked = statusPlatforme;
+            chkVangabaritni.Checked = statusVangabaritni;
+
         }
 
 
@@ -154,12 +164,12 @@ namespace Saobracaj.Drumski
             if (status == true)
             {
                 InsertStatus ins = new InsertStatus();
-                noviID = ins.InsStatusVozila(txtNaziv.Text.TrimEnd());
+                noviID = ins.InsStatusVozila(txtNaziv.Text.TrimEnd(), chkCerade.Checked, chkPlatforme.Checked, chkVangabaritni.Checked);
             }
             else
             {
                 InsertStatus upd = new InsertStatus();
-                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString());
+                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString(), chkCerade.Checked, chkPlatforme.Checked, chkVangabaritni.Checked);
                 noviID = Convert.ToInt32(txtSifra.Text.TrimEnd());
             }
 
@@ -188,6 +198,29 @@ namespace Saobracaj.Drumski
                     status = false;
                     SnimanjeZavrseno?.Invoke(0);
                     this.Close();
+                }
+            }
+        }
+
+        private void chk_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox trenutni = sender as CheckBox;
+
+            // Ako korisnik pokušava da odčekira
+            if (!trenutni.Checked)
+            {
+                // Prebroj koliko je trenutno čekirano
+                int brojCekiranih = new[]
+                {
+                    chkCerade,
+                    chkPlatforme,
+                    chkVangabaritni
+                }.Count(cb => cb.Checked);
+
+                // Ako bi ostalo 0, poništi odčekiranje
+                if (brojCekiranih == 0)
+                {
+                    trenutni.Checked = true; // vraća na checked
                 }
             }
         }

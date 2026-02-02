@@ -292,7 +292,7 @@ namespace Saobracaj.Sifarnici
                     label14.Text = "Domicilni ID";
                     if (_currentMainId == 4)
                     {
-                        SetCheckBoxesReadOnlyExcept(this, cbDobavljac, chkDrumskiPrevoz);
+                        SetCheckBoxesReadOnlyExcept(this, cbDobavljac, chkDrumskiPrevoz, chkSpediter);
                     }
                     break;
 
