@@ -1062,10 +1062,7 @@ namespace Saobracaj.Drumski
                     }
                 }
 
-                // 2. Priprema statusa za upit
-                string statusiZaUpit = string.Join(",", statusi
-                  .Select(s => int.TryParse(s.Trim(), out int broj) ? broj.ToString() : null)
-                  .Where(s => s != null));
+               
 
                 //int radniNalogID = 0;
                 //int.TryParse(txtID.Text, out radniNalogID);
@@ -1108,7 +1105,7 @@ namespace Saobracaj.Drumski
                                         SELECT 1
                                         FROM   RadniNalogDrumski r
                                         WHERE  r.KamionID = a.ID
-                                          AND  (r.Status IS NULL OR r.Status NOT IN ({statusiZaUpit}))
+                                          AND  (ISNULL(r.Arhiviran, 0) <> 1)
                                           AND  r.ID <> @ID
                                           AND ( CONVERT(date, r.DtPreuzimanjaPraznogKontejnera) = @Datum  OR (CONVERT(date, r.DatumUtovara) = @Datum AND TipTransporta = 2))
                                     )

@@ -356,17 +356,6 @@ namespace Saobracaj.Dokumenta
                 if (cboPrevoznikFilter.SelectedValue != null && int.TryParse(cboPrevoznikFilter.SelectedValue.ToString(), out int parsedPrevoznik) && parsedPrevoznik > -1)
                     condition = condition + " AND  a.PartnerID = " + parsedPrevoznik;
 
-                // var select = " select a.ID as ID,  LTRIM(RTRIM(vv.Naziv)) AS TipVozila, " +
-                //" LTRIM(RTRIM(p.PaNaziv)) AS Prevoznik, LTRIM(RTRIM(Vozac)) AS Vozac, a.RegBr,  LTRIM(RTRIM(BrojTelefona)) as BrojTelefona, LTRIM(RTRIM(LicnaKarta)) AS LicnaKarta," +
-                //"Rtrim(d.DeIme) + ' ' +  Rtrim(d.DePriimek) as ZaposleniIzmenio, " +
-                //"Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as ZaposleniKreirao, a.VlasnistvoLegeta as TipTransporta " +
-                //"from Automobili a " +
-                //"inner join Delavci d on d.DeSifra = a.Zaposleni " +
-                //"inner join Delavci dk on dk.DeSifra = a.KreiraoZaposleni " +
-                //"left join VrstaVozila vv on a.VlasnistvoLegeta = vv.ID " +
-                //"left join Partnerji p on  a.PartnerID = p.PaSifra  " +
-                //"WHERE a.VoziloDrumskog = 1 ";
-
                 string uslovTipVozila = "";
 
                 if (_tipoviIn?.Any() == true)
@@ -408,7 +397,7 @@ namespace Saobracaj.Dokumenta
                      a.ID = rnd.KamionID
                      AND (CONVERT(date, rnd.DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) OR (CONVERT(date, rnd.DatumUtovara) = CONVERT(date, {datumZaProveru} ) AND rnd.TipTransporta = 2))
                      AND ISNULL(rnd.Arhiviran, 0) <> 1
-                     AND (rnd.Status IS NULL OR rnd.Status NOT IN ( {statusiZaUpit} ))
+                   --  AND (rnd.Status IS NULL OR rnd.Status NOT IN ( {statusiZaUpit} ))
 
                      WHERE a.VoziloDrumskog = 1 {condition}  {uslovTipVozila}";
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

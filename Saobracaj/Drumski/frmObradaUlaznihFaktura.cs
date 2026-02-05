@@ -1098,14 +1098,14 @@ namespace Saobracaj.Drumski
             RefreshGridBezUlazneFakture();
         }
 
-        private void frmObradaUlaznihFaktura_Load(object sender, EventArgs e)
-        {
+        //private void frmObradaUlaznihFaktura_Load(object sender, EventArgs e)
+        //{
           
-        }
+        //}
 
-        private void frmObradaUlaznihFaktura_Shown(object sender, EventArgs e)
-        {
-            RefreshGrid();
-        }
+        //private void frmObradaUlaznihFaktura_Shown(object sender, EventArgs e)
+        //{
+        //    RefreshGrid();
+        //}
     }
 }

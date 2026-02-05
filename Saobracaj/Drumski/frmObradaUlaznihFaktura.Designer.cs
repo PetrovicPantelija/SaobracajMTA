@@ -513,8 +513,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmObradaUlaznihFaktura";
             this.Text = "frmObradaUlaznihFaktura";
-            this.Load += new System.EventHandler(this.frmObradaUlaznihFaktura_Load);
-            this.Shown += new System.EventHandler(this.frmObradaUlaznihFaktura_Shown);
+            //this.Load += new System.EventHandler(this.frmObradaUlaznihFaktura_Load);
+            //this.Shown += new System.EventHandler(this.frmObradaUlaznihFaktura_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmObradaUlaznihFaktura_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -217,10 +217,7 @@ namespace Saobracaj.Drumski
                     }
                 }
 
-                // 2. Priprema statusa za upit
-                string statusiZaUpit = string.Join(",", statusi
-                    .Select(s => s.Trim())
-                    .Where(s => int.TryParse(s, out _)));
+      
                 string condition = "";
 
                 if (cboPrevoznik.SelectedValue != null && int.TryParse(cboPrevoznik.SelectedValue.ToString(), out int parsedPrevoznik) && parsedPrevoznik > -1)

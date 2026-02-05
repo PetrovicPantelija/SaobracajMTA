@@ -559,7 +559,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmNalogZaFakturisanje";
             this.Text = "frmNalogZaFakturisanje";
-            this.Shown += new System.EventHandler(this.frmNalogZaFakturisanje_Shown);
+            //this.Shown += new System.EventHandler(this.frmNalogZaFakturisanje_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNalogZaFakturisanje_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

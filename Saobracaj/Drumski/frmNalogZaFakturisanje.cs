@@ -1259,9 +1259,9 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void frmNalogZaFakturisanje_Shown(object sender, EventArgs e)
-        {
+        //private void frmNalogZaFakturisanje_Shown(object sender, EventArgs e)
+        //{
 
-        }
+        //}
     }
 }

@@ -495,7 +495,7 @@ namespace Saobracaj.Drumski
                                       "    FROM RadniNalogDrumski r " +
                                       "    WHERE  r.KamionID = a.ID " +
                                       "          AND ISNULL(r.Arhiviran, 0) <> 1" +
-                                      "          AND(r.Status IS NULL OR r.Status NOT IN ( " + statusiZaUpit + "))" +
+                                      //" --         AND(r.Status IS NULL OR r.Status NOT IN ( " + statusiZaUpit + "))" +
                                       ")) " +  condition;
 
 
