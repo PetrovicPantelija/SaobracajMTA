@@ -41,7 +41,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.dtPreuzimanjaPraznogKontejnera = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblDatumPreuzimanjaPraznog = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.dtIstovara = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -251,14 +251,14 @@
             this.dtPreuzimanjaPraznogKontejnera.TabIndex = 270;
             this.dtPreuzimanjaPraznogKontejnera.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             // 
-            // label4
+            // lblDatumPreuzimanjaPraznog
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(747, 636);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(240, 16);
-            this.label4.TabIndex = 521;
-            this.label4.Text = "Datum preuzimanja praznog kontejnera";
+            this.lblDatumPreuzimanjaPraznog.AutoSize = true;
+            this.lblDatumPreuzimanjaPraznog.Location = new System.Drawing.Point(747, 636);
+            this.lblDatumPreuzimanjaPraznog.Name = "lblDatumPreuzimanjaPraznog";
+            this.lblDatumPreuzimanjaPraznog.Size = new System.Drawing.Size(240, 16);
+            this.lblDatumPreuzimanjaPraznog.TabIndex = 521;
+            this.lblDatumPreuzimanjaPraznog.Text = "Datum preuzimanja praznog kontejnera";
             // 
             // label65
             // 
@@ -728,7 +728,7 @@
             this.panelHeader.Controls.Add(this.btnFormiranjeNaloga);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Location = new System.Drawing.Point(0, 31);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1461, 40);
@@ -923,7 +923,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1461, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1461, 31);
             this.meniHeader.TabIndex = 599;
             this.meniHeader.Text = "toolStrip1";
             // 
@@ -933,13 +933,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton2
             // 
@@ -947,7 +947,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // txtBL
@@ -962,7 +962,6 @@
             // 
             this.cboVrstaKontejnera.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboVrstaKontejnera.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboVrstaKontejnera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboVrstaKontejnera.FormattingEnabled = true;
             this.cboVrstaKontejnera.ItemHeight = 16;
             this.cboVrstaKontejnera.Location = new System.Drawing.Point(395, 286);
@@ -1162,7 +1161,6 @@
             // 
             this.cboMestoPreuzimanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboMestoPreuzimanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboMestoPreuzimanja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMestoPreuzimanja.FormattingEnabled = true;
             this.cboMestoPreuzimanja.ItemHeight = 16;
             this.cboMestoPreuzimanja.Location = new System.Drawing.Point(19, 286);
@@ -1423,7 +1421,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtIstovara);
             this.Controls.Add(this.dtPreuzimanjaPraznogKontejnera);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblDatumPreuzimanjaPraznog);
             this.Controls.Add(this.label65);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmDrumski";
@@ -1459,7 +1457,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejnera;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDatumPreuzimanjaPraznog;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.DateTimePicker dtIstovara;
         private System.Windows.Forms.Label label3;

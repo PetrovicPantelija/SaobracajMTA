@@ -1598,74 +1598,116 @@ namespace Saobracaj.Drumski
             }
         }
 
+        //private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (e.RowIndex < 0) return;
+
+        //    if (string.IsNullOrWhiteSpace(izabranaRegistracija))
+        //    {
+        //        MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+        //    //  Uzimanje tipa transporta kontejnera iz grida 2
+        //    string tipKontejnera = dataGridView2.Rows[e.RowIndex].Cells["TipTransporta"].Value?.ToString() ?? "";
+
+        //    //  Provera da li se tipovi poklapaju
+        //    if (!string.Equals(izabraniTipTransporta, tipKontejnera, StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        MessageBox.Show(
+        //            $"Tip prevoza za selektovani kamion " +
+        //            $"nije odgovarajući tipu prevoza kontejnera.",
+        //            "Nepodudaranje tipa prevoza",
+        //            MessageBoxButtons.OK,
+        //            MessageBoxIcon.Warning
+        //        );
+        //        return; // prekini — ne upisuj kamion
+        //    }
+
+        //    //string dan = "";
+        //    //if ( chkDatumD.Checked)
+        //    //{
+        //    //    dan = " za danas ";
+        //    //}
+        //    //else if ( chkDatumS.Checked)
+        //    //{
+        //    //    dan = " za sutra ";
+        //    //}
+        //    string dan = "";
+
+        //    int brojDana = Convert.ToInt32(cboDani.SelectedValue);
+
+        //    if (brojDana == 0)
+        //    {
+        //        dan = " za danas ";
+        //    }
+        //    else if (brojDana == 1)
+        //    {
+        //        dan = " za 1 dan ";
+        //    }
+        //    else
+        //    {
+        //        dan = $" za {brojDana} dana ";
+        //    }
+        //    // Upisuje registraciju u kolonu "Kamion" bez obzira gde se klikne
+        //    if (chkN.Checked == true)
+        //    {
+        //        var result = MessageBox.Show(
+        //          $"Kamion sa registarskim tablicama {izabranaRegistracija} je {dan} već dodeljen, da li ste sigurni da želite da ga dodelite još jednom?",
+        //          "Potvrda dodavanja kamiona",
+        //          MessageBoxButtons.YesNo,
+        //          MessageBoxIcon.Question
+        //        );
+
+        //        if (result == DialogResult.Yes)
+        //            dataGridView2.Rows[e.RowIndex].Cells["Kamion"].Value = izabranaRegistracija;
+        //    }
+        //    else
+        //        dataGridView2.Rows[e.RowIndex].Cells["Kamion"].Value = izabranaRegistracija;
+        //}
+
+
         private void dataGridView2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+             if (e.RowIndex < 0 || e.ColumnIndex < 0 || string.IsNullOrWhiteSpace(izabranaRegistracija)) return;
 
-            if (string.IsNullOrWhiteSpace(izabranaRegistracija))
+            // PROVERA DUPLIKATA: Da li je ovaj kamion već dodeljen nekom drugom redu u gridu?
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                MessageBox.Show("Niste izabrali registraciju iz liste vozila.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (row.Cells["Kamion"].Value?.ToString() == izabranaRegistracija)
+                {
+                    MessageBox.Show($"Kamion {izabranaRegistracija} je već dodat u listu za uparivanje!",
+                                    "Duplikat", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return; // Prekida proces, ne dozvoljava dupli unos u grid
+                }
+            }
+
+            // Provera tipa transporta (samo za kliknuti red)
+            string tipKontejnera = dataGridView2.Rows[e.RowIndex].Cells["TipTransporta"].Value?.ToString() ?? "";
+            if (!string.Equals(izabraniTipTransporta, tipKontejnera, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Tip prevoza se ne poklapa!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            //  Uzimanje tipa transporta kontejnera iz grida 2
-            string tipKontejnera = dataGridView2.Rows[e.RowIndex].Cells["TipTransporta"].Value?.ToString() ?? "";
-
-            //  Provera da li se tipovi poklapaju
-            if (!string.Equals(izabraniTipTransporta, tipKontejnera, StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show(
-                    $"Tip prevoza za selektovani kamion " +
-                    $"nije odgovarajući tipu prevoza kontejnera.",
-                    "Nepodudaranje tipa prevoza",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return; // prekini — ne upisuj kamion
-            }
-
-            //string dan = "";
-            //if ( chkDatumD.Checked)
-            //{
-            //    dan = " za danas ";
-            //}
-            //else if ( chkDatumS.Checked)
-            //{
-            //    dan = " za sutra ";
-            //}
-            string dan = "";
-
             int brojDana = Convert.ToInt32(cboDani.SelectedValue);
+            string dan = brojDana == 0 ? " za danas " : (brojDana == 1 ? " za 1 dan " : $" za {brojDana} dana ");
 
-            if (brojDana == 0)
-            {
-                dan = " za danas ";
-            }
-            else if (brojDana == 1)
-            {
-                dan = " za 1 dan ";
-            }
-            else
-            {
-                dan = $" za {brojDana} dana ";
-            }
-            // Upisuje registraciju u kolonu "Kamion" bez obzira gde se klikne
-            if (chkN.Checked == true)
+
+            if (chkN.Checked)
             {
                 var result = MessageBox.Show(
-                  $"Kamion sa registarskim tablicama {izabranaRegistracija} je {dan} već dodeljen, da li ste sigurni da želite da ga dodelite još jednom?",
-                  "Potvrda dodavanja kamiona",
-                  MessageBoxButtons.YesNo,
-                  MessageBoxIcon.Question
-                );
+                    $"Kamion {izabranaRegistracija} je {dan} već dodeljen u bazi, želite li ponovo?",
+                    "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                     dataGridView2.Rows[e.RowIndex].Cells["Kamion"].Value = izabranaRegistracija;
             }
             else
+            {
                 dataGridView2.Rows[e.RowIndex].Cells["Kamion"].Value = izabranaRegistracija;
+            }
         }
-
 
         private void btnKreiraj_Click(object sender, EventArgs e)
         {
@@ -1899,13 +1941,17 @@ namespace Saobracaj.Drumski
             // Lista ID-eva redova iz grida 2 koji su preneti
             List<int> prenetiIdjevi = new List<int>();
             List<string> zauzetiKontejneri = new List<string>();
+            List<DataGridViewRow> redoviZaBrisanje = new List<DataGridViewRow>();
 
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
 
             try
             {
-                foreach (DataGridViewRow row in dataGridView2.Rows)
+                foreach (DataGridViewRow row in dataGridView2.SelectedRows)
                 {
+
+                    if (row.IsNewRow) continue;
+
                     // PROVERA DA LI JE KAMION DODELJEN
                     if (row.Cells["Kamion"].Value != null && !string.IsNullOrEmpty(row.Cells["Kamion"].Value.ToString()))
                     {
@@ -1930,6 +1976,7 @@ namespace Saobracaj.Drumski
 
                             // 3. PAMĆENJE PRENETIH ID-JEVA ZA REFRESHE/SELEKCIJU
                             prenetiIdjevi.Add(id);
+                            redoviZaBrisanje.Add(row);
 
                     }
                 }
@@ -1943,8 +1990,13 @@ namespace Saobracaj.Drumski
                                     MessageBoxIcon.Warning);
                 }
 
+                foreach (DataGridViewRow r in redoviZaBrisanje)
+                {
+                    dataGridView2.Rows.Remove(r);
+                }
+
                 RefreshDataGrid3();
-                RefreshDataGrid2();
+                //RefreshDataGrid2();
                 RefreshDataGrid1();
 
                 dataGridView3.ClearSelection();
@@ -2222,7 +2274,7 @@ namespace Saobracaj.Drumski
                     htmlBuilder.AppendLine($"<tr><td><b>Kontejner:</b></td><td><b>{kontejnerString}</b></td></tr>");
                     if((Uvoz == 0 || Uvoz == 3 || Uvoz == 5) && tipTransporta != 2)
                         htmlBuilder.AppendLine($"<tr><td><b>Datum preuzimanja:</b></td><td>{datumPreuzimanjaPraznog}</td></tr>");
-                    htmlBuilder.AppendLine($"<tr><td><b>Broj posiljke:</b></td><td>{brojPosiljke}</td></tr>");
+                    //htmlBuilder.AppendLine($"<tr><td><b>Broj posiljke:</b></td><td>{brojPosiljke}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Kamion - vrsta:</b></td><td>{tipVozila}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Kamion - tablice:</b></td><td>{tablice}</td></tr>");
                     htmlBuilder.AppendLine($"<tr><td><b>Vozač:</b></td><td>{vozac}</td></tr>");

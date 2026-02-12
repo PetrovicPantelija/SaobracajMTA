@@ -277,6 +277,71 @@ namespace Saobracaj.Izvoz
 
         }
 
+        public bool UpdKolicinaStavkeVecFormirane(int ID, decimal Kolicina)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateProdajniNalogStavkeKolicinaVecFormirano";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter sifra = new SqlParameter();
+            sifra.ParameterName = "@ID";
+            sifra.SqlDbType = SqlDbType.Int;
+            sifra.Direction = ParameterDirection.Input;
+            sifra.Value = ID;
+            cmd.Parameters.Add(sifra);
+
+            SqlParameter kolicinaParam = new SqlParameter();
+            kolicinaParam.ParameterName = "@Kolicina";
+            kolicinaParam.SqlDbType = SqlDbType.Decimal;
+            kolicinaParam.Precision = 18;
+            kolicinaParam.Scale = 2;
+            kolicinaParam.Direction = ParameterDirection.Input;
+            kolicinaParam.Value = Kolicina;
+            cmd.Parameters.Add(kolicinaParam);
+
+            var successParam = cmd.Parameters.Add("@Success", SqlDbType.Bit);
+            successParam.Direction = ParameterDirection.Output;
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            bool success = false;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+                success = Convert.ToBoolean(successParam.Value);
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+            return success;
+
+        }
+
         public void UpdStornirajStavku(int ID)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -291,10 +356,7 @@ namespace Saobracaj.Izvoz
             sifra.Value = ID;
             cmd.Parameters.Add(sifra);
 
-           
-
-
-
+         
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -392,7 +454,7 @@ namespace Saobracaj.Izvoz
 
         }
 
-        public void UpdScenario(int ID, int Scenario)
+        public void UpdScenario(int ID, int Scenario,int TransportDrumski)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -414,8 +476,13 @@ namespace Saobracaj.Izvoz
             cmd.Parameters.Add(scenario);
 
 
-
-
+            SqlParameter transportLeget = new SqlParameter();
+            transportLeget.ParameterName = "@TransportDrumski";
+            transportLeget.SqlDbType = SqlDbType.Int;
+            transportLeget.Direction = ParameterDirection.Input;
+            transportLeget.Value = TransportDrumski;
+            cmd.Parameters.Add(transportLeget);
+            
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

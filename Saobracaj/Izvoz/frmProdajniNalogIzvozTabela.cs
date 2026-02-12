@@ -42,9 +42,9 @@ namespace Saobracaj.Izvoz
             {
                 case "Leget":
                     select = "select pnis.ID as ID, pnis.IDNAdredjenog as BrojDokumenta, ProdajniNalogIzvoz.Korisnik,  "+
-" Kolicina, JM, TipKontenjera.SkNaziv as TipKontejnera, PArtnerji.PANAziv as Nalogodavac  , p2.PaNaziv as Brodar, p3.PaNaziv as Izvoznik , OpisPosla, BukingNumber, "+
-" uvKvalitetKontejnera.Naziv as Kvalitet, Drumski, "+
-" (select Top 1 Naziv from Scenario where pnis.Scenario = Scenario.ID) as ScenarioNaziv "+
+" Kolicina, JM,pnis.KolicinaFormirana AS VecFormirana, TipKontenjera.SkNaziv as TipKontejnera, PArtnerji.PANAziv as Nalogodavac  , p2.PaNaziv as Brodar, p3.PaNaziv as Izvoznik , OpisPosla, BukingNumber, " +
+" uvKvalitetKontejnera.Naziv as Kvalitet, ISNULL(Drumski,0) AS Drumski, "+
+" (select Top 1 Naziv from Scenario where pnis.Scenario = Scenario.ID) as ScenarioNaziv, pnis.Scenario " +
 " from ProdajniNalogIzvoz inner join ProdajniNalogIzvozStavke as pnis on ProdajniNalogIzvoz.ID = pnis.IDNAdredjenog  inner "+
 " join TipKontenjera on TipKontenjera.ID = pnis.TipKontejnera " +
 " inner join PArtnerji on Partnerji.PaSifra = ProdajniNalogIzvoz.Nalogodavac  inner "+
@@ -82,6 +82,15 @@ namespace Saobracaj.Izvoz
             //{
             //    MessageBox.Show(column.Name);
             //}
+            // kolone koje ne želim da se vide
+            var colsToRemove = new[] { "Scenario" }; 
+            foreach (var col in colsToRemove)
+            {
+                if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
+                {
+                    gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(col);
+                }
+            }
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
@@ -142,24 +151,31 @@ namespace Saobracaj.Izvoz
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
             }
-                if (statusizmene == 0)
-                {
+            if (statusizmene == 0)
+            {
                 int IzborDrumski = 0;
                 int IzborADR = 0;
-                    InsertProdajniNalogIzvoz drum = new InsertProdajniNalogIzvoz();
+                int IzborCerada = 0; // 0-platforma, 1 cerada
+                bool postojiScenario = false;
+                InsertProdajniNalogIzvoz drum = new InsertProdajniNalogIzvoz();
+                InsertProdajniNalogIzvoz scin = new InsertProdajniNalogIzvoz();
+
                 if (gridGroupingControl1.Table.CurrentRecord != null)
-                    {
-                        id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
+                {
+                    id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
 
-                        //Pitanje za Drumski
-                        //Pitanje za ADR
+                    //Pitanje za Drumski
+                    //Pitanje za ADR
+                    string a = gridGroupingControl1.Table.CurrentRecord.GetValue("ScenarioNaziv")?.ToString();
+                    postojiScenario = !string.IsNullOrWhiteSpace(gridGroupingControl1.Table.CurrentRecord.GetValue("ScenarioNaziv")?.ToString());
+                    int scenarioID = 0;
 
-                       
-
-                        DialogResult result = Saobracaj.Pomocni.CustomMessageBox.Show(
-                        "Da li je drumski prevoz U organizaciji Legeta", // Message text
-                        "Potvrdite" // Icon
-                        );
+                    if (postojiScenario == false)
+                    { 
+                    DialogResult result = Saobracaj.Pomocni.CustomMessageBox.Show(
+                    "Da li je drumski prevoz U organizaciji Legeta", // Message text
+                    "Potvrdite" // Icon
+                    );
 
                     // Handle the result based on user selection
                     if (result == DialogResult.Yes)
@@ -173,141 +189,214 @@ namespace Saobracaj.Izvoz
                     else
                     {
                         IzborDrumski = 0;
-                     
+
                         drum.UpdDrumski(id, 0); // Promeni Drumski
                     }
 
-                        DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
-                       "Da li je u pitanju ADR roba", // Message text
-                       "Potvrdite"
-                       );
+                    DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
+                   "Da li je u pitanju ADR roba", // Message text
+                   "Potvrdite"
+                   );
 
-                        // Handle the result based on user selection
-                        if (result2 == DialogResult.Yes)
-                        {
+                    // Handle the result based on user selection
+                    if (result2 == DialogResult.Yes)
+                    {
 
-                           IzborADR = 1;
+                        IzborADR = 1;
                         //ipnk.UpdStornirajStavku(id); // Promeni ADR
                         // Add logic to save changes here
                     }
 
-                    using (NalogIzvozaZaOtpremu ni = new NalogIzvozaZaOtpremu())
-                    {
-                        InsertProdajniNalogIzvoz scin = new InsertProdajniNalogIzvoz();
-                        // Set the owner so it stays on top of the main form
-                        ni.StartPosition = FormStartPosition.CenterParent;
-                        var dr = ni.ShowDialog(this); // Modal dialog
-                        if (dr == DialogResult.OK)
+                        using (NalogIzvozaZaOtpremu ni = new NalogIzvozaZaOtpremu())
                         {
-                            int izbor = ni.IzabranaOpcija;
-                            string Izabrani = "";
-
-                            if (izbor == 1)
+                           
+                            // Set the owner so it stays on top of the main form
+                            ni.StartPosition = FormStartPosition.CenterParent;
+                            var dr = ni.ShowDialog(this); // Modal dialog
+                            if (dr == DialogResult.OK)
                             {
-                                if (IzborADR == 0)
+                                int izbor = ni.IzabranaOpcija;
+                                string Izabrani = "";
+
+                                if (izbor == 1)
                                 {
-                                    scin.UpdScenario(id, 13); // 
-                                    Izabrani = "Izabrali ste Scenario 13 - PLATFORMA DIREKTNO PUN ";
-                                    if (IzborDrumski == 1)
+                                    if (IzborADR == 0)
                                     {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        scenarioID = 13;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); // 
+                                        Izabrani = "Izabrali ste Scenario 13 - PLATFORMA DIREKTNO PUN ";
+                                        IzborCerada = 0;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
                                     }
-                                   
-                                }
-                                else
-                                {
-                                    Izabrani = "Izabrali ste Scenario 26 (ADR) - PLATFORMA DIREKTNO PUN";
-                                    scin.UpdScenario(id, 26);
-                                    if (IzborDrumski == 1)
+                                    else
                                     {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        scenarioID = 26;
+                                        Izabrani = "Izabrali ste Scenario 26 (ADR) - PLATFORMA DIREKTNO PUN";
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski);
+                                        IzborCerada = 0;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
                                     }
+
                                 }
 
+                                if (izbor == 2)
+                                {
+                                    if (IzborADR == 0)
+                                    {
+                                        scenarioID = 7;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 7 - PLATFORMA PRAZAN - PUN ";
+                                        IzborCerada = 0;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        scenarioID = 23;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
+                                        IzborCerada = 0;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+                                    }
+
+                                }
+
+                                if (izbor == 3)
+                                {
+                                    if (IzborADR == 0)
+                                    {
+                                        scenarioID = 8;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 8 - CERADA PRETOVAR PUN ";
+                                        IzborCerada = 1;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        scenarioID = 24;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 24 (ADR) - CERADA PRETOVAR PUN ";
+                                        IzborCerada = 1;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+                                    }
+
+                                }
+
+                                if (izbor == 4)
+                                {
+                                    if (IzborADR == 0)
+                                    {
+                                        scenarioID = 9;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 9 - CERADA SKLADISTE PUN";
+                                        IzborCerada = 1;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        scenarioID = 25;
+                                        scin.UpdScenario(id, scenarioID, IzborDrumski); //
+                                        Izabrani = "Izabrali ste Scenario 25 (ADR) - CERADA SKLADISTE PUN";
+                                        IzborCerada = 1;
+                                        if (IzborDrumski == 1)
+                                        {
+                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+ 
+                      
+
+
+                        // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    }
+
+                    decimal unetaKolicina;
+
+                    var currentRec = gridGroupingControl1.Table.CurrentRecord;
+                    if (currentRec == null) return;
+
+                    decimal gornjaGranica = Convert.ToDecimal(currentRec.GetValue("Kolicina"));
+                    var val = currentRec?.GetValue("Scenario");
+                    int drumski = Convert.ToInt32(currentRec.GetValue("Drumski")); 
+
+                    if (scenarioID <= 0 && val != null && val != DBNull.Value)
+                    {
+                        int.TryParse(val.ToString(), out scenarioID);
+                    }
+
+                    string korisnik_zaBazu = Sifarnici.frmLogovanje.user;
+                    int brojStavkePorudzbeniceID = id;
+
+                    if (Saobracaj.Pomocni.CustomTextBox.Show("Za koliko kontejnera želite da napravite grupni nalog? ", out unetaKolicina, gornjaGranica, "Potvrdite količinu") == DialogResult.OK)
+                    {
+                        try
+                        {
+
+                            bool success = scin.UpdKolicinaStavkeVecFormirane(brojStavkePorudzbeniceID, unetaKolicina);
+                            if (!success) // jos jedna provera u bayi smem li updejtovati kolicinu
+                            {
+                                MessageBox.Show(
+                                    "Uneta količina premašuje preostalu dozvoljenu količinu.",
+                                    "Upozorenje",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
                             }
 
-                            if (izbor == 2)
+                            List<int> listNoviIDs = new List<int>();
+                            InsertIzvoz izv = new InsertIzvoz();
+
+                            for (int i = 0; i < (int)unetaKolicina; i++)
                             {
-                                if (IzborADR == 0)
-                                {
-                                    scin.UpdScenario(id, 7); //
-                                    Izabrani = "Izabrali ste Scenario 7 - PLATFORMA PRAZAN - PUN ";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-
-                                }
-                                else
-                                {
-                                    scin.UpdScenario(id, 23); //
-                                    Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-                                }
-
+                                int noviID = izv.InsIzvozPorudzbenica(brojStavkePorudzbeniceID, korisnik_zaBazu);
+                                listNoviIDs.Add(noviID);
                             }
 
-                            if (izbor == 3)
+                            frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, listNoviIDs, scenarioID, drumski);
+                            gpu.ShowDialog();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Greška pri upisu: " + ex.Message);
+                        }
+                        finally
+                        {
+                            // Osiguravamo da se Refresh desi na UI niti nakon svega
+                            this.BeginInvoke((MethodInvoker)delegate
                             {
-                                if (IzborADR == 0)
-                                {
-                                    scin.UpdScenario(id, 8); //
-                                    Izabrani = "Izabrali ste Scenario 8 - CERADA PRETOVAR PUN ";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-
-                                }
-                                else
-                                {
-                                    scin.UpdScenario(id, 24); //
-                                    Izabrani = "Izabrali ste Scenario 24 (ADR) - CERADA PRETOVAR PUN ";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-                                }
-
-                            }
-
-                            if (izbor == 4)
-                            {
-                                if (IzborADR == 0)
-                                {
-                                    scin.UpdScenario(id, 9); //
-                                    Izabrani = "Izabrali ste Scenario 9 - CERADA SKLADISTE PUN";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-
-                                }
-                                else
-                                {
-                                    scin.UpdScenario(id, 25); //
-                                    Izabrani = "Izabrali ste Scenario 25 (ADR) - CERADA SKLADISTE PUN";
-                                    if (IzborDrumski == 1)
-                                    {
-                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                    }
-                                }
-
-                            }
-                            // Use izbor as needed. Example: show message
-                            CustomOkMessageBox.Show(" " + Izabrani.ToString());
-                            RefreshGridControl();
+                                RefreshGridControl();
+                            });
                         }
                     }
-                  
-
-                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                }
                 }
             }
+
+
+
+        }
      
 
         private void gridGroupingControl1_TableControlCurrentCellChanging(object sender, GridTableControlCancelEventArgs e)

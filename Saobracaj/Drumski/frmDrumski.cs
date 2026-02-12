@@ -2409,6 +2409,11 @@ namespace Saobracaj.Drumski
 
             txtBrojPosiljke.Visible = jeTip2;
             lblBrojPosiljke.Visible = jeTip2;
+
+            if(jeTip2)
+                lblDatumPreuzimanjaPraznog.Text = "Datum carinjenja";
+            else
+                lblDatumPreuzimanjaPraznog.Text = "Datum preuzimanja praznog kontejnera";
         }
 
         private void btnPartner_Click(object sender, EventArgs e)

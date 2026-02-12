@@ -73,7 +73,7 @@
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(767, 38);
+            this.panel2.Size = new System.Drawing.Size(704, 38);
             this.panel2.TabIndex = 6;
             // 
             // button6
@@ -215,10 +215,10 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Location = new System.Drawing.Point(1, 1);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1401, 40);
+            this.panelHeader.Size = new System.Drawing.Size(1338, 40);
             this.panelHeader.TabIndex = 472;
             // 
             // gridGroupingControl2
@@ -380,14 +380,14 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 40);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(1, 41);
             this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1401, 524);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1338, 505);
             this.gridGroupingControl1.TabIndex = 475;
             this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
@@ -406,11 +406,12 @@
             // 
             // frmPregledNalogaDrumski
             // 
-            this.ClientSize = new System.Drawing.Size(1401, 564);
+            this.ClientSize = new System.Drawing.Size(1340, 564);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.panelHeader);
             this.Name = "frmPregledNalogaDrumski";
+            this.Padding = new System.Windows.Forms.Padding(1, 1, 1, 18);
             this.Text = "Lista naloga";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPregledNalogaDrumski_Load);

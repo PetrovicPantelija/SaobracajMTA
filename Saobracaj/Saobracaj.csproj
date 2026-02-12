@@ -1903,6 +1903,12 @@
     <Compile Include="Izvoz\frmFormiranjePlanaIzvoz.Designer.cs">
       <DependentUpon>frmFormiranjePlanaIzvoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmGrupniUnosPoljaIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmGrupniUnosPoljaIzvoz.Designer.cs">
+      <DependentUpon>frmGrupniUnosPoljaIzvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmInspekciskiTretman.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2587,6 +2593,7 @@
     </Compile>
     <Compile Include="Pomocni\CustomMessageBox.cs" />
     <Compile Include="Pomocni\CustomOkMessageBox.cs" />
+    <Compile Include="Pomocni\CustomTextBox.cs" />
     <Compile Include="Pomocni\FormMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5128,6 +5135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmFormiranjePlanaIzvoz.resx">
       <DependentUpon>frmFormiranjePlanaIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmGrupniUnosPoljaIzvoz.resx">
+      <DependentUpon>frmGrupniUnosPoljaIzvoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmInspekciskiTretman.resx">
       <DependentUpon>frmInspekciskiTretman.cs</DependentUpon>
