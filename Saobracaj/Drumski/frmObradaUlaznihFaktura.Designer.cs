@@ -69,6 +69,8 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detaljiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDodajDokumenta = new System.Windows.Forms.Button();
+            this.txtRadniNalogID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -239,6 +241,8 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.txtRadniNalogID);
+            this.panel3.Controls.Add(this.btnDodajDokumenta);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txtNalog);
             this.panel3.Controls.Add(this.btnIzadjiBezPromena);
@@ -503,6 +507,26 @@
             this.detaljiToolStripMenuItem.Text = "Detalji";
             this.detaljiToolStripMenuItem.Click += new System.EventHandler(this.detaljiToolStripMenuItem_Click);
             // 
+            // btnDodajDokumenta
+            // 
+            this.btnDodajDokumenta.Location = new System.Drawing.Point(442, 142);
+            this.btnDodajDokumenta.Name = "btnDodajDokumenta";
+            this.btnDodajDokumenta.Size = new System.Drawing.Size(84, 24);
+            this.btnDodajDokumenta.TabIndex = 486;
+            this.btnDodajDokumenta.Text = "Dodaj";
+            this.btnDodajDokumenta.UseVisualStyleBackColor = true;
+            this.btnDodajDokumenta.Click += new System.EventHandler(this.btnDodajDokumenta_Click);
+            // 
+            // txtRadniNalogID
+            // 
+            this.txtRadniNalogID.Location = new System.Drawing.Point(552, 85);
+            this.txtRadniNalogID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRadniNalogID.Name = "txtRadniNalogID";
+            this.txtRadniNalogID.ReadOnly = true;
+            this.txtRadniNalogID.Size = new System.Drawing.Size(70, 22);
+            this.txtRadniNalogID.TabIndex = 489;
+            this.txtRadniNalogID.Visible = false;
+            // 
             // frmObradaUlaznihFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -513,8 +537,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmObradaUlaznihFaktura";
             this.Text = "frmObradaUlaznihFaktura";
-            //this.Load += new System.EventHandler(this.frmObradaUlaznihFaktura_Load);
-            //this.Shown += new System.EventHandler(this.frmObradaUlaznihFaktura_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmObradaUlaznihFaktura_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -570,5 +592,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNalog;
+        private System.Windows.Forms.Button btnDodajDokumenta;
+        private System.Windows.Forms.TextBox txtRadniNalogID;
     }
 }

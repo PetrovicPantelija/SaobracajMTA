@@ -7,6 +7,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -20,6 +21,8 @@ namespace Saobracaj.Drumski
         int brojRedova = 0;
         private int RadniNalogID;
         int brojDokumenata;
+        int aktivanGrid = 0; // 1 je grid na prikazi, 2 je grid bez ulazne fakture
+        int dodatDokument = 0;
 
         public frmObradaUlaznihFaktura()
         {
@@ -885,7 +888,9 @@ namespace Saobracaj.Drumski
 
         private void button1_Click(object sender, EventArgs e)
         {
+            aktivanGrid = 1;
             RefreshGrid();
+            
         }
 
         private void gridGroupingControl1_DoubleClick(object sender, EventArgs e)
@@ -901,8 +906,9 @@ namespace Saobracaj.Drumski
 
         private void PrikaziDetalje(DataRow red)
         {
+            dodatDokument = 0;
             RadniNalogID = Convert.ToInt32(red["KontejnerID"]);
-
+            txtRadniNalogID.Text = red["KontejnerID"].ToString();
             txtNalog.Text = red["Nalog"]?.ToString();
             txtKamioner.Text = red["Prevoznik / Kamioner"]?.ToString();
             txtNalogodavac.Text = red["Nalogodavac"]?.ToString();
@@ -932,7 +938,18 @@ namespace Saobracaj.Drumski
                     dtpPrometa.Value = Convert.ToDateTime(
                         red["DtPReuzimanjaPraznogKontejnera"]);
             }
-  
+
+            int broj;
+
+            if (int.TryParse(txtPrilozenaDokumenta.Text, out broj))
+            {
+                btnDodajDokumenta.Visible = (broj == 0);
+            }
+            else
+            {
+                // ako nije moguće konvertovati u broj – dugme vidljivo
+                btnDodajDokumenta.Visible = true;
+            }
             panel2.Visible = false;
             panel3.Visible = true;
             
@@ -1088,6 +1105,21 @@ namespace Saobracaj.Drumski
         {
             if (brojRedova > 1)
             {
+                switch (aktivanGrid)
+                {
+                    case 1:
+                        Refresh();
+                        break;
+
+                    case 2:
+                        RefreshGridBezUlazneFakture();
+                        break;
+
+                    default:
+                        // fallback ako se forma prvi put otvara
+                        Refresh();
+                        break;
+                }
                 panel3.Visible = false;
                 panel2.Visible = true;
             }
@@ -1095,12 +1127,113 @@ namespace Saobracaj.Drumski
 
         private void btnBezUlazneFakture_Click(object sender, EventArgs e)
         {
+            aktivanGrid = 2;
             RefreshGridBezUlazneFakture();
         }
 
+        private void btnDodajDokumenta_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtRadniNalogID.Text, out int radniNalogDrumskiID))
+            {
+                MessageBox.Show("ID radnog naloga ne postoji.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int zaposleniID = PostaviVrednostZaposleni();
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Odaberite fajl za upload";
+            ofd.Filter = "Svi fajlovi|*.*";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string izabraniFajl = ofd.FileName;
+                string ekstenzija = Path.GetExtension(izabraniFajl);
+                string cleanName = Path.GetFileNameWithoutExtension(izabraniFajl);
+
+                // Očisti naziv fajla od nedozvoljenih karaktera
+                string nazivFajla = string.Join("_", cleanName.Split(Path.GetInvalidFileNameChars())) + ekstenzija;
+
+                // Putanja na server   192.168.99.10
+                // Leget\DRUMSKI\DOKUMENTA
+                string targetPath = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\ID_{radniNalogDrumskiID}";
+                string destinacija = Path.Combine(targetPath, nazivFajla);
+
+                try
+                {
+                    // Ako ne postoji folder, napravi ga
+                    if (!Directory.Exists(targetPath))
+                        Directory.CreateDirectory(targetPath);
+
+                    // Provera da li fajl već postoji
+                    if (File.Exists(destinacija))
+                    {
+                        DialogResult result = MessageBox.Show("Fajl sa istim imenom već postoji. Da li želite da ga zamenite?",
+                                                              "Upozorenje",
+                                                              MessageBoxButtons.YesNo,
+                                                              MessageBoxIcon.Warning);
+
+                        if (result != DialogResult.Yes)
+                            return; // korisnik ne želi da zameni fajl
+                    }
+
+                    // Kopiraj fajl
+                    File.Copy(izabraniFajl, destinacija, true);
+
+                    // Snimi u bazu
+                    InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                    ins.SnimiUFajlBazu(radniNalogDrumskiID, nazivFajla, destinacija, zaposleniID);
+
+                    MessageBox.Show("Fajl uspešno sačuvan i evidentiran u bazi.");
+
+                    RefresujPoljeBrojDokuenta(radniNalogDrumskiID);
+                    dodatDokument = 1;
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greška prilikom kopiranja fajla: " + ex.Message);
+                }
+            }
+        }
+
+        private void RefresujPoljeBrojDokuenta(int radniNalogDrumskiID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT COUNT(*) AS BrojDokumenata " +
+                    "FROM DokumentaRadnogNalogaDrumski " +
+                    "WHERE RadniNalogDrumskiID = @id", con);
+
+                cmd.Parameters.AddWithValue("@id", radniNalogDrumskiID);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    int brojDokumenata = Convert.ToInt32(dr["BrojDokumenata"]);
+
+                    if (brojDokumenata > 0)
+                    {
+                        txtPrilozenaDokumenta.Text = brojDokumenata.ToString();
+                    }
+                    else
+                    {
+                        txtPrilozenaDokumenta.Text = "0"; 
+                    }
+                }
+
+                dr.Close();
+            }
+
+        }
         //private void frmObradaUlaznihFaktura_Load(object sender, EventArgs e)
         //{
-          
+
         //}
 
         //private void frmObradaUlaznihFaktura_Shown(object sender, EventArgs e)

@@ -170,8 +170,8 @@ namespace Saobracaj.Izvoz
                     postojiScenario = !string.IsNullOrWhiteSpace(gridGroupingControl1.Table.CurrentRecord.GetValue("ScenarioNaziv")?.ToString());
                     int scenarioID = 0;
 
-                    if (postojiScenario == false)
-                    { 
+                    //if (postojiScenario == false)
+                    //{ 
                     DialogResult result = Saobracaj.Pomocni.CustomMessageBox.Show(
                     "Da li je drumski prevoz U organizaciji Legeta", // Message text
                     "Potvrdite" // Icon
@@ -325,14 +325,17 @@ namespace Saobracaj.Izvoz
                                         }
                                     }
                                 }
-                            }
+                            CustomOkMessageBox.Show(" " + Izabrani.ToString());
                         }
- 
-                      
 
-
-                        // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                       
                     }
+
+                  //  RefreshGridControl();
+
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    // }
 
                     decimal unetaKolicina;
 
@@ -347,6 +350,9 @@ namespace Saobracaj.Izvoz
                     {
                         int.TryParse(val.ToString(), out scenarioID);
                     }
+
+                   
+
 
                     string korisnik_zaBazu = Sifarnici.frmLogovanje.user;
                     int brojStavkePorudzbeniceID = id;

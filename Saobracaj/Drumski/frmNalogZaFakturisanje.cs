@@ -1136,7 +1136,7 @@ namespace Saobracaj.Drumski
 
         private void btnObjedinjenaDokumentaNalogID_Click(object sender, EventArgs e)
         {
-            using (var frmUnos = new frmBrojFaktureModal("naloga"))
+            using (var frmUnos = new frmBrojFaktureModal("Nalog"))
             {
                 if (frmUnos.ShowDialog() == DialogResult.OK)
                 {

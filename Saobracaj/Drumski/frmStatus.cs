@@ -754,7 +754,8 @@ namespace Saobracaj.Drumski
                 {
                     if (aktivnaFormaPregleda == null || aktivnaFormaPregleda.IsDisposed)
                     {
-                        posaljiStatusKontejnera(grid.Rows[e.RowIndex]);
+                        int radniNalogID = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["ID"].Value);
+                        posaljiStatusKontejnera(radniNalogID);
                         int.TryParse( grid.Rows[e.RowIndex].Cells["ID"].Value.ToString(), out int idRN );
 
                          List<int> ids = new List<int> { idRN };
@@ -874,18 +875,32 @@ namespace Saobracaj.Drumski
                             // takođe odradi update statusa na arhiviran
                             
                         }
-                        this.BeginInvoke(new MethodInvoker(() => {
-                            dataGridView3.CellValueChanged -= dataGridView3_CellValueChanged;
-                            //RefreshDataGrid3();
-                            dataGridView3.CellValueChanged += dataGridView3_CellValueChanged;
-                        }));
-
-                        posaljiStatusKontejnera(row);
-
-                  
+                        
                         List<int> ids = new List<int> { id };
 
                         ins.UpdateStatusPoslat(ids);
+                        if (jeZavrsni)
+                        {
+                            ins.ArhiviranRadniNalogDrumski(id);
+
+                            this.BeginInvoke(new MethodInvoker(() => {
+                                // 1. Prvo "ubijam" fokus da ne puca na poslednjem redu
+                                dataGridView3.CurrentCell = null;
+
+                                // 2. Isključjem event
+                                dataGridView3.CellValueChanged -= dataGridView3_CellValueChanged;
+                                RefreshDataGrid3();
+                                dataGridView3.CellValueChanged += dataGridView3_CellValueChanged;
+                            }));
+
+                            this.BeginInvoke(new MethodInvoker(() => {
+                                posaljiStatusKontejnera(id);
+                            }));
+                            return; // 3. Veoma važno: prekini dalje izvršavanje ako je yavrsni
+                        }
+
+                       
+
                     }
                     catch (Exception ex)
                     {
@@ -894,8 +909,7 @@ namespace Saobracaj.Drumski
                 }
 
             }
-            if (postojiStavkaZaArhiviranje > 0)
-                RefreshDataGrid3();
+            
         }
 
         private bool ProveriDaLiJeZavrsni(int statusID, int tip, int nalog, int cip, int cio)
@@ -930,44 +944,123 @@ namespace Saobracaj.Drumski
             return result;
         }
 
-        private void posaljiStatusKontejnera(DataGridViewRow row)
+        private void posaljiStatusKontejnera(int id)
         {
-            if (row == null)
+            if (id == null)
             {
                 MessageBox.Show("Došlo je do greške prilikom pravljenja poruke o promeni statusa.", "Upozorenje",
                       MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-  
 
-            // Osnovni podaci
-            string nalogodavac = row.Cells["Nalogodavac"]?.Value?.ToString();
-            if (string.IsNullOrWhiteSpace(nalogodavac))
-                return;
+            int ID = id;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
-            // Kontejneri
-            string k1 = row.Cells["BrojKontejnera"]?.Value?.ToString()?.Trim();
-            string k2 = row.Cells["BrojKontejnera2"]?.Value?.ToString()?.Trim();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT rn.ID, " +
+                                       "LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+                                       "i.BrojKontejnera,rn.BrojKontejnera2, " +
+                                       "LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+                                       "au.Vozac, " +
+                                       "rn.DatumPromeneStatusa, " +
+                                       "au.RegBr AS Kamion " +
+                                "FROM RadniNalogDrumski rn " +
+                                "INNER JOIN Automobili au ON au.ID = rn.KamionID " +
+                                "LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
+                                "INNER JOIN Izvoz i ON i.ID = rn.KontejnerID " +
+                                "LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3 " +
+                                "WHERE rn.Uvoz = 0 AND rn.ID =  " + ID +
 
-            string kontejner = !string.IsNullOrWhiteSpace(k2)
-                ? $"{k1}, {k2}"
-                : k1;
 
-            // Statusi – tekst
-            string noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
+                                "UNION ALL " +
+                               " SELECT rn.ID, " +
+                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
+                               "        ik.BrojKontejnera,rn.BrojKontejnera2, " +
+                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+                               "        au.Vozac, " +
+                               "        rn.DatumPromeneStatusa, " +
+                               "        au.RegBr AS Kamion" +
+                               " FROM RadniNalogDrumski rn " +
+                               " INNER JOIN Automobili au ON au.ID = rn.KamionID " +
+                               " INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
+                               " LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
+                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra " +
+                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
+                               " WHERE rn.Uvoz = 0  AND rn.ID = " + ID +
 
-            // Datum promene
+
+                               " UNION ALL " +
+                               " SELECT rn.ID,  " +
+                                "       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+                               "        uk.BrojKontejnera,rn.BrojKontejnera2, " +
+                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+                               "        au.Vozac, " +
+                               "        rn.DatumPromeneStatusa, " +
+                               "        au.RegBr AS Kamion " +
+                               " FROM RadniNalogDrumski rn  " +
+                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+                               " INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID  " +
+                               " LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3  " +
+                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+                               " WHERE rn.Uvoz = 1 AND rn.ID = " + ID +
+
+
+                               " UNION ALL  " +
+                               " SELECT rn.ID,  " +
+                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+                               "        u.BrojKontejnera,rn.BrojKontejnera2,  " +
+                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+                               "        au.Vozac, " +
+                               "        rn.DatumPromeneStatusa, " +
+                               "        au.RegBr AS Kamion " +
+                               " FROM RadniNalogDrumski rn  " +
+                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+                               " INNER JOIN Uvoz u ON u.ID = rn.KontejnerID  " +
+                               " LEFT JOIN Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
+                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
+                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+                               " WHERE rn.Uvoz = 1 AND rn.ID =  " + ID +
+
+                               " UNION ALL  " +
+                               " SELECT rn.ID,  " +
+                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
+                               "        rn.BrojKontejnera,rn.BrojKontejnera2, " +
+                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+                               "        au.Vozac, " +
+                               "        rn.DatumPromeneStatusa, " +
+                               "        au.RegBr AS Kamion " +
+                               " FROM RadniNalogDrumski rn  " +
+                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+                               " LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent  " +
+                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
+                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+                              " WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.ID = " + ID, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            string nalogodavac = "";
+            string k1 = "";
+            string k2 = "";
+            string noviStatusTekst = "";
             DateTime? datumPromene = null;
-            var cellValue = row.Cells["DatumPromeneStatusa"]?.Value;
-
-            if (cellValue != null && cellValue != DBNull.Value)
-                datumPromene = Convert.ToDateTime(cellValue);
+            string kamion = "";
+            string vozac = "";
+            while (dr.Read())
+            {
+                nalogodavac = dr["Nalogodavac"].ToString()?.Trim();
+                k1 = dr["BrojKontejnera"] == DBNull.Value ? "" : dr["BrojKontejnera"].ToString().Trim();
+                k2 = dr["BrojKontejnera2"] == DBNull.Value ? "" : dr["BrojKontejnera"].ToString().Trim();
+                noviStatusTekst = dr["Status"] == DBNull.Value ? "" : dr["Status"].ToString().Trim();
+                if (dr["DatumPromeneStatusa"] != DBNull.Value)
+                    datumPromene = Convert.ToDateTime(dr["DatumPromeneStatusa"]);
+                kamion = dr["Kamion"] == DBNull.Value ? "" : dr["Kamion"].ToString().Trim();
+                vozac = dr["Vozac"] == DBNull.Value ? "" : dr["Vozac"].ToString().Trim();
+                //    noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
+            }
+            string kontejner = !string.IsNullOrWhiteSpace(k2) ? $"{k1}, {k2}" : k1;
 
             string datumZaPrikaz = datumPromene?.ToString("dd.MM.yyyy HH:mm") ?? "";
 
-            // Ostalo
-            string kamion = row.Cells["Kamion"]?.Value?.ToString();
-            string vozac = row.Cells["Vozac"]?.Value?.ToString();
 
             // HTML
             var sb = new StringBuilder();
@@ -1016,7 +1109,7 @@ namespace Saobracaj.Drumski
             MessageBox.Show("Podaci su kopirani u clipboard.", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-         
+
         }
         private void dataGridView3_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {

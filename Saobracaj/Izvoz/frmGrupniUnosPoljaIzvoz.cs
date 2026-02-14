@@ -556,13 +556,7 @@ namespace Saobracaj.Izvoz
                     PostaviVidljivostPanel(1);
                     //  AktivirajLukaPolja();
                     break;
-                //case 14: // Primer ID za I-A
-                // //   AktivirajAgencijaPolja();
-                //    break;
-                //case 15: // Primer ID za I-L-A
-                // //   AktivirajLukaPolja();
-                //  //  AktivirajAgencijaPolja();
-                //    break;
+      
 
                 // GRUPA II
                 case 7: // Scenario II
@@ -577,7 +571,7 @@ namespace Saobracaj.Izvoz
                     adr = 1;
                     PostaviVidljivostPanel(2);
                     break;
-                // ... nastavi za sve ID-jeve ...
+
                 // GRUPA III
                 case 8: // Scenario II
                         // Specifičnosti za II
@@ -643,15 +637,11 @@ namespace Saobracaj.Izvoz
         private void PodesiUnutrasnjostGrupe1(int scenarioID)
         {
             // Default: sve vidljivo, pa gasimo specifično
-            lblMestoPreuzimanjaPunog.Visible = cboMestoPreuzimanjaPunog.Visible = false;
-            lblPlaniraniDatum.Visible = dtpPlaniraniDatum.Visible = true;
-
-            // Ako je L verzija (ID 26 je npr I-L)
-            if (scenarioID == 26 || scenarioID == 15) // Dodaj ID za I-L i I-A-L
-            {
-                lblPlaniraniDatum.Visible = dtpPlaniraniDatum.Visible = false;
-                lblMestoPreuzimanjaPunog.Visible = cboMestoPreuzimanjaPunog.Visible = true;
-            }
+            lblMestoSpustanjaPunogKontejnera.Visible = cboMestoSpustanjaPunogKontejnera.Visible = true;
+  
+            bool isUkljucenDrumski = ((scenarioID == 13 || scenarioID == 26) && drumski == 1);
+            lblMestoPreuzimanjaPunog.Visible = cboMestoPreuzimanjaPunog.Visible = isUkljucenDrumski;
+            lblPlaniraniDatum.Visible = dtpPlaniraniDatum.Visible = !isUkljucenDrumski;
         }
 
         private void PodesiUnutrasnjostGrupe2(int scenarioID)
@@ -662,7 +652,8 @@ namespace Saobracaj.Izvoz
             lblPlaniraniDatumVreme.Visible = dtpPlaniraniDatumVreme.Visible = isOsnovniIliA;
             lblDatumRealizacije.Visible = dtpDatumRealizacije.Visible = isOsnovniIliA;
             lblPlaniranDatumSpustanja.Visible = dptPlaniranDatumSpustanja.Visible = isOsnovniIliA;
-
+            lblNalogodavacZaDrumski.Visible = cboNalogodavacZaDrumski.Visible = isOsnovniIliA;
+            lblRef3.Visible = txtRef3.Visible = isOsnovniIliA;
         }
 
        

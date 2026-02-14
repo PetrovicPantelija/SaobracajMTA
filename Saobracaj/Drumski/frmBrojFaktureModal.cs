@@ -22,7 +22,7 @@ namespace Saobracaj.Drumski
         {
             InitializeComponent();
             _tekst = tekst;
-            lblStatus.Text = $"Unesite {_tekst} ID za koji želite da objedinite dokumenta: ";
+            lblStatus.Text = $"Unesite {_tekst} ID: ";
             ChangeTextBox();
         }
 

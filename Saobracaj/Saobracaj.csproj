@@ -5138,6 +5138,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmGrupniUnosPoljaIzvoz.resx">
       <DependentUpon>frmGrupniUnosPoljaIzvoz.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmInspekciskiTretman.resx">
       <DependentUpon>frmInspekciskiTretman.cs</DependentUpon>
