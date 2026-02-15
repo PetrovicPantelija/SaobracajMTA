@@ -73,18 +73,13 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void sfButton1_Click_1(object sender, EventArgs e)
         {
-            var main = this.TopLevelControl as NewMain;
-            if (main == null) return;
+            //var main = this.TopLevelControl as NewMain;
+            //if (main == null) return;
 
-            main.OtvoriFormuSaPravom(
-                sfButton1.Text,
-                () => new frmProdajniNalogIzvoz()
-            );
-    
-        }
-
-        private void sfButton4_Click(object sender, EventArgs e)
-        {
+            //main.OtvoriFormuSaPravom(
+            //    sfButton1.Text,
+            //    () => new frmProdajniNalogIzvoz()
+            //);
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
@@ -92,6 +87,18 @@ namespace Saobracaj.MainLeget.LegNew
                 sfButton3.Text,
                 () => new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(0)
             );
+
+        }
+
+        private void sfButton4_Click(object sender, EventArgs e)
+        {
+            //var main = this.TopLevelControl as NewMain;
+            //if (main == null) return;
+
+            //main.OtvoriFormuSaPravom(
+            //    sfButton3.Text,
+            //    () => new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(0)
+            //);
 
         }
 

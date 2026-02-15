@@ -129,6 +129,14 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPlaniraniDatum = new System.Windows.Forms.Label();
             this.dtpPlaniraniDatum = new System.Windows.Forms.DateTimePicker();
@@ -139,15 +147,10 @@
             this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cboVrstaPlombe = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox16 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
-            this.label24 = new System.Windows.Forms.Label();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).BeginInit();
@@ -628,10 +631,12 @@
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Location = new System.Drawing.Point(121, 0);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.button27);
+            this.panel5.Location = new System.Drawing.Point(131, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1785, 37);
+            this.panel5.Size = new System.Drawing.Size(1775, 37);
             this.panel5.TabIndex = 6;
             // 
             // panel6
@@ -643,7 +648,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(281, 41);
+            this.panel6.Size = new System.Drawing.Size(246, 41);
             this.panel6.TabIndex = 2;
             // 
             // btnDelete
@@ -1258,6 +1263,92 @@
             this.panel3.Size = new System.Drawing.Size(996, 408);
             this.panel3.TabIndex = 611;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(353, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 16);
+            this.label2.TabIndex = 653;
+            this.label2.Text = "Mesto istovara cerade";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.CausesValidation = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.ItemHeight = 16;
+            this.comboBox1.Location = new System.Drawing.Point(356, 27);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(308, 24);
+            this.comboBox1.TabIndex = 654;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(358, 122);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 16);
+            this.label3.TabIndex = 657;
+            this.label3.Text = "Kontakt osoba";
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox15.CausesValidation = false;
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.ItemHeight = 16;
+            this.comboBox15.Location = new System.Drawing.Point(356, 84);
+            this.comboBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(303, 24);
+            this.comboBox15.TabIndex = 655;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(359, 63);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 16);
+            this.label6.TabIndex = 656;
+            this.label6.Text = "Adresa ";
+            // 
+            // comboBox16
+            // 
+            this.comboBox16.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox16.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox16.CausesValidation = false;
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.ItemHeight = 16;
+            this.comboBox16.Location = new System.Drawing.Point(356, 143);
+            this.comboBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(303, 24);
+            this.comboBox16.TabIndex = 658;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(353, 350);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(141, 16);
+            this.label24.TabIndex = 648;
+            this.label24.Text = "Planirani datum/vreme";
+            // 
+            // dateTimePicker8
+            // 
+            this.dateTimePicker8.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dateTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker8.Location = new System.Drawing.Point(351, 371);
+            this.dateTimePicker8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker8.Name = "dateTimePicker8";
+            this.dateTimePicker8.Size = new System.Drawing.Size(172, 22);
+            this.dateTimePicker8.TabIndex = 647;
+            this.dateTimePicker8.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lblPlaniraniDatum);
@@ -1369,91 +1460,47 @@
             this.cboVrstaPlombe.Size = new System.Drawing.Size(305, 24);
             this.cboVrstaPlombe.TabIndex = 657;
             // 
-            // label2
+            // button27
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(353, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 16);
-            this.label2.TabIndex = 653;
-            this.label2.Text = "Mesto istovara cerade";
+            this.button27.AutoSize = true;
+            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button27.Location = new System.Drawing.Point(0, 0);
+            this.button27.Margin = new System.Windows.Forms.Padding(4);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(148, 37);
+            this.button27.TabIndex = 21;
+            this.button27.Text = "Relacija";
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button27.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // button1
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.CausesValidation = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ItemHeight = 16;
-            this.comboBox1.Location = new System.Drawing.Point(356, 27);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(308, 24);
-            this.comboBox1.TabIndex = 654;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(358, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 16);
-            this.label3.TabIndex = 657;
-            this.label3.Text = "Kontakt osoba";
-            // 
-            // comboBox15
-            // 
-            this.comboBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox15.CausesValidation = false;
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.ItemHeight = 16;
-            this.comboBox15.Location = new System.Drawing.Point(356, 84);
-            this.comboBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(303, 24);
-            this.comboBox15.TabIndex = 655;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(359, 63);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 16);
-            this.label6.TabIndex = 656;
-            this.label6.Text = "Adresa ";
-            // 
-            // comboBox16
-            // 
-            this.comboBox16.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox16.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox16.CausesValidation = false;
-            this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.ItemHeight = 16;
-            this.comboBox16.Location = new System.Drawing.Point(356, 143);
-            this.comboBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(303, 24);
-            this.comboBox16.TabIndex = 658;
-            // 
-            // dateTimePicker8
-            // 
-            this.dateTimePicker8.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker8.Location = new System.Drawing.Point(351, 371);
-            this.dateTimePicker8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker8.Name = "dateTimePicker8";
-            this.dateTimePicker8.Size = new System.Drawing.Size(172, 22);
-            this.dateTimePicker8.TabIndex = 647;
-            this.dateTimePicker8.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(353, 350);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(141, 16);
-            this.label24.TabIndex = 648;
-            this.label24.Text = "Planirani datum/vreme";
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button1.Location = new System.Drawing.Point(148, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 37);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Carinski postupak";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmGrupniUnosPoljaIzvoz
             // 
@@ -1512,9 +1559,11 @@
             this.Controls.Add(this.cboKvalitetKontejnera);
             this.Controls.Add(this.lblKvalitetKontejnera);
             this.Name = "frmGrupniUnosPoljaIzvoz";
-            this.Text = "frmGrupniUnosPoljaIzvoz";
+            this.Text = "Nalog klijenta za izvoz - otprema kamionom";
             this.Load += new System.EventHandler(this.frmGrupniUnosPoljaIzvoz_Load);
             this.panelHeader.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).EndInit();
@@ -1649,5 +1698,7 @@
         private System.Windows.Forms.ComboBox comboBox16;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.DateTimePicker dateTimePicker8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button27;
     }
 }
