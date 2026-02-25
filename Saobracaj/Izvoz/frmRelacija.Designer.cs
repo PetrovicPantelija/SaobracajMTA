@@ -412,7 +412,7 @@
             this.panel3.Controls.Add(this.lblVrstaKamiona3);
             this.panel3.Controls.Add(this.lblDodatneNapomenDrumski);
             this.panel3.Controls.Add(this.txtDodatneNapomeneDrumski);
-            this.panel3.Location = new System.Drawing.Point(1, 578);
+            this.panel3.Location = new System.Drawing.Point(1, 68);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1203, 466);
             this.panel3.TabIndex = 656;
@@ -421,7 +421,7 @@
             // 
             this.dptDatumIstovaraCerade3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptDatumIstovaraCerade3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 198);
+            this.dptDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 426);
             this.dptDatumIstovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dptDatumIstovaraCerade3.Name = "dptDatumIstovaraCerade3";
             this.dptDatumIstovaraCerade3.Size = new System.Drawing.Size(172, 22);
@@ -432,7 +432,7 @@
             // lblDatumIstovaraCerade3
             // 
             this.lblDatumIstovaraCerade3.AutoSize = true;
-            this.lblDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 177);
+            this.lblDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 405);
             this.lblDatumIstovaraCerade3.Name = "lblDatumIstovaraCerade3";
             this.lblDatumIstovaraCerade3.Size = new System.Drawing.Size(141, 16);
             this.lblDatumIstovaraCerade3.TabIndex = 662;
@@ -463,7 +463,7 @@
             // lblMestoIstovaraCerada3
             // 
             this.lblMestoIstovaraCerada3.AutoSize = true;
-            this.lblMestoIstovaraCerada3.Location = new System.Drawing.Point(435, 6);
+            this.lblMestoIstovaraCerada3.Location = new System.Drawing.Point(435, 234);
             this.lblMestoIstovaraCerada3.Name = "lblMestoIstovaraCerada3";
             this.lblMestoIstovaraCerada3.Size = new System.Drawing.Size(141, 16);
             this.lblMestoIstovaraCerada3.TabIndex = 653;
@@ -476,7 +476,7 @@
             this.cboMestoIstovaraCerada3.CausesValidation = false;
             this.cboMestoIstovaraCerada3.FormattingEnabled = true;
             this.cboMestoIstovaraCerada3.ItemHeight = 16;
-            this.cboMestoIstovaraCerada3.Location = new System.Drawing.Point(433, 27);
+            this.cboMestoIstovaraCerada3.Location = new System.Drawing.Point(433, 255);
             this.cboMestoIstovaraCerada3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoIstovaraCerada3.Name = "cboMestoIstovaraCerada3";
             this.cboMestoIstovaraCerada3.Size = new System.Drawing.Size(308, 24);
@@ -486,7 +486,7 @@
             // lblKontaktOIstovarCerade3
             // 
             this.lblKontaktOIstovarCerade3.AutoSize = true;
-            this.lblKontaktOIstovarCerade3.Location = new System.Drawing.Point(435, 120);
+            this.lblKontaktOIstovarCerade3.Location = new System.Drawing.Point(435, 348);
             this.lblKontaktOIstovarCerade3.Name = "lblKontaktOIstovarCerade3";
             this.lblKontaktOIstovarCerade3.Size = new System.Drawing.Size(93, 16);
             this.lblKontaktOIstovarCerade3.TabIndex = 657;
@@ -499,7 +499,7 @@
             this.cboAdresaIstovaraCerade3.CausesValidation = false;
             this.cboAdresaIstovaraCerade3.FormattingEnabled = true;
             this.cboAdresaIstovaraCerade3.ItemHeight = 16;
-            this.cboAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 84);
+            this.cboAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 312);
             this.cboAdresaIstovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboAdresaIstovaraCerade3.Name = "cboAdresaIstovaraCerade3";
             this.cboAdresaIstovaraCerade3.Size = new System.Drawing.Size(303, 24);
@@ -508,7 +508,7 @@
             // lblAdresaIstovaraCerade3
             // 
             this.lblAdresaIstovaraCerade3.AutoSize = true;
-            this.lblAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 63);
+            this.lblAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 291);
             this.lblAdresaIstovaraCerade3.Name = "lblAdresaIstovaraCerade3";
             this.lblAdresaIstovaraCerade3.Size = new System.Drawing.Size(54, 16);
             this.lblAdresaIstovaraCerade3.TabIndex = 656;
@@ -521,7 +521,7 @@
             this.cboKontaktOIstovarCerade3.CausesValidation = false;
             this.cboKontaktOIstovarCerade3.FormattingEnabled = true;
             this.cboKontaktOIstovarCerade3.ItemHeight = 16;
-            this.cboKontaktOIstovarCerade3.Location = new System.Drawing.Point(433, 141);
+            this.cboKontaktOIstovarCerade3.Location = new System.Drawing.Point(433, 369);
             this.cboKontaktOIstovarCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKontaktOIstovarCerade3.Name = "cboKontaktOIstovarCerade3";
             this.cboKontaktOIstovarCerade3.Size = new System.Drawing.Size(303, 24);
@@ -642,7 +642,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(435, 348);
+            this.label26.Location = new System.Drawing.Point(435, 120);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(93, 16);
             this.label26.TabIndex = 645;
@@ -651,7 +651,7 @@
             // lblPlaniraniDatumUtovaraKontejnera3
             // 
             this.lblPlaniraniDatumUtovaraKontejnera3.AutoSize = true;
-            this.lblPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(435, 405);
+            this.lblPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(435, 177);
             this.lblPlaniraniDatumUtovaraKontejnera3.Name = "lblPlaniraniDatumUtovaraKontejnera3";
             this.lblPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(141, 16);
             this.lblPlaniraniDatumUtovaraKontejnera3.TabIndex = 648;
@@ -687,7 +687,7 @@
             // 
             this.dptPlaniraniDatumUtovaraKontejnera3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniraniDatumUtovaraKontejnera3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(433, 426);
+            this.dptPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(433, 198);
             this.dptPlaniraniDatumUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dptPlaniraniDatumUtovaraKontejnera3.Name = "dptPlaniraniDatumUtovaraKontejnera3";
             this.dptPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(172, 22);
@@ -720,7 +720,7 @@
             this.cboKontaktUtovaraKontejnera3.CausesValidation = false;
             this.cboKontaktUtovaraKontejnera3.FormattingEnabled = true;
             this.cboKontaktUtovaraKontejnera3.ItemHeight = 16;
-            this.cboKontaktUtovaraKontejnera3.Location = new System.Drawing.Point(433, 369);
+            this.cboKontaktUtovaraKontejnera3.Location = new System.Drawing.Point(433, 141);
             this.cboKontaktUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKontaktUtovaraKontejnera3.Name = "cboKontaktUtovaraKontejnera3";
             this.cboKontaktUtovaraKontejnera3.Size = new System.Drawing.Size(303, 24);
@@ -742,7 +742,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(435, 291);
+            this.label25.Location = new System.Drawing.Point(435, 63);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(54, 16);
             this.label25.TabIndex = 644;
@@ -767,7 +767,7 @@
             this.cboAdresaUtovaraKontejnera3.CausesValidation = false;
             this.cboAdresaUtovaraKontejnera3.FormattingEnabled = true;
             this.cboAdresaUtovaraKontejnera3.ItemHeight = 16;
-            this.cboAdresaUtovaraKontejnera3.Location = new System.Drawing.Point(433, 312);
+            this.cboAdresaUtovaraKontejnera3.Location = new System.Drawing.Point(433, 84);
             this.cboAdresaUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboAdresaUtovaraKontejnera3.Name = "cboAdresaUtovaraKontejnera3";
             this.cboAdresaUtovaraKontejnera3.Size = new System.Drawing.Size(303, 24);
@@ -789,7 +789,7 @@
             this.cboMestoUtovaraKontejnera3.CausesValidation = false;
             this.cboMestoUtovaraKontejnera3.FormattingEnabled = true;
             this.cboMestoUtovaraKontejnera3.ItemHeight = 16;
-            this.cboMestoUtovaraKontejnera3.Location = new System.Drawing.Point(433, 255);
+            this.cboMestoUtovaraKontejnera3.Location = new System.Drawing.Point(433, 27);
             this.cboMestoUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoUtovaraKontejnera3.Name = "cboMestoUtovaraKontejnera3";
             this.cboMestoUtovaraKontejnera3.Size = new System.Drawing.Size(308, 24);
@@ -799,7 +799,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(435, 234);
+            this.label23.Location = new System.Drawing.Point(435, 6);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(158, 16);
             this.label23.TabIndex = 641;
@@ -843,7 +843,7 @@
             this.panel1.Controls.Add(this.cboMestoPreuzimanjaPunog);
             this.panel1.Controls.Add(this.lblMestoSpustanjaPunogKontejnera);
             this.panel1.Controls.Add(this.cboMestoSpustanjaPunogKontejnera);
-            this.panel1.Location = new System.Drawing.Point(1, 378);
+            this.panel1.Location = new System.Drawing.Point(1, 63);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1203, 194);
             this.panel1.TabIndex = 657;
@@ -1048,7 +1048,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 1318);
+            this.ClientSize = new System.Drawing.Size(1204, 539);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
