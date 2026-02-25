@@ -36,6 +36,16 @@ namespace Saobracaj.Izvoz
             brojStavkePorudzbenice = BrojStavkePorudzbenice;
             scenarioID = scenario;
             drumski = _drumski;
+
+            dataGridView1.ColumnHeadersHeightChanged += (s, e) => {
+                int maxHeight = 100; // Tvoj limit
+                if (dataGridView1.ColumnHeadersHeight > maxHeight)
+                {
+                    // Isključi AutoSize da bi mogao ručno da vratiš na Max
+                    dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+                    dataGridView1.ColumnHeadersHeight = maxHeight;
+                }
+            };
         }
 
         private void ChangeTextBox()
@@ -247,6 +257,12 @@ namespace Saobracaj.Izvoz
             PodesiDatagridView(dataGridView1);
             dtpCutOffPort.Value = DateTime.Now;
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            // 1. Postavi mod na automatsko određivanje visine prema sadržaju
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+            // 2. Opciono: Ako želiš da ograničiš (Max Height), moraš to uraditi nakon što se grid iscrta
+            // Možeš koristiti događaj ColumnHeadersHeightChanged
            
         }
         private void VratiPodatkeSelect()
@@ -256,10 +272,10 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT [KvalitetKontejnera] ,[Brodar], [Link], [BukingNumber], [CuttOfPort], [Izvoznik],[Nalogodavac], [OpisPosla], ProdajniNalogIzvoz.ID " +
+            SqlCommand cmd = new SqlCommand("SELECT [KvalitetKontejnera] ,[Brodar], [Link], [BukingNumber], [CuttOfPort], [Izvoznik],[Nalogodavac], [OpisPosla], ProdajniNalogIzvoz.ID, TipKontenjera.Tara, ProdajniNalogIzvozStavke.TipKontejnera " +
                                             " FROM [dbo].[ProdajniNalogIzvozStavke] " +
                                             " INNER JOIN ProdajniNalogIzvoz on ProdajniNalogIzvozStavke.IDNAdredjenog = ProdajniNalogIzvoz.ID" +
-                                            " inner join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera" +
+                                            " LEFT join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera" +
                                             " where IDNAdredjenog =" + brojStavkePorudzbenice, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -290,6 +306,21 @@ namespace Saobracaj.Izvoz
                 if (dr["Nalogodavac"] != DBNull.Value)
                     cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
                 txtopisPosla.Text = dr["OpisPosla"].ToString();
+
+                if (dr["Tara"] != DBNull.Value)
+                {
+                    txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                }
+
+                if (dr["TipKontejnera"] != DBNull.Value)
+                {
+                    cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                }
+
+                if (dr["BukingNumber"] != DBNull.Value)
+                {
+                    txtBoking.Text = dr["BukingNumber"].ToString().Trim();
+                }
 
             }
         }
@@ -379,8 +410,8 @@ namespace Saobracaj.Izvoz
             {
                 if (drumski == 0)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 200);
-                    AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 200);
+                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                    AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
                     AddTextColumn("MestoUtovaraNoviPlaniraniDt1", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200);
                     AddTextColumn("SpustanjePunogNoviPlaniraniDt1", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
                     AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
@@ -388,7 +419,7 @@ namespace Saobracaj.Izvoz
 
                 else if (drumski == 1)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 200);
+                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
                     AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
 
 
@@ -400,7 +431,7 @@ namespace Saobracaj.Izvoz
             else if (scenarioID == 8)
             {
 
-                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 200);
+                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
 
                 // 
                 AddTextColumn("IstovarCeradePlaniraniDt1", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
@@ -412,7 +443,7 @@ namespace Saobracaj.Izvoz
 
                 if (drumski == 0)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 200);
+                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
                 }
                 else if (drumski == 1)
                 {
@@ -423,8 +454,8 @@ namespace Saobracaj.Izvoz
 
             else if (scenarioID == 24)
             {
-                AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 200);
-                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 200);
+                AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
                 AddTextColumn("IstovarCeradeDtRealizacije1", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
                 AddTextColumn("UtovarKontejneraPlaniraniDt1", "MESTO UTOVARA KONTEJNERA Novi plan. Datum/Vreme", 200);
                 AddTextColumn("UtovarKontejneraDtRealizacije1", "MESTO UTOVARA KONTEJNERA Datum/Vreme realizacije", 200);
@@ -522,7 +553,7 @@ namespace Saobracaj.Izvoz
                     DateTime temp;
                     if (!DateTime.TryParse(e.FormattedValue.ToString(), out temp))
                     {
-                        MessageBox.Show("Molimo unesite ispravan datum (npr. 2026-10-25 14:00)");
+                        MessageBox.Show($"Molimo unesite ispravan datum (npr. {DateTime.Now:dd-MM-yyyy HH:mm})");
                         e.Cancel = true; // Zaustavlja korisnika da pređe u drugu ćeliju
                     }
                 }

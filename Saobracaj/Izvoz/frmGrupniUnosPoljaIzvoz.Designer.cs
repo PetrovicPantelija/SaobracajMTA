@@ -102,9 +102,9 @@
             this.lblKvalitetKontejnera.AutoSize = true;
             this.lblKvalitetKontejnera.Location = new System.Drawing.Point(24, 349);
             this.lblKvalitetKontejnera.Name = "lblKvalitetKontejnera";
-            this.lblKvalitetKontejnera.Size = new System.Drawing.Size(105, 16);
+            this.lblKvalitetKontejnera.Size = new System.Drawing.Size(116, 16);
             this.lblKvalitetKontejnera.TabIndex = 0;
-            this.lblKvalitetKontejnera.Text = "Kvalit kontejnera";
+            this.lblKvalitetKontejnera.Text = "Kvalitet kontejnera";
             // 
             // cboKvalitetKontejnera
             // 
@@ -202,9 +202,9 @@
             this.lblTaraKontejnera.ForeColor = System.Drawing.Color.Black;
             this.lblTaraKontejnera.Location = new System.Drawing.Point(401, 349);
             this.lblTaraKontejnera.Name = "lblTaraKontejnera";
-            this.lblTaraKontejnera.Size = new System.Drawing.Size(153, 16);
+            this.lblTaraKontejnera.Size = new System.Drawing.Size(161, 16);
             this.lblTaraKontejnera.TabIndex = 547;
-            this.lblTaraKontejnera.Text = "Tara kontejnera (uisana)";
+            this.lblTaraKontejnera.Text = "Tara kontejnera (upisana)";
             // 
             // cboIzvoznik
             // 
@@ -254,7 +254,7 @@
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(241, 19);
             this.label37.TabIndex = 566;
-            this.label37.Text = "Napomna";
+            this.label37.Text = "Napomena";
             // 
             // lblAdr
             // 
@@ -291,9 +291,9 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(792, 349);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(121, 16);
+            this.label32.Size = new System.Drawing.Size(124, 16);
             this.label32.TabIndex = 590;
-            this.label32.Text = "Inspekciski tretman";
+            this.label32.Text = "Inspekcijski tretman";
             // 
             // cboInspekciskiTretman
             // 
@@ -333,9 +333,9 @@
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(1185, 121);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(199, 16);
+            this.label49.Size = new System.Drawing.Size(211, 16);
             this.label49.TabIndex = 594;
-            this.label49.Text = "Referent za fakturisanje  - usluge";
+            this.label49.Text = "Referenca za fakturisanje  - usluge";
             // 
             // txtRef2
             // 
@@ -499,9 +499,9 @@
             this.lblRef3.AutoSize = true;
             this.lblRef3.Location = new System.Drawing.Point(1185, 235);
             this.lblRef3.Name = "lblRef3";
-            this.lblRef3.Size = new System.Drawing.Size(206, 16);
+            this.lblRef3.Size = new System.Drawing.Size(218, 16);
             this.lblRef3.TabIndex = 606;
-            this.lblRef3.Text = "Referent za fakturisanje  - drumski";
+            this.lblRef3.Text = "Referenca za fakturisanje  - drumski";
             // 
             // txtRef3
             // 
@@ -707,7 +707,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1467, 568);
+            this.dataGridView1.Size = new System.Drawing.Size(1467, 350);
             this.dataGridView1.TabIndex = 674;
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -720,7 +720,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1519, 1062);
+            this.ClientSize = new System.Drawing.Size(1519, 836);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cboNacinPakovanja);
             this.Controls.Add(this.lblNacinPakovanja);
@@ -771,6 +771,7 @@
             this.Controls.Add(this.cboKvalitetKontejnera);
             this.Controls.Add(this.lblKvalitetKontejnera);
             this.Name = "frmGrupniUnosPoljaIzvoz";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nalog za otpremu";
             this.Load += new System.EventHandler(this.frmGrupniUnosPoljaIzvoz_Load);
             this.panelHeader.ResumeLayout(false);
