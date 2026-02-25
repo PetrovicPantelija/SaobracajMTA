@@ -218,16 +218,7 @@ namespace Saobracaj.Izvoz
             cboNalogodavac.DisplayMember = "PaNaziv";
             cboNalogodavac.ValueMember = "PaSifra";
 
-           
-
-         
-
-
-
-       
-        
-
-
+               
 
         }
 

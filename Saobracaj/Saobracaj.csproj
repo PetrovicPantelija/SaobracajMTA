@@ -1891,6 +1891,12 @@
     <Compile Include="Izvoz\frmAdresaStatusVozila.Designer.cs">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmCarinskiPostupak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmCarinskiPostupak.Designer.cs">
+      <DependentUpon>frmCarinskiPostupak.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmDopunaPlanaPraznimIzvoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2070,6 +2076,12 @@
     </Compile>
     <Compile Include="Izvoz\frmProdajniNalogIzvozTabela.Designer.cs">
       <DependentUpon>frmProdajniNalogIzvozTabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmRelacija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmRelacija.Designer.cs">
+      <DependentUpon>frmRelacija.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmValute.cs">
       <SubType>Form</SubType>
@@ -5130,6 +5142,9 @@
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmCarinskiPostupak.resx">
+      <DependentUpon>frmCarinskiPostupak.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmDopunaPlanaPraznimIzvoz.resx">
       <DependentUpon>frmDopunaPlanaPraznimIzvoz.cs</DependentUpon>
     </EmbeddedResource>
@@ -5222,6 +5237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvozTabela.resx">
       <DependentUpon>frmProdajniNalogIzvozTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmRelacija.resx">
+      <DependentUpon>frmRelacija.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmValute.resx">
       <DependentUpon>frmValute.cs</DependentUpon>

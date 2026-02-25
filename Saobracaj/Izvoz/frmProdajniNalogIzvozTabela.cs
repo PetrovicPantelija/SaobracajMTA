@@ -184,6 +184,7 @@ namespace Saobracaj.Izvoz
                         IzborDrumski = 1;
 
                         drum.UpdDrumski(id, 1); // Promeni Drumski
+                        gridGroupingControl1.Table.CurrentRecord.SetValue("Drumski", 1);
                         // Add logic to save changes here
                     }
                     else
@@ -191,6 +192,7 @@ namespace Saobracaj.Izvoz
                         IzborDrumski = 0;
 
                         drum.UpdDrumski(id, 0); // Promeni Drumski
+                        gridGroupingControl1.Table.CurrentRecord.SetValue("Drumski", 0);
                     }
 
                     DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
@@ -357,46 +359,49 @@ namespace Saobracaj.Izvoz
                     string korisnik_zaBazu = Sifarnici.frmLogovanje.user;
                     int brojStavkePorudzbeniceID = id;
 
-                    if (Saobracaj.Pomocni.CustomTextBox.Show("Za koliko kontejnera želite da napravite grupni nalog? ", out unetaKolicina, gornjaGranica, "Potvrdite količinu") == DialogResult.OK)
-                    {
-                        try
-                        {
+                    //if (Saobracaj.Pomocni.CustomTextBox.Show("Za koliko kontejnera želite da napravite grupni nalog? ", out unetaKolicina, gornjaGranica, "Potvrdite količinu") == DialogResult.OK)
+                    //{
+                    //    try
+                    //    {
 
-                            bool success = scin.UpdKolicinaStavkeVecFormirane(brojStavkePorudzbeniceID, unetaKolicina);
-                            if (!success) // jos jedna provera u bayi smem li updejtovati kolicinu
-                            {
-                                MessageBox.Show(
-                                    "Uneta količina premašuje preostalu dozvoljenu količinu.",
-                                    "Upozorenje",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
-                            }
+                    //        bool success = scin.UpdKolicinaStavkeVecFormirane(brojStavkePorudzbeniceID, unetaKolicina);
+                    //        if (!success) // jos jedna provera u bayi smem li updejtovati kolicinu
+                    //        {
+                    //            MessageBox.Show(
+                    //                "Uneta količina premašuje preostalu dozvoljenu količinu.",
+                    //                "Upozorenje",
+                    //                MessageBoxButtons.OK,
+                    //                MessageBoxIcon.Warning);
+                    //        }
 
-                            List<int> listNoviIDs = new List<int>();
-                            InsertIzvoz izv = new InsertIzvoz();
+                    //        List<int> listNoviIDs = new List<int>();
+                    //        InsertIzvoz izv = new InsertIzvoz();
 
-                            for (int i = 0; i < (int)unetaKolicina; i++)
-                            {
-                                int noviID = izv.InsIzvozPorudzbenica(brojStavkePorudzbeniceID, korisnik_zaBazu);
-                                listNoviIDs.Add(noviID);
-                            }
+                    //        for (int i = 0; i < (int)unetaKolicina; i++)
+                    //        {
+                    //            int noviID = izv.InsIzvozPorudzbenica(brojStavkePorudzbeniceID, korisnik_zaBazu);
+                    //            listNoviIDs.Add(noviID);
+                    //        }
 
-                            frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, listNoviIDs, scenarioID, drumski);
-                            gpu.ShowDialog();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Greška pri upisu: " + ex.Message);
-                        }
-                        finally
-                        {
-                            // Osiguravamo da se Refresh desi na UI niti nakon svega
-                            this.BeginInvoke((MethodInvoker)delegate
-                            {
-                                RefreshGridControl();
-                            });
-                        }
-                    }
+                    //        frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, listNoviIDs, scenarioID, drumski);
+                    //        gpu.ShowDialog();
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        MessageBox.Show("Greška pri upisu: " + ex.Message);
+                    //    }
+                    //    finally
+                    //    {
+                    //        // Osiguravamo da se Refresh desi na UI niti nakon svega
+                    //        this.BeginInvoke((MethodInvoker)delegate
+                    //        {
+                    //            RefreshGridControl();
+                    //        });
+                    //    }
+                    //}
+       
+                    frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski);
+                    gpu.ShowDialog();
                 }
             }
 
