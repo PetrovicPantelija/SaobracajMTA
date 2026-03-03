@@ -421,6 +421,53 @@ namespace Saobracaj.Izvoz
 
         }
 
+
+        private void PodesiUnutrasnjostGrupe4(int scenarioID)
+        {
+            // 
+            bool isVisible = (scenarioID == 9 || scenarioID == 25); // IIIL ili IIILA
+
+            lblMestoUtovaraCerade4.Visible = cboMestoUtovaraCerade4.Visible = isVisible;
+            lblDatumUtovaraCerade4.Visible = dptDatumUtovaraCerade4.Visible = isVisible;
+            lblMestoIstovaraCerada4.Visible = cboMestoIstovaraCerada4.Visible = isVisible;
+            lblAdresaIstovaraCerade4.Visible = cboAdresaIstovaraCerade4.Visible = isVisible;
+            lblKontaktOIstovarCerade4.Visible = lblKontaktOIstovarCerade4.Visible = isVisible;
+
+
+            if (scenarioID == 25 && drumski == 0) // ako je IVLA iskljuci sledeca polja
+            {
+                if (drumski == 0)
+                {
+                    lblAdresaUtovaraCerade4.Visible = cboAdresaUtovaraCerade4.Visible = !isVisible;
+                    lblKontaktUtovaraCerade4.Visible = cboKontaktUtovaraCerade4.Visible = !isVisible;
+                    lblDodatneNapomeneDrumski4.Visible = txtDodatneNapomeneDrumski4.Visible = !isVisible;
+
+                }
+                // nova pozicija za DatumUtovaraCerade4
+                //lblDatumUtovaraCerade4.Location = new Point(cboMestoUtovaraCerade4.Location.X+10, cboMestoUtovaraCerade4.Location.Y + 36);
+                //dptDatumUtovaraCerade4.Location = new Point(lblDatumUtovaraCerade4.Location.X - 2, lblDatumUtovaraCerade4.Location.Y + 21);
+                if (drumski == 1)
+                {
+                    lblDatumIstovaraCerade4.Visible = dptDatumIstovaraCerade4.Visible = !isVisible;
+                }
+            }
+            else if (scenarioID == 9)
+            {
+                if (drumski == 0)
+                {
+                    lblKontaktUtovaraCerade4.Visible = cboKontaktUtovaraCerade4.Visible = !isVisible;
+                    lblDodatneNapomeneDrumski4.Visible = txtDodatneNapomeneDrumski4.Visible = !isVisible;
+                    
+
+                }
+                else if (drumski == 1)
+                {
+                    lblDatumIstovaraCerade4.Visible = dptDatumIstovaraCerade4.Visible = !isVisible;
+                }
+
+            }
+        }
+
         private void frmRelacija_Load(object sender, EventArgs e)
         {
             dptPlaniranDatumSpustanja.Value = DateTime.Now;
@@ -450,6 +497,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = true;
                     panel2.Visible = false;
                     panel3.Visible = false;
+                    panel6.Visible = false;
                     vrstaKamiona = 0;
                     PodesiUnutrasnjostGrupe1(scenario);
                    
@@ -459,6 +507,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = true;
                     panel2.Visible = false;
                     panel3.Visible = false;
+                    panel6.Visible = false;
                     vrstaKamiona =0;
                     PodesiUnutrasnjostGrupe1(scenario);
                     break;
@@ -470,6 +519,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = true;
                     panel3.Visible = false;
+                    panel6.Visible = false;
                     vrstaKamiona = 0;
                     PodesiUnutrasnjostGrupe2(scenario);
 
@@ -479,6 +529,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = true;
                     panel3.Visible = false;
+                    panel6.Visible = false;
                     vrstaKamiona = 0;
                     PodesiUnutrasnjostGrupe2(scenario);
 
@@ -490,6 +541,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = false;
                     panel3.Visible = true;
+                    panel6.Visible = false;
                     vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
@@ -498,6 +550,7 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = false;
                     panel3.Visible = true;
+                    panel6.Visible = false;
                     vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
@@ -507,7 +560,9 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = false;
                     panel3.Visible = false;
+                    panel6.Visible = true;
                     vrstaKamiona = 1;
+                    PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
                 case 25: // Scenario I-L
@@ -515,7 +570,9 @@ namespace Saobracaj.Izvoz
                     panel1.Visible = false;
                     panel2.Visible = false;
                     panel3.Visible = false;
+                    panel6.Visible = true;
                     vrstaKamiona = 1;
+                    PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
   
@@ -614,7 +671,7 @@ namespace Saobracaj.Izvoz
                     kontaktOUtovaraKontejnera = GetVisibleComboValue(panel2, cboKontaktUtovaraKontejnera2);
                 }
                 planiranDatSpustanjaKontejnera = (dptPlaniranDatumSpustanja2.Tag?.ToString() == "IZMENJEN") ? dptPlaniranDatumSpustanja2.Value : (DateTime?)null;
-                planiranDatPreuzimanjaKontejnera= (dtpPlaniraniDatumVremePreuzimanja2.Tag?.ToString() == "IZMENJEN") ? dtpPlaniraniDatumVremePreuzimanja2.Value : (DateTime?)null;
+                planiranDatPreuzimanjaKontejnera = (dtpPlaniraniDatumVremePreuzimanja2.Tag?.ToString() == "IZMENJEN") ? dtpPlaniraniDatumVremePreuzimanja2.Value : (DateTime?)null;
                 planiranDatUtovaraKontejnera = (dptPlaniraniDatumUtovaraKontejnera2.Tag?.ToString() == "IZMENJEN") ? dptPlaniraniDatumUtovaraKontejnera2.Value : (DateTime?)null;
                 realizacijaDatUtovaraKontejnera = (dtpDatumRealizacijeUtovaraKontejnera2.Tag?.ToString() == "IZMENJEN") ? dtpDatumRealizacijeUtovaraKontejnera2.Value : (DateTime?)null;
 
@@ -629,7 +686,7 @@ namespace Saobracaj.Izvoz
                 mestoSpustanjaPunogKontejnera = GetVisibleComboValue(panel3, cboMestoSpustanjaPunogKontejnera3);
                 mestoPreuzimanjaPunogPraznog = GetVisibleComboValue(panel3, cboMestoPreuzimanjaPraznog3);
                 mestoUtovaraKontejnera = GetVisibleComboValue(panel3, cboMestoUtovaraKontejnera3);
-                
+
                 if (mestoUtovaraKontejnera != null)
                 {
                     adresaUtovaraKontejnera = GetVisibleComboValue(panel3, cboAdresaUtovaraKontejnera3);
@@ -658,12 +715,40 @@ namespace Saobracaj.Izvoz
 
                 if (int.TryParse(cboVrstaKamiona3.ToString(), out int rezultat))
                 {
-                    vrstaKamiona= rezultat;
+                    vrstaKamiona = rezultat;
                 }
-             
+
             }
 
-         
+            else if (panel4.Visible)
+            {
+                mestoUtovaraCerade = GetVisibleComboValue(panel4, cboMestoUtovaraCerade4);
+
+                if (mestoUtovaraCerade != null)
+                {
+                    kontaktOUtovaraCerade = GetVisibleComboValue(panel4, cboKontaktUtovaraCerade4);
+                }
+
+                mestoIstovaraCerade = GetVisibleComboValue(panel4, cboMestoIstovaraCerada4);
+
+                if (mestoIstovaraCerade != null)
+                {
+                    kontaktOIstovaraCerade = GetVisibleComboValue(panel4, cboKontaktOIstovarCerade4);
+                }
+
+                planiraniDatumUtovaraCerade = (dptDatumUtovaraCerade4.Tag?.ToString() == "IZMENJEN") ? dptDatumUtovaraCerade4.Value : (DateTime?)null;
+                planiraniDatumIstovaraCerade = (dptDatumIstovaraCerade4.Tag?.ToString() == "IZMENJEN") ? dptDatumIstovaraCerade4.Value : (DateTime?)null;
+
+                dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski4.Text) ? null : txtDodatneNapomeneDrumski4.Text.Trim();
+
+                if (int.TryParse(cboVrstaKamiona3.ToString(), out int rezultat))
+                {
+                    vrstaKamiona = rezultat;
+                }
+
+            }
+
+
             ins.UpdateIzvozPorudzbenicaRelacija(noviIDs, odlaznaMorskaLuka, mestoSpustanjaPunogKontejnera, mestoPreuzimanjaPunogPraznog, mestoUtovaraKontejnera,
             adresaUtovaraKontejnera, kontaktOUtovaraKontejnera, planiranDatSpustanjaKontejnera, planiranDatPreuzimanjaKontejnera, planiranDatUtovaraKontejnera,
             realizacijaDatUtovaraKontejnera, mestoIstovaraCerade, kontaktOIstovaraCerade, planiraniDatumIstovaraCerade, mestoUtovaraCerade, kontaktOUtovaraCerade, planiraniDatumUtovaraCerade, dodatnaNapomenaDrumski, vrstaKamiona);
@@ -864,7 +949,7 @@ namespace Saobracaj.Izvoz
                 }
 
 
-                if ((scenario == 26 || scenario == 16) )
+                if ((scenario == 26 || scenario == 16))
                 {
                     if (drumski == 0)
                     {
@@ -985,16 +1070,16 @@ namespace Saobracaj.Izvoz
                         errorProvider1.SetError(cboMestoIstovaraCerada3, "Morate izabrati neku vrednost!");
                         uspesno = false;
                     }
-                    if (cboAdresaIstovaraCerade3.SelectedIndex < 1)
-                    {
-                        errorProvider1.SetError(cboAdresaIstovaraCerade3, "Morate izabrati neku vrednost!");
-                        uspesno = false;
-                    }
-                    if (cboKontaktOIstovarCerade3.SelectedIndex < 1)
-                    {
-                        errorProvider1.SetError(cboKontaktOIstovarCerade3, "Morate izabrati neku vrednost!");
-                        uspesno = false;
-                    }
+                    //if (cboAdresaIstovaraCerade3.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboAdresaIstovaraCerade3, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
+                    //if (cboKontaktOIstovarCerade3.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboKontaktOIstovarCerade3, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
 
                 }
 
@@ -1005,21 +1090,77 @@ namespace Saobracaj.Izvoz
                         errorProvider1.SetError(cboMestoUtovaraCerade3, "Morate izabrati neku vrednost!");
                         uspesno = false;
                     }
-                    if (cboAdresaUtovaraCerade3.SelectedIndex < 1)
-                    {
-                        errorProvider1.SetError(cboAdresaUtovaraCerade3, "Morate izabrati neku vrednost!");
-                        uspesno = false;
-                    }
-                    if (cboKontaktUtovaraCerade3.SelectedIndex < 1)
-                    {
-                        errorProvider1.SetError(cboKontaktUtovaraCerade3, "Morate izabrati neku vrednost!");
-                        uspesno = false;
-                    }
+                    //if (cboAdresaUtovaraCerade3.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboAdresaUtovaraCerade3, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
+                    //if (cboKontaktUtovaraCerade3.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboKontaktUtovaraCerade3, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
 
                 }
             }
-             
-                return uspesno;
+            else if (panel6.Visible == true)
+            {
+                if ((scenario == 9 || scenario == 25) )
+                {
+                    
+                    if (cboMestoUtovaraCerade4.SelectedIndex < 1)
+                    {
+                        errorProvider1.SetError(cboMestoUtovaraCerade4, "Morate izabrati neku vrednost!");
+                        uspesno = false;
+                    }
+                    if (dptDatumUtovaraCerade4.Tag == null)
+                    {
+                        errorProvider1.SetError(dptDatumUtovaraCerade4, "Morate izabrati neku vrednost!");
+                        uspesno = false;
+                    }
+
+                    if (cboMestoIstovaraCerada4.SelectedIndex < 1)
+                    {
+                        errorProvider1.SetError(cboMestoIstovaraCerada4, "Morate izabrati neku vrednost!");
+                        uspesno = false;
+                    }
+
+                    //if (cboAdresaIstovaraCerade4.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboAdresaIstovaraCerade4, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
+                    //if (cboKontaktOIstovarCerade4.SelectedIndex < 1)
+                    //{
+                    //    errorProvider1.SetError(cboKontaktOIstovarCerade4, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+                    //}
+
+                    if (drumski == 0)
+                    {
+                        if (cboKontaktUtovaraCerade4.SelectedIndex < 1)
+                        {
+                            errorProvider1.SetError(cboKontaktUtovaraCerade4, "Morate izabrati neku vrednost!");
+                            uspesno = false;
+                        }
+
+                        //if (scenario == 25)
+                        //{
+                        //    if (cboAdresaUtovaraCerade4.SelectedIndex < 1)
+                        //    {
+                        //        errorProvider1.SetError(cboAdresaUtovaraCerade4, "Morate izabrati neku vrednost!");
+                        //        uspesno = false;
+                        //    }
+
+                        //}
+                    } 
+
+                }
+
+            }
+
+
+            return uspesno;
         }
 
 

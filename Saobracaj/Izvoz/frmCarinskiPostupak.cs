@@ -227,7 +227,7 @@ namespace Saobracaj.Izvoz
                 spediterPolazna = polaznaS;
             }
 
-            kontaktOsobaPolazna = string.IsNullOrWhiteSpace(txtKontaktSpeditera.Text) ? null : txtKontaktSpeditera.Text.Trim();
+           
 
             if (int.TryParse(cboOdredisnaCarinarnica.SelectedValue.ToString(), out int odredisna))
             {
@@ -238,7 +238,11 @@ namespace Saobracaj.Izvoz
             {
                 spediterOdredisna = odredisnaS;
             }
-            kontaktOsobaOdrdisna = string.IsNullOrWhiteSpace(txtKontaktSpediteraOdredisna.Text) ? null : txtKontaktSpediteraOdredisna.Text.Trim();
+            if (scenario != 25)
+            {
+                kontaktOsobaPolazna = string.IsNullOrWhiteSpace(txtKontaktSpeditera.Text) ? null : txtKontaktSpeditera.Text.Trim();
+                kontaktOsobaOdrdisna = string.IsNullOrWhiteSpace(txtKontaktSpediteraOdredisna.Text) ? null : txtKontaktSpediteraOdredisna.Text.Trim();
+            }
 
 
 
@@ -265,8 +269,24 @@ namespace Saobracaj.Izvoz
 
         private void frmCarinskiPostupak_Load(object sender, EventArgs e)
         {
+            PostaviVidljivostKontaktPolja();
             VratiPodatkeSelect();
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+        }
+
+        private void PostaviVidljivostKontaktPolja()
+        {
+            if (scenario == 25) 
+            {
+                txtKontaktSpeditera.Visible = false;
+                lblKontaktOsobaPolazna.Visible = false;
+                txtKontaktSpediteraOdredisna.Visible = false;
+                lblKontaktOsobaOdredisna.Visible = false;
+                btnOdredisna.Visible = false;
+                btnPolazna.Visible = false;
+
+
+            }
         }
 
         private void VratiPodatkeSelect()

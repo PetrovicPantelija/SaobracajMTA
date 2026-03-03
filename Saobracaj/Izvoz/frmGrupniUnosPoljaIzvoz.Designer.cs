@@ -32,13 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGrupniUnosPoljaIzvoz));
             this.lblKvalitetKontejnera = new System.Windows.Forms.Label();
             this.cboKvalitetKontejnera = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblLink = new System.Windows.Forms.Label();
             this.txtLink = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.cboBrodar = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtBoking = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblCutOffPort = new System.Windows.Forms.Label();
             this.dtpCutOffPort = new System.Windows.Forms.DateTimePicker();
             this.lblTaraKontejnera = new System.Windows.Forms.Label();
             this.cboIzvoznik = new System.Windows.Forms.ComboBox();
@@ -52,8 +52,8 @@
             this.label32 = new System.Windows.Forms.Label();
             this.cboInspekciskiTretman = new System.Windows.Forms.ComboBox();
             this.cboNalogodavacZaUsluge = new System.Windows.Forms.ComboBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
+            this.lblNalogodavacZaUsluge = new System.Windows.Forms.Label();
+            this.lblRef2 = new System.Windows.Forms.Label();
             this.txtRef2 = new System.Windows.Forms.TextBox();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -70,7 +70,7 @@
             this.cboNalogodavacZaDrumski = new System.Windows.Forms.ComboBox();
             this.lblNalogodavacZaDrumski = new System.Windows.Forms.Label();
             this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblVrstaPlombe = new System.Windows.Forms.Label();
             this.cboVrstaPlombe = new System.Windows.Forms.ComboBox();
             this.lblBrojDokumenta = new System.Windows.Forms.Label();
             this.txtBrojDokumenta = new System.Windows.Forms.TextBox();
@@ -118,14 +118,14 @@
             this.cboKvalitetKontejnera.Size = new System.Drawing.Size(295, 24);
             this.cboKvalitetKontejnera.TabIndex = 60;
             // 
-            // label15
+            // lblLink
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(24, 406);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(169, 16);
-            this.label15.TabIndex = 538;
-            this.label15.Text = "Link ka mejl korespodenciji";
+            this.lblLink.AutoSize = true;
+            this.lblLink.Location = new System.Drawing.Point(24, 406);
+            this.lblLink.Name = "lblLink";
+            this.lblLink.Size = new System.Drawing.Size(169, 16);
+            this.lblLink.TabIndex = 538;
+            this.lblLink.Text = "Link ka mejl korespodenciji";
             // 
             // txtLink
             // 
@@ -176,14 +176,14 @@
             this.txtBoking.TabIndex = 90;
             this.txtBoking.Text = "0";
             // 
-            // label7
+            // lblCutOffPort
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(401, 178);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 16);
-            this.label7.TabIndex = 543;
-            this.label7.Text = "Cut off port";
+            this.lblCutOffPort.AutoSize = true;
+            this.lblCutOffPort.Location = new System.Drawing.Point(401, 178);
+            this.lblCutOffPort.Name = "lblCutOffPort";
+            this.lblCutOffPort.Size = new System.Drawing.Size(69, 16);
+            this.lblCutOffPort.TabIndex = 543;
+            this.lblCutOffPort.Text = "Cut off port";
             // 
             // dtpCutOffPort
             // 
@@ -195,6 +195,7 @@
             this.dtpCutOffPort.Size = new System.Drawing.Size(172, 22);
             this.dtpCutOffPort.TabIndex = 100;
             this.dtpCutOffPort.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpCutOffPort.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
             // 
             // lblTaraKontejnera
             // 
@@ -231,17 +232,17 @@
             // chkVaganje
             // 
             this.chkVaganje.AutoSize = true;
-            this.chkVaganje.Location = new System.Drawing.Point(792, 85);
+            this.chkVaganje.Location = new System.Drawing.Point(794, 70);
             this.chkVaganje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVaganje.Name = "chkVaganje";
             this.chkVaganje.Size = new System.Drawing.Size(80, 20);
-            this.chkVaganje.TabIndex = 150;
+            this.chkVaganje.TabIndex = 200;
             this.chkVaganje.Text = "Vaganje";
             this.chkVaganje.UseVisualStyleBackColor = true;
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(790, 142);
+            this.txtNapomena.Location = new System.Drawing.Point(791, 142);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -250,7 +251,7 @@
             // 
             // label37
             // 
-            this.label37.Location = new System.Drawing.Point(792, 121);
+            this.label37.Location = new System.Drawing.Point(793, 121);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(241, 19);
             this.label37.TabIndex = 566;
@@ -259,7 +260,7 @@
             // lblAdr
             // 
             this.lblAdr.AutoSize = true;
-            this.lblAdr.Location = new System.Drawing.Point(792, 178);
+            this.lblAdr.Location = new System.Drawing.Point(793, 178);
             this.lblAdr.Name = "lblAdr";
             this.lblAdr.Size = new System.Drawing.Size(36, 16);
             this.lblAdr.TabIndex = 569;
@@ -272,7 +273,7 @@
             this.cboADR.CausesValidation = false;
             this.cboADR.FormattingEnabled = true;
             this.cboADR.ItemHeight = 16;
-            this.cboADR.Location = new System.Drawing.Point(790, 199);
+            this.cboADR.Location = new System.Drawing.Point(791, 199);
             this.cboADR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboADR.Name = "cboADR";
             this.cboADR.Size = new System.Drawing.Size(304, 24);
@@ -280,7 +281,7 @@
             // 
             // lblVrstaRobe
             // 
-            this.lblVrstaRobe.Location = new System.Drawing.Point(792, 235);
+            this.lblVrstaRobe.Location = new System.Drawing.Point(793, 234);
             this.lblVrstaRobe.Name = "lblVrstaRobe";
             this.lblVrstaRobe.Size = new System.Drawing.Size(232, 16);
             this.lblVrstaRobe.TabIndex = 570;
@@ -289,7 +290,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(792, 349);
+            this.label32.Location = new System.Drawing.Point(1165, 64);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(124, 16);
             this.label32.TabIndex = 590;
@@ -301,11 +302,11 @@
             this.cboInspekciskiTretman.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInspekciskiTretman.FormattingEnabled = true;
             this.cboInspekciskiTretman.ItemHeight = 16;
-            this.cboInspekciskiTretman.Location = new System.Drawing.Point(790, 370);
+            this.cboInspekciskiTretman.Location = new System.Drawing.Point(1168, 85);
             this.cboInspekciskiTretman.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboInspekciskiTretman.Name = "cboInspekciskiTretman";
             this.cboInspekciskiTretman.Size = new System.Drawing.Size(308, 24);
-            this.cboInspekciskiTretman.TabIndex = 200;
+            this.cboInspekciskiTretman.TabIndex = 205;
             // 
             // cboNalogodavacZaUsluge
             // 
@@ -313,33 +314,33 @@
             this.cboNalogodavacZaUsluge.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavacZaUsluge.FormattingEnabled = true;
             this.cboNalogodavacZaUsluge.ItemHeight = 16;
-            this.cboNalogodavacZaUsluge.Location = new System.Drawing.Point(1183, 85);
+            this.cboNalogodavacZaUsluge.Location = new System.Drawing.Point(1168, 142);
             this.cboNalogodavacZaUsluge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavacZaUsluge.Name = "cboNalogodavacZaUsluge";
             this.cboNalogodavacZaUsluge.Size = new System.Drawing.Size(305, 24);
             this.cboNalogodavacZaUsluge.TabIndex = 210;
             // 
-            // label46
+            // lblNalogodavacZaUsluge
             // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(1185, 64);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(150, 16);
-            this.label46.TabIndex = 592;
-            this.label46.Text = "Nalogodavac za usluge";
+            this.lblNalogodavacZaUsluge.AutoSize = true;
+            this.lblNalogodavacZaUsluge.Location = new System.Drawing.Point(1165, 121);
+            this.lblNalogodavacZaUsluge.Name = "lblNalogodavacZaUsluge";
+            this.lblNalogodavacZaUsluge.Size = new System.Drawing.Size(150, 16);
+            this.lblNalogodavacZaUsluge.TabIndex = 592;
+            this.lblNalogodavacZaUsluge.Text = "Nalogodavac za usluge";
             // 
-            // label49
+            // lblRef2
             // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(1185, 121);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(211, 16);
-            this.label49.TabIndex = 594;
-            this.label49.Text = "Referenca za fakturisanje  - usluge";
+            this.lblRef2.AutoSize = true;
+            this.lblRef2.Location = new System.Drawing.Point(1165, 178);
+            this.lblRef2.Name = "lblRef2";
+            this.lblRef2.Size = new System.Drawing.Size(211, 16);
+            this.lblRef2.TabIndex = 594;
+            this.lblRef2.Text = "Referenca za fakturisanje  - usluge";
             // 
             // txtRef2
             // 
-            this.txtRef2.Location = new System.Drawing.Point(1183, 142);
+            this.txtRef2.Location = new System.Drawing.Point(1168, 199);
             this.txtRef2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef2.Name = "txtRef2";
             this.txtRef2.Size = new System.Drawing.Size(303, 22);
@@ -358,7 +359,7 @@
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1519, 52);
+            this.panelHeader.Size = new System.Drawing.Size(1485, 43);
             this.panelHeader.TabIndex = 595;
             // 
             // panel5
@@ -371,7 +372,7 @@
             this.panel5.Location = new System.Drawing.Point(131, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1333, 46);
+            this.panel5.Size = new System.Drawing.Size(1629, 37);
             this.panel5.TabIndex = 6;
             // 
             // button1
@@ -386,10 +387,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(116, 0);
+            this.button1.Location = new System.Drawing.Point(173, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 46);
+            this.button1.Size = new System.Drawing.Size(216, 37);
             this.button1.TabIndex = 22;
             this.button1.Text = "Carinski postupak";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -411,7 +412,7 @@
             this.button27.Location = new System.Drawing.Point(0, 0);
             this.button27.Margin = new System.Windows.Forms.Padding(4);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(116, 46);
+            this.button27.Size = new System.Drawing.Size(173, 37);
             this.button27.TabIndex = 21;
             this.button27.Text = "Relacija";
             this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -427,7 +428,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(65535, 50);
+            this.panel6.Size = new System.Drawing.Size(65535, 41);
             this.panel6.TabIndex = 2;
             // 
             // btnDelete
@@ -497,7 +498,7 @@
             // lblRef3
             // 
             this.lblRef3.AutoSize = true;
-            this.lblRef3.Location = new System.Drawing.Point(1185, 235);
+            this.lblRef3.Location = new System.Drawing.Point(1165, 292);
             this.lblRef3.Name = "lblRef3";
             this.lblRef3.Size = new System.Drawing.Size(218, 16);
             this.lblRef3.TabIndex = 606;
@@ -505,7 +506,7 @@
             // 
             // txtRef3
             // 
-            this.txtRef3.Location = new System.Drawing.Point(1183, 256);
+            this.txtRef3.Location = new System.Drawing.Point(1168, 313);
             this.txtRef3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef3.Name = "txtRef3";
             this.txtRef3.Size = new System.Drawing.Size(303, 22);
@@ -518,7 +519,7 @@
             this.cboNalogodavacZaDrumski.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavacZaDrumski.FormattingEnabled = true;
             this.cboNalogodavacZaDrumski.ItemHeight = 16;
-            this.cboNalogodavacZaDrumski.Location = new System.Drawing.Point(1183, 199);
+            this.cboNalogodavacZaDrumski.Location = new System.Drawing.Point(1168, 255);
             this.cboNalogodavacZaDrumski.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavacZaDrumski.Name = "cboNalogodavacZaDrumski";
             this.cboNalogodavacZaDrumski.Size = new System.Drawing.Size(305, 24);
@@ -527,7 +528,7 @@
             // lblNalogodavacZaDrumski
             // 
             this.lblNalogodavacZaDrumski.AutoSize = true;
-            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(1185, 178);
+            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(1165, 234);
             this.lblNalogodavacZaDrumski.Name = "lblNalogodavacZaDrumski";
             this.lblNalogodavacZaDrumski.Size = new System.Drawing.Size(157, 16);
             this.lblNalogodavacZaDrumski.TabIndex = 604;
@@ -540,20 +541,20 @@
             this.cboVrstaRobe.CausesValidation = false;
             this.cboVrstaRobe.FormattingEnabled = true;
             this.cboVrstaRobe.ItemHeight = 16;
-            this.cboVrstaRobe.Location = new System.Drawing.Point(790, 256);
+            this.cboVrstaRobe.Location = new System.Drawing.Point(791, 255);
             this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaRobe.Name = "cboVrstaRobe";
             this.cboVrstaRobe.Size = new System.Drawing.Size(308, 24);
             this.cboVrstaRobe.TabIndex = 180;
             // 
-            // label12
+            // lblVrstaPlombe
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(401, 406);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(161, 16);
-            this.label12.TabIndex = 658;
-            this.label12.Text = "Brodska plomba - Vlasnik";
+            this.lblVrstaPlombe.AutoSize = true;
+            this.lblVrstaPlombe.Location = new System.Drawing.Point(793, 349);
+            this.lblVrstaPlombe.Name = "lblVrstaPlombe";
+            this.lblVrstaPlombe.Size = new System.Drawing.Size(161, 16);
+            this.lblVrstaPlombe.TabIndex = 658;
+            this.lblVrstaPlombe.Text = "Brodska plomba - Vlasnik";
             // 
             // cboVrstaPlombe
             // 
@@ -561,7 +562,7 @@
             this.cboVrstaPlombe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaPlombe.FormattingEnabled = true;
             this.cboVrstaPlombe.ItemHeight = 16;
-            this.cboVrstaPlombe.Location = new System.Drawing.Point(399, 427);
+            this.cboVrstaPlombe.Location = new System.Drawing.Point(791, 370);
             this.cboVrstaPlombe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaPlombe.Name = "cboVrstaPlombe";
             this.cboVrstaPlombe.Size = new System.Drawing.Size(305, 24);
@@ -682,7 +683,7 @@
             this.cboNacinPakovanja.CausesValidation = false;
             this.cboNacinPakovanja.FormattingEnabled = true;
             this.cboNacinPakovanja.ItemHeight = 16;
-            this.cboNacinPakovanja.Location = new System.Drawing.Point(790, 312);
+            this.cboNacinPakovanja.Location = new System.Drawing.Point(791, 313);
             this.cboNacinPakovanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNacinPakovanja.Name = "cboNacinPakovanja";
             this.cboNacinPakovanja.Size = new System.Drawing.Size(308, 24);
@@ -690,7 +691,7 @@
             // 
             // lblNacinPakovanja
             // 
-            this.lblNacinPakovanja.Location = new System.Drawing.Point(792, 291);
+            this.lblNacinPakovanja.Location = new System.Drawing.Point(793, 292);
             this.lblNacinPakovanja.Name = "lblNacinPakovanja";
             this.lblNacinPakovanja.Size = new System.Drawing.Size(232, 16);
             this.lblNacinPakovanja.TabIndex = 671;
@@ -702,12 +703,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 475);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 470);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1467, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(1448, 224);
             this.dataGridView1.TabIndex = 674;
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -720,7 +721,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1519, 836);
+            this.ClientSize = new System.Drawing.Size(1485, 705);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cboNacinPakovanja);
             this.Controls.Add(this.lblNacinPakovanja);
@@ -736,7 +737,7 @@
             this.Controls.Add(this.lblKorisnik);
             this.Controls.Add(this.txtBrojDokumenta);
             this.Controls.Add(this.lblBrojDokumenta);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblVrstaPlombe);
             this.Controls.Add(this.cboVrstaPlombe);
             this.Controls.Add(this.cboVrstaRobe);
             this.Controls.Add(this.lblRef3);
@@ -745,10 +746,10 @@
             this.Controls.Add(this.lblNalogodavacZaDrumski);
             this.Controls.Add(this.txtTaraKontejnera);
             this.Controls.Add(this.panelHeader);
-            this.Controls.Add(this.label49);
+            this.Controls.Add(this.lblRef2);
             this.Controls.Add(this.txtRef2);
             this.Controls.Add(this.cboNalogodavacZaUsluge);
-            this.Controls.Add(this.label46);
+            this.Controls.Add(this.lblNalogodavacZaUsluge);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.cboInspekciskiTretman);
             this.Controls.Add(this.lblVrstaRobe);
@@ -762,11 +763,11 @@
             this.Controls.Add(this.lblTaraKontejnera);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBoking);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblCutOffPort);
             this.Controls.Add(this.dtpCutOffPort);
             this.Controls.Add(this.label51);
             this.Controls.Add(this.cboBrodar);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.lblLink);
             this.Controls.Add(this.txtLink);
             this.Controls.Add(this.cboKvalitetKontejnera);
             this.Controls.Add(this.lblKvalitetKontejnera);
@@ -791,13 +792,13 @@
 
         private System.Windows.Forms.Label lblKvalitetKontejnera;
         private System.Windows.Forms.ComboBox cboKvalitetKontejnera;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblLink;
         private System.Windows.Forms.TextBox txtLink;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.ComboBox cboBrodar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBoking;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblCutOffPort;
         private System.Windows.Forms.DateTimePicker dtpCutOffPort;
         private System.Windows.Forms.Label lblTaraKontejnera;
         private System.Windows.Forms.ComboBox cboIzvoznik;
@@ -811,8 +812,8 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ComboBox cboInspekciskiTretman;
         private System.Windows.Forms.ComboBox cboNalogodavacZaUsluge;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label lblNalogodavacZaUsluge;
+        private System.Windows.Forms.Label lblRef2;
         private System.Windows.Forms.TextBox txtRef2;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel5;
@@ -827,7 +828,7 @@
         private System.Windows.Forms.ComboBox cboNalogodavacZaDrumski;
         private System.Windows.Forms.Label lblNalogodavacZaDrumski;
         private System.Windows.Forms.ComboBox cboVrstaRobe;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblVrstaPlombe;
         private System.Windows.Forms.ComboBox cboVrstaPlombe;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button27;

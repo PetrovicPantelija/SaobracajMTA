@@ -47,8 +47,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button21 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOdredisna = new System.Windows.Forms.Button();
+            this.btnPolazna = new System.Windows.Forms.Button();
             this.txtKontaktSpeditera = new System.Windows.Forms.TextBox();
             this.txtKontaktSpediteraOdredisna = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -249,37 +249,37 @@
             this.button21.UseVisualStyleBackColor = true;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
-            // button6
+            // btnOdredisna
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(454, 431);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(35, 28);
-            this.button6.TabIndex = 660;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnOdredisna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnOdredisna.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOdredisna.BackgroundImage")));
+            this.btnOdredisna.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOdredisna.FlatAppearance.BorderSize = 0;
+            this.btnOdredisna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOdredisna.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOdredisna.Location = new System.Drawing.Point(454, 431);
+            this.btnOdredisna.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOdredisna.Name = "btnOdredisna";
+            this.btnOdredisna.Size = new System.Drawing.Size(35, 28);
+            this.btnOdredisna.TabIndex = 660;
+            this.btnOdredisna.UseVisualStyleBackColor = false;
+            this.btnOdredisna.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button1
+            // btnPolazna
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(454, 261);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(35, 28);
-            this.button1.TabIndex = 661;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPolazna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnPolazna.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPolazna.BackgroundImage")));
+            this.btnPolazna.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPolazna.FlatAppearance.BorderSize = 0;
+            this.btnPolazna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPolazna.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPolazna.Location = new System.Drawing.Point(454, 261);
+            this.btnPolazna.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPolazna.Name = "btnPolazna";
+            this.btnPolazna.Size = new System.Drawing.Size(35, 28);
+            this.btnPolazna.TabIndex = 661;
+            this.btnPolazna.UseVisualStyleBackColor = false;
+            this.btnPolazna.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtKontaktSpeditera
             // 
@@ -312,8 +312,8 @@
             this.ClientSize = new System.Drawing.Size(626, 503);
             this.Controls.Add(this.txtKontaktSpediteraOdredisna);
             this.Controls.Add(this.txtKontaktSpeditera);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnPolazna);
+            this.Controls.Add(this.btnOdredisna);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.lblSpediterOdredisna);
             this.Controls.Add(this.cboSpediterOdredisna);
@@ -357,8 +357,8 @@
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnPolazna;
+        private System.Windows.Forms.Button btnOdredisna;
         private System.Windows.Forms.TextBox txtKontaktSpeditera;
         private System.Windows.Forms.TextBox txtKontaktSpediteraOdredisna;
         private System.Windows.Forms.Panel panel4;

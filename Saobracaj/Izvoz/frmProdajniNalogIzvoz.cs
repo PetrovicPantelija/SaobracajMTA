@@ -221,9 +221,71 @@ namespace Saobracaj.Izvoz
                
 
         }
+        private bool ValidacijaSaIkonama()
+        {
+            bool uspesno = true;
+            errorProvider1.Clear(); // Obavezno prvo očisti stare greške
 
+            if (string.IsNullOrWhiteSpace(txtKorisnik.Text) )
+            {
+                errorProvider1.SetError(txtKorisnik, "Polje je obavezno!");
+                uspesno = false;
+            }
+            if (cboNalogodavac.SelectedIndex < 1)
+            {
+                errorProvider1.SetError(cboNalogodavac, "Morate izabrati neku vrednost!");
+                uspesno = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtOpisPosla.Text))
+            {
+                errorProvider1.SetError(txtOpisPosla, "Polje je obavezno!");
+                uspesno = false;
+            }
+
+            return uspesno;
+
+        }
+
+        private bool ValidacijaGrida()
+        {
+            bool uspesno = true;
+            dataGridView1.ClearSelection();
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                row.ErrorText = ""; // očisti stare greške
+
+                // Primer: validacija kolone index 4
+                if (row.Cells[4].Value == null ||
+                    !int.TryParse(row.Cells[4].Value.ToString(), out int kolicina) ||
+                    kolicina <= 0)
+                {
+                    row.Cells[4].ErrorText = "Tip kontejnera je obavezno polje!";
+                    uspesno = false;
+                }
+            }
+
+            return uspesno;
+        }
         private void button21_Click(object sender, EventArgs e)
         {
+            if (!ValidacijaSaIkonama())
+            {
+                MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Prekida se izvršavanje ako nije validno
+            }
+
+            bool imaRedova = dataGridView1.Rows
+                   .Cast<DataGridViewRow>()
+                   .Any(r => !r.IsNewRow);
+
+            if (imaRedova && !ValidacijaGrida())
+                return;
+
             InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
             ins.InsProdajniNalogIzvoz(tKorisnik , Convert.ToInt32(cboNalogodavac.SelectedValue), txtOpisPosla.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), txtLink.Text, Convert.ToDateTime(dtpCutOffPort.Value), txtBoking.Text);
            
@@ -236,6 +298,7 @@ namespace Saobracaj.Izvoz
             txtKorisnik.Text = tKorisnik;
             txtBrojDokumenta.Text = GetMaxID().ToString();
             DGVCombo();
+            errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             PodesiDatagridView(dataGridView1);
         }
 
@@ -448,6 +511,8 @@ namespace Saobracaj.Izvoz
                         refer = " ";
                     }
                     else { refer = row.Cells[7].Value.ToString(); };
+
+                    
                     ins.InsProdajniNalogIzvozStavke(Convert.ToInt32(txtBrojDokumenta.Text), Convert.ToDouble(row.Cells[2].Value),
                         row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[6].Value),
                        refer, "OTVOREN")

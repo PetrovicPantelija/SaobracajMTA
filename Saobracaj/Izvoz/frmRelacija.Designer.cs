@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelacija));
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboVrstaKamiona2 = new System.Windows.Forms.ComboBox();
+            this.lblVrstaKamiona2 = new System.Windows.Forms.Label();
             this.lblDatumRealizacije = new System.Windows.Forms.Label();
             this.dtpDatumRealizacijeUtovaraKontejnera2 = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
@@ -92,6 +94,8 @@
             this.lblDodatneNapomenDrumski = new System.Windows.Forms.Label();
             this.txtDodatneNapomeneDrumski = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboVrstaKamiona = new System.Windows.Forms.ComboBox();
+            this.lblVrstaKamiona = new System.Windows.Forms.Label();
             this.lblOdlaznaMorskaLuka1 = new System.Windows.Forms.Label();
             this.cboOdlaznaMorskaLuka1 = new System.Windows.Forms.ComboBox();
             this.lblPlaniraniDatumSpustanja = new System.Windows.Forms.Label();
@@ -106,10 +110,27 @@
             this.button21 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
-            this.cboVrstaKamiona2 = new System.Windows.Forms.ComboBox();
-            this.lblVrstaKamiona2 = new System.Windows.Forms.Label();
-            this.cboVrstaKamiona = new System.Windows.Forms.ComboBox();
-            this.lblVrstaKamiona = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.dptDatumIstovaraCerade4 = new System.Windows.Forms.DateTimePicker();
+            this.lblDatumIstovaraCerade4 = new System.Windows.Forms.Label();
+            this.lblMestoIstovaraCerada4 = new System.Windows.Forms.Label();
+            this.cboMestoIstovaraCerada4 = new System.Windows.Forms.ComboBox();
+            this.lblKontaktOIstovarCerade4 = new System.Windows.Forms.Label();
+            this.cboAdresaIstovaraCerade4 = new System.Windows.Forms.ComboBox();
+            this.lblAdresaIstovaraCerade4 = new System.Windows.Forms.Label();
+            this.cboKontaktOIstovarCerade4 = new System.Windows.Forms.ComboBox();
+            this.cboVrstaKamiona4 = new System.Windows.Forms.ComboBox();
+            this.lblMestoUtovaraCerade4 = new System.Windows.Forms.Label();
+            this.cboMestoUtovaraCerade4 = new System.Windows.Forms.ComboBox();
+            this.lblKontaktUtovaraCerade4 = new System.Windows.Forms.Label();
+            this.cboAdresaUtovaraCerade4 = new System.Windows.Forms.ComboBox();
+            this.lblAdresaUtovaraCerade4 = new System.Windows.Forms.Label();
+            this.cboKontaktUtovaraCerade4 = new System.Windows.Forms.ComboBox();
+            this.dptDatumUtovaraCerade4 = new System.Windows.Forms.DateTimePicker();
+            this.lblDatumUtovaraCerade4 = new System.Windows.Forms.Label();
+            this.lblVrstaKamiona4 = new System.Windows.Forms.Label();
+            this.lblDodatneNapomeneDrumski4 = new System.Windows.Forms.Label();
+            this.txtDodatneNapomeneDrumski4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -117,6 +138,7 @@
             this.panelHeader.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // commandBarController1
@@ -154,6 +176,31 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1203, 309);
             this.panel2.TabIndex = 655;
+            // 
+            // cboVrstaKamiona2
+            // 
+            this.cboVrstaKamiona2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVrstaKamiona2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboVrstaKamiona2.Enabled = false;
+            this.cboVrstaKamiona2.FormattingEnabled = true;
+            this.cboVrstaKamiona2.ItemHeight = 16;
+            this.cboVrstaKamiona2.Items.AddRange(new object[] {
+            "CERADA",
+            "PLATFORMA"});
+            this.cboVrstaKamiona2.Location = new System.Drawing.Point(861, 141);
+            this.cboVrstaKamiona2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona2.Name = "cboVrstaKamiona2";
+            this.cboVrstaKamiona2.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona2.TabIndex = 310;
+            // 
+            // lblVrstaKamiona2
+            // 
+            this.lblVrstaKamiona2.AutoSize = true;
+            this.lblVrstaKamiona2.Location = new System.Drawing.Point(863, 120);
+            this.lblVrstaKamiona2.Name = "lblVrstaKamiona2";
+            this.lblVrstaKamiona2.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona2.TabIndex = 635;
+            this.lblVrstaKamiona2.Text = "Vrsta kamiona";
             // 
             // lblDatumRealizacije
             // 
@@ -848,6 +895,31 @@
             this.panel1.Size = new System.Drawing.Size(1203, 194);
             this.panel1.TabIndex = 657;
             // 
+            // cboVrstaKamiona
+            // 
+            this.cboVrstaKamiona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVrstaKamiona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboVrstaKamiona.Enabled = false;
+            this.cboVrstaKamiona.FormattingEnabled = true;
+            this.cboVrstaKamiona.ItemHeight = 16;
+            this.cboVrstaKamiona.Items.AddRange(new object[] {
+            "CERADA",
+            "PLATFORMA"});
+            this.cboVrstaKamiona.Location = new System.Drawing.Point(434, 84);
+            this.cboVrstaKamiona.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona.Name = "cboVrstaKamiona";
+            this.cboVrstaKamiona.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona.TabIndex = 50;
+            // 
+            // lblVrstaKamiona
+            // 
+            this.lblVrstaKamiona.AutoSize = true;
+            this.lblVrstaKamiona.Location = new System.Drawing.Point(436, 63);
+            this.lblVrstaKamiona.Name = "lblVrstaKamiona";
+            this.lblVrstaKamiona.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona.TabIndex = 637;
+            this.lblVrstaKamiona.Text = "Vrsta kamiona";
+            // 
             // lblOdlaznaMorskaLuka1
             // 
             this.lblOdlaznaMorskaLuka1.AutoSize = true;
@@ -994,61 +1066,253 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // cboVrstaKamiona2
+            // panel6
             // 
-            this.cboVrstaKamiona2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboVrstaKamiona2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboVrstaKamiona2.Enabled = false;
-            this.cboVrstaKamiona2.FormattingEnabled = true;
-            this.cboVrstaKamiona2.ItemHeight = 16;
-            this.cboVrstaKamiona2.Items.AddRange(new object[] {
+            this.panel6.Controls.Add(this.dptDatumIstovaraCerade4);
+            this.panel6.Controls.Add(this.lblDatumIstovaraCerade4);
+            this.panel6.Controls.Add(this.lblMestoIstovaraCerada4);
+            this.panel6.Controls.Add(this.cboMestoIstovaraCerada4);
+            this.panel6.Controls.Add(this.lblKontaktOIstovarCerade4);
+            this.panel6.Controls.Add(this.cboAdresaIstovaraCerade4);
+            this.panel6.Controls.Add(this.lblAdresaIstovaraCerade4);
+            this.panel6.Controls.Add(this.cboKontaktOIstovarCerade4);
+            this.panel6.Controls.Add(this.cboVrstaKamiona4);
+            this.panel6.Controls.Add(this.lblMestoUtovaraCerade4);
+            this.panel6.Controls.Add(this.cboMestoUtovaraCerade4);
+            this.panel6.Controls.Add(this.lblKontaktUtovaraCerade4);
+            this.panel6.Controls.Add(this.cboAdresaUtovaraCerade4);
+            this.panel6.Controls.Add(this.lblAdresaUtovaraCerade4);
+            this.panel6.Controls.Add(this.cboKontaktUtovaraCerade4);
+            this.panel6.Controls.Add(this.dptDatumUtovaraCerade4);
+            this.panel6.Controls.Add(this.lblDatumUtovaraCerade4);
+            this.panel6.Controls.Add(this.lblVrstaKamiona4);
+            this.panel6.Controls.Add(this.lblDodatneNapomeneDrumski4);
+            this.panel6.Controls.Add(this.txtDodatneNapomeneDrumski4);
+            this.panel6.Location = new System.Drawing.Point(1, 62);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1203, 247);
+            this.panel6.TabIndex = 659;
+            // 
+            // dptDatumIstovaraCerade4
+            // 
+            this.dptDatumIstovaraCerade4.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dptDatumIstovaraCerade4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dptDatumIstovaraCerade4.Location = new System.Drawing.Point(433, 203);
+            this.dptDatumIstovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumIstovaraCerade4.Name = "dptDatumIstovaraCerade4";
+            this.dptDatumIstovaraCerade4.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumIstovaraCerade4.TabIndex = 210;
+            this.dptDatumIstovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            // 
+            // lblDatumIstovaraCerade4
+            // 
+            this.lblDatumIstovaraCerade4.AutoSize = true;
+            this.lblDatumIstovaraCerade4.Location = new System.Drawing.Point(433, 182);
+            this.lblDatumIstovaraCerade4.Name = "lblDatumIstovaraCerade4";
+            this.lblDatumIstovaraCerade4.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumIstovaraCerade4.TabIndex = 662;
+            this.lblDatumIstovaraCerade4.Text = "Planirani datum/vreme";
+            // 
+            // lblMestoIstovaraCerada4
+            // 
+            this.lblMestoIstovaraCerada4.AutoSize = true;
+            this.lblMestoIstovaraCerada4.Location = new System.Drawing.Point(435, 11);
+            this.lblMestoIstovaraCerada4.Name = "lblMestoIstovaraCerada4";
+            this.lblMestoIstovaraCerada4.Size = new System.Drawing.Size(141, 16);
+            this.lblMestoIstovaraCerada4.TabIndex = 653;
+            this.lblMestoIstovaraCerada4.Text = "Mesto istovara cerade";
+            // 
+            // cboMestoIstovaraCerada4
+            // 
+            this.cboMestoIstovaraCerada4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMestoIstovaraCerada4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboMestoIstovaraCerada4.CausesValidation = false;
+            this.cboMestoIstovaraCerada4.FormattingEnabled = true;
+            this.cboMestoIstovaraCerada4.ItemHeight = 16;
+            this.cboMestoIstovaraCerada4.Location = new System.Drawing.Point(433, 32);
+            this.cboMestoIstovaraCerada4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoIstovaraCerada4.Name = "cboMestoIstovaraCerada4";
+            this.cboMestoIstovaraCerada4.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoIstovaraCerada4.TabIndex = 180;
+            // 
+            // lblKontaktOIstovarCerade4
+            // 
+            this.lblKontaktOIstovarCerade4.AutoSize = true;
+            this.lblKontaktOIstovarCerade4.Location = new System.Drawing.Point(435, 125);
+            this.lblKontaktOIstovarCerade4.Name = "lblKontaktOIstovarCerade4";
+            this.lblKontaktOIstovarCerade4.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktOIstovarCerade4.TabIndex = 657;
+            this.lblKontaktOIstovarCerade4.Text = "Kontakt osoba";
+            // 
+            // cboAdresaIstovaraCerade4
+            // 
+            this.cboAdresaIstovaraCerade4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboAdresaIstovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboAdresaIstovaraCerade4.CausesValidation = false;
+            this.cboAdresaIstovaraCerade4.FormattingEnabled = true;
+            this.cboAdresaIstovaraCerade4.ItemHeight = 16;
+            this.cboAdresaIstovaraCerade4.Location = new System.Drawing.Point(435, 89);
+            this.cboAdresaIstovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaIstovaraCerade4.Name = "cboAdresaIstovaraCerade4";
+            this.cboAdresaIstovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaIstovaraCerade4.TabIndex = 190;
+            // 
+            // lblAdresaIstovaraCerade4
+            // 
+            this.lblAdresaIstovaraCerade4.AutoSize = true;
+            this.lblAdresaIstovaraCerade4.Location = new System.Drawing.Point(435, 68);
+            this.lblAdresaIstovaraCerade4.Name = "lblAdresaIstovaraCerade4";
+            this.lblAdresaIstovaraCerade4.Size = new System.Drawing.Size(54, 16);
+            this.lblAdresaIstovaraCerade4.TabIndex = 656;
+            this.lblAdresaIstovaraCerade4.Text = "Adresa ";
+            // 
+            // cboKontaktOIstovarCerade4
+            // 
+            this.cboKontaktOIstovarCerade4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboKontaktOIstovarCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboKontaktOIstovarCerade4.CausesValidation = false;
+            this.cboKontaktOIstovarCerade4.FormattingEnabled = true;
+            this.cboKontaktOIstovarCerade4.ItemHeight = 16;
+            this.cboKontaktOIstovarCerade4.Location = new System.Drawing.Point(433, 146);
+            this.cboKontaktOIstovarCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktOIstovarCerade4.Name = "cboKontaktOIstovarCerade4";
+            this.cboKontaktOIstovarCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktOIstovarCerade4.TabIndex = 200;
+            // 
+            // cboVrstaKamiona4
+            // 
+            this.cboVrstaKamiona4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboVrstaKamiona4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboVrstaKamiona4.Enabled = false;
+            this.cboVrstaKamiona4.FormattingEnabled = true;
+            this.cboVrstaKamiona4.ItemHeight = 16;
+            this.cboVrstaKamiona4.Items.AddRange(new object[] {
             "CERADA",
             "PLATFORMA"});
-            this.cboVrstaKamiona2.Location = new System.Drawing.Point(861, 141);
-            this.cboVrstaKamiona2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboVrstaKamiona2.Name = "cboVrstaKamiona2";
-            this.cboVrstaKamiona2.Size = new System.Drawing.Size(305, 24);
-            this.cboVrstaKamiona2.TabIndex = 310;
+            this.cboVrstaKamiona4.Location = new System.Drawing.Point(861, 33);
+            this.cboVrstaKamiona4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona4.Name = "cboVrstaKamiona4";
+            this.cboVrstaKamiona4.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona4.TabIndex = 270;
             // 
-            // lblVrstaKamiona2
+            // lblMestoUtovaraCerade4
             // 
-            this.lblVrstaKamiona2.AutoSize = true;
-            this.lblVrstaKamiona2.Location = new System.Drawing.Point(863, 120);
-            this.lblVrstaKamiona2.Name = "lblVrstaKamiona2";
-            this.lblVrstaKamiona2.Size = new System.Drawing.Size(93, 16);
-            this.lblVrstaKamiona2.TabIndex = 635;
-            this.lblVrstaKamiona2.Text = "Vrsta kamiona";
+            this.lblMestoUtovaraCerade4.AutoSize = true;
+            this.lblMestoUtovaraCerade4.Location = new System.Drawing.Point(28, 6);
+            this.lblMestoUtovaraCerade4.Name = "lblMestoUtovaraCerade4";
+            this.lblMestoUtovaraCerade4.Size = new System.Drawing.Size(138, 16);
+            this.lblMestoUtovaraCerade4.TabIndex = 633;
+            this.lblMestoUtovaraCerade4.Text = "Mesto utovara cerade";
             // 
-            // cboVrstaKamiona
+            // cboMestoUtovaraCerade4
             // 
-            this.cboVrstaKamiona.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboVrstaKamiona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboVrstaKamiona.Enabled = false;
-            this.cboVrstaKamiona.FormattingEnabled = true;
-            this.cboVrstaKamiona.ItemHeight = 16;
-            this.cboVrstaKamiona.Items.AddRange(new object[] {
-            "CERADA",
-            "PLATFORMA"});
-            this.cboVrstaKamiona.Location = new System.Drawing.Point(434, 84);
-            this.cboVrstaKamiona.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboVrstaKamiona.Name = "cboVrstaKamiona";
-            this.cboVrstaKamiona.Size = new System.Drawing.Size(305, 24);
-            this.cboVrstaKamiona.TabIndex = 50;
+            this.cboMestoUtovaraCerade4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMestoUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboMestoUtovaraCerade4.CausesValidation = false;
+            this.cboMestoUtovaraCerade4.FormattingEnabled = true;
+            this.cboMestoUtovaraCerade4.ItemHeight = 16;
+            this.cboMestoUtovaraCerade4.Location = new System.Drawing.Point(26, 27);
+            this.cboMestoUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoUtovaraCerade4.Name = "cboMestoUtovaraCerade4";
+            this.cboMestoUtovaraCerade4.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoUtovaraCerade4.TabIndex = 140;
             // 
-            // lblVrstaKamiona
+            // lblKontaktUtovaraCerade4
             // 
-            this.lblVrstaKamiona.AutoSize = true;
-            this.lblVrstaKamiona.Location = new System.Drawing.Point(436, 63);
-            this.lblVrstaKamiona.Name = "lblVrstaKamiona";
-            this.lblVrstaKamiona.Size = new System.Drawing.Size(93, 16);
-            this.lblVrstaKamiona.TabIndex = 637;
-            this.lblVrstaKamiona.Text = "Vrsta kamiona";
+            this.lblKontaktUtovaraCerade4.AutoSize = true;
+            this.lblKontaktUtovaraCerade4.Location = new System.Drawing.Point(28, 120);
+            this.lblKontaktUtovaraCerade4.Name = "lblKontaktUtovaraCerade4";
+            this.lblKontaktUtovaraCerade4.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktUtovaraCerade4.TabIndex = 637;
+            this.lblKontaktUtovaraCerade4.Text = "Kontakt osoba";
+            // 
+            // cboAdresaUtovaraCerade4
+            // 
+            this.cboAdresaUtovaraCerade4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboAdresaUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboAdresaUtovaraCerade4.CausesValidation = false;
+            this.cboAdresaUtovaraCerade4.FormattingEnabled = true;
+            this.cboAdresaUtovaraCerade4.ItemHeight = 16;
+            this.cboAdresaUtovaraCerade4.Location = new System.Drawing.Point(26, 84);
+            this.cboAdresaUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaUtovaraCerade4.Name = "cboAdresaUtovaraCerade4";
+            this.cboAdresaUtovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaUtovaraCerade4.TabIndex = 150;
+            // 
+            // lblAdresaUtovaraCerade4
+            // 
+            this.lblAdresaUtovaraCerade4.AutoSize = true;
+            this.lblAdresaUtovaraCerade4.Location = new System.Drawing.Point(28, 63);
+            this.lblAdresaUtovaraCerade4.Name = "lblAdresaUtovaraCerade4";
+            this.lblAdresaUtovaraCerade4.Size = new System.Drawing.Size(51, 16);
+            this.lblAdresaUtovaraCerade4.TabIndex = 636;
+            this.lblAdresaUtovaraCerade4.Text = "Adresa";
+            // 
+            // cboKontaktUtovaraCerade4
+            // 
+            this.cboKontaktUtovaraCerade4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboKontaktUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboKontaktUtovaraCerade4.CausesValidation = false;
+            this.cboKontaktUtovaraCerade4.FormattingEnabled = true;
+            this.cboKontaktUtovaraCerade4.ItemHeight = 16;
+            this.cboKontaktUtovaraCerade4.Location = new System.Drawing.Point(26, 141);
+            this.cboKontaktUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktUtovaraCerade4.Name = "cboKontaktUtovaraCerade4";
+            this.cboKontaktUtovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktUtovaraCerade4.TabIndex = 160;
+            // 
+            // dptDatumUtovaraCerade4
+            // 
+            this.dptDatumUtovaraCerade4.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dptDatumUtovaraCerade4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dptDatumUtovaraCerade4.Location = new System.Drawing.Point(26, 198);
+            this.dptDatumUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumUtovaraCerade4.Name = "dptDatumUtovaraCerade4";
+            this.dptDatumUtovaraCerade4.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumUtovaraCerade4.TabIndex = 170;
+            this.dptDatumUtovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            // 
+            // lblDatumUtovaraCerade4
+            // 
+            this.lblDatumUtovaraCerade4.AutoSize = true;
+            this.lblDatumUtovaraCerade4.Location = new System.Drawing.Point(26, 177);
+            this.lblDatumUtovaraCerade4.Name = "lblDatumUtovaraCerade4";
+            this.lblDatumUtovaraCerade4.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumUtovaraCerade4.TabIndex = 640;
+            this.lblDatumUtovaraCerade4.Text = "Planirani datum/vreme";
+            // 
+            // lblVrstaKamiona4
+            // 
+            this.lblVrstaKamiona4.AutoSize = true;
+            this.lblVrstaKamiona4.Location = new System.Drawing.Point(863, 12);
+            this.lblVrstaKamiona4.Name = "lblVrstaKamiona4";
+            this.lblVrstaKamiona4.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona4.TabIndex = 561;
+            this.lblVrstaKamiona4.Text = "Vrsta kamiona";
+            // 
+            // lblDodatneNapomeneDrumski4
+            // 
+            this.lblDodatneNapomeneDrumski4.Location = new System.Drawing.Point(863, 69);
+            this.lblDodatneNapomeneDrumski4.Name = "lblDodatneNapomeneDrumski4";
+            this.lblDodatneNapomeneDrumski4.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski4.TabIndex = 563;
+            this.lblDodatneNapomeneDrumski4.Text = "Dodatne napomene drumski";
+            // 
+            // txtDodatneNapomeneDrumski4
+            // 
+            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 90);
+            this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski4.Multiline = true;
+            this.txtDodatneNapomeneDrumski4.Name = "txtDodatneNapomeneDrumski4";
+            this.txtDodatneNapomeneDrumski4.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski4.TabIndex = 280;
             // 
             // frmRelacija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 539);
+            this.ClientSize = new System.Drawing.Size(1204, 540);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
@@ -1067,6 +1331,8 @@
             this.panelHeader.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1154,5 +1420,26 @@
         private System.Windows.Forms.Label lblVrstaKamiona;
         private System.Windows.Forms.ComboBox cboVrstaKamiona2;
         private System.Windows.Forms.Label lblVrstaKamiona2;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.DateTimePicker dptDatumIstovaraCerade4;
+        private System.Windows.Forms.Label lblDatumIstovaraCerade4;
+        private System.Windows.Forms.Label lblMestoIstovaraCerada4;
+        private System.Windows.Forms.ComboBox cboMestoIstovaraCerada4;
+        private System.Windows.Forms.Label lblKontaktOIstovarCerade4;
+        private System.Windows.Forms.ComboBox cboAdresaIstovaraCerade4;
+        private System.Windows.Forms.Label lblAdresaIstovaraCerade4;
+        private System.Windows.Forms.ComboBox cboKontaktOIstovarCerade4;
+        private System.Windows.Forms.ComboBox cboVrstaKamiona4;
+        private System.Windows.Forms.Label lblMestoUtovaraCerade4;
+        private System.Windows.Forms.ComboBox cboMestoUtovaraCerade4;
+        private System.Windows.Forms.Label lblKontaktUtovaraCerade4;
+        private System.Windows.Forms.ComboBox cboAdresaUtovaraCerade4;
+        private System.Windows.Forms.Label lblAdresaUtovaraCerade4;
+        private System.Windows.Forms.ComboBox cboKontaktUtovaraCerade4;
+        private System.Windows.Forms.DateTimePicker dptDatumUtovaraCerade4;
+        private System.Windows.Forms.Label lblDatumUtovaraCerade4;
+        private System.Windows.Forms.Label lblVrstaKamiona4;
+        private System.Windows.Forms.Label lblDodatneNapomeneDrumski4;
+        private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski4;
     }
 }
