@@ -3338,7 +3338,7 @@ namespace Saobracaj.Izvoz
 
         public List<int> InsIzvozPorudzbenica(int BrojStavkePorudzbenice, int ScenarioID, string Korisnik, int BrojKontejnera, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string NaslovSlanjaStatusa,
                                               int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort,decimal Tara, int? Vaganje, int? Klijent2,
-                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera)
+                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe)
         {
             List<int> noviIDs = new List<int>();
             SqlConnection conn = new SqlConnection(connection);
@@ -3513,9 +3513,14 @@ namespace Saobracaj.Izvoz
             kvalitetKontejnera.Value = (object)KvalitetKontejnera ?? DBNull.Value;
             cmd.Parameters.Add(kvalitetKontejnera);
 
+            SqlParameter vrstaRobe = new SqlParameter();
+            vrstaRobe.ParameterName = "@VrstaRobe";
+            vrstaRobe.SqlDbType = SqlDbType.Int;
+            vrstaRobe.Direction = ParameterDirection.Input;
+            vrstaRobe.Value = VrstaRobe;
+            cmd.Parameters.Add(vrstaRobe);
 
-
-                conn.Open();
+            conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
 
@@ -3548,7 +3553,7 @@ namespace Saobracaj.Izvoz
 
         public void UpdateIzvozPorudzbenica(List<int> noviID, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string NaslovSlanjaStatusa,
                                             int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort, decimal Tara, int? Vaganje, int? Klijent2,
-                                            int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera)
+                                            int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe)
         {
            
             string IdsZaSlanje = string.Join(",", noviID);
@@ -3705,7 +3710,12 @@ namespace Saobracaj.Izvoz
             kvalitetKontejnera.Value = (object)KvalitetKontejnera ?? DBNull.Value;
             cmd.Parameters.Add(kvalitetKontejnera);
 
-
+            SqlParameter vrstaRobe = new SqlParameter();
+            vrstaRobe.ParameterName = "@VrstaRobe";
+            vrstaRobe.SqlDbType = SqlDbType.Int;
+            vrstaRobe.Direction = ParameterDirection.Input;
+            vrstaRobe.Value = VrstaRobe;
+            cmd.Parameters.Add(vrstaRobe);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

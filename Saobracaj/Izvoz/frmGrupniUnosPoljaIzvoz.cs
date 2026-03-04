@@ -836,6 +836,87 @@ namespace Saobracaj.Izvoz
 
             return uspesno;
         }
+
+        private bool ValidacijaGrida(DataGridViewRow row)
+        {
+            bool uspesno = true;
+
+            dataGridView1.EndEdit(); // OBAVEZNO da commit-uje izmene
+            dataGridView1.ClearSelection();
+
+            row.ErrorText = ""; // očisti stare greške
+            foreach (DataGridViewCell cell in row.Cells)
+                cell.ErrorText = "";
+
+
+            if (scenarioID != 9 && scenarioID != 25)
+                {
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojKontejnera", "Broj kontejnera je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+                }
+                if (drumski == 0)
+                {
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+
+                    //if ((scenarioID == 26 && drumski == 0) || (scenarioID == 9 && drumski == 1))
+                    //{
+                    //    if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePunogPlaniraniDt", "Broj lične karte je obavezno polje!"))
+                    //    {
+                    //        uspesno = false;
+                    //    }
+                    //}
+                 
+                    //if ((scenarioID == 7 || scenarioID == 23) && drumski == 1)
+                    //{
+                    //    if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePraznogPlaniraniDt", "Broj lične karte je obavezno polje!"))
+                    //    {
+                    //        uspesno = false;
+                    //    }
+                    //}
+
+           
+            }
+
+
+            return uspesno;
+        }
+        private bool ValidirajObaveznuKolonu(DataGridView grid,
+                                     DataGridViewRow row,
+                                     string nazivKolone,
+                                     string poruka)
+        {
+            // Proveri da li kolona postoji
+            if (!grid.Columns.Contains(nazivKolone))
+                return true; // ako ne postoji, preskoči validaciju
+
+            var cell = row.Cells[nazivKolone];
+
+            if (cell.Value == null ||
+                string.IsNullOrWhiteSpace(cell.Value.ToString()))
+            {
+                cell.ErrorText = poruka;
+                return false;
+            }
+
+            return true;
+        }
+
         private void dptDatum_ValueChanged(object sender, EventArgs e)
         {
             DateTimePicker dtp = (DateTimePicker)sender;
@@ -849,6 +930,7 @@ namespace Saobracaj.Izvoz
                 MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Prekida se izvršavanje ako nije validno
             }
+
 
             InsertIzvoz ins = new InsertIzvoz();
             int vrstaKamiona = 0;
@@ -892,11 +974,7 @@ namespace Saobracaj.Izvoz
                 adr = Convert.ToInt32(cboADR.SelectedValue);
             }
             string Napomena = string.IsNullOrWhiteSpace(txtNapomena.Text) ? null : txtNapomena.Text.Trim();
-
-
-            string vrstaRobe = null; // doradi
-            int? carinskiPostupak = null;// doradi
-     
+    
 
             int? inspekcijskiTretman = null;
             if (cboInspekciskiTretman.SelectedValue != null)
@@ -968,7 +1046,13 @@ namespace Saobracaj.Izvoz
                 return;
             }
 
+            
 
+            int vrstaRobe = 0;
+            if (cboVrstaRobe.SelectedValue != null)
+            {
+                vrstaRobe = Convert.ToInt32(cboVrstaRobe.SelectedValue);
+            }
             string opisPosla = string.IsNullOrWhiteSpace(txtopisPosla.Text) ? null : txtopisPosla.Text.Trim(); 
             string link = string.IsNullOrWhiteSpace(txtLink.Text) ? null : txtLink.Text.Trim();
 
@@ -982,15 +1066,16 @@ namespace Saobracaj.Izvoz
             {
                
                     ins.UpdateIzvozPorudzbenica(noviIDs, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
-                                                  adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera  );
-                  
+                                                  adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
+
+              
             }
             else  // update
             {
                 try
                 {
                     noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, brojKontejnera, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
-                                                       adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera);
+                                                       adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
                     MessageBox.Show("Uspešno formirano!");
                     InitializeDataGrid(noviIDs);
@@ -1135,11 +1220,16 @@ namespace Saobracaj.Izvoz
         private void SnimiIzmeneReda(DataGridViewRow row)
         {
 
+
             InsertIzvoz ins = new InsertIzvoz();
             //  Provera da li je red nov ili prazan (opciono)
             if (row.IsNewRow) return;
 
             if (row.Cells["ID"].Value == null || row.Cells["ID"].Value == DBNull.Value) return;
+
+            //if (!ValidacijaGrida(row))
+            //    return;
+
 
             int id = Convert.ToInt32(row.Cells["ID"].Value);
             decimal? bTTRobe = null;
