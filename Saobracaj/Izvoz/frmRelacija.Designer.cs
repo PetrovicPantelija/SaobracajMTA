@@ -892,7 +892,7 @@
             this.panel1.Controls.Add(this.cboMestoSpustanjaPunogKontejnera);
             this.panel1.Location = new System.Drawing.Point(1, 63);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1203, 194);
+            this.panel1.Size = new System.Drawing.Size(1203, 255);
             this.panel1.TabIndex = 657;
             // 
             // cboVrstaKamiona
@@ -1090,7 +1090,7 @@
             this.panel6.Controls.Add(this.txtDodatneNapomeneDrumski4);
             this.panel6.Location = new System.Drawing.Point(1, 62);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1203, 247);
+            this.panel6.Size = new System.Drawing.Size(1203, 251);
             this.panel6.TabIndex = 659;
             // 
             // dptDatumIstovaraCerade4
@@ -1103,6 +1103,7 @@
             this.dptDatumIstovaraCerade4.Size = new System.Drawing.Size(172, 22);
             this.dptDatumIstovaraCerade4.TabIndex = 210;
             this.dptDatumIstovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dptDatumIstovaraCerade4.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
             // 
             // lblDatumIstovaraCerade4
             // 
@@ -1134,6 +1135,7 @@
             this.cboMestoIstovaraCerada4.Name = "cboMestoIstovaraCerada4";
             this.cboMestoIstovaraCerada4.Size = new System.Drawing.Size(308, 24);
             this.cboMestoIstovaraCerada4.TabIndex = 180;
+            this.cboMestoIstovaraCerada4.Leave += new System.EventHandler(this.cboMestoIstovaraCerada4_Leave);
             // 
             // lblKontaktOIstovarCerade4
             // 
@@ -1216,6 +1218,7 @@
             this.cboMestoUtovaraCerade4.Name = "cboMestoUtovaraCerade4";
             this.cboMestoUtovaraCerade4.Size = new System.Drawing.Size(308, 24);
             this.cboMestoUtovaraCerade4.TabIndex = 140;
+            this.cboMestoUtovaraCerade4.Leave += new System.EventHandler(this.cboMestoUtovaraCerade4_Leave);
             // 
             // lblKontaktUtovaraCerade4
             // 
@@ -1271,6 +1274,7 @@
             this.dptDatumUtovaraCerade4.Size = new System.Drawing.Size(172, 22);
             this.dptDatumUtovaraCerade4.TabIndex = 170;
             this.dptDatumUtovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dptDatumUtovaraCerade4.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
             // 
             // lblDatumUtovaraCerade4
             // 
