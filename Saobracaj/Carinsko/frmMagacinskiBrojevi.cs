@@ -158,7 +158,7 @@ namespace Saobracaj.Carinko
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID, Napomena " +
+            var select = " SELECT ID, Napomena,Tip " +
                      " FROM  MagacinskiBrojevi order by ID DESC";
 
 
@@ -196,7 +196,7 @@ namespace Saobracaj.Carinko
         {
            
                 InsertMagacinskiBrojevi ins = new InsertMagacinskiBrojevi();
-                ins.InsMagacinskiBrojevi(txtNapomena1.Text.TrimEnd());
+                ins.InsMagacinskiBrojevi(txtNapomena1.Text.TrimEnd(),comboBox1.Text.ToString());
          
            
             RefreshDataGrid();
