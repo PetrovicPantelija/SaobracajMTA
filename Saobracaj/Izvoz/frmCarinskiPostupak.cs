@@ -276,17 +276,17 @@ namespace Saobracaj.Izvoz
 
         private void PostaviVidljivostKontaktPolja()
         {
-            if (scenario == 25) 
-            {
-                txtKontaktSpeditera.Visible = false;
-                lblKontaktOsobaPolazna.Visible = false;
-                txtKontaktSpediteraOdredisna.Visible = false;
-                lblKontaktOsobaOdredisna.Visible = false;
-                btnOdredisna.Visible = false;
-                btnPolazna.Visible = false;
+            //if (scenario == 25) 
+            //{
+            //    txtKontaktSpeditera.Visible = false;
+            //    lblKontaktOsobaPolazna.Visible = false;
+            //    txtKontaktSpediteraOdredisna.Visible = false;
+            //    lblKontaktOsobaOdredisna.Visible = false;
+            //    btnOdredisna.Visible = false;
+            //    btnPolazna.Visible = false;
 
 
-            }
+            //}
         }
 
         private void VratiPodatkeSelect()

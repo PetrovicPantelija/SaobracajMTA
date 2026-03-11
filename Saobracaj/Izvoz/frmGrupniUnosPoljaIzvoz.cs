@@ -252,6 +252,7 @@ namespace Saobracaj.Izvoz
             PostaviVidljivostGrupa4Specificna();
             PostaviVidljivostFakturisabnjeDrumski();
             PostaviVidljivostNacinPakovanja();
+            PostaviVidljivostBrodskaPlomba();
             VratiPodatkeSelect();
             //InitializeDataGrid();
             //DGVCombo();
@@ -275,7 +276,7 @@ namespace Saobracaj.Izvoz
                                             " FROM [dbo].[ProdajniNalogIzvozStavke] " +
                                             " INNER JOIN ProdajniNalogIzvoz on ProdajniNalogIzvozStavke.IDNAdredjenog = ProdajniNalogIzvoz.ID" +
                                             " LEFT join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera" +
-                                            " where IDNAdredjenog =" + brojStavkePorudzbenice, con);
+                                            " where ProdajniNalogIzvozStavke.ID =" + brojStavkePorudzbenice, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1044,6 +1045,8 @@ namespace Saobracaj.Izvoz
 
 
             decimal taraKontejnera = Convert.ToDecimal(txtTaraKontejnera.Value);
+
+            string brodskaPlombaBroj = string.IsNullOrWhiteSpace(txtBrodskaPlombaBroj.Text) ? null : txtBrodskaPlombaBroj.Text.Trim(); 
             int? brodskaPlomba = null; /*string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();*/
             if (cboBrodar.SelectedValue != null)
             {
@@ -1109,6 +1112,13 @@ namespace Saobracaj.Izvoz
             {
                 nalogodavacZaDrumski = Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue);
             }
+
+            int? porucilac = null;
+            if (cboNalogodavac.SelectedValue != null)
+            {
+                porucilac = Convert.ToInt32(cboNalogodavac.SelectedValue);
+            }
+
             int? referencaDrumski = null;
 
             if (!string.IsNullOrWhiteSpace(txtRef3.Text))
@@ -1147,7 +1157,7 @@ namespace Saobracaj.Izvoz
                 return;
             }
 
-            
+           
 
             int vrstaRobe = 0;
             if (cboVrstaRobe.SelectedValue != null)
@@ -1166,7 +1176,7 @@ namespace Saobracaj.Izvoz
             if (noviIDs != null && noviIDs.Count > 0)
             {
                
-                    ins.UpdateIzvozPorudzbenica(noviIDs, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
+                    ins.UpdateIzvozPorudzbenica(noviIDs,porucilac, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
                                                   adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
               
@@ -1175,7 +1185,7 @@ namespace Saobracaj.Izvoz
             {
                 try
                 {
-                    noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, brojKontejnera, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
+                    noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, porucilac, brojKontejnera,  brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
                                                        adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
                     MessageBox.Show("Uspešno formirano!");
@@ -1270,7 +1280,18 @@ namespace Saobracaj.Izvoz
                 lblCutOffPort.Visible = dtpCutOffPort.Visible = true;
             }
         }
+        
 
+        private void PostaviVidljivostBrodskaPlomba()
+        {
+
+           if((scenarioID == 7 && drumski == 1) || scenarioID == 9 || scenarioID == 25)
+            {
+                lblBrodskaPlombaBroj.Visible = false;
+                txtBrodskaPlombaBroj.Visible = false;
+            }
+
+        }
         private void PostaviVidljivostNacinPakovanja()
         {
 
@@ -1378,10 +1399,12 @@ namespace Saobracaj.Izvoz
             {
                 vrednostRobe = Convert.ToDecimal(row.Cells["VrednostRobe"].Value);
             }
-            int? napomenaPozicioniranje = null;
+            int napomenaPozicioniranje = -1;
+            string napomeneZaPozTekst = null;
             if (row.DataGridView.Columns.Contains("NapomenaZaPozicioniranje") && row.Cells["NapomenaZaPozicioniranje"].Value != null &&  row.Cells["NapomenaZaPozicioniranje"].Value != DBNull.Value)
             {
                 napomenaPozicioniranje = Convert.ToInt32(row.Cells["NapomenaZaPozicioniranje"].Value);
+                napomeneZaPozTekst = row.Cells["NapomenaZaPozicioniranje"].FormattedValue?.ToString();
             }
 
             bool autoValue = false;
@@ -1448,14 +1471,18 @@ namespace Saobracaj.Izvoz
                     telefon = null;
             }
 
-          
+        
+
+            InsertIzvozKonacna uvK = new InsertIzvozKonacna();
 
             try
             {
                 ins.UpdateIzvozPorudzbenicaPojedinacna(id, brojKontejnera, ostalePlombe, bTTRobe, nTTORobe, koletaFakture, cBMFaktura, vrednostRobe,  vozilo,  vozac, brojLK, telefon,
                      planiranDtSpustanjaPunog, dtRealizacijeSpustanjaPunog, planiranDtPreuzimanjaPraznog, dtPreuzimanjaPraznog, dtRealizacijePreuzimanjaPraznog, dtPreuzimanjaPunog, planiranDtPreuzimanjaPunog, dtRealizacijePreuzimanjaPunog,
                      planiranDtIstovaraCerade, dtIstovaraCerade, dtRealizacijeIstovaraCerade, planiranDtUtovaraKontejnera, dtRealizacijeUtovaraKontejnera, planiranDtUtovaraCerade, dtRealizacijeUtovaraCerade);
-
+               
+                if(napomenaPozicioniranje > -1)
+                    uvK.InsIzvozNapomenePozicioniranja(id, napomenaPozicioniranje, napomeneZaPozTekst);
 
             }
             catch (Exception ex)

@@ -131,6 +131,8 @@
             this.lblVrstaKamiona4 = new System.Windows.Forms.Label();
             this.lblDodatneNapomeneDrumski4 = new System.Windows.Forms.Label();
             this.txtDodatneNapomeneDrumski4 = new System.Windows.Forms.TextBox();
+            this.lblDodatneNapomeneDrumski2 = new System.Windows.Forms.Label();
+            this.txtDodatneNapomeneDrumski2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -150,6 +152,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblDodatneNapomeneDrumski2);
+            this.panel2.Controls.Add(this.txtDodatneNapomeneDrumski2);
             this.panel2.Controls.Add(this.cboVrstaKamiona2);
             this.panel2.Controls.Add(this.lblVrstaKamiona2);
             this.panel2.Controls.Add(this.lblDatumRealizacije);
@@ -459,7 +463,7 @@
             this.panel3.Controls.Add(this.lblVrstaKamiona3);
             this.panel3.Controls.Add(this.lblDodatneNapomenDrumski);
             this.panel3.Controls.Add(this.txtDodatneNapomeneDrumski);
-            this.panel3.Location = new System.Drawing.Point(1, 68);
+            this.panel3.Location = new System.Drawing.Point(1, 61);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1203, 466);
             this.panel3.TabIndex = 656;
@@ -890,7 +894,7 @@
             this.panel1.Controls.Add(this.cboMestoPreuzimanjaPunog);
             this.panel1.Controls.Add(this.lblMestoSpustanjaPunogKontejnera);
             this.panel1.Controls.Add(this.cboMestoSpustanjaPunogKontejnera);
-            this.panel1.Location = new System.Drawing.Point(1, 63);
+            this.panel1.Location = new System.Drawing.Point(1, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1203, 255);
             this.panel1.TabIndex = 657;
@@ -1088,7 +1092,7 @@
             this.panel6.Controls.Add(this.lblVrstaKamiona4);
             this.panel6.Controls.Add(this.lblDodatneNapomeneDrumski4);
             this.panel6.Controls.Add(this.txtDodatneNapomeneDrumski4);
-            this.panel6.Location = new System.Drawing.Point(1, 62);
+            this.panel6.Location = new System.Drawing.Point(1, 61);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1203, 251);
             this.panel6.TabIndex = 659;
@@ -1304,12 +1308,29 @@
             // 
             // txtDodatneNapomeneDrumski4
             // 
-            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 90);
+            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 91);
             this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDodatneNapomeneDrumski4.Multiline = true;
             this.txtDodatneNapomeneDrumski4.Name = "txtDodatneNapomeneDrumski4";
             this.txtDodatneNapomeneDrumski4.Size = new System.Drawing.Size(310, 52);
             this.txtDodatneNapomeneDrumski4.TabIndex = 280;
+            // 
+            // lblDodatneNapomeneDrumski2
+            // 
+            this.lblDodatneNapomeneDrumski2.Location = new System.Drawing.Point(863, 177);
+            this.lblDodatneNapomeneDrumski2.Name = "lblDodatneNapomeneDrumski2";
+            this.lblDodatneNapomeneDrumski2.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski2.TabIndex = 637;
+            this.lblDodatneNapomeneDrumski2.Text = "Dodatne napomene drumski";
+            // 
+            // txtDodatneNapomeneDrumski2
+            // 
+            this.txtDodatneNapomeneDrumski2.Location = new System.Drawing.Point(861, 199);
+            this.txtDodatneNapomeneDrumski2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski2.Multiline = true;
+            this.txtDodatneNapomeneDrumski2.Name = "txtDodatneNapomeneDrumski2";
+            this.txtDodatneNapomeneDrumski2.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski2.TabIndex = 636;
             // 
             // frmRelacija
             // 
@@ -1445,5 +1466,7 @@
         private System.Windows.Forms.Label lblVrstaKamiona4;
         private System.Windows.Forms.Label lblDodatneNapomeneDrumski4;
         private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski4;
+        private System.Windows.Forms.Label lblDodatneNapomeneDrumski2;
+        private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski2;
     }
 }

@@ -298,6 +298,7 @@ namespace Saobracaj.Izvoz
             txtKorisnik.Text = tKorisnik;
             txtBrojDokumenta.Text = GetMaxID().ToString();
             DGVCombo();
+            dtpCutOffPort.Value = DateTime.Now;
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             PodesiDatagridView(dataGridView1);
         }

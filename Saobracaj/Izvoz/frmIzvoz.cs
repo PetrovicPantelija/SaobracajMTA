@@ -270,7 +270,7 @@ namespace Saobracaj.Izvoz
                  " ,[NacinPretovara]      ,[DodatneNapomeneDrumski]      ,[Vaganje]      ,[VGMTezina] " +
                  " ,[Tara]      ,[VGMBrod]      ,[Izvoznik]      ,[Klijent1] " +
                  " ,[Napomena1REf]      ,[DobijenNalogKlijent1]      ,[Klijent2]      ,[Napomena2REf] " +
-                 " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR , Korisnik, DatumKreiranja,Scenario,TaraZ, MestoPreuzimanja2, MestoPreuzimanja3  " +
+                 " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR , Korisnik, DatumKreiranja,Scenario,TaraZ, MestoPreuzimanja2, MestoPreuzimanja3, VrstaBrodskePlombe  " +
                  "  FROM [Izvoz] where ID=" + ID, con);
                
             SqlDataReader dr = cmd.ExecuteReader();
@@ -359,14 +359,10 @@ namespace Saobracaj.Izvoz
                 tslKreirao.Text = dr["Korisnik"].ToString();
                 cboScenario.SelectedItem = Convert.ToInt32(dr["Scenario"].ToString());
                 tslDatum.Text = dr["DatumKreiranja"].ToString();
-
-
-
-
-
+                cboVrstaPlombe.SelectedValue = int.TryParse(dr["VrstaBrodskePlombe"]?.ToString(), out int id) ? id : -1;
 
             }
-                con.Close();
+            con.Close();
         }
 
       

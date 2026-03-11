@@ -88,6 +88,8 @@
             this.lblNacinPakovanja = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
+            this.lblBrodskaPlombaBroj = new System.Windows.Forms.Label();
+            this.txtBrodskaPlombaBroj = new System.Windows.Forms.TextBox();
             this.panelHeader.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -192,7 +194,7 @@
             this.dtpCutOffPort.Location = new System.Drawing.Point(399, 199);
             this.dtpCutOffPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpCutOffPort.Name = "dtpCutOffPort";
-            this.dtpCutOffPort.Size = new System.Drawing.Size(172, 22);
+            this.dtpCutOffPort.Size = new System.Drawing.Size(180, 22);
             this.dtpCutOffPort.TabIndex = 100;
             this.dtpCutOffPort.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtpCutOffPort.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -201,7 +203,7 @@
             // 
             this.lblTaraKontejnera.AutoSize = true;
             this.lblTaraKontejnera.ForeColor = System.Drawing.Color.Black;
-            this.lblTaraKontejnera.Location = new System.Drawing.Point(401, 349);
+            this.lblTaraKontejnera.Location = new System.Drawing.Point(793, 349);
             this.lblTaraKontejnera.Name = "lblTaraKontejnera";
             this.lblTaraKontejnera.Size = new System.Drawing.Size(161, 16);
             this.lblTaraKontejnera.TabIndex = 547;
@@ -290,7 +292,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(1165, 64);
+            this.label32.Location = new System.Drawing.Point(1171, 64);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(124, 16);
             this.label32.TabIndex = 590;
@@ -323,7 +325,7 @@
             // lblNalogodavacZaUsluge
             // 
             this.lblNalogodavacZaUsluge.AutoSize = true;
-            this.lblNalogodavacZaUsluge.Location = new System.Drawing.Point(1165, 121);
+            this.lblNalogodavacZaUsluge.Location = new System.Drawing.Point(1171, 121);
             this.lblNalogodavacZaUsluge.Name = "lblNalogodavacZaUsluge";
             this.lblNalogodavacZaUsluge.Size = new System.Drawing.Size(150, 16);
             this.lblNalogodavacZaUsluge.TabIndex = 592;
@@ -332,7 +334,7 @@
             // lblRef2
             // 
             this.lblRef2.AutoSize = true;
-            this.lblRef2.Location = new System.Drawing.Point(1165, 178);
+            this.lblRef2.Location = new System.Drawing.Point(1171, 178);
             this.lblRef2.Name = "lblRef2";
             this.lblRef2.Size = new System.Drawing.Size(211, 16);
             this.lblRef2.TabIndex = 594;
@@ -359,7 +361,7 @@
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1485, 43);
+            this.panelHeader.Size = new System.Drawing.Size(1492, 43);
             this.panelHeader.TabIndex = 595;
             // 
             // panel5
@@ -372,7 +374,7 @@
             this.panel5.Location = new System.Drawing.Point(131, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1629, 37);
+            this.panel5.Size = new System.Drawing.Size(1636, 37);
             this.panel5.TabIndex = 6;
             // 
             // button1
@@ -478,7 +480,7 @@
             // txtTaraKontejnera
             // 
             this.txtTaraKontejnera.DecimalPlaces = 3;
-            this.txtTaraKontejnera.Location = new System.Drawing.Point(399, 370);
+            this.txtTaraKontejnera.Location = new System.Drawing.Point(791, 370);
             this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTaraKontejnera.Maximum = new decimal(new int[] {
             100000,
@@ -498,7 +500,7 @@
             // lblRef3
             // 
             this.lblRef3.AutoSize = true;
-            this.lblRef3.Location = new System.Drawing.Point(1165, 292);
+            this.lblRef3.Location = new System.Drawing.Point(1171, 292);
             this.lblRef3.Name = "lblRef3";
             this.lblRef3.Size = new System.Drawing.Size(218, 16);
             this.lblRef3.TabIndex = 606;
@@ -528,7 +530,7 @@
             // lblNalogodavacZaDrumski
             // 
             this.lblNalogodavacZaDrumski.AutoSize = true;
-            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(1165, 234);
+            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(1171, 234);
             this.lblNalogodavacZaDrumski.Name = "lblNalogodavacZaDrumski";
             this.lblNalogodavacZaDrumski.Size = new System.Drawing.Size(157, 16);
             this.lblNalogodavacZaDrumski.TabIndex = 604;
@@ -550,7 +552,7 @@
             // lblVrstaPlombe
             // 
             this.lblVrstaPlombe.AutoSize = true;
-            this.lblVrstaPlombe.Location = new System.Drawing.Point(793, 349);
+            this.lblVrstaPlombe.Location = new System.Drawing.Point(401, 349);
             this.lblVrstaPlombe.Name = "lblVrstaPlombe";
             this.lblVrstaPlombe.Size = new System.Drawing.Size(161, 16);
             this.lblVrstaPlombe.TabIndex = 658;
@@ -562,7 +564,7 @@
             this.cboVrstaPlombe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaPlombe.FormattingEnabled = true;
             this.cboVrstaPlombe.ItemHeight = 16;
-            this.cboVrstaPlombe.Location = new System.Drawing.Point(791, 370);
+            this.cboVrstaPlombe.Location = new System.Drawing.Point(399, 370);
             this.cboVrstaPlombe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaPlombe.Name = "cboVrstaPlombe";
             this.cboVrstaPlombe.Size = new System.Drawing.Size(305, 24);
@@ -708,7 +710,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1448, 224);
+            this.dataGridView1.Size = new System.Drawing.Size(1456, 222);
             this.dataGridView1.TabIndex = 674;
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -717,11 +719,31 @@
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumericColumn_KeyPress);
             // 
+            // lblBrodskaPlombaBroj
+            // 
+            this.lblBrodskaPlombaBroj.AutoSize = true;
+            this.lblBrodskaPlombaBroj.Location = new System.Drawing.Point(401, 406);
+            this.lblBrodskaPlombaBroj.Name = "lblBrodskaPlombaBroj";
+            this.lblBrodskaPlombaBroj.Size = new System.Drawing.Size(141, 16);
+            this.lblBrodskaPlombaBroj.TabIndex = 676;
+            this.lblBrodskaPlombaBroj.Text = "Brodska plomba - Broj";
+            // 
+            // txtBrodskaPlombaBroj
+            // 
+            this.txtBrodskaPlombaBroj.BackColor = System.Drawing.Color.White;
+            this.txtBrodskaPlombaBroj.Location = new System.Drawing.Point(399, 427);
+            this.txtBrodskaPlombaBroj.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBrodskaPlombaBroj.Name = "txtBrodskaPlombaBroj";
+            this.txtBrodskaPlombaBroj.Size = new System.Drawing.Size(305, 22);
+            this.txtBrodskaPlombaBroj.TabIndex = 675;
+            // 
             // frmGrupniUnosPoljaIzvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1485, 705);
+            this.ClientSize = new System.Drawing.Size(1492, 703);
+            this.Controls.Add(this.lblBrodskaPlombaBroj);
+            this.Controls.Add(this.txtBrodskaPlombaBroj);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cboNacinPakovanja);
             this.Controls.Add(this.lblNacinPakovanja);
@@ -848,5 +870,7 @@
         private System.Windows.Forms.Label lblNacinPakovanja;
         private System.Windows.Forms.DataGridView dataGridView1;
         private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
+        private System.Windows.Forms.Label lblBrodskaPlombaBroj;
+        private System.Windows.Forms.TextBox txtBrodskaPlombaBroj;
     }
 }
