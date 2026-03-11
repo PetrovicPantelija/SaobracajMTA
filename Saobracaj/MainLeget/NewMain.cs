@@ -237,6 +237,11 @@ namespace Saobracaj
                 return count > 0;
             }
         }
+        public void OtvoriFormuBezPrava(Func<Form> createForm)
+        {
+            var frm = createForm();
+            ShowChild(frm, true, false);
+        }
         public void OtvoriFormuSaPravom(string karticaNaziv, Func<Form> createForm)
         {
             if (_currentMainId == 0)
@@ -451,6 +456,21 @@ namespace Saobracaj
 
         private void btnSkladista_Click(object sender, EventArgs e)
         {
+            string key = btnSkladista.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Skladista' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            // Prva forma modula – setAsMenuHome = true da se Home vraća ovde
+            ShowChild(new Skladista.Skladista(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "SKLADIŠTA";
             BackColorKliknut(5);
         }
 

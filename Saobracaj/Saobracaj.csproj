@@ -3321,6 +3321,37 @@
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleScheduleDataProvider.cs" />
+    <Compile Include="Skladista\CarinskoSkladiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\CarinskoSkladiste.Designer.cs">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
+    <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.Designer.cs">
+      <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RnCS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RnCS.Designer.cs">
+      <DependentUpon>RnCS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNCSPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNCSPregled.Designer.cs">
+      <DependentUpon>RNCSPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\Skladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\Skladista.Designer.cs">
+      <DependentUpon>Skladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="SyncForm\frmAnalizaAktivnosti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5776,6 +5807,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\KrajnjeDestinacije.resx">
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\PrijemnicaCarinskoSkladiste.resx">
+      <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RnCS.resx">
+      <DependentUpon>RnCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNCSPregled.resx">
+      <DependentUpon>RNCSPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\Skladista.resx">
+      <DependentUpon>Skladista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmAnalizaAktivnosti.resx">
       <DependentUpon>frmAnalizaAktivnosti.cs</DependentUpon>
