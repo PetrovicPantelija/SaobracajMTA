@@ -59,12 +59,15 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogistikaIzvozaPM1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bannerTextProvider1 = new Syncfusion.Windows.Forms.BannerTextProvider(this.components);
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -77,7 +80,7 @@
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1279, 43);
             this.panelHeader.TabIndex = 469;
@@ -89,7 +92,7 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(121, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1140, 37);
             this.panel2.TabIndex = 6;
@@ -114,7 +117,7 @@
             this.panel3.Controls.Add(this.button21);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(281, 41);
             this.panel3.TabIndex = 2;
@@ -130,7 +133,7 @@
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button20.Location = new System.Drawing.Point(60, 4);
-            this.button20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button20.Margin = new System.Windows.Forms.Padding(4);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(36, 33);
             this.button20.TabIndex = 15;
@@ -148,7 +151,7 @@
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.Location = new System.Drawing.Point(15, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(36, 33);
             this.button21.TabIndex = 14;
@@ -343,7 +346,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(25, 455);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(36, 33);
             this.button1.TabIndex = 533;
@@ -377,7 +380,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(693, 160);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(45, 42);
             this.pictureBox1.TabIndex = 536;
@@ -393,7 +396,7 @@
             this.btnLogistikaIzvozaPM1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnLogistikaIzvozaPM1.ImageSize = new System.Drawing.Size(70, 80);
             this.btnLogistikaIzvozaPM1.Location = new System.Drawing.Point(1043, 50);
-            this.btnLogistikaIzvozaPM1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogistikaIzvozaPM1.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogistikaIzvozaPM1.Name = "btnLogistikaIzvozaPM1";
             this.btnLogistikaIzvozaPM1.Size = new System.Drawing.Size(219, 160);
             this.btnLogistikaIzvozaPM1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -407,6 +410,10 @@
             this.btnLogistikaIzvozaPM1.Text = "Formiraj nalog za otpremu";
             this.btnLogistikaIzvozaPM1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM1.UseVisualStyleBackColor = false;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmProdajniNalogIzvoz
             // 
@@ -436,7 +443,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBrojDokumenta);
             this.Controls.Add(this.panelHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProdajniNalogIzvoz";
             this.Text = "NALOG KLIJENTA ZA IZVOZ";
             this.TopMost = true;
@@ -448,6 +455,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,5 +492,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaIzvozaPM1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private Syncfusion.Windows.Forms.BannerTextProvider bannerTextProvider1;
     }
 }

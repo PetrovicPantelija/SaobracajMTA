@@ -41,7 +41,7 @@ namespace Saobracaj.Izvoz
                 int maxHeight = 100; // Tvoj limit
                 if (dataGridView1.ColumnHeadersHeight > maxHeight)
                 {
-                    // Isključi AutoSize da bi mogao ručno da vratiš na Max
+                    // Isključi AutoSize da bi se moglo ručno vratiti na Max
                     dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
                     dataGridView1.ColumnHeadersHeight = maxHeight;
                 }
@@ -249,20 +249,19 @@ namespace Saobracaj.Izvoz
         {
             FillCombo();
             PostaviVidljivostPoljaADR();
+            PostaviVidljivostGrupa4Specificna();
             PostaviVidljivostFakturisabnjeDrumski();
             PostaviVidljivostNacinPakovanja();
-             VratiPodatkeSelect();
+            VratiPodatkeSelect();
             //InitializeDataGrid();
             //DGVCombo();
             PodesiDatagridView(dataGridView1);
             dtpCutOffPort.Value = DateTime.Now;
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
 
-            // 1. Postavi mod na automatsko određivanje visine prema sadržaju
+            // 1. Automatsko određivanje visine prema sadržaju
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
-            // 2. Opciono: Ako želiš da ograničiš (Max Height), moraš to uraditi nakon što se grid iscrta
-            // Možeš koristiti događaj ColumnHeadersHeightChanged
            
         }
         private void VratiPodatkeSelect()
@@ -299,8 +298,10 @@ namespace Saobracaj.Izvoz
                 txtBoking.Text = dr["BukingNumber"].ToString();
 
                 if (dr["CuttOfPort"] != DBNull.Value)
+                {
                     dtpCutOffPort.Value = Convert.ToDateTime(dr["CuttOfPort"].ToString());
-
+                    dtpCutOffPort.Tag = "IZMENJEN";
+                }
 
                 txtKorisnik.Text = tKorisnik;
                 if (dr["Nalogodavac"] != DBNull.Value)
@@ -353,6 +354,32 @@ namespace Saobracaj.Izvoz
 
         }
 
+        private void AddTextColumn(string name, string header, int width, bool visible = true)
+        {
+            var col = new DataGridViewTextBoxColumn();
+            col.Name = name;
+            col.HeaderText = header;
+            col.Width = width;
+            col.Visible = visible;
+
+            dataGridView1.Columns.Add(col);
+        }
+
+        public void AddDateColumn(string name, string header, int width, bool visible = true)
+        {
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = name;
+            col.HeaderText = header;
+            col.Width = width;
+            col.Visible = visible;
+            col.ValueType = typeof(DateTime);
+
+            // Postavljamo format prikaza 
+            col.DefaultCellStyle.Format = "dd.MM.yyyy HH:mm";
+
+            dataGridView1.Columns.Add(col);
+        }
+
         private void DGVCombo()
         {
             dataGridView1.Columns.Clear(); // Čistimo stare kolone
@@ -365,9 +392,12 @@ namespace Saobracaj.Izvoz
             id.Visible = false;
             dataGridView1.Columns.Add(id);
 
-            // Tekstualne kolone
-            AddTextColumn("BrojKontejnera", "Broj kontejnera", 120);
-            AddTextColumn("OstalePlombe", "Ostale plombe", 120);
+            if (!(scenarioID == 9 || scenarioID == 25))
+             {
+                // Tekstualne kolone
+                AddTextColumn("BrojKontejnera", "Broj kontejnera", 120);
+                AddTextColumn("OstalePlombe", "Ostale plombe", 120);
+            }
 
             // DateTime kolone
 
@@ -376,16 +406,32 @@ namespace Saobracaj.Izvoz
             {
                 if (drumski == 0)
                 {
-                    AddTextColumn("SpustanjePunogNoviPlaniraniDt1", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
+
+
                 }
 
                 else if (drumski == 1)
                 {
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
-                    AddTextColumn("PreuzimanjePraznogPlaniraniDt1", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
-                    AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PUNOG Datum/Vreme realizacije", 200);
+                  
+                    AddDateColumn("PreuzimanjePunogPlaniraniDt", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
+                    AddDateColumn("PreuzimanjePunogNoviPlaniraniDt", "MESTO PREUZIMANJA PUNOG Novi planiran datum/Vreme", 200, false); // AUTO POPUNJAVANJE skrivena kolona
+                    AddDateColumn("PreuzimanjePunogDtRealizacije", "MESTO PREUZIMANJA PUNOG Datum/Vreme realizacije", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
                 }
+
+                // Numeričke kolone
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("VrednostRobe", "Vrednost", 80);
 
             }
 
@@ -393,16 +439,30 @@ namespace Saobracaj.Izvoz
             {
                 if (drumski == 0)
                 {
-                    AddTextColumn("SpustanjePunogNoviPlaniraniDt1", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
                 }
 
                 else if (drumski == 1)
                 {
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
-                    AddTextColumn("PreuzimanjePraznogPlaniraniDt1", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
+                    AddDateColumn("PreuzimanjePraznogPlaniraniDt", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
+                    AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PUNOG Novi plan. Datum/Vreme", 200, false);
+                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PUNOG Datum/Vreme realizacij", 200, false);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    
 
                 }
+                // Numeričke kolone
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("VrednostRobe", "Vrednost", 80);
 
             }
 
@@ -410,108 +470,204 @@ namespace Saobracaj.Izvoz
             {
                 if (drumski == 0)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
-                    AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
-                    AddTextColumn("MestoUtovaraNoviPlaniraniDt1", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200);
-                    AddTextColumn("SpustanjePunogNoviPlaniraniDt1", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
+                    AddDateColumn("MestoUtovaraNoviPlaniraniDt", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
                 }
 
                 else if (drumski == 1)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
-                    AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    AddDateColumn("PreuzimanjePraznogPlaniraniDt", "MESTO PREUZIMANJA PRAZNOG Plan. Datum/Vreme", 220);
+                    if (scenarioID != 23)
+                    {
+                        AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220, false);// AUTO POPUNJAVANJE skrivena kolona
+                     
+                    }
+                 
+                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220, false);// AUTO POPUNJAVANJE skrivena kolona
+                    AddDateColumn("MestoUtovaraNoviPlaniraniDt", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200, false);// AUTO POPUNJAVANJE skrivena kolona
+                    AddDateColumn("MestoUtovaraDtRealizacije", "MESTO UTOVARA KON. Datum/Vreme realizacije", 200, false);// AUTO POPUNJAVANJE skrivena kolona
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUŠTANjA PUNOG Datum/Vreme realizacije", 200);
 
 
                 }
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                if (!(scenarioID == 7 && drumski == 1))
+                {
+                    AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                    AddTextColumn("KoletaFakture", "Koleta", 80);
+                    AddTextColumn("CBMFaktura", "CBM", 80);
+                    AddTextColumn("VrednostRobe", "Vrednost", 80);
 
+                }
 
             }
 
             else if (scenarioID == 8)
             {
 
-                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
-
-                // 
-                AddTextColumn("IstovarCeradePlaniraniDt1", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
-                AddTextColumn("IstovarCeradeDtRealizacije1", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
-                AddTextColumn("UtovarKontejneraPlaniraniDt1", "MESTO UTOVARA KONTEJNERA Novi plan. Datum/Vreme", 200);
-                AddTextColumn("UtovarKontejneraDtRealizacije1", "MESTO UTOVARA KONTEJNERA Datum/Vreme realizacije", 200);
-                AddTextColumn("SpustanjePunogPlaniraniDt1", "MESTO SPUŠTANjA PUNOG KONTEJNERA Novi plan. Datum/Vreme", 230);
-                AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUŠTANjA PUNOG KONTEJNERA Datum/Vreme realizacije", 230);
-
                 if (drumski == 0)
                 {
-                    AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                    AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("MestoUtovaraNoviPlaniraniDt", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("MestoUtovaraDtRealizacije", "MESTO UTOVARA KON. Datum/Vreme realizacije", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
                 }
                 else if (drumski == 1)
                 {
-                    AddTextColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
-                    AddTextColumn("IstovarCeradePlaniraniDt1", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
+                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
+                    AddDateColumn("UtovarCeradeNoviPlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200, false); // AUTO POPUNJAVANJE skrivena kolona
+                    AddDateColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("IstovarCeradePlaniraniDt", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("MestoUtovaraNoviPlaniraniDt", "MESTO UTOVARA KON. Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("MestoUtovaraDtRealizacije", "MESTO UTOVARA KON. Datum/Vreme realizacije", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
                 }
+
+                // Numeričke kolone
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("VrednostRobe", "Vrednost", 80);
+
             }
 
             else if (scenarioID == 24)
             {
-                AddTextColumn("PreuzimanjePraznogNoviPlaniraniDt1", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
-                AddTextColumn("PreuzimanjePraznogDtRealizacije1", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
-                AddTextColumn("IstovarCeradeDtRealizacije1", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
-                AddTextColumn("UtovarKontejneraPlaniraniDt1", "MESTO UTOVARA KONTEJNERA Novi plan. Datum/Vreme", 200);
-                AddTextColumn("UtovarKontejneraDtRealizacije1", "MESTO UTOVARA KONTEJNERA Datum/Vreme realizacije", 200);
-                AddTextColumn("SpustanjePunogDtRealizacije1", "MESTO SPUŠTANjA PUNOG KONTEJNERA Datum/Vreme realizacije", 230);
+                AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PRAZNOG Novi plan. Datum/Vreme", 220);
+                AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PRAZNOG Datum/Vreme realizacije", 220);
+                if (drumski == 1)
+                {
+                    AddDateColumn("UtovarCeradeNoviPlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200, false); // AUTO POPUNJAVANJE skrivena kolona ima ih jos u ovom scenariju
+                    AddDateColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("IstovarCeradePlaniraniDt", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200, false);
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200, false);
+                }
+                else
+                {
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                }
+                AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+                AddDateColumn("MestoUtovaraNoviPlaniraniDt", "MESTO UTOVARA KONTEJNERA Novi plan. Datum/Vreme", 200);
+                AddDateColumn("MestoUtovaraDtRealizacije", "MESTO UTOVARA KONTEJNERA Datum/Vreme realizacije", 200);
+                AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
 
                 if (drumski == 0)
                 {
-                    AddTextColumn("IstovarCeradePlaniraniDt1", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                  
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
+                }        
+
+                // Numeričke kolone
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("VrednostRobe", "Vrednost", 80);
+
+            }
+            else if (scenarioID == 9)
+            {
+                if (drumski == 0)
+                {
+
+                    AddDateColumn("UtovarCeradeNoviPlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+                    //  Vozilo, Vozač...
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
                 }
                 else if (drumski == 1)
                 {
-                    AddTextColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("UtovarCeradeNoviPlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200, false);
+                    AddDateColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
+                    AddDateColumn("IstovarCeradePlaniraniDt", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE  Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+
+                    AddTextColumn("BTTRobe", "BTT Robe", 80);
+                    AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                    AddTextColumn("KoletaFakture", "Koleta", 80);
+                    AddTextColumn("CBMFaktura", "CBM", 80);
+                    AddTextColumn("VrednostRobe", "Vrednost", 80);
                 }
 
             }
-                //grupa I
-                //AddTextColumn("PlaniraniDatumVreme", "Novi plan. Datum/Vreme", 120);
-                //AddTextColumn("NoviPlaniraniDatumVreme1", "Novi plan. Datum/Vreme1", 120);
-                //AddTextColumn("NoviPlaniraniDatumVreme2", "Novi plan. Datum/Vreme2", 120);
-                //AddTextColumn("NoviPlaniraniDatumVreme3", "Novi plan. Datum/Vreme3", 120);
 
-                // Logistika - Vozilo, Vozač...
-                AddTextColumn("Vozilo", "Vozilo", 100);
-            AddTextColumn("Vozac", "Vozač", 120);
-            AddTextColumn("BrojLK", "Broj LK", 100);
-            AddTextColumn("BrojTelefona", "Telefon", 100);
+            else if (scenarioID == 25)
+            {
+                if (drumski == 0)
+                {
 
-            // Numeričke kolone
-            AddTextColumn("BTTRobe", "BTT Robe", 80);
-            AddTextColumn("NTTORobe", "NTTO Robe", 80);
-            AddTextColumn("KoletaFakture", "Koleta", 80);
-            AddTextColumn("CBMFaktura", "CBM", 80);
-            AddTextColumn("VrednostRobe", "Vrednost", 80);
+                    AddDateColumn("UtovarCeradePlaniraniDt1", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradePlaniraniDt1", "MESTO ISTOVARA CERADE Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
 
-            
-            DataGridViewComboBoxColumn napomena = new DataGridViewComboBoxColumn();
-            napomena.HeaderText = "Napomena za pozicioniranje";
-            napomena.Name = "NapomenaZaPozicioniranje";
-            var query212 = "Select ID,Naziv from PredefinisanePoruke order by Naziv";
-            SqlConnection conn212 = new SqlConnection(connection);
-            SqlDataAdapter da212 = new SqlDataAdapter(query212, conn212);
-            System.Data.DataSet ds212 = new System.Data.DataSet();
-            da212.Fill(ds212);
-            napomena.DataSource = ds212.Tables[0];
-            napomena.DisplayMember = "Naziv";
-            napomena.ValueMember = "ID";
-            napomena.Width = 150;
-            dataGridView1.Columns.Add(napomena);
+                    AddTextColumn("Vozilo", "Vozilo", 100);
+                    AddTextColumn("Vozac", "Vozač", 120);
+                    AddTextColumn("BrojLK", "Broj LK", 100);
+                    AddTextColumn("BrojTelefona", "Telefon", 100);
+                }
+                else if (drumski == 1)
+                {
+                    AddDateColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200, false);
+                    AddDateColumn("IstovarCeradePlanirani", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradePlanirani", "MESTO ISTOVARA CERADE  Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
+                }
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("VrednostRobe", "Vrednost", 80);
+
+            }
 
             if (drumski == 1)
             {
-                dataGridView1.Columns["Vozilo"].Visible = false;
-                dataGridView1.Columns["Vozac"].Visible = false;
-                dataGridView1.Columns["BrojLK"].Visible = false;
-                dataGridView1.Columns["BrojTelefona"].Visible = false;
+                DataGridViewComboBoxColumn napomena = new DataGridViewComboBoxColumn();
+                napomena.HeaderText = "Napomena za pozicioniranje";
+                napomena.Name = "NapomenaZaPozicioniranje";
+                var query212 = "Select ID,Naziv from PredefinisanePoruke order by Naziv";
+                SqlConnection conn212 = new SqlConnection(connection);
+                SqlDataAdapter da212 = new SqlDataAdapter(query212, conn212);
+                System.Data.DataSet ds212 = new System.Data.DataSet();
+                da212.Fill(ds212);
+                napomena.DataSource = ds212.Tables[0];
+                napomena.DisplayMember = "Naziv";
+                napomena.ValueMember = "ID";
+                napomena.Width = 150;
+                dataGridView1.Columns.Add(napomena);
             }
+
 
         }
         private void InitializeDataGrid(List<int> noviIDs)
@@ -529,9 +685,8 @@ namespace Saobracaj.Izvoz
             da.Fill(dt);
 
             dataGridView1.DataSource = dt;
-            dataGridView1.AllowUserToAddRows = false; // Ne damo im da dodaju nove, samo edit onih 5
+            dataGridView1.AllowUserToAddRows = false; // Ne damo da dodaju nove, samo edit 
         }
-
 
         private void AddTextColumn(string propName, string header, int width)
         {
@@ -545,39 +700,71 @@ namespace Saobracaj.Izvoz
         // validacija da se upisuje datum u datumsku kolonu
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            // Proveravamo samo kolone koje su datumi (npr. kolone sa indeksom 3, 4, 5, 6)
-            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 6)
+            //    // Proveravamo samo kolone koje su datumi (npr. kolone sa indeksom 3, 4, 5, 6)
+            //    if (e.ColumnIndex >= 3 && e.ColumnIndex <= 6)
+            //        {
+            //        if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+            //        {
+            //            DateTime temp;
+            //            if (!DateTime.TryParse(e.FormattedValue.ToString(), out temp))
+            //            {
+            //                MessageBox.Show($"Molimo unesite ispravan datum (npr. {DateTime.Now:dd-MM-yyyy HH:mm})");
+            //                e.Cancel = true; // Zaustavlja korisnika da pređe u drugu ćeliju
+            //            }
+            //        }
+            //    }
+            string colName = dataGridView1.Columns[e.ColumnIndex].Name;
+            if (colName.EndsWith("Dt") || colName.EndsWith("DtRealizacije"))
             {
-                if (!string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                // 2. Uzmi ono što je trenutno u ćeliji
+                string input = e.FormattedValue.ToString().Trim();
+
+                // 3. SPREČAVANJE: Ako je polje prazno, dozvoli izlaz 
+                if (string.IsNullOrEmpty(input))
                 {
-                    DateTime temp;
-                    if (!DateTime.TryParse(e.FormattedValue.ToString(), out temp))
-                    {
-                        MessageBox.Show($"Molimo unesite ispravan datum (npr. {DateTime.Now:dd-MM-yyyy HH:mm})");
-                        e.Cancel = true; // Zaustavlja korisnika da pređe u drugu ćeliju
-                    }
+                    return;
+                }
+                DateTime temp;
+                if (!DateTime.TryParse(input, out temp))
+                {
+                    // Dodatni osigurač: Validacija se okida samo ako korisnik pokuša da 
+                    // klikne na drugu ćeliju ili pritisne Enter.
+
+                    MessageBox.Show($"Unesite kompletan datum {DateTime.Now:dd-MM-yyyy HH:mm}", "Nepotpun unos");
+                    e.Cancel = true;
                 }
             }
         }
+     
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             // Provera da li je trenutna kolona numerička (npr. BTTRobe)
+            TextBox tb = e.Control as TextBox;
             string columnName = dataGridView1.CurrentCell.OwningColumn.Name;
 
             if (columnName == "BTTRobe" || columnName == "NTTORobe" ||  columnName == "KoletaFakture" || columnName == "CBMFaktura" ||  columnName == "VrednostRobe")
             {
-                TextBox tb = e.Control as TextBox;
+             
                 if (tb != null)
                 {
                     tb.KeyPress -= new KeyPressEventHandler(NumericColumn_KeyPress);
                     tb.KeyPress += new KeyPressEventHandler(NumericColumn_KeyPress);
                 }
             }
+            else if (columnName.EndsWith("Dt") || columnName.EndsWith("DtRealizacije"))
+            {
+                // Skidamo numerički handler ako je ostao
+                tb.KeyPress -= NumericColumn_KeyPress;
+
+                // OVDE JE TRIK: Isključujemo uzbunu dok je polje u fokusu
+                // Validacija će se okinuti TEK kad korisnik napusti TextBox (TAB/Enter)
+                tb.CausesValidation = false;
+            }
             else
             {
                 // Ako NIJE numerička kolona, skidamo handler da bi obična polja radila normalno
-                TextBox tb = e.Control as TextBox;
+           
                 if (tb != null)
                 {
                     tb.KeyPress -= NumericColumn_KeyPress;
@@ -701,6 +888,142 @@ namespace Saobracaj.Izvoz
             return uspesno;
         }
 
+        private bool ValidacijaGrida(DataGridViewRow row)
+        {
+            bool uspesno = true;
+
+            dataGridView1.EndEdit(); // OBAVEZNO da commit-uje izmene
+            dataGridView1.ClearSelection();
+
+            row.ErrorText = ""; // očisti stare greške
+            foreach (DataGridViewCell cell in row.Cells)
+                cell.ErrorText = "";
+
+
+                if (scenarioID != 9 && scenarioID != 25)
+                {
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojKontejnera", "Broj kontejnera je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+                
+                if (drumski == 0)
+                {
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+                 
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+                }
+            }
+            else if (scenarioID == 9 && drumski == 0)
+
+            {
+             
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+
+            }
+            else if (scenarioID == 25 && drumski == 0)
+
+            {
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+
+            }
+            if (scenarioID == 13 && drumski == 1) //|| (scenarioID == 9 && drumski == 1)
+            {
+                if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePunogPlaniraniDt", "Ovo polje je obavezno polje!"))
+                {
+                    uspesno = false;
+                }
+
+
+            }
+
+
+            if ((scenarioID == 7 && drumski == 0) ) //|| (scenarioID == 9 && drumski == 1)
+                {
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePraznogDtRealizacije", "Ovo polje je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "SpustanjePunogDtRealizacije", "Ovo polje je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+                }
+
+                if ((scenarioID == 7 || scenarioID == 23) && drumski == 1) //
+                {
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePraznogPlaniraniDt", "Ovo polje je obavezno polje!"))
+                {
+                        uspesno = false;
+                    }
+                }
+
+
+
+
+
+            return uspesno;
+        }
+        private bool ValidirajObaveznuKolonu(DataGridView grid,
+                                     DataGridViewRow row,
+                                     string nazivKolone,
+                                     string poruka)
+        {
+            // Proveri da li kolona postoji
+            if (!grid.Columns.Contains(nazivKolone))
+                return true; // ako ne postoji, preskoči validaciju
+
+            var cell = row.Cells[nazivKolone];
+
+            if (cell.Value == null ||
+                string.IsNullOrWhiteSpace(cell.Value.ToString()))
+            {
+                cell.ErrorText = poruka;
+                return false;
+            }
+
+            return true;
+        }
+
+        private void dptDatum_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = (DateTimePicker)sender;
+            dtp.Tag = "IZMENJEN";
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidacijaSaIkonama())
@@ -709,10 +1032,17 @@ namespace Saobracaj.Izvoz
                 return; // Prekida se izvršavanje ako nije validno
             }
 
+
             InsertIzvoz ins = new InsertIzvoz();
             int vrstaKamiona = 0;
+            DateTime? cutOffPort = null;
+            decimal? bttRobe = null;
+            decimal? nttoRobe= null;
+            decimal? koleta= null;
+            decimal? cbm = null;
+            decimal? vrednostRobe = null;
 
-                     
+
             decimal taraKontejnera = Convert.ToDecimal(txtTaraKontejnera.Value);
             int? brodskaPlomba = null; /*string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();*/
             if (cboBrodar.SelectedValue != null)
@@ -745,11 +1075,7 @@ namespace Saobracaj.Izvoz
                 adr = Convert.ToInt32(cboADR.SelectedValue);
             }
             string Napomena = string.IsNullOrWhiteSpace(txtNapomena.Text) ? null : txtNapomena.Text.Trim();
-
-
-            string vrstaRobe = null; // doradi
-            int? carinskiPostupak = null;// doradi
-     
+    
 
             int? inspekcijskiTretman = null;
             if (cboInspekciskiTretman.SelectedValue != null)
@@ -798,6 +1124,9 @@ namespace Saobracaj.Izvoz
             {
                 nacinPakovanja = Convert.ToInt32(cboNacinPakovanja.SelectedValue);
             }
+            if(dtpCutOffPort.Tag=="IZMENJEN")
+                cutOffPort = GetVisibleDateTimeValue(dtpCutOffPort);
+
 
             int brojKontejnera = 0;
             if (!string.IsNullOrWhiteSpace(txtBrojKontejnera.Text))
@@ -818,7 +1147,13 @@ namespace Saobracaj.Izvoz
                 return;
             }
 
+            
 
+            int vrstaRobe = 0;
+            if (cboVrstaRobe.SelectedValue != null)
+            {
+                vrstaRobe = Convert.ToInt32(cboVrstaRobe.SelectedValue);
+            }
             string opisPosla = string.IsNullOrWhiteSpace(txtopisPosla.Text) ? null : txtopisPosla.Text.Trim(); 
             string link = string.IsNullOrWhiteSpace(txtLink.Text) ? null : txtLink.Text.Trim();
 
@@ -832,15 +1167,16 @@ namespace Saobracaj.Izvoz
             {
                
                     ins.UpdateIzvozPorudzbenica(noviIDs, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
-                                                  adr, nacinPakovanja, inspekcijskiTretman, Convert.ToDateTime(dtpCutOffPort.Value), taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera);
-                  
+                                                  adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
+
+              
             }
             else  // update
             {
                 try
                 {
                     noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, brojKontejnera, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, Napomena,
-                                                                      adr, nacinPakovanja, inspekcijskiTretman, Convert.ToDateTime(dtpCutOffPort.Value), taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera);
+                                                       adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
                     MessageBox.Show("Uspešno formirano!");
                     InitializeDataGrid(noviIDs);
@@ -856,7 +1192,22 @@ namespace Saobracaj.Izvoz
 
         }
 
-     
+        private DateTime? GetVisibleDateTimeValue(DateTimePicker dtp)
+        {
+            // Ako panel uopšte nije vidljiv, ili je vidljiv ali ništa nije izabrano
+            if (!dtp.Visible)
+            {
+                return null;
+            }
+
+            // Pokušaj konverzije u int
+            if (DateTime.TryParse(dtp.Value.ToString(), out DateTime rezultat))
+            {
+                return rezultat;
+            }
+
+            return null;
+        }
         private void PostaviVidljivostPoljaADR()
         {
             bool isADR = ( scenarioID == 23 || scenarioID == 24 || scenarioID == 25 || scenarioID == 26) ; // II ili II-A
@@ -871,29 +1222,59 @@ namespace Saobracaj.Izvoz
         }
         private void PostaviVidljivostFakturisabnjeDrumski()
         {
-
-            if (drumski == 1)
+            if (scenarioID == 9 && drumski == 0)
             {
-                cboNalogodavacZaDrumski.Visible = true;
-                lblNalogodavacZaDrumski.Visible = true;
-                txtRef3.Visible = true;
-                lblRef3.Visible = true;
-     
+
+                lblNalogodavacZaDrumski.Visible = cboNalogodavacZaDrumski.Visible = false;
+                lblRef3.Visible = txtRef3.Visible = false;
+                lblNalogodavacZaUsluge.Visible = cboNalogodavacZaUsluge.Visible = false;
+                lblRef2.Visible = txtRef2.Visible = false;
+
             }
             else
             {
-                cboNalogodavacZaDrumski.Visible = false;
-                lblNalogodavacZaDrumski.Visible = false;
-                txtRef3.Visible = false;
-                lblRef3.Visible = false;
-        
+                if (drumski == 1)
+                {
+                    cboNalogodavacZaDrumski.Visible = true;
+                    lblNalogodavacZaDrumski.Visible = true;
+                    txtRef3.Visible = true;
+                    lblRef3.Visible = true;
+                }
+                else
+                {
+                    cboNalogodavacZaDrumski.Visible = false;
+                    lblNalogodavacZaDrumski.Visible = false;
+                    txtRef3.Visible = false;
+                    lblRef3.Visible = false;
+                }
+            }
+        }
+
+        private void PostaviVidljivostGrupa4Specificna() 
+        {
+            if (scenarioID == 9 || scenarioID == 25)
+            {
+                lblKvalitetKontejnera.Visible = cboKvalitetKontejnera.Visible = false;
+                lblTaraKontejnera.Visible = txtTaraKontejnera.Visible = false;
+                lblVrstaPlombe.Visible = cboVrstaPlombe.Visible = false;
+            }
+           
+            if (scenarioID == 9 && drumski == 0) // dodatno samo za Scenario IV -ako nema ni adr ni drumski
+            {
+                lblLink.Visible = txtLink.Visible = false;
+                lblCutOffPort.Visible = dtpCutOffPort.Visible = false;             
+            }
+            else if(scenarioID == 9 && drumski == 1)
+            {
+                lblLink.Visible = txtLink.Visible = true;
+                lblCutOffPort.Visible = dtpCutOffPort.Visible = true;
             }
         }
 
         private void PostaviVidljivostNacinPakovanja()
         {
 
-            bool isGrupa3 = (scenarioID == 8 || scenarioID == 24 );
+            bool isGrupa3 = (scenarioID == 8 || scenarioID == 24 || scenarioID == 9 || scenarioID == 25);
             lblNacinPakovanja.Visible = isGrupa3;
             cboNacinPakovanja.Visible = isGrupa3;
 
@@ -945,37 +1326,135 @@ namespace Saobracaj.Izvoz
         private void SnimiIzmeneReda(DataGridViewRow row)
         {
 
+
             InsertIzvoz ins = new InsertIzvoz();
             //  Provera da li je red nov ili prazan (opciono)
             if (row.IsNewRow) return;
 
             if (row.Cells["ID"].Value == null || row.Cells["ID"].Value == DBNull.Value) return;
 
-            int id = Convert.ToInt32(row.Cells["ID"].Value); 
+            if (!ValidacijaGrida(row))
+               return;
+
+
+            int id = Convert.ToInt32(row.Cells["ID"].Value);
+            decimal? bTTRobe = null;
+            decimal? nTTORobe = null;
+            int? koletaFakture = null;
+            decimal? cBMFaktura = null;
+            decimal? vrednostRobe = null;
+            string brojKontejnera = null;
+            string ostalePlombe = null;
 
             // Izvlačenje ostalih vrednosti iz ćelija
-            string brojKontejnera = (row.Cells["BrojKontejnera"].Value == null || row.Cells["BrojKontejnera"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["BrojKontejnera"].Value.ToString())) ? null : row.Cells["BrojKontejnera"].Value.ToString().Trim(); 
-            string ostalePlombe = (row.Cells["OstalePlombe"].Value == null || row.Cells["OstalePlombe"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["OstalePlombe"].Value.ToString()))  ? null  : row.Cells["OstalePlombe"].Value.ToString().Trim();
-         
-            decimal? bTTRobe = (row.Cells["BTTRobe"].Value == null || row.Cells["BTTRobe"].Value == DBNull.Value) ? (decimal?)null : Convert.ToDecimal(row.Cells["BTTRobe"].Value);
-            decimal? nTTORobe = (row.Cells["NTTORobe"].Value == null || row.Cells["NTTORobe"].Value == DBNull.Value) ? (decimal?)null : Convert.ToDecimal(row.Cells["NTTORobe"].Value); 
-            int? koletaFakture = (row.Cells["KoletaFakture"].Value == null || row.Cells["KoletaFakture"].Value == DBNull.Value) ? (int?)null : Convert.ToInt32(row.Cells["KoletaFakture"].Value);
-            decimal? cBMFaktura = (row.Cells["CBMFaktura"].Value == null || row.Cells["CBMFaktura"].Value == DBNull.Value) ? (decimal?)null : Convert.ToDecimal(row.Cells["CBMFaktura"].Value);
-            decimal? vrednostRobe = (row.Cells["VrednostRobe"].Value == null || row.Cells["VrednostRobe"].Value == DBNull.Value) ? (decimal?)null : Convert.ToDecimal(row.Cells["VrednostRobe"].Value); 
+
+            if (row.DataGridView.Columns.Contains("BrojKontejnera") && row.Cells["BrojKontejnera"].Value != null && row.Cells["BrojKontejnera"].Value != DBNull.Value)
+            {
+                brojKontejnera = (row.Cells["BrojKontejnera"].Value == null || row.Cells["BrojKontejnera"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["BrojKontejnera"].Value.ToString())) ? null : row.Cells["BrojKontejnera"].Value.ToString().Trim();
+
+            }
+            if (row.DataGridView.Columns.Contains("OstalePlombe") && row.Cells["OstalePlombe"].Value != null && row.Cells["OstalePlombe"].Value != DBNull.Value)
+            {
+                ostalePlombe = (row.Cells["OstalePlombe"].Value == null || row.Cells["OstalePlombe"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["OstalePlombe"].Value.ToString())) ? null : row.Cells["OstalePlombe"].Value.ToString().Trim();
+
+            }
+            if (row.DataGridView.Columns.Contains("BTTRobe") && row.Cells["BTTRobe"].Value != null &&   row.Cells["BTTRobe"].Value != DBNull.Value)
+            {
+                bTTRobe = Convert.ToDecimal(row.Cells["BTTRobe"].Value);
+            }
+            if (row.DataGridView.Columns.Contains("NTTORobe") && row.Cells["NTTORobe"].Value != null && row.Cells["NTTORobe"].Value != DBNull.Value)
+            {
+                nTTORobe = Convert.ToDecimal(row.Cells["NTTORobe"].Value);
+            }
+            if (row.DataGridView.Columns.Contains("KoletaFakture") && row.Cells["KoletaFakture"].Value != null && row.Cells["KoletaFakture"].Value != DBNull.Value)
+            {
+                koletaFakture = Convert.ToInt32(row.Cells["KoletaFakture"].Value);
+            }
+            if (row.DataGridView.Columns.Contains("CBMFaktura") && row.Cells["CBMFaktura"].Value != null && row.Cells["CBMFaktura"].Value != DBNull.Value)
+            {
+                cBMFaktura = Convert.ToDecimal(row.Cells["CBMFaktura"].Value);
+            }
+            if (row.DataGridView.Columns.Contains("VrednostRobe") && row.Cells["VrednostRobe"].Value != null && row.Cells["VrednostRobe"].Value != DBNull.Value)
+            {
+                vrednostRobe = Convert.ToDecimal(row.Cells["VrednostRobe"].Value);
+            }
             int? napomenaPozicioniranje = null;
-            if (row.Cells["NapomenaZaPozicioniranje"].Value != null &&  row.Cells["NapomenaZaPozicioniranje"].Value != DBNull.Value)
+            if (row.DataGridView.Columns.Contains("NapomenaZaPozicioniranje") && row.Cells["NapomenaZaPozicioniranje"].Value != null &&  row.Cells["NapomenaZaPozicioniranje"].Value != DBNull.Value)
             {
                 napomenaPozicioniranje = Convert.ToInt32(row.Cells["NapomenaZaPozicioniranje"].Value);
             }
 
-            string vozilo = (row.Cells["Vozilo"].Value == null || row.Cells["Vozilo"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["Vozilo"].Value.ToString())) ? null : row.Cells["Vozilo"].Value.ToString().Trim();
-            string vozac = (row.Cells["Vozac"].Value == null || row.Cells["Vozac"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["Vozac"].Value.ToString())) ? null : row.Cells["Vozac"].Value.ToString().Trim();
-            string brojLK = (row.Cells["BrojLK"].Value == null || row.Cells["BrojLK"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["BrojLK"].Value.ToString())) ? null : row.Cells["BrojLK"].Value.ToString().Trim();
-            string telefon = (row.Cells["BrojTelefona"].Value == null || row.Cells["BrojTelefona"].Value == DBNull.Value || string.IsNullOrWhiteSpace(row.Cells["BrojTelefona"].Value.ToString())) ? null : row.Cells["BrojTelefona"].Value.ToString().Trim();
+            bool autoValue = false;
+            if ((scenarioID == 9 || scenarioID == 8 || scenarioID == 25) && drumski == 1) // u ovim slucajevima automatski popuni vrednost dt polja ako nije upisana vrednost
+            {
+                autoValue = true;
+            }
+            DateTime? planiranDtSpustanjaPunog = GetDateValue(row, "SpustanjePunogNoviPlaniraniDt",false);
+            DateTime? dtRealizacijeSpustanjaPunog = GetDateValue(row, "SpustanjePunogDtRealizacije", true);
+            DateTime? planiranDtPreuzimanjaPraznog = GetDateValue(row, "PreuzimanjePraznogNoviPlaniraniDt", false);
+            DateTime? dtPreuzimanjaPraznog = GetDateValue(row, "PreuzimanjePraznogPlaniraniDt", false);
+            DateTime? dtRealizacijePreuzimanjaPraznog = GetDateValue(row, "PreuzimanjePraznogDtRealizacije", true);
+            DateTime? dtPreuzimanjaPunog = GetDateValue(row, "PreuzimanjePunogPlaniraniDt", false);
+            DateTime? planiranDtPreuzimanjaPunog = GetDateValue(row, "PreuzimanjePunogNoviPlaniraniDt", false);
+            DateTime? dtRealizacijePreuzimanjaPunog = GetDateValue(row, "PreuzimanjePunogDtRealizacije", true);
+            DateTime? planiranDtIstovaraCerade = GetDateValue(row, "IstovarCeradeNoviPlaniraniDt", autoValue);
+            DateTime? dtIstovaraCerade = GetDateValue(row, "IstovarCeradePlaniraniDt", autoValue);
+            DateTime? dtRealizacijeIstovaraCerade = GetDateValue(row, "IstovarCeradeDtRealizacije", true);
+            DateTime? planiranDtUtovaraKontejnera = GetDateValue(row, "MestoUtovaraNoviPlaniraniDt", false);
+            DateTime? dtRealizacijeUtovaraKontejnera = GetDateValue(row, "MestoUtovaraDtRealizacije", true);
+            DateTime? planiranDtUtovaraCerade = GetDateValue(row, "UtovarCeradeNoviPlaniraniDt", false);
+            DateTime? dtRealizacijeUtovaraCerade = GetDateValue(row, "UtovarCeradeDtRealizacije", true);
+
+
+            string vozilo = null;
+
+            if (row.DataGridView.Columns.Contains("Vozilo"))
+            {
+                var cellValue = row.Cells["Vozilo"].Value;
+                vozilo = cellValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(vozilo))
+                    vozilo = null;
+            }
+
+
+            string vozac = null;
+            if (row.DataGridView.Columns.Contains("Vozac"))
+            {
+                var cellValue = row.Cells["Vozac"].Value;
+                vozac = cellValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(vozac))
+                    vozac = null;
+            }
+
+            string brojLK = null;
+            if (row.DataGridView.Columns.Contains("brojLK"))
+            {
+                var cellValue = row.Cells["brojLK"].Value;
+                brojLK = cellValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(brojLK))
+                    brojLK = null;
+            }
+
+            string telefon = null;
+            if (row.DataGridView.Columns.Contains("BrojTelefona"))
+            {
+                var cellValue = row.Cells["BrojTelefona"].Value;
+                telefon = cellValue?.ToString().Trim();
+
+                if (string.IsNullOrWhiteSpace(telefon))
+                    telefon = null;
+            }
+
+          
 
             try
             {
-                ins.UpdateIzvozPorudzbenicaPojedinacna(id, brojKontejnera, ostalePlombe, bTTRobe, nTTORobe, koletaFakture, cBMFaktura, vrednostRobe,  vozilo,  vozac, brojLK, telefon);
+                ins.UpdateIzvozPorudzbenicaPojedinacna(id, brojKontejnera, ostalePlombe, bTTRobe, nTTORobe, koletaFakture, cBMFaktura, vrednostRobe,  vozilo,  vozac, brojLK, telefon,
+                     planiranDtSpustanjaPunog, dtRealizacijeSpustanjaPunog, planiranDtPreuzimanjaPraznog, dtPreuzimanjaPraznog, dtRealizacijePreuzimanjaPraznog, dtPreuzimanjaPunog, planiranDtPreuzimanjaPunog, dtRealizacijePreuzimanjaPunog,
+                     planiranDtIstovaraCerade, dtIstovaraCerade, dtRealizacijeIstovaraCerade, planiranDtUtovaraKontejnera, dtRealizacijeUtovaraKontejnera, planiranDtUtovaraCerade, dtRealizacijeUtovaraCerade);
 
 
             }
@@ -986,6 +1465,24 @@ namespace Saobracaj.Izvoz
             }
         }
 
+        private DateTime? GetDateValue(DataGridViewRow row, string columnName, bool autoValue)
+        {
+            if (!row.DataGridView.Columns.Contains(columnName))
+                return null;
+
+            var column = row.DataGridView.Columns[columnName];
+
+            if (!column.Visible)
+                return DateTime.Today;
+
+            var value = row.Cells[columnName].Value;
+
+            if (value != null && value != DBNull.Value && DateTime.TryParse(value.ToString(), out DateTime parsed))
+                return parsed;
+
+            return autoValue ? DateTime.Today : (DateTime?)null; 
+        }
+
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             redJePromijenjen = true;
@@ -993,10 +1490,18 @@ namespace Saobracaj.Izvoz
 
         private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.IsCurrentCellDirty)
+            string colName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
+
+            // Ako NIJE datumska kolona, radi CommitEdit
+            if (!colName.EndsWith("Dt") && !colName.EndsWith("DtRealizacije"))
             {
-                // Ovo prisiljava Grid da odmah registruje promjenu (i okine CellValueChanged)
-                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                if (dataGridView1.IsCurrentCellDirty)
+                {
+                    // Ovo prisiljava Grid da odmah registruje promjenu (i okine CellValueChanged)
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+                // Ako JESTE datum, čekamo da korisnik završi (izađe iz ćelije)
+                // Ne zovemo CommitEdit ovde za datume!
             }
         }
     }
