@@ -407,7 +407,7 @@ namespace Saobracaj.Izvoz
             {
                 if (drumski == 0)
                 {
-                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan. Datum/Vreme", 200);
+                    AddDateColumn("SpustanjePunogNoviPlaniraniDt", "MESTO SPUSTANJA PUNOG Novi plan.Datum/Vreme", 200);
                     AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
                     //  Vozilo, Vozač...
                     AddTextColumn("Vozilo", "Vozilo", 100);
@@ -1054,6 +1054,9 @@ namespace Saobracaj.Izvoz
             }
 
             string booking = string.IsNullOrWhiteSpace(txtBoking.Text) ? null : txtBoking.Text.Trim();
+            int? bookingInt = null;
+            if (!string.IsNullOrWhiteSpace(booking) && int.TryParse(booking, out var _btmp))
+                bookingInt = _btmp;
 
             int? brodar = null;
             if (cboBrodar.SelectedValue != null)
@@ -1173,20 +1176,87 @@ namespace Saobracaj.Izvoz
                 kvalitetKontejnera = Convert.ToInt32(cboKvalitetKontejnera.SelectedValue);
             }
 
+            // Normalize parameters: ints -> 0 if null, strings -> single space if null/empty
+            int safePorucilac = porucilac ?? 0;
+            int safeBrojKontejnera = brojKontejnera;
+            int safeBrodar = brodar ?? 0;
+            int safeBooking = bookingInt ?? 0;
+            int safeVrstaKontejnera = vrstaKontejnera ?? 0;
+            int safeIzvoznik = izvoznik ?? 0;
+            int safeBrodskaPlomba = brodskaPlomba ?? 0;
+            string safeBrodskaPlombaBroj = string.IsNullOrWhiteSpace(brodskaPlombaBroj) ? " " : brodskaPlombaBroj;
+            string safeNapomena = string.IsNullOrWhiteSpace(Napomena) ? " " : Napomena;
+            int safeAdr = adr ?? 0;
+            int safeNacinPakovanja = nacinPakovanja ?? 0;
+            int safeInspekcija = inspekcijskiTretman ?? 0;
+            DateTime? safeCutOffPort = cutOffPort; // keep nullable
+            decimal safeTaraKontejnera = taraKontejnera;
+            int safeVaganje = pomVaganje ?? 0;
+            int safeKlijent2 = nalogodavacZaUsluge ?? 0;
+            int safeNapomena2Ref = referencaFakturisanje ?? 0;
+            int safeKlijent3 = nalogodavacZaDrumski ?? 0;
+            int safeNapomena3Ref = referencaDrumski ?? 0;
+            string safeOpisPosla = string.IsNullOrWhiteSpace(opisPosla) ? " " : opisPosla;
+            string safeLink = string.IsNullOrWhiteSpace(link) ? " " : link;
+            int safeKvalitet = kvalitetKontejnera ?? 0;
+            int safeVrstaRobe = vrstaRobe;
+
             if (noviIDs != null && noviIDs.Count > 0)
             {
-               
-                    ins.UpdateIzvozPorudzbenica(noviIDs,porucilac, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
-                                                  adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
-
-              
+                ins.UpdateIzvozPorudzbenica(noviIDs,
+                                            safePorucilac,
+                                            safeBrodar,
+                                            safeBooking,
+                                            safeVrstaKontejnera,
+                                            safeIzvoznik,
+                                            safeBrodskaPlomba,
+                                            safeBrodskaPlombaBroj,
+                                            safeNapomena,
+                                            safeAdr,
+                                            safeNacinPakovanja,
+                                            safeInspekcija,
+                                            safeCutOffPort,
+                                            safeTaraKontejnera,
+                                            safeVaganje,
+                                            safeKlijent2,
+                                            safeNapomena2Ref,
+                                            safeKlijent3,
+                                            safeNapomena3Ref,
+                                            safeOpisPosla,
+                                            safeLink,
+                                            safeKvalitet,
+                                            safeVrstaRobe);
             }
-            else  // update
+            else  // insert
             {
                 try
                 {
-                    noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, porucilac, brojKontejnera,  brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
-                                                       adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
+                    noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice,
+                                                       scenarioID,
+                                                       tKorisnik,
+                                                       safePorucilac,
+                                                       safeBrojKontejnera,
+                                                       safeBrodar,
+                                                       safeBooking,
+                                                       safeVrstaKontejnera,
+                                                       safeIzvoznik,
+                                                       safeBrodskaPlomba,
+                                                       safeBrodskaPlombaBroj,
+                                                       safeNapomena,
+                                                       safeAdr,
+                                                       safeNacinPakovanja,
+                                                       safeInspekcija,
+                                                       safeCutOffPort,
+                                                       safeTaraKontejnera,
+                                                       safeVaganje,
+                                                       safeKlijent2,
+                                                       safeNapomena2Ref,
+                                                       safeKlijent3,
+                                                       safeNapomena3Ref,
+                                                       safeOpisPosla,
+                                                       safeLink,
+                                                       safeKvalitet,
+                                                       safeVrstaRobe);
 
                     MessageBox.Show("Uspešno formirano!");
                     InitializeDataGrid(noviIDs);
@@ -1197,7 +1267,6 @@ namespace Saobracaj.Izvoz
                     // Ovde hvatamo onu grešku iz SQL-a 
                     MessageBox.Show(ex.Message, "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-               
             }
 
         }
