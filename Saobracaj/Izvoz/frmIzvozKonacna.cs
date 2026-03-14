@@ -1437,7 +1437,7 @@ namespace Saobracaj.Izvoz
                 txtAutoDana.Value = Convert.ToDecimal(dr["AutoDana"].ToString());
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
-                dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
+                //dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
                 cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
                 cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
@@ -1445,7 +1445,7 @@ namespace Saobracaj.Izvoz
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
                 txtKontaktOsoba.Text = Convert.ToString(dr["KontaktOsoba"].ToString());
                 cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
-                dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
+                //dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
                 if (dr["Cirada"].ToString() == "1")
                 {
                     chkCirada.Text = "CIRADA";
