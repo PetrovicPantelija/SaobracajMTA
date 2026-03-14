@@ -280,88 +280,137 @@ namespace Saobracaj.Izvoz
                     txtID.Text = dr["ID"].ToString();
                     txtBrojVagona.Text = dr["BrojVagona"].ToString();
                     txtBrKont.Text = dr["BrojKontejnera"].ToString();
-                    txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                    txtTipKont.SelectedValue = (dr["VrstaKontejnera"] == DBNull.Value) ? 0: Convert.ToInt32(dr["VrstaKontejnera"]);
                     txtBrodskaPlomba.Text = dr["BrodskaPlomba"].ToString();
                     txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
                     txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
-                   cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
-                dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
-                    txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
-                    txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
-                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
-                txtKoleta.Value = Convert.ToInt32(dr["BrojKoleta"].ToString());
-                txtKoletaO.Value = Convert.ToInt32(dr["BrojKoletaO"].ToString());
-                txtCBM.Value = Convert.ToDecimal(dr["CBM"].ToString());
-                txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
-                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
-                txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
-                txtValuta.Text = dr["Valuta"].ToString();
-                cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
-                cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
-                cboPPCNT.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja"].ToString());
-                cboPPCNT2.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja2"].ToString());
-                cboPPCNT3.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja3"].ToString());
+                    cboBrodar.SelectedValue = (dr["Brodar"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Brodar"]);
+                    if (dr["CutOffPort"] != DBNull.Value)
+                    {
+                        dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"]);
+                    }
 
-                if (dr["Cirada"].ToString() == "1")
-                { chkCirada.Text = "CIRADA"; }
-                else
-                { chkCirada.Text =  "PLATFORMA";  }
+                    if (decimal.TryParse(dr["NetoRobe"]?.ToString(), out decimal neto))
+                    {
+                        txtNetoR.Value = neto;
+                    }
+                    if (decimal.TryParse(dr["BrutoRobe"]?.ToString(), out decimal bruto))
+                    {
+                        txtBrutoR.Value = bruto;
+                    }
 
-                dtpPlanUtovara.Value =  Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString()); 
-                cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
-                txtKontaktOsoba.SelectedValue = Convert.ToInt32(dr["KontaktOsoba"].ToString());
-                cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
-                cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
-               // txtKontaktSpeditera
+                    if (decimal.TryParse(dr["BrutoRobeO"]?.ToString(), out decimal brutoO))
+                    {
+                        txtBrutoO.Value = brutoO;
+                    }
+
+                    txtKoleta.Value = Convert.ToInt32(dr["BrojKoleta"] == DBNull.Value ? null : dr["BrojKoleta"]);
+                    txtKoletaO.Value = Convert.ToInt32(dr["BrojKoletaO"] == DBNull.Value ? null : dr["BrojKoletaO"]);
+                    if (decimal.TryParse(dr["CBM"]?.ToString(), out decimal cbm))
+                    {
+                        txtCBM.Value = cbm;
+                    }
+                    if (decimal.TryParse(dr["CBMO"]?.ToString(), out decimal cbmo))
+                    {
+                        txtCBMO.Value = cbmo;
+                    }
+               
+                    txtADR.SelectedValue = (dr["ADR"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ADR"]);
+                    if (decimal.TryParse(dr["VrednostRobeFaktura"]?.ToString(), out decimal vrednostRobeF))
+                    {
+                        txtVrednostRobeFaktura.Value = vrednostRobeF;
+                    }
+                    txtValuta.Text = dr["Valuta"].ToString();
+                    cboKrajnjaDestinacija.SelectedValue = (dr["KrajnaDestinacija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["KrajnaDestinacija"]); 
+                    cboPostupanjeSaRobom.SelectedValue = (dr["Postupanje"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Postupanje"]);
+                    cboPPCNT.SelectedValue = (dr["MestoPreuzimanja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja"]); 
+                    cboPPCNT2.SelectedValue = (dr["MestoPreuzimanja2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja2"]); 
+                    cboPPCNT3.SelectedValue = (dr["MestoPreuzimanja3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja3"]); 
+
+                    if (dr["Cirada"].ToString() == "1")
+                    { chkCirada.Text = "CIRADA"; }
+                    else
+                    { chkCirada.Text =  "PLATFORMA";  }
+
+                
+                    if (dr["PlaniraniDatumUtovara"] != DBNull.Value)
+                    {
+                        dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"]);
+                    }
+
+                    cboMestoUtovara.SelectedValue = (dr["MesoUtovara"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MesoUtovara"]); 
+                    txtKontaktOsoba.SelectedValue = (dr["KontaktOsoba"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["KontaktOsoba"]);
+                    cboCarina.SelectedValue = (dr["MestoCarinjenja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoCarinjenja"]);
+                    cboSpedicija.SelectedValue = (dr["Spedicija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Spedicija"]); 
+                   // txtKontaktSpeditera
                     cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
-                cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
-                dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
-                cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
-                cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
-                txtAutoDana.Value= Convert.ToDecimal(dr["AutoDana"].ToString());
+                    cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
+                    if (dr["EtaLeget"] != DBNull.Value)
+                    {
+                        dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"]);
+                    }
+                   
+                    cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"] == DBNull.Value ? null : dr["NapomenaReexport"]); 
+                    cboInspekciskiTretman.SelectedValue = (dr["Inspekcija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Inspekcija"]);
+                    if (decimal.TryParse(dr["AutoDana"]?.ToString(), out decimal autoDan))
+                    {
+                        txtAutoDana.Value = autoDan;
+                    }
+            
                 
 
-                     if (dr["NajavaVozila"].ToString() == "1")
-                { chkNajavaVozila.Checked = true; }
-                else
-                { chkNajavaVozila.Checked = false; }
-                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
-                if (dr["NacinPretovara"].ToString() == "1")
-                { chkNacinPretovara.Checked = true;
-                    chkIndirektno.Checked = false;
+                    if (dr["NajavaVozila"].ToString() == "1")
+                    { chkNajavaVozila.Checked = true; }
+                    else
+                    { chkNajavaVozila.Checked = false; }
+                    cbNacinPakovanja.SelectedValue = (dr["NacinPakovanja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["NacinPakovanja"]); 
+                    if (dr["NacinPretovara"].ToString() == "1")
+                    { chkNacinPretovara.Checked = true;
+                        chkIndirektno.Checked = false;
                 
+                    }
+                    else
+                    { chkNacinPretovara.Checked = false;
+                        chkIndirektno.Checked = true;
+                    }
+
+                    txtDodatneNapomene.Text = dr["DodatneNapomeneDrumski"].ToString();
+
+                    if (dr["Vaganje"].ToString() == "1")
+                    { chkVaganje.Checked = true; }
+                    else
+                    { chkVaganje.Checked = false; }
+
+                    if (decimal.TryParse(dr["VGMTezina"]?.ToString(), out decimal odvaganaTezina))
+                    {
+                        txtOdvaganaTezina.Value = odvaganaTezina;
+                    }
+                    if (decimal.TryParse(dr["Tara"]?.ToString(), out decimal tara))
+                    {
+                        txtTaraKontejnera.Value = tara;
+                    }
+                    if (decimal.TryParse(dr["VGMBrod"]?.ToString(), out decimal vgmBrod))
+                    {
+                        txVGMBrodBruto.Value = vgmBrod;
+                    }
+
+            
+                    cboIzvoznik.SelectedValue = (dr["Izvoznik"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Izvoznik"]); 
+                    cboNalogodavac1.SelectedValue = (dr["Klijent1"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent1"]); 
+                    txtRef1.Text = dr["Napomena1REf"].ToString();
+                    cboNalogodavac2.SelectedValue = (dr["Klijent2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent2"]);
+                    txtRef2.Text = dr["Napomena2REf"].ToString();
+                    cboNalogodavac3.SelectedValue = (dr["Klijent3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent3"]);
+                    txtRef3.Text = dr["Napomena3REf"].ToString();
+                    cboSpediterURijeci.SelectedValue = (dr["SpediterRijeka"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["SpediterRijeka"]); 
+
+
+                    tslKreirao.Text = dr["Korisnik"].ToString();
+                    cboScenario.SelectedItem = (dr["Scenario"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Scenario"]);
+                    tslDatum.Text = dr["DatumKreiranja"].ToString();
+                    cboVrstaPlombe.SelectedValue = int.TryParse(dr["VrstaBrodskePlombe"]?.ToString(), out int id) ? id : -1;
+
                 }
-                else
-                { chkNacinPretovara.Checked = false;
-                    chkIndirektno.Checked = true;
-                }
-
-                txtDodatneNapomene.Text = dr["DodatneNapomeneDrumski"].ToString();
-
-                if (dr["Vaganje"].ToString() == "1")
-                { chkVaganje.Checked = true; }
-                else
-                { chkVaganje.Checked = false; }
-         
-                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
-                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
-                txVGMBrodBruto.Value= Convert.ToDecimal(dr["VGMBrod"].ToString());
-                cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
-                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
-                txtRef1.Text = dr["Napomena1REf"].ToString();
-                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
-                txtRef2.Text = dr["Napomena2REf"].ToString();
-                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
-                txtRef3.Text = dr["Napomena3REf"].ToString();
-                cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
-
-
-                tslKreirao.Text = dr["Korisnik"].ToString();
-                cboScenario.SelectedItem = Convert.ToInt32(dr["Scenario"].ToString());
-                tslDatum.Text = dr["DatumKreiranja"].ToString();
-                cboVrstaPlombe.SelectedValue = int.TryParse(dr["VrstaBrodskePlombe"]?.ToString(), out int id) ? id : -1;
-
-            }
             con.Close();
         }
 
@@ -1356,7 +1405,7 @@ namespace Saobracaj.Izvoz
                 txtVozilo.Text = dr["Vozilo"].ToString();
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
-                cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
+                cboSpediterURijeci.SelectedValue = (dr["SpediterRijeka"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["SpediterRijeka"]);
                 if (dr["DodatneNapomeneDrumski"].ToString() == "1")
                 {
                     cboDobijenNalog.Checked = true;
@@ -1377,14 +1426,30 @@ namespace Saobracaj.Izvoz
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 txtRef2.Text = dr["Napomena2REf"].ToString();
                 txtRef1.Text = dr["Napomena1REf"].ToString();
-                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
-                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
-                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
-                cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
-                txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
-                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
-                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
-                txtVGMBrod.Value = Convert.ToDecimal(dr["VGMBrod2"].ToString());
+                cboNalogodavac1.SelectedValue = (dr["Klijent1"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent1"]); 
+                cboNalogodavac2.SelectedValue = (dr["Klijent2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent2"]);
+                cboNalogodavac3.SelectedValue = (dr["Klijent3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Klijent3"]);
+                cboIzvoznik.SelectedValue = (dr["Izvoznik"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Izvoznik"]);
+                if (decimal.TryParse(dr["VGMBrod"]?.ToString(), out decimal vgmBrod))
+                {
+                    txVGMBrodBruto.Value = vgmBrod;
+                }
+
+                if (decimal.TryParse(dr["Tara"]?.ToString(), out decimal tara))
+                {
+                    txtTaraKontejnera.Value = tara;
+                }
+
+                if (decimal.TryParse(dr["VGMTezina"]?.ToString(), out decimal odvaganaTezina))
+                {
+                    txtOdvaganaTezina.Value = odvaganaTezina;
+                }
+
+                if (decimal.TryParse(dr["VGMBrod2"]?.ToString(), out decimal vgmBrod2))
+                {
+                    txtVGMBrod.Value = vgmBrod2;
+                }
+               
                 if (dr["Vaganje"].ToString() == "1")
                 {
                     chkVaganje.Checked = true;
@@ -1404,7 +1469,7 @@ namespace Saobracaj.Izvoz
                     chkNacinPretovara.Checked = false;
                     chkIndirektno.Checked = true;
                 }
-                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                cbNacinPakovanja.SelectedValue = (dr["NacinPakovanja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["NacinPakovanja"]);
                 if (dr["NajavaVozila"].ToString() == "1")
                 {
                     chkNajavaVozila.Checked = true;
@@ -1413,21 +1478,40 @@ namespace Saobracaj.Izvoz
                 {
                     chkNajavaVozila.Checked = false;
                 }
-                dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
-                dtpPeriodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
-                cboSpedicijaJ.SelectedValue = Convert.ToInt32(dr["SpedicijaJ"].ToString());
-                txtAutoDana.Value = Convert.ToDecimal(dr["AutoDana"].ToString());
-                cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
-                cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
-                dtpEtaLeget.Value  = Convert.ToDateTime(dr["EtaLeget"].ToString());
+                if (dr["PeriodSkladistenjaDo"] != DBNull.Value)
+                {
+                    dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"]);
+                }
+
+                if (dr["PeriodSkladistenjaOd"] != DBNull.Value)
+                {
+                    dtpPeriodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"]);
+                }
+                cboSpedicijaJ.SelectedValue = (dr["SpedicijaJ"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["SpedicijaJ"]);
+                if (decimal.TryParse(dr["AutoDana"]?.ToString(), out decimal autoDan))
+                {
+                    txtAutoDana.Value = autoDan;
+                }
+
+                cboInspekciskiTretman.SelectedValue = (dr["Inspekcija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Inspekcija"]);
+                cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"] == DBNull.Value ? null : dr["NapomenaReexport"]);
+                if (dr["EtaLeget"] != DBNull.Value)
+                {
+                    dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"]);
+                }
+
                 cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
                 cboAdresaStatusVozila.Text= dr["AdresaSlanjaStatusa"].ToString();
-                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
-                cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
-                cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
-                txtKontaktOsoba.SelectedValue= Convert.ToInt32((dr["KontaktOsoba"].ToString()));
-                cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
-                dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
+                txtADR.SelectedValue = (dr["ADR"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ADR"]);
+                cboCarina.SelectedValue = (dr["MestoCarinjenja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoCarinjenja"]);
+                cboSpedicija.SelectedValue = (dr["Spedicija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Spedicija"]);
+                txtKontaktOsoba.SelectedValue = (dr["KontaktOsoba"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["KontaktOsoba"]);
+                cboMestoUtovara.SelectedValue = (dr["MesoUtovara"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MesoUtovara"]);
+                if (dr["PlaniraniDatumUtovara"] != DBNull.Value)
+                {
+                    dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"]);
+                }
+              
                 if (dr["Cirada"].ToString() == "1")
                 {
                     chkCirada.Text = "CIRADA";
@@ -1436,36 +1520,70 @@ namespace Saobracaj.Izvoz
                 {
                     chkCirada.Text = "PLATFORMA";
                 }
-                cboPPCNT.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja"].ToString());
-                cboPPCNT2.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja2"].ToString());
-                cboPPCNT3.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja3"].ToString());
-                cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
-                cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
+
+                cboPPCNT.SelectedValue = (dr["MestoPreuzimanja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja"]);
+                cboPPCNT2.SelectedValue = (dr["MestoPreuzimanja2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja2"]);
+                cboPPCNT3.SelectedValue = (dr["MestoPreuzimanja3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja3"]);
+                cboPostupanjeSaRobom.SelectedValue = (dr["Postupanje"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Postupanje"]);
+
+                cboKrajnjaDestinacija.SelectedValue = (dr["KrajnaDestinacija"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["KrajnaDestinacija"]);
+              
                 txtValuta.SelectedValue = dr["Valuta"].ToString();
-                txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
-                txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
-                txtCBM.Value = Convert.ToDecimal(dr["CBM"].ToString());
-                txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
-                txtKoleta.Value = Convert.ToDecimal(dr["BrojKoleta"].ToString());
-                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
-                txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
-                txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
-                dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
-                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                if (decimal.TryParse(dr["VrednostRobeFaktura"]?.ToString(), out decimal vrednostRobeF))
+                {
+                    txtVrednostRobeFaktura.Value = vrednostRobeF;
+                }
+                if (decimal.TryParse(dr["CBMO"]?.ToString(), out decimal cbmo))
+                {
+                    txtCBMO.Value = cbmo;
+                }
+
+                if (decimal.TryParse(dr["CBM"]?.ToString(), out decimal cbm))
+                {
+                    txtCBM.Value = cbm;
+                }
+
+                txtKoletaO.Value = Convert.ToInt32(dr["BrojKoletaO"] == DBNull.Value ? null : dr["BrojKoletaO"]);
+                txtKoleta.Value = Convert.ToInt32(dr["BrojKoleta"] == DBNull.Value ? null : dr["BrojKoleta"]);
+
+                if (decimal.TryParse(dr["BrutoRobeO"]?.ToString(), out decimal brutoO))
+                {
+                    txtBrutoO.Value = brutoO;
+                }
+
+                if (decimal.TryParse(dr["BrutoRobe"]?.ToString(), out decimal bruto))
+                {
+                    txtBrutoR.Value = bruto;
+                }
+
+                if (decimal.TryParse(dr["NetoRobe"]?.ToString(), out decimal neto))
+                {
+                    txtNetoR.Value = neto;
+                }
+
+                if (dr["CutOffPort"] != DBNull.Value)
+                {
+                    dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"]);
+                }
+
+                cboBrodar.SelectedValue = (dr["Brodar"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Brodar"]);
+
                 txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
                 txtBrodskaPlomba.Text   = dr["BrodskaPlomba"].ToString();
-                txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                txtTipKont.SelectedValue = (dr["VrstaKontejnera"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["VrstaKontejnera"]);
+
                 txtBrKont.Text = dr["BrojKontejnera"].ToString();
                 txtBrojVagona.Text = dr["BrojVagona"].ToString();
-                cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
+                cboVrstaPlombe.SelectedValue = int.TryParse(dr["VrstaBrodskePlombe"]?.ToString(), out int id) ? id : -1;
                 txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
                 txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
                 txtKontaktOsobe.Text =  dr["KontaktOsobe"].ToString();     
                 tslDatum.Text = dr["DatumKreiranja"].ToString();
                 tslKreirao.Text = dr["Korisnik"].ToString();
 
-                cboScenario.SelectedItem = Convert.ToInt32(dr["Scenario"].ToString());
+                cboScenario.SelectedItem = (dr["Scenario"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["Scenario"]);
+
 
                 /*
 

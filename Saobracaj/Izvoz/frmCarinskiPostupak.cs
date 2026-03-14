@@ -245,8 +245,8 @@ namespace Saobracaj.Izvoz
             }
 
 
-
             ins.UpdateIzvozPorudzbenicaCarina(noviIDs, carinskiPostupakUUnutrasnjemTranzitu, polaznaCarinarnica, spediterPolazna, kontaktOsobaPolazna, odredisnaCarinarnica, spediterOdredisna, kontaktOsobaOdrdisna);
+            MessageBox.Show("Uspešno snimljeno!");
         }
 
         private void button1_Click(object sender, EventArgs e)

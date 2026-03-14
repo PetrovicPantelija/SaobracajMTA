@@ -818,6 +818,7 @@ namespace Saobracaj.Izvoz
             ins.UpdateIzvozPorudzbenicaRelacija(noviIDs, odlaznaMorskaLuka, mestoSpustanjaPunogKontejnera, mestoPreuzimanjaPunogPraznog, mestoUtovaraKontejnera,
             adresaUtovaraKontejnera, kontaktOUtovaraKontejnera, planiranDatSpustanjaKontejnera, planiranDatPreuzimanjaKontejnera, planiranDatUtovaraKontejnera,
             realizacijaDatUtovaraKontejnera, mestoIstovaraCerade, kontaktOIstovaraCerade, planiraniDatumIstovaraCerade, mestoUtovaraCerade, kontaktOUtovaraCerade, planiraniDatumUtovaraCerade, dodatnaNapomenaDrumski, vrstaKamiona);
+            MessageBox.Show("Uspešno snimljeno!");
 
         }
 

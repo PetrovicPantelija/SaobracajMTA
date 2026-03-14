@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Testiranje.Sifarnici;
 
 namespace Saobracaj.Izvoz
 {
@@ -28,6 +29,8 @@ namespace Saobracaj.Izvoz
         int drumski = 0;
         int scenarioID = 0;
         bool redJePromijenjen = false;
+        string ScenarioNaziv = "";
+        List<PrivremeniNHM> privremenaListaNHM = new List<PrivremeniNHM>();
 
         public frmGrupniUnosPoljaIzvoz(int BrojStavkePorudzbenice,  int scenario, int _drumski )
         {
@@ -245,6 +248,32 @@ namespace Saobracaj.Izvoz
             this.ResumeLayout();
         }
 
+
+        private void OsveziGridNHM()
+        {
+        // Ako txtID nije prazan, znači da gledamo postojeći kontejner u bazi
+        // Novi unos, čitamo iz privremene liste u memoriji
+            DataTable dtPrivremeni = new DataTable();
+            //dtPrivremeni.Columns.Add("ID"); // Ovde će biti 0 ili onaj negativni ID
+            //dtPrivremeni.Columns.Add("Broj");
+            dtPrivremeni.Columns.Add("IDNHM");
+            dtPrivremeni.Columns.Add("Naziv");
+
+            foreach (var stavka in privremenaListaNHM)
+            {
+                dtPrivremeni.Rows.Add(/*stavka.PrivremeniID, stavka.Broj,*/ stavka.IDNHM, stavka.Naziv);
+            }
+            dataGridView2.DataSource = dtPrivremeni;
+
+            dataGridView2.Columns["IDNHM"].Width = 70; // dovoljno za 4 cifre
+            dataGridView2.Columns["IDNHM"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            dataGridView2.Columns["Naziv"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            PodesiDatagridView(dataGridView2);
+            //FormatirajKoloneNHM();
+        }
+
         private void frmGrupniUnosPoljaIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
@@ -272,10 +301,11 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT [KvalitetKontejnera] ,[Brodar], [Link], [BukingNumber], [CuttOfPort], [Izvoznik],[Nalogodavac], [OpisPosla], ProdajniNalogIzvoz.ID, TipKontenjera.Tara, ProdajniNalogIzvozStavke.TipKontejnera " +
+            SqlCommand cmd = new SqlCommand("SELECT [KvalitetKontejnera] ,[Brodar], [Link], [BukingNumber], [CuttOfPort], [Izvoznik],[Nalogodavac], [OpisPosla], ProdajniNalogIzvoz.ID, TipKontenjera.Tara, ProdajniNalogIzvozStavke.TipKontejnera, (Scenario.Naziv) as ScenarioNaziv " +
                                             " FROM [dbo].[ProdajniNalogIzvozStavke] " +
                                             " INNER JOIN ProdajniNalogIzvoz on ProdajniNalogIzvozStavke.IDNAdredjenog = ProdajniNalogIzvoz.ID" +
                                             " LEFT join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera" +
+                                            " LEFT join Scenario on ProdajniNalogIzvozStavke.Scenario =  Scenario.ID " +
                                             " where ProdajniNalogIzvozStavke.ID =" + brojStavkePorudzbenice, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -323,6 +353,8 @@ namespace Saobracaj.Izvoz
                 {
                     txtBoking.Text = dr["BukingNumber"].ToString().Trim();
                 }
+
+                ScenarioNaziv = dr["ScenarioNaziv"].ToString().Trim();
 
             }
         }
@@ -1179,7 +1211,15 @@ namespace Saobracaj.Izvoz
                     ins.UpdateIzvozPorudzbenica(noviIDs,porucilac, brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
                                                   adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
-              
+                InsertIzvoz uvK = new InsertIzvoz();
+                foreach (int kontejnerID in noviIDs)
+                {
+
+                    foreach (var stavka in privremenaListaNHM)
+                    {
+                        uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
+                    }
+                }
             }
             else  // update
             {
@@ -1188,7 +1228,17 @@ namespace Saobracaj.Izvoz
                     noviIDs = ins.InsIzvozPorudzbenica(brojStavkePorudzbenice, scenarioID, tKorisnik, porucilac, brojKontejnera,  brodar, Convert.ToInt32(txtBoking.Text), vrstaKontejnera, izvoznik, brodskaPlomba, brodskaPlombaBroj, Napomena,
                                                        adr, nacinPakovanja, inspekcijskiTretman, cutOffPort, taraKontejnera, pomVaganje, nalogodavacZaUsluge, referencaFakturisanje, nalogodavacZaDrumski, referencaDrumski, opisPosla, link, kvalitetKontejnera, vrstaRobe);
 
+                    InsertIzvoz uvK = new InsertIzvoz();
+                    foreach (int kontejnerID in noviIDs)
+                    {
+
+                        foreach (var stavka in privremenaListaNHM)
+                        {
+                            uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
+                        }
+                    }
                     MessageBox.Show("Uspešno formirano!");
+                   
                     InitializeDataGrid(noviIDs);
                     DGVCombo();
                 }
@@ -1314,7 +1364,7 @@ namespace Saobracaj.Izvoz
             if (noviIDs.Count == 0)
             {
                 MessageBox.Show("Morate prvo snimiti grupne podatke za kontejnere!");
-               // return;
+                return;
             }
             frmCarinskiPostupak cpo = new frmCarinskiPostupak(noviIDs, drumski, scenarioID);
             cpo.Show();
@@ -1325,7 +1375,7 @@ namespace Saobracaj.Izvoz
             if (noviIDs.Count == 0)
             {
                 MessageBox.Show("Morate prvo snimiti grupne podatke za kontejnere!");
-                //return;
+                return;
             }
             frmRelacija cpo = new frmRelacija(noviIDs, drumski, scenarioID);
             cpo.Show();
@@ -1531,5 +1581,395 @@ namespace Saobracaj.Izvoz
                 // Ne zovemo CommitEdit ovde za datume!
             }
         }
+        string pickUp = "";
+        string pickUp2 = "";
+        string pickUp3 = "";
+        int pickupValue = 0;
+        int pickupValue2 = 0;
+        int pickupValue3 = 0;
+
+        int pp = 0;
+
+        private void btnUsluge_Click(object sender, EventArgs e)
+        {
+    
+
+            if (drumski == 1 || chkVaganje.Checked)
+            {
+                string idsZaUpit = string.Join(", ", noviIDs);
+
+                string query = $"SELECT * FROM IzvozVrstaManipulacije WHERE IDNadredjena IN ({idsZaUpit})";
+                SqlConnection conn = new SqlConnection(connection);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dtManipulacije = new DataTable();
+                da.Fill(dtManipulacije);
+
+                InsertIzvoz uvK = new InsertIzvoz();
+
+                string pomPokret = "/";
+                int pomStatusKontejnera = Convert.ToInt32(0);
+                string pomForma = "/";
+                double pomCena = 0;
+                double pomkolicina = 1;
+                int pomPlatilac = 0;
+                int pomOrgJed84 = 0;
+                int pomOrgJed102 = 0;
+
+                bool drumskiAktivan = (drumski == 1);
+
+                pomOrgJed84 = VratiOrgJed(84);
+                pomOrgJed102 = VratiOrgJed(102);
+
+                foreach (int trenutniID in noviIDs)
+                {
+                    // ---USLOV 1: PROVERA ZA DRUMSKI (84) ---
+                    if (drumski == 1)
+                    {
+                        // Proveravamo da li u izvučenim podacima postoji red sa ovim ID-jem i manipulacijom 84
+                        bool postoji84 = dtManipulacije.AsEnumerable().Any(r =>
+                            r.Field<int>("IDNadredjena") == trenutniID &&
+                            r.Field<int>("idVrstaManipulacije") == 84);
+
+                        if (!postoji84)
+                        {
+                            
+                            uvK.InsUbaciUslugu(trenutniID, 84, pomCena, pomkolicina, pomOrgJed84, pomPlatilac, 0, pomPokret, pomStatusKontejnera, pomForma);
+                        }
+                    }
+
+                    // // --- USLOV 2: Vaganje i manipulacija 102 ---
+                    if (chkVaganje.Checked)
+                    {
+                        // Proveravamo da li postoji red sa ovim ID-jem i manipulacijom 102
+                        bool postoji102 = dtManipulacije.AsEnumerable().Any(r =>
+                            r.Field<int>("IDNadredjena") == trenutniID &&
+                            r.Field<int>("idVrstaManipulacije") == 102);
+
+                        if (!postoji102)
+                        {
+                          
+                            uvK.InsUbaciUslugu(trenutniID, 102, pomCena, pomkolicina, pomOrgJed102, pomPlatilac, 0, pomPokret, pomStatusKontejnera, pomForma);
+                        }
+                    }
+                }
+            }
+
+            if (dataGridView1.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Morate izabrati / označiti red u gridu!", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            txtID.Text = selectedRow.Cells[0].Value?.ToString();
+            int terminal = 0;
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+            //if (chkTerminal.Checked) { terminal = 1; }
+            //string pickUp = cboPPCNT.Text.ToString().TrimEnd();
+            //string pickUp2 = cboPPCNT2.Text.ToString().TrimEnd();
+            //string pickUp3 = cboPPCNT3.Text.ToString().TrimEnd();
+            VratiPikup(Convert.ToInt32(txtID.Text));
+
+            pp = ProveriPrazanPun();
+
+            if (cboVrstaKontejnera.Text.Length > 3)
+            {
+                if (pp == 0)
+                {
+                    //PRAZAN
+                    VratiRepoziciju(pickupValue, pickupValue2, pickupValue3, cboVrstaKontejnera.Text.Substring(0, 3));
+                }
+                else
+                {
+                    //PUN
+                    VratiZelezninu(pickupValue, pickupValue2, pickupValue3, cboVrstaKontejnera.Text.Substring(0, 3));
+
+                }
+            }
+
+
+            int ADR = Convert.ToInt32(cboADR.SelectedValue);
+
+            MoguciScenario();
+
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija);
+            um.Show();
+         
+        }
+
+        int VratiOrgJed(int Manipulacija)
+        {
+            int pomOJ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select OrgJed from VrstaManipulacije  where ID= " + Manipulacija, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomOJ = Convert.ToInt32(dr["OrgJed"].ToString());
+            }
+            con.Close();
+            return pomOJ;
+
+        }
+
+        int Repozicija = 0;
+        int ProveriPrazanPun()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int idnhm = 0;
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from IzvozNHM where IDNadredjena = " + Convert.ToInt32(txtID.Text), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                idnhm = Convert.ToInt32(dr["IDNHM"].ToString());
+
+            }
+
+            con.Close();
+
+            return idnhm;
+        }
+
+        private void VratiPikup(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select i.ID, i.MestoPreuzimanja, (kt.Naziv + ' - ' + kt.Oznaka) as MestoPreuzimanjaNaziv,i.MestoPreuzimanja2, (kt2.Naziv + ' - ' + kt2.Oznaka) as MestoPreuzimanjaNaziv2," +
+                "i.MestoPreuzimanja3,(kt3.Naziv + ' - ' + kt3.Oznaka) as MestoPreuzimanjaNaziv3  " +
+                "from Izvoz i  " +
+                " LEFT JOIN KontejnerskiTerminali kt on kt.ID = i.MestoPreuzimanja " +
+                " LEFT JOIN KontejnerskiTerminali kt2 on kt2.ID = i.MestoPreuzimanja2 " +
+                " LEFT JOIN KontejnerskiTerminali kt3 on kt3.ID = i.MestoPreuzimanja3 " +
+                " where i.ID = " + ID , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+                pickUp = dr["MestoPreuzimanja"].ToString();
+                pickUp2 = dr["MestoPreuzimanja2"].ToString();
+                pickUp3 = dr["MestoPreuzimanja3"].ToString();
+                pickupValue = (dr["MestoPreuzimanja"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja"]);
+                pickupValue2 = (dr["MestoPreuzimanja2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja2"]);
+                pickupValue3 = (dr["MestoPreuzimanja3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja3"]);
+
+               
+            }
+            con.Close();
+
+
+        }
+
+        private void VratiRepoziciju(int pickUp, int pickUp2, int pickUp3, string TipKOntejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
+                " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID " +
+                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                Repozicija = Convert.ToInt32(dr["ID"].ToString());
+                //  relacija = dr["Relacija"].ToString();
+            }
+            con.Close();
+
+
+        }
+        int Zeleznina = 0;
+        string relacija = "";
+        private void VratiZelezninu(int pickUp, int pickUp2, int pickUp3, string TipKOntejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
+                " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID" +
+                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                Zeleznina = Convert.ToInt32(dr["ID"].ToString());
+                relacija = dr["Relacija"].ToString();
+            }
+            con.Close();
+
+
+        }
+
+
+        int ScenarioGL = 0;
+        private void MoguciScenario()
+        {
+            string Moguce = "";
+            if (pickUp == "Leget -" && pickUp2 == "Leget -" && pickUp3 != "Leget -")
+            {
+                ScenarioGL = 1; ///Leget - Leget - Krajnja destinacija
+
+            }
+            else if (pickUp != "Leget -" && pickUp3 != "Leget -")
+            {
+                ScenarioGL = 2; //Drugi terminal - Leget - Krajnja destinacija
+            }
+            else if (pickUp != "Leget -" && pickUp3 == "Leget -")
+            {
+                ScenarioGL = 3; //Drugi terminal - Leget - Krajnja destinacija
+            }
+
+            else
+            {
+                MessageBox.Show("Relacije ne pripadaju ni jednom scenariju");
+                return;
+            }
+
+
+            //Provera SCENARIJA UKLJUCITI ADR
+           if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp > 1)
+            {
+                Moguce = "7,8,9"; // Leget - Leget - NestoDrugo - BEZ ADR - pun
+            }
+            else if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) > 1 && pp > 1)
+            {
+                Moguce = "23,24,25";  // PUN
+            }
+            else if (ScenarioGL == 2 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp > 1)
+            {
+                Moguce = "13"; // PUN Ostaje na terminalu \"11,12,13,14,29
+            }
+            else if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp == 0)
+            {
+                Moguce = "12,29"; // PRAYAN
+            }
+            else if (ScenarioGL == 2 && Convert.ToInt32(cboADR.SelectedValue) > 1 && pp > 1)
+            {
+                Moguce = "25,26";
+            }
+
+            else if (ScenarioGL == 3 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp == 0)
+            {
+                Moguce = "14";
+            }
+
+
+            int poklapase = 0;
+            string[] split = Moguce.Split(',');
+            foreach (string item in split)
+            {
+                if (item == scenarioID.ToString())
+                {
+                    poklapase = 1;
+                }
+
+            }
+
+            if (poklapase == 0)
+            {
+                int k = ProveriImaUsluga(txtID.Text);
+                if (k == 0)
+                {
+                    //Kada jos nisu definisane usluge
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Trenutni scenario je" + ScenarioNaziv + " moguci scenariji " + Moguce + " se ne poklapaju sa njim, da li želite brisanje terminalskih usluge?", "Confirmation", MessageBoxButtons.YesNoCancel);
+                    if (result == DialogResult.Yes)
+                    {
+                        InsertIzvozKonacna uvK = new InsertIzvozKonacna();
+                        uvK.DelIzvozUslugaTerminalskih(Convert.ToInt32(txtID.Text));
+                    }
+                    else
+                    {
+                        //...
+                    }
+                }
+
+
+            }
+        }
+        int ProveriImaUsluga(string UvozID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT Count(*)  as Broj" +
+        "  FROM [IzvozVrstaManipulacije] where IDNAdredjena=" + UvozID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                return Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return 0;
+
+        }
+
+        private void btnUnesiNHM_Click(object sender, EventArgs e)
+        {
+            if (cboVrstaRobe.SelectedValue == null) return;
+
+            // Kreiramo novi objekat na osnovu klase koju smo dole definisali
+            PrivremeniNHM novaStavka = new PrivremeniNHM
+            {
+                // Generišemo negativni ID (-1, -2, -3...)
+                //PrivremeniID = (privremenaListaNHM.Count + 1) * -1,
+                IDNHM = Convert.ToInt32(cboVrstaRobe.SelectedValue),
+                //Broj = "", // Možeš dopuniti ako treba
+                Naziv = cboVrstaRobe.Text
+            };
+
+            // Dodajemo u listu
+            privremenaListaNHM.Add(novaStavka);
+
+            // Pozivamo tvoju metodu za osvežavanje grida
+            OsveziGridNHM();
+        }
+
+     
+    }
+    public class PrivremeniNHM
+    {
+        //public int PrivremeniID { get; set; } 
+        public int IDNHM { get; set; }      
+        //public string Broj { get; set; }
+        public string Naziv { get; set; }
     }
 }
