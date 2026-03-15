@@ -391,7 +391,7 @@ namespace Saobracaj.Izvoz
             bool isUkljucenDrumski = ((scenarioID == 13 || scenarioID == 26) && drumski == 1);
             lblMestoPreuzimanjaPunog.Visible = cboMestoPreuzimanjaPunog.Visible = isUkljucenDrumski;
             lblPlaniraniDatumSpustanja.Visible = dptPlaniranDatumSpustanja.Visible = !isUkljucenDrumski;
-
+            lblDodatneNapomeneDrumski1.Visible = txtDodatneNapomeneDrumski1.Visible = isUkljucenDrumski;
 
         }
 
@@ -722,6 +722,7 @@ namespace Saobracaj.Izvoz
                 {
                     vrstaKamiona = rezultat;
                 }
+                dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski1.Text) ? null : txtDodatneNapomeneDrumski1.Text.Trim();
 
             }
             else if (panel2.Visible)
@@ -899,7 +900,7 @@ namespace Saobracaj.Izvoz
                     SetVisibleComboValue(panel1, cboMestoSpustanjaPunogKontejnera, dr["MestoSpustanjaPunogKontejnera"]);
                     SetVisibleComboValue(panel1, cboMestoPreuzimanjaPunog, dr["MestoPreuzimanjaPunogPraznog"]);
                     SetVisibleDateValue(panel1, dptPlaniranDatumSpustanja, dr["PlaniranDatSpustanjaKontejnera"]);
-
+                    txtDodatneNapomeneDrumski1.Text = dr["DodatnaNapomenaDrumski"].ToString();
                     if (vrstaKamiona == 1)
                     { cboVrstaKamiona.Text = "CERADA"; }
                     else if (vrstaKamiona == 0)

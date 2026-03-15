@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -480,12 +481,12 @@ namespace Saobracaj.Izvoz
                     AddTextColumn("BrojLK", "Broj LK", 100);
                     AddTextColumn("BrojTelefona", "Telefon", 100);
                 }
-
+           
                 else if (drumski == 1)
                 {
-                    AddDateColumn("PreuzimanjePraznogPlaniraniDt", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
-                    AddDateColumn("PreuzimanjePraznogNoviPlaniraniDt", "MESTO PREUZIMANJA PUNOG Novi plan. Datum/Vreme", 200, false);
-                    AddDateColumn("PreuzimanjePraznogDtRealizacije", "MESTO PREUZIMANJA PUNOG Datum/Vreme realizacij", 200, false);
+                    AddDateColumn("PreuzimanjePunogPlaniraniDt", "MESTO PREUZIMANJA PUNOG Plan. Datum/Vreme", 200);
+                    AddDateColumn("PreuzimanjePunogNoviPlaniraniDt", "MESTO PREUZIMANJA PUNOG Novi plan. Datum/Vreme", 200, false);
+                    AddDateColumn("PreuzimanjePunogDtRealizacije", "MESTO PREUZIMANJA PUNOG Datum/Vreme realizacij", 200, false);
                     AddDateColumn("SpustanjePunogDtRealizacije", "MESTO SPUSTANJA PUNOG Datum/Vreme realizacije", 200);
                     
 
@@ -940,9 +941,29 @@ namespace Saobracaj.Izvoz
                         uspesno = false;
                     }
                 
-                if (drumski == 0)
-                {
+                    if (drumski == 0)
+                    {
 
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+                 
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+                    }
+                }
+                else if (scenarioID == 9 && drumski == 0)
+
+                {
+             
                     if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
                     {
                         uspesno = false;
@@ -952,58 +973,61 @@ namespace Saobracaj.Izvoz
                     {
                         uspesno = false;
                     }
-                 
+
+                }
+                else if (scenarioID == 25 && drumski == 0)
+
+                {
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
+
+                    if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                    {
+                        uspesno = false;
+                    }
                     if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
                     {
                         uspesno = false;
                     }
-                }
-            }
-            else if (scenarioID == 9 && drumski == 0)
 
-            {
-             
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                }
+                if ((scenarioID == 13 || scenarioID == 26)  )  //|| (scenarioID == 9 && drumski == 1)  IL i ILA
                 {
-                    uspesno = false;
-                }
+                    if (drumski == 1)
+                    {
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePunogPlaniraniDt", "Ovo polje je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+                    }
+                    else if(drumski == 0)
+                    {
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
+                        {
 
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
-                {
-                    uspesno = false;
-                }
+                            uspesno = false;
+                        }
 
-            }
-            else if (scenarioID == 25 && drumski == 0)
+                        if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
+                        {
+                            uspesno = false;
+                        }
+                        if (scenarioID == 26)
+                        {
+                            if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
+                            {
+                                uspesno = false;
+                            }
+                        }
+                    }
 
-            {
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozac", "Vozač je obavezno polje!"))
-                {
-                    uspesno = false;
-                }
 
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "Vozilo", "Vozilo je obavezno polje!"))
-                {
-                    uspesno = false;
-                }
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "BrojLK", "Broj lične karte je obavezno polje!"))
-                {
-                    uspesno = false;
-                }
-
-            }
-            if (scenarioID == 13 && drumski == 1) //|| (scenarioID == 9 && drumski == 1)
-            {
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePunogPlaniraniDt", "Ovo polje je obavezno polje!"))
-                {
-                    uspesno = false;
                 }
 
 
-            }
-
-
-            if ((scenarioID == 7 && drumski == 0) ) //|| (scenarioID == 9 && drumski == 1)
+                if ((scenarioID == 7 && drumski == 0) ) //|| (scenarioID == 9 && drumski == 1)
                 {
                     if (!ValidirajObaveznuKolonu(dataGridView1, row, "PreuzimanjePraznogDtRealizacije", "Ovo polje je obavezno polje!"))
                         {
@@ -1258,6 +1282,16 @@ namespace Saobracaj.Izvoz
                                             safeLink,
                                             safeKvalitet,
                                             safeVrstaRobe);
+                InsertIzvoz uvK = new InsertIzvoz();
+
+                foreach (int kontejnerID in noviIDs)
+                {
+
+                    foreach (var stavka in privremenaListaNHM)
+                    {
+                         uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
+                    }
+                }
             }
             else  // insert
             {
@@ -1291,12 +1325,13 @@ namespace Saobracaj.Izvoz
                                                        safeVrstaRobe);
 
                     InsertIzvoz uvK = new InsertIzvoz();
+
                     foreach (int kontejnerID in noviIDs)
                     {
 
                         foreach (var stavka in privremenaListaNHM)
                         {
-                            uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
+                             uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
                         }
                     }
                     MessageBox.Show("Uspešno formirano!");
@@ -1305,7 +1340,6 @@ namespace Saobracaj.Izvoz
                 }
                 catch (Exception ex)
                 {
-                    // Ovde hvatamo onu grešku iz SQL-a 
                     MessageBox.Show(ex.Message, "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -1320,7 +1354,6 @@ namespace Saobracaj.Izvoz
                 return null;
             }
 
-            // Pokušaj konverzije u int
             if (DateTime.TryParse(dtp.Value.ToString(), out DateTime rezultat))
             {
                 return rezultat;
