@@ -40,6 +40,7 @@ namespace Saobracaj.Izvoz
         int ZelezninaUneta = 0;
         int RepozicijaUneta = 0;
         int adr = 0;
+        int ScenarioKonacan = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -227,6 +228,67 @@ namespace Saobracaj.Izvoz
 
         }
 
+
+        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp, int ScenarioGL, int ADR, int pp, int Zeleznina, int Repozicija, int ScenarioKon)
+        {
+            InitializeComponent();
+            pIDPlana = IDPlana;
+            pID = ID;
+            txtID.Text = ID.ToString();
+            pNalogodavac1 = Nalogodavac1;
+            pNalogodavac2 = Nalogodavac2;
+            pNalogodavac3 = Nalogodavac3;
+            pIzvoznik = Izvoznik;
+            txtNadredjeni.Text = pIDPlana.ToString();
+            ChangeTextBox();
+            FillDG6(1);
+            FillDG8();
+            FillDG8Dodatna();
+            FillDG8Administrativna();
+            int Usao = 0;
+            terminal = Terminal;
+            pickUp = PickUp;
+            scenariogl = ScenarioGL;
+            adr = ADR;
+            PunPrazan = pp;
+
+            ZelezninaUneta = VratiUnetuZelezninu(ID);
+            RepozicijaUneta = VratiUnetuRepoziciju(ID);
+            if (Zeleznina != ZelezninaUneta)
+            {
+                if (ZelezninaUneta == 0)
+                {
+                    UbaciZelezninu(Zeleznina, ZelezninaUneta, pID);
+                }
+                else
+                {
+                    var result = System.Windows.Forms.MessageBox.Show("Promenjena je železnina", "Provera železnine", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        UbaciZelezninu(Zeleznina, ZelezninaUneta, pID);
+                    }
+                }
+            }
+            if (Repozicija != RepozicijaUneta)
+            {
+                if (RepozicijaUneta == 0)
+                {
+                    UbaciRepoziciju(Repozicija, RepozicijaUneta, pID);
+                }
+                else
+                {
+                    var result = System.Windows.Forms.MessageBox.Show("Promenjena je reopzicija", "Provera železnine", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        UbaciRepoziciju(Repozicija, RepozicijaUneta, pID);
+                    }
+                }
+
+
+            }
+            ScenarioKonacan = ScenarioKon;
+
+        }
         int VratiUnetuZelezninu(int ID)
         {
             int pomBZ = 0;
@@ -1744,11 +1806,21 @@ namespace Saobracaj.Izvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
 
-        
-          
-           
+            if (ScenarioKonacan != 0)   
+                {
+                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID = " + ScenarioKonacan + " group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+
+
+
             //Ovde mora da se ukluci Pun Prazan
-            if (terminal == 1)
+            else if (terminal == 1)
             {
                 var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID = 15 group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);

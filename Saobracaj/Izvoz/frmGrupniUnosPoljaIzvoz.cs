@@ -1292,6 +1292,12 @@ namespace Saobracaj.Izvoz
                          uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
                     }
                 }
+
+              /*  foreach (int kontejnerID in noviIDs)
+                {
+                    int sc = VratiScenarioSelektovanog(kontejnerID);
+                    UnosManipulacija(kontejnerID, sc);
+                }*/
             }
             else  // insert
             {
@@ -1334,6 +1340,15 @@ namespace Saobracaj.Izvoz
                              uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
                         }
                     }
+
+                    //Unos manipulacija terminalskih
+                    //Za Svaki kontejner - Vrati scenario i insertuj manipulacije koje su vezane za taj scenario
+                    foreach (int kontejnerID in noviIDs)
+                    {
+                        int sc = VratiScenarioSelektovanog(kontejnerID);
+                        UnosManipulacija(kontejnerID, sc);
+                    }
+
                     MessageBox.Show("Uspešno formirano!");
                     InitializeDataGrid(noviIDs);
                     DGVCombo();
@@ -1343,6 +1358,79 @@ namespace Saobracaj.Izvoz
                     MessageBox.Show(ex.Message, "Pažnja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+
+        }
+
+        private void UnosManipulacija(int kontejnerID, int sc)
+        {
+            int pomID = 0;
+            int pomManupulacija = 0;
+            double pomCena = 0;
+            double pomkolicina = 1;
+            string pomPokret = "";
+            int pomStatusKontejnera = 0;
+            int pomPlatilac = 0;
+            string pomForma = "";
+            try
+            {
+
+
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("Select Usluga, Pokret, Forma, Statuskontejnera from Scenario where ID = "  + sc + " order by RB", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+              
+
+                while (dr.Read())
+                {
+                    pomManupulacija = Convert.ToInt32(dr["Usluga"].ToString());
+                    pomPokret = dr["Pokret"].ToString();
+                    pomStatusKontejnera = Convert.ToInt32(dr["Statuskontejnera"].ToString()); 
+                    pomForma = dr["Forma"].ToString();
+                    pomCena = 0;
+                    pomkolicina = 1;
+                    pomPlatilac = 0;
+                    // pomOrgJed = VratiOrgJed(pomManupulacija);
+                    UbaciStavkuUsluge(kontejnerID, pomManupulacija, pomCena, pomkolicina, 4, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                }
+
+
+             
+
+               
+
+           
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+
+
+
+        }
+
+        private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena, double Kolicina, int OrgJed, int Platilac, string PomPokret, int PomStatusKOntejnera, string PomForma)
+        {
+           // if (txtNadredjeni.Text != "0")
+           // {
+              //  InsertIzvoz uvK = new InsertIzvoz();
+               // uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac, 0, PomPokret, PomStatusKOntejnera, PomForma);
+               
+           // }
+           // else
+           // {
+
+             InsertIzvoz uvK = new InsertIzvoz();
+             uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac, 0, PomPokret, PomStatusKOntejnera, PomForma);
+              
+
+           // }
+
 
         }
 
@@ -1685,7 +1773,7 @@ namespace Saobracaj.Izvoz
 
         private void btnUsluge_Click(object sender, EventArgs e)
         {
-    
+    ///Ovde se mora proveriti
 
             if (drumski == 1 || chkVaganje.Checked)
             {
@@ -1755,6 +1843,8 @@ namespace Saobracaj.Izvoz
 
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
             txtID.Text = selectedRow.Cells[0].Value?.ToString();
+            int Scenario = VratiScenarioSelektovanog(Convert.ToInt32(txtID.Text));
+
             int terminal = 0;
             if (txtID.Text == "")
             { txtID.Text = "0"; }
@@ -1786,10 +1876,39 @@ namespace Saobracaj.Izvoz
 
             MoguciScenario();
 
+            //
+
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija);
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija, Scenario);
             um.Show();
          
+        }
+
+        int VratiScenarioSelektovanog(int Kont)
+        {
+            int SC = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Scenario from Izvoz " +
+                " where ID = " + Kont, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                SC = Convert.ToInt32(dr["Scenario"].ToString());
+               
+            }
+            con.Close();
+
+            return SC;
+
         }
 
         int VratiOrgJed(int Manipulacija)
@@ -2056,7 +2175,11 @@ namespace Saobracaj.Izvoz
             OsveziGridNHM();
         }
 
-     
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmFormiranjePlanaIzvoz fpi = new Izvoz.frmFormiranjePlanaIzvoz();
+            fpi.Show();
+        }
     }
     public class PrivremeniNHM
     {
