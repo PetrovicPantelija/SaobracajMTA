@@ -125,6 +125,7 @@
             this.button25.Text = "Refresh";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // button24
             // 
