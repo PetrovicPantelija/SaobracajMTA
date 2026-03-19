@@ -245,8 +245,8 @@ namespace Saobracaj.Izvoz
             }
 
 
-
             ins.UpdateIzvozPorudzbenicaCarina(noviIDs, carinskiPostupakUUnutrasnjemTranzitu, polaznaCarinarnica, spediterPolazna, kontaktOsobaPolazna, odredisnaCarinarnica, spediterOdredisna, kontaktOsobaOdrdisna);
+            MessageBox.Show("Uspešno snimljeno!");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -276,17 +276,17 @@ namespace Saobracaj.Izvoz
 
         private void PostaviVidljivostKontaktPolja()
         {
-            if (scenario == 25) 
-            {
-                txtKontaktSpeditera.Visible = false;
-                lblKontaktOsobaPolazna.Visible = false;
-                txtKontaktSpediteraOdredisna.Visible = false;
-                lblKontaktOsobaOdredisna.Visible = false;
-                btnOdredisna.Visible = false;
-                btnPolazna.Visible = false;
+            //if (scenario == 25) 
+            //{
+            //    txtKontaktSpeditera.Visible = false;
+            //    lblKontaktOsobaPolazna.Visible = false;
+            //    txtKontaktSpediteraOdredisna.Visible = false;
+            //    lblKontaktOsobaOdredisna.Visible = false;
+            //    btnOdredisna.Visible = false;
+            //    btnPolazna.Visible = false;
 
 
-            }
+            //}
         }
 
         private void VratiPodatkeSelect()

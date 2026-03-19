@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelacija));
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDodatneNapomeneDrumski2 = new System.Windows.Forms.Label();
+            this.txtDodatneNapomeneDrumski2 = new System.Windows.Forms.TextBox();
             this.cboVrstaKamiona2 = new System.Windows.Forms.ComboBox();
             this.lblVrstaKamiona2 = new System.Windows.Forms.Label();
             this.lblDatumRealizacije = new System.Windows.Forms.Label();
@@ -131,6 +133,8 @@
             this.lblVrstaKamiona4 = new System.Windows.Forms.Label();
             this.lblDodatneNapomeneDrumski4 = new System.Windows.Forms.Label();
             this.txtDodatneNapomeneDrumski4 = new System.Windows.Forms.TextBox();
+            this.lblDodatneNapomeneDrumski1 = new System.Windows.Forms.Label();
+            this.txtDodatneNapomeneDrumski1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -150,6 +154,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblDodatneNapomeneDrumski2);
+            this.panel2.Controls.Add(this.txtDodatneNapomeneDrumski2);
             this.panel2.Controls.Add(this.cboVrstaKamiona2);
             this.panel2.Controls.Add(this.lblVrstaKamiona2);
             this.panel2.Controls.Add(this.lblDatumRealizacije);
@@ -176,6 +182,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1203, 309);
             this.panel2.TabIndex = 655;
+            // 
+            // lblDodatneNapomeneDrumski2
+            // 
+            this.lblDodatneNapomeneDrumski2.Location = new System.Drawing.Point(863, 177);
+            this.lblDodatneNapomeneDrumski2.Name = "lblDodatneNapomeneDrumski2";
+            this.lblDodatneNapomeneDrumski2.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski2.TabIndex = 637;
+            this.lblDodatneNapomeneDrumski2.Text = "Dodatne napomene drumski";
+            // 
+            // txtDodatneNapomeneDrumski2
+            // 
+            this.txtDodatneNapomeneDrumski2.Location = new System.Drawing.Point(861, 199);
+            this.txtDodatneNapomeneDrumski2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski2.Multiline = true;
+            this.txtDodatneNapomeneDrumski2.Name = "txtDodatneNapomeneDrumski2";
+            this.txtDodatneNapomeneDrumski2.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski2.TabIndex = 636;
             // 
             // cboVrstaKamiona2
             // 
@@ -459,7 +482,7 @@
             this.panel3.Controls.Add(this.lblVrstaKamiona3);
             this.panel3.Controls.Add(this.lblDodatneNapomenDrumski);
             this.panel3.Controls.Add(this.txtDodatneNapomeneDrumski);
-            this.panel3.Location = new System.Drawing.Point(1, 68);
+            this.panel3.Location = new System.Drawing.Point(1, 61);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1203, 466);
             this.panel3.TabIndex = 656;
@@ -880,6 +903,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblDodatneNapomeneDrumski1);
+            this.panel1.Controls.Add(this.txtDodatneNapomeneDrumski1);
             this.panel1.Controls.Add(this.cboVrstaKamiona);
             this.panel1.Controls.Add(this.lblVrstaKamiona);
             this.panel1.Controls.Add(this.lblOdlaznaMorskaLuka1);
@@ -890,7 +915,7 @@
             this.panel1.Controls.Add(this.cboMestoPreuzimanjaPunog);
             this.panel1.Controls.Add(this.lblMestoSpustanjaPunogKontejnera);
             this.panel1.Controls.Add(this.cboMestoSpustanjaPunogKontejnera);
-            this.panel1.Location = new System.Drawing.Point(1, 63);
+            this.panel1.Location = new System.Drawing.Point(1, 62);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1203, 255);
             this.panel1.TabIndex = 657;
@@ -1088,7 +1113,7 @@
             this.panel6.Controls.Add(this.lblVrstaKamiona4);
             this.panel6.Controls.Add(this.lblDodatneNapomeneDrumski4);
             this.panel6.Controls.Add(this.txtDodatneNapomeneDrumski4);
-            this.panel6.Location = new System.Drawing.Point(1, 62);
+            this.panel6.Location = new System.Drawing.Point(1, 61);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1203, 251);
             this.panel6.TabIndex = 659;
@@ -1304,18 +1329,35 @@
             // 
             // txtDodatneNapomeneDrumski4
             // 
-            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 90);
+            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 91);
             this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDodatneNapomeneDrumski4.Multiline = true;
             this.txtDodatneNapomeneDrumski4.Name = "txtDodatneNapomeneDrumski4";
             this.txtDodatneNapomeneDrumski4.Size = new System.Drawing.Size(310, 52);
             this.txtDodatneNapomeneDrumski4.TabIndex = 280;
             // 
+            // lblDodatneNapomeneDrumski1
+            // 
+            this.lblDodatneNapomeneDrumski1.Location = new System.Drawing.Point(858, 6);
+            this.lblDodatneNapomeneDrumski1.Name = "lblDodatneNapomeneDrumski1";
+            this.lblDodatneNapomeneDrumski1.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski1.TabIndex = 639;
+            this.lblDodatneNapomeneDrumski1.Text = "Dodatne napomene drumski";
+            // 
+            // txtDodatneNapomeneDrumski1
+            // 
+            this.txtDodatneNapomeneDrumski1.Location = new System.Drawing.Point(856, 27);
+            this.txtDodatneNapomeneDrumski1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski1.Multiline = true;
+            this.txtDodatneNapomeneDrumski1.Name = "txtDodatneNapomeneDrumski1";
+            this.txtDodatneNapomeneDrumski1.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski1.TabIndex = 638;
+            // 
             // frmRelacija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 540);
+            this.ClientSize = new System.Drawing.Size(1204, 531);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel1);
@@ -1445,5 +1487,9 @@
         private System.Windows.Forms.Label lblVrstaKamiona4;
         private System.Windows.Forms.Label lblDodatneNapomeneDrumski4;
         private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski4;
+        private System.Windows.Forms.Label lblDodatneNapomeneDrumski2;
+        private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski2;
+        private System.Windows.Forms.Label lblDodatneNapomeneDrumski1;
+        private System.Windows.Forms.TextBox txtDodatneNapomeneDrumski1;
     }
 }

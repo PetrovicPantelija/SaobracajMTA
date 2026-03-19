@@ -391,19 +391,21 @@ namespace Saobracaj.Izvoz
             bool isUkljucenDrumski = ((scenarioID == 13 || scenarioID == 26) && drumski == 1);
             lblMestoPreuzimanjaPunog.Visible = cboMestoPreuzimanjaPunog.Visible = isUkljucenDrumski;
             lblPlaniraniDatumSpustanja.Visible = dptPlaniranDatumSpustanja.Visible = !isUkljucenDrumski;
-
+            lblDodatneNapomeneDrumski1.Visible = txtDodatneNapomeneDrumski1.Visible = isUkljucenDrumski;
 
         }
 
         private void PodesiUnutrasnjostGrupe2(int scenarioID)
         {
             // 
-            bool isOsnovniIliA = (scenarioID == 7  && drumski == 0); // II ili II-A
+            bool isOsnovniIliA = ((scenarioID == 7 || scenarioID == 23) && drumski == 0); // II ili II-A
 
             lblPlaniraniDatumVreme.Visible = dtpPlaniraniDatumVremePreuzimanja2.Visible = isOsnovniIliA;
             lblDatumRealizacije.Visible = dtpDatumRealizacijeUtovaraKontejnera2.Visible = isOsnovniIliA;
             lblPlaniranDatumSpustanja.Visible = dptPlaniranDatumSpustanja2.Visible = isOsnovniIliA;
-           
+            lblDodatneNapomeneDrumski2.Visible = txtDodatneNapomeneDrumski2.Visible = !isOsnovniIliA;
+
+
 
             if (scenarioID == 7 && drumski == 1)
             {
@@ -416,12 +418,12 @@ namespace Saobracaj.Izvoz
 
             }
 
-            if (scenarioID == 23 && drumski == 0)
-            {
-                lblPlaniraniDatumVreme.Visible = dtpPlaniraniDatumVremePreuzimanja2.Visible = false;
+            //if (scenarioID == 23 && drumski == 0)
+            //{
+            //    lblPlaniraniDatumVreme.Visible = dtpPlaniraniDatumVremePreuzimanja2.Visible = false;
 
-                 dptPlaniraniDatumUtovaraKontejnera2.Visible = false; // doradi za la
-            }
+            //     dptPlaniraniDatumUtovaraKontejnera2.Visible = false; // doradi za la
+            //}
 
         }
 
@@ -452,6 +454,7 @@ namespace Saobracaj.Izvoz
                 lblKontaktOIstovarCerade3.Visible = cboKontaktOIstovarCerade3.Visible = true;
                 lblPlaniraniDatumUtovaraKontejnera3.Visible = dptPlaniraniDatumUtovaraKontejnera3.Visible = true;
                 lblDatumUtovaraCerade3.Visible = dptDatumUtovaraCerade3.Visible = false;
+                lblDodatneNapomenDrumski.Visible = txtDodatneNapomeneDrumski.Visible = false;
             }
 
             // ako je IIIL
@@ -719,6 +722,7 @@ namespace Saobracaj.Izvoz
                 {
                     vrstaKamiona = rezultat;
                 }
+                dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski1.Text) ? null : txtDodatneNapomeneDrumski1.Text.Trim();
 
             }
             else if (panel2.Visible)
@@ -741,6 +745,7 @@ namespace Saobracaj.Izvoz
                 {
                     vrstaKamiona = rezultat;
                 }
+                dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski2.Text) ? null : txtDodatneNapomeneDrumski2.Text.Trim();
             }
             else if (panel3.Visible)
             {
@@ -814,6 +819,7 @@ namespace Saobracaj.Izvoz
             ins.UpdateIzvozPorudzbenicaRelacija(noviIDs, odlaznaMorskaLuka, mestoSpustanjaPunogKontejnera, mestoPreuzimanjaPunogPraznog, mestoUtovaraKontejnera,
             adresaUtovaraKontejnera, kontaktOUtovaraKontejnera, planiranDatSpustanjaKontejnera, planiranDatPreuzimanjaKontejnera, planiranDatUtovaraKontejnera,
             realizacijaDatUtovaraKontejnera, mestoIstovaraCerade, kontaktOIstovaraCerade, planiraniDatumIstovaraCerade, mestoUtovaraCerade, kontaktOUtovaraCerade, planiraniDatumUtovaraCerade, dodatnaNapomenaDrumski, vrstaKamiona);
+            MessageBox.Show("Uspešno snimljeno!");
 
         }
 
@@ -894,7 +900,7 @@ namespace Saobracaj.Izvoz
                     SetVisibleComboValue(panel1, cboMestoSpustanjaPunogKontejnera, dr["MestoSpustanjaPunogKontejnera"]);
                     SetVisibleComboValue(panel1, cboMestoPreuzimanjaPunog, dr["MestoPreuzimanjaPunogPraznog"]);
                     SetVisibleDateValue(panel1, dptPlaniranDatumSpustanja, dr["PlaniranDatSpustanjaKontejnera"]);
-
+                    txtDodatneNapomeneDrumski1.Text = dr["DodatnaNapomenaDrumski"].ToString();
                     if (vrstaKamiona == 1)
                     { cboVrstaKamiona.Text = "CERADA"; }
                     else if (vrstaKamiona == 0)
@@ -916,8 +922,7 @@ namespace Saobracaj.Izvoz
                     SetVisibleComboValue(panel2, cboKontaktUtovaraKontejnera2, dr["KontaktOUtovaraKontejnera"]);
                     SetVisibleDateValue(panel2, dptPlaniraniDatumUtovaraKontejnera2, dr["PlaniranDatUtovaraKontejnera"]);
                     SetVisibleDateValue(panel2, dtpDatumRealizacijeUtovaraKontejnera2, dr["MestoIstovaraCerade"]);
-                    SetVisibleDateValue(panel2, dtpDatumRealizacijeUtovaraKontejnera2, dr["MestoIstovaraCerade"]);
-
+                    txtDodatneNapomeneDrumski2.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
                     if (vrstaKamiona == 1)
                     { cboVrstaKamiona2.Text = "CERADA"; }
@@ -1100,7 +1105,7 @@ namespace Saobracaj.Izvoz
 
 
                         //if (cboAdresaUtovaraKontejnera2.SelectedIndex < 0)
-                        if (cboAdresaUtovaraKontejnera2.SelectedValue == null || !int.TryParse(cboAdresaUtovaraKontejnera2.SelectedValue.ToString(), out int val) ||  val <= 0)
+                        if (cboAdresaUtovaraKontejnera2.SelectedValue == null || !int.TryParse(cboAdresaUtovaraKontejnera2.SelectedValue.ToString(), out int val) ||  val <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera2.Text))
                         {
                             if (string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera2.Text))
                             {
@@ -1110,7 +1115,7 @@ namespace Saobracaj.Izvoz
                         }
 
                         //if (cboKontaktUtovaraKontejnera2.SelectedIndex < 0)
-                        if (cboKontaktUtovaraKontejnera2.SelectedValue == null || !int.TryParse(cboKontaktUtovaraKontejnera2.SelectedValue.ToString(), out int val1) || val1 <= 0)
+                        if (cboKontaktUtovaraKontejnera2.SelectedValue == null || !int.TryParse(cboKontaktUtovaraKontejnera2.SelectedValue.ToString(), out int val1) || val1 <= 0 || string.IsNullOrWhiteSpace(cboKontaktUtovaraKontejnera2.Text))
                         {
                             if (string.IsNullOrWhiteSpace(cboKontaktUtovaraKontejnera2.Text))
                             {

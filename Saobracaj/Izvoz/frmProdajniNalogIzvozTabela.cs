@@ -358,7 +358,7 @@ namespace Saobracaj.Izvoz
 
                     string korisnik_zaBazu = Sifarnici.frmLogovanje.user;
                     int brojStavkePorudzbeniceID = id;
-
+                    //int brojStavkePorudzbeniceID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("BrojDokumenta"));
                     //if (Saobracaj.Pomocni.CustomTextBox.Show("Za koliko kontejnera želite da napravite grupni nalog? ", out unetaKolicina, gornjaGranica, "Potvrdite količinu") == DialogResult.OK)
                     //{
                     //    try
@@ -399,7 +399,7 @@ namespace Saobracaj.Izvoz
                     //        });
                     //    }
                     //}
-       
+
                     frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski);
                     gpu.ShowDialog();
                 }

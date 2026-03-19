@@ -1352,6 +1352,16 @@ namespace Saobracaj.Izvoz
             InsertIzvozKonacnaZaglavlje del = new InsertIzvozKonacnaZaglavlje();
             del.DelIzvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text));
         }
+        private decimal SafeDecimal(object dbValue)
+        {
+            if (dbValue == null || dbValue == DBNull.Value)
+                return 0m;
+            decimal result;
+            if (decimal.TryParse(dbValue.ToString(), out result))
+                return result;
+            return 0m;
+        }
+
         private void VratiPodatkeSelect(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -1399,10 +1409,10 @@ namespace Saobracaj.Izvoz
                 cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
                 cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
                 cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
-                txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
-                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
-                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
-                txtVGMBrod.Value = Convert.ToDecimal(dr["VGMBrod2"].ToString());
+                txVGMBrodBruto.Value = SafeDecimal(dr["VGMBrod"].ToString());
+                txtTaraKontejnera.Value = SafeDecimal(dr["Tara"].ToString());
+                txtOdvaganaTezina.Value = SafeDecimal(dr["VGMTezina"].ToString());
+                txtVGMBrod.Value = SafeDecimal(dr["VGMBrod2"].ToString());
                 if (dr["Vaganje"].ToString() == "1")
                 {
                     chkVaganje.Checked = true;
@@ -1434,10 +1444,10 @@ namespace Saobracaj.Izvoz
                 dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
                 dtpPeriodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
                 cboSpedicijaJ.SelectedValue = Convert.ToInt32(dr["SpedicijaJ"].ToString());
-                txtAutoDana.Value = Convert.ToDecimal(dr["AutoDana"].ToString());
+                txtAutoDana.Value = SafeDecimal(dr["AutoDana"].ToString());
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
-                dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
+                //dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
                 cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
                 cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
@@ -1445,7 +1455,7 @@ namespace Saobracaj.Izvoz
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
                 txtKontaktOsoba.Text = Convert.ToString(dr["KontaktOsoba"].ToString());
                 cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
-                dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
+                //dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
                 if (dr["Cirada"].ToString() == "1")
                 {
                     chkCirada.Text = "CIRADA";
@@ -1461,13 +1471,13 @@ namespace Saobracaj.Izvoz
                 cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
                 txtValuta.SelectedValue = dr["Valuta"].ToString();
                 txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
-                txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
-                txtCBM.Value = Convert.ToDecimal(dr["CBM"].ToString());
-                txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
-                txtKoleta.Value = Convert.ToDecimal(dr["BrojKoleta"].ToString());
-                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
-                txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
-                txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
+                txtCBMO.Value = SafeDecimal(dr["CBMO"].ToString());
+                txtCBM.Value = SafeDecimal(dr["CBM"].ToString());
+                txtKoletaO.Value = SafeDecimal(dr["BrojKoletaO"].ToString());
+                txtKoleta.Value = SafeDecimal(dr["BrojKoleta"].ToString());
+                txtBrutoO.Value = SafeDecimal(dr["BrutoRobeO"].ToString());
+                txtBrutoR.Value = SafeDecimal(dr["BrutoRobe"].ToString());
+                txtNetoR.Value = SafeDecimal(dr["NetoRobe"].ToString());
                 dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 txtBokingBrodara.Text = dr["BookingBrodara"].ToString();

@@ -298,6 +298,7 @@ namespace Saobracaj.Izvoz
             txtKorisnik.Text = tKorisnik;
             txtBrojDokumenta.Text = GetMaxID().ToString();
             DGVCombo();
+            dtpCutOffPort.Value = DateTime.Now;
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             PodesiDatagridView(dataGridView1);
         }
@@ -512,13 +513,18 @@ namespace Saobracaj.Izvoz
                     }
                     else { refer = row.Cells[7].Value.ToString(); };
 
-                    
-                    ins.InsProdajniNalogIzvozStavke(Convert.ToInt32(txtBrojDokumenta.Text), Convert.ToDouble(row.Cells[2].Value),
-                        row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[6].Value),
+                   
+                    int.TryParse(txtBrojDokumenta.Text, out int brojDokumenta);
+                    double.TryParse(row.Cells[2].Value?.ToString(), out double kolicina);
+                    int.TryParse(row.Cells[6].Value?.ToString(), out int cell6);
+                    int.TryParse(row.Cells[4].Value?.ToString(), out int cell4);
+
+                    ins.InsProdajniNalogIzvozStavke(brojDokumenta, kolicina,
+                        row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
                        refer, "OTVOREN")
                        ;
 
-                    ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, Convert.ToInt32(row.Cells[6].Value), Convert.ToInt32(row.Cells[4].Value), Convert.ToDouble(row.Cells[2].Value));
+                    ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
                     MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
                 
                 }
