@@ -1,9 +1,11 @@
-﻿using Syncfusion.ProjIO;
+﻿using Saobracaj.eDokumenta;
+using Syncfusion.ProjIO;
 using Syncfusion.Windows.Forms.Tools.XPMenus;
 using Syncfusion.WinForms.Controls.Styles;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -126,15 +128,29 @@ namespace Saobracaj.Skladista
                 }
             }
         }
-        public void InsertRN(string TipRn,string CarinskoSkladiste,int MagacinskiBroj,string TipMB,int Nalogodavac,int VlasnikRobe,string VrstaRobe,string NacinPakovanja,int OstalaSkladista,
-            decimal VrednostRobe,string Valuta,
+        public void InsertRN(string TipRn,string CarinskoSkladiste,int MagacinskiBroj,int Nalogodavac,int VlasnikRobe,string VrstaRobe,string NacinPakovanja,int OstalaSkladista,
             int PIB,int VrstaPrevoznogSredstva,int VrstaKamiona,string Vozilo,string Vozac,string BrojLk,string Telefon,int OdredisnaCarinarnica,int Spediter,string KontakOsobaSpeditera,
-            int MestoIstovara,string Adresa,string KontaktOsobaIstovar,DateTime PlaniraniDatum,DateTime PlaniraniDatum2,string PosebniUslovi,int DodatneUslugeID,string Napomena,int Aktivan,int Formiran)
+            int MestoIstovara,string Adresa,string KontaktOsobaIstovar,DateTime PlaniraniDatum,DateTime PlaniraniDatum2,string PosebniUslovi,int DodatneUslugeID,string Napomena,int Aktivan,int Formiran,
+            string Korisnik,string BrojKontejnera)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertRNCarinskoSkladiste";
             cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kontejner = new SqlParameter();
+            kontejner.ParameterName = "@BrojKontejnera";
+            kontejner.SqlDbType = SqlDbType.NVarChar;
+            kontejner.Direction = ParameterDirection.Input;
+            kontejner.Value = BrojKontejnera;
+            cmd.Parameters.Add(kontejner);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Direction= ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
 
             SqlParameter formiran = new SqlParameter();
             formiran.ParameterName = "@Formiran";
@@ -299,13 +315,6 @@ namespace Saobracaj.Skladista
             magacinskiBroj.Value = MagacinskiBroj;
             cmd.Parameters.Add(magacinskiBroj);
 
-            SqlParameter tipMb = new SqlParameter();
-            tipMb.ParameterName = "@TipMB";
-            tipMb.SqlDbType = SqlDbType.NVarChar;
-            tipMb.Direction = ParameterDirection.Input;
-            tipMb.Value = TipMB;
-            cmd.Parameters.Add(tipMb);
-
             SqlParameter nalogodavac = new SqlParameter();
             nalogodavac.ParameterName = "@Nalogodavac";
             nalogodavac.SqlDbType = SqlDbType.Int;
@@ -333,20 +342,6 @@ namespace Saobracaj.Skladista
             ostalaSkladista.Direction = ParameterDirection.Input;
             ostalaSkladista.Value = OstalaSkladista;
             cmd.Parameters.Add(ostalaSkladista);
-
-            SqlParameter vrednostRobe = new SqlParameter();
-            vrednostRobe.ParameterName = "@VrednostRobe";
-            vrednostRobe.SqlDbType = SqlDbType.Decimal;
-            vrednostRobe.Direction = ParameterDirection.Input;
-            vrednostRobe.Value = VrednostRobe;
-            cmd.Parameters.Add(vrednostRobe);
-
-            SqlParameter valuta = new SqlParameter();
-            valuta.ParameterName = "@Valuta";
-            valuta.SqlDbType = SqlDbType.NVarChar;
-            valuta.Direction = ParameterDirection.Input;
-            valuta.Value = Valuta;
-            cmd.Parameters.Add(valuta);
 
             SqlParameter nacinPakovanja = new SqlParameter();
             nacinPakovanja.ParameterName = "@NacinPakovanja";
@@ -389,15 +384,36 @@ namespace Saobracaj.Skladista
                 }
             }
         }
-        public void UpdateRN(int ID,string TipRn, string CarinskoSkladiste, int MagacinskiBroj, string TipMB, int Nalogodavac, int VlasnikRobe, string VrstaRobe, string NacinPakovanja, int OstalaSkladista,
-            decimal VrednostRobe, string Valuta,
+        public void UpdateRN(int ID,string TipRn, string CarinskoSkladiste, int MagacinskiBroj, int Nalogodavac, int VlasnikRobe, string VrstaRobe, string NacinPakovanja, int OstalaSkladista,
             int PIB, int VrstaPrevoznogSredstva, int VrstaKamiona, string Vozilo, string Vozac, string BrojLk, string Telefon, int OdredisnaCarinarnica, int Spediter, string KontakOsobaSpeditera,
-            int MestoIstovara, string Adresa, string KontaktOsobaIstovar, DateTime PlaniraniDatum, DateTime PlaniraniDatum2, string PosebniUslovi, int DodatneUslugeID, string Napomena, int Aktivan, int Formiran)
+            int MestoIstovara, string Adresa, string KontaktOsobaIstovar, DateTime PlaniraniDatum, DateTime PlaniraniDatum2, string PosebniUslovi, int DodatneUslugeID, 
+            string Napomena, int Aktivan, int Formiran,string Status,string Korisnik,string BrojKontejnera)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "UpdateRNCarinskoSkladiste";
             cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kontejner=new SqlParameter();
+            kontejner.ParameterName = "@BrojKontejnera";
+            kontejner.SqlDbType = SqlDbType.NVarChar;
+            kontejner.Direction = ParameterDirection.Input;
+            kontejner.Value = BrojKontejnera;
+            cmd.Parameters.Add(kontejner);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName= "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+            SqlParameter status = new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.NVarChar;
+            status.Direction = ParameterDirection.Input;
+            status.Value = Status;
+            cmd.Parameters.Add(status);
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@ID";
@@ -570,13 +586,6 @@ namespace Saobracaj.Skladista
             magacinskiBroj.Value = MagacinskiBroj;
             cmd.Parameters.Add(magacinskiBroj);
 
-            SqlParameter tipMb = new SqlParameter();
-            tipMb.ParameterName = "@TipMB";
-            tipMb.SqlDbType = SqlDbType.NVarChar;
-            tipMb.Direction = ParameterDirection.Input;
-            tipMb.Value = TipMB;
-            cmd.Parameters.Add(tipMb);
-
             SqlParameter nalogodavac = new SqlParameter();
             nalogodavac.ParameterName = "@Nalogodavac";
             nalogodavac.SqlDbType = SqlDbType.Int;
@@ -605,12 +614,475 @@ namespace Saobracaj.Skladista
             ostalaSkladista.Value = OstalaSkladista;
             cmd.Parameters.Add(ostalaSkladista);
 
-            SqlParameter vrednostRobe = new SqlParameter();
-            vrednostRobe.ParameterName = "@VrednostRobe";
-            vrednostRobe.SqlDbType = SqlDbType.Decimal;
-            vrednostRobe.Direction = ParameterDirection.Input;
-            vrednostRobe.Value = VrednostRobe;
-            cmd.Parameters.Add(vrednostRobe);
+            SqlParameter nacinPakovanja = new SqlParameter();
+            nacinPakovanja.ParameterName = "@NacinPakovanja";
+            nacinPakovanja.SqlDbType = SqlDbType.NVarChar;
+            nacinPakovanja.Direction = ParameterDirection.Input;
+            nacinPakovanja.Value = NacinPakovanja;
+            cmd.Parameters.Add(nacinPakovanja);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdateMagacinskiBrojCarinski(int ID, string Naziv)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateMagacinskiBrojCarinski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter naziv = new SqlParameter();
+            naziv.ParameterName = "@Naziv";
+            naziv.SqlDbType = SqlDbType.NVarChar;
+            naziv.Direction = ParameterDirection.Input;
+            naziv.Value = Naziv;
+            cmd.Parameters.Add(naziv);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+
+        public void InsertMagacinskiBrojCarinski(int ID,string Naziv)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertMagacinskiBrojCarinski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter naziv = new SqlParameter();
+            naziv.ParameterName = "@Naziv";
+            naziv.SqlDbType = SqlDbType.NVarChar;
+            naziv.Direction = ParameterDirection.Input;
+            naziv.Value = Naziv;
+            cmd.Parameters.Add(naziv);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void DeleteMagacinskiBrojCarinski(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteMagacinskiBrojCarinski";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+
+        public void InsertPrijemnicaCarinska(string Kreirao,int RN,int? CarinskiPostupak,string SmestajniDokument,string Rok,int? Posiljalac,string Faktura,string CRM,string Status)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRNCarinskoSkladistePrijemnica";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kreirao = new SqlParameter();
+            kreirao.ParameterName = "@Kreirao";
+            kreirao.SqlDbType = SqlDbType.NVarChar;
+            kreirao.Direction = ParameterDirection.Input;
+            kreirao.Value = Kreirao;
+            cmd.Parameters.Add(kreirao);
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter postupak=new SqlParameter();
+            postupak.ParameterName = "@CarinskiPostupak";
+            postupak.SqlDbType = SqlDbType.Int;
+            postupak.Direction = ParameterDirection.Input;
+            postupak.Value = CarinskiPostupak.HasValue ? (object)CarinskiPostupak.Value : DBNull.Value;
+            cmd.Parameters.Add(postupak);
+
+            SqlParameter smestajniDokument = new SqlParameter();
+            smestajniDokument.ParameterName = "@SmestajniDokument";
+            smestajniDokument.SqlDbType = SqlDbType.NVarChar;
+            smestajniDokument.Direction = ParameterDirection.Input;
+            smestajniDokument.Value = SmestajniDokument;
+            cmd.Parameters.Add(smestajniDokument);
+
+            SqlParameter rok = new SqlParameter();
+            rok.ParameterName = "@Rok";
+            rok.SqlDbType = SqlDbType.NVarChar;
+            rok.Direction = ParameterDirection.Input;
+            rok.Value = Rok;
+            cmd.Parameters.Add(rok);
+
+            SqlParameter posiljalac = new SqlParameter();
+            posiljalac.ParameterName = "@Posiljalac";
+            posiljalac.SqlDbType = SqlDbType.Int;
+            posiljalac.Value = Posiljalac.HasValue ? (object)Posiljalac.Value : DBNull.Value;
+            cmd.Parameters.Add(posiljalac);
+
+            SqlParameter faktura = new SqlParameter();
+            faktura.ParameterName = "@Faktura";
+            faktura.SqlDbType = SqlDbType.NVarChar;
+            faktura.Direction = ParameterDirection.Input;
+            faktura.Value = Faktura;
+            cmd.Parameters.Add(faktura);
+
+            SqlParameter crm = new SqlParameter();
+            crm.ParameterName = "@CRM";
+            crm.SqlDbType = SqlDbType.NVarChar;
+            crm.Direction = ParameterDirection.Input;
+            crm.Value = CRM;
+            cmd.Parameters.Add(crm);
+
+            SqlParameter status= new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.NVarChar;
+            status.Direction = ParameterDirection.Input;
+            status.Value = Status;
+            cmd.Parameters.Add(status);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdatePrijemnicaCarinska(string Kreirao, int ID,int RN, int? CarinskiPostupak, string SmestajniDokument, string Rok, int? Posiljalac, string Faktura, string CRM, string Status,int Proces)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRNCarinskoSkladistePrijemnica";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter proces = new SqlParameter();
+            proces.ParameterName = "@Uprocesu";
+            proces.SqlDbType = SqlDbType.Int;
+            proces.Direction = ParameterDirection.Input;
+            proces.Value = Proces;
+            cmd.Parameters.Add(proces);
+
+            SqlParameter kreirao = new SqlParameter();
+            kreirao.ParameterName = "@Kreirao";
+            kreirao.SqlDbType = SqlDbType.NVarChar;
+            kreirao.Direction = ParameterDirection.Input;
+            kreirao.Value = Kreirao;
+            cmd.Parameters.Add(kreirao);
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter postupak = new SqlParameter();
+            postupak.ParameterName = "@CarinskiPostupak";
+            postupak.SqlDbType = SqlDbType.Int;
+            postupak.Direction = ParameterDirection.Input;
+            postupak.Value = CarinskiPostupak.HasValue ? (object)CarinskiPostupak.Value : DBNull.Value;
+            cmd.Parameters.Add(postupak);
+
+            SqlParameter smestajniDokument = new SqlParameter();
+            smestajniDokument.ParameterName = "@SmestajniDokument";
+            smestajniDokument.SqlDbType = SqlDbType.NVarChar;
+            smestajniDokument.Direction = ParameterDirection.Input;
+            smestajniDokument.Value = SmestajniDokument;
+            cmd.Parameters.Add(smestajniDokument);
+
+            SqlParameter rok = new SqlParameter();
+            rok.ParameterName = "@Rok";
+            rok.SqlDbType = SqlDbType.NVarChar;
+            rok.Direction = ParameterDirection.Input;
+            rok.Value = Rok;
+            cmd.Parameters.Add(rok);
+
+            SqlParameter posiljalac = new SqlParameter();
+            posiljalac.ParameterName = "@Posiljalac";
+            posiljalac.SqlDbType = SqlDbType.Int;
+            posiljalac.Value = Posiljalac.HasValue ? (object)Posiljalac.Value : DBNull.Value;
+            cmd.Parameters.Add(posiljalac);
+
+            SqlParameter faktura = new SqlParameter();
+            faktura.ParameterName = "@Faktura";
+            faktura.SqlDbType = SqlDbType.NVarChar;
+            faktura.Direction = ParameterDirection.Input;
+            faktura.Value = Faktura;
+            cmd.Parameters.Add(faktura);
+
+            SqlParameter crm = new SqlParameter();
+            crm.ParameterName = "@CRM";
+            crm.SqlDbType = SqlDbType.NVarChar;
+            crm.Direction = ParameterDirection.Input;
+            crm.Value = CRM;
+            cmd.Parameters.Add(crm);
+
+            SqlParameter status = new SqlParameter();
+            status.ParameterName = "@Status";
+            status.SqlDbType = SqlDbType.NVarChar;
+            status.Direction = ParameterDirection.Input;
+            status.Value = Status;
+            cmd.Parameters.Add(status);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena,int RB,int NHM,string Naziv,string Naimenovanje,string JM,decimal Koleta,decimal Bruto,decimal Vrednost,
+            string Valuta,string Pozicija,int Paleta,int VrstaPaleta,int PDV,int Carina)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRNCarinskoPrijemnicaStavke";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter carina = new SqlParameter();
+            carina.ParameterName = "@Carina";
+            carina.DbType = DbType.Int32;
+            carina.Direction = ParameterDirection.Input;
+            carina.Value = Carina;
+            cmd.Parameters.Add(carina);
+
+            SqlParameter pdv = new SqlParameter();
+            pdv.ParameterName = "@PDV";
+            pdv.DbType = DbType.Int32;
+            pdv.Direction = ParameterDirection.Input;
+            pdv.Value = PDV;
+            cmd.Parameters.Add(pdv);
+
+            SqlParameter vrstaPalete = new SqlParameter();
+            vrstaPalete.ParameterName = "@VrstaPaleta";
+            vrstaPalete.SqlDbType = SqlDbType.Int;
+            vrstaPalete.Direction = ParameterDirection.Input;
+            vrstaPalete.Value = VrstaPaleta;
+            cmd.Parameters.Add(vrstaPalete);
+
+            SqlParameter paleta = new SqlParameter();
+            paleta.ParameterName = "@Paleta";
+            paleta.SqlDbType = SqlDbType.Int;
+            paleta.Direction = ParameterDirection.Input;
+            paleta.Value = Paleta;
+            cmd.Parameters.Add(paleta);
+
+
+            SqlParameter pozicija = new SqlParameter();
+            pozicija.ParameterName = "@Pozicija";
+            pozicija.SqlDbType = SqlDbType.NVarChar;
+            pozicija.Direction = ParameterDirection.Input;
+            pozicija.Value = Pozicija;
+            cmd.Parameters.Add(pozicija);
 
             SqlParameter valuta = new SqlParameter();
             valuta.ParameterName = "@Valuta";
@@ -619,13 +1091,209 @@ namespace Saobracaj.Skladista
             valuta.Value = Valuta;
             cmd.Parameters.Add(valuta);
 
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.DbType = DbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost;
+            cmd.Parameters.Add(vrednost);
 
-            SqlParameter nacinPakovanja = new SqlParameter();
-            nacinPakovanja.ParameterName = "@NacinPakovanja";
-            nacinPakovanja.SqlDbType = SqlDbType.NVarChar;
-            nacinPakovanja.Direction = ParameterDirection.Input;
-            nacinPakovanja.Value = NacinPakovanja;
-            cmd.Parameters.Add(nacinPakovanja);
+            SqlParameter bruto= new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.DbType = DbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta;
+            cmd.Parameters.Add(koleta);
+
+
+            SqlParameter jm = new SqlParameter();
+            jm.ParameterName = "@JM";
+            jm.SqlDbType = SqlDbType.NVarChar;
+            jm.Direction = ParameterDirection.Input;
+            jm.Value = JM;
+            cmd.Parameters.Add(jm);
+
+            SqlParameter naimenovanje = new SqlParameter();
+            naimenovanje.ParameterName = "@Naimenovanje";
+            naimenovanje.SqlDbType = SqlDbType.NVarChar;
+            naimenovanje.Direction = ParameterDirection.Input;
+            naimenovanje.Value = Naimenovanje;
+            cmd.Parameters.Add(naimenovanje);
+
+
+            SqlParameter naziv = new SqlParameter();
+            naziv.ParameterName= "@Naziv";
+            naziv.SqlDbType = SqlDbType.NVarChar;
+            naziv.Direction = ParameterDirection.Input;
+            naziv.Value = Naziv;
+            cmd.Parameters.Add(naziv);
+
+
+            SqlParameter nhm = new SqlParameter();
+            nhm.ParameterName = "@NHM";
+            nhm.SqlDbType = SqlDbType.Int;
+            nhm.Direction = ParameterDirection.Input;
+            nhm.Value = NHM;
+            cmd.Parameters.Add(nhm);
+
+            SqlParameter rb = new SqlParameter();
+            rb.ParameterName = "@RB";
+            rb.SqlDbType = SqlDbType.Int;
+            rb.Direction = ParameterDirection.Input;
+            rb.Value = RB;
+            cmd.Parameters.Add(rb);
+
+            SqlParameter idNadredjena = new SqlParameter();
+            idNadredjena.ParameterName = "@IDNadredjena";
+            idNadredjena.SqlDbType = SqlDbType.Int;
+            idNadredjena.Direction = ParameterDirection.Input;
+            idNadredjena.Value = IDNadredjena;
+            cmd.Parameters.Add(idNadredjena);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void InsertNalogRukovalac(int ID,int Prijemnica,int Rukovalac,string Pozicija,decimal Koleta,int Paleta,int PaletaTip,decimal Bruto,int DodatneUsluge,string Napomena,
+            string Vozilo,int Postupak,string Izdao)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRNCarinskoRukovalac";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter izdao = new SqlParameter();
+            izdao.ParameterName = "@Izdao";
+            izdao.SqlDbType = SqlDbType.NVarChar;
+            izdao.Direction = ParameterDirection.Input;
+            izdao.Value = Izdao;
+            cmd.Parameters.Add(izdao);
+
+            SqlParameter postupak = new SqlParameter();
+                        postupak.ParameterName = "@Postupak";
+            postupak.SqlDbType = SqlDbType.Int;
+            postupak.Direction = ParameterDirection.Input;
+            postupak.Value = Postupak;
+            cmd.Parameters.Add(postupak);
+
+            SqlParameter vozilo = new SqlParameter();
+            vozilo.ParameterName = "@Vozilo";
+            vozilo.SqlDbType = SqlDbType.NVarChar;
+            vozilo.Direction = ParameterDirection.Input;
+            vozilo.Value = Vozilo;
+            cmd.Parameters.Add(vozilo);
+
+
+            SqlParameter napomena = new SqlParameter();
+            napomena.ParameterName = "@Napomena";
+            napomena.SqlDbType = SqlDbType.NVarChar;
+            napomena.Direction = ParameterDirection.Input;
+            napomena.Value = Napomena;
+            cmd.Parameters.Add(napomena);
+
+
+            SqlParameter dodatneUsluge = new SqlParameter();
+            dodatneUsluge.ParameterName = "@DodatneUslugeID";
+            dodatneUsluge.SqlDbType = SqlDbType.Int;
+            dodatneUsluge.Direction = ParameterDirection.Input;
+            dodatneUsluge.Value = DodatneUsluge;
+            cmd.Parameters.Add(dodatneUsluge);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.DbType = DbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+
+            SqlParameter paleta = new SqlParameter();
+            paleta.ParameterName = "@Paleta";
+            paleta.SqlDbType = SqlDbType.Int;
+            paleta.Direction = ParameterDirection.Input;
+            paleta.Value = Paleta;
+            cmd.Parameters.Add(paleta);
+
+            SqlParameter paletaTip = new SqlParameter();
+            paletaTip.ParameterName = "@PaletaTip";
+            paletaTip.SqlDbType = SqlDbType.Int;
+            paletaTip.Direction = ParameterDirection.Input;
+            paletaTip.Value = PaletaTip;
+            cmd.Parameters.Add(paletaTip);
+
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta;
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter pozicija = new SqlParameter();
+            pozicija.ParameterName = "@Pozicija";
+            pozicija.SqlDbType = SqlDbType.NVarChar;
+            pozicija.Direction = ParameterDirection.Input;
+            pozicija.Value = Pozicija;
+            cmd.Parameters.Add(pozicija);
+
+            SqlParameter rukovalac = new SqlParameter();
+            rukovalac.ParameterName = "@Rukovalac";
+            rukovalac.SqlDbType = SqlDbType.Int;
+            rukovalac.Direction = ParameterDirection.Input;
+            rukovalac.Value = Rukovalac;
+            cmd.Parameters.Add(rukovalac);
+
+            SqlParameter prijemnica = new SqlParameter();
+            prijemnica.ParameterName = "@Prijemnica";
+            prijemnica.SqlDbType = SqlDbType.Int;
+            prijemnica.Direction = ParameterDirection.Input;
+            prijemnica.Value = Prijemnica;
+            cmd.Parameters.Add(prijemnica);
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName= "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

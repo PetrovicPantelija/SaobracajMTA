@@ -28,7 +28,8 @@ namespace Saobracaj.Skladista
         {
             if (Tip == "Carinsko")
             {
-                var select = @"Select RnCarinskoSkladiste.ID as ID,TipRN,CarinskoSkladiste,MagacinskiBroj,TipMB,p1.PaNaziv as Nalogodavac,p2.PaNaziv as VlasnikRobe,VrstaRobe,NacinPakovanja,OstalaSkladista,VrednostRobe,Valuta,
+                var select = @"Select RnCarinskoSkladiste.ID as ID,TipRN,RNCarinskoSkladiste.Status as Status,BrojKontejnera,CarinskoSkladiste,MagacinskiBroj,p1.PaNaziv as Nalogodavac,
+p2.PaNaziv as VlasnikRobe,VrstaRobe,NacinPakovanja,OstalaSkladista,
 PIB,VrstePrevoznogSredstva.Naziv as VrstaPrevoznogSredstva,VrstaVozila.Naziv as VrstaKamiona,Vozilo,Vozac,BrojLK,BrojTelefona,Carinarnice.CINaziv as OdredisnaCarinarnica,
 p3.PaNaziv as Spediter,KontakOsobaSpeditera,MestaUtovara.Naziv as MestoIstovara,Adresa,KontaktOsobaIstovar,PlaniraniDatum,PlaniraniDatum2,PosebniUslovi,Napomena,Aktivan,Formiran
 From RNCarinskoSkladiste
@@ -39,7 +40,7 @@ inner join VrstePrevoznogSredstva on RNCarinskoSkladiste.VrstaPrevoznogSredstva=
 inner join VrstaVozila on RNCarinskoSkladiste.VrstaKamiona=VrstaVozila.id
 inner join Carinarnice on RNCarinskoSkladiste.OdredisnaCarinarnica=Carinarnice.ID
 inner join MestaUtovara on RNCarinskoSkladiste.MestoIstovara=MestaUtovara.ID
-Where TipRN='Carinsko'";
+Where TipRN='Carinsko' order by RNCarinskoSkladiste.ID desc";
 
 
                 var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -82,20 +83,27 @@ Where TipRN='Carinsko'";
             );
         }
         int ID;
+        string Status;
         private void button24_Click(object sender, EventArgs e)
         {
             if (gridGroupingControl1.Table.CurrentRecord != null)
             {
                ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+               Status= gridGroupingControl1.Table.CurrentRecord.GetValue("Status").ToString();
 
                 var main = this.TopLevelControl as NewMain;
                 if (main == null) return;
 
                 main.OtvoriFormuSaPravom(
                     RnCSnovi.Name,
-                    () => new RnCS(Tip,ID)
+                    () => new RnCS(Tip,ID,Status)
                 );
             }
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            RefreshGV();
         }
     }
 }

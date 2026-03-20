@@ -36,15 +36,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboNalogodavac = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboValuta = new System.Windows.Forms.ComboBox();
+            this.txtVrstaRobe = new System.Windows.Forms.TextBox();
             this.txtPIB = new System.Windows.Forms.TextBox();
-            this.txtVrednostRobe = new System.Windows.Forms.TextBox();
             this.cboADR = new System.Windows.Forms.ComboBox();
             this.txtNacinPakovanja = new System.Windows.Forms.TextBox();
             this.cboVlasnikRobe = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -80,7 +77,10 @@
             this.cboMestoIstovara = new System.Windows.Forms.ComboBox();
             this.cboSpediter = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.btnIzbaci = new System.Windows.Forms.Button();
+            this.btnDodaj = new System.Windows.Forms.Button();
+            this.dgvUsluge = new System.Windows.Forms.DataGridView();
+            this.cboDodatneUsluge = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -95,13 +95,24 @@
             this.btnFormiranRN = new System.Windows.Forms.Button();
             this.btnPrijemnica = new System.Windows.Forms.Button();
             this.btnMagacinskiBroj = new System.Windows.Forms.Button();
-            this.btnSkini = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtVrstaRobe = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnMbNazad = new System.Windows.Forms.Button();
+            this.btnMbSave = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtMbNaziv = new System.Windows.Forms.TextBox();
+            this.txtMbID = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtKontejner = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsluge)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -173,52 +184,40 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.SeaShell;
             this.panel1.Controls.Add(this.txtVrstaRobe);
-            this.panel1.Controls.Add(this.cboValuta);
             this.panel1.Controls.Add(this.txtPIB);
-            this.panel1.Controls.Add(this.txtVrednostRobe);
             this.panel1.Controls.Add(this.cboADR);
             this.panel1.Controls.Add(this.txtNacinPakovanja);
             this.panel1.Controls.Add(this.cboVlasnikRobe);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label28);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(12, 125);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(939, 112);
+            this.panel1.Size = new System.Drawing.Size(939, 61);
             this.panel1.TabIndex = 5;
             // 
-            // cboValuta
+            // txtVrstaRobe
             // 
-            this.cboValuta.FormattingEnabled = true;
-            this.cboValuta.Location = new System.Drawing.Point(823, 26);
-            this.cboValuta.Name = "cboValuta";
-            this.cboValuta.Size = new System.Drawing.Size(113, 21);
-            this.cboValuta.TabIndex = 5;
+            this.txtVrstaRobe.Location = new System.Drawing.Point(240, 27);
+            this.txtVrstaRobe.Name = "txtVrstaRobe";
+            this.txtVrstaRobe.Size = new System.Drawing.Size(176, 20);
+            this.txtVrstaRobe.TabIndex = 6;
             // 
             // txtPIB
             // 
-            this.txtPIB.Location = new System.Drawing.Point(3, 80);
+            this.txtPIB.Location = new System.Drawing.Point(806, 25);
             this.txtPIB.Name = "txtPIB";
             this.txtPIB.Size = new System.Drawing.Size(121, 20);
             this.txtPIB.TabIndex = 4;
             // 
-            // txtVrednostRobe
-            // 
-            this.txtVrednostRobe.Location = new System.Drawing.Point(730, 26);
-            this.txtVrednostRobe.Name = "txtVrednostRobe";
-            this.txtVrednostRobe.Size = new System.Drawing.Size(60, 20);
-            this.txtVrednostRobe.TabIndex = 4;
-            // 
             // cboADR
             // 
             this.cboADR.FormattingEnabled = true;
-            this.cboADR.Location = new System.Drawing.Point(589, 25);
+            this.cboADR.Location = new System.Drawing.Point(635, 24);
             this.cboADR.Name = "cboADR";
-            this.cboADR.Size = new System.Drawing.Size(121, 21);
+            this.cboADR.Size = new System.Drawing.Size(148, 21);
             this.cboADR.TabIndex = 3;
             // 
             // txtNacinPakovanja
@@ -241,37 +240,17 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label10.Location = new System.Drawing.Point(3, 64);
+            this.label10.Location = new System.Drawing.Point(806, 9);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(24, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "PIB";
             // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label28.Location = new System.Drawing.Point(858, 9);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(49, 13);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "VALUTA";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label9.Location = new System.Drawing.Point(716, 9);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "VREDNOST ROBE";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label8.Location = new System.Drawing.Point(586, 9);
+            this.label8.Location = new System.Drawing.Point(632, 8);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 0;
@@ -313,16 +292,18 @@
             this.panel2.Controls.Add(this.txtTelefon);
             this.panel2.Controls.Add(this.txtLK);
             this.panel2.Controls.Add(this.txtVozac);
+            this.panel2.Controls.Add(this.txtKontejner);
             this.panel2.Controls.Add(this.txtVozilo);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.cboVrstaKamiona);
             this.panel2.Controls.Add(this.cboTipTransporta);
             this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.label29);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Location = new System.Drawing.Point(293, 243);
+            this.panel2.Location = new System.Drawing.Point(293, 192);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(658, 127);
             this.panel2.TabIndex = 6;
@@ -450,7 +431,7 @@
             this.panel3.Controls.Add(this.cboCarinarnica);
             this.panel3.Controls.Add(this.cboMestoIstovara);
             this.panel3.Controls.Add(this.cboSpediter);
-            this.panel3.Location = new System.Drawing.Point(293, 376);
+            this.panel3.Location = new System.Drawing.Point(293, 325);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(658, 196);
             this.panel3.TabIndex = 7;
@@ -601,7 +582,10 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.LemonChiffon;
-            this.panel4.Controls.Add(this.checkedListBox1);
+            this.panel4.Controls.Add(this.btnIzbaci);
+            this.panel4.Controls.Add(this.btnDodaj);
+            this.panel4.Controls.Add(this.dgvUsluge);
+            this.panel4.Controls.Add(this.cboDodatneUsluge);
             this.panel4.Controls.Add(this.label27);
             this.panel4.Controls.Add(this.label26);
             this.panel4.Controls.Add(this.label25);
@@ -609,22 +593,51 @@
             this.panel4.Controls.Add(this.txtPosebniUslovi);
             this.panel4.Location = new System.Drawing.Point(957, 125);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 447);
+            this.panel4.Size = new System.Drawing.Size(200, 396);
             this.panel4.TabIndex = 8;
             // 
-            // checkedListBox1
+            // btnIzbaci
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(6, 78);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(180, 289);
-            this.checkedListBox1.TabIndex = 2;
+            this.btnIzbaci.Location = new System.Drawing.Point(111, 108);
+            this.btnIzbaci.Name = "btnIzbaci";
+            this.btnIzbaci.Size = new System.Drawing.Size(75, 23);
+            this.btnIzbaci.TabIndex = 4;
+            this.btnIzbaci.Text = "Izbaci";
+            this.btnIzbaci.UseVisualStyleBackColor = true;
+            this.btnIzbaci.Click += new System.EventHandler(this.btnIzbaci_Click);
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Location = new System.Drawing.Point(6, 108);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(75, 23);
+            this.btnDodaj.TabIndex = 4;
+            this.btnDodaj.Text = "Dodaj";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
+            // 
+            // dgvUsluge
+            // 
+            this.dgvUsluge.AllowUserToAddRows = false;
+            this.dgvUsluge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsluge.Location = new System.Drawing.Point(6, 137);
+            this.dgvUsluge.Name = "dgvUsluge";
+            this.dgvUsluge.Size = new System.Drawing.Size(183, 199);
+            this.dgvUsluge.TabIndex = 3;
+            // 
+            // cboDodatneUsluge
+            // 
+            this.cboDodatneUsluge.FormattingEnabled = true;
+            this.cboDodatneUsluge.Location = new System.Drawing.Point(6, 80);
+            this.cboDodatneUsluge.Name = "cboDodatneUsluge";
+            this.cboDodatneUsluge.Size = new System.Drawing.Size(180, 21);
+            this.cboDodatneUsluge.TabIndex = 2;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label27.Location = new System.Drawing.Point(3, 381);
+            this.label27.Location = new System.Drawing.Point(3, 339);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(68, 13);
             this.label27.TabIndex = 0;
@@ -652,7 +665,7 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(3, 397);
+            this.txtNapomena.Location = new System.Drawing.Point(6, 355);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(183, 34);
@@ -710,6 +723,7 @@
             this.btnStorno.TabIndex = 10;
             this.btnStorno.Text = "STORNO";
             this.btnStorno.UseVisualStyleBackColor = false;
+            this.btnStorno.Click += new System.EventHandler(this.btnStorno_Click);
             // 
             // btnIspravka
             // 
@@ -721,6 +735,7 @@
             this.btnIspravka.TabIndex = 10;
             this.btnIspravka.Text = "ISPRAVKA";
             this.btnIspravka.UseVisualStyleBackColor = false;
+            this.btnIspravka.Click += new System.EventHandler(this.btnIspravka_Click);
             // 
             // btnSaglasnost
             // 
@@ -767,15 +782,6 @@
             this.btnMagacinskiBroj.UseVisualStyleBackColor = true;
             this.btnMagacinskiBroj.Click += new System.EventHandler(this.btnMagacinskiBroj_Click);
             // 
-            // btnSkini
-            // 
-            this.btnSkini.Location = new System.Drawing.Point(358, 88);
-            this.btnSkini.Name = "btnSkini";
-            this.btnSkini.Size = new System.Drawing.Size(75, 23);
-            this.btnSkini.TabIndex = 12;
-            this.btnSkini.Text = "Ukloni";
-            this.btnSkini.UseVisualStyleBackColor = true;
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 90);
@@ -783,12 +789,101 @@
             this.textBox1.Size = new System.Drawing.Size(124, 20);
             this.textBox1.TabIndex = 13;
             // 
-            // txtVrstaRobe
+            // panel5
             // 
-            this.txtVrstaRobe.Location = new System.Drawing.Point(240, 27);
-            this.txtVrstaRobe.Name = "txtVrstaRobe";
-            this.txtVrstaRobe.Size = new System.Drawing.Size(176, 20);
-            this.txtVrstaRobe.TabIndex = 6;
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.btnMbNazad);
+            this.panel5.Controls.Add(this.btnMbSave);
+            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.txtMbNaziv);
+            this.panel5.Controls.Add(this.txtMbID);
+            this.panel5.Controls.Add(this.label28);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Enabled = false;
+            this.panel5.Location = new System.Drawing.Point(464, 49);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(441, 412);
+            this.panel5.TabIndex = 14;
+            // 
+            // btnMbNazad
+            // 
+            this.btnMbNazad.Location = new System.Drawing.Point(344, 71);
+            this.btnMbNazad.Name = "btnMbNazad";
+            this.btnMbNazad.Size = new System.Drawing.Size(76, 36);
+            this.btnMbNazad.TabIndex = 3;
+            this.btnMbNazad.Text = "Nazad";
+            this.btnMbNazad.UseVisualStyleBackColor = true;
+            this.btnMbNazad.Click += new System.EventHandler(this.btnMbNazad_Click);
+            // 
+            // btnMbSave
+            // 
+            this.btnMbSave.Location = new System.Drawing.Point(344, 20);
+            this.btnMbSave.Name = "btnMbSave";
+            this.btnMbSave.Size = new System.Drawing.Size(76, 36);
+            this.btnMbSave.TabIndex = 3;
+            this.btnMbSave.Text = "Sačuvaj";
+            this.btnMbSave.UseVisualStyleBackColor = true;
+            this.btnMbSave.Click += new System.EventHandler(this.btnMbSave_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(13, 62);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(315, 347);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // txtMbNaziv
+            // 
+            this.txtMbNaziv.Location = new System.Drawing.Point(145, 29);
+            this.txtMbNaziv.Name = "txtMbNaziv";
+            this.txtMbNaziv.Size = new System.Drawing.Size(183, 20);
+            this.txtMbNaziv.TabIndex = 1;
+            // 
+            // txtMbID
+            // 
+            this.txtMbID.Enabled = false;
+            this.txtMbID.Location = new System.Drawing.Point(13, 29);
+            this.txtMbID.Name = "txtMbID";
+            this.txtMbID.Size = new System.Drawing.Size(61, 20);
+            this.txtMbID.TabIndex = 1;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label28.Location = new System.Drawing.Point(149, 13);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(68, 13);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "NAPOMENA";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label9.Location = new System.Drawing.Point(14, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "ID";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label29.Location = new System.Drawing.Point(536, 13);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(110, 13);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "BROJ KONTEJNERA";
+            // 
+            // txtKontejner
+            // 
+            this.txtKontejner.Location = new System.Drawing.Point(539, 31);
+            this.txtKontejner.Name = "txtKontejner";
+            this.txtKontejner.Size = new System.Drawing.Size(107, 20);
+            this.txtKontejner.TabIndex = 4;
             // 
             // RnCS
             // 
@@ -796,8 +891,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1287, 599);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnSkini);
             this.Controls.Add(this.btnMagacinskiBroj);
             this.Controls.Add(this.btnPrijemnica);
             this.Controls.Add(this.btnFormiranRN);
@@ -832,6 +927,10 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsluge)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -848,7 +947,6 @@
         private System.Windows.Forms.ComboBox cboNalogodavac;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -883,7 +981,6 @@
         private System.Windows.Forms.Button btnFormiranRN;
         private System.Windows.Forms.Button btnPrijemnica;
         private System.Windows.Forms.TextBox txtPIB;
-        private System.Windows.Forms.TextBox txtVrednostRobe;
         private System.Windows.Forms.ComboBox cboADR;
         private System.Windows.Forms.TextBox txtNacinPakovanja;
         private System.Windows.Forms.TextBox txtTelefon;
@@ -901,13 +998,23 @@
         private System.Windows.Forms.ComboBox cboMestoIstovara;
         private System.Windows.Forms.ComboBox cboSpediter;
         private System.Windows.Forms.TextBox txtPosebniUslovi;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.TextBox txtNapomena;
-        private System.Windows.Forms.ComboBox cboValuta;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnMagacinskiBroj;
-        private System.Windows.Forms.Button btnSkini;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtVrstaRobe;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnMbSave;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtMbNaziv;
+        private System.Windows.Forms.TextBox txtMbID;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnMbNazad;
+        private System.Windows.Forms.DataGridView dgvUsluge;
+        private System.Windows.Forms.ComboBox cboDodatneUsluge;
+        private System.Windows.Forms.Button btnIzbaci;
+        private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.TextBox txtKontejner;
+        private System.Windows.Forms.Label label29;
     }
 }
