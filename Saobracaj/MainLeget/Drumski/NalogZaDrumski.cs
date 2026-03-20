@@ -32,7 +32,7 @@ namespace Saobracaj.MainLeget.Drumski
         private void btnTransportIzvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila, tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 1 }, false, "TransportIzvoz"), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn:  _tipVozila, tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 0 }, false, "TransportIzvoz"), true);
         }
 
         private void btnNovi_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace Saobracaj.MainLeget.Drumski
         private void btnTransportUvoz_Click(object sender, EventArgs e)
         {
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 0 }, false, "TransportUvoz"), true);
+            parent?.ShowChild(new frmPregledNalogaDrumski(tipoviIn: _tipVozila , tipoviNotIn: _listNotIn, tipoviNaloga: new List<int> { 1 }, false, "TransportUvoz"), true);
         }
 
         private void btnTransportDirektni_Click(object sender, EventArgs e)
