@@ -3338,7 +3338,7 @@ namespace Saobracaj.Izvoz
 
         public List<int> InsIzvozPorudzbenica(int BrojStavkePorudzbenice, int ScenarioID, string Korisnik,int? Porucilac, int BrojKontejnera, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string BrodskaPlombaBroj, string NaslovSlanjaStatusa,
                                               int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort,decimal Tara, int? Vaganje, int? Klijent2,
-                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe)
+                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe, int Drumski)
         {
             List<int> noviIDs = new List<int>();
             SqlConnection conn = new SqlConnection(connection);
@@ -3534,6 +3534,14 @@ namespace Saobracaj.Izvoz
             vrstaRobe.Direction = ParameterDirection.Input;
             vrstaRobe.Value = VrstaRobe;
             cmd.Parameters.Add(vrstaRobe);
+
+
+            SqlParameter drumski = new SqlParameter();
+            drumski.ParameterName = "@Drumski";
+            drumski.SqlDbType = SqlDbType.Int;
+            drumski.Direction = ParameterDirection.Input;
+            drumski.Value = Drumski;
+            cmd.Parameters.Add(drumski);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -4304,6 +4312,56 @@ namespace Saobracaj.Izvoz
             cmd.Dispose();
             conn.Dispose();
 
+        }
+
+        public void DelKontejnerIzvoz(int ID)
+        {
+           
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteKontejnerIzvoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
         }
 
 

@@ -905,7 +905,9 @@ namespace Saobracaj.Izvoz
                     { cboVrstaKamiona.Text = "CERADA"; }
                     else if (vrstaKamiona == 0)
                     { cboVrstaKamiona.Text = "PLATFORMA"; }
-                    dptPlaniranDatumSpustanja.Tag = null;
+                    //dptPlaniranDatumSpustanja.Tag = null;
+
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja);
                 }
                 else if (panel2.Visible == true)
                 {
@@ -929,10 +931,14 @@ namespace Saobracaj.Izvoz
                     else if (vrstaKamiona == 0)
                     { cboVrstaKamiona2.Text = "PLATFORMA"; }
 
-                    dptPlaniranDatumSpustanja2.Tag = null;
-                    dtpPlaniraniDatumVremePreuzimanja2.Tag = null;
-                    dptPlaniraniDatumUtovaraKontejnera2.Tag = null;
-                    dtpDatumRealizacijeUtovaraKontejnera2.Tag = null;
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja2);
+                    PostaviTag(dr["PlaniraniDtPreuzimanja"], dtpPlaniraniDatumVremePreuzimanja2);
+                    PostaviTag(dr["PlaniranDatUtovaraKontejnera"], dptPlaniraniDatumUtovaraKontejnera2);
+                    PostaviTag(dr["MestoIstovaraCerade"], dtpDatumRealizacijeUtovaraKontejnera2);
+                    //dptPlaniranDatumSpustanja2.Tag = null;
+                    //dtpPlaniraniDatumVremePreuzimanja2.Tag = null;
+                    //dptPlaniraniDatumUtovaraKontejnera2.Tag = null;
+                    //dtpDatumRealizacijeUtovaraKontejnera2.Tag = null;
                 }
                 else if (panel3.Visible == true)
                 {
@@ -970,11 +976,17 @@ namespace Saobracaj.Izvoz
                     { cboVrstaKamiona3.Text = "PLATFORMA"; }
 
 
-                    dptPlaniraniDatumUtovaraKontejnera3.Tag = null;
-                    dptDatumUtovaraCerade3.Tag = null;
-                    dptDatumIstovaraCerade3.Tag = null;
-                    dptPlaniranDatumSpustanja3.Tag = null;
-                    dtpPlaniraniDatumVremePreuzimanja3.Tag = null;
+                    PostaviTag(dr["PlaniranDatUtovaraKontejnera"], dptPlaniraniDatumUtovaraKontejnera3);
+                    PostaviTag(dr["PlaniraniDatumUtovaraCerade"], dptDatumUtovaraCerade3);
+                    PostaviTag(dr["PlaniraniDatumIstovaraCerade"], dptDatumIstovaraCerade3);
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja3);
+                    PostaviTag(dr["PlaniraniDtPreuzimanja"], dtpPlaniraniDatumVremePreuzimanja3);
+
+                    //dptPlaniraniDatumUtovaraKontejnera3.Tag = null;
+                    //dptDatumUtovaraCerade3.Tag = null;
+                    //dptDatumIstovaraCerade3.Tag = null;
+                    //dptPlaniranDatumSpustanja3.Tag = null;
+                    //dtpPlaniraniDatumVremePreuzimanja3.Tag = null;
                 }
                 else if (panel6.Visible == true)
                 {
@@ -1000,10 +1012,25 @@ namespace Saobracaj.Izvoz
                     { cboVrstaKamiona4.Text = "CERADA"; }
                     else if (vrstaKamiona == 0)
                     { cboVrstaKamiona4.Text = "PLATFORMA"; }
-                    dptDatumUtovaraCerade4.Tag = null;
-                    dptDatumIstovaraCerade4.Tag = null;
+                    //dptDatumUtovaraCerade4.Tag = null;
+                    //dptDatumIstovaraCerade4.Tag = null;
+
+                    PostaviTag(dr["PlaniraniDatumUtovaraCerade"], dptDatumUtovaraCerade4);
+                    PostaviTag(dr["PlaniraniDatumIstovaraCerade"], dptDatumIstovaraCerade4);
 
                 }
+            }
+        }
+
+        private void PostaviTag(object vrednostIzBaze, Control kontrola)
+        {
+            if (vrednostIzBaze != DBNull.Value && vrednostIzBaze != null)
+            {
+                kontrola.Tag = "IZMENJEN";
+            }
+            else
+            {
+                kontrola.Tag = null;
             }
         }
         private void SetVisibleComboValue(Control parent, ComboBox cbo, object dbValue, Action postUpdateAction = null)
@@ -1306,15 +1333,9 @@ namespace Saobracaj.Izvoz
                             errorProvider1.SetError(dptDatumUtovaraCerade4, "Morate izabrati neku vrednost!");
                             uspesno = false;
                         }
-                        if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val3) || val3 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
-                        {
+                        
 
-                            errorProvider1.SetError(cboAdresaUtovaraCerade4, "Morate izabrati neku vrednost!");
-                            uspesno = false;
-
-                        }
-
-                        if (scenario == 25)
+                        if (scenario == 9)
                         {
                             if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val4) || val4 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
                             {

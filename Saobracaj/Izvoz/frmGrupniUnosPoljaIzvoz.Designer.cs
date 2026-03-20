@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGrupniUnosPoljaIzvoz));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblKvalitetKontejnera = new System.Windows.Forms.Label();
             this.cboKvalitetKontejnera = new System.Windows.Forms.ComboBox();
             this.lblLink = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.txtRef2 = new System.Windows.Forms.TextBox();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnUsluge = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.btnUnesiNHM = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -111,10 +111,9 @@
             // lblKvalitetKontejnera
             // 
             this.lblKvalitetKontejnera.AutoSize = true;
-            this.lblKvalitetKontejnera.Location = new System.Drawing.Point(18, 284);
-            this.lblKvalitetKontejnera.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKvalitetKontejnera.Location = new System.Drawing.Point(24, 350);
             this.lblKvalitetKontejnera.Name = "lblKvalitetKontejnera";
-            this.lblKvalitetKontejnera.Size = new System.Drawing.Size(95, 13);
+            this.lblKvalitetKontejnera.Size = new System.Drawing.Size(116, 16);
             this.lblKvalitetKontejnera.TabIndex = 0;
             this.lblKvalitetKontejnera.Text = "Kvalitet kontejnera";
             // 
@@ -123,40 +122,38 @@
             this.cboKvalitetKontejnera.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboKvalitetKontejnera.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKvalitetKontejnera.FormattingEnabled = true;
-            this.cboKvalitetKontejnera.ItemHeight = 13;
-            this.cboKvalitetKontejnera.Location = new System.Drawing.Point(16, 301);
-            this.cboKvalitetKontejnera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboKvalitetKontejnera.ItemHeight = 16;
+            this.cboKvalitetKontejnera.Location = new System.Drawing.Point(21, 370);
+            this.cboKvalitetKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKvalitetKontejnera.Name = "cboKvalitetKontejnera";
-            this.cboKvalitetKontejnera.Size = new System.Drawing.Size(225, 21);
+            this.cboKvalitetKontejnera.Size = new System.Drawing.Size(299, 24);
             this.cboKvalitetKontejnera.TabIndex = 60;
             // 
             // lblLink
             // 
             this.lblLink.AutoSize = true;
-            this.lblLink.Location = new System.Drawing.Point(18, 330);
-            this.lblLink.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLink.Location = new System.Drawing.Point(24, 406);
             this.lblLink.Name = "lblLink";
-            this.lblLink.Size = new System.Drawing.Size(134, 13);
+            this.lblLink.Size = new System.Drawing.Size(169, 16);
             this.lblLink.TabIndex = 538;
             this.lblLink.Text = "Link ka mejl korespodenciji";
             // 
             // txtLink
             // 
             this.txtLink.BackColor = System.Drawing.Color.White;
-            this.txtLink.Location = new System.Drawing.Point(16, 347);
-            this.txtLink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLink.Location = new System.Drawing.Point(21, 427);
+            this.txtLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLink.Name = "txtLink";
-            this.txtLink.Size = new System.Drawing.Size(225, 20);
+            this.txtLink.Size = new System.Drawing.Size(299, 22);
             this.txtLink.TabIndex = 70;
             // 
             // label51
             // 
             this.label51.AutoSize = true;
             this.label51.ForeColor = System.Drawing.Color.Black;
-            this.label51.Location = new System.Drawing.Point(17, 371);
-            this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label51.Location = new System.Drawing.Point(23, 457);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(41, 13);
+            this.label51.Size = new System.Drawing.Size(51, 16);
             this.label51.TabIndex = 541;
             this.label51.Text = "Brodar ";
             // 
@@ -165,39 +162,37 @@
             this.cboBrodar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboBrodar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBrodar.FormattingEnabled = true;
-            this.cboBrodar.ItemHeight = 13;
-            this.cboBrodar.Location = new System.Drawing.Point(16, 388);
-            this.cboBrodar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBrodar.ItemHeight = 16;
+            this.cboBrodar.Location = new System.Drawing.Point(21, 478);
+            this.cboBrodar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboBrodar.Name = "cboBrodar";
-            this.cboBrodar.Size = new System.Drawing.Size(229, 21);
+            this.cboBrodar.Size = new System.Drawing.Size(304, 24);
             this.cboBrodar.TabIndex = 80;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(301, 50);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(401, 62);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(57, 16);
             this.label4.TabIndex = 545;
             this.label4.Text = "Booking";
             // 
             // txtBoking
             // 
-            this.txtBoking.Location = new System.Drawing.Point(299, 67);
-            this.txtBoking.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBoking.Location = new System.Drawing.Point(399, 82);
+            this.txtBoking.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBoking.Name = "txtBoking";
-            this.txtBoking.Size = new System.Drawing.Size(229, 20);
+            this.txtBoking.Size = new System.Drawing.Size(304, 22);
             this.txtBoking.TabIndex = 90;
             this.txtBoking.Text = "0";
             // 
             // lblCutOffPort
             // 
             this.lblCutOffPort.AutoSize = true;
-            this.lblCutOffPort.Location = new System.Drawing.Point(301, 101);
-            this.lblCutOffPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCutOffPort.Location = new System.Drawing.Point(401, 124);
             this.lblCutOffPort.Name = "lblCutOffPort";
-            this.lblCutOffPort.Size = new System.Drawing.Size(59, 13);
+            this.lblCutOffPort.Size = new System.Drawing.Size(69, 16);
             this.lblCutOffPort.TabIndex = 543;
             this.lblCutOffPort.Text = "Cut off port";
             // 
@@ -205,10 +200,10 @@
             // 
             this.dtpCutOffPort.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpCutOffPort.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpCutOffPort.Location = new System.Drawing.Point(299, 117);
-            this.dtpCutOffPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpCutOffPort.Location = new System.Drawing.Point(399, 144);
+            this.dtpCutOffPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpCutOffPort.Name = "dtpCutOffPort";
-            this.dtpCutOffPort.Size = new System.Drawing.Size(136, 20);
+            this.dtpCutOffPort.Size = new System.Drawing.Size(180, 22);
             this.dtpCutOffPort.TabIndex = 100;
             this.dtpCutOffPort.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtpCutOffPort.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -217,10 +212,9 @@
             // 
             this.lblTaraKontejnera.AutoSize = true;
             this.lblTaraKontejnera.ForeColor = System.Drawing.Color.Black;
-            this.lblTaraKontejnera.Location = new System.Drawing.Point(301, 330);
-            this.lblTaraKontejnera.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTaraKontejnera.Location = new System.Drawing.Point(401, 406);
             this.lblTaraKontejnera.Name = "lblTaraKontejnera";
-            this.lblTaraKontejnera.Size = new System.Drawing.Size(128, 13);
+            this.lblTaraKontejnera.Size = new System.Drawing.Size(161, 16);
             this.lblTaraKontejnera.TabIndex = 547;
             this.lblTaraKontejnera.Text = "Tara kontejnera (upisana)";
             // 
@@ -230,59 +224,56 @@
             this.cboIzvoznik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboIzvoznik.CausesValidation = false;
             this.cboIzvoznik.FormattingEnabled = true;
-            this.cboIzvoznik.ItemHeight = 13;
-            this.cboIzvoznik.Location = new System.Drawing.Point(299, 209);
-            this.cboIzvoznik.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboIzvoznik.ItemHeight = 16;
+            this.cboIzvoznik.Location = new System.Drawing.Point(399, 257);
+            this.cboIzvoznik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboIzvoznik.Name = "cboIzvoznik";
-            this.cboIzvoznik.Size = new System.Drawing.Size(232, 21);
+            this.cboIzvoznik.Size = new System.Drawing.Size(308, 24);
             this.cboIzvoznik.TabIndex = 120;
             // 
             // lblIzvoznik
             // 
             this.lblIzvoznik.AutoSize = true;
-            this.lblIzvoznik.Location = new System.Drawing.Point(301, 192);
-            this.lblIzvoznik.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIzvoznik.Location = new System.Drawing.Point(401, 236);
             this.lblIzvoznik.Name = "lblIzvoznik";
-            this.lblIzvoznik.Size = new System.Drawing.Size(46, 13);
+            this.lblIzvoznik.Size = new System.Drawing.Size(54, 16);
             this.lblIzvoznik.TabIndex = 553;
             this.lblIzvoznik.Text = "Izvoznik";
             // 
             // chkVaganje
             // 
             this.chkVaganje.AutoSize = true;
-            this.chkVaganje.Location = new System.Drawing.Point(593, 67);
-            this.chkVaganje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkVaganje.Location = new System.Drawing.Point(791, 82);
+            this.chkVaganje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVaganje.Name = "chkVaganje";
-            this.chkVaganje.Size = new System.Drawing.Size(65, 17);
+            this.chkVaganje.Size = new System.Drawing.Size(80, 20);
             this.chkVaganje.TabIndex = 200;
             this.chkVaganje.Text = "Vaganje";
             this.chkVaganje.UseVisualStyleBackColor = true;
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(593, 163);
-            this.txtNapomena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNapomena.Location = new System.Drawing.Point(791, 201);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(228, 21);
+            this.txtNapomena.Size = new System.Drawing.Size(303, 25);
             this.txtNapomena.TabIndex = 160;
             // 
             // label37
             // 
-            this.label37.Location = new System.Drawing.Point(595, 146);
-            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Location = new System.Drawing.Point(793, 180);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(181, 15);
+            this.label37.Size = new System.Drawing.Size(241, 18);
             this.label37.TabIndex = 566;
             this.label37.Text = "Napomena";
             // 
             // lblAdr
             // 
             this.lblAdr.AutoSize = true;
-            this.lblAdr.Location = new System.Drawing.Point(301, 371);
-            this.lblAdr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAdr.Location = new System.Drawing.Point(401, 457);
             this.lblAdr.Name = "lblAdr";
-            this.lblAdr.Size = new System.Drawing.Size(30, 13);
+            this.lblAdr.Size = new System.Drawing.Size(36, 16);
             this.lblAdr.TabIndex = 569;
             this.lblAdr.Text = "ADR";
             // 
@@ -292,29 +283,27 @@
             this.cboADR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboADR.CausesValidation = false;
             this.cboADR.FormattingEnabled = true;
-            this.cboADR.ItemHeight = 13;
-            this.cboADR.Location = new System.Drawing.Point(299, 388);
-            this.cboADR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboADR.ItemHeight = 16;
+            this.cboADR.Location = new System.Drawing.Point(399, 478);
+            this.cboADR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboADR.Name = "cboADR";
-            this.cboADR.Size = new System.Drawing.Size(229, 21);
+            this.cboADR.Size = new System.Drawing.Size(304, 24);
             this.cboADR.TabIndex = 170;
             // 
             // lblVrstaRobe
             // 
-            this.lblVrstaRobe.Location = new System.Drawing.Point(595, 192);
-            this.lblVrstaRobe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVrstaRobe.Location = new System.Drawing.Point(793, 236);
             this.lblVrstaRobe.Name = "lblVrstaRobe";
-            this.lblVrstaRobe.Size = new System.Drawing.Size(174, 13);
+            this.lblVrstaRobe.Size = new System.Drawing.Size(232, 16);
             this.lblVrstaRobe.TabIndex = 570;
             this.lblVrstaRobe.Text = "Vrsta robe";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(892, 50);
-            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Location = new System.Drawing.Point(1189, 62);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(100, 13);
+            this.label32.Size = new System.Drawing.Size(124, 16);
             this.label32.TabIndex = 590;
             this.label32.Text = "Inspekcijski tretman";
             // 
@@ -323,11 +312,11 @@
             this.cboInspekciskiTretman.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboInspekciskiTretman.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInspekciskiTretman.FormattingEnabled = true;
-            this.cboInspekciskiTretman.ItemHeight = 13;
-            this.cboInspekciskiTretman.Location = new System.Drawing.Point(890, 67);
-            this.cboInspekciskiTretman.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboInspekciskiTretman.ItemHeight = 16;
+            this.cboInspekciskiTretman.Location = new System.Drawing.Point(1187, 82);
+            this.cboInspekciskiTretman.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboInspekciskiTretman.Name = "cboInspekciskiTretman";
-            this.cboInspekciskiTretman.Size = new System.Drawing.Size(232, 21);
+            this.cboInspekciskiTretman.Size = new System.Drawing.Size(308, 24);
             this.cboInspekciskiTretman.TabIndex = 205;
             // 
             // cboNalogodavacZaUsluge
@@ -335,39 +324,37 @@
             this.cboNalogodavacZaUsluge.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboNalogodavacZaUsluge.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavacZaUsluge.FormattingEnabled = true;
-            this.cboNalogodavacZaUsluge.ItemHeight = 13;
-            this.cboNalogodavacZaUsluge.Location = new System.Drawing.Point(890, 117);
-            this.cboNalogodavacZaUsluge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboNalogodavacZaUsluge.ItemHeight = 16;
+            this.cboNalogodavacZaUsluge.Location = new System.Drawing.Point(1187, 144);
+            this.cboNalogodavacZaUsluge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavacZaUsluge.Name = "cboNalogodavacZaUsluge";
-            this.cboNalogodavacZaUsluge.Size = new System.Drawing.Size(230, 21);
+            this.cboNalogodavacZaUsluge.Size = new System.Drawing.Size(305, 24);
             this.cboNalogodavacZaUsluge.TabIndex = 210;
             // 
             // lblNalogodavacZaUsluge
             // 
             this.lblNalogodavacZaUsluge.AutoSize = true;
-            this.lblNalogodavacZaUsluge.Location = new System.Drawing.Point(892, 100);
-            this.lblNalogodavacZaUsluge.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNalogodavacZaUsluge.Location = new System.Drawing.Point(1189, 123);
             this.lblNalogodavacZaUsluge.Name = "lblNalogodavacZaUsluge";
-            this.lblNalogodavacZaUsluge.Size = new System.Drawing.Size(119, 13);
+            this.lblNalogodavacZaUsluge.Size = new System.Drawing.Size(150, 16);
             this.lblNalogodavacZaUsluge.TabIndex = 592;
             this.lblNalogodavacZaUsluge.Text = "Nalogodavac za usluge";
             // 
             // lblRef2
             // 
             this.lblRef2.AutoSize = true;
-            this.lblRef2.Location = new System.Drawing.Point(892, 146);
-            this.lblRef2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRef2.Location = new System.Drawing.Point(1189, 180);
             this.lblRef2.Name = "lblRef2";
-            this.lblRef2.Size = new System.Drawing.Size(171, 13);
+            this.lblRef2.Size = new System.Drawing.Size(211, 16);
             this.lblRef2.TabIndex = 594;
             this.lblRef2.Text = "Referenca za fakturisanje  - usluge";
             // 
             // txtRef2
             // 
-            this.txtRef2.Location = new System.Drawing.Point(890, 163);
-            this.txtRef2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRef2.Location = new System.Drawing.Point(1187, 201);
+            this.txtRef2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef2.Name = "txtRef2";
-            this.txtRef2.Size = new System.Drawing.Size(228, 20);
+            this.txtRef2.Size = new System.Drawing.Size(303, 22);
             this.txtRef2.TabIndex = 220;
             this.txtRef2.Text = "0";
             // 
@@ -381,8 +368,9 @@
             this.panelHeader.Controls.Add(this.panel6);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1135, 35);
+            this.panelHeader.Size = new System.Drawing.Size(1513, 43);
             this.panelHeader.TabIndex = 595;
             // 
             // panel5
@@ -394,10 +382,33 @@
             this.panel5.Controls.Add(this.btnUsluge);
             this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.button27);
-            this.panel5.Location = new System.Drawing.Point(98, 0);
+            this.panel5.Location = new System.Drawing.Point(131, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1243, 30);
+            this.panel5.Size = new System.Drawing.Size(1657, 37);
             this.panel5.TabIndex = 6;
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(409, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(233, 37);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Plan RN";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnUsluge
             // 
@@ -411,9 +422,10 @@
             this.btnUsluge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsluge.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnUsluge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnUsluge.Location = new System.Drawing.Point(197, 0);
+            this.btnUsluge.Location = new System.Drawing.Point(272, 0);
+            this.btnUsluge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUsluge.Name = "btnUsluge";
-            this.btnUsluge.Size = new System.Drawing.Size(100, 30);
+            this.btnUsluge.Size = new System.Drawing.Size(137, 37);
             this.btnUsluge.TabIndex = 23;
             this.btnUsluge.Text = "Dodaj usluge";
             this.btnUsluge.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -432,9 +444,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(67, 0);
+            this.button1.Location = new System.Drawing.Point(93, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 30);
+            this.button1.Size = new System.Drawing.Size(179, 37);
             this.button1.TabIndex = 22;
             this.button1.Text = "Carinski postupak";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -454,8 +467,9 @@
             this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(0, 0);
+            this.button27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(67, 30);
+            this.button27.Size = new System.Drawing.Size(93, 37);
             this.button27.TabIndex = 21;
             this.button27.Text = "Relacija";
             this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -469,8 +483,9 @@
             this.panel6.Controls.Add(this.btnSave);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(49151, 33);
+            this.panel6.Size = new System.Drawing.Size(65535, 41);
             this.panel6.TabIndex = 2;
             // 
             // btnDelete
@@ -483,9 +498,10 @@
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnDelete.Location = new System.Drawing.Point(45, 3);
+            this.btnDelete.Location = new System.Drawing.Point(60, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(27, 27);
+            this.btnDelete.Size = new System.Drawing.Size(36, 33);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -500,9 +516,10 @@
             this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(11, 3);
+            this.btnSave.Location = new System.Drawing.Point(15, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(27, 27);
+            this.btnSave.Size = new System.Drawing.Size(36, 33);
             this.btnSave.TabIndex = 14;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -518,15 +535,15 @@
             // txtTaraKontejnera
             // 
             this.txtTaraKontejnera.DecimalPlaces = 3;
-            this.txtTaraKontejnera.Location = new System.Drawing.Point(299, 347);
-            this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTaraKontejnera.Location = new System.Drawing.Point(399, 427);
+            this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTaraKontejnera.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.txtTaraKontejnera.Name = "txtTaraKontejnera";
-            this.txtTaraKontejnera.Size = new System.Drawing.Size(133, 20);
+            this.txtTaraKontejnera.Size = new System.Drawing.Size(177, 22);
             this.txtTaraKontejnera.TabIndex = 130;
             this.txtTaraKontejnera.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -538,19 +555,18 @@
             // lblRef3
             // 
             this.lblRef3.AutoSize = true;
-            this.lblRef3.Location = new System.Drawing.Point(892, 236);
-            this.lblRef3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRef3.Location = new System.Drawing.Point(1189, 290);
             this.lblRef3.Name = "lblRef3";
-            this.lblRef3.Size = new System.Drawing.Size(176, 13);
+            this.lblRef3.Size = new System.Drawing.Size(218, 16);
             this.lblRef3.TabIndex = 606;
             this.lblRef3.Text = "Referenca za fakturisanje  - drumski";
             // 
             // txtRef3
             // 
-            this.txtRef3.Location = new System.Drawing.Point(890, 254);
-            this.txtRef3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRef3.Location = new System.Drawing.Point(1187, 313);
+            this.txtRef3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef3.Name = "txtRef3";
-            this.txtRef3.Size = new System.Drawing.Size(228, 20);
+            this.txtRef3.Size = new System.Drawing.Size(303, 22);
             this.txtRef3.TabIndex = 240;
             this.txtRef3.Text = "0";
             // 
@@ -559,20 +575,19 @@
             this.cboNalogodavacZaDrumski.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboNalogodavacZaDrumski.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavacZaDrumski.FormattingEnabled = true;
-            this.cboNalogodavacZaDrumski.ItemHeight = 13;
-            this.cboNalogodavacZaDrumski.Location = new System.Drawing.Point(890, 209);
-            this.cboNalogodavacZaDrumski.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboNalogodavacZaDrumski.ItemHeight = 16;
+            this.cboNalogodavacZaDrumski.Location = new System.Drawing.Point(1187, 257);
+            this.cboNalogodavacZaDrumski.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavacZaDrumski.Name = "cboNalogodavacZaDrumski";
-            this.cboNalogodavacZaDrumski.Size = new System.Drawing.Size(230, 21);
+            this.cboNalogodavacZaDrumski.Size = new System.Drawing.Size(305, 24);
             this.cboNalogodavacZaDrumski.TabIndex = 230;
             // 
             // lblNalogodavacZaDrumski
             // 
             this.lblNalogodavacZaDrumski.AutoSize = true;
-            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(892, 192);
-            this.lblNalogodavacZaDrumski.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNalogodavacZaDrumski.Location = new System.Drawing.Point(1189, 236);
             this.lblNalogodavacZaDrumski.Name = "lblNalogodavacZaDrumski";
-            this.lblNalogodavacZaDrumski.Size = new System.Drawing.Size(124, 13);
+            this.lblNalogodavacZaDrumski.Size = new System.Drawing.Size(157, 16);
             this.lblNalogodavacZaDrumski.TabIndex = 604;
             this.lblNalogodavacZaDrumski.Text = "Nalogodavac za drumski";
             // 
@@ -582,20 +597,19 @@
             this.cboVrstaRobe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaRobe.CausesValidation = false;
             this.cboVrstaRobe.FormattingEnabled = true;
-            this.cboVrstaRobe.ItemHeight = 13;
-            this.cboVrstaRobe.Location = new System.Drawing.Point(593, 209);
-            this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVrstaRobe.ItemHeight = 16;
+            this.cboVrstaRobe.Location = new System.Drawing.Point(791, 257);
+            this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaRobe.Name = "cboVrstaRobe";
-            this.cboVrstaRobe.Size = new System.Drawing.Size(232, 21);
+            this.cboVrstaRobe.Size = new System.Drawing.Size(308, 24);
             this.cboVrstaRobe.TabIndex = 180;
             // 
             // lblVrstaPlombe
             // 
             this.lblVrstaPlombe.AutoSize = true;
-            this.lblVrstaPlombe.Location = new System.Drawing.Point(301, 236);
-            this.lblVrstaPlombe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVrstaPlombe.Location = new System.Drawing.Point(401, 290);
             this.lblVrstaPlombe.Name = "lblVrstaPlombe";
-            this.lblVrstaPlombe.Size = new System.Drawing.Size(126, 13);
+            this.lblVrstaPlombe.Size = new System.Drawing.Size(161, 16);
             this.lblVrstaPlombe.TabIndex = 658;
             this.lblVrstaPlombe.Text = "Brodska plomba - Vlasnik";
             // 
@@ -604,56 +618,53 @@
             this.cboVrstaPlombe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboVrstaPlombe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaPlombe.FormattingEnabled = true;
-            this.cboVrstaPlombe.ItemHeight = 13;
-            this.cboVrstaPlombe.Location = new System.Drawing.Point(299, 253);
-            this.cboVrstaPlombe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVrstaPlombe.ItemHeight = 16;
+            this.cboVrstaPlombe.Location = new System.Drawing.Point(399, 311);
+            this.cboVrstaPlombe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaPlombe.Name = "cboVrstaPlombe";
-            this.cboVrstaPlombe.Size = new System.Drawing.Size(230, 21);
+            this.cboVrstaPlombe.Size = new System.Drawing.Size(305, 24);
             this.cboVrstaPlombe.TabIndex = 140;
             // 
             // lblBrojDokumenta
             // 
             this.lblBrojDokumenta.AutoSize = true;
-            this.lblBrojDokumenta.Location = new System.Drawing.Point(18, 54);
-            this.lblBrojDokumenta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBrojDokumenta.Location = new System.Drawing.Point(24, 66);
             this.lblBrojDokumenta.Name = "lblBrojDokumenta";
-            this.lblBrojDokumenta.Size = new System.Drawing.Size(81, 13);
+            this.lblBrojDokumenta.Size = new System.Drawing.Size(101, 16);
             this.lblBrojDokumenta.TabIndex = 659;
             this.lblBrojDokumenta.Text = "Broj dokumenta";
             // 
             // txtBrojDokumenta
             // 
-            this.txtBrojDokumenta.Location = new System.Drawing.Point(15, 70);
-            this.txtBrojDokumenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBrojDokumenta.Location = new System.Drawing.Point(20, 86);
+            this.txtBrojDokumenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojDokumenta.Name = "txtBrojDokumenta";
-            this.txtBrojDokumenta.Size = new System.Drawing.Size(76, 20);
+            this.txtBrojDokumenta.Size = new System.Drawing.Size(100, 22);
             this.txtBrojDokumenta.TabIndex = 10;
             // 
             // txtKorisnik
             // 
-            this.txtKorisnik.Location = new System.Drawing.Point(16, 117);
-            this.txtKorisnik.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtKorisnik.Location = new System.Drawing.Point(21, 144);
+            this.txtKorisnik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKorisnik.Name = "txtKorisnik";
-            this.txtKorisnik.Size = new System.Drawing.Size(224, 20);
+            this.txtKorisnik.Size = new System.Drawing.Size(297, 22);
             this.txtKorisnik.TabIndex = 20;
             // 
             // lblKorisnik
             // 
             this.lblKorisnik.AutoSize = true;
-            this.lblKorisnik.Location = new System.Drawing.Point(18, 101);
-            this.lblKorisnik.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKorisnik.Location = new System.Drawing.Point(24, 124);
             this.lblKorisnik.Name = "lblKorisnik";
-            this.lblKorisnik.Size = new System.Drawing.Size(44, 13);
+            this.lblKorisnik.Size = new System.Drawing.Size(54, 16);
             this.lblKorisnik.TabIndex = 661;
             this.lblKorisnik.Text = "Korisnik";
             // 
             // lblPorucilac
             // 
             this.lblPorucilac.AutoSize = true;
-            this.lblPorucilac.Location = new System.Drawing.Point(18, 146);
-            this.lblPorucilac.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPorucilac.Location = new System.Drawing.Point(24, 180);
             this.lblPorucilac.Name = "lblPorucilac";
-            this.lblPorucilac.Size = new System.Drawing.Size(51, 13);
+            this.lblPorucilac.Size = new System.Drawing.Size(63, 16);
             this.lblPorucilac.TabIndex = 664;
             this.lblPorucilac.Text = "Poručilac";
             // 
@@ -663,46 +674,44 @@
             this.cboNalogodavac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac.CausesValidation = false;
             this.cboNalogodavac.FormattingEnabled = true;
-            this.cboNalogodavac.ItemHeight = 13;
-            this.cboNalogodavac.Location = new System.Drawing.Point(16, 163);
-            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboNalogodavac.ItemHeight = 16;
+            this.cboNalogodavac.Location = new System.Drawing.Point(21, 201);
+            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavac.Name = "cboNalogodavac";
-            this.cboNalogodavac.Size = new System.Drawing.Size(225, 21);
+            this.cboNalogodavac.Size = new System.Drawing.Size(299, 24);
             this.cboNalogodavac.TabIndex = 30;
             // 
             // txtopisPosla
             // 
-            this.txtopisPosla.Location = new System.Drawing.Point(16, 209);
-            this.txtopisPosla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtopisPosla.Location = new System.Drawing.Point(21, 257);
+            this.txtopisPosla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtopisPosla.Name = "txtopisPosla";
-            this.txtopisPosla.Size = new System.Drawing.Size(225, 20);
+            this.txtopisPosla.Size = new System.Drawing.Size(299, 22);
             this.txtopisPosla.TabIndex = 40;
             // 
             // lblOpisPosla
             // 
             this.lblOpisPosla.AutoSize = true;
-            this.lblOpisPosla.Location = new System.Drawing.Point(18, 193);
-            this.lblOpisPosla.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOpisPosla.Location = new System.Drawing.Point(24, 238);
             this.lblOpisPosla.Name = "lblOpisPosla";
-            this.lblOpisPosla.Size = new System.Drawing.Size(56, 13);
+            this.lblOpisPosla.Size = new System.Drawing.Size(72, 16);
             this.lblOpisPosla.TabIndex = 665;
             this.lblOpisPosla.Text = "Opis posla";
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(16, 254);
-            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(21, 313);
+            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
-            this.txtBrojKontejnera.Size = new System.Drawing.Size(224, 20);
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(297, 22);
             this.txtBrojKontejnera.TabIndex = 50;
             // 
             // lblKolicinaKontejnera
             // 
             this.lblKolicinaKontejnera.AutoSize = true;
-            this.lblKolicinaKontejnera.Location = new System.Drawing.Point(18, 237);
-            this.lblKolicinaKontejnera.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblKolicinaKontejnera.Location = new System.Drawing.Point(24, 292);
             this.lblKolicinaKontejnera.Name = "lblKolicinaKontejnera";
-            this.lblKolicinaKontejnera.Size = new System.Drawing.Size(97, 13);
+            this.lblKolicinaKontejnera.Size = new System.Drawing.Size(120, 16);
             this.lblKolicinaKontejnera.TabIndex = 667;
             this.lblKolicinaKontejnera.Text = "Količina kontejnera";
             // 
@@ -712,20 +721,19 @@
             this.cboVrstaKontejnera.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaKontejnera.CausesValidation = false;
             this.cboVrstaKontejnera.FormattingEnabled = true;
-            this.cboVrstaKontejnera.ItemHeight = 13;
-            this.cboVrstaKontejnera.Location = new System.Drawing.Point(299, 163);
-            this.cboVrstaKontejnera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVrstaKontejnera.ItemHeight = 16;
+            this.cboVrstaKontejnera.Location = new System.Drawing.Point(399, 201);
+            this.cboVrstaKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaKontejnera.Name = "cboVrstaKontejnera";
-            this.cboVrstaKontejnera.Size = new System.Drawing.Size(232, 21);
+            this.cboVrstaKontejnera.Size = new System.Drawing.Size(308, 24);
             this.cboVrstaKontejnera.TabIndex = 110;
             // 
             // lblVrstaKontejnera
             // 
             this.lblVrstaKontejnera.AutoSize = true;
-            this.lblVrstaKontejnera.Location = new System.Drawing.Point(301, 146);
-            this.lblVrstaKontejnera.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVrstaKontejnera.Location = new System.Drawing.Point(401, 180);
             this.lblVrstaKontejnera.Name = "lblVrstaKontejnera";
-            this.lblVrstaKontejnera.Size = new System.Drawing.Size(84, 13);
+            this.lblVrstaKontejnera.Size = new System.Drawing.Size(104, 16);
             this.lblVrstaKontejnera.TabIndex = 670;
             this.lblVrstaKontejnera.Text = "Vrsta kontejnera";
             // 
@@ -735,19 +743,18 @@
             this.cboNacinPakovanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNacinPakovanja.CausesValidation = false;
             this.cboNacinPakovanja.FormattingEnabled = true;
-            this.cboNacinPakovanja.ItemHeight = 13;
-            this.cboNacinPakovanja.Location = new System.Drawing.Point(593, 117);
-            this.cboNacinPakovanja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboNacinPakovanja.ItemHeight = 16;
+            this.cboNacinPakovanja.Location = new System.Drawing.Point(791, 144);
+            this.cboNacinPakovanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNacinPakovanja.Name = "cboNacinPakovanja";
-            this.cboNacinPakovanja.Size = new System.Drawing.Size(232, 21);
+            this.cboNacinPakovanja.Size = new System.Drawing.Size(308, 24);
             this.cboNacinPakovanja.TabIndex = 190;
             // 
             // lblNacinPakovanja
             // 
-            this.lblNacinPakovanja.Location = new System.Drawing.Point(595, 101);
-            this.lblNacinPakovanja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNacinPakovanja.Location = new System.Drawing.Point(793, 124);
             this.lblNacinPakovanja.Name = "lblNacinPakovanja";
-            this.lblNacinPakovanja.Size = new System.Drawing.Size(174, 13);
+            this.lblNacinPakovanja.Size = new System.Drawing.Size(232, 16);
             this.lblNacinPakovanja.TabIndex = 671;
             this.lblNacinPakovanja.Text = "Način pakovanja";
             // 
@@ -757,12 +764,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 422);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 519);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1109, 180);
+            this.dataGridView1.Size = new System.Drawing.Size(1479, 222);
             this.dataGridView1.TabIndex = 674;
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -774,105 +781,84 @@
             // lblBrodskaPlombaBroj
             // 
             this.lblBrodskaPlombaBroj.AutoSize = true;
-            this.lblBrodskaPlombaBroj.Location = new System.Drawing.Point(301, 282);
-            this.lblBrodskaPlombaBroj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBrodskaPlombaBroj.Location = new System.Drawing.Point(401, 347);
             this.lblBrodskaPlombaBroj.Name = "lblBrodskaPlombaBroj";
-            this.lblBrodskaPlombaBroj.Size = new System.Drawing.Size(110, 13);
+            this.lblBrodskaPlombaBroj.Size = new System.Drawing.Size(141, 16);
             this.lblBrodskaPlombaBroj.TabIndex = 676;
             this.lblBrodskaPlombaBroj.Text = "Brodska plomba - Broj";
             // 
             // txtBrodskaPlombaBroj
             // 
             this.txtBrodskaPlombaBroj.BackColor = System.Drawing.Color.White;
-            this.txtBrodskaPlombaBroj.Location = new System.Drawing.Point(299, 299);
-            this.txtBrodskaPlombaBroj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBrodskaPlombaBroj.Location = new System.Drawing.Point(399, 368);
+            this.txtBrodskaPlombaBroj.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrodskaPlombaBroj.Name = "txtBrodskaPlombaBroj";
-            this.txtBrodskaPlombaBroj.Size = new System.Drawing.Size(230, 20);
+            this.txtBrodskaPlombaBroj.Size = new System.Drawing.Size(305, 22);
             this.txtBrodskaPlombaBroj.TabIndex = 675;
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(16, 37);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Location = new System.Drawing.Point(21, 46);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(225, 20);
+            this.txtID.Size = new System.Drawing.Size(299, 22);
             this.txtID.TabIndex = 677;
             this.txtID.Visible = false;
             // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView2.Location = new System.Drawing.Point(593, 284);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView2.Location = new System.Drawing.Point(791, 350);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView2.Name = "dataGridView2";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowHeadersWidth = 11;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(531, 127);
+            this.dataGridView2.Size = new System.Drawing.Size(708, 156);
             this.dataGridView2.TabIndex = 678;
             // 
             // btnUnesiNHM
             // 
             this.btnUnesiNHM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnUnesiNHM.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUnesiNHM.Location = new System.Drawing.Point(593, 237);
+            this.btnUnesiNHM.Location = new System.Drawing.Point(791, 292);
+            this.btnUnesiNHM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUnesiNHM.Name = "btnUnesiNHM";
-            this.btnUnesiNHM.Size = new System.Drawing.Size(112, 23);
+            this.btnUnesiNHM.Size = new System.Drawing.Size(149, 28);
             this.btnUnesiNHM.TabIndex = 679;
             this.btnUnesiNHM.Text = "Unesi";
             this.btnUnesiNHM.UseVisualStyleBackColor = false;
             this.btnUnesiNHM.Click += new System.EventHandler(this.btnUnesiNHM_Click);
             // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(297, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(175, 30);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Plan RN";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // frmGrupniUnosPoljaIzvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 611);
+            this.ClientSize = new System.Drawing.Size(1513, 752);
             this.Controls.Add(this.btnUnesiNHM);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.txtID);
@@ -927,7 +913,7 @@
             this.Controls.Add(this.txtLink);
             this.Controls.Add(this.cboKvalitetKontejnera);
             this.Controls.Add(this.lblKvalitetKontejnera);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmGrupniUnosPoljaIzvoz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nalog za otpremu";
