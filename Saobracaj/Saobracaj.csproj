@@ -2244,6 +2244,12 @@
       <DependentUpon>Drumski1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\InsertKontejnerTekuce.cs" />
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.Designer.cs">
+      <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5351,6 +5357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Drumski\Drumski1.resx">
       <DependentUpon>Drumski1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza0.resx">
+      <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza1.resx">
       <DependentUpon>LogistikaIzvoza1.cs</DependentUpon>

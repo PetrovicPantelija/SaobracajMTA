@@ -92,8 +92,26 @@ namespace Saobracaj.MainLeget.LegNew
 
             main.OtvoriFormuSaPravom(
                 btnLogistikaIzvozaPM1.Text,
+                () => new Saobracaj.MainLeget.Izvoz.LogistikaIzvoza0()
+            );
+
+            /*
+            
+            //var main = this.TopLevelControl as NewMain;
+            //if (main == null) return;
+
+            //main.OtvoriFormuSaPravom(
+            //    btnLogistikaIzvozaPM1.Text,
+            //    () => new LogistikaIzvoza2() 
+
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM1.Text,
                 () => new Saobracaj.Izvoz.frmProdajniNalogIzvoz()
             );
+           */
         }
         
 

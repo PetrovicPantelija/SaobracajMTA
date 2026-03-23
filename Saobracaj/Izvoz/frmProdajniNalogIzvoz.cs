@@ -1,18 +1,19 @@
-﻿using Syncfusion.Windows.Forms.Tools;
+﻿using Saobracaj.Carinsko;
+using Saobracaj.MainLeget;
+using Saobracaj.MainLeget.LegNew;
 using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using Saobracaj.Carinsko;
-using Saobracaj.MainLeget;
 
 namespace Saobracaj.Izvoz
 {
@@ -247,7 +248,7 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private bool ValidacijaGrida()
+        private bool ValidacijaGrida2()
         {
             bool uspesno = true;
             dataGridView1.ClearSelection();
@@ -260,13 +261,16 @@ namespace Saobracaj.Izvoz
                 row.ErrorText = ""; // očisti stare greške
 
                 // Primer: validacija kolone index 4
-                if (row.Cells[4].Value == null ||
-                    !int.TryParse(row.Cells[4].Value.ToString(), out int kolicina) ||
-                    kolicina <= 0)
+                if (row.Cells[4].Value == null 
+                   )
                 {
                     row.Cells[4].ErrorText = "Tip kontejnera je obavezno polje!";
                     uspesno = false;
                 }
+                if  (row.Cells[2].Value == null ) 
+                {
+                    row.Cells[2].ErrorText = "Kolicina mora biti uneta!";
+                    uspesno = false; }
             }
 
             return uspesno;
@@ -276,14 +280,20 @@ namespace Saobracaj.Izvoz
             if (!ValidacijaSaIkonama())
             {
                 MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Prekida se izvršavanje ako nije validno
+
+                return;
+               
+
+               
+
+                 // Prekida se izvršavanje ako nije validno
             }
 
             bool imaRedova = dataGridView1.Rows
-                   .Cast<DataGridViewRow>()
-                   .Any(r => !r.IsNewRow);
+                  .Cast<DataGridViewRow>()
+                  .Any(r => !r.IsNewRow);
 
-            if (imaRedova && !ValidacijaGrida())
+            if (imaRedova && !ValidacijaGrida2())
                 return;
 
             InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
@@ -292,6 +302,9 @@ namespace Saobracaj.Izvoz
             UnesiStavke();
         }
 
+
+      
+       
         private void frmProdajniNalogIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
@@ -424,7 +437,7 @@ namespace Saobracaj.Izvoz
                 dataGridView1.AutoGenerateColumns = false;
 
                 var select = "";
-                select = @" SELECT [ProdajniNalogIzvozStavke].[ID]      ,[IDNAdredjenog]    ,[Kolicina],  [JM] ,ProdajniNalogIzvozStavke.[TipKontejnera], TipKontenjera.ISO   ,[KvalitetKontejnera]      ,[ReferencaZaFakturisanje] " +
+                select = @" SELECT [ProdajniNalogIzvozStavke].[ID]      ,[IDNAdredjenog]    ,[Kolicina],  [JM] ,ProdajniNalogIzvozStavke.[TipKontejnera] as VrstaKontejnera, TipKontenjera.ISO   ,[KvalitetKontejnera]      ,[ReferencaZaFakturisanje] " +
   " FROM [dbo].[ProdajniNalogIzvozStavke] " +
  " inner join TipKontenjera on TipKontenjera.ID = ProdajniNalogIzvozStavke.TipKontejnera where IDNAdredjenog =" + txtBrojDokumenta.Text;
 
@@ -446,7 +459,6 @@ namespace Saobracaj.Izvoz
 
                 for (int r = 0; r <= row; r++)
                 {
-                   
 
                     dataGridView1.Rows[r].Cells[0].Value = ds.Tables[0].Rows[r].ItemArray[0];
                     dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
@@ -456,8 +468,6 @@ namespace Saobracaj.Izvoz
                     dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
                     dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
                     dataGridView1.Rows[r].Cells[7].Value = ds.Tables[0].Rows[r].ItemArray[7];
-
-
             }
 
                 PodesiDatagridView(dataGridView1);
