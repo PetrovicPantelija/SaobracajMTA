@@ -151,7 +151,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[0].Visible = false;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "NAdredjeni";
+            dataGridView1.Columns[1].HeaderText = "Nadredjeni";
             dataGridView1.Columns[1].Width = 80;
             dataGridView1.Columns[1].Visible = false;
 
@@ -167,7 +167,7 @@ namespace Saobracaj.Izvoz
 
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Tip kontejnera";
+            dataGridView1.Columns[4].HeaderText = "Vrsta kontejnera";
             dataGridView1.Columns[4].Width = 240;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
