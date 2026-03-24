@@ -551,7 +551,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe1(scenario);
                    
 
@@ -561,7 +561,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona =0;
+                    vrstaKamiona =1;
                     PodesiUnutrasnjostGrupe1(scenario);
                     break;
 
@@ -573,7 +573,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = true;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe2(scenario);
 
                     break;
@@ -583,7 +583,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = true;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe2(scenario);
 
                     break;
@@ -595,7 +595,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = true;
                     panel6.Visible = false;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
                 case 24: // Scenario I-L
@@ -604,7 +604,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = true;
                     panel6.Visible = false;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
                 // GRUPA IV
@@ -614,7 +614,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = true;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
@@ -624,7 +624,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = true;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
@@ -901,9 +901,9 @@ namespace Saobracaj.Izvoz
                     SetVisibleComboValue(panel1, cboMestoPreuzimanjaPunog, dr["MestoPreuzimanjaPunogPraznog"]);
                     SetVisibleDateValue(panel1, dptPlaniranDatumSpustanja, dr["PlaniranDatSpustanjaKontejnera"]);
                     txtDodatneNapomeneDrumski1.Text = dr["DodatnaNapomenaDrumski"].ToString();
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona.Text = "PLATFORMA"; }
                     //dptPlaniranDatumSpustanja.Tag = null;
 
@@ -926,9 +926,9 @@ namespace Saobracaj.Izvoz
                     SetVisibleDateValue(panel2, dtpDatumRealizacijeUtovaraKontejnera2, dr["MestoIstovaraCerade"]);
                     txtDodatneNapomeneDrumski2.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona2.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona2.Text = "PLATFORMA"; }
 
                     PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja2);
@@ -970,9 +970,9 @@ namespace Saobracaj.Izvoz
                     txtDodatneNapomeneDrumski.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
                 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona3.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona3.Text = "PLATFORMA"; }
 
 
@@ -1008,9 +1008,9 @@ namespace Saobracaj.Izvoz
 
                     txtDodatneNapomeneDrumski4.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona4.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona4.Text = "PLATFORMA"; }
                     //dptDatumUtovaraCerade4.Tag = null;
                     //dptDatumIstovaraCerade4.Tag = null;

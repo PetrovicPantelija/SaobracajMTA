@@ -43,9 +43,10 @@
             this.btnLogistikaIzvoza0Kreiraj.ForeColor = System.Drawing.Color.White;
             this.btnLogistikaIzvoza0Kreiraj.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnLogistikaIzvoza0Kreiraj.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnLogistikaIzvoza0Kreiraj.Location = new System.Drawing.Point(60, 151);
+            this.btnLogistikaIzvoza0Kreiraj.Location = new System.Drawing.Point(80, 186);
+            this.btnLogistikaIzvoza0Kreiraj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogistikaIzvoza0Kreiraj.Name = "btnLogistikaIzvoza0Kreiraj";
-            this.btnLogistikaIzvoza0Kreiraj.Size = new System.Drawing.Size(288, 225);
+            this.btnLogistikaIzvoza0Kreiraj.Size = new System.Drawing.Size(384, 277);
             this.btnLogistikaIzvoza0Kreiraj.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvoza0Kreiraj.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvoza0Kreiraj.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -69,9 +70,10 @@
             this.sfButton2.ForeColor = System.Drawing.Color.White;
             this.sfButton2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton2.ImageSize = new System.Drawing.Size(90, 80);
-            this.sfButton2.Location = new System.Drawing.Point(381, 151);
+            this.sfButton2.Location = new System.Drawing.Point(508, 186);
+            this.sfButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sfButton2.Name = "sfButton2";
-            this.sfButton2.Size = new System.Drawing.Size(288, 225);
+            this.sfButton2.Size = new System.Drawing.Size(384, 277);
             this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton2.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton2.Style.Image = global::Saobracaj.Properties.Resources.PromeniPostojeći;
@@ -79,6 +81,7 @@
             this.sfButton2.Text = "Izmeni postojeći";
             this.sfButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton2.UseVisualStyleBackColor = false;
+            this.sfButton2.Click += new System.EventHandler(this.sfButton2_Click);
             // 
             // sfButton3
             // 
@@ -89,9 +92,10 @@
             this.sfButton3.ForeColor = System.Drawing.Color.White;
             this.sfButton3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.sfButton3.ImageSize = new System.Drawing.Size(70, 80);
-            this.sfButton3.Location = new System.Drawing.Point(710, 151);
+            this.sfButton3.Location = new System.Drawing.Point(947, 186);
+            this.sfButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sfButton3.Name = "sfButton3";
-            this.sfButton3.Size = new System.Drawing.Size(287, 225);
+            this.sfButton3.Size = new System.Drawing.Size(383, 277);
             this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton3.Style.Image = global::Saobracaj.Properties.Resources.Obrišipostojeci;
@@ -99,6 +103,7 @@
             this.sfButton3.Text = "Otkaži postojeći";
             this.sfButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton3.UseVisualStyleBackColor = false;
+            this.sfButton3.Click += new System.EventHandler(this.sfButton3_Click);
             // 
             // label2
             // 
@@ -108,23 +113,25 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(36, 43);
+            this.label2.Location = new System.Drawing.Point(48, 53);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 39);
+            this.label2.Size = new System.Drawing.Size(288, 52);
             this.label2.TabIndex = 501;
             this.label2.Text = "Porudžbenice";
             // 
             // LogistikaIzvoza0
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1103, 586);
+            this.ClientSize = new System.Drawing.Size(1471, 721);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogistikaIzvoza0Kreiraj);
             this.Controls.Add(this.sfButton2);
             this.Controls.Add(this.sfButton3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LogistikaIzvoza0";
             this.Text = "LogistikaIzvoza0";
             this.ResumeLayout(false);

@@ -34,5 +34,27 @@ namespace Saobracaj.MainLeget.Izvoz
                 () => new Saobracaj.Izvoz.frmProdajniNalogIzvoz()
             );
         }
+
+        private void sfButton2_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvoza0Kreiraj.Text,
+                () => new Saobracaj.Izvoz.frmPregledPorudzbenica(1)
+            );
+        }
+
+        private void sfButton3_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvoza0Kreiraj.Text,
+                () => new Saobracaj.Izvoz.frmPregledPorudzbenica(2)
+            );
+        }
     }
 }

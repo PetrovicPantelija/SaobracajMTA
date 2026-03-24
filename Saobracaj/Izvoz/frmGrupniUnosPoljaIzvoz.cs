@@ -36,14 +36,16 @@ namespace Saobracaj.Izvoz
         string ScenarioNaziv = "";
         List<PrivremeniNHM> privremenaListaNHM = new List<PrivremeniNHM>();
         int kontejnerID = 0;
+        int vrstaKamiona = 0;
 
-        public frmGrupniUnosPoljaIzvoz(int BrojStavkePorudzbenice, int scenario, int _drumski)
+        public frmGrupniUnosPoljaIzvoz(int BrojStavkePorudzbenice, int scenario, int _drumski, int VrstaKamiona)
         {
             InitializeComponent();
             ChangeTextBox();
             brojStavkePorudzbenice = BrojStavkePorudzbenice;
             scenarioID = scenario;
             drumski = _drumski;
+            vrstaKamiona = VrstaKamiona;
 
             dataGridView1.ColumnHeadersHeightChanged += (s, e) =>
             {
@@ -1365,7 +1367,6 @@ namespace Saobracaj.Izvoz
 
 
             InsertIzvoz ins = new InsertIzvoz();
-            int vrstaKamiona = 0;
             DateTime? cutOffPort = null;
             decimal? bttRobe = null;
             decimal? nttoRobe = null;
@@ -1606,7 +1607,8 @@ namespace Saobracaj.Izvoz
                                                        safeLink,
                                                        safeKvalitet,
                                                        safeVrstaRobe,
-                                                       drumski);
+                                                       drumski,
+                                                       vrstaKamiona);
 
                     InsertIzvoz uvK = new InsertIzvoz();
 

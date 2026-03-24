@@ -21,11 +21,21 @@ namespace Saobracaj.Izvoz
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+        int id = 0;
+
         public frmProdajniNalogIzvoz()
         {
             InitializeComponent();
             ChangeTextBox();
            
+        }
+
+        public frmProdajniNalogIzvoz(int ID)
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            id = ID;
+
         }
 
         private void ChangeTextBox()
@@ -44,11 +54,6 @@ namespace Saobracaj.Izvoz
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
-
-
-
-         
-
 
                 foreach (Control control in Controls)
                 {
@@ -275,6 +280,8 @@ namespace Saobracaj.Izvoz
 
             return uspesno;
         }
+
+
         private void button21_Click(object sender, EventArgs e)
         {
             if (!ValidacijaSaIkonama())
@@ -296,24 +303,94 @@ namespace Saobracaj.Izvoz
             if (imaRedova && !ValidacijaGrida2())
                 return;
 
-            InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
-            ins.InsProdajniNalogIzvoz(tKorisnik , Convert.ToInt32(cboNalogodavac.SelectedValue), txtOpisPosla.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), txtLink.Text, Convert.ToDateTime(dtpCutOffPort.Value), txtBoking.Text);
-           
-            UnesiStavke();
+            if (id == 0)
+
+            {
+                InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
+                id = ins.InsProdajniNalogIzvoz(tKorisnik, Convert.ToInt32(cboNalogodavac.SelectedValue), txtOpisPosla.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), txtLink.Text, Convert.ToDateTime(dtpCutOffPort.Value), txtBoking.Text);
+                txtBrojDokumenta.Text = id.ToString();
+                UnesiStavke();
+            }
+            else // update
+            {
+                InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
+                ins.UpdProdajniNalogIzvoz(id, tKorisnik, Convert.ToInt32(cboNalogodavac.SelectedValue), txtOpisPosla.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), txtLink.Text, Convert.ToDateTime(dtpCutOffPort.Value), txtBoking.Text);
+                UnesiStavke();
+            }
         }
 
 
-      
+        private void VratiPodatkeSelect()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+
+            SqlCommand cmd = new SqlCommand(" SELECT  ProdajniNalogIzvoz.ID as BrojDokumenta,ProdajniNalogIzvoz.Korisnik, ProdajniNalogIzvoz.Nalogodavac , ProdajniNalogIzvoz.OpisPosla, " +
+             " ProdajniNalogIzvoz.Brodar, ProdajniNalogIzvoz.Izvoznik, ProdajniNalogIzvoz.Link , ProdajniNalogIzvoz.CuttOfPort, ProdajniNalogIzvoz.BukingNumber " +
+              "FROM  ProdajniNalogIzvoz " +
+              " WHERE ID = " + id, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                txtBrojDokumenta.Text = dr["BrojDokumenta"].ToString();
+
+                txtKorisnik.Text = dr["Korisnik"].ToString();
+                txtOpisPosla.Text = dr["OpisPosla"].ToString();
+
+                if (dr["Nalogodavac"] != DBNull.Value)
+                    cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
+
+                txtLink.Text = dr["Link"].ToString();
+
+                if (dr["Brodar"] != DBNull.Value)
+                    cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+
+                if (dr["Izvoznik"] != DBNull.Value)
+                    cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+
+  
+
+                if (dr["CuttOfPort"] != DBNull.Value)
+                {
+                    dtpCutOffPort.Value = Convert.ToDateTime(dr["CuttOfPort"].ToString());
+                }
+
+                txtKorisnik.Text = tKorisnik;
+                if (dr["Nalogodavac"] != DBNull.Value)
+                    cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
+
+             
+            }
+        }
+
        
+      
         private void frmProdajniNalogIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
-            txtKorisnik.Text = tKorisnik;
-            txtBrojDokumenta.Text = GetMaxID().ToString();
             DGVCombo();
-            dtpCutOffPort.Value = DateTime.Now;
+            if (id == 0)
+            {
+                txtKorisnik.Text = tKorisnik;
+                txtBrojDokumenta.Text = GetMaxID().ToString();
+                dtpCutOffPort.Value = DateTime.Now;
+            }
+            else
+            {
+                VratiPodatkeSelect();
+                RefreshDataGrid();
+            }
+
+                
             errorProvider1.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             PodesiDatagridView(dataGridView1);
+            
         }
 
         int GetMaxID()
@@ -529,13 +606,26 @@ namespace Saobracaj.Izvoz
                     int.TryParse(row.Cells[6].Value?.ToString(), out int cell6);
                     int.TryParse(row.Cells[4].Value?.ToString(), out int cell4);
 
-                    ins.InsProdajniNalogIzvozStavke(brojDokumenta, kolicina,
-                        row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
-                       refer, "OTVOREN")
-                       ;
+                    if (Convert.ToInt32(postojeciID) == 0)
+                    {
+                        ins.InsProdajniNalogIzvozStavke(brojDokumenta, kolicina,
+                            row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
+                           refer, "OTVOREN")
+                           ;
 
-                    ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
-                    MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
+                        ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
+                        MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
+                    }
+                    else
+                    {
+                        ins.UpdProdajniNalogIzvozStavke(Convert.ToInt32(postojeciID), kolicina,
+                            row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
+                           refer, "OTVOREN")
+                           ;
+                        ikt.UpdKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
+                        MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
+
+                    }
                 
                 }
 

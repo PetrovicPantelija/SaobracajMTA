@@ -2071,6 +2071,12 @@
     <Compile Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.Designer.cs">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmPreglegPorudzbenica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmPreglegPorudzbenica.Designer.cs">
+      <DependentUpon>frmPreglegPorudzbenica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmProdajniNalogIzvoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5277,6 +5283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.resx">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmPreglegPorudzbenica.resx">
+      <DependentUpon>frmPreglegPorudzbenica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvoz.resx">
       <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>

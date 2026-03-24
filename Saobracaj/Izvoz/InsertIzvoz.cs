@@ -3338,7 +3338,7 @@ namespace Saobracaj.Izvoz
 
         public List<int> InsIzvozPorudzbenica(int BrojStavkePorudzbenice, int ScenarioID, string Korisnik,int? Porucilac, int BrojKontejnera, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string BrodskaPlombaBroj, string NaslovSlanjaStatusa,
                                               int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort,decimal Tara, int? Vaganje, int? Klijent2,
-                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe, int Drumski)
+                                              int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe, int Drumski, int VrstaKamiona)
         {
             List<int> noviIDs = new List<int>();
             SqlConnection conn = new SqlConnection(connection);
@@ -3542,6 +3542,13 @@ namespace Saobracaj.Izvoz
             drumski.Direction = ParameterDirection.Input;
             drumski.Value = Drumski;
             cmd.Parameters.Add(drumski);
+
+            SqlParameter vrstaKamiona = new SqlParameter();
+            vrstaKamiona.ParameterName = "@VrstaKamiona";
+            vrstaKamiona.SqlDbType = SqlDbType.Int;
+            vrstaKamiona.Direction = ParameterDirection.Input;
+            vrstaKamiona.Value = VrstaKamiona;
+            cmd.Parameters.Add(vrstaKamiona);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

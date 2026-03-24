@@ -255,7 +255,7 @@ namespace Saobracaj.Izvoz
             {
                 int IzborDrumski = 0;
                 int IzborADR = 0;
-                int IzborCerada = 0; // 0-platforma, 1 cerada
+                int IzborCerada = 1; // 1-platforma, 2 cerada
                 bool postojiScenario = false;
                 InsertProdajniNalogIzvoz drum = new InsertProdajniNalogIzvoz();
                 InsertProdajniNalogIzvoz scin = new InsertProdajniNalogIzvoz();
@@ -327,7 +327,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 13;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); // 
                                         Izabrani = "Izabrali ste Scenario 13 - PLATFORMA DIREKTNO PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -338,7 +338,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 26;
                                         Izabrani = "Izabrali ste Scenario 26 (ADR) - PLATFORMA DIREKTNO PUN";
                                         scin.UpdScenario(id, scenarioID, IzborDrumski);
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -354,7 +354,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 7;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 7 - PLATFORMA PRAZAN - PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -365,7 +365,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 23;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -381,7 +381,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 8;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 8 - CERADA PRETOVAR PUN ";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -392,7 +392,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 24;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 24 (ADR) - CERADA PRETOVAR PUN ";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -408,7 +408,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 9;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 9 - CERADA SKLADISTE PUN";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -420,7 +420,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 25;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 25 (ADR) - CERADA SKLADISTE PUN";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -500,7 +500,7 @@ namespace Saobracaj.Izvoz
                     //    }
                     //}
 
-                    frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski);
+                    frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski, IzborCerada);
                     gpu.ShowDialog();
                 }
             }
