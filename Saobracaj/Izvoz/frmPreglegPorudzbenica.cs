@@ -142,13 +142,30 @@ namespace Saobracaj.Izvoz
 
         private void RefreshGridControl()
         {
+            string condition = "";
+
+            if (statusizmene == 2)
+            {
+                 condition += $" WHERE NOT EXISTS ( " +
+                "    SELECT 1 FROM ProdajniNalogIzvozStavke " +
+                "    WHERE IDNadredjenog = ProdajniNalogIzvoz.ID " +
+                "    AND ISNULL(KolicinaFormirana, 0) <> 0 " +
+                " ) ";
+
+            }
             var select = " SELECT  ProdajniNalogIzvoz.ID as ID,  Partnerji_3.PaNaziv AS Nalogodavac , ProdajniNalogIzvoz.OpisPosla, " + 
-          " Partnerji_4.PaNaziv AS Brodar, Partnerji_2.PaNaziv AS Izvoznik, ProdajniNalogIzvoz.Link , ProdajniNalogIzvoz.CuttOfPort, ProdajniNalogIzvoz.BukingNumber " +
+          " Partnerji_4.PaNaziv AS Brodar, Partnerji_2.PaNaziv AS Izvoznik, ProdajniNalogIzvoz.Link , ProdajniNalogIzvoz.CuttOfPort, ProdajniNalogIzvoz.BukingNumber, " +
+          " CASE WHEN EXISTS ( " +
+            "    SELECT 1 FROM ProdajniNalogIzvozStavke  " +
+            "    WHERE IDNadredjenog = ProdajniNalogIzvoz.ID  " +
+            "    AND ISNULL(KolicinaFormirana, 0) <> 0 " +
+            " ) THEN 'Ne' ELSE 'Da' END AS DozvoljeneIzmene " +
           "FROM  ProdajniNalogIzvoz " +
           "LEFT JOIN  Partnerji ON ProdajniNalogIzvoz.Brodar = Partnerji.PaSifra " +
           "LEFT JOIN  Partnerji AS Partnerji_2 ON ProdajniNalogIzvoz.Izvoznik = Partnerji_2.PaSifra " +
           "LEFT JOIN  Partnerji AS Partnerji_3 ON ProdajniNalogIzvoz.Nalogodavac = Partnerji_3.PaSifra " +
-          "LEFT JOIN  Partnerji AS Partnerji_4 ON ProdajniNalogIzvoz.Brodar = Partnerji_4.PaSifra " +
+          "LEFT JOIN  Partnerji AS Partnerji_4 ON ProdajniNalogIzvoz.Brodar = Partnerji_4.PaSifra " + 
+          condition + 
           " order by ProdajniNalogIzvoz.ID desc  ";
 
             //   var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -204,9 +221,11 @@ namespace Saobracaj.Izvoz
                 if (rec != null)
                 {
                     int id = Convert.ToInt32(rec.GetValue("ID"));
-
-                    frmProdajniNalogIzvoz pnd = new frmProdajniNalogIzvoz(id);
+                    string editabilno = (gridGroupingControl1.Table.CurrentRecord.GetValue("DozvoljeneIzmene")).ToString();
+                  
+                    frmProdajniNalogIzvoz pnd = new frmProdajniNalogIzvoz(id, editabilno);
                     pnd.Show();
+                   
 
                 }
             }
@@ -241,28 +260,35 @@ namespace Saobracaj.Izvoz
             int id = 0;
             if (statusizmene == 2)
             {
-                InsertIzvoz ins = new InsertIzvoz();
+                InsertProdajniNalogIzvoz ins = new InsertProdajniNalogIzvoz();
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
 
                     //InsertProdajniNalogIzvoz ipnk = new InsertProdajniNalogIzvoz();
-
-                    DialogResult result = System.Windows.Forms.MessageBox.Show(
-                    "Da li ste sigurni da želite da otkažete stavku?", // Message text
-                    "Potvrdite", // Title
-                    MessageBoxButtons.YesNoCancel, // Buttons
-                    MessageBoxIcon.Question // Icon
-                    );
-
-                    // Handle the result based on user selection
-                    if (result == DialogResult.Yes)
+                    string   editabilno = (gridGroupingControl1.Table.CurrentRecord.GetValue("DozvoljeneIzmene")).ToString();
+                    if (editabilno == "Da")
                     {
+                        DialogResult result = System.Windows.Forms.MessageBox.Show(
+                        "Da li ste sigurni da želite da otkažete stavku?", // Message text
+                        "Potvrdite", // Title
+                        MessageBoxButtons.YesNoCancel, // Buttons
+                        MessageBoxIcon.Question // Icon
+                        );
 
-                        //ins.DelKontejnerIzvoz(id);
-                        this.BeginInvoke(new Action(() => {
-                            RefreshGridControl();
-                        }));
+                        // Handle the result based on user selection
+                        if (result == DialogResult.Yes)
+                        {
+
+                            ins.DelPorudzbenice(id);
+                            this.BeginInvoke(new Action(() => {
+                                RefreshGridControl();
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ovu porudžbenicu nije moguće otkazati jer su za nju već formirani kontejneri! ");
                     }
                 }
             }

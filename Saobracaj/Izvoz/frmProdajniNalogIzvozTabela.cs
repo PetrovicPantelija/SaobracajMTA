@@ -277,6 +277,11 @@ namespace Saobracaj.Izvoz
                     "Potvrdite" // Icon
                     );
 
+                    if (result == DialogResult.Cancel)
+                    {
+                        return; // <--- AKO JE KLIKNUTO NA X, OVDE SE SVE PREKIDA
+                    }
+
                     // Handle the result based on user selection
                     if (result == DialogResult.Yes)
                     {
@@ -300,6 +305,10 @@ namespace Saobracaj.Izvoz
                    "Potvrdite"
                    );
 
+                    if (result2 == DialogResult.Cancel)
+                    {
+                        return; 
+                    }
                     // Handle the result based on user selection
                     if (result2 == DialogResult.Yes)
                     {

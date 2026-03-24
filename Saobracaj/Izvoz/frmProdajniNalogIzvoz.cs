@@ -22,6 +22,7 @@ namespace Saobracaj.Izvoz
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         int id = 0;
+        string editabilno = "Da";
 
         public frmProdajniNalogIzvoz()
         {
@@ -30,11 +31,12 @@ namespace Saobracaj.Izvoz
            
         }
 
-        public frmProdajniNalogIzvoz(int ID)
+        public frmProdajniNalogIzvoz(int ID, string Editabilno)
         {
             InitializeComponent();
             ChangeTextBox();
             id = ID;
+            editabilno = Editabilno; //
 
         }
 
@@ -284,6 +286,14 @@ namespace Saobracaj.Izvoz
 
         private void button21_Click(object sender, EventArgs e)
         {
+            if (editabilno == "Ne")
+            {
+
+                MessageBox.Show("Ovu pordžbenicu nije moguće menjati jer su za nju već formirani kontejneri!");
+                VratiPodatkeSelect();
+                RefreshDataGrid();
+                return;
+            }
             if (!ValidacijaSaIkonama())
             {
                 MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -614,7 +624,6 @@ namespace Saobracaj.Izvoz
                            ;
 
                         ikt.InsKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
-                        MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
                     }
                     else
                     {
@@ -623,10 +632,10 @@ namespace Saobracaj.Izvoz
                            refer, "OTVOREN")
                            ;
                         ikt.UpdKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
-                        MessageBox.Show("Kontejneri su uspesno uneti i stavljeni na Komercijalnu zonu");
+                       
 
                     }
-                
+                    MessageBox.Show("Kontejneri su uspešno uneti i stavljeni na Komercijalnu zonu");
                 }
 
 
