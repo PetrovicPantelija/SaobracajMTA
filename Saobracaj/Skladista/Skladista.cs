@@ -27,5 +27,32 @@ namespace Saobracaj.Skladista
                 () => new CarinskoSkladiste("Carinsko")
             );
         }
+
+        private void btnRadniNalozi_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnRadniNalozi.Text,
+                () => new Komercijalninalozi()
+            );
+        }
+
+        private void btnKomerijalnoSkladiste_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnKomerijalnoSkladiste.Text,
+                () => new KomercijalnoSkladiste()
+            );
+        }
+
+        private void btnFakturisanje_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
