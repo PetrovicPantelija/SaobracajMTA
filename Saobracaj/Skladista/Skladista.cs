@@ -36,7 +36,7 @@ namespace Saobracaj.Skladista
             if (main == null) return;
 
             main.OtvoriFormuSaPravom(
-                btnRadniNalozi.Text,
+                "Radni nalozi",
                 () => new MainRN(Korisnik)
             );
         }

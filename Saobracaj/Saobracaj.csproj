@@ -3352,6 +3352,12 @@
       <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
+    <Compile Include="Skladista\MainRN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\MainRN.Designer.cs">
+      <DependentUpon>MainRN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5879,6 +5885,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\MainRN.resx">
+      <DependentUpon>MainRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\PrijemnicaCarinskoSkladiste.resx">
       <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
