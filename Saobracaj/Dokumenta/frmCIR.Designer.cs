@@ -30,7 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCIR));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -160,7 +163,7 @@
             this.toolStripButton2});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1398, 27);
+            this.meniHeader.Size = new System.Drawing.Size(65535, 27);
             this.meniHeader.TabIndex = 115;
             this.meniHeader.Text = "Manipulacije kontejnerom";
             // 
@@ -271,7 +274,7 @@
             0,
             0});
             this.txtSize.Name = "txtSize";
-            this.txtSize.Size = new System.Drawing.Size(90, 22);
+            this.txtSize.Size = new System.Drawing.Size(65535, 22);
             this.txtSize.TabIndex = 217;
             this.txtSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSize.Visible = false;
@@ -388,7 +391,7 @@
             0,
             0});
             this.txtTara.Name = "txtTara";
-            this.txtTara.Size = new System.Drawing.Size(115, 22);
+            this.txtTara.Size = new System.Drawing.Size(65535, 22);
             this.txtTara.TabIndex = 244;
             this.txtTara.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -664,9 +667,9 @@
             this.dtpDatumIn.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumIn.Location = new System.Drawing.Point(23, 541);
+            this.dtpDatumIn.Location = new System.Drawing.Point(69, 1623);
             this.dtpDatumIn.Name = "dtpDatumIn";
-            this.dtpDatumIn.Size = new System.Drawing.Size(145, 22);
+            this.dtpDatumIn.Size = new System.Drawing.Size(435, 22);
             this.dtpDatumIn.TabIndex = 250;
             this.dtpDatumIn.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpDatumIn.ValueChanged += new System.EventHandler(this.dtpDatumOtpreme_ValueChanged);
@@ -688,11 +691,35 @@
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Location = new System.Drawing.Point(905, 148);
             this.dataGridView2.Name = "dataGridView2";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(485, 229);
+            this.dataGridView2.Size = new System.Drawing.Size(485, 2055);
             this.dataGridView2.TabIndex = 272;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -749,14 +776,14 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(283, 383);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1115, 350);
+            this.reportViewer1.Size = new System.Drawing.Size(65535, 2176);
             this.reportViewer1.TabIndex = 277;
             // 
             // txtSirina
@@ -771,7 +798,7 @@
             0,
             0});
             this.txtSirina.Name = "txtSirina";
-            this.txtSirina.Size = new System.Drawing.Size(69, 22);
+            this.txtSirina.Size = new System.Drawing.Size(50301, 22);
             this.txtSirina.TabIndex = 280;
             this.txtSirina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -798,7 +825,7 @@
             0,
             0});
             this.txtDuzina.Name = "txtDuzina";
-            this.txtDuzina.Size = new System.Drawing.Size(69, 22);
+            this.txtDuzina.Size = new System.Drawing.Size(50301, 22);
             this.txtDuzina.TabIndex = 278;
             this.txtDuzina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -825,7 +852,7 @@
             0,
             0});
             this.txtVisina.Name = "txtVisina";
-            this.txtVisina.Size = new System.Drawing.Size(69, 22);
+            this.txtVisina.Size = new System.Drawing.Size(50301, 22);
             this.txtVisina.TabIndex = 282;
             this.txtVisina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -899,7 +926,7 @@
             0,
             0});
             this.txtNeto.Name = "txtNeto";
-            this.txtNeto.Size = new System.Drawing.Size(112, 22);
+            this.txtNeto.Size = new System.Drawing.Size(65535, 22);
             this.txtNeto.TabIndex = 288;
             this.txtNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -926,7 +953,7 @@
             0,
             0});
             this.txtBruto.Name = "txtBruto";
-            this.txtBruto.Size = new System.Drawing.Size(115, 22);
+            this.txtBruto.Size = new System.Drawing.Size(65535, 22);
             this.txtBruto.TabIndex = 290;
             this.txtBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1077,7 +1104,7 @@
             0,
             0});
             this.txtNosivost.Name = "txtNosivost";
-            this.txtNosivost.Size = new System.Drawing.Size(115, 22);
+            this.txtNosivost.Size = new System.Drawing.Size(65535, 22);
             this.txtNosivost.TabIndex = 303;
             this.txtNosivost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1173,7 +1200,7 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1398, 33);
+            this.panelHeader.Size = new System.Drawing.Size(65535, 0);
             this.panelHeader.TabIndex = 469;
             // 
             // panel2
@@ -1187,7 +1214,7 @@
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1267, 31);
+            this.panel2.Size = new System.Drawing.Size(65404, 31);
             this.panel2.TabIndex = 6;
             // 
             // button26
@@ -1283,7 +1310,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(108, 31);
+            this.panel3.Size = new System.Drawing.Size(4, 0);
             this.panel3.TabIndex = 2;
             // 
             // button20

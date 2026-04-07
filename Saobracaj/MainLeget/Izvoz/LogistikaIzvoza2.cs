@@ -109,7 +109,7 @@ namespace Saobracaj.MainLeget.LegNew
 
             main.OtvoriFormuSaPravom(
                 sfButton2.Text,
-                () => new frmProdajniNalogIzvozTabela(1)
+                () => new frmPregledGrupaKontejneraIzvoz(1) //new frmProdajniNalogIzvozTabela(1)
             );
         }
 
@@ -120,7 +120,7 @@ namespace Saobracaj.MainLeget.LegNew
 
             main.OtvoriFormuSaPravom(
                 sfButton3.Text,
-                () => new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(2)
+                () => new frmPregledGrupaKontejneraIzvoz(2)//new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(2)
             );
         }
 

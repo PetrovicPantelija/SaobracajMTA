@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnNalogFakturisanje = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // splitter1
@@ -115,7 +116,7 @@
             this.sfButton6.ImageSize = new System.Drawing.Size(70, 80);
             this.sfButton6.Location = new System.Drawing.Point(662, 115);
             this.sfButton6.Name = "sfButton6";
-            this.sfButton6.Size = new System.Drawing.Size(288, 225);
+            this.sfButton6.Size = new System.Drawing.Size(311, 225);
             this.sfButton6.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.sfButton6.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton6.Style.Image = global::Saobracaj.Properties.Resources._3_VanGabaritni;
@@ -146,12 +147,36 @@
             this.sfButton1.UseVisualStyleBackColor = false;
             this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click_1);
             // 
+            // btnNalogFakturisanje
+            // 
+            this.btnNalogFakturisanje.AccessibleName = "Button";
+            this.btnNalogFakturisanje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnNalogFakturisanje.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnNalogFakturisanje.ForeColor = System.Drawing.Color.White;
+            this.btnNalogFakturisanje.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnNalogFakturisanje.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnNalogFakturisanje.Location = new System.Drawing.Point(662, 357);
+            this.btnNalogFakturisanje.Name = "btnNalogFakturisanje";
+            this.btnNalogFakturisanje.Size = new System.Drawing.Size(311, 225);
+            this.btnNalogFakturisanje.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnNalogFakturisanje.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnNalogFakturisanje.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnNalogFakturisanje.Style.ForeColor = System.Drawing.Color.White;
+            this.btnNalogFakturisanje.Style.Image = global::Saobracaj.Properties.Resources._2NalogZaFakturisanje;
+            this.btnNalogFakturisanje.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnNalogFakturisanje.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnNalogFakturisanje.TabIndex = 500;
+            this.btnNalogFakturisanje.Text = "NALOG ZA FAKTURISANJE";
+            this.btnNalogFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNalogFakturisanje.UseVisualStyleBackColor = false;
+            // 
             // Drumski1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1048, 594);
+            this.Controls.Add(this.btnNalogFakturisanje);
             this.Controls.Add(this.sfButton1);
             this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.sfButton7);
@@ -177,5 +202,6 @@
         private System.Windows.Forms.Label label1;
         private Syncfusion.WinForms.Controls.SfButton sfButton6;
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnNalogFakturisanje;
     }
 }

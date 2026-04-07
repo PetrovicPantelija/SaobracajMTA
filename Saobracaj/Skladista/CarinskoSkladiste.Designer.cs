@@ -36,6 +36,8 @@
             this.btnPregledLagera = new Syncfusion.WinForms.Controls.SfButton();
             this.btnPregledKartica = new Syncfusion.WinForms.Controls.SfButton();
             this.btnPregledNerazduzenih = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnUpravljanjeSkladistem = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPretovarRobe = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // label2
@@ -61,7 +63,7 @@
             this.btnPrijemRobe.ForeColor = System.Drawing.Color.White;
             this.btnPrijemRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemRobe.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemRobe.Location = new System.Drawing.Point(12, 94);
+            this.btnPrijemRobe.Location = new System.Drawing.Point(15, 115);
             this.btnPrijemRobe.Name = "btnPrijemRobe";
             this.btnPrijemRobe.Size = new System.Drawing.Size(288, 225);
             this.btnPrijemRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -82,7 +84,7 @@
             this.btnOtpremaRobe.ForeColor = System.Drawing.Color.White;
             this.btnOtpremaRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnOtpremaRobe.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnOtpremaRobe.Location = new System.Drawing.Point(365, 94);
+            this.btnOtpremaRobe.Location = new System.Drawing.Point(324, 115);
             this.btnOtpremaRobe.Name = "btnOtpremaRobe";
             this.btnOtpremaRobe.Size = new System.Drawing.Size(288, 225);
             this.btnOtpremaRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -101,7 +103,7 @@
             this.btnMagacinskaKnjiga.ForeColor = System.Drawing.Color.White;
             this.btnMagacinskaKnjiga.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnMagacinskaKnjiga.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnMagacinskaKnjiga.Location = new System.Drawing.Point(720, 94);
+            this.btnMagacinskaKnjiga.Location = new System.Drawing.Point(15, 388);
             this.btnMagacinskaKnjiga.Name = "btnMagacinskaKnjiga";
             this.btnMagacinskaKnjiga.Size = new System.Drawing.Size(288, 225);
             this.btnMagacinskaKnjiga.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -126,7 +128,7 @@
             this.btnPregledLagera.ForeColor = System.Drawing.Color.White;
             this.btnPregledLagera.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledLagera.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledLagera.Location = new System.Drawing.Point(12, 374);
+            this.btnPregledLagera.Location = new System.Drawing.Point(324, 388);
             this.btnPregledLagera.Name = "btnPregledLagera";
             this.btnPregledLagera.Size = new System.Drawing.Size(288, 225);
             this.btnPregledLagera.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -146,7 +148,7 @@
             this.btnPregledKartica.ForeColor = System.Drawing.Color.White;
             this.btnPregledKartica.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledKartica.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledKartica.Location = new System.Drawing.Point(365, 374);
+            this.btnPregledKartica.Location = new System.Drawing.Point(639, 388);
             this.btnPregledKartica.Name = "btnPregledKartica";
             this.btnPregledKartica.Size = new System.Drawing.Size(288, 225);
             this.btnPregledKartica.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -166,7 +168,7 @@
             this.btnPregledNerazduzenih.ForeColor = System.Drawing.Color.White;
             this.btnPregledNerazduzenih.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledNerazduzenih.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledNerazduzenih.Location = new System.Drawing.Point(720, 374);
+            this.btnPregledNerazduzenih.Location = new System.Drawing.Point(948, 388);
             this.btnPregledNerazduzenih.Name = "btnPregledNerazduzenih";
             this.btnPregledNerazduzenih.Size = new System.Drawing.Size(288, 225);
             this.btnPregledNerazduzenih.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -177,12 +179,54 @@
             this.btnPregledNerazduzenih.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPregledNerazduzenih.UseVisualStyleBackColor = false;
             // 
+            // btnUpravljanjeSkladistem
+            // 
+            this.btnUpravljanjeSkladistem.AccessibleName = "Button";
+            this.btnUpravljanjeSkladistem.AllowWrapText = true;
+            this.btnUpravljanjeSkladistem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnUpravljanjeSkladistem.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnUpravljanjeSkladistem.ForeColor = System.Drawing.Color.White;
+            this.btnUpravljanjeSkladistem.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnUpravljanjeSkladistem.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnUpravljanjeSkladistem.Location = new System.Drawing.Point(948, 115);
+            this.btnUpravljanjeSkladistem.Name = "btnUpravljanjeSkladistem";
+            this.btnUpravljanjeSkladistem.Size = new System.Drawing.Size(288, 225);
+            this.btnUpravljanjeSkladistem.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnUpravljanjeSkladistem.Style.ForeColor = System.Drawing.Color.White;
+            this.btnUpravljanjeSkladistem.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            this.btnUpravljanjeSkladistem.TabIndex = 506;
+            this.btnUpravljanjeSkladistem.Text = "Upravljanje skladištem";
+            this.btnUpravljanjeSkladistem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUpravljanjeSkladistem.UseVisualStyleBackColor = false;
+            // 
+            // btnPretovarRobe
+            // 
+            this.btnPretovarRobe.AccessibleName = "Button";
+            this.btnPretovarRobe.AllowWrapText = true;
+            this.btnPretovarRobe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovarRobe.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPretovarRobe.ForeColor = System.Drawing.Color.White;
+            this.btnPretovarRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPretovarRobe.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPretovarRobe.Location = new System.Drawing.Point(639, 115);
+            this.btnPretovarRobe.Name = "btnPretovarRobe";
+            this.btnPretovarRobe.Size = new System.Drawing.Size(288, 225);
+            this.btnPretovarRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPretovarRobe.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPretovarRobe.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
+            this.btnPretovarRobe.TabIndex = 507;
+            this.btnPretovarRobe.Text = "Pretovar robe";
+            this.btnPretovarRobe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPretovarRobe.UseVisualStyleBackColor = false;
+            // 
             // CarinskoSkladiste
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1057, 623);
+            this.ClientSize = new System.Drawing.Size(1260, 664);
+            this.Controls.Add(this.btnUpravljanjeSkladistem);
+            this.Controls.Add(this.btnPretovarRobe);
             this.Controls.Add(this.btnPregledNerazduzenih);
             this.Controls.Add(this.btnPregledKartica);
             this.Controls.Add(this.btnPregledLagera);
@@ -209,5 +253,7 @@
         private Syncfusion.WinForms.Controls.SfButton btnPregledLagera;
         private Syncfusion.WinForms.Controls.SfButton btnPregledKartica;
         private Syncfusion.WinForms.Controls.SfButton btnPregledNerazduzenih;
+        private Syncfusion.WinForms.Controls.SfButton btnUpravljanjeSkladistem;
+        private Syncfusion.WinForms.Controls.SfButton btnPretovarRobe;
     }
 }

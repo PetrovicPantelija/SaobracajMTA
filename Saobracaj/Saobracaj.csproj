@@ -2053,6 +2053,12 @@
     <Compile Include="Izvoz\frmPrebacivanjeIzPlanaUPlan.Designer.cs">
       <DependentUpon>frmPrebacivanjeIzPlanaUPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmPregledGrupaKontejneraIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmPregledGrupaKontejneraIzvoz.Designer.cs">
+      <DependentUpon>frmPregledGrupaKontejneraIzvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmPregledKontejneraIzvoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2064,6 +2070,12 @@
     </Compile>
     <Compile Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.Designer.cs">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmPreglegPorudzbenica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmPreglegPorudzbenica.Designer.cs">
+      <DependentUpon>frmPreglegPorudzbenica.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmProdajniNalogIzvoz.cs">
       <SubType>Form</SubType>
@@ -2238,6 +2250,12 @@
       <DependentUpon>Drumski1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\InsertKontejnerTekuce.cs" />
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.Designer.cs">
+      <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3327,13 +3345,13 @@
     <Compile Include="Skladista\CarinskoSkladiste.Designer.cs">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </Compile>
-    <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
-    <Compile Include="Skladista\MainRN.cs">
+    <Compile Include="Skladista\KomercijalnoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Skladista\MainRN.Designer.cs">
-      <DependentUpon>MainRN.cs</DependentUpon>
+    <Compile Include="Skladista\KomercijalnoSkladiste.Designer.cs">
+      <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
     <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5299,11 +5317,17 @@
     <EmbeddedResource Include="Izvoz\frmPrebacivanjeIzPlanaUPlan.resx">
       <DependentUpon>frmPrebacivanjeIzPlanaUPlan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmPregledGrupaKontejneraIzvoz.resx">
+      <DependentUpon>frmPregledGrupaKontejneraIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvoz.resx">
       <DependentUpon>frmPregledKontejneraIzvoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.resx">
       <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmPreglegPorudzbenica.resx">
+      <DependentUpon>frmPreglegPorudzbenica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmProdajniNalogIzvoz.resx">
       <DependentUpon>frmProdajniNalogIzvoz.cs</DependentUpon>
@@ -5384,6 +5408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Drumski\Drumski1.resx">
       <DependentUpon>Drumski1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza0.resx">
+      <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza1.resx">
       <DependentUpon>LogistikaIzvoza1.cs</DependentUpon>
@@ -5852,9 +5879,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Skladista\MainRN.resx">
-      <DependentUpon>MainRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\PrijemnicaCarinskoSkladiste.resx">
       <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
