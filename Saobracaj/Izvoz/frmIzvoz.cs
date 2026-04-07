@@ -327,7 +327,7 @@ namespace Saobracaj.Izvoz
                     cboPPCNT2.SelectedValue = (dr["MestoPreuzimanja2"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja2"]); 
                     cboPPCNT3.SelectedValue = (dr["MestoPreuzimanja3"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["MestoPreuzimanja3"]); 
 
-                    if (dr["Cirada"].ToString() == "1")
+                    if (dr["Cirada"].ToString() == "2")
                     { chkCirada.Text = "CIRADA"; }
                     else
                     { chkCirada.Text =  "PLATFORMA";  }
@@ -1021,10 +1021,10 @@ namespace Saobracaj.Izvoz
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertIzvoz ins = new InsertIzvoz();
-            int pomCirada = 0;
+            int pomCirada = 1;
                 if (chkCirada.Text == "CIRADA")
             {
-                pomCirada = 1;
+                pomCirada = 2;
                         }
 
             int pomNajavaVozila = 0;
@@ -1512,7 +1512,7 @@ namespace Saobracaj.Izvoz
                     dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"]);
                 }
               
-                if (dr["Cirada"].ToString() == "1")
+                if (dr["Cirada"].ToString() == "2")
                 {
                     chkCirada.Text = "CIRADA";
                 }   
@@ -3010,7 +3010,7 @@ namespace Saobracaj.Izvoz
 
         private void button17_Click_1(object sender, EventArgs e)
         {
-
+            
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)

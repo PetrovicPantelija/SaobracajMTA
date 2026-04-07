@@ -31,9 +31,109 @@ namespace Saobracaj.Izvoz
         public frmProdajniNalogIzvozTabela(int st)
         {
             InitializeComponent();
+            ChangeTextBox();
             statusizmene = st;
         }
 
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+           // meniHeader.Visible = false;
+            this.ControlBox = true;
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+              //  meniHeader.Visible = true;
+              //  meniHeader.Visible = false;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                //foreach (Control control in groupBox1.Controls)
+                //{
+                //    if (control is System.Windows.Forms.Button buttons)
+                //    {
+
+                //        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                //        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                //        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                //        buttons.FlatStyle = FlatStyle.Flat;
+                //    }
+                //}
+
+
+                foreach (System.Windows.Forms.Control control in this.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+                //meniHeader.Visible = false;
+                //meniHeader.Visible = true;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
         private void RefreshGridControl()
         {
             var select = "";
@@ -155,7 +255,7 @@ namespace Saobracaj.Izvoz
             {
                 int IzborDrumski = 0;
                 int IzborADR = 0;
-                int IzborCerada = 0; // 0-platforma, 1 cerada
+                int IzborCerada = 1; // 1-platforma, 2 cerada
                 bool postojiScenario = false;
                 InsertProdajniNalogIzvoz drum = new InsertProdajniNalogIzvoz();
                 InsertProdajniNalogIzvoz scin = new InsertProdajniNalogIzvoz();
@@ -176,6 +276,11 @@ namespace Saobracaj.Izvoz
                     "Da li je drumski prevoz U organizaciji Legeta", // Message text
                     "Potvrdite" // Icon
                     );
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        return; // <--- AKO JE KLIKNUTO NA X, OVDE SE SVE PREKIDA
+                    }
 
                     // Handle the result based on user selection
                     if (result == DialogResult.Yes)
@@ -200,6 +305,10 @@ namespace Saobracaj.Izvoz
                    "Potvrdite"
                    );
 
+                    if (result2 == DialogResult.Cancel)
+                    {
+                        return; 
+                    }
                     // Handle the result based on user selection
                     if (result2 == DialogResult.Yes)
                     {
@@ -227,7 +336,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 13;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); // 
                                         Izabrani = "Izabrali ste Scenario 13 - PLATFORMA DIREKTNO PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -238,7 +347,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 26;
                                         Izabrani = "Izabrali ste Scenario 26 (ADR) - PLATFORMA DIREKTNO PUN";
                                         scin.UpdScenario(id, scenarioID, IzborDrumski);
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -254,7 +363,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 7;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 7 - PLATFORMA PRAZAN - PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -265,7 +374,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 23;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
-                                        IzborCerada = 0;
+                                        IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -281,7 +390,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 8;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 8 - CERADA PRETOVAR PUN ";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -292,7 +401,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 24;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 24 (ADR) - CERADA PRETOVAR PUN ";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -308,7 +417,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 9;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 9 - CERADA SKLADISTE PUN";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -320,7 +429,7 @@ namespace Saobracaj.Izvoz
                                         scenarioID = 25;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 25 (ADR) - CERADA SKLADISTE PUN";
-                                        IzborCerada = 1;
+                                        IzborCerada = 2;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
@@ -400,7 +509,7 @@ namespace Saobracaj.Izvoz
                     //    }
                     //}
 
-                    frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski);
+                    frmGrupniUnosPoljaIzvoz gpu = new frmGrupniUnosPoljaIzvoz(brojStavkePorudzbeniceID, scenarioID, drumski, IzborCerada);
                     gpu.ShowDialog();
                 }
             }

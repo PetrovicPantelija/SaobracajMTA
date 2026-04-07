@@ -116,7 +116,7 @@
             this.btnLogistikaIzvozaPM5.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM5.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM5.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnLogistikaIzvozaPM5.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
             this.btnLogistikaIzvozaPM5.TabIndex = 496;
             this.btnLogistikaIzvozaPM5.Text = "Formiranje praznog voza";
             this.btnLogistikaIzvozaPM5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -136,7 +136,7 @@
             this.btnLogistikaIzvozaPM4.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM4.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM4.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnLogistikaIzvozaPM4.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
             this.btnLogistikaIzvozaPM4.TabIndex = 495;
             this.btnLogistikaIzvozaPM4.Text = "Izvoz prazne opreme";
             this.btnLogistikaIzvozaPM4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -157,7 +157,7 @@
             this.btnLogistikaIzvozaPM3.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
             this.btnLogistikaIzvozaPM3.TabIndex = 494;
             this.btnLogistikaIzvozaPM3.Text = "Prijem i izdavanje robe";
             this.btnLogistikaIzvozaPM3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -184,7 +184,7 @@
             this.btnLogistikaIzvozaPM1.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogistikaIzvozaPM1.Style.PressedForeColor = System.Drawing.Color.White;
             this.btnLogistikaIzvozaPM1.TabIndex = 493;
-            this.btnLogistikaIzvozaPM1.Text = "Nalog klijenta za izvoz";
+            this.btnLogistikaIzvozaPM1.Text = "Porudžbenica";
             this.btnLogistikaIzvozaPM1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM1.UseVisualStyleBackColor = false;
             this.btnLogistikaIzvozaPM1.Click += new System.EventHandler(this.btnLogistikaIzvozaPM1_Click);

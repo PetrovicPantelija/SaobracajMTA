@@ -92,6 +92,7 @@
             this.btnKomerijalnoSkladiste.Text = "Komercijalno skladište";
             this.btnKomerijalnoSkladiste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnKomerijalnoSkladiste.UseVisualStyleBackColor = false;
+            this.btnKomerijalnoSkladiste.Click += new System.EventHandler(this.btnKomerijalnoSkladiste_Click);
             // 
             // btnRadniNalozi
             // 
@@ -109,7 +110,7 @@
             this.btnRadniNalozi.Style.ForeColor = System.Drawing.Color.White;
             this.btnRadniNalozi.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
             this.btnRadniNalozi.TabIndex = 502;
-            this.btnRadniNalozi.Text = "Radni nalozi";
+            this.btnRadniNalozi.Text = "Komercijalni nalozi";
             this.btnRadniNalozi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRadniNalozi.UseVisualStyleBackColor = false;
             this.btnRadniNalozi.Click += new System.EventHandler(this.btnRadniNalozi_Click);
@@ -137,6 +138,7 @@
             this.btnFakturisanje.Text = "Fakturisanje";
             this.btnFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFakturisanje.UseVisualStyleBackColor = false;
+            this.btnFakturisanje.Click += new System.EventHandler(this.btnFakturisanje_Click);
             // 
             // btnOstalaSkladista
             // 

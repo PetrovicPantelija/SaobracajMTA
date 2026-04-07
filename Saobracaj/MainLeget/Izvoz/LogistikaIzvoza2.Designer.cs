@@ -185,9 +185,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(62, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(361, 39);
+            this.label2.Size = new System.Drawing.Size(408, 39);
             this.label2.TabIndex = 500;
-            this.label2.Text = "Nalog klijenta za izvoz";
+            this.label2.Text = "Nalog klijenta za otpremu";
             // 
             // LogistikaIzvoza2
             // 

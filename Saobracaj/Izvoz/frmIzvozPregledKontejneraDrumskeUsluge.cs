@@ -43,7 +43,7 @@ namespace Saobracaj.Izvoz
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                      " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr  " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr, Izvoz.Cirada  " +
                     " from IzvozVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
@@ -60,7 +60,7 @@ namespace Saobracaj.Izvoz
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                     " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila," +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr   " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,  IzvozKonacna.Cirada  " +
                     " from IzvozKonacnaVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
@@ -101,7 +101,7 @@ namespace Saobracaj.Izvoz
                 InsertUvoz isu = new InsertUvoz();
                 int uvoz = 0;
 
-                List<(int kontejnerID, int manipulacijaID, int IKID)> stavke = new List<(int, int, int)>();
+                List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada)> stavke = new List<(int, int, int, int)>();
 
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
@@ -115,7 +115,8 @@ namespace Saobracaj.Izvoz
                     int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavke.Add((kontejnerID, manipulacijaID, IKID));
+                    int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
+                    stavke.Add((kontejnerID, manipulacijaID, IKID, cirada));
                 }
 
                 isu.KreirajRadniNalogDrumski(stavke, uvoz);

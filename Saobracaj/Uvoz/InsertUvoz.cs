@@ -1223,16 +1223,17 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID, int UKID)> stavke, int Uvoz)
+        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID, int UKID, int Cirada)> stavke, int Uvoz)
         {
             DataTable tvp = new DataTable();
             tvp.Columns.Add("KontejnerID", typeof(int));
             tvp.Columns.Add("ManipulacijaID", typeof(int));
             tvp.Columns.Add("UKID", typeof(int));
+            tvp.Columns.Add("Cirada", typeof(int));
 
             foreach (var s in stavke)
             {
-                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID, s.UKID);
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID, s.UKID,s.Cirada);
             }
 
             using (SqlConnection conn = new SqlConnection(connection))
@@ -1252,6 +1253,7 @@ int PotvrdioKlijent, int UradilaCarina,
                 uvozParam.Direction = ParameterDirection.Input;
                 uvozParam.Value = Uvoz;
                 cmd.Parameters.Add(uvozParam);
+
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

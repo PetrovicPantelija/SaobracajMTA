@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -23,6 +23,28 @@ namespace Saobracaj.Pomocni
                 int height = 360; // 180 * 2
                 frm.ClientSize = new Size(width, height);
                 frm.Text = caption;
+
+                // --- DODAVANJE "✕" DUGMETA ---
+                var btnClose = new Button();
+                btnClose.Text = "✕"; 
+                btnClose.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+                btnClose.ForeColor = Color.FromArgb(32, 61, 85);
+                btnClose.BackColor = Color.Azure;
+                btnClose.FlatStyle = FlatStyle.Flat;
+                btnClose.FlatAppearance.BorderSize = 0;
+                btnClose.FlatAppearance.MouseOverBackColor = Color.Red; // Pocrveni na hover
+                btnClose.FlatAppearance.MouseDownBackColor = Color.DarkRed;
+
+                int closeBtnSize = 45;
+                btnClose.SetBounds(frm.ClientSize.Width - closeBtnSize, 0, closeBtnSize, closeBtnSize);
+
+                // Podesimo da promeni boju fonta u belu kad pocrveni pozadina (opciono)
+                btnClose.MouseEnter += (s, e) => { btnClose.ForeColor = Color.White; };
+                btnClose.MouseLeave += (s, e) => { btnClose.ForeColor = Color.FromArgb(32, 61, 85); };
+
+                // X vraća Cancel
+                btnClose.Click += (s, e) => { frm.DialogResult = DialogResult.Cancel; frm.Close(); };
+                // 
 
                 var lbl = new Label();
                 lbl.AutoSize = false;
@@ -64,6 +86,8 @@ namespace Saobracaj.Pomocni
                 btnNo.FlatStyle = FlatStyle.Flat;
                 btnNo.FlatAppearance.BorderSize = 0;
 
+
+                frm.Controls.Add(btnClose); // Dodajemo X dugme na formu
                 frm.Controls.Add(lbl);
                 frm.Controls.Add(btnYes);
                 frm.Controls.Add(btnNo);

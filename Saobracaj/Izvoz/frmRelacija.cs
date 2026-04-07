@@ -190,12 +190,12 @@ namespace Saobracaj.Izvoz
             cboOdlaznaMorskaLuka1.ValueMember = "ID";
             cboOdlaznaMorskaLuka1.SelectedIndex = -1;
 
-            cboMestoSpustanjaPunogKontejnera.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera.ValueMember = "ID";
             cboMestoSpustanjaPunogKontejnera.SelectedIndex = -1;
 
-            cboMestoPreuzimanjaPunog.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPunog.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPunog.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPunog.ValueMember = "ID";
 
@@ -205,7 +205,7 @@ namespace Saobracaj.Izvoz
             cboOdlaznaMorskaLuka2.SelectedIndex = -1;
 
             //isti source kao i cboMestoPreuzimanjaPunog
-            cboMestoPreuzimanjaPraznog2.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPraznog2.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPraznog2.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPraznog2.ValueMember = "ID";
 
@@ -214,13 +214,13 @@ namespace Saobracaj.Izvoz
             cboMestoUtovaraKontejnera2.ValueMember = "ID";
 
             //isto kao cboMestoSpustanjaPunogKontejnera
-            cboMestoSpustanjaPunogKontejnera2.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera2.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera2.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera2.ValueMember = "ID";
 
             // panel3
             //isti source kao i cboMestoPreuzimanjaPunog
-            cboMestoPreuzimanjaPraznog3.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPraznog3.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPraznog3.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPraznog3.ValueMember = "ID";
 
@@ -238,7 +238,7 @@ namespace Saobracaj.Izvoz
             cboMestoUtovaraKontejnera3.DisplayMember = "Naziv";
             cboMestoUtovaraKontejnera3.ValueMember = "ID";
 
-            cboMestoSpustanjaPunogKontejnera3.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera3.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera3.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera3.ValueMember = "ID";
             cboMestoSpustanjaPunogKontejnera3.SelectedIndex = -1;
@@ -551,7 +551,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe1(scenario);
                    
 
@@ -561,7 +561,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona =0;
+                    vrstaKamiona =1;
                     PodesiUnutrasnjostGrupe1(scenario);
                     break;
 
@@ -573,7 +573,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = true;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe2(scenario);
 
                     break;
@@ -583,7 +583,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = true;
                     panel3.Visible = false;
                     panel6.Visible = false;
-                    vrstaKamiona = 0;
+                    vrstaKamiona = 1;
                     PodesiUnutrasnjostGrupe2(scenario);
 
                     break;
@@ -595,7 +595,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = true;
                     panel6.Visible = false;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
                 case 24: // Scenario I-L
@@ -604,7 +604,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = true;
                     panel6.Visible = false;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe3(scenario);
                     break;
                 // GRUPA IV
@@ -614,7 +614,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = true;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
@@ -624,7 +624,7 @@ namespace Saobracaj.Izvoz
                     panel2.Visible = false;
                     panel3.Visible = false;
                     panel6.Visible = true;
-                    vrstaKamiona = 1;
+                    vrstaKamiona = 2;
                     PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
@@ -901,11 +901,13 @@ namespace Saobracaj.Izvoz
                     SetVisibleComboValue(panel1, cboMestoPreuzimanjaPunog, dr["MestoPreuzimanjaPunogPraznog"]);
                     SetVisibleDateValue(panel1, dptPlaniranDatumSpustanja, dr["PlaniranDatSpustanjaKontejnera"]);
                     txtDodatneNapomeneDrumski1.Text = dr["DodatnaNapomenaDrumski"].ToString();
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona.Text = "PLATFORMA"; }
-                    dptPlaniranDatumSpustanja.Tag = null;
+                    //dptPlaniranDatumSpustanja.Tag = null;
+
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja);
                 }
                 else if (panel2.Visible == true)
                 {
@@ -924,15 +926,19 @@ namespace Saobracaj.Izvoz
                     SetVisibleDateValue(panel2, dtpDatumRealizacijeUtovaraKontejnera2, dr["MestoIstovaraCerade"]);
                     txtDodatneNapomeneDrumski2.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona2.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona2.Text = "PLATFORMA"; }
 
-                    dptPlaniranDatumSpustanja2.Tag = null;
-                    dtpPlaniraniDatumVremePreuzimanja2.Tag = null;
-                    dptPlaniraniDatumUtovaraKontejnera2.Tag = null;
-                    dtpDatumRealizacijeUtovaraKontejnera2.Tag = null;
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja2);
+                    PostaviTag(dr["PlaniraniDtPreuzimanja"], dtpPlaniraniDatumVremePreuzimanja2);
+                    PostaviTag(dr["PlaniranDatUtovaraKontejnera"], dptPlaniraniDatumUtovaraKontejnera2);
+                    PostaviTag(dr["MestoIstovaraCerade"], dtpDatumRealizacijeUtovaraKontejnera2);
+                    //dptPlaniranDatumSpustanja2.Tag = null;
+                    //dtpPlaniraniDatumVremePreuzimanja2.Tag = null;
+                    //dptPlaniraniDatumUtovaraKontejnera2.Tag = null;
+                    //dtpDatumRealizacijeUtovaraKontejnera2.Tag = null;
                 }
                 else if (panel3.Visible == true)
                 {
@@ -964,17 +970,23 @@ namespace Saobracaj.Izvoz
                     txtDodatneNapomeneDrumski.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
                 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona3.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona3.Text = "PLATFORMA"; }
 
 
-                    dptPlaniraniDatumUtovaraKontejnera3.Tag = null;
-                    dptDatumUtovaraCerade3.Tag = null;
-                    dptDatumIstovaraCerade3.Tag = null;
-                    dptPlaniranDatumSpustanja3.Tag = null;
-                    dtpPlaniraniDatumVremePreuzimanja3.Tag = null;
+                    PostaviTag(dr["PlaniranDatUtovaraKontejnera"], dptPlaniraniDatumUtovaraKontejnera3);
+                    PostaviTag(dr["PlaniraniDatumUtovaraCerade"], dptDatumUtovaraCerade3);
+                    PostaviTag(dr["PlaniraniDatumIstovaraCerade"], dptDatumIstovaraCerade3);
+                    PostaviTag(dr["PlaniranDatSpustanjaKontejnera"], dptPlaniranDatumSpustanja3);
+                    PostaviTag(dr["PlaniraniDtPreuzimanja"], dtpPlaniraniDatumVremePreuzimanja3);
+
+                    //dptPlaniraniDatumUtovaraKontejnera3.Tag = null;
+                    //dptDatumUtovaraCerade3.Tag = null;
+                    //dptDatumIstovaraCerade3.Tag = null;
+                    //dptPlaniranDatumSpustanja3.Tag = null;
+                    //dtpPlaniraniDatumVremePreuzimanja3.Tag = null;
                 }
                 else if (panel6.Visible == true)
                 {
@@ -996,14 +1008,29 @@ namespace Saobracaj.Izvoz
 
                     txtDodatneNapomeneDrumski4.Text = dr["DodatnaNapomenaDrumski"].ToString();
 
-                    if (vrstaKamiona == 1)
+                    if (vrstaKamiona == 2)
                     { cboVrstaKamiona4.Text = "CERADA"; }
-                    else if (vrstaKamiona == 0)
+                    else if (vrstaKamiona == 1)
                     { cboVrstaKamiona4.Text = "PLATFORMA"; }
-                    dptDatumUtovaraCerade4.Tag = null;
-                    dptDatumIstovaraCerade4.Tag = null;
+                    //dptDatumUtovaraCerade4.Tag = null;
+                    //dptDatumIstovaraCerade4.Tag = null;
+
+                    PostaviTag(dr["PlaniraniDatumUtovaraCerade"], dptDatumUtovaraCerade4);
+                    PostaviTag(dr["PlaniraniDatumIstovaraCerade"], dptDatumIstovaraCerade4);
 
                 }
+            }
+        }
+
+        private void PostaviTag(object vrednostIzBaze, Control kontrola)
+        {
+            if (vrednostIzBaze != DBNull.Value && vrednostIzBaze != null)
+            {
+                kontrola.Tag = "IZMENJEN";
+            }
+            else
+            {
+                kontrola.Tag = null;
             }
         }
         private void SetVisibleComboValue(Control parent, ComboBox cbo, object dbValue, Action postUpdateAction = null)
@@ -1306,15 +1333,9 @@ namespace Saobracaj.Izvoz
                             errorProvider1.SetError(dptDatumUtovaraCerade4, "Morate izabrati neku vrednost!");
                             uspesno = false;
                         }
-                        if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val3) || val3 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
-                        {
+                        
 
-                            errorProvider1.SetError(cboAdresaUtovaraCerade4, "Morate izabrati neku vrednost!");
-                            uspesno = false;
-
-                        }
-
-                        if (scenario == 25)
+                        if (scenario == 9)
                         {
                             if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val4) || val4 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
                             {
