@@ -169,7 +169,8 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "JM";
-            dataGridView1.Columns[3].Width = 140;
+            dataGridView1.Columns[3].Width = 40;
+            dataGridView1.Columns[3].Visible = false;
 
 
 
@@ -251,6 +252,7 @@ namespace Saobracaj.Izvoz
                 uspesno = false;
             }
 
+
             return uspesno;
 
         }
@@ -294,8 +296,43 @@ namespace Saobracaj.Izvoz
                 RefreshDataGrid();
                 return;
             }
+
+            bool imaRedova = dataGridView1.Rows
+                 .Cast<DataGridViewRow>()
+                 .Any(r => !r.IsNewRow);
+
+
+
             if (!ValidacijaSaIkonama())
             {
+
+                if (imaRedova == false)
+                {
+                    dataGridView1.ClearSelection();
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+
+
+                        row.ErrorText = ""; // očisti stare greške
+
+                        // Primer: validacija kolone index 4
+                        if (row.Cells[4].Value == null
+                           )
+                        {
+                            row.Cells[4].ErrorText = "Tip kontejnera je obavezno polje!";
+
+                        }
+                        if (row.Cells[2].Value == null)
+                        {
+                            row.Cells[2].ErrorText = "Kolicina mora biti uneta!";
+                        }
+                    }
+
+
+
+                }
+
                 MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
@@ -306,9 +343,54 @@ namespace Saobracaj.Izvoz
                  // Prekida se izvršavanje ako nije validno
             }
 
-            bool imaRedova = dataGridView1.Rows
-                  .Cast<DataGridViewRow>()
-                  .Any(r => !r.IsNewRow);
+
+            if (ValidacijaSaIkonama())
+            {
+                int errpostoji = 0;
+                if (imaRedova == false)
+                {
+                    dataGridView1.ClearSelection();
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+
+
+                        row.ErrorText = ""; // očisti stare greške
+
+                        // Primer: validacija kolone index 4
+                        if (row.Cells[4].Value == null)
+                        {
+                            row.Cells[4].ErrorText = "Tip kontejnera je obavezno polje!";
+                            errpostoji = 1;
+
+                        }
+                        if (row.Cells[2].Value == null)
+                        {
+                            row.Cells[2].ErrorText = "Kolicina mora biti uneta!";
+                            errpostoji = 1;
+                        }
+                    }
+
+
+
+                }
+
+                if  (errpostoji == 1)
+                {
+                    MessageBox.Show("Molimo popunite označena polja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+              
+
+
+
+
+                // Prekida se izvršavanje ako nije validno
+            }
+
+
+
+
 
             if (imaRedova && !ValidacijaGrida2())
                 return;
@@ -451,7 +533,7 @@ namespace Saobracaj.Izvoz
              DataGridViewComboBoxColumn JM = new DataGridViewComboBoxColumn();
             JM.HeaderText = "JM";
             JM.Name = "JM";
-            var query21 = "SELECT MeSifra FROM MerskeEnote";
+            var query21 = "SELECT MeSifra FROM MerskeEnote where MeSifra = 'KON'";
             SqlConnection conn21 = new SqlConnection(connection);
             SqlDataAdapter da21 = new SqlDataAdapter(query21, conn21);
             System.Data.DataSet ds21 = new System.Data.DataSet();
@@ -551,13 +633,15 @@ namespace Saobracaj.Izvoz
                     dataGridView1.Rows[r].Cells[1].Value = ds.Tables[0].Rows[r].ItemArray[1];
                     dataGridView1.Rows[r].Cells[2].Value = ds.Tables[0].Rows[r].ItemArray[2];
                     dataGridView1.Rows[r].Cells[3].Value = ds.Tables[0].Rows[r].ItemArray[3];
+                  //  dataGridView1.Rows[r].Cells[3].Visible = false;
                     dataGridView1.Rows[r].Cells[4].Value = ds.Tables[0].Rows[r].ItemArray[4];
                     dataGridView1.Rows[r].Cells[5].Value = ds.Tables[0].Rows[r].ItemArray[5];
                     dataGridView1.Rows[r].Cells[6].Value = ds.Tables[0].Rows[r].ItemArray[6];
                     dataGridView1.Rows[r].Cells[7].Value = ds.Tables[0].Rows[r].ItemArray[7];
             }
-
-                PodesiDatagridView(dataGridView1);
+            DataGridViewColumn column = dataGridView1.Columns[3];
+            dataGridView1.Columns[0].Visible = false;
+            PodesiDatagridView(dataGridView1);
 
             
 
@@ -615,11 +699,13 @@ namespace Saobracaj.Izvoz
                     double.TryParse(row.Cells[2].Value?.ToString(), out double kolicina);
                     int.TryParse(row.Cells[6].Value?.ToString(), out int cell6);
                     int.TryParse(row.Cells[4].Value?.ToString(), out int cell4);
+                   
 
                     if (Convert.ToInt32(postojeciID) == 0)
                     {
+                        // KON je postavljena kao defoultna vrednost inace je jedinica mere
                         ins.InsProdajniNalogIzvozStavke(brojDokumenta, kolicina,
-                            row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
+                            "KON", cell4, cell6,
                            refer, "OTVOREN")
                            ;
 
@@ -627,8 +713,9 @@ namespace Saobracaj.Izvoz
                     }
                     else
                     {
+                        // row.Cells[3].Value.ToString(),
                         ins.UpdProdajniNalogIzvozStavke(Convert.ToInt32(postojeciID), kolicina,
-                            row.Cells[3].Value.ToString(), Convert.ToInt32(row.Cells[4].Value), cell6,
+                            "KON", Convert.ToInt32(row.Cells[4].Value), cell6,
                            refer, "OTVOREN")
                            ;
                         ikt.UpdKontejnerTerkuce("IDPI" + txtBrojDokumenta.Text, 1, 1, cell6, cell4, kolicina);
@@ -652,6 +739,12 @@ namespace Saobracaj.Izvoz
         private void button1_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void btnIzmeniKolicinu_Click(object sender, EventArgs e)
+        {
+            frmProdajniNalogIzvozTabela cpo = new frmProdajniNalogIzvozTabela(1);
+            cpo.Show();
         }
     }
 }

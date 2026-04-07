@@ -190,12 +190,12 @@ namespace Saobracaj.Izvoz
             cboOdlaznaMorskaLuka1.ValueMember = "ID";
             cboOdlaznaMorskaLuka1.SelectedIndex = -1;
 
-            cboMestoSpustanjaPunogKontejnera.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera.ValueMember = "ID";
             cboMestoSpustanjaPunogKontejnera.SelectedIndex = -1;
 
-            cboMestoPreuzimanjaPunog.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPunog.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPunog.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPunog.ValueMember = "ID";
 
@@ -205,7 +205,7 @@ namespace Saobracaj.Izvoz
             cboOdlaznaMorskaLuka2.SelectedIndex = -1;
 
             //isti source kao i cboMestoPreuzimanjaPunog
-            cboMestoPreuzimanjaPraznog2.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPraznog2.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPraznog2.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPraznog2.ValueMember = "ID";
 
@@ -214,13 +214,13 @@ namespace Saobracaj.Izvoz
             cboMestoUtovaraKontejnera2.ValueMember = "ID";
 
             //isto kao cboMestoSpustanjaPunogKontejnera
-            cboMestoSpustanjaPunogKontejnera2.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera2.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera2.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera2.ValueMember = "ID";
 
             // panel3
             //isti source kao i cboMestoPreuzimanjaPunog
-            cboMestoPreuzimanjaPraznog3.DataSource = dtTerminali.Copy();
+            cboMestoPreuzimanjaPraznog3.DataSource = dtMesta.Copy();
             cboMestoPreuzimanjaPraznog3.DisplayMember = "Naziv";
             cboMestoPreuzimanjaPraznog3.ValueMember = "ID";
 
@@ -238,7 +238,7 @@ namespace Saobracaj.Izvoz
             cboMestoUtovaraKontejnera3.DisplayMember = "Naziv";
             cboMestoUtovaraKontejnera3.ValueMember = "ID";
 
-            cboMestoSpustanjaPunogKontejnera3.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogKontejnera3.DataSource = dtMesta.Copy();
             cboMestoSpustanjaPunogKontejnera3.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogKontejnera3.ValueMember = "ID";
             cboMestoSpustanjaPunogKontejnera3.SelectedIndex = -1;

@@ -35,6 +35,7 @@ namespace Saobracaj.Izvoz
         bool redJePromijenjen = false;
         string ScenarioNaziv = "";
         List<PrivremeniNHM> privremenaListaNHM = new List<PrivremeniNHM>();
+        List<PrivremeniNapomena> privremenaListaNapomena= new List<PrivremeniNapomena>();
         int kontejnerID = 0;
         int vrstaKamiona = 0;
 
@@ -285,6 +286,16 @@ namespace Saobracaj.Izvoz
             cboNacinPakovanja.DisplayMember = "Naziv";
             cboNacinPakovanja.ValueMember = "ID";
 
+            var npoz4 = "Select CAST(ISNULL(ID,0) AS INT) AS ID,Naziv from NapomenaZaPozicioniranje order by Naziv";
+            var npozAD4 = new SqlDataAdapter(npoz4, conn);
+            var npozDS4 = new DataSet();
+            npozAD4.Fill(npozDS4);
+            cbNapomenaPoz.DataSource = npozDS4.Tables[0];
+            cbNapomenaPoz.DisplayMember = "Naziv";
+            cbNapomenaPoz.ValueMember = "ID";
+
+
+
             this.ResumeLayout();
         }
 
@@ -331,6 +342,28 @@ namespace Saobracaj.Izvoz
         
         }
 
+        private void OsveziGridNapomena(DataTable dt)
+        {
+      
+
+            dataGridView4.DataSource = dt;
+
+            // Provera da li kolone postoje pre formatiranja (zbog sigurnosti)
+            if (dataGridView4.Columns.Contains("IDNapoemene"))
+            {
+                dataGridView4.Columns["IDNapomene"].Width = 70;
+                dataGridView4.Columns["IDNapomene"].HeaderText = "ID";
+            }
+
+            if (dataGridView4.Columns.Contains("Naziv"))
+            {
+                dataGridView4.Columns["Naziv"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            PodesiDatagridView(dataGridView4);
+
+        }
+
         private void frmGrupniUnosPoljaIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
@@ -348,7 +381,9 @@ namespace Saobracaj.Izvoz
                 
                 VratiListuKontejnera(brojStavkePorudzbenice, grupID);
                 DataTable dtIzBaze = VratiPodatkeIzBazeNHM();
+                DataTable dtIzBazeN = VratiPodatkeIzBazeNapomene();
                 OsveziGridNHM(dtIzBaze);
+                OsveziGridNapomena(dtIzBazeN);
                 OsveziGridZaEditovanje();
             }
             //InitializeDataGrid();
@@ -573,7 +608,11 @@ namespace Saobracaj.Izvoz
             col.Width = width;
             col.Visible = visible;
             col.ValueType = typeof(DateTime);
-
+            if (name == "SpustanjePunogDtRealizacije")
+            {
+                col.ReadOnly = true;
+            }
+           
             // Postavljamo format prikaza 
             col.DefaultCellStyle.Format = "dd.MM.yyyy HH:mm";
 
@@ -588,7 +627,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.AllowUserToDeleteRows = false; // Sprečava korisnika da briše redove tasterom Delete
             dataGridView1.ReadOnly = false;              // Dozvoljava editovanje ćelija 
             dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
-
+            //Panta
 
             // Skrivena ID kolona (bitna za update)
             DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
@@ -602,12 +641,14 @@ namespace Saobracaj.Izvoz
                 // Tekstualne kolone
                 AddTextColumn("BrojKontejnera", "Broj kontejnera", 120);
                 AddTextColumn("OstalePlombe", "Ostale plombe", 120);
+               
             }
+            
 
-            // DateTime kolone
+                // DateTime kolone
 
-            //grupa I
-            if (scenarioID == 13)
+                //grupa I
+                if (scenarioID == 13)
             {
                 if (drumski == 0)
                 {
@@ -635,8 +676,9 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTT Robe", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe", 80);
                 AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
 
@@ -667,7 +709,8 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("NTTORobe", "NTTO Robe", 80);
                 AddTextColumn("KoletaFakture", "Koleta", 80);
                 AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost", 80);
+                AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
 
@@ -703,15 +746,17 @@ namespace Saobracaj.Izvoz
 
 
                 }
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe", 80);
                 if (!(scenarioID == 7 && drumski == 1))
                 {
                     AddTextColumn("NTTORobe", "NTTO Robe", 80);
                     AddTextColumn("KoletaFakture", "Koleta", 80);
-                    AddTextColumn("CBMFaktura", "CBM", 80);
-                    AddTextColumn("VrednostRobe", "Vrednost", 80);
+                    AddTextColumn("CBMFaktura", "CBM robe", 80);
+                    AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                    AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
                 }
+                
 
             }
 
@@ -752,8 +797,9 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTT Robe", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe", 80);
                 AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
 
@@ -792,8 +838,9 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTT Robe", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe", 80);
                 AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
             else if (scenarioID == 9)
@@ -821,8 +868,9 @@ namespace Saobracaj.Izvoz
                     AddTextColumn("BTTRobe", "BTT Robe", 80);
                     AddTextColumn("NTTORobe", "NTTO Robe", 80);
                     AddTextColumn("KoletaFakture", "Koleta", 80);
-                    AddTextColumn("CBMFaktura", "CBM", 80);
-                    AddTextColumn("VrednostRobe", "Vrednost", 80);
+                    AddTextColumn("CBMFaktura", "CBM Robe", 80);
+                    AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+
                 }
 
             }
@@ -849,11 +897,12 @@ namespace Saobracaj.Izvoz
                     AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE  Novi plan. Datum/Vreme", 200);
                     AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
                 }
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe", 80);
                 AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost", 80);
+                AddTextColumn("CBMFaktura", "CBM  Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+
 
             }
 
@@ -982,6 +1031,36 @@ namespace Saobracaj.Izvoz
                           FROM IzvozNHM inhm 
                           INNER JOIN NHM nm on inhm.IDNHM = nm.ID
                           WHERE inhm.IDNadredjena IN ({idsZaUpit})";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                try
+                {
+                    con.Open();
+                    dt.Load(cmd.ExecuteReader());
+                }
+                catch (Exception ex) { /* log error */ }
+            }
+            return dt;
+
+        }
+
+        private DataTable VratiPodatkeIzBazeNapomene()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            DataTable dt = new DataTable();
+
+            // Provera da li lista ima članova 
+            if (noviIDs.Count == 0) return dt;
+
+            string idsZaUpit = string.Join(",", noviIDs);
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = $@"SELECT DISTINCT  np.ID as IDNapoemene, (RTRIM(np.Naziv) ) as Naziv
+                          FROM IzvozNapomenePozicioniranja inap 
+                          INNER JOIN NapomenaZaPozicioniranje np on inap.IDNapomene = np.ID
+                          WHERE inap.IDNadredjena IN ({idsZaUpit})";
 
                 SqlCommand cmd = new SqlCommand(query, con);
                 try
@@ -1561,6 +1640,15 @@ namespace Saobracaj.Izvoz
                                             safeKvalitet,
                                             safeVrstaRobe);
                 InsertIzvoz uvK = new InsertIzvoz();
+                InsertIzvozKonacna izk = new InsertIzvozKonacna();
+                foreach (int kontejnerID in noviIDs)
+                {
+
+                    foreach (var stavka in privremenaListaNapomena)
+                    {
+                        izk.InsIzvozNapomenePozicioniranja(kontejnerID, stavka.IDNapomene, stavka.Naziv);
+                    }
+                }
 
                 foreach (int kontejnerID in noviIDs)
                 {
@@ -1618,6 +1706,16 @@ namespace Saobracaj.Izvoz
                         foreach (var stavka in privremenaListaNHM)
                         {
                             uvK.InsIzvozNHM(kontejnerID, stavka.IDNHM);
+                        }
+                    }
+
+                    InsertIzvozKonacna izk = new InsertIzvozKonacna();
+                    foreach (int kontejnerID in noviIDs)
+                    {
+
+                        foreach (var stavka in privremenaListaNapomena)
+                        {
+                            izk.InsIzvozNapomenePozicioniranja(kontejnerID, stavka.IDNapomene, stavka.Naziv);
                         }
                     }
 
@@ -2508,6 +2606,83 @@ namespace Saobracaj.Izvoz
             public int IDNHM { get; set; }
             //public string Broj { get; set; }
             public string Naziv { get; set; }
+        }
+
+        public class PrivremeniNapomena
+        {
+            //public int PrivremeniID { get; set; } 
+            public int IDNapomene { get; set; }
+            //public string Broj { get; set; }
+            public string Naziv { get; set; }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            if (cbNapomenaPoz.SelectedValue == null) return;
+
+            // Kreiramo novi objekat 
+
+             PrivremeniNapomena  novaStavka = new PrivremeniNapomena
+             {
+
+                 IDNapomene = Convert.ToInt32(cbNapomenaPoz.SelectedValue),
+                Naziv = cbNapomenaPoz.Text
+            };
+
+            // Dodajemo u listu
+            privremenaListaNapomena.Add(novaStavka);
+ 
+
+
+            //OsveziGridNHM();
+            DataTable dtPrivremeni = new DataTable();
+            dtPrivremeni.Columns.Add("IDNapomene");
+            dtPrivremeni.Columns.Add("Naziv");
+
+            foreach (var stavka in privremenaListaNapomena)
+            {
+                dtPrivremeni.Rows.Add(stavka.IDNapomene, stavka.Naziv);
+            }
+            //PPP
+            OsveziGridNapomena(dtPrivremeni);
+
+
+
+            /*
+            InsertIzvozKonacna uvK = new InsertIzvozKonacna();
+
+            uvK.InsIzvozNapomenePozicioniranja(Convert.ToInt32(txtID.Text), Convert.ToInt32(cbNapomenaPoz.SelectedValue), cbNapomenaPoz.Text);
+            FillDG4();
+            */
+        }
+
+        private void FillDG4()
+        {
+            var select = "select IzvozNapomenePozicioniranja.ID, IDNapomene, stNapomene from IzvozNapomenePozicioniranja " +
+"  where IzvozNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozNapomenePozicioniranja.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            PodesiDatagridView(dataGridView4);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView4.Columns[0];
+            dataGridView4.Columns[0].HeaderText = "ID";
+            dataGridView4.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView4.Columns[1];
+            dataGridView4.Columns[1].HeaderText = "NapomenaID";
+            dataGridView4.Columns[1].Width = 20;
+
+            DataGridViewColumn column3 = dataGridView4.Columns[2];
+            dataGridView4.Columns[2].HeaderText = "Napomena";
+            dataGridView4.Columns[2].Width = 160;
+
         }
     }
 }

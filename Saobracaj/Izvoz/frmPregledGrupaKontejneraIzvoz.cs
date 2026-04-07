@@ -315,8 +315,7 @@ namespace Saobracaj.Izvoz
 
         private void btnIzmeniKolicinu_Click(object sender, EventArgs e)
         {
-            frmProdajniNalogIzvozTabela cpo = new frmProdajniNalogIzvozTabela(1);
-            cpo.Show();
+           
         }
     }
 }
