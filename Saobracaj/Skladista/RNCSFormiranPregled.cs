@@ -14,17 +14,13 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Skladista
 {
-    public partial class RNCSPregled : Form
+    public partial class RNCSFormiranPregled : Form
     {
         string Vrsta;
         string Tip;
-        string Korisnik=frmLogovanje.user.ToString();
-        public RNCSPregled(string vrsta)
-        {
-            InitializeComponent();
-            Vrsta = vrsta;
-        }
-        public RNCSPregled(string vrsta, string tip,string korisnik)
+        string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+
+        public RNCSFormiranPregled(string vrsta,string tip)
         {
             InitializeComponent();
             Vrsta = vrsta;
@@ -33,12 +29,12 @@ namespace Saobracaj.Skladista
         }
         private void VratiRN()
         {
-            var select = "Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste,RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe," +
-                "OpisPosla,Napomena,Aktivan,Formiran " +
+            var select = "Select ID,RadniNalogSkladista.Datum as Datum,RadniNalogSkladista.Status as Status,VrstaRN,TipRN,CarinskoSkladiste,RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe," +
+                "OpisPosla,Napomena,Aktivan,Formiran,Korisnik " +
                 "from RadniNalogSkladista " +
                 "inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac=p1.PaSifra " +
                 "inner join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe=p2.PaSifra " +
-                "WHere VrstaRN='"+Vrsta+"' and TipRN='"+Tip+"' and Formiran=0";
+                "WHere VrstaRN='" + Vrsta + "' and TipRN='" + Tip + "' and Formiran=1 order by ID desc";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -66,36 +62,25 @@ namespace Saobracaj.Skladista
             //Wiring GridExcelFilter to GridGroupingControl
             gridExcelFilter.WireGrid(this.gridGroupingControl1);
         }
-        
-        private void button23_Click(object sender, EventArgs e)
+
+        private void button25_Click(object sender, EventArgs e)
         {
-
-
-            var main = this.TopLevelControl as NewMain;
-            if (main == null) return;
-
-            main.OtvoriFormuBezPrava(() => new RNSkladista(Vrsta, Tip, Korisnik));
+            VratiRN();
         }
         int ID;
-        string Status;
         private void button24_Click(object sender, EventArgs e)
         {
             if (gridGroupingControl1.Table.CurrentRecord != null)
             {
-               ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
-                Vrsta= gridGroupingControl1.Table.CurrentRecord.GetValue("VrstaRN").ToString();
+                ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+                Vrsta = gridGroupingControl1.Table.CurrentRecord.GetValue("VrstaRN").ToString();
                 Tip = gridGroupingControl1.Table.CurrentRecord.GetValue("TipRN").ToString();
 
                 var main = this.TopLevelControl as NewMain;
                 if (main == null) return;
 
-                main.OtvoriFormuBezPrava(() => new RNSkladista(ID,Vrsta, Tip, Korisnik));
+                main.OtvoriFormuBezPrava(() => new RNFormiran(ID, Vrsta, Tip, Korisnik));
             }
-        }
-
-        private void button25_Click(object sender, EventArgs e)
-        {
-            VratiRN();
         }
     }
 }

@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Skladista
 {
-    public partial class Skladista : Form
+    public partial class MainRN : Form
     {
-        string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user.ToString().TrimEnd();
+        string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
-        public Skladista(string korisnik)
+        public MainRN(string korisnik)
         {
             InitializeComponent();
         }
@@ -26,18 +26,18 @@ namespace Saobracaj.Skladista
 
             main.OtvoriFormuSaPravom(
                 btnCarinskoSkladiste.Text,
-                () => new CarinskoSkladiste("Carinsko")
+                () => new TipRN("Carinsko",Korisnik)
             );
         }
 
-        private void btnRadniNalozi_Click(object sender, EventArgs e)
+        private void btnKomerijalnoSkladiste_Click(object sender, EventArgs e)
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
             main.OtvoriFormuSaPravom(
-                btnRadniNalozi.Text,
-                () => new MainRN(Korisnik)
+                btnKomerijalnoSkladiste.Text,
+                () => new TipRN("Komercijalno",Korisnik)
             );
         }
     }

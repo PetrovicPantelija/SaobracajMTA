@@ -112,6 +112,7 @@
             this.btnRadniNalozi.Text = "Radni nalozi";
             this.btnRadniNalozi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRadniNalozi.UseVisualStyleBackColor = false;
+            this.btnRadniNalozi.Click += new System.EventHandler(this.btnRadniNalozi_Click);
             // 
             // btnFakturisanje
             // 

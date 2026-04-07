@@ -3328,6 +3328,12 @@
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
+    <Compile Include="Skladista\MainRN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\MainRN.Designer.cs">
+      <DependentUpon>MainRN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3346,11 +3352,47 @@
     <Compile Include="Skladista\RNCSPregled.Designer.cs">
       <DependentUpon>RNCSPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista\RNCSFormiranPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNCSFormiranPregled.Designer.cs">
+      <DependentUpon>RNCSFormiranPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNFormiran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNFormiran.Designer.cs">
+      <DependentUpon>RNFormiran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNRukovalac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNRukovalac.Designer.cs">
+      <DependentUpon>RNRukovalac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNSkladista.Designer.cs">
+      <DependentUpon>RNSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\Skladista.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista\Skladista.Designer.cs">
       <DependentUpon>Skladista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\SkladistaRadniNalozi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\SkladistaRadniNalozi.Designer.cs">
+      <DependentUpon>SkladistaRadniNalozi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\TipRN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\TipRN.Designer.cs">
+      <DependentUpon>TipRN.cs</DependentUpon>
     </Compile>
     <Compile Include="SyncForm\frmAnalizaAktivnosti.cs">
       <SubType>Form</SubType>
@@ -5811,6 +5853,9 @@
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\MainRN.resx">
+      <DependentUpon>MainRN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista\PrijemnicaCarinskoSkladiste.resx">
       <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
     </EmbeddedResource>
@@ -5820,8 +5865,26 @@
     <EmbeddedResource Include="Skladista\RNCSPregled.resx">
       <DependentUpon>RNCSPregled.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNCSFormiranPregled.resx">
+      <DependentUpon>RNCSFormiranPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNFormiran.resx">
+      <DependentUpon>RNFormiran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNRukovalac.resx">
+      <DependentUpon>RNRukovalac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNSkladista.resx">
+      <DependentUpon>RNSkladista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista\Skladista.resx">
       <DependentUpon>Skladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\SkladistaRadniNalozi.resx">
+      <DependentUpon>SkladistaRadniNalozi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\TipRN.resx">
+      <DependentUpon>TipRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmAnalizaAktivnosti.resx">
       <DependentUpon>frmAnalizaAktivnosti.cs</DependentUpon>
