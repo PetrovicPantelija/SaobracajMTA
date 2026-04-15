@@ -371,6 +371,7 @@ namespace Saobracaj.Izvoz
             PostaviVidljivostPoljaADR();
             PostaviVidljivostGrupa4Specificna();
             PostaviVidljivostFakturisabnjeDrumski();
+            PostaviVidljivostNapomenePoz();
             PostaviVidljivostNacinPakovanja();
             PostaviVidljivostBrodskaPlomba();
             dtpCutOffPort.Value = DateTime.Now;
@@ -865,14 +866,14 @@ namespace Saobracaj.Izvoz
                     AddDateColumn("IstovarCeradePlaniraniDt", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
                     AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE  Novi plan. Datum/Vreme", 200);
                     AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
-
-                    AddTextColumn("BTTRobe", "BTT Robe", 80);
-                    AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                    AddTextColumn("KoletaFakture", "Koleta", 80);
-                    AddTextColumn("CBMFaktura", "CBM Robe", 80);
-                    AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
-
+                 
                 }
+
+                AddTextColumn("BTTRobe", "BTT Robe", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe", 80);
+                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
 
             }
 
@@ -892,7 +893,7 @@ namespace Saobracaj.Izvoz
                 }
                 else if (drumski == 1)
                 {
-                    AddDateColumn("UtovarCeradePlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200, false);
+                    AddDateColumn("UtovarCeradeNoviPlaniraniDt", "MESTO UTOVARA CERADE Novi plan. Datum/Vreme", 200, false);
                     AddDateColumn("UtovarCeradeDtRealizacije", "MESTO UTOVARA CERADE Datum/Vreme realizacije", 200);
                     AddDateColumn("IstovarCeradePlaniraniDt", "MESTO ISTOVARA CERADE Plan. Datum/Vreme", 200);
                     AddDateColumn("IstovarCeradeNoviPlaniraniDt", "MESTO ISTOVARA CERADE  Novi plan. Datum/Vreme", 200);
@@ -907,27 +908,27 @@ namespace Saobracaj.Izvoz
 
             }
 
-            if (drumski == 1)
-            {
-                DataGridViewComboBoxColumn napomena = new DataGridViewComboBoxColumn();
-                napomena.HeaderText = "Napomena za pozicioniranje";
-                napomena.DataPropertyName = "NapomenaZaPozicioniranje";
-                napomena.Name = "NapomenaZaPozicioniranje";
-                var query212 = "Select CAST(ISNULL(ID,0) AS INT) AS ID,Naziv from NapomenaZaPozicioniranje order by Naziv";
-                SqlConnection conn212 = new SqlConnection(connection);
-                SqlDataAdapter da212 = new SqlDataAdapter(query212, conn212);
-                System.Data.DataSet ds212 = new System.Data.DataSet();
-                da212.Fill(ds212);
-                napomena.DataSource = ds212.Tables[0];
-                napomena.DisplayMember = "Naziv";
-                napomena.ValueMember = "ID";
-                napomena.Width = 150;
-                napomena.ReadOnly = false;
-                napomena.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox; // Forsira izgled padajućeg menija uvek
-                napomena.AutoComplete = true; // Pomaže kod editovanja
-                napomena.FlatStyle = FlatStyle.Popup;
-                dataGridView1.Columns.Add(napomena);
-            }
+            //if (drumski == 1)
+            //{
+            //    DataGridViewComboBoxColumn napomena = new DataGridViewComboBoxColumn();
+            //    napomena.HeaderText = "Napomena za pozicioniranje";
+            //    napomena.DataPropertyName = "NapomenaZaPozicioniranje";
+            //    napomena.Name = "NapomenaZaPozicioniranje";
+            //    var query212 = "Select CAST(ISNULL(ID,0) AS INT) AS ID,Naziv from NapomenaZaPozicioniranje order by Naziv";
+            //    SqlConnection conn212 = new SqlConnection(connection);
+            //    SqlDataAdapter da212 = new SqlDataAdapter(query212, conn212);
+            //    System.Data.DataSet ds212 = new System.Data.DataSet();
+            //    da212.Fill(ds212);
+            //    napomena.DataSource = ds212.Tables[0];
+            //    napomena.DisplayMember = "Naziv";
+            //    napomena.ValueMember = "ID";
+            //    napomena.Width = 150;
+            //    napomena.ReadOnly = false;
+            //    napomena.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox; // Forsira izgled padajućeg menija uvek
+            //    napomena.AutoComplete = true; // Pomaže kod editovanja
+            //    napomena.FlatStyle = FlatStyle.Popup;
+            //    dataGridView1.Columns.Add(napomena);
+            //}
 
 
         }
@@ -1833,6 +1834,18 @@ namespace Saobracaj.Izvoz
                 cboADR.SelectedValue = -1;
             }
         }
+
+        private void PostaviVidljivostNapomenePoz()
+        {
+            bool isVisibleNapomena =((scenarioID == 13 || scenarioID == 26 || scenarioID == 7 || scenarioID == 23) && drumski == 1); // IL , ILA, IIL,IILA
+            {
+                lblNapomenaPoz.Visible = isVisibleNapomena;
+                cbNapomenaPoz.Visible = isVisibleNapomena;
+                dataGridView4.Visible = isVisibleNapomena;
+                button3.Visible = isVisibleNapomena;
+            }
+            
+        }
         private void PostaviVidljivostFakturisabnjeDrumski()
         {
             if (scenarioID == 9 && drumski == 0)
@@ -1840,8 +1853,8 @@ namespace Saobracaj.Izvoz
 
                 lblNalogodavacZaDrumski.Visible = cboNalogodavacZaDrumski.Visible = false;
                 lblRef3.Visible = txtRef3.Visible = false;
-                lblNalogodavacZaUsluge.Visible = cboNalogodavacZaUsluge.Visible = false;
-                lblRef2.Visible = txtRef2.Visible = false;
+                //lblNalogodavacZaUsluge.Visible = cboNalogodavacZaUsluge.Visible = false;
+                //lblRef2.Visible = txtRef2.Visible = false;
 
             }
             else
@@ -1872,16 +1885,16 @@ namespace Saobracaj.Izvoz
                 lblVrstaPlombe.Visible = cboVrstaPlombe.Visible = false;
             }
 
-            if (scenarioID == 9 && drumski == 0) // dodatno samo za Scenario IV -ako nema ni adr ni drumski
-            {
-                lblLink.Visible = txtLink.Visible = false;
-                lblCutOffPort.Visible = dtpCutOffPort.Visible = false;
-            }
-            else if (scenarioID == 9 && drumski == 1)
-            {
-                lblLink.Visible = txtLink.Visible = true;
-                lblCutOffPort.Visible = dtpCutOffPort.Visible = true;
-            }
+            //if (scenarioID == 9 && drumski == 0) // dodatno samo za Scenario IV -ako nema ni adr ni drumski
+            //{
+            //    lblLink.Visible = txtLink.Visible = false;
+            //    lblCutOffPort.Visible = dtpCutOffPort.Visible = false;
+            //}
+            //else if (scenarioID == 9 && drumski == 1)
+            //{
+            //    lblLink.Visible = txtLink.Visible = true;
+            //    lblCutOffPort.Visible = dtpCutOffPort.Visible = true;
+            //}
         }
 
 
