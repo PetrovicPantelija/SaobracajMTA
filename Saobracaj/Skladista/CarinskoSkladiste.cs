@@ -12,11 +12,13 @@ namespace Saobracaj.Skladista
 {
     public partial class CarinskoSkladiste : Form
     {
-        string Tip;
-        public CarinskoSkladiste(string tip)
+        string Vrsta;
+        string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+
+        public CarinskoSkladiste(string vrsta)
         {
             InitializeComponent();
-            Tip= tip;
+            Vrsta= vrsta;
         }
 
         private void btnPrijemRobe_Click(object sender, EventArgs e)
@@ -26,7 +28,7 @@ namespace Saobracaj.Skladista
 
             main.OtvoriFormuSaPravom(
                 btnPrijemRobe.Text,
-                () => new RNCSPregled(Tip)
+                () => new RNCSFormiranPregled(Vrsta,"Prijem")
             );
         }
     }

@@ -59,6 +59,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.txtKontejner = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -104,8 +106,6 @@
             this.txtMbID = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtKontejner = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -272,9 +272,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label6.Location = new System.Drawing.Point(238, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.Size = new System.Drawing.Size(65, 13);
             this.label6.TabIndex = 0;
-            this.label6.Text = "VRSTA ROBE";
+            this.label6.Text = "OPIS ROBE";
             // 
             // label5
             // 
@@ -292,20 +292,18 @@
             this.panel2.Controls.Add(this.txtTelefon);
             this.panel2.Controls.Add(this.txtLK);
             this.panel2.Controls.Add(this.txtVozac);
-            this.panel2.Controls.Add(this.txtKontejner);
             this.panel2.Controls.Add(this.txtVozilo);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.label15);
             this.panel2.Controls.Add(this.cboVrstaKamiona);
             this.panel2.Controls.Add(this.cboTipTransporta);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.label29);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
-            this.panel2.Location = new System.Drawing.Point(293, 192);
+            this.panel2.Location = new System.Drawing.Point(413, 192);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(658, 127);
+            this.panel2.Size = new System.Drawing.Size(538, 127);
             this.panel2.TabIndex = 6;
             // 
             // txtTelefon
@@ -412,18 +410,37 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "VRSTA PREVOZNOG SREDSTVA";
             // 
+            // txtKontejner
+            // 
+            this.txtKontejner.Location = new System.Drawing.Point(384, 139);
+            this.txtKontejner.Name = "txtKontejner";
+            this.txtKontejner.Size = new System.Drawing.Size(141, 20);
+            this.txtKontejner.TabIndex = 4;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label29.Location = new System.Drawing.Point(381, 121);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(110, 13);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "BROJ KONTEJNERA";
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel3.Controls.Add(this.dateTimePicker2);
             this.panel3.Controls.Add(this.dateTimePicker1);
             this.panel3.Controls.Add(this.label22);
+            this.panel3.Controls.Add(this.txtKontejner);
             this.panel3.Controls.Add(this.txtAdresa);
             this.panel3.Controls.Add(this.txtKontaktOsoba);
             this.panel3.Controls.Add(this.txtKontakOsobaSpediter);
             this.panel3.Controls.Add(this.label21);
             this.panel3.Controls.Add(this.label24);
             this.panel3.Controls.Add(this.label23);
+            this.panel3.Controls.Add(this.label29);
             this.panel3.Controls.Add(this.label20);
             this.panel3.Controls.Add(this.label19);
             this.panel3.Controls.Add(this.label18);
@@ -431,9 +448,9 @@
             this.panel3.Controls.Add(this.cboCarinarnica);
             this.panel3.Controls.Add(this.cboMestoIstovara);
             this.panel3.Controls.Add(this.cboSpediter);
-            this.panel3.Location = new System.Drawing.Point(293, 325);
+            this.panel3.Location = new System.Drawing.Point(413, 325);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(658, 196);
+            this.panel3.Size = new System.Drawing.Size(538, 196);
             this.panel3.TabIndex = 7;
             // 
             // dateTimePicker2
@@ -747,6 +764,7 @@
             this.btnSaglasnost.TabIndex = 10;
             this.btnSaglasnost.Text = "SAGLASNOST";
             this.btnSaglasnost.UseVisualStyleBackColor = false;
+            this.btnSaglasnost.Click += new System.EventHandler(this.btnSaglasnost_Click);
             // 
             // btnFormiranRN
             // 
@@ -800,7 +818,7 @@
             this.panel5.Controls.Add(this.label28);
             this.panel5.Controls.Add(this.label9);
             this.panel5.Enabled = false;
-            this.panel5.Location = new System.Drawing.Point(464, 49);
+            this.panel5.Location = new System.Drawing.Point(358, 27);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(441, 412);
             this.panel5.TabIndex = 14;
@@ -867,23 +885,6 @@
             this.label9.Size = new System.Drawing.Size(18, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "ID";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label29.Location = new System.Drawing.Point(536, 13);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(110, 13);
-            this.label29.TabIndex = 0;
-            this.label29.Text = "BROJ KONTEJNERA";
-            // 
-            // txtKontejner
-            // 
-            this.txtKontejner.Location = new System.Drawing.Point(539, 31);
-            this.txtKontejner.Name = "txtKontejner";
-            this.txtKontejner.Size = new System.Drawing.Size(107, 20);
-            this.txtKontejner.TabIndex = 4;
             // 
             // RnCS
             // 

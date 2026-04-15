@@ -21,13 +21,16 @@ namespace Saobracaj.Skladista
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         string Tip;
+        string Vrsta;
         string Status;
         int ID;
-        public RnCS(string tip)
+        public RnCS(string vrsta,string tip)
         {
             InitializeComponent();
+            Vrsta = vrsta;
             Tip = tip;
-            if (tip == "Carinsko")
+
+            if (vrsta == "Carinsko")
             {
                 textBox1.Text = "1008";
             }
@@ -40,9 +43,10 @@ namespace Saobracaj.Skladista
             FillDodatneUsluge(txtID.Text);
 
         }
-        public RnCS(string tip, int id, string status)
+        public RnCS(string vrsta,string tip, int id, string status)
         {
             InitializeComponent();
+            Vrsta = vrsta;
             Tip = tip;
             ID = id;
             Status = status;
@@ -59,13 +63,16 @@ namespace Saobracaj.Skladista
         }
         private void RnCS_Load(object sender, EventArgs e)
         {
+            if(Vrsta=="Carinsko" && Tip == "Prijem")
+            {
 
+            }
         }
         private void VratiPodatke(int id)
         {
             var conn = new SqlConnection(connection);
             conn.Open();
-            var cmd = new SqlCommand(@"SELECT ID,TipRN,CarinskoSkladiste,MagacinskiBroj,Nalogodavac,VlasnikRobe,VrstaRobe,NacinPakovanja,OstalaSkladista,VrednostRobe,Valuta,PIB,
+            var cmd = new SqlCommand(@"SELECT ID,VrstaRN,TipRN,CarinskoSkladiste,MagacinskiBroj,Nalogodavac,VlasnikRobe,VrstaRobe,NacinPakovanja,OstalaSkladista,VrednostRobe,Valuta,PIB,
 VrstaPrevoznogSredstva,VrstaKamiona,Vozilo,Vozac,BrojLK,BrojTelefona,OdredisnaCarinarnica,Spediter,KontakOsobaSpeditera,MestoIstovara,Adresa,KontaktOsobaIstovar,
 PlaniraniDatum,PlaniraniDatum2,PosebniUslovi,DodatneUslugeID,Napomena,Aktivan,Formiran,BrojKontejnera
 From RNCarinskoSkladiste
@@ -74,6 +81,7 @@ Where ID=" + id, conn);
             while (dr.Read())
             {
                 txtID.Text = dr["ID"].ToString();
+                Vrsta= dr["VrstaRN"].ToString();
                 Tip = dr["TipRN"].ToString();
                 textBox1.Text = dr["CarinskoSkladiste"].ToString();
                 MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
@@ -124,7 +132,7 @@ Where ID=" + id, conn);
         {
             SqlConnection conn = new SqlConnection(connection);
 
-            if (Tip == "Carinsko")
+            if (Vrsta == "Carinsko")
             {
                 var partner5 = "Select ID, Naziv from MagacinskiBrojCarinski order by ID Desc";
                 var partAD5 = new SqlDataAdapter(partner5, conn);
@@ -551,7 +559,7 @@ Where ID=" + id, conn);
         {
             InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
 
-            if (Tip == "Carinsko")
+            if (Vrsta == "Carinsko")
             {
                 if (string.IsNullOrWhiteSpace(txtMbID.Text))
                 {
@@ -706,6 +714,11 @@ Where ID=" + id, conn);
             {
                 return;
             }
+        }
+
+        private void btnSaglasnost_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

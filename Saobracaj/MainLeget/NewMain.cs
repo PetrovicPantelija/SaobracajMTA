@@ -29,7 +29,14 @@ namespace Saobracaj
 {
     public partial class NewMain : Form
     {
-        private readonly Stack<Form> nav = new Stack<Form>();
+        private sealed class NavItem
+        {
+            public Form Form { get; set; }
+            public bool PopKarticaOnBack { get; set; }
+        }
+
+        private readonly Stack<NavItem> nav = new Stack<NavItem>();
+
         private Form aktivna = null;
         private List<Control> homeCtrl;
         private Form menuHome = null;
@@ -274,6 +281,7 @@ namespace Saobracaj
             var frm = createForm();
             ShowChild(frm, true, false);
         }
+
         public void OtvoriFormuSaPravom(string karticaNaziv, Func<Form> createForm)
         {
             if (_currentMainId == 0)
@@ -304,18 +312,31 @@ namespace Saobracaj
             _karticaStack.Push(karticaId.Value);
 
             var frm = createForm();
-            ShowChild(frm, true, false);
+            ShowChild(frm, true, false, true);
         }
-        public void ShowChild(Form child, bool addToHistory = true, bool setAsMenuHome = false)
+        public void ShowChild(
+    Form child,
+    bool addToHistory = true,
+    bool setAsMenuHome = false,
+    bool popKarticaOnBack = false)
         {
             if (setAsMenuHome) menuHome = child;
 
             if (aktivna != null)
             {
-                if (addToHistory) nav.Push(aktivna);
+                if (addToHistory)
+                {
+                    nav.Push(new NavItem
+                    {
+                        Form = aktivna,
+                        PopKarticaOnBack = popKarticaOnBack
+                    });
+                }
+
                 aktivna.Hide();
                 RemoveChildFromPanel1();
             }
+
             aktivna = child;
             child.TopLevel = false;
             child.FormBorderStyle = FormBorderStyle.None;
@@ -335,10 +356,10 @@ namespace Saobracaj
                 return;
             }
 
-            var prev = nav.Pop();
+            var prevItem = nav.Pop();
 
-            if (_karticaStack.Count > 0)
-                _karticaStack.Pop();    // jedan nivo nazad u stablu kartica
+            if (prevItem.PopKarticaOnBack && _karticaStack.Count > 0)
+                _karticaStack.Pop();
 
             if (aktivna != null)
             {
@@ -347,6 +368,7 @@ namespace Saobracaj
                 aktivna = null;
             }
 
+            var prev = prevItem.Form;
             prev.TopLevel = false;
             prev.FormBorderStyle = FormBorderStyle.None;
             prev.Dock = DockStyle.Fill;
@@ -368,7 +390,11 @@ namespace Saobracaj
                 RemoveChildFromPanel1();
                 aktivna = null;
             }
-            while (nav.Count > 0) nav.Pop().Hide();
+            while (nav.Count > 0)
+            {
+                var item = nav.Pop();
+                item.Form.Hide();
+            }
 
             _karticaStack.Clear();
             _currentMainId = 0;
@@ -500,7 +526,7 @@ namespace Saobracaj
             _karticaStack.Clear();
 
             // Prva forma modula – setAsMenuHome = true da se Home vraća ovde
-            ShowChild(new Skladista.Skladista(), true, true);
+            ShowChild(new Skladista.Skladista(Korisnik), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "SKLADIŠTA";
             BackColorKliknut(5);
