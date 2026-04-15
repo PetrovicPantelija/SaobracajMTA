@@ -976,7 +976,7 @@ namespace Saobracaj.Drumski
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
 									   CASE WHEN TipTransporta = 2 THEN (CONVERT(date, rn.DatumUtovara)) ELSE  rn.DtPreuzimanjaPraznogKontejnera END  AS DatumZaSortiranje,
-								       rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, 0 AS OdredisnaCarinarnica
+								       rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, i.OdredisnaCarinarnica AS OdredisnaCarinarnica
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1004,7 +1004,7 @@ namespace Saobracaj.Drumski
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
 									   CASE WHEN TipTransporta = 2 THEN (CONVERT(date, rn.DatumUtovara)) ELSE  rn.DtPreuzimanjaPraznogKontejnera END  AS DatumZaSortiranje ,
-								       rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, 0 AS OdredisnaCarinarnica 
+								       rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, ik.OdredisnaCarinarnica AS OdredisnaCarinarnica 
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1772,7 +1772,7 @@ namespace Saobracaj.Drumski
 
                     //var parent = this.TopLevelControl as NewMain;
                     //parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "NOVINALOG", null), true);
-                    Drumski.frmDrumski part = new Drumski.frmDrumski(tipoviIn: _tipoviIn, tipoviNotIn: _tipoviNotIn, "NOVINALOG", null);
+                    Drumski.frmDrumski part = new Drumski.frmDrumski(tipoviIn: _tipoviIn, tipoviNotIn: _tipoviNotIn, "NOVINALOG", null,0,0,0);
                     part.FormClosed += (s, args) =>
                     {
                         RefreshDataGrid2();
