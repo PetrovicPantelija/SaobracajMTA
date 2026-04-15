@@ -12,7 +12,9 @@ namespace Saobracaj.Skladista
 {
     public partial class Skladista : Form
     {
-        public Skladista()
+        string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user.ToString().TrimEnd();
+
+        public Skladista(string korisnik)
         {
             InitializeComponent();
         }
@@ -34,25 +36,9 @@ namespace Saobracaj.Skladista
             if (main == null) return;
 
             main.OtvoriFormuSaPravom(
-                btnRadniNalozi.Text,
-                () => new Komercijalninalozi()
+                "Radni nalozi",
+                () => new MainRN(Korisnik)
             );
-        }
-
-        private void btnKomerijalnoSkladiste_Click(object sender, EventArgs e)
-        {
-            var main = this.TopLevelControl as NewMain;
-            if (main == null) return;
-
-            main.OtvoriFormuSaPravom(
-                btnKomerijalnoSkladiste.Text,
-                () => new KomercijalnoSkladiste()
-            );
-        }
-
-        private void btnFakturisanje_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

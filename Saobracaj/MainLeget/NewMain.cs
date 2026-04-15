@@ -22,11 +22,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+using System.IO;
+
 namespace Saobracaj
 {
     public partial class NewMain : Form
     {
-        private readonly Stack<Form> nav = new Stack<Form>();
+        private sealed class NavItem
+        {
+            public Form Form { get; set; }
+            public bool PopKarticaOnBack { get; set; }
+        }
+
+        private readonly Stack<NavItem> nav = new Stack<NavItem>();
+
         private Form aktivna = null;
         private List<Control> homeCtrl;
         private Form menuHome = null;
@@ -70,13 +80,42 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnFinansije);
                 SetLeftButtonWidthToFlow(btnPodesavanja);
                 SetLeftButtonWidthToFlow(btnDepocnt);
-         
+                SetLeftButtonWidthToFlow(btnVSD);
+
             }
             catch { }
+            if (frmLogovanje.company == "VSD")
+            {
+                string imagePath = Path.Combine(Application.StartupPath, "VSDLogo.jpg");
+                SetPictureFromPath(imagePath);
+     
+            }
 
             if (Korisnik != "test")
             {
                 button1.Visible = false;
+            }
+        }
+
+        private void SetPictureFromPath(string path)
+        {
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    MessageBox.Show($"Image not found: {path}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Dispose previous image to avoid memory leaks
+                pictureBox1.Image?.Dispose();
+
+                // Load the image
+                pictureBox1.Image = Image.FromFile(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -242,6 +281,7 @@ namespace Saobracaj
             var frm = createForm();
             ShowChild(frm, true, false);
         }
+
         public void OtvoriFormuSaPravom(string karticaNaziv, Func<Form> createForm)
         {
             if (_currentMainId == 0)
@@ -272,18 +312,31 @@ namespace Saobracaj
             _karticaStack.Push(karticaId.Value);
 
             var frm = createForm();
-            ShowChild(frm, true, false);
+            ShowChild(frm, true, false, true);
         }
-        public void ShowChild(Form child, bool addToHistory = true, bool setAsMenuHome = false)
+        public void ShowChild(
+    Form child,
+    bool addToHistory = true,
+    bool setAsMenuHome = false,
+    bool popKarticaOnBack = false)
         {
             if (setAsMenuHome) menuHome = child;
 
             if (aktivna != null)
             {
-                if (addToHistory) nav.Push(aktivna);
+                if (addToHistory)
+                {
+                    nav.Push(new NavItem
+                    {
+                        Form = aktivna,
+                        PopKarticaOnBack = popKarticaOnBack
+                    });
+                }
+
                 aktivna.Hide();
                 RemoveChildFromPanel1();
             }
+
             aktivna = child;
             child.TopLevel = false;
             child.FormBorderStyle = FormBorderStyle.None;
@@ -303,10 +356,10 @@ namespace Saobracaj
                 return;
             }
 
-            var prev = nav.Pop();
+            var prevItem = nav.Pop();
 
-            if (_karticaStack.Count > 0)
-                _karticaStack.Pop();    // jedan nivo nazad u stablu kartica
+            if (prevItem.PopKarticaOnBack && _karticaStack.Count > 0)
+                _karticaStack.Pop();
 
             if (aktivna != null)
             {
@@ -315,6 +368,7 @@ namespace Saobracaj
                 aktivna = null;
             }
 
+            var prev = prevItem.Form;
             prev.TopLevel = false;
             prev.FormBorderStyle = FormBorderStyle.None;
             prev.Dock = DockStyle.Fill;
@@ -336,7 +390,11 @@ namespace Saobracaj
                 RemoveChildFromPanel1();
                 aktivna = null;
             }
-            while (nav.Count > 0) nav.Pop().Hide();
+            while (nav.Count > 0)
+            {
+                var item = nav.Pop();
+                item.Form.Hide();
+            }
 
             _karticaStack.Clear();
             _currentMainId = 0;
@@ -468,7 +526,7 @@ namespace Saobracaj
             _karticaStack.Clear();
 
             // Prva forma modula – setAsMenuHome = true da se Home vraća ovde
-            ShowChild(new Skladista.Skladista(), true, true);
+            ShowChild(new Skladista.Skladista(Korisnik), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "SKLADIŠTA";
             BackColorKliknut(5);
@@ -1050,6 +1108,34 @@ namespace Saobracaj
             lblNaslov.Text = "Depo cnt";
             BackColorKliknut(14);
       
+        }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+            string key = btnVSD.Text.Trim().ToLower();
+
+
+           
+
+                if (!_mainMap.TryGetValue(key, out _currentMainId))
+                {
+                    MessageBox.Show("Modul 'VSD test' nije pronađen u bazi MainNovi.",
+                        "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _karticaStack.Clear();
+
+                ShowChild(new VSD.VSDMain(), true, true);
+                splitContainer3.Panel2.Show();
+                lblNaslov.Text = "VSD Test";
+                BackColorKliknut(14);
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

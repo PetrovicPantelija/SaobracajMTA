@@ -33,6 +33,10 @@ namespace Saobracaj
             {
                 Application.Run(new Sifarnici.frmLogovanjeSecond());
             }
+            else if (companyosn.ToString() == "VSD")
+            {
+                Application.Run(new Sifarnici.frmLogovanjeVSD());
+            }
             else
             {
                 Application.Run(new Sifarnici.frmLogovanje());

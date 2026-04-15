@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemOtvori = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnIzmeniKolicinu = new System.Windows.Forms.Button();
             this.btnOtvori = new System.Windows.Forms.Button();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemOtvori = new System.Windows.Forms.ToolStripMenuItem();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,10 +52,64 @@
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1555, 40);
+            this.panelHeader.Size = new System.Drawing.Size(1166, 33);
             this.panelHeader.TabIndex = 468;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnIzmeniKolicinu);
+            this.panel2.Controls.Add(this.btnOtvori);
+            this.panel2.Location = new System.Drawing.Point(4, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(625, 31);
+            this.panel2.TabIndex = 7;
+            // 
+            // btnIzmeniKolicinu
+            // 
+            this.btnIzmeniKolicinu.AutoSize = true;
+            this.btnIzmeniKolicinu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIzmeniKolicinu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnIzmeniKolicinu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnIzmeniKolicinu.FlatAppearance.BorderSize = 0;
+            this.btnIzmeniKolicinu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnIzmeniKolicinu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnIzmeniKolicinu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzmeniKolicinu.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnIzmeniKolicinu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnIzmeniKolicinu.Location = new System.Drawing.Point(55, 0);
+            this.btnIzmeniKolicinu.Name = "btnIzmeniKolicinu";
+            this.btnIzmeniKolicinu.Size = new System.Drawing.Size(241, 31);
+            this.btnIzmeniKolicinu.TabIndex = 19;
+            this.btnIzmeniKolicinu.Text = "Izmeni količinu stavke porudžbenice";
+            this.btnIzmeniKolicinu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIzmeniKolicinu.UseVisualStyleBackColor = true;
+            this.btnIzmeniKolicinu.Visible = false;
+            this.btnIzmeniKolicinu.Click += new System.EventHandler(this.btnIzmeniKolicinu_Click);
+            // 
+            // btnOtvori
+            // 
+            this.btnOtvori.AutoSize = true;
+            this.btnOtvori.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOtvori.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOtvori.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnOtvori.FlatAppearance.BorderSize = 0;
+            this.btnOtvori.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOtvori.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnOtvori.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOtvori.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnOtvori.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnOtvori.Location = new System.Drawing.Point(0, 0);
+            this.btnOtvori.Name = "btnOtvori";
+            this.btnOtvori.Size = new System.Drawing.Size(55, 31);
+            this.btnOtvori.TabIndex = 18;
+            this.btnOtvori.Text = "Otvori";
+            this.btnOtvori.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOtvori.UseVisualStyleBackColor = true;
+            this.btnOtvori.Click += new System.EventHandler(this.btnOtvori_Click);
             // 
             // gridGroupingControl1
             // 
@@ -70,14 +124,13 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 46);
-            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 37);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1555, 553);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1167, 450);
             this.gridGroupingControl1.TabIndex = 469;
             this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
@@ -103,72 +156,15 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemOtvori});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(120, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
             this.contextMenuStrip1.Text = "Otvori";
             // 
             // toolStripMenuItemOtvori
             // 
             this.toolStripMenuItemOtvori.Name = "toolStripMenuItemOtvori";
-            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(119, 24);
+            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(107, 22);
             this.toolStripMenuItemOtvori.Text = "Otvori";
             this.toolStripMenuItemOtvori.Click += new System.EventHandler(this.toolStripMenuItemOtvori_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.btnIzmeniKolicinu);
-            this.panel2.Controls.Add(this.btnOtvori);
-            this.panel2.Location = new System.Drawing.Point(5, 1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(704, 38);
-            this.panel2.TabIndex = 7;
-            // 
-            // btnIzmeniKolicinu
-            // 
-            this.btnIzmeniKolicinu.AutoSize = true;
-            this.btnIzmeniKolicinu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIzmeniKolicinu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnIzmeniKolicinu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.btnIzmeniKolicinu.FlatAppearance.BorderSize = 0;
-            this.btnIzmeniKolicinu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnIzmeniKolicinu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnIzmeniKolicinu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzmeniKolicinu.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnIzmeniKolicinu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnIzmeniKolicinu.Location = new System.Drawing.Point(57, 0);
-            this.btnIzmeniKolicinu.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIzmeniKolicinu.Name = "btnIzmeniKolicinu";
-            this.btnIzmeniKolicinu.Size = new System.Drawing.Size(283, 38);
-            this.btnIzmeniKolicinu.TabIndex = 19;
-            this.btnIzmeniKolicinu.Text = "Izmeni količinu stavke porudžbenice";
-            this.btnIzmeniKolicinu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIzmeniKolicinu.UseVisualStyleBackColor = true;
-            this.btnIzmeniKolicinu.Click += new System.EventHandler(this.btnIzmeniKolicinu_Click);
-            // 
-            // btnOtvori
-            // 
-            this.btnOtvori.AutoSize = true;
-            this.btnOtvori.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnOtvori.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnOtvori.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.btnOtvori.FlatAppearance.BorderSize = 0;
-            this.btnOtvori.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnOtvori.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnOtvori.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOtvori.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnOtvori.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnOtvori.Location = new System.Drawing.Point(0, 0);
-            this.btnOtvori.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOtvori.Name = "btnOtvori";
-            this.btnOtvori.Size = new System.Drawing.Size(57, 38);
-            this.btnOtvori.TabIndex = 18;
-            this.btnOtvori.Text = "Otvori";
-            this.btnOtvori.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnOtvori.UseVisualStyleBackColor = true;
-            this.btnOtvori.Click += new System.EventHandler(this.btnOtvori_Click);
             // 
             // commandBarController1
             // 
@@ -179,19 +175,20 @@
             // 
             // frmPregledGrupaKontejneraIzvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1555, 603);
+            this.ClientSize = new System.Drawing.Size(1166, 490);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelHeader);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmPregledGrupaKontejneraIzvoz";
             this.Text = "frmPregledGrupaKontejneraIzvoz";
             this.Load += new System.EventHandler(this.frmPregledGrupaKontejneraIzvoz_Load);
             this.panelHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
 

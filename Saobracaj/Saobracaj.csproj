@@ -3089,6 +3089,12 @@
     <Compile Include="Sifarnici\frmLogovanjeSecond.Designer.cs">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeVSD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeVSD.Designer.cs">
+      <DependentUpon>frmLogovanjeVSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmPartnerjiFirme.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3365,11 +3371,11 @@
       <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista\InsertCarinskoSkladiste.cs" />
-    <Compile Include="Skladista\Komercijalninalozi.cs">
+    <Compile Include="Skladista\MainRN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Skladista\Komercijalninalozi.Designer.cs">
-      <DependentUpon>Komercijalninalozi.cs</DependentUpon>
+    <Compile Include="Skladista\MainRN.Designer.cs">
+      <DependentUpon>MainRN.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista\PrijemnicaCarinskoSkladiste.cs">
       <SubType>Form</SubType>
@@ -3389,11 +3395,47 @@
     <Compile Include="Skladista\RNCSPregled.Designer.cs">
       <DependentUpon>RNCSPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista\RNCSFormiranPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNCSFormiranPregled.Designer.cs">
+      <DependentUpon>RNCSFormiranPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNFormiran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNFormiran.Designer.cs">
+      <DependentUpon>RNFormiran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNRukovalac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNRukovalac.Designer.cs">
+      <DependentUpon>RNRukovalac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\RNSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\RNSkladista.Designer.cs">
+      <DependentUpon>RNSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\Skladista.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista\Skladista.Designer.cs">
       <DependentUpon>Skladista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\SkladistaRadniNalozi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\SkladistaRadniNalozi.Designer.cs">
+      <DependentUpon>SkladistaRadniNalozi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista\TipRN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\TipRN.Designer.cs">
+      <DependentUpon>TipRN.cs</DependentUpon>
     </Compile>
     <Compile Include="SyncForm\frmAnalizaAktivnosti.cs">
       <SubType>Form</SubType>
@@ -4519,6 +4561,18 @@
     </Compile>
     <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.Designer.cs">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\frmDnevniExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\frmDnevniExcel.Designer.cs">
+      <DependentUpon>frmDnevniExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\VSDMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\VSDMain.Designer.cs">
+      <DependentUpon>VSDMain.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Administracija\frmDodeliGrupu.resx">
       <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
@@ -5749,6 +5803,9 @@
     <EmbeddedResource Include="Sifarnici\frmLogovanjeSecond.resx">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmLogovanjeVSD.resx">
+      <DependentUpon>frmLogovanjeVSD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPartnerjiFirme.resx">
       <DependentUpon>frmPartnerjiFirme.cs</DependentUpon>
     </EmbeddedResource>
@@ -5869,11 +5926,8 @@
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Skladista\KomercijalnoSkladiste.resx">
-      <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Skladista\Komercijalninalozi.resx">
-      <DependentUpon>Komercijalninalozi.cs</DependentUpon>
+    <EmbeddedResource Include="Skladista\MainRN.resx">
+      <DependentUpon>MainRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\PrijemnicaCarinskoSkladiste.resx">
       <DependentUpon>PrijemnicaCarinskoSkladiste.cs</DependentUpon>
@@ -5884,8 +5938,26 @@
     <EmbeddedResource Include="Skladista\RNCSPregled.resx">
       <DependentUpon>RNCSPregled.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNCSFormiranPregled.resx">
+      <DependentUpon>RNCSFormiranPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNFormiran.resx">
+      <DependentUpon>RNFormiran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNRukovalac.resx">
+      <DependentUpon>RNRukovalac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\RNSkladista.resx">
+      <DependentUpon>RNSkladista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista\Skladista.resx">
       <DependentUpon>Skladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\SkladistaRadniNalozi.resx">
+      <DependentUpon>SkladistaRadniNalozi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\TipRN.resx">
+      <DependentUpon>TipRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmAnalizaAktivnosti.resx">
       <DependentUpon>frmAnalizaAktivnosti.cs</DependentUpon>
@@ -6328,6 +6400,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\frmDnevniExcel.resx">
+      <DependentUpon>frmDnevniExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\VSDMain.resx">
+      <DependentUpon>VSDMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CarinskaOtpremnicaDataSet.xsc">
       <DependentUpon>CarinskaOtpremnicaDataSet.xsd</DependentUpon>

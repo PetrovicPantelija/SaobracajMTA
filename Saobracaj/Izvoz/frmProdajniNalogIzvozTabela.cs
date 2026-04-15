@@ -328,6 +328,7 @@ namespace Saobracaj.Izvoz
                             {
                                 int izbor = ni.IzabranaOpcija;
                                 string Izabrani = "";
+                            string SloziOznaku = "";
 
                                 if (izbor == 1)
                                 {
@@ -335,23 +336,27 @@ namespace Saobracaj.Izvoz
                                     {
                                         scenarioID = 13;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); // 
-                                        Izabrani = "Izabrali ste Scenario 13 - PLATFORMA DIREKTNO PUN ";
+                                        Izabrani = "Izabrali ste Scenario:13 - PLATFORMA DIREKTNO PUN ";
                                         IzborCerada = 1;
+                                         SloziOznaku = SloziOznaku + "I";
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                            SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
                                     else
                                     {
                                         scenarioID = 26;
-                                        Izabrani = "Izabrali ste Scenario 26 (ADR) - PLATFORMA DIREKTNO PUN";
+                                    SloziOznaku = SloziOznaku + "I-A";
+                                    Izabrani = "Izabrali ste Scenario:26 (ADR) - PLATFORMA DIREKTNO PUN";
                                         scin.UpdScenario(id, scenarioID, IzborDrumski);
                                         IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                            SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
 
                                 }
@@ -364,20 +369,24 @@ namespace Saobracaj.Izvoz
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 7 - PLATFORMA PRAZAN - PUN ";
                                         IzborCerada = 1;
-                                        if (IzborDrumski == 1)
+                                    SloziOznaku = SloziOznaku + "II";
+                                    if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                             SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
                                     else
                                     {
                                         scenarioID = 23;
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
-                                        Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
+                                    SloziOznaku = SloziOznaku + "II-A";
+                                    Izabrani = "Izabrali ste Scenario 23 (ADR) - PLATFORMA PRAZAN - PUN ";
                                         IzborCerada = 1;
                                         if (IzborDrumski == 1)
                                         {
-                                            Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
+                                        SloziOznaku = SloziOznaku + "-L";
+                                        Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
                                         }
                                     }
 
@@ -391,10 +400,12 @@ namespace Saobracaj.Izvoz
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 8 - CERADA PRETOVAR PUN ";
                                         IzborCerada = 2;
-                                        if (IzborDrumski == 1)
+                                        SloziOznaku = SloziOznaku + "III";
+                                    if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                            SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
                                     else
                                     {
@@ -402,10 +413,12 @@ namespace Saobracaj.Izvoz
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 24 (ADR) - CERADA PRETOVAR PUN ";
                                         IzborCerada = 2;
-                                        if (IzborDrumski == 1)
+                                    SloziOznaku = SloziOznaku + "III-A";
+                                    if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                            SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
 
                                 }
@@ -418,10 +431,12 @@ namespace Saobracaj.Izvoz
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 9 - CERADA SKLADISTE PUN";
                                         IzborCerada = 2;
-                                        if (IzborDrumski == 1)
+                                    SloziOznaku = SloziOznaku + "IV";
+                                    if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                        SloziOznaku = SloziOznaku + "-L";
+                                    }
 
                                     }
                                     else
@@ -430,13 +445,15 @@ namespace Saobracaj.Izvoz
                                         scin.UpdScenario(id, scenarioID, IzborDrumski); //
                                         Izabrani = "Izabrali ste Scenario 25 (ADR) - CERADA SKLADISTE PUN";
                                         IzborCerada = 2;
-                                        if (IzborDrumski == 1)
+                                    SloziOznaku = SloziOznaku + "IV-A";
+                                    if (IzborDrumski == 1)
                                         {
                                             Izabrani += " sa Drumskim prevozom u organizaciji Legeta";
-                                        }
+                                        SloziOznaku = SloziOznaku + "-L";
+                                    }
                                     }
                                 }
-                            CustomOkMessageBox.Show(" " + Izabrani.ToString());
+                            CustomOkMessageBox.Show("   Oznaka:   " + SloziOznaku + "\n" + Izabrani.ToString());
                         }
 
                        

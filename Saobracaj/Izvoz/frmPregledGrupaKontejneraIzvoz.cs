@@ -1,5 +1,6 @@
 ﻿using Saobracaj.Drumski;
 using Saobracaj.MainLeget.LegNew;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
@@ -10,6 +11,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Saobracaj.Izvoz
 {
@@ -138,23 +140,23 @@ namespace Saobracaj.Izvoz
 
         private void RefreshGridControl()
         {
-            var select = " SELECT  Izvoz.ID as ID, Izvoz.BrojStavkePorudzbenice AS StavkaPorudzbenice, ISNull(Izvoz.GrupID,0) AS Grupa,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, " +
-          " Partnerji_3.PaNaziv AS Porucilac, Izvoz.OpisPosla, Izvoz.Link, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
-          " Izvoz.CutOffPort,TipKontenjera.Naziv as VrstaKontejnera,  Partnerji_2.PaNaziv AS Izvoznik,IsNull(Izvoz.Vaganje, 0) AS Vaganje, (  VrstaRobeADR.UNKod +' - '+ VrstaRobeADR.Klasa + ' - ' + VrstaRobeADR.Naziv  ) as ADR,  Izvoz.Tara, Partnerji_4.PaNaziv AS NalogodavacZaUsluge, Izvoz.Napomena2REf AS RefZaUsluge, " +
-          "Partnerji_5.PaNaziv AS NalogodavacZaDrumski, Izvoz.Napomena3REf AS RefZaDrumski, InspekciskiTretman.Naziv AS InspekciskiTretman, uvNacinPakovanja.Naziv AS NacinPakovanja,  " +
-          " Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, " +
-          " Izvoz.NetoRobe, Izvoz.BrutoRobe,  Izvoz.BrojKoleta,  Izvoz.CBM, Izvoz.VrednostRobeFaktura, Izvoz.Scenario, ISNull(Izvoz.Drumski, 0) AS Drumski " +
-          "FROM  Izvoz " +
-          "Left JOIN TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID " +
-          "LEFT JOIN  Partnerji ON Izvoz.Brodar = Partnerji.PaSifra " +
-          "LEFT JOIN  InspekciskiTretman ON Izvoz.Inspekcija = InspekciskiTretman.ID " +
-          "LEFT JOIN  Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra " +
-          "LEFT JOIN  Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra " +
-          "LEFT JOIN  Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra " +
-          "LEFT JOIN  Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra " +
-          "LEFT JOIN  uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID " +
-          "LEFT JOIN  VrstaRobeADR  on Izvoz.ADR = VrstaRobeADR.ID " +
-          "WHERE (Izvoz.Status <> 'STORNIRAN' OR  Izvoz.Status IS  NULL) order by Izvoz.ID desc  ";
+            var select = "  SELECT Izvoz.ID as ID, ProdajniNalogIzvozStavke.IDNadredjenog as PorID, Izvoz.BrojStavkePorudzbenice AS StavkaPorudzbenice, ISNull(Izvoz.GrupID, 0) AS Grupa, Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, " +
+" Partnerji_3.PaNaziv AS Porucilac, Izvoz.OpisPosla, Izvoz.Link, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara as Booking, " +
+" Izvoz.CutOffPort,TipKontenjera.Naziv as VrstaKontejnera,  Partnerji_2.PaNaziv AS Izvoznik,IsNull(Izvoz.Vaganje, 0) AS Vaganje, (  VrstaRobeADR.UNKod + ' - ' + VrstaRobeADR.Klasa + ' - ' + VrstaRobeADR.Naziv  ) as ADR,  Izvoz.Tara, Partnerji_4.PaNaziv AS NalogodavacZaUsluge, Izvoz.Napomena2REf AS RefZaUsluge, " +
+" Partnerji_5.PaNaziv AS NalogodavacZaDrumski, Izvoz.Napomena3REf AS RefZaDrumski, " +
+" Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, " +
+" Izvoz.NetoRobe, Izvoz.BrutoRobe,  Izvoz.BrojKoleta,  Izvoz.CBM, Izvoz.VrednostRobeFaktura, Izvoz.Scenario, ISNull(Izvoz.Drumski, 0) AS Drumski " +
+" FROM Izvoz " +
+" inner join ProdajniNalogIzvozStavke on Izvoz.BrojStavkePorudzbenice = ProdajniNalogIzvozStavke.ID " +
+" Left JOIN TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID " +
+" LEFT JOIN  Partnerji ON Izvoz.Brodar = Partnerji.PaSifra " +
+" LEFT JOIN  Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra " +
+" LEFT JOIN  Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra " +
+" LEFT JOIN  Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra " +
+" LEFT JOIN  Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra " +
+" LEFT JOIN  uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID " +
+" LEFT JOIN  VrstaRobeADR on Izvoz.ADR = VrstaRobeADR.ID " + 
+" WHERE(Izvoz.Status<> 'STORNIRAN' OR  Izvoz.Status IS  NULL) order by Izvoz.ID desc  ";
 
             //   var s_connection = Sifarnici.frmLogovanje.connectionString;
             //   SqlConnection myConnection = new SqlConnection(s_connection);
@@ -254,7 +256,7 @@ namespace Saobracaj.Izvoz
                     this.gridGroupingControl1.Table.CurrentRecord = style.TableCellIdentity.DisplayElement.ParentRecord;
 
                     // Prikaži context menu na poziciji miša
-                    contextMenuStrip1.Show(Cursor.Position);
+                    contextMenuStrip1.Show(System.Windows.Forms.Cursor.Position);
                 }
             }
         }
@@ -315,8 +317,7 @@ namespace Saobracaj.Izvoz
 
         private void btnIzmeniKolicinu_Click(object sender, EventArgs e)
         {
-            frmProdajniNalogIzvozTabela cpo = new frmProdajniNalogIzvozTabela(1);
-            cpo.Show();
+           
         }
     }
 }

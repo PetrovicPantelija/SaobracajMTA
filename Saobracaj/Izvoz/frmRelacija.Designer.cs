@@ -96,6 +96,8 @@
             this.lblDodatneNapomenDrumski = new System.Windows.Forms.Label();
             this.txtDodatneNapomeneDrumski = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDodatneNapomeneDrumski1 = new System.Windows.Forms.Label();
+            this.txtDodatneNapomeneDrumski1 = new System.Windows.Forms.TextBox();
             this.cboVrstaKamiona = new System.Windows.Forms.ComboBox();
             this.lblVrstaKamiona = new System.Windows.Forms.Label();
             this.lblOdlaznaMorskaLuka1 = new System.Windows.Forms.Label();
@@ -133,8 +135,6 @@
             this.lblVrstaKamiona4 = new System.Windows.Forms.Label();
             this.lblDodatneNapomeneDrumski4 = new System.Windows.Forms.Label();
             this.txtDodatneNapomeneDrumski4 = new System.Windows.Forms.TextBox();
-            this.lblDodatneNapomeneDrumski1 = new System.Windows.Forms.Label();
-            this.txtDodatneNapomeneDrumski1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -178,26 +178,28 @@
             this.panel2.Controls.Add(this.lblPlaniranDatumSpustanja);
             this.panel2.Controls.Add(this.lblOdlaznaMorskaLuka2);
             this.panel2.Controls.Add(this.cboOdlaznaMorskaLuka2);
-            this.panel2.Location = new System.Drawing.Point(1, 63);
+            this.panel2.Location = new System.Drawing.Point(1, 51);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1203, 309);
+            this.panel2.Size = new System.Drawing.Size(902, 251);
             this.panel2.TabIndex = 655;
             // 
             // lblDodatneNapomeneDrumski2
             // 
-            this.lblDodatneNapomeneDrumski2.Location = new System.Drawing.Point(863, 177);
+            this.lblDodatneNapomeneDrumski2.Location = new System.Drawing.Point(647, 144);
+            this.lblDodatneNapomeneDrumski2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDodatneNapomeneDrumski2.Name = "lblDodatneNapomeneDrumski2";
-            this.lblDodatneNapomeneDrumski2.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski2.Size = new System.Drawing.Size(181, 20);
             this.lblDodatneNapomeneDrumski2.TabIndex = 637;
             this.lblDodatneNapomeneDrumski2.Text = "Dodatne napomene drumski";
             // 
             // txtDodatneNapomeneDrumski2
             // 
-            this.txtDodatneNapomeneDrumski2.Location = new System.Drawing.Point(861, 199);
-            this.txtDodatneNapomeneDrumski2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski2.Location = new System.Drawing.Point(646, 162);
+            this.txtDodatneNapomeneDrumski2.Margin = new System.Windows.Forms.Padding(2);
             this.txtDodatneNapomeneDrumski2.Multiline = true;
             this.txtDodatneNapomeneDrumski2.Name = "txtDodatneNapomeneDrumski2";
-            this.txtDodatneNapomeneDrumski2.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski2.Size = new System.Drawing.Size(234, 43);
             this.txtDodatneNapomeneDrumski2.TabIndex = 636;
             // 
             // cboVrstaKamiona2
@@ -206,31 +208,33 @@
             this.cboVrstaKamiona2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaKamiona2.Enabled = false;
             this.cboVrstaKamiona2.FormattingEnabled = true;
-            this.cboVrstaKamiona2.ItemHeight = 16;
+            this.cboVrstaKamiona2.ItemHeight = 13;
             this.cboVrstaKamiona2.Items.AddRange(new object[] {
             "CERADA",
             "PLATFORMA"});
-            this.cboVrstaKamiona2.Location = new System.Drawing.Point(861, 141);
-            this.cboVrstaKamiona2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona2.Location = new System.Drawing.Point(646, 115);
+            this.cboVrstaKamiona2.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaKamiona2.Name = "cboVrstaKamiona2";
-            this.cboVrstaKamiona2.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona2.Size = new System.Drawing.Size(230, 21);
             this.cboVrstaKamiona2.TabIndex = 310;
             // 
             // lblVrstaKamiona2
             // 
             this.lblVrstaKamiona2.AutoSize = true;
-            this.lblVrstaKamiona2.Location = new System.Drawing.Point(863, 120);
+            this.lblVrstaKamiona2.Location = new System.Drawing.Point(647, 98);
+            this.lblVrstaKamiona2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVrstaKamiona2.Name = "lblVrstaKamiona2";
-            this.lblVrstaKamiona2.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona2.Size = new System.Drawing.Size(74, 13);
             this.lblVrstaKamiona2.TabIndex = 635;
             this.lblVrstaKamiona2.Text = "Vrsta kamiona";
             // 
             // lblDatumRealizacije
             // 
             this.lblDatumRealizacije.AutoSize = true;
-            this.lblDatumRealizacije.Location = new System.Drawing.Point(435, 234);
+            this.lblDatumRealizacije.Location = new System.Drawing.Point(326, 190);
+            this.lblDatumRealizacije.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatumRealizacije.Name = "lblDatumRealizacije";
-            this.lblDatumRealizacije.Size = new System.Drawing.Size(152, 16);
+            this.lblDatumRealizacije.Size = new System.Drawing.Size(121, 13);
             this.lblDatumRealizacije.TabIndex = 634;
             this.lblDatumRealizacije.Text = "Datum/vreme realizacije";
             // 
@@ -238,10 +242,10 @@
             // 
             this.dtpDatumRealizacijeUtovaraKontejnera2.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumRealizacijeUtovaraKontejnera2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumRealizacijeUtovaraKontejnera2.Location = new System.Drawing.Point(433, 255);
-            this.dtpDatumRealizacijeUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpDatumRealizacijeUtovaraKontejnera2.Location = new System.Drawing.Point(325, 207);
+            this.dtpDatumRealizacijeUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDatumRealizacijeUtovaraKontejnera2.Name = "dtpDatumRealizacijeUtovaraKontejnera2";
-            this.dtpDatumRealizacijeUtovaraKontejnera2.Size = new System.Drawing.Size(172, 22);
+            this.dtpDatumRealizacijeUtovaraKontejnera2.Size = new System.Drawing.Size(130, 20);
             this.dtpDatumRealizacijeUtovaraKontejnera2.TabIndex = 280;
             this.dtpDatumRealizacijeUtovaraKontejnera2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtpDatumRealizacijeUtovaraKontejnera2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -249,9 +253,10 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(435, 177);
+            this.label11.Location = new System.Drawing.Point(326, 144);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(141, 16);
+            this.label11.Size = new System.Drawing.Size(113, 13);
             this.label11.TabIndex = 632;
             this.label11.Text = "Planirani datum/vreme";
             // 
@@ -259,10 +264,10 @@
             // 
             this.dptPlaniraniDatumUtovaraKontejnera2.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniraniDatumUtovaraKontejnera2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniraniDatumUtovaraKontejnera2.Location = new System.Drawing.Point(433, 198);
-            this.dptPlaniraniDatumUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptPlaniraniDatumUtovaraKontejnera2.Location = new System.Drawing.Point(325, 161);
+            this.dptPlaniraniDatumUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.dptPlaniraniDatumUtovaraKontejnera2.Name = "dptPlaniraniDatumUtovaraKontejnera2";
-            this.dptPlaniraniDatumUtovaraKontejnera2.Size = new System.Drawing.Size(172, 22);
+            this.dptPlaniraniDatumUtovaraKontejnera2.Size = new System.Drawing.Size(130, 20);
             this.dptPlaniraniDatumUtovaraKontejnera2.TabIndex = 270;
             this.dptPlaniraniDatumUtovaraKontejnera2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptPlaniraniDatumUtovaraKontejnera2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -273,19 +278,20 @@
             this.cboKontaktUtovaraKontejnera2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktUtovaraKontejnera2.CausesValidation = false;
             this.cboKontaktUtovaraKontejnera2.FormattingEnabled = true;
-            this.cboKontaktUtovaraKontejnera2.ItemHeight = 16;
-            this.cboKontaktUtovaraKontejnera2.Location = new System.Drawing.Point(433, 141);
-            this.cboKontaktUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktUtovaraKontejnera2.ItemHeight = 13;
+            this.cboKontaktUtovaraKontejnera2.Location = new System.Drawing.Point(325, 115);
+            this.cboKontaktUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktUtovaraKontejnera2.Name = "cboKontaktUtovaraKontejnera2";
-            this.cboKontaktUtovaraKontejnera2.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktUtovaraKontejnera2.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktUtovaraKontejnera2.TabIndex = 260;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(435, 63);
+            this.label9.Location = new System.Drawing.Point(326, 51);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(51, 16);
+            this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 628;
             this.label9.Text = "Adresa";
             // 
@@ -295,19 +301,20 @@
             this.cboAdresaUtovaraKontejnera2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaUtovaraKontejnera2.CausesValidation = false;
             this.cboAdresaUtovaraKontejnera2.FormattingEnabled = true;
-            this.cboAdresaUtovaraKontejnera2.ItemHeight = 16;
-            this.cboAdresaUtovaraKontejnera2.Location = new System.Drawing.Point(435, 84);
-            this.cboAdresaUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaUtovaraKontejnera2.ItemHeight = 13;
+            this.cboAdresaUtovaraKontejnera2.Location = new System.Drawing.Point(326, 68);
+            this.cboAdresaUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaUtovaraKontejnera2.Name = "cboAdresaUtovaraKontejnera2";
-            this.cboAdresaUtovaraKontejnera2.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaUtovaraKontejnera2.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaUtovaraKontejnera2.TabIndex = 250;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(435, 120);
+            this.label10.Location = new System.Drawing.Point(326, 98);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 16);
+            this.label10.Size = new System.Drawing.Size(76, 13);
             this.label10.TabIndex = 629;
             this.label10.Text = "Kontakt osoba";
             // 
@@ -317,29 +324,31 @@
             this.cboMestoUtovaraKontejnera2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovaraKontejnera2.CausesValidation = false;
             this.cboMestoUtovaraKontejnera2.FormattingEnabled = true;
-            this.cboMestoUtovaraKontejnera2.ItemHeight = 16;
-            this.cboMestoUtovaraKontejnera2.Location = new System.Drawing.Point(433, 27);
-            this.cboMestoUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoUtovaraKontejnera2.ItemHeight = 13;
+            this.cboMestoUtovaraKontejnera2.Location = new System.Drawing.Point(325, 22);
+            this.cboMestoUtovaraKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoUtovaraKontejnera2.Name = "cboMestoUtovaraKontejnera2";
-            this.cboMestoUtovaraKontejnera2.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoUtovaraKontejnera2.Size = new System.Drawing.Size(232, 21);
             this.cboMestoUtovaraKontejnera2.TabIndex = 240;
             this.cboMestoUtovaraKontejnera2.Leave += new System.EventHandler(this.cboMestoUtovaraKontejnera2_Leave);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(435, 6);
+            this.label8.Location = new System.Drawing.Point(326, 5);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(158, 16);
+            this.label8.Size = new System.Drawing.Size(128, 13);
             this.label8.TabIndex = 625;
             this.label8.Text = "Mesto utovara kontejnera";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 63);
+            this.label5.Location = new System.Drawing.Point(15, 51);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(238, 16);
+            this.label5.Size = new System.Drawing.Size(189, 13);
             this.label5.TabIndex = 611;
             this.label5.Text = "Mesto preuzimanja praznog kontejnera";
             // 
@@ -349,21 +358,21 @@
             this.cboMestoPreuzimanjaPraznog2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoPreuzimanjaPraznog2.CausesValidation = false;
             this.cboMestoPreuzimanjaPraznog2.FormattingEnabled = true;
-            this.cboMestoPreuzimanjaPraznog2.ItemHeight = 16;
-            this.cboMestoPreuzimanjaPraznog2.Location = new System.Drawing.Point(22, 84);
-            this.cboMestoPreuzimanjaPraznog2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoPreuzimanjaPraznog2.ItemHeight = 13;
+            this.cboMestoPreuzimanjaPraznog2.Location = new System.Drawing.Point(16, 68);
+            this.cboMestoPreuzimanjaPraznog2.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoPreuzimanjaPraznog2.Name = "cboMestoPreuzimanjaPraznog2";
-            this.cboMestoPreuzimanjaPraznog2.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoPreuzimanjaPraznog2.Size = new System.Drawing.Size(232, 21);
             this.cboMestoPreuzimanjaPraznog2.TabIndex = 220;
             // 
             // dtpPlaniraniDatumVremePreuzimanja2
             // 
             this.dtpPlaniraniDatumVremePreuzimanja2.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPlaniraniDatumVremePreuzimanja2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPlaniraniDatumVremePreuzimanja2.Location = new System.Drawing.Point(20, 141);
-            this.dtpPlaniraniDatumVremePreuzimanja2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpPlaniraniDatumVremePreuzimanja2.Location = new System.Drawing.Point(15, 115);
+            this.dtpPlaniraniDatumVremePreuzimanja2.Margin = new System.Windows.Forms.Padding(2);
             this.dtpPlaniraniDatumVremePreuzimanja2.Name = "dtpPlaniraniDatumVremePreuzimanja2";
-            this.dtpPlaniraniDatumVremePreuzimanja2.Size = new System.Drawing.Size(172, 22);
+            this.dtpPlaniraniDatumVremePreuzimanja2.Size = new System.Drawing.Size(130, 20);
             this.dtpPlaniraniDatumVremePreuzimanja2.TabIndex = 230;
             this.dtpPlaniraniDatumVremePreuzimanja2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtpPlaniraniDatumVremePreuzimanja2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -371,18 +380,20 @@
             // lblPlaniraniDatumVreme
             // 
             this.lblPlaniraniDatumVreme.AutoSize = true;
-            this.lblPlaniraniDatumVreme.Location = new System.Drawing.Point(20, 120);
+            this.lblPlaniraniDatumVreme.Location = new System.Drawing.Point(15, 98);
+            this.lblPlaniraniDatumVreme.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaniraniDatumVreme.Name = "lblPlaniraniDatumVreme";
-            this.lblPlaniraniDatumVreme.Size = new System.Drawing.Size(141, 16);
+            this.lblPlaniraniDatumVreme.Size = new System.Drawing.Size(113, 13);
             this.lblPlaniraniDatumVreme.TabIndex = 614;
             this.lblPlaniraniDatumVreme.Text = "Planirani datum/vreme";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(863, 6);
+            this.label16.Location = new System.Drawing.Point(647, 5);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(212, 16);
+            this.label16.Size = new System.Drawing.Size(170, 13);
             this.label16.TabIndex = 625;
             this.label16.Text = "Mesto spuštanja punog kontejnera";
             // 
@@ -392,21 +403,21 @@
             this.cboMestoSpustanjaPunogKontejnera2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoSpustanjaPunogKontejnera2.CausesValidation = false;
             this.cboMestoSpustanjaPunogKontejnera2.FormattingEnabled = true;
-            this.cboMestoSpustanjaPunogKontejnera2.ItemHeight = 16;
-            this.cboMestoSpustanjaPunogKontejnera2.Location = new System.Drawing.Point(861, 27);
-            this.cboMestoSpustanjaPunogKontejnera2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoSpustanjaPunogKontejnera2.ItemHeight = 13;
+            this.cboMestoSpustanjaPunogKontejnera2.Location = new System.Drawing.Point(646, 22);
+            this.cboMestoSpustanjaPunogKontejnera2.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoSpustanjaPunogKontejnera2.Name = "cboMestoSpustanjaPunogKontejnera2";
-            this.cboMestoSpustanjaPunogKontejnera2.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoSpustanjaPunogKontejnera2.Size = new System.Drawing.Size(232, 21);
             this.cboMestoSpustanjaPunogKontejnera2.TabIndex = 290;
             // 
             // dptPlaniranDatumSpustanja2
             // 
             this.dptPlaniranDatumSpustanja2.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniranDatumSpustanja2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniranDatumSpustanja2.Location = new System.Drawing.Point(861, 84);
-            this.dptPlaniranDatumSpustanja2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptPlaniranDatumSpustanja2.Location = new System.Drawing.Point(646, 68);
+            this.dptPlaniranDatumSpustanja2.Margin = new System.Windows.Forms.Padding(2);
             this.dptPlaniranDatumSpustanja2.Name = "dptPlaniranDatumSpustanja2";
-            this.dptPlaniranDatumSpustanja2.Size = new System.Drawing.Size(172, 22);
+            this.dptPlaniranDatumSpustanja2.Size = new System.Drawing.Size(130, 20);
             this.dptPlaniranDatumSpustanja2.TabIndex = 300;
             this.dptPlaniranDatumSpustanja2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptPlaniranDatumSpustanja2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -414,18 +425,20 @@
             // lblPlaniranDatumSpustanja
             // 
             this.lblPlaniranDatumSpustanja.AutoSize = true;
-            this.lblPlaniranDatumSpustanja.Location = new System.Drawing.Point(863, 63);
+            this.lblPlaniranDatumSpustanja.Location = new System.Drawing.Point(647, 51);
+            this.lblPlaniranDatumSpustanja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaniranDatumSpustanja.Name = "lblPlaniranDatumSpustanja";
-            this.lblPlaniranDatumSpustanja.Size = new System.Drawing.Size(141, 16);
+            this.lblPlaniranDatumSpustanja.Size = new System.Drawing.Size(113, 13);
             this.lblPlaniranDatumSpustanja.TabIndex = 628;
             this.lblPlaniranDatumSpustanja.Text = "Planirani datum/vreme";
             // 
             // lblOdlaznaMorskaLuka2
             // 
             this.lblOdlaznaMorskaLuka2.AutoSize = true;
-            this.lblOdlaznaMorskaLuka2.Location = new System.Drawing.Point(23, 6);
+            this.lblOdlaznaMorskaLuka2.Location = new System.Drawing.Point(17, 5);
+            this.lblOdlaznaMorskaLuka2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOdlaznaMorskaLuka2.Name = "lblOdlaznaMorskaLuka2";
-            this.lblOdlaznaMorskaLuka2.Size = new System.Drawing.Size(133, 16);
+            this.lblOdlaznaMorskaLuka2.Size = new System.Drawing.Size(106, 13);
             this.lblOdlaznaMorskaLuka2.TabIndex = 554;
             this.lblOdlaznaMorskaLuka2.Text = "Odlazna morska luka";
             // 
@@ -435,11 +448,11 @@
             this.cboOdlaznaMorskaLuka2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboOdlaznaMorskaLuka2.CausesValidation = false;
             this.cboOdlaznaMorskaLuka2.FormattingEnabled = true;
-            this.cboOdlaznaMorskaLuka2.ItemHeight = 16;
-            this.cboOdlaznaMorskaLuka2.Location = new System.Drawing.Point(20, 27);
-            this.cboOdlaznaMorskaLuka2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboOdlaznaMorskaLuka2.ItemHeight = 13;
+            this.cboOdlaznaMorskaLuka2.Location = new System.Drawing.Point(15, 22);
+            this.cboOdlaznaMorskaLuka2.Margin = new System.Windows.Forms.Padding(2);
             this.cboOdlaznaMorskaLuka2.Name = "cboOdlaznaMorskaLuka2";
-            this.cboOdlaznaMorskaLuka2.Size = new System.Drawing.Size(308, 24);
+            this.cboOdlaznaMorskaLuka2.Size = new System.Drawing.Size(232, 21);
             this.cboOdlaznaMorskaLuka2.TabIndex = 210;
             // 
             // panel3
@@ -482,19 +495,20 @@
             this.panel3.Controls.Add(this.lblVrstaKamiona3);
             this.panel3.Controls.Add(this.lblDodatneNapomenDrumski);
             this.panel3.Controls.Add(this.txtDodatneNapomeneDrumski);
-            this.panel3.Location = new System.Drawing.Point(1, 61);
+            this.panel3.Location = new System.Drawing.Point(1, 50);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1203, 466);
+            this.panel3.Size = new System.Drawing.Size(902, 379);
             this.panel3.TabIndex = 656;
             // 
             // dptDatumIstovaraCerade3
             // 
             this.dptDatumIstovaraCerade3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptDatumIstovaraCerade3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 426);
-            this.dptDatumIstovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumIstovaraCerade3.Location = new System.Drawing.Point(325, 346);
+            this.dptDatumIstovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.dptDatumIstovaraCerade3.Name = "dptDatumIstovaraCerade3";
-            this.dptDatumIstovaraCerade3.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumIstovaraCerade3.Size = new System.Drawing.Size(130, 20);
             this.dptDatumIstovaraCerade3.TabIndex = 210;
             this.dptDatumIstovaraCerade3.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptDatumIstovaraCerade3.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -502,18 +516,20 @@
             // lblDatumIstovaraCerade3
             // 
             this.lblDatumIstovaraCerade3.AutoSize = true;
-            this.lblDatumIstovaraCerade3.Location = new System.Drawing.Point(433, 405);
+            this.lblDatumIstovaraCerade3.Location = new System.Drawing.Point(325, 329);
+            this.lblDatumIstovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatumIstovaraCerade3.Name = "lblDatumIstovaraCerade3";
-            this.lblDatumIstovaraCerade3.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumIstovaraCerade3.Size = new System.Drawing.Size(113, 13);
             this.lblDatumIstovaraCerade3.TabIndex = 662;
             this.lblDatumIstovaraCerade3.Text = "Planirani datum/vreme";
             // 
             // lblOdlaznaMorskaLuka3
             // 
             this.lblOdlaznaMorskaLuka3.AutoSize = true;
-            this.lblOdlaznaMorskaLuka3.Location = new System.Drawing.Point(23, 6);
+            this.lblOdlaznaMorskaLuka3.Location = new System.Drawing.Point(17, 5);
+            this.lblOdlaznaMorskaLuka3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOdlaznaMorskaLuka3.Name = "lblOdlaznaMorskaLuka3";
-            this.lblOdlaznaMorskaLuka3.Size = new System.Drawing.Size(133, 16);
+            this.lblOdlaznaMorskaLuka3.Size = new System.Drawing.Size(106, 13);
             this.lblOdlaznaMorskaLuka3.TabIndex = 659;
             this.lblOdlaznaMorskaLuka3.Text = "Odlazna morska luka";
             // 
@@ -523,19 +539,20 @@
             this.cboOdlaznaMorskaLuka3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboOdlaznaMorskaLuka3.CausesValidation = false;
             this.cboOdlaznaMorskaLuka3.FormattingEnabled = true;
-            this.cboOdlaznaMorskaLuka3.ItemHeight = 16;
-            this.cboOdlaznaMorskaLuka3.Location = new System.Drawing.Point(21, 25);
-            this.cboOdlaznaMorskaLuka3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboOdlaznaMorskaLuka3.ItemHeight = 13;
+            this.cboOdlaznaMorskaLuka3.Location = new System.Drawing.Point(16, 20);
+            this.cboOdlaznaMorskaLuka3.Margin = new System.Windows.Forms.Padding(2);
             this.cboOdlaznaMorskaLuka3.Name = "cboOdlaznaMorskaLuka3";
-            this.cboOdlaznaMorskaLuka3.Size = new System.Drawing.Size(308, 24);
+            this.cboOdlaznaMorskaLuka3.Size = new System.Drawing.Size(232, 21);
             this.cboOdlaznaMorskaLuka3.TabIndex = 110;
             // 
             // lblMestoIstovaraCerada3
             // 
             this.lblMestoIstovaraCerada3.AutoSize = true;
-            this.lblMestoIstovaraCerada3.Location = new System.Drawing.Point(435, 234);
+            this.lblMestoIstovaraCerada3.Location = new System.Drawing.Point(326, 190);
+            this.lblMestoIstovaraCerada3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoIstovaraCerada3.Name = "lblMestoIstovaraCerada3";
-            this.lblMestoIstovaraCerada3.Size = new System.Drawing.Size(141, 16);
+            this.lblMestoIstovaraCerada3.Size = new System.Drawing.Size(112, 13);
             this.lblMestoIstovaraCerada3.TabIndex = 653;
             this.lblMestoIstovaraCerada3.Text = "Mesto istovara cerade";
             // 
@@ -545,20 +562,21 @@
             this.cboMestoIstovaraCerada3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoIstovaraCerada3.CausesValidation = false;
             this.cboMestoIstovaraCerada3.FormattingEnabled = true;
-            this.cboMestoIstovaraCerada3.ItemHeight = 16;
-            this.cboMestoIstovaraCerada3.Location = new System.Drawing.Point(433, 255);
-            this.cboMestoIstovaraCerada3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoIstovaraCerada3.ItemHeight = 13;
+            this.cboMestoIstovaraCerada3.Location = new System.Drawing.Point(325, 207);
+            this.cboMestoIstovaraCerada3.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoIstovaraCerada3.Name = "cboMestoIstovaraCerada3";
-            this.cboMestoIstovaraCerada3.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoIstovaraCerada3.Size = new System.Drawing.Size(232, 21);
             this.cboMestoIstovaraCerada3.TabIndex = 180;
             this.cboMestoIstovaraCerada3.Leave += new System.EventHandler(this.cboMestoIstovaraCerada3_Leave);
             // 
             // lblKontaktOIstovarCerade3
             // 
             this.lblKontaktOIstovarCerade3.AutoSize = true;
-            this.lblKontaktOIstovarCerade3.Location = new System.Drawing.Point(435, 348);
+            this.lblKontaktOIstovarCerade3.Location = new System.Drawing.Point(326, 283);
+            this.lblKontaktOIstovarCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKontaktOIstovarCerade3.Name = "lblKontaktOIstovarCerade3";
-            this.lblKontaktOIstovarCerade3.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktOIstovarCerade3.Size = new System.Drawing.Size(76, 13);
             this.lblKontaktOIstovarCerade3.TabIndex = 657;
             this.lblKontaktOIstovarCerade3.Text = "Kontakt osoba";
             // 
@@ -568,19 +586,20 @@
             this.cboAdresaIstovaraCerade3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaIstovaraCerade3.CausesValidation = false;
             this.cboAdresaIstovaraCerade3.FormattingEnabled = true;
-            this.cboAdresaIstovaraCerade3.ItemHeight = 16;
-            this.cboAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 312);
-            this.cboAdresaIstovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaIstovaraCerade3.ItemHeight = 13;
+            this.cboAdresaIstovaraCerade3.Location = new System.Drawing.Point(326, 254);
+            this.cboAdresaIstovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaIstovaraCerade3.Name = "cboAdresaIstovaraCerade3";
-            this.cboAdresaIstovaraCerade3.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaIstovaraCerade3.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaIstovaraCerade3.TabIndex = 190;
             // 
             // lblAdresaIstovaraCerade3
             // 
             this.lblAdresaIstovaraCerade3.AutoSize = true;
-            this.lblAdresaIstovaraCerade3.Location = new System.Drawing.Point(435, 291);
+            this.lblAdresaIstovaraCerade3.Location = new System.Drawing.Point(326, 236);
+            this.lblAdresaIstovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdresaIstovaraCerade3.Name = "lblAdresaIstovaraCerade3";
-            this.lblAdresaIstovaraCerade3.Size = new System.Drawing.Size(54, 16);
+            this.lblAdresaIstovaraCerade3.Size = new System.Drawing.Size(43, 13);
             this.lblAdresaIstovaraCerade3.TabIndex = 656;
             this.lblAdresaIstovaraCerade3.Text = "Adresa ";
             // 
@@ -590,19 +609,20 @@
             this.cboKontaktOIstovarCerade3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktOIstovarCerade3.CausesValidation = false;
             this.cboKontaktOIstovarCerade3.FormattingEnabled = true;
-            this.cboKontaktOIstovarCerade3.ItemHeight = 16;
-            this.cboKontaktOIstovarCerade3.Location = new System.Drawing.Point(433, 369);
-            this.cboKontaktOIstovarCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktOIstovarCerade3.ItemHeight = 13;
+            this.cboKontaktOIstovarCerade3.Location = new System.Drawing.Point(325, 300);
+            this.cboKontaktOIstovarCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktOIstovarCerade3.Name = "cboKontaktOIstovarCerade3";
-            this.cboKontaktOIstovarCerade3.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktOIstovarCerade3.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktOIstovarCerade3.TabIndex = 200;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(23, 63);
+            this.label17.Location = new System.Drawing.Point(17, 51);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(238, 16);
+            this.label17.Size = new System.Drawing.Size(189, 13);
             this.label17.TabIndex = 629;
             this.label17.Text = "Mesto preuzimanja praznog kontejnera";
             // 
@@ -612,21 +632,21 @@
             this.cboMestoPreuzimanjaPraznog3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoPreuzimanjaPraznog3.CausesValidation = false;
             this.cboMestoPreuzimanjaPraznog3.FormattingEnabled = true;
-            this.cboMestoPreuzimanjaPraznog3.ItemHeight = 16;
-            this.cboMestoPreuzimanjaPraznog3.Location = new System.Drawing.Point(20, 84);
-            this.cboMestoPreuzimanjaPraznog3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoPreuzimanjaPraznog3.ItemHeight = 13;
+            this.cboMestoPreuzimanjaPraznog3.Location = new System.Drawing.Point(15, 68);
+            this.cboMestoPreuzimanjaPraznog3.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoPreuzimanjaPraznog3.Name = "cboMestoPreuzimanjaPraznog3";
-            this.cboMestoPreuzimanjaPraznog3.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoPreuzimanjaPraznog3.Size = new System.Drawing.Size(232, 21);
             this.cboMestoPreuzimanjaPraznog3.TabIndex = 120;
             // 
             // dtpPlaniraniDatumVremePreuzimanja3
             // 
             this.dtpPlaniraniDatumVremePreuzimanja3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPlaniraniDatumVremePreuzimanja3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPlaniraniDatumVremePreuzimanja3.Location = new System.Drawing.Point(22, 141);
-            this.dtpPlaniraniDatumVremePreuzimanja3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpPlaniraniDatumVremePreuzimanja3.Location = new System.Drawing.Point(16, 115);
+            this.dtpPlaniraniDatumVremePreuzimanja3.Margin = new System.Windows.Forms.Padding(2);
             this.dtpPlaniraniDatumVremePreuzimanja3.Name = "dtpPlaniraniDatumVremePreuzimanja3";
-            this.dtpPlaniraniDatumVremePreuzimanja3.Size = new System.Drawing.Size(172, 22);
+            this.dtpPlaniraniDatumVremePreuzimanja3.Size = new System.Drawing.Size(130, 20);
             this.dtpPlaniraniDatumVremePreuzimanja3.TabIndex = 130;
             this.dtpPlaniraniDatumVremePreuzimanja3.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtpPlaniraniDatumVremePreuzimanja3.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -634,18 +654,20 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(863, 63);
+            this.label27.Location = new System.Drawing.Point(647, 51);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(141, 16);
+            this.label27.Size = new System.Drawing.Size(113, 13);
             this.label27.TabIndex = 652;
             this.label27.Text = "Planirani datum/vreme";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 120);
+            this.label18.Location = new System.Drawing.Point(16, 98);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(141, 16);
+            this.label18.Size = new System.Drawing.Size(113, 13);
             this.label18.TabIndex = 632;
             this.label18.Text = "Planirani datum/vreme";
             // 
@@ -655,22 +677,23 @@
             this.cboVrstaKamiona3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaKamiona3.Enabled = false;
             this.cboVrstaKamiona3.FormattingEnabled = true;
-            this.cboVrstaKamiona3.ItemHeight = 16;
+            this.cboVrstaKamiona3.ItemHeight = 13;
             this.cboVrstaKamiona3.Items.AddRange(new object[] {
             "CERADA",
             "PLATFORMA"});
-            this.cboVrstaKamiona3.Location = new System.Drawing.Point(861, 141);
-            this.cboVrstaKamiona3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona3.Location = new System.Drawing.Point(646, 115);
+            this.cboVrstaKamiona3.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaKamiona3.Name = "cboVrstaKamiona3";
-            this.cboVrstaKamiona3.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona3.Size = new System.Drawing.Size(230, 21);
             this.cboVrstaKamiona3.TabIndex = 270;
             // 
             // lblMestoUtovaraCerade3
             // 
             this.lblMestoUtovaraCerade3.AutoSize = true;
-            this.lblMestoUtovaraCerade3.Location = new System.Drawing.Point(22, 177);
+            this.lblMestoUtovaraCerade3.Location = new System.Drawing.Point(16, 144);
+            this.lblMestoUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoUtovaraCerade3.Name = "lblMestoUtovaraCerade3";
-            this.lblMestoUtovaraCerade3.Size = new System.Drawing.Size(138, 16);
+            this.lblMestoUtovaraCerade3.Size = new System.Drawing.Size(111, 13);
             this.lblMestoUtovaraCerade3.TabIndex = 633;
             this.lblMestoUtovaraCerade3.Text = "Mesto utovara cerade";
             // 
@@ -680,11 +703,11 @@
             this.cboMestoUtovaraCerade3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovaraCerade3.CausesValidation = false;
             this.cboMestoUtovaraCerade3.FormattingEnabled = true;
-            this.cboMestoUtovaraCerade3.ItemHeight = 16;
-            this.cboMestoUtovaraCerade3.Location = new System.Drawing.Point(20, 198);
-            this.cboMestoUtovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoUtovaraCerade3.ItemHeight = 13;
+            this.cboMestoUtovaraCerade3.Location = new System.Drawing.Point(15, 161);
+            this.cboMestoUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoUtovaraCerade3.Name = "cboMestoUtovaraCerade3";
-            this.cboMestoUtovaraCerade3.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoUtovaraCerade3.Size = new System.Drawing.Size(232, 21);
             this.cboMestoUtovaraCerade3.TabIndex = 140;
             this.cboMestoUtovaraCerade3.Leave += new System.EventHandler(this.cboMestoUtovaraCerade3_Leave);
             // 
@@ -692,10 +715,10 @@
             // 
             this.dptPlaniranDatumSpustanja3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniranDatumSpustanja3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniranDatumSpustanja3.Location = new System.Drawing.Point(861, 84);
-            this.dptPlaniranDatumSpustanja3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptPlaniranDatumSpustanja3.Location = new System.Drawing.Point(646, 68);
+            this.dptPlaniranDatumSpustanja3.Margin = new System.Windows.Forms.Padding(2);
             this.dptPlaniranDatumSpustanja3.Name = "dptPlaniranDatumSpustanja3";
-            this.dptPlaniranDatumSpustanja3.Size = new System.Drawing.Size(172, 22);
+            this.dptPlaniranDatumSpustanja3.Size = new System.Drawing.Size(130, 20);
             this.dptPlaniranDatumSpustanja3.TabIndex = 260;
             this.dptPlaniranDatumSpustanja3.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptPlaniranDatumSpustanja3.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -703,27 +726,30 @@
             // lblKontaktUtovaraCerade3
             // 
             this.lblKontaktUtovaraCerade3.AutoSize = true;
-            this.lblKontaktUtovaraCerade3.Location = new System.Drawing.Point(22, 291);
+            this.lblKontaktUtovaraCerade3.Location = new System.Drawing.Point(16, 236);
+            this.lblKontaktUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKontaktUtovaraCerade3.Name = "lblKontaktUtovaraCerade3";
-            this.lblKontaktUtovaraCerade3.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktUtovaraCerade3.Size = new System.Drawing.Size(76, 13);
             this.lblKontaktUtovaraCerade3.TabIndex = 637;
             this.lblKontaktUtovaraCerade3.Text = "Kontakt osoba";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(435, 120);
+            this.label26.Location = new System.Drawing.Point(326, 98);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(93, 16);
+            this.label26.Size = new System.Drawing.Size(76, 13);
             this.label26.TabIndex = 645;
             this.label26.Text = "Kontakt osoba";
             // 
             // lblPlaniraniDatumUtovaraKontejnera3
             // 
             this.lblPlaniraniDatumUtovaraKontejnera3.AutoSize = true;
-            this.lblPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(435, 177);
+            this.lblPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(326, 144);
+            this.lblPlaniraniDatumUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaniraniDatumUtovaraKontejnera3.Name = "lblPlaniraniDatumUtovaraKontejnera3";
-            this.lblPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(141, 16);
+            this.lblPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(113, 13);
             this.lblPlaniraniDatumUtovaraKontejnera3.TabIndex = 648;
             this.lblPlaniraniDatumUtovaraKontejnera3.Text = "Planirani datum/vreme";
             // 
@@ -733,11 +759,11 @@
             this.cboMestoSpustanjaPunogKontejnera3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoSpustanjaPunogKontejnera3.CausesValidation = false;
             this.cboMestoSpustanjaPunogKontejnera3.FormattingEnabled = true;
-            this.cboMestoSpustanjaPunogKontejnera3.ItemHeight = 16;
-            this.cboMestoSpustanjaPunogKontejnera3.Location = new System.Drawing.Point(861, 27);
-            this.cboMestoSpustanjaPunogKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoSpustanjaPunogKontejnera3.ItemHeight = 13;
+            this.cboMestoSpustanjaPunogKontejnera3.Location = new System.Drawing.Point(646, 22);
+            this.cboMestoSpustanjaPunogKontejnera3.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoSpustanjaPunogKontejnera3.Name = "cboMestoSpustanjaPunogKontejnera3";
-            this.cboMestoSpustanjaPunogKontejnera3.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoSpustanjaPunogKontejnera3.Size = new System.Drawing.Size(232, 21);
             this.cboMestoSpustanjaPunogKontejnera3.TabIndex = 250;
             // 
             // cboAdresaUtovaraCerade3
@@ -746,21 +772,21 @@
             this.cboAdresaUtovaraCerade3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaUtovaraCerade3.CausesValidation = false;
             this.cboAdresaUtovaraCerade3.FormattingEnabled = true;
-            this.cboAdresaUtovaraCerade3.ItemHeight = 16;
-            this.cboAdresaUtovaraCerade3.Location = new System.Drawing.Point(20, 255);
-            this.cboAdresaUtovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaUtovaraCerade3.ItemHeight = 13;
+            this.cboAdresaUtovaraCerade3.Location = new System.Drawing.Point(15, 207);
+            this.cboAdresaUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaUtovaraCerade3.Name = "cboAdresaUtovaraCerade3";
-            this.cboAdresaUtovaraCerade3.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaUtovaraCerade3.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaUtovaraCerade3.TabIndex = 150;
             // 
             // dptPlaniraniDatumUtovaraKontejnera3
             // 
             this.dptPlaniraniDatumUtovaraKontejnera3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniraniDatumUtovaraKontejnera3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(433, 198);
-            this.dptPlaniraniDatumUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptPlaniraniDatumUtovaraKontejnera3.Location = new System.Drawing.Point(325, 161);
+            this.dptPlaniraniDatumUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(2);
             this.dptPlaniraniDatumUtovaraKontejnera3.Name = "dptPlaniraniDatumUtovaraKontejnera3";
-            this.dptPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(172, 22);
+            this.dptPlaniraniDatumUtovaraKontejnera3.Size = new System.Drawing.Size(130, 20);
             this.dptPlaniraniDatumUtovaraKontejnera3.TabIndex = 647;
             this.dptPlaniraniDatumUtovaraKontejnera3.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptPlaniraniDatumUtovaraKontejnera3.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -768,18 +794,20 @@
             // lblAdresaUtovaraCerade3
             // 
             this.lblAdresaUtovaraCerade3.AutoSize = true;
-            this.lblAdresaUtovaraCerade3.Location = new System.Drawing.Point(22, 234);
+            this.lblAdresaUtovaraCerade3.Location = new System.Drawing.Point(16, 190);
+            this.lblAdresaUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdresaUtovaraCerade3.Name = "lblAdresaUtovaraCerade3";
-            this.lblAdresaUtovaraCerade3.Size = new System.Drawing.Size(51, 16);
+            this.lblAdresaUtovaraCerade3.Size = new System.Drawing.Size(40, 13);
             this.lblAdresaUtovaraCerade3.TabIndex = 636;
             this.lblAdresaUtovaraCerade3.Text = "Adresa";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(863, 6);
+            this.label28.Location = new System.Drawing.Point(647, 5);
+            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(212, 16);
+            this.label28.Size = new System.Drawing.Size(170, 13);
             this.label28.TabIndex = 649;
             this.label28.Text = "Mesto spuštanja punog kontejnera";
             // 
@@ -789,11 +817,11 @@
             this.cboKontaktUtovaraKontejnera3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktUtovaraKontejnera3.CausesValidation = false;
             this.cboKontaktUtovaraKontejnera3.FormattingEnabled = true;
-            this.cboKontaktUtovaraKontejnera3.ItemHeight = 16;
-            this.cboKontaktUtovaraKontejnera3.Location = new System.Drawing.Point(433, 141);
-            this.cboKontaktUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktUtovaraKontejnera3.ItemHeight = 13;
+            this.cboKontaktUtovaraKontejnera3.Location = new System.Drawing.Point(325, 115);
+            this.cboKontaktUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktUtovaraKontejnera3.Name = "cboKontaktUtovaraKontejnera3";
-            this.cboKontaktUtovaraKontejnera3.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktUtovaraKontejnera3.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktUtovaraKontejnera3.TabIndex = 240;
             // 
             // cboKontaktUtovaraCerade3
@@ -802,19 +830,20 @@
             this.cboKontaktUtovaraCerade3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktUtovaraCerade3.CausesValidation = false;
             this.cboKontaktUtovaraCerade3.FormattingEnabled = true;
-            this.cboKontaktUtovaraCerade3.ItemHeight = 16;
-            this.cboKontaktUtovaraCerade3.Location = new System.Drawing.Point(20, 312);
-            this.cboKontaktUtovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktUtovaraCerade3.ItemHeight = 13;
+            this.cboKontaktUtovaraCerade3.Location = new System.Drawing.Point(15, 254);
+            this.cboKontaktUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktUtovaraCerade3.Name = "cboKontaktUtovaraCerade3";
-            this.cboKontaktUtovaraCerade3.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktUtovaraCerade3.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktUtovaraCerade3.TabIndex = 160;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(435, 63);
+            this.label25.Location = new System.Drawing.Point(326, 51);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(54, 16);
+            this.label25.Size = new System.Drawing.Size(43, 13);
             this.label25.TabIndex = 644;
             this.label25.Text = "Adresa ";
             // 
@@ -822,10 +851,10 @@
             // 
             this.dptDatumUtovaraCerade3.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptDatumUtovaraCerade3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptDatumUtovaraCerade3.Location = new System.Drawing.Point(20, 369);
-            this.dptDatumUtovaraCerade3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumUtovaraCerade3.Location = new System.Drawing.Point(15, 300);
+            this.dptDatumUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2);
             this.dptDatumUtovaraCerade3.Name = "dptDatumUtovaraCerade3";
-            this.dptDatumUtovaraCerade3.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumUtovaraCerade3.Size = new System.Drawing.Size(130, 20);
             this.dptDatumUtovaraCerade3.TabIndex = 170;
             this.dptDatumUtovaraCerade3.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptDatumUtovaraCerade3.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -836,19 +865,20 @@
             this.cboAdresaUtovaraKontejnera3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaUtovaraKontejnera3.CausesValidation = false;
             this.cboAdresaUtovaraKontejnera3.FormattingEnabled = true;
-            this.cboAdresaUtovaraKontejnera3.ItemHeight = 16;
-            this.cboAdresaUtovaraKontejnera3.Location = new System.Drawing.Point(433, 84);
-            this.cboAdresaUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaUtovaraKontejnera3.ItemHeight = 13;
+            this.cboAdresaUtovaraKontejnera3.Location = new System.Drawing.Point(325, 68);
+            this.cboAdresaUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaUtovaraKontejnera3.Name = "cboAdresaUtovaraKontejnera3";
-            this.cboAdresaUtovaraKontejnera3.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaUtovaraKontejnera3.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaUtovaraKontejnera3.TabIndex = 230;
             // 
             // lblDatumUtovaraCerade3
             // 
             this.lblDatumUtovaraCerade3.AutoSize = true;
-            this.lblDatumUtovaraCerade3.Location = new System.Drawing.Point(20, 348);
+            this.lblDatumUtovaraCerade3.Location = new System.Drawing.Point(15, 283);
+            this.lblDatumUtovaraCerade3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatumUtovaraCerade3.Name = "lblDatumUtovaraCerade3";
-            this.lblDatumUtovaraCerade3.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumUtovaraCerade3.Size = new System.Drawing.Size(113, 13);
             this.lblDatumUtovaraCerade3.TabIndex = 640;
             this.lblDatumUtovaraCerade3.Text = "Planirani datum/vreme";
             // 
@@ -858,47 +888,50 @@
             this.cboMestoUtovaraKontejnera3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovaraKontejnera3.CausesValidation = false;
             this.cboMestoUtovaraKontejnera3.FormattingEnabled = true;
-            this.cboMestoUtovaraKontejnera3.ItemHeight = 16;
-            this.cboMestoUtovaraKontejnera3.Location = new System.Drawing.Point(433, 27);
-            this.cboMestoUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoUtovaraKontejnera3.ItemHeight = 13;
+            this.cboMestoUtovaraKontejnera3.Location = new System.Drawing.Point(325, 22);
+            this.cboMestoUtovaraKontejnera3.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoUtovaraKontejnera3.Name = "cboMestoUtovaraKontejnera3";
-            this.cboMestoUtovaraKontejnera3.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoUtovaraKontejnera3.Size = new System.Drawing.Size(232, 21);
             this.cboMestoUtovaraKontejnera3.TabIndex = 220;
             this.cboMestoUtovaraKontejnera3.Leave += new System.EventHandler(this.cboMestoUtovaraKontejnera3_Leave);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(435, 6);
+            this.label23.Location = new System.Drawing.Point(326, 5);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(158, 16);
+            this.label23.Size = new System.Drawing.Size(128, 13);
             this.label23.TabIndex = 641;
             this.label23.Text = "Mesto utovara kontejnera";
             // 
             // lblVrstaKamiona3
             // 
             this.lblVrstaKamiona3.AutoSize = true;
-            this.lblVrstaKamiona3.Location = new System.Drawing.Point(863, 120);
+            this.lblVrstaKamiona3.Location = new System.Drawing.Point(647, 98);
+            this.lblVrstaKamiona3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVrstaKamiona3.Name = "lblVrstaKamiona3";
-            this.lblVrstaKamiona3.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona3.Size = new System.Drawing.Size(74, 13);
             this.lblVrstaKamiona3.TabIndex = 561;
             this.lblVrstaKamiona3.Text = "Vrsta kamiona";
             // 
             // lblDodatneNapomenDrumski
             // 
-            this.lblDodatneNapomenDrumski.Location = new System.Drawing.Point(863, 177);
+            this.lblDodatneNapomenDrumski.Location = new System.Drawing.Point(647, 144);
+            this.lblDodatneNapomenDrumski.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDodatneNapomenDrumski.Name = "lblDodatneNapomenDrumski";
-            this.lblDodatneNapomenDrumski.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomenDrumski.Size = new System.Drawing.Size(181, 20);
             this.lblDodatneNapomenDrumski.TabIndex = 563;
             this.lblDodatneNapomenDrumski.Text = "Dodatne napomene drumski";
             // 
             // txtDodatneNapomeneDrumski
             // 
-            this.txtDodatneNapomeneDrumski.Location = new System.Drawing.Point(861, 198);
-            this.txtDodatneNapomeneDrumski.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski.Location = new System.Drawing.Point(646, 161);
+            this.txtDodatneNapomeneDrumski.Margin = new System.Windows.Forms.Padding(2);
             this.txtDodatneNapomeneDrumski.Multiline = true;
             this.txtDodatneNapomeneDrumski.Name = "txtDodatneNapomeneDrumski";
-            this.txtDodatneNapomeneDrumski.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski.Size = new System.Drawing.Size(234, 43);
             this.txtDodatneNapomeneDrumski.TabIndex = 280;
             // 
             // panel1
@@ -915,10 +948,29 @@
             this.panel1.Controls.Add(this.cboMestoPreuzimanjaPunog);
             this.panel1.Controls.Add(this.lblMestoSpustanjaPunogKontejnera);
             this.panel1.Controls.Add(this.cboMestoSpustanjaPunogKontejnera);
-            this.panel1.Location = new System.Drawing.Point(1, 62);
+            this.panel1.Location = new System.Drawing.Point(1, 50);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1203, 255);
+            this.panel1.Size = new System.Drawing.Size(902, 207);
             this.panel1.TabIndex = 657;
+            // 
+            // lblDodatneNapomeneDrumski1
+            // 
+            this.lblDodatneNapomeneDrumski1.Location = new System.Drawing.Point(644, 5);
+            this.lblDodatneNapomeneDrumski1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDodatneNapomeneDrumski1.Name = "lblDodatneNapomeneDrumski1";
+            this.lblDodatneNapomeneDrumski1.Size = new System.Drawing.Size(181, 20);
+            this.lblDodatneNapomeneDrumski1.TabIndex = 639;
+            this.lblDodatneNapomeneDrumski1.Text = "Dodatne napomene drumski";
+            // 
+            // txtDodatneNapomeneDrumski1
+            // 
+            this.txtDodatneNapomeneDrumski1.Location = new System.Drawing.Point(642, 22);
+            this.txtDodatneNapomeneDrumski1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDodatneNapomeneDrumski1.Multiline = true;
+            this.txtDodatneNapomeneDrumski1.Name = "txtDodatneNapomeneDrumski1";
+            this.txtDodatneNapomeneDrumski1.Size = new System.Drawing.Size(234, 43);
+            this.txtDodatneNapomeneDrumski1.TabIndex = 638;
             // 
             // cboVrstaKamiona
             // 
@@ -926,31 +978,33 @@
             this.cboVrstaKamiona.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaKamiona.Enabled = false;
             this.cboVrstaKamiona.FormattingEnabled = true;
-            this.cboVrstaKamiona.ItemHeight = 16;
+            this.cboVrstaKamiona.ItemHeight = 13;
             this.cboVrstaKamiona.Items.AddRange(new object[] {
             "CERADA",
             "PLATFORMA"});
-            this.cboVrstaKamiona.Location = new System.Drawing.Point(434, 84);
-            this.cboVrstaKamiona.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona.Location = new System.Drawing.Point(326, 68);
+            this.cboVrstaKamiona.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaKamiona.Name = "cboVrstaKamiona";
-            this.cboVrstaKamiona.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona.Size = new System.Drawing.Size(230, 21);
             this.cboVrstaKamiona.TabIndex = 50;
             // 
             // lblVrstaKamiona
             // 
             this.lblVrstaKamiona.AutoSize = true;
-            this.lblVrstaKamiona.Location = new System.Drawing.Point(436, 63);
+            this.lblVrstaKamiona.Location = new System.Drawing.Point(327, 51);
+            this.lblVrstaKamiona.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVrstaKamiona.Name = "lblVrstaKamiona";
-            this.lblVrstaKamiona.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona.Size = new System.Drawing.Size(74, 13);
             this.lblVrstaKamiona.TabIndex = 637;
             this.lblVrstaKamiona.Text = "Vrsta kamiona";
             // 
             // lblOdlaznaMorskaLuka1
             // 
             this.lblOdlaznaMorskaLuka1.AutoSize = true;
-            this.lblOdlaznaMorskaLuka1.Location = new System.Drawing.Point(23, 6);
+            this.lblOdlaznaMorskaLuka1.Location = new System.Drawing.Point(17, 5);
+            this.lblOdlaznaMorskaLuka1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOdlaznaMorskaLuka1.Name = "lblOdlaznaMorskaLuka1";
-            this.lblOdlaznaMorskaLuka1.Size = new System.Drawing.Size(133, 16);
+            this.lblOdlaznaMorskaLuka1.Size = new System.Drawing.Size(106, 13);
             this.lblOdlaznaMorskaLuka1.TabIndex = 617;
             this.lblOdlaznaMorskaLuka1.Text = "Odlazna morska luka";
             // 
@@ -960,19 +1014,20 @@
             this.cboOdlaznaMorskaLuka1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboOdlaznaMorskaLuka1.CausesValidation = false;
             this.cboOdlaznaMorskaLuka1.FormattingEnabled = true;
-            this.cboOdlaznaMorskaLuka1.ItemHeight = 16;
-            this.cboOdlaznaMorskaLuka1.Location = new System.Drawing.Point(20, 27);
-            this.cboOdlaznaMorskaLuka1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboOdlaznaMorskaLuka1.ItemHeight = 13;
+            this.cboOdlaznaMorskaLuka1.Location = new System.Drawing.Point(15, 22);
+            this.cboOdlaznaMorskaLuka1.Margin = new System.Windows.Forms.Padding(2);
             this.cboOdlaznaMorskaLuka1.Name = "cboOdlaznaMorskaLuka1";
-            this.cboOdlaznaMorskaLuka1.Size = new System.Drawing.Size(308, 24);
+            this.cboOdlaznaMorskaLuka1.Size = new System.Drawing.Size(232, 21);
             this.cboOdlaznaMorskaLuka1.TabIndex = 10;
             // 
             // lblPlaniraniDatumSpustanja
             // 
             this.lblPlaniraniDatumSpustanja.AutoSize = true;
-            this.lblPlaniraniDatumSpustanja.Location = new System.Drawing.Point(20, 120);
+            this.lblPlaniraniDatumSpustanja.Location = new System.Drawing.Point(15, 98);
+            this.lblPlaniraniDatumSpustanja.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlaniraniDatumSpustanja.Name = "lblPlaniraniDatumSpustanja";
-            this.lblPlaniraniDatumSpustanja.Size = new System.Drawing.Size(146, 16);
+            this.lblPlaniraniDatumSpustanja.Size = new System.Drawing.Size(116, 13);
             this.lblPlaniraniDatumSpustanja.TabIndex = 614;
             this.lblPlaniraniDatumSpustanja.Text = "Planirani datum i vreme";
             // 
@@ -980,10 +1035,10 @@
             // 
             this.dptPlaniranDatumSpustanja.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptPlaniranDatumSpustanja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptPlaniranDatumSpustanja.Location = new System.Drawing.Point(20, 141);
-            this.dptPlaniranDatumSpustanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptPlaniranDatumSpustanja.Location = new System.Drawing.Point(15, 115);
+            this.dptPlaniranDatumSpustanja.Margin = new System.Windows.Forms.Padding(2);
             this.dptPlaniranDatumSpustanja.Name = "dptPlaniranDatumSpustanja";
-            this.dptPlaniranDatumSpustanja.Size = new System.Drawing.Size(172, 22);
+            this.dptPlaniranDatumSpustanja.Size = new System.Drawing.Size(130, 20);
             this.dptPlaniranDatumSpustanja.TabIndex = 30;
             this.dptPlaniranDatumSpustanja.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptPlaniranDatumSpustanja.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -991,9 +1046,10 @@
             // lblMestoPreuzimanjaPunog
             // 
             this.lblMestoPreuzimanjaPunog.AutoSize = true;
-            this.lblMestoPreuzimanjaPunog.Location = new System.Drawing.Point(435, 6);
+            this.lblMestoPreuzimanjaPunog.Location = new System.Drawing.Point(326, 5);
+            this.lblMestoPreuzimanjaPunog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoPreuzimanjaPunog.Name = "lblMestoPreuzimanjaPunog";
-            this.lblMestoPreuzimanjaPunog.Size = new System.Drawing.Size(227, 16);
+            this.lblMestoPreuzimanjaPunog.Size = new System.Drawing.Size(181, 13);
             this.lblMestoPreuzimanjaPunog.TabIndex = 615;
             this.lblMestoPreuzimanjaPunog.Text = "Mesto preuzimanja punog kontejnera";
             // 
@@ -1003,19 +1059,20 @@
             this.cboMestoPreuzimanjaPunog.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoPreuzimanjaPunog.CausesValidation = false;
             this.cboMestoPreuzimanjaPunog.FormattingEnabled = true;
-            this.cboMestoPreuzimanjaPunog.ItemHeight = 16;
-            this.cboMestoPreuzimanjaPunog.Location = new System.Drawing.Point(433, 27);
-            this.cboMestoPreuzimanjaPunog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoPreuzimanjaPunog.ItemHeight = 13;
+            this.cboMestoPreuzimanjaPunog.Location = new System.Drawing.Point(325, 22);
+            this.cboMestoPreuzimanjaPunog.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoPreuzimanjaPunog.Name = "cboMestoPreuzimanjaPunog";
-            this.cboMestoPreuzimanjaPunog.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoPreuzimanjaPunog.Size = new System.Drawing.Size(232, 21);
             this.cboMestoPreuzimanjaPunog.TabIndex = 40;
             // 
             // lblMestoSpustanjaPunogKontejnera
             // 
             this.lblMestoSpustanjaPunogKontejnera.AutoSize = true;
-            this.lblMestoSpustanjaPunogKontejnera.Location = new System.Drawing.Point(20, 63);
+            this.lblMestoSpustanjaPunogKontejnera.Location = new System.Drawing.Point(15, 51);
+            this.lblMestoSpustanjaPunogKontejnera.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoSpustanjaPunogKontejnera.Name = "lblMestoSpustanjaPunogKontejnera";
-            this.lblMestoSpustanjaPunogKontejnera.Size = new System.Drawing.Size(212, 16);
+            this.lblMestoSpustanjaPunogKontejnera.Size = new System.Drawing.Size(170, 13);
             this.lblMestoSpustanjaPunogKontejnera.TabIndex = 611;
             this.lblMestoSpustanjaPunogKontejnera.Text = "Mesto spuštanja punog kontejnera";
             // 
@@ -1025,11 +1082,11 @@
             this.cboMestoSpustanjaPunogKontejnera.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoSpustanjaPunogKontejnera.CausesValidation = false;
             this.cboMestoSpustanjaPunogKontejnera.FormattingEnabled = true;
-            this.cboMestoSpustanjaPunogKontejnera.ItemHeight = 16;
-            this.cboMestoSpustanjaPunogKontejnera.Location = new System.Drawing.Point(22, 84);
-            this.cboMestoSpustanjaPunogKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoSpustanjaPunogKontejnera.ItemHeight = 13;
+            this.cboMestoSpustanjaPunogKontejnera.Location = new System.Drawing.Point(16, 68);
+            this.cboMestoSpustanjaPunogKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoSpustanjaPunogKontejnera.Name = "cboMestoSpustanjaPunogKontejnera";
-            this.cboMestoSpustanjaPunogKontejnera.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoSpustanjaPunogKontejnera.Size = new System.Drawing.Size(232, 21);
             this.cboMestoSpustanjaPunogKontejnera.TabIndex = 20;
             // 
             // panelHeader
@@ -1042,9 +1099,8 @@
             this.panelHeader.Controls.Add(this.panel5);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1204, 43);
+            this.panelHeader.Size = new System.Drawing.Size(903, 35);
             this.panelHeader.TabIndex = 658;
             // 
             // panel4
@@ -1052,10 +1108,9 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(121, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Location = new System.Drawing.Point(91, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1065, 37);
+            this.panel4.Size = new System.Drawing.Size(798, 30);
             this.panel4.TabIndex = 6;
             // 
             // panel5
@@ -1064,9 +1119,8 @@
             this.panel5.Controls.Add(this.button21);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(281, 41);
+            this.panel5.Size = new System.Drawing.Size(211, 33);
             this.panel5.TabIndex = 2;
             // 
             // button21
@@ -1078,10 +1132,9 @@
             this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Location = new System.Drawing.Point(15, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4);
+            this.button21.Location = new System.Drawing.Point(11, 3);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(36, 33);
+            this.button21.Size = new System.Drawing.Size(27, 27);
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
@@ -1113,19 +1166,20 @@
             this.panel6.Controls.Add(this.lblVrstaKamiona4);
             this.panel6.Controls.Add(this.lblDodatneNapomeneDrumski4);
             this.panel6.Controls.Add(this.txtDodatneNapomeneDrumski4);
-            this.panel6.Location = new System.Drawing.Point(1, 61);
+            this.panel6.Location = new System.Drawing.Point(1, 50);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1203, 251);
+            this.panel6.Size = new System.Drawing.Size(902, 203);
             this.panel6.TabIndex = 659;
             // 
             // dptDatumIstovaraCerade4
             // 
             this.dptDatumIstovaraCerade4.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptDatumIstovaraCerade4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptDatumIstovaraCerade4.Location = new System.Drawing.Point(433, 203);
-            this.dptDatumIstovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumIstovaraCerade4.Location = new System.Drawing.Point(325, 165);
+            this.dptDatumIstovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.dptDatumIstovaraCerade4.Name = "dptDatumIstovaraCerade4";
-            this.dptDatumIstovaraCerade4.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumIstovaraCerade4.Size = new System.Drawing.Size(130, 20);
             this.dptDatumIstovaraCerade4.TabIndex = 210;
             this.dptDatumIstovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptDatumIstovaraCerade4.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -1133,18 +1187,20 @@
             // lblDatumIstovaraCerade4
             // 
             this.lblDatumIstovaraCerade4.AutoSize = true;
-            this.lblDatumIstovaraCerade4.Location = new System.Drawing.Point(433, 182);
+            this.lblDatumIstovaraCerade4.Location = new System.Drawing.Point(325, 148);
+            this.lblDatumIstovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatumIstovaraCerade4.Name = "lblDatumIstovaraCerade4";
-            this.lblDatumIstovaraCerade4.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumIstovaraCerade4.Size = new System.Drawing.Size(113, 13);
             this.lblDatumIstovaraCerade4.TabIndex = 662;
             this.lblDatumIstovaraCerade4.Text = "Planirani datum/vreme";
             // 
             // lblMestoIstovaraCerada4
             // 
             this.lblMestoIstovaraCerada4.AutoSize = true;
-            this.lblMestoIstovaraCerada4.Location = new System.Drawing.Point(435, 11);
+            this.lblMestoIstovaraCerada4.Location = new System.Drawing.Point(326, 9);
+            this.lblMestoIstovaraCerada4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoIstovaraCerada4.Name = "lblMestoIstovaraCerada4";
-            this.lblMestoIstovaraCerada4.Size = new System.Drawing.Size(141, 16);
+            this.lblMestoIstovaraCerada4.Size = new System.Drawing.Size(112, 13);
             this.lblMestoIstovaraCerada4.TabIndex = 653;
             this.lblMestoIstovaraCerada4.Text = "Mesto istovara cerade";
             // 
@@ -1154,20 +1210,21 @@
             this.cboMestoIstovaraCerada4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoIstovaraCerada4.CausesValidation = false;
             this.cboMestoIstovaraCerada4.FormattingEnabled = true;
-            this.cboMestoIstovaraCerada4.ItemHeight = 16;
-            this.cboMestoIstovaraCerada4.Location = new System.Drawing.Point(433, 32);
-            this.cboMestoIstovaraCerada4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoIstovaraCerada4.ItemHeight = 13;
+            this.cboMestoIstovaraCerada4.Location = new System.Drawing.Point(325, 26);
+            this.cboMestoIstovaraCerada4.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoIstovaraCerada4.Name = "cboMestoIstovaraCerada4";
-            this.cboMestoIstovaraCerada4.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoIstovaraCerada4.Size = new System.Drawing.Size(232, 21);
             this.cboMestoIstovaraCerada4.TabIndex = 180;
             this.cboMestoIstovaraCerada4.Leave += new System.EventHandler(this.cboMestoIstovaraCerada4_Leave);
             // 
             // lblKontaktOIstovarCerade4
             // 
             this.lblKontaktOIstovarCerade4.AutoSize = true;
-            this.lblKontaktOIstovarCerade4.Location = new System.Drawing.Point(435, 125);
+            this.lblKontaktOIstovarCerade4.Location = new System.Drawing.Point(326, 102);
+            this.lblKontaktOIstovarCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKontaktOIstovarCerade4.Name = "lblKontaktOIstovarCerade4";
-            this.lblKontaktOIstovarCerade4.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktOIstovarCerade4.Size = new System.Drawing.Size(76, 13);
             this.lblKontaktOIstovarCerade4.TabIndex = 657;
             this.lblKontaktOIstovarCerade4.Text = "Kontakt osoba";
             // 
@@ -1177,19 +1234,20 @@
             this.cboAdresaIstovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaIstovaraCerade4.CausesValidation = false;
             this.cboAdresaIstovaraCerade4.FormattingEnabled = true;
-            this.cboAdresaIstovaraCerade4.ItemHeight = 16;
-            this.cboAdresaIstovaraCerade4.Location = new System.Drawing.Point(435, 89);
-            this.cboAdresaIstovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaIstovaraCerade4.ItemHeight = 13;
+            this.cboAdresaIstovaraCerade4.Location = new System.Drawing.Point(326, 72);
+            this.cboAdresaIstovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaIstovaraCerade4.Name = "cboAdresaIstovaraCerade4";
-            this.cboAdresaIstovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaIstovaraCerade4.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaIstovaraCerade4.TabIndex = 190;
             // 
             // lblAdresaIstovaraCerade4
             // 
             this.lblAdresaIstovaraCerade4.AutoSize = true;
-            this.lblAdresaIstovaraCerade4.Location = new System.Drawing.Point(435, 68);
+            this.lblAdresaIstovaraCerade4.Location = new System.Drawing.Point(326, 55);
+            this.lblAdresaIstovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdresaIstovaraCerade4.Name = "lblAdresaIstovaraCerade4";
-            this.lblAdresaIstovaraCerade4.Size = new System.Drawing.Size(54, 16);
+            this.lblAdresaIstovaraCerade4.Size = new System.Drawing.Size(43, 13);
             this.lblAdresaIstovaraCerade4.TabIndex = 656;
             this.lblAdresaIstovaraCerade4.Text = "Adresa ";
             // 
@@ -1199,11 +1257,11 @@
             this.cboKontaktOIstovarCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktOIstovarCerade4.CausesValidation = false;
             this.cboKontaktOIstovarCerade4.FormattingEnabled = true;
-            this.cboKontaktOIstovarCerade4.ItemHeight = 16;
-            this.cboKontaktOIstovarCerade4.Location = new System.Drawing.Point(433, 146);
-            this.cboKontaktOIstovarCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktOIstovarCerade4.ItemHeight = 13;
+            this.cboKontaktOIstovarCerade4.Location = new System.Drawing.Point(325, 119);
+            this.cboKontaktOIstovarCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktOIstovarCerade4.Name = "cboKontaktOIstovarCerade4";
-            this.cboKontaktOIstovarCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktOIstovarCerade4.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktOIstovarCerade4.TabIndex = 200;
             // 
             // cboVrstaKamiona4
@@ -1212,22 +1270,23 @@
             this.cboVrstaKamiona4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboVrstaKamiona4.Enabled = false;
             this.cboVrstaKamiona4.FormattingEnabled = true;
-            this.cboVrstaKamiona4.ItemHeight = 16;
+            this.cboVrstaKamiona4.ItemHeight = 13;
             this.cboVrstaKamiona4.Items.AddRange(new object[] {
             "CERADA",
             "PLATFORMA"});
-            this.cboVrstaKamiona4.Location = new System.Drawing.Point(861, 33);
-            this.cboVrstaKamiona4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaKamiona4.Location = new System.Drawing.Point(646, 27);
+            this.cboVrstaKamiona4.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaKamiona4.Name = "cboVrstaKamiona4";
-            this.cboVrstaKamiona4.Size = new System.Drawing.Size(305, 24);
+            this.cboVrstaKamiona4.Size = new System.Drawing.Size(230, 21);
             this.cboVrstaKamiona4.TabIndex = 270;
             // 
             // lblMestoUtovaraCerade4
             // 
             this.lblMestoUtovaraCerade4.AutoSize = true;
-            this.lblMestoUtovaraCerade4.Location = new System.Drawing.Point(28, 6);
+            this.lblMestoUtovaraCerade4.Location = new System.Drawing.Point(21, 5);
+            this.lblMestoUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMestoUtovaraCerade4.Name = "lblMestoUtovaraCerade4";
-            this.lblMestoUtovaraCerade4.Size = new System.Drawing.Size(138, 16);
+            this.lblMestoUtovaraCerade4.Size = new System.Drawing.Size(111, 13);
             this.lblMestoUtovaraCerade4.TabIndex = 633;
             this.lblMestoUtovaraCerade4.Text = "Mesto utovara cerade";
             // 
@@ -1237,20 +1296,21 @@
             this.cboMestoUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovaraCerade4.CausesValidation = false;
             this.cboMestoUtovaraCerade4.FormattingEnabled = true;
-            this.cboMestoUtovaraCerade4.ItemHeight = 16;
-            this.cboMestoUtovaraCerade4.Location = new System.Drawing.Point(26, 27);
-            this.cboMestoUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboMestoUtovaraCerade4.ItemHeight = 13;
+            this.cboMestoUtovaraCerade4.Location = new System.Drawing.Point(20, 22);
+            this.cboMestoUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.cboMestoUtovaraCerade4.Name = "cboMestoUtovaraCerade4";
-            this.cboMestoUtovaraCerade4.Size = new System.Drawing.Size(308, 24);
+            this.cboMestoUtovaraCerade4.Size = new System.Drawing.Size(232, 21);
             this.cboMestoUtovaraCerade4.TabIndex = 140;
             this.cboMestoUtovaraCerade4.Leave += new System.EventHandler(this.cboMestoUtovaraCerade4_Leave);
             // 
             // lblKontaktUtovaraCerade4
             // 
             this.lblKontaktUtovaraCerade4.AutoSize = true;
-            this.lblKontaktUtovaraCerade4.Location = new System.Drawing.Point(28, 120);
+            this.lblKontaktUtovaraCerade4.Location = new System.Drawing.Point(21, 98);
+            this.lblKontaktUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblKontaktUtovaraCerade4.Name = "lblKontaktUtovaraCerade4";
-            this.lblKontaktUtovaraCerade4.Size = new System.Drawing.Size(93, 16);
+            this.lblKontaktUtovaraCerade4.Size = new System.Drawing.Size(76, 13);
             this.lblKontaktUtovaraCerade4.TabIndex = 637;
             this.lblKontaktUtovaraCerade4.Text = "Kontakt osoba";
             // 
@@ -1260,19 +1320,20 @@
             this.cboAdresaUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAdresaUtovaraCerade4.CausesValidation = false;
             this.cboAdresaUtovaraCerade4.FormattingEnabled = true;
-            this.cboAdresaUtovaraCerade4.ItemHeight = 16;
-            this.cboAdresaUtovaraCerade4.Location = new System.Drawing.Point(26, 84);
-            this.cboAdresaUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboAdresaUtovaraCerade4.ItemHeight = 13;
+            this.cboAdresaUtovaraCerade4.Location = new System.Drawing.Point(20, 68);
+            this.cboAdresaUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.cboAdresaUtovaraCerade4.Name = "cboAdresaUtovaraCerade4";
-            this.cboAdresaUtovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboAdresaUtovaraCerade4.Size = new System.Drawing.Size(228, 21);
             this.cboAdresaUtovaraCerade4.TabIndex = 150;
             // 
             // lblAdresaUtovaraCerade4
             // 
             this.lblAdresaUtovaraCerade4.AutoSize = true;
-            this.lblAdresaUtovaraCerade4.Location = new System.Drawing.Point(28, 63);
+            this.lblAdresaUtovaraCerade4.Location = new System.Drawing.Point(21, 51);
+            this.lblAdresaUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAdresaUtovaraCerade4.Name = "lblAdresaUtovaraCerade4";
-            this.lblAdresaUtovaraCerade4.Size = new System.Drawing.Size(51, 16);
+            this.lblAdresaUtovaraCerade4.Size = new System.Drawing.Size(40, 13);
             this.lblAdresaUtovaraCerade4.TabIndex = 636;
             this.lblAdresaUtovaraCerade4.Text = "Adresa";
             // 
@@ -1282,21 +1343,21 @@
             this.cboKontaktUtovaraCerade4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKontaktUtovaraCerade4.CausesValidation = false;
             this.cboKontaktUtovaraCerade4.FormattingEnabled = true;
-            this.cboKontaktUtovaraCerade4.ItemHeight = 16;
-            this.cboKontaktUtovaraCerade4.Location = new System.Drawing.Point(26, 141);
-            this.cboKontaktUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboKontaktUtovaraCerade4.ItemHeight = 13;
+            this.cboKontaktUtovaraCerade4.Location = new System.Drawing.Point(20, 115);
+            this.cboKontaktUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.cboKontaktUtovaraCerade4.Name = "cboKontaktUtovaraCerade4";
-            this.cboKontaktUtovaraCerade4.Size = new System.Drawing.Size(303, 24);
+            this.cboKontaktUtovaraCerade4.Size = new System.Drawing.Size(228, 21);
             this.cboKontaktUtovaraCerade4.TabIndex = 160;
             // 
             // dptDatumUtovaraCerade4
             // 
             this.dptDatumUtovaraCerade4.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dptDatumUtovaraCerade4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dptDatumUtovaraCerade4.Location = new System.Drawing.Point(26, 198);
-            this.dptDatumUtovaraCerade4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dptDatumUtovaraCerade4.Location = new System.Drawing.Point(20, 161);
+            this.dptDatumUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2);
             this.dptDatumUtovaraCerade4.Name = "dptDatumUtovaraCerade4";
-            this.dptDatumUtovaraCerade4.Size = new System.Drawing.Size(172, 22);
+            this.dptDatumUtovaraCerade4.Size = new System.Drawing.Size(130, 20);
             this.dptDatumUtovaraCerade4.TabIndex = 170;
             this.dptDatumUtovaraCerade4.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dptDatumUtovaraCerade4.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
@@ -1304,65 +1365,52 @@
             // lblDatumUtovaraCerade4
             // 
             this.lblDatumUtovaraCerade4.AutoSize = true;
-            this.lblDatumUtovaraCerade4.Location = new System.Drawing.Point(26, 177);
+            this.lblDatumUtovaraCerade4.Location = new System.Drawing.Point(20, 144);
+            this.lblDatumUtovaraCerade4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDatumUtovaraCerade4.Name = "lblDatumUtovaraCerade4";
-            this.lblDatumUtovaraCerade4.Size = new System.Drawing.Size(141, 16);
+            this.lblDatumUtovaraCerade4.Size = new System.Drawing.Size(113, 13);
             this.lblDatumUtovaraCerade4.TabIndex = 640;
             this.lblDatumUtovaraCerade4.Text = "Planirani datum/vreme";
             // 
             // lblVrstaKamiona4
             // 
             this.lblVrstaKamiona4.AutoSize = true;
-            this.lblVrstaKamiona4.Location = new System.Drawing.Point(863, 12);
+            this.lblVrstaKamiona4.Location = new System.Drawing.Point(647, 10);
+            this.lblVrstaKamiona4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVrstaKamiona4.Name = "lblVrstaKamiona4";
-            this.lblVrstaKamiona4.Size = new System.Drawing.Size(93, 16);
+            this.lblVrstaKamiona4.Size = new System.Drawing.Size(74, 13);
             this.lblVrstaKamiona4.TabIndex = 561;
             this.lblVrstaKamiona4.Text = "Vrsta kamiona";
             // 
             // lblDodatneNapomeneDrumski4
             // 
-            this.lblDodatneNapomeneDrumski4.Location = new System.Drawing.Point(863, 69);
+            this.lblDodatneNapomeneDrumski4.Location = new System.Drawing.Point(647, 64);
+            this.lblDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDodatneNapomeneDrumski4.Name = "lblDodatneNapomeneDrumski4";
-            this.lblDodatneNapomeneDrumski4.Size = new System.Drawing.Size(241, 24);
+            this.lblDodatneNapomeneDrumski4.Size = new System.Drawing.Size(181, 20);
             this.lblDodatneNapomeneDrumski4.TabIndex = 563;
             this.lblDodatneNapomeneDrumski4.Text = "Dodatne napomene drumski";
             // 
             // txtDodatneNapomeneDrumski4
             // 
-            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(861, 91);
-            this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(647, 98);
+            this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(2);
             this.txtDodatneNapomeneDrumski4.Multiline = true;
             this.txtDodatneNapomeneDrumski4.Name = "txtDodatneNapomeneDrumski4";
-            this.txtDodatneNapomeneDrumski4.Size = new System.Drawing.Size(310, 52);
+            this.txtDodatneNapomeneDrumski4.Size = new System.Drawing.Size(234, 43);
             this.txtDodatneNapomeneDrumski4.TabIndex = 280;
-            // 
-            // lblDodatneNapomeneDrumski1
-            // 
-            this.lblDodatneNapomeneDrumski1.Location = new System.Drawing.Point(858, 6);
-            this.lblDodatneNapomeneDrumski1.Name = "lblDodatneNapomeneDrumski1";
-            this.lblDodatneNapomeneDrumski1.Size = new System.Drawing.Size(241, 24);
-            this.lblDodatneNapomeneDrumski1.TabIndex = 639;
-            this.lblDodatneNapomeneDrumski1.Text = "Dodatne napomene drumski";
-            // 
-            // txtDodatneNapomeneDrumski1
-            // 
-            this.txtDodatneNapomeneDrumski1.Location = new System.Drawing.Point(856, 27);
-            this.txtDodatneNapomeneDrumski1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDodatneNapomeneDrumski1.Multiline = true;
-            this.txtDodatneNapomeneDrumski1.Name = "txtDodatneNapomeneDrumski1";
-            this.txtDodatneNapomeneDrumski1.Size = new System.Drawing.Size(310, 52);
-            this.txtDodatneNapomeneDrumski1.TabIndex = 638;
             // 
             // frmRelacija
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 531);
+            this.ClientSize = new System.Drawing.Size(903, 431);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRelacija";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relacija";

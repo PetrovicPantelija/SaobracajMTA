@@ -1470,7 +1470,7 @@ namespace Saobracaj.Izvoz
                 cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
                 cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
                 txtValuta.SelectedValue = dr["Valuta"].ToString();
-                txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
+               // txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
                 txtCBMO.Value = SafeDecimal(dr["CBMO"].ToString());
                 txtCBM.Value = SafeDecimal(dr["CBM"].ToString());
                 txtKoletaO.Value = SafeDecimal(dr["BrojKoletaO"].ToString());

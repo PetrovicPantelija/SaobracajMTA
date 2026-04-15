@@ -2978,7 +2978,7 @@ namespace Saobracaj.Izvoz
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(75, 31);
+            this.panel4.Size = new System.Drawing.Size(3, 31);
             this.panel4.TabIndex = 2;
             // 
             // button6
