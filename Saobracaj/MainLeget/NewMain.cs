@@ -22,6 +22,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+using System.IO;
+
 namespace Saobracaj
 {
     public partial class NewMain : Form
@@ -70,13 +73,42 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnFinansije);
                 SetLeftButtonWidthToFlow(btnPodesavanja);
                 SetLeftButtonWidthToFlow(btnDepocnt);
-         
+                SetLeftButtonWidthToFlow(btnVSD);
+
             }
             catch { }
+            if (frmLogovanje.company == "VSD")
+            {
+                string imagePath = Path.Combine(Application.StartupPath, "VSDLogo.jpg");
+                SetPictureFromPath(imagePath);
+     
+            }
 
             if (Korisnik != "test")
             {
                 button1.Visible = false;
+            }
+        }
+
+        private void SetPictureFromPath(string path)
+        {
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    MessageBox.Show($"Image not found: {path}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Dispose previous image to avoid memory leaks
+                pictureBox1.Image?.Dispose();
+
+                // Load the image
+                pictureBox1.Image = Image.FromFile(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1050,6 +1082,34 @@ namespace Saobracaj
             lblNaslov.Text = "Depo cnt";
             BackColorKliknut(14);
       
+        }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+            string key = btnVSD.Text.Trim().ToLower();
+
+
+           
+
+                if (!_mainMap.TryGetValue(key, out _currentMainId))
+                {
+                    MessageBox.Show("Modul 'VSD test' nije pronađen u bazi MainNovi.",
+                        "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _karticaStack.Clear();
+
+                ShowChild(new VSD.VSDMain(), true, true);
+                splitContainer3.Panel2.Show();
+                lblNaslov.Text = "VSD Test";
+                BackColorKliknut(14);
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

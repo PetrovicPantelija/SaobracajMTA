@@ -60,6 +60,7 @@
             this.btnNazad = new Syncfusion.WinForms.Controls.SfButton();
             this.btnHome = new Syncfusion.WinForms.Controls.SfButton();
             this.btnDashboard = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnVSD = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,6 +103,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.btnClose);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.btnToggleLeftPanel);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -231,7 +233,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1040);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1043);
             this.splitContainer2.SplitterDistance = 256;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -255,6 +257,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnFinansije);
             this.flowLayoutPanel1.Controls.Add(this.btnPodesavanja);
             this.flowLayoutPanel1.Controls.Add(this.btnDepocnt);
+            this.flowLayoutPanel1.Controls.Add(this.btnVSD);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(253, 1024);
@@ -522,7 +525,7 @@
             this.btnPrijemIOtpremaKamiona.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPrijemIOtpremaKamiona.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage")));
+            this.btnPrijemIOtpremaKamiona.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage6")));
             this.btnPrijemIOtpremaKamiona.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPrijemIOtpremaKamiona.Style.Image = global::Saobracaj.Properties.Resources.PrijemOtpremaKamiona;
             this.btnPrijemIOtpremaKamiona.Style.ImageForeColor = System.Drawing.Color.White;
@@ -552,7 +555,7 @@
             this.btnPTI.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPTI.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPTI.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage1")));
+            this.btnPTI.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage7")));
             this.btnPTI.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPTI.Style.Image = global::Saobracaj.Properties.Resources.PTI;
             this.btnPTI.Style.ImageForeColor = System.Drawing.Color.White;
@@ -582,7 +585,7 @@
             this.btnOdrzavanje.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOdrzavanje.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnOdrzavanje.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage2")));
+            this.btnOdrzavanje.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage8")));
             this.btnOdrzavanje.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnOdrzavanje.Style.Image = global::Saobracaj.Properties.Resources.ODryavanje;
             this.btnOdrzavanje.Style.ImageForeColor = System.Drawing.Color.White;
@@ -612,7 +615,7 @@
             this.btnKapija.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnKapija.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnKapija.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage3")));
+            this.btnKapija.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage9")));
             this.btnKapija.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnKapija.Style.Image = global::Saobracaj.Properties.Resources.Kapija;
             this.btnKapija.Style.ImageForeColor = System.Drawing.Color.White;
@@ -642,7 +645,7 @@
             this.btnFinansije.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnFinansije.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnFinansije.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage4")));
+            this.btnFinansije.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage10")));
             this.btnFinansije.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnFinansije.Style.Image = global::Saobracaj.Properties.Resources.Finansije;
             this.btnFinansije.Style.ImageForeColor = System.Drawing.Color.White;
@@ -672,7 +675,7 @@
             this.btnPodesavanja.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPodesavanja.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnPodesavanja.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnPodesavanja.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage5")));
+            this.btnPodesavanja.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage11")));
             this.btnPodesavanja.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnPodesavanja.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
             this.btnPodesavanja.Style.ImageForeColor = System.Drawing.Color.White;
@@ -702,7 +705,7 @@
             this.btnDepocnt.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDepocnt.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDepocnt.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnDepocnt.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage6")));
+            this.btnDepocnt.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage12")));
             this.btnDepocnt.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDepocnt.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
             this.btnDepocnt.Style.ImageForeColor = System.Drawing.Color.White;
@@ -730,8 +733,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1373, 1040);
-            this.splitContainer3.SplitterDistance = 908;
+            this.splitContainer3.Size = new System.Drawing.Size(1373, 1043);
+            this.splitContainer3.SplitterDistance = 910;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -754,7 +757,7 @@
             this.btnLogout.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnLogout.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnLogout.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage13")));
+            this.btnLogout.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage14")));
             this.btnLogout.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnLogout.Style.Image = global::Saobracaj.Properties.Resources._4_LogOut;
             this.btnLogout.Style.ImageForeColor = System.Drawing.Color.White;
@@ -785,7 +788,7 @@
             this.btnNazad.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnNazad.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnNazad.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage14")));
+            this.btnNazad.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage15")));
             this.btnNazad.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnNazad.Style.Image = global::Saobracaj.Properties.Resources._1_PovratakNaPredhodniMeni;
             this.btnNazad.Style.ImageForeColor = System.Drawing.Color.White;
@@ -816,7 +819,7 @@
             this.btnHome.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnHome.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnHome.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage15")));
+            this.btnHome.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage16")));
             this.btnHome.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnHome.Style.Image = global::Saobracaj.Properties.Resources._2_PocetniMeni;
             this.btnHome.Style.ImageForeColor = System.Drawing.Color.White;
@@ -847,7 +850,7 @@
             this.btnDashboard.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnDashboard.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.btnDashboard.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
-            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage16")));
+            this.btnDashboard.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage17")));
             this.btnDashboard.Style.ForeColor = System.Drawing.SystemColors.Window;
             this.btnDashboard.Style.Image = global::Saobracaj.Properties.Resources._3_DashBoard;
             this.btnDashboard.Style.ImageForeColor = System.Drawing.Color.White;
@@ -856,6 +859,36 @@
             this.btnDashboard.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnDashboard.UseVisualStyleBackColor = false;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            // 
+            // btnVSD
+            // 
+            this.btnVSD.AccessibleName = "Button";
+            this.btnVSD.AllowImageAnimation = false;
+            this.btnVSD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVSD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnVSD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVSD.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnVSD.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnVSD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVSD.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVSD.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnVSD.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnVSD.Location = new System.Drawing.Point(3, 766);
+            this.btnVSD.Name = "btnVSD";
+            this.btnVSD.Size = new System.Drawing.Size(250, 45);
+            this.btnVSD.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnVSD.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.btnVSD.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
+            this.btnVSD.Style.FocusedImage = ((System.Drawing.Image)(resources.GetObject("resource.FocusedImage13")));
+            this.btnVSD.Style.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnVSD.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
+            this.btnVSD.Style.ImageForeColor = System.Drawing.Color.White;
+            this.btnVSD.TabIndex = 66;
+            this.btnVSD.Text = "VSD";
+            this.btnVSD.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnVSD.UseVisualStyleBackColor = false;
+            this.btnVSD.Click += new System.EventHandler(this.sfButton1_Click);
             // 
             // NewMain
             // 
@@ -922,5 +955,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private Syncfusion.WinForms.Controls.SfButton btnDepocnt;
+        private Syncfusion.WinForms.Controls.SfButton btnVSD;
     }
 }

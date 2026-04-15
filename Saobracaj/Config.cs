@@ -107,6 +107,28 @@ namespace Saobracaj
                         //
 
                     };
+                case "VSD":
+                    return new CompanyConfiguration
+                    {
+                        Naziv = "VSD",
+                        DB = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=VSD;User ID=sa;Password=P@ss011!;",
+                        //DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;;Initial Catalog=Testiranje;User ID=sa;Password=duki7990;",
+                        //Dokumenta = @"\\192.168.99.10\Leget\",
+                        Dokumenta = @"\\192.168.150.110\Leget\",
+                        PIB = "100791711",
+                        Name_Value = "RTC LUKA LEGET AD SREMSKA MITROVICA",
+                        Ulica_Value = "Jarački put 10",
+                        Grad_Value = "Sremska Mitrovica",
+                        PostanskiBroj_Value = "22000",
+                        Line_Value = "Jarački put 10,22000 Sremska Mitrovica",
+                        CompanyID_Value = "RS100791711",
+                        MB_Value = "08039534",
+                        EmailSender_Value = "office@leget.rs",
+                        OsnovnoSkladiste = "1",
+                        OsnovnaLokacija = "1"
+                        //
+
+                    };
                 case "KP":
                     return new CompanyConfiguration
                     {

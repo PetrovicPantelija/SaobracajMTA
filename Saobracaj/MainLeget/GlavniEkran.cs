@@ -25,7 +25,7 @@ namespace Saobracaj.MainLeget
         private void VratiBrojKontejneraKomercijalnaZona()
         {
             // Add this method to the form that contains `lblKomercijalnaZona`
-
+            /* test
             const string sql = "SELECT ISNULL(SUM(Kolicina), 0) FROM KontejnerTekuce WHERE Skladiste = 1";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             using (var conn = new SqlConnection(s_connection))
@@ -40,7 +40,7 @@ namespace Saobracaj.MainLeget
                 // format as needed, e.g. no decimals:
                 lblKomercijalnaZona.Text = kolicina.ToString("N0");
             }
-
+            */
    
         }
 

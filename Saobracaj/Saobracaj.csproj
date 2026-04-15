@@ -3076,6 +3076,12 @@
     <Compile Include="Sifarnici\frmLogovanjeSecond.Designer.cs">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeVSD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeVSD.Designer.cs">
+      <DependentUpon>frmLogovanjeVSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmPartnerjiFirme.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4507,6 +4513,18 @@
     <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.Designer.cs">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\frmDnevniExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\frmDnevniExcel.Designer.cs">
+      <DependentUpon>frmDnevniExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\VSDMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\VSDMain.Designer.cs">
+      <DependentUpon>VSDMain.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Administracija\frmDodeliGrupu.resx">
       <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
     </EmbeddedResource>
@@ -5730,6 +5748,9 @@
     <EmbeddedResource Include="Sifarnici\frmLogovanjeSecond.resx">
       <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmLogovanjeVSD.resx">
+      <DependentUpon>frmLogovanjeVSD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPartnerjiFirme.resx">
       <DependentUpon>frmPartnerjiFirme.cs</DependentUpon>
     </EmbeddedResource>
@@ -6309,6 +6330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\frmDnevniExcel.resx">
+      <DependentUpon>frmDnevniExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\VSDMain.resx">
+      <DependentUpon>VSDMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="CarinskaOtpremnicaDataSet.xsc">
       <DependentUpon>CarinskaOtpremnicaDataSet.xsd</DependentUpon>

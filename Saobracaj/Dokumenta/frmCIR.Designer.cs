@@ -719,7 +719,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(485, 2055);
+            this.dataGridView2.Size = new System.Drawing.Size(485, 2946);
             this.dataGridView2.TabIndex = 272;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -783,7 +783,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(283, 383);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(65535, 2176);
+            this.reportViewer1.Size = new System.Drawing.Size(65535, 3067);
             this.reportViewer1.TabIndex = 277;
             // 
             // txtSirina

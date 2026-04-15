@@ -1393,7 +1393,7 @@
             // 
             // txtDodatneNapomeneDrumski4
             // 
-            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(647, 92);
+            this.txtDodatneNapomeneDrumski4.Location = new System.Drawing.Point(647, 98);
             this.txtDodatneNapomeneDrumski4.Margin = new System.Windows.Forms.Padding(2);
             this.txtDodatneNapomeneDrumski4.Multiline = true;
             this.txtDodatneNapomeneDrumski4.Name = "txtDodatneNapomeneDrumski4";
