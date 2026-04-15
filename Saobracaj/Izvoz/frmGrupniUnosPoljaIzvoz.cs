@@ -373,7 +373,7 @@ namespace Saobracaj.Izvoz
             PostaviVidljivostFakturisabnjeDrumski();
             PostaviVidljivostNapomenePoz();
             PostaviVidljivostNacinPakovanja();
-            PostaviVidljivostBrodskaPlomba();
+           // PostaviVidljivostBrodskaPlomba();
             dtpCutOffPort.Value = DateTime.Now;
             if (grupID == 0)
                 VratiPodatkeSelect();
@@ -503,7 +503,7 @@ namespace Saobracaj.Izvoz
                 if (dr["VrstaBrodskePlombe"] != DBNull.Value)
                     cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
 
-                txtBrodskaPlombaBroj.Text = dr["BrodskaPlomba"].ToString().Trim();           
+                //txtBrodskaPlombaBroj.Text = dr["BrodskaPlomba"].ToString().Trim();           
 
                 if (dr["CutOffPort"] != DBNull.Value)
                 {
@@ -643,10 +643,10 @@ namespace Saobracaj.Izvoz
                 // Tekstualne kolone
                 AddTextColumn("BrojKontejnera", "Broj kontejnera", 120);
                 AddTextColumn("OstalePlombe", "Ostale plombe", 120);
-               
+                AddTextColumnReadonly("BrodskaPlomba", "Brodska plomba broj", 120, true);
+
             }
             
-
                 // DateTime kolone
 
                 //grupa I
@@ -712,7 +712,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("KoletaFakture", "Koleta", 80);
                 AddTextColumn("CBMFaktura", "CBM", 80);
                 AddTextColumn("VrednostRobe", "Vrednost robe", 80);
-                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
+                //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
 
@@ -755,7 +755,7 @@ namespace Saobracaj.Izvoz
                     AddTextColumn("KoletaFakture", "Koleta", 80);
                     AddTextColumn("CBMFaktura", "CBM robe", 80);
                     AddTextColumn("VrednostRobe", "Vrednost robe", 80);
-                    AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
+                    //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
                 }
                 
@@ -801,7 +801,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("KoletaFakture", "Koleta", 80);
                 AddTextColumn("CBMFaktura", "CBM Robe", 80);
                 AddTextColumn("VrednostRobe", "Vrednost robe", 80);
-                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
+                //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
 
@@ -942,18 +942,18 @@ namespace Saobracaj.Izvoz
             DGVCombo();
             System.Data.DataTable dt = VratiPodatkeIzBazePojedinacni();
 
-            if (dt.Columns.Contains("NapomenaZaPozicioniranje"))
-            {
-                dt.Columns["NapomenaZaPozicioniranje"].ReadOnly = false;
-            }
+            //if (dt.Columns.Contains("NapomenaZaPozicioniranje"))
+            //{
+            //    dt.Columns["NapomenaZaPozicioniranje"].ReadOnly = false;
+            //}
 
             dataGridView1.DataSource = dt;
 
             // Provera za svaki slučaj 
-            if (dataGridView1.Columns.Contains("NapomenaZaPozicioniranje"))
-            {
-                dataGridView1.Columns["NapomenaZaPozicioniranje"].ReadOnly = false;
-            }
+            //if (dataGridView1.Columns.Contains("NapomenaZaPozicioniranje"))
+            //{
+            //    dataGridView1.Columns["NapomenaZaPozicioniranje"].ReadOnly = false;
+            //}
         }
 
         private System.Data.DataTable VratiPodatkeIzBazePojedinacni()
@@ -985,8 +985,7 @@ namespace Saobracaj.Izvoz
 		                DtRealizacijeUtovaraKontejnera  as MestoUtovaraDtRealizacije, 
 		                PlaniranDtUtovaraCerade  as UtovarCeradeNoviPlaniraniDt, 
 		                DtRealizacijeUtovaraCerade  as UtovarCeradeDtRealizacije,
-                        CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = Izvoz.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje
-                       
+                        BrodskaPlomba  
                         FROM Izvoz 
                         WHERE ID in ( " + idsZaUpit + " )"; 
 
@@ -1101,6 +1100,18 @@ namespace Saobracaj.Izvoz
             col.HeaderText = header;
             col.Name = propName;
             col.Width = width;
+
+            dataGridView1.Columns.Add(col);
+        }
+
+        private void AddTextColumnReadonly(string propName, string header, int width, bool isReadOnly = false)
+        {
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.DataPropertyName = propName;
+            col.HeaderText = header;
+            col.Name = propName;
+            col.Width = width;
+            col.ReadOnly = isReadOnly;
             dataGridView1.Columns.Add(col);
         }
         // validacija da se upisuje datum u datumsku kolonu
@@ -1458,7 +1469,7 @@ namespace Saobracaj.Izvoz
 
             decimal taraKontejnera = Convert.ToDecimal(txtTaraKontejnera.Value);
 
-            string brodskaPlombaBroj = string.IsNullOrWhiteSpace(txtBrodskaPlombaBroj.Text) ? null : txtBrodskaPlombaBroj.Text.Trim();
+          
             int? brodskaPlomba = null; /*string.IsNullOrWhiteSpace(txtBrodskaPlomba.Text) ? null : txtBrodskaPlomba.Text.Trim();*/
             if (cboBrodar.SelectedValue != null)
             {
@@ -1599,7 +1610,7 @@ namespace Saobracaj.Izvoz
             int safeVrstaKontejnera = vrstaKontejnera ?? 0;
             int safeIzvoznik = izvoznik ?? 0;
             int safeBrodskaPlomba = brodskaPlomba ?? 0;
-            string safeBrodskaPlombaBroj = string.IsNullOrWhiteSpace(brodskaPlombaBroj) ? " " : brodskaPlombaBroj;
+           
             string safeNapomena = string.IsNullOrWhiteSpace(Napomena) ? " " : Napomena;
             int safeAdr = adr ?? 0;
             int safeNacinPakovanja = nacinPakovanja ?? 0;
@@ -1625,7 +1636,7 @@ namespace Saobracaj.Izvoz
                                             safeVrstaKontejnera,
                                             safeIzvoznik,
                                             safeBrodskaPlomba,
-                                            safeBrodskaPlombaBroj,
+                                           
                                             safeNapomena,
                                             safeAdr,
                                             safeNacinPakovanja,
@@ -1681,7 +1692,6 @@ namespace Saobracaj.Izvoz
                                                        safeVrstaKontejnera,
                                                        safeIzvoznik,
                                                        safeBrodskaPlomba,
-                                                       safeBrodskaPlombaBroj,
                                                        safeNapomena,
                                                        safeAdr,
                                                        safeNacinPakovanja,
@@ -1901,11 +1911,11 @@ namespace Saobracaj.Izvoz
         private void PostaviVidljivostBrodskaPlomba()
         {
 
-            if ((scenarioID == 7 && drumski == 1) || scenarioID == 9 || scenarioID == 25)
-            {
-                lblBrodskaPlombaBroj.Visible = false;
-                txtBrodskaPlombaBroj.Visible = false;
-            }
+            //if ((scenarioID == 7 && drumski == 1) || scenarioID == 9 || scenarioID == 25)
+            //{
+            //    lblBrodskaPlombaBroj.Visible = false;
+            //    txtBrodskaPlombaBroj.Visible = false;
+            //}
 
         }
         private void PostaviVidljivostNacinPakovanja()

@@ -3336,7 +3336,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public List<int> InsIzvozPorudzbenica(int BrojStavkePorudzbenice, int ScenarioID, string Korisnik,int? Porucilac, int BrojKontejnera, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string BrodskaPlombaBroj, string NaslovSlanjaStatusa,
+        public List<int> InsIzvozPorudzbenica(int BrojStavkePorudzbenice, int ScenarioID, string Korisnik,int? Porucilac, int BrojKontejnera, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe,  string NaslovSlanjaStatusa,
                                               int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort,decimal Tara, int? Vaganje, int? Klijent2,
                                               int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe, int Drumski, int VrstaKamiona)
         {
@@ -3417,14 +3417,6 @@ namespace Saobracaj.Izvoz
             vrstabrodplombe.Direction = ParameterDirection.Input;
             vrstabrodplombe.Value = VrstaBrodskePlombe.HasValue ? (object)VrstaBrodskePlombe.Value : DBNull.Value;
             cmd.Parameters.Add(vrstabrodplombe);
-
-            SqlParameter brodskaPlombaBroj = new SqlParameter();
-            brodskaPlombaBroj.ParameterName = "@BrodskaPlombaBroj";
-            brodskaPlombaBroj.SqlDbType = SqlDbType.NVarChar;
-            brodskaPlombaBroj.Size = 30;
-            brodskaPlombaBroj.Direction = ParameterDirection.Input;
-            brodskaPlombaBroj.Value = (object)BrodskaPlombaBroj ?? DBNull.Value;
-            cmd.Parameters.Add(brodskaPlombaBroj);
 
             SqlParameter naslovSlanjaStatusa = new SqlParameter();
             naslovSlanjaStatusa.ParameterName = "@Napomena";
@@ -3581,7 +3573,7 @@ namespace Saobracaj.Izvoz
         }
 
 
-        public void UpdateIzvozPorudzbenica(List<int> noviID, int? Porucilac, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe, string BrodskaPlombaBroj, string NaslovSlanjaStatusa,
+        public void UpdateIzvozPorudzbenica(List<int> noviID, int? Porucilac, int? Brodar, int? Booking, int? VrstaKontejnera, int? Izvoznik, int? VrstaBrodskePlombe,  string NaslovSlanjaStatusa,
                                             int? ADR, int? NacinPakovanja, int? Inspekcija, DateTime? CutOffPort, decimal Tara, int? Vaganje, int? Klijent2,
                                             int? Napomena2REf, int? Klijent3, int? Napomena3REf, string OpisPosla, string Link, int? KvalitetKontejnera, int VrstaRobe)
         {
@@ -3645,15 +3637,7 @@ namespace Saobracaj.Izvoz
             vrstabrodplombe.Value = VrstaBrodskePlombe.HasValue ? (object)VrstaBrodskePlombe.Value : DBNull.Value;
             cmd.Parameters.Add(vrstabrodplombe);
 
-            
-            SqlParameter brodskaPlombaBroj = new SqlParameter();
-            brodskaPlombaBroj.ParameterName = "@BrodskaPlombaBroj";
-            brodskaPlombaBroj.SqlDbType = SqlDbType.NVarChar;
-            brodskaPlombaBroj.Size = 30;
-            brodskaPlombaBroj.Direction = ParameterDirection.Input;
-            brodskaPlombaBroj.Value = (object)BrodskaPlombaBroj ?? DBNull.Value;
-            cmd.Parameters.Add(brodskaPlombaBroj);
-
+               
             SqlParameter naslovSlanjaStatusa = new SqlParameter();
             naslovSlanjaStatusa.ParameterName = "@Napomena";
             naslovSlanjaStatusa.SqlDbType = SqlDbType.NVarChar;
