@@ -675,12 +675,11 @@ namespace Saobracaj.Izvoz
                 }
 
                 // Numeričke kolone
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe", 80);
-                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
-                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
 
@@ -707,11 +706,11 @@ namespace Saobracaj.Izvoz
 
                 }
                 // Numeričke kolone
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
                 AddTextColumn("CBMFaktura", "CBM", 80);
-                AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                 //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
@@ -748,13 +747,13 @@ namespace Saobracaj.Izvoz
 
 
                 }
-                AddTextColumn("BTTRobe", "BTTO Robe", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 if (!(scenarioID == 7 && drumski == 1))
                 {
-                    AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                    AddTextColumn("KoletaFakture", "Koleta", 80);
-                    AddTextColumn("CBMFaktura", "CBM robe", 80);
-                    AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                    AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                    AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
+                    AddTextColumn("CBMFaktura", "CBM robe (FAKTURA)", 80);
+                    AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                     //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
                 }
@@ -796,11 +795,11 @@ namespace Saobracaj.Izvoz
                 }
 
                 // Numeričke kolone
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe", 80);
-                AddTextColumn("VrednostRobe", "Vrednost robe", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                 //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
             }
@@ -837,12 +836,11 @@ namespace Saobracaj.Izvoz
                 }
 
                 // Numeričke kolone
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe", 80);
-                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
-                AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
             else if (scenarioID == 9)
@@ -869,11 +867,11 @@ namespace Saobracaj.Izvoz
                  
                 }
 
-                AddTextColumn("BTTRobe", "BTT Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe", 80);
-                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+                AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
 
@@ -900,10 +898,10 @@ namespace Saobracaj.Izvoz
                     AddDateColumn("IstovarCeradeDtRealizacije", "MESTO ISTOVARA CERADE Datum/Vreme realizacije", 200);
                 }
                 AddTextColumn("BTTRobe", "BTTO Robe", 80);
-                AddTextColumn("NTTORobe", "NTTO Robe", 80);
-                AddTextColumn("KoletaFakture", "Koleta", 80);
+                AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
+                AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
                 AddTextColumn("CBMFaktura", "CBM  Robe", 80);
-                AddTextColumn("VrednostRobe", "Vrednost Robe", 80);
+                AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
 
             }
