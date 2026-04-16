@@ -678,7 +678,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
@@ -709,7 +709,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                 //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
@@ -752,7 +752,7 @@ namespace Saobracaj.Izvoz
                 {
                     AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                     AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                    AddTextColumn("CBMFaktura", "CBM robe (FAKTURA)", 80);
+                    AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                     AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                     //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
@@ -798,7 +798,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
                 //AddTextColumn("BrodskaPlomba", "Brodska plomba broj", 120);
 
@@ -839,7 +839,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
@@ -870,7 +870,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe (FAKTURA)", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM Robe (FAKTURA)", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
             }
@@ -900,7 +900,7 @@ namespace Saobracaj.Izvoz
                 AddTextColumn("BTTRobe", "BTTO Robe", 80);
                 AddTextColumn("NTTORobe", "NTTO Robe (FAKTURA)", 80);
                 AddTextColumn("KoletaFakture", "Koleta (FAKTURA)", 80);
-                AddTextColumn("CBMFaktura", "CBM  Robe", 80);
+                AddTextColumn("CBMFaktura", "CBM (FAKTURA)", 80);
                 AddTextColumn("VrednostRobe", "Vrednost Robe - FAKTURA", 80);
 
 
@@ -2598,184 +2598,482 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void ProveriRelacijuGrupe1(int scenarioID)
+        private PodaciIzvoza VratiPodatkeIzvoza()
         {
+            PodaciIzvoza podaci = null;
 
-            // Vratiti da li su popunjena polja
-            // cboMestoSpustanjaPunogKontejnera.Visible = true;
-
-            bool isUkljucenDrumski = ((scenarioID == 13 || scenarioID == 26) && drumski == 1);
-          // cboMestoPreuzimanjaPunog.Visible = isUkljucenDrumski;
-          //  dptPlaniranDatumSpustanja.Visible = !isUkljucenDrumski;
-           // txtDodatneNapomeneDrumski1.Visible = isUkljucenDrumski;
-
+            string idsZaUpit = string.Join(",", noviIDs);
+            using (SqlConnection con = new SqlConnection(connection)) // Koristi using za konekciju
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand($@"
+                                            SELECT TOP 1 
+                                                MestoPreuzimanja3 AS OdlaznaMorskaLuka, 
+                                                MestoPreuzimanja2 AS MestoSpustanjaPunogKontejnera, 
+                                                PlaniraniDtSpustanjaKontejnera AS PlaniranDatSpustanjaKontejnera, 
+                                                PlaniraniDtPreuzimanja, 
+                                                MestoPreuzimanja AS MestoPreuzimanjaPunogPraznog, 
+                                                PlaniraniDatumUtovara AS PlaniranDatUtovaraKontejnera, 
+                                                MesoUtovara AS MestoUtovaraKontejnera, -- Ispravljeno: MestoUtovara AS
+                                                KontaktOsoba AS KontaktOUtovaraKontejnera, 
+                                                MestoUtovaraCerade AS MestoUtovaraCerade, 
+                                                KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, 
+                                                PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
+                                                MestoIstovaraCerade AS MestoIstovaraCerade, 
+                                                KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, 
+                                                PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, -- Ispravljeno: PlaniraniDt
+                                                RealizacijaDtUtovara AS RealizacijaDatUtovaraKontejnera, 
+                                                DodatneNapomeneDrumski AS DodatnaNapomenaDrumski,
+                                                CarinskiPostupakUnutrasnji, 
+                                                MestoCarinjenja, 
+                                                Spedicija, 
+                                                KontaktSpeditera,
+                                                OdredisnaCarinarnica, 
+                                                SpediterOdredisna, 
+                                                KontaktSpediteraOdredisna,
+                                                Brodar,
+                                                BrojKontejnera
+                                            FROM [dbo].[Izvoz] 
+                                            WHERE ID IN ({idsZaUpit})", con);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        podaci = new PodaciIzvoza();
+                        podaci.OdlaznaMorskaLuka = dr["OdlaznaMorskaLuka"].ToString();
+                        podaci.MestoSpustanjaPunogKontejnera = dr["MestoSpustanjaPunogKontejnera"] != DBNull.Value ? Convert.ToInt32(dr["MestoSpustanjaPunogKontejnera"]) : (int?)null; 
+                        // Za datume koristi proveru na DBNull
+                        podaci.PlaniranDatSpustanjaKontejnera = dr["PlaniranDatSpustanjaKontejnera"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["PlaniranDatSpustanjaKontejnera"]) : null;
+                        podaci.PlaniraniDtPreuzimanja = dr["PlaniraniDtPreuzimanja"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["PlaniraniDtPreuzimanja"]) : null;
+                        podaci.MestoPreuzimanjaPunogPraznog = dr["MestoPreuzimanjaPunogPraznog"] != DBNull.Value ? Convert.ToInt32(dr["MestoPreuzimanjaPunogPraznog"]) : (int?)null; 
+                        podaci.PlaniranDatUtovaraKontejnera = dr["PlaniranDatUtovaraKontejnera"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["PlaniranDatUtovaraKontejnera"]) : null;
+                        podaci.MestoUtovaraKontejnera = dr["MestoUtovaraKontejnera"] != DBNull.Value ? Convert.ToInt32(dr["MestoUtovaraKontejnera"]) : (int?)null;
+                        podaci.KontaktOUtovaraKontejnera = dr["KontaktOUtovaraKontejnera"] != DBNull.Value ? Convert.ToInt32(dr["KontaktOUtovaraKontejnera"]) : (int?)null;
+                        podaci.MestoUtovaraCerade = dr["MestoUtovaraCerade"] != DBNull.Value ? Convert.ToInt32(dr["MestoUtovaraCerade"]) : (int?)null; 
+                        podaci.KontaktOUtovaraCerade = dr["KontaktOUtovaraCerade"] != DBNull.Value ? Convert.ToInt32(dr["KontaktOUtovaraCerade"]) : (int?)null;
+                        podaci.PlaniraniDatumUtovaraCerade = dr["PlaniraniDatumUtovaraCerade"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["PlaniraniDatumUtovaraCerade"]) : null;
+                        podaci.MestoIstovaraCerade = dr["MestoIstovaraCerade"] != DBNull.Value ? Convert.ToInt32(dr["MestoIstovaraCerade"]) : (int?)null;  
+                        podaci.KontaktOIstovaraCerade = dr["KontaktOIstovaraCerade"] != DBNull.Value ? Convert.ToInt32(dr["KontaktOIstovaraCerade"]) : (int?)null;
+                        podaci.PlaniraniDatumIstovaraCerade = dr["PlaniraniDatumIstovaraCerade"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["PlaniraniDatumIstovaraCerade"]) : null;
+                        podaci.RealizacijaDatUtovaraKontejnera = dr["RealizacijaDatUtovaraKontejnera"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(dr["RealizacijaDatUtovaraKontejnera"]) : null;
+                        podaci.DodatnaNapomenaDrumski = dr["DodatnaNapomenaDrumski"].ToString();
+                        podaci.CarinskiPostupakUnutrasnji = dr["CarinskiPostupakUnutrasnji"] != DBNull.Value ? Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"]) : (int?)null;
+                        podaci.MestoCarinjenja = dr["MestoCarinjenja"] != DBNull.Value ? Convert.ToInt32(dr["MestoCarinjenja"]) : (int?)null;
+                        podaci.Spedicija = dr["Spedicija"] != DBNull.Value ? Convert.ToInt32(dr["Spedicija"]) : (int?)null;
+                        podaci.KontaktSpeditera = dr["KontaktSpeditera"].ToString();
+                        podaci.OdredisnaCarinarnica = dr["OdredisnaCarinarnica"] != DBNull.Value ? Convert.ToInt32(dr["OdredisnaCarinarnica"]) : (int?)null;
+                        podaci.SpediterOdredisna = dr["SpediterOdredisna"] != DBNull.Value ? Convert.ToInt32(dr["SpediterOdredisna"]) : (int?)null;
+                        podaci.KontaktSpediteraOdredisna = dr["KontaktSpediteraOdredisna"].ToString();
+                        podaci.Brodar = dr["Brodar"] != DBNull.Value ? Convert.ToInt32(dr["Brodar"]) : (int?)null;
+                        podaci.BrojKontejnera = dr["BrojKontejnera"].ToString();
+                    }
+                }
+            }
+            return podaci;
         }
 
-        private void ProveriRelacijuGrupe2(int scenarioID)
+        private int ProveriBrojKontejnera(PodaciIzvoza p)
         {
-            /*
-            bool isOsnovniIliA = ((scenarioID == 7 || scenarioID == 23) && drumski == 0); // II ili II-A
-
-            dtpPlaniraniDatumVremePreuzimanja2.Visible = isOsnovniIliA;
-           dtpDatumRealizacijeUtovaraKontejnera2.Visible = isOsnovniIliA;
-            dptPlaniranDatumSpustanja2.Visible = isOsnovniIliA;
-            txtDodatneNapomeneDrumski2.Visible = !isOsnovniIliA;
-
-
-
-            if (scenarioID == 7 && drumski == 1)
+            int uspesno = 1;
+            if (string.IsNullOrWhiteSpace(p.BrojKontejnera))
             {
-                cboOdlaznaMorskaLuka2.Visible = false;
-
+                // Alarmiraj korisnika ili setuj boju polja
+                uspesno = 0;
             }
-            else if (scenarioID == 7 && drumski == 0)
-            {
-                cboOdlaznaMorskaLuka2.Visible = true;
+           
 
-            }
-            */
-
+            return uspesno;
         }
-
-        private void ProveriRelacijuGrupe3(int scenarioID)
+        private int ProveriRelacijuGrupe1(int scenarioID, PodaciIzvoza p)
         {
-            /*
-            bool isDrumski = ((scenarioID == 8 || scenarioID == 24) && drumski == 1); // IIIL ili IIILA
-
-            lblMestoUtovaraCerade3.Visible = cboMestoUtovaraCerade3.Visible = isDrumski;
-            lblAdresaUtovaraCerade3.Visible = cboAdresaUtovaraCerade3.Visible = isDrumski;
-            lblKontaktUtovaraCerade3.Visible = cboKontaktUtovaraCerade3.Visible = isDrumski;
-            lblDatumIstovaraCerade3.Visible = dptDatumIstovaraCerade3.Visible = !isDrumski;
-
-            if (scenarioID == 24 && drumski == 1) // ako je IIILA iskljuci sledeca polja
+            int uspesno = 1;
+            if (p.MestoSpustanjaPunogKontejnera == null || p.MestoSpustanjaPunogKontejnera < 1)
             {
-               
-
+                // Alarmiraj korisnika ili setuj boju polja
+                uspesno = 0;
             }
-            else if (scenarioID == 24 && drumski == 0)
-            {
-                lblOdlaznaMorskaLuka2.Visible = cboOdlaznaMorskaLuka2.Visible = true;
-                lblMestoIstovaraCerada3.Visible = cboMestoIstovaraCerada3.Visible = true;
-                lblAdresaIstovaraCerade3.Visible = cboAdresaIstovaraCerade3.Visible = true;
-                lblKontaktOIstovarCerade3.Visible = cboKontaktOIstovarCerade3.Visible = true;
-                lblPlaniraniDatumUtovaraKontejnera3.Visible = dptPlaniraniDatumUtovaraKontejnera3.Visible = true;
-                lblDatumUtovaraCerade3.Visible = dptDatumUtovaraCerade3.Visible = false;
-                lblDodatneNapomenDrumski.Visible = txtDodatneNapomeneDrumski.Visible = false;
-            }
-
-            // ako je IIIL
-            if (scenarioID == 8 && drumski == 1)
-            {
-                lblDatumUtovaraCerade3.Visible = dptDatumUtovaraCerade3.Visible = true;
-                lblDodatneNapomenDrumski.Visible = txtDodatneNapomeneDrumski.Visible = true;
-            }
-            else if (scenarioID == 8 && drumski == 0)
-            {
-                lblDatumUtovaraCerade3.Visible = dptDatumUtovaraCerade3.Visible = false;
-                lblDodatneNapomenDrumski.Visible = txtDodatneNapomeneDrumski.Visible = false;
-            }
-            */
-
-        }
-
-
-        private void ProveriRelacijuGrupe4(int scenarioID)
-        {
-            /*
-            bool isVisible = (scenarioID == 9 || scenarioID == 25); // IIIL ili IIILA
-
-            lblMestoUtovaraCerade4.Visible = cboMestoUtovaraCerade4.Visible = isVisible;
-            lblDatumUtovaraCerade4.Visible = dptDatumUtovaraCerade4.Visible = isVisible;
-            lblMestoIstovaraCerada4.Visible = cboMestoIstovaraCerada4.Visible = isVisible;
-            lblAdresaIstovaraCerade4.Visible = cboAdresaIstovaraCerade4.Visible = isVisible;
-            lblKontaktOIstovarCerade4.Visible = lblKontaktOIstovarCerade4.Visible = isVisible;
-
-
-            if (scenarioID == 25) // ako je IVLA iskljuci sledeca polja
+            if(scenarioID == 26)
             {
                 if (drumski == 0)
                 {
-                    lblAdresaUtovaraCerade4.Visible = cboAdresaUtovaraCerade4.Visible = !isVisible;
-                    lblKontaktUtovaraCerade4.Visible = cboKontaktUtovaraCerade4.Visible = !isVisible;
-                    lblDodatneNapomeneDrumski4.Visible = txtDodatneNapomeneDrumski4.Visible = !isVisible;
-
-                }
-                // nova pozicija za DatumUtovaraCerade4
-                //lblDatumUtovaraCerade4.Location = new Point(cboMestoUtovaraCerade4.Location.X+10, cboMestoUtovaraCerade4.Location.Y + 36);
-                //dptDatumUtovaraCerade4.Location = new Point(lblDatumUtovaraCerade4.Location.X - 2, lblDatumUtovaraCerade4.Location.Y + 21);
-                if (drumski == 1)
-                {
-                    lblDatumIstovaraCerade4.Visible = dptDatumIstovaraCerade4.Visible = !isVisible;
-                }
-            }
-            else if (scenarioID == 9)
-            {
-                if (drumski == 0)
-                {
-                    lblKontaktUtovaraCerade4.Visible = cboKontaktUtovaraCerade4.Visible = !isVisible;
-                    lblDodatneNapomeneDrumski4.Visible = txtDodatneNapomeneDrumski4.Visible = !isVisible;
-
-
+                    if (p.PlaniranDatSpustanjaKontejnera == null)
+                    {
+                        uspesno = 0;
+                    }
                 }
                 else if (drumski == 1)
                 {
-                    lblDatumIstovaraCerade4.Visible = dptDatumIstovaraCerade4.Visible = !isVisible;
+                    if (p.MestoPreuzimanjaPunogPraznog == null || p.MestoPreuzimanjaPunogPraznog < 1) 
+                    {
+                        uspesno = 0;
+                    }
                 }
-
             }
-            */
+
+            return uspesno;
         }
 
-        private void ProveriPodatkeDaLiSuPripreljeni(int KontejnerID)
+        private int ProveriRelacijuGrupe2(int scenario, PodaciIzvoza p)
         {
-
-            //Proveri Carinsko
-            //Proveri relacije
-            switch (scenarioID)
+            int uspesno = 1;
+            if (p.MestoSpustanjaPunogKontejnera == null || p.MestoSpustanjaPunogKontejnera < 1) 
             {
-                // GRUPA I
-                case 13: // Scenario I
-                         // Podesi šta treba za čist I
-                    ProveriRelacijuGrupe1(scenarioID);
-                    break;
-                case 26: // Scenario I-L
-                    ProveriRelacijuGrupe1(scenarioID);
-                    break;
-                // GRUPA II
-                case 7: // Scenario II
-                        // Specifičnosti za II
-                    ProveriRelacijuGrupe2(scenarioID);
-                    break;
-                case 23: // Scenario I-L
-                         //  AktivirajLukaPolja();
-                    ProveriRelacijuGrupe2(scenarioID);
-                    break;
+                // Alarmiraj korisnika 
+                uspesno = 0;
+            }
 
-                // GRUPA III
-                case 8: // Scenario II
-                    // Specifičnosti za II
-                    ProveriRelacijuGrupe3(scenarioID);
-                    break;
-                case 24: // Scenario I-L
-                    //  AktivirajLukaPolja();
-                    ProveriRelacijuGrupe3(scenarioID);
-                    break;
-                // GRUPA IV
-                case 9: // Scenario II
-                    // Specifičnosti za II
-                    ProveriRelacijuGrupe4(scenarioID);
-                    break;
-                case 25: // Scenario I-L
-                    //  AktivirajLukaPolja();
-                    ProveriRelacijuGrupe4(scenarioID);
-                    break;
+            if (p.MestoPreuzimanjaPunogPraznog == null || p.MestoPreuzimanjaPunogPraznog < 1) 
+            {
+                uspesno = 0;
+            }
+
+            if ((scenario == 7 || scenario == 23))
+            {
+                if (drumski == 0)
+                {
+                    if (p.PlaniraniDtPreuzimanja == null)
+                    {
+                        uspesno = 0;
+                    }
+
+                    if (p.PlaniranDatSpustanjaKontejnera == null)
+                    {
+                        uspesno = 0;
+                    }
+                }
+                else if (drumski == 1)
+                {
+                    if (p.MestoUtovaraKontejnera == null || p.MestoUtovaraKontejnera < 1) 
+                    {
+                        uspesno = 0;
+                    }
 
 
-                default:
-                    // Neki default ako ID nije prepoznat
-                    break;
+                    //if (cboAdresaUtovaraKontejnera2.SelectedIndex < 0)
+                    //if (cboAdresaUtovaraKontejnera2.SelectedValue == null || !int.TryParse(cboAdresaUtovaraKontejnera2.SelectedValue.ToString(), out int val) || val <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera2.Text))
+                    //{
+                    //    if (string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera2.Text))
+                    //    {
+                    //        errorProvider1.SetError(cboAdresaUtovaraKontejnera2, "Morate izabrati neku vrednost!");
+                    //        uspesno = false;
+                    //    }
+                    //}
+
+                    //if (cboKontaktUtovaraKontejnera2.SelectedIndex < 0)
+                    if (p.KontaktOUtovaraKontejnera == null )
+                    {
+                        uspesno = 0;
+                    }
+                    if (p.PlaniranDatUtovaraKontejnera == null)
+                    {
+                        uspesno = 0;
+                    }
+                }
+            }
+            return uspesno;
+        }
+
+        private int ProveriRelacijuGrupe3(int scenario, PodaciIzvoza p)
+        {
+            int uspesno = 1;
+            if (p.MestoSpustanjaPunogKontejnera == null || p.MestoSpustanjaPunogKontejnera < 1)
+            {
+                // Alarmiraj korisnika 
+                uspesno = 0;
+            }
+
+            if (p.PlaniranDatSpustanjaKontejnera == null)
+            {
+                uspesno = 0;
+            }
+
+            if (p.MestoPreuzimanjaPunogPraznog == null || p.MestoPreuzimanjaPunogPraznog < 1) 
+            {
+                uspesno = 0;
+            }
+            if (p.PlaniraniDtPreuzimanja == null)
+            {
+                uspesno = 0;
+            }
+            if (scenario == 8 && drumski == 0) //III
+            {
+                if (p.MestoUtovaraKontejnera == null || p.MestoUtovaraKontejnera < 1) 
+                {
+                    uspesno = 0;
+                }
+                //if (cboAdresaUtovaraKontejnera3.SelectedIndex < 0)
+                //if (cboAdresaUtovaraKontejnera3.SelectedValue == null || !int.TryParse(cboAdresaUtovaraKontejnera3.SelectedValue.ToString(), out int val1) || val1 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera3.Text))
+                //{
+
+                //    errorProvider1.SetError(cboAdresaUtovaraKontejnera3, "Morate izabrati neku vrednost!");
+                //    uspesno = false;
+
+                //}
+                //if (cboKontaktUtovaraKontejnera3.SelectedIndex < 0)
+                if (p.KontaktOUtovaraKontejnera == null)
+                {
+                    uspesno = 0;
+                }
+                if (p.MestoIstovaraCerade == null || p.MestoIstovaraCerade < 1)
+                {
+                    // Alarmiraj korisnika
+                    uspesno = 0;
+                }
+
+                //if (cboAdresaIstovaraCerade3.SelectedIndex < 0)
+                //if (cboAdresaIstovaraCerade3.SelectedValue == null || !int.TryParse(cboAdresaIstovaraCerade3.SelectedValue.ToString(), out int val2) || val2 <= 0 || string.IsNullOrWhiteSpace(cboAdresaIstovaraCerade3.Text))
+                //{
+                //    errorProvider1.SetError(cboAdresaIstovaraCerade3, "Morate izabrati neku vrednost!");
+                //    uspesno = false;
+
+                //}
+                if (p.KontaktOIstovaraCerade == null)
+                {
+                    uspesno = 0;
+                }
+               
 
             }
+            if (((scenario == 8 || scenario == 24) && drumski == 1) || (scenario == 24 && drumski == 0))
+            {
+                if (!(scenario == 24 && drumski == 0))
+                {
+                    if (p.MestoUtovaraCerade == null || p.MestoUtovaraCerade < 1)
+                    {
+                        uspesno = 0;
+                    }
+
+                    //if (cboAdresaUtovaraCerade3.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade3.SelectedValue.ToString(), out int val2) || val2 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade3.Text))
+                    //{
+                    //    errorProvider1.SetError(cboAdresaUtovaraCerade3, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+
+                    //}
+                    if (p.KontaktOUtovaraCerade == null)
+                    {
+                        uspesno = 0;
+                    }
+                }
+
+                if (p.MestoIstovaraCerade == null || p.MestoIstovaraCerade < 1)
+                {
+                    uspesno = 0;
+                }
+
+                //if (cboAdresaIstovaraCerade3.SelectedValue == null || !int.TryParse(cboAdresaIstovaraCerade3.SelectedValue.ToString(), out int val5) || val5 <= 0 || string.IsNullOrWhiteSpace(cboAdresaIstovaraCerade3.Text))
+                //{
+                //    errorProvider1.SetError(cboAdresaIstovaraCerade3, "Morate izabrati neku vrednost!");
+                //    uspesno = false;
+
+                //}
+                if (p.KontaktOIstovaraCerade == null)
+                {
+                    uspesno = 0;
+                }
+
+                if (p.MestoUtovaraKontejnera == null || p.MestoUtovaraKontejnera < 1) 
+                {
+                    uspesno = 0;
+                }
+
+                //if (cboAdresaUtovaraKontejnera3.SelectedValue == null || !int.TryParse(cboAdresaUtovaraKontejnera3.SelectedValue.ToString(), out int val4) || val4 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraKontejnera3.Text))
+                //{
+                //    errorProvider1.SetError(cboAdresaUtovaraKontejnera3, "Morate izabrati neku vrednost!");
+                //    uspesno = false;
+
+                //}
+                if (p.KontaktOUtovaraKontejnera == null)
+                {
+                    uspesno = 0;
+                }
+                
+            }
+            return uspesno;
+        }
+
+
+        private int ProveriRelacijuGrupe4(int scenario, PodaciIzvoza p)
+        {
+           int uspesno = 1;
+            if ((scenario == 9 || scenario == 25))
+            {
+
+                if (p.MestoUtovaraCerade == null || p.MestoUtovaraCerade < 1) 
+                {
+                    uspesno = 0;
+                }
+
+                if (p.MestoIstovaraCerade == null || p.MestoIstovaraCerade < 1) 
+                {
+                    uspesno = 0;
+                }
+
+
+
+
+                //if (cboAdresaIstovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaIstovaraCerade4.SelectedValue.ToString(), out int val) || val <= 0 || string.IsNullOrWhiteSpace(cboAdresaIstovaraCerade4.Text))
+                //{
+
+                //    errorProvider1.SetError(cboAdresaIstovaraCerade4, "Morate izabrati neku vrednost!");
+                //    uspesno = false;
+
+                //}
+
+                if (p.KontaktOIstovaraCerade == null)
+                {
+                    uspesno = 0;
+                }
+                
+                if (drumski == 0)
+                {
+                    //if (cboKontaktUtovaraCerade4.SelectedValue == null || !int.TryParse(cboKontaktUtovaraCerade4.SelectedValue.ToString(), out int val2) || val2 <= 0 || string.IsNullOrWhiteSpace(cboKontaktUtovaraCerade4.Text))
+                    //{
+
+                    //        errorProvider1.SetError(cboKontaktUtovaraCerade4, "Morate izabrati neku vrednost!");
+                    //        uspesno = false;
+
+                    //}
+                    if (p.PlaniraniDatumUtovaraCerade == null)
+                    {
+                        uspesno = 0;
+                    }
+
+
+                    if (scenario == 9)
+                    {
+                        //if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val4) || val4 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
+                        //{
+
+                        //    errorProvider1.SetError(cboAdresaUtovaraCerade4, "Morate izabrati neku vrednost!");
+                        //    uspesno = false;
+
+                        //}
+
+                    }
+                }
+                else if (drumski == 1)
+                {
+                    //if (cboAdresaUtovaraCerade4.SelectedValue == null || !int.TryParse(cboAdresaUtovaraCerade4.SelectedValue.ToString(), out int val3) || val3 <= 0 || string.IsNullOrWhiteSpace(cboAdresaUtovaraCerade4.Text))
+                    //{
+
+                    //    errorProvider1.SetError(cboAdresaUtovaraCerade4, "Morate izabrati neku vrednost!");
+                    //    uspesno = false;
+
+                    //}
+
+                    if (p.KontaktOUtovaraCerade == null)
+                    {
+                        uspesno = 0;
+                    }
+                    
+
+                }
+            }
+            return uspesno;
+        }
+
+        private int ProveriCarinsko( PodaciIzvoza p)
+        {
+            int uspesno = 1;
+            if (p.CarinskiPostupakUnutrasnji == null || p.CarinskiPostupakUnutrasnji < 1)
+            {   
+                uspesno = 0;
+            }
+
+            if (p.MestoCarinjenja == null || p.MestoCarinjenja < 1)
+            {
+                uspesno = 0;
+            }
+            if (p.Spedicija == null || p.Spedicija < 1)
+            {
+                uspesno = 0;
+            }
+            if (p.OdredisnaCarinarnica == null || p.OdredisnaCarinarnica < 1)
+            {
+               uspesno = 0;
+            }
+            if (p.SpediterOdredisna == null || p.SpediterOdredisna < 1)
+            {
+                uspesno = 0;
+            }          
+
+            return uspesno;
+        }
+        private int relacijaPopunjena = 1;   //uspesno 0-neuspesno
+        private int carinskoPopunjeno = 1;   //uspesno 0-neuspesno
+        private int brodarPopunjeno = 1;   //uspesno 0-neuspesno
+        private int brojKontejneraPopunjeno = 1;   //uspesno 0-neuspesno
+        private void ProveriPodatkeDaLiSuPripreljeni(int KontejnerID)
+        {
+            var podaci = VratiPodatkeIzvoza();
+           
+
+            if (podaci == null) return; // Nema podataka
+                                        //Proveri Carinsko
+            carinskoPopunjeno = ProveriCarinsko(podaci);
+
+            // proveri brodara
+            if (podaci.Brodar == null || podaci.Brodar < 1)
+            {
+                brodarPopunjeno = 0;
+            }
+            else
+            {
+                brodarPopunjeno = 1;
+            }
+
+            //Proveri relacije
+            switch (scenarioID)
+                {
+                    // GRUPA I
+                    case 13: // Scenario I
+                             // Podesi šta treba za čist I
+                        relacijaPopunjena = ProveriRelacijuGrupe1(scenarioID, podaci);
+                        brojKontejneraPopunjeno  = ProveriBrojKontejnera ( podaci);
+                    break;
+                    case 26: // Scenario I-L
+                        relacijaPopunjena = ProveriRelacijuGrupe1(scenarioID, podaci);
+                    brojKontejneraPopunjeno = ProveriBrojKontejnera(podaci);
+                    break;
+                    // GRUPA II
+                    case 7: // Scenario II
+                            // Specifičnosti za II
+                        relacijaPopunjena = ProveriRelacijuGrupe2(scenarioID, podaci);
+                        brojKontejneraPopunjeno = ProveriBrojKontejnera(podaci);
+                    break;
+                    case 23: // Scenario I-L
+                             //  AktivirajLukaPolja();
+                        relacijaPopunjena = ProveriRelacijuGrupe2(scenarioID, podaci);
+                        brojKontejneraPopunjeno = ProveriBrojKontejnera(podaci);
+                    break;
+
+                    // GRUPA III
+                    case 8: // Scenario II
+                            // Specifičnosti za II
+                        relacijaPopunjena = ProveriRelacijuGrupe3(scenarioID, podaci);
+                        brojKontejneraPopunjeno = ProveriBrojKontejnera(podaci);
+                    break;
+                    case 24: // Scenario I-L
+                             //  AktivirajLukaPolja();
+                        relacijaPopunjena = ProveriRelacijuGrupe3(scenarioID, podaci);
+                        brojKontejneraPopunjeno = ProveriBrojKontejnera(podaci);
+                    break;
+                    // GRUPA IV
+                    case 9: // Scenario II
+                            // Specifičnosti za II
+                        relacijaPopunjena = ProveriRelacijuGrupe4(scenarioID, podaci);
+                    break;
+                    case 25: // Scenario I-L
+                             //  AktivirajLukaPolja();
+                        relacijaPopunjena = ProveriRelacijuGrupe4(scenarioID, podaci);
+                    break;
+
+
+                    default:
+                        // Neki default ako ID nije prepoznat
+                        break;
+
+                }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -2787,6 +3085,120 @@ namespace Saobracaj.Izvoz
                 // if (row.Selected)
                 // {
                 ProveriPodatkeDaLiSuPripreljeni(Convert.ToInt32(row.Cells[0].Value.ToString()));
+
+                //List<string> nedostaje = new List<string>();
+
+                //bool faliBrodar;
+
+                //if (brodarPopunjeno == 0)
+                //{
+                //    faliBrodar = true;  // Nije popunjeno
+                //}
+                //else
+                //{
+                //    faliBrodar = false; // Popunjeno je
+                //}
+                //bool faliKontejner;
+                //if (brojKontejneraPopunjeno == 0)
+                //{
+                //    faliKontejner = true;  // Nije popunjeno
+                //}
+                //else
+                //{
+                //    faliKontejner = false; // Popunjeno je
+                //}
+
+                //if (relacijaPopunjena == 0)
+                //    nedostaje.Add("relacijama");
+
+                //if (carinskoPopunjeno == 0)
+                //    nedostaje.Add("carinskom postupku");
+
+
+                ////if (nedostaje.Count > 0)
+                ////{
+                ////    // String.Join će spojiti elemente liste sa " i " samo ako ih ima više
+                ////    string detalji = string.Join(" i ", nedostaje);
+
+                ////    MessageBox.Show($"Nije moguće formirati komercijalni nalog, jer nisu popunjena obavezna polja u {detalji}!");
+                ////    return;
+                ////}
+                //if (faliBrodar || nedostaje.Count > 0)
+                //{
+                //    string poruka = "Nije moguće formirati komercijalni nalog, jer ";
+
+                //    // 1. Deo za grupe polja (relacije, carinsko)
+                //    if (nedostaje.Count > 0)
+                //    {
+                //        string spisakGrupa = string.Join(" i ", nedostaje);
+                //        poruka += $"nisu popunjena obavezna polja u {spisakGrupa}";
+                //    }
+
+                //    // 2. Veznik "i" ako fali i jedno i drugo
+                //    if (nedostaje.Count > 0 && faliBrodar)
+                //    {
+                //        poruka += " i ";
+                //    }
+
+                //    // 3. Deo za pojedinačno polje (Brodar)
+                //    if (faliBrodar)
+                //    {
+                //        poruka += "nije popunjeno polje Brodar";
+                //    }
+
+                //    poruka += "!";
+                //    MessageBox.Show(poruka);
+                //    return;
+                //}
+
+                List<string> nedostajeGrupe = new List<string>();
+                List<string> nedostajePolja = new List<string>();
+
+                // 1. Provera grupa (množina)
+                if (relacijaPopunjena == 0)
+                    nedostajeGrupe.Add("relacijama");
+
+                if (carinskoPopunjeno == 0)
+                    nedostajeGrupe.Add("carinskom postupku");
+
+                // 2. Provera pojedinačnih polja (jednina)
+                if (brodarPopunjeno == 0)
+                    nedostajePolja.Add("Brodar");
+
+                if (brojKontejneraPopunjeno == 0)
+                    nedostajePolja.Add("Broj kontejnera");
+
+                // 3. Formiranje poruke ako bilo šta fali
+                if (nedostajeGrupe.Count > 0 || nedostajePolja.Count > 0)
+                {
+                    string poruka = "Nije moguće formirati komercijalni nalog, jer ";
+
+                    // Deo za grupe (relacije, carinsko)
+                    if (nedostajeGrupe.Count > 0)
+                    {
+                        string spisakGrupa = string.Join(" i ", nedostajeGrupe);
+                        poruka += $"nisu popunjena obavezna polja u {spisakGrupa}";
+                    }
+
+                    // Veznik "i" između grupa i pojedinačnih polja
+                    if (nedostajeGrupe.Count > 0 && nedostajePolja.Count > 0)
+                    {
+                        poruka += " i ";
+                    }
+
+                    // Deo za pojedinačna polja (Brodar, Broj kontejnera)
+                    if (nedostajePolja.Count > 0)
+                    {
+                        string spisakPolja = string.Join(" i ", nedostajePolja);
+                        string glagol = nedostajePolja.Count > 1 ? "nisu popunjena polja" : "nije popunjeno polje";
+                        poruka += $"{glagol} {spisakPolja}";
+                    }
+
+                    poruka += "!";
+                    MessageBox.Show(poruka);
+                    return;
+                }
+
 
                 ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(40));
 
@@ -2888,6 +3300,38 @@ namespace Saobracaj.Izvoz
             dataGridView4.Columns[2].Width = 160;
 
         }
+    }
+
+   
+    public class PodaciIzvoza
+    {
+        public string OdlaznaMorskaLuka { get; set; }
+        public int? MestoSpustanjaPunogKontejnera { get; set; }
+        public DateTime? PlaniranDatSpustanjaKontejnera { get; set; }
+        public DateTime? PlaniraniDtPreuzimanja { get; set; }
+        public int? MestoPreuzimanjaPunogPraznog { get; set; }
+        public DateTime? PlaniranDatUtovaraKontejnera { get; set; }
+        
+        public int? MestoUtovaraKontejnera { get; set; }
+        public int? KontaktOUtovaraKontejnera { get; set; }
+        public int? MestoUtovaraCerade { get; set; }
+        public int? KontaktOUtovaraCerade { get; set; }
+        public DateTime? PlaniraniDatumUtovaraCerade { get; set; }
+        public int? MestoIstovaraCerade { get; set; }
+        public int? KontaktOIstovaraCerade { get; set; }
+        public DateTime? PlaniraniDatumIstovaraCerade { get; set; }
+        public DateTime? RealizacijaDatUtovaraKontejnera { get; set; }
+        public string DodatnaNapomenaDrumski { get; set; }
+        public int? CarinskiPostupakUnutrasnji { get; set; }
+        public int? MestoCarinjenja { get; set; }
+        public int? Spedicija { get; set; }
+        public string KontaktSpeditera { get; set; }
+        public int? OdredisnaCarinarnica { get; set; }
+        public int? SpediterOdredisna { get; set; }
+        public string KontaktSpediteraOdredisna { get; set; }
+        public int? Brodar { get; set; }
+        public string BrojKontejnera { get; set; }
+
     }
 }
 
