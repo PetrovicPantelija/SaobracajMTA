@@ -312,7 +312,8 @@ namespace Saobracaj.Drumski
                                     ELSE 'Neraspoređen' END AS Trenutno,
                                     ri.ID AS RadniNalogInterniID,
                                     rn.TipTransporta,
-                                    rn.Uvoz
+                                    rn.Uvoz,
+                                    ik.Scenario
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
                             LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -343,7 +344,8 @@ namespace Saobracaj.Drumski
                                     ELSE 'Neraspoređen' END AS Trenutno,
                                     ri.ID AS RadniNalogInterniID,
                                     rn.TipTransporta,
-                                    rn.Uvoz
+                                    rn.Uvoz,
+                                    i.Scenario
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -374,7 +376,8 @@ namespace Saobracaj.Drumski
                                ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
-                               rn.Uvoz
+                               rn.Uvoz,
+                               uk.Scenario
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -405,7 +408,8 @@ namespace Saobracaj.Drumski
                                ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
-                               rn.Uvoz
+                               rn.Uvoz,
+                               uk.Scenario
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -436,7 +440,8 @@ namespace Saobracaj.Drumski
                                ELSE 'Neraspoređen' END AS Trenutno,
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
-                               rn.Uvoz
+                               rn.Uvoz,
+                               rn.Scenario
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -568,9 +573,50 @@ namespace Saobracaj.Drumski
                 if (rec != null)
                 {
                     int ID = Convert.ToInt32(rec.GetValue("ID"));
+                    int scenario = Convert.ToInt32(rec.GetValue("Scenario"));
+                    int uvoz = Convert.ToInt32(rec.GetValue("Uvoz"));
+                    int adr = 0;
+                    int tipNaloga = 0; // Pretpostavljam da je 0 podrazumevano grupa scenarija 1,2,3,4
+
+                    switch (scenario)
+                    {
+                        // Grupa 1: ADR = 0
+                       
+                        case 8:
+                        case 9:
+                            adr = 0;
+                            break;
+
+                        case 7:
+                            adr = 0;
+                            tipNaloga = 2;
+                            break;
+
+                        // Grupa 2: ADR = 1
+                        case 24:
+                        case 25:
+                            adr = 1;
+                            break;
+
+                        case 23:
+                            adr = 1;
+                            tipNaloga = 2;
+                            break;
+
+                        case 26:
+                            adr = 1;
+                            tipNaloga = 1;
+                            break;
+
+                        // Specijalni slučajevi za Tip Naloga koji nisu u gornjim ADR grupama
+                        case 13:
+                            tipNaloga = 1;
+                            // Ovde adr ostaje 0 (podrazumevano)
+                            break;
+                    }
                     if (drumskiNew == true)
                     {
-                        frmDrumski pnd = new frmDrumski(_tipoviIn,  _tipoviNotIn, "", ID );
+                        frmDrumski1 pnd = new frmDrumski1(_tipoviIn, _tipoviNotIn, "", ID,adr, uvoz, tipNaloga);
                         pnd.FormClosed += pnd_FormClosed;
                         pnd.Show();
                     }
@@ -607,7 +653,8 @@ namespace Saobracaj.Drumski
                 }
                 else
                 {
-                    frmDrumski pnd = new frmDrumski(_tipoviIn, _tipoviNotIn, "", null);
+                    
+                    frmDrumski pnd = new frmDrumski(_tipoviIn, _tipoviNotIn, "", null,0,0,0);
                     pnd.FormClosed += pnd_FormClosed;
                     pnd.Show();
                 }
