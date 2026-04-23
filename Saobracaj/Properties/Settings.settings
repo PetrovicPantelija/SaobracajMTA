@@ -26,5 +26,13 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.150.110\MSSQLServer2024;Initial Catalog=Testiranje;User ID=sa;Password=P@ss011!;</Value>
     </Setting>
+    <Setting Name="VSDConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=192.168.150.110\MSSQLServer2024;Initial Catalog=VSD;User ID=sa;TrustServerCertificate=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=192.168.150.110\MSSQLServer2024;Initial Catalog=VSD;User ID=sa;TrustServerCertificate=True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

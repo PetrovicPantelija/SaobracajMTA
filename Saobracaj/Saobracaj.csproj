@@ -4562,12 +4562,35 @@
     <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.Designer.cs">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSDDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\DnevniAnaliza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\DnevniAnaliza.Designer.cs">
+      <DependentUpon>DnevniAnaliza.cs</DependentUpon>
+    </Compile>
     <Compile Include="VSD\frmDnevniExcel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VSD\frmDnevniExcel.Designer.cs">
       <DependentUpon>frmDnevniExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\frmPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\frmPlan.Designer.cs">
+      <DependentUpon>frmPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\InsertVSDDnevni.cs" />
     <Compile Include="VSD\VSDMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6401,9 +6424,16 @@
     <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSD\DnevniAnaliza.resx">
+      <DependentUpon>DnevniAnaliza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSD\frmDnevniExcel.resx">
       <DependentUpon>frmDnevniExcel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSD\frmPlan.resx">
+      <DependentUpon>frmPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\rptVSD.rdlc" />
     <EmbeddedResource Include="VSD\VSDMain.resx">
       <DependentUpon>VSDMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -7098,6 +7128,28 @@
     </None>
     <None Include="TrackModal\TestiranjeDataSet9.xss">
       <DependentUpon>TestiranjeDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet.xsc">
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VSDDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VSDDataSet.xss">
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet1.xsc">
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VSDDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VSDDataSet1.xss">
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

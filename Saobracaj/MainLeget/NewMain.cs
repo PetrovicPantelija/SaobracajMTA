@@ -69,6 +69,7 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnLogistikaDirektnih);
                 SetLeftButtonWidthToFlow(btnDrumski);
                 SetLeftButtonWidthToFlow(btnZeleznicki);
+                SetLeftButtonWidthToFlow(btnIntermodalni);
                 SetLeftButtonWidthToFlow(btnSkladista);
                 SetLeftButtonWidthToFlow(btnPretovari);
                 SetLeftButtonWidthToFlow(btnPrijemIOtpremaVozova);
@@ -80,15 +81,22 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnFinansije);
                 SetLeftButtonWidthToFlow(btnPodesavanja);
                 SetLeftButtonWidthToFlow(btnDepocnt);
-                SetLeftButtonWidthToFlow(btnVSD);
+                
+
 
             }
             catch { }
             if (frmLogovanje.company == "VSD")
             {
+                SetLeftButtonWidthToFlow(btnVSD);
+                btnVSD.Visible = true;
                 string imagePath = Path.Combine(Application.StartupPath, "VSDLogo.jpg");
                 SetPictureFromPath(imagePath);
      
+            }
+            else
+            {
+                btnVSD.Visible = false;
             }
 
             if (Korisnik != "test")

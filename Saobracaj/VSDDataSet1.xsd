@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VSDDataSet1" targetNamespace="http://tempuri.org/VSDDataSet1.xsd" xmlns:mstns="http://tempuri.org/VSDDataSet1.xsd" xmlns="http://tempuri.org/VSDDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="VSDConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="VSDConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.VSDConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PlanViewTableAdapter" GeneratorDataComponentClassName="PlanViewTableAdapter" Name="PlanView" UserDataComponentName="PlanViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="VSDConnectionString (Settings)" DbObjectName="VSD.dbo.PlanView" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Datum, Komercijalista, Brend, Kolicina, PNC, PVrednost, RUC, Profit, PlanID, ID, Godina, Mesec, UkupnoDana, TekuceDana, Naziv, Expr1, PlaniranaVrednost FROM dbo.PlanView</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+              <Mapping SourceColumn="Komercijalista" DataSetColumn="Komercijalista" />
+              <Mapping SourceColumn="Brend" DataSetColumn="Brend" />
+              <Mapping SourceColumn="Kolicina" DataSetColumn="Kolicina" />
+              <Mapping SourceColumn="PNC" DataSetColumn="PNC" />
+              <Mapping SourceColumn="PVrednost" DataSetColumn="PVrednost" />
+              <Mapping SourceColumn="RUC" DataSetColumn="RUC" />
+              <Mapping SourceColumn="Profit" DataSetColumn="Profit" />
+              <Mapping SourceColumn="PlanID" DataSetColumn="PlanID" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Godina" DataSetColumn="Godina" />
+              <Mapping SourceColumn="Mesec" DataSetColumn="Mesec" />
+              <Mapping SourceColumn="UkupnoDana" DataSetColumn="UkupnoDana" />
+              <Mapping SourceColumn="TekuceDana" DataSetColumn="TekuceDana" />
+              <Mapping SourceColumn="Naziv" DataSetColumn="Naziv" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="PlaniranaVrednost" DataSetColumn="PlaniranaVrednost" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VSDDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="VSDDataSet1" msprop:Generator_DataSetName="VSDDataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PlanView" msprop:Generator_RowEvHandlerName="PlanViewRowChangeEventHandler" msprop:Generator_RowDeletedName="PlanViewRowDeleted" msprop:Generator_RowDeletingName="PlanViewRowDeleting" msprop:Generator_RowEvArgName="PlanViewRowChangeEvent" msprop:Generator_TablePropName="PlanView" msprop:Generator_RowChangedName="PlanViewRowChanged" msprop:Generator_RowChangingName="PlanViewRowChanging" msprop:Generator_TableClassName="PlanViewDataTable" msprop:Generator_RowClassName="PlanViewRow" msprop:Generator_TableVarName="tablePlanView" msprop:Generator_UserTableName="PlanView">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Datum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Komercijalista" msprop:Generator_ColumnPropNameInRow="Komercijalista" msprop:Generator_ColumnPropNameInTable="KomercijalistaColumn" msprop:Generator_ColumnVarNameInTable="columnKomercijalista" msprop:Generator_UserColumnName="Komercijalista" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Brend" msprop:Generator_ColumnPropNameInRow="Brend" msprop:Generator_ColumnPropNameInTable="BrendColumn" msprop:Generator_ColumnVarNameInTable="columnBrend" msprop:Generator_UserColumnName="Brend" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Kolicina" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnVarNameInTable="columnKolicina" msprop:Generator_UserColumnName="Kolicina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PNC" msprop:Generator_ColumnPropNameInRow="PNC" msprop:Generator_ColumnPropNameInTable="PNCColumn" msprop:Generator_ColumnVarNameInTable="columnPNC" msprop:Generator_UserColumnName="PNC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PVrednost" msprop:Generator_ColumnPropNameInRow="PVrednost" msprop:Generator_ColumnPropNameInTable="PVrednostColumn" msprop:Generator_ColumnVarNameInTable="columnPVrednost" msprop:Generator_UserColumnName="PVrednost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RUC" msprop:Generator_ColumnPropNameInRow="RUC" msprop:Generator_ColumnPropNameInTable="RUCColumn" msprop:Generator_ColumnVarNameInTable="columnRUC" msprop:Generator_UserColumnName="RUC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Profit" msprop:Generator_ColumnPropNameInRow="Profit" msprop:Generator_ColumnPropNameInTable="ProfitColumn" msprop:Generator_ColumnVarNameInTable="columnProfit" msprop:Generator_UserColumnName="Profit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PlanID" msprop:Generator_ColumnPropNameInRow="PlanID" msprop:Generator_ColumnPropNameInTable="PlanIDColumn" msprop:Generator_ColumnVarNameInTable="columnPlanID" msprop:Generator_UserColumnName="PlanID" type="xs:int" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="Godina" msprop:Generator_ColumnPropNameInRow="Godina" msprop:Generator_ColumnPropNameInTable="GodinaColumn" msprop:Generator_ColumnVarNameInTable="columnGodina" msprop:Generator_UserColumnName="Godina" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mesec" msprop:Generator_ColumnPropNameInRow="Mesec" msprop:Generator_ColumnPropNameInTable="MesecColumn" msprop:Generator_ColumnVarNameInTable="columnMesec" msprop:Generator_UserColumnName="Mesec" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UkupnoDana" msprop:Generator_ColumnPropNameInRow="UkupnoDana" msprop:Generator_ColumnPropNameInTable="UkupnoDanaColumn" msprop:Generator_ColumnVarNameInTable="columnUkupnoDana" msprop:Generator_UserColumnName="UkupnoDana" type="xs:int" minOccurs="0" />
+              <xs:element name="TekuceDana" msprop:Generator_ColumnPropNameInRow="TekuceDana" msprop:Generator_ColumnPropNameInTable="TekuceDanaColumn" msprop:Generator_ColumnVarNameInTable="columnTekuceDana" msprop:Generator_UserColumnName="TekuceDana" type="xs:int" minOccurs="0" />
+              <xs:element name="Naziv" msprop:Generator_ColumnPropNameInRow="Naziv" msprop:Generator_ColumnPropNameInTable="NazivColumn" msprop:Generator_ColumnVarNameInTable="columnNaziv" msprop:Generator_UserColumnName="Naziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_UserColumnName="Expr1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PlaniranaVrednost" msprop:Generator_ColumnPropNameInRow="PlaniranaVrednost" msprop:Generator_ColumnPropNameInTable="PlaniranaVrednostColumn" msprop:Generator_ColumnVarNameInTable="columnPlaniranaVrednost" msprop:Generator_UserColumnName="PlaniranaVrednost" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

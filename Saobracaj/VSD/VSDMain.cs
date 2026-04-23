@@ -22,5 +22,17 @@ namespace Saobracaj.VSD
             frmDnevniExcel dn = new frmDnevniExcel();
             dn.ShowDialog();
         }
+
+        private void btnLogistikaIzvozaPM1_Click(object sender, EventArgs e)
+        {
+            frmPlan pl = new frmPlan();
+            pl.Show();
+        }
+
+        private void btnLogistikaIzvozaPM3_Click(object sender, EventArgs e)
+        {
+            DnevniAnaliza dan = new DnevniAnaliza();
+            dan.ShowDialog();
+        }
     }
 }
