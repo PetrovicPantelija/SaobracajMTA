@@ -100,5 +100,17 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 () => new frmPrijemIOtpremaKamiona4()
             );
         }
+
+        private void btnPrijemIOtpremaKamiona11_Click(object sender, EventArgs e)
+        {
+            Pregledac pr = new Pregledac();
+            pr.Show();
+        }
+
+        private void btnPrijemIOtpremaKamiona8_Click(object sender, EventArgs e)
+        {
+            frmPlatforma pl = new frmPlatforma();
+            pl.Show();
+        }
     }
 }

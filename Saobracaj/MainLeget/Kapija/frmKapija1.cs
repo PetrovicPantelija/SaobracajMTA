@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Kapija;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,12 @@ namespace Saobracaj.MainLeget.Kapija
         {
             var parent = this.TopLevelControl as NewMain;
             parent?.ShowChild(new Saobracaj.Kapija.frmPregledKamiona(), true);
+        }
+
+        private void sfButton4_Click(object sender, EventArgs e)
+        {
+            frmKapijaOtvoreniNalozi on = new frmKapijaOtvoreniNalozi();
+            on.Show();
         }
     }
 }

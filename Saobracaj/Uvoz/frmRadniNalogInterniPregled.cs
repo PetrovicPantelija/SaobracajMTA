@@ -664,7 +664,7 @@ namespace Saobracaj.Uvoz
             */
             if (cboIzdatOd.Text == "Uvoz")
             {
-                                            select = "    SELECT UvozKonacna.ID, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera," +
+                                            select = "    SELECT UvozKonacna.ID, [BrojKontejnera],TipKontenjera.SkNaziv as Vrsta_Kontejnera," +
                                             " b.PaNaziv as Brodar, p1.PaNaziv as Uvoznik,Voz.NAzivVoza as Voz ,  " +
                             " (select Top 1 Naziv from Scenario inner join UvozKonacna uv on uv.Scenario = Scenario.ID  where UvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
                             " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, VrstePostupakaUvoz.Naziv as PostupakSaRobom, NetoRobe, BrutoRobe,  Koleta ,TaraKontejnera, BrutoKontejnera,      " +
@@ -716,24 +716,21 @@ namespace Saobracaj.Uvoz
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
-                select = "     SELECT IzvozKonacna.ID,[BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, " +
- "     b.PaNaziv as Brodar, p1.PaNaziv as Izvoznik,Voz.NAzivVoza as Voz ,  n1.PaNaziv as Nalogodavac1, n2.PaNaziv as Nalogodavac2, n3.PaNaziv as Nalogodavac3, " +
- "     (select Top 1 Naziv from Scenario inner join IzvozKonacna uv on uv.Scenario = Scenario.ID  where IzvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
- "      NetoRobe, BrutoRobe, IzvozKonacna.BrojKoleta, KontejnerskiTerminali.Naziv as Terminal1, k2.Naziv as Terminal2, k3.Naziv as Terminal3 " +
-"     FROM IzvozKonacna " +
-"     inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.ID = IzvozKonacna.IDNadredjena " +
-"      inner join Partnerji p1 on p1.PaSifra = Izvoznik " +
-"     inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
-"     inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = IzvozKonacna.MestoPreuzimanja " +
-"     inner join KontejnerskiTerminali k2 on k2.ID = IzvozKonacna.MestoPreuzimanja2 " +
-"     inner join KontejnerskiTerminali k3 on k3.ID = IzvozKonacna.MestoPreuzimanja3 " +
-"     inner join Partnerji n1 on n1.PaSifra = Klijent1 " +
-"     inner join Partnerji n2 on n2.PaSifra = Klijent2 " +
-"     inner join Partnerji n3 on n3.PaSifra = Klijent3 " +
-"     inner join Partnerji b on b.PaSifra = IzvozKonacna.Brodar " +
-"     inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
-"     inner Join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
-"     order by IzvozKonacna.ID desc ";
+                select = "     SELECT IzvozKonacna.ID,[BrojKontejnera],TipKontenjera.SkNaziv as Vrsta_Kontejnera, " + 
+" b.PaNaziv as Brodar, p1.PaNaziv as Izvoznik,Voz.NAzivVoza as Voz ,  n1.PaNaziv as Nalogodavac1, n2.PaNaziv as Nalogodavac2, n3.PaNaziv as Nalogodavac3, " +
+" (select Top 1 Naziv from Scenario inner join IzvozKonacna uv on uv.Scenario = Scenario.ID  where IzvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
+" NetoRobe, BrutoRobe, IzvozKonacna.BrojKoleta " +
+" FROM IzvozKonacna " +
+" inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.ID = IzvozKonacna.IDNadredjena " +
+" inner join Partnerji p1 on p1.PaSifra = Izvoznik " +
+" inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
+" inner join Partnerji n1 on n1.PaSifra = Klijent1 " +
+" inner join Partnerji n2 on n2.PaSifra = Klijent2 " +
+" inner join Partnerji n3 on n3.PaSifra = Klijent3 " +
+" inner join Partnerji b on b.PaSifra = IzvozKonacna.Brodar " +
+" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+" inner Join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
+" order by IzvozKonacna.ID desc  ";
             }
 
                 var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -1099,6 +1096,7 @@ namespace Saobracaj.Uvoz
         int BrojRN = 0;
         int ProveriDaLijeVecGenerisanaOperacija(string Nalog)
         {
+          
             int Uradjen = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
@@ -1125,6 +1123,14 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
+            if (txtNALOGID.Text == "")
+            {
+                MessageBox.Show("Obelezite uslugu");
+                return;
+            }
+
+
+
             int i = 0;
             int j = 0;
             j = ProveriDaLijeVecGenerisanaOperacija(txtNALOGID.Text);
@@ -1139,6 +1145,13 @@ namespace Saobracaj.Uvoz
                 MessageBox.Show("Nije zavrsena predhodna usluga ne mozete generisati novu!!!");
             return;
             }
+
+
+            Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+            ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text));
+            MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
+
+
             string Forma = VratiFormu();
             int KISUsl = 0;
             int OJ = VratiOJIzdavanja();
@@ -1575,6 +1588,18 @@ namespace Saobracaj.Uvoz
             }
 
      
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+            RNI.frmScenarioSCI sc1 = new RNI.frmScenarioSCI();
+            sc1.Show();
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

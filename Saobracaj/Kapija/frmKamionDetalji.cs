@@ -300,11 +300,13 @@ namespace Saobracaj.Kapija
                 datumZakazanogDolaska = dtpZakazaniDatumDolaska.Value;
             }
 
+            string kor = Sifarnici.frmLogovanje.user;
+
             InsertKapija ins = new InsertKapija();
             if (status == true)
             {
 
-                int noviID = ins.InsKapija(datumDolaska, status1, vozac, registarskiBroj, kontakt, razlogDolaska, datumZakazanogDolaska, kontaktUnutarFirme, datumOdlaska);
+                int noviID = ins.InsKapija(status1, vozac, registarskiBroj, kontakt, razlogDolaska, datumZakazanogDolaska, kontaktUnutarFirme, kor, 0);
                 txtID.Text = noviID.ToString();
                 status = false;
             }

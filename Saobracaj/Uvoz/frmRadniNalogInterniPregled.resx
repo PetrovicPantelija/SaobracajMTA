@@ -128,7 +128,7 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAtkSURBVHhe7ZtBiF1nHcULLtyk4MKCCxcWXLgQFRRUMLRa
-        TebdN2l1ERCpCCoIxVDt5N6bUaTFhQsXLly4ceFCiqVCceHChVAXbizJvHvHSFUwUFNEXShIQbSL+r56
+        TebdN2l1ERCpiCIIxVDt5N6bUaTFhQsXLly4ceFCiqVCceHChVAXbizJvHvHSFUwUFNEXShIQbSL+r56
         XpomJycz8+697/ve//zgB01mzv3uO//vXzINvccYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMWZI
         zj959dS87k9X7eGFed09vfNE99K87V+zwqZ7FvWZkpm33d68vXydDtlqvQTlcm6vu7+q+xfoYO3R9RKU
         x6xePEWHaU+ml6AcdvYP7qNDtOvpJSiDqumfoQO06+slyJuqXTxKB2eH00uQJw/XL947a/trdGh2WL0E
@@ -158,10 +158,10 @@
         hZWiRGwShrj8VdN/8yTPSt8/yDvU3V+WfyQ6nZ41BfQdhIjFhZWiRGx0Brn87eElPO7EC5BY+132+r9X
         9eLjeNyo0POFiMWFlaJEbFSGuPzzpm/wuNdZZwES677TQ1974R+z5uBTeNxosLOViMWFlaJEbDQGufzt
         4R4ed4N1FyCx7rt9sr3yr+UPxzM8bhTYuUrE4sJKUSI2CkNc/qrtv47HvYkhFiCx9js+vvj3btudw+MG
-        h54pRCwurBQlYoMzxOVf+jgedxtDLUBi7Xf9Uv/qvF18Bo8bFHqeELG4sFKUiA3KIJe/OfwqHkcZcgES
+        h54pRCwurBQlYoMzxOVf+jgedxtDLUBi7Xf9Yv/qvF18Bo8bFHqeELG4sFKUiA3KIJe/OfwqHkcZcgES
         g7zzpcPzeNxg0HOEiMWFlaJEbFDm7cH709+esvOOYlX3j+FRd2ToBUicdAkeeOz5/yz/qPYIHjMo7Dwl
         YnFhpSgRG5z0t6aztr/GzlRWzeIreIRkjAVInGAJXpnXBxXig0POkyIWF1aKErFR2L145aNnmv5ldi5z
-        t+2/jOhdGWsBEkd99hT/KZSdq0QsLqwUJWKjMd/vTy/P+dut595u90VEjsSYC5C42/N3Ll7567z97YP4
+        t+2/jOhdGWsBEkd99hT/KZSdq0QsLqwUJWKjMd/vTy/P+dut595u9yVEjsSYC5C42/N3Ll7567z97YP4
         9tFgZysRiwsrRYnYqMza7hNnm/6f7PzXbfov4FuPzNgLkLjzGZev77bdx/Bto8LPv7OIxYWVokRsdOZN
         d3Z53iu3nl/V3efxLcdiigVI3HrO2YsHf6oudR/Gl0fn5rOPImJxYaUoEZuEWd3tVk3/39XZu03/OXzp
         2Ey1AIk3zrry+/mlKx/Eb0/CrZ/jbiIWF1aKErHJ2K0PP/362U33WfzWiZhyARIpf+7i4fvwy8lgn0WJ
@@ -176,7 +176,7 @@
         +Sevnpq3l6/TguwWe/l6mj2uQWzmbbfHS7Lba7eH8ZtEVfcv8KLstplmjbGbFef2uvtZWXb7TLPG2M3N
         pP8RnBVmt8dS/2f/ydjZP7ivavpnWHm2XNNM02wxZnM3qnbx6Kztr7EybTmmGaZZYqzmODxcv3jvbt0/
         NG+6/VnTP3em6V9mJdt8TDNKs0ozS7NLM8Q4jTHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjBuCe
-        e/4HChFneqvS938AAAAASUVORK5CYII=
+        e/4HUUtneOn0bD4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
