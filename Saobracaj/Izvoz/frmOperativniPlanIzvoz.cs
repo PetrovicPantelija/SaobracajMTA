@@ -1,4 +1,5 @@
-﻿using Saobracaj.Uvoz;
+﻿using Microsoft.Office.Interop.Excel;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
@@ -31,7 +32,7 @@ namespace Saobracaj.Izvoz
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                      " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr, Izvoz.Cirada   " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr, Izvoz.Cirada,Izvoz.Scenario   " +
                     " from IzvozVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
@@ -45,7 +46,7 @@ namespace Saobracaj.Izvoz
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                     " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,IzvozKonacna.Cirada   " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,IzvozKonacna.Cirada,IzvozKonacna.Scenario   " +
                     " from IzvozKonacnaVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
@@ -83,7 +84,7 @@ namespace Saobracaj.Izvoz
             InsertUvoz isu = new InsertUvoz();
             int uvoz = 0;
 
-            List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada)> stavke = new List<(int, int, int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Scenario)> stavke = new List<(int, int, int, int, int)>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
             {
@@ -98,7 +99,8 @@ namespace Saobracaj.Izvoz
                 int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                 int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
                 int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
-                stavke.Add((kontejnerID, manipulacijaID, IKID, cirada));
+                int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                stavke.Add((kontejnerID, manipulacijaID, IKID, cirada, scenario));
             }
 
             if (stavke.Count > 0)
@@ -112,7 +114,7 @@ namespace Saobracaj.Izvoz
         {
             int uvoz = 0;
             InsertUvoz isu = new InsertUvoz();
-            List<(int kontejnerID, int manipulacijaID, int IKID)> stavkeBezNaloga = new List<(int, int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Scenario)> stavkeBezNaloga = new List<(int, int, int, int, int)>();
             HashSet<int> nalogIds = new HashSet<int>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
@@ -133,7 +135,9 @@ namespace Saobracaj.Izvoz
                     int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID));
+                    int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID, cirada, scenario));
                 }
             }
 

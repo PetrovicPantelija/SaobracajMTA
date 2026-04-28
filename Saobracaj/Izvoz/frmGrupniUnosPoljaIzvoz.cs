@@ -2618,7 +2618,7 @@ namespace Saobracaj.Izvoz
                                                 KontaktOsoba AS KontaktOUtovaraKontejnera, 
                                                 MestoUtovaraCerade AS MestoUtovaraCerade, 
                                                 KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, 
-                                                PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
+                                                DtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
                                                 MestoIstovaraCerade AS MestoIstovaraCerade, 
                                                 KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, 
                                                 PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, -- Ispravljeno: PlaniraniDt
@@ -3276,7 +3276,7 @@ namespace Saobracaj.Izvoz
         private void FillDG4()
         {
             var select = "select IzvozNapomenePozicioniranja.ID, IDNapomene, stNapomene from IzvozNapomenePozicioniranja " +
-"  where IzvozNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozNapomenePozicioniranja.ID desc ";
+             "  where IzvozNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozNapomenePozicioniranja.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

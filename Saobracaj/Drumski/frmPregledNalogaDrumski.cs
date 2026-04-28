@@ -110,11 +110,13 @@ namespace Saobracaj.Drumski
             {
                 button1.Visible = false;
                 button6.Visible = false;
+                btnOdobrioLO.Visible = false;
 
             }
             else if (forma == "TransportUvoz" || forma == "TransportIzvoz")
             {
                 button6.Visible = false;
+                btnOdobrioLO.Visible = true;
             }     
         }
 
@@ -313,7 +315,9 @@ namespace Saobracaj.Drumski
                                     ri.ID AS RadniNalogInterniID,
                                     rn.TipTransporta,
                                     rn.Uvoz,
-                                    ik.Scenario
+                                    ik.Scenario,
+                                    0 AS ScenarioSaCarinskimPostupkom,
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
                             LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -345,7 +349,9 @@ namespace Saobracaj.Drumski
                                     ri.ID AS RadniNalogInterniID,
                                     rn.TipTransporta,
                                     rn.Uvoz,
-                                    i.Scenario
+                                    i.Scenario,
+                                    0 AS ScenarioSaCarinskimPostupkom,
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -377,7 +383,9 @@ namespace Saobracaj.Drumski
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
                                rn.Uvoz,
-                               uk.Scenario
+                               uk.Scenario,
+                               0 AS ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -409,7 +417,9 @@ namespace Saobracaj.Drumski
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
                                rn.Uvoz,
-                               uk.Scenario
+                               uk.Scenario,
+                               0 AS ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -441,7 +451,9 @@ namespace Saobracaj.Drumski
                                ri.ID AS RadniNalogInterniID,
                                rn.TipTransporta,
                                rn.Uvoz,
-                               rn.Scenario
+                               rn.Scenario,
+                               rn.ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -577,46 +589,54 @@ namespace Saobracaj.Drumski
                     int uvoz = Convert.ToInt32(rec.GetValue("Uvoz"));
                     int adr = 0;
                     int tipNaloga = 0; // Pretpostavljam da je 0 podrazumevano grupa scenarija 1,2,3,4
+                    int carinskiPostupak = Convert.ToInt32(rec.GetValue("ScenarioSaCarinskimPostupkom")); 
 
                     switch (scenario)
-                    {
-                        // Grupa 1: ADR = 0
-                       
-                        case 8:
-                        case 9:
-                            adr = 0;
-                            break;
-
-                        case 7:
-                            adr = 0;
-                            tipNaloga = 2;
-                            break;
-
-                        // Grupa 2: ADR = 1
-                        case 24:
-                        case 25:
-                            adr = 1;
-                            break;
-
-                        case 23:
-                            adr = 1;
-                            tipNaloga = 2;
-                            break;
-
-                        case 26:
-                            adr = 1;
-                            tipNaloga = 1;
-                            break;
-
+                    { 
+                        //Grupa 1
                         // Specijalni slučajevi za Tip Naloga koji nisu u gornjim ADR grupama
                         case 13:
                             tipNaloga = 1;
                             // Ovde adr ostaje 0 (podrazumevano)
                             break;
+                        case 26:
+                            adr = 1;
+                            tipNaloga = 1;
+                            break;
+                        //Grupa 2
+                        case 7:
+                            adr = 0;
+                            tipNaloga = 2;
+                            break;
+                        case 23:
+                            adr = 1;
+                            tipNaloga = 2;
+                            break;
+                        //grupa 3
+                        case 8:
+                            adr = 0;
+                            tipNaloga = 3;
+                            break;
+                        case 24:
+                            adr = 1;
+                            tipNaloga =3;
+                            break;
+
+                        // grupa 4
+                        case 9:
+                            adr = 0;
+                            tipNaloga = 4;
+                            break;
+
+                        case 25:
+                            adr = 1;
+                            tipNaloga = 4;
+                            break;
+
                     }
                     if (drumskiNew == true)
                     {
-                        frmDrumski1 pnd = new frmDrumski1(_tipoviIn, _tipoviNotIn, "", ID,adr, uvoz, tipNaloga);
+                        frmDrumski1 pnd = new frmDrumski1(_tipoviIn, _tipoviNotIn, "", ID,adr, uvoz, tipNaloga, carinskiPostupak);
                         pnd.FormClosed += pnd_FormClosed;
                         pnd.Show();
                     }
@@ -1263,6 +1283,34 @@ namespace Saobracaj.Drumski
 
             // Ovo će naterati Grid da se ugura između headera i statusa
             gridGroupingControl1.BringToFront();
+            this.gridGroupingControl1.QueryCellStyleInfo += new GridTableCellStyleInfoEventHandler(gridGroupingControl1_QueryCellStyleInfo);
+        }
+
+        private void gridGroupingControl1_QueryCellStyleInfo(object sender, GridTableCellStyleInfoEventArgs e)
+        {
+            // Proveravamo da li je ćelija deo reda sa podacima
+    if (e.TableCellIdentity.TableCellType == GridTableCellType.RecordFieldCell ||
+        e.TableCellIdentity.TableCellType == GridTableCellType.AlternateRecordFieldCell)
+    {
+        // Dobijamo pristup rekordu (redu) kojem ćelija pripada
+        var record = e.TableCellIdentity.DisplayElement.GetRecord();
+        
+        if (record != null)
+        {
+            // Dobijamo vrednost kolone "OdobrioPlaner"
+            object val = record.GetValue("OdobrioPlaner");
+
+            // Provera: vrednost nije null i veća je od 0
+            if (val != null && val != DBNull.Value && Convert.ToInt32(val) > 0)
+            {
+                // Bojimo pozadinu ćelije u žuto
+                e.Style.BackColor = Color.Yellow;
+                
+                // Opciono: ako želiš da promeniš i boju teksta
+                // e.Style.TextColor = Color.Black;
+            }
+        }
+    }
         }
 
         private List<int> UcitajArhivskeStatuse()
@@ -1347,6 +1395,25 @@ namespace Saobracaj.Drumski
                     RefreshGrid();
                 }
             }
+        }
+
+        private void btnOdobrioLO_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            List<int> listaIdjeva = new List<int>();
+            if (gridGroupingControl1.Table.SelectedRecords.Count < 0)
+                return;
+            
+            foreach (SelectedRecord selRecord in gridGroupingControl1.Table.SelectedRecords)
+            {
+               
+                int id = Convert.ToInt32(selRecord.Record.GetValue("ID"));
+                listaIdjeva.Add(id);
+            }
+            
+            int temp = PostaviVrednostZaposleni();
+            int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
+            ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
         }
     }
 }

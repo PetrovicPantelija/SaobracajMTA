@@ -175,7 +175,7 @@ namespace Saobracaj.Uvoz
             InsertUvoz isu = new InsertUvoz();
             int uvoz = 1;
 
-            List<(int kontejnerID, int manipulacijaID,int UKID, int Cirada)> stavke = new List<(int, int,int, int)>();
+            List<(int kontejnerID, int manipulacijaID,int UKID, int Cirada, int Scenario)> stavke = new List<(int, int,int, int, int)>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
             {
@@ -189,9 +189,11 @@ namespace Saobracaj.Uvoz
                 int UKID = Convert.ToInt32(selectedRecord.Record.GetValue("UKID"));
                 int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                 int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("UslugaID"));
-
                 int cirada = 0; // doradi
-                stavke.Add((kontejnerID, manipulacijaID, UKID, cirada));
+                int scenario = 0; // doradi
+
+
+                stavke.Add((kontejnerID, manipulacijaID, UKID, cirada, scenario));
             }
 
             if (stavke.Count > 0)
@@ -205,7 +207,7 @@ namespace Saobracaj.Uvoz
         {
             int uvoz = 1;
             InsertUvoz isu = new InsertUvoz();
-            List<(int kontejnerID, int manipulacijaID, int UKID)> stavkeBezNaloga = new List<(int, int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int UKID, int cirada, int scenario)> stavkeBezNaloga = new List<(int, int, int, int, int)>();
             HashSet<int> nalogIds = new HashSet<int>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
@@ -226,7 +228,9 @@ namespace Saobracaj.Uvoz
                     int UKID = Convert.ToInt32(selectedRecord.Record.GetValue("UKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("UslugaID"));
-                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, UKID));
+                    int cirada = 0; // doradi
+                    int scenario = 0;// doradi
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, UKID, cirada, scenario));
                 }
             }
 
