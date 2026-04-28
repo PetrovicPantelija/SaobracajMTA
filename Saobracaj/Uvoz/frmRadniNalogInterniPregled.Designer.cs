@@ -65,6 +65,7 @@ namespace Saobracaj.Uvoz
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -405,7 +406,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1141, 717);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1144, 717);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.tabSplitterContainer1.SplitterPosition = 582;
             this.tabSplitterContainer1.TabIndex = 10;
@@ -419,7 +420,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1141, 582);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1144, 582);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
             // 
@@ -442,7 +443,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1138, 579);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1141, 579);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -465,7 +466,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 602);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1141, 115);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1144, 115);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
@@ -482,13 +483,13 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl2.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl2.Location = new System.Drawing.Point(0, 5);
+            this.gridGroupingControl2.Location = new System.Drawing.Point(3, 3);
             this.gridGroupingControl2.Name = "gridGroupingControl2";
             this.gridGroupingControl2.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1138, 123);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1141, 123);
             this.gridGroupingControl2.TabIndex = 237;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -527,6 +528,7 @@ namespace Saobracaj.Uvoz
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
@@ -541,6 +543,27 @@ namespace Saobracaj.Uvoz
             this.panel2.Size = new System.Drawing.Size(1327, 31);
             this.panel2.TabIndex = 6;
             // 
+            // button7
+            // 
+            this.button7.AutoSize = true;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button7.Location = new System.Drawing.Point(894, 0);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(132, 31);
+            this.button7.TabIndex = 25;
+            this.button7.Text = "Pregledaj podatke";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button6
             // 
             this.button6.AutoSize = true;
@@ -553,7 +576,7 @@ namespace Saobracaj.Uvoz
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button6.Location = new System.Drawing.Point(886, 0);
+            this.button6.Location = new System.Drawing.Point(815, 0);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 31);
             this.button6.TabIndex = 24;
@@ -574,7 +597,7 @@ namespace Saobracaj.Uvoz
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button5.Location = new System.Drawing.Point(678, 0);
+            this.button5.Location = new System.Drawing.Point(607, 0);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(208, 31);
             this.button5.TabIndex = 23;
@@ -595,7 +618,7 @@ namespace Saobracaj.Uvoz
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(512, 0);
+            this.button4.Location = new System.Drawing.Point(441, 0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(166, 31);
             this.button4.TabIndex = 22;
@@ -616,7 +639,7 @@ namespace Saobracaj.Uvoz
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(421, 0);
+            this.button3.Location = new System.Drawing.Point(350, 0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(91, 31);
             this.button3.TabIndex = 21;
@@ -639,9 +662,9 @@ namespace Saobracaj.Uvoz
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(289, 0);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(132, 31);
+            this.button27.Size = new System.Drawing.Size(61, 31);
             this.button27.TabIndex = 20;
-            this.button27.Text = "Formiraj operacije";
+            this.button27.Text = "Potvrdi";
             this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.toolStripButton8_Click);
@@ -767,6 +790,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton1.Text = "IZDAO OJ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // toolStripSeparator2
             // 
@@ -976,5 +1000,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.Button button7;
     }
 }

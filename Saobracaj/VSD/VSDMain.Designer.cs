@@ -133,11 +133,12 @@
             this.btnLogistikaIzvozaPM3.Size = new System.Drawing.Size(288, 225);
             this.btnLogistikaIzvozaPM3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
             this.btnLogistikaIzvozaPM3.Style.ForeColor = System.Drawing.Color.White;
-            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            this.btnLogistikaIzvozaPM3.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
             this.btnLogistikaIzvozaPM3.TabIndex = 502;
             this.btnLogistikaIzvozaPM3.Text = "Dnevne analize";
             this.btnLogistikaIzvozaPM3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM3.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM3.Click += new System.EventHandler(this.btnLogistikaIzvozaPM3_Click);
             // 
             // btnLogistikaIzvozaPM1
             // 
@@ -162,6 +163,7 @@
             this.btnLogistikaIzvozaPM1.Text = "Planovi mesečni";
             this.btnLogistikaIzvozaPM1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogistikaIzvozaPM1.UseVisualStyleBackColor = false;
+            this.btnLogistikaIzvozaPM1.Click += new System.EventHandler(this.btnLogistikaIzvozaPM1_Click);
             // 
             // pictureBox1
             // 

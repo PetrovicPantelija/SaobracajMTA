@@ -24,6 +24,7 @@ using System.Windows.Forms;
 
 
 using System.IO;
+using Saobracaj.MainLeget.Intermodalni;
 
 namespace Saobracaj
 {
@@ -69,6 +70,7 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnLogistikaDirektnih);
                 SetLeftButtonWidthToFlow(btnDrumski);
                 SetLeftButtonWidthToFlow(btnZeleznicki);
+                SetLeftButtonWidthToFlow(btnIntermodalni);
                 SetLeftButtonWidthToFlow(btnSkladista);
                 SetLeftButtonWidthToFlow(btnPretovari);
                 SetLeftButtonWidthToFlow(btnPrijemIOtpremaVozova);
@@ -80,15 +82,22 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnFinansije);
                 SetLeftButtonWidthToFlow(btnPodesavanja);
                 SetLeftButtonWidthToFlow(btnDepocnt);
-                SetLeftButtonWidthToFlow(btnVSD);
+                
+
 
             }
             catch { }
             if (frmLogovanje.company == "VSD")
             {
+                SetLeftButtonWidthToFlow(btnVSD);
+                btnVSD.Visible = true;
                 string imagePath = Path.Combine(Application.StartupPath, "VSDLogo.jpg");
                 SetPictureFromPath(imagePath);
      
+            }
+            else
+            {
+                btnVSD.Visible = false;
             }
 
             if (Korisnik != "test")
@@ -1136,6 +1145,25 @@ namespace Saobracaj
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnIntermodalni_Click(object sender, EventArgs e)
+        {
+            string key = btnIntermodalni.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Intermodalni  nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new Intermodalni1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "Intermodalni terminal";
+            BackColorKliknut(3);
         }
     }
 }

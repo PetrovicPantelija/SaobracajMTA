@@ -2168,6 +2168,12 @@
     <Compile Include="Kapija\frmKamionDetalji.Designer.cs">
       <DependentUpon>frmKamionDetalji.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kapija\frmKapijaOtvoreniNalozi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kapija\frmKapijaOtvoreniNalozi.Designer.cs">
+      <DependentUpon>frmKapijaOtvoreniNalozi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kapija\frmPregledKamiona.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2262,6 +2268,12 @@
       <DependentUpon>Drumski1.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\InsertKontejnerTekuce.cs" />
+    <Compile Include="MainLeget\Intermodalni\Intermodalni1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Intermodalni\Intermodalni1.Designer.cs">
+      <DependentUpon>Intermodalni1.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2322,6 +2334,12 @@
     <Compile Include="MainLeget\Pretovari\Pretovari2.Designer.cs">
       <DependentUpon>Pretovari2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.Designer.cs">
+      <DependentUpon>frmPlatforma.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2345,6 +2363,12 @@
     </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.Designer.cs">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.Designer.cs">
+      <DependentUpon>Pregledac.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova2.cs">
       <SubType>Form</SubType>
@@ -2941,6 +2965,12 @@
     </Compile>
     <Compile Include="ReportingOperatika\PoLokomotivama.Designer.cs">
       <DependentUpon>PoLokomotivama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmScenarioSCI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmScenarioSCI.Designer.cs">
+      <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </Compile>
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
@@ -4562,12 +4592,35 @@
     <Compile Include="Uvoz\ZapisnikOOstecenjuRobe.Designer.cs">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSDDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\DnevniAnaliza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\DnevniAnaliza.Designer.cs">
+      <DependentUpon>DnevniAnaliza.cs</DependentUpon>
+    </Compile>
     <Compile Include="VSD\frmDnevniExcel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VSD\frmDnevniExcel.Designer.cs">
       <DependentUpon>frmDnevniExcel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\frmPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VSD\frmPlan.Designer.cs">
+      <DependentUpon>frmPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VSD\InsertVSDDnevni.cs" />
     <Compile Include="VSD\VSDMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5407,6 +5460,9 @@
     <EmbeddedResource Include="Kapija\frmKamionDetalji.resx">
       <DependentUpon>frmKamionDetalji.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Kapija\frmKapijaOtvoreniNalozi.resx">
+      <DependentUpon>frmKapijaOtvoreniNalozi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Kapija\frmPregledKamiona.resx">
       <DependentUpon>frmPregledKamiona.cs</DependentUpon>
     </EmbeddedResource>
@@ -5452,6 +5508,9 @@
     <EmbeddedResource Include="MainLeget\Drumski\Drumski1.resx">
       <DependentUpon>Drumski1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Intermodalni\Intermodalni1.resx">
+      <DependentUpon>Intermodalni1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza0.resx">
       <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
     </EmbeddedResource>
@@ -5482,6 +5541,9 @@
     <EmbeddedResource Include="MainLeget\Pretovari\Pretovari2.resx">
       <DependentUpon>Pretovari2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.resx">
+      <DependentUpon>frmPlatforma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.resx">
       <DependentUpon>frmPrijemIOtpremaKamiona1.cs</DependentUpon>
     </EmbeddedResource>
@@ -5493,6 +5555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.resx">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.resx">
+      <DependentUpon>Pregledac.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova2.resx">
       <DependentUpon>frmPrijemIOtpremaVozova2.cs</DependentUpon>
@@ -5732,6 +5797,9 @@
     <EmbeddedResource Include="RadniNalozi\rptPrijemnica.rdlc" />
     <EmbeddedResource Include="ReportingOperatika\PoLokomotivama.resx">
       <DependentUpon>PoLokomotivama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RNI\frmScenarioSCI.resx">
+      <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="Servis\frmEvidencijaKvarova.resx">
@@ -6401,9 +6469,16 @@
     <EmbeddedResource Include="Uvoz\ZapisnikOOstecenjuRobe.resx">
       <DependentUpon>ZapisnikOOstecenjuRobe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSD\DnevniAnaliza.resx">
+      <DependentUpon>DnevniAnaliza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSD\frmDnevniExcel.resx">
       <DependentUpon>frmDnevniExcel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSD\frmPlan.resx">
+      <DependentUpon>frmPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSD\rptVSD.rdlc" />
     <EmbeddedResource Include="VSD\VSDMain.resx">
       <DependentUpon>VSDMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -7098,6 +7173,28 @@
     </None>
     <None Include="TrackModal\TestiranjeDataSet9.xss">
       <DependentUpon>TestiranjeDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet.xsc">
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VSDDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VSDDataSet.xss">
+      <DependentUpon>VSDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet1.xsc">
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VSDDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VSDDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VSDDataSet1.xss">
+      <DependentUpon>VSDDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

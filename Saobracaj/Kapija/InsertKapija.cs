@@ -15,8 +15,8 @@ namespace Saobracaj.Kapija
 
         string connect = Sifarnici.frmLogovanje.connectionString;
 
-        public int InsKapija(DateTime? @DatumDolaska, int? Status, string Vozac, string RegistarskiBroj, string Kontakt,
-                                            string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, DateTime? @DatumOdlaska)
+        public int InsKapija(int? Status, string Vozac, string RegistarskiBroj, string Kontakt,
+                                            string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, string KorisnikUlaz, int NalogID)
         {
             int IDPom = 0;
             SqlConnection myConnection = new SqlConnection(connect);
@@ -24,12 +24,7 @@ namespace Saobracaj.Kapija
             myCommand.CommandText = "InsertKapija";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter datumDolaska = new SqlParameter();
-            datumDolaska.ParameterName = "@DatumDolaska";
-            datumDolaska.SqlDbType = SqlDbType.DateTime;
-            datumDolaska.Direction = ParameterDirection.Input;
-            datumDolaska.Value = DatumDolaska.HasValue ? (object)DatumDolaska.Value : DBNull.Value;
-            myCommand.Parameters.Add(datumDolaska);
+       
 
             SqlParameter status = new SqlParameter();
             status.ParameterName = "@Status";
@@ -85,12 +80,23 @@ namespace Saobracaj.Kapija
             kontaktUFirmi.Value = KontaktUnutarFirme;
             myCommand.Parameters.Add(kontaktUFirmi);
 
-            SqlParameter datumOdlaska = new SqlParameter();
-            datumOdlaska.ParameterName = "@DatumOdlaska";
-            datumOdlaska.SqlDbType = SqlDbType.DateTime;
-            datumOdlaska.Direction = ParameterDirection.Input;
-            datumOdlaska.Value = DatumOdlaska.HasValue ? (object)DatumOdlaska.Value : DBNull.Value;
-            myCommand.Parameters.Add(datumOdlaska);
+            SqlParameter korisnikulaz = new SqlParameter();
+            korisnikulaz.ParameterName = "@KorisnikUlaz";
+            korisnikulaz.SqlDbType = SqlDbType.NVarChar;
+            korisnikulaz.Size = 50;
+            korisnikulaz.Direction = ParameterDirection.Input;
+            korisnikulaz.Value = KorisnikUlaz;
+            myCommand.Parameters.Add(korisnikulaz);
+
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            myCommand.Parameters.Add(nalogid);
+
+
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
@@ -136,6 +142,62 @@ namespace Saobracaj.Kapija
             return IDPom;
 
         }
+
+
+        public void UpdeteKapijaINalog(int NalogID)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateKapijaNalogID";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@NalogID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = NalogID;
+            myCommand.Parameters.Add(iD);
+
+           
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+                error = false;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos je uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+
+        }
+
 
         public void UpdeteKapija(int ID, DateTime? @DatumDolaska, int? Status, string Vozac, string RegistarskiBroj, string Kontakt,
                                             string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, DateTime? @DatumOdlaska, DateTime? @DatumPromeneStatusa)

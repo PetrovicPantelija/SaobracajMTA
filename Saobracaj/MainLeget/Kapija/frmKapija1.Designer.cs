@@ -177,13 +177,14 @@
             this.sfButton4.Text = "Lista naloga u NAJAVI";
             this.sfButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton4.UseVisualStyleBackColor = false;
+            this.sfButton4.Click += new System.EventHandler(this.sfButton4_Click);
             // 
             // frmKapija1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1101, 606);
+            this.ClientSize = new System.Drawing.Size(1044, 606);
             this.Controls.Add(this.sfButton6);
             this.Controls.Add(this.sfButton5);
             this.Controls.Add(this.sfButton4);

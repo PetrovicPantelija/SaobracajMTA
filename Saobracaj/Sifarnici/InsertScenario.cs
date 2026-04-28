@@ -11,7 +11,7 @@ namespace Saobracaj.Sifarnici
     class InsertScenario
     {
 
-        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR)
+        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR, int Faza)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -87,6 +87,13 @@ namespace Saobracaj.Sifarnici
             parameter8.Value = CIR;
             myCommand.Parameters.Add(parameter8);
 
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Faza";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Faza;
+            myCommand.Parameters.Add(parameter9);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -123,7 +130,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR)
+        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR, int Faza)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -205,6 +212,13 @@ namespace Saobracaj.Sifarnici
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = CIR;
             myCommand.Parameters.Add(parameter8);
+
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Faza";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Faza;
+            myCommand.Parameters.Add(parameter9);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
