@@ -139,6 +139,7 @@
             this.lblNaslov.TabIndex = 1;
             this.lblNaslov.Text = "INTEGRATED LOGISTICS MANAGEMENT SYSTEM";
             this.lblNaslov.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNaslov.Click += new System.EventHandler(this.lblNaslov_Click);
             // 
             // btnMinimize
             // 
@@ -234,7 +235,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1049);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 1052);
             this.splitContainer2.SplitterDistance = 256;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -795,8 +796,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1373, 1049);
-            this.splitContainer3.SplitterDistance = 914;
+            this.splitContainer3.Size = new System.Drawing.Size(1373, 1052);
+            this.splitContainer3.SplitterDistance = 916;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -812,7 +813,7 @@
             this.btnLogout.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLogout.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLogout.Location = new System.Drawing.Point(1001, 7);
+            this.btnLogout.Location = new System.Drawing.Point(1001, 8);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(215, 44);

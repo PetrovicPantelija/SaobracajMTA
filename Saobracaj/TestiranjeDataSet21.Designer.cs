@@ -285,6 +285,22 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnBrojKontejnera;
             
+            private global::System.Data.DataColumn columnSkNaziv;
+            
+            private global::System.Data.DataColumn columnBrojPlombe;
+            
+            private global::System.Data.DataColumn columnOstalePlombe;
+            
+            private global::System.Data.DataColumn columnStariBrojKontejnera;
+            
+            private global::System.Data.DataColumn columnStariTip;
+            
+            private global::System.Data.DataColumn columnStariBrojPlombe;
+            
+            private global::System.Data.DataColumn columnStareOstalePlombe;
+            
+            private global::System.Data.DataColumn columnStariTip1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SelectZapisnikONepravilnostiDataTable() {
@@ -344,6 +360,70 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SkNazivColumn {
+                get {
+                    return this.columnSkNaziv;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BrojPlombeColumn {
+                get {
+                    return this.columnBrojPlombe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OstalePlombeColumn {
+                get {
+                    return this.columnOstalePlombe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StariBrojKontejneraColumn {
+                get {
+                    return this.columnStariBrojKontejnera;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StariTipColumn {
+                get {
+                    return this.columnStariTip;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StariBrojPlombeColumn {
+                get {
+                    return this.columnStariBrojPlombe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StareOstalePlombeColumn {
+                get {
+                    return this.columnStareOstalePlombe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StariTip1Column {
+                get {
+                    return this.columnStariTip1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -379,12 +459,20 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SelectZapisnikONepravilnostiRow AddSelectZapisnikONepravilnostiRow(int ID, string Napomena, string BrojKontejnera) {
+            public SelectZapisnikONepravilnostiRow AddSelectZapisnikONepravilnostiRow(int ID, string Napomena, string BrojKontejnera, string SkNaziv, string BrojPlombe, string OstalePlombe, string StariBrojKontejnera, int StariTip, int StariBrojPlombe, int StareOstalePlombe, string StariTip1) {
                 SelectZapisnikONepravilnostiRow rowSelectZapisnikONepravilnostiRow = ((SelectZapisnikONepravilnostiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
                         Napomena,
-                        BrojKontejnera};
+                        BrojKontejnera,
+                        SkNaziv,
+                        BrojPlombe,
+                        OstalePlombe,
+                        StariBrojKontejnera,
+                        StariTip,
+                        StariBrojPlombe,
+                        StareOstalePlombe,
+                        StariTip1};
                 rowSelectZapisnikONepravilnostiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectZapisnikONepravilnostiRow);
                 return rowSelectZapisnikONepravilnostiRow;
@@ -410,6 +498,14 @@ namespace Saobracaj {
                 this.columnID = base.Columns["ID"];
                 this.columnNapomena = base.Columns["Napomena"];
                 this.columnBrojKontejnera = base.Columns["BrojKontejnera"];
+                this.columnSkNaziv = base.Columns["SkNaziv"];
+                this.columnBrojPlombe = base.Columns["BrojPlombe"];
+                this.columnOstalePlombe = base.Columns["OstalePlombe"];
+                this.columnStariBrojKontejnera = base.Columns["StariBrojKontejnera"];
+                this.columnStariTip = base.Columns["StariTip"];
+                this.columnStariBrojPlombe = base.Columns["StariBrojPlombe"];
+                this.columnStareOstalePlombe = base.Columns["StareOstalePlombe"];
+                this.columnStariTip1 = base.Columns["StariTip1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -421,9 +517,36 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnNapomena);
                 this.columnBrojKontejnera = new global::System.Data.DataColumn("BrojKontejnera", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBrojKontejnera);
+                this.columnSkNaziv = new global::System.Data.DataColumn("SkNaziv", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkNaziv);
+                this.columnBrojPlombe = new global::System.Data.DataColumn("BrojPlombe", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBrojPlombe);
+                this.columnOstalePlombe = new global::System.Data.DataColumn("OstalePlombe", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOstalePlombe);
+                this.columnStariBrojKontejnera = new global::System.Data.DataColumn("StariBrojKontejnera", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStariBrojKontejnera);
+                this.columnStariTip = new global::System.Data.DataColumn("StariTip", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStariTip);
+                this.columnStariBrojPlombe = new global::System.Data.DataColumn("StariBrojPlombe", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStariBrojPlombe);
+                this.columnStareOstalePlombe = new global::System.Data.DataColumn("StareOstalePlombe", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStareOstalePlombe);
+                this.columnStariTip1 = new global::System.Data.DataColumn("StariTip1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStariTip1);
                 this.columnNapomena.MaxLength = 1000;
                 this.columnBrojKontejnera.ReadOnly = true;
                 this.columnBrojKontejnera.MaxLength = 50;
+                this.columnSkNaziv.MaxLength = 20;
+                this.columnBrojPlombe.MaxLength = 30;
+                this.columnOstalePlombe.MaxLength = 50;
+                this.columnStariBrojKontejnera.ReadOnly = true;
+                this.columnStariBrojKontejnera.MaxLength = 50;
+                this.columnStariTip.ReadOnly = true;
+                this.columnStariBrojPlombe.ReadOnly = true;
+                this.columnStareOstalePlombe.ReadOnly = true;
+                this.columnStariTip1.ReadOnly = true;
+                this.columnStariTip1.Caption = "StariTip";
+                this.columnStariTip1.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -616,6 +739,142 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string SkNaziv {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectZapisnikONepravilnosti.SkNazivColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SkNaziv\' in table \'SelectZapisnikONepravilnosti\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.SkNazivColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BrojPlombe {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectZapisnikONepravilnosti.BrojPlombeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojPlombe\' in table \'SelectZapisnikONepravilnosti\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.BrojPlombeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string OstalePlombe {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectZapisnikONepravilnosti.OstalePlombeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OstalePlombe\' in table \'SelectZapisnikONepravilnosti\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.OstalePlombeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StariBrojKontejnera {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectZapisnikONepravilnosti.StariBrojKontejneraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StariBrojKontejnera\' in table \'SelectZapisnikONepravilnosti" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.StariBrojKontejneraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int StariTip {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectZapisnikONepravilnosti.StariTipColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StariTip\' in table \'SelectZapisnikONepravilnosti\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.StariTipColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int StariBrojPlombe {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectZapisnikONepravilnosti.StariBrojPlombeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StariBrojPlombe\' in table \'SelectZapisnikONepravilnosti\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.StariBrojPlombeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int StareOstalePlombe {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectZapisnikONepravilnosti.StareOstalePlombeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StareOstalePlombe\' in table \'SelectZapisnikONepravilnosti\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.StareOstalePlombeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string StariTip1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectZapisnikONepravilnosti.StariTip1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StariTip1\' in table \'SelectZapisnikONepravilnosti\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectZapisnikONepravilnosti.StariTip1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsIDNull() {
                 return this.IsNull(this.tableSelectZapisnikONepravilnosti.IDColumn);
             }
@@ -648,6 +907,102 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetBrojKontejneraNull() {
                 this[this.tableSelectZapisnikONepravilnosti.BrojKontejneraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSkNazivNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.SkNazivColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSkNazivNull() {
+                this[this.tableSelectZapisnikONepravilnosti.SkNazivColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBrojPlombeNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.BrojPlombeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBrojPlombeNull() {
+                this[this.tableSelectZapisnikONepravilnosti.BrojPlombeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOstalePlombeNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.OstalePlombeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOstalePlombeNull() {
+                this[this.tableSelectZapisnikONepravilnosti.OstalePlombeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStariBrojKontejneraNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.StariBrojKontejneraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStariBrojKontejneraNull() {
+                this[this.tableSelectZapisnikONepravilnosti.StariBrojKontejneraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStariTipNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.StariTipColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStariTipNull() {
+                this[this.tableSelectZapisnikONepravilnosti.StariTipColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStariBrojPlombeNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.StariBrojPlombeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStariBrojPlombeNull() {
+                this[this.tableSelectZapisnikONepravilnosti.StariBrojPlombeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStareOstalePlombeNull() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.StareOstalePlombeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStareOstalePlombeNull() {
+                this[this.tableSelectZapisnikONepravilnosti.StareOstalePlombeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStariTip1Null() {
+                return this.IsNull(this.tableSelectZapisnikONepravilnosti.StariTip1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStariTip1Null() {
+                this[this.tableSelectZapisnikONepravilnosti.StariTip1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -813,6 +1168,13 @@ namespace Saobracaj.TestiranjeDataSet21TableAdapters {
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("Napomena", "Napomena");
             tableMapping.ColumnMappings.Add("BrojKontejnera", "BrojKontejnera");
+            tableMapping.ColumnMappings.Add("SkNaziv", "SkNaziv");
+            tableMapping.ColumnMappings.Add("BrojPlombe", "BrojPlombe");
+            tableMapping.ColumnMappings.Add("OstalePlombe", "OstalePlombe");
+            tableMapping.ColumnMappings.Add("StariBrojKontejnera", "StariBrojKontejnera");
+            tableMapping.ColumnMappings.Add("StariBrojPlombe", "StariBrojPlombe");
+            tableMapping.ColumnMappings.Add("StareOstalePlombe", "StareOstalePlombe");
+            tableMapping.ColumnMappings.Add("StariTip", "StariTip1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -820,7 +1182,7 @@ namespace Saobracaj.TestiranjeDataSet21TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.TESTIRANJEConnectionString;
+            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.NedraConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

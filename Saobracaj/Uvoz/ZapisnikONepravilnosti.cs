@@ -154,7 +154,7 @@ namespace Saobracaj.Uvoz
         {
             InsertZapisnikONepravilnosti ins = new InsertZapisnikONepravilnosti();
             
-                ins.InsZapisnikONepravilnosti(Convert.ToInt32(txtNalogID.Text.ToString().TrimEnd()), txtNapomena.Text);
+                ins.InsZapisnikONepravilnosti(Convert.ToInt32(txtNalogID.Text.ToString().TrimEnd()), txtNapomena.Text, txtBrojKontejnera.Text, Convert.ToInt32(cboVrstaKontejnera.SelectedValue), txtBrojPlombe.Text, txtOstalePlombe.Text);
            
         
         }
@@ -174,12 +174,16 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Napomena from ZapisnikONepravilnosti where NalogID = " + txtNalogID.Text, con);
+            SqlCommand cmd = new SqlCommand("select ZapisnikONepravilnosti.BrojKontejnera, ZapisnikONepravilnosti.VrstaKontejnera, ZapisnikONepravilnosti.BrojPlombe, ZapisnikONepravilnosti.OstalePlombe, Napomena from ZapisnikONepravilnosti where NalogID = " + txtNalogID.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 txtNapomena.Text = dr["Napomena"].ToString();
+                txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
+                txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
             }
             con.Close();
            
@@ -190,7 +194,21 @@ namespace Saobracaj.Uvoz
         private void ZapisnikONepravilnosti_Load(object sender, EventArgs e)
         {
             txtNalogID.Text = nalog;
+            FillCombo();
             VratiNapomenu();
+        }
+        private void FillCombo()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            var dir4 = "Select TipKontenjera.ID,Naziv from TipKontenjera order by Naziv";
+            var dirAD4 = new SqlDataAdapter(dir4, conn);
+            var dirDS4 = new DataSet();
+            dirAD4.Fill(dirDS4);
+            cboVrstaKontejnera.DataSource = dirDS4.Tables[0];
+            cboVrstaKontejnera.DisplayMember = "Naziv";
+            cboVrstaKontejnera.ValueMember = "ID";
+            cboVrstaKontejnera.SelectedIndex = -1;
         }
 
         private void button23_Click(object sender, EventArgs e)

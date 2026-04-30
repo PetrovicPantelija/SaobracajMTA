@@ -198,6 +198,60 @@ namespace Saobracaj.Kapija
 
         }
 
+        public void UpdeteKapijaNeslaganje(int NalogID)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateKapijaNeslaganje";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@NalogID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = NalogID;
+            myCommand.Parameters.Add(iD);
+
+            //Postavlja se status na Kapija ulaz -- 10-Neslaganje
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+                error = false;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos je uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+
+        }
+
 
         public void UpdeteKapija(int ID, DateTime? @DatumDolaska, int? Status, string Vozac, string RegistarskiBroj, string Kontakt,
                                             string RazlogDolaska, DateTime? @DatumZakazanogDolaska, string KontaktUnutarFirme, DateTime? @DatumOdlaska, DateTime? @DatumPromeneStatusa)

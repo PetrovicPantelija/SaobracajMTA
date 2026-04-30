@@ -2,14 +2,15 @@
 <xs:schema id="TestiranjeDataSet21" targetNamespace="http://tempuri.org/TestiranjeDataSet21.xsd" xmlns:mstns="http://tempuri.org/TestiranjeDataSet21.xsd" xmlns="http://tempuri.org/TestiranjeDataSet21.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectZapisnikONepravilnostiTableAdapter" GeneratorDataComponentClassName="SelectZapisnikONepravilnostiTableAdapter" Name="SelectZapisnikONepravilnosti" UserDataComponentName="SelectZapisnikONepravilnostiTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="Testiranje.dbo.SelectZapisnikONepravilnosti" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectZapisnikONepravilnosti" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectZapisnikONepravilnosti</CommandText>
@@ -25,6 +26,13 @@
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
               <Mapping SourceColumn="Napomena" DataSetColumn="Napomena" />
               <Mapping SourceColumn="BrojKontejnera" DataSetColumn="BrojKontejnera" />
+              <Mapping SourceColumn="SkNaziv" DataSetColumn="SkNaziv" />
+              <Mapping SourceColumn="BrojPlombe" DataSetColumn="BrojPlombe" />
+              <Mapping SourceColumn="OstalePlombe" DataSetColumn="OstalePlombe" />
+              <Mapping SourceColumn="StariBrojKontejnera" DataSetColumn="StariBrojKontejnera" />
+              <Mapping SourceColumn="StariBrojPlombe" DataSetColumn="StariBrojPlombe" />
+              <Mapping SourceColumn="StareOstalePlombe" DataSetColumn="StareOstalePlombe" />
+              <Mapping SourceColumn="StariTip" DataSetColumn="StariTip1" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -33,24 +41,62 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TestiranjeDataSet21" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="TestiranjeDataSet21" msprop:Generator_DataSetName="TestiranjeDataSet21">
+  <xs:element name="TestiranjeDataSet21" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TestiranjeDataSet21" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TestiranjeDataSet21">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SelectZapisnikONepravilnosti" msprop:Generator_RowEvHandlerName="SelectZapisnikONepravilnostiRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectZapisnikONepravilnostiRowDeleted" msprop:Generator_RowDeletingName="SelectZapisnikONepravilnostiRowDeleting" msprop:Generator_RowEvArgName="SelectZapisnikONepravilnostiRowChangeEvent" msprop:Generator_TablePropName="SelectZapisnikONepravilnosti" msprop:Generator_RowChangedName="SelectZapisnikONepravilnostiRowChanged" msprop:Generator_RowChangingName="SelectZapisnikONepravilnostiRowChanging" msprop:Generator_TableClassName="SelectZapisnikONepravilnostiDataTable" msprop:Generator_RowClassName="SelectZapisnikONepravilnostiRow" msprop:Generator_TableVarName="tableSelectZapisnikONepravilnosti" msprop:Generator_UserTableName="SelectZapisnikONepravilnosti">
+        <xs:element name="SelectZapisnikONepravilnosti" msprop:Generator_RowClassName="SelectZapisnikONepravilnostiRow" msprop:Generator_RowEvHandlerName="SelectZapisnikONepravilnostiRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectZapisnikONepravilnostiRowDeleted" msprop:Generator_RowDeletingName="SelectZapisnikONepravilnostiRowDeleting" msprop:Generator_RowEvArgName="SelectZapisnikONepravilnostiRowChangeEvent" msprop:Generator_TablePropName="SelectZapisnikONepravilnosti" msprop:Generator_RowChangedName="SelectZapisnikONepravilnostiRowChanged" msprop:Generator_UserTableName="SelectZapisnikONepravilnosti" msprop:Generator_RowChangingName="SelectZapisnikONepravilnostiRowChanging" msprop:Generator_TableClassName="SelectZapisnikONepravilnostiDataTable" msprop:Generator_TableVarName="tableSelectZapisnikONepravilnosti">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
-              <xs:element name="Napomena" msprop:Generator_ColumnPropNameInRow="Napomena" msprop:Generator_ColumnPropNameInTable="NapomenaColumn" msprop:Generator_ColumnVarNameInTable="columnNapomena" msprop:Generator_UserColumnName="Napomena" minOccurs="0">
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" minOccurs="0" />
+              <xs:element name="Napomena" msprop:Generator_UserColumnName="Napomena" msprop:Generator_ColumnPropNameInTable="NapomenaColumn" msprop:Generator_ColumnPropNameInRow="Napomena" msprop:Generator_ColumnVarNameInTable="columnNapomena" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="BrojKontejnera" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" minOccurs="0">
+              <xs:element name="BrojKontejnera" msdata:ReadOnly="true" msprop:Generator_UserColumnName="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SkNaziv" msprop:Generator_ColumnPropNameInRow="SkNaziv" msprop:Generator_ColumnPropNameInTable="SkNazivColumn" msprop:Generator_ColumnVarNameInTable="columnSkNaziv" msprop:Generator_UserColumnName="SkNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojPlombe" msprop:Generator_ColumnPropNameInRow="BrojPlombe" msprop:Generator_ColumnPropNameInTable="BrojPlombeColumn" msprop:Generator_ColumnVarNameInTable="columnBrojPlombe" msprop:Generator_UserColumnName="BrojPlombe" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OstalePlombe" msprop:Generator_ColumnPropNameInRow="OstalePlombe" msprop:Generator_ColumnPropNameInTable="OstalePlombeColumn" msprop:Generator_ColumnVarNameInTable="columnOstalePlombe" msprop:Generator_UserColumnName="OstalePlombe" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StariBrojKontejnera" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="StariBrojKontejnera" msprop:Generator_ColumnPropNameInTable="StariBrojKontejneraColumn" msprop:Generator_ColumnVarNameInTable="columnStariBrojKontejnera" msprop:Generator_UserColumnName="StariBrojKontejnera" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StariTip" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="StariTip" msprop:Generator_ColumnPropNameInTable="StariTipColumn" msprop:Generator_ColumnVarNameInTable="columnStariTip" msprop:Generator_UserColumnName="StariTip" type="xs:int" minOccurs="0" />
+              <xs:element name="StariBrojPlombe" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="StariBrojPlombe" msprop:Generator_ColumnPropNameInTable="StariBrojPlombeColumn" msprop:Generator_ColumnVarNameInTable="columnStariBrojPlombe" msprop:Generator_UserColumnName="StariBrojPlombe" type="xs:int" minOccurs="0" />
+              <xs:element name="StareOstalePlombe" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="StareOstalePlombe" msprop:Generator_ColumnPropNameInTable="StareOstalePlombeColumn" msprop:Generator_ColumnVarNameInTable="columnStareOstalePlombe" msprop:Generator_UserColumnName="StareOstalePlombe" type="xs:int" minOccurs="0" />
+              <xs:element name="StariTip1" msdata:ReadOnly="true" msdata:Caption="StariTip" msprop:Generator_ColumnPropNameInRow="StariTip1" msprop:Generator_ColumnPropNameInTable="StariTip1Column" msprop:Generator_ColumnVarNameInTable="columnStariTip1" msprop:Generator_UserColumnName="StariTip1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

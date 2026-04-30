@@ -39,22 +39,31 @@ namespace Saobracaj.Kapija
                "  where Uradjen not in (1, 2)";
             */
           
-                select = "     select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as IZvor, 'DOLAZAK',  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
-" TipKontenjera.SkNaziv as VrstaKontejnera, CASE Cirada " +
- "       WHEN 0 THEN 'PLATFORMA' " +
- "               WHEN 1 THEN 'CIRADA' " +
-  "          END AS TipNaloga, " +
- "       Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtPreuzimanjaPunog, DtPreuzimanjaPunog, BrojStavkePorudzbenice from RadniNalogInterni " +
- "       inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
- "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov "  +
- "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
- "        where KapijaUlaz = 0" + 
-"    union  select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as IZvor, 'ODLAZAK',  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
-" TipKontenjera.SkNaziv as VrstaKontejnera, CASE Cirada " +
- "       WHEN 0 THEN 'PLATFORMA' " +
- "               WHEN 1 THEN 'CIRADA' " +
-  "          END AS TipNaloga, " +
- "       Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtPreuzimanjaPunog, DtPreuzimanjaPunog, BrojStavkePorudzbenice from RadniNalogInterni " +
+                select = "     select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
+" TipKontenjera.SkNaziv as VrstaKontejnera, " +
+" (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, " +
+"  CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,   " +
+" CASE Cirada " +
+"  WHEN 0 THEN 'PLATFORMA' " +
+" WHEN 1 THEN 'CIRADA' " +
+" END AS TipNaloga,  " +
+" Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
+" inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
+" inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
+" inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
+" where KapijaUlaz = 0 or KapijaUlaz = 10 " + 
+"    union  select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'ODLAZAK',  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
+" TipKontenjera.SkNaziv as VrstaKontejnera, " +
+" (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, " +
+" CASE Drumski " +
+" WHEN 0 THEN ' ' " +
+" WHEN 1 THEN 'L' " +
+" END AS Drumski,  " +
+" CASE Cirada " +
+"  WHEN 0 THEN 'PLATFORMA' " +
+" WHEN 1 THEN 'CIRADA' " +
+" END AS TipNaloga,  " +
+ "       Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtPreuzimanjaPunog, DtPreuzimanjaPunog, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz  from RadniNalogInterni " +
  "       inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
  "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
  "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
@@ -80,7 +89,12 @@ namespace Saobracaj.Kapija
                 column.AllowFilter = true;
             }
 
-       
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Red;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd3.Expression = "[KapijaUlaz] = '10'";
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl2);
@@ -111,6 +125,25 @@ namespace Saobracaj.Kapija
                 int noviID = ins.InsKapija(1, vozac, registarskibroj, kontakt, "Izvoz", null, kontakt, kor, NalogID);
                 txtID.Text = noviID.ToString();
           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "")
+            {
+                MessageBox.Show("Izaberite zapis");
+                return;
+            }
+            InsertKapija ukn = new InsertKapija();
+            ukn.UpdeteKapijaNeslaganje(Convert.ToInt32(txtID.Text));
+        }
+
+        private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            if (gridGroupingControl2.Table.CurrentRecord != null)
+            {
+                txtID.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("KomNalogID").ToString();
+            }
         }
     }
 }
