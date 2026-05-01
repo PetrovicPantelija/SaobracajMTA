@@ -40,66 +40,111 @@ namespace Saobracaj.MainLeget.Drumski
             int IzborADR = 0;
             int DaLiJeUvoz = 0; // uvoz = 1 je uvoz,  0 je izvoz
             int TipNaloga = 0; // tipNaloga = 1 je  Platforma direktno pun,  tipNaloga  = 2 je Platforma prazan pun
+            int DaLiJeCarinskiPostupak = 0;
+            if (_tipVozila.Contains(1))
+            {
+                    DialogResult result = Saobracaj.Pomocni.MessageBoxWithCustomButton.Show(
+                   "Koji tip naloga kreirate?", "A.      3PI", " B.      3PU", // Message text
+                   "Potvrdite" // Icon
+                   );
 
-            DialogResult result = Saobracaj.Pomocni.MessageBoxWithCustomButton.Show(
-               "Koji tip naloga kreirate?", "A.      3PI", " B.      3PU", // Message text
-               "Potvrdite" // Icon
+                if (result == DialogResult.Cancel)
+                {
+                    return; // <--- AKO JE KLIKNUTO NA X, OVDE SE SVE PREKIDA
+                }
+
+                // Handle the result based on user selection
+                if (result == DialogResult.Yes)
+                {
+
+                    DaLiJeUvoz = 0;
+
+                }
+           
+                DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
+               "Da li je u pitanju ADR roba?", // Message text
+               "Potvrdite"
                );
 
-            if (result == DialogResult.Cancel)
-            {
-                return; // <--- AKO JE KLIKNUTO NA X, OVDE SE SVE PREKIDA
+                if (result2 == DialogResult.Cancel)
+                {
+                    return;
+                }
+                // Handle the result based on user selection
+                if (result2 == DialogResult.Yes)
+                {
+
+                    IzborADR = 1;
+                    //ipnk.UpdStornirajStavku(id); // Promeni ADR
+                    // Add logic to save changes here
+                }
+
+                DialogResult result3 = Saobracaj.Pomocni.MessageBoxWithCustomButton.Show(
+                                   "Nalog za drumski transport je:", "A.      Platforma direktno pun", "B.      Platforma prazan pun", // Message text
+                                   "Potvrdite" );
+
+                if (result3 == DialogResult.Cancel)
+                {
+                    return;
+                }
+                // Handle the result based on user selection
+                if (result3 == DialogResult.Yes)
+                {
+
+                    TipNaloga = 1;
+                }
+                else
+                {
+
+                    TipNaloga = 2;
+                }
             }
-
-            // Handle the result based on user selection
-            if (result == DialogResult.Yes)
+            else if (_tipVozila.Contains(2))
             {
+                DialogResult result = Saobracaj.Pomocni.MessageBoxWithCustomButton.Show(
+                                     "Koji tip naloga kreirate?", "A.      3P sa Carinskim postupkom", " B.      3P bez Carinskog postupka", // Message text
+                                     "Potvrdite" // Icon
+                 );
 
-                DaLiJeUvoz = 0;
+                if (result == DialogResult.Cancel)
+                {
+                    return; // <--- AKO JE KLIKNUTO NA X, OVDE SE SVE PREKIDA
+                }
 
-            }
-           
-            DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
-           "Da li je u pitanju ADR roba?", // Message text
-           "Potvrdite"
-           );
+                // Handle the result based on user selection
+                if (result == DialogResult.Yes)
+                {
 
-            if (result2 == DialogResult.Cancel)
-            {
-                return;
-            }
-            // Handle the result based on user selection
-            if (result2 == DialogResult.Yes)
-            {
+                    DaLiJeCarinskiPostupak = 1; 
 
-                IzborADR = 1;
-                //ipnk.UpdStornirajStavku(id); // Promeni ADR
-                // Add logic to save changes here
-            }
+                }
+                DialogResult result2 = Saobracaj.Pomocni.CustomMessageBox.Show(
+                                      "Da li je u pitanju ADR roba?", // Message text
+                                      "Potvrdite"
+              
 
-            DialogResult result3 = Saobracaj.Pomocni.MessageBoxWithCustomButton.Show(
-              "Nalog za drumski transport je:", "A.      Platforma direktno pun", "B.      Platforma prazan pun", // Message text
-              "Potvrdite"
-          );
+            );
 
-            if (result3 == DialogResult.Cancel)
-            {
-                return;
-            }
-            // Handle the result based on user selection
-            if (result3 == DialogResult.Yes)
-            {
+                if (result2 == DialogResult.Cancel)
+                {
+                    return;
+                }
+                // Handle the result based on user selection
+                if (result2 == DialogResult.Yes)
+                {
 
-                TipNaloga = 1;
-            }
-            else
-            {
+                    IzborADR = 1;
+                    //ipnk.UpdStornirajStavku(id); // Promeni ADR
+                    // Add logic to save changes here
+                }
+                TipNaloga = 3;
 
-                TipNaloga = 2;
+
             }
             var parent = this.TopLevelControl as NewMain;
-            parent?.ShowChild(new frmDrumski1(tipoviIn: _tipVozila, tipoviNotIn: _listNotIn, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga), true);
+            parent?.ShowChild(new frmDrumski1(tipoviIn: _tipVozila, tipoviNotIn: _listNotIn, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga, DaLiJeCarinskiPostupak), true);
         }
+       
 
         private void btnIzmeni_Click(object sender, EventArgs e)
         {

@@ -359,7 +359,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-
+     
         public int InsRadniNalogDrumski(int? TipNaloga, int KreirajNalogID, int? NalogID, int AutoDan, string Ref, int? MestoPreuzimanja,int? Klijent, int? MestoUtovara, string AdresaUtovara,
                  int? MestoIstovara, DateTime? DatumUtovara, DateTime? DatumIstovara, string AdresaIstovara, DateTime? DtPreuzimanjaPraznogKontejnera,
                  string GranicniPrelaz, decimal? Trosak, string Valuta,  int? StatusID, string DodatniOpis, decimal? Cena, string KontaktOsobaNaIstovaru, int? PDV, int? TipTransporta,
@@ -718,16 +718,16 @@ namespace Saobracaj.Drumski
             return IDPom;
         }
 
-
-
-        public int InsRadniNalogDrumskiNovi(int KreirajNalogID, int? Scenario, int? NalogID, int? TipNaloga, int NalogKreiraoZaposleni, int? Booking,  int? TipTransporta, int? Nalogodavac, string Ref, string Valuta,
-             decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int? CarinskiPostupak, int AutoDan, int? PolaznaCarinarnica, int? PolaznaSpedicija, string PolaznaSpedicijaKontakt,
-             int? OdredisnaCarinarnica, int? OdredisnaSpedicija, string OdredisnaSpedicijaKontakt, string DodatniOpis, int? NapomenaPoz, int Vaganje, string BrojKontejnera, int? VrstaKontejnera,
-             int? KvalitetKontejnera, string BrodskaPlomba, int? Brodar,  int? BrodskaPlombaVlasnik, string OstalePlombe, decimal? TaraKontejnera, decimal? BttoRobe, decimal? NetoRobe, int Adr, int? NacinPakovanja,
-             int? MestoPreuzimanja, string AdresaPreuzimanja, string KontaktOsobaPreuzimanja, DateTime? DtPreuzimanjaKontejnera, DateTime? DtRealizacijePreuzimanjaKontejnera,
-             int? MestoSpustanja, DateTime?  DtSpustanja, DateTime?  DtRealizacijeSpustanja, int? MestoUtovara, string AdresaUtovara, string KontaktOsobaNaUtovaru,
-             string GranicniPrelaz,  string KontaktOsobaNaIstovaru, 
-             string BrojVoza,   string BrodskaTeretnica, string BrojPosiljke)
+        public int InsRadniNalogDrumskiNovi(int KreirajNalogID, int? Scenario, int? NalogID, int? TipNaloga, int NalogKreiraoZaposleni, int? Booking, int? TipTransporta, int? Nalogodavac, string Ref, string Valuta,
+          decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int? CarinskiPostupak, int AutoDan, int? PolaznaCarinarnica, int? PolaznaSpedicija, string PolaznaSpedicijaKontakt,
+          int? OdredisnaCarinarnica, int? OdredisnaSpedicija, string OdredisnaSpedicijaKontakt, string DodatniOpis, int? NapomenaPoz, int Vaganje, string BrojKontejnera, int? VrstaKontejnera,
+          int? KvalitetKontejnera, string BrodskaPlomba, int? Brodar, int? BrodskaPlombaVlasnik, string OstalePlombe, decimal? TaraKontejnera, decimal? BttoRobe, decimal? NetoRobe, int Adr, int? NacinPakovanja,
+          int? MestoPreuzimanja, string AdresaPreuzimanja, string KontaktOsobaPreuzimanja, DateTime? DtPreuzimanjaKontejnera, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
+          int? MestoSpustanja, int? MestoUtovaraCerade, int? MestoIstovaraCerade, DateTime? DtSpustanja, DateTime? DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, int? MestoUtovara, DateTime? DatumUtovara, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara,
+          string AdresaUtovara, string KontaktOsobaNaUtovaru, DateTime? DtUtovaraCerade, DateTime? DtUtovaraCeradeNovi, DateTime? DtRealizacijeUtovaraCerade,
+          DateTime? DtIstovaraCerade, DateTime? DtIstovaraCeradeNovi, DateTime? DtRealizacijeIstovaraCerade, string GranicniPrelaz, string KontaktOsobaNaIstovaru,
+          string BrojVoza, string BrodskaTeretnica, string BrojPosiljke, int ScenarioCarinskiPostupak, string OpisPosla, string AdresaUtovaraCerade, string AdresaIstovaraCerade, string KontaktUtovaraCerade, string KontaktIstovaraCerade,
+          string NoviSpediterP, string NoviSpediterO)
 
         {
             int IDPom = 0;
@@ -1010,7 +1010,7 @@ namespace Saobracaj.Drumski
             nacinPakovanja.Direction = ParameterDirection.Input;
             nacinPakovanja.Value = NacinPakovanja.HasValue ? (object)NacinPakovanja.Value : DBNull.Value;
             cmd.Parameters.Add(nacinPakovanja);
-           
+
 
             SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
             mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
@@ -1019,7 +1019,7 @@ namespace Saobracaj.Drumski
             mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
             cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
 
-            
+
             SqlParameter adresaPreuzimanja = new SqlParameter();
             adresaPreuzimanja.ParameterName = "@AdresaPreuzimanja";
             adresaPreuzimanja.SqlDbType = SqlDbType.NVarChar;
@@ -1050,6 +1050,13 @@ namespace Saobracaj.Drumski
             dtRealizacijePreuzimanjaKontejnera.Value = DtRealizacijePreuzimanjaKontejnera.HasValue ? (object)DtRealizacijePreuzimanjaKontejnera.Value : DBNull.Value;
             cmd.Parameters.Add(dtRealizacijePreuzimanjaKontejnera);
 
+            SqlParameter dtPreuzimanjePraznogKNovi = new SqlParameter();
+            dtPreuzimanjePraznogKNovi.ParameterName = "@DtPreuzimanjePraznogKNovi";
+            dtPreuzimanjePraznogKNovi.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjePraznogKNovi.Direction = ParameterDirection.Input;
+            dtPreuzimanjePraznogKNovi.Value = DtPreuzimanjePraznogKNovi.HasValue ? (object)DtPreuzimanjePraznogKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjePraznogKNovi);
+
 
             SqlParameter mestoSpustanja = new SqlParameter();
             mestoSpustanja.ParameterName = "@MestoSpustanja";
@@ -1057,6 +1064,20 @@ namespace Saobracaj.Drumski
             mestoSpustanja.Direction = ParameterDirection.Input;
             mestoSpustanja.Value = MestoSpustanja.HasValue ? (object)MestoSpustanja : DBNull.Value;
             cmd.Parameters.Add(mestoSpustanja);
+
+            SqlParameter mestoUtovaraCerade = new SqlParameter();
+            mestoUtovaraCerade.ParameterName = "@MestoUtovaraCerade";
+            mestoUtovaraCerade.SqlDbType = SqlDbType.Int;
+            mestoUtovaraCerade.Direction = ParameterDirection.Input;
+            mestoUtovaraCerade.Value = MestoUtovaraCerade.HasValue ? (object)MestoUtovaraCerade : DBNull.Value;
+            cmd.Parameters.Add(mestoUtovaraCerade);
+
+            SqlParameter mestoIstovaraCerade = new SqlParameter();
+            mestoIstovaraCerade.ParameterName = "@MestoIstovaraCerade";
+            mestoIstovaraCerade.SqlDbType = SqlDbType.Int;
+            mestoIstovaraCerade.Direction = ParameterDirection.Input;
+            mestoIstovaraCerade.Value = MestoIstovaraCerade.HasValue ? (object)MestoIstovaraCerade : DBNull.Value;
+            cmd.Parameters.Add(mestoIstovaraCerade);
 
 
             SqlParameter dtSpustanja = new SqlParameter();
@@ -1074,12 +1095,40 @@ namespace Saobracaj.Drumski
             dtRealizacijeSpustanja.Value = DtRealizacijeSpustanja.HasValue ? (object)DtRealizacijeSpustanja.Value : DBNull.Value;
             cmd.Parameters.Add(dtRealizacijeSpustanja);
 
+            SqlParameter dtSpustanjePunogNovi = new SqlParameter();
+            dtSpustanjePunogNovi.ParameterName = "@DtSpustanjePunogNovi";
+            dtSpustanjePunogNovi.SqlDbType = SqlDbType.DateTime;
+            dtSpustanjePunogNovi.Direction = ParameterDirection.Input;
+            dtSpustanjePunogNovi.Value = DtSpustanjePunogNovi.HasValue ? (object)DtSpustanjePunogNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtSpustanjePunogNovi);
+
             SqlParameter mestoUtovara = new SqlParameter();
             mestoUtovara.ParameterName = "@MestoUtovara";
             mestoUtovara.SqlDbType = SqlDbType.Int;
             mestoUtovara.Direction = ParameterDirection.Input;
             mestoUtovara.Value = MestoUtovara.HasValue ? (object)MestoUtovara : DBNull.Value;
             cmd.Parameters.Add(mestoUtovara);
+
+            SqlParameter datumUtovara = new SqlParameter();
+            datumUtovara.ParameterName = "@DatumUtovara";
+            datumUtovara.SqlDbType = SqlDbType.DateTime;
+            datumUtovara.Direction = ParameterDirection.Input;
+            datumUtovara.Value = DatumUtovara.HasValue ? (object)DatumUtovara.Value : DBNull.Value;
+            cmd.Parameters.Add(datumUtovara);
+
+            SqlParameter dtUtovaraKNovi = new SqlParameter();
+            dtUtovaraKNovi.ParameterName = "@DtUtovaraKNovi";
+            dtUtovaraKNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraKNovi.Direction = ParameterDirection.Input;
+            dtUtovaraKNovi.Value = DtUtovaraKNovi.HasValue ? (object)DtUtovaraKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraKNovi);
+
+            SqlParameter dtRealiUtovara = new SqlParameter();
+            dtRealiUtovara.ParameterName = "@DtRealiUtovara";
+            dtRealiUtovara.SqlDbType = SqlDbType.DateTime;
+            dtRealiUtovara.Direction = ParameterDirection.Input;
+            dtRealiUtovara.Value = DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value; //DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealiUtovara);
 
             SqlParameter adresaUtovara = new SqlParameter();
             adresaUtovara.ParameterName = "@AdresaUtovara";
@@ -1096,6 +1145,49 @@ namespace Saobracaj.Drumski
             kontaktNaUtovaru.Direction = ParameterDirection.Input;
             kontaktNaUtovaru.Value = (object)KontaktOsobaNaUtovaru ?? DBNull.Value;
             cmd.Parameters.Add(kontaktNaUtovaru);
+  
+            SqlParameter dtUtovaraCerade = new SqlParameter();
+            dtUtovaraCerade.ParameterName = "@DtUtovaraCerade";
+            dtUtovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraCerade.Direction = ParameterDirection.Input;
+            dtUtovaraCerade.Value = DtUtovaraCerade.HasValue ? (object)DtUtovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraCerade);
+
+            SqlParameter dtUtovaraCeradeNovi = new SqlParameter();
+            dtUtovaraCeradeNovi.ParameterName = "@DtUtovaraCeradeNovi";
+            dtUtovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtUtovaraCeradeNovi.Value = DtUtovaraCeradeNovi.HasValue ? (object)DtUtovaraCeradeNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraCeradeNovi);
+
+            SqlParameter dtRealizacijeUtovaraCerade = new SqlParameter();
+            dtRealizacijeUtovaraCerade.ParameterName = "@DtRealizacijeUtovaraCerade";
+            dtRealizacijeUtovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeUtovaraCerade.Direction = ParameterDirection.Input;
+            dtRealizacijeUtovaraCerade.Value = DtRealizacijeUtovaraCerade.HasValue ? (object)DtRealizacijeUtovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeUtovaraCerade);
+
+
+            SqlParameter dtIstovaraCerade = new SqlParameter();
+            dtIstovaraCerade.ParameterName = "@DtIstovaraCerade";
+            dtIstovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCerade.Direction = ParameterDirection.Input;
+            dtIstovaraCerade.Value = DtIstovaraCerade.HasValue ? (object)DtIstovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCerade);
+
+            SqlParameter dtIstovaraCeradeNovi = new SqlParameter();
+            dtIstovaraCeradeNovi.ParameterName = "@DtIstovaraCeradeNovi";
+            dtIstovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtIstovaraCeradeNovi.Value = DtIstovaraCeradeNovi.HasValue ? (object)DtIstovaraCeradeNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCeradeNovi);
+
+            SqlParameter dtRealizacijeIstovaraCerade = new SqlParameter();
+            dtRealizacijeIstovaraCerade.ParameterName = "@DtRealizacijeIstovaraCerade";
+            dtRealizacijeIstovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeIstovaraCerade.Direction = ParameterDirection.Input;
+            dtRealizacijeIstovaraCerade.Value = DtRealizacijeIstovaraCerade.HasValue ? (object)DtRealizacijeIstovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeIstovaraCerade);
 
             SqlParameter granicniPrelaz = new SqlParameter();
             granicniPrelaz.ParameterName = "@GranicniPrelaz";
@@ -1105,7 +1197,6 @@ namespace Saobracaj.Drumski
             granicniPrelaz.Value = (object)GranicniPrelaz ?? DBNull.Value;
             cmd.Parameters.Add(granicniPrelaz);
 
-
             SqlParameter kontaktOsobaNaIstovaru = new SqlParameter();
             kontaktOsobaNaIstovaru.ParameterName = "@KontaktOsobaNaIstovaru";
             kontaktOsobaNaIstovaru.SqlDbType = SqlDbType.NVarChar;
@@ -1113,8 +1204,6 @@ namespace Saobracaj.Drumski
             kontaktOsobaNaIstovaru.Direction = ParameterDirection.Input;
             kontaktOsobaNaIstovaru.Value = (object)KontaktOsobaNaIstovaru ?? DBNull.Value;
             cmd.Parameters.Add(kontaktOsobaNaIstovaru);
-
-
 
             SqlParameter brojVoza = new SqlParameter();
             brojVoza.ParameterName = "@BrojVoza";
@@ -1124,9 +1213,6 @@ namespace Saobracaj.Drumski
             brojVoza.Value = (object)BrojVoza ?? DBNull.Value;
             cmd.Parameters.Add(brojVoza);
 
-
-  
-
             SqlParameter brodskaTeretnica = new SqlParameter();
             brodskaTeretnica.ParameterName = "@BrodskaTeretnica";
             brodskaTeretnica.SqlDbType = SqlDbType.NVarChar;
@@ -1135,10 +1221,6 @@ namespace Saobracaj.Drumski
             brodskaTeretnica.Value = (object)BrodskaTeretnica ?? DBNull.Value;
             cmd.Parameters.Add(brodskaTeretnica);
 
-
-
-
-
             SqlParameter brojPosiljke = new SqlParameter();
             brojPosiljke.ParameterName = "@BrojPosiljke";
             brojPosiljke.SqlDbType = SqlDbType.NVarChar;
@@ -1146,6 +1228,74 @@ namespace Saobracaj.Drumski
             brojPosiljke.Direction = ParameterDirection.Input;
             brojPosiljke.Value = (object)BrojPosiljke ?? DBNull.Value;
             cmd.Parameters.Add(brojPosiljke);
+
+
+            SqlParameter scenarioCarinskiPostupak = new SqlParameter();
+            scenarioCarinskiPostupak.ParameterName = "@ScenarioCarinskiPostupak";
+            scenarioCarinskiPostupak.SqlDbType = SqlDbType.Int;
+            scenarioCarinskiPostupak.Direction = ParameterDirection.Input;
+            scenarioCarinskiPostupak.Value = CarinskiPostupak;
+            cmd.Parameters.Add(scenarioCarinskiPostupak);
+
+            SqlParameter opisPosla = new SqlParameter();
+            opisPosla.ParameterName = "@OpisPosla";
+            opisPosla.SqlDbType = SqlDbType.NVarChar;
+            opisPosla.Size = 300;
+            opisPosla.Direction = ParameterDirection.Input;
+            opisPosla.Value = (object)OpisPosla ?? DBNull.Value;
+            cmd.Parameters.Add(opisPosla);
+
+
+            SqlParameter adresaUtovaraCerade = new SqlParameter();
+            adresaUtovaraCerade.ParameterName = "@AdresaUtovaraCerade";
+            adresaUtovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            adresaUtovaraCerade.Size = -1;
+            adresaUtovaraCerade.Direction = ParameterDirection.Input;
+            adresaUtovaraCerade.Value = (object)AdresaUtovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(adresaUtovaraCerade);
+
+
+            SqlParameter adresaIstovaraCerade = new SqlParameter();
+            adresaIstovaraCerade.ParameterName = "@AdresaIstovaraCerade";
+            adresaIstovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            adresaIstovaraCerade.Size = -1;
+            adresaIstovaraCerade.Direction = ParameterDirection.Input;
+            adresaIstovaraCerade.Value = (object)AdresaIstovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(adresaIstovaraCerade);
+
+
+            SqlParameter kontaktUtovaraCerade = new SqlParameter();
+            kontaktUtovaraCerade.ParameterName = "@KontaktUtovaraCerade";
+            kontaktUtovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            kontaktUtovaraCerade.Size = 255;
+            kontaktUtovaraCerade.Direction = ParameterDirection.Input;
+            kontaktUtovaraCerade.Value = (object)KontaktUtovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktUtovaraCerade);
+
+
+            SqlParameter kontaktIstovaraCerade = new SqlParameter();
+            kontaktIstovaraCerade.ParameterName = "@KontaktIstovaraCerade";
+            kontaktIstovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            kontaktIstovaraCerade.Size = 255;
+            kontaktIstovaraCerade.Direction = ParameterDirection.Input;
+            kontaktIstovaraCerade.Value = (object)KontaktIstovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktIstovaraCerade);
+
+            SqlParameter noviSpediterP = new SqlParameter();
+            noviSpediterP.ParameterName = "@NoviSpediterP";
+            noviSpediterP.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterP.Size = 255;
+            noviSpediterP.Direction = ParameterDirection.Input;
+            noviSpediterP.Value = (object)NoviSpediterP ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterP);
+
+            SqlParameter noviSpediterO = new SqlParameter();
+            noviSpediterO.ParameterName = "@NoviSpediterO";
+            noviSpediterO.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterO.Size = 255;
+            noviSpediterO.Direction = ParameterDirection.Input;
+            noviSpediterO.Value = (object)NoviSpediterO ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterO);
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;
@@ -1187,6 +1337,754 @@ namespace Saobracaj.Drumski
             return IDPom;
         }
 
+        public void UpdRadniNalogDrumskiNovi(int ID, int? Booking,  int? Nalogodavac, string Ref, string Valuta,
+             decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int? CarinskiPostupak, int AutoDan, int? PolaznaCarinarnica, int? PolaznaSpedicija, string PolaznaSpedicijaKontakt,
+             int? OdredisnaCarinarnica, int? OdredisnaSpedicija, string OdredisnaSpedicijaKontakt, string DodatniOpis, int? NapomenaPoz, int Vaganje, string BrojKontejnera, int? VrstaKontejnera,
+             int? KvalitetKontejnera, string BrodskaPlomba, int? Brodar,  int? BrodskaPlombaVlasnik, string OstalePlombe, decimal? TaraKontejnera, decimal? BttoRobe, decimal? NetoRobe, int Adr, int? NacinPakovanja,
+             int? MestoPreuzimanja, string AdresaPreuzimanja, string KontaktOsobaPreuzimanja, DateTime? DtPreuzimanjaKontejnera, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
+             int? MestoSpustanja, DateTime?  DtSpustanja, DateTime?  DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, int? MestoUtovara, DateTime? DatumUtovara, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara, 
+             string AdresaUtovara, string KontaktOsobaNaUtovaru, string GranicniPrelaz,  string KontaktOsobaNaIstovaru, 
+             string BrojVoza,   string BrodskaTeretnica, string BrojPosiljke, int NalogIzmenioZaposleni, string OpisPosla, string AdresaUtovaraCerade, string AdresaIstovaraCerade, string KontaktUtovaraCerade, string KontaktIstovaraCerade,
+             string NoviSpediterP, string NoviSpediterO)
+
+        {
+        
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiNovi";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kreirajNalogID = new SqlParameter();
+            kreirajNalogID.ParameterName = "@ID";
+            kreirajNalogID.SqlDbType = SqlDbType.Int;
+            kreirajNalogID.Direction = ParameterDirection.Input;
+            kreirajNalogID.Value = ID;
+            cmd.Parameters.Add(kreirajNalogID);
+           
+            SqlParameter booking = new SqlParameter();
+            booking.ParameterName = "@Booking";
+            booking.SqlDbType = SqlDbType.Int;
+            booking.Direction = ParameterDirection.Input;
+            booking.Value = Booking.HasValue ? (object)Booking.Value : DBNull.Value;
+            cmd.Parameters.Add(booking);
+
+            SqlParameter nalogodavac = new SqlParameter();
+            nalogodavac.ParameterName = "@Nalogodavac";
+            nalogodavac.SqlDbType = SqlDbType.Int;
+            nalogodavac.Direction = ParameterDirection.Input;
+            nalogodavac.Value = Nalogodavac.HasValue ? (object)Nalogodavac.Value : DBNull.Value;
+            cmd.Parameters.Add(nalogodavac);
+
+            SqlParameter ref3 = new SqlParameter();
+            ref3.ParameterName = "@Ref";
+            ref3.SqlDbType = SqlDbType.NVarChar;
+            ref3.Size = 100;
+            ref3.Direction = ParameterDirection.Input;
+            ref3.Value = (object)Ref ?? DBNull.Value;
+            cmd.Parameters.Add(ref3);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Size = 50;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = (object)Valuta ?? DBNull.Value;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter trosak = new SqlParameter();
+            trosak.ParameterName = "@Trosak";
+            trosak.SqlDbType = SqlDbType.Decimal;
+            trosak.Direction = ParameterDirection.Input;
+            trosak.Value = Trosak.HasValue ? (object)Trosak.Value : DBNull.Value;
+            cmd.Parameters.Add(trosak);
+
+            SqlParameter cena = new SqlParameter();
+            cena.ParameterName = "@Cena";
+            cena.SqlDbType = SqlDbType.Decimal;
+            cena.Direction = ParameterDirection.Input;
+            cena.Value = Cena.HasValue ? (object)Cena.Value : DBNull.Value;
+            cmd.Parameters.Add(cena);
+
+            SqlParameter pdv = new SqlParameter();
+            pdv.ParameterName = "@PDV";
+            pdv.SqlDbType = SqlDbType.Int;
+            pdv.Direction = ParameterDirection.Input;
+            pdv.Value = PDV.HasValue ? (object)PDV.Value : DBNull.Value;
+            cmd.Parameters.Add(pdv);
+
+            SqlParameter dodatniTrosak = new SqlParameter();
+            dodatniTrosak.ParameterName = "@DodatniTrosak";
+            dodatniTrosak.SqlDbType = SqlDbType.Int;
+            dodatniTrosak.Direction = ParameterDirection.Input;
+            dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
+            cmd.Parameters.Add(dodatniTrosak);
+
+            SqlParameter carinskiPostupak = new SqlParameter();
+            carinskiPostupak.ParameterName = "@CarinskiPostupak";
+            carinskiPostupak.SqlDbType = SqlDbType.Int;
+            carinskiPostupak.Direction = ParameterDirection.Input;
+            carinskiPostupak.Value = CarinskiPostupak.HasValue ? (object)CarinskiPostupak.Value : DBNull.Value;
+            cmd.Parameters.Add(carinskiPostupak);
+
+
+            SqlParameter autoDan = new SqlParameter();
+            autoDan.ParameterName = "@AutoDan";
+            autoDan.SqlDbType = SqlDbType.Int;
+            autoDan.Direction = ParameterDirection.Input;
+            autoDan.Value = AutoDan;
+            cmd.Parameters.Add(autoDan);
+
+
+            SqlParameter polaznaCarinarnica = new SqlParameter();
+            polaznaCarinarnica.ParameterName = "@PolaznaCarinarnica";
+            polaznaCarinarnica.SqlDbType = SqlDbType.Int;
+            polaznaCarinarnica.Direction = ParameterDirection.Input;
+            polaznaCarinarnica.Value = PolaznaCarinarnica.HasValue ? (object)PolaznaCarinarnica : DBNull.Value;
+            cmd.Parameters.Add(polaznaCarinarnica);
+
+            SqlParameter polaznaSpedicija = new SqlParameter();
+            polaznaSpedicija.ParameterName = "@PolaznaSpedicija";
+            polaznaSpedicija.SqlDbType = SqlDbType.Int;
+            polaznaSpedicija.Direction = ParameterDirection.Input;
+            polaznaSpedicija.Value = PolaznaSpedicija.HasValue ? (object)PolaznaSpedicija : DBNull.Value;
+            cmd.Parameters.Add(polaznaSpedicija);
+
+            SqlParameter polaznaSpedicijaKontakt = new SqlParameter();
+            polaznaSpedicijaKontakt.ParameterName = "@PolaznaSpedicijaKontakt";
+            polaznaSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            polaznaSpedicijaKontakt.Size = 500;
+            polaznaSpedicijaKontakt.Direction = ParameterDirection.Input;
+            polaznaSpedicijaKontakt.Value = (object)PolaznaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(polaznaSpedicijaKontakt);
+
+            SqlParameter odredisnaCarinarnica = new SqlParameter();
+            odredisnaCarinarnica.ParameterName = "@OdredisnaCarinarnica";
+            odredisnaCarinarnica.SqlDbType = SqlDbType.Int;
+            odredisnaCarinarnica.Direction = ParameterDirection.Input;
+            odredisnaCarinarnica.Value = OdredisnaCarinarnica.HasValue ? (object)OdredisnaCarinarnica : DBNull.Value;
+            cmd.Parameters.Add(odredisnaCarinarnica);
+
+            SqlParameter odredisnaSpedicija = new SqlParameter();
+            odredisnaSpedicija.ParameterName = "@OdredisnaSpedicija";
+            odredisnaSpedicija.SqlDbType = SqlDbType.Int;
+            odredisnaSpedicija.Direction = ParameterDirection.Input;
+            odredisnaSpedicija.Value = OdredisnaSpedicija.HasValue ? (object)OdredisnaSpedicija : DBNull.Value;
+            cmd.Parameters.Add(odredisnaSpedicija);
+
+            SqlParameter odredisnaSpedicijaKontakt = new SqlParameter();
+            odredisnaSpedicijaKontakt.ParameterName = "@OdredisnaSpedicijaKontakt";
+            odredisnaSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            odredisnaSpedicijaKontakt.Size = 500;
+            odredisnaSpedicijaKontakt.Direction = ParameterDirection.Input;
+            odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(odredisnaSpedicijaKontakt);
+
+            SqlParameter dodatniOpis = new SqlParameter();
+            dodatniOpis.ParameterName = "@DodatniOpis";
+            dodatniOpis.SqlDbType = SqlDbType.NVarChar;
+            dodatniOpis.Size = 100;
+            dodatniOpis.Direction = ParameterDirection.Input;
+            dodatniOpis.Value = (object)DodatniOpis ?? DBNull.Value;
+            cmd.Parameters.Add(dodatniOpis);
+
+            SqlParameter napomenaPoz = new SqlParameter();
+            napomenaPoz.ParameterName = "@NapomenaPoz";
+            napomenaPoz.SqlDbType = SqlDbType.Int;
+            napomenaPoz.Direction = ParameterDirection.Input;
+            napomenaPoz.Value = NapomenaPoz.HasValue ? (object)NapomenaPoz.Value : DBNull.Value;
+            cmd.Parameters.Add(napomenaPoz);
+
+
+            SqlParameter vaganje = new SqlParameter();
+            vaganje.ParameterName = "@Vaganje";
+            vaganje.SqlDbType = SqlDbType.Int;
+            vaganje.Direction = ParameterDirection.Input;
+            vaganje.Value = Vaganje;
+            cmd.Parameters.Add(vaganje);
+
+            SqlParameter brojKontejnera = new SqlParameter();
+            brojKontejnera.ParameterName = "@BrojKontejnera";
+            brojKontejnera.SqlDbType = SqlDbType.NVarChar;
+            brojKontejnera.Size = 200;
+            brojKontejnera.Direction = ParameterDirection.Input;
+            brojKontejnera.Value = (object)BrojKontejnera ?? DBNull.Value;
+            cmd.Parameters.Add(brojKontejnera);
+
+            SqlParameter vrstaKontejnera = new SqlParameter();
+            vrstaKontejnera.ParameterName = "@VrstaKontejnera";
+            vrstaKontejnera.SqlDbType = SqlDbType.Int;
+            vrstaKontejnera.Direction = ParameterDirection.Input;
+            vrstaKontejnera.Value = VrstaKontejnera.HasValue ? (object)VrstaKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(vrstaKontejnera);
+
+            SqlParameter kvalitetKontejnera = new SqlParameter();
+            kvalitetKontejnera.ParameterName = "@KvalitetKontejnera";
+            kvalitetKontejnera.SqlDbType = SqlDbType.Int;
+            kvalitetKontejnera.Direction = ParameterDirection.Input;
+            kvalitetKontejnera.Value = KvalitetKontejnera.HasValue ? (object)KvalitetKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(kvalitetKontejnera);
+
+            SqlParameter brodskaPlomba = new SqlParameter();
+            brodskaPlomba.ParameterName = "@BrodskaPlomba";
+            brodskaPlomba.SqlDbType = SqlDbType.NVarChar;
+            brodskaPlomba.Size = 30;
+            brodskaPlomba.Direction = ParameterDirection.Input;
+            brodskaPlomba.Value = (object)BrodskaPlomba ?? DBNull.Value;
+            cmd.Parameters.Add(brodskaPlomba);
+
+            SqlParameter brodar = new SqlParameter();
+            brodar.ParameterName = "@Brodar";
+            brodar.SqlDbType = SqlDbType.Int;
+            brodar.Direction = ParameterDirection.Input;
+            brodar.Value = Brodar.HasValue ? (object)Brodar.Value : DBNull.Value;
+            cmd.Parameters.Add(brodar);
+
+            SqlParameter brodskaPlombaVlasnik = new SqlParameter();
+            brodskaPlombaVlasnik.ParameterName = "@BrodskaPlombaVlasnik";
+            brodskaPlombaVlasnik.SqlDbType = SqlDbType.Int;
+            brodskaPlombaVlasnik.Direction = ParameterDirection.Input;
+            brodskaPlombaVlasnik.Value = BrodskaPlombaVlasnik.HasValue ? (object)BrodskaPlombaVlasnik.Value : DBNull.Value;
+            cmd.Parameters.Add(brodskaPlombaVlasnik);
+
+            SqlParameter ostalePlombe = new SqlParameter();
+            ostalePlombe.ParameterName = "@OstalePlombe";
+            ostalePlombe.SqlDbType = SqlDbType.NVarChar;
+            ostalePlombe.Size = 50;
+            ostalePlombe.Direction = ParameterDirection.Input;
+            ostalePlombe.Value = (object)OstalePlombe ?? DBNull.Value;
+            cmd.Parameters.Add(ostalePlombe);
+
+            SqlParameter taraKontejnera = new SqlParameter();
+            taraKontejnera.ParameterName = "@TaraKontejnera";
+            taraKontejnera.SqlDbType = SqlDbType.Decimal;
+            taraKontejnera.Direction = ParameterDirection.Input;
+            taraKontejnera.Value = TaraKontejnera.HasValue ? (object)TaraKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(taraKontejnera);
+
+
+            SqlParameter bttoRobe = new SqlParameter();
+            bttoRobe.ParameterName = "@BttoRobe";
+            bttoRobe.SqlDbType = SqlDbType.Decimal;
+            bttoRobe.Direction = ParameterDirection.Input;
+            bttoRobe.Value = BttoRobe.HasValue ? (object)BttoRobe.Value : DBNull.Value;
+            cmd.Parameters.Add(bttoRobe);
+
+            SqlParameter netoRobe = new SqlParameter();
+            netoRobe.ParameterName = "@NetoRobe";
+            netoRobe.SqlDbType = SqlDbType.Decimal;
+            netoRobe.Direction = ParameterDirection.Input;
+            netoRobe.Value = NetoRobe.HasValue ? (object)NetoRobe.Value : DBNull.Value;
+            cmd.Parameters.Add(netoRobe);
+
+            SqlParameter adr = new SqlParameter();
+            adr.ParameterName = "@Adr";
+            adr.SqlDbType = SqlDbType.Int;
+            adr.Direction = ParameterDirection.Input;
+            adr.Value = Adr;
+            cmd.Parameters.Add(adr);
+
+
+            SqlParameter nacinPakovanja = new SqlParameter();
+            nacinPakovanja.ParameterName = "@NacinPakovanja";
+            nacinPakovanja.SqlDbType = SqlDbType.Int;
+            nacinPakovanja.Direction = ParameterDirection.Input;
+            nacinPakovanja.Value = NacinPakovanja.HasValue ? (object)NacinPakovanja.Value : DBNull.Value;
+            cmd.Parameters.Add(nacinPakovanja);
+           
+
+            SqlParameter mestoPreuzimanjaKontejnera = new SqlParameter();
+            mestoPreuzimanjaKontejnera.ParameterName = "@MestoPreuzimanja";
+            mestoPreuzimanjaKontejnera.SqlDbType = SqlDbType.Int;
+            mestoPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
+            mestoPreuzimanjaKontejnera.Value = MestoPreuzimanja.HasValue ? (object)MestoPreuzimanja : DBNull.Value;
+            cmd.Parameters.Add(mestoPreuzimanjaKontejnera);
+
+            
+            SqlParameter adresaPreuzimanja = new SqlParameter();
+            adresaPreuzimanja.ParameterName = "@AdresaPreuzimanja";
+            adresaPreuzimanja.SqlDbType = SqlDbType.NVarChar;
+            adresaPreuzimanja.Size = 100;
+            adresaPreuzimanja.Direction = ParameterDirection.Input;
+            adresaPreuzimanja.Value = (object)AdresaPreuzimanja ?? DBNull.Value;
+            cmd.Parameters.Add(adresaPreuzimanja);
+
+            SqlParameter kontaktOsobaPreuzimanja = new SqlParameter();
+            kontaktOsobaPreuzimanja.ParameterName = "@KontaktOsobaPreuzimanja";
+            kontaktOsobaPreuzimanja.SqlDbType = SqlDbType.NVarChar;
+            kontaktOsobaPreuzimanja.Size = 50;
+            kontaktOsobaPreuzimanja.Direction = ParameterDirection.Input;
+            kontaktOsobaPreuzimanja.Value = (object)KontaktOsobaPreuzimanja ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktOsobaPreuzimanja);
+
+            SqlParameter dtPreuzimanjaKontejnera = new SqlParameter();
+            dtPreuzimanjaKontejnera.ParameterName = "@DtPreuzimanjaKontejnera";
+            dtPreuzimanjaKontejnera.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjaKontejnera.Direction = ParameterDirection.Input;
+            dtPreuzimanjaKontejnera.Value = DtPreuzimanjaKontejnera.HasValue ? (object)DtPreuzimanjaKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjaKontejnera);
+
+            SqlParameter dtRealizacijePreuzimanjaKontejnera = new SqlParameter();
+            dtRealizacijePreuzimanjaKontejnera.ParameterName = "@DtRealizacijePreuzimanjaKontejnera";
+            dtRealizacijePreuzimanjaKontejnera.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijePreuzimanjaKontejnera.Direction = ParameterDirection.Input;
+            dtRealizacijePreuzimanjaKontejnera.Value = DtRealizacijePreuzimanjaKontejnera.HasValue ? (object)DtRealizacijePreuzimanjaKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijePreuzimanjaKontejnera);
+
+            SqlParameter dtPreuzimanjePraznogKNovi = new SqlParameter();
+            dtPreuzimanjePraznogKNovi.ParameterName = "@DtPreuzimanjePraznogKNovi";
+            dtPreuzimanjePraznogKNovi.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjePraznogKNovi.Direction = ParameterDirection.Input;
+            dtPreuzimanjePraznogKNovi.Value = DtPreuzimanjePraznogKNovi.HasValue ? (object)DtPreuzimanjePraznogKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjePraznogKNovi);
+
+            
+            SqlParameter mestoSpustanja = new SqlParameter();
+            mestoSpustanja.ParameterName = "@MestoSpustanja";
+            mestoSpustanja.SqlDbType = SqlDbType.Int;
+            mestoSpustanja.Direction = ParameterDirection.Input;
+            mestoSpustanja.Value = MestoSpustanja.HasValue ? (object)MestoSpustanja : DBNull.Value;
+            cmd.Parameters.Add(mestoSpustanja);
+
+
+            SqlParameter dtSpustanja = new SqlParameter();
+            dtSpustanja.ParameterName = "@DtSpustanja";
+            dtSpustanja.SqlDbType = SqlDbType.DateTime;
+            dtSpustanja.Direction = ParameterDirection.Input;
+            dtSpustanja.Value = DtSpustanja.HasValue ? (object)DtSpustanja.Value : DBNull.Value;
+            cmd.Parameters.Add(dtSpustanja);
+
+
+            SqlParameter dtRealizacijeSpustanja = new SqlParameter();
+            dtRealizacijeSpustanja.ParameterName = "@DtRealizacijeSpustanja";
+            dtRealizacijeSpustanja.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeSpustanja.Direction = ParameterDirection.Input;
+            dtRealizacijeSpustanja.Value = DtRealizacijeSpustanja.HasValue ? (object)DtRealizacijeSpustanja.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeSpustanja); 
+
+            SqlParameter dtSpustanjePunogNovi = new SqlParameter();
+            dtSpustanjePunogNovi.ParameterName = "@DtSpustanjePunogNovi";
+            dtSpustanjePunogNovi.SqlDbType = SqlDbType.DateTime;
+            dtSpustanjePunogNovi.Direction = ParameterDirection.Input;
+            dtSpustanjePunogNovi.Value = DtSpustanjePunogNovi.HasValue ? (object)DtSpustanjePunogNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtSpustanjePunogNovi);
+
+            SqlParameter mestoUtovara = new SqlParameter();
+            mestoUtovara.ParameterName = "@MestoUtovara";
+            mestoUtovara.SqlDbType = SqlDbType.Int;
+            mestoUtovara.Direction = ParameterDirection.Input;
+            mestoUtovara.Value = MestoUtovara.HasValue ? (object)MestoUtovara : DBNull.Value;
+            cmd.Parameters.Add(mestoUtovara);
+
+           SqlParameter datumUtovara = new SqlParameter();
+           datumUtovara.ParameterName = "@DatumUtovara";
+           datumUtovara.SqlDbType = SqlDbType.DateTime;
+           datumUtovara.Direction = ParameterDirection.Input;
+           datumUtovara.Value = DatumUtovara.HasValue ? (object)DatumUtovara.Value : DBNull.Value;
+           cmd.Parameters.Add(datumUtovara);
+
+            SqlParameter dtUtovaraKNovi = new SqlParameter();
+            dtUtovaraKNovi.ParameterName = "@DtUtovaraKNovi";
+            dtUtovaraKNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraKNovi.Direction = ParameterDirection.Input;
+            dtUtovaraKNovi.Value = DtUtovaraKNovi.HasValue ? (object)DtUtovaraKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraKNovi);
+
+            SqlParameter dtRealiUtovara = new SqlParameter();
+            dtRealiUtovara.ParameterName = "@DtRealiUtovara";
+            dtRealiUtovara.SqlDbType = SqlDbType.DateTime;
+            dtRealiUtovara.Direction = ParameterDirection.Input;
+            dtRealiUtovara.Value = DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value; //DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealiUtovara);
+
+            SqlParameter adresaUtovara = new SqlParameter();
+            adresaUtovara.ParameterName = "@AdresaUtovara";
+            adresaUtovara.SqlDbType = SqlDbType.NVarChar;
+            adresaUtovara.Size = 100;
+            adresaUtovara.Direction = ParameterDirection.Input;
+            adresaUtovara.Value = (object)AdresaUtovara ?? DBNull.Value;
+            cmd.Parameters.Add(adresaUtovara);
+
+            SqlParameter kontaktNaUtovaru = new SqlParameter();
+            kontaktNaUtovaru.ParameterName = "@KontaktOsobaNaUtovaru";
+            kontaktNaUtovaru.SqlDbType = SqlDbType.NVarChar;
+            kontaktNaUtovaru.Size = 50;
+            kontaktNaUtovaru.Direction = ParameterDirection.Input;
+            kontaktNaUtovaru.Value = (object)KontaktOsobaNaUtovaru ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktNaUtovaru);
+
+            SqlParameter granicniPrelaz = new SqlParameter();
+            granicniPrelaz.ParameterName = "@GranicniPrelaz";
+            granicniPrelaz.SqlDbType = SqlDbType.NVarChar;
+            granicniPrelaz.Size = 100;
+            granicniPrelaz.Direction = ParameterDirection.Input;
+            granicniPrelaz.Value = (object)GranicniPrelaz ?? DBNull.Value;
+            cmd.Parameters.Add(granicniPrelaz);
+
+            SqlParameter kontaktOsobaNaIstovaru = new SqlParameter();
+            kontaktOsobaNaIstovaru.ParameterName = "@KontaktOsobaNaIstovaru";
+            kontaktOsobaNaIstovaru.SqlDbType = SqlDbType.NVarChar;
+            kontaktOsobaNaIstovaru.Size = 50;
+            kontaktOsobaNaIstovaru.Direction = ParameterDirection.Input;
+            kontaktOsobaNaIstovaru.Value = (object)KontaktOsobaNaIstovaru ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktOsobaNaIstovaru);
+
+            SqlParameter brojVoza = new SqlParameter();
+            brojVoza.ParameterName = "@BrojVoza";
+            brojVoza.SqlDbType = SqlDbType.NVarChar;
+            brojVoza.Size = 50;
+            brojVoza.Direction = ParameterDirection.Input;
+            brojVoza.Value = (object)BrojVoza ?? DBNull.Value;
+            cmd.Parameters.Add(brojVoza);
+
+            SqlParameter brodskaTeretnica = new SqlParameter();
+            brodskaTeretnica.ParameterName = "@BrodskaTeretnica";
+            brodskaTeretnica.SqlDbType = SqlDbType.NVarChar;
+            brodskaTeretnica.Size = 50;
+            brodskaTeretnica.Direction = ParameterDirection.Input;
+            brodskaTeretnica.Value = (object)BrodskaTeretnica ?? DBNull.Value;
+            cmd.Parameters.Add(brodskaTeretnica);
+
+            SqlParameter brojPosiljke = new SqlParameter();
+            brojPosiljke.ParameterName = "@BrojPosiljke";
+            brojPosiljke.SqlDbType = SqlDbType.NVarChar;
+            brojPosiljke.Size = 100;
+            brojPosiljke.Direction = ParameterDirection.Input;
+            brojPosiljke.Value = (object)BrojPosiljke ?? DBNull.Value;
+            cmd.Parameters.Add(brojPosiljke);
+
+            SqlParameter nalogIzmenio = new SqlParameter();
+            nalogIzmenio.ParameterName = "@NalogIzmenioZaposleni";
+            nalogIzmenio.SqlDbType = SqlDbType.Int;
+            nalogIzmenio.Direction = ParameterDirection.Input;
+            nalogIzmenio.Value = NalogIzmenioZaposleni;
+            cmd.Parameters.Add(nalogIzmenio);
+
+            SqlParameter opisPosla = new SqlParameter();
+            opisPosla.ParameterName = "@OpisPosla";
+            opisPosla.SqlDbType = SqlDbType.NVarChar;
+            opisPosla.Size = 300;
+            opisPosla.Direction = ParameterDirection.Input;
+            opisPosla.Value = (object)OpisPosla ?? DBNull.Value;
+            cmd.Parameters.Add(opisPosla);
+
+
+            SqlParameter adresaUtovaraCerade = new SqlParameter();
+            adresaUtovaraCerade.ParameterName = "@AdresaUtovaraCerade";
+            adresaUtovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            adresaUtovaraCerade.Size = -1;
+            adresaUtovaraCerade.Direction = ParameterDirection.Input;
+            adresaUtovaraCerade.Value = (object)AdresaUtovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(adresaUtovaraCerade);
+
+
+            SqlParameter adresaIstovaraCerade = new SqlParameter();
+            adresaIstovaraCerade.ParameterName = "@AdresaIstovaraCerade";
+            adresaIstovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            adresaIstovaraCerade.Size = -1;
+            adresaIstovaraCerade.Direction = ParameterDirection.Input;
+            adresaIstovaraCerade.Value = (object)AdresaIstovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(adresaIstovaraCerade);
+
+
+            SqlParameter kontaktUtovaraCerade = new SqlParameter();
+            kontaktUtovaraCerade.ParameterName = "@KontaktUtovaraCerade";
+            kontaktUtovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            kontaktUtovaraCerade.Size = 255;
+            kontaktUtovaraCerade.Direction = ParameterDirection.Input;
+            kontaktUtovaraCerade.Value = (object)KontaktUtovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktUtovaraCerade);
+
+
+            SqlParameter kontaktIstovaraCerade = new SqlParameter();
+            kontaktIstovaraCerade.ParameterName = "@KontaktIstovaraCerade";
+            kontaktIstovaraCerade.SqlDbType = SqlDbType.NVarChar;
+            kontaktIstovaraCerade.Size = 255;
+            kontaktIstovaraCerade.Direction = ParameterDirection.Input;
+            kontaktIstovaraCerade.Value = (object)KontaktIstovaraCerade ?? DBNull.Value;
+            cmd.Parameters.Add(kontaktIstovaraCerade);
+
+            SqlParameter noviSpediterP = new SqlParameter();
+            noviSpediterP.ParameterName = "@NoviSpediterP";
+            noviSpediterP.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterP.Size = 255;
+            noviSpediterP.Direction = ParameterDirection.Input;
+            noviSpediterP.Value = (object)NoviSpediterP ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterP);
+
+            SqlParameter noviSpediterO = new SqlParameter();
+            noviSpediterO.ParameterName = "@NoviSpediterO";
+            noviSpediterO.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterO.Size = 255;
+            noviSpediterO.Direction = ParameterDirection.Input;
+            noviSpediterO.Value = (object)NoviSpediterO ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterO);
+
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                error = false;
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+       
+
+        public void UpdRadniNalogDrumskiIzvoz(int ID,  string Valuta, decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int AutoDan,  string PolaznaSpedicijaKontakt,
+           string OdredisnaSpedicijaKontakt, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
+           DateTime? DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, DateTime?  DtSpustanja, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara,
+           DateTime? DtUtovaraCeradeNovi, DateTime? DtRealizacijeUtovaraCerade, DateTime? DtIstovaraCerade, DateTime? DtIstovaraCeradeNovi, DateTime? DtRealizacijeIstovaraCerade, string GranicniPrelaz, int NalogIzmenioZaposleni,
+           string NoviSpediterP, string NoviSpediterO)
+
+        {
+            
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDrumskiIzvoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kreirajNalogID = new SqlParameter();
+            kreirajNalogID.ParameterName = "@ID";
+            kreirajNalogID.SqlDbType = SqlDbType.Int;
+            kreirajNalogID.Direction = ParameterDirection.Input;
+            kreirajNalogID.Value = ID;
+            cmd.Parameters.Add(kreirajNalogID);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Size = 50;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = (object)Valuta ?? DBNull.Value;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter trosak = new SqlParameter();
+            trosak.ParameterName = "@Trosak";
+            trosak.SqlDbType = SqlDbType.Decimal;
+            trosak.Direction = ParameterDirection.Input;
+            trosak.Value = Trosak.HasValue ? (object)Trosak.Value : DBNull.Value;
+            cmd.Parameters.Add(trosak);
+
+            SqlParameter cena = new SqlParameter();
+            cena.ParameterName = "@Cena";
+            cena.SqlDbType = SqlDbType.Decimal;
+            cena.Direction = ParameterDirection.Input;
+            cena.Value = Cena.HasValue ? (object)Cena.Value : DBNull.Value;
+            cmd.Parameters.Add(cena);
+
+            SqlParameter pdv = new SqlParameter();
+            pdv.ParameterName = "@PDV";
+            pdv.SqlDbType = SqlDbType.Int;
+            pdv.Direction = ParameterDirection.Input;
+            pdv.Value = PDV.HasValue ? (object)PDV.Value : DBNull.Value;
+            cmd.Parameters.Add(pdv);
+
+            SqlParameter dodatniTrosak = new SqlParameter();
+            dodatniTrosak.ParameterName = "@DodatniTrosak";
+            dodatniTrosak.SqlDbType = SqlDbType.Int;
+            dodatniTrosak.Direction = ParameterDirection.Input;
+            dodatniTrosak.Value = DodatniTrosak.HasValue ? (object)DodatniTrosak.Value : DBNull.Value;
+            cmd.Parameters.Add(dodatniTrosak);
+
+            SqlParameter autoDan = new SqlParameter();
+            autoDan.ParameterName = "@AutoDan";
+            autoDan.SqlDbType = SqlDbType.Int;
+            autoDan.Direction = ParameterDirection.Input;
+            autoDan.Value = AutoDan;
+            cmd.Parameters.Add(autoDan);
+
+            SqlParameter polaznaSpedicijaKontakt = new SqlParameter();
+            polaznaSpedicijaKontakt.ParameterName = "@PolaznaSpedicijaKontaktNovi";
+            polaznaSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            polaznaSpedicijaKontakt.Size = 500;
+            polaznaSpedicijaKontakt.Direction = ParameterDirection.Input;
+            polaznaSpedicijaKontakt.Value = (object)PolaznaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(polaznaSpedicijaKontakt);
+
+            SqlParameter odredisnaSpedicijaKontakt = new SqlParameter();
+            odredisnaSpedicijaKontakt.ParameterName = "@OdredisnaSpedicijaKontaktNovi";
+            odredisnaSpedicijaKontakt.SqlDbType = SqlDbType.NVarChar;
+            odredisnaSpedicijaKontakt.Size = 500;
+            odredisnaSpedicijaKontakt.Direction = ParameterDirection.Input;
+            odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
+            cmd.Parameters.Add(odredisnaSpedicijaKontakt);
+         
+          
+            SqlParameter dtRealizacijePreuzimanjaKontejnera = new SqlParameter();
+            dtRealizacijePreuzimanjaKontejnera.ParameterName = "@DtRealizacijePreuzimanjaKontejnera";
+            dtRealizacijePreuzimanjaKontejnera.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijePreuzimanjaKontejnera.Direction = ParameterDirection.Input;
+            dtRealizacijePreuzimanjaKontejnera.Value = DtRealizacijePreuzimanjaKontejnera.HasValue ? (object)DtRealizacijePreuzimanjaKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijePreuzimanjaKontejnera);
+
+            SqlParameter dtPreuzimanjePraznogKNovi = new SqlParameter();
+            dtPreuzimanjePraznogKNovi.ParameterName = "@DtPreuzimanjePraznogKNovi";
+            dtPreuzimanjePraznogKNovi.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjePraznogKNovi.Direction = ParameterDirection.Input;
+            dtPreuzimanjePraznogKNovi.Value = DtPreuzimanjePraznogKNovi.HasValue ? (object)DtPreuzimanjePraznogKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjePraznogKNovi);
+
+
+            SqlParameter dtRealizacijeSpustanja = new SqlParameter();
+            dtRealizacijeSpustanja.ParameterName = "@DtRealizacijeSpustanja";
+            dtRealizacijeSpustanja.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeSpustanja.Direction = ParameterDirection.Input;
+            dtRealizacijeSpustanja.Value = DtRealizacijeSpustanja.HasValue ? (object)DtRealizacijeSpustanja.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeSpustanja);
+
+            SqlParameter dtSpustanjePunogNovi = new SqlParameter();
+            dtSpustanjePunogNovi.ParameterName = "@DtSpustanjePunogNovi";
+            dtSpustanjePunogNovi.SqlDbType = SqlDbType.DateTime;
+            dtSpustanjePunogNovi.Direction = ParameterDirection.Input;
+            dtSpustanjePunogNovi.Value = DtSpustanjePunogNovi.HasValue ? (object)DtSpustanjePunogNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtSpustanjePunogNovi);
+
+            SqlParameter dtSpustanja = new SqlParameter();
+            dtSpustanja.ParameterName = "@DtSpustanja";
+            dtSpustanja.SqlDbType = SqlDbType.DateTime;
+            dtSpustanja.Direction = ParameterDirection.Input;
+            dtSpustanja.Value = DtSpustanja.HasValue ? (object)DtSpustanja.Value : DBNull.Value;
+            cmd.Parameters.Add(dtSpustanja);
+
+
+            SqlParameter dtUtovaraKNovi = new SqlParameter();
+            dtUtovaraKNovi.ParameterName = "@DtUtovaraKNovi";
+            dtUtovaraKNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraKNovi.Direction = ParameterDirection.Input;
+            dtUtovaraKNovi.Value = DtUtovaraKNovi.HasValue ? (object)DtUtovaraKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraKNovi);
+
+            SqlParameter dtRealiUtovara = new SqlParameter();
+            dtRealiUtovara.ParameterName = "@DtRealiUtovara";
+            dtRealiUtovara.SqlDbType = SqlDbType.DateTime;
+            dtRealiUtovara.Direction = ParameterDirection.Input;
+            dtRealiUtovara.Value = DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value; //DtRealiUtovara.HasValue ? (object)DtRealiUtovara.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealiUtovara);
+
+            SqlParameter dtUtovaraCeradeNovi = new SqlParameter();
+            dtUtovaraCeradeNovi.ParameterName = "@DtUtovaraCeradeNovi";
+            dtUtovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtUtovaraCeradeNovi.Value = DtUtovaraCeradeNovi.HasValue ? (object)DtUtovaraCeradeNovi.Value : DBNull.Value; 
+            cmd.Parameters.Add(dtUtovaraCeradeNovi);
+
+            SqlParameter dtRealizacijeUtovaraCerade = new SqlParameter();
+            dtRealizacijeUtovaraCerade.ParameterName = "@DtRealizacijeUtovaraCerade";
+            dtRealizacijeUtovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeUtovaraCerade.Direction = ParameterDirection.Input;
+            dtRealizacijeUtovaraCerade.Value = DtRealizacijeUtovaraCerade.HasValue ? (object)DtRealizacijeUtovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeUtovaraCerade);
+
+            SqlParameter dtIstovaraCerade = new SqlParameter();
+            dtIstovaraCerade.ParameterName = "@DtIstovaraCerade";
+            dtIstovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCerade.Direction = ParameterDirection.Input;
+            dtIstovaraCerade.Value = DtIstovaraCerade.HasValue ? (object)DtIstovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCerade);
+
+            SqlParameter dtIstovaraCeradeNovi = new SqlParameter();
+            dtIstovaraCeradeNovi.ParameterName = "@DtIstovaraCeradeNovi";
+            dtIstovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtIstovaraCeradeNovi.Value = DtIstovaraCeradeNovi.HasValue ? (object)DtIstovaraCeradeNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCeradeNovi);
+
+            SqlParameter dtRealizacijeIstovaraCerade = new SqlParameter();
+            dtRealizacijeIstovaraCerade.ParameterName = "@DtRealizacijeIstovaraCerade";
+            dtRealizacijeIstovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijeIstovaraCerade.Direction = ParameterDirection.Input;
+            dtRealizacijeIstovaraCerade.Value = DtRealizacijeIstovaraCerade.HasValue ? (object)DtRealizacijeIstovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijeIstovaraCerade);
+
+            SqlParameter granicniPrelaz = new SqlParameter();
+            granicniPrelaz.ParameterName = "@GranicniPrelaz";
+            granicniPrelaz.SqlDbType = SqlDbType.NVarChar;
+            granicniPrelaz.Size = 100;
+            granicniPrelaz.Direction = ParameterDirection.Input;
+            granicniPrelaz.Value = (object)GranicniPrelaz ?? DBNull.Value;
+            cmd.Parameters.Add(granicniPrelaz);
+
+         
+
+            SqlParameter nalogIzmenio = new SqlParameter();
+            nalogIzmenio.ParameterName = "@NalogIzmenioZaposleni";
+            nalogIzmenio.SqlDbType = SqlDbType.Int;
+            nalogIzmenio.Direction = ParameterDirection.Input;
+            nalogIzmenio.Value = NalogIzmenioZaposleni;
+            cmd.Parameters.Add(nalogIzmenio);
+
+            SqlParameter noviSpediterP = new SqlParameter();
+            noviSpediterP.ParameterName = "@NoviSpediterP";
+            noviSpediterP.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterP.Size = 255;
+            noviSpediterP.Direction = ParameterDirection.Input;
+            noviSpediterP.Value = (object)NoviSpediterP ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterP);
+
+            SqlParameter noviSpediterO = new SqlParameter();
+            noviSpediterO.ParameterName = "@NoviSpediterO";
+            noviSpediterO.SqlDbType = SqlDbType.NVarChar;
+            noviSpediterO.Size = 255;
+            noviSpediterO.Direction = ParameterDirection.Input;
+            noviSpediterO.Value = (object)NoviSpediterO ?? DBNull.Value;
+            cmd.Parameters.Add(noviSpediterO);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                error = false;
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+               // throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
 
         public void InsRadniNalogDrumskiNHM(int IDNadredjena, int idNHM)
         {
@@ -1402,6 +2300,72 @@ namespace Saobracaj.Drumski
             {
                 //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //myTransaction.Rollback();
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+     
+        public void UpdateOdobrioLO(List<int> listaIdjeva, int? OdobrioPlaner)
+        {
+
+            string idsString = string.Join(",", listaIdjeva);
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            //cmd.CommandText = "UpdateRadniNalogDrumskiViseStatusa";
+            cmd.CommandText = "UpdateRadniNalogDrumskiOdobrioLO";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDsString";
+            id.SqlDbType = SqlDbType.NVarChar;
+            id.Size = 4000;
+            id.Direction = ParameterDirection.Input;
+            id.Value = idsString;
+            cmd.Parameters.Add(id);
+
+            SqlParameter korisnikID = new SqlParameter();
+            korisnikID.ParameterName = "@OdobrioPlaner";
+            korisnikID.SqlDbType = SqlDbType.Int;
+            korisnikID.Direction = ParameterDirection.Input;
+            korisnikID.Value = OdobrioPlaner.HasValue ? (object)OdobrioPlaner.Value : DBNull.Value;
+            cmd.Parameters.Add(korisnikID);
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                myTransaction.Rollback();
                 throw new Exception("Neuspešan upis ");
             }
 
@@ -2134,6 +3098,7 @@ namespace Saobracaj.Drumski
             oSpedicijaKontakt.Direction = ParameterDirection.Input;
             oSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
             cmd.Parameters.Add(oSpedicijaKontakt);
+
 
             SqlParameter idParam = new SqlParameter("@IDPom", SqlDbType.Int);
             idParam.Direction = ParameterDirection.Output;

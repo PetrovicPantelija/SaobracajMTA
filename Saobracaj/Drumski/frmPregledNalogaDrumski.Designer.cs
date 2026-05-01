@@ -49,6 +49,7 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.gridGroupingControl3 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.btnOdobrioLO = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
@@ -64,6 +65,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnOdobrioLO);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.btnDopunaNaloga);
             this.panel2.Controls.Add(this.btnFormiranjeNaloga);
@@ -73,7 +75,7 @@
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(704, 38);
+            this.panel2.Size = new System.Drawing.Size(967, 38);
             this.panel2.TabIndex = 6;
             // 
             // button6
@@ -404,6 +406,28 @@
             this.gridGroupingControl1.TableControlMouseDown += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventHandler(this.GridGroupingControl1_TableControlMouseDown);
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
+            // btnOdobrioLO
+            // 
+            this.btnOdobrioLO.AutoSize = true;
+            this.btnOdobrioLO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOdobrioLO.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOdobrioLO.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnOdobrioLO.FlatAppearance.BorderSize = 0;
+            this.btnOdobrioLO.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOdobrioLO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnOdobrioLO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOdobrioLO.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnOdobrioLO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnOdobrioLO.Location = new System.Drawing.Point(702, 0);
+            this.btnOdobrioLO.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOdobrioLO.Name = "btnOdobrioLO";
+            this.btnOdobrioLO.Size = new System.Drawing.Size(212, 38);
+            this.btnOdobrioLO.TabIndex = 25;
+            this.btnOdobrioLO.Text = "Potvrdi LO nalog za Transport";
+            this.btnOdobrioLO.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOdobrioLO.UseVisualStyleBackColor = true;
+            this.btnOdobrioLO.Click += new System.EventHandler(this.btnOdobrioLO_Click);
+            // 
             // frmPregledNalogaDrumski
             // 
             this.ClientSize = new System.Drawing.Size(1340, 564);
@@ -450,5 +474,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplirajZapis;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl3;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.Button btnOdobrioLO;
     }
 }

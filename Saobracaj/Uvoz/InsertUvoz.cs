@@ -1223,17 +1223,18 @@ int PotvrdioKlijent, int UradilaCarina,
             }
         }
 
-        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID, int UKID, int Cirada)> stavke, int Uvoz)
+        public void KreirajRadniNalogDrumski( List<(int kontejnerID, int manipulacijaID, int UKID, int Cirada, int Scenario)> stavke, int Uvoz)
         {
             DataTable tvp = new DataTable();
             tvp.Columns.Add("KontejnerID", typeof(int));
             tvp.Columns.Add("ManipulacijaID", typeof(int));
             tvp.Columns.Add("UKID", typeof(int));
             tvp.Columns.Add("Cirada", typeof(int));
+            tvp.Columns.Add("Scenario", typeof(int));
 
             foreach (var s in stavke)
             {
-                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID, s.UKID,s.Cirada);
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID, s.UKID,s.Cirada, s.Scenario);
             }
 
             using (SqlConnection conn = new SqlConnection(connection))
@@ -1263,16 +1264,18 @@ int PotvrdioKlijent, int UradilaCarina,
         }
 
 
-        public void UpdateRadniNalogDrumski(List<(int kontejnerID, int manipulacijaID, int UKID)> stavke, int nalogID, int Uvoz)
+        public void UpdateRadniNalogDrumski(List<(int kontejnerID, int manipulacijaID, int UKID, int Cirada, int Scenario)> stavke, int nalogID, int Uvoz)
         {
             DataTable tvp = new DataTable();
             tvp.Columns.Add("KontejnerID", typeof(int));
             tvp.Columns.Add("ManipulacijaID", typeof(int));
             tvp.Columns.Add("UKID", typeof(int));
+            tvp.Columns.Add("Cirada", typeof(int));
+            tvp.Columns.Add("Scenario", typeof(int));
 
             foreach (var s in stavke)
             {
-                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID,s.UKID);
+                tvp.Rows.Add(s.kontejnerID, s.manipulacijaID,s.UKID, s.Cirada, s.Scenario);
             }
 
             using (SqlConnection conn = new SqlConnection(connection))

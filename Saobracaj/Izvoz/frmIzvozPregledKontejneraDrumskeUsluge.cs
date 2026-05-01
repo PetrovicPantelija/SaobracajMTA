@@ -1,5 +1,7 @@
-﻿using Saobracaj.Drumski;
+﻿using Microsoft.Office.Interop.Excel;
+using Saobracaj.Drumski;
 using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.Drumski;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -101,7 +103,7 @@ namespace Saobracaj.Izvoz
                 InsertUvoz isu = new InsertUvoz();
                 int uvoz = 0;
 
-                List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada)> stavke = new List<(int, int, int, int)>();
+                List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Status)> stavke = new List<(int, int, int, int, int)>();
 
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
@@ -116,7 +118,8 @@ namespace Saobracaj.Izvoz
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
                     int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
-                    stavke.Add((kontejnerID, manipulacijaID, IKID, cirada));
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    stavke.Add((kontejnerID, manipulacijaID, IKID, cirada, scenario));
                 }
 
                 isu.KreirajRadniNalogDrumski(stavke, uvoz);
@@ -128,7 +131,7 @@ namespace Saobracaj.Izvoz
         {
             int uvoz = 0;
             InsertUvoz isu = new InsertUvoz();
-            List<(int kontejnerID, int manipulacijaID, int IKID)> stavkeBezNaloga = new List<(int, int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Scenario)> stavkeBezNaloga = new List<(int, int, int, int, int)>();
             HashSet<int> nalogIds = new HashSet<int>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
@@ -149,7 +152,9 @@ namespace Saobracaj.Izvoz
                     int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID));
+                    int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID,cirada, scenario ));
                 }
             }
 
@@ -166,7 +171,7 @@ namespace Saobracaj.Izvoz
 
                 DialogResult result = MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
                                                       "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+               
                 if (result == DialogResult.Yes)
                 {
                     isu.UpdateRadniNalogDrumski(stavkeBezNaloga, nalogId, uvoz);
