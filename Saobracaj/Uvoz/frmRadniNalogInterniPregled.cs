@@ -1593,8 +1593,28 @@ namespace Saobracaj.Uvoz
         private void button7_Click(object sender, EventArgs e)
         {
 
-            RNI.frmScenarioSCI sc1 = new RNI.frmScenarioSCI();
-            sc1.Show();
+            // 1. Proveravamo da li je korisnik selektovao bilo šta u gridGroupingControl2
+            if (gridGroupingControl2.Table.CurrentRecord != null)
+            {
+                // 2. Dohvatamo vrednost polja "ID" iz selektovanog reda
+                var selektovaniID = gridGroupingControl2.Table.CurrentRecord.GetValue("ID");
+
+
+                if (selektovaniID != null)
+                {
+                    int idZaFormu = Convert.ToInt32(selektovaniID);
+
+                    // 3. Sada imamo ID
+               
+                    RNI.frmScenarioSCI sc1 = new RNI.frmScenarioSCI(idZaFormu, cboIzdatOd.Text);
+                    sc1.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Molimo vas da prvo izaberete kontejner u gornjoj tabeli.");
+            }
+            
         }
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)

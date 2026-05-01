@@ -718,7 +718,7 @@ namespace Saobracaj.Izvoz
                 mestoPreuzimanjaPunogPraznog = GetVisibleComboValue(panel1, cboMestoPreuzimanjaPunog);
                 planiranDatSpustanjaKontejnera = (dptPlaniranDatumSpustanja.Tag?.ToString() == "IZMENJEN") ? dptPlaniranDatumSpustanja.Value : (DateTime?)null;
 
-                if (int.TryParse(cboVrstaKamiona.ToString(), out int rezultat))
+                if (cboVrstaKamiona.SelectedValue != null && int.TryParse(cboVrstaKamiona.SelectedValue.ToString(), out int rezultat))
                 {
                     vrstaKamiona = rezultat;
                 }
@@ -741,7 +741,7 @@ namespace Saobracaj.Izvoz
                 planiranDatUtovaraKontejnera = (dptPlaniraniDatumUtovaraKontejnera2.Tag?.ToString() == "IZMENJEN") ? dptPlaniraniDatumUtovaraKontejnera2.Value : (DateTime?)null;
                 realizacijaDatUtovaraKontejnera = (dtpDatumRealizacijeUtovaraKontejnera2.Tag?.ToString() == "IZMENJEN") ? dtpDatumRealizacijeUtovaraKontejnera2.Value : (DateTime?)null;
 
-                if (int.TryParse(cboVrstaKamiona2.ToString(), out int rezultat))
+                if (cboVrstaKamiona2.SelectedValue != null && int.TryParse(cboVrstaKamiona2.SelectedValue.ToString(), out int rezultat))
                 {
                     vrstaKamiona = rezultat;
                 }
@@ -780,7 +780,7 @@ namespace Saobracaj.Izvoz
 
                 dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski.Text) ? null : txtDodatneNapomeneDrumski.Text.Trim();
 
-                if (int.TryParse(cboVrstaKamiona3.ToString(), out int rezultat))
+                if (cboVrstaKamiona3.SelectedValue != null && int.TryParse(cboVrstaKamiona3.SelectedValue.ToString(), out int rezultat))
                 {
                     vrstaKamiona = rezultat;
                 }
@@ -808,7 +808,7 @@ namespace Saobracaj.Izvoz
 
                 dodatnaNapomenaDrumski = string.IsNullOrWhiteSpace(txtDodatneNapomeneDrumski4.Text) ? null : txtDodatneNapomeneDrumski4.Text.Trim();
 
-                if (int.TryParse(cboVrstaKamiona4.ToString(), out int rezultat))
+                if (cboVrstaKamiona4.SelectedValue != null && int.TryParse(cboVrstaKamiona4.SelectedValue.ToString(), out int rezultat))
                 {
                     vrstaKamiona = rezultat;
                 }
@@ -867,7 +867,7 @@ namespace Saobracaj.Izvoz
                                                 KontaktOsoba AS KontaktOUtovaraKontejnera, 
                                                 MestoUtovaraCerade AS MestoUtovaraCerade, 
                                                 KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, 
-                                                DtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
+                                                PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
                                                 MestoIstovaraCerade AS MestoIstovaraCerade, 
                                                 KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, 
                                                 PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, -- Ispravljeno: PlaniraniDt
