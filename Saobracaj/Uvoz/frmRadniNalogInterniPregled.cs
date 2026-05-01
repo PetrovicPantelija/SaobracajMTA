@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Saobracaj.Dokumenta;
+using Saobracaj.Dokumeta;
 using Saobracaj.Izvoz;
 using Saobracaj.RadniNalozi;
 using Syncfusion.GridHelperClasses;
@@ -450,7 +451,14 @@ namespace Saobracaj.Uvoz
 
                 select = "   SELECT rn.[ID]  ,IzvozKonacna.BrojKontejnera , VrstaManipulacije.Naziv, [Uradjen]  , " +
                     " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
-                    " '' as ScenarioNapomena, " +
+                   "  CASE(select Count(*) as Potvrdjen from RadniNalogInterniPotvrda where IDNaloga = rn.[ID]) " +
+" WHEN 0 THEN 'NEAKTIVAN' " +
+" WHEN 1 THEN 'AKTIVAN' " +
+" END AS StatusKN, " +
+                    " CASE Cirada " +
+" WHEN 0 THEN 'PLATFORMA' " +
+" WHEN 1 THEN 'CIRADA' " +
+" END AS TipNaloga,  " +
                     "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
          " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
                     "   where IzvozKonacnaZaglavlje.ID = rn.PlanID) as VozOdlaska , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]," +
@@ -462,6 +470,7 @@ namespace Saobracaj.Uvoz
       " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
       " , rn.Pokret,  rn.TipDokPrevoza, rn.BrojDokPrevoza," +
       " rn.TipRN, rn.BrojRN   FROM RadniNalogInterni rn " +
+   
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
             " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge" +
@@ -1121,6 +1130,26 @@ namespace Saobracaj.Uvoz
 
         }
 
+        int VratiPodatkeMaxPrijemnica()
+        {
+            int pr = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from PrijemKontejneraVoz", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               pr = Convert.ToInt32(dr["ID"].ToString());
+            }
+
+            con.Close();
+            return pr;
+        }
+
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             if (txtNALOGID.Text == "")
@@ -1150,6 +1179,18 @@ namespace Saobracaj.Uvoz
             Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
             ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text));
             MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
+
+            //Scenario 1 test - Napravi PRI i RN4
+
+            Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
+            insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 1, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 1);
+            InsertUvozKonacna insk = new InsertUvozKonacna();
+            int pr = VratiPodatkeMaxPrijemnica();
+            insk.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(pr), Convert.ToInt32(txtNALOGID.Text));
+
+            RadniNalozi.InsertRN ir = new InsertRN();
+            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(DateTime.Now), Korisnik, Convert.ToDateTime(null), Convert.ToInt32(0), Convert.ToInt32(1), Convert.ToInt32(1), Convert.ToInt32(70), "", "Automatska napomena", Convert.ToInt32(pr), "Kamion", Convert.ToInt32(txtNALOGID.Text), 1, 0);
+
 
 
             string Forma = VratiFormu();
@@ -1395,7 +1436,10 @@ namespace Saobracaj.Uvoz
 
                         select = "   SELECT rn.[ID]  ,IzvozKonacna.BrojKontejnera , VrstaManipulacije.Naziv, [Uradjen]  , " +
                   " (select Top 1 Naziv from Scenario  inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv, " +
-                  " '' as ScenarioNapomena, " +
+                     "  CASE(select Count(*) as Potvrdjen from RadniNalogInterniPotvrda where IDNaloga = rn.[ID]) " +
+" WHEN 0 THEN 'NEAKTIVAN' " +
+" WHEN 1 THEN 'AKTIVAN' " +
+" END AS StatusKN, " +
                   "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
        " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
                   "   where IzvozKonacnaZaglavlje.ID = rn.PlanID) as VozOdlaska , TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja]," +

@@ -112,7 +112,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
                 {
                     int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
-                    up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
+                   up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
                   
                 }
             }
@@ -135,6 +135,55 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             }
 
          
+        }
+        int VratiPrijemID(int NajavaID)
+        {
+            int pom = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select ID from PrijemKontejneraVozStavke where NAjavaID = " + Convert.ToInt32(NajavaID), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                pom = Convert.ToInt32(dr["ID"].ToString());
+
+            }
+            con.Close();
+
+            return pom;
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string Kor = Sifarnici.frmLogovanje.user;
+            string NalogID = "";
+            if (this.gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            {  
+         
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+                {
+                   InsertRN rn = new InsertRN();
+                        NalogID = selectedRecord.Record.GetValue("KomNalogID").ToString();
+                    rn.UpdateRN4PotrebanCIR(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
+
+                }
+            }
+            DialogResult dialogResult = MessageBox.Show("Da li želite da napravite CIR u app?", "Izraditi CIR", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int BrojRN = VratiRN(Convert.ToInt32(NalogID));
+                int PrijemID = VratiPrijemID(Convert.ToInt32(NalogID));
+                frmCIR cir = new frmCIR(PrijemID,1,"RN4", BrojRN, Convert.ToInt32(NalogID));
+                cir.Show();
+            }
+           
+           
         }
     }
 }
