@@ -1165,5 +1165,10 @@ namespace Saobracaj
             lblNaslov.Text = "Intermodalni terminal";
             BackColorKliknut(3);
         }
+
+        private void lblNaslov_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

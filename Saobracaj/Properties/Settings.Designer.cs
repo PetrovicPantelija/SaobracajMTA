@@ -27,7 +27,7 @@ namespace Saobracaj.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.150.110\\MSSQLServer2024;Initial Catalog=Testiranje;User ID=sa" +
-            ";Password=P@ss011!;")]
+            ";Password=P@ss011!;TrustServerCertificate=True")]
         public string NedraConnectionString {
             get {
                 return ((string)(this["NedraConnectionString"]));
@@ -38,7 +38,7 @@ namespace Saobracaj.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.150.110\\MSSQLServer2024;Initial Catalog=Testiranje;User ID=sa" +
-            ";Password=P@ss011!;")]
+            ";Password=P@ss011!;TrustServerCertificate=True")]
         public string TESTIRANJEConnectionString {
             get {
                 return ((string)(this["TESTIRANJEConnectionString"]));
@@ -49,7 +49,7 @@ namespace Saobracaj.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.150.110\\MSSQLServer2024;Initial Catalog=Testiranje;User ID=sa" +
-            ";Password=P@ss011!;")]
+            ";Password=P@ss011!;TrustServerCertificate=True")]
         public string Perftech_BeogradConnectionString {
             get {
                 return ((string)(this["Perftech_BeogradConnectionString"]));
