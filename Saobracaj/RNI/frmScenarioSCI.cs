@@ -24,7 +24,7 @@ namespace Saobracaj.RNI
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         private int ScenarioID;
         private int ADR = 0;
-
+        private int Drumski = 0;
         public frmScenarioSCI( int id, string izdaoOJ)
         {
             ID = id;
@@ -183,6 +183,11 @@ namespace Saobracaj.RNI
             cboIzvoznik.ValueMember = "PaSifra";
             cboIzvoznik.SelectedIndex = -1;
 
+            cboIzvoznik4.DataSource = dtSviPartneri.Copy();
+            cboIzvoznik4.DisplayMember = "PaNaziv";
+            cboIzvoznik4.ValueMember = "PaSifra";
+            cboIzvoznik4.SelectedIndex = -1;
+
             // Brodar (Filtriramo već učitane partnere gde je Brodar = 1)
             DataView dvBrodari = new DataView(dtSviPartneri);
             dvBrodari.RowFilter = "Brodar = 1";
@@ -294,20 +299,31 @@ namespace Saobracaj.RNI
 
             var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
             var tkAD = new SqlDataAdapter(tipkontejnera, conn);
-            var tkDS = new DataSet();
-            tkAD.Fill(tkDS);
-            cboVrstaKontejnera.DataSource = tkDS.Tables[0];
+            DataTable dtTipKontenjera = new DataTable();
+            tkAD.Fill(dtTipKontenjera);
+
+            cboVrstaKontejnera.DataSource = dtTipKontenjera.Copy();
             cboVrstaKontejnera.DisplayMember = "SkNaziv";
             cboVrstaKontejnera.ValueMember = "ID";
 
+            cboVrstaKontejnera4.DataSource = dtTipKontenjera.Copy();
+            cboVrstaKontejnera4.DisplayMember = "SkNaziv";
+            cboVrstaKontejnera4.ValueMember = "ID";
+
             var adr = "Select ID, (  UNKod +' - '+ Klasa + ' - ' + Naziv  ) as Naziv From VrstaRobeADR order by UNKod";
             var adrSAD = new SqlDataAdapter(adr, conn);
-            var adrSDS = new DataSet();
-            adrSAD.Fill(adrSDS);
-            cboADR.DataSource = adrSDS.Tables[0];
+            DataTable dtADR = new DataTable();
+            adrSAD.Fill(dtADR);
+
+            cboADR.DataSource = dtADR.Copy();
             cboADR.DisplayMember = "Naziv";
             cboADR.ValueMember = "ID";
             cboADR.SelectedIndex = -1;
+
+            cboADR4.DataSource = dtADR.Copy();
+            cboADR4.DisplayMember = "Naziv";
+            cboADR4.ValueMember = "ID";
+            cboADR4.SelectedIndex = -1;
 
             var dir4 = "Select ID,Naziv from InspekciskiTretman order by Naziv";
             var dirAD4 = new SqlDataAdapter(dir4, conn);
@@ -326,6 +342,21 @@ namespace Saobracaj.RNI
             cboMestoIstovaraCerada3.DisplayMember = "Naziv";
             cboMestoIstovaraCerada3.ValueMember = "ID";
 
+            cboMestoIstovaraCerada4.DataSource = dtMesta.Copy();
+            cboMestoIstovaraCerada4.DisplayMember = "Naziv";
+            cboMestoIstovaraCerada4.ValueMember = "ID";
+                
+            cboMestoUtovaraCerada4.DataSource = dtMesta.Copy();
+            cboMestoUtovaraCerada4.DisplayMember = "Naziv";
+            cboMestoUtovaraCerada4.ValueMember = "ID";
+
+            var np4 = "Select ID,(Oznaka + ' ' + Naziv) as Naziv from uvNacinPakovanja order by Naziv";
+            var npAD4 = new SqlDataAdapter(np4, conn);
+            var npDS4 = new DataSet();
+            npAD4.Fill(npDS4);
+            cboNacinPakovanja4.DataSource = npDS4.Tables[0];
+            cboNacinPakovanja4.DisplayMember = "Naziv";
+            cboNacinPakovanja4.ValueMember = "ID";
 
         }
 
@@ -363,7 +394,7 @@ namespace Saobracaj.RNI
                                     " VrstaBrodskePlombe, BrodskaPlomba, ik.Izvoznik, " +
                                     " NaslovSlanjaStatusa, ADR, NacinPakovanja, Inspekcija, Cirada, " +
                                     " Vaganje, Tara, ik.Scenario , BrojLK, BrojTelefona, Vozilo, Vozac," +
-                                    " Klijent2, Napomena2REf, Klijent3, Napomena3REf,   ADR, Vaganje, NacinPakovanja," +
+                                    " Klijent2, Napomena2REf, Klijent3, Napomena3REf,   " +
                                     " MestoPreuzimanja3 AS OdlaznaMorskaLuka, MestoPreuzimanja2 AS MestoSpustanjaPunogKontejnera," +
                                     " CarinskiPostupakUnutrasnji, MestoCarinjenja, Spedicija, KontaktSpeditera, OdredisnaCarinarnica, SpediterOdredisna, KontaktSpediteraOdredisna ," +
                                     " MestoPreuzimanja2 AS MestoSpustanjaPunogKontejnera,PlaniraniDtSpustanjaKontejnera AS PlaniranDatSpustanjaKontejnera, PlaniranDtSpustanjaPunog AS NoviPlaniranDatSpustanjaKontejnera,DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja, " +
@@ -371,7 +402,7 @@ namespace Saobracaj.RNI
                                     " MestoPreuzimanja AS MestoPreuzimanjaPunogPraznog, PlaniraniDatumUtovara AS PlaniranDatUtovaraKontejnera,PlaniranDtUtovaraKontejnera AS NoviPlaniranDatUtovaraKontejnera, DtRealizacijeUtovaraKontejnera,MesoUtovara AS MestoUtovaraKontejnera,  " + 
                                     " KontaktOsoba AS KontaktOUtovaraKontejnera,  MestoUtovaraCerade AS MestoUtovaraCerade, KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade," +
                                     " PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, PlaniranDtUtovaraCerade As  NoviPlaniraniDatumUtovaraCerade, MestoIstovaraCerade AS MestoIstovaraCerade,KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade," +
-                                    " PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, PlaniranDtIstovaraCerade AS NoviPlaniraniDatumIstovaraCerade, DtRealizacijeIstovaraCerade, DtRealizacijeUtovaraCerade, Scenario " + 
+                                    " PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, PlaniranDtIstovaraCerade AS NoviPlaniraniDatumIstovaraCerade, DtRealizacijeIstovaraCerade, DtRealizacijeUtovaraCerade, Scenario, Drumski " + 
 
                                     " FROM IzvozKonacna  ik " +
                                     " LEFT JOIN ProdajniNalogIzvoz pn on ik.BrojStavkePorudzbenice = pn.ID " +
@@ -389,6 +420,10 @@ namespace Saobracaj.RNI
 
             while (dr.Read())
             {
+                ScenarioID = Convert.ToInt32(dr["Scenario"].ToString());
+
+                PodesiPoljaPoScenariju(ScenarioID);
+
                 txtKorisnik.Text = tKorisnik;
 
                 txtBrojDokumenta.Text = dr["BrojDokumenta"].ToString();
@@ -416,13 +451,34 @@ namespace Saobracaj.RNI
                 }
 
                 if (dr["ADR"] != DBNull.Value)
-                    cboADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                    if (panel1.Visible)
+                    {
+                        cboADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                    }
+                    else if (panel4.Visible)
+                    {
+                        cboADR4.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                    }
+               
+                if (dr["Drumski"] != DBNull.Value  && int.TryParse(dr["Drumski"].ToString(), out int parsedDrumski))
+                {
+                    Drumski = parsedDrumski;
+                }
+ 
+                
 
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
 
                 if (dr["VrstaKontejnera"] != DBNull.Value)
                 {
-                    cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                    if (panel1.Visible)
+                    {
+                        cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                    }
+                    else if (panel4.Visible)
+                    {
+                        cboVrstaKontejnera4.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                    }
                 }
                 if (dr["Tara"] != DBNull.Value)
                 {
@@ -437,7 +493,16 @@ namespace Saobracaj.RNI
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString().Trim();
 
                 if (dr["Izvoznik"] != DBNull.Value)
-                    cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+                    if (panel1.Visible)
+                    {
+                        cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+                    }
+                    else if (panel4.Visible)
+                    {
+                        cboIzvoznik4.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+                    }
+
+                
 
                 if (dr["OdlaznaMorskaLuka"] != DBNull.Value)
                 {
@@ -452,21 +517,51 @@ namespace Saobracaj.RNI
                 if (dr["Cirada"] != DBNull.Value)
                     cboVrstaKamiona.SelectedValue = Convert.ToInt32(dr["Cirada"].ToString());
       
-                txtVozilo.Text = dr["Vozilo"].ToString().Trim();
+                if (panel1.Visible)
+                {
+                    txtVozilo.Text = dr["Vozilo"].ToString().Trim();
+                    txtVozac.Text = dr["Vozac"].ToString().Trim();
+                    txtBrLK.Text = dr["BrojLK"].ToString().Trim();
+                    txtTelefon.Text = dr["BrojTelefona"].ToString().Trim();
+                }
+                else if (panel4.Visible)
+                {
+                    txtVozilo4.Text = dr["Vozilo"].ToString().Trim();
+                    txtVozac4.Text = dr["Vozilo"].ToString().Trim();
+                    txtBrLK4.Text = dr["BrojLK"].ToString().Trim();
+                    txtTelefon4.Text = dr["BrojTelefona"].ToString().Trim();
 
-                txtVozac.Text = dr["Vozac"].ToString().Trim();
+                    if (dr["NacinPakovanja"] != DBNull.Value)
+                        cboNacinPakovanja4.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                }
 
-                txtBrLK.Text = dr["BrojLK"].ToString().Trim();
-
-                txtTelefon.Text = dr["BrojTelefona"].ToString().Trim();
+                       
 
                 if (dr["Vaganje"] != DBNull.Value && Convert.ToInt32(dr["Vaganje"]) == 1)
-                    chkVaganje.Checked = true;
+                    if (panel1.Visible)
+                    {
+                        chkVaganje.Checked = true;
+                    }
+                    else if (panel4.Visible)
+                    {
+                        chkVaganje4.Checked = true;
+                    }
+
 
                 if (dr["NaslovSlanjaStatusa"] != DBNull.Value)
                 {
-                    txtNapomena.Text = dr["NaslovSlanjaStatusa"].ToString().Trim();
-                }           
+                    if (panel1.Visible)
+                    {
+                        txtNapomena.Text = dr["NaslovSlanjaStatusa"].ToString().Trim();
+                    }
+                    else if (panel4.Visible)
+                    {
+                        txtNapomena4.Text = dr["NaslovSlanjaStatusa"].ToString().Trim();
+                    }
+                    
+                }
+
+                
 
                 if (dr["CarinskiPostupakUnutrasnji"] != DBNull.Value)
                     cboCarinskiPUnutrasniTransport.SelectedValue = Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"].ToString());
@@ -491,9 +586,7 @@ namespace Saobracaj.RNI
                 {
                     cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
                 }
-                ScenarioID = Convert.ToInt32(dr["Scenario"].ToString());
-
-                PodesiPoljaPoScenariju(ScenarioID);
+               
 
                 if (panelGrupa1.Visible == true)
                 {
@@ -514,7 +607,7 @@ namespace Saobracaj.RNI
                     }
                 }
 
-                if (panelGrupa2.Visible == true)
+                else if (panelGrupa2.Visible == true)
                 {                   
                     if (cboMestoSpustanjaPunogKontejnera2.Visible && dr["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
                     {
@@ -546,9 +639,9 @@ namespace Saobracaj.RNI
                     }
 
                 }
-                if (panelGrupa3.Visible == true)
+                else if (panelGrupa3.Visible == true)
                 {
-             
+
                     if (cboMestoPreuzimajnjaPraznogK3.Visible && dr["MestoPreuzimanjaPunogPraznog"] != DBNull.Value)
                     {
                         cboMestoPreuzimajnjaPraznogK3.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanjaPunogPraznog"].ToString());
@@ -571,7 +664,7 @@ namespace Saobracaj.RNI
                     {
                         cboMestoUtovaraKontejnera3.SelectedValue = Convert.ToInt32(dr["MestoUtovaraKontejnera"].ToString());
                     }
-                
+
                     if (dptDatumUtovaraKontejnera3.Visible && dr["PlaniranDatUtovaraKontejnera"] != DBNull.Value)
                     {
                         dptDatumUtovaraKontejnera3.Value = Convert.ToDateTime(dr["PlaniranDatUtovaraKontejnera"]);
@@ -626,6 +719,48 @@ namespace Saobracaj.RNI
                         dptDatumRealSpustanja3.Value = Convert.ToDateTime(dr["DtRealizacijeSpustanja"]);
                     }
                 }
+                else if (panelGrupa4.Visible == true)
+                {
+
+                    if (cboMestoUtovaraCerada4.Visible && dr["MestoUtovaraCerade"] != DBNull.Value)
+                    {
+                        cboMestoUtovaraCerada4.SelectedValue = Convert.ToInt32(dr["MestoUtovaraCerade"].ToString());
+                    }
+                    if (dptDatumUtovaraCerade4.Visible && dr["PlaniraniDatumUtovaraCerade"] != DBNull.Value)
+                    {
+                        dptDatumUtovaraCerade4.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovaraCerade"]);
+                    }
+                    if (dptNoviDatumUtovaraCerade4.Visible && dr["NoviPlaniraniDatumUtovaraCerade"] != DBNull.Value)
+                    {
+                        dptNoviDatumUtovaraCerade4.Value = Convert.ToDateTime(dr["NoviPlaniraniDatumUtovaraCerade"]);
+                    }
+                    if (dptDatumRealUtovaraCerade4.Visible && dr["DtRealizacijeUtovaraCerade"] != DBNull.Value)
+                    {
+                        dptDatumRealUtovaraCerade4.Value = Convert.ToDateTime(dr["DtRealizacijeUtovaraCerade"]);
+                    }
+                    PopuniAdresu(cboMestoUtovaraCerada4, cboAdresaUtovaraCerade4);
+                    PopuniKontaktOsobu(cboMestoUtovaraCerada4, cboKontaktUtovaraCerade4);
+                    if (cboMestoIstovaraCerada4.Visible && dr["MestoIstovaraCerade"] != DBNull.Value)
+                    {
+                        cboMestoIstovaraCerada4.SelectedValue = Convert.ToInt32(dr["MestoIstovaraCerade"].ToString());
+                    }
+                    if (dptDatumIstovaraCerade4.Visible && dr["PlaniraniDatumIstovaraCerade"] != DBNull.Value)
+                    {
+                        dptDatumIstovaraCerade4.Value = Convert.ToDateTime(dr["PlaniraniDatumIstovaraCerade"]);
+                    }
+                    if (dptNoviDatumIstovaraCerade4.Visible && dr["NoviPlaniraniDatumIstovaraCerade"] != DBNull.Value)
+                    {
+                        dptNoviDatumIstovaraCerade4.Value = Convert.ToDateTime(dr["NoviPlaniraniDatumIstovaraCerade"]);
+                    }
+                    if (dptDatumRealIstovaraCerade4.Visible && dr["DtRealizacijeIstovaraCerade"] != DBNull.Value)
+                    {
+                        dptDatumRealIstovaraCerade4.Value = Convert.ToDateTime(dr["DtRealizacijeIstovaraCerade"]);
+                    }
+                    PopuniAdresu(cboMestoIstovaraCerada4, cboAdresaIstovaraCerade4);
+                    PopuniKontaktOsobu(cboMestoIstovaraCerada4, cboKontaktIstovaraCerade4);
+
+                   
+                }
             }
         }
 
@@ -640,6 +775,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = true;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     ADR = 0;
                     PostaviVidljivostPoljaADR();
                     PostaviVidljivostPoljaNapomena();
@@ -651,6 +788,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = true;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     //    PodesiUnutrasnjostGrupe1(scenario);
                     ADR = 1;
                     PostaviVidljivostPoljaADR();
@@ -664,6 +803,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = true;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     ADR = 0;
                     PostaviVidljivostPoljaADR();
                     PostaviVidljivostPoljaNapomena();
@@ -675,6 +816,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = true;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     ADR = 1;
                     PostaviVidljivostPoljaADR();
                     PostaviVidljivostPoljaNapomena();
@@ -688,6 +831,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = true;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     ADR = 0;
                     PostaviVidljivostPoljaADR();
                     PostaviVidljivostPoljaNapomena();
@@ -698,6 +843,8 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = true;
+                    panelGrupa4.Visible = false;
+                    panel4.Visible = false;
                     ADR = 1;
                     PostaviVidljivostPoljaADR();
                     PostaviVidljivostPoljaNapomena();
@@ -709,19 +856,29 @@ namespace Saobracaj.RNI
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = true;
+                    panel4.Visible = true;
+                    panel1.Visible = false;
                     ADR = 0;
                     PostaviVidljivostPoljaADR();
+                    PostaviVidljivostPoljaCutOffPort();
+                    PostaviVidljivostPoljaNapomena();
                     //panel6.Visible = true;
 
 
                     break;
                 case 25: // Scenario I-L‚‚‚‚
-                         //  AktivirajLukaPolja();
+                         // 
                     panelGrupa1.Visible = false;
                     panelGrupa2.Visible = false;
                     panelGrupa3.Visible = false;
+                    panelGrupa4.Visible = true;
+                    panel4.Visible = true;
+                    panel1.Visible = false;
                     ADR = 1;
                     PostaviVidljivostPoljaADR();
+                    PostaviVidljivostPoljaCutOffPort();
+                    PostaviVidljivostPoljaNapomena();
                     //  PodesiUnutrasnjostGrupe4(scenario);
 
                     break;
@@ -737,12 +894,24 @@ namespace Saobracaj.RNI
         {
             bool isADR = (ADR == 1); // 
             {
-                cboADR.Visible = isADR;
-                lblAdr.Visible = isADR;
+                if (ScenarioID == 9 && ScenarioID == 25)
+                {
+                    cboADR4.Visible = isADR;
+                    lblADR4.Visible = isADR;
+                }
+                else
+                {
+                    cboADR.Visible = isADR;
+                    lblAdr.Visible = isADR;
+                }
+               
             }
             if (isADR == false)
             {
-                cboADR.SelectedValue = -1;
+                if (ScenarioID == 9 && ScenarioID == 25)
+                    cboADR4.SelectedValue = -1;
+                else
+                    cboADR.SelectedValue = -1;
             }
         }
 
@@ -755,6 +924,17 @@ namespace Saobracaj.RNI
             }
            
         }
+
+        private void PostaviVidljivostPoljaCutOffPort()
+        {
+            bool cutOffPortVisible = (ScenarioID == 9 && ScenarioID == 25); // 
+            {
+                dtpCutOffPort.Visible = cutOffPortVisible;
+                lblCutOffPort.Visible = cutOffPortVisible;
+            }
+
+        }
+       
         private void PodesiUnutrasnjostGrupe3(int scenario)
         {
             if (scenario == 24 || scenario == 8)
@@ -864,9 +1044,24 @@ namespace Saobracaj.RNI
             VratiPodatkeGrupeSelect();
             System.Data.DataTable dtIzBaze = VratiPodatkeIzBazeNHM();
             System.Data.DataTable dtIzBazeN = VratiPodatkeIzBazeNapomene();
+            PostaviVidljivostGrupe4Drumski();
             OsveziGridNHM(dtIzBaze);
             OsveziGridNapomena(dtIzBazeN);
             this.Text = $"Po scenariju {ScenarioID}";
+        }
+        
+       private void PostaviVidljivostGrupe4Drumski()
+        {
+            bool isVisible = (Drumski == 1); // 
+            {
+                if (ScenarioID == 9 || ScenarioID == 25)
+                {
+                    lblAdresaUtovaraCerade4.Visible = cboAdresaUtovaraCerade4.Visible = isVisible;
+                    lblKontaktOUtovarCerade4.Visible = cboKontaktUtovaraCerade4.Visible = isVisible;
+                    lblDatumRealUtovaraCerade4.Visible = dptDatumRealUtovaraCerade4.Visible = isVisible;
+                }
+            }
+            
         }
 
         private void OsveziGridNHM(System.Data.DataTable dt)

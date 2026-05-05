@@ -130,15 +130,15 @@ namespace Saobracaj.Drumski
             ChangeTextBox();
 
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.Today;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
-            dtpUtovaraNovi.Value = DateTime.Today;
-            dtpRealiUtovara.Value = DateTime.Today;
-            dtpSpustanjePunog.Value = DateTime.Today;
-            dtpSpustanjePunogNovi.Value = DateTime.Today;
-            dtpSpustanjePunogReal.Value = DateTime.Today;
+            dtpUtovara.Value = DateTime.MinValue;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
+            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
+            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
+            dtpUtovaraNovi.Value = DateTime.MinValue;
+            dtpRealiUtovara.Value = DateTime.MinValue;
+            dtpSpustanjePunog.Value = DateTime.MinValue;
+            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
+            dtpSpustanjePunogReal.Value = DateTime.MinValue;
             //  dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             ////dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
@@ -164,15 +164,15 @@ namespace Saobracaj.Drumski
             InitializeComponent();
             ChangeTextBox();
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.Today;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
-            dtpUtovaraNovi.Value = DateTime.Today;
-            dtpRealiUtovara.Value = DateTime.Today;
-            dtpSpustanjePunog.Value = DateTime.Today;
-            dtpSpustanjePunogNovi.Value = DateTime.Today;
-            dtpSpustanjePunogReal.Value = DateTime.Today;
+            dtpUtovara.Value = DateTime.MinValue;
+            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
+            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
+            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
+            dtpUtovaraNovi.Value = DateTime.MinValue;
+            dtpRealiUtovara.Value = DateTime.MinValue;
+            dtpSpustanjePunog.Value = DateTime.MinValue;
+            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
+            dtpSpustanjePunogReal.Value = DateTime.MinValue;
             //dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
@@ -315,23 +315,23 @@ namespace Saobracaj.Drumski
             }
             pronadjiKontrole();
             if (dtpUtovara != null)
-                dtpUtovara.Value = DateTime.Today;
+                dtpUtovara.Value = dtpUtovara.MinDate;
             if (dtPreuzimanjaPraznogKontejnera != null)
-                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+                dtPreuzimanjaPraznogKontejnera.Value = dtPreuzimanjaPraznogKontejnera.MinDate;
             if (dtPreuzimanjaPraznogKontejneraNovi != null)
-                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
+                dtPreuzimanjaPraznogKontejneraNovi.Value = dtPreuzimanjaPraznogKontejneraNovi.MinDate;
             if (dtRealiPreuzimanjaPraznogKont != null)
-                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
+                dtRealiPreuzimanjaPraznogKont.Value = dtRealiPreuzimanjaPraznogKont.MinDate;
             if (dtpUtovaraNovi != null)
-                dtpUtovaraNovi.Value = DateTime.Today;
+                dtpUtovaraNovi.Value = dtpUtovaraNovi.MinDate;
             if (dtpRealiUtovara != null)
-                dtpRealiUtovara.Value = DateTime.Today;
+                dtpRealiUtovara.Value = dtpRealiUtovara.MinDate;
             if (dtpSpustanjePunog != null)
-                dtpSpustanjePunog.Value = DateTime.Today;
+                dtpSpustanjePunog.Value = dtpSpustanjePunog.MinDate;
             if (dtpSpustanjePunogNovi != null)
-                dtpSpustanjePunogNovi.Value = DateTime.Today;
+                dtpSpustanjePunogNovi.Value = dtpSpustanjePunogNovi.MinDate;
             if (dtpSpustanjePunogReal != null)
-                dtpSpustanjePunogReal.Value = DateTime.Today;
+                dtpSpustanjePunogReal.Value = dtpSpustanjePunogReal.MinDate;
 
 
             //if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
@@ -707,11 +707,10 @@ namespace Saobracaj.Drumski
              "where rn.ID= " + id + " AND rn.Uvoz in (-1,2,3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 ", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
-
+            int NalogID = -1;
             while (dr.Read())
             {
-              
-                
+         
                 PopuniText("txtID", sfx, dr["ID"]);
                 PopuniText("txtKorisnik", sfx, dr["Korisnik"]);
 
@@ -906,7 +905,7 @@ namespace Saobracaj.Drumski
                 PopuniCombo("cboBPlombaVlasnik", sfx, dr["VrstaBrodskePlombe"]);
 
                 PopuniCombo("cboBrodar", sfx, dr["Brodar"]);
-                int NalogID = -1;
+               
                 if (dr["NalogID"] != DBNull.Value && int.TryParse(dr["NalogID"].ToString(), out int convertedNalogID))
                     NalogID = convertedNalogID;
 
@@ -1081,7 +1080,7 @@ namespace Saobracaj.Drumski
             {
                 //    txtBL.Visible = true;
                 //    //btnFormiranjeNaloga.Visible = NalogID > 0 ? false : true;
-                //    btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
+                btnFormiranjeNaloga.Visible = !(NalogID > 0 || (mainNalogID.HasValue && mainNalogID > 0));
                 //    if (drumskiNew == false)
                 //        button21.Visible = true;
                 //    //button21.Visible = NalogID > 0 ? false : true;

@@ -221,8 +221,8 @@ namespace Saobracaj.Drumski
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             var connection = new SqlConnection(s_connection);
             List<string> statusi = new List<string>();
-            DateTime datumOd = DateTime.MinValue;
-            DateTime datumDo = DateTime.MinValue;
+            DateTime datumOd = new DateTime(1900, 1, 1); ;
+            DateTime datumDo = new DateTime(1900, 1, 1); ;
 
             using (connection)
             {
@@ -240,6 +240,7 @@ namespace Saobracaj.Drumski
 
                 String conditionRadniNalogID = "";
                 String conditionNalogodavac = " 1 = 1 ";
+                String conditionDate = "";
                 if (nalogID !=null && nalogID > 0 )
                 {
                     conditionRadniNalogID = " AND rn.NalogID  = @NalogID ";
@@ -254,16 +255,18 @@ namespace Saobracaj.Drumski
                     int brojDana = Convert.ToInt32(dan);
                     datumOd = DateTime.Today.AddDays(brojDana);
                     datumDo = datumOd.AddDays(1);
-                    conditionRadniNalogID += @" AND (
-                                                   (TipTransporta = 2
-                                                    AND rn.DatumUtovara >= @DatumOd
-                                                    AND rn.DatumUtovara <  @DatumDo
-                                                   )
-                                                OR (TipTransporta <> 2
-                                                    AND rn.DtPreuzimanjaPraznogKontejnera >= @DatumOd
-                                                    AND rn.DtPreuzimanjaPraznogKontejnera <  @DatumDo
-                                                   )
-                                                 )";
+                    //conditionRadniNalogID += @" AND (
+                    //                               (TipTransporta = 2
+                    //                                AND rn.DatumUtovara >= @DatumOd
+                    //                                AND rn.DatumUtovara <  @DatumDo
+                    //                               )
+                    //                            OR (TipTransporta <> 2
+                    //                                AND rn.DtPreuzimanjaPraznogKontejnera >= @DatumOd
+                    //                                AND rn.DtPreuzimanjaPraznogKontejnera <  @DatumDo
+                    //                               )
+                    //                             )";
+                    conditionDate += @" AND (  RelevantniDatum >= @DatumOd
+                                                    AND RelevantniDatum <  @DatumDo )";
                 }
                
                 string conditionTipPrevoza = " 1 = 1";
@@ -317,7 +320,13 @@ namespace Saobracaj.Drumski
                                     rn.Uvoz,
                                     ik.Scenario,
                                     0 AS ScenarioSaCarinskimPostupkom,
-                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                    (
+                                     CASE 
+                                        WHEN ik.Scenario in (13,26,7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
+                                        WHEN ik.Scenario in  (8,24,9,25) THEN IIF(ik.PlaniranDtUtovaraCerade > '1900-01-01', ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
+                                    END
+                                    ) RelevantniDatum
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
                             LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -351,7 +360,13 @@ namespace Saobracaj.Drumski
                                     rn.Uvoz,
                                     i.Scenario,
                                     0 AS ScenarioSaCarinskimPostupkom,
-                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                    (
+                                     CASE 
+                                        WHEN i.Scenario in(13,26,7,23) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
+                                        WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
+                                     END
+                                    ) RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -385,7 +400,12 @@ namespace Saobracaj.Drumski
                                rn.Uvoz,
                                uk.Scenario,
                                0 AS ScenarioSaCarinskimPostupkom,
-                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                ( CASE 
+                                WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                WHEN rn.Scenario in (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                END) AS RelevantniDatum
+                            
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -419,7 +439,11 @@ namespace Saobracaj.Drumski
                                rn.Uvoz,
                                uk.Scenario,
                                0 AS ScenarioSaCarinskimPostupkom,
-                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                        ( CASE 
+                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera, rn.DtPreuzimanjaPraznogKontejnera)
+                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                      END) AS RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -453,7 +477,11 @@ namespace Saobracaj.Drumski
                                rn.Uvoz,
                                rn.Scenario,
                                rn.ScenarioSaCarinskimPostupkom,
-                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                     ( CASE 
+                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                      END) AS RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -463,7 +491,7 @@ namespace Saobracaj.Drumski
                         WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
                         {conditionRadniNalogID}
                       ) x
-                    WHERE {conditionNalogodavac} AND {conditionTipPrevoza} {conditionTipNaloga}
+                    WHERE {conditionNalogodavac} AND {conditionTipPrevoza} {conditionTipNaloga} {conditionDate}
                     ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);
@@ -535,7 +563,7 @@ namespace Saobracaj.Drumski
                 //cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
 
                 // Ukloni kolone koje ne želiš da se vide
-                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID", "NalogodavacID", "Uvoz" , "TipTransporta" ,}; // "Status" je Naziv
+                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID", "NalogodavacID", "Uvoz" , "TipTransporta" , "RelevantniDatum" }; // "Status" je Naziv
                 foreach (var col in colsToRemove)
                 {
                     if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
