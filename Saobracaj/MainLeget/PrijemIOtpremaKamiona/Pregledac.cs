@@ -78,6 +78,29 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             dynamicFilter.WireGrid(this.gridGroupingControl2);
         }
 
+        int VratiBrojOsnov(int NajavaID)
+        {
+            int pom = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" select BrojOsnov from RadniNalogInterni where ID = " + Convert.ToInt32(NajavaID), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                pom = Convert.ToInt32(dr["BrojOsnov"].ToString());
+
+            }
+            con.Close();
+
+            return pom;
+
+
+        }
+
         int VratiRN(int NajavaID)
         {
             int pom = 0;
@@ -184,6 +207,36 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             }
            
            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int brojosnov = 0;
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+
+                brojosnov = VratiBrojOsnov(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
+            }
+             //= VratiBrojOsnov(Convert.ToInt32(this.gridGroupingControl2.Table.SelectedRecords[0].Record.GetValue("ID").ToString()));
+            frmDodatneUsluge dd = new frmDodatneUsluge(brojosnov.ToString(),2);
+            dd.Show();
+        }
+
+        private void Pregledac_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int brojosnov = 0;
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+
+                brojosnov = VratiBrojOsnov(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
+            }
+            frmFotografijePregledac gp = new frmFotografijePregledac(brojosnov);
+            gp.Show();
         }
     }
 }

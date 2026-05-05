@@ -2334,6 +2334,12 @@
     <Compile Include="MainLeget\Pretovari\Pretovari2.Designer.cs">
       <DependentUpon>Pretovari2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.Designer.cs">
+      <DependentUpon>frmFotografijePregledac.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2364,6 +2370,7 @@
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.Designer.cs">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\InsertFotografijeDokumenta.cs" />
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5540,6 +5547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Pretovari\Pretovari2.resx">
       <DependentUpon>Pretovari2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.resx">
+      <DependentUpon>frmFotografijePregledac.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.resx">
       <DependentUpon>frmPlatforma.cs</DependentUpon>

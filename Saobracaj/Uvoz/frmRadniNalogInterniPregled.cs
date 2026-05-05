@@ -1182,14 +1182,7 @@ namespace Saobracaj.Uvoz
 
             //Scenario 1 test - Napravi PRI i RN4
 
-            Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
-            insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 1, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 1);
-            InsertUvozKonacna insk = new InsertUvozKonacna();
-            int pr = VratiPodatkeMaxPrijemnica();
-            insk.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(pr), Convert.ToInt32(txtNALOGID.Text));
-
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(DateTime.Now), Korisnik, Convert.ToDateTime(null), Convert.ToInt32(0), Convert.ToInt32(1), Convert.ToInt32(1), Convert.ToInt32(70), "", "Automatska napomena", Convert.ToInt32(pr), "Kamion", Convert.ToInt32(txtNALOGID.Text), 1, 0);
+           
 
 
 
@@ -1234,9 +1227,40 @@ namespace Saobracaj.Uvoz
                     {
 
                         // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
-                        MessageBox.Show("Formirate GATE IN Platforma Izvoz");
-                        frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
-                        rd1.Show();
+                        DialogResult result = MessageBox.Show(
+                                "Formirate GATE IN Platforma Izvoz, da li želite da sistem sam pripremi podatke?", // Message
+                                "Potvrdite automatiku", // Title
+                                MessageBoxButtons.YesNo, // Buttons
+                                MessageBoxIcon.Question // Icon
+                                );
+
+                        // Handle the user's response
+                        if (result == DialogResult.Yes)
+                        {
+                           
+                            Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
+                            insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 1, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 1);
+                            InsertUvozKonacna insk = new InsertUvozKonacna();
+                            int pr = VratiPodatkeMaxPrijemnica();
+                            insk.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(pr), Convert.ToInt32(txtNALOGID.Text));
+
+                            RadniNalozi.InsertRN ir = new InsertRN();
+                            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(DateTime.Now), Korisnik, Convert.ToDateTime(DateTime.Now), Convert.ToInt32(0), Convert.ToInt32(1), Convert.ToInt32(1), Convert.ToInt32(70), "", "Automatska napomena", Convert.ToInt32(pr), "Kamion", Convert.ToInt32(txtNALOGID.Text), 1, 0);
+
+                        }
+                        else if (result == DialogResult.No)
+                        {
+                            // Action for 'No'
+                            frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                            rd1.Show();
+                        }
+
+
+
+              
+
+
+                       
 
 
                         // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);

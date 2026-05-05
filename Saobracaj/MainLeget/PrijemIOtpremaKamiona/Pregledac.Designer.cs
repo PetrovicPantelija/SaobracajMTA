@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -46,8 +44,6 @@
             // panel6
             // 
             this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Controls.Add(this.button7);
-            this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.button5);
             this.panel6.Controls.Add(this.button4);
             this.panel6.Controls.Add(this.button3);
@@ -59,46 +55,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1087, 35);
             this.panel6.TabIndex = 4;
-            // 
-            // button7
-            // 
-            this.button7.AutoSize = true;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button7.Location = new System.Drawing.Point(760, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(147, 35);
-            this.button7.TabIndex = 37;
-            this.button7.Text = "Fotografiši kontejner";
-            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.AutoSize = true;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button6.Location = new System.Drawing.Point(626, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(134, 35);
-            this.button6.TabIndex = 36;
-            this.button6.Text = "Fotografiši plombu";
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -116,9 +72,10 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(117, 35);
             this.button5.TabIndex = 35;
-            this.button5.Text = "Fotografiši taru";
+            this.button5.Text = "Fotografije";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -139,6 +96,7 @@
             this.button4.Text = "Dodatne usluge";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -273,6 +231,7 @@
             this.Controls.Add(this.panel6);
             this.Name = "Pregledac";
             this.Text = "Pregledac";
+            this.Load += new System.EventHandler(this.Pregledac_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
@@ -287,8 +246,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
