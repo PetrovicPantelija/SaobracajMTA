@@ -231,9 +231,25 @@ namespace Saobracaj.Drumski
                             SELECT   
                                 -- Agregirana kolona (Spojeni ID-jevi)
                                 x.ID,
-                                LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac, 
-                                x.Relacija,
-                                x.DatumIstovara, 
+                                LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac,
+                                CASE 
+                                    WHEN x.MestoUtovara = 0 
+                                         OR x.MestoUtovara IS NULL
+                                    THEN 
+                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
+
+                                    WHEN x.Scenario in(13,26,7,23) 
+                                    THEN 
+                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + 
+                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  
+                                        LTRIM(RTRIM(mi.Naziv))
+                                    WHEN x.Scenario in(8,9,24,25) 
+                                    THEN 
+                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + 
+                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  
+                                        LTRIM(RTRIM(mii.Naziv))
+                                END AS Relacija1,
+                                CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
                                 LTRIM(RTRIM(x.Kamion)) AS Kamion, 
@@ -254,13 +270,35 @@ namespace Saobracaj.Drumski
                             FROM 
                             (
                                 -- Deo 1 (Izvoz)
-                                SELECT rn.ID, 
+                                SELECT rn.ID, i.Scenario,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
-                                       LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                                        (
+                                        CASE 
+                                            WHEN i.Scenario in (13,26) THEN i.MestoPreuzimanja
+                                            WHEN i.Scenario in (7,23) THEN i.MestoPreuzimanja
+                                            WHEN i.Scenario in (8,9,24,25) THEN 0
+                                        END
+                                        ) MestoPreuzimanjaKontejnera,
+                                         (
+                                        CASE 
+                                            WHEN i.Scenario in (13,26) THEN 0
+                                            WHEN i.Scenario in (7,23) THEN i.MesoUtovara
+                                            WHEN i.Scenario in (8,9,24,25) THEN i.MestoUtovaraCerade
+                                        END
+                                        ) MestoUtovara,
+                                        (
+                                        CASE 
+                                             WHEN i.Scenario in (13,26,7,23) THEN i.MestoPreuzimanja2
+                                             WHEN i.Scenario in (8,9,24,25) THEN i.MestoIstovaraCerade
+                                        END
+                                        )  MestoIstovara,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
                                        au.VlasnistvoLegeta,
-                                       CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
+                                       CASE 
+                                          WHEN i.Scenario in (13,26,7,23) THEN IIF(i.PlaniranDtSpustanjaPunog > '1900-01-01', i.PlaniranDtSpustanjaPunog, i.PlaniraniDtSpustanjaKontejnera)
+                                          WHEN i.Scenario in (8,24,9,25) THEN IIF(i.PlaniranDtIstovaraCerade > '1900-01-01', i.PlaniranDtIstovaraCerade, i.PlaniraniDtIstovaraCerade)
+                                       END AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
@@ -281,13 +319,35 @@ namespace Saobracaj.Drumski
                                 
                                 UNION ALL 
                                 -- Deo 2 (IzvozKonacna)
-                                SELECT rn.ID, 
-                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  
-                                       LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                                SELECT rn.ID, ik.Scenario,
+                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,   
+                                        (
+                                        CASE 
+                                            WHEN ik.Scenario in (13,26) THEN ik.MestoPreuzimanja
+                                            WHEN ik.Scenario in (7,23) THEN ik.MestoPreuzimanja
+                                            WHEN ik.Scenario in (8,9,24,25) THEN 0
+                                        END
+                                        ) MestoPreuzimanjaKontejnera,
+                                         (
+                                        CASE 
+                                            WHEN ik.Scenario in (13,26) THEN 0
+                                            WHEN ik.Scenario in (7,23) THEN ik.MesoUtovara
+                                            WHEN ik.Scenario in (8,9,24,25) THEN ik.MestoUtovaraCerade
+                                        END
+                                        ) MestoUtovara,
+                                        (
+                                        CASE 
+                                             WHEN ik.Scenario in (13,26,7,23) THEN ik.MestoPreuzimanja2
+                                             WHEN ik.Scenario in (8,9,24,25) THEN ik.MestoIstovaraCerade
+                                        END
+                                        )  MestoIstovara,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
                                        au.VlasnistvoLegeta,
-                                       CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
+                                       CASE 
+                                          WHEN ik.Scenario in (13,26,7,23) THEN IIF(ik.PlaniranDtSpustanjaPunog > '1900-01-01', ik.PlaniranDtSpustanjaPunog, ik.PlaniraniDtSpustanjaKontejnera)
+                                          WHEN ik.Scenario in (8,24,9,25) THEN IIF(ik.PlaniranDtIstovaraCerade > '1900-01-01', ik.PlaniranDtIstovaraCerade, ik.PlaniraniDtIstovaraCerade)
+                                       END AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
@@ -308,13 +368,28 @@ namespace Saobracaj.Drumski
                         
                                 UNION ALL 
                                 -- Deo 3 (UvozKonacna)
-                                SELECT rn.ID, 
-                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  
-                                       LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                                SELECT rn.ID, rn.Scenario,
+                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
+                                        (
+                                          CASE 
+                                             WHEN rn.Scenario in (13,26) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoPreuzimanjaKontejnera
+                                         END
+                                         ) MestoPreuzimanjaKontejnera,
+                                         (CASE 
+                                              WHEN rn.Scenario in (13,26) THEN 0
+                                              WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                              WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoUtovaraCerade
+                                         END) MestoUtovara,
+                                         (CASE 
+                                             WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoIstovaraCerade WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoIstovaraCerade
+                                         END) MestoIstovara, 
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
                                        au.VlasnistvoLegeta,
-                                       CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
+                                       rn.DatumIstovara AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
@@ -335,13 +410,28 @@ namespace Saobracaj.Drumski
                 
                                 UNION ALL 
                                 -- Deo 4 (Uvoz)
-                                SELECT rn.ID, 
+                                SELECT rn.ID, rn.Scenario,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
-                                       LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija, 
+                                        (
+                                          CASE 
+                                             WHEN rn.Scenario in (13,26) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoPreuzimanjaKontejnera
+                                         END
+                                         ) MestoPreuzimanjaKontejnera,
+                                         (CASE 
+                                              WHEN rn.Scenario in (13,26) THEN 0
+                                              WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                              WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoUtovaraCerade
+                                         END) MestoUtovara,
+                                         (CASE 
+                                             WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoIstovaraCerade
+                                         END) MestoIstovara, 
                                        au.Vozac,
                                        au.RegBr AS Kamion,
                                        au.VlasnistvoLegeta, 
-                                       CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
+                                       rn.DatumIstovara AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
@@ -359,16 +449,34 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN AutomobiliTehnickiProblem ap ON au.ID = ap.VoziloID AND CAST(ap.Datum AS date) = CAST({datumZaProveru} AS date)
                                 WHERE rn.Uvoz = 1 AND rn.KamionID IS NOT NULL AND ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 
                                       AND ISNULL(rn.Arhiviran, 0) <> 1 
-             
+    
                                 UNION ALL 
                                 -- Deo 5 (Ostali drumski)
-                                SELECT rn.ID, 
-                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  
-                                       LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
+                                SELECT rn.ID, rn.Scenario,
+                                       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
+                                        (
+                                          CASE 
+                                             WHEN rn.Scenario in (13,26) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoPreuzimanjaKontejnera
+                                         END
+                                         ) MestoPreuzimanjaKontejnera,
+                                         (CASE 
+                                              WHEN rn.Scenario in (13,26) THEN 0
+                                              WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                              WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoUtovaraCerade
+                                         END) MestoUtovara,
+                                         (CASE 
+                                             WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
+                                             WHEN rn.Scenario in (8,9,24,25) THEN rn.MestoIstovaraCerade
+                                         END) MestoIstovara,
                                        au.Vozac,
                                        au.RegBr AS Kamion, 
                                        au.VlasnistvoLegeta,
-                                       CONVERT(VARCHAR,rn.DatumIstovara,104) AS DatumIstovara, 
+                                       CASE 
+                                          WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviSpustanja > '1900-01-01', rn.DtNoviSpustanja, rn.DtSpustanja)
+                                          WHEN rn.Scenario in (8,24,9,25) THEN IIF(rn.DtNoviIstovaraCerade > '1900-01-01', rn.DtNoviIstovaraCerade, rn.DtIstovaraCerade)
+                                        END AS DatumIstovara, 
                                        rn.NalogID, p.PaNaziv AS Prevoznik, 
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
@@ -403,6 +511,10 @@ namespace Saobracaj.Drumski
                                 sts.ScenarioID = IdentifikatorScenarija.ScenarioID 
                                 AND sts.Status = x.Status
                             LEFT JOIN Dokumenti d ON d.RadniNalogDrumskiID = x.id
+                            LEFT JOIN MestaUtovara mu ON mu.id = x.MestoUtovara
+                            LEFT JOIN MestaUtovara mii ON mii.id = x.MestoIstovara  AND (Scenario = 8 OR Scenario = 9 OR Scenario = 24 OR Scenario = 25 )
+                            LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID  AND (Scenario = 13 OR Scenario = 26 OR Scenario = 7 OR Scenario = 23 )
+                            LEFT JOIN MestaUtovara mp on  x.MestoPreuzimanjaKontejnera = mp.ID 
                            WHERE  {uslovTipVozila}  AND ( ISNULL(sts.JesteZavrsni, 0) = 0 OR  (ISNULL(sts.JesteZavrsni, 0) = 1 AND ISNULL(d.BrojDokumenata, 0) = 0))
 
                             ORDER BY 

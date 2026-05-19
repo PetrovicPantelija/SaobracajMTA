@@ -255,10 +255,52 @@ namespace Saobracaj.Drumski
                 if ( !string.IsNullOrEmpty(datumZaProveru))
                 {
                     // Baza upita za provjeru raspoloživosti/neraspoloživosti
+                    //string subQueryNaloga = $@"
+                    //    SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
+                    //    FROM   RadniNalogDrumski
+                    //    WHERE  CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) ";
+
                     string subQueryNaloga = $@"
-                        SELECT DISTINCT ISNULL(KamionID, 0) AS KamionID
-                        FROM RadniNalogDrumski
-                        WHERE CONVERT(date, DtPreuzimanjaPraznogKontejnera) = CONVERT(date, {datumZaProveru}) ";
+                                            SELECT DISTINCT ISNULL(rnd.KamionID, 0) AS KamionID
+                                            FROM RadniNalogDrumski rnd
+                                            LEFT JOIN Izvoz i ON rnd.KontejnerID = i.ID
+                                            LEFT JOIN IzvozKonacna ik ON rnd.KontejnerID = ik.ID
+                                            WHERE CONVERT(date, {datumZaProveru}) = CONVERT(date, 
+                                                CASE 
+                                                    -- SLUČAJ 1: Scenario 13 ili 26 ===
+                                                    WHEN rnd.Scenario IN (13, 26) THEN
+                                                        CASE 
+                                                            WHEN rnd.Uvoz = 0 THEN 
+                                                                -- Gleda se ik.PlaniranDtPreuzimanjaPraznog, ako je NULL onda ik.PlaniraniDtPreuzimanja
+                                                                -- Koristimo ISNULL da spojimo podatke iz obe potencijalne tabele (i ili ik)
+                                                                ISNULL(
+                                                                    ISNULL(i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja),
+                                                                    ISNULL(ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
+                                                                )
+                                                            ELSE 
+                                                                -- U svim drugim slučajevima (ako je Uvoz != 0 za scenario 13,26)
+                                                                ISNULL(rnd.DtNoviPreuzimanjaKontejnera, rnd.DtPreuzimanjaPraznogKontejnera)
+                                                        END
+
+                                                    -- SLUČAJ 2: Scenario 8 ili 24 ===
+                                                    WHEN rnd.Scenario IN (8, 24,9, 25) THEN
+                                                        CASE 
+                                                            WHEN rnd.Uvoz = 0 THEN 
+                                                                -- Gleda se PlaniranDtUtovaraCerade, ako je NULL onda PlaniraniDtUtovaraCerade
+                                                                ISNULL(
+                                                                    ISNULL(i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade),
+                                                                    ISNULL(ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
+                                                                )
+                                                            ELSE 
+                                                                -- U suprotnom (Uvoz != 0 za scenario 8,24)
+                                                                ISNULL(rnd.DtNoviUtovaraCerade, rnd.DtUtovaraCerade)
+                                                        END
+
+                                                    -- SVI OSTALI SCENARIJI 
+                                                    ELSE 
+                                                        ISNULL(rnd.DtNoviPreuzimanjaKontejnera, rnd.DtPreuzimanjaPraznogKontejnera)
+                                                END
+                                            )";
 
                     // Subquery za vozila koja su u tehničkom problemu (neraspoloživa zbog kvara)
                     string subQueryKvarova = $@"

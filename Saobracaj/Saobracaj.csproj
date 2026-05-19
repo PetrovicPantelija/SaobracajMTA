@@ -2364,6 +2364,12 @@
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.Designer.cs">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemKamionaDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemKamionaDetalji.Designer.cs">
+      <DependentUpon>frmPrijemKamionaDetalji.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5555,6 +5561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.resx">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemKamionaDetalji.resx">
+      <DependentUpon>frmPrijemKamionaDetalji.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\Pregledac.resx">
       <DependentUpon>Pregledac.cs</DependentUpon>

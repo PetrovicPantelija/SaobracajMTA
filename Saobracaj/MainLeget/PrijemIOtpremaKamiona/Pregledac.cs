@@ -37,7 +37,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 " CASE Cirada " +
 " WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
-" END AS TipNaloga,  " +
+" END AS TipNaloga, IzvozKonacna.ID AS IzvozID, " +
 " Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
@@ -59,6 +59,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             this.gridGroupingControl2.Table.Records.DeleteAll();
 
             gridGroupingControl2.DataSource = ds.Tables[0];
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("IzvozID");
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
@@ -185,5 +186,51 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
            
            
         }
+
+        private void toolStripMenuItemOtvori_Click(object sender, EventArgs e)
+        {
+            if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            {
+                // Uzimamo prvi selektovani red
+                Record rec = gridGroupingControl2.Table.SelectedRecords[0].Record;
+
+                if (rec != null)
+                {
+                    int ID = Convert.ToInt32(rec.GetValue("IzvozID"));
+                    string Izvor = (rec.GetValue("Izvor").ToString());
+                    if (Izvor == "Izvoz")
+                    {
+                        PrijemIOtpremaKamiona.frmPrijemKamionaDetalji sc1 = new PrijemIOtpremaKamiona.frmPrijemKamionaDetalji(ID);
+                        sc1.Show();
+                    }
+                }
+            }
+        }
+
+        private void GridGroupingControl1_TableControlMouseDown(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventArgs e)
+        {
+
+            if (System.Windows.Forms.Control.MouseButtons == MouseButtons.Right)
+            {
+                // Dobavljanje pozicije kliknutog reda i kolone
+                // Pronađi red i kolonu pod mišem
+                int rowIndex, colIndex;
+                e.TableControl.PointToRowCol(new System.Drawing.Point(e.Inner.X, e.Inner.Y), out rowIndex, out colIndex);
+
+                // Uzmi stil kliknutog polja
+                GridTableCellStyleInfo style = e.TableControl.GetTableViewStyleInfo(rowIndex, colIndex);
+
+                // Proveri da li je kliknuto u redu sa podacima
+                if (style.TableCellIdentity.DisplayElement.Kind == DisplayElementKind.Record)
+                {
+                    // Postavi aktivni red
+                    this.gridGroupingControl2.Table.CurrentRecord = style.TableCellIdentity.DisplayElement.ParentRecord;
+
+                    // Prikaži context menu na poziciji miša
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
+
     }
 }
