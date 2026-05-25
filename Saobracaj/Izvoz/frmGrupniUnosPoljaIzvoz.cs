@@ -2618,7 +2618,7 @@ namespace Saobracaj.Izvoz
                                                 KontaktOsoba AS KontaktOUtovaraKontejnera, 
                                                 MestoUtovaraCerade AS MestoUtovaraCerade, 
                                                 KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, 
-                                                DtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
+                                                PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, 
                                                 MestoIstovaraCerade AS MestoIstovaraCerade, 
                                                 KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, 
                                                 PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, -- Ispravljeno: PlaniraniDt

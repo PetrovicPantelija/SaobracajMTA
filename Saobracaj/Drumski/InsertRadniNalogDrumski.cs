@@ -1344,7 +1344,9 @@ namespace Saobracaj.Drumski
              int? MestoPreuzimanja, string AdresaPreuzimanja, string KontaktOsobaPreuzimanja, DateTime? DtPreuzimanjaKontejnera, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
              int? MestoSpustanja, DateTime?  DtSpustanja, DateTime?  DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, int? MestoUtovara, DateTime? DatumUtovara, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara, 
              string AdresaUtovara, string KontaktOsobaNaUtovaru, string GranicniPrelaz,  string KontaktOsobaNaIstovaru, 
-             string BrojVoza,   string BrodskaTeretnica, string BrojPosiljke, int NalogIzmenioZaposleni, string OpisPosla, string AdresaUtovaraCerade, string AdresaIstovaraCerade, string KontaktUtovaraCerade, string KontaktIstovaraCerade,
+             string BrojVoza,   string BrodskaTeretnica, string BrojPosiljke, int NalogIzmenioZaposleni, string OpisPosla,
+             DateTime? DtUtovaraCerade, DateTime? DtUtovaraCeradeNovi, DateTime? DtIstovaraCerade, DateTime? DtIstovaraCeradeNovi,
+             string AdresaUtovaraCerade, string AdresaIstovaraCerade, string KontaktUtovaraCerade, string KontaktIstovaraCerade,
              string NoviSpediterP, string NoviSpediterO)
 
         {
@@ -1767,7 +1769,34 @@ namespace Saobracaj.Drumski
             opisPosla.Value = (object)OpisPosla ?? DBNull.Value;
             cmd.Parameters.Add(opisPosla);
 
+            SqlParameter dtUtovaraCerade = new SqlParameter();
+            dtUtovaraCerade.ParameterName = "@DtUtovaraCerade";
+            dtUtovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraCerade.Direction = ParameterDirection.Input;
+            dtUtovaraCerade.Value = DtUtovaraCerade.HasValue ? (object)DtUtovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtUtovaraCerade);
 
+            SqlParameter dtUtovaraCeradeNovi = new SqlParameter();
+            dtUtovaraCeradeNovi.ParameterName = "@DtUtovaraCeradeNovi";
+            dtUtovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtUtovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtUtovaraCeradeNovi.Value = DtUtovaraCeradeNovi.HasValue ? (object)DtUtovaraCeradeNovi.Value : DBNull.Value; 
+            cmd.Parameters.Add(dtUtovaraCeradeNovi);
+        
+
+            SqlParameter dtIstovaraCerade = new SqlParameter();
+            dtIstovaraCerade.ParameterName = "@DtIstovaraCerade";
+            dtIstovaraCerade.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCerade.Direction = ParameterDirection.Input;
+            dtIstovaraCerade.Value = DtIstovaraCerade.HasValue ? (object)DtIstovaraCerade.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCerade);
+
+            SqlParameter dtIstovaraCeradeNovi = new SqlParameter();
+            dtIstovaraCeradeNovi.ParameterName = "@DtIstovaraCeradeNovi";
+            dtIstovaraCeradeNovi.SqlDbType = SqlDbType.DateTime;
+            dtIstovaraCeradeNovi.Direction = ParameterDirection.Input;
+            dtIstovaraCeradeNovi.Value = DtIstovaraCeradeNovi.HasValue ? (object)DtIstovaraCeradeNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtIstovaraCeradeNovi);
             SqlParameter adresaUtovaraCerade = new SqlParameter();
             adresaUtovaraCerade.ParameterName = "@AdresaUtovaraCerade";
             adresaUtovaraCerade.SqlDbType = SqlDbType.NVarChar;

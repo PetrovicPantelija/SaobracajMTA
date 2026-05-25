@@ -37,7 +37,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 " CASE Cirada " +
 " WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
-" END AS TipNaloga,  " +
+" END AS TipNaloga, IzvozKonacna.ID AS IzvozID, " +
 " Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
@@ -59,6 +59,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             this.gridGroupingControl2.Table.Records.DeleteAll();
 
             gridGroupingControl2.DataSource = ds.Tables[0];
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("IzvozID");
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
