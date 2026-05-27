@@ -402,7 +402,7 @@ namespace Saobracaj.RadniNalozi
 
 
             SqlParameter rn = new SqlParameter();
-            rn.ParameterName = "@NalogID";
+            rn.ParameterName = "@RN";
             rn.SqlDbType = SqlDbType.Int;
             rn.Direction = ParameterDirection.Input;
             rn.Value = NalogID;
@@ -410,11 +410,12 @@ namespace Saobracaj.RadniNalozi
 
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
-            korisnik.SqlDbType = SqlDbType.Int;
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
             korisnik.Direction = ParameterDirection.Input;
             korisnik.Value = Korisnik;
             cmd.Parameters.Add(korisnik);
-
+        
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;

@@ -161,5 +161,23 @@ namespace Saobracaj.Sifarnici
         {
            
         }
+        
+        // C#
+        void DisposeOnUiThread(Control control)
+        {
+            if (control.IsDisposed) return;
+            if (control.InvokeRequired)
+            {
+                control.Invoke((Action)(() => {
+                    control.Dispose();
+                    GC.SuppressFinalize(control); // if it has a finalizer
+                }));
+            }
+            else
+            {
+                control.Dispose();
+                GC.SuppressFinalize(control);
+            }
+        }
     }
 }

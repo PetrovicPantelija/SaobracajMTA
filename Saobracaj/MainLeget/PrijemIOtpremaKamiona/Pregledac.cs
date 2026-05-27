@@ -29,23 +29,40 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
         private void button2_Click(object sender, EventArgs e)
         {
             var select = "";
-
-            select = "    select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
+            /*
+            select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.BrojKontejnera,
+TipKontenjera.SkNaziv as VrstaKontejnera, 
+(Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, 
+CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,   
+CASE Cirada
+ WHEN 0 THEN 'PLATFORMA'
+WHEN 1 THEN 'CIRADA'
+ END AS TipNaloga, 
+ Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, GETDATE() as Datum, 
+ BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni
+inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga
+inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov
+inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
+            */
+            select = "    select RadniNalogInterni.ID as KomNalogID, ProdajniNalogIzvozStavke.IDNAdredjenog as Porudz,'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC,  " +
-" CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,  " +
+" CASE IzvozKonacna.Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS DrumskiIma,  " +
 " CASE Cirada " +
 " WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga, IzvozKonacna.ID AS IzvozID, " +
-" Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
+" Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , " +
+" PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz " +
+" from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
+" inner join ProdajniNalogIzvozStavke on ProdajniNalogIzvozStavke.ID = IzvozKonacna.BrojStavkePorudzbenice " +
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
 " inner join Partnerji on PArtnerji.PaSifra = IzvozKonacna.Brodar " +
-" inner join Partnerji p1 on p1.PaSifra = IzvozKonacna.Brodar " +
-" inner join Kapija on Kapija.NalogID = RadniNalogInterni.ID " +
-" where Pregledac = 0 ";
+" inner join Partnerji p1 on p1.PaSifra = IzvozKonacna.VrstaBrodskePlombe " +
+" left join Kapija on Kapija.NalogID = RadniNalogInterni.ID " +
+" where  (KapijaUlaz = 0 or KapijaUlaz = 1) and Pregledac = 0 ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -66,13 +83,17 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
+
             }
 
-            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
-            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
-            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
-            gcfd3.Expression = "[Kapija] = '1'";
+
+
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+            gcfd3.Expression = "[KapijaUlaz] = 1";
             this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
@@ -135,7 +156,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             {
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
                 {
-                    int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+                    int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
                    up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
                   
                 }

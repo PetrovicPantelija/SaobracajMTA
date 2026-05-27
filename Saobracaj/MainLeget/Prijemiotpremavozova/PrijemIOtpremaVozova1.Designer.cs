@@ -199,7 +199,7 @@
             this.btnPrijemIOtpremaVozova7.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtpremaVozova7.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtpremaVozova7.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtpremaVozova7.Location = new System.Drawing.Point(51, 103);
+            this.btnPrijemIOtpremaVozova7.Location = new System.Drawing.Point(75, 103);
             this.btnPrijemIOtpremaVozova7.Name = "btnPrijemIOtpremaVozova7";
             this.btnPrijemIOtpremaVozova7.Size = new System.Drawing.Size(276, 222);
             this.btnPrijemIOtpremaVozova7.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -213,6 +213,7 @@
             this.btnPrijemIOtpremaVozova7.Text = "Prijem";
             this.btnPrijemIOtpremaVozova7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova7.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova7.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova7_Click);
             // 
             // btnPrijemIOtpremaVozova8
             // 
@@ -237,6 +238,7 @@
             this.btnPrijemIOtpremaVozova8.Text = "Otprema";
             this.btnPrijemIOtpremaVozova8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtpremaVozova8.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtpremaVozova8.Click += new System.EventHandler(this.btnPrijemIOtpremaVozova8_Click);
             // 
             // label1
             // 

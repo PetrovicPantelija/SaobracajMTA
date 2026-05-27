@@ -11,32 +11,29 @@ using System.Windows.Forms;
 
 namespace Saobracaj.MainLeget.Intermodalni
 {
-    public partial class Intermodalni1 : Form
+    public partial class IntermodalniKomN : Form
     {
         string Korisnik = Sifarnici.frmLogovanje.user;
-        public Intermodalni1()
+        public IntermodalniKomN()
         {
             InitializeComponent();
         }
 
-        private void btnIntermodalni11_Click(object sender, EventArgs e)
+        private void btmKomercijalni6_Click(object sender, EventArgs e)
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
             main.OtvoriFormuSaPravom(
-                btnIntermodalni11.Text,
-                () => new IntermodalniKomN());
+                btmKomercijalni6.Text,
+                () => new frmRadniNalogInterniPregled(Korisnik)
+            );
         }
 
-        private void btnIntermodalni13_Click(object sender, EventArgs e)
+        private void btmKomercijalni4_Click(object sender, EventArgs e)
         {
-            var main = this.TopLevelControl as NewMain;
-            if (main == null) return;
-
-            main.OtvoriFormuSaPravom(
-                btnIntermodalni13.Text,
-                () => new VozniPlanovi());
+            frmRadniNalogInterniPregled frm = new frmRadniNalogInterniPregled(Korisnik);
+            frm.Show();
         }
     }
 }
