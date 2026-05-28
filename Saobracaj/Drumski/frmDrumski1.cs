@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static Saobracaj.Izvoz.frmGrupniUnosPoljaIzvoz;
+using System.Reflection;
 
 namespace Saobracaj.Drumski
 {
@@ -37,8 +38,11 @@ namespace Saobracaj.Drumski
         List<PrivremeniNHM> privremenaListaNHM = new List<PrivremeniNHM>();
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         private int lOOdobrio = 0;
+        private Dictionary<DateTimePicker, DateTimePicker> povezaniDatumi = new Dictionary<DateTimePicker, DateTimePicker>();
+        private decimal staraVrednost;
+        private bool promenjenaVrednost;
 
-        private ComboBox cboTipNaloga ;
+        private ComboBox cboTipNaloga;
         private ComboBox cboKlijent;
         private ComboBox cboVrstaRobe;
         private ComboBox cboCarinskiPUnutrasniTransport;
@@ -102,6 +106,8 @@ namespace Saobracaj.Drumski
         private System.Windows.Forms.NumericUpDown txtTaraK;
         private System.Windows.Forms.NumericUpDown txtBrutoK;
         private System.Windows.Forms.NumericUpDown txtNTTOR;
+        private System.Windows.Forms.NumericUpDown txtTrosak; 
+        private System.Windows.Forms.NumericUpDown txtCena; 
 
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejneraNovi;
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejnera;
@@ -131,21 +137,36 @@ namespace Saobracaj.Drumski
             ChangeTextBox();
 
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
-            dtpUtovaraNovi.Value = DateTime.MinValue;
-            dtpRealiUtovara.Value = DateTime.MinValue;
-            dtpSpustanjePunog.Value = DateTime.MinValue;
-            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
-            dtpSpustanjePunogReal.Value = DateTime.MinValue;
-            dtpIstovaraCerade.Value = DateTime.MinValue;
-            dtpIstovaraCeradeNovi.Value = DateTime.MinValue;
-            dtpRealiIstovaraCerade.Value = DateTime.MinValue;
-            dtpUtovaraCerade.Value = DateTime.MinValue;
-            dtpUtovaraCeradeNovi.Value = DateTime.MinValue;
-            dtpRealiUtovaraCerade.Value = DateTime.MinValue;
+            if (dtpUtovara != null)
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtPreuzimanjaPraznogKontejnera != null)
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            if (dtPreuzimanjaPraznogKontejneraNovi != null)
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
+            if (dtRealiPreuzimanjaPraznogKont != null)
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
+            if (dtpUtovaraNovi != null)
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovara != null)
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunog != null)
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogNovi != null)
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogReal != null)
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
+            if (dtpIstovaraCerade != null)
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
+            if (dtpIstovaraCeradeNovi != null)
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiIstovaraCerade != null)
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
+            if (dtpUtovaraCerade != null)
+                dtpUtovaraCerade.Value = DateTime.Today;
+            if (dtpUtovaraCeradeNovi != null)
+                dtpUtovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovaraCerade != null)
+                dtpRealiUtovaraCerade.Value = DateTime.Today.AddDays(1);
             //  dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             ////dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
@@ -173,21 +194,37 @@ namespace Saobracaj.Drumski
             InitializeComponent();
             ChangeTextBox();
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
-            dtpUtovaraNovi.Value = DateTime.MinValue;
-            dtpRealiUtovara.Value = DateTime.MinValue;
-            dtpSpustanjePunog.Value = DateTime.MinValue;
-            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
-            dtpSpustanjePunogReal.Value = DateTime.MinValue;
-            dtpIstovaraCerade.Value = DateTime.MinValue;
-            dtpIstovaraCeradeNovi.Value = DateTime.MinValue;
-            dtpRealiIstovaraCerade.Value = DateTime.MinValue;
-            dtpUtovaraCerade.Value = DateTime.MinValue;
-            dtpUtovaraCeradeNovi.Value = DateTime.MinValue;
-            dtpRealiUtovaraCerade.Value = DateTime.MinValue;
+            
+            if (dtpUtovara != null)
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtPreuzimanjaPraznogKontejnera != null)
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            if (dtPreuzimanjaPraznogKontejneraNovi != null)
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
+            if (dtRealiPreuzimanjaPraznogKont != null)
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
+            if (dtpUtovaraNovi != null)
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovara != null)
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunog != null)
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1); 
+            if (dtpSpustanjePunogNovi != null)
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogReal != null)
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
+            if (dtpIstovaraCerade != null)
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
+            if (dtpIstovaraCeradeNovi != null)
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiIstovaraCerade != null)
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
+            if (dtpUtovaraCerade != null)
+                dtpUtovaraCerade.Value = DateTime.Today;
+            if (dtpUtovaraCeradeNovi != null)
+                dtpUtovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovaraCerade != null)
+                dtpRealiUtovaraCerade.Value = DateTime.Today.AddDays(1);
             //dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
@@ -332,35 +369,35 @@ namespace Saobracaj.Drumski
             }
             pronadjiKontrole();
             if (dtpUtovara != null)
-                dtpUtovara.Value = dtpUtovara.MinDate;
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
             if (dtPreuzimanjaPraznogKontejnera != null)
-                dtPreuzimanjaPraznogKontejnera.Value = dtPreuzimanjaPraznogKontejnera.MinDate;
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             if (dtPreuzimanjaPraznogKontejneraNovi != null)
-                dtPreuzimanjaPraznogKontejneraNovi.Value = dtPreuzimanjaPraznogKontejneraNovi.MinDate;
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
             if (dtRealiPreuzimanjaPraznogKont != null)
-                dtRealiPreuzimanjaPraznogKont.Value = dtRealiPreuzimanjaPraznogKont.MinDate;
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
             if (dtpUtovaraNovi != null)
-                dtpUtovaraNovi.Value = dtpUtovaraNovi.MinDate;
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
             if (dtpRealiUtovara != null)
-                dtpRealiUtovara.Value = dtpRealiUtovara.MinDate;
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunog != null)
-                dtpSpustanjePunog.Value = dtpSpustanjePunog.MinDate;
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunogNovi != null)
-                dtpSpustanjePunogNovi.Value = dtpSpustanjePunogNovi.MinDate;
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunogReal != null)
-                dtpSpustanjePunogReal.Value = dtpSpustanjePunogReal.MinDate;
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
             if (dtpIstovaraCerade != null)
-                dtpIstovaraCerade.Value = dtpIstovaraCerade.MinDate;
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
             if (dtpIstovaraCeradeNovi != null)
-                dtpIstovaraCeradeNovi.Value = dtpIstovaraCeradeNovi.MinDate;
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
             if (dtpRealiIstovaraCerade != null)
-                dtpRealiIstovaraCerade.Value = dtpRealiIstovaraCerade.MinDate;
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
             if (dtpUtovaraCerade != null)
-                dtpUtovaraCerade.Value = dtpUtovaraCerade.MinDate;
+                dtpUtovaraCerade.Value = DateTime.Today;
             if (dtpUtovaraCeradeNovi != null)
-                dtpUtovaraCeradeNovi.Value = dtpUtovaraCeradeNovi.MinDate;
+                dtpUtovaraCeradeNovi.Value = DateTime.Today;
             if (dtpRealiUtovaraCerade != null)
-                dtpRealiUtovaraCerade.Value = dtpRealiUtovaraCerade.MinDate;
+                dtpRealiUtovaraCerade.Value = DateTime.Today;
 
 
             //if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
@@ -371,18 +408,18 @@ namespace Saobracaj.Drumski
             //}
 
             VratiPodatke();
-            if(dtpUtovaraCerade != null)
-                dtpUtovaraCerade.Tag = null;
-            if (dtpUtovaraCeradeNovi != null)
-                dtpUtovaraCeradeNovi.Tag = null;
-            if (dtpIstovaraCeradeNovi != null)
-                dtpIstovaraCeradeNovi.Tag = null;
-            if (dtpRealiUtovaraCerade != null)
-                dtpRealiUtovaraCerade.Tag = null;
-            if (dtpIstovaraCerade != null)
-                dtpIstovaraCerade.Tag = null;
-            if (dtpRealiIstovaraCerade != null)
-                dtpRealiIstovaraCerade.Tag = null;
+            //if(dtpUtovaraCerade != null)
+            //    dtpUtovaraCerade.Tag = null;
+            //if (dtpUtovaraCeradeNovi != null)
+            //    dtpUtovaraCeradeNovi.Tag = null;
+            //if (dtpIstovaraCeradeNovi != null)
+            //    dtpIstovaraCeradeNovi.Tag = null;
+            //if (dtpRealiUtovaraCerade != null)
+            //    dtpRealiUtovaraCerade.Tag = null;
+            //if (dtpIstovaraCerade != null)
+            //    dtpIstovaraCerade.Tag = null;
+            //if (dtpRealiIstovaraCerade != null)
+            //    dtpRealiIstovaraCerade.Tag = null;
             if (lOOdobrio > 0)
                 btnPovrdiLO.Visible = false;
 
@@ -463,6 +500,8 @@ namespace Saobracaj.Drumski
             txtBrutoK = this.Controls.Find("txtBrutoK" + sfx, true).FirstOrDefault() as NumericUpDown;
             txtNTTOR = this.Controls.Find("txtNTTOR" + sfx, true).FirstOrDefault() as NumericUpDown;
             lblNTTOR = this.Controls.Find("lblNTTOR" + sfx, true).FirstOrDefault() as Label;
+            txtTrosak = this.Controls.Find("txtTrosak" + sfx, true).FirstOrDefault() as NumericUpDown;
+            txtCena = this.Controls.Find("txtCena" + sfx, true).FirstOrDefault() as NumericUpDown;
 
             cboMestoPreuzimanja = this.Controls.Find("cboMestoPreuzimanja" + sfx, true).FirstOrDefault() as ComboBox;
             cboMestoSpustanjaPunog = this.Controls.Find("cboMestoSpustanjaPunog" + sfx, true).FirstOrDefault() as ComboBox;
@@ -484,7 +523,7 @@ namespace Saobracaj.Drumski
             lblPreuzimanjaPraznogKontejneraNovi = this.Controls.Find("lblPreuzimanjaPraznogKontejneraNovi" + sfx, true).FirstOrDefault() as Label;
             dtPreuzimanjaPraznogKontejneraNovi = this.Controls.Find("dtPreuzimanjaPraznogKontejneraNovi" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtPreuzimanjaPraznogKontejnera = this.Controls.Find("dtPreuzimanjaPraznogKontejnera" + sfx, true).FirstOrDefault() as DateTimePicker;
-            dtRealiPreuzimanjaPraznogKont = this.Controls.Find("dtRealiPreuzimanjaPraznogKon" + sfx, true).FirstOrDefault() as DateTimePicker;
+            dtRealiPreuzimanjaPraznogKont = this.Controls.Find("dtRealiPreuzimanjaPraznogKont" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpUtovaraCerade = this.Controls.Find("dtpUtovaraCerade" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpIstovaraCerade = this.Controls.Find("dtpIstovaraCerade" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpUtovaraCeradeNovi = this.Controls.Find("dtpUtovaraCeradeNovi" + sfx, true).FirstOrDefault() as DateTimePicker;
@@ -631,7 +670,7 @@ namespace Saobracaj.Drumski
             SqlCommand cmd = new SqlCommand("SELECT	rn.ID , ik.ID AS IDNadredjena, " +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  ik.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,(Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru , rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, ik.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
-             "ik.PlaniraniDtPreuzimanja AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(ik.PlaniraniDtPreuzimanja, ik.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.VrstaKontejnera AS TipKontejnera, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              " CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = ik.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
@@ -657,7 +696,7 @@ namespace Saobracaj.Drumski
              "SELECT	rn.ID , i.ID AS IDNadredjena," +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref,i.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru ,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, i.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
-             "i.PlaniraniDtPreuzimanja AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(i.PlaniraniDtPreuzimanja, i.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2,i.VrstaKontejnera AS TipKontejnera, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
              "CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = i.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
@@ -1922,7 +1961,8 @@ namespace Saobracaj.Drumski
                 }
                 else
                 {
-                    dtp.Value = dtp.MinDate;// Ili neki default datum koji vam odgovara
+                   // dtp.Value = dtp.MinDate;// Ili neki default datum koji odgovara
+                    dtp.Value =  DateTime.Today.AddDays(-5);
                     dtp.Tag = null;
                 }
             }
@@ -3040,14 +3080,208 @@ namespace Saobracaj.Drumski
 
         private void dptDatum_ValueChanged(object sender, EventArgs e)
         {
-            DateTimePicker dtp = (DateTimePicker)sender;
+           DateTimePicker dtp = (DateTimePicker)sender;
             dtp.Tag = "IZMENJEN";
+
+            if (povezaniDatumi.TryGetValue(dtp, out DateTimePicker novi))
+            {
+                if (novi.Value.Date < dtp.Value.Date)
+                {
+                    novi.Value = dtp.Value.Date;
+                }
+            }
         }
 
         private void cboMestoPreuzimanjaI1_Leave(object sender, EventArgs e)
         {
             PopuniAdresu(cboMestoPreuzimanja, cboAdresaPreuzimanja);
             PopuniKontaktOsobu(cboMestoPreuzimanja, cbokontaktPreuzimanjaI1);
+        }
+
+        private void cbo_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (cb != null)
+            {
+                // Ako je lista otvorena (bilo klikom na strelicu ili preko Alt+Down)
+                if (cb.DroppedDown)
+                {
+                    // Zatvaramo veliki padajući meni da bi SuggestAppend mogao normalno da radi
+                    cb.DroppedDown = false;
+
+                    // VAŽNO: Kada WinForms zatvori DroppedDown, često resetuje kursor na početak teksta.
+                    // Zato ručno pomeramo kursor na kraj teksta kako bi korisnik nastavio da kuca normalno.
+                    cb.SelectionStart = cb.Text.Length;
+                }
+            }
+        }
+
+        //private void Numeric_Enter(object sender, EventArgs e)
+        //{
+        //    if (sender is NumericUpDown nud)
+        //    {
+        //        // 1. Zapamti trenutnu vrednost
+        //        nud.Tag = nud.Value;
+
+        //        // 2. Sakrij tekst tako što ćeš mu dati istu boju kao što je pozadina (npr. bela)
+        //        // Korisnik sada vidi potpuno prazno, belo polje
+        //        nud.ForeColor = nud.BackColor;
+
+        //        // 3. Pozicioniraj kursor na početak i selektuj sve, 
+        //        // tako da čim korisnik počne da kuca, ForeColor se vrati na crnu
+        //        BeginInvoke((MethodInvoker)delegate
+        //        {
+        //            nud.Select(0, nud.Text.Length);
+        //        });
+        //    }
+        //}
+
+        //private void Numeric_Leave(object sender, EventArgs e)
+        //{
+        //    if (sender is NumericUpDown nud)
+        //    {
+        //        // Kada korisnik izađe, obavezno vraćamo normalnu boju teksta (npr. crnu)
+        //        nud.ForeColor = Color.Black; // ili Color.Black
+
+        //        // Ako je korisnik ručno obrisao sve (BackSpace-om) i ostavio prazno
+        //        if (string.IsNullOrWhiteSpace(nud.Text))
+        //        {
+        //            if (nud.Tag is decimal staraVrednost)
+        //            {
+        //                nud.Value = staraVrednost;
+        //            }
+        //        }
+        //    }
+        //}
+
+        private void Numeric_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // sacuvaj staru vrednost
+            num.Tag = num.Value;
+
+            // oznaci da jos nije menjano
+            num.AccessibleDescription = "nijeMenjano";
+
+            BeginInvoke(new Action(() =>
+            {
+                num.Select(0, num.Text.Length);
+            }));
+        }
+
+        private void Numeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // korisnik je poceo unos
+            num.AccessibleDescription = "menjano";
+        }
+
+        private void Numeric_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // ako nije menjano vrati staru vrednost
+            if (num.AccessibleDescription == "nijeMenjano")
+            {
+                num.Value = (decimal)num.Tag;
+            }
+        }
+
+        private void PoveziDatume(DateTimePicker referentni, DateTimePicker novi)
+        {
+            if (referentni == null || novi == null)
+                return;
+
+            povezaniDatumi[referentni] = novi;
+        }
+
+        //private void Datum_ValueChanged(object sender, EventArgs e)
+        //{
+        //    DateTimePicker novi = (DateTimePicker)sender;
+
+        //    if (novi.Tag is DateTimePicker stari)
+        //    {
+        //        if (novi.Value.Date < stari.Value.Date)
+        //        {
+        //            novi.Value = stari.Value.Date;
+        //        }
+        //    }
+        //}
+
+        private void frmDrumski1_Load(object sender, EventArgs e)
+        {
+            if (dtPreuzimanjaPraznogKontejnera != null && dtPreuzimanjaPraznogKontejneraNovi != null)
+                PoveziDatume(dtPreuzimanjaPraznogKontejnera, dtPreuzimanjaPraznogKontejneraNovi);
+            if (dtpSpustanjePunog != null && dtpSpustanjePunogNovi != null)
+                PoveziDatume(dtpSpustanjePunog, dtpSpustanjePunogNovi);
+            if (dtpUtovara != null && dtpUtovaraNovi != null)
+                PoveziDatume(dtpUtovara, dtpUtovaraNovi);
+            if (dtpUtovaraCerade != null && dtpUtovaraCeradeNovi != null)
+                PoveziDatume(dtpUtovaraCerade, dtpUtovaraCeradeNovi);
+            if (dtpIstovaraCerade != null && dtpIstovaraCeradeNovi != null)
+                PoveziDatume(dtpIstovaraCerade, dtpIstovaraCeradeNovi);
+
+
+            if (txtTaraK != null)
+                PoveziNumeric(txtTaraK);
+            if (txtBrutoK != null)
+                PoveziNumeric(txtBrutoK);
+            if (txtNTTOR != null)
+                PoveziNumeric(txtNTTOR);
+            if (txtTrosak != null)
+                PoveziNumeric(txtTrosak);
+            if (txtCena != null)
+                PoveziNumeric(txtCena);
+        }
+
+        private void PoveziNumeric(NumericUpDown num)
+        {
+            num.Enter += Numeric1_Enter;
+            num.Leave += Numeric1_Leave;
+            num.ValueChanged += Numeric1_ValueChanged;
+        }
+        private void Numeric1_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            staraVrednost = num.Value;
+            promenjenaVrednost = false;
+
+            BeginInvoke(new Action(() =>
+            {
+                TextBox tb = num.Controls[1] as TextBox;
+
+                if (tb != null)
+                {
+                    tb.Clear();
+                }
+            }));
+        }
+
+        private void Numeric1_ValueChanged(object sender, EventArgs e)
+        {
+            promenjenaVrednost = true;
+        }
+
+        private void Numeric1_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            TextBox tb = num.Controls[1] as TextBox;
+
+            // ako nije promenjena vrednost vrati staru
+            if (!promenjenaVrednost)
+            {
+                num.Value = staraVrednost;
+            }
+
+            // osvezi prikaz teksta
+            if (tb != null)
+            {
+                tb.Text = num.Value.ToString();
+            }
         }
     }
 }
