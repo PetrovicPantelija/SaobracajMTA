@@ -725,21 +725,17 @@ namespace Saobracaj.Uvoz
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
-                select = "     SELECT IzvozKonacna.ID,[BrojKontejnera],TipKontenjera.SkNaziv as Vrsta_Kontejnera, " + 
-" b.PaNaziv as Brodar, p1.PaNaziv as Izvoznik,Voz.NAzivVoza as Voz ,  n1.PaNaziv as Nalogodavac1, n2.PaNaziv as Nalogodavac2, n3.PaNaziv as Nalogodavac3, " +
-" (select Top 1 Naziv from Scenario inner join IzvozKonacna uv on uv.Scenario = Scenario.ID  where IzvozKonacna.ID = uv.ID) as ScenarioNaziv, " +
-" NetoRobe, BrutoRobe, IzvozKonacna.BrojKoleta " +
-" FROM IzvozKonacna " +
-" inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.ID = IzvozKonacna.IDNadredjena " +
-" inner join Partnerji p1 on p1.PaSifra = Izvoznik " +
-" inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
-" inner join Partnerji n1 on n1.PaSifra = Klijent1 " +
-" inner join Partnerji n2 on n2.PaSifra = Klijent2 " +
-" inner join Partnerji n3 on n3.PaSifra = Klijent3 " +
-" inner join Partnerji b on b.PaSifra = IzvozKonacna.Brodar " +
-" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
-" inner Join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
-" order by IzvozKonacna.ID desc  ";
+                select = "     SELECT IzvozKonacna.ID, ProdajniNalogIzvozStavke.IDNAdredjenog as Porudzbina, t1.KorisnikIzdao as KorisnikIzdao, IzvozKonacna.OpisPosla, p1.PaNaziv as Izvoznik, (select Top 1 Naziv from Scenario inner join IzvozKonacna uv on uv.Scenario = Scenario.ID  where IzvozKonacna.ID = uv.ID) as ScenarioNaziv,  [BrojKontejnera],TipKontenjera.SkNaziv as Vrsta_Kontejnera,  b.PaNaziv as Brodar,Voz.NAzivVoza as Voz ,  " +
+ "    n1.PaNaziv as Nalogodavac1, " +
+"	 NetoRobe, BrutoRobe, IzvozKonacna.BrojKoleta, n2.PaNaziv as Nalogodavac2, n3.PaNaziv as Nalogodavac3   FROM IzvozKonacna  inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.ID = IzvozKonacna.IDNadredjena " +
+ "    inner join Partnerji p1 on p1.PaSifra = Izvoznik "+
+  "   inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera "+
+ "    inner join Partnerji n1 on n1.PaSifra = Klijent1  inner join Partnerji n2 on n2.PaSifra = Klijent2 "+
+ "    inner join Partnerji n3 on n3.PaSifra = Klijent3  inner join Partnerji b on b.PaSifra = IzvozKonacna.Brodar "+
+ "    inner join VrstaRobeADR on VrstaRobeADR.ID = ADR "+
+ "    inner Join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza "+
+ "    inner join ProdajniNalogIzvozStavke on ProdajniNalogIzvozStavke.ID = IzvozKonacna.BrojStavkePorudzbenice "+
+ "    inner join(Select BrojOsnov, KorisnikIzdao from RadniNalogInterni group by BrojOsnov, KorisnikIzdao) t1 on t1.BrojOsnov = IzvozKonacna.ID order by IzvozKonacna.ID desc  ";
             }
 
                 var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -1182,14 +1178,7 @@ namespace Saobracaj.Uvoz
 
             //Scenario 1 test - Napravi PRI i RN4
 
-            Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
-            insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 1, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 1);
-            InsertUvozKonacna insk = new InsertUvozKonacna();
-            int pr = VratiPodatkeMaxPrijemnica();
-            insk.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(pr), Convert.ToInt32(txtNALOGID.Text));
-
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(DateTime.Now), Korisnik, Convert.ToDateTime(null), Convert.ToInt32(0), Convert.ToInt32(1), Convert.ToInt32(1), Convert.ToInt32(70), "", "Automatska napomena", Convert.ToInt32(pr), "Kamion", Convert.ToInt32(txtNALOGID.Text), 1, 0);
+           
 
 
 
@@ -1234,9 +1223,40 @@ namespace Saobracaj.Uvoz
                     {
 
                         // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
-                        MessageBox.Show("Formirate GATE IN Platforma Izvoz");
-                        frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
-                        rd1.Show();
+                        DialogResult result = MessageBox.Show(
+                                "Formirate GATE IN Platforma Izvoz, da li želite da sistem sam pripremi podatke?", // Message
+                                "Potvrdite automatiku", // Title
+                                MessageBoxButtons.YesNo, // Buttons
+                                MessageBoxIcon.Question // Icon
+                                );
+
+                        // Handle the user's response
+                        if (result == DialogResult.Yes)
+                        {
+                           
+                            Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
+                            insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 0, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 2);
+                            InsertUvozKonacna insk = new InsertUvozKonacna();
+                            int pr = VratiPodatkeMaxPrijemnica();
+                            insk.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(pr), Convert.ToInt32(txtNALOGID.Text));
+
+                            RadniNalozi.InsertRN ir = new InsertRN();
+                            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(DateTime.Now), Korisnik, Convert.ToDateTime(DateTime.Now), Convert.ToInt32(0), Convert.ToInt32(1), Convert.ToInt32(1), Convert.ToInt32(70), "", "Automatska napomena", Convert.ToInt32(pr), "Kamion", Convert.ToInt32(txtNALOGID.Text), 1, 0);
+
+                        }
+                        else if (result == DialogResult.No)
+                        {
+                            // Action for 'No'
+                            frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                            rd1.Show();
+                        }
+
+
+
+              
+
+
+                       
 
 
                         // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);

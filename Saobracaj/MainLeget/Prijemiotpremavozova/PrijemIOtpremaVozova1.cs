@@ -99,5 +99,27 @@ namespace Saobracaj.MainLeget.Prijemiotpremavozova
                 () => new frmDodatneUsluge()
             );
         }
+
+        private void btnPrijemIOtpremaVozova7_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPrijemIOtpremaVozova1.Text,
+                () => new frmVozPrijem()
+            );
+        }
+
+        private void btnPrijemIOtpremaVozova8_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPrijemIOtpremaVozova2.Text,
+                () => new frmVozOtprema()
+            );
+        }
     }
 }

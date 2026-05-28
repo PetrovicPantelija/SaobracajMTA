@@ -51,10 +51,11 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>0</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -2207,6 +2208,12 @@
     <Compile Include="MainLeget\AdministracijaPravoPristupa.Designer.cs">
       <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Depocnt\DepoMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Depocnt\DepoMain.Designer.cs">
+      <DependentUpon>DepoMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Depocnt\frmDepoCnt1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2274,6 +2281,18 @@
     <Compile Include="MainLeget\Intermodalni\Intermodalni1.Designer.cs">
       <DependentUpon>Intermodalni1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Intermodalni\IntermodalniKomN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Intermodalni\IntermodalniKomN.Designer.cs">
+      <DependentUpon>IntermodalniKomN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Intermodalni\VozniPlanovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Intermodalni\VozniPlanovi.Designer.cs">
+      <DependentUpon>VozniPlanovi.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Izvoz\LogistikaIzvoza0.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2322,6 +2341,12 @@
     <Compile Include="MainLeget\Podesavanjesistema\Podesavanje1.Designer.cs">
       <DependentUpon>Podesavanje1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Pretovari\frmPretovariSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\frmPretovariSkladista.Designer.cs">
+      <DependentUpon>frmPretovariSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\Pretovari\Pretovari1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2334,11 +2359,35 @@
     <Compile Include="MainLeget\Pretovari\Pretovari2.Designer.cs">
       <DependentUpon>Pretovari2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Pretovari\PretovariMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\PretovariMain.Designer.cs">
+      <DependentUpon>PretovariMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\PretovariPrijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\PretovariPrijem.Designer.cs">
+      <DependentUpon>PretovariPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.Designer.cs">
+      <DependentUpon>frmFotografijePregledac.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.Designer.cs">
       <DependentUpon>frmPlatforma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaCerada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaCerada.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaCerada.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.cs">
       <SubType>Form</SubType>
@@ -2364,6 +2413,13 @@
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.Designer.cs">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaPlatforma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaPlatforma.Designer.cs">
+      <DependentUpon>frmPrijemIOtpremaPlatforma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\InsertFotografijeDokumenta.cs" />
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemKamionaDetalji.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2393,6 +2449,18 @@
     </Compile>
     <Compile Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova4.Designer.cs">
       <DependentUpon>frmPrijemIOtpremaVozova4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmVozOtprema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmVozOtprema.Designer.cs">
+      <DependentUpon>frmVozOtprema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmVozPrijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Prijemiotpremavozova\frmVozPrijem.Designer.cs">
+      <DependentUpon>frmVozPrijem.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\Prijemiotpremavozova\PrijemIOtpremaVozova1.cs">
       <SubType>Form</SubType>
@@ -5484,6 +5552,9 @@
     <EmbeddedResource Include="MainLeget\AdministracijaPravoPristupa.resx">
       <DependentUpon>AdministracijaPravoPristupa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Depocnt\DepoMain.resx">
+      <DependentUpon>DepoMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Depocnt\frmDepoCnt1.resx">
       <DependentUpon>frmDepoCnt1.cs</DependentUpon>
     </EmbeddedResource>
@@ -5517,6 +5588,12 @@
     <EmbeddedResource Include="MainLeget\Intermodalni\Intermodalni1.resx">
       <DependentUpon>Intermodalni1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Intermodalni\IntermodalniKomN.resx">
+      <DependentUpon>IntermodalniKomN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Intermodalni\VozniPlanovi.resx">
+      <DependentUpon>VozniPlanovi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Izvoz\LogistikaIzvoza0.resx">
       <DependentUpon>LogistikaIzvoza0.cs</DependentUpon>
     </EmbeddedResource>
@@ -5541,14 +5618,29 @@
     <EmbeddedResource Include="MainLeget\Podesavanjesistema\Podesavanje1.resx">
       <DependentUpon>Podesavanje1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\frmPretovariSkladista.resx">
+      <DependentUpon>frmPretovariSkladista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Pretovari\Pretovari1.resx">
       <DependentUpon>Pretovari1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Pretovari\Pretovari2.resx">
       <DependentUpon>Pretovari2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\PretovariMain.resx">
+      <DependentUpon>PretovariMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\PretovariPrijem.resx">
+      <DependentUpon>PretovariPrijem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.resx">
+      <DependentUpon>frmFotografijePregledac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.resx">
       <DependentUpon>frmPlatforma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaCerada.resx">
+      <DependentUpon>frmPrijemIOtpremaCerada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona1.resx">
       <DependentUpon>frmPrijemIOtpremaKamiona1.cs</DependentUpon>
@@ -5561,6 +5653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaKamiona4.resx">
       <DependentUpon>frmPrijemIOtpremaKamiona4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaPlatforma.resx">
+      <DependentUpon>frmPrijemIOtpremaPlatforma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemKamionaDetalji.resx">
       <DependentUpon>frmPrijemKamionaDetalji.cs</DependentUpon>
@@ -5576,6 +5671,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmPrijemIOtpremaVozova4.resx">
       <DependentUpon>frmPrijemIOtpremaVozova4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmVozOtprema.resx">
+      <DependentUpon>frmVozOtprema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\frmVozPrijem.resx">
+      <DependentUpon>frmVozPrijem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Prijemiotpremavozova\PrijemIOtpremaVozova1.resx">
       <DependentUpon>PrijemIOtpremaVozova1.cs</DependentUpon>

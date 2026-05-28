@@ -29,23 +29,40 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
         private void button2_Click(object sender, EventArgs e)
         {
             var select = "";
-
-            select = "    select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
+            /*
+            select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.BrojKontejnera,
+TipKontenjera.SkNaziv as VrstaKontejnera, 
+(Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, 
+CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,   
+CASE Cirada
+ WHEN 0 THEN 'PLATFORMA'
+WHEN 1 THEN 'CIRADA'
+ END AS TipNaloga, 
+ Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, GETDATE() as Datum, 
+ BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni
+inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga
+inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov
+inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
+            */
+            select = "    select RadniNalogInterni.ID as KomNalogID, ProdajniNalogIzvozStavke.IDNAdredjenog as Porudz,'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC,  " +
-" CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,  " +
+" CASE IzvozKonacna.Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS DrumskiIma,  " +
 " CASE Cirada " +
 " WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga, IzvozKonacna.ID AS IzvozID, " +
-" Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
+" Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , " +
+" PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz " +
+" from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
+" inner join ProdajniNalogIzvozStavke on ProdajniNalogIzvozStavke.ID = IzvozKonacna.BrojStavkePorudzbenice " +
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
 " inner join Partnerji on PArtnerji.PaSifra = IzvozKonacna.Brodar " +
-" inner join Partnerji p1 on p1.PaSifra = IzvozKonacna.Brodar " +
-" inner join Kapija on Kapija.NalogID = RadniNalogInterni.ID " +
-" where Pregledac = 0 ";
+" inner join Partnerji p1 on p1.PaSifra = IzvozKonacna.VrstaBrodskePlombe " +
+" left join Kapija on Kapija.NalogID = RadniNalogInterni.ID " +
+" where  (KapijaUlaz = 0 or KapijaUlaz = 1) and Pregledac = 0 ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -66,17 +83,44 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
+
             }
 
-            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
-            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
-            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
-            gcfd3.Expression = "[Kapija] = '1'";
+
+
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+            gcfd3.Expression = "[KapijaUlaz] = 1";
             this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl2);
+        }
+
+        int VratiBrojOsnov(int NajavaID)
+        {
+            int pom = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" select BrojOsnov from RadniNalogInterni where ID = " + Convert.ToInt32(NajavaID), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                pom = Convert.ToInt32(dr["BrojOsnov"].ToString());
+
+            }
+            con.Close();
+
+            return pom;
+
+
         }
 
         int VratiRN(int NajavaID)
@@ -112,7 +156,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             {
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
                 {
-                    int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+                    int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
                    up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
                   
                 }
@@ -187,50 +231,34 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
            
         }
 
-        private void toolStripMenuItemOtvori_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            int brojosnov = 0;
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
             {
-                // Uzimamo prvi selektovani red
-                Record rec = gridGroupingControl2.Table.SelectedRecords[0].Record;
 
-                if (rec != null)
-                {
-                    int ID = Convert.ToInt32(rec.GetValue("IzvozID"));
-                    string Izvor = (rec.GetValue("Izvor").ToString());
-                    if (Izvor == "Izvoz")
-                    {
-                        PrijemIOtpremaKamiona.frmPrijemKamionaDetalji sc1 = new PrijemIOtpremaKamiona.frmPrijemKamionaDetalji(ID);
-                        sc1.Show();
-                    }
-                }
+                brojosnov = VratiBrojOsnov(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
             }
+             //= VratiBrojOsnov(Convert.ToInt32(this.gridGroupingControl2.Table.SelectedRecords[0].Record.GetValue("ID").ToString()));
+            frmDodatneUsluge dd = new frmDodatneUsluge(brojosnov.ToString(),2);
+            dd.Show();
         }
 
-        private void GridGroupingControl1_TableControlMouseDown(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventArgs e)
+        private void Pregledac_Load(object sender, EventArgs e)
         {
 
-            if (System.Windows.Forms.Control.MouseButtons == MouseButtons.Right)
-            {
-                // Dobavljanje pozicije kliknutog reda i kolone
-                // Pronađi red i kolonu pod mišem
-                int rowIndex, colIndex;
-                e.TableControl.PointToRowCol(new System.Drawing.Point(e.Inner.X, e.Inner.Y), out rowIndex, out colIndex);
-
-                // Uzmi stil kliknutog polja
-                GridTableCellStyleInfo style = e.TableControl.GetTableViewStyleInfo(rowIndex, colIndex);
-
-                // Proveri da li je kliknuto u redu sa podacima
-                if (style.TableCellIdentity.DisplayElement.Kind == DisplayElementKind.Record)
-                {
-                    // Postavi aktivni red
-                    this.gridGroupingControl2.Table.CurrentRecord = style.TableCellIdentity.DisplayElement.ParentRecord;
-
-                    // Prikaži context menu na poziciji miša
-                    contextMenuStrip1.Show(Cursor.Position);
-                }
-            }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int brojosnov = 0;
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+
+                brojosnov = VratiBrojOsnov(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
+            }
+            frmFotografijePregledac gp = new frmFotografijePregledac(brojosnov);
+            gp.Show();
+        }
     }
 }
