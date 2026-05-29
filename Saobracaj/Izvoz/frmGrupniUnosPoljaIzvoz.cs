@@ -3210,7 +3210,7 @@ namespace Saobracaj.Izvoz
             Uvoz.InsertRadniNalogInterni rn = new Uvoz.InsertRadniNalogInterni();
             //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
             rn.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(40), kor, " ");
-
+            rn.InsRadniNalogInterniIzvozDodatne(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(40), kor, " ");
 
             // Izvoz.frmFormiranjePlanaIzvoz fpi = new Izvoz.frmFormiranjePlanaIzvoz();
             // fpi.Show();
@@ -3307,6 +3307,15 @@ namespace Saobracaj.Izvoz
             Uvoz.InsertRadniNalogInterni rn = new Uvoz.InsertRadniNalogInterni();
             //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
             rn.InsRadniNalogInterniIzvoz2(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(40), kor, " ");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string Selektovani = "";
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            Selektovani = selectedRow.Cells[0].Value?.ToString();
+            frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(0, Convert.ToInt32(Selektovani));
+            ppDU.Show();
         }
     }
 
