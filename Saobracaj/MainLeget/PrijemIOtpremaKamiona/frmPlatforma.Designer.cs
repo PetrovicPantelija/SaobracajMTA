@@ -42,6 +42,18 @@
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.button9 = new System.Windows.Forms.Button();
             this.txtKontID = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
             this.SuspendLayout();
@@ -52,20 +64,9 @@
             this.panel6.Controls.Add(this.txtKontID);
             this.panel6.Controls.Add(this.button9);
             this.panel6.Controls.Add(this.button8);
-            this.panel6.Controls.Add(this.button7);
+            this.panel6.Size = new System.Drawing.Size(1263, 35);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.button5);
-            this.panel6.Controls.Add(this.button4);
-            this.panel6.Controls.Add(this.button3);
-            this.panel6.Controls.Add(this.txtID);
-            this.panel6.Controls.Add(this.button2);
-            this.panel6.Controls.Add(this.button1);
-            this.panel6.Controls.Add(this.button27);
-            this.panel6.Location = new System.Drawing.Point(2, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1263, 35);
-            this.panel6.TabIndex = 4;
-            // 
             // button8
             // 
             this.button8.AutoSize = true;
@@ -189,17 +190,28 @@
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button3.UseVisualStyleBackColor = true;
             // 
+            this.panel6.Controls.Add(this.button4);
+            this.panel6.Controls.Add(this.button3);
+            this.txtID.Location = new System.Drawing.Point(1189, 8);
+            this.panel6.Controls.Add(this.button2);
+            this.txtID.Size = new System.Drawing.Size(62, 20);
+            this.panel6.Controls.Add(this.button27);
+            this.panel6.Location = new System.Drawing.Point(3, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1176, 35);
+            this.panel6.TabIndex = 4;
+            // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(1189, 8);
+            this.txtID.Location = new System.Drawing.Point(1049, 3);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(62, 20);
+            this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 25;
             // 
-            // button2
-            // 
+            this.button2.Location = new System.Drawing.Point(215, 0);
             this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Size = new System.Drawing.Size(163, 35);
             this.button2.Dock = System.Windows.Forms.DockStyle.Left;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.button2.FlatAppearance.BorderSize = 0;
@@ -208,18 +220,18 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(215, 0);
+            this.button2.Location = new System.Drawing.Point(292, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 35);
+            this.button2.Size = new System.Drawing.Size(221, 43);
             this.button2.TabIndex = 24;
             this.button2.Text = "Potvrdi dodatne usluge";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
+            this.button1.Location = new System.Drawing.Point(102, 0);
             this.button1.AutoSize = true;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Size = new System.Drawing.Size(113, 35);
             this.button1.Dock = System.Windows.Forms.DockStyle.Left;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.button1.FlatAppearance.BorderSize = 0;
@@ -228,9 +240,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(102, 0);
+            this.button1.Location = new System.Drawing.Point(139, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 35);
+            this.button1.Size = new System.Drawing.Size(153, 43);
             this.button1.TabIndex = 23;
             this.button1.Text = "Potvrdi pregled";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -238,9 +251,8 @@
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button27
-            // 
             this.button27.AutoSize = true;
-            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Size = new System.Drawing.Size(102, 35);
             this.button27.Dock = System.Windows.Forms.DockStyle.Left;
             this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.button27.FlatAppearance.BorderSize = 0;
@@ -250,11 +262,12 @@
             this.button27.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button27.Location = new System.Drawing.Point(0, 0);
+            this.button27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(102, 35);
+            this.button27.Size = new System.Drawing.Size(139, 43);
             this.button27.TabIndex = 22;
             this.button27.Text = "Potvrdi kapiju";
-            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.gridGroupingControl2.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
@@ -266,32 +279,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl2.ApplyVisualStyles = false;
             this.gridGroupingControl2.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl2.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1260, 593);
             this.gridGroupingControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl2.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl2.Location = new System.Drawing.Point(12, 43);
+            this.gridGroupingControl2.Location = new System.Drawing.Point(16, 53);
+            this.gridGroupingControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridGroupingControl2.Name = "gridGroupingControl2";
             this.gridGroupingControl2.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1260, 593);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1162, 508);
             this.gridGroupingControl2.TabIndex = 239;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl2.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl2.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl2.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            this.gridGroupingControl2.TableOptions.SelectionTextColor = System.Drawing.Color.White;
-            this.gridGroupingControl2.Text = "gridGroupingControl2";
-            this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
-            this.gridGroupingControl2.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl2_TableControlCellClick);
-            // 
             // button9
             // 
             this.button9.AutoSize = true;
@@ -320,13 +322,25 @@
             this.txtKontID.Size = new System.Drawing.Size(62, 20);
             this.txtKontID.TabIndex = 33;
             // 
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.button8.Location = new System.Drawing.Point(948, 0);
+            this.ClientSize = new System.Drawing.Size(1277, 648);
+            this.button8.Size = new System.Drawing.Size(92, 35);
+            this.button8.TabIndex = 31;
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // frmPlatforma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 648);
+            this.ClientSize = new System.Drawing.Size(1179, 563);
             this.Controls.Add(this.gridGroupingControl2);
             this.Controls.Add(this.panel6);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmPlatforma";
             this.Text = "Platforma";
             this.Load += new System.EventHandler(this.frmPlatforma_Load);

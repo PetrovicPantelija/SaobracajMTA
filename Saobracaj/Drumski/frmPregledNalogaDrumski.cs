@@ -1442,6 +1442,7 @@ namespace Saobracaj.Drumski
             int temp = PostaviVrednostZaposleni();
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
+            RefreshGrid();
         }
     }
 }

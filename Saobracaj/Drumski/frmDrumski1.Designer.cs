@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDrumski1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -402,7 +402,7 @@
             this.label40 = new System.Windows.Forms.Label();
             this.dtpUtovaraI2 = new System.Windows.Forms.DateTimePicker();
             this.label41 = new System.Windows.Forms.Label();
-            this.dtRealiPreuzimanjaPraznogKonI2 = new System.Windows.Forms.DateTimePicker();
+            this.dtRealiPreuzimanjaPraznogKontI2 = new System.Windows.Forms.DateTimePicker();
             this.label38 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.cboMestoSpustanjaPunogI2 = new System.Windows.Forms.ComboBox();
@@ -524,13 +524,13 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton2
             // 
@@ -538,7 +538,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // meniHeader
@@ -786,34 +786,34 @@
             // dataGridVrstaRobeI4
             // 
             this.dataGridVrstaRobeI4.AllowUserToAddRows = false;
-            dataGridViewCellStyle94.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle94.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle94.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle94.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle94.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle94.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle94.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridVrstaRobeI4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle95.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle95.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle95.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI4.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI4.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridVrstaRobeI4.Location = new System.Drawing.Point(1039, 394);
             this.dataGridVrstaRobeI4.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridVrstaRobeI4.Name = "dataGridVrstaRobeI4";
-            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle96.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle96.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle96.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle96.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle96.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle96.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI4.RowHeadersDefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI4.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridVrstaRobeI4.RowHeadersWidth = 11;
             this.dataGridVrstaRobeI4.RowTemplate.Height = 24;
             this.dataGridVrstaRobeI4.Size = new System.Drawing.Size(427, 136);
@@ -2012,7 +2012,7 @@
             this.chkAutoDanI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkAutoDanI1.Name = "chkAutoDanI1";
             this.chkAutoDanI1.Size = new System.Drawing.Size(82, 20);
-            this.chkAutoDanI1.TabIndex = 850;
+            this.chkAutoDanI1.TabIndex = 1030;
             this.chkAutoDanI1.Text = "Auto dan";
             this.chkAutoDanI1.UseVisualStyleBackColor = true;
             // 
@@ -2084,6 +2084,7 @@
             this.txtValutaI1.Name = "txtValutaI1";
             this.txtValutaI1.Size = new System.Drawing.Size(176, 24);
             this.txtValutaI1.TabIndex = 880;
+            this.txtValutaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label73
             // 
@@ -2296,6 +2297,7 @@
             this.cboVrstaKontejneraI1.Name = "cboVrstaKontejneraI1";
             this.cboVrstaKontejneraI1.Size = new System.Drawing.Size(240, 24);
             this.cboVrstaKontejneraI1.TabIndex = 660;
+            this.cboVrstaKontejneraI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // chkPDVI1
             // 
@@ -2304,7 +2306,7 @@
             this.chkPDVI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkPDVI1.Name = "chkPDVI1";
             this.chkPDVI1.Size = new System.Drawing.Size(57, 20);
-            this.chkPDVI1.TabIndex = 855;
+            this.chkPDVI1.TabIndex = 1035;
             this.chkPDVI1.Text = "PDV";
             this.chkPDVI1.UseVisualStyleBackColor = true;
             // 
@@ -2351,6 +2353,7 @@
             this.cboKlijentI1.Name = "cboKlijentI1";
             this.cboKlijentI1.Size = new System.Drawing.Size(305, 24);
             this.cboKlijentI1.TabIndex = 180;
+            this.cboKlijentI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // txtKontaktOsobaUtovaraI1
             // 
@@ -2372,6 +2375,7 @@
             this.cboNapomenaPozI1.Name = "cboNapomenaPozI1";
             this.cboNapomenaPozI1.Size = new System.Drawing.Size(308, 24);
             this.cboNapomenaPozI1.TabIndex = 820;
+            this.cboNapomenaPozI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboMestoPreuzimanjaI1
             // 
@@ -2384,6 +2388,7 @@
             this.cboMestoPreuzimanjaI1.Name = "cboMestoPreuzimanjaI1";
             this.cboMestoPreuzimanjaI1.Size = new System.Drawing.Size(305, 24);
             this.cboMestoPreuzimanjaI1.TabIndex = 200;
+            this.cboMestoPreuzimanjaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             this.cboMestoPreuzimanjaI1.Leave += new System.EventHandler(this.cboMestoPreuzimanjaI1_Leave);
             // 
             // cboOCarinarnicaI1
@@ -2397,6 +2402,7 @@
             this.cboOCarinarnicaI1.Name = "cboOCarinarnicaI1";
             this.cboOCarinarnicaI1.Size = new System.Drawing.Size(305, 24);
             this.cboOCarinarnicaI1.TabIndex = 380;
+            this.cboOCarinarnicaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboPolaznaCarinarnicaI1
             // 
@@ -2409,6 +2415,7 @@
             this.cboPolaznaCarinarnicaI1.Name = "cboPolaznaCarinarnicaI1";
             this.cboPolaznaCarinarnicaI1.Size = new System.Drawing.Size(305, 24);
             this.cboPolaznaCarinarnicaI1.TabIndex = 360;
+            this.cboPolaznaCarinarnicaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cbOspedicijaI1
             // 
@@ -2419,6 +2426,7 @@
             this.cbOspedicijaI1.Name = "cbOspedicijaI1";
             this.cbOspedicijaI1.Size = new System.Drawing.Size(304, 24);
             this.cbOspedicijaI1.TabIndex = 620;
+            this.cbOspedicijaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label58
             // 
@@ -2466,6 +2474,7 @@
             this.cboPolaznaSpedicijaI1.Name = "cboPolaznaSpedicijaI1";
             this.cboPolaznaSpedicijaI1.Size = new System.Drawing.Size(304, 24);
             this.cboPolaznaSpedicijaI1.TabIndex = 600;
+            this.cboPolaznaSpedicijaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label55
             // 
@@ -2496,7 +2505,7 @@
             this.chkDodatniTrosakI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkDodatniTrosakI1.Name = "chkDodatniTrosakI1";
             this.chkDodatniTrosakI1.Size = new System.Drawing.Size(179, 20);
-            this.chkDodatniTrosakI1.TabIndex = 860;
+            this.chkDodatniTrosakI1.TabIndex = 1040;
             this.chkDodatniTrosakI1.Text = "Dodatni trošak transporta";
             this.chkDodatniTrosakI1.UseVisualStyleBackColor = true;
             // 
@@ -2597,6 +2606,7 @@
             this.cboMestoSpustanjaPunogI1.Name = "cboMestoSpustanjaPunogI1";
             this.cboMestoSpustanjaPunogI1.Size = new System.Drawing.Size(242, 24);
             this.cboMestoSpustanjaPunogI1.TabIndex = 480;
+            this.cboMestoSpustanjaPunogI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label47
             // 
@@ -2691,6 +2701,7 @@
             this.cboCarinskiPUnutrasniTransportI1.Name = "cboCarinskiPUnutrasniTransportI1";
             this.cboCarinskiPUnutrasniTransportI1.Size = new System.Drawing.Size(305, 24);
             this.cboCarinskiPUnutrasniTransportI1.TabIndex = 280;
+            this.cboCarinskiPUnutrasniTransportI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboBPlombaVlasnikI1
             // 
@@ -2703,6 +2714,7 @@
             this.cboBPlombaVlasnikI1.Name = "cboBPlombaVlasnikI1";
             this.cboBPlombaVlasnikI1.Size = new System.Drawing.Size(305, 24);
             this.cboBPlombaVlasnikI1.TabIndex = 340;
+            this.cboBPlombaVlasnikI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label3
             // 
@@ -2724,6 +2736,7 @@
             this.cboBrodarI1.Name = "cboBrodarI1";
             this.cboBrodarI1.Size = new System.Drawing.Size(241, 24);
             this.cboBrodarI1.TabIndex = 440;
+            this.cboBrodarI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label2
             // 
@@ -2745,6 +2758,7 @@
             this.cboKvalitetKontejneraI1.Name = "cboKvalitetKontejneraI1";
             this.cboKvalitetKontejneraI1.Size = new System.Drawing.Size(237, 24);
             this.cboKvalitetKontejneraI1.TabIndex = 680;
+            this.cboKvalitetKontejneraI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboADRI1
             // 
@@ -2758,6 +2772,7 @@
             this.cboADRI1.Name = "cboADRI1";
             this.cboADRI1.Size = new System.Drawing.Size(240, 24);
             this.cboADRI1.TabIndex = 500;
+            this.cboADRI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblAdrI1
             // 
@@ -2802,7 +2817,7 @@
             this.txtNoviSpediterOI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNoviSpediterOI1.Name = "txtNoviSpediterOI1";
             this.txtNoviSpediterOI1.Size = new System.Drawing.Size(305, 22);
-            this.txtNoviSpediterOI1.TabIndex = 1040;
+            this.txtNoviSpediterOI1.TabIndex = 1025;
             // 
             // lblVrstaRobeI1
             // 
@@ -2824,38 +2839,39 @@
             this.cboVrstaRobeI1.Name = "cboVrstaRobeI1";
             this.cboVrstaRobeI1.Size = new System.Drawing.Size(287, 24);
             this.cboVrstaRobeI1.TabIndex = 760;
+            this.cboVrstaRobeI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // dataGridVrstaRobeI1
             // 
             this.dataGridVrstaRobeI1.AllowUserToAddRows = false;
-            dataGridViewCellStyle85.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle85.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle85.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle85.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle85.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle85.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle85.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridVrstaRobeI1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle86.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle86.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle86.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle86.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle86.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle86.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI1.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridVrstaRobeI1.Location = new System.Drawing.Point(1039, 391);
             this.dataGridVrstaRobeI1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridVrstaRobeI1.Name = "dataGridVrstaRobeI1";
-            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle87.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI1.RowHeadersDefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridVrstaRobeI1.RowHeadersWidth = 11;
             this.dataGridVrstaRobeI1.RowTemplate.Height = 24;
             this.dataGridVrstaRobeI1.Size = new System.Drawing.Size(415, 97);
@@ -2881,6 +2897,7 @@
             this.cboNacinPakovanjaI1.Name = "cboNacinPakovanjaI1";
             this.cboNacinPakovanjaI1.Size = new System.Drawing.Size(240, 24);
             this.cboNacinPakovanjaI1.TabIndex = 520;
+            this.cboNacinPakovanjaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // chkVaganjeI1
             // 
@@ -2889,7 +2906,7 @@
             this.chkVaganjeI1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVaganjeI1.Name = "chkVaganjeI1";
             this.chkVaganjeI1.Size = new System.Drawing.Size(80, 20);
-            this.chkVaganjeI1.TabIndex = 865;
+            this.chkVaganjeI1.TabIndex = 1045;
             this.chkVaganjeI1.Text = "Vaganje";
             this.chkVaganjeI1.UseVisualStyleBackColor = true;
             // 
@@ -3116,7 +3133,7 @@
             this.panelDirektnoPun.Controls.Add(this.label85);
             this.panelDirektnoPun.Controls.Add(this.dtPreuzimanjaPraznogKontejneraI1);
             this.panelDirektnoPun.Controls.Add(this.label86);
-            this.panelDirektnoPun.Location = new System.Drawing.Point(-1, 68);
+            this.panelDirektnoPun.Location = new System.Drawing.Point(1, 68);
             this.panelDirektnoPun.Name = "panelDirektnoPun";
             this.panelDirektnoPun.Size = new System.Drawing.Size(1497, 754);
             this.panelDirektnoPun.TabIndex = 777;
@@ -3134,6 +3151,7 @@
             this.cbokontaktPreuzimanjaI1.Name = "cbokontaktPreuzimanjaI1";
             this.cbokontaktPreuzimanjaI1.Size = new System.Drawing.Size(303, 24);
             this.cbokontaktPreuzimanjaI1.TabIndex = 240;
+            this.cbokontaktPreuzimanjaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboAdresaPreuzimanjaI1
             // 
@@ -3147,6 +3165,7 @@
             this.cboAdresaPreuzimanjaI1.Name = "cboAdresaPreuzimanjaI1";
             this.cboAdresaPreuzimanjaI1.Size = new System.Drawing.Size(303, 24);
             this.cboAdresaPreuzimanjaI1.TabIndex = 220;
+            this.cboAdresaPreuzimanjaI1.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // panelCeradaIzvozPretovarPun
             // 
@@ -3248,7 +3267,7 @@
             this.panelCeradaIzvozPretovarPun.Controls.Add(this.label122);
             this.panelCeradaIzvozPretovarPun.Controls.Add(this.dtpUtovaraCeradeI3);
             this.panelCeradaIzvozPretovarPun.Controls.Add(this.label123);
-            this.panelCeradaIzvozPretovarPun.Location = new System.Drawing.Point(-1, 69);
+            this.panelCeradaIzvozPretovarPun.Location = new System.Drawing.Point(1, 68);
             this.panelCeradaIzvozPretovarPun.Name = "panelCeradaIzvozPretovarPun";
             this.panelCeradaIzvozPretovarPun.Size = new System.Drawing.Size(1494, 793);
             this.panelCeradaIzvozPretovarPun.TabIndex = 851;
@@ -3274,6 +3293,7 @@
             this.cboAdresaIstovaraCeradeI3.Name = "cboAdresaIstovaraCeradeI3";
             this.cboAdresaIstovaraCeradeI3.Size = new System.Drawing.Size(284, 24);
             this.cboAdresaIstovaraCeradeI3.TabIndex = 480;
+            this.cboAdresaIstovaraCeradeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboKontaktIstovaraCeradeI3
             // 
@@ -3309,6 +3329,7 @@
             this.cboAdresaUtovaraCeradeI3.Name = "cboAdresaUtovaraCeradeI3";
             this.cboAdresaUtovaraCeradeI3.Size = new System.Drawing.Size(303, 24);
             this.cboAdresaUtovaraCeradeI3.TabIndex = 220;
+            this.cboAdresaUtovaraCeradeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblAdresaUtovaraCerade4
             // 
@@ -3331,6 +3352,7 @@
             this.cboKontaktUtovaraCeradeI3.Name = "cboKontaktUtovaraCeradeI3";
             this.cboKontaktUtovaraCeradeI3.Size = new System.Drawing.Size(303, 24);
             this.cboKontaktUtovaraCeradeI3.TabIndex = 240;
+            this.cboKontaktUtovaraCeradeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label112
             // 
@@ -3365,34 +3387,34 @@
             // dataGridVrstaRobeI3
             // 
             this.dataGridVrstaRobeI3.AllowUserToAddRows = false;
-            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridVrstaRobeI3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle92.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle92.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle92.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle92.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle92.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle92.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle92.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI3.DefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI3.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridVrstaRobeI3.Location = new System.Drawing.Point(1039, 394);
             this.dataGridVrstaRobeI3.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridVrstaRobeI3.Name = "dataGridVrstaRobeI3";
-            dataGridViewCellStyle93.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle93.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle93.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle93.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle93.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle93.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle93.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI3.RowHeadersDefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI3.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridVrstaRobeI3.RowHeadersWidth = 11;
             this.dataGridVrstaRobeI3.RowTemplate.Height = 24;
             this.dataGridVrstaRobeI3.Size = new System.Drawing.Size(427, 136);
@@ -3410,6 +3432,7 @@
             this.cboVrstaRobeI3.Name = "cboVrstaRobeI3";
             this.cboVrstaRobeI3.Size = new System.Drawing.Size(282, 24);
             this.cboVrstaRobeI3.TabIndex = 660;
+            this.cboVrstaRobeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblVrstaRobeI3
             // 
@@ -3538,6 +3561,7 @@
             this.cboADRI3.Name = "cboADRI3";
             this.cboADRI3.Size = new System.Drawing.Size(280, 24);
             this.cboADRI3.TabIndex = 520;
+            this.cboADRI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboKvalitetKontejneraI3
             // 
@@ -3550,6 +3574,7 @@
             this.cboKvalitetKontejneraI3.Name = "cboKvalitetKontejneraI3";
             this.cboKvalitetKontejneraI3.Size = new System.Drawing.Size(237, 24);
             this.cboKvalitetKontejneraI3.TabIndex = 640;
+            this.cboKvalitetKontejneraI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblKvalitetKontejneraI3
             // 
@@ -3571,6 +3596,7 @@
             this.cboBrodarI3.Name = "cboBrodarI3";
             this.cboBrodarI3.Size = new System.Drawing.Size(241, 24);
             this.cboBrodarI3.TabIndex = 420;
+            this.cboBrodarI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblBPlombaVlasnikI3
             // 
@@ -3592,6 +3618,7 @@
             this.cboBPlombaVlasnikI3.Name = "cboBPlombaVlasnikI3";
             this.cboBPlombaVlasnikI3.Size = new System.Drawing.Size(305, 24);
             this.cboBPlombaVlasnikI3.TabIndex = 320;
+            this.cboBPlombaVlasnikI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboCarinskiPUnutrasniTransportI3
             // 
@@ -3605,6 +3632,7 @@
             this.cboCarinskiPUnutrasniTransportI3.Name = "cboCarinskiPUnutrasniTransportI3";
             this.cboCarinskiPUnutrasniTransportI3.Size = new System.Drawing.Size(305, 24);
             this.cboCarinskiPUnutrasniTransportI3.TabIndex = 280;
+            this.cboCarinskiPUnutrasniTransportI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // dtpRealiIstovaraCeradeI3
             // 
@@ -3698,6 +3726,7 @@
             this.cboMestoIstovaraCeradeI3.Name = "cboMestoIstovaraCeradeI3";
             this.cboMestoIstovaraCeradeI3.Size = new System.Drawing.Size(277, 24);
             this.cboMestoIstovaraCeradeI3.TabIndex = 460;
+            this.cboMestoIstovaraCeradeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             this.cboMestoIstovaraCeradeI3.Leave += new System.EventHandler(this.cboMestoIstovaraCeradeI3_Leave);
             // 
             // label91
@@ -3784,6 +3813,7 @@
             this.cboTipTransportaI3.Name = "cboTipTransportaI3";
             this.cboTipTransportaI3.Size = new System.Drawing.Size(240, 24);
             this.cboTipTransportaI3.TabIndex = 400;
+            this.cboTipTransportaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label97
             // 
@@ -3805,6 +3835,7 @@
             this.cboPolaznaSpedicijaI3.Name = "cboPolaznaSpedicijaI3";
             this.cboPolaznaSpedicijaI3.Size = new System.Drawing.Size(304, 24);
             this.cboPolaznaSpedicijaI3.TabIndex = 560;
+            this.cboPolaznaSpedicijaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // txtKontaktOSpedicijeI3
             // 
@@ -3851,6 +3882,7 @@
             this.cbOspedicijaI3.Name = "cbOspedicijaI3";
             this.cbOspedicijaI3.Size = new System.Drawing.Size(304, 24);
             this.cbOspedicijaI3.TabIndex = 580;
+            this.cbOspedicijaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboPolaznaCarinarnicaI3
             // 
@@ -3863,6 +3895,7 @@
             this.cboPolaznaCarinarnicaI3.Name = "cboPolaznaCarinarnicaI3";
             this.cboPolaznaCarinarnicaI3.Size = new System.Drawing.Size(305, 24);
             this.cboPolaznaCarinarnicaI3.TabIndex = 340;
+            this.cboPolaznaCarinarnicaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboOCarinarnicaI3
             // 
@@ -3875,6 +3908,7 @@
             this.cboOCarinarnicaI3.Name = "cboOCarinarnicaI3";
             this.cboOCarinarnicaI3.Size = new System.Drawing.Size(305, 24);
             this.cboOCarinarnicaI3.TabIndex = 360;
+            this.cboOCarinarnicaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboMestoUtovaraCeradeI3
             // 
@@ -3887,6 +3921,7 @@
             this.cboMestoUtovaraCeradeI3.Name = "cboMestoUtovaraCeradeI3";
             this.cboMestoUtovaraCeradeI3.Size = new System.Drawing.Size(305, 24);
             this.cboMestoUtovaraCeradeI3.TabIndex = 200;
+            this.cboMestoUtovaraCeradeI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             this.cboMestoUtovaraCeradeI3.Leave += new System.EventHandler(this.cboMestoUtovaraCeradeI3_Leave);
             // 
             // cboKlijentI3
@@ -3900,6 +3935,7 @@
             this.cboKlijentI3.Name = "cboKlijentI3";
             this.cboKlijentI3.Size = new System.Drawing.Size(305, 24);
             this.cboKlijentI3.TabIndex = 180;
+            this.cboKlijentI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboTipNalogaI3
             // 
@@ -3955,6 +3991,7 @@
             this.cboVrstaKontejneraI3.Name = "cboVrstaKontejneraI3";
             this.cboVrstaKontejneraI3.Size = new System.Drawing.Size(240, 24);
             this.cboVrstaKontejneraI3.TabIndex = 620;
+            this.cboVrstaKontejneraI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblVrstaKontejneraI3
             // 
@@ -3980,6 +4017,9 @@
             this.txtCenaI3.Size = new System.Drawing.Size(176, 22);
             this.txtCenaI3.TabIndex = 780;
             this.txtCenaI3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCenaI3.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtCenaI3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtCenaI3.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // label102
             // 
@@ -4073,6 +4113,9 @@
             this.txtTrosakI3.Size = new System.Drawing.Size(176, 22);
             this.txtTrosakI3.TabIndex = 760;
             this.txtTrosakI3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTrosakI3.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtTrosakI3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtTrosakI3.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // lblPolaznaCarinarnicaI3
             // 
@@ -4108,6 +4151,9 @@
             this.txtBrutoKI3.Size = new System.Drawing.Size(176, 22);
             this.txtBrutoKI3.TabIndex = 540;
             this.txtBrutoKI3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBrutoKI3.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtBrutoKI3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtBrutoKI3.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // lblBrutoKI3
             // 
@@ -4148,6 +4194,7 @@
             this.txtValutaI3.Name = "txtValutaI3";
             this.txtValutaI3.Size = new System.Drawing.Size(176, 24);
             this.txtValutaI3.TabIndex = 740;
+            this.txtValutaI3.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label111
             // 
@@ -4329,7 +4376,7 @@
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.label40);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.dtpUtovaraI2);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.label41);
-            this.panelPlatformaIzvozPrazanPun.Controls.Add(this.dtRealiPreuzimanjaPraznogKonI2);
+            this.panelPlatformaIzvozPrazanPun.Controls.Add(this.dtRealiPreuzimanjaPraznogKontI2);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.label38);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.label35);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.cboMestoSpustanjaPunogI2);
@@ -4407,7 +4454,7 @@
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.label32);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.dtPreuzimanjaPraznogKontejneraI2);
             this.panelPlatformaIzvozPrazanPun.Controls.Add(this.lblDatumPreuzimanjaPraznog);
-            this.panelPlatformaIzvozPrazanPun.Location = new System.Drawing.Point(-1, 68);
+            this.panelPlatformaIzvozPrazanPun.Location = new System.Drawing.Point(-1, 67);
             this.panelPlatformaIzvozPrazanPun.Name = "panelPlatformaIzvozPrazanPun";
             this.panelPlatformaIzvozPrazanPun.Size = new System.Drawing.Size(1494, 793);
             this.panelPlatformaIzvozPrazanPun.TabIndex = 603;
@@ -4437,7 +4484,8 @@
             this.cboNacinPakovanjaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNacinPakovanjaI2.Name = "cboNacinPakovanjaI2";
             this.cboNacinPakovanjaI2.Size = new System.Drawing.Size(240, 24);
-            this.cboNacinPakovanjaI2.TabIndex = 807;
+            this.cboNacinPakovanjaI2.TabIndex = 450;
+            this.cboNacinPakovanjaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblNacinPakovanjaI2
             // 
@@ -4450,34 +4498,34 @@
             // dataGridVrstaRobeI2
             // 
             this.dataGridVrstaRobeI2.AllowUserToAddRows = false;
-            dataGridViewCellStyle88.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle88.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle88.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle88.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle88.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle88.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridVrstaRobeI2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle89.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle89.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle89.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle89.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle89.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle89.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI2.DefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridVrstaRobeI2.Location = new System.Drawing.Point(1038, 402);
             this.dataGridVrstaRobeI2.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridVrstaRobeI2.Name = "dataGridVrstaRobeI2";
-            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle90.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle90.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle90.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle90.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridVrstaRobeI2.RowHeadersDefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridVrstaRobeI2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridVrstaRobeI2.RowHeadersWidth = 11;
             this.dataGridVrstaRobeI2.RowTemplate.Height = 24;
             this.dataGridVrstaRobeI2.Size = new System.Drawing.Size(427, 141);
@@ -4495,6 +4543,7 @@
             this.cboVrstaRobeI2.Name = "cboVrstaRobeI2";
             this.cboVrstaRobeI2.Size = new System.Drawing.Size(287, 24);
             this.cboVrstaRobeI2.TabIndex = 540;
+            this.cboVrstaRobeI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblVrstaRobeI2
             // 
@@ -4593,7 +4642,7 @@
             this.txtOpisPoslaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtOpisPoslaI2.Name = "txtOpisPoslaI2";
             this.txtOpisPoslaI2.Size = new System.Drawing.Size(240, 22);
-            this.txtOpisPoslaI2.TabIndex = 790;
+            this.txtOpisPoslaI2.TabIndex = 440;
             // 
             // txtNoviSpediterOI2
             // 
@@ -4652,6 +4701,7 @@
             this.cboADRI2.Name = "cboADRI2";
             this.cboADRI2.Size = new System.Drawing.Size(286, 24);
             this.cboADRI2.TabIndex = 580;
+            this.cboADRI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboKvalitetKontejneraI2
             // 
@@ -4663,7 +4713,8 @@
             this.cboKvalitetKontejneraI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKvalitetKontejneraI2.Name = "cboKvalitetKontejneraI2";
             this.cboKvalitetKontejneraI2.Size = new System.Drawing.Size(237, 24);
-            this.cboKvalitetKontejneraI2.TabIndex = 460;
+            this.cboKvalitetKontejneraI2.TabIndex = 490;
+            this.cboKvalitetKontejneraI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblKvalitetKontejnera
             // 
@@ -4684,7 +4735,8 @@
             this.cboBrodarI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboBrodarI2.Name = "cboBrodarI2";
             this.cboBrodarI2.Size = new System.Drawing.Size(241, 24);
-            this.cboBrodarI2.TabIndex = 772;
+            this.cboBrodarI2.TabIndex = 435;
+            this.cboBrodarI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // lblVrstaPlombe
             // 
@@ -4706,6 +4758,7 @@
             this.cboBPlombaVlasnikI2.Name = "cboBPlombaVlasnikI2";
             this.cboBPlombaVlasnikI2.Size = new System.Drawing.Size(305, 24);
             this.cboBPlombaVlasnikI2.TabIndex = 360;
+            this.cboBPlombaVlasnikI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboCarinskiPUnutrasniTransportI2
             // 
@@ -4719,6 +4772,7 @@
             this.cboCarinskiPUnutrasniTransportI2.Name = "cboCarinskiPUnutrasniTransportI2";
             this.cboCarinskiPUnutrasniTransportI2.Size = new System.Drawing.Size(305, 24);
             this.cboCarinskiPUnutrasniTransportI2.TabIndex = 300;
+            this.cboCarinskiPUnutrasniTransportI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // dtpSpustanjePunogRealI2
             // 
@@ -4822,17 +4876,17 @@
             this.label41.TabIndex = 760;
             this.label41.Text = "Planirani datum/vreme";
             // 
-            // dtRealiPreuzimanjaPraznogKonI2
+            // dtRealiPreuzimanjaPraznogKontI2
             // 
-            this.dtRealiPreuzimanjaPraznogKonI2.CustomFormat = "dd.MM.yyyy ";
-            this.dtRealiPreuzimanjaPraznogKonI2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtRealiPreuzimanjaPraznogKonI2.Location = new System.Drawing.Point(723, 347);
-            this.dtRealiPreuzimanjaPraznogKonI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtRealiPreuzimanjaPraznogKonI2.Name = "dtRealiPreuzimanjaPraznogKonI2";
-            this.dtRealiPreuzimanjaPraznogKonI2.Size = new System.Drawing.Size(192, 22);
-            this.dtRealiPreuzimanjaPraznogKonI2.TabIndex = 520;
-            this.dtRealiPreuzimanjaPraznogKonI2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
-            this.dtRealiPreuzimanjaPraznogKonI2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
+            this.dtRealiPreuzimanjaPraznogKontI2.CustomFormat = "dd.MM.yyyy ";
+            this.dtRealiPreuzimanjaPraznogKontI2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtRealiPreuzimanjaPraznogKontI2.Location = new System.Drawing.Point(723, 347);
+            this.dtRealiPreuzimanjaPraznogKontI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtRealiPreuzimanjaPraznogKontI2.Name = "dtRealiPreuzimanjaPraznogKontI2";
+            this.dtRealiPreuzimanjaPraznogKontI2.Size = new System.Drawing.Size(192, 22);
+            this.dtRealiPreuzimanjaPraznogKontI2.TabIndex = 520;
+            this.dtRealiPreuzimanjaPraznogKontI2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtRealiPreuzimanjaPraznogKontI2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
             // 
             // label38
             // 
@@ -4862,7 +4916,8 @@
             this.cboMestoSpustanjaPunogI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoSpustanjaPunogI2.Name = "cboMestoSpustanjaPunogI2";
             this.cboMestoSpustanjaPunogI2.Size = new System.Drawing.Size(242, 24);
-            this.cboMestoSpustanjaPunogI2.TabIndex = 754;
+            this.cboMestoSpustanjaPunogI2.TabIndex = 445;
+            this.cboMestoSpustanjaPunogI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label23
             // 
@@ -4888,7 +4943,7 @@
             this.txtKorisnikI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKorisnikI2.Name = "txtKorisnikI2";
             this.txtKorisnikI2.Size = new System.Drawing.Size(240, 22);
-            this.txtKorisnikI2.TabIndex = 420;
+            this.txtKorisnikI2.TabIndex = 480;
             // 
             // label16
             // 
@@ -4911,8 +4966,11 @@
             0});
             this.txtTaraKI2.Name = "txtTaraKI2";
             this.txtTaraKI2.Size = new System.Drawing.Size(173, 22);
-            this.txtTaraKI2.TabIndex = 745;
+            this.txtTaraKI2.TabIndex = 455;
             this.txtTaraKI2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTaraKI2.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtTaraKI2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtTaraKI2.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // label9
             // 
@@ -4971,7 +5029,8 @@
             this.cboTipTransportaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboTipTransportaI2.Name = "cboTipTransportaI2";
             this.cboTipTransportaI2.Size = new System.Drawing.Size(240, 24);
-            this.cboTipTransportaI2.TabIndex = 662;
+            this.cboTipTransportaI2.TabIndex = 430;
+            this.cboTipTransportaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label33
             // 
@@ -4992,7 +5051,8 @@
             this.cboPolaznaSpedicijaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboPolaznaSpedicijaI2.Name = "cboPolaznaSpedicijaI2";
             this.cboPolaznaSpedicijaI2.Size = new System.Drawing.Size(304, 24);
-            this.cboPolaznaSpedicijaI2.TabIndex = 670;
+            this.cboPolaznaSpedicijaI2.TabIndex = 470;
+            this.cboPolaznaSpedicijaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // txtKontaktOSpedicijeI2
             // 
@@ -5038,7 +5098,8 @@
             this.cbOspedicijaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbOspedicijaI2.Name = "cbOspedicijaI2";
             this.cbOspedicijaI2.Size = new System.Drawing.Size(304, 24);
-            this.cbOspedicijaI2.TabIndex = 671;
+            this.cbOspedicijaI2.TabIndex = 475;
+            this.cbOspedicijaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboPolaznaCarinarnicaI2
             // 
@@ -5051,6 +5112,7 @@
             this.cboPolaznaCarinarnicaI2.Name = "cboPolaznaCarinarnicaI2";
             this.cboPolaznaCarinarnicaI2.Size = new System.Drawing.Size(305, 24);
             this.cboPolaznaCarinarnicaI2.TabIndex = 380;
+            this.cboPolaznaCarinarnicaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboOCarinarnicaI2
             // 
@@ -5063,6 +5125,7 @@
             this.cboOCarinarnicaI2.Name = "cboOCarinarnicaI2";
             this.cboOCarinarnicaI2.Size = new System.Drawing.Size(305, 24);
             this.cboOCarinarnicaI2.TabIndex = 400;
+            this.cboOCarinarnicaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboMestoPreuzimanjaI2
             // 
@@ -5075,6 +5138,7 @@
             this.cboMestoPreuzimanjaI2.Name = "cboMestoPreuzimanjaI2";
             this.cboMestoPreuzimanjaI2.Size = new System.Drawing.Size(305, 24);
             this.cboMestoPreuzimanjaI2.TabIndex = 200;
+            this.cboMestoPreuzimanjaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboNapomenaPozI2
             // 
@@ -5087,6 +5151,7 @@
             this.cboNapomenaPozI2.Name = "cboNapomenaPozI2";
             this.cboNapomenaPozI2.Size = new System.Drawing.Size(289, 24);
             this.cboNapomenaPozI2.TabIndex = 620;
+            this.cboNapomenaPozI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // txtAdresaUtovaraI2
             // 
@@ -5117,6 +5182,7 @@
             this.cboMestoUtovaraI2.Name = "cboMestoUtovaraI2";
             this.cboMestoUtovaraI2.Size = new System.Drawing.Size(305, 24);
             this.cboMestoUtovaraI2.TabIndex = 220;
+            this.cboMestoUtovaraI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboKlijentI2
             // 
@@ -5129,6 +5195,7 @@
             this.cboKlijentI2.Name = "cboKlijentI2";
             this.cboKlijentI2.Size = new System.Drawing.Size(305, 24);
             this.cboKlijentI2.TabIndex = 180;
+            this.cboKlijentI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // cboTipNalogaI2
             // 
@@ -5202,7 +5269,8 @@
             this.cboVrstaKontejneraI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboVrstaKontejneraI2.Name = "cboVrstaKontejneraI2";
             this.cboVrstaKontejneraI2.Size = new System.Drawing.Size(240, 24);
-            this.cboVrstaKontejneraI2.TabIndex = 440;
+            this.cboVrstaKontejneraI2.TabIndex = 485;
+            this.cboVrstaKontejneraI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label19
             // 
@@ -5228,6 +5296,9 @@
             this.txtCenaI2.Size = new System.Drawing.Size(176, 22);
             this.txtCenaI2.TabIndex = 720;
             this.txtCenaI2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCenaI2.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtCenaI2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtCenaI2.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // label13
             // 
@@ -5347,8 +5418,11 @@
             0});
             this.txtTrosakI2.Name = "txtTrosakI2";
             this.txtTrosakI2.Size = new System.Drawing.Size(176, 22);
-            this.txtTrosakI2.TabIndex = 6700;
+            this.txtTrosakI2.TabIndex = 700;
             this.txtTrosakI2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTrosakI2.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtTrosakI2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtTrosakI2.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // label31
             // 
@@ -5382,8 +5456,11 @@
             this.txtBrutoKI2.Name = "txtBrutoKI2";
             this.txtBrutoKI2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtBrutoKI2.Size = new System.Drawing.Size(176, 22);
-            this.txtBrutoKI2.TabIndex = 657;
+            this.txtBrutoKI2.TabIndex = 460;
             this.txtBrutoKI2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBrutoKI2.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtBrutoKI2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtBrutoKI2.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // txtNTTORI2
             // 
@@ -5397,8 +5474,11 @@
             0});
             this.txtNTTORI2.Name = "txtNTTORI2";
             this.txtNTTORI2.Size = new System.Drawing.Size(173, 22);
-            this.txtNTTORI2.TabIndex = 669;
+            this.txtNTTORI2.TabIndex = 465;
             this.txtNTTORI2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNTTORI2.Enter += new System.EventHandler(this.Numeric_Enter);
+            this.txtNTTORI2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Numeric_KeyPress);
+            this.txtNTTORI2.Leave += new System.EventHandler(this.Numeric_Leave);
             // 
             // label36
             // 
@@ -5448,6 +5528,7 @@
             this.txtValutaI2.Name = "txtValutaI2";
             this.txtValutaI2.Size = new System.Drawing.Size(176, 24);
             this.txtValutaI2.TabIndex = 680;
+            this.txtValutaI2.TextUpdate += new System.EventHandler(this.cbo_TextUpdate);
             // 
             // label15
             // 
@@ -5523,7 +5604,7 @@
             this.txtReferencaI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtReferencaI2.Name = "txtReferencaI2";
             this.txtReferencaI2.Size = new System.Drawing.Size(240, 22);
-            this.txtReferencaI2.TabIndex = 660;
+            this.txtReferencaI2.TabIndex = 425;
             // 
             // label37
             // 
@@ -5604,7 +5685,7 @@
             this.dtPreuzimanjaPraznogKontejneraI2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtPreuzimanjaPraznogKontejneraI2.Name = "dtPreuzimanjaPraznogKontejneraI2";
             this.dtPreuzimanjaPraznogKontejneraI2.Size = new System.Drawing.Size(192, 22);
-            this.dtPreuzimanjaPraznogKontejneraI2.TabIndex = 480;
+            this.dtPreuzimanjaPraznogKontejneraI2.TabIndex = 495;
             this.dtPreuzimanjaPraznogKontejneraI2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             this.dtPreuzimanjaPraznogKontejneraI2.ValueChanged += new System.EventHandler(this.dptDatum_ValueChanged);
             // 
@@ -5629,6 +5710,7 @@
             this.Controls.Add(this.meniHeader);
             this.Name = "frmDrumski1";
             this.Text = "DRUMSKI UNOSNA FORMA";
+            this.Load += new System.EventHandler(this.frmDrumski1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.meniHeader.ResumeLayout(false);
             this.meniHeader.PerformLayout();
@@ -5809,7 +5891,7 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.DateTimePicker dtpUtovaraI2;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.DateTimePicker dtRealiPreuzimanjaPraznogKonI2;
+        private System.Windows.Forms.DateTimePicker dtRealiPreuzimanjaPraznogKontI2;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox cboMestoSpustanjaPunogI2;
