@@ -2003,7 +2003,7 @@ namespace Saobracaj.Drumski
 
 
         
-        Drumski.frmDrumski1 part = new frmDrumski1(tipoviIn: new List<int> { 1 }, tipoviNotIn: null, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga, DaLiJeCarinskiPostupak);
+        Drumski.frmDrumski1 part = new frmDrumski1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga, DaLiJeCarinskiPostupak);
         part.FormClosed += (s, args) =>
             {
                 RefreshDataGrid2();

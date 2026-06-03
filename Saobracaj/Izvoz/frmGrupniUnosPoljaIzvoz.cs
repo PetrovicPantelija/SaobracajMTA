@@ -3216,6 +3216,22 @@ namespace Saobracaj.Izvoz
             // fpi.Show();
 
         }
+
+        private void upisiLogKontejnera()
+        {
+            switch (scenarioID)
+            {
+                // GRUPA I
+                case 13: // Scenario I
+                         // Podesi šta treba za čist I
+            
+                    break;
+                case 26: // Scenario I-L
+             
+                    break;
+            }
+        }
+
         public class PrivremeniNHM
         {
             //public int PrivremeniID { get; set; } 
