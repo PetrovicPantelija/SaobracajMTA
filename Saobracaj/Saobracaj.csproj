@@ -3388,6 +3388,127 @@
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleScheduleDataProvider.cs" />
+    <Compile Include="Skladista main\CarinskoSkladistePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\CarinskoSkladistePregled.Designer.cs">
+      <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPoslovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPoslovi.Designer.cs">
+      <DependentUpon>InterniPoslovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPrenos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPrenos.Designer.cs">
+      <DependentUpon>InterniPrenos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otprema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otprema.Designer.cs">
+      <DependentUpon>Otprema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otpremnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otpremnica.Designer.cs">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\PregledLagera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\PregledLagera.Designer.cs">
+      <DependentUpon>PregledLagera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Pretovar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Pretovar.Designer.cs">
+      <DependentUpon>Pretovar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijem.Designer.cs">
+      <DependentUpon>Prijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijemnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijemnica.Designer.cs">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.Designer.cs">
+      <DependentUpon>VanredniPoslovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\InsertSkladista.cs" />
+    <Compile Include="Skladista main\KomercijalnoSkladiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\KomercijalnoSkladiste.Designer.cs">
+      <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\CarinskoSkladiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\CarinskoSkladiste.Designer.cs">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\MagacinskaKnjigaCarinska.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Designer.cs">
+      <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\NalogZaKomercijalni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\NalogZaKomercijalni.Designer.cs">
+      <DependentUpon>NalogZaKomercijalni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\NaloziViljuskaristiPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\NaloziViljuskaristiPregled.Designer.cs">
+      <DependentUpon>NaloziViljuskaristiPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\OtpremaLager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\OtpremaLager.Designer.cs">
+      <DependentUpon>OtpremaLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\PregledKomercijalnihNaloga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\PregledKomercijalnihNaloga.Designer.cs">
+      <DependentUpon>PregledKomercijalnihNaloga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\RadniNaloziSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\RadniNaloziSkladista.Designer.cs">
+      <DependentUpon>RadniNaloziSkladista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\SkladistaMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\SkladistaMain.Designer.cs">
+      <DependentUpon>SkladistaMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\TipSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\TipSkladista.Designer.cs">
+      <DependentUpon>TipSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\CarinskoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5991,6 +6112,66 @@
     <EmbeddedResource Include="Sifarnici\KrajnjeDestinacije.resx">
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\CarinskoSkladistePregled.resx">
+      <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\InterniPoslovi.resx">
+      <DependentUpon>InterniPoslovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\InterniPrenos.resx">
+      <DependentUpon>InterniPrenos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\Otprema.resx">
+      <DependentUpon>Otprema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\Otpremnica.resx">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\PregledLagera.resx">
+      <DependentUpon>PregledLagera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\Pretovar.resx">
+      <DependentUpon>Pretovar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\Prijem.resx">
+      <DependentUpon>Prijem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\Prijemnica.resx">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\Dokumenta\VanredniPoslovi.resx">
+      <DependentUpon>VanredniPoslovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\KomercijalnoSkladiste.resx">
+      <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\CarinskoSkladiste.resx">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\MagacinskaKnjigaCarinska.resx">
+      <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\NalogZaKomercijalni.resx">
+      <DependentUpon>NalogZaKomercijalni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\NaloziViljuskaristiPregled.resx">
+      <DependentUpon>NaloziViljuskaristiPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\OtpremaLager.resx">
+      <DependentUpon>OtpremaLager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\PregledKomercijalnihNaloga.resx">
+      <DependentUpon>PregledKomercijalnihNaloga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\RadniNaloziSkladista.resx">
+      <DependentUpon>RadniNaloziSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\SkladistaMain.resx">
+      <DependentUpon>SkladistaMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\TipSkladista.resx">
+      <DependentUpon>TipSkladista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </EmbeddedResource>
@@ -7244,6 +7425,9 @@
     <None Include="Resources\2.Platforma1.png" />
     <None Include="Resources\2.2Platforma.png" />
     <None Include="Resources\2Kontrolatroskovapng.png" />
+    <None Include="Resources\0d828eb824813a7aea0e394aefad0a0a.png" />
+    <None Include="Resources\0d828eb824813a7aea0e394aefad0a0a %281%29.png" />
+    <None Include="Resources\0d828eb824813a7aea0e394aefad0a0a %282%29.png" />
     <Content Include="Resources\chat.png" />
     <None Include="Resources\ChatGPT Image Oct 29, 2025, 12_27_15 PM.png" />
     <None Include="Resources\drumskiW.png" />
@@ -7262,6 +7446,8 @@
     <None Include="Resources\CiradeUvoz.png" />
     <None Include="Resources\CiradeIzvoz.png" />
     <None Include="Resources\Cirade3P.png" />
+    <None Include="Resources\e7c495b3543cd44c32878005d7c8e4ff %281%29.png" />
+    <None Include="Resources\e7c495b3543cd44c32878005d7c8e4ff %282%29.png" />
     <Content Include="Resources\error.png" />
     <Content Include="Resources\exclamation.png" />
     <None Include="Resources\image.png" />

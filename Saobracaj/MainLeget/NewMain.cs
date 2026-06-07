@@ -535,7 +535,7 @@ namespace Saobracaj
             _karticaStack.Clear();
 
             // Prva forma modula – setAsMenuHome = true da se Home vraća ovde
-            ShowChild(new Skladista.Skladista(Korisnik), true, true);
+            ShowChild(new Skladista_main.SkladistaMain(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "SKLADIŠTA";
             BackColorKliknut(5);

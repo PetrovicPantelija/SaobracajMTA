@@ -1,4 +1,4 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+﻿using Saobracaj.Skladista;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,111 +6,30 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Saobracaj.Skladista
+namespace Saobracaj.Skladista_main.Dokumenta
 {
-    public partial class RNSkladista : Form
+    public partial class VanredniPoslovi : Form
     {
-        string Tip;
-        string Vrsta;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+        string Tip = "Vanredni poslovi";
+        int IDInterni;
+        string Ulaz;
+        string Vrsta;
         string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
-        public RNSkladista(string vrsta,string tip,string korisnik)
+        public VanredniPoslovi(int idInterni,string ulaz,string vrsta)
         {
             InitializeComponent();
-            Tip = tip;
+            IDInterni = idInterni;
+            Ulaz = ulaz;
             Vrsta = vrsta;
 
-            lblTip.Text = Tip;
-            panel5.Visible = false;
 
-            if (Vrsta == "Carinsko")
-            {
-                textBox1.Text = "1008";
-            }
-
-            FillCombo();
-            InitTable();
-            FillMagacinskiBroj();
-            FillDodatneUsluge(txtID.Text);
-        }
-        int ID;
-        public RNSkladista(int id,string vrsta, string tip,string korisnik)
-        {
-            InitializeComponent();
-            Tip = tip;
-            Vrsta = vrsta;
-
-            lblTip.Text = Tip;
-            panel5.Visible = false;
-            ID = id;
-            txtID.Text= ID.ToString();  
-            if (Vrsta == "Carinsko")
-            {
-                textBox1.Text = "1008";
-            }
-
-            FillCombo();
-            InitTable();
-            FillMagacinskiBroj();
-            
-            FillDodatneUsluge(txtID.Text);
-        }
-        private void RNSkladista_Load(object sender, EventArgs e)
-        {
-            if (Vrsta == "Carinsko" && Tip == "Prijem")
-            {
-                panelOtprema1.Visible = false;
-                panelOtprema2.Visible = false;
-                FillComboPrijem();
-
-                cboMagacinskiBroj.Visible = false;
-                label3.Visible = false;
-                btnMagacinskiBroj.Visible = false;
-
-            }
-            if (Vrsta == "Carinsko" && Tip == "Otprema")
-            {
-                panelPrijem1.Visible = false;
-                panelPrijem2.Visible = false;
-                FillComboOtprema();
-            }
-            if (Vrsta == "Carinsko" && Tip == "Pretovar")
-            {
-                FillComboOtprema();
-                FillComboPrijem();
-
-                cboMagacinskiBroj.Visible = false;
-                label3.Visible = false;
-                btnMagacinskiBroj.Visible = false;
-            }
-            if (Vrsta == "Carinsko" && Tip == "Interni prenos")
-            {
-                panelPrijem1.Visible = false;
-                panelPrijem2.Visible = false;
-                FillComboOtprema();
-            }
-            if (Vrsta == "Carinsko" && Tip == "Vanredni poslovi")
-            {
-                panelPrijem1.Visible = false;
-                panelPrijem2.Visible = false;
-                FillComboOtprema();
-            }
-            if (Vrsta == "Carinsko" && Tip == "Interni poslovi")
-            {
-                panelPrijem1.Visible = false;
-                panelPrijem2.Visible = false;
-                FillComboOtprema();
-
-                cboMagacinskiBroj.Visible = false;
-                label3.Visible = false;
-                btnMagacinskiBroj.Visible = false;
-            }
             btnStorno.Text = "";
             btnStorno.Enabled = false;
             btnIspravka.Text = "";
@@ -119,11 +38,22 @@ namespace Saobracaj.Skladista
             btnSaglasnost.Enabled = false;
             btnPrijemnica.Text = "";
             btnPrijemnica.Enabled = false;
-
-
-            if(txtID.Text!="")
+            panel5.Visible= false;
+            if (Vrsta == "Carinsko")
             {
-                VratiPodatke(ID);
+                textBox1.Text = "1008";
+            }
+        }
+
+        private void VanredniPoslovi_Load(object sender, EventArgs e)
+        {
+            FillCombo();
+            InitTable();
+            FillMagacinskiBroj();
+            FillDodatneUsluge(txtID.Text);
+            if (txtID.Text != "")
+            {
+                VratiPodatke(Convert.ToInt32(txtID.Text));
             }
         }
         private void VratiPodatke(int id)
@@ -184,10 +114,11 @@ namespace Saobracaj.Skladista
     FROM RadniNalogSkladista
     Where ID=" + id, conn);
             SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read()) { 
-                txtID.Text= dr["ID"].ToString();
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
                 Vrsta = dr["VrstaRN"].ToString();
-                Tip= dr["TipRN"].ToString();
+                Tip = dr["TipRN"].ToString();
                 textBox1.Text = dr["CarinskoSkladiste"].ToString();
                 cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
                 cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
@@ -212,24 +143,10 @@ namespace Saobracaj.Skladista
                 planiranoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatumOtpema"].ToString());
                 novoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatum2Otprema"].ToString());
                 txtKontejnerOtprema.Text = dr["BrojKontejneraOtprema"].ToString();
-                cboTipTransportaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaPrijem"].ToString());
-                cboVrstaKamionaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaKamionaPrijem"].ToString());
-                txtVoziloPrijem.Text = dr["VoziloPrijem"].ToString();
-                txtVozacPrijem.Text = dr["VozacPrijem"].ToString();
-                txtLKPrijem.Text = dr["BrojLKPrijem"].ToString();
-                txtTelefonPrijem.Text = dr["BrojTelefonaPrijem"].ToString();
-                cboCarinarnicaPrijem.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaPrijem"].ToString());
-                cboSpediterPrijem.SelectedValue = Convert.ToInt32(dr["SpediterPrijem"].ToString());
-                txtKontakOsobaSpediterPrijem.Text = dr["KontakOsobaSpediteraPrijem"].ToString();
-                cboMestoIstovaraPrijem.SelectedValue = Convert.ToInt32(dr["MestoIstovaraPrijem"].ToString());
-                txtAdresaPrijem.Text = dr["AdresaPrijem"].ToString();
-                txtKontaktOsobaPrijem.Text = dr["KontaktOsobaIstovarPrijem"].ToString();
-                planiranoVremePrijem.Value = Convert.ToDateTime(dr["PlaniraniDatumPrijem"].ToString());
-                novoVremePrijem.Value = Convert.ToDateTime(dr["PlaniraniDatum2Prijem"].ToString());
-                txtKontejnerPrijem.Text = dr["BrojKontejneraPrijem"].ToString();
+
                 txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
-                Aktivan= Convert.ToInt32(dr["Aktivan"].ToString());
+                Aktivan = Convert.ToInt32(dr["Aktivan"].ToString());
                 Formiran = Convert.ToInt32(dr["Formiran"].ToString());
                 if (MagacinskiBroj != 0)
                 {
@@ -238,7 +155,7 @@ namespace Saobracaj.Skladista
             }
             conn.Close();
         }
-        
+
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -274,10 +191,6 @@ namespace Saobracaj.Skladista
             cboCarinskiPostupak.DataSource = carinskiPostupakDs.Tables[0];
             cboCarinskiPostupak.DisplayMember = "Naziv";
             cboCarinskiPostupak.ValueMember = "id";
-        }
-        private void FillComboOtprema()
-        {
-            SqlConnection conn = new SqlConnection(connection);
 
             var spediter = "Select PaSifra,PaNaziv From Partnerji Where Spediter=1 order by PaSifra desc";
             var daSpediter = new SqlDataAdapter(spediter, conn);
@@ -291,7 +204,7 @@ namespace Saobracaj.Skladista
             var daVrstaVozila = new SqlDataAdapter(vrstaVozila, conn);
             var dsVrstaVozila = new System.Data.DataSet();
             daVrstaVozila.Fill(dsVrstaVozila);
-        
+
             cboTipTransportaOtprema.DataSource = dsVrstaVozila.Tables[0];
             cboTipTransportaOtprema.DisplayMember = "Naziv";
             cboTipTransportaOtprema.ValueMember = "ID";
@@ -301,7 +214,7 @@ namespace Saobracaj.Skladista
             var daVrstaKamiona = new SqlDataAdapter(vrstaKamiona, conn);
             var dsVrstaKamiona = new System.Data.DataSet();
             daVrstaKamiona.Fill(dsVrstaKamiona);
-          
+
             cboVrstaKamionaOtprema.DataSource = dsVrstaKamiona.Tables[0];
             cboVrstaKamionaOtprema.DisplayMember = "Naziv";
             cboVrstaKamionaOtprema.ValueMember = "ID";
@@ -310,7 +223,7 @@ namespace Saobracaj.Skladista
             var daCarinarnica = new SqlDataAdapter(carinarnica, conn);
             var dsCarinarnica = new System.Data.DataSet();
             daCarinarnica.Fill(dsCarinarnica);
-          
+
             cboCarinarnicaOtprema.DataSource = dsCarinarnica.Tables[0];
             cboCarinarnicaOtprema.DisplayMember = "Naziv";
             cboCarinarnicaOtprema.ValueMember = "ID";
@@ -321,66 +234,12 @@ namespace Saobracaj.Skladista
             var muAD = new SqlDataAdapter(mu, conn);
             var muDS = new System.Data.DataSet();
             muAD.Fill(muDS);
-        
+
             cboMestoIstovaraOtprema.DataSource = muDS.Tables[0];
             cboMestoIstovaraOtprema.DisplayMember = "Naziv";
             cboMestoIstovaraOtprema.ValueMember = "ID";
             cboMestoIstovaraOtprema.SelectedValue = 2;
-
         }
-        private void FillComboPrijem()
-        {
-            SqlConnection conn = new SqlConnection(connection);
-
-            var spediter = "Select PaSifra,PaNaziv From Partnerji Where Spediter=1 order by PaSifra desc";
-            var daSpediter = new SqlDataAdapter(spediter, conn);
-            var dsSpediter = new System.Data.DataSet();
-            daSpediter.Fill(dsSpediter);
-            cboSpediterPrijem.DataSource = dsSpediter.Tables[0];
-            cboSpediterPrijem.DisplayMember = "PaNaziv";
-            cboSpediterPrijem.ValueMember = "PaSifra";
-
-
-            var vrstaVozila = "Select ID,Naziv From VrstePrevoznogSredstva order by ID asc";
-            var daVrstaVozila = new SqlDataAdapter(vrstaVozila, conn);
-            var dsVrstaVozila = new System.Data.DataSet();
-            daVrstaVozila.Fill(dsVrstaVozila);
-            cboTipTransportaPrijem.DataSource = dsVrstaVozila.Tables[0];
-            cboTipTransportaPrijem.DisplayMember = "Naziv";
-            cboTipTransportaPrijem.ValueMember = "ID";
-
-
-
-            var vrstaKamiona = "Select ID,Naziv From VrstaVozila order by ID asc";
-            var daVrstaKamiona = new SqlDataAdapter(vrstaKamiona, conn);
-            var dsVrstaKamiona = new System.Data.DataSet();
-            daVrstaKamiona.Fill(dsVrstaKamiona);
-            cboVrstaKamionaPrijem.DataSource = dsVrstaKamiona.Tables[0];
-            cboVrstaKamionaPrijem.DisplayMember = "Naziv";
-            cboVrstaKamionaPrijem.ValueMember = "ID";
-
-
-            var carinarnica = "Select ID,Naziv From Carinarnice order by ID asc";
-            var daCarinarnica = new SqlDataAdapter(carinarnica, conn);
-            var dsCarinarnica = new System.Data.DataSet();
-            daCarinarnica.Fill(dsCarinarnica);
-            cboCarinarnicaPrijem.DataSource = dsCarinarnica.Tables[0];
-            cboCarinarnicaPrijem.DisplayMember = "Naziv";
-            cboCarinarnicaPrijem.ValueMember = "ID";
-            cboCarinarnicaPrijem.SelectedValue = 140;
-
-
-
-            var mu = "select ID, Naziv from MestaUtovara order by Naziv";
-            var muAD = new SqlDataAdapter(mu, conn);
-            var muDS = new System.Data.DataSet();
-            muAD.Fill(muDS);
-            cboMestoIstovaraPrijem.DataSource = muDS.Tables[0];
-            cboMestoIstovaraPrijem.DisplayMember = "Naziv";
-            cboMestoIstovaraPrijem.ValueMember = "ID";
-            cboMestoIstovaraPrijem.SelectedValue = 2;
-        }
-
         DataTable dtUsluge = new DataTable();
         private void InitTable()
         {
@@ -465,16 +324,26 @@ namespace Saobracaj.Skladista
                 }
             }
         }
+        int MagacinskiBroj;
+        int Aktivan;
+
         private void btnMagacinskiBroj_Click(object sender, EventArgs e)
         {
             FillMagacinskiBroj();
             panel5.Visible = true;
         }
-        int MagacinskiBroj;
-        int Aktivan = 0;
+
+        private void cboMagacinskiBroj_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            MagacinskiBroj = Convert.ToInt32(cboMagacinskiBroj.SelectedValue);
+            if (MagacinskiBroj != 0)
+            {
+                Aktivan = 1;
+            }
+        }
         private void btnMbSave_Click(object sender, EventArgs e)
         {
-            InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
+            InsertSkladista ins = new InsertSkladista();
 
             if (Vrsta == "Carinsko")
             {
@@ -522,6 +391,7 @@ namespace Saobracaj.Skladista
         private void btnMbNazad_Click(object sender, EventArgs e)
         {
             panel5.Visible = false;
+
         }
         private void btnDodaj_Click(object sender, EventArgs e)
         {
@@ -539,6 +409,7 @@ namespace Saobracaj.Skladista
 
             dtUsluge.Rows.Add(id, naziv);
         }
+
         private void btnIzbaci_Click(object sender, EventArgs e)
         {
             if (dgvUsluge.CurrentRow == null)
@@ -546,18 +417,11 @@ namespace Saobracaj.Skladista
 
             dgvUsluge.Rows.Remove(dgvUsluge.CurrentRow);
         }
-        private void cboMagacinskiBroj_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            MagacinskiBroj = Convert.ToInt32(cboMagacinskiBroj.SelectedValue);
-            if (MagacinskiBroj != 0)
-            {
-                Aktivan = 1;
-            }
-        }
-
         int PIB;
+
         private void cboVlasnikRobe_SelectionChangeCommitted(object sender, EventArgs e)
         {
+
             var conn = new SqlConnection(connection);
             conn.Open();
             var cmd = new SqlCommand("SELECT PaEMatSt1 from Partnerji Where PaSifra=" + Convert.ToInt32(cboVlasnikRobe.SelectedValue), conn);
@@ -570,9 +434,10 @@ namespace Saobracaj.Skladista
             conn.Close();
         }
         int Formiran = 0;
+        int? NULL;
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
+            InsertSkladista ins = new InsertSkladista();
             if (txtID.Text != "")
             {
                 try
@@ -598,17 +463,26 @@ namespace Saobracaj.Skladista
                         ins.InsertDodatneUsluge(idUsluge, Convert.ToInt32(txtID.Text), valueMember);
                     }
 
-                    ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text),"Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
+                    ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
                         txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
-                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboTipTransportaPrijem.SelectedValue), Convert.ToInt32(cboVrstaKamionaPrijem.SelectedValue),
-                        txtVoziloPrijem.Text.ToString().TrimEnd(), txtVozacPrijem.Text.ToString().TrimEnd(), txtLKPrijem.Text.ToString().TrimEnd(), txtTelefonPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
-                        Convert.ToInt32(cboSpediterPrijem.SelectedValue), txtKontakOsobaSpediterPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboMestoIstovaraPrijem.SelectedValue), txtAdresaPrijem.Text.ToString().TrimEnd(), txtKontaktOsobaPrijem.Text.ToString().TrimEnd(),
-                        Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), txtKontejnerPrijem.Text.ToString().TrimEnd(), txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
+                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(NULL), Convert.ToInt32(NULL),
+                        "", "", "", "", Convert.ToInt32(NULL),
+                        Convert.ToInt32(NULL), "", Convert.ToInt32(NULL), "", "",
+                        Convert.ToDateTime("01.01.1900"), Convert.ToDateTime("01.01.1900"), "", txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
                         txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
+
+                    if (Ulaz != "")
+                    {
+                        ins.InsertRNInterni(3, Korisnik);
+                    }
+                    else
+                    {
+                        ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
+                    }
 
                     MessageBox.Show("RADNI NALOG SAČUVAN");
                 }
@@ -653,18 +527,26 @@ namespace Saobracaj.Skladista
                         int valueMember = Convert.ToInt32(row["UslugaID"]);
                         ins.InsertDodatneUsluge(IdUsluge, rn, valueMember);
                     }
-
                     ins.InsertRadniNalog("Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
                         txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
-                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboTipTransportaPrijem.SelectedValue), Convert.ToInt32(cboVrstaKamionaPrijem.SelectedValue),
-                        txtVoziloPrijem.Text.ToString().TrimEnd(), txtVozacPrijem.Text.ToString().TrimEnd(), txtLKPrijem.Text.ToString().TrimEnd(), txtTelefonPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
-                        Convert.ToInt32(cboSpediterPrijem.SelectedValue), txtKontakOsobaSpediterPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboMestoIstovaraPrijem.SelectedValue), txtAdresaPrijem.Text.ToString().TrimEnd(), txtKontaktOsobaPrijem.Text.ToString().TrimEnd(),
-                        Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), txtKontejnerPrijem.Text.ToString().TrimEnd(), txtPosebniUslovi.Text.ToString().TrimEnd(), IdUsluge,
+                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(NULL), Convert.ToInt32(NULL),
+                        "", "", "", "", Convert.ToInt32(NULL),
+                        Convert.ToInt32(NULL), "", Convert.ToInt32(NULL), "", "",
+                        Convert.ToDateTime("01.01.1900"), Convert.ToDateTime("01.01.1900"), "", txtPosebniUslovi.Text.ToString().TrimEnd(), IdUsluge,
                         txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
+
+                    if (Ulaz != "")
+                    {
+                        ins.InsertRNInterni(3, Korisnik);
+                    }
+                    else
+                    {
+                        ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
+                    }
 
                     MessageBox.Show("RADNI NALOG KREIRAN");
 
@@ -676,12 +558,11 @@ namespace Saobracaj.Skladista
                             SqlDataReader dr = cmd.ExecuteReader();
                             while (dr.Read())
                             {
-                               txtID.Text=dr["ID"].ToString();
+                                txtID.Text = dr["ID"].ToString();
                             }
                         }
                         conn.Close();
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -693,7 +574,7 @@ namespace Saobracaj.Skladista
 
         private void btnFormiranRN_Click(object sender, EventArgs e)
         {
-            InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
+            InsertSkladista ins = new InsertSkladista();
             if (Formiran == 1)
             {
                 MessageBox.Show("RADNI NALOG JE VEĆ FORMIRAN");
@@ -725,16 +606,16 @@ namespace Saobracaj.Skladista
                         ins.InsertDodatneUsluge(idUsluge, Convert.ToInt32(txtID.Text), valueMember);
                     }
 
-                    ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "FORMIRAN", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
+                    ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
                         txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
-                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboTipTransportaPrijem.SelectedValue), Convert.ToInt32(cboVrstaKamionaPrijem.SelectedValue),
-                        txtVoziloPrijem.Text.ToString().TrimEnd(), txtVozacPrijem.Text.ToString().TrimEnd(), txtLKPrijem.Text.ToString().TrimEnd(), txtTelefonPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
-                        Convert.ToInt32(cboSpediterPrijem.SelectedValue), txtKontakOsobaSpediterPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboMestoIstovaraPrijem.SelectedValue), txtAdresaPrijem.Text.ToString().TrimEnd(), txtKontaktOsobaPrijem.Text.ToString().TrimEnd(),
-                        Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), txtKontejnerPrijem.Text.ToString().TrimEnd(), txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
+                        Convert.ToDateTime(novoVremeOtprema.Value), txtKontejnerOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(NULL), Convert.ToInt32(NULL),
+                        "", "", "", "", Convert.ToInt32(NULL),
+                        Convert.ToInt32(NULL), "", Convert.ToInt32(NULL), "", "",
+                        Convert.ToDateTime("01.01.1900"), Convert.ToDateTime("01.01.1900"), "", txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
                         txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
 
                     MessageBox.Show("RADNI NALOG SAČUVAN");
@@ -745,16 +626,6 @@ namespace Saobracaj.Skladista
                     return;
                 }
             }
-        }
-
-        private void btnPrijemnica_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnStorno_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -1073,3 +1073,341 @@ Where RadniNalogSkladista.ID=" + id, conn);
         }
     }
 }
+/*
+ 
+ using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Saobracaj.Skladista_main
+{
+    public partial class NaloziViljuskaristiPregled : Form
+    {
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+        public NaloziViljuskaristiPregled()
+        {
+            InitializeComponent();
+        }
+        private void UcitajGridRukovalac()
+        {
+            string masterSql = @"
+;WITH RN_BASE AS
+(
+    SELECT
+        rn.Prijemnica,
+        Rukovalac = RTRIM(d.DeIme) + ' ' + RTRIM(d.DePriimek),
+        Koleta = ISNULL(rn.Koleta, 0),
+        Paleta = ISNULL(rn.Paleta, 0),
+        Bruto = ISNULL(rn.Bruto, 0),
+        Napomena = rn.Napomena,
+        Vozilo = rn.Vozilo,
+        Uradjen = CASE WHEN ISNULL(rn.Uradjen, 0) = 1 THEN 1 ELSE 0 END
+    FROM RNCarinskoSkladisteRukovalac rn
+    INNER JOIN Delavci d ON rn.Rukovalac = d.DeSifra
+),
+RN_SUM AS
+(
+    SELECT
+        Prijemnica,
+        Rukovalac = MAX(Rukovalac),
+        Koleta = SUM(Koleta),
+        Paleta = SUM(Paleta),
+        Bruto = SUM(Bruto),
+        Napomena = MAX(NULLIF(LTRIM(RTRIM(ISNULL(Napomena, ''))), '')),
+        Vozilo = MAX(Vozilo),
+        Uradjen = MIN(Uradjen)
+    FROM RN_BASE
+    GROUP BY Prijemnica
+),
+USLUGE_STATUS AS
+(
+    SELECT
+        rn.Prijemnica,
+        ImaUradjenuUslugu =
+            MAX(CASE WHEN ISNULL(usluga.Uradjen, 0) = 1 THEN 1 ELSE 0 END)
+    FROM RNCarinskoSkladisteRukovalac rn
+    LEFT JOIN RNCarinskoSkladisteDodatneUsluge usluga
+        ON rn.DodatneUslugeID = usluga.ID
+    GROUP BY rn.Prijemnica
+)
+SELECT
+    s.Prijemnica,
+    s.Rukovalac,
+    s.Koleta,
+    s.Paleta,
+    s.Bruto,
+    s.Napomena,
+    s.Vozilo,
+    s.Uradjen,
+    ISNULL(u.ImaUradjenuUslugu, 0) AS ImaUradjenuUslugu,
+    BojaReda =
+        CASE
+            WHEN s.Uradjen = 1 THEN 'GREEN'
+            WHEN s.Uradjen = 0 AND ISNULL(u.ImaUradjenuUslugu, 0) = 1 THEN 'YELLOW'
+            ELSE 'RED'
+        END
+FROM RN_SUM s
+LEFT JOIN USLUGE_STATUS u ON s.Prijemnica = u.Prijemnica
+ORDER BY s.Prijemnica ASC;
+";
+
+            string detailSql = @"
+SELECT
+    rn.Prijemnica,
+    rn.ID AS RukovalacRNID,
+    CarinskoSkladistePostupak.Naziv AS Postupak,
+    rn.Pozicija,
+    rn.Koleta,
+    rn.Paleta,
+    TipPalete.Naziv AS VrstaPalete,
+    rn.Bruto,
+    VrstaManipulacije.Naziv AS NazivUsluge,
+    usluga.Uradjen AS OdradjenaUsluga
+FROM RNCarinskoSkladisteRukovalac AS rn
+INNER JOIN Delavci 
+    ON rn.Rukovalac = Delavci.DeSifra
+INNER JOIN TipPalete 
+    ON rn.PaletaTip = TipPalete.ID
+LEFT JOIN RNCarinskoSkladisteDodatneUsluge AS usluga 
+    ON rn.DodatneUslugeID = usluga.ID
+LEFT JOIN VrstaManipulacije 
+    ON usluga.Usluga = VrstaManipulacije.ID
+INNER JOIN CarinskoSkladistePostupak 
+    ON rn.Postupak = CarinskoSkladistePostupak.ID
+ORDER BY
+    rn.Prijemnica ASC,
+    rn.ID ASC,
+    rn.Pozicija ASC,
+    VrstaManipulacije.Naziv ASC;
+";
+
+            DataSet ds = new DataSet();
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                using (SqlDataAdapter daMaster = new SqlDataAdapter(masterSql, conn))
+                {
+                    daMaster.Fill(ds, "Prijemnice");
+                }
+
+                using (SqlDataAdapter daDetail = new SqlDataAdapter(detailSql, conn))
+                {
+                    daDetail.Fill(ds, "Detalji");
+                }
+            }
+
+            ds.Relations.Add(
+                "Prijemnica_Detalji",
+                ds.Tables["Prijemnice"].Columns["Prijemnica"],
+                ds.Tables["Detalji"].Columns["Prijemnica"],
+                false
+            );
+
+            gridGroupingControl1.DataSource = ds;
+            gridGroupingControl1.DataMember = "Prijemnice";
+
+            PodesiGridRukovalac();
+        }
+        private void PodesiGridRukovalac()
+        {
+            gridGroupingControl1.TopLevelGroupOptions.ShowCaption = false;
+            gridGroupingControl1.ChildGroupOptions.ShowCaption = false;
+
+            gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+            gridGroupingControl1.TableOptions.AllowSelection = GridSelectionFlags.Row;
+            gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+            // Glavna tabela
+            GridTableDescriptor master = gridGroupingControl1.TableDescriptor;
+
+            master.VisibleColumns.Clear();
+            master.VisibleColumns.Add("Prijemnica");
+            master.VisibleColumns.Add("Rukovalac");
+            master.VisibleColumns.Add("Koleta");
+            master.VisibleColumns.Add("Paleta");
+            master.VisibleColumns.Add("Bruto");
+            master.VisibleColumns.Add("Vozilo");
+            master.VisibleColumns.Add("Napomena");
+            master.VisibleColumns.Add("Uradjen");
+
+            master.Columns["Prijemnica"].HeaderText = "Prijemnica";
+            master.Columns["Rukovalac"].HeaderText = "Rukovalac";
+            master.Columns["Koleta"].HeaderText = "Koleta";
+            master.Columns["Paleta"].HeaderText = "Paleta";
+            master.Columns["Bruto"].HeaderText = "Bruto";
+            master.Columns["Vozilo"].HeaderText = "Vozilo";
+            master.Columns["Napomena"].HeaderText = "Napomena";
+            master.Columns["Uradjen"].HeaderText = "Urađen RN";
+
+            // Detail tabela
+            GridRelationDescriptor rel = null;
+
+            foreach (GridRelationDescriptor item in master.Relations)
+            {
+                if (item.Name == "Prijemnica_Detalji")
+                {
+                    rel = item;
+                    break;
+                }
+            }
+
+            if (rel != null)
+            {
+                GridTableDescriptor detail = rel.ChildTableDescriptor;
+
+                detail.AllowEdit = false;
+
+                detail.VisibleColumns.Clear();
+                detail.VisibleColumns.Add("Postupak");
+                detail.VisibleColumns.Add("Pozicija");
+                detail.VisibleColumns.Add("Koleta");
+                detail.VisibleColumns.Add("Paleta");
+                detail.VisibleColumns.Add("VrstaPalete");
+                detail.VisibleColumns.Add("Bruto");
+                detail.VisibleColumns.Add("NazivUsluge");
+                detail.VisibleColumns.Add("OdradjenaUsluga");
+
+                detail.Columns["Postupak"].HeaderText = "Postupak";
+                detail.Columns["Pozicija"].HeaderText = "Pozicija";
+                detail.Columns["Koleta"].HeaderText = "Koleta";
+                detail.Columns["Paleta"].HeaderText = "Paleta";
+                detail.Columns["VrstaPalete"].HeaderText = "Vrsta palete";
+                detail.Columns["Bruto"].HeaderText = "Bruto";
+                detail.Columns["NazivUsluge"].HeaderText = "Usluga";
+                detail.Columns["OdradjenaUsluga"].HeaderText = "Odrađena usluga";
+            }
+
+            gridGroupingControl1.QueryCellStyleInfo -= gridGroupingControl1_QueryCellStyleInfo;
+            gridGroupingControl1.QueryCellStyleInfo += gridGroupingControl1_QueryCellStyleInfo;
+
+            gridGroupingControl1.Refresh();
+        }
+        private void gridGroupingControl1_QueryCellStyleInfo(
+    object sender,
+    GridTableCellStyleInfoEventArgs e)
+        {
+            if (e.TableCellIdentity.TableCellType != GridTableCellType.RecordFieldCell)
+                return;
+
+            Record record = e.TableCellIdentity.DisplayElement.ParentRecord;
+
+            if (record == null)
+                return;
+
+            DataRowView row = record.GetData() as DataRowView;
+
+            if (row == null)
+                return;
+
+            // Bojimo samo glavnu tabelu.
+            // Detail tabela nema kolonu BojaReda.
+            if (!row.Row.Table.Columns.Contains("BojaReda"))
+                return;
+
+            string bojaReda = Convert.ToString(row["BojaReda"]);
+
+            if (bojaReda == "GREEN")
+            {
+                e.Style.BackColor = Color.LightGreen;
+                e.Style.TextColor = Color.Black;
+            }
+            else if (bojaReda == "YELLOW")
+            {
+                e.Style.BackColor = Color.Khaki;
+                e.Style.TextColor = Color.Black;
+            }
+            else if (bojaReda == "RED")
+            {
+                e.Style.BackColor = Color.LightCoral;
+                e.Style.TextColor = Color.Black;
+            }
+        }
+
+        private void NaloziViljuskaristiPregled_Load(object sender, EventArgs e)
+        {
+            UcitajGridRukovalac();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Record record = gridGroupingControl1.Table.CurrentRecord;
+
+                if (record == null)
+                {
+                    MessageBox.Show("Izaberite red prijemnice.", "Obaveštenje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                DataRowView row = record.GetData() as DataRowView;
+
+                if (row == null)
+                {
+                    MessageBox.Show("Nije moguće pročitati izabrani red.", "Greška",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Ovo sprečava da korisnik potvrdi detail red umesto glavnog reda.
+                if (!row.Row.Table.Columns.Contains("BojaReda"))
+                {
+                    MessageBox.Show("Izaberite glavni red prijemnice, ne red iz podtabele.", "Obaveštenje",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                int prijemnica = Convert.ToInt32(row["Prijemnica"]);
+
+                DialogResult potvrda = MessageBox.Show(
+                    $"Da li želite da potvrdite prijem za prijemnicu broj {prijemnica} i upišete u magacinsku knjigu?",
+                    "Potvrda prijema",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (potvrda != DialogResult.Yes)
+                    return;
+
+                PotvrdiPrijem(prijemnica);
+
+                MessageBox.Show("Prijem je uspešno potvrđen.", "Uspešno",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                UcitajGridRukovalac();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška prilikom potvrde prijema:\n" + ex.Message,
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void PotvrdiPrijem(int prijemnica)
+        {
+            using (SqlConnection conn = new SqlConnection(connection))
+            using (SqlCommand cmd = new SqlCommand("PotvrdiPrijem", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Prijemnica", SqlDbType.Int).Value = prijemnica;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}
+
+ 
+ */

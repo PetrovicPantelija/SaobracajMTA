@@ -19,7 +19,7 @@ namespace Saobracaj.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -57,6 +57,36 @@ namespace Saobracaj.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _0d828eb824813a7aea0e394aefad0a0a {
+            get {
+                object obj = ResourceManager.GetObject("0d828eb824813a7aea0e394aefad0a0a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _0d828eb824813a7aea0e394aefad0a0a__1_ {
+            get {
+                object obj = ResourceManager.GetObject("0d828eb824813a7aea0e394aefad0a0a (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap _0d828eb824813a7aea0e394aefad0a0a__2_ {
+            get {
+                object obj = ResourceManager.GetObject("0d828eb824813a7aea0e394aefad0a0a (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -356,6 +386,26 @@ namespace Saobracaj.Properties {
         public static System.Drawing.Bitmap drumskiW {
             get {
                 object obj = ResourceManager.GetObject("drumskiW", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap e7c495b3543cd44c32878005d7c8e4ff__1_ {
+            get {
+                object obj = ResourceManager.GetObject("e7c495b3543cd44c32878005d7c8e4ff (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap e7c495b3543cd44c32878005d7c8e4ff__2_ {
+            get {
+                object obj = ResourceManager.GetObject("e7c495b3543cd44c32878005d7c8e4ff (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
