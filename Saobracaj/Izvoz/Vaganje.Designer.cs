@@ -439,7 +439,7 @@
             this.txtBruto.DecimalPlaces = 2;
             this.txtBruto.Location = new System.Drawing.Point(589, 70);
             this.txtBruto.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});

@@ -118,6 +118,7 @@
             this.btnIntermodalni13.Text = "Vozni planovi";
             this.btnIntermodalni13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIntermodalni13.UseVisualStyleBackColor = false;
+            this.btnIntermodalni13.Click += new System.EventHandler(this.btnIntermodalni13_Click);
             // 
             // btnIntermodalni14
             // 

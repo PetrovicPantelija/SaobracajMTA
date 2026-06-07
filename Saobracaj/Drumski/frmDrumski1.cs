@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static Saobracaj.Izvoz.frmGrupniUnosPoljaIzvoz;
+using System.Reflection;
 
 namespace Saobracaj.Drumski
 {
@@ -36,8 +37,12 @@ namespace Saobracaj.Drumski
         private int? scenario = null;
         List<PrivremeniNHM> privremenaListaNHM = new List<PrivremeniNHM>();
         string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+        private int lOOdobrio = 0;
+        private Dictionary<DateTimePicker, DateTimePicker> povezaniDatumi = new Dictionary<DateTimePicker, DateTimePicker>();
+        private decimal staraVrednost;
+        private bool promenjenaVrednost;
 
-        private ComboBox cboTipNaloga ;
+        private ComboBox cboTipNaloga;
         private ComboBox cboKlijent;
         private ComboBox cboVrstaRobe;
         private ComboBox cboCarinskiPUnutrasniTransport;
@@ -101,6 +106,8 @@ namespace Saobracaj.Drumski
         private System.Windows.Forms.NumericUpDown txtTaraK;
         private System.Windows.Forms.NumericUpDown txtBrutoK;
         private System.Windows.Forms.NumericUpDown txtNTTOR;
+        private System.Windows.Forms.NumericUpDown txtTrosak; 
+        private System.Windows.Forms.NumericUpDown txtCena; 
 
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejneraNovi;
         private System.Windows.Forms.DateTimePicker dtPreuzimanjaPraznogKontejnera;
@@ -130,20 +137,43 @@ namespace Saobracaj.Drumski
             ChangeTextBox();
 
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
-            dtpUtovaraNovi.Value = DateTime.MinValue;
-            dtpRealiUtovara.Value = DateTime.MinValue;
-            dtpSpustanjePunog.Value = DateTime.MinValue;
-            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
-            dtpSpustanjePunogReal.Value = DateTime.MinValue;
+            if (dtpUtovara != null)
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtPreuzimanjaPraznogKontejnera != null)
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            if (dtPreuzimanjaPraznogKontejneraNovi != null)
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
+            if (dtRealiPreuzimanjaPraznogKont != null)
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
+            if (dtpUtovaraNovi != null)
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovara != null)
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunog != null)
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogNovi != null)
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogReal != null)
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
+            if (dtpIstovaraCerade != null)
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
+            if (dtpIstovaraCeradeNovi != null)
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiIstovaraCerade != null)
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
+            if (dtpUtovaraCerade != null)
+                dtpUtovaraCerade.Value = DateTime.Today;
+            if (dtpUtovaraCeradeNovi != null)
+                dtpUtovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovaraCerade != null)
+                dtpRealiUtovaraCerade.Value = DateTime.Today.AddDays(1);
             //  dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             ////dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
             FillCombo();
             VratiPodatke();
+            if (lOOdobrio > 0)
+                btnPovrdiLO.Visible = false;
             //txtNapomenaPoz.Visible = false;
             //if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
             //{
@@ -164,23 +194,47 @@ namespace Saobracaj.Drumski
             InitializeComponent();
             ChangeTextBox();
             this.BindingContext = new BindingContext();
-            dtpUtovara.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejnera.Value = DateTime.MinValue;
-            dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.MinValue;
-            dtRealiPreuzimanjaPraznogKont.Value = DateTime.MinValue;
-            dtpUtovaraNovi.Value = DateTime.MinValue;
-            dtpRealiUtovara.Value = DateTime.MinValue;
-            dtpSpustanjePunog.Value = DateTime.MinValue;
-            dtpSpustanjePunogNovi.Value = DateTime.MinValue;
-            dtpSpustanjePunogReal.Value = DateTime.MinValue;
+            
+            if (dtpUtovara != null)
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtPreuzimanjaPraznogKontejnera != null)
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
+            if (dtPreuzimanjaPraznogKontejneraNovi != null)
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
+            if (dtRealiPreuzimanjaPraznogKont != null)
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
+            if (dtpUtovaraNovi != null)
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovara != null)
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunog != null)
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1); 
+            if (dtpSpustanjePunogNovi != null)
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpSpustanjePunogReal != null)
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
+            if (dtpIstovaraCerade != null)
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
+            if (dtpIstovaraCeradeNovi != null)
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiIstovaraCerade != null)
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
+            if (dtpUtovaraCerade != null)
+                dtpUtovaraCerade.Value = DateTime.Today;
+            if (dtpUtovaraCeradeNovi != null)
+                dtpUtovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiUtovaraCerade != null)
+                dtpRealiUtovaraCerade.Value = DateTime.Today.AddDays(1);
             //dtIstovara.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Value = DateTime.Today;
             //dtPr9yMnTm4NSzvG9rrwjM2ec8xZgh1cafXH8.Checked = true;
             FillCombo();
 
             VratiPodatke();
+            if (lOOdobrio > 0)
+                btnPovrdiLO.Visible = false;
             //txtNapomenaPoz.Visible = false;
-            
+
             if (noviNalogID == "NOVINALOG")
             {
                 status = true;
@@ -315,23 +369,35 @@ namespace Saobracaj.Drumski
             }
             pronadjiKontrole();
             if (dtpUtovara != null)
-                dtpUtovara.Value = dtpUtovara.MinDate;
+                dtpUtovara.Value = DateTime.Today.AddDays(1);
             if (dtPreuzimanjaPraznogKontejnera != null)
-                dtPreuzimanjaPraznogKontejnera.Value = dtPreuzimanjaPraznogKontejnera.MinDate;
+                dtPreuzimanjaPraznogKontejnera.Value = DateTime.Today;
             if (dtPreuzimanjaPraznogKontejneraNovi != null)
-                dtPreuzimanjaPraznogKontejneraNovi.Value = dtPreuzimanjaPraznogKontejneraNovi.MinDate;
+                dtPreuzimanjaPraznogKontejneraNovi.Value = DateTime.Today;
             if (dtRealiPreuzimanjaPraznogKont != null)
-                dtRealiPreuzimanjaPraznogKont.Value = dtRealiPreuzimanjaPraznogKont.MinDate;
+                dtRealiPreuzimanjaPraznogKont.Value = DateTime.Today;
             if (dtpUtovaraNovi != null)
-                dtpUtovaraNovi.Value = dtpUtovaraNovi.MinDate;
+                dtpUtovaraNovi.Value = DateTime.Today.AddDays(1);
             if (dtpRealiUtovara != null)
-                dtpRealiUtovara.Value = dtpRealiUtovara.MinDate;
+                dtpRealiUtovara.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunog != null)
-                dtpSpustanjePunog.Value = dtpSpustanjePunog.MinDate;
+                dtpSpustanjePunog.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunogNovi != null)
-                dtpSpustanjePunogNovi.Value = dtpSpustanjePunogNovi.MinDate;
+                dtpSpustanjePunogNovi.Value = DateTime.Today.AddDays(1);
             if (dtpSpustanjePunogReal != null)
-                dtpSpustanjePunogReal.Value = dtpSpustanjePunogReal.MinDate;
+                dtpSpustanjePunogReal.Value = DateTime.Today.AddDays(1);
+            if (dtpIstovaraCerade != null)
+                dtpIstovaraCerade.Value = DateTime.Today.AddDays(1); ;
+            if (dtpIstovaraCeradeNovi != null)
+                dtpIstovaraCeradeNovi.Value = DateTime.Today.AddDays(1);
+            if (dtpRealiIstovaraCerade != null)
+                dtpRealiIstovaraCerade.Value = DateTime.Today.AddDays(1);
+            if (dtpUtovaraCerade != null)
+                dtpUtovaraCerade.Value = DateTime.Today;
+            if (dtpUtovaraCeradeNovi != null)
+                dtpUtovaraCeradeNovi.Value = DateTime.Today;
+            if (dtpRealiUtovaraCerade != null)
+                dtpRealiUtovaraCerade.Value = DateTime.Today;
 
 
             //if (cboTipNaloga.SelectedValue != null && int.TryParse(cboTipNaloga.SelectedValue.ToString(), out int tipNalogaId) && tipNalogaId == 2)
@@ -342,6 +408,21 @@ namespace Saobracaj.Drumski
             //}
 
             VratiPodatke();
+            //if(dtpUtovaraCerade != null)
+            //    dtpUtovaraCerade.Tag = null;
+            //if (dtpUtovaraCeradeNovi != null)
+            //    dtpUtovaraCeradeNovi.Tag = null;
+            //if (dtpIstovaraCeradeNovi != null)
+            //    dtpIstovaraCeradeNovi.Tag = null;
+            //if (dtpRealiUtovaraCerade != null)
+            //    dtpRealiUtovaraCerade.Tag = null;
+            //if (dtpIstovaraCerade != null)
+            //    dtpIstovaraCerade.Tag = null;
+            //if (dtpRealiIstovaraCerade != null)
+            //    dtpRealiIstovaraCerade.Tag = null;
+            if (lOOdobrio > 0)
+                btnPovrdiLO.Visible = false;
+
             var NapomenaPoz = this.Controls.Find("txtNapomenaPoz" + sfx, true).FirstOrDefault() as TextBox;
             if (NapomenaPoz != null)
             {
@@ -379,11 +460,10 @@ namespace Saobracaj.Drumski
             }
             int? tipTransporta = tipoviIn != null && tipoviIn.Contains(2) ? 2 : (int?)null;
             //PodesiVidljivostPoTipuTransporta(tipTransporta);
-
+      
             drumskiNew = true;
             button3.Visible = false;
             button21.Visible = false;
-
         }
 
         public void pronadjiKontrole()
@@ -420,6 +500,8 @@ namespace Saobracaj.Drumski
             txtBrutoK = this.Controls.Find("txtBrutoK" + sfx, true).FirstOrDefault() as NumericUpDown;
             txtNTTOR = this.Controls.Find("txtNTTOR" + sfx, true).FirstOrDefault() as NumericUpDown;
             lblNTTOR = this.Controls.Find("lblNTTOR" + sfx, true).FirstOrDefault() as Label;
+            txtTrosak = this.Controls.Find("txtTrosak" + sfx, true).FirstOrDefault() as NumericUpDown;
+            txtCena = this.Controls.Find("txtCena" + sfx, true).FirstOrDefault() as NumericUpDown;
 
             cboMestoPreuzimanja = this.Controls.Find("cboMestoPreuzimanja" + sfx, true).FirstOrDefault() as ComboBox;
             cboMestoSpustanjaPunog = this.Controls.Find("cboMestoSpustanjaPunog" + sfx, true).FirstOrDefault() as ComboBox;
@@ -441,7 +523,7 @@ namespace Saobracaj.Drumski
             lblPreuzimanjaPraznogKontejneraNovi = this.Controls.Find("lblPreuzimanjaPraznogKontejneraNovi" + sfx, true).FirstOrDefault() as Label;
             dtPreuzimanjaPraznogKontejneraNovi = this.Controls.Find("dtPreuzimanjaPraznogKontejneraNovi" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtPreuzimanjaPraznogKontejnera = this.Controls.Find("dtPreuzimanjaPraznogKontejnera" + sfx, true).FirstOrDefault() as DateTimePicker;
-            dtRealiPreuzimanjaPraznogKont = this.Controls.Find("dtRealiPreuzimanjaPraznogKon" + sfx, true).FirstOrDefault() as DateTimePicker;
+            dtRealiPreuzimanjaPraznogKont = this.Controls.Find("dtRealiPreuzimanjaPraznogKont" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpUtovaraCerade = this.Controls.Find("dtpUtovaraCerade" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpIstovaraCerade = this.Controls.Find("dtpIstovaraCerade" + sfx, true).FirstOrDefault() as DateTimePicker;
             dtpUtovaraCeradeNovi = this.Controls.Find("dtpUtovaraCeradeNovi" + sfx, true).FirstOrDefault() as DateTimePicker;
@@ -588,7 +670,7 @@ namespace Saobracaj.Drumski
             SqlCommand cmd = new SqlCommand("SELECT	rn.ID , ik.ID AS IDNadredjena, " +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  ik.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,(Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru , rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, ik.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
-             "ik.PlaniraniDtPreuzimanja AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(ik.PlaniraniDtPreuzimanja, ik.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.VrstaKontejnera AS TipKontejnera, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              " CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = ik.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
@@ -598,7 +680,8 @@ namespace Saobracaj.Drumski
              " ik.KvalitetKontejnera, ik.Tara, ik.OstalePlombe, ik.MestoPreuzimanja2 as MestoSpustanjaPunog, ik.NetoRobe, ik.PlaniranDtSpustanjaPunog as PlaniraniDtSpustanjaKontejnera, ik.NacinPakovanja, ik.ADR, ik.Vaganje, ik.OpisPosla,'' AS AdresaPreuzimanjaKontejnera,'' AS KontaktPreuzimanjaKontejnera," +
              "ik.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, ik.DtRealizacijePreuzimanjaPraznog as DtRealizacijePreuzimanjaKontejnera,ik.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  ik.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja,ik.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, ik.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera," +
              "ik.MestoUtovaraCerade AS MestoUtovaraCerade,ik.KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString,  ik.PlaniraniDtUtovaraCerade AS DatumUtovaraCerade, ik.MestoIstovaraCerade AS MestoIstovaraCerade,  ik.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade,'' AS KontaktOIstovaraCeradeString,  ik.PlaniraniDtIstovaraCerade AS DatumIstovaraCerade," +
-             "ik.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, ik.DtRealizacijeIstovaraCerade, ik.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade, ik.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi    " +
+             "ik.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, ik.DtRealizacijeIstovaraCerade, ik.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade, ik.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi ," +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner       " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
@@ -613,7 +696,7 @@ namespace Saobracaj.Drumski
              "SELECT	rn.ID , i.ID AS IDNadredjena," +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref,i.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru ,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, i.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
-             "i.PlaniraniDtPreuzimanja AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(i.PlaniraniDtPreuzimanja, i.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2,i.VrstaKontejnera AS TipKontejnera, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
              "CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = i.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
@@ -623,7 +706,8 @@ namespace Saobracaj.Drumski
              "i.KvalitetKontejnera, i.Tara, i.OstalePlombe , i.MestoPreuzimanja2 as MestoSpustanjaPunog, i.NetoRobe, i.PlaniranDtSpustanjaPunog as PlaniraniDtSpustanjaKontejnera, i.NacinPakovanja, i.ADR, i.Vaganje, i.OpisPosla,'' AS AdresaPreuzimanjaKontejnera," +
              "'' AS KontaktPreuzimanjaKontejnera ,i.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, i.DtRealizacijePreuzimanjaPraznog as DtRealizacijePreuzimanjaKontejnera,i.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  i.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja ,i.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, i.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera ," +
              "i.MestoUtovaraCerade AS MestoUtovaraCerade,i.KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString,  i.PlaniraniDtUtovaraCerade AS DatumUtovaraCerade, i.MestoIstovaraCerade AS MestoIstovaraCerade,  i.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade,'' AS KontaktOIstovaraCeradeString,  i.PlaniraniDtIstovaraCerade AS DatumIstovaraCerade," +
-             "i.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, i.DtRealizacijeIstovaraCerade, i.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade , i.DtRealizacijeUtovaraCerade  ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi     " +
+             "i.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, i.DtRealizacijeIstovaraCerade, i.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade , i.DtRealizacijeUtovaraCerade  ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner        " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
@@ -646,7 +730,8 @@ namespace Saobracaj.Drumski
              " rn.NacinPakovanja, uk.ADR, rn.Vaganje,'' AS OpisPosla,'' AS AdresaPreuzimanjaKontejnera,'' AS KontaktPreuzimanjaKontejnera ," +
              "rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera," +
              "rn.MestoUtovaraCerade ,0 AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,0 AS KontaktOIstovaraCerade, rn.KontaktOsobaIstovaraCerade  AS KontaktOIstovaraCeradeString, " +
-             " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade, rn.DtRealizacijeUtovaraCerade,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade  , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi          " +
+             " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade, rn.DtRealizacijeUtovaraCerade,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade  , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner              " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -673,7 +758,8 @@ namespace Saobracaj.Drumski
              " '' AS Korisnik, 0 AS KvalitetKontejnera, u.TaraKontejnera AS Tara  , '' AS OstalePlombe , ''  MestoSpustanjaPunog, 0 AS NetoRobe, rn.DtNoviSpustanja as PlaniraniDtSpustanjaKontejnera, rn.NacinPakovanja, u.ADR ,rn.Vaganje,'' OpisPosla,'' AS AdresaPreuzimanjaKontejnera," +
              "'' AS KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera  ," +
             "rn.MestoUtovaraCerade ,0 AS KontaktOUtovaraCerade,'' AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,rn.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, '' AS KontaktOIstovaraCeradeString," +
-            " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi         " +
+            " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
+            "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner            " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -699,7 +785,8 @@ namespace Saobracaj.Drumski
              " ko.Korisnik, rn.KvalitetKontejnera , rn.Tara, rn.OstalePlombe, rn.MestoSpustanjaPunog, rn.NetoRobe , rn.DtNoviSpustanja as PlaniraniDtSpustanjaKontejnera, rn.NacinPakovanja , rn.ADR, rn.Vaganje,rn.OpisPosla AS OpisPosla,rn.AdresaPreuzimanjaKontejnera, " +
              "rn.KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera ," +
              "rn.MestoUtovaraCerade , 0 AS KontaktOUtovaraCerade,rn.KontaktOsobaUtovaraCerade  AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,0 AS KontaktOIstovaraCerade,rn.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCeradeString, " +
-             " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade , rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi       " +
+             " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade , rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner      " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
               "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
@@ -737,9 +824,10 @@ namespace Saobracaj.Drumski
 
                 PopuniCombo("cboMestoUtovaraCerade", sfx, dr["MestoUtovaraCerade"]);
                 PopuniCombo("cboMestoIstovaraCerade", sfx, dr["MestoIstovaraCerade"]);
+                lOOdobrio = Convert.ToInt32(dr["OdobrioPlaner"].ToString()); 
 
-               
-                if(cboMestoUtovaraCerade != null && cboMestoIstovaraCerade != null)
+
+                if (cboMestoUtovaraCerade != null && cboMestoIstovaraCerade != null)
                 {
                     if (Uvoz == 3) // samo za interni nalog popunjavamo adresu u posebno polje
                     {
@@ -1867,9 +1955,16 @@ namespace Saobracaj.Drumski
             if (dtp != null)
             {
                 if (vrednost != DBNull.Value && vrednost != null)
+                {
                     dtp.Value = Convert.ToDateTime(vrednost);
+                     dtp.Tag = null;
+                }
                 else
-                    dtp.Value = DateTime.Now; // Ili neki default datum koji vam odgovara
+                {
+                   // dtp.Value = dtp.MinDate;// Ili neki default datum koji odgovara
+                    dtp.Value =  DateTime.Today.AddDays(-5);
+                    dtp.Tag = null;
+                }
             }
         }
         private void PopuniCheck(string ime, string sufiks, object vrednost)
@@ -2395,7 +2490,7 @@ namespace Saobracaj.Drumski
                 //    dtPreuzimanjaPraznogKont, granicniPrelaz, trosak, valutaID,  statusID, dodatniOpis, cena, kontaktOsobaistovara, PDV, tipTransportaID, brojVoza, bttoKontejnera, bttoRobe, brojKontejnera, 
                 //    bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt, zaposleniID,
                 //    vrstaKontejnera, dodatniTrosak, brojPosiljke);
-
+                id = noviID;
                 foreach (var stavka in privremenaListaNHM)
                 {
                     ins.InsRadniNalogDrumskiNHM(noviID, stavka.IDNHM);
@@ -2466,7 +2561,8 @@ namespace Saobracaj.Drumski
                        mestoPreuzimanja, adresaPreuzimanja, kontaktPreuzimanja, dtPreuzimanjaPraznog, dtRealizacijePreuzimanjaPraznogKont, dtPreuzimanjePraznogKNovi,
                        mestoSpustanja, dtSpustanja, dtRealizacijeSpustanja, dtSpustanjePunogNovi, mestoUtovara, datumUtovara, dtUtovaraKNovi, dtRealiUtovara, adresaUtovara, kontaktNaUtovaru,
                        granicniPrelaz, kontaktOsobaistovara,
-                       brojVoza, brodskaTeretnica, brojPosiljke, zaposleniID, opisPosla, adresaUtovaraCerade, adresaIstovaraCerade, kontaktUtovaraCerade, kontaktIstovaraCerade, NoviSpediterP, NoviSpediterO);
+                       brojVoza, brodskaTeretnica, brojPosiljke, zaposleniID, opisPosla, dtUtovaraCerade, dtUtovaraCeradeNovi, dtIstovaraCerade, dtIstovaraCeradeNovi,
+                       adresaUtovaraCerade, adresaIstovaraCerade, kontaktUtovaraCerade, kontaktIstovaraCerade, NoviSpediterP, NoviSpediterO);
                 }
                 else if(Uvoz == 0)
                 {
@@ -2964,6 +3060,7 @@ namespace Saobracaj.Drumski
             int temp = PostaviVrednostZaposleni();
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
+            MessageBox.Show("Nalog je uspešno potvrđen.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void PostaviTag(object vrednostIzBaze, Control kontrola)
@@ -2983,14 +3080,208 @@ namespace Saobracaj.Drumski
 
         private void dptDatum_ValueChanged(object sender, EventArgs e)
         {
-            DateTimePicker dtp = (DateTimePicker)sender;
+           DateTimePicker dtp = (DateTimePicker)sender;
             dtp.Tag = "IZMENJEN";
+
+            if (povezaniDatumi.TryGetValue(dtp, out DateTimePicker novi))
+            {
+                if (novi.Value.Date < dtp.Value.Date)
+                {
+                    novi.Value = dtp.Value.Date;
+                }
+            }
         }
 
         private void cboMestoPreuzimanjaI1_Leave(object sender, EventArgs e)
         {
             PopuniAdresu(cboMestoPreuzimanja, cboAdresaPreuzimanja);
             PopuniKontaktOsobu(cboMestoPreuzimanja, cbokontaktPreuzimanjaI1);
+        }
+
+        private void cbo_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (cb != null)
+            {
+                // Ako je lista otvorena (bilo klikom na strelicu ili preko Alt+Down)
+                if (cb.DroppedDown)
+                {
+                    // Zatvaramo veliki padajući meni da bi SuggestAppend mogao normalno da radi
+                    cb.DroppedDown = false;
+
+                    // VAŽNO: Kada WinForms zatvori DroppedDown, često resetuje kursor na početak teksta.
+                    // Zato ručno pomeramo kursor na kraj teksta kako bi korisnik nastavio da kuca normalno.
+                    cb.SelectionStart = cb.Text.Length;
+                }
+            }
+        }
+
+        //private void Numeric_Enter(object sender, EventArgs e)
+        //{
+        //    if (sender is NumericUpDown nud)
+        //    {
+        //        // 1. Zapamti trenutnu vrednost
+        //        nud.Tag = nud.Value;
+
+        //        // 2. Sakrij tekst tako što ćeš mu dati istu boju kao što je pozadina (npr. bela)
+        //        // Korisnik sada vidi potpuno prazno, belo polje
+        //        nud.ForeColor = nud.BackColor;
+
+        //        // 3. Pozicioniraj kursor na početak i selektuj sve, 
+        //        // tako da čim korisnik počne da kuca, ForeColor se vrati na crnu
+        //        BeginInvoke((MethodInvoker)delegate
+        //        {
+        //            nud.Select(0, nud.Text.Length);
+        //        });
+        //    }
+        //}
+
+        //private void Numeric_Leave(object sender, EventArgs e)
+        //{
+        //    if (sender is NumericUpDown nud)
+        //    {
+        //        // Kada korisnik izađe, obavezno vraćamo normalnu boju teksta (npr. crnu)
+        //        nud.ForeColor = Color.Black; // ili Color.Black
+
+        //        // Ako je korisnik ručno obrisao sve (BackSpace-om) i ostavio prazno
+        //        if (string.IsNullOrWhiteSpace(nud.Text))
+        //        {
+        //            if (nud.Tag is decimal staraVrednost)
+        //            {
+        //                nud.Value = staraVrednost;
+        //            }
+        //        }
+        //    }
+        //}
+
+        private void Numeric_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // sacuvaj staru vrednost
+            num.Tag = num.Value;
+
+            // oznaci da jos nije menjano
+            num.AccessibleDescription = "nijeMenjano";
+
+            BeginInvoke(new Action(() =>
+            {
+                num.Select(0, num.Text.Length);
+            }));
+        }
+
+        private void Numeric_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // korisnik je poceo unos
+            num.AccessibleDescription = "menjano";
+        }
+
+        private void Numeric_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            // ako nije menjano vrati staru vrednost
+            if (num.AccessibleDescription == "nijeMenjano")
+            {
+                num.Value = (decimal)num.Tag;
+            }
+        }
+
+        private void PoveziDatume(DateTimePicker referentni, DateTimePicker novi)
+        {
+            if (referentni == null || novi == null)
+                return;
+
+            povezaniDatumi[referentni] = novi;
+        }
+
+        //private void Datum_ValueChanged(object sender, EventArgs e)
+        //{
+        //    DateTimePicker novi = (DateTimePicker)sender;
+
+        //    if (novi.Tag is DateTimePicker stari)
+        //    {
+        //        if (novi.Value.Date < stari.Value.Date)
+        //        {
+        //            novi.Value = stari.Value.Date;
+        //        }
+        //    }
+        //}
+
+        private void frmDrumski1_Load(object sender, EventArgs e)
+        {
+            if (dtPreuzimanjaPraznogKontejnera != null && dtPreuzimanjaPraznogKontejneraNovi != null)
+                PoveziDatume(dtPreuzimanjaPraznogKontejnera, dtPreuzimanjaPraznogKontejneraNovi);
+            if (dtpSpustanjePunog != null && dtpSpustanjePunogNovi != null)
+                PoveziDatume(dtpSpustanjePunog, dtpSpustanjePunogNovi);
+            if (dtpUtovara != null && dtpUtovaraNovi != null)
+                PoveziDatume(dtpUtovara, dtpUtovaraNovi);
+            if (dtpUtovaraCerade != null && dtpUtovaraCeradeNovi != null)
+                PoveziDatume(dtpUtovaraCerade, dtpUtovaraCeradeNovi);
+            if (dtpIstovaraCerade != null && dtpIstovaraCeradeNovi != null)
+                PoveziDatume(dtpIstovaraCerade, dtpIstovaraCeradeNovi);
+
+
+            if (txtTaraK != null)
+                PoveziNumeric(txtTaraK);
+            if (txtBrutoK != null)
+                PoveziNumeric(txtBrutoK);
+            if (txtNTTOR != null)
+                PoveziNumeric(txtNTTOR);
+            if (txtTrosak != null)
+                PoveziNumeric(txtTrosak);
+            if (txtCena != null)
+                PoveziNumeric(txtCena);
+        }
+
+        private void PoveziNumeric(NumericUpDown num)
+        {
+            num.Enter += Numeric1_Enter;
+            num.Leave += Numeric1_Leave;
+            num.ValueChanged += Numeric1_ValueChanged;
+        }
+        private void Numeric1_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            staraVrednost = num.Value;
+            promenjenaVrednost = false;
+
+            BeginInvoke(new Action(() =>
+            {
+                TextBox tb = num.Controls[1] as TextBox;
+
+                if (tb != null)
+                {
+                    tb.Clear();
+                }
+            }));
+        }
+
+        private void Numeric1_ValueChanged(object sender, EventArgs e)
+        {
+            promenjenaVrednost = true;
+        }
+
+        private void Numeric1_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            TextBox tb = num.Controls[1] as TextBox;
+
+            // ako nije promenjena vrednost vrati staru
+            if (!promenjenaVrednost)
+            {
+                num.Value = staraVrednost;
+            }
+
+            // osvezi prikaz teksta
+            if (tb != null)
+            {
+                tb.Text = num.Value.ToString();
+            }
         }
     }
 }

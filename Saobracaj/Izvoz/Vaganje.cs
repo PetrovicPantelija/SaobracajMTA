@@ -230,7 +230,8 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik, IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
+            
+            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID,  IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -371,7 +372,7 @@ namespace Saobracaj.Izvoz
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz, Vaganje.Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
+                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Vaganje.Bruto as Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz, Vaganje.Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
                  " where Vaganje.ID = " + ID, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();

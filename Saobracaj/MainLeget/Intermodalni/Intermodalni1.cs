@@ -26,8 +26,17 @@ namespace Saobracaj.MainLeget.Intermodalni
 
             main.OtvoriFormuSaPravom(
                 btnIntermodalni11.Text,
-                () => new frmRadniNalogInterniPregled(Korisnik)
-            );
+                () => new IntermodalniKomN());
+        }
+
+        private void btnIntermodalni13_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnIntermodalni13.Text,
+                () => new VozniPlanovi());
         }
     }
 }

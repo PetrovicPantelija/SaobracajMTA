@@ -2,6 +2,7 @@
 using Saobracaj.Dokumenta;
 using Saobracaj.Izvoz;
 using Saobracaj.RadniNalozi;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
@@ -39,7 +40,7 @@ namespace Saobracaj.Kapija
                "  where Uradjen not in (1, 2)";
             */
           
-                select = "     select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
+                select = " select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, " +
 "  CASE Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS Drumski,   " +
@@ -67,7 +68,7 @@ namespace Saobracaj.Kapija
  "       inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
  "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
  "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
- "        where Kalmar = 1"; ;
+ "        where Kalmar = 1 and KapijaIzlaz = 0"; ;
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -143,6 +144,17 @@ namespace Saobracaj.Kapija
             if (gridGroupingControl2.Table.CurrentRecord != null)
             {
                 txtID.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("KomNalogID").ToString();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string Kor = Sifarnici.frmLogovanje.user;
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
+                ir.PromeniStatusKapijaOdlazak(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
+
             }
         }
     }

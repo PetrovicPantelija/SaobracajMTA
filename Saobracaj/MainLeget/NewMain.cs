@@ -554,7 +554,7 @@ namespace Saobracaj
 
             _karticaStack.Clear();
 
-            ShowChild(new Pretovari1(), true, true);
+            ShowChild(new PretovariMain(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "Pretovari";
 
@@ -1112,9 +1112,9 @@ namespace Saobracaj
 
             _karticaStack.Clear();
 
-            ShowChild(new frmDepoCnt1(), true, true);
+            ShowChild(new DepoMain(), true, true);
             splitContainer3.Panel2.Show();
-            lblNaslov.Text = "Depo cnt";
+            lblNaslov.Text = "Depo";
             BackColorKliknut(14);
       
         }

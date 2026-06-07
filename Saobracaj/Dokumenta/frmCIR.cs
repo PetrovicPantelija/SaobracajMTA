@@ -843,7 +843,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
 
-            VratiPodatkeCIR(Convert.ToInt32(txtDokument.Text));
+            VratiPodatkeCIR(Convert.ToInt32(txtSifra.Text));
         }
 
         private void VratiPodatkeCIR(int dokument)
@@ -854,6 +854,7 @@ namespace Saobracaj.Dokumenta
             con.Open();
 
             string upit = "";
+            /*
             if (chkPrijem.Checked == true)
             {
                 upit = " select  CIR.[ID]      ,CIR.[Size]      ,CIR.[TiKontejnera] " +
@@ -866,7 +867,7 @@ namespace Saobracaj.Dokumenta
              " ,CIR.[Delivery]      ,CIR.[Datum]      ,CIR.[Korisnik] " +
              " ,CIR.[Prijem]      ,CIR.[Dokument]	  ,CIR.Duzina " +
              " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2 , CIR.Interni     from CIR " +
-             " where CIR.[Dokument] = " + dokument + "and Prijem = 1 Order by ID desc";
+             " where CIR.[ID] = " + dokument + "and Prijem = 1 Order by ID desc";
             }
             else
             {
@@ -880,9 +881,21 @@ namespace Saobracaj.Dokumenta
            " ,CIR.[Delivery]      ,CIR.[Datum]      ,CIR.[Korisnik] " +
            " ,CIR.[Prijem]      ,CIR.[Dokument]	  ,CIR.Duzina " +
            " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2, CIR.Interni      from CIR " +
-           " where CIR.[Dokument] = " + dokument + "and Prijem = 0 Order by ID desc";
+           " where CIR.[ID] = " + dokument + "and Prijem = 0 Order by ID desc";
             }
+            */
 
+            upit = " select  CIR.[ID]      ,CIR.[Size]      ,CIR.[TiKontejnera] " +
+            " ,CIR.[MaterijalCelik]      ,CIR.[MaterijalAlumini]      ,CIR.[incoming] " +
+            " ,CIR.[Pun]      ,CIR.[Tezina]      ,CIR.[BrKontejnera] " +
+            " ,CIR.[Plomba1]      ,CIR.[Plomba2]      ,CIR.[DatumIn] " +
+            " ,CIR.[Vagon]      ,CIR.[TruckNo]      ,CIR.[Damaged] " +
+            " ,CIR.[Ispravan]      ,CIR.[Prevoz]      ,CIR.[Containerresponsible] " +
+            " ,CIR.[primedbe]      ,CIR.[Received]      ,CIR.[Inspected] " +
+            " ,CIR.[Delivery]      ,CIR.[Datum]      ,CIR.[Korisnik] " +
+            " ,CIR.[Prijem]      ,CIR.[Dokument]	  ,CIR.Duzina " +
+            " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2 , CIR.Interni     from CIR " +
+            " where CIR.[ID] = " + dokument + " Order by ID desc";
             SqlCommand cmd = new SqlCommand(upit, con);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows == true)
@@ -1414,6 +1427,11 @@ namespace Saobracaj.Dokumenta
         {
             Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtDokument.Text, 3);
             ds.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            VratiPodatkeCIR(Convert.ToInt32(txtSifra.Text));
         }
     }
     }
