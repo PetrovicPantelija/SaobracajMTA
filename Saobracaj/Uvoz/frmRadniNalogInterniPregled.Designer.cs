@@ -59,9 +59,9 @@ namespace Saobracaj.Uvoz
             this.label43 = new System.Windows.Forms.Label();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -103,9 +103,9 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.SuspendLayout();
             this.tabSplitterContainer1.SuspendLayout();
             this.tabSplitterPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
-            this.tabSplitterPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
+            this.tabSplitterPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -406,7 +406,7 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1145, 717);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1146, 717);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.tabSplitterContainer1.SplitterPosition = 582;
             this.tabSplitterContainer1.TabIndex = 10;
@@ -420,9 +420,55 @@ namespace Saobracaj.Uvoz
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1145, 582);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1146, 582);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
+            // 
+            // gridGroupingControl2
+            // 
+            this.gridGroupingControl2.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl2.ApplyVisualStyles = false;
+            this.gridGroupingControl2.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl2.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl2.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl2.Location = new System.Drawing.Point(4, 25);
+            this.gridGroupingControl2.Name = "gridGroupingControl2";
+            this.gridGroupingControl2.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1139, 545);
+            this.gridGroupingControl2.TabIndex = 237;
+            this.gridGroupingControl2.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl2.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl2.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl2.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl2.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl2.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl2.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl2.Text = "gridGroupingControl2";
+            this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl2.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl2_TableControlCellClick);
+            this.gridGroupingControl2.SelectedRecordsChanged += new Syncfusion.Grouping.SelectedRecordsChangedEventHandler(this.gridGroupingControl2_SelectedRecordsChanged);
+            // 
+            // tabSplitterPage2
+            // 
+            this.tabSplitterPage2.AutoScroll = true;
+            this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
+            this.tabSplitterPage2.Hide = false;
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 602);
+            this.tabSplitterPage2.Name = "tabSplitterPage2";
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1146, 115);
+            this.tabSplitterPage2.TabIndex = 2;
+            this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
             // gridGroupingControl1
             // 
@@ -443,7 +489,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1139, 108);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1140, 108);
             this.gridGroupingControl1.TabIndex = 236;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.FrozenColumn = "3";
@@ -458,51 +504,6 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
-            // 
-            // tabSplitterPage2
-            // 
-            this.tabSplitterPage2.AutoScroll = true;
-            this.tabSplitterPage2.Controls.Add(this.gridGroupingControl1);
-            this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 602);
-            this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1145, 115);
-            this.tabSplitterPage2.TabIndex = 2;
-            this.tabSplitterPage2.Text = "KONTEJNERI";
-            // 
-            // gridGroupingControl2
-            // 
-            this.gridGroupingControl2.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridGroupingControl2.ApplyVisualStyles = false;
-            this.gridGroupingControl2.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl2.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridGroupingControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl2.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl2.Location = new System.Drawing.Point(3, 30);
-            this.gridGroupingControl2.Name = "gridGroupingControl2";
-            this.gridGroupingControl2.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
-            this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
-            this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
-            this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1138, 545);
-            this.gridGroupingControl2.TabIndex = 237;
-            this.gridGroupingControl2.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl2.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl2.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl2.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl2.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            this.gridGroupingControl2.TableOptions.SelectionTextColor = System.Drawing.Color.White;
-            this.gridGroupingControl2.Text = "gridGroupingControl2";
-            this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
-            this.gridGroupingControl2.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl2_TableControlCellClick);
             // 
             // commandBarController1
             // 
@@ -928,9 +929,9 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.PerformLayout();
             this.tabSplitterContainer1.ResumeLayout(false);
             this.tabSplitterPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
-            this.tabSplitterPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
+            this.tabSplitterPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
