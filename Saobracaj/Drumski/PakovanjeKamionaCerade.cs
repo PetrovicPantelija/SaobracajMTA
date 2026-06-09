@@ -812,7 +812,7 @@ namespace Saobracaj.Drumski
                                        WHEN ik.Scenario in  (8,24,9,25) THEN IIF(ik.PlaniranDtUtovaraCerade > '1900-01-01', ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
                                      END
                                      ) RelevantniDatum,
-                                     rn.DtPreuzimanjaPraznogKontejnera,
+                                     IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera) AS DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                     rn.TipTransporta,
                                      (
@@ -849,7 +849,7 @@ namespace Saobracaj.Drumski
                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade, rn.DtUtovaraCerade)
                                      END
                                      ) RelevantniDatum,
-                                     rn.DtPreuzimanjaPraznogKontejnera,
+                                     IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera) AS DtPreuzimanjaPraznogKontejnera,
                                      rn.ID,
                                     rn.TipTransporta,
                                      (
@@ -886,7 +886,7 @@ namespace Saobracaj.Drumski
                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade, rn.DtUtovaraCerade)
                                      END
                                      ) RelevantniDatum,
-                                     rn.DtPreuzimanjaPraznogKontejnera,
+                                     IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera) AS DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                     rn.TipTransporta,
                                      (
@@ -923,7 +923,7 @@ namespace Saobracaj.Drumski
                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade, rn.DtUtovaraCerade)
                                      END
                                      ) RelevantniDatum,
-                                     rn.DtPreuzimanjaPraznogKontejnera,
+                                     IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera) AS DtPreuzimanjaPraznogKontejnera,
                                      rn.ID ,
                                     rn.TipTransporta,
                                      (
@@ -2003,7 +2003,7 @@ namespace Saobracaj.Drumski
 
 
         
-        Drumski.frmDrumski1 part = new frmDrumski1(tipoviIn: new List<int> { 1 }, tipoviNotIn: null, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga, DaLiJeCarinskiPostupak);
+        Drumski.frmDrumski1 part = new frmDrumski1(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "NOVINALOG", null, IzborADR, DaLiJeUvoz, TipNaloga, DaLiJeCarinskiPostupak);
         part.FormClosed += (s, args) =>
             {
                 RefreshDataGrid2();

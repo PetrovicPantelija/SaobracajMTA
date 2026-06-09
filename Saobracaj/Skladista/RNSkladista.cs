@@ -746,5 +746,15 @@ namespace Saobracaj.Skladista
                 }
             }
         }
+
+        private void btnPrijemnica_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStorno_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

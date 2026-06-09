@@ -361,6 +361,7 @@
             this.btnStorno.TabIndex = 10;
             this.btnStorno.Text = "STORNO";
             this.btnStorno.UseVisualStyleBackColor = false;
+            this.btnStorno.Click += new System.EventHandler(this.btnStorno_Click);
             // 
             // btnIspravka
             // 
@@ -406,6 +407,7 @@
             this.btnPrijemnica.TabIndex = 10;
             this.btnPrijemnica.Text = "IDI NA PRIJEMNICU";
             this.btnPrijemnica.UseVisualStyleBackColor = false;
+            this.btnPrijemnica.Click += new System.EventHandler(this.btnPrijemnica_Click);
             // 
             // panelPrijem1
             // 
@@ -1188,7 +1190,7 @@
             this.panel5.Controls.Add(this.label45);
             this.panel5.Controls.Add(this.label46);
             this.panel5.Enabled = false;
-            this.panel5.Location = new System.Drawing.Point(43, 22);
+            this.panel5.Location = new System.Drawing.Point(424, 25);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(441, 419);
             this.panel5.TabIndex = 14;

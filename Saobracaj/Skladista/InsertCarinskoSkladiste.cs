@@ -1045,7 +1045,8 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
         }
 
 
-        public void InsertPrijemnicaCarinska(string Kreirao,int RN,int? CarinskiPostupak,string SmestajniDokument,string Rok,int? Posiljalac,string Faktura,string CRM,string Status)
+
+        public void InsertPrijemnicaCarinska(string Kreirao, int RN, int? CarinskiPostupak, string SmestajniDokument, string Rok, int? Posiljalac, string Faktura, string CRM, string Status)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1066,7 +1067,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             rn.Value = RN;
             cmd.Parameters.Add(rn);
 
-            SqlParameter postupak=new SqlParameter();
+            SqlParameter postupak = new SqlParameter();
             postupak.ParameterName = "@CarinskiPostupak";
             postupak.SqlDbType = SqlDbType.Int;
             postupak.Direction = ParameterDirection.Input;
@@ -1107,7 +1108,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             crm.Value = CRM;
             cmd.Parameters.Add(crm);
 
-            SqlParameter status= new SqlParameter();
+            SqlParameter status = new SqlParameter();
             status.ParameterName = "@Status";
             status.SqlDbType = SqlDbType.NVarChar;
             status.Direction = ParameterDirection.Input;
@@ -1149,7 +1150,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
 
-        public void UpdatePrijemnicaCarinska(string Kreirao, int ID,int RN, int? CarinskiPostupak, string SmestajniDokument, string Rok, int? Posiljalac, string Faktura, string CRM, string Status,int Proces)
+        public void UpdatePrijemnicaCarinska(string Kreirao, int ID, int RN, int? CarinskiPostupak, string SmestajniDokument, string Rok, int? Posiljalac, string Faktura, string CRM, string Status, int Proces)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1267,8 +1268,8 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
 
-        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena,int RB,int NHM,string Naziv,string Naimenovanje,string JM,decimal Koleta,decimal Bruto,decimal Vrednost,
-            string Valuta,string Pozicija,int Paleta,int VrstaPaleta,int PDV,int Carina,decimal Neto,string Napomena)
+        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena, int RB, int NHM, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
+            string Valuta, string Pozicija, int Paleta, int VrstaPaleta, int PDV, int Carina, decimal Neto, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1340,7 +1341,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             vrednost.Value = Vrednost;
             cmd.Parameters.Add(vrednost);
 
-            SqlParameter bruto= new SqlParameter();
+            SqlParameter bruto = new SqlParameter();
             bruto.ParameterName = "@Bruto";
             bruto.DbType = DbType.Decimal;
             bruto.Direction = ParameterDirection.Input;
@@ -1371,7 +1372,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
 
 
             SqlParameter naziv = new SqlParameter();
-            naziv.ParameterName= "@Naziv";
+            naziv.ParameterName = "@Naziv";
             naziv.SqlDbType = SqlDbType.NVarChar;
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
@@ -1434,8 +1435,8 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
 
-        public void InsertNalogRukovalac(int ID,int Prijemnica,int Rukovalac,string Pozicija,decimal Koleta,int Paleta,int PaletaTip,decimal Bruto,int DodatneUsluge,string Napomena,
-            string Vozilo,int Postupak,string Izdao)
+        public void InsertNalogRukovalac(int ID, int Prijemnica, int Rukovalac, string Pozicija, decimal Koleta, int Paleta, int PaletaTip, decimal Bruto, int DodatneUsluge, string Napomena,
+            string Vozilo, int Postupak, string Izdao)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1450,7 +1451,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             cmd.Parameters.Add(izdao);
 
             SqlParameter postupak = new SqlParameter();
-                        postupak.ParameterName = "@Postupak";
+            postupak.ParameterName = "@Postupak";
             postupak.SqlDbType = SqlDbType.Int;
             postupak.Direction = ParameterDirection.Input;
             postupak.Value = Postupak;
@@ -1531,7 +1532,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             cmd.Parameters.Add(prijemnica);
 
             SqlParameter id = new SqlParameter();
-            id.ParameterName= "@ID";
+            id.ParameterName = "@ID";
             id.SqlDbType = SqlDbType.Int;
             id.Direction = ParameterDirection.Input;
             id.Value = ID;

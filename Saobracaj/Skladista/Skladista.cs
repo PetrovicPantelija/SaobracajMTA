@@ -40,5 +40,30 @@ namespace Saobracaj.Skladista
                 () => new MainRN(Korisnik)
             );
         }
+
+        private void btnFakturisanje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPozicija_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOstalaSkladista_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKomerijalnoSkladiste_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

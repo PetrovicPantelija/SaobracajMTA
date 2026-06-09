@@ -1387,9 +1387,9 @@
             this.panel6.Controls.Add(this.txtNhm);
             this.panel6.Controls.Add(this.label48);
             this.panel6.Controls.Add(this.label47);
-            this.panel6.Location = new System.Drawing.Point(415, 59);
+            this.panel6.Location = new System.Drawing.Point(1248, 56);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(760, 360);
+            this.panel6.Size = new System.Drawing.Size(104, 62);
             this.panel6.TabIndex = 476;
             // 
             // btnNHMNazad
@@ -1423,7 +1423,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 62);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(754, 295);
+            this.dataGridView1.Size = new System.Drawing.Size(98, 0);
             this.dataGridView1.TabIndex = 12;
             // 
             // txtNhmNaziv
@@ -1473,7 +1473,7 @@
             this.panel7.Controls.Add(this.label49);
             this.panel7.Location = new System.Drawing.Point(110, 219);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(506, 211);
+            this.panel7.Size = new System.Drawing.Size(525, 214);
             this.panel7.TabIndex = 477;
             // 
             // cboRukovalac
