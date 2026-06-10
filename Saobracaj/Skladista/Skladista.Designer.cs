@@ -51,6 +51,7 @@
             this.label2.Size = new System.Drawing.Size(159, 39);
             this.label2.TabIndex = 500;
             this.label2.Text = "Skladišta";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnCarinskoSkladiste
             // 
@@ -92,7 +93,7 @@
             this.btnKomerijalnoSkladiste.Text = "Komercijalno skladište";
             this.btnKomerijalnoSkladiste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnKomerijalnoSkladiste.UseVisualStyleBackColor = false;
-            //this.btnKomerijalnoSkladiste.Click += new System.EventHandler(this.btnKomerijalnoSkladiste_Click);
+            this.btnKomerijalnoSkladiste.Click += new System.EventHandler(this.btnKomerijalnoSkladiste_Click);
             // 
             // btnRadniNalozi
             // 
@@ -138,7 +139,7 @@
             this.btnFakturisanje.Text = "Fakturisanje";
             this.btnFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFakturisanje.UseVisualStyleBackColor = false;
-            //this.btnFakturisanje.Click += new System.EventHandler(this.btnFakturisanje_Click);
+            this.btnFakturisanje.Click += new System.EventHandler(this.btnFakturisanje_Click);
             // 
             // btnOstalaSkladista
             // 
@@ -159,6 +160,7 @@
             this.btnOstalaSkladista.Text = "Ostala skladišta";
             this.btnOstalaSkladista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOstalaSkladista.UseVisualStyleBackColor = false;
+            this.btnOstalaSkladista.Click += new System.EventHandler(this.btnOstalaSkladista_Click);
             // 
             // btnPozicija
             // 
@@ -179,6 +181,7 @@
             this.btnPozicija.Text = "Definisanje/predefinisanje pozicija";
             this.btnPozicija.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPozicija.UseVisualStyleBackColor = false;
+            this.btnPozicija.Click += new System.EventHandler(this.btnPozicija_Click);
             // 
             // Skladista
             // 
