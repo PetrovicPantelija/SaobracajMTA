@@ -24,6 +24,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 {
     public partial class frmPlatforma : Form
     {
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         public frmPlatforma()
         {
             InitializeComponent();
@@ -89,7 +90,22 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 
         private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {
+            try
+            {
 
+
+                // ČISTO REŠENJE: Sinhronizacija i čišćenje selekcije
+                if (gridGroupingControl2.Table.CurrentRecord != null)
+                {
+                    // 1. Prvo čistimo sve stare redove da se ne bi gomilali u memoriji!
+                    gridGroupingControl2.Table.SelectedRecords.Clear();
+
+                    // 2. Dodajemo isključivo i samo ovaj trenutno kliknuti red
+                    gridGroupingControl2.Table.SelectedRecords.Add(gridGroupingControl2.Table.CurrentRecord);
+                }
+
+            }
+            catch (Exception ex) { }
         }
         int VratiPrijemnicu(int KomNalID)
         {
@@ -118,13 +134,14 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
                 ir.UpdRNPrijemPlatformeKamPusti(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
-
+                int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                UpisiLog(uslugaID, "KALMARISTA");
             }
         }
 
         private void frmPlatforma_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -158,8 +175,127 @@ if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
                 InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
                 ir.PromeniStatusKapija(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
 
+                int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                UpisiLog(uslugaID, "POTVRDI");
             }
         }
+
+        private void UpisiLog(int uslugaidID, string mestoPoziva)
+        {
+
+            InsertIzvoz ink = new InsertIzvoz();
+
+     
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(uslugaidID);
+            // ink.InsertKontejnerLog(Convert.ToInt32(textBox1.Text), poruka1, vreme1, lokacija, tKorisnik);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            int scenario = Convert.ToInt32(dtPodaci.Rows[0]["Scenario"].ToString());
+            switch (scenario)
+            {
+                
+                case 13: // GRUPA I
+                case 26: // Scenario I-L
+                    string poruka1 = "Kamion je na kapiji";
+                    string poruka2 = "Izvršen je pregled kontejnera";
+                    string poruka3 = "Potvrđeno je spuštanje punog kontejnera";
+
+                    DateTime? vreme1 = null;
+                    DateTime? vreme2 = null;
+                    DateTime? vreme3 = null;
+                    string lokacija = string.Empty;
+
+                    int kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["ID"].ToString());
+
+                    // Čitanje lokacije
+                    if (dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    {
+                        lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                    }
+                    
+                    
+                    // Datum dolaska kamiona na kapiju
+                    if (dtPodaci.Rows[0]["DatumDolaska"] != DBNull.Value)
+                    {
+                        vreme1 = Convert.ToDateTime(dtPodaci.Rows[0]["DatumDolaska"]);
+                    }
+
+                    if (dtPodaci.Rows[0]["VizuelniDatumReal"] != DBNull.Value)
+                    {
+                        vreme2 = Convert.ToDateTime(dtPodaci.Rows[0]["VizuelniDatumReal"]);
+                    }
+                    if (dtPodaci.Rows[0]["DatumRealizacije"] != DBNull.Value)
+                    {
+                        vreme3 = Convert.ToDateTime(dtPodaci.Rows[0]["DatumRealizacije"]);
+                    }
+                    
+                    if (mestoPoziva == "POTVRDI")
+                    {
+                        ink.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+                        ink.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
+                    }
+                    else if (mestoPoziva == "KALMARISTA")
+                    {
+                        ink.InsertKontejnerLog(kontejnerID, poruka3, vreme3, lokacija, tKorisnik);
+                    }
+                break;
+                    
+            
+            }
+            
+
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int? kontejnerID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, Scenario,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        ka.DatumDolaska, rnpf.VizuelniDatumReal, rnpf.DatumRealizacije
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN RadniNalogInterni rni on rni.BrojOsnov =  i.ID
+							 LEFT JOIN Kapija ka on ka.NalogID =  rni.ID
+							 LEFT JOIN RNPrijemPlatforme rnpf on rnpf.NalogID = rni.ID
+                        WHERE rni.ID = " + kontejnerID;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

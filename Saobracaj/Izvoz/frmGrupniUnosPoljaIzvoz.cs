@@ -15,6 +15,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -2975,7 +2976,7 @@ namespace Saobracaj.Izvoz
         private int ProveriCarinsko( PodaciIzvoza p)
         {
             int uspesno = 1;
-            if (p.CarinskiPostupakUnutrasnji == null || p.CarinskiPostupakUnutrasnji < 1)
+            if (p.CarinskiPostupakUnutrasnji == null )
             {   
                 uspesno = 0;
             }
@@ -3201,7 +3202,7 @@ namespace Saobracaj.Izvoz
 
 
                 ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(40));
-
+                upisiLogKontejnera(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
                 // }
             }
@@ -3217,20 +3218,144 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void upisiLogKontejnera()
+        private void upisiLogKontejnera(int ID)
         {
+            string poruka = "";
+            DateTime? datum = null;
+            InsertIzvoz ins = new InsertIzvoz();
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(ID);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
             switch (scenarioID)
             {
                 // GRUPA I
-                case 13: // Scenario I
-                         // Podesi šta treba za čist I
-            
+                case 13: 
+                    foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    {
+
+                        string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+                        string poruka2 = "Novo očekivano vreme spuštanja punog kontejnera";
+
+                        DateTime? vreme1 = null;
+                        DateTime? vreme2 = null;
+                        string lokacija = string.Empty;
+
+                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                        // Čitanje lokacije
+                        if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                        }
+
+                        // Čitanje novog vremena (SpustanjePunogNoviPlaniraniDt)
+                        if (row["SpustanjePunogNoviPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme2 = Convert.ToDateTime(row["SpustanjePunogNoviPlaniraniDt"]);
+                        }
+
+                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
+
+                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                        // 4. DRUGI INSERT
+                        if (vreme2 != null)
+                            ins.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
+
+
+                    }
                     break;
                 case 26: // Scenario I-L
-             
+
+                    foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    {
+
+                        string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+
+                        DateTime? vreme1 = null;
+                        string lokacija = string.Empty;
+
+                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                        // Čitanje lokacije
+                        if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                        }     
+
+                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
+
+                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+                  
+                    }
                     break;
             }
         }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            string idsZaUpit = string.Join(",", noviIDs);
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, 
+                        PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
+		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera
+                        FROM Izvoz i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                        WHERE i.ID in ( " + ID + " )";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
 
         public class PrivremeniNHM
         {

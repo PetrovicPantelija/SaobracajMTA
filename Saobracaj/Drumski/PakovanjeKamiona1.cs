@@ -720,6 +720,13 @@ namespace Saobracaj.Drumski
                            x.NalogodavacID,
 	                       x.BrojKontejnera,
                            x.NalogID,
+                            CASE 
+                                    WHEN Uvoz = 1 THEN 'Uvoz'
+                                    WHEN Uvoz = 0 THEN 'Izvoz'
+                                    WHEN Uvoz = 2 THEN '3PU'
+                                    WHEN Uvoz = 3 THEN '3PI'
+                                    ELSE '' 
+                                END AS TipNaloga,
                            x.Kamion,
 	                       CONVERT(VARCHAR, COALESCE(x.DatumUtovara, x.DtPreuzimanjaPraznogKontejnera), 104) AS DatumUtovara,
                            CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
@@ -779,7 +786,7 @@ namespace Saobracaj.Drumski
                                      CASE 
                                         WHEN i.Scenario in (13,26,7,23) THEN i.MestoPreuzimanja2
                                     END
-                                    ) MestoIstovara
+                                    ) MestoIstovara, rn.Uvoz
                             FROM RadniNalogDrumski rn
                             INNER JOIN Izvoz i ON i.ID = rn.KontejnerID
                             LEFT JOIN MestaUtovara mu ON mu.id = i.MesoUtovara
@@ -823,7 +830,7 @@ namespace Saobracaj.Drumski
                                         (
                                         CASE 
                                             WHEN ik.Scenario in (13,26,7,23) THEN ik.MestoPreuzimanja2
-                                        END) MestoIstovara
+                                        END) MestoIstovara, rn.Uvoz
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID
@@ -863,7 +870,7 @@ namespace Saobracaj.Drumski
                                      (
                                      CASE 
                                          WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
-                                     END) MestoIstovara
+                                     END) MestoIstovara, rn.Uvoz
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID
@@ -903,7 +910,7 @@ namespace Saobracaj.Drumski
                                      (
                                      CASE 
                                          WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
-                                     END) MestoIstovara
+                                     END) MestoIstovara, rn.Uvoz
                             FROM RadniNalogDrumski rn
                             INNER JOIN VrstaManipulacije vm ON vm.ID = rn.IDVrstaManipulacije
                             INNER JOIN Uvoz u ON u.ID = rn.KontejnerID
@@ -945,7 +952,7 @@ namespace Saobracaj.Drumski
                                         (
                                         CASE 
                                             WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoSpustanjaPunog
-                                        END) MestoIstovara
+                                        END) MestoIstovara, rn.Uvoz
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
                           
@@ -1004,7 +1011,12 @@ namespace Saobracaj.Drumski
             {
                 dataGridView2.Columns["DtPreuzimanjaPraznogKontejnera"].Visible = false;
             }
+            if (dataGridView2.Columns.Contains("RelevantniDatum"))
+            {
+                dataGridView2.Columns["RelevantniDatum"].Visible = false;
+            }
             
+
             // Postavi proporcije samo za vidljive kolone
             float totalWeight = 100f;
             float relacijaWeight = 20f;

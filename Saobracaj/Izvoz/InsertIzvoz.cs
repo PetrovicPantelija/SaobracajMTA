@@ -4275,7 +4275,7 @@ namespace Saobracaj.Izvoz
             dtRealizacijeUtovaraCerade.ParameterName = "@DtRealizacijeUtovaraCerade";
             dtRealizacijeUtovaraCerade.SqlDbType = SqlDbType.DateTime;
             dtRealizacijeUtovaraCerade.Direction = ParameterDirection.Input;
-            dtRealizacijeUtovaraCerade.Value = DtRealizacijeUtovaraCerade.HasValue ? (object)DtRealizacijeUtovaraCerade.Value : DBNull.Value; ;
+            dtRealizacijeUtovaraCerade.Value = DtRealizacijeUtovaraCerade.HasValue ? (object)DtRealizacijeUtovaraCerade.Value : DBNull.Value; 
             cmd.Parameters.Add(dtRealizacijeUtovaraCerade);
 
 
@@ -4335,6 +4335,90 @@ namespace Saobracaj.Izvoz
             catch (SqlException)
             {
                 throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void InsertKontejnerLog(int KontejnetID, string Poruka, DateTime? Datum, string Lokacija, string Korisnik)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertKontejnerLog";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter kontejnetID = new SqlParameter();
+            kontejnetID.ParameterName = "@KontejnetID";
+            kontejnetID.SqlDbType = SqlDbType.Int;
+            kontejnetID.Direction = ParameterDirection.Input;
+            kontejnetID.Value = KontejnetID;
+            cmd.Parameters.Add(kontejnetID);
+
+
+            SqlParameter poruka = new SqlParameter();
+            poruka.ParameterName = "@Poruka";
+            poruka.SqlDbType = SqlDbType.NVarChar;
+            poruka.Size = -1;
+            poruka.Direction = ParameterDirection.Input;
+            poruka.Value = Poruka;
+            cmd.Parameters.Add(poruka);
+
+            
+            SqlParameter datum = new SqlParameter();
+            datum.ParameterName = "@Datum";
+            datum.SqlDbType = SqlDbType.DateTime;
+            datum.Direction = ParameterDirection.Input;
+            datum.Value = Datum.HasValue ? (object)Datum.Value : DBNull.Value;
+            cmd.Parameters.Add(datum);
+
+            SqlParameter lokacija = new SqlParameter();
+            lokacija.ParameterName = "@Lokacija";
+            lokacija.SqlDbType = SqlDbType.NVarChar;
+            lokacija.Size = 500;
+            lokacija.Direction = ParameterDirection.Input;
+            lokacija.Value = Lokacija;
+            cmd.Parameters.Add(lokacija);
+
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+               //throw new Exception("Neuspešan upis ");
             }
 
             finally

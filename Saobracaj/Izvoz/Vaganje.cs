@@ -18,6 +18,7 @@ namespace Saobracaj.Izvoz
     public partial class Vaganje : Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         string brojKontejnera;
         string  Vozilo, Vozac;
@@ -311,7 +312,7 @@ namespace Saobracaj.Izvoz
             }
 
 
-
+            UpisiLog(Convert.ToInt32(txtKontID.Text));
             FillGV();
 
 
@@ -336,6 +337,101 @@ namespace Saobracaj.Izvoz
             con.Close();
            */
         }
+
+
+        private void UpisiLog(int uslugaidID)
+        {
+
+            InsertIzvoz ink = new InsertIzvoz();
+
+
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(uslugaidID);
+            // ink.InsertKontejnerLog(Convert.ToInt32(textBox1.Text), poruka1, vreme1, lokacija, tKorisnik);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            int scenario = Convert.ToInt32(dtPodaci.Rows[0]["Scenario"].ToString());
+            switch (scenario)
+            {
+                // GRUPA I
+                case 13:
+                    string poruka = "Izvršeno je vaganje";
+
+                    DateTime? vreme = null;
+                    string lokacija = string.Empty;
+
+                    int kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["ID"].ToString());
+
+                    // Čitanje lokacije
+                    if (dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    {
+                        lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                    }
+
+
+                    // Datum dolaska kamiona na kapiju
+                    if (dtPodaci.Rows[0]["DatumMerenja"] != DBNull.Value)
+                    {
+                        vreme = Convert.ToDateTime(dtPodaci.Rows[0]["DatumMerenja"]);
+                    }
+
+                 
+
+                   ink.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+                       
+                   break;
+            }
+
+
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int? kontejnerID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, Scenario,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera, vg.DatumMerenja
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN RadniNalogInterni rni on rni.BrojOsnov =  i.ID
+							 LEFT JOIN Vaganje vg on vg.IzvozKonacnaID =  i.ID
+                        WHERE i.ID = " + kontejnerID;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
 
         private void button23_Click(object sender, EventArgs e)
         {

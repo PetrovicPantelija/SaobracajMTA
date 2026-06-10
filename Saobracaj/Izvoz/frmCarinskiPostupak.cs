@@ -343,9 +343,9 @@ namespace Saobracaj.Izvoz
             bool uspesno = true;
             errorProvider1.Clear(); // Obavezno prvo očisti stare greške
 
-           
 
-            if (cboCarinskiPUnutrasniTransport.SelectedIndex < 1)
+
+            if (cboCarinskiPUnutrasniTransport.SelectedIndex < 0)
             {
                 errorProvider1.SetError(cboCarinskiPUnutrasniTransport, "Morate izabrati neku vrednost!");
                 uspesno = false;

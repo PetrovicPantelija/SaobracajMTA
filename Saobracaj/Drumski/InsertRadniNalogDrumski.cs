@@ -3494,6 +3494,56 @@ namespace Saobracaj.Drumski
             {
             }
         }
+        public void UpdKorakPotvrdeVozaca(int RadniNalogdrumskiID)
+
+        {
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateKorakPotvrdeVozaca";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@RadniNalogdrumskiID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = RadniNalogdrumskiID;
+            cmd.Parameters.Add(id);
+
+            
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                error = false;
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                // throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    //MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    //MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
 
 
     }

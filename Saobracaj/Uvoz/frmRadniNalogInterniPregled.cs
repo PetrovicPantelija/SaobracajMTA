@@ -1341,8 +1341,9 @@ namespace Saobracaj.Uvoz
                 okk.Show();
                 */
             }
-
+            
         }
+     
         string VratiFormu()
         {
             if (txtNALOGID.Text == "")
@@ -1415,7 +1416,18 @@ namespace Saobracaj.Uvoz
         {
             try
             {
+                System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
+                if (e == null || e.Inner == null) return;
 
+                if (e.Inner.RowIndex <= 0)
+                {
+                    return; // Samo izađi iz funkcije bez pucanja
+                }
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new System.Action(() => gridGroupingControl2_TableControlCellClick(sender, e)));
+                    return;
+                }
                 if (gridGroupingControl2.Table.CurrentRecord != null)
                 {
                     textBox1.Text = gridGroupingControl2.Table.CurrentRecord.GetValue("ID").ToString();
@@ -1600,7 +1612,7 @@ namespace Saobracaj.Uvoz
             }
             catch (Exception ex)
             {
-
+                System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = true;
                 throw ex;
             }
         }

@@ -3061,6 +3061,147 @@ namespace Saobracaj.Drumski
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
             MessageBox.Show("Nalog je uspešno potvrđen.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void upisiLogKontejnera()
+        {
+            string poruka = "";
+            DateTime? datum = null;
+            InsertIzvoz ins = new InsertIzvoz();
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog();
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            switch (scenario)
+            {
+                // GRUPA I
+                case 13:
+                    foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    {
+
+                        string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+                        string poruka2 = "Novo očekivano vreme spuštanja punog kontejnera";
+
+                        DateTime? vreme1 = null;
+                        DateTime? vreme2 = null;
+                        string lokacija = string.Empty;
+
+                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                        // Čitanje lokacije
+                        if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                        }
+
+                        // Čitanje novog vremena (SpustanjePunogNoviPlaniraniDt)
+                        if (row["SpustanjePunogNoviPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme2 = Convert.ToDateTime(row["SpustanjePunogNoviPlaniraniDt"]);
+                        }
+
+                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
+
+                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                        // 4. DRUGI INSERT
+                        if (vreme2 != null)
+                            ins.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
+
+
+                    }
+                    break;
+                case 26: // Scenario I-L
+
+                    foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    {
+
+                        string poruka1 = "Novo očekivano vreme preuzimanja punog kontejnera";
+
+                        DateTime? vreme1 = null;
+                        string lokacija = string.Empty;
+
+                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                        // Čitanje lokacije
+                        if (row["MestoPreuzimanjaKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = row["MestoPreuzimanjaKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (row["DtNoviPreuzimanjaKontejnera"] != DBNull.Value)
+                        {
+                            vreme1 = Convert.ToDateTime(row["DtNoviPreuzimanjaKontejnera"]);
+                        }
+
+                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
+
+                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                    }
+                    break;
+            }
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+            int iD = 0;
+            iD = GetInt("txtID", sfx);
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID,MestoPreuzimanja AS MestoPreuzimanjaKontejnera, i.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera " +
+                                " FROM Izvoz i "+
+                                " LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja = mu.ID " +
+                                " WHERE i.ID in ( " + iD + " )  "+
+                                " UNION " +
+                                " SELECT i.ID,MestoPreuzimanja AS MestoPreuzimanjaKontejnera, ik.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera " +
+                                " FROM IzvozKonacna ik "+
+                                " LEFT JOIN MestaUtovara mu ON ik.MestoPreuzimanja = mu.ID " +
+                                " WHERE ik.ID in (" + iD + ") " +
+                                " UNION " +
+                                " SELECT i.ID,MestoPreuzimanjaKontejnera, rn.DtNoviPreuzimanjaKontejnera " +
+                                " FROM RadniNalogDrumski rn " +
+                                " LEFT JOIN MestaUtovara mu ON rn.MestoPreuzimanjaKontejnera = mu.ID " +
+                                " WHERE ik.ID in (" + iD + ") ";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
         }
 
         private void PostaviTag(object vrednostIzBaze, Control kontrola)

@@ -1,4 +1,5 @@
-﻿using Saobracaj.Izvoz;
+﻿using Saobracaj.DrumskiApp;
+using Saobracaj.Izvoz;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -1443,6 +1444,20 @@ namespace Saobracaj.Drumski
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
             RefreshGrid();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            {
+                // Uzimamo prvi selektovani red
+                int ID = Convert.ToInt32(gridGroupingControl1.Table.SelectedRecords[0].Record.GetValue("ID"));
+
+             
+                frmFormaZaVozace pnd = new frmFormaZaVozace(ID);
+                pnd.Show();
+                
+            }
         }
     }
 }
