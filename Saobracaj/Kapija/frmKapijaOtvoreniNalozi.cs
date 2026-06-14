@@ -49,7 +49,7 @@ namespace Saobracaj.Kapija
 "  WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
-" Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
+" Vozilo, Vozac, BrojLK, BrojTelefona, PlaniraniDtSpustanjaKontejnera as PlaniraniDatum, PlaniranDtSpustanjaPunog as NoviDatum, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
@@ -65,7 +65,7 @@ namespace Saobracaj.Kapija
 "  WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
- "       Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtPreuzimanjaPunog, DtPreuzimanjaPunog, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz  from RadniNalogInterni " +
+ "       Vozilo, Vozac, BrojLK, BrojTelefona,  DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz  from RadniNalogInterni " +
  "       inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
  "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
  "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
