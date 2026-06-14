@@ -359,6 +359,7 @@ namespace Saobracaj.Izvoz
             {
                 // GRUPA I
                 case 13:
+                case 26:
                     string poruka = "Izvršeno je vaganje";
 
                     DateTime? vreme = null;

@@ -18,10 +18,11 @@ namespace Saobracaj.DrumskiApp
     public partial class frmFormaZaVozace: Form
     {
         private int ID=0;
-        int korakPotvrde = 1; 
-        int adr = 0;
-        int? carinskiPostupakUUnutrasnjemTranzitu = null;
-        int scenarioID = 0;
+        private int korakPotvrde = 1;
+        private int adr = 0;
+        private int? carinskiPostupakUUnutrasnjemTranzitu = null;
+        private int scenarioID = 0;
+        private string tipNaloga ;
         public frmFormaZaVozace(int Id)
         {
             ID = Id;
@@ -31,7 +32,7 @@ namespace Saobracaj.DrumskiApp
             ucitajVrednostiPoKoracima(korakPotvrde);
             PostaviVidljivostADR();
             PostaviVidljivostPanelaPoScenariju();
-
+            btnDodajDokumentaciju.Visible = false;
 
         }
 
@@ -142,6 +143,7 @@ namespace Saobracaj.DrumskiApp
             {
                 // GRUPA I
                 case 13: // Scenario I
+                case 26:
                     panel1.Visible = true;
                     if (korakPotvrde == 5)
                         btnPotvrda.Enabled = false;
@@ -151,47 +153,31 @@ namespace Saobracaj.DrumskiApp
 
         private void PostaviVidljivostADR()
         {
-            bool jeADR = (adr == 1); // 
+            bool jeADR = (adr == 1);
+            bool imaCP = (carinskiPostupakUUnutrasnjemTranzitu != null && carinskiPostupakUUnutrasnjemTranzitu > 0);
 
-            if (!jeADR)
-            {
-                // Sakrivamo same kontrole
-                lblADR.Visible = false;
-                txtADR.Visible = false;
+            // 1. Postavljanje vidljivosti kontrola
+            lblADR.Visible = jeADR;
+            txtADR.Visible = jeADR;
 
-                // Ključni korak: Visinu tog reda u TableLayoutPanel-u postavljamo na 0
-                // Pretpostavimo da je to Row(2)
-                tableLayoutPanel2.RowStyles[10] = new RowStyle(SizeType.Absolute, 0);
-                tableLayoutPanel2.RowStyles[11] = new RowStyle(SizeType.Absolute, 0);
-                if (carinskiPostupakUUnutrasnjemTranzitu != null && carinskiPostupakUUnutrasnjemTranzitu > 0)
-                {
-                    lblScenarioNaziv.Text = "DIREKTNO PUN (I-L) SA CP";
-                    lblTipNaloga.Text = "3PI DIREKTNO PUN (I-L) SA CP";
-                }
-                else
-                {
-                    lblScenarioNaziv.Text = "DIREKTNO PUN (I-L) BEZ CP";
-                    lblTipNaloga.Text = "3PI DIREKTNO PUN (I-L) BEZ CP";
-                }
-            }
-            else
-            {
-                // Ako jeste ADR, vraćamo kontrole i normalnu visinu reda (npr. 30 piksela)
-                lblADR.Visible = true;
-                txtADR.Visible = true;
-                tableLayoutPanel2.RowStyles[10] = new RowStyle(SizeType.Absolute, 30);
-                tableLayoutPanel2.RowStyles[11] = new RowStyle(SizeType.Absolute, 30);
-                if (carinskiPostupakUUnutrasnjemTranzitu != null && carinskiPostupakUUnutrasnjemTranzitu > 0)
-                {
-                    lblScenarioNaziv.Text = "DIREKTNO PUN ADR(I-L) SA CP";
-                    lblTipNaloga.Text = "3PI DIREKTNO PUN ADR(I-L) SA CP";
-                }
-                else
-                {
-                    lblScenarioNaziv.Text = "DIREKTNO PUN (I-L) BEZ CP";
-                    lblTipNaloga.Text = "3PI DIREKTNO PUN (I-L) BEZ CP";
-                }
-            }
+            // 2. Postavljanje visine redova (0 ako nije ADR, 30 ako jeste)
+            float visinaReda = jeADR ? 30f : 0f;
+            tableLayoutPanel2.RowStyles[10].SizeType = SizeType.Absolute;
+            tableLayoutPanel2.RowStyles[10].Height = visinaReda;
+            tableLayoutPanel2.RowStyles[11].SizeType = SizeType.Absolute;
+            tableLayoutPanel2.RowStyles[11].Height = visinaReda;
+
+            // 3. Dinamičko kreiranje teksta za labele
+            string adrDeo = jeADR ? " ADR" : "";
+            string cpDeo = imaCP ? " SA CP" : " BEZ CP";
+
+  
+            // Spajamo u finalni naziv scenarija
+            lblScenarioNaziv.Text = $"DIREKTNO PUN{adrDeo}{cpDeo}";
+
+            // Tip naloga sada uvek dinamički uzima vrednost iz promenljive 'tipNaloga' 
+            // (bilo da je to "3PI ", "Izvoz " ili nešto treće) i lepi scenario
+            lblTipNaloga.Text = $"{tipNaloga}{lblScenarioNaziv.Text}";
         }
         private void VratiPodatkeSelect()
         {
@@ -214,7 +200,14 @@ namespace Saobracaj.DrumskiApp
                                                     IsNull(rn.ADR,0) AS adrINT,
                                                     rn.CarinskiPostupakUnutrasnji ,
                                                     rn.Scenario,
-                                                    rn.NalogID
+                                                    rn.NalogID,
+                                                     CASE 
+                                                        WHEN Uvoz = 1 THEN 'Uvoz'
+                                                        WHEN Uvoz = 0 THEN 'Izvoz'
+                                                        WHEN Uvoz = 2 THEN '3PU'
+                                                        WHEN Uvoz = 3 THEN '3PI'
+                                                        ELSE '' 
+                                                    END AS TipNaloga
 
                                             FROM    [dbo].[RadniNalogDrumski] rn 
                                                     LEFT JOIN MestaUtovara mu on mu.ID = rn.MestoPreuzimanjaKontejnera
@@ -239,6 +232,7 @@ namespace Saobracaj.DrumskiApp
                 carinskiPostupakUUnutrasnjemTranzitu = (dr["CarinskiPostupakUnutrasnji"] == DBNull.Value) ? (int?)null : Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"]);
                 scenarioID = Convert.ToInt32(dr["Scenario"].ToString());
                 txtBrojNaloga.Text = dr["NalogID"].ToString();
+                tipNaloga = (dr["TipNaloga"].ToString());
             }
         }
 
@@ -273,7 +267,23 @@ namespace Saobracaj.DrumskiApp
         }
         private void ucitajVrednostiPoKoracima(int korak)
         {
-            
+            bool imaCP = (carinskiPostupakUUnutrasnjemTranzitu != null && carinskiPostupakUUnutrasnjemTranzitu > 0);
+
+            if (imaCP)
+                koraciCP(korak);
+            else
+                koraciBezCP(korak);
+        }
+
+        private void btnDodajDokumentaciju_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void koraciCP(int korak)
+        {
+
             switch (korak)
             {
                 case 1:
@@ -299,10 +309,29 @@ namespace Saobracaj.DrumskiApp
             }
         }
 
-        private void btnDodajDokumentaciju_Click(object sender, EventArgs e)
+        private void koraciBezCP(int korak)
         {
-           
 
+            switch (korak)
+            {
+                case 1:
+                    lblKorak.Text = "KORAK 1: POTVRDA NALOGA";
+                    vidljivostDugmetaDodajDokumentaciju(false);
+                    break;
+                case 2:
+                    lblKorak.Text = "KORAK 2: PREUZIMANJE PUNOG KONTEJNERA";
+                    vidljivostDugmetaDodajDokumentaciju(false);
+                    break;
+                case 3:
+                    lblKorak.Text = "KORAK 3: SPUŠTANJE PUNOG KONTEJNERA";
+                    vidljivostDugmetaDodajDokumentaciju(false);
+                    break;
+                case 4:
+                    lblKorak.Text = "KORAK 4: DODAVANJE DOKUMENTACIJE";
+                    vidljivostDugmetaDodajDokumentaciju(true);
+                    break;
+              
+            }
         }
     }
 }

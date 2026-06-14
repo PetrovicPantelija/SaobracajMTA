@@ -38,6 +38,7 @@ namespace Saobracaj.Drumski
         private bool duplirajZapisVisible = false;
         private string forma;
         private List<int> _arhivskiStatusi;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         public frmPregledNalogaDrumski()
         {
@@ -799,7 +800,7 @@ namespace Saobracaj.Drumski
                     }
 
                     InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                    ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                    ins.UpdateStatusRadniNalogDrumski(id, noviStatusID,tKorisnik);
 
                     if (noviStatusID.HasValue && _arhivskiStatusi.Contains(noviStatusID.Value))
                     {
@@ -884,7 +885,7 @@ namespace Saobracaj.Drumski
                         }
                     }
                    
-                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId);
+                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId,tKorisnik);
 
                     if (trebaOkidatiInterni && radniNalogInterniID.HasValue)
                     {

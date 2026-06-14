@@ -2210,6 +2210,9 @@ namespace Saobracaj.Izvoz
 
                             uvK.InsUbaciUslugu(trenutniID, 84, pomCena, pomkolicina, pomOrgJed84, pomPlatilac, 0, pomPokret, pomStatusKontejnera, pomForma);
                         }
+                      
+                        upisiLogKontejnera(trenutniID, true);
+                                           
                     }
 
                     // // --- USLOV 2: Vaganje i manipulacija 102 ---
@@ -3202,7 +3205,7 @@ namespace Saobracaj.Izvoz
 
 
                 ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(40));
-                upisiLogKontejnera(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                upisiLogKontejnera(Convert.ToInt32(row.Cells[0].Value.ToString()), false);
 
                 // }
             }
@@ -3218,8 +3221,8 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void upisiLogKontejnera(int ID)
-        {
+        private void upisiLogKontejnera(int ID, bool izvrsi) // izvrsi je rezervisana da ako je drumski u trenutku kreiranja uluga upise log, onda je true
+        {                                                    // dok kod dugmeta faza 1 treba da preskoci taj deo jer je vec kreiran log
             string poruka = "";
             DateTime? datum = null;
             InsertIzvoz ins = new InsertIzvoz();
@@ -3233,81 +3236,101 @@ namespace Saobracaj.Izvoz
 
             switch (scenarioID)
             {
-                // GRUPA I
-                case 13: 
-                    foreach (System.Data.DataRow row in dtPodaci.Rows)
+                // GRUPA I/
+                case 13:
+                case 26:
+                    if (izvrsi || drumski == 0)
                     {
-
-                        string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
-                        string poruka2 = "Novo očekivano vreme spuštanja punog kontejnera";
-
-                        DateTime? vreme1 = null;
-                        DateTime? vreme2 = null;
-                        string lokacija = string.Empty;
-
-                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
-
-                        // Čitanje lokacije
-                        if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        foreach (System.Data.DataRow row in dtPodaci.Rows)
                         {
-                            lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                           
+                            DateTime? vreme1 = null;
+                            DateTime? vreme2 = null;
+                            string poruka1 = string.Empty;
+                            string poruka2 = string.Empty;
+                            string lokacija = string.Empty;
+                            int drumski = Convert.ToInt32(row["Drumski"].ToString());
+                            int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                            if (drumski == 1)
+                            {
+                                poruka1 = "Očekivano vreme preuzimanja punog kontejnera";
+
+                                // Čitanje lokacije
+                                if (row["MestoPreuzimanjaKontejnera"] != DBNull.Value)
+                                {
+                                    lokacija = row["MestoPreuzimanjaKontejnera"].ToString();
+                                }
+                                if (row["DtPreuzimanjaPunog"] != DBNull.Value)
+                                {
+                                    vreme1 = Convert.ToDateTime(row["DtPreuzimanjaPunog"]);
+                                }      
+                            }
+                            else
+                            {
+                                poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+                                poruka2 = "Novo očekivano vreme spuštanja punog kontejnera";
+                                // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                                if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                                {
+                                    vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                                }
+
+                                // Čitanje novog vremena (SpustanjePunogNoviPlaniraniDt)
+                                if (row["SpustanjePunogNoviPlaniraniDt"] != DBNull.Value)
+                                {
+                                    vreme2 = Convert.ToDateTime(row["SpustanjePunogNoviPlaniraniDt"]);
+                                }
+
+                                // Čitanje lokacije
+                                if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                                {
+                                    lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                                }
+
+                            }
+
+                            ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                            // 4. DRUGI INSERT
+                            if (vreme2 != null && drumski == 0)
+                                ins.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
                         }
-
-                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
-                        if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
-                        {
-                            vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
-                        }
-
-                        // Čitanje novog vremena (SpustanjePunogNoviPlaniraniDt)
-                        if (row["SpustanjePunogNoviPlaniraniDt"] != DBNull.Value)
-                        {
-                            vreme2 = Convert.ToDateTime(row["SpustanjePunogNoviPlaniraniDt"]);
-                        }
-
-                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
-                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
-
-                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
-
-                        // 4. DRUGI INSERT
-                        if (vreme2 != null)
-                            ins.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
-
-
                     }
                     break;
-                case 26: // Scenario I-L
+                    //    case 26: // Scenario I-L
+                    //        if (izvrsi)
+                    //        {
+                    //            foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    //            {
 
-                    foreach (System.Data.DataRow row in dtPodaci.Rows)
-                    {
+                    //                string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
 
-                        string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+                    //                DateTime? vreme1 = null;
+                    //                string lokacija = string.Empty;
 
-                        DateTime? vreme1 = null;
-                        string lokacija = string.Empty;
+                    //                int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+                    //                int drumski = Convert.ToInt32(row["Drumski"].ToString());
+                    //                // Čitanje lokacije
+                    //                if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    //                {
+                    //                    lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                    //                }
 
-                        int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+                    //                // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                    //                if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                    //                {
+                    //                    vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                    //                }
 
-                        // Čitanje lokacije
-                        if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
-                        {
-                            lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
-                        }
+                    //                // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                    //                // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
 
-                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
-                        if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
-                        {
-                            vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
-                        }     
+                    //                ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
 
-                        // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
-                        // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
-
-                        ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
-                  
-                    }
-                    break;
+                    //            }
+                    //        }
+                    //        break;
             }
         }
 
@@ -3322,13 +3345,30 @@ namespace Saobracaj.Izvoz
             using (SqlConnection con = new SqlConnection(s_connection))
             {
 
-                string query = @"SELECT i.ID, 
+                string query = $@"
+                        SELECT i.ID, 
                         PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
 		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
-                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        LTRIM(RTRIM(mp.Naziv)) AS MestoPreuzimanjaKontejnera,
+                        DtPreuzimanjaPunog,
+                        IsNull(Drumski, 0) AS Drumski
                         FROM Izvoz i
                              LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
-                        WHERE i.ID in ( " + ID + " )";
+                             LEFT JOIN MestaUtovara mp ON i.MestoPreuzimanja = mp.ID
+                        WHERE i.ID = {ID}
+                        UNION
+                        SELECT i.ID, 
+                        PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
+		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        LTRIM(RTRIM(mp.Naziv)) AS MestoPreuzimanjaKontejnera,
+                        DtPreuzimanjaPunog,
+                        IsNull(Drumski, 0) AS Drumski
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN MestaUtovara mp ON i.MestoPreuzimanja = mp.ID
+                        WHERE i.ID in ( {ID} )";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 

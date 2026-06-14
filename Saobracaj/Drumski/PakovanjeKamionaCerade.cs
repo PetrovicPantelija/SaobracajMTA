@@ -29,6 +29,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> _tipoviNotIn;
         private bool _filtersLoaded = false;
         private int _stariStatusID = -1;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         public PakovanjeKamionaCerade()
         {
@@ -2157,7 +2158,7 @@ namespace Saobracaj.Drumski
                     try
                     {
                         InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID, tKorisnik);
                         if (jeZavrsni)
                         {
                             ins.ArhiviranRadniNalogDrumski(id);

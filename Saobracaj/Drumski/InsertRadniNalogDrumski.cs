@@ -2695,7 +2695,7 @@ namespace Saobracaj.Drumski
 
         }
 
-        public void UpdateStatusRadniNalogDrumski(int ID, int? Status)
+        public void UpdateStatusRadniNalogDrumski(int ID, int? Status, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -2716,6 +2716,14 @@ namespace Saobracaj.Drumski
             status.Value = Status.HasValue ? (object)Status.Value : DBNull.Value; 
             cmd.Parameters.Add(status);
 
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -2727,9 +2735,10 @@ namespace Saobracaj.Drumski
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {

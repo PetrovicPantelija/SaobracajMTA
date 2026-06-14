@@ -4400,7 +4400,7 @@ namespace Saobracaj.Izvoz
             korisnik.SqlDbType = SqlDbType.NVarChar;
             korisnik.Size = 50;
             korisnik.Direction = ParameterDirection.Input;
-            korisnik.Value = Korisnik;
+            korisnik.Value = (object)Korisnik ?? DBNull.Value;
             cmd.Parameters.Add(korisnik);
 
             conn.Open();

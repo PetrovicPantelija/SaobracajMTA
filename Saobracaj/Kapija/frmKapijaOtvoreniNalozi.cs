@@ -179,6 +179,7 @@ namespace Saobracaj.Kapija
             {
                 // GRUPA I
                 case 13:
+                case 26:
                     string poruka = "Kamion je na napustio kompleks";
 
                     DateTime? vreme = null;
