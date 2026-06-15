@@ -982,11 +982,16 @@ namespace Saobracaj.Drumski
                         }
                             if (trebaOkidatiInterni)
                         {
-                            InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
-                            //updi.UpdRadniNalogInterniZavrsen(id, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            int radniNalogInterniID = PribaviRadniNalogInterniID(id);
+                            if (radniNalogInterniID > 0)
+                            {
+
+                                InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
+                                updi.UpdRadniNalogInterniZavrsen(radniNalogInterniID, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            }
 
                             // takođe odradi update statusa na arhiviran
-                            
+
                         }
                         
                         List<int> ids = new List<int> { id };
@@ -1023,6 +1028,33 @@ namespace Saobracaj.Drumski
 
             }
             
+        }
+
+        private int PribaviRadniNalogInterniID(int ID)
+        {
+            int radniNalogInterniID = 0;
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
+                                    FROM RadniNalogDrumski rn
+                                    LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
+                                    WHERE rn.ID = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+
+                        if (reader["RadniNalogInterniID"] != DBNull.Value)
+                            radniNalogInterniID = Convert.ToInt32(reader["RadniNalogInterniID"]);
+                    }
+                }
+
+            }
+            return radniNalogInterniID;
         }
 
         private void logStatusa(int ScenarioID, int noviStatusID, int id)

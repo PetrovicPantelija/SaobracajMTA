@@ -793,7 +793,7 @@ namespace Saobracaj.Drumski
                             LEFT JOIN MestaUtovara mu ON mu.id = i.MesoUtovara
                             LEFT JOIN MestaUtovara mi ON mi.id = rn.MestoIstovara
                             LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3 AND ISNULL(rn.KamionID,0) = 0
-                            WHERE rn.Uvoz = 0 {dodatniUslovTipTransporta}
+                            WHERE rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1 AND ISNULL(rn.KamionID,0) = 0 {dodatniUslovTipTransporta}
 
                             UNION ALL
                             SELECT  pa.PaNaziv AS Nalogodavac,IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner,
@@ -2231,8 +2231,14 @@ namespace Saobracaj.Drumski
 
                         if (trebaOkidatiInterni)
                         {
-                            InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
-                            //updi.UpdRadniNalogInterniZavrsen(id, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                          int  radniNalogInterniID = PribaviRadniNalogInterniID(id);
+                            if ( radniNalogInterniID > 0)
+                            {
+
+                                InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
+                                updi.UpdRadniNalogInterniZavrsen(radniNalogInterniID, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            }
+
                         }
 
                         this.BeginInvoke(new MethodInvoker(() => {
@@ -2251,7 +2257,32 @@ namespace Saobracaj.Drumski
 
             RefreshDataGrid3();
         }
+        private int PribaviRadniNalogInterniID(int ID)
+        {
+            int radniNalogInterniID = 0;
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
+                                    FROM RadniNalogDrumski rn
+                                    LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
+                                    WHERE rn.ID = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID", ID);
 
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+
+                        if (reader["RadniNalogInterniID"] != DBNull.Value)
+                            radniNalogInterniID = Convert.ToInt32(reader["RadniNalogInterniID"]);
+                    }
+                }
+
+            }
+            return radniNalogInterniID;
+        }
         private void logStatusa(int ScenarioID, int noviStatusID,  int id)
         {
             InsertIzvoz ins = new InsertIzvoz();
