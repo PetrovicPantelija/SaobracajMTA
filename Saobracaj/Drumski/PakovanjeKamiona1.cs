@@ -623,9 +623,9 @@ namespace Saobracaj.Drumski
                                                             WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
                                                         END
                                                     FROM (
-                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, DtPreuzimanjaPunog,PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM Izvoz WHERE ID = rn.KontejnerID
+                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM Izvoz WHERE ID = rn.KontejnerID
                                                         UNION ALL
-                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, DtPreuzimanjaPunog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM IzvozKonacna WHERE ID = rn.KontejnerID
+                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM IzvozKonacna WHERE ID = rn.KontejnerID
                                                     ) i
                                                 )
                                                 -- Ako je Uvoz >= 1 (podaci su u samom nalogu)
