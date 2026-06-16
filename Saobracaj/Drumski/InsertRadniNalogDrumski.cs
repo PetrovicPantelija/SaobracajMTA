@@ -1884,7 +1884,7 @@ namespace Saobracaj.Drumski
        
 
         public void UpdRadniNalogDrumskiIzvoz(int ID,  string Valuta, decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int AutoDan,  string PolaznaSpedicijaKontakt,
-           string OdredisnaSpedicijaKontakt, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
+           string OdredisnaSpedicijaKontakt, DateTime? DtRealizacijePreuzimanjaPKontejnera, DateTime? DtPreuzimanjePunogKNovi, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
            DateTime? DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, DateTime?  DtSpustanja, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara,
            DateTime? DtUtovaraCeradeNovi, DateTime? DtRealizacijeUtovaraCerade, DateTime? DtIstovaraCerade, DateTime? DtIstovaraCeradeNovi, DateTime? DtRealizacijeIstovaraCerade, string GranicniPrelaz, int NalogIzmenioZaposleni,
            string NoviSpediterP, string NoviSpediterO)
@@ -1961,8 +1961,22 @@ namespace Saobracaj.Drumski
             odredisnaSpedicijaKontakt.Direction = ParameterDirection.Input;
             odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
             cmd.Parameters.Add(odredisnaSpedicijaKontakt);
-         
-          
+
+            SqlParameter dtRealizacijePreuzimanjaPKontejnera = new SqlParameter();
+            dtRealizacijePreuzimanjaPKontejnera.ParameterName = "@DtRealizacijePreuzimanjaPKontejnera";
+            dtRealizacijePreuzimanjaPKontejnera.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijePreuzimanjaPKontejnera.Direction = ParameterDirection.Input;
+            dtRealizacijePreuzimanjaPKontejnera.Value = DtRealizacijePreuzimanjaPKontejnera.HasValue ? (object)DtRealizacijePreuzimanjaPKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijePreuzimanjaPKontejnera);
+
+            SqlParameter dtPreuzimanjePunogKNovi = new SqlParameter();
+            dtPreuzimanjePunogKNovi.ParameterName = "@DtPreuzimanjePunogKNovi";
+            dtPreuzimanjePunogKNovi.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjePunogKNovi.Direction = ParameterDirection.Input;
+            dtPreuzimanjePunogKNovi.Value = DtPreuzimanjePunogKNovi.HasValue ? (object)DtPreuzimanjePunogKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjePunogKNovi);
+
+
             SqlParameter dtRealizacijePreuzimanjaKontejnera = new SqlParameter();
             dtRealizacijePreuzimanjaKontejnera.ParameterName = "@DtRealizacijePreuzimanjaKontejnera";
             dtRealizacijePreuzimanjaKontejnera.SqlDbType = SqlDbType.DateTime;

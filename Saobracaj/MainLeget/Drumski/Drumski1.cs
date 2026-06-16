@@ -68,5 +68,16 @@ namespace Saobracaj.MainLeget.LegNew
             );
          
         }
+
+        private void btnNalogFakturisanje_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnNalogFakturisanje.Text,
+                () => new frmNalogZaFakturisanje(tipoviIn: new List<int> { 1,2 }, tipoviNotIn: null)
+            );
+        }
     }
 }

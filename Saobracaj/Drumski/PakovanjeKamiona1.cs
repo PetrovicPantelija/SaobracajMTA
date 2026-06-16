@@ -619,21 +619,20 @@ namespace Saobracaj.Drumski
                                                     SELECT 
                                                         CASE 
                                                             WHEN i.Scenario in (13,26) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
-                                                            WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtUtovaraKontejnera > '1900-01-01', i.PlaniranDtUtovaraKontejnera, i.PlaniraniDatumUtovara)
+                                                            WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtPreuzimanjaPunog> '1900-01-01', i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog)
                                                             WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
                                                         END
                                                     FROM (
-                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM Izvoz WHERE ID = rn.KontejnerID
+                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, DtPreuzimanjaPunog,PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM Izvoz WHERE ID = rn.KontejnerID
                                                         UNION ALL
-                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM IzvozKonacna WHERE ID = rn.KontejnerID
+                                                        SELECT ID, DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, PlaniraniDtPreuzimanja, PlaniranDtPreuzimanjaPraznog, DtPreuzimanjaPunog, PlaniranDtUtovaraCerade, PlaniraniDtUtovaraCerade, Scenario,PlaniranDtUtovaraKontejnera,PlaniraniDatumUtovara FROM IzvozKonacna WHERE ID = rn.KontejnerID
                                                     ) i
                                                 )
                                                 -- Ako je Uvoz >= 1 (podaci su u samom nalogu)
                                                 ELSE (
                                                     CASE 
-                                                        WHEN rn.Scenario in (13,26) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
-                                                        WHEN rn.Scenario in (7,23) THEN IIF(rn.DtNoviUtovaraKontejnera > '1900-01-01', rn.DtNoviUtovaraKontejnera,rn.DatumUtovara)
-                                                       WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
                                                     END
                                                 )
                                             END AS RelevantniDatum
@@ -754,7 +753,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         ( CASE 
                                         WHEN i.Scenario in (13,26) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
-                                        WHEN i.Scenario in (7,23)  THEN IIF(i.PlaniranDtUtovaraKontejnera > '1900-01-01', i.PlaniranDtUtovaraKontejnera, i.PlaniraniDatumUtovara)
+                                        WHEN i.Scenario in (7,23)  THEN IIF(i.PlaniranDtPreuzimanjaPunog > '1900-01-01', i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog)
                                        END) AS DatumUtovara,
                                      ( CASE 
                                         WHEN i.Scenario in (13,26,7,23) THEN IIF(i.PlaniranDtSpustanjaPunog > '1900-01-01', i.PlaniranDtSpustanjaPunog, i.PlaniraniDtSpustanjaKontejnera)
@@ -766,7 +765,7 @@ namespace Saobracaj.Drumski
                                     (
                                      CASE 
                                         WHEN i.Scenario in (13,26) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
-                                        WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtUtovaraKontejnera > '1900-01-01', i.PlaniranDtUtovaraKontejnera, i.PlaniraniDatumUtovara)
+                                        WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtPreuzimanjaPunog > '1900-01-01', i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog)
                                        WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
                                     END
                                     ) RelevantniDatum,
@@ -803,7 +802,7 @@ namespace Saobracaj.Drumski
                                      '' AS Kamion,
 			                         ( CASE 
                                          WHEN ik.Scenario in (13,26) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
-                                        WHEN ik.Scenario in (7,23)  THEN IIF(ik.PlaniranDtUtovaraKontejnera > '1900-01-01', ik.PlaniranDtUtovaraKontejnera, ik.PlaniraniDatumUtovara)
+                                        WHEN ik.Scenario in (7,23)  THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
                                        
                                      END) AS DatumUtovara,
                                      ( CASE 
@@ -815,7 +814,7 @@ namespace Saobracaj.Drumski
                                      rn.TipTransporta,
                                     (CASE 
                                         WHEN ik.Scenario in (13,26) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
-                                        WHEN ik.Scenario in (7,23) THEN IIF(ik.PlaniranDtUtovaraKontejnera > '1900-01-01', ik.PlaniranDtUtovaraKontejnera, ik.PlaniraniDatumUtovara)
+                                        WHEN ik.Scenario in (7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
                                         WHEN ik.Scenario in  (8,24,9,25) THEN IIF(ik.PlaniranDtUtovaraCerade > '1900-01-01', ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
                                     END) AS RelevantniDatum,
                                        (
@@ -929,7 +928,8 @@ namespace Saobracaj.Drumski
                                      rn.NalogID,
                                      '' AS Kamion,
 			                         ( CASE 
-                                        WHEN rn.Scenario in (26) THEN IIF(rn.DtNoviUtovaraKontejnera > '1900-01-01', rn.DtNoviUtovaraKontejnera, rn.DatumUtovara)
+                                         WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                        --WHEN rn.Scenario in (26) THEN IIF(rn.DtNoviUtovaraKontejnera > '1900-01-01', rn.DtNoviUtovaraKontejnera, rn.DatumUtovara)
                                      END) AS DatumUtovara,
                                      ( CASE 
                                         WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviSpustanja > '1900-01-01', rn.DtNoviSpustanja, rn.DtSpustanja)
@@ -939,9 +939,8 @@ namespace Saobracaj.Drumski
                                      
                                      rn.TipTransporta,
                                     ( CASE 
-                                        WHEN rn.Scenario in (13,26) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
-                                         WHEN rn.Scenario in (7,23) THEN IIF(rn.DtNoviUtovaraKontejnera > '1900-01-01', rn.DtNoviUtovaraKontejnera,rn.DatumUtovara)
-                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                          WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
                                       END) AS RelevantniDatum,
                                         (CASE 
                                             WHEN rn.Scenario in (13,26) THEN rn.MestoPreuzimanjaKontejnera
@@ -2606,7 +2605,10 @@ namespace Saobracaj.Drumski
 		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
                         LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
                         LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera, 
-                        PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera,
+                        CASE 
+                            WHEN scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog
+                            WHEN scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog 
+                        END AS DtNoviPreuzimanjaKontejnera,                    
                         i.ID AS KontejnerID,
                         LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica
                         FROM RadninalogDrumski rn 
@@ -2621,7 +2623,10 @@ namespace Saobracaj.Drumski
                         " PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt, "+
                         " LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera," +
                         " LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera," +
-                        " PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, " +
+                        "  CASE " + 
+                        " WHEN scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog  " +
+                        " WHEN scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog " +
+                        " END AS as DtNoviPreuzimanjaKontejnera, " +
                         " i.ID AS KontejnerID, " +
                         " LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica " +
                         " FROM RadninalogDrumski rn " +

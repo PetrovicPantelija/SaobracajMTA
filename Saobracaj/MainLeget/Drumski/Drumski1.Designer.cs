@@ -101,7 +101,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(40, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 39);
+            this.label1.Size = new System.Drawing.Size(274, 52);
             this.label1.TabIndex = 495;
             this.label1.Text = "Početni meni";
             // 
@@ -169,10 +169,11 @@
             this.btnNalogFakturisanje.Text = "NALOG ZA FAKTURISANJE";
             this.btnNalogFakturisanje.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNalogFakturisanje.UseVisualStyleBackColor = false;
+            this.btnNalogFakturisanje.Click += new System.EventHandler(this.btnNalogFakturisanje_Click);
             // 
             // Drumski1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1048, 594);
