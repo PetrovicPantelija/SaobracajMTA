@@ -140,23 +140,49 @@ namespace Saobracaj.Izvoz
 
         private void RefreshGridControl()
         {
+
             var select = "  SELECT Izvoz.ID as ID, ProdajniNalogIzvozStavke.IDNadredjenog as PorID, Izvoz.BrojStavkePorudzbenice AS StavkaPorudzbenice, ISNull(Izvoz.GrupID, 0) AS Grupa, Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, " +
-" Partnerji_3.PaNaziv AS Porucilac, Izvoz.OpisPosla, Izvoz.Link, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara as Booking, " +
-" Izvoz.CutOffPort,TipKontenjera.Naziv as VrstaKontejnera,  Partnerji_2.PaNaziv AS Izvoznik,IsNull(Izvoz.Vaganje, 0) AS Vaganje, (  VrstaRobeADR.UNKod + ' - ' + VrstaRobeADR.Klasa + ' - ' + VrstaRobeADR.Naziv  ) as ADR,  Izvoz.Tara, Partnerji_4.PaNaziv AS NalogodavacZaUsluge, Izvoz.Napomena2REf AS RefZaUsluge, " +
-" Partnerji_5.PaNaziv AS NalogodavacZaDrumski, Izvoz.Napomena3REf AS RefZaDrumski, " +
-" Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, " +
-" Izvoz.NetoRobe, Izvoz.BrutoRobe,  Izvoz.BrojKoleta,  Izvoz.CBM, Izvoz.VrednostRobeFaktura, Izvoz.Scenario, ISNull(Izvoz.Drumski, 0) AS Drumski " +
-" FROM Izvoz " +
-" inner join ProdajniNalogIzvozStavke on Izvoz.BrojStavkePorudzbenice = ProdajniNalogIzvozStavke.ID " +
-" Left JOIN TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID " +
-" LEFT JOIN  Partnerji ON Izvoz.Brodar = Partnerji.PaSifra " +
-" LEFT JOIN  Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra " +
-" LEFT JOIN  Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra " +
-" LEFT JOIN  Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra " +
-" LEFT JOIN  Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra " +
-" LEFT JOIN  uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID " +
-" LEFT JOIN  VrstaRobeADR on Izvoz.ADR = VrstaRobeADR.ID " + 
-" WHERE(Izvoz.Status<> 'STORNIRAN' OR  Izvoz.Status IS  NULL) order by Izvoz.ID desc  ";
+                            " Partnerji_3.PaNaziv AS Porucilac, Izvoz.OpisPosla, Izvoz.Link, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara as Booking, " +
+                            " Izvoz.CutOffPort,TipKontenjera.Naziv as VrstaKontejnera,  Partnerji_2.PaNaziv AS Izvoznik,IsNull(Izvoz.Vaganje, 0) AS Vaganje, (  VrstaRobeADR.UNKod + ' - ' + VrstaRobeADR.Klasa + ' - ' + VrstaRobeADR.Naziv  ) as ADR,  Izvoz.Tara, Partnerji_4.PaNaziv AS NalogodavacZaUsluge, Izvoz.Napomena2REf AS RefZaUsluge, " +
+                            " Partnerji_5.PaNaziv AS NalogodavacZaDrumski, Izvoz.Napomena3REf AS RefZaDrumski, " +
+                            " Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, " +
+                            " Izvoz.NetoRobe, Izvoz.BrutoRobe,  Izvoz.BrojKoleta,  Izvoz.CBM, Izvoz.VrednostRobeFaktura, Izvoz.Scenario, ISNull(Izvoz.Drumski, 0) AS Drumski " +
+                            " FROM Izvoz " +
+                            " inner join ProdajniNalogIzvozStavke on Izvoz.BrojStavkePorudzbenice = ProdajniNalogIzvozStavke.ID " +
+                            " Left JOIN TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID " +
+                            " LEFT JOIN  Partnerji ON Izvoz.Brodar = Partnerji.PaSifra " +
+                            " LEFT JOIN  Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra " +
+                            " LEFT JOIN  Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra " +
+                            " LEFT JOIN  Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra " +
+                            " LEFT JOIN  Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra " +
+                            " LEFT JOIN  uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID " +
+                            " LEFT JOIN  VrstaRobeADR on Izvoz.ADR = VrstaRobeADR.ID " + 
+                            " WHERE(Izvoz.Status<> 'STORNIRAN' OR  Izvoz.Status IS  NULL)  ";
+
+            if (statusizmene == 3)
+            {
+                select += " UNION ALL " +
+                " SELECT IzvozKonacna.ID as ID, ProdajniNalogIzvozStavke.IDNadredjenog as PorID, IzvozKonacna.BrojStavkePorudzbenice AS StavkaPorudzbenice, ISNull(IzvozKonacna.GrupID, 0) AS Grupa, IzvozKonacna.BrojKontejnera,  IzvozKonacna.VrstaKontejnera as Vrk_ID, " +
+                " Partnerji_3.PaNaziv AS Porucilac, IzvozKonacna.OpisPosla, IzvozKonacna.Link, Partnerji.PaNaziv as Brodar, IzvozKonacna.BookingBrodara as Booking, " +
+                " IzvozKonacna.CutOffPort,TipKontenjera.Naziv as VrstaKontejnera,  Partnerji_2.PaNaziv AS Izvoznik,IsNull(IzvozKonacna.Vaganje, 0) AS Vaganje, (  VrstaRobeADR.UNKod + ' - ' + VrstaRobeADR.Klasa + ' - ' + VrstaRobeADR.Naziv  ) as ADR,  IzvozKonacna.Tara, Partnerji_4.PaNaziv AS NalogodavacZaUsluge, IzvozKonacna.Napomena2REf AS RefZaUsluge, " +
+                " Partnerji_5.PaNaziv AS NalogodavacZaDrumski, IzvozKonacna.Napomena3REf AS RefZaDrumski, " +
+                " IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, " +
+                " IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe,  IzvozKonacna.BrojKoleta,  IzvozKonacna.CBM, IzvozKonacna.VrednostRobeFaktura, IzvozKonacna.Scenario, ISNull(IzvozKonacna.Drumski, 0) AS Drumski " +
+                " FROM IzvozKonacna " +
+                " inner join ProdajniNalogIzvozStavke on IzvozKonacna.BrojStavkePorudzbenice = ProdajniNalogIzvozStavke.ID " +
+                " Left JOIN TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID " +
+                " LEFT JOIN  Partnerji ON IzvozKonacna.Brodar = Partnerji.PaSifra " +
+                " LEFT JOIN  Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra " +
+                " LEFT JOIN  Partnerji AS Partnerji_3 ON IzvozKonacna.Klijent1 = Partnerji_3.PaSifra " +
+                " LEFT JOIN  Partnerji AS Partnerji_4 ON IzvozKonacna.Klijent2 = Partnerji_4.PaSifra " +
+                " LEFT JOIN  Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra " +
+                " LEFT JOIN  uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID " +
+                " LEFT JOIN  VrstaRobeADR on IzvozKonacna.ADR = VrstaRobeADR.ID " +
+                "-- WHERE(IzvozKonacna.Status<> 'STORNIRAN' OR  IzvozKonacna.Status IS  NULL) ";
+            }
+
+            // Na samom kraju dodajemo ORDER BY za ceo spojen rezultat
+            select += " ORDER BY ID desc ";
 
             //   var s_connection = Sifarnici.frmLogovanje.connectionString;
             //   SqlConnection myConnection = new SqlConnection(s_connection);
@@ -230,11 +256,67 @@ namespace Saobracaj.Izvoz
                     int scenario = Convert.ToInt32(rec.GetValue("Scenario"));
                     int drumski = Convert.ToInt32(rec.GetValue("Drumski"));
 
-                    frmGrupniUnosPoljaIzvoz pnd = new frmGrupniUnosPoljaIzvoz(kontejnerID,brojStavkePorudzbenice, scenario, drumski, grupID);
-                    pnd.Show();
-                   
+                    if (statusizmene == 3)
+                    {
+                        DataTable dt = VratiPodatkeZaLog(kontejnerID);
+
+                        // 2. Proveri da li ima podataka pre nego što kreiraš formu
+                        if (dt == null || dt.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Nema podataka za izabrani kontejner.");
+                        }
+                        else
+                        {
+                            // 3. Otvori formu SAMO ako podaci postoje i prosledi joj već učitani DataTable
+                            frmLogTokaProcesa pnd = new frmLogTokaProcesa(kontejnerID, dt);
+                            pnd.Show();
+                        }
+                        
+                    }
+                    else 
+                    { 
+                        frmGrupniUnosPoljaIzvoz pnd = new frmGrupniUnosPoljaIzvoz(kontejnerID, brojStavkePorudzbenice, scenario, drumski, grupID);
+                        pnd.Show();
+                    }
+
                 }
             }
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = $@"
+                        SELECT Poruka, Datum AS DatumVreme , Lokacija
+                        FROM KontejnerLog
+                        WHERE KontejnetID = {ID} order by ID asc ";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
         }
 
         private void gridGroupingControl1_TableControlMouseDown(object sender, GridTableControlMouseEventArgs e)
@@ -303,13 +385,25 @@ namespace Saobracaj.Izvoz
                 if (rec != null)
                 {
                     int kontejnerID = Convert.ToInt32(rec.GetValue("ID"));
-                    int brojStavkePorudzbenice = Convert.ToInt32(rec.GetValue("StavkaPorudzbenice"));
-                    int grupID = Convert.ToInt32(rec.GetValue("Grupa"));
-                    int scenario = Convert.ToInt32(rec.GetValue("Scenario"));
-                    int drumski = Convert.ToInt32(rec.GetValue("Drumski"));
+                    if (statusizmene == 3)
+                    {
+                        DataTable dt = VratiPodatkeZaLog(kontejnerID);
+                        frmLogTokaProcesa pp = new frmLogTokaProcesa(kontejnerID, dt);
+                        pp.Show();
+                    }
+                    else
+                    {
+                        
+                        int brojStavkePorudzbenice = Convert.ToInt32(rec.GetValue("StavkaPorudzbenice"));
+                        int grupID = Convert.ToInt32(rec.GetValue("Grupa"));
+                        int scenario = Convert.ToInt32(rec.GetValue("Scenario"));
+                        int drumski = Convert.ToInt32(rec.GetValue("Drumski"));
 
-                    frmGrupniUnosPoljaIzvoz pnd = new frmGrupniUnosPoljaIzvoz(kontejnerID, brojStavkePorudzbenice, scenario, drumski, grupID);
-                    pnd.Show();
+                          frmGrupniUnosPoljaIzvoz pnd = new frmGrupniUnosPoljaIzvoz(kontejnerID, brojStavkePorudzbenice, scenario, drumski, grupID);
+                        pnd.Show();
+                    }
+
+                  
 
                 }
             }

@@ -238,14 +238,28 @@ namespace Saobracaj.Drumski
                                 CASE 
                                     WHEN x.MestoUtovara = 0 
                                          OR x.MestoUtovara IS NULL
-                                    THEN CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mi.Naziv)))
+                                    THEN CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
 
                                     WHEN x.Scenario in(13,26,7,23) 
                                     THEN 
-                                        CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mi.Naziv)))
+                                        CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
                                     WHEN x.Scenario in(8,9,24,25) 
                                     THEN 
                                        CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
+                                END AS Relacija1,
+                                CASE 
+                                -- Slučaj kada NEMAMO mesto preuzimanja (spajamo samo utovar i istovar)
+                                WHEN x.MestoPreuzimanjaKontejnera = 0 OR x.MestoPreuzimanjaKontejnera IS NULL THEN
+                                    CASE 
+                                        WHEN mu.Naziv IS NOT NULL AND mii.Naziv IS NOT NULL 
+                                            THEN CONCAT(LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
+                                        ELSE 
+                                            CONCAT(LTRIM(RTRIM(mu.Naziv)), LTRIM(RTRIM(mii.Naziv)))
+                                    END
+
+                                -- Slučaj kada IMAMO mesto preuzimanja (spajamo mp + mu + mi)
+                                ELSE 
+                                    CONCAT(LTRIM(RTRIM(mp.naziv)), ' - ', LTRIM(RTRIM(mu.naziv)), ' - ', LTRIM(RTRIM(mii.naziv)))
                                 END AS Relacija,
                                 CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
@@ -462,7 +476,7 @@ namespace Saobracaj.Drumski
                                          ) MestoPreuzimanjaKontejnera,
                                          (CASE 
                                               WHEN rn.Scenario in (13,26) THEN 0
-                                              WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                              WHEN rn.Scenario in (7,23) THEN rn.MestoUtovara
                                               WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoUtovaraCerade
                                          END) MestoUtovara,
                                          (CASE 
@@ -511,10 +525,11 @@ namespace Saobracaj.Drumski
                                 AND sts.Status = x.Status
                             LEFT JOIN Dokumenti d ON d.RadniNalogDrumskiID = x.id
                             LEFT JOIN MestaUtovara mu ON mu.id = x.MestoUtovara
-                            LEFT JOIN MestaUtovara mii ON mii.id = x.MestoIstovara  AND (Scenario = 8 OR Scenario = 9 OR Scenario = 24 OR Scenario = 25 )
-                            LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID  AND (Scenario = 13 OR Scenario = 26 OR Scenario = 7 OR Scenario = 23 )
+                            LEFT JOIN MestaUtovara mii ON mii.id = x.MestoIstovara -- AND (Scenario = 8 OR Scenario = 9 OR Scenario = 24 OR Scenario = 25 )
+                           -- LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID  AND (Scenario = 13 OR Scenario = 26 OR Scenario = 7 OR Scenario = 23 )
                             LEFT JOIN MestaUtovara mp on  x.MestoPreuzimanjaKontejnera = mp.ID 
-                           WHERE  {uslovTipVozila}  AND ( ISNULL(sts.JesteZavrsni, 0) = 0 OR  (ISNULL(sts.JesteZavrsni, 0) = 1 AND ISNULL(d.BrojDokumenata, 0) = 0))
+                           WHERE  {uslovTipVozila} 
+                           AND ( ISNULL(sts.JesteZavrsni, 0) = 0 OR  (ISNULL(sts.JesteZavrsni, 0) = 1 AND ISNULL(d.BrojDokumenata, 0) = 0))
 
                             ORDER BY 
                                 x.NalogID DESC";

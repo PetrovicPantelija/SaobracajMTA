@@ -2031,6 +2031,12 @@
     <Compile Include="Izvoz\frmKrajnjaDestinacija.Designer.cs">
       <DependentUpon>frmKrajnjaDestinacija.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmLogTokaProcesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmLogTokaProcesa.Designer.cs">
+      <DependentUpon>frmLogTokaProcesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmMestaUtovara.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5596,6 +5602,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmKrajnjaDestinacija.resx">
       <DependentUpon>frmKrajnjaDestinacija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmLogTokaProcesa.resx">
+      <DependentUpon>frmLogTokaProcesa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmMestaUtovara.resx">
       <DependentUpon>frmMestaUtovara.cs</DependentUpon>

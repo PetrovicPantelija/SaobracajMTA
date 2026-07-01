@@ -113,7 +113,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter("Select ID from PrijemKontejneraVoz where NajavaID=" + KomNalID, c);
+            var dataAdapter = new SqlDataAdapter("Select ID from PrijemKontejneraVozStavke where NajavaID=" + KomNalID, c);
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);

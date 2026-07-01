@@ -764,15 +764,14 @@ namespace Saobracaj.Drumski
                                     rn.TipTransporta,
                                     (
                                      CASE 
-                                        WHEN i.Scenario in (13,26) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
-                                        WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtPreuzimanjaPunog > '1900-01-01', i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog)
+                                        WHEN i.Scenario in (7,23) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
+                                        WHEN i.Scenario in (13,26) THEN IIF(i.PlaniranDtPreuzimanjaPunog > '1900-01-01', i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog)
                                        WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
                                     END
                                     ) RelevantniDatum,
 (
                                      CASE 
-                                        WHEN i.Scenario in (13,26) THEN i.MestoPreuzimanja
-                                        WHEN i.Scenario in (7,23) THEN i.MestoPreuzimanja
+                                        WHEN i.Scenario in (13,26,7,23) THEN i.MestoPreuzimanja
                                     END
                                     ) MestoPreuzimanjaKontejnera,
                                      (
@@ -801,8 +800,8 @@ namespace Saobracaj.Drumski
                                      rn.NalogID,
                                      '' AS Kamion,
 			                         ( CASE 
-                                         WHEN ik.Scenario in (13,26) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
-                                        WHEN ik.Scenario in (7,23)  THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
+                                         WHEN ik.Scenario in (7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
+                                        WHEN ik.Scenario in (13,26)  THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
                                        
                                      END) AS DatumUtovara,
                                      ( CASE 
@@ -813,14 +812,13 @@ namespace Saobracaj.Drumski
                                 
                                      rn.TipTransporta,
                                     (CASE 
-                                        WHEN ik.Scenario in (13,26) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
-                                        WHEN ik.Scenario in (7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
+                                        WHEN ik.Scenario in (7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
+                                        WHEN ik.Scenario in (13,26) THEN IIF(ik.PlaniranDtPreuzimanjaPunog > '1900-01-01', ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog)
                                         WHEN ik.Scenario in  (8,24,9,25) THEN IIF(ik.PlaniranDtUtovaraCerade > '1900-01-01', ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
                                     END) AS RelevantniDatum,
                                        (
                                          CASE 
-                                            WHEN ik.Scenario in (13,26) THEN ik.MestoPreuzimanja
-                                            WHEN ik.Scenario in (7,23) THEN ik.MestoPreuzimanja
+                                            WHEN ik.Scenario in (13,26,7,23) THEN ik.MestoPreuzimanja
                                         END
                                         ) MestoPreuzimanjaKontejnera,
                                          (
@@ -2312,7 +2310,7 @@ namespace Saobracaj.Drumski
                             kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["KontejnerID"]);
                         }
 
-                        string poruka = "Kamion preuzeo kontejner";
+                        string poruka = "Kamion je preuzeo kontejner";
                         ins.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
                     }
                     else if (noviStatusID == 18)
@@ -2606,8 +2604,8 @@ namespace Saobracaj.Drumski
                         LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
                         LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera, 
                         CASE 
-                            WHEN scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog
-                            WHEN scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog 
+                            WHEN  rn.Scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog
+                            WHEN  rn.Scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog 
                         END AS DtNoviPreuzimanjaKontejnera,                    
                         i.ID AS KontejnerID,
                         LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica
@@ -2623,10 +2621,10 @@ namespace Saobracaj.Drumski
                         " PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt, "+
                         " LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera," +
                         " LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera," +
-                        "  CASE " + 
-                        " WHEN scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog  " +
-                        " WHEN scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog " +
-                        " END AS as DtNoviPreuzimanjaKontejnera, " +
+                        "  CASE " +
+                        " WHEN  rn.Scenario IN (7, 23) THEN PlaniranDtPreuzimanjaPraznog  " +
+                        " WHEN  rn.Scenario IN (13, 26) THEN PlaniranDtPreuzimanjaPunog " +
+                        " END AS DtNoviPreuzimanjaKontejnera, " +
                         " i.ID AS KontejnerID, " +
                         " LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica " +
                         " FROM RadninalogDrumski rn " +
@@ -2962,8 +2960,9 @@ namespace Saobracaj.Drumski
 
             // Kopiraj kao HTML u clipboard
             SetClipboardHtml(htmlBuilder.ToString());
-            MessageBox.Show("Podaci su kopirani u clipboard.");
+            System.Threading.Thread.Sleep(100);
 
+            MessageBox.Show("Podaci su kopirani u clipboard.");
             RefreshDataGrid3();
         }
 
@@ -3008,8 +3007,7 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private DataTable 
-            DobaviDetaljeZaNajavu(List<int> ids)
+        private DataTable  DobaviDetaljeZaNajavu(List<int> ids)
         {
             if (ids == null || ids.Count == 0)
             {
@@ -3036,8 +3034,10 @@ namespace Saobracaj.Drumski
                                   " CASE  WHEN i.Scenario in (13,26,7,23) THEN  i.MestoPreuzimanja2 END AS MestoIstovaraID," +
                                  " rn.AdresaIstovara,  rn.NalogID,  p.PaNaziv AS Prevoznik, " +
                                  "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
-                                 " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera," +
-                                 "i.NapomenaZaRobu AS NapomenaZaPozicioniranje ,  '' AS OdredisnaCarina, -1 as OdredisnaCarinaID," +
+                                 " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena," +
+                                 " CASE  WHEN i.Scenario in (13,26) THEN  CONVERT(varchar,IsNull(i.PlaniranDtPreuzimanjaPunog, i.DtPreuzimanjaPunog),104) WHEN i.Scenario in (7,23) THEN CONVERT(varchar,IsNull(i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja),104) END AS DtPreuzimanjaPraznogKontejnera," +
+                                 //" CONVERT(varchar,ISNULL(i.PlaniraniDtPreuzimanja, i.DtPreuzimanjaPunog) ,104) AS DtPreuzimanjaPraznogKontejnera, " +
+                                 "rn.MestoPreuzimanjaKontejnera, i.NapomenaZaRobu AS NapomenaZaPozicioniranje ,  '' AS OdredisnaCarina, -1 as OdredisnaCarinaID," +
                                  "'' as polaznaCarinarnica, -1 AS PolaznaCarinaID, '' as polaznaSpedicija, '' as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt,  '' AS OdredisnaSpedicijaKontakt, " +
                                  "ISNULL(rn.PDV,0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,  rn.Opis AS DodatniOpis," +
                                  " ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena, rn.Valuta, rn.TipTransporta, rn.BrojPosiljke   " +
@@ -3069,7 +3069,10 @@ namespace Saobracaj.Drumski
                                    " CASE  WHEN ik.Scenario in (13,26,7,23) THEN  ik.MestoPreuzimanja2 END AS MestoIstovaraID," +
                                    " rn.AdresaIstovara,  rn.NalogID,  p.PaNaziv AS Prevoznik, " +
                                    "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
-                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera , rn.MestoPreuzimanjaKontejnera, " +
+                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, " +
+                                    " CASE  WHEN ik.Scenario in (13,26) THEN CONVERT(varchar, IsNull(ik.PlaniranDtPreuzimanjaPunog, ik.DtPreuzimanjaPunog),104) WHEN ik.Scenario in (7,23) THEN CONVERT(varchar, IsNull(ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja),104) END AS DtPreuzimanjaPraznogKontejnera," +
+                                   //"CONVERT(varchar,ISNULL(ik.PlaniraniDtPreuzimanja, ik.DtPreuzimanjaPunog),104) AS DtPreuzimanjaPraznogKontejnera ," +
+                                   " rn.MestoPreuzimanjaKontejnera, " +
                                    "ik.NapomenaZaRobu as NapomenaZaPozicioniranje,  '' AS OdredisnaCarina, -1 as OdredisnaCarinaID, " +
                                    "'' as polaznaCarinarnica,-1 AS PolaznaCarinaID, '' as polaznaSpedicija, '' as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV,0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
@@ -3102,7 +3105,7 @@ namespace Saobracaj.Drumski
                                    " CASE  WHEN rn.Scenario in (13,26,7,23) THEN  rn.MestoSpustanjaPunog END AS MestoIstovaraID," +
                                    " (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  rn.NalogID,  p.PaNaziv AS Prevoznik, " +
                                    "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
-                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
+                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena, CONVERT(varchar,IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera),104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
                                    " np.Naziv as NapomenaZaPozicioniranje, c.Naziv as OdredisnaCarina, uk.OdredisnaCarina as OdredisnaCarinaID, " +
                                    "'' as polaznaCarinarnica, -1 AS PolaznaCarinaID,'' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV,0) AS PDV , rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
@@ -3139,7 +3142,7 @@ namespace Saobracaj.Drumski
                                    " CASE  WHEN rn.Scenario in (13,26,7,23) THEN  rn.MestoSpustanjaPunog END AS MestoIstovaraID," +
                                    "  (Rtrim(pko.PaKOOpomba)) AS AdresaIstovara,  rn.NalogID,  p.PaNaziv AS Prevoznik, " +
                                    "rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave , " +
-                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
+                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera),104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
                                    "np.Naziv as NapomenaZaPozicioniranje, c.Naziv as OdredisnaCarina, u.OdredisnaCarina as OdredisnaCarinaID, '' as polaznaCarinarnica,-1 AS PolaznaCarinaID, '' as polaznaSpedicija, p2.PaNaziv as OdredisnaSpedicija,'' AS PolaznaSpedicijaKontakt, '' AS OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV, 0) AS PDV , rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,  rn.Opis AS DodatniOpis ," +
                                    " ISNULL(CONVERT(varchar(50), ut.DatumKreiranja, 104), '(nije slato do danas)') AS DatumKreiranjaTokena , rn.Valuta, rn.TipTransporta , rn.BrojPosiljke " +
@@ -3177,7 +3180,7 @@ namespace Saobracaj.Drumski
                                    
                                    " rn.AdresaIstovara AS AdresaIstovara, rn.NalogID, p.PaNaziv AS Prevoznik,  + " +
                                    "rn.PoslataNajava,Rtrim(dk.DeIme) + ' ' +  Rtrim(dk.DePriimek) as NajavuPoslao,CONVERT(varchar,rn.NajavaPoslataDatum,104) AS SlanjeNajave," +
-                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,rn.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
+                                   " CAST(rn.Cena AS DECIMAL(18,2)) AS Cena , CONVERT(varchar,IsNull(rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera),104) AS DtPreuzimanjaPraznogKontejnera, rn.MestoPreuzimanjaKontejnera, " +
                                    " LTRIM(RTRIM(dp.Napomena)) as NapomenaZaPozicioniranje, co.Naziv as OdredisnaCarina, rn.OdredisnaCarinarnica as OdredisnaCarinaID," +
                                    "cp.Naziv AS polaznaCarinarnica, rn.PolaznaCarinarnica AS PolaznaCarinaID,pp.PaNaziv AS PolaznaSpedicija,  po.PaNaziv as OdredisnaSpedicija, rn.PolaznaSpedicijaKontakt, rn.OdredisnaSpedicijaKontakt, " +
                                    "ISNULL(rn.PDV, 0) AS PDV, rn.Uvoz, rn.Status, rn.Status AS StatusID, tk.SkNaziv AS TipKontejnera,   rn.Opis AS DodatniOpis," +
@@ -3201,7 +3204,7 @@ namespace Saobracaj.Drumski
 
            // 3.
             var finalSelect = $@"
-                                SELECT Detalji.DtPreuzimanjaPraznogKontejnera,Detalji.MestoPreuzimanjaKontejnera,Detalji.polaznaCarinarnica,Detalji.NapomenaZaPozicioniranje,
+                                SELECT Detalji.ID,Detalji.DtPreuzimanjaPraznogKontejnera,Detalji.MestoPreuzimanjaKontejnera,Detalji.polaznaCarinarnica,Detalji.NapomenaZaPozicioniranje,
                                        mu.Naziv AS MestoUtovara,LTRIM(RTRIM( mi.Naziv + ' - ' + mi.Oznaka)) AS MestoIstovara ,CONVERT(varchar,Detalji.DatumUtovara1,104) AS DatumUtovara,
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM( mi.Naziv + ' - ' + mi.Oznaka)) AS Relacija,
                                        case when Izvor != 'Izvoz' THEN AdresaUtovara ELSE (Rtrim(pko.PaKOOpomba)) END as AdresaUtovara ,
@@ -3267,6 +3270,10 @@ namespace Saobracaj.Drumski
                      FROM Automobili 
                      WHERE ID = @KamionID";
 
+            string ime = "-";
+            string lk = "-";
+            string tel = "-";
+
             using (SqlConnection conn = new SqlConnection(connection))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -3277,17 +3284,15 @@ namespace Saobracaj.Drumski
                 {
                     if (reader.Read())
                     {
-                        string ime = reader["Vozac"].ToString();
-                        string lk = reader["LicnaKarta"].ToString();
-                        string tel = reader["BrojTelefona"].ToString();
-                        return (ime, lk, tel);
+                         ime = reader["Vozac"].ToString();
+                         lk = reader["LicnaKarta"].ToString();
+                         tel = reader["BrojTelefona"].ToString();
+                       
                     }
-                    else
-                    {
-                        return ("-", "-", "-");
-                    }
+                   
                 }
             }
+            return (ime, lk, tel);
         }
 
         private int ProveriPostojanjeRadnogNaloga(int? radniNalogDrumskiID)

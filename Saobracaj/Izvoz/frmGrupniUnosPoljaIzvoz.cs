@@ -40,7 +40,8 @@ namespace Saobracaj.Izvoz
         List<PrivremeniNapomena> privremenaListaNapomena= new List<PrivremeniNapomena>();
         int kontejnerID = 0;
         int vrstaKamiona = 0;
-
+        int bescarinski = 0;
+        int vratiNaDopunuPodataka = 0;
         public frmGrupniUnosPoljaIzvoz(int BrojStavkePorudzbenice, int scenario, int _drumski, int VrstaKamiona)
         {
             InitializeComponent();
@@ -2983,20 +2984,24 @@ namespace Saobracaj.Izvoz
             {   
                 uspesno = 0;
             }
+            if (p.CarinskiPostupakUnutrasnji == 0)
+            {
+                bescarinski = 1;
+            }
 
-            if (p.MestoCarinjenja == null || p.MestoCarinjenja < 1)
+            if ((p.MestoCarinjenja == null || p.MestoCarinjenja < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }
-            if (p.Spedicija == null || p.Spedicija < 1)
+            if ((p.Spedicija == null || p.Spedicija < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }
-            if (p.OdredisnaCarinarnica == null || p.OdredisnaCarinarnica < 1)
+            if ((p.OdredisnaCarinarnica == null || p.OdredisnaCarinarnica < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                uspesno = 0;
             }
-            if (p.SpediterOdredisna == null || p.SpediterOdredisna < 1)
+            if ((p.SpediterOdredisna == null || p.SpediterOdredisna < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }          
@@ -3015,6 +3020,23 @@ namespace Saobracaj.Izvoz
             if (podaci == null) return; // Nema podataka
                                         //Proveri Carinsko
             carinskoPopunjeno = ProveriCarinsko(podaci);
+
+            if (bescarinski == 1)
+            {
+                DialogResult rezultat = MessageBox.Show(
+                    "Izabrali ste bescarinski postupak. Da li želite da nastavite kao bescarinski postupak? \n\n(Kliknite 'No' ako želite da se vratite i popunite podatke)",
+                    "Obaveštenje o postupku",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (rezultat == DialogResult.No)
+                {
+                    // Korisnik želi da popuni podatke -> izlazimo iz cele metode
+                    vratiNaDopunuPodataka = 1;
+                    return;
+                }  
+            }
 
             // proveri brodara
             if (podaci.Brodar == null || podaci.Brodar < 1)
@@ -3090,6 +3112,11 @@ namespace Saobracaj.Izvoz
                 // {
                 ProveriPodatkeDaLiSuPripreljeni(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
+                // koristimo samo ako je carinski postupak izabran kao / a korisnik se izjasnio da zeli ipak da popuni podatke
+                if (vratiNaDopunuPodataka == 1)
+                {
+                    return;
+                }
                 //List<string> nedostaje = new List<string>();
 
                 //bool faliBrodar;
@@ -3493,10 +3520,18 @@ namespace Saobracaj.Izvoz
         private void button5_Click(object sender, EventArgs e)
         {
             string Selektovani = "";
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            Selektovani = selectedRow.Cells[0].Value?.ToString();
-            frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(0, Convert.ToInt32(Selektovani));
-            ppDU.Show();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                Selektovani = selectedRow.Cells[0].Value?.ToString();
+                frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(0, Convert.ToInt32(Selektovani));
+                ppDU.Show();
+            }
+            else
+            {
+                // Poruka korisniku ako ništa nije kliknuo
+                MessageBox.Show("Molimo vas da prvo selektujete ceo red u tabeli.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 

@@ -227,16 +227,24 @@ namespace Saobracaj.Izvoz
                 spediterPolazna = polaznaS;
             }
 
-           
 
-            if (int.TryParse(cboOdredisnaCarinarnica.SelectedValue.ToString(), out int odredisna))
+
+            //if (int.TryParse(cboOdredisnaCarinarnica.SelectedValue.ToString(), out int odredisna))
+            //{
+            //    odredisnaCarinarnica = odredisna;
+            //}
+            if (cboOdredisnaCarinarnica.SelectedValue != null)
             {
-                odredisnaCarinarnica = odredisna;
+                odredisnaCarinarnica = (int)cboOdredisnaCarinarnica.SelectedValue;
             }
 
-            if (int.TryParse(cboSpediterOdredisna.SelectedValue.ToString(), out int odredisnaS))
+            //if (int.TryParse(cboSpediterOdredisna.SelectedValue.ToString(), out int odredisnaS))
+            //{
+            //    spediterOdredisna = odredisnaS;
+            //}
+            if (cboSpediterOdredisna.SelectedValue != null)
             {
-                spediterOdredisna = odredisnaS;
+                spediterOdredisna = (int)cboSpediterOdredisna.SelectedValue;
             }
             if (scenario != 25)
             {
@@ -351,22 +359,22 @@ namespace Saobracaj.Izvoz
                 uspesno = false;
             }
 
-            if (cboPolaznaCarinarnica.SelectedIndex < 1)
+            if (cboPolaznaCarinarnica.SelectedIndex < 1 && cboCarinskiPUnutrasniTransport.SelectedIndex != 0)
             {
                 errorProvider1.SetError(cboPolaznaCarinarnica, "Morate izabrati neku vrednost!");
                 uspesno = false;
             }
-            if (cboSpediterPolazna.SelectedIndex < 1)
+            if (cboSpediterPolazna.SelectedIndex < 1 && cboCarinskiPUnutrasniTransport.SelectedIndex != 0)
             {
                 errorProvider1.SetError(cboSpediterPolazna, "Morate izabrati neku vrednost!");
                 uspesno = false;
             }
-            if (cboOdredisnaCarinarnica.SelectedIndex < 1)
+            if (cboOdredisnaCarinarnica.SelectedIndex < 1 && cboCarinskiPUnutrasniTransport.SelectedIndex != 0)
             {
                 errorProvider1.SetError(cboOdredisnaCarinarnica, "Morate izabrati neku vrednost!");
                 uspesno = false;
             }
-            if (cboSpediterOdredisna.SelectedIndex < 1)
+            if (cboSpediterOdredisna.SelectedIndex < 1 && cboCarinskiPUnutrasniTransport.SelectedIndex != 0)
             {
                 errorProvider1.SetError(cboSpediterOdredisna, "Morate izabrati neku vrednost!");
                 uspesno = false;

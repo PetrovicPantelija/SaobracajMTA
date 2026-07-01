@@ -131,7 +131,13 @@ namespace Saobracaj.MainLeget.LegNew
 
         private void sfButton6_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new frmPregledGrupaKontejneraIzvoz(3)//za prikaz svih i Izvoz i IzvozKonacna
+            );
         }
     }
 }
