@@ -392,10 +392,18 @@ namespace Saobracaj.Drumski
 
 
 
-            if (!string.IsNullOrWhiteSpace(txtKontejnerID.Text))
+            if (int.TryParse(txtKontejnerID.Text, out int kontejnerId))
             {
-                cmd.Parameters.Add("@ID", SqlDbType.Int)
-                              .Value = Convert.ToInt32(txtKontejnerID.Text);
+                cmd.Parameters.Add("@ID", SqlDbType.Int).Value = kontejnerId;
+            }
+            else
+            {
+                // Ako konverzija nije uspela, prikazujemo poruku korisniku i prekidaš dalje izvršavanje
+                MessageBox.Show("Niste uneli ispravnu vrednost, polje KontejnerID očekuje brojnu vrednost.",
+                                "Greška pri unosu",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // Prekida izvršavanje metode kako se ne bi izvršio nevalidan SQL upit
             }
 
             if (!string.IsNullOrWhiteSpace(txtBrojKontejnera.Text))
