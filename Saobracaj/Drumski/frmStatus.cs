@@ -236,31 +236,22 @@ namespace Saobracaj.Drumski
                                 x.ID,
                                 LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac,
                                 CASE 
-                                    WHEN x.MestoUtovara = 0 
-                                         OR x.MestoUtovara IS NULL
-                                    THEN CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
-
-                                    WHEN x.Scenario in(13,26,7,23) 
-                                    THEN 
-                                        CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
-                                    WHEN x.Scenario in(8,9,24,25) 
-                                    THEN 
-                                       CONCAT(LTRIM(RTRIM(mp.Naziv)), ' - ', LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
-                                END AS Relacija1,
-                                CASE 
                                 -- Slučaj kada NEMAMO mesto preuzimanja (spajamo samo utovar i istovar)
                                 WHEN x.MestoPreuzimanjaKontejnera = 0 OR x.MestoPreuzimanjaKontejnera IS NULL THEN
-                                    CASE 
-                                        WHEN mu.Naziv IS NOT NULL AND mii.Naziv IS NOT NULL 
-                                            THEN CONCAT(LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mii.Naziv)))
-                                        ELSE 
-                                            CONCAT(LTRIM(RTRIM(mu.Naziv)), LTRIM(RTRIM(mii.Naziv)))
-                                    END
+                                    CONCAT_WS(' - ', 
+                                        NULLIF(LTRIM(RTRIM(mu.Naziv)), ''), 
+                                        NULLIF(LTRIM(RTRIM(mii.Naziv)), '')
+                                    )
 
                                 -- Slučaj kada IMAMO mesto preuzimanja (spajamo mp + mu + mi)
                                 ELSE 
-                                    CONCAT(LTRIM(RTRIM(mp.naziv)), ' - ', LTRIM(RTRIM(mu.naziv)), ' - ', LTRIM(RTRIM(mii.naziv)))
-                                END AS Relacija,
+                                    CONCAT_WS(' - ', 
+                                        NULLIF(LTRIM(RTRIM(mp.naziv)), ''), 
+                                        -- Sledeća linija rešava problem ako je neko upisao '/' ili prazno u utovar:
+                                        CASE WHEN LTRIM(RTRIM(mu.naziv)) IN ('', '/', '-') THEN NULL ELSE LTRIM(RTRIM(mu.naziv)) END,
+                                        NULLIF(LTRIM(RTRIM(mii.naziv)), '')
+                                    )
+                            END AS Relacija,
                                 CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
