@@ -388,8 +388,16 @@ namespace Saobracaj.Izvoz
                     if (statusizmene == 3)
                     {
                         DataTable dt = VratiPodatkeZaLog(kontejnerID);
-                        frmLogTokaProcesa pp = new frmLogTokaProcesa(kontejnerID, dt);
-                        pp.Show();
+                        if (dt == null || dt.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Nema podataka za izabrani kontejner.");
+                        }
+                        else
+                        {
+                            // 3. Otvori formu SAMO ako podaci postoje i prosledi joj već učitani DataTable
+                            frmLogTokaProcesa pnd = new frmLogTokaProcesa(kontejnerID, dt);
+                            pnd.Show();
+                        }
                     }
                     else
                     {
