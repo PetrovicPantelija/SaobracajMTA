@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlan));
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -47,7 +44,6 @@
             this.txtMesec = new System.Windows.Forms.ComboBox();
             this.cboKomercijalista = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPlaStavkeID = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,10 +51,16 @@
             this.btn_narocite = new System.Windows.Forms.Button();
             this.btn_Aktivni = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.txtPlaniranaProdaja = new System.Windows.Forms.TextBox();
             this.panelHeader.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -72,52 +74,6 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1201, 33);
             this.panelHeader.TabIndex = 525;
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Controls.Add(this.button20);
-            this.panel3.Controls.Add(this.button22);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(86, 31);
-            this.panel3.TabIndex = 2;
-            // 
-            // button20
-            // 
-            this.button20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button20.BackgroundImage")));
-            this.button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button20.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button20.FlatAppearance.BorderSize = 0;
-            this.button20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button20.Location = new System.Drawing.Point(41, 3);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(27, 27);
-            this.button20.TabIndex = 15;
-            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button20.UseVisualStyleBackColor = true;
-            // 
-            // button22
-            // 
-            this.button22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button22.BackgroundImage")));
-            this.button22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button22.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button22.FlatAppearance.BorderSize = 0;
-            this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Location = new System.Drawing.Point(10, 3);
-            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
-            this.button22.Name = "button22";
-            this.button22.Padding = new System.Windows.Forms.Padding(9);
-            this.button22.Size = new System.Drawing.Size(27, 27);
-            this.button22.TabIndex = 13;
-            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button22.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -292,13 +248,6 @@
             this.label6.TabIndex = 547;
             this.label6.Text = "Komercijalista";
             // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(904, 70);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 548;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -344,6 +293,7 @@
             this.btn_svi.TabIndex = 552;
             this.btn_svi.Text = "Izbriši";
             this.btn_svi.UseVisualStyleBackColor = false;
+            this.btn_svi.Click += new System.EventHandler(this.btn_svi_Click);
             // 
             // btn_narocite
             // 
@@ -357,6 +307,7 @@
             this.btn_narocite.TabIndex = 553;
             this.btn_narocite.Text = "Izmeni";
             this.btn_narocite.UseVisualStyleBackColor = false;
+            this.btn_narocite.Click += new System.EventHandler(this.btn_narocite_Click);
             // 
             // btn_Aktivni
             // 
@@ -370,6 +321,7 @@
             this.btn_Aktivni.TabIndex = 554;
             this.btn_Aktivni.Text = "Unesi";
             this.btn_Aktivni.UseVisualStyleBackColor = false;
+            this.btn_Aktivni.Click += new System.EventHandler(this.btn_Aktivni_Click);
             // 
             // dataGridView1
             // 
@@ -383,12 +335,100 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(714, 421);
             this.dataGridView1.TabIndex = 555;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button20);
+            this.panel3.Controls.Add(this.button21);
+            this.panel3.Controls.Add(this.button22);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(108, 31);
+            this.panel3.TabIndex = 3;
+            // 
+            // button20
+            // 
+            this.button20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button20.BackgroundImage")));
+            this.button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button20.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button20.FlatAppearance.BorderSize = 0;
+            this.button20.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button20.Location = new System.Drawing.Point(70, 3);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(27, 27);
+            this.button20.TabIndex = 15;
+            this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.Location = new System.Drawing.Point(39, 3);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(27, 27);
+            this.button21.TabIndex = 14;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button22
+            // 
+            this.button22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button22.BackgroundImage")));
+            this.button22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button22.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button22.FlatAppearance.BorderSize = 0;
+            this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(10, 3);
+            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
+            this.button22.Name = "button22";
+            this.button22.Padding = new System.Windows.Forms.Padding(9);
+            this.button22.Size = new System.Drawing.Size(27, 27);
+            this.button22.TabIndex = 13;
+            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click_1);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 336);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(436, 241);
+            this.dataGridView2.TabIndex = 556;
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            // 
+            // txtPlaniranaProdaja
+            // 
+            this.txtPlaniranaProdaja.Location = new System.Drawing.Point(907, 69);
+            this.txtPlaniranaProdaja.Name = "txtPlaniranaProdaja";
+            this.txtPlaniranaProdaja.Size = new System.Drawing.Size(140, 20);
+            this.txtPlaniranaProdaja.TabIndex = 557;
             // 
             // frmPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 601);
+            this.Controls.Add(this.txtPlaniranaProdaja);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_svi);
             this.Controls.Add(this.btn_narocite);
@@ -396,7 +436,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtPlaStavkeID);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboKomercijalista);
             this.Controls.Add(this.txtMesec);
@@ -416,9 +455,9 @@
             this.Text = "Plan";
             this.Load += new System.EventHandler(this.frmPlan_Load);
             this.panelHeader.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,9 +466,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelHeader;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label26;
@@ -444,7 +480,6 @@
         private System.Windows.Forms.ComboBox txtMesec;
         private System.Windows.Forms.ComboBox cboKomercijalista;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPlaStavkeID;
         private System.Windows.Forms.Label label8;
@@ -452,5 +487,11 @@
         private System.Windows.Forms.Button btn_narocite;
         private System.Windows.Forms.Button btn_Aktivni;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.TextBox txtPlaniranaProdaja;
     }
 }

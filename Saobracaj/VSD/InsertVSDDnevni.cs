@@ -41,8 +41,18 @@ namespace Saobracaj.VSD
             parameter2.Value = Komercijalista;
             myCommand.Parameters.Add(parameter2);
 
+
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@Brend";
+            parameter21.SqlDbType = SqlDbType.NVarChar;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Size = 50;
+            parameter21.Value = Brend;
+            myCommand.Parameters.Add(parameter21);
+
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Kolicina";
+            parameter3.SqlDbType = SqlDbType.Int;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = kolicina;
             myCommand.Parameters.Add(parameter3);
