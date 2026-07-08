@@ -1018,7 +1018,7 @@ namespace Saobracaj.Drumski
                             }));
 
                             this.BeginInvoke(new MethodInvoker(() => {
-                                posaljiStatusKontejnera(id);
+                                posaljiStatusKontejnera(id, jeZavrsni);
                             }));
                             return; // 3. Veoma važno: prekini dalje izvršavanje ako je yavrsni
                         }
@@ -1261,7 +1261,7 @@ namespace Saobracaj.Drumski
             return result;
         }
 
-        private void posaljiStatusKontejnera(int id)
+        private void posaljiStatusKontejnera(int id, bool jeZavrsni = false)
         {
             if (id == null)
             {
@@ -1375,6 +1375,8 @@ namespace Saobracaj.Drumski
                 k1 = row["BrojKontejnera"] == DBNull.Value ? "" : row["BrojKontejnera"].ToString().Trim();
                 k2 = row["BrojKontejnera2"] == DBNull.Value ? "" : row["BrojKontejnera"].ToString().Trim();
                 noviStatusTekst = row["Status"] == DBNull.Value ? "" : row["Status"].ToString().Trim();
+                if( jeZavrsni == true && row["MestoSpustanja"] != DBNull.Value && (row["MestoSpustanja"].ToString().Trim() != "/" ))
+                    noviStatusTekst += row["MestoSpustanja"] == DBNull.Value ? "" :  " " + row["MestoSpustanja"].ToString().Trim();
                 if (row["DatumPromeneStatusa"] != DBNull.Value)
                     datumPromene = Convert.ToDateTime(row["DatumPromeneStatusa"]);
                 kamion = row["Kamion"] == DBNull.Value ? "" : row["Kamion"].ToString().Trim();
@@ -1708,7 +1710,8 @@ namespace Saobracaj.Drumski
                                  " LTRIM(RTRIM(sv.Naziv)) AS Status," +
                                  "au.RegBr AS Kamion, " +
                                  "vv.Naziv as TipVozila, " +
-                                 "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa " +
+                                 "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa ," +
+                                 "mu.Naziv AS MestoSpustanja" +
                          " from  RadniNalogDrumski rn " +
                                  "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                  "inner join Automobili au on au.ID = rn.KamionID " +
@@ -1718,7 +1721,8 @@ namespace Saobracaj.Drumski
                                  "left join Partnerji pa ON pa.PaSifra = i.Klijent3 " +
                                  "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
                                  "left join Partnerji p on au.PartnerID = p.PaSifra  " +
-                                 "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                 "left join StatusVozila sv ON sv.ID = rn.Status " +
+                                 "left join MestaUtovara mu on mu.id = i.MestoPreuzimanja2 " +
                                 "where rn.Uvoz = 0 and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID is not NULL AND rn.KamionID != 0  " +
                          " union all " +
                          " select  rn.ID, ik.Scenario, " +
@@ -1728,7 +1732,8 @@ namespace Saobracaj.Drumski
                                     " LTRIM(RTRIM(sv.Naziv)) AS Status," +
                                    "au.RegBr AS Kamion, " +
                                    "vv.Naziv as TipVozila, " +
-                                   "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa" +
+                                   "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa," +
+                                   " mu.Naziv AS MestoSpustanja" +
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -1739,6 +1744,7 @@ namespace Saobracaj.Drumski
                                    "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
                                    "left join Partnerji p on au.PartnerID = p.PaSifra  " +
                                    "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                    "left join MestaUtovara mu on mu.id = ik.MestoPreuzimanja2 " +
                                    "where rn.Uvoz = 0 and rn.KamionID is NOT NULL and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 " +
                          " union all " +
                          " select  rn.ID, rn.Scenario, " +
@@ -1748,7 +1754,8 @@ namespace Saobracaj.Drumski
                                    " LTRIM(RTRIM(sv.Naziv)) AS Status," +
                                    "au.RegBr AS Kamion, " +
                                    "vv.Naziv as TipVozila, " +
-                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa " +
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "'' AS MestoSpustanja "+
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -1772,8 +1779,9 @@ namespace Saobracaj.Drumski
                                    " LTRIM(RTRIM(sv.Naziv)) AS Status," +
                                    "au.RegBr AS Kamion, " +
                                    "vv.Naziv as TipVozila, " +
-                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa " +
-                                  
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "'' AS MestoSpustanja " +
+
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -1797,8 +1805,8 @@ namespace Saobracaj.Drumski
                                    " LTRIM(RTRIM(sv.Naziv)) AS Status," +
                                    "au.regbr AS Kamion, " +
                                    "vv.Naziv as TipVozila, " +
-                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa " +
-                                   
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "mu.Naziv AS MestoSpustanja "+
                          " from     RadniNalogDrumski rn " +
                                    "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
                                    "inner join Automobili au on au.ID = rn.KamionID " +
@@ -1812,12 +1820,13 @@ namespace Saobracaj.Drumski
                                    "LEFT JOIN Carinarnice co ON co.ID = rn.OdredisnaCarinarnica " +
                                    "LEFT JOIN Partnerji po ON po.PaSifra = rn.odredisnaspedicija " +
                                    "LEFT JOIN Partnerji pp ON pp.PaSifra = rn.polaznaspedicija " +
+                                   "left join MestaUtovara mu on mu.id = rn.MestoSpustanjaPunog " +
                                    "where rn.Uvoz in (2, 3, 4, 5) and rn.NalogID > 0  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID is not NULL AND rn.KamionID != 0" ;
 
             // 3.
             var finalSelect = $@"
                                 SELECT 
-                                      ID, BrojKontejnera, BrojKontejnera2,Status, Nalogodavac, TipVozila, Kamion, Vozac, KamionID, DatumPromeneStatusa
+                                      ID, BrojKontejnera, BrojKontejnera2,Status, Nalogodavac, TipVozila, Kamion, Vozac, KamionID, DatumPromeneStatusa, MestoSpustanja
                                 FROM (
                                     {unionQueryBody}
                                 ) AS Detalji
