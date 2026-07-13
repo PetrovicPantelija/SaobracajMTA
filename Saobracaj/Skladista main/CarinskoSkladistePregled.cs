@@ -120,5 +120,10 @@ namespace Saobracaj.Skladista_main
 
                 main.OtvoriFormuBezPrava(() => new NaloziViljuskaristiPregled());
         }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

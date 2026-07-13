@@ -49,7 +49,6 @@
             this.dgvUsluge = new System.Windows.Forms.DataGridView();
             this.panelPrijem2 = new System.Windows.Forms.Panel();
             this.btnIzbaci = new System.Windows.Forms.Button();
-            this.lblTip = new System.Windows.Forms.Label();
             this.txtOpisPosla = new System.Windows.Forms.TextBox();
             this.cboCarinskiPostupak = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
@@ -109,6 +108,11 @@
             this.txtMbID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsluge)).BeginInit();
             this.panelPrijem2.SuspendLayout();
             this.panelPrijem1.SuspendLayout();
@@ -116,6 +120,8 @@
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // novoVremePrijem
@@ -289,7 +295,7 @@
             // 
             // panelPrijem2
             // 
-            this.panelPrijem2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelPrijem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelPrijem2.Controls.Add(this.novoVremePrijem);
             this.panelPrijem2.Controls.Add(this.planiranoVremePrijem);
             this.panelPrijem2.Controls.Add(this.label22);
@@ -322,20 +328,6 @@
             this.btnIzbaci.Text = "Izbaci";
             this.btnIzbaci.UseVisualStyleBackColor = true;
             this.btnIzbaci.Click += new System.EventHandler(this.btnIzbaci_Click);
-            // 
-            // lblTip
-            // 
-            this.lblTip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTip.AutoSize = true;
-            this.lblTip.BackColor = System.Drawing.Color.Transparent;
-            this.lblTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTip.ForeColor = System.Drawing.Color.Black;
-            this.lblTip.Location = new System.Drawing.Point(12, 9);
-            this.lblTip.Name = "lblTip";
-            this.lblTip.Size = new System.Drawing.Size(117, 39);
-            this.lblTip.TabIndex = 528;
-            this.lblTip.Text = "Prijem";
             // 
             // txtOpisPosla
             // 
@@ -459,7 +451,7 @@
             // 
             // panelPrijem1
             // 
-            this.panelPrijem1.BackColor = System.Drawing.Color.PaleGreen;
+            this.panelPrijem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelPrijem1.Controls.Add(this.txtTelefonPrijem);
             this.panelPrijem1.Controls.Add(this.txtLKPrijem);
             this.panelPrijem1.Controls.Add(this.txtVozacPrijem);
@@ -757,7 +749,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.SeaShell;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panel1.Controls.Add(this.txtVrstaRobe);
             this.panel1.Controls.Add(this.txtPIB);
             this.panel1.Controls.Add(this.cboADR);
@@ -821,7 +813,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.LemonChiffon;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panel4.Controls.Add(this.btnIzbaci);
             this.panel4.Controls.Add(this.btnDodaj);
             this.panel4.Controls.Add(this.dgvUsluge);
@@ -838,7 +830,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panel5.Controls.Add(this.btnMbNazad);
             this.panel5.Controls.Add(this.btnMbSave);
             this.panel5.Controls.Add(this.dataGridView1);
@@ -898,7 +890,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(174, 16);
+            this.label17.Location = new System.Drawing.Point(138, 16);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(124, 13);
             this.label17.TabIndex = 0;
@@ -913,15 +905,87 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "ID";
             // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.txtSifra);
+            this.panelHeader.Controls.Add(this.panel2);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1280, 32);
+            this.panelHeader.TabIndex = 530;
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.Location = new System.Drawing.Point(1126, 5);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.button24);
+            this.panel2.Location = new System.Drawing.Point(11, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1070, 32);
+            this.panel2.TabIndex = 6;
+            // 
+            // button25
+            // 
+            this.button25.AutoSize = true;
+            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button25.FlatAppearance.BorderSize = 0;
+            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button25.Location = new System.Drawing.Point(70, 0);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(127, 32);
+            this.button25.TabIndex = 18;
+            this.button25.Text = "Potvrdi: LO nalog";
+            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button25.UseVisualStyleBackColor = true;
+            // 
+            // button24
+            // 
+            this.button24.AutoSize = true;
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(0, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(70, 32);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Snimi";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            // 
             // Prijem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1280, 572);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panelPrijem2);
-            this.Controls.Add(this.lblTip);
             this.Controls.Add(this.txtOpisPosla);
             this.Controls.Add(this.cboCarinskiPostupak);
             this.Controls.Add(this.label44);
@@ -960,6 +1024,10 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -988,7 +1056,6 @@
         private System.Windows.Forms.DataGridView dgvUsluge;
         private System.Windows.Forms.Panel panelPrijem2;
         private System.Windows.Forms.Button btnIzbaci;
-        private System.Windows.Forms.Label lblTip;
         private System.Windows.Forms.TextBox txtOpisPosla;
         private System.Windows.Forms.ComboBox cboCarinskiPostupak;
         private System.Windows.Forms.Label label44;
@@ -1048,5 +1115,10 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnMbNazad;
         private System.Windows.Forms.Button btnMbSave;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button24;
     }
 }
