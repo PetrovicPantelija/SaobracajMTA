@@ -15,6 +15,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,7 +40,8 @@ namespace Saobracaj.Izvoz
         List<PrivremeniNapomena> privremenaListaNapomena= new List<PrivremeniNapomena>();
         int kontejnerID = 0;
         int vrstaKamiona = 0;
-
+        int bescarinski = 0;
+        int vratiNaDopunuPodataka = 0;
         public frmGrupniUnosPoljaIzvoz(int BrojStavkePorudzbenice, int scenario, int _drumski, int VrstaKamiona)
         {
             InitializeComponent();
@@ -2209,6 +2211,9 @@ namespace Saobracaj.Izvoz
 
                             uvK.InsUbaciUslugu(trenutniID, 84, pomCena, pomkolicina, pomOrgJed84, pomPlatilac, 0, pomPokret, pomStatusKontejnera, pomForma);
                         }
+                      
+                        upisiLogKontejnera(trenutniID, true);
+                                           
                     }
 
                     // // --- USLOV 2: Vaganje i manipulacija 102 ---
@@ -2975,24 +2980,28 @@ namespace Saobracaj.Izvoz
         private int ProveriCarinsko( PodaciIzvoza p)
         {
             int uspesno = 1;
-            if (p.CarinskiPostupakUnutrasnji == null || p.CarinskiPostupakUnutrasnji < 1)
+            if (p.CarinskiPostupakUnutrasnji == null )
             {   
                 uspesno = 0;
             }
+            if (p.CarinskiPostupakUnutrasnji == 0)
+            {
+                bescarinski = 1;
+            }
 
-            if (p.MestoCarinjenja == null || p.MestoCarinjenja < 1)
+            if ((p.MestoCarinjenja == null || p.MestoCarinjenja < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }
-            if (p.Spedicija == null || p.Spedicija < 1)
+            if ((p.Spedicija == null || p.Spedicija < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }
-            if (p.OdredisnaCarinarnica == null || p.OdredisnaCarinarnica < 1)
+            if ((p.OdredisnaCarinarnica == null || p.OdredisnaCarinarnica < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                uspesno = 0;
             }
-            if (p.SpediterOdredisna == null || p.SpediterOdredisna < 1)
+            if ((p.SpediterOdredisna == null || p.SpediterOdredisna < 1) && p.CarinskiPostupakUnutrasnji > 0)
             {
                 uspesno = 0;
             }          
@@ -3011,6 +3020,23 @@ namespace Saobracaj.Izvoz
             if (podaci == null) return; // Nema podataka
                                         //Proveri Carinsko
             carinskoPopunjeno = ProveriCarinsko(podaci);
+
+            if (bescarinski == 1)
+            {
+                DialogResult rezultat = MessageBox.Show(
+                    "Izabrali ste bescarinski postupak. Da li želite da nastavite kao bescarinski postupak? \n\n(Kliknite 'No' ako želite da se vratite i popunite podatke)",
+                    "Obaveštenje o postupku",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (rezultat == DialogResult.No)
+                {
+                    // Korisnik želi da popuni podatke -> izlazimo iz cele metode
+                    vratiNaDopunuPodataka = 1;
+                    return;
+                }  
+            }
 
             // proveri brodara
             if (podaci.Brodar == null || podaci.Brodar < 1)
@@ -3086,6 +3112,11 @@ namespace Saobracaj.Izvoz
                 // {
                 ProveriPodatkeDaLiSuPripreljeni(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
+                // koristimo samo ako je carinski postupak izabran kao / a korisnik se izjasnio da zeli ipak da popuni podatke
+                if (vratiNaDopunuPodataka == 1)
+                {
+                    return;
+                }
                 //List<string> nedostaje = new List<string>();
 
                 //bool faliBrodar;
@@ -3201,7 +3232,7 @@ namespace Saobracaj.Izvoz
 
 
                 ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(40));
-
+                upisiLogKontejnera(Convert.ToInt32(row.Cells[0].Value.ToString()), false);
 
                 // }
             }
@@ -3217,20 +3248,181 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void upisiLogKontejnera()
-        {
+        private void upisiLogKontejnera(int ID, bool izvrsi) // izvrsi je rezervisana da ako je drumski u trenutku kreiranja uluga upise log, onda je true
+        {                                                    // dok kod dugmeta faza 1 treba da preskoci taj deo jer je vec kreiran log
+            string poruka = "";
+            DateTime? datum = null;
+            InsertIzvoz ins = new InsertIzvoz();
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(ID);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
             switch (scenarioID)
             {
-                // GRUPA I
-                case 13: // Scenario I
-                         // Podesi šta treba za čist I
-            
+                // GRUPA I/
+                case 13:
+                case 26:
+                    if (izvrsi || drumski == 0)
+                    {
+                        foreach (System.Data.DataRow row in dtPodaci.Rows)
+                        {
+                           
+                            DateTime? vreme1 = null;
+                            DateTime? vreme2 = null;
+                            string poruka1 = string.Empty;
+                            string poruka2 = string.Empty;
+                            string lokacija = string.Empty;
+                            int drumski = Convert.ToInt32(row["Drumski"].ToString());
+                            int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+
+                            if (drumski == 1)
+                            {
+                                poruka1 = "Očekivano vreme preuzimanja punog kontejnera";
+
+                                // Čitanje lokacije
+                                if (row["MestoPreuzimanjaKontejnera"] != DBNull.Value)
+                                {
+                                    lokacija = row["MestoPreuzimanjaKontejnera"].ToString();
+                                }
+                                if (row["DtPreuzimanjaPunog"] != DBNull.Value)
+                                {
+                                    vreme1 = Convert.ToDateTime(row["DtPreuzimanjaPunog"]);
+                                }      
+                            }
+                            else
+                            {
+                                poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+                                poruka2 = "Novo očekivano vreme spuštanja punog kontejnera";
+                                // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                                if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                                {
+                                    vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                                }
+
+                                // Čitanje novog vremena (SpustanjePunogNoviPlaniraniDt)
+                                if (row["SpustanjePunogNoviPlaniraniDt"] != DBNull.Value)
+                                {
+                                    vreme2 = Convert.ToDateTime(row["SpustanjePunogNoviPlaniraniDt"]);
+                                }
+
+                                // Čitanje lokacije
+                                if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                                {
+                                    lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                                }
+
+                            }
+
+                            ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                            // 4. DRUGI INSERT
+                            if (vreme2 != null && drumski == 0)
+                                ins.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
+                        }
+                    }
                     break;
-                case 26: // Scenario I-L
-             
-                    break;
+                    //    case 26: // Scenario I-L
+                    //        if (izvrsi)
+                    //        {
+                    //            foreach (System.Data.DataRow row in dtPodaci.Rows)
+                    //            {
+
+                    //                string poruka1 = "Očekivano vreme spuštanja punog kontejnera";
+
+                    //                DateTime? vreme1 = null;
+                    //                string lokacija = string.Empty;
+
+                    //                int kontejnerID = Convert.ToInt32(row["ID"].ToString());
+                    //                int drumski = Convert.ToInt32(row["Drumski"].ToString());
+                    //                // Čitanje lokacije
+                    //                if (row["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    //                {
+                    //                    lokacija = row["MestoSpustanjaPunogKontejnera"].ToString();
+                    //                }
+
+                    //                // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                    //                if (row["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                    //                {
+                    //                    vreme1 = Convert.ToDateTime(row["SpustanjePunogPlaniraniDt"]);
+                    //                }
+
+                    //                // 3. PRVI INSERT (ako vreme postoji, ili šalješ null u metodu zavisno kako ti je definisana)
+                    //                // Ako tvoja metoda InsertILog prima DateTime, a ne DateTime?, proveri da li je vreme1 != null pre poziva
+
+                    //                ins.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+
+                    //            }
+                    //        }
+                    //        break;
             }
         }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            string idsZaUpit = string.Join(",", noviIDs);
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = $@"
+                        SELECT i.ID, 
+                        PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
+		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        LTRIM(RTRIM(mp.Naziv)) AS MestoPreuzimanjaKontejnera,
+                        DtPreuzimanjaPunog,
+                        IsNull(Drumski, 0) AS Drumski
+                        FROM Izvoz i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN MestaUtovara mp ON i.MestoPreuzimanja = mp.ID
+                        WHERE i.ID = {ID}
+                        UNION
+                        SELECT i.ID, 
+                        PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
+		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        LTRIM(RTRIM(mp.Naziv)) AS MestoPreuzimanjaKontejnera,
+                        DtPreuzimanjaPunog,
+                        IsNull(Drumski, 0) AS Drumski
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN MestaUtovara mp ON i.MestoPreuzimanja = mp.ID
+                        WHERE i.ID in ( {ID} )";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
 
         public class PrivremeniNHM
         {
@@ -3328,10 +3520,18 @@ namespace Saobracaj.Izvoz
         private void button5_Click(object sender, EventArgs e)
         {
             string Selektovani = "";
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            Selektovani = selectedRow.Cells[0].Value?.ToString();
-            frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(0, Convert.ToInt32(Selektovani));
-            ppDU.Show();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                Selektovani = selectedRow.Cells[0].Value?.ToString();
+                frmIzvozPregledKontejneraDrumskeUsluge ppDU = new frmIzvozPregledKontejneraDrumskeUsluge(0, Convert.ToInt32(Selektovani));
+                ppDU.Show();
+            }
+            else
+            {
+                // Poruka korisniku ako ništa nije kliknuo
+                MessageBox.Show("Molimo vas da prvo selektujete ceo red u tabeli.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 

@@ -1884,7 +1884,7 @@ namespace Saobracaj.Drumski
        
 
         public void UpdRadniNalogDrumskiIzvoz(int ID,  string Valuta, decimal? Trosak, decimal? Cena, int? PDV, int? DodatniTrosak, int AutoDan,  string PolaznaSpedicijaKontakt,
-           string OdredisnaSpedicijaKontakt, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
+           string OdredisnaSpedicijaKontakt, DateTime? DtRealizacijePreuzimanjaPKontejnera, DateTime? DtPreuzimanjePunogKNovi, DateTime? DtRealizacijePreuzimanjaKontejnera, DateTime? DtPreuzimanjePraznogKNovi,
            DateTime? DtRealizacijeSpustanja, DateTime? DtSpustanjePunogNovi, DateTime?  DtSpustanja, DateTime? DtUtovaraKNovi, DateTime? DtRealiUtovara,
            DateTime? DtUtovaraCeradeNovi, DateTime? DtRealizacijeUtovaraCerade, DateTime? DtIstovaraCerade, DateTime? DtIstovaraCeradeNovi, DateTime? DtRealizacijeIstovaraCerade, string GranicniPrelaz, int NalogIzmenioZaposleni,
            string NoviSpediterP, string NoviSpediterO)
@@ -1961,8 +1961,22 @@ namespace Saobracaj.Drumski
             odredisnaSpedicijaKontakt.Direction = ParameterDirection.Input;
             odredisnaSpedicijaKontakt.Value = (object)OdredisnaSpedicijaKontakt ?? DBNull.Value;
             cmd.Parameters.Add(odredisnaSpedicijaKontakt);
-         
-          
+
+            SqlParameter dtRealizacijePreuzimanjaPKontejnera = new SqlParameter();
+            dtRealizacijePreuzimanjaPKontejnera.ParameterName = "@DtRealizacijePreuzimanjaPKontejnera";
+            dtRealizacijePreuzimanjaPKontejnera.SqlDbType = SqlDbType.DateTime;
+            dtRealizacijePreuzimanjaPKontejnera.Direction = ParameterDirection.Input;
+            dtRealizacijePreuzimanjaPKontejnera.Value = DtRealizacijePreuzimanjaPKontejnera.HasValue ? (object)DtRealizacijePreuzimanjaPKontejnera.Value : DBNull.Value;
+            cmd.Parameters.Add(dtRealizacijePreuzimanjaPKontejnera);
+
+            SqlParameter dtPreuzimanjePunogKNovi = new SqlParameter();
+            dtPreuzimanjePunogKNovi.ParameterName = "@DtPreuzimanjePunogKNovi";
+            dtPreuzimanjePunogKNovi.SqlDbType = SqlDbType.DateTime;
+            dtPreuzimanjePunogKNovi.Direction = ParameterDirection.Input;
+            dtPreuzimanjePunogKNovi.Value = DtPreuzimanjePunogKNovi.HasValue ? (object)DtPreuzimanjePunogKNovi.Value : DBNull.Value;
+            cmd.Parameters.Add(dtPreuzimanjePunogKNovi);
+
+
             SqlParameter dtRealizacijePreuzimanjaKontejnera = new SqlParameter();
             dtRealizacijePreuzimanjaKontejnera.ParameterName = "@DtRealizacijePreuzimanjaKontejnera";
             dtRealizacijePreuzimanjaKontejnera.SqlDbType = SqlDbType.DateTime;
@@ -2695,7 +2709,7 @@ namespace Saobracaj.Drumski
 
         }
 
-        public void UpdateStatusRadniNalogDrumski(int ID, int? Status)
+        public void UpdateStatusRadniNalogDrumski(int ID, int? Status, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -2716,6 +2730,14 @@ namespace Saobracaj.Drumski
             status.Value = Status.HasValue ? (object)Status.Value : DBNull.Value; 
             cmd.Parameters.Add(status);
 
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -2727,9 +2749,10 @@ namespace Saobracaj.Drumski
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //tran.Rollback(); // Ne zaboravi i rollback
             }
             finally
             {
@@ -3487,6 +3510,56 @@ namespace Saobracaj.Drumski
                     tran.Commit();
                     MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+        public void UpdKorakPotvrdeVozaca(int RadniNalogdrumskiID)
+
+        {
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateKorakPotvrdeVozaca";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@RadniNalogdrumskiID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = RadniNalogdrumskiID;
+            cmd.Parameters.Add(id);
+
+            
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                error = false;
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                // throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    //MessageBox.Show("Ažuriranje je uspešno završeno", "",
+                    //MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 conn.Close();
             }

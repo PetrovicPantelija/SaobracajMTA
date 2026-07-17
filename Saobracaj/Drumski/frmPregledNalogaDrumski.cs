@@ -1,4 +1,5 @@
-﻿using Saobracaj.Izvoz;
+﻿using Saobracaj.DrumskiApp;
+using Saobracaj.Izvoz;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -37,6 +38,7 @@ namespace Saobracaj.Drumski
         private bool duplirajZapisVisible = false;
         private string forma;
         private List<int> _arhivskiStatusi;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         public frmPregledNalogaDrumski()
         {
@@ -798,7 +800,7 @@ namespace Saobracaj.Drumski
                     }
 
                     InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                    ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                    ins.UpdateStatusRadniNalogDrumski(id, noviStatusID,tKorisnik);
 
                     if (noviStatusID.HasValue && _arhivskiStatusi.Contains(noviStatusID.Value))
                     {
@@ -883,7 +885,7 @@ namespace Saobracaj.Drumski
                         }
                     }
                    
-                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId);
+                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId,tKorisnik);
 
                     if (trebaOkidatiInterni && radniNalogInterniID.HasValue)
                     {
@@ -1443,6 +1445,20 @@ namespace Saobracaj.Drumski
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
             RefreshGrid();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            {
+                // Uzimamo prvi selektovani red
+                int ID = Convert.ToInt32(gridGroupingControl1.Table.SelectedRecords[0].Record.GetValue("ID"));
+
+             
+                frmFormaZaVozace pnd = new frmFormaZaVozace(ID);
+                pnd.Show();
+                
+            }
         }
     }
 }

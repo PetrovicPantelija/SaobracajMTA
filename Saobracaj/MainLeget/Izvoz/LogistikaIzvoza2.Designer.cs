@@ -174,6 +174,7 @@
             this.sfButton6.Text = "Lista SVIH naloga";
             this.sfButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.sfButton6.UseVisualStyleBackColor = false;
+            this.sfButton6.Click += new System.EventHandler(this.sfButton6_Click);
             // 
             // label2
             // 
@@ -185,13 +186,13 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(62, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(408, 39);
+            this.label2.Size = new System.Drawing.Size(514, 52);
             this.label2.TabIndex = 500;
             this.label2.Text = "Nalog klijenta za otpremu";
             // 
             // LogistikaIzvoza2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1056, 638);

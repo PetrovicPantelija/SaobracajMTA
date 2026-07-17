@@ -12,6 +12,8 @@ using System.Text;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Net;
 using Saobracaj.Uvoz;
+using System.Web.UI.WebControls;
+using Saobracaj.Izvoz;
 
 namespace Saobracaj.Drumski
 {
@@ -26,6 +28,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> _tipoviIn;
         private readonly List<int> _tipoviNotIn;
         private int _stariStatusID = -1;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         public frmStatus(List<int> tipoviIn, List<int> tipoviNotIn)
         {
@@ -233,22 +236,22 @@ namespace Saobracaj.Drumski
                                 x.ID,
                                 LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac,
                                 CASE 
-                                    WHEN x.MestoUtovara = 0 
-                                         OR x.MestoUtovara IS NULL
-                                    THEN 
-                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
+                                -- Slučaj kada NEMAMO mesto preuzimanja (spajamo samo utovar i istovar)
+                                WHEN x.MestoPreuzimanjaKontejnera = 0 OR x.MestoPreuzimanjaKontejnera IS NULL THEN
+                                    CONCAT_WS(' - ', 
+                                        NULLIF(LTRIM(RTRIM(mu.Naziv)), ''), 
+                                        NULLIF(LTRIM(RTRIM(mii.Naziv)), '')
+                                    )
 
-                                    WHEN x.Scenario in(13,26,7,23) 
-                                    THEN 
-                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + 
-                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  
-                                        LTRIM(RTRIM(mi.Naziv))
-                                    WHEN x.Scenario in(8,9,24,25) 
-                                    THEN 
-                                        LTRIM(RTRIM(mp.Naziv)) + ' - ' + 
-                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  
-                                        LTRIM(RTRIM(mii.Naziv))
-                                END AS Relacija1,
+                                -- Slučaj kada IMAMO mesto preuzimanja (spajamo mp + mu + mi)
+                                ELSE 
+                                    CONCAT_WS(' - ', 
+                                        NULLIF(LTRIM(RTRIM(mp.naziv)), ''), 
+                                        -- Sledeća linija rešava problem ako je neko upisao '/' ili prazno u utovar:
+                                        CASE WHEN LTRIM(RTRIM(mu.naziv)) IN ('', '/', '-') THEN NULL ELSE LTRIM(RTRIM(mu.naziv)) END,
+                                        NULLIF(LTRIM(RTRIM(mii.naziv)), '')
+                                    )
+                            END AS Relacija,
                                 CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
                                 LTRIM(RTRIM(x.Vozac)) AS Vozac,
@@ -264,7 +267,8 @@ namespace Saobracaj.Drumski
 		                        x.Uvoz,
 		                        x.PolaznaCarinarnica,
 		                        x.OdredisnaCarinarnica,
-                                x.VlasnistvoLegeta
+                                x.VlasnistvoLegeta,
+                                x.Scenario
 
 
                             FROM 
@@ -303,7 +307,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan, i.BrojKontejnera,rn.BrojKontejnera2,
-                                       rn.DatumPromeneStatusa, rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, 0 AS OdredisnaCarinarnica
+                                       rn.DatumPromeneStatusa, rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, i.OdredisnaCarinarnica  AS OdredisnaCarinarnica
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -352,7 +356,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,  ik.BrojKontejnera,rn.BrojKontejnera2,
-                                       rn.DatumPromeneStatusa, rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, 0 AS OdredisnaCarinarnica 
+                                       rn.DatumPromeneStatusa, rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, ik.OdredisnaCarinarnica  AS OdredisnaCarinarnica 
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -463,7 +467,7 @@ namespace Saobracaj.Drumski
                                          ) MestoPreuzimanjaKontejnera,
                                          (CASE 
                                               WHEN rn.Scenario in (13,26) THEN 0
-                                              WHEN rn.Scenario in (7,23) THEN rn.MestoPreuzimanjaKontejnera
+                                              WHEN rn.Scenario in (7,23) THEN rn.MestoUtovara
                                               WHEN rn.Scenario in (13,26,7,23) THEN rn.MestoUtovaraCerade
                                          END) MestoUtovara,
                                          (CASE 
@@ -512,10 +516,11 @@ namespace Saobracaj.Drumski
                                 AND sts.Status = x.Status
                             LEFT JOIN Dokumenti d ON d.RadniNalogDrumskiID = x.id
                             LEFT JOIN MestaUtovara mu ON mu.id = x.MestoUtovara
-                            LEFT JOIN MestaUtovara mii ON mii.id = x.MestoIstovara  AND (Scenario = 8 OR Scenario = 9 OR Scenario = 24 OR Scenario = 25 )
-                            LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID  AND (Scenario = 13 OR Scenario = 26 OR Scenario = 7 OR Scenario = 23 )
+                            LEFT JOIN MestaUtovara mii ON mii.id = x.MestoIstovara -- AND (Scenario = 8 OR Scenario = 9 OR Scenario = 24 OR Scenario = 25 )
+                           -- LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID  AND (Scenario = 13 OR Scenario = 26 OR Scenario = 7 OR Scenario = 23 )
                             LEFT JOIN MestaUtovara mp on  x.MestoPreuzimanjaKontejnera = mp.ID 
-                           WHERE  {uslovTipVozila}  AND ( ISNULL(sts.JesteZavrsni, 0) = 0 OR  (ISNULL(sts.JesteZavrsni, 0) = 1 AND ISNULL(d.BrojDokumenata, 0) = 0))
+                           WHERE  {uslovTipVozila} 
+                           AND ( ISNULL(sts.JesteZavrsni, 0) = 0 OR  (ISNULL(sts.JesteZavrsni, 0) = 1 AND ISNULL(d.BrojDokumenata, 0) = 0))
 
                             ORDER BY 
                                 x.NalogID DESC";
@@ -606,7 +611,7 @@ namespace Saobracaj.Drumski
 
             string[] koloneZaSakrivanje = new string[] {
                     "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan","BrojDokumenata", "BrojKontejnera", "BrojKontejnera2","Uvoz", "PolaznaCarinarnica","OdredisnaCarinarnica",
-                    "VlasnistvoLegeta","TipTransporta"
+                    "VlasnistvoLegeta","TipTransporta" ,"Scenario"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -973,7 +978,9 @@ namespace Saobracaj.Drumski
                     try
                     {
                         InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID,tKorisnik);
+                        int scenario = Convert.ToInt32(row.Cells["Scenario"].Value);
+                        logStatusa(scenario, noviStatusID, id);
 
                         if (jeZavrsni)
                         {
@@ -981,11 +988,16 @@ namespace Saobracaj.Drumski
                         }
                             if (trebaOkidatiInterni)
                         {
-                            InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
-                            //updi.UpdRadniNalogInterniZavrsen(id, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            int radniNalogInterniID = PribaviRadniNalogInterniID(id);
+                            if (radniNalogInterniID > 0)
+                            {
+
+                                InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
+                                updi.UpdRadniNalogInterniZavrsen(radniNalogInterniID, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            }
 
                             // takođe odradi update statusa na arhiviran
-                            
+
                         }
                         
                         List<int> ids = new List<int> { id };
@@ -1006,7 +1018,7 @@ namespace Saobracaj.Drumski
                             }));
 
                             this.BeginInvoke(new MethodInvoker(() => {
-                                posaljiStatusKontejnera(id);
+                                posaljiStatusKontejnera(id, jeZavrsni);
                             }));
                             return; // 3. Veoma važno: prekini dalje izvršavanje ako je yavrsni
                         }
@@ -1022,6 +1034,199 @@ namespace Saobracaj.Drumski
 
             }
             
+        }
+
+        private int PribaviRadniNalogInterniID(int ID)
+        {
+            int radniNalogInterniID = 0;
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
+                                    FROM RadniNalogDrumski rn
+                                    LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
+                                    WHERE rn.ID = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+
+                        if (reader["RadniNalogInterniID"] != DBNull.Value)
+                            radniNalogInterniID = Convert.ToInt32(reader["RadniNalogInterniID"]);
+                    }
+                }
+
+            }
+            return radniNalogInterniID;
+        }
+
+        private void logStatusa(int ScenarioID, int noviStatusID, int id)
+        {
+            InsertIzvoz ins = new InsertIzvoz();
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(id);
+            switch (ScenarioID)
+            {
+                // GRUPA I
+                case 13:
+                case 26:
+                    if (noviStatusID == 13)
+                    {
+                        DateTime? vreme = null;
+                        string lokacija = string.Empty;
+                        int kontejnerID = 0;
+
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["SpustanjePunogPlaniraniDt"] != DBNull.Value)
+                        {
+                            vreme = DateTime.Now;
+                        }
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["KontejnerID"] != DBNull.Value)
+                        {
+                            kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["KontejnerID"]);
+                        }
+
+                        string poruka = "Kamion preuzeo kontejner";
+                        ins.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+                    }
+                    else if (noviStatusID == 18)
+                    {
+                        DateTime? vreme = null;
+                        string lokacija = string.Empty;
+                        int kontejnerID = 0;
+
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["OdredisnaCarinarnica"] != DBNull.Value)
+                        {
+                            lokacija = dtPodaci.Rows[0]["OdredisnaCarinarnica"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["OdredisnaCarinarnica"] != DBNull.Value)
+                        {
+                            vreme = DateTime.Now;
+                        }
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["KontejnerID"] != DBNull.Value)
+                        {
+                            kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["KontejnerID"]);
+                        }
+
+                        string poruka = "Kamion čeka izvozno carinjenje";
+                        ins.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+
+                    }
+                    else if (noviStatusID == 19 || noviStatusID == 21)
+                    {
+                        DateTime? vreme = null;
+                        string lokacija = string.Empty;
+                        int kontejnerID = 0;
+
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                        }
+
+                        // Čitanje prvog vremena (SpustanjePunogPlaniraniDt)
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                        {
+                            vreme = DateTime.Now;
+                        }
+                        if (dtPodaci.Rows.Count > 0 && dtPodaci.Rows[0]["KontejnerID"] != DBNull.Value)
+                        {
+                            kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["KontejnerID"]);
+                        }
+
+                        string poruka = "Kamion je predao kontejner";
+                        ins.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+
+                    }
+                    break;
+            }
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, 
+                        PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, 
+		                PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera, 
+                        PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera,
+                        i.ID AS KontejnerID,
+                        LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica
+                        FROM RadninalogDrumski rn 
+                             INNER JOIN Izvoz i  ON rn.KontejnerID = i.ID
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN MestaUtovara mup ON i.MestoPreuzimanja = mup.ID
+                             LEFT JOIN Carinarnice oc ON i.OdredisnaCarinarnica = oc.ID
+                        WHERE  rn.ID in ( " + ID + " ) AND rn.Uvoz = 0 " +
+                        " UNION " +
+                        " SELECT i.ID," +
+                        " PlaniranDtSpustanjaPunog as SpustanjePunogNoviPlaniraniDt, " +
+                        " PlaniraniDtSpustanjaKontejnera as SpustanjePunogPlaniraniDt, " +
+                        " LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera," +
+                        " LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera," +
+                        " PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, " +
+                        " i.ID AS KontejnerID, " +
+                        " LTRIM(RTRIM(oc.Naziv)) AS OdredisnaCarinarnica " +
+                        " FROM RadninalogDrumski rn " +
+                        " INNER JOIN izvozkonacna i ON rn.KontejnerID = i.ID " +
+                        " LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID " +
+                        " LEFT JOIN MestaUtovara mup ON i.MestoPreuzimanja = mup.ID " +
+                        " LEFT JOIN Carinarnice oc ON i.OdredisnaCarinarnica = oc.ID" +
+                        " WHERE rn.ID in ( " + ID + " )  AND rn.Uvoz = 0" +
+                        " UNION " +
+                        " SELECT rn.KontejnerID AS ID," +
+                        " DtNoviSpustanja as SpustanjePunogNoviPlaniraniDt,  " +
+                        " DtSpustanja as SpustanjePunogPlaniraniDt, " +
+                        " LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera," +
+                        " LTRIM(RTRIM(mup.Naziv)) AS MestoPreuzimanjaKontejnera," +
+                        " DtNoviPreuzimanjaKontejnera, " +
+                        " rn.KontejnerID AS KontejnerID," +
+                        " LTRIM(RTRIM(moc.Naziv)) AS OdredisnaCarinarnica " +
+                        " FROM RadniNalogDrumski rn " +
+                        " LEFT JOIN MestaUtovara mu ON rn.MestoSpustanjaPunog = mu.ID " +
+                        " LEFT JOIN MestaUtovara mup ON rn.MestoPreuzimanja = mup.ID " +
+                        " LEFT JOIN MestaUtovara moc ON rn.OdredisnaCarinarnica = moc.ID " +
+                        " WHERE rn.ID in ( " + ID + " ) and rn.Uvoz in (-1,2,3, 4, 5)"
+                        ;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
         }
 
         private bool ProveriDaLiJeZavrsni(int statusID, int tip, int nalog, int cip, int cio)
@@ -1056,7 +1261,7 @@ namespace Saobracaj.Drumski
             return result;
         }
 
-        private void posaljiStatusKontejnera(int id)
+        private void posaljiStatusKontejnera(int id, bool jeZavrsni = false)
         {
             if (id == null)
             {
@@ -1069,87 +1274,93 @@ namespace Saobracaj.Drumski
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT rn.ID, " +
-                                       "LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
-                                       "i.BrojKontejnera,rn.BrojKontejnera2, " +
-                                       "LTRIM(RTRIM(sv.Naziv)) AS Status, " +
-                                       "au.Vozac, " +
-                                       "rn.DatumPromeneStatusa, " +
-                                       "au.RegBr AS Kamion " +
-                                "FROM RadniNalogDrumski rn " +
-                                "INNER JOIN Automobili au ON au.ID = rn.KamionID " +
-                                "LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
-                                "INNER JOIN Izvoz i ON i.ID = rn.KontejnerID " +
-                                "LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3 " +
-                                "WHERE rn.Uvoz = 0 AND rn.ID =  " + ID +
+            List<int> idjeviZaNajavu = new List<int>();
+            idjeviZaNajavu.Add(ID);
+
+            //con.Open();
+            //SqlCommand cmd = new SqlCommand("SELECT rn.ID, " +
+            //                           "LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+            //                           "i.BrojKontejnera,rn.BrojKontejnera2, " +
+            //                           "LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+            //                           "au.Vozac, " +
+            //                           "rn.DatumPromeneStatusa, " +
+            //                           "au.RegBr AS Kamion " +
+            //                    "FROM RadniNalogDrumski rn " +
+            //                    "INNER JOIN Automobili au ON au.ID = rn.KamionID " +
+            //                    "LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
+            //                    "INNER JOIN Izvoz i ON i.ID = rn.KontejnerID " +
+            //                    "LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3 " +
+            //                    "WHERE rn.Uvoz = 0 AND rn.ID =  " + ID +
 
 
-                                "UNION ALL " +
-                               " SELECT rn.ID, " +
-                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
-                               "        ik.BrojKontejnera,rn.BrojKontejnera2, " +
-                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
-                               "        au.Vozac, " +
-                               "        rn.DatumPromeneStatusa, " +
-                               "        au.RegBr AS Kamion" +
-                               " FROM RadniNalogDrumski rn " +
-                               " INNER JOIN Automobili au ON au.ID = rn.KamionID " +
-                               " INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
-                               " LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
-                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra " +
-                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
-                               " WHERE rn.Uvoz = 0  AND rn.ID = " + ID +
+            //                    "UNION ALL " +
+            //                   " SELECT rn.ID, " +
+            //                   "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
+            //                   "        ik.BrojKontejnera,rn.BrojKontejnera2, " +
+            //                   "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+            //                   "        au.Vozac, " +
+            //                   "        rn.DatumPromeneStatusa, " +
+            //                   "        au.RegBr AS Kamion" +
+            //                   " FROM RadniNalogDrumski rn " +
+            //                   " INNER JOIN Automobili au ON au.ID = rn.KamionID " +
+            //                   " INNER JOIN IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
+            //                   " LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
+            //                   " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra " +
+            //                   " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status " +
+            //                   " WHERE rn.Uvoz = 0  AND rn.ID = " + ID +
 
 
-                               " UNION ALL " +
-                               " SELECT rn.ID,  " +
-                                "       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
-                               "        uk.BrojKontejnera,rn.BrojKontejnera2, " +
-                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
-                               "        au.Vozac, " +
-                               "        rn.DatumPromeneStatusa, " +
-                               "        au.RegBr AS Kamion " +
-                               " FROM RadniNalogDrumski rn  " +
-                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
-                               " INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID  " +
-                               " LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3  " +
-                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
-                               " WHERE rn.Uvoz = 1 AND rn.ID = " + ID +
+            //                   " UNION ALL " +
+            //                   " SELECT rn.ID,  " +
+            //                    "       LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+            //                   "        uk.BrojKontejnera,rn.BrojKontejnera2, " +
+            //                   "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+            //                   "        au.Vozac, " +
+            //                   "        rn.DatumPromeneStatusa, " +
+            //                   "        au.RegBr AS Kamion " +
+            //                   " FROM RadniNalogDrumski rn  " +
+            //                   " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+            //                   " INNER JOIN UvozKonacna uk ON uk.ID = rn.KontejnerID  " +
+            //                   " LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3  " +
+            //                   " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+            //                   " WHERE rn.Uvoz = 1 AND rn.ID = " + ID +
 
 
-                               " UNION ALL  " +
-                               " SELECT rn.ID,  " +
-                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
-                               "        u.BrojKontejnera,rn.BrojKontejnera2,  " +
-                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
-                               "        au.Vozac, " +
-                               "        rn.DatumPromeneStatusa, " +
-                               "        au.RegBr AS Kamion " +
-                               " FROM RadniNalogDrumski rn  " +
-                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
-                               " INNER JOIN Uvoz u ON u.ID = rn.KontejnerID  " +
-                               " LEFT JOIN Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
-                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
-                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
-                               " WHERE rn.Uvoz = 1 AND rn.ID =  " + ID +
+            //                   " UNION ALL  " +
+            //                   " SELECT rn.ID,  " +
+            //                   "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,  " +
+            //                   "        u.BrojKontejnera,rn.BrojKontejnera2,  " +
+            //                   "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+            //                   "        au.Vozac, " +
+            //                   "        rn.DatumPromeneStatusa, " +
+            //                   "        au.RegBr AS Kamion " +
+            //                   " FROM RadniNalogDrumski rn  " +
+            //                   " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+            //                   " INNER JOIN Uvoz u ON u.ID = rn.KontejnerID  " +
+            //                   " LEFT JOIN Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
+            //                   " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
+            //                   " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+            //                   " WHERE rn.Uvoz = 1 AND rn.ID =  " + ID +
 
-                               " UNION ALL  " +
-                               " SELECT rn.ID,  " +
-                               "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
-                               "        rn.BrojKontejnera,rn.BrojKontejnera2, " +
-                               "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
-                               "        au.Vozac, " +
-                               "        rn.DatumPromeneStatusa, " +
-                               "        au.RegBr AS Kamion " +
-                               " FROM RadniNalogDrumski rn  " +
-                               " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
-                               " LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent  " +
-                               " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
-                               " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
-                              " WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.ID = " + ID, con);
+            //                   " UNION ALL  " +
+            //                   " SELECT rn.ID,  " +
+            //                   "        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, " +
+            //                   "        rn.BrojKontejnera,rn.BrojKontejnera2, " +
+            //                   "        LTRIM(RTRIM(sv.Naziv)) AS Status, " +
+            //                   "        au.Vozac, " +
+            //                   "        rn.DatumPromeneStatusa, " +
+            //                   "        au.RegBr AS Kamion " +
+            //                   " FROM RadniNalogDrumski rn  " +
+            //                   " INNER JOIN Automobili au ON au.ID = rn.KamionID  " +
+            //                   " LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent  " +
+            //                   " LEFT JOIN Partnerji p ON au.PartnerID = p.PaSifra  " +
+            //                   " LEFT JOIN StatusVozila sv ON sv.ID = rn.Status  " +
+            //                  " WHERE rn.Uvoz IN (2, 3, 4, 5) AND rn.ID = " + ID, con);
 
-            SqlDataReader dr = cmd.ExecuteReader();
+            //SqlDataReader dr = cmd.ExecuteReader();
+
+
+            DataTable detaljnaTabela = DobaviDetaljeZaStatuse(idjeviZaNajavu);
             string nalogodavac = "";
             string k1 = "";
             string k2 = "";
@@ -1157,16 +1368,19 @@ namespace Saobracaj.Drumski
             DateTime? datumPromene = null;
             string kamion = "";
             string vozac = "";
-            while (dr.Read())
+            foreach (DataRow row in detaljnaTabela.Rows)
             {
-                nalogodavac = dr["Nalogodavac"].ToString()?.Trim();
-                k1 = dr["BrojKontejnera"] == DBNull.Value ? "" : dr["BrojKontejnera"].ToString().Trim();
-                k2 = dr["BrojKontejnera2"] == DBNull.Value ? "" : dr["BrojKontejnera"].ToString().Trim();
-                noviStatusTekst = dr["Status"] == DBNull.Value ? "" : dr["Status"].ToString().Trim();
-                if (dr["DatumPromeneStatusa"] != DBNull.Value)
-                    datumPromene = Convert.ToDateTime(dr["DatumPromeneStatusa"]);
-                kamion = dr["Kamion"] == DBNull.Value ? "" : dr["Kamion"].ToString().Trim();
-                vozac = dr["Vozac"] == DBNull.Value ? "" : dr["Vozac"].ToString().Trim();
+
+                nalogodavac = row["Nalogodavac"].ToString()?.Trim();
+                k1 = row["BrojKontejnera"] == DBNull.Value ? "" : row["BrojKontejnera"].ToString().Trim();
+                k2 = row["BrojKontejnera2"] == DBNull.Value ? "" : row["BrojKontejnera"].ToString().Trim();
+                noviStatusTekst = row["Status"] == DBNull.Value ? "" : row["Status"].ToString().Trim();
+                if( jeZavrsni == true && row["MestoSpustanja"] != DBNull.Value && (row["MestoSpustanja"].ToString().Trim() != "/" ))
+                    noviStatusTekst += row["MestoSpustanja"] == DBNull.Value ? "" :  " " + row["MestoSpustanja"].ToString().Trim();
+                if (row["DatumPromeneStatusa"] != DBNull.Value)
+                    datumPromene = Convert.ToDateTime(row["DatumPromeneStatusa"]);
+                kamion = row["Kamion"] == DBNull.Value ? "" : row["Kamion"].ToString().Trim();
+                vozac = row["Vozac"] == DBNull.Value ? "" : row["Vozac"].ToString().Trim();
                 //    noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
             }
             string kontejner = !string.IsNullOrWhiteSpace(k2) ? $"{k1}, {k2}" : k1;
@@ -1218,6 +1432,7 @@ namespace Saobracaj.Drumski
             sb.AppendLine("</table>");
 
             SetClipboardHtml(sb.ToString());
+            System.Threading.Thread.Sleep(100);
             MessageBox.Show("Podaci su kopirani u clipboard.", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1387,6 +1602,8 @@ namespace Saobracaj.Drumski
                 return;
             }
 
+            DataTable detaljnaTabela = DobaviDetaljeZaStatuse(idjeviZaNajavu);
+
             var sb = new StringBuilder();
 
             // Zaglavlje
@@ -1427,31 +1644,26 @@ namespace Saobracaj.Drumski
             sb.AppendLine("</tr>");
 
             int rb = 1;
-            foreach (DataGridViewRow row in dataGridView3.Rows)
+            foreach (DataRow row in detaljnaTabela.Rows)
             {
-                if (row.IsNewRow)
-                    continue;
-                string kontejner1 = row.Cells["BrojKontejnera"]?.Value?.ToString()?.Trim();
-                string kontejner2 = row.Cells["BrojKontejnera2"]?.Value?.ToString()?.Trim();
+                
+                string kontejner1 = row["BrojKontejnera"]?.ToString()?.Trim();
+                string kontejner2 = row["BrojKontejnera2"]?.ToString()?.Trim();
 
-                string noviStatusTekst = row.Cells["Status"]?.FormattedValue?.ToString();
+                string noviStatusTekst = row["Status"]?.ToString()?.Trim();
 
                 DateTime? datumPromene = null;
-
-                var cellValue = row.Cells["DatumPromeneStatusa"]?.Value;
-
-                if (cellValue != null && cellValue != DBNull.Value)
+                if (row["DatumPromeneStatusa"] != DBNull.Value && row["DatumPromeneStatusa"] != null)
                 {
-                    datumPromene = Convert.ToDateTime(cellValue);
+                    datumPromene = Convert.ToDateTime(row["DatumPromeneStatusa"]);
                 }
 
                 string datumZaPrikaz = datumPromene.HasValue
                     ? datumPromene.Value.ToString("dd.MM.yyyy HH:mm")
                     : string.Empty;
 
-
+                // Spajanje kontejnera ako postoje oba
                 string tekstKontejnera = kontejner1;
-
                 if (!string.IsNullOrWhiteSpace(kontejner2))
                 {
                     tekstKontejnera = $"{kontejner1}, {kontejner2}";
@@ -1461,21 +1673,186 @@ namespace Saobracaj.Drumski
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{tekstKontejnera} </td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{noviStatusTekst}</td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{datumZaPrikaz}</td>");
-                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row.Cells["Kamion"].Value}</td>");
-                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row.Cells["Vozac"].Value}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row["Kamion"].ToString()}</td>");
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row["Vozac"].ToString()}</td>");
                 sb.AppendLine("</tr>");
             }
             sb.AppendLine("</table>");
             sb.AppendLine("</div>");
 
             SetClipboardHtml(sb.ToString());
-
+            System.Threading.Thread.Sleep(100);
             MessageBox.Show("Podaci su kopirani u clipboard.", "Info",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
             ins.UpdateStatusPoslat(idjeviZaNajavu);
 
+        }
+
+
+        private DataTable DobaviDetaljeZaStatuse(List<int> ids)
+        {
+            if (ids == null || ids.Count == 0)
+            {
+                return new DataTable();
+            }
+
+            // Spajanje ID-jeva u string format za SQL IN klauzulu
+            string idsInClause = string.Join(",", ids);
+
+            // 2. upit
+
+            var unionQueryBody = @"select  rn.ID, i.Scenario," +
+                                 "LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac, " +
+                                 "i.BrojKontejnera," +
+                                 "'' as BrojKontejnera2,  " +
+                                 " LTRIM(RTRIM(sv.Naziv)) AS Status," +
+                                 "au.RegBr AS Kamion, " +
+                                 "vv.Naziv as TipVozila, " +
+                                 "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa ," +
+                                 "mu.Naziv AS MestoSpustanja" +
+                         " from  RadniNalogDrumski rn " +
+                                 "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
+                                 "inner join Automobili au on au.ID = rn.KamionID " +
+                                 "inner join Izvoz i ON i.ID = rn.KontejnerID " +
+                                 "left join TipKontenjera tk ON i.VrstaKontejnera = tk.ID " +
+                                 "left join partnerjiKontOsebaMU pko ON pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
+                                 "left join Partnerji pa ON pa.PaSifra = i.Klijent3 " +
+                                 "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
+                                 "left join Partnerji p on au.PartnerID = p.PaSifra  " +
+                                 "left join StatusVozila sv ON sv.ID = rn.Status " +
+                                 "left join MestaUtovara mu on mu.id = i.MestoPreuzimanja2 " +
+                                "where rn.Uvoz = 0 and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID is not NULL AND rn.KamionID != 0  " +
+                         " union all " +
+                         " select  rn.ID, ik.Scenario, " +
+                                   "LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac, " +
+                                   "ik.BrojKontejnera," +
+                                    "'' AS BrojKontejnera2," +
+                                    " LTRIM(RTRIM(sv.Naziv)) AS Status," +
+                                   "au.RegBr AS Kamion, " +
+                                   "vv.Naziv as TipVozila, " +
+                                   "au.ID as KamionID, au.Vozac,  rn.DatumPromeneStatusa," +
+                                   " mu.Naziv AS MestoSpustanja" +
+                         " from     RadniNalogDrumski rn " +
+                                   "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
+                                   "inner join Automobili au on au.ID = rn.KamionID " +
+                                   "inner join IzvozKonacna ik ON ik.ID = rn.KontejnerID " +
+                                   "left join TipKontenjera tk ON ik.VrstaKontejnera = tk.ID " +
+                                   "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
+                                   "left join Partnerji pa ON pa.PaSifra = ik.Klijent3 " +
+                                   "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
+                                   "left join Partnerji p on au.PartnerID = p.PaSifra  " +
+                                   "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                    "left join MestaUtovara mu on mu.id = ik.MestoPreuzimanja2 " +
+                                   "where rn.Uvoz = 0 and rn.KamionID is NOT NULL and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 " +
+                         " union all " +
+                         " select  rn.ID, rn.Scenario, " +
+                                   "LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac, " +
+                                   "uk.BrojKontejnera," +
+                                   " '' as BrojKontejnera2," +
+                                   " LTRIM(RTRIM(sv.Naziv)) AS Status," +
+                                   "au.RegBr AS Kamion, " +
+                                   "vv.Naziv as TipVozila, " +
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "'' AS MestoSpustanja "+
+                         " from     RadniNalogDrumski rn " +
+                                   "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
+                                   "inner join Automobili au on au.ID = rn.KamionID " +
+                                   "inner join VrstaManipulacije vm on vm.ID = rn.IDVrstaManipulacije " +
+                                   "inner join UvozKonacna uk ON uk.ID = rn.KontejnerID " +
+                                   "left join NapomenaZaPozicioniranje np ON np.ID = uk.NapomenaZaPozicioniranje " +
+                                   "left join TipKontenjera tk ON uk.TipKontejnera = tk.ID " +
+                                   "left join Carinarnice c on c.ID = uk.OdredisnaCarina " +
+                                   "left join partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " +
+                                   "left join Partnerji pa ON pa.PaSifra = uk.Nalogodavac3 " +
+                                   "LEFT JOIN Partnerji p2 on p2.PaSifra = uk.OdredisnaSpedicija " +
+                                   "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
+                                   "left join Partnerji p on au.PartnerID = p.PaSifra  " +
+                                   "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                    "where rn.Uvoz = 1 and rn.KamionID is NOT NULL  and ISNULL(RadniNalogOtkazan, 0) <> 1 AND rn.KamionID != 0 " +
+                         " union all " +
+                         " select   rn.ID,rn.Scenario,  " +
+                                   "LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac, " +
+                                   "u.BrojKontejnera," +
+                                   "'' AS BrojKontejnera2, " +
+                                   " LTRIM(RTRIM(sv.Naziv)) AS Status," +
+                                   "au.RegBr AS Kamion, " +
+                                   "vv.Naziv as TipVozila, " +
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "'' AS MestoSpustanja " +
+
+                         " from     RadniNalogDrumski rn " +
+                                   "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
+                                   "inner join Automobili au on au.ID = rn.KamionID " +
+                                   "inner join Uvoz u ON u.ID = rn.KontejnerID " +
+                                   "left join NapomenaZaPozicioniranje np ON np.ID = u.NapomenaZaPozicioniranje " +
+                                   "left join TipKontenjera tk ON u.TipKontejnera = tk.ID " +
+                                   "LEFT JOIN Carinarnice c on c.ID = u.OdredisnaCarina " +
+                                   "left join partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " +
+                                   "left join Partnerji pa ON pa.PaSifra = u.Nalogodavac3 " +
+                                   "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
+                                   "left join Partnerji p on au.PartnerID = p.PaSifra " +
+                                   "LEFT JOIN Partnerji p2 on p2.PaSifra = u.OdredisnaSpedicija " +
+                                   "LEFT JOIN (SELECT ut1.*  FROM UploadTokens ut1   WHERE ut1.ID = (SELECT MAX(ID)  FROM UploadTokens ut2  WHERE ut2.RadniNalogDrumskiID = ut1.RadniNalogDrumskiID )) ut ON rn.ID = ut.RadniNalogDrumskiID " +
+                                   "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                   "where rn.Uvoz = 1 and rn.KamionID is NOT NULL  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID != 0 " +
+                         " union all " +
+                         " select   rn.ID,rn.Scenario,  " +
+                                   "LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac, " +
+                                   "rn.BrojKontejnera," +
+                                   "rn.BrojKontejnera2," +
+                                   " LTRIM(RTRIM(sv.Naziv)) AS Status," +
+                                   "au.regbr AS Kamion, " +
+                                   "vv.Naziv as TipVozila, " +
+                                   "au.ID as KamionID, au.Vozac, rn.DatumPromeneStatusa, " +
+                                   "mu.Naziv AS MestoSpustanja "+
+                         " from     RadniNalogDrumski rn " +
+                                   "left join Delavci dk on dk.DeSifra = rn.NajavuPoslaoKorisnik " +
+                                   "inner join Automobili au on au.ID = rn.KamionID " +
+                                   "left join Partnerji pa ON pa.PaSifra = rn.Klijent " +
+                                   "left join VrstaVozila vv on au.VlasnistvoLegeta = vv.ID " +
+                                   "left join Partnerji p on au.PartnerID = p.PaSifra  " +
+                                   "left join DrumskiPozicioniranje dp ON dp.id = rn.NapomenaZaPozicioniranje " +
+                                   "left join TipKontenjera tk ON rn.TipKontejnera = tk.ID " +
+                                   "left join StatusVozila sv ON sv.ID = rn.Status  " +
+                                   "LEFT JOIN Carinarnice cp ON cp.ID = rn.PolaznaCarinarnica " +
+                                   "LEFT JOIN Carinarnice co ON co.ID = rn.OdredisnaCarinarnica " +
+                                   "LEFT JOIN Partnerji po ON po.PaSifra = rn.odredisnaspedicija " +
+                                   "LEFT JOIN Partnerji pp ON pp.PaSifra = rn.polaznaspedicija " +
+                                   "left join MestaUtovara mu on mu.id = rn.MestoSpustanjaPunog " +
+                                   "where rn.Uvoz in (2, 3, 4, 5) and rn.NalogID > 0  and ISNULL(RadniNalogOtkazan, 0) <> 1 and rn.KamionID is not NULL AND rn.KamionID != 0" ;
+
+            // 3.
+            var finalSelect = $@"
+                                SELECT 
+                                      ID, BrojKontejnera, BrojKontejnera2,Status, Nalogodavac, TipVozila, Kamion, Vozac, KamionID, DatumPromeneStatusa, MestoSpustanja
+                                FROM (
+                                    {unionQueryBody}
+                                ) AS Detalji
+                                  
+                                WHERE Detalji.ID IN ({idsInClause});
+                            ";
+
+            // 4. Izvršavanje upita
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            DataTable dt = new DataTable();
+
+            using (SqlConnection c = new SqlConnection(s_connection))
+            {
+                try
+                {
+                    // Izvršavanje upita
+                    var dataAdapter = new SqlDataAdapter(finalSelect, c);
+                    dataAdapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Greška pri dohvatanju detalja za najavu.", ex);
+                }
+            }
+
+            return dt;
         }
         private void SetClipboardHtml(string html)
         {

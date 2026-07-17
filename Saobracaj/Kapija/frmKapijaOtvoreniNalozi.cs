@@ -21,6 +21,7 @@ namespace Saobracaj.Kapija
 {
     public partial class frmKapijaOtvoreniNalozi : Form
     {
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         public frmKapijaOtvoreniNalozi()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Saobracaj.Kapija
 "  WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
-" Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
+" Vozilo, Vozac, BrojLK, BrojTelefona, PlaniraniDtSpustanjaKontejnera as PlaniraniDatum, PlaniranDtSpustanjaPunog as NoviDatum, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
@@ -64,7 +65,7 @@ namespace Saobracaj.Kapija
 "  WHEN 0 THEN 'PLATFORMA' " +
 " WHEN 1 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
- "       Vozilo, Vozac, BrojLK, BrojTelefona, PlaniranDtPreuzimanjaPunog, DtPreuzimanjaPunog, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz  from RadniNalogInterni " +
+ "       Vozilo, Vozac, BrojLK, BrojTelefona,  DtPreuzimanjaPunog, PlaniranDtPreuzimanjaPunog, GETDATE() as Datum, BrojStavkePorudzbenice, KapijaUlaz  from RadniNalogInterni " +
  "       inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
  "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
  "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
@@ -154,8 +155,104 @@ namespace Saobracaj.Kapija
             {
                 InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
                 ir.PromeniStatusKapijaOdlazak(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
-
+                UpisiLog(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
             }
+        }
+
+        private void UpisiLog(int uslugaidID)
+        {
+
+            InsertIzvoz ink = new InsertIzvoz();
+
+
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(uslugaidID);
+            // ink.InsertKontejnerLog(Convert.ToInt32(textBox1.Text), poruka1, vreme1, lokacija, tKorisnik);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            int scenario = Convert.ToInt32(dtPodaci.Rows[0]["Scenario"].ToString());
+            switch (scenario)
+            {
+                // GRUPA I
+                case 13:
+                case 26:
+                    string poruka = "Kamion je na napustio kompleks";
+
+                    DateTime? vreme = null;
+
+                    string lokacija = string.Empty;
+
+                    int kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["ID"].ToString());
+
+                    // Čitanje lokacije
+                    if (dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    {
+                        lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                    }
+
+
+                    // Datum dolaska kamiona na kapiju
+                    if (dtPodaci.Rows[0]["DatumOdlaska"] != DBNull.Value)
+                    {
+                        vreme = Convert.ToDateTime(dtPodaci.Rows[0]["DatumOdlaska"]);
+                    }
+
+
+
+                    ink.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+
+                    break;
+            }
+
+
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int? kontejnerID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, Scenario,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        ka.DatumOdlaska
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN RadniNalogInterni rni on rni.BrojOsnov =  i.ID
+							 LEFT JOIN Kapija ka on ka.NalogID =  rni.ID
+                        WHERE rni.ID = " + kontejnerID;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
         }
     }
 }

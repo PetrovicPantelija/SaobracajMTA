@@ -670,18 +670,22 @@ namespace Saobracaj.Drumski
             SqlCommand cmd = new SqlCommand("SELECT	rn.ID , ik.ID AS IDNadredjena, " +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije,  rn.AutoDan, rn.Ref,  ik.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "ik.Klijent3 AS Klijent, ik.MesoUtovara AS MestoUtovara, ik.KontaktOsoba as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara,(Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru , rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, ik.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara,  " +
-             "ISNULL(ik.PlaniraniDtPreuzimanja, ik.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(ik.PlaniraniDtPreuzimanja, ik.DtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz, CAST(ik.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, ik.BookingBrodara,  ik.BrojKontejnera,rn.BrojKontejnera2, ik.VrstaKontejnera AS TipKontejnera, ik.BrodskaPlomba AS BrojPlombe,  '' AS BrodskaTeretnica,  " +
              " ik.VGMBrod AS BTTKontejnetra, ik.BrutoRobe AS BTTRobe, " +
              " CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = ik.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr,rn.KamionID , a.LicnaKarta, a.Vozac, a.BrojTelefona, pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno,CAST(ik.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , ik.OdredisnaCarinarnica AS OdredisnaCarina, ik.MestoCarinjenja as polaznaCarinarnica, ik.Spedicija as polaznaSpedicija,  ik.SpediterOdredisna as  OdredisnaSpedicija, ik.KontaktSpeditera AS PolaznaSpedicijaKontakt,ik.KontaktSpediteraOdredisna AS OdredisnaSpedicijaKontakt," +
              "ik.DodatneNapomeneDrumski AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, v.NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
              "rn.DodatniTrosakTransporta, rn.BrojPosiljke, ik.CarinskiPostupakUnutrasnji , ik.VrstaBrodskePlombe, ik.Brodar,   CONVERT(NVARCHAR(50), ik.napomena3ref)  AS ReferencaFakturisanje, ik.Korisnik, " +
-             " ik.KvalitetKontejnera, ik.Tara, ik.OstalePlombe, ik.MestoPreuzimanja2 as MestoSpustanjaPunog, ik.NetoRobe, ik.PlaniranDtSpustanjaPunog as PlaniraniDtSpustanjaKontejnera, ik.NacinPakovanja, ik.ADR, ik.Vaganje, ik.OpisPosla,'' AS AdresaPreuzimanjaKontejnera,'' AS KontaktPreuzimanjaKontejnera," +
-             "ik.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, ik.DtRealizacijePreuzimanjaPraznog as DtRealizacijePreuzimanjaKontejnera,ik.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  ik.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja,ik.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, ik.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera," +
+             " ik.KvalitetKontejnera, ik.Tara, ik.OstalePlombe, ik.MestoPreuzimanja2 as MestoSpustanjaPunog, ik.NetoRobe,  ISNULL(ik.planirandtspustanjapunog,ik.planiranidtspustanjakontejnera )  as PlaniraniDtSpustanjaKontejnera, ik.NacinPakovanja, ik.ADR, ik.Vaganje, ik.OpisPosla,'' AS AdresaPreuzimanjaKontejnera,'' AS KontaktPreuzimanjaKontejnera," +
+             " ISNULL(ik.planirandtpreuzimanjapraznog, ik.planiranidtpreuzimanja) as DtNoviPreuzimanjaKontejnera" +
+             ",ISNULL(ik.planirandtpreuzimanjapunog, ik.dtPreuzimanjaPunog) as DtNoviPreuzimanjaPunogKontejnera," +
+             " ISNULL(ik.dtrealizacijepreuzimanjapraznog, Isnull(ik.planirandtpreuzimanjapraznog, ik.planiranidtpreuzimanja))  as DtRealizacijePreuzimanjaKontejnera," +
+             "ISNULL(ik.dtrealizacijepreuzimanjapunog, Isnull(ik.planirandtpreuzimanjapunog, ik.dtpreuzimanjapunog))  as DtRealizacijePreuzimanjaPunogKontejnera," +
+             "ik.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  ik.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja,ik.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, ik.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera," +
              "ik.MestoUtovaraCerade AS MestoUtovaraCerade,ik.KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString,  ik.PlaniraniDtUtovaraCerade AS DatumUtovaraCerade, ik.MestoIstovaraCerade AS MestoIstovaraCerade,  ik.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade,'' AS KontaktOIstovaraCeradeString,  ik.PlaniraniDtIstovaraCerade AS DatumIstovaraCerade," +
              "ik.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, ik.DtRealizacijeIstovaraCerade, ik.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade, ik.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi ," +
-             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner       " +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner , rn.Scenario      " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN IzvozKonacna ik ON rn.KontejnerID = ik.ID " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = ik.MesoUtovara AND pko.PaKOZapSt = ik.KontaktOsoba " +
@@ -696,18 +700,23 @@ namespace Saobracaj.Drumski
              "SELECT	rn.ID , i.ID AS IDNadredjena," +
              "ISNULL(rn.NalogID, -1) AS NalogID, rn.Uvoz, rn.KontejnerID, rn.Status, rn.IDVrstaManipulacije, rn.AutoDan, rn.Ref,i.MestoPreuzimanja AS MestoPreuzimanjaKontejnera, " +
              "i.Klijent3 AS Klijent,  i.MesoUtovara AS MestoUtovara,i.KontaktOsoba  as KontaktOsobaUtovarInt, (Rtrim(pko.PaKOOpomba)) as AdresaUtovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) as KontaktOsobaNaUtovaru ,rn.MestoIstovara AS MestoIstovara, (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel AS KontaktOsobaUtovarIstovar, i.PlaniraniDatumUtovara as DatumUtovara, rn.DatumIstovara, rn.AdresaIstovara, " +
-             "ISNULL(i.PlaniraniDtPreuzimanja, i.planiranDtPreuzimanjaPunog) AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
+             "ISNULL(i.PlaniraniDtPreuzimanja, i.DtPreuzimanjaPunog)AS DtPreuzimanjaPraznogKontejnera, rn.GranicniPrelaz,CAST(i.Spedicija AS nvarchar) AS KontaktSpeditera, " +
              "rn.Trosak, rn.Valuta, i.BookingBrodara,  i.BrojKontejnera,rn.BrojKontejnera2,i.VrstaKontejnera AS TipKontejnera, i.BrodskaPlomba AS BrojPlombe, '' AS BrodskaTeretnica,  " +
              " i.VGMBrod AS BTTKontejnetra,  i.BrutoRobe AS BTTRobe, " +
              "CAST(ISNULL((SELECT Top(1) IDNapomene FROM IzvozNapomenePozicioniranja where IDNadredjena = i.ID order by ID desc),0) AS INT) AS NapomenaZaPozicioniranje, a.RegBr, rn.KamionID,  a.LicnaKarta, a.Vozac, a.BrojTelefona,pa.PaNaziv AS Prevoznik, rn.Cena, cc.Naziv AS CarinjenjeIzvozno, CAST(i.Cirada AS VARCHAR) as TipTransporta," +
              "(ccp.Oznaka + ' ' + ccp.Naziv) AS NapomenaCarinskiPostupak , i.OdredisnaCarinarnica AS  OdredisnaCarina,i.MestoCarinjenja as polaznaCarinarnica,  i.Spedicija as polaznaSpedicija, i.SpediterOdredisna as OdredisnaSpedicija,i.KontaktSpeditera AS PolaznaSpedicijaKontakt,i.KontaktSpediteraOdredisna AS OdredisnaSpedicijaKontakt," +
              " i.DodatneNapomeneDrumski AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV, '' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski ," +
              "rn.DodatniTrosakTransporta, rn.BrojPosiljke, i.CarinskiPostupakUnutrasnji, i.VrstaBrodskePlombe, i.Brodar,  CONVERT(NVARCHAR(50), i.napomena3ref)    AS ReferencaFakturisanje, i.Korisnik, " +
-             "i.KvalitetKontejnera, i.Tara, i.OstalePlombe , i.MestoPreuzimanja2 as MestoSpustanjaPunog, i.NetoRobe, i.PlaniranDtSpustanjaPunog as PlaniraniDtSpustanjaKontejnera, i.NacinPakovanja, i.ADR, i.Vaganje, i.OpisPosla,'' AS AdresaPreuzimanjaKontejnera," +
-             "'' AS KontaktPreuzimanjaKontejnera ,i.PlaniranDtPreuzimanjaPraznog as DtNoviPreuzimanjaKontejnera, i.DtRealizacijePreuzimanjaPraznog as DtRealizacijePreuzimanjaKontejnera,i.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  i.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja ,i.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, i.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera ," +
+             "i.KvalitetKontejnera, i.Tara, i.OstalePlombe , i.MestoPreuzimanja2 as MestoSpustanjaPunog, i.NetoRobe,  ISNULL(i.planirandtspustanjapunog,i.planiranidtspustanjakontejnera ) as PlaniraniDtSpustanjaKontejnera, i.NacinPakovanja, i.ADR, i.Vaganje, i.OpisPosla,'' AS AdresaPreuzimanjaKontejnera," +
+             "'' AS KontaktPreuzimanjaKontejnera, " +
+              " ISNULL(i.planirandtpreuzimanjapraznog, i.planiranidtpreuzimanja) as DtNoviPreuzimanjaKontejnera" +
+             ",ISNULL(i.planirandtpreuzimanjapunog, i.dtPreuzimanjaPunog) as DtNoviPreuzimanjaPunogKontejnera," +
+             " ISNULL(i.dtrealizacijepreuzimanjapraznog, Isnull(i.planirandtpreuzimanjapraznog, i.planiranidtpreuzimanja))  as DtRealizacijePreuzimanjaKontejnera," +
+             "ISNULL(i.dtrealizacijepreuzimanjapunog, Isnull(i.planirandtpreuzimanjapunog, i.dtpreuzimanjapunog))  as DtRealizacijePreuzimanjaPunogKontejnera," +
+             "i.PlaniraniDtSpustanjaKontejnera as DtSpustanja,  i.DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja ,i.PlaniranDtUtovaraKontejnera AS DtNoviUtovaraKontejnera, i.DtRealizacijeUtovaraKontejnera AS DtRealizacijeUtovaraKontejnera ," +
              "i.MestoUtovaraCerade AS MestoUtovaraCerade,i.KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString,  i.PlaniraniDtUtovaraCerade AS DatumUtovaraCerade, i.MestoIstovaraCerade AS MestoIstovaraCerade,  i.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade,'' AS KontaktOIstovaraCeradeString,  i.PlaniraniDtIstovaraCerade AS DatumIstovaraCerade," +
              "i.PlaniranDtIstovaraCerade as DtIstovaraCeradeNovi, i.DtRealizacijeIstovaraCerade, i.PlaniranDtUtovaraCerade As  DtNoviUtovaraCerade , i.DtRealizacijeUtovaraCerade  ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade, rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
-             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner        " +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner  , rn.Scenario          " +
              "FROM    RadniNalogDrumski rn " +
                       "INNER JOIN  Izvoz i ON rn.KontejnerID = i.ID  " +
                       "LEFT JOIN partnerjiKontOsebaMU pko ON  pko.PaKOSifra = i.MesoUtovara AND pko.PaKOZapSt = i.KontaktOsoba " +
@@ -728,10 +737,11 @@ namespace Saobracaj.Drumski
              "rn.DodatniTrosakTransporta, rn.BrojPosiljke , 0 AS CarinskiPostupakUnutrasnji, 0 AS VrstaBrodskePlombe, uk.Brodar AS Brodar,   CONVERT(NVARCHAR(50),uk.ref3)   AS ReferencaFakturisanje, " +
              "'' AS Korisnik, 0 AS KvalitetKontejnera, uk.TaraKontejnera AS Tara, '' AS OstalePlombe, '' as MestoSpustanjaPunog, 0 AS NetoRobe ,  rn.DtNoviSpustanja as PlaniraniDtSpustanjaKontejnera, " +
              " rn.NacinPakovanja, uk.ADR, rn.Vaganje,'' AS OpisPosla,'' AS AdresaPreuzimanjaKontejnera,'' AS KontaktPreuzimanjaKontejnera ," +
-             "rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera," +
+             "rn.DtNoviPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera AS DtNoviPreuzimanjaPunogKontejnera , rn.DtRealizacijePreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera AS DtRealizacijePreuzimanjaPunogKontejnera," +
+             "rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera," +
              "rn.MestoUtovaraCerade ,0 AS KontaktOUtovaraCerade, '' AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,0 AS KontaktOIstovaraCerade, rn.KontaktOsobaIstovaraCerade  AS KontaktOIstovaraCeradeString, " +
              " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade, rn.DtRealizacijeUtovaraCerade,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade  , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
-             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner              " +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner   , rn.Scenario               " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN UvozKonacna uk ON rn.KontejnerID = uk.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = uk.MestoIstovara AND PaKOZapSt = uk.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -756,10 +766,10 @@ namespace Saobracaj.Drumski
              " '' AS NapomenaCarinskiPostupak, u.OdredisnaCarina as OdredisnaCarina,0 as polaznaCarinarnica, 0 as polaznaSpedicija, u.OdredisnaSpedicija, '' AS PolaznaSpedicijaKontakt,'' AS OdredisnaSpedicijaKontakt, rn.Opis AS DodatniOpis, rn.KontaktNaIstovaru, rn.PDV,'' as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
              "rn.DodatniTrosakTransporta, rn.BrojPosiljke, 0 AS CarinskiPostupakUnutrasnji, 0 AS VrstaBrodskePlombe, u.Brodar AS Brodar,   CONVERT(NVARCHAR(50),u.ref3)   AS ReferencaFakturisanje," +
              " '' AS Korisnik, 0 AS KvalitetKontejnera, u.TaraKontejnera AS Tara  , '' AS OstalePlombe , ''  MestoSpustanjaPunog, 0 AS NetoRobe, rn.DtNoviSpustanja as PlaniraniDtSpustanjaKontejnera, rn.NacinPakovanja, u.ADR ,rn.Vaganje,'' OpisPosla,'' AS AdresaPreuzimanjaKontejnera," +
-             "'' AS KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera  ," +
+             "'' AS KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera AS DtNoviPreuzimanjaPunogKontejnera, rn.DtRealizacijePreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera AS DtRealizacijePreuzimanjaPunogKontejnera, rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera  ," +
             "rn.MestoUtovaraCerade ,0 AS KontaktOUtovaraCerade,'' AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,rn.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade, '' AS KontaktOIstovaraCeradeString," +
             " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade, rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
-            "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner            " +
+            "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner  , rn.Scenario              " +
              "FROM  RadniNalogDrumski rn " +
                     "INNER JOIN  Uvoz u ON rn.KontejnerID = u.ID " +
                     "LEFT JOIN partnerjiKontOsebaMU pko ON pko.PaKOSifra = u.MestoIstovara AND pko.PaKOZapSt = u.AdresaMestaUtovara " + /*AND PaKOSifra = mu.Naziv*/
@@ -783,10 +793,10 @@ namespace Saobracaj.Drumski
              "rn.PDV, rn.BrojVoza as NAzivVoza, rn.TipTransporta  AS TipTransportaDrumski," +
              "rn.DodatniTrosakTransporta, rn.BrojPosiljke, rn.CarinskiPostupakUnutrasnji ,  rn.VrstaBrodskePlombe , rn.Brodar, rn.Ref AS ReferencaFakturisanje ," +
              " ko.Korisnik, rn.KvalitetKontejnera , rn.Tara, rn.OstalePlombe, rn.MestoSpustanjaPunog, rn.NetoRobe , rn.DtNoviSpustanja as PlaniraniDtSpustanjaKontejnera, rn.NacinPakovanja , rn.ADR, rn.Vaganje,rn.OpisPosla AS OpisPosla,rn.AdresaPreuzimanjaKontejnera, " +
-             "rn.KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera ," +
+             "rn.KontaktPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera,rn.DtNoviPreuzimanjaKontejnera AS DtNoviPreuzimanjaPunogKontejnera, rn.DtRealizacijePreuzimanjaKontejnera, rn.DtRealizacijePreuzimanjaKontejnera AS DtRealizacijePreuzimanjaPunogKontejnera,rn.DtSpustanja, rn.DtRealizacijeSpustanja,rn.DtNoviUtovaraKontejnera, rn.DtRealizacijeUtovaraKontejnera ," +
              "rn.MestoUtovaraCerade , 0 AS KontaktOUtovaraCerade,rn.KontaktOsobaUtovaraCerade  AS KontaktOUtovaraCeradeString, rn.DtUtovaraCerade AS DatumUtovaraCerade, rn.MestoIstovaraCerade AS MestoIstovaraCerade,0 AS KontaktOIstovaraCerade,rn.KontaktOsobaIstovaraCerade AS KontaktOIstovaraCeradeString, " +
              " rn.DtIstovaraCerade AS DatumIstovaraCerade, rn.DtNoviIstovaraCerade as DtIstovaraCeradeNovi, rn.DtRealizacijeIstovaraCerade as DtRealizacijeIstovaraCerade , rn.DtNoviUtovaraCerade , rn.DtRealizacijeUtovaraCerade ,rn.AdresaUtovaraCerade, rn.AdresaIstovaraCerade , rn.PolaznaSpedicijaKontaktNovi, rn.OdredisnaSpedicijaKontaktNovi," +
-             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner      " +
+             "IsNull(rn.OdobrioPlaner,0) AS  OdobrioPlaner   , rn.Scenario       " +
              "FROM  RadniNalogDrumski rn " +
               "LEFT JOIN Automobili a on a.ID = rn.KamionID " +
               "LEFT JOIN Partnerji pa on a.PartnerID = pa.PaSifra " +
@@ -800,6 +810,7 @@ namespace Saobracaj.Drumski
          
                 PopuniText("txtID", sfx, dr["ID"]);
                 PopuniText("txtKorisnik", sfx, dr["Korisnik"]);
+                PopuniText("txtKorisnik", sfx, dr["Korisnik"]);
 
                 // Punjenje ComboBox-ova
                 PopuniCombo("cboKlijent", sfx, dr["Klijent"]);
@@ -811,6 +822,8 @@ namespace Saobracaj.Drumski
                 PopuniCheck("chkVaganje", sfx, dr["Vaganje"]);
 
                 Uvoz = Convert.ToInt32(dr["Uvoz"].ToString());
+                scenario = Convert.ToInt32(dr["Scenario"].ToString());
+
                 string tipNaloga = Uvoz == 1 ? "Uvoz" : "Izvoz";
                 int TipNaloga = Convert.ToInt32(dr["Uvoz"].ToString());
 
@@ -894,38 +907,81 @@ namespace Saobracaj.Drumski
                 PopuniDecimal("txtCena", sfx, dr["Cena"]);
                 PopuniDecimal("txtTrosak", sfx, dr["Trosak"]);
 
-            
-                PopuniDatum("DtPreuzimanjaPraznogKontejnera", sfx, dr["DtPreuzimanjaPraznogKontejnera"]);
-                PostaviTag(dr["DtPreuzimanjaPraznogKontejnera"], dtPreuzimanjaPraznogKontejnera);
-                PopuniDatum("dtRealiPreuzimanjaPraznogKon", sfx, dr["DtRealizacijePreuzimanjaKontejnera"]);
-                PostaviTag(dr["DtRealizacijePreuzimanjaKontejnera"], dtRealiPreuzimanjaPraznogKont);
-                PopuniDatum("dtPreuzimanjaPraznogKontejneraNovi", sfx, dr["DtNoviPreuzimanjaKontejnera"]);
-                PostaviTag(dr["DtNoviPreuzimanjaKontejnera"], dtPreuzimanjaPraznogKontejneraNovi);
-                PopuniDatum("dtpSpustanjePunog", sfx, dr["DtSpustanja"]);
-                PostaviTag(dr["DtSpustanja"], dtpSpustanjePunog);
-                PopuniDatum("dtpSpustanjePunogNovi", sfx, dr["PlaniraniDtSpustanjaKontejnera"]);
-                PostaviTag(dr["PlaniraniDtSpustanjaKontejnera"], dtpSpustanjePunogNovi);
-                PopuniDatum("dtpSpustanjePunogReal", sfx, dr["DtRealizacijeSpustanja"]);
-                PostaviTag(dr["DtRealizacijeSpustanja"], dtpSpustanjePunogReal);
-                PopuniDatum("dtpUtovara", sfx, dr["DatumUtovara"]);
-                PostaviTag(dr["DatumUtovara"], dtpUtovara);
-                PopuniDatum("dtpUtovaraNovi", sfx, dr["DtNoviUtovaraKontejnera"]);
-                PostaviTag(dr["DtNoviUtovaraKontejnera"], dtpUtovaraNovi);
-                PopuniDatum("dtpRealiUtovara", sfx, dr["DtRealizacijeUtovaraKontejnera"]);
-                PostaviTag(dr["DtRealizacijeUtovaraKontejnera"], dtpRealiUtovara);
+                if (dr["DtPreuzimanjaPraznogKontejnera"] != DBNull.Value && dr["DtPreuzimanjaPraznogKontejnera"] != null)
+                    PopuniDatum("DtPreuzimanjaPraznogKontejnera", sfx, dr["DtPreuzimanjaPraznogKontejnera"]);
+              //  PostaviTag(dr["DtPreuzimanjaPraznogKontejnera"], dtPreuzimanjaPraznogKontejnera);
+                if (scenario == 7 || scenario == 23)
+                {
+                    if (dr["DtRealizacijePreuzimanjaKontejnera"] != DBNull.Value && dr["DtRealizacijePreuzimanjaKontejnera"] != null)
+                    {
+                        PopuniDatum("dtRealiPreuzimanjaPraznogKon", sfx, dr["DtRealizacijePreuzimanjaKontejnera"], true);
+                     //   PostaviTag(dr["DtRealizacijePreuzimanjaKontejnera"], dtRealiPreuzimanjaPraznogKont);
+                    }
+                }
+                else if (scenario == 13 || scenario == 26)
+                {
+                    if (dr["DtRealizacijePreuzimanjaPunogKontejnera"] != DBNull.Value && dr["DtRealizacijePreuzimanjaPunogKontejnera"] != null)
+                    {
+                        PopuniDatum("dtPreuzimanjaPraznogKontejneraNovi", sfx, dr["DtRealizacijePreuzimanjaPunogKontejnera"]);
+                   //     PostaviTag(dr["DtRealizacijePreuzimanjaPunogKontejnera"], dtRealiPreuzimanjaPraznogKont);
+                    }
+                }
+               
+               
+                if (scenario == 7 || scenario == 23)
+                {
+                    if (dr["DtNoviPreuzimanjaKontejnera"] != DBNull.Value && dr["DtNoviPreuzimanjaKontejnera"] != null)
+                    {
+                        PopuniDatum("dtPreuzimanjaPraznogKontejneraNovi", sfx, dr["DtNoviPreuzimanjaKontejnera"]);
+                   //     PostaviTag(dr["DtNoviPreuzimanjaKontejnera"], dtPreuzimanjaPraznogKontejneraNovi);
+                    }
+                }
+                else if (scenario == 13 || scenario == 26)
+                {
+                    if (dr["DtNoviPreuzimanjaPunogKontejnera"] != DBNull.Value && dr["DtNoviPreuzimanjaPunogKontejnera"] != null)
+                    {
+                        PopuniDatum("dtPreuzimanjaPraznogKontejneraNovi", sfx, dr["DtNoviPreuzimanjaPunogKontejnera"]);
+                //        PostaviTag(dr["DtNoviPreuzimanjaPunogKontejnera"], dtPreuzimanjaPraznogKontejneraNovi);
+                    }
+                }
+                   
+                if (dr["DtSpustanja"] != DBNull.Value && dr["DtSpustanja"] != null)
+                    PopuniDatum("dtpSpustanjePunog", sfx, dr["DtSpustanja"]);
+              //  PostaviTag(dr["DtSpustanja"], dtpSpustanjePunog);
+                if ( dr["PlaniraniDtSpustanjaKontejnera"] != DBNull.Value && dr["PlaniraniDtSpustanjaKontejnera"] != null)
+                    PopuniDatum("dtpSpustanjePunogNovi", sfx, dr["PlaniraniDtSpustanjaKontejnera"]);
+              //  PostaviTag(dr["PlaniraniDtSpustanjaKontejnera"], dtpSpustanjePunogNovi);
+                if (dr["DtRealizacijeSpustanja"] != null)
+                    PopuniDatum("dtpSpustanjePunogReal", sfx, dr["DtRealizacijeSpustanja"], true);
+              //  PostaviTag(dr["DtRealizacijeSpustanja"], dtpSpustanjePunogReal);
+                if (dr["DatumUtovara"] != DBNull.Value && dr["DatumUtovara"] != null)
+                    PopuniDatum("dtpUtovara", sfx, dr["DatumUtovara"]);
+             //   PostaviTag(dr["DatumUtovara"], dtpUtovara);
+                if (dr["DtNoviUtovaraKontejnera"] != DBNull.Value && dr["DtNoviUtovaraKontejnera"] != null)
+                    PopuniDatum("dtpUtovaraNovi", sfx, dr["DtNoviUtovaraKontejnera"]);
+              //  PostaviTag(dr["DtNoviUtovaraKontejnera"], dtpUtovaraNovi);
+                if (dr["DtRealizacijeUtovaraKontejnera"] != DBNull.Value && dr["DtRealizacijeUtovaraKontejnera"] != null)
+                    PopuniDatum("dtpRealiUtovara", sfx, dr["DtRealizacijeUtovaraKontejnera"], true);
+             //   PostaviTag(dr["DtRealizacijeUtovaraKontejnera"], dtpRealiUtovara);
 
-                PopuniDatum("dtpUtovaraCerade", sfx, dr["DatumUtovaraCerade"]);
-                PostaviTag(dr["DatumUtovaraCerade"], dtpUtovaraCerade);
-                PopuniDatum("dtpUtovaraCeradeNovi", sfx, dr["DtNoviUtovaraCerade"]);
-                PostaviTag(dr["DtNoviUtovaraCerade"], dtpUtovaraCeradeNovi);
-                PopuniDatum("dtpRealiUtovaraCerade", sfx, dr["DtRealizacijeUtovaraCerade"]);
-                PostaviTag(dr["DtRealizacijeUtovaraCerade"], dtpRealiUtovaraCerade);
-                PopuniDatum("dtpIstovaraCerade", sfx, dr["DatumIstovaraCerade"]);
-                PostaviTag(dr["DatumIstovaraCerade"], dtpIstovaraCerade);
-                PopuniDatum("dtpIstovaraCeradeNovi", sfx, dr["DtIstovaraCeradeNovi"]);
-                PostaviTag(dr["DtIstovaraCeradeNovi"], dtpIstovaraCeradeNovi);
-                PopuniDatum("dtpRealiIstovaraCerade", sfx, dr["DtRealizacijeIstovaraCerade"]);
-                PostaviTag(dr["DtRealizacijeIstovaraCerade"], dtpRealiIstovaraCerade);
+                if (dr["DatumUtovaraCerade"] != DBNull.Value && dr["DatumUtovaraCerade"] != null)
+                    PopuniDatum("dtpUtovaraCerade", sfx, dr["DatumUtovaraCerade"]);
+              //  PostaviTag(dr["DatumUtovaraCerade"], dtpUtovaraCerade);
+                if (dr["DtNoviUtovaraCerade"] != DBNull.Value && dr["DtNoviUtovaraCerade"] != null)
+                    PopuniDatum("dtpUtovaraCeradeNovi", sfx, dr["DtNoviUtovaraCerade"]);
+             //   PostaviTag(dr["DtNoviUtovaraCerade"], dtpUtovaraCeradeNovi);
+                if (dr["DtRealizacijeUtovaraCerade"] != DBNull.Value && dr["DtRealizacijeUtovaraCerade"] != null)
+                    PopuniDatum("dtpRealiUtovaraCerade", sfx, dr["DtRealizacijeUtovaraCerade"], true);
+             //   PostaviTag(dr["DtRealizacijeUtovaraCerade"], dtpRealiUtovaraCerade);
+                if (dr["DatumIstovaraCerade"] != DBNull.Value && dr["DatumIstovaraCerade"] != null)
+                    PopuniDatum("dtpIstovaraCerade", sfx, dr["DatumIstovaraCerade"]);
+              //  PostaviTag(dr["DatumIstovaraCerade"], dtpIstovaraCerade);
+                if (dr["DtIstovaraCeradeNovi"] != DBNull.Value && dr["DtIstovaraCeradeNovi"] != null)
+                    PopuniDatum("dtpIstovaraCeradeNovi", sfx, dr["DtIstovaraCeradeNovi"]);
+              //  PostaviTag(dr["DtIstovaraCeradeNovi"], dtpIstovaraCeradeNovi);
+                if (dr["DtRealizacijeIstovaraCerade"] != DBNull.Value && dr["DtRealizacijeIstovaraCerade"] != null)
+                    PopuniDatum("dtpRealiIstovaraCerade", sfx, dr["DtRealizacijeIstovaraCerade"], true);
+             //   PostaviTag(dr["DtRealizacijeIstovaraCerade"], dtpRealiIstovaraCerade);
 
 
                 PopuniCombo("cboTipTransporta", sfx, dr["TipTransportaDrumski"]);
@@ -1004,6 +1060,9 @@ namespace Saobracaj.Drumski
 
                 DataTable dtIzBaze = VratiPodatkeIzBazeNHM(idNadredjena);
                 OsveziGridNHM(dtIzBaze);
+
+                //if (Convert.ToInt32(dr["OdobrioPlaner"].ToString()) > 0)
+                //    button2.Enabled = false;
 
             }
             con.Close();
@@ -1567,11 +1626,11 @@ namespace Saobracaj.Drumski
             DataTable dtTerminali = new DataTable();
             daTerminali.Fill(dtTerminali);
 
-            cboMestoSpustanjaPunogI1.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogI1.DataSource = dtMestoU.Copy();
             cboMestoSpustanjaPunogI1.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogI1.ValueMember = "ID";
 
-            cboMestoSpustanjaPunogI2.DataSource = dtTerminali.Copy();
+            cboMestoSpustanjaPunogI2.DataSource = dtMestoU.Copy();
             cboMestoSpustanjaPunogI2.DisplayMember = "Naziv";
             cboMestoSpustanjaPunogI2.ValueMember = "ID";   
 
@@ -1949,21 +2008,32 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void PopuniDatum(string ime, string sufiks, object vrednost)
+        private void PopuniDatum(string ime, string sufiks, object vrednost, bool isRealizacija = false)
         {
             var dtp = this.Controls.Find(ime + sufiks, true).FirstOrDefault() as DateTimePicker;
             if (dtp != null)
             {
                 if (vrednost != DBNull.Value && vrednost != null)
                 {
+                    // 1. Vrednost postoji u bazi -> učitaj je i resetuj tag
                     dtp.Value = Convert.ToDateTime(vrednost);
-                     dtp.Tag = null;
+                    dtp.Tag = null;
                 }
                 else
                 {
-                   // dtp.Value = dtp.MinDate;// Ili neki default datum koji odgovara
-                    dtp.Value =  DateTime.Today.AddDays(-5);
-                    dtp.Tag = null;
+                    // 2. Vrednost u bazi je NULL
+                    if (!isRealizacija)
+                    {
+                        // Ako NIJE realizacija: postavi default datum i tag "IZMENJEN" da se snimi
+                       //  dtp.Value = DateTime.Today.AddDays(-5);
+                        dtp.Tag = "IZMENJEN";
+                    }
+                    else
+                    {
+                        // Ako JESTE realizacija: ne snimaj vrednost (Tag ostaje null), 
+                        // a na formi ostaje datum koji je već bio učitan/podešen
+                        dtp.Tag = null;
+                    }
                 }
             }
         }
@@ -1997,6 +2067,11 @@ namespace Saobracaj.Drumski
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (lOOdobrio > 0)
+            {
+                MessageBox.Show("Podaci se ne mogu menjati jer je su potvrđeni od strane LO za transport");
+                return;
+            }
             string referenca = null;
             int? mestoIstovara = null;
             int? mestoUtovara = null;
@@ -2304,7 +2379,8 @@ namespace Saobracaj.Drumski
             DateTime? dtUtovaraKNovi = null;
             DateTime? dtSpustanjePunogNovi = null;
             DateTime? dtRealiUtovara = null;
-            
+         
+
             DateTime? dtUtovaraCerade = null;
             DateTime? dtIstovaraCeradeNovi = null;
             DateTime? dtUtovaraCeradeNovi = null;
@@ -2316,12 +2392,15 @@ namespace Saobracaj.Drumski
             string kontaktUtovaraCerade = null;
             string kontaktIstovaraCerade = null;
 
-
+            if(((scenario == 13 || scenario == 26 ) && Uvoz == 0 )|| Uvoz == 3)
             if (dtPreuzimanjaPraznogKontejnera != null )
                 dtPreuzimanjaPraznog = (dtPreuzimanjaPraznogKontejnera.Tag?.ToString() == "IZMENJEN") ? dtPreuzimanjaPraznogKontejnera.Value : (DateTime?)null;
-
-            if (dtPreuzimanjaPraznogKontejneraNovi != null )
-                dtPreuzimanjePraznogKNovi = (dtPreuzimanjaPraznogKontejneraNovi.Tag?.ToString() == "IZMENJEN") ? dtPreuzimanjaPraznogKontejneraNovi.Value : (DateTime?)null;
+            // proveri da li izmenjen  novi datum, ako jeste ne sme biti manji od starog datuma
+            if (dtPreuzimanjaPraznogKontejneraNovi != null)
+                dtPreuzimanjePraznogKNovi = (dtPreuzimanjaPraznogKontejneraNovi.Tag?.ToString() == "IZMENJEN" ) ? 
+                    (dtPreuzimanjaPraznogKontejneraNovi.Value < dtPreuzimanjaPraznogKontejnera.Value ? dtPreuzimanjaPraznogKontejnera.Value : dtPreuzimanjaPraznogKontejneraNovi.Value)
+                : (DateTime?)null;
+            //dtPreuzimanjePraznogKNovi = (dtPreuzimanjaPraznogKontejneraNovi.Tag?.ToString() == "IZMENJEN") ? dtPreuzimanjaPraznogKontejneraNovi.Value : (DateTime?)null;
 
             if (dtRealiPreuzimanjaPraznogKont != null)
                 dtRealizacijePreuzimanjaPraznogKont = (dtRealiPreuzimanjaPraznogKont.Tag?.ToString() == "IZMENJEN") ? dtRealiPreuzimanjaPraznogKont.Value : (DateTime?)null;
@@ -2566,9 +2645,23 @@ namespace Saobracaj.Drumski
                 }
                 else if(Uvoz == 0)
                 {
-                       ins.UpdRadniNalogDrumskiIzvoz(id, valutaID, trosak, cena, PDV, dodatniTrosak,  autoDan, odredisnaSpedicijaKontakt,
-                        polaznaSpedicijaKontakt, dtRealizacijePreuzimanjaPraznogKont, dtPreuzimanjePraznogKNovi, dtRealizacijeSpustanja, dtSpustanjePunogNovi, dtSpustanja, dtUtovaraKNovi, dtRealiUtovara,
-                        dtUtovaraCeradeNovi, dtRealizacijeUtovaraCerade, dtIstovaraCerade, dtIstovaraCeradeNovi, dtRealizacijeIstovaraCerade,granicniPrelaz, zaposleniID, NoviSpediterP, NoviSpediterO);
+                    DateTime? dtPreuzimanjaPunog = null;
+                    DateTime? dtPreuzimanjePunogKNovi = null;
+                    DateTime? dtRealizacijePreuzimanjaPunogKont = null;
+
+                    if (scenario == 13 || scenario == 26) // da bi insertovala datume praznog i punog kontejnera, u izvozu su odvojena polja
+                    {
+                        dtPreuzimanjaPunog = dtPreuzimanjaPraznog;
+                        dtPreuzimanjePunogKNovi = dtPreuzimanjePraznogKNovi;
+                        dtRealizacijePreuzimanjaPunogKont = dtRealizacijePreuzimanjaPraznogKont;
+
+                        dtPreuzimanjaPraznog = null;
+                        dtPreuzimanjePraznogKNovi = null;
+                        dtRealizacijePreuzimanjaPraznogKont = null;
+                    }
+                    ins.UpdRadniNalogDrumskiIzvoz(id, valutaID, trosak, cena, PDV, dodatniTrosak,  autoDan, odredisnaSpedicijaKontakt,
+                    polaznaSpedicijaKontakt, dtRealizacijePreuzimanjaPunogKont, dtPreuzimanjePunogKNovi, dtRealizacijePreuzimanjaPraznogKont, dtPreuzimanjePraznogKNovi, dtRealizacijeSpustanja, dtSpustanjePunogNovi, dtSpustanja, dtUtovaraKNovi, dtRealiUtovara,
+                    dtUtovaraCeradeNovi, dtRealizacijeUtovaraCerade, dtIstovaraCerade, dtIstovaraCeradeNovi, dtRealizacijeIstovaraCerade,granicniPrelaz, zaposleniID, NoviSpediterP, NoviSpediterO);
                 }
 
             // 3. Update glavnog naloga
@@ -3061,6 +3154,7 @@ namespace Saobracaj.Drumski
             int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
             ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
             MessageBox.Show("Nalog je uspešno potvrđen.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void PostaviTag(object vrednostIzBaze, Control kontrola)

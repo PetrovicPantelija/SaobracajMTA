@@ -29,6 +29,7 @@ namespace Saobracaj.Drumski
         private readonly List<int> _tipoviNotIn;
         private bool _filtersLoaded = false;
         private int _stariStatusID = -1;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         public PakovanjeKamionaCerade()
         {
@@ -1063,15 +1064,12 @@ namespace Saobracaj.Drumski
                 var select = $@"
                             SELECT   
                                 x.ID,
-                                LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac, 
+                                LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac,                          
                                 CASE 
-                                    WHEN mu.Naziv IS NOT NULL AND mi.Naziv IS NOT NULL 
-                                        THEN LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
-                                    WHEN mu.Naziv IS NOT NULL 
-                                        THEN LTRIM(RTRIM(mu.Naziv))
-                                    WHEN mi.Naziv IS NOT NULL 
-                                        THEN LTRIM(RTRIM(mi.Naziv))
-                                    ELSE '' 
+                                     WHEN mu.Naziv IS NOT NULL AND mi.Naziv IS NOT NULL 
+                                         THEN CONCAT(LTRIM(RTRIM(mu.Naziv)), ' - ', LTRIM(RTRIM(mi.Naziv)))
+                                     ELSE 
+                                          CONCAT(LTRIM(RTRIM(mu.Naziv)), LTRIM(RTRIM(mi.Naziv)))
                                 END AS Relacija,
                                 CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara, 
                                 LTRIM(RTRIM(x.Prevoznik)) AS Prevoznik, 
@@ -2157,7 +2155,7 @@ namespace Saobracaj.Drumski
                     try
                     {
                         InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID);
+                        ins.UpdateStatusRadniNalogDrumski(id, noviStatusID, tKorisnik);
                         if (jeZavrsni)
                         {
                             ins.ArhiviranRadniNalogDrumski(id);
@@ -2165,8 +2163,15 @@ namespace Saobracaj.Drumski
 
                         if (trebaOkidatiInterni)
                         {
-                            InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
-                            //updi.UpdRadniNalogInterniZavrsen(id, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            int radniNalogInterniID = PribaviRadniNalogInterniID(id);
+                            if (radniNalogInterniID > 0)
+                            {
+
+                                InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
+                                updi.UpdRadniNalogInterniZavrsen(radniNalogInterniID, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                            }
+
+                          
                         }
                         this.BeginInvoke(new MethodInvoker(() => {
                             dataGridView3.CellValueChanged -= dataGridView3_CellValueChanged;
@@ -2182,6 +2187,33 @@ namespace Saobracaj.Drumski
 
             }
 
+        }
+
+        private int PribaviRadniNalogInterniID(int ID)
+        {
+            int radniNalogInterniID = 0;
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
+                                    FROM RadniNalogDrumski rn
+                                    LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
+                                    WHERE rn.ID = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+
+                        if (reader["RadniNalogInterniID"] != DBNull.Value)
+                            radniNalogInterniID = Convert.ToInt32(reader["RadniNalogInterniID"]);
+                    }
+                }
+
+            }
+            return radniNalogInterniID;
         }
 
         private bool ProveriDaLiJeZavrsni(int statusID, int tip, int nalog, int cip, int cio)
@@ -2753,6 +2785,7 @@ namespace Saobracaj.Drumski
 
             // Kopiraj kao HTML u clipboard
             SetClipboardHtml(htmlBuilder.ToString());
+            System.Threading.Thread.Sleep(100);
             MessageBox.Show("Podaci su kopirani u clipboard.");
 
             RefreshDataGrid3();
@@ -2978,7 +3011,7 @@ namespace Saobracaj.Drumski
 
             // 3.
             var finalSelect = $@"
-                               SELECT Detalji.DtPreuzimanjaPraznogKontejnera,Detalji.MestoPreuzimanjaKontejnera,Detalji.polaznaCarinarnica,Detalji.NapomenaZaPozicioniranje,
+                               SELECT Detalji.ID,Detalji.DtPreuzimanjaPraznogKontejnera,Detalji.MestoPreuzimanjaKontejnera,Detalji.polaznaCarinarnica,Detalji.NapomenaZaPozicioniranje,
                                        mu.Naziv AS MestoUtovara,mi.Naziv AS MestoIstovara ,CONVERT(varchar,Detalji.DatumUtovara,104) AS DatumUtovara, CONVERT(varchar,Detalji.DatumIstovara,104) AS DatumIstovara,
                                        LTRIM(RTRIM(mu.Naziv)) + ' - ' +  LTRIM(RTRIM(mi.Naziv)) AS Relacija,
                                        AdresaUtovara as AdresaUtovara ,
@@ -3045,6 +3078,9 @@ namespace Saobracaj.Drumski
             string query = @"SELECT Vozac, LicnaKarta, BrojTelefona 
                      FROM Automobili 
                      WHERE ID = @KamionID";
+            string ime = "-";
+            string lk = "-";
+            string tel = "-";
 
             using (SqlConnection conn = new SqlConnection(connection))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -3056,17 +3092,14 @@ namespace Saobracaj.Drumski
                 {
                     if (reader.Read())
                     {
-                        string ime = reader["Vozac"].ToString();
-                        string lk = reader["LicnaKarta"].ToString();
-                        string tel = reader["BrojTelefona"].ToString();
-                        return (ime, lk, tel);
-                    }
-                    else
-                    {
-                        return ("-", "-", "-");
-                    }
+                         ime = reader["Vozac"].ToString();
+                         lk = reader["LicnaKarta"].ToString();
+                         tel = reader["BrojTelefona"].ToString();
+                      
+                    }                
                 }
             }
+            return (ime, lk, tel);
         }
 
         private int ProveriPostojanjeRadnogNaloga(int? radniNalogDrumskiID)
