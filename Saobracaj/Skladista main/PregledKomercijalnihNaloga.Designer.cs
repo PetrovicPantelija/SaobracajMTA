@@ -35,6 +35,9 @@
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtNALOGID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -45,6 +48,8 @@
             this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.txtNALOGID);
+            this.panelHeader.Controls.Add(this.label3);
             this.panelHeader.Controls.Add(this.txtSifra);
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -55,7 +60,7 @@
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(1079, 8);
+            this.txtSifra.Location = new System.Drawing.Point(687, 5);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(100, 20);
             this.txtSifra.TabIndex = 7;
@@ -65,12 +70,13 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnAktiviraj);
             this.panel2.Controls.Add(this.button25);
             this.panel2.Controls.Add(this.button24);
             this.panel2.Location = new System.Drawing.Point(11, -1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(292, 31);
+            this.panel2.Size = new System.Drawing.Size(661, 31);
             this.panel2.TabIndex = 6;
             // 
             // btnAktiviraj
@@ -89,7 +95,7 @@
             this.btnAktiviraj.Name = "btnAktiviraj";
             this.btnAktiviraj.Size = new System.Drawing.Size(71, 31);
             this.btnAktiviraj.TabIndex = 19;
-            this.btnAktiviraj.Text = "Aktiviraj";
+            this.btnAktiviraj.Text = "Potvrdi";
             this.btnAktiviraj.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAktiviraj.UseVisualStyleBackColor = true;
             this.btnAktiviraj.Click += new System.EventHandler(this.btnAktiviraj_Click);
@@ -168,6 +174,46 @@
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button1.Location = new System.Drawing.Point(197, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 31);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Pregledaj podatke";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // txtNALOGID
+            // 
+            this.txtNALOGID.Enabled = false;
+            this.txtNALOGID.Location = new System.Drawing.Point(981, 5);
+            this.txtNALOGID.Name = "txtNALOGID";
+            this.txtNALOGID.Size = new System.Drawing.Size(85, 20);
+            this.txtNALOGID.TabIndex = 227;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(907, 8);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 228;
+            this.label3.Text = "KO NALOG ID";
             // 
             // PregledKomercijalnihNaloga
             // 
@@ -198,5 +244,8 @@
         private System.Windows.Forms.Button button24;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private System.Windows.Forms.Button btnAktiviraj;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtNALOGID;
+        private System.Windows.Forms.Label label3;
     }
 }

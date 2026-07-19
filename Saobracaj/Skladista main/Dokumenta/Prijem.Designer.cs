@@ -976,6 +976,7 @@
             this.button24.Text = "Snimi";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // Prijem
             // 

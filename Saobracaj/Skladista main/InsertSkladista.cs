@@ -270,7 +270,6 @@ namespace Saobracaj.Skladista_main
             string NacinPakovanja,
             int OstalaSkladista,
             int PIB,
-
             int? VrstaPrevoznogSredstvaOtprema,
             int? VrstaKamionaOtprema,
             string VoziloOtprema,
@@ -286,7 +285,6 @@ namespace Saobracaj.Skladista_main
             DateTime? PlaniraniDatumOtpema,
             DateTime? PlaniraniDatum2Otprema,
             string BrojKontejneraOtprema,
-
             int? VrstaPrevoznogSredstvaPrijem,
             int? VrstaKamionaPrijem,
             string VoziloPrijem,
@@ -302,7 +300,6 @@ namespace Saobracaj.Skladista_main
             DateTime? PlaniraniDatumPrijem,
             DateTime? PlaniraniDatum2Prijem,
             string BrojKontejneraPrijem,
-
             string PosebniUslovi,
             int DodatneUslugeID,
             string Napomena,
@@ -1667,5 +1664,6 @@ namespace Saobracaj.Skladista_main
                 }
             }
         }
+
     }
 }
