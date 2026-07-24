@@ -1111,7 +1111,8 @@ namespace Saobracaj.Drumski
 		                        x.OdredisnaCarinarnica,
                                 x.VlasnistvoLegeta,
                                 x.TipTransporta,
-                                x.Scenario
+                                x.Scenario,
+                                CASE WHEN COUNT(prn.id) > 0 THEN 'True' else 'False' end as Protokol
 
 
                             FROM 
@@ -1362,7 +1363,7 @@ namespace Saobracaj.Drumski
                                 LEFT JOIN MestaUtovara mu on  x.MestoUtovara = mu.ID
                                 LEFT JOIN KontejnerskiTerminali mi on  x.MestoIstovara = mi.ID 
                                 LEFT JOIN MestaUtovara mp on  x.MestoPreuzimanjaKontejnera = mp.ID 
-                             LEFT JOIN (SELECT tt.ID AS ScenarioID, m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
+                                LEFT JOIN (SELECT tt.ID AS ScenarioID, m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
                                         FROM ScenarijaTokaTransporta tt
                                         JOIN MapiranjeTipaNaloga m ON tt.VrstaNaloga = m.VrstaNaloga
                                          ) AS IdentifikatorScenarija ON 
@@ -1371,9 +1372,9 @@ namespace Saobracaj.Drumski
                                          -- Ovde dodaš logiku za CI (npr. provera da li su polja za CI popunjena)
                                          AND IdentifikatorScenarija.PolaznaCI = (CASE WHEN x.PolaznaCarinarnica IS NOT NULL AND x.PolaznaCarinarnica > 0 THEN 1 ELSE 0 END) 
                                          AND IdentifikatorScenarija.OdredisnaCI = (CASE WHEN x.OdredisnaCarinarnica IS NOT NULL AND x.OdredisnaCarinarnica > 0 THEN 1 ELSE 0 END)
-
-                                        -- Sada spajamo sa spojnom tabelom preko izračunatog Scenarija
-                                        LEFT JOIN ScenarioTokTransporta_Statusi sts ON 
+                                LEFT JOIN ProtokolRadniNalogDrumski  prn on x.ID = prn.RadniNalogDrumskiID
+                                -- Sada spajamo sa spojnom tabelom preko izračunatog Scenarija
+                                LEFT JOIN ScenarioTokTransporta_Statusi sts ON 
                                             sts.ScenarioID = IdentifikatorScenarija.ScenarioID 
                                             AND sts.Status = x.Status
                              WHERE  {uslovTipVozila} AND (x.Status IS NULL OR ISNULL(sts.JesteZavrsni, 0) = 0) AND OdobrioPlaner > 1
@@ -1485,6 +1486,23 @@ namespace Saobracaj.Drumski
             // Ubaci novu kolonu na isto mesto
             dataGridView3.Columns.Insert(colIndex, chk);
 
+              // Ukloni originalnu kolonu
+            int colIndex1 = dataGridView3.Columns["Protokol"].Index;
+            // Ubaci novu kolonu na isto mesto
+            // Ukloni originalnu kolonu
+            dataGridView3.Columns.RemoveAt(colIndex1);
+
+            DataGridViewCheckBoxColumn chk1 = new DataGridViewCheckBoxColumn();
+            chk1.Name = "Protokol";
+            chk1.HeaderText = "Protokol";
+            chk1.DataPropertyName = "Protokol"; // mora da se poklapa sa imenom kolone iz DataTable
+            chk1.TrueValue = 1;
+            chk1.FalseValue = 0;
+            chk1.ThreeState = false;
+
+            // Ubaci novu kolonu na isto mesto
+            dataGridView3.Columns.Insert(colIndex1, chk1);
+
             upozorenjeTehnickiNeispravni = ""; // reset pre svakog punjenja
 
             foreach (DataGridViewRow row in dataGridView3.Rows)
@@ -1533,6 +1551,18 @@ namespace Saobracaj.Drumski
                 dataGridView3.Columns["PoslataNajava"].Width = 60;
                 dataGridView3.Columns["PoslataNajava"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView3.Columns["PoslataNajava"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (dataGridView3.Columns.Contains("Protokol"))
+            {
+                dataGridView3.Columns["Protokol"].Width = 60;
+                dataGridView3.Columns["Protokol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView3.Columns["Protokol"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (dataGridView3.Columns.Contains("SlanjeNajave"))
+            {
+                dataGridView3.Columns["SlanjeNajave"].Width = 80;
+                //dataGridView3.Columns["SlanjeNajave"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //dataGridView3.Columns["SlanjeNajave"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -3628,6 +3658,27 @@ namespace Saobracaj.Drumski
                     : -1;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati makar jedan red!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+            {
+                    if (row.IsNewRow) continue;
+
+                    // Dohvati spojeni string ID-jeva
+                    int id = Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                    int tipTransporta = Convert.ToInt32(row.Cells["TipTransporta"].Value.ToString()); 
+                    frmListaProtokola frm = new frmListaProtokola( id, tipTransporta);
+                    frm.ShowDialog();
+                    RefreshDataGrid3();
+            }
+        }
+        
     }
-   
+
 }

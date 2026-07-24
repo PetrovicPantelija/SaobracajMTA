@@ -1618,6 +1618,12 @@
     <Compile Include="Drumski\frmKursnaLista.Designer.cs">
       <DependentUpon>frmKursnaLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmListaProtokola.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmListaProtokola.Designer.cs">
+      <DependentUpon>frmListaProtokola.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmNalogZaFakturisanje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1708,6 +1714,12 @@
     <Compile Include="Drumski\frmPregledSkeniranihDokumenata.Designer.cs">
       <DependentUpon>frmPregledSkeniranihDokumenata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drumski\frmProtokolTransportnogNaloga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drumski\frmProtokolTransportnogNaloga.Designer.cs">
+      <DependentUpon>frmProtokolTransportnogNaloga.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmRaspolozivostVozila.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1753,6 +1765,7 @@
     <Compile Include="Drumski\InsertFakture.cs" />
     <Compile Include="Drumski\InsertKurs.cs" />
     <Compile Include="Drumski\InsertNapomena.cs" />
+    <Compile Include="Drumski\InsertProtokolTransportnogNaloga.cs" />
     <Compile Include="Drumski\InsertRadniNalogDrumski.cs" />
     <Compile Include="Drumski\InsertStatus.cs" />
     <Compile Include="Drumski\InsertVrstaVozila.cs" />
@@ -5374,6 +5387,9 @@
     <EmbeddedResource Include="Drumski\frmKursnaLista.resx">
       <DependentUpon>frmKursnaLista.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmListaProtokola.resx">
+      <DependentUpon>frmListaProtokola.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmNalogZaFakturisanje.resx">
       <DependentUpon>frmNalogZaFakturisanje.cs</DependentUpon>
     </EmbeddedResource>
@@ -5416,6 +5432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmPregledSkeniranihDokumenata.resx">
       <DependentUpon>frmPregledSkeniranihDokumenata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drumski\frmProtokolTransportnogNaloga.resx">
+      <DependentUpon>frmProtokolTransportnogNaloga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Drumski\frmRaspolozivostVozila.resx">
       <DependentUpon>frmRaspolozivostVozila.cs</DependentUpon>

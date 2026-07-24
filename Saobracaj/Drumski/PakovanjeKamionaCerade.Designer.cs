@@ -58,6 +58,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -368,6 +369,7 @@
             this.tableLayoutPanel3.Controls.Add(this.button2, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.button1, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.button5, 8, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button3, 5, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 412);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -393,7 +395,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(253, 38);
             this.button2.TabIndex = 3;
-            this.button2.Text = "UPARI KAMION I KONTEJNER";
+            this.button2.Text = "UPARI VOZILO I NALOG";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -416,6 +418,16 @@
             this.button5.Text = "NAJAVA VOZILA";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.btnNajava_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(953, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(210, 38);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "PROTOKOL";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // commandBarController1
             // 
@@ -483,5 +495,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox cboDani;
+        private System.Windows.Forms.Button button3;
     }
 }
