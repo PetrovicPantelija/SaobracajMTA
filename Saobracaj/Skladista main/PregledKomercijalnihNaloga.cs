@@ -1,4 +1,6 @@
-﻿using Saobracaj.Skladista;
+﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Saobracaj.Skladista;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -8,6 +10,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +21,7 @@ namespace Saobracaj.Skladista_main
     {
         string Ulaz;
         string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public PregledKomercijalnihNaloga(string ulaz)
         {
@@ -125,7 +129,7 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             // dataGridView1.ReadOnly = true;
             gridGroupingControl1.DataSource = ds.Tables[0];
@@ -154,7 +158,7 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
         {
             if (Ulaz == "Izvoz" || Ulaz == "Uvoz")
             {
-               
+               //Aktiviraj radni nalog
             }
             if (Ulaz == "Direktni")
             {
@@ -214,11 +218,235 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
            
         }
 
+        string TipRN = "";
+        int BrojRN1 = 0;
+        int ProveriDaLijeVecGenerisanaOperacija(string Nalog)
+        {
+
+            int Uradjen = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 TipRN, BrojRN from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Uradjen = 1;
+                TipRN = dr["TipRN"].ToString().TrimEnd();
+                BrojRN1 = Convert.ToInt32(dr["BrojRN"].ToString().TrimEnd());
+                if (BrojRN1 == 0)
+                {
+                    Uradjen = 0;
+                }
+            }
+            con.Close();
+            return Uradjen;
+
+        }
+
         private void btnAktiviraj_Click(object sender, EventArgs e)
         {
-            if (Ulaz == "Izvoz")
+            if (txtNALOGID.Text == "")
             {
-                
+                MessageBox.Show("Obelezite uslugu");
+                return;
+            }
+
+
+
+            int i = 0;
+            int j = 0;
+            j = ProveriDaLijeVecGenerisanaOperacija(txtNALOGID.Text);
+            if (j > 0)
+            {
+                MessageBox.Show("Za ovu uslugu već je generisan RN, " + TipRN + " broj :" + BrojRN);
+                return;
+            }
+            /*
+            i = ProveriDaLiJeUradjenaPredhodnaOperacija(txtNALOGID.Text);
+            if (i == 0)
+            {
+                MessageBox.Show("Nije zavrsena predhodna usluga ne mozete generisati novu!!!");
+                return;
+            }
+            */
+            /*
+            Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+            ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text));
+            MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
+            */
+            //Scenario 1 test - Napravi PRI i RN4
+
+
+
+
+
+            string Forma = VratiFormu();
+            int KISUsl = 0;
+            int OJ = VratiOJIzdavanja();
+            if (Forma == "SKLADISNINA")
+            {
+                InsertSkladista ins = new InsertSkladista();
+
+                // Formiram Radni nalog skladiste - LO NAlog
+                ins.InsertRadniNalog("Kreiran", 
+                    DateTime.Now,
+                    Korisnik, 
+                    "Carinsko",
+                    "Prijem", 
+                    1008.ToString(),
+                    Convert.ToInt32(0), 
+                    Convert.ToInt32(0),
+                    Convert.ToInt32(0),
+                    "OpisPosla",
+                    Convert.ToInt32(0),
+                    "",
+                   "", 
+                   Convert.ToInt32(0), 
+                   Convert.ToInt32(0),
+                    Convert.ToInt32(0), 
+                    Convert.ToInt32(0),
+                    "Vozilo", 
+                    "Vozac", 
+                    "lk", 
+                    "Tel",
+                    Convert.ToInt32(0), 
+                    Convert.ToInt32(0), 
+                    "", 
+                    Convert.ToInt32(0), 
+                    "", 
+                    "",
+                    DateTime.Now, 
+                    DateTime.Now,
+                                      "",
+                    Convert.ToInt32(0),
+                    Convert.ToInt32(0),
+                    "",
+                    "",
+                    "",
+                    "",
+                    Convert.ToInt32(0),
+                    Convert.ToInt32(0),
+                    "",
+                    Convert.ToInt32(0),
+                    "",
+                    "",
+                    DateTime.Now,
+                    DateTime.Now,
+                    "",
+                    "",
+                    Convert.ToInt32(0),
+                    "",
+                    Convert.ToInt32(1),
+                    Convert.ToInt32(1));
+
+
+          
+         
+
+          
+
+                string BrojRNMAX = "";
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("select Max(ID) as ID from RadniNalogSkladista", conn))
+                    {
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            BrojRNMAX = dr["ID"].ToString();
+                        }
+                    }
+                    conn.Close();
+                }
+
+               
+               ins.UpdateRNInterni(Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(BrojRNMAX));
+             
+
+
+
+                MessageBox.Show("Formirate Skladisninu");
+                //STEFAN TREBA DA NAPRAVIM RADNI NALOG SKLADISTE
+                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 0, OJ);
+                rd1.Show();
+            }
+
+
+
+           
+        }
+
+        int VratiOJIzdavanja()
+        {
+            int Konkretan = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select OJIzdavanja from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Konkretan = Convert.ToInt32(dr["OJIzdavanja"].ToString().TrimEnd());
+            }
+            con.Close();
+            return Konkretan;
+
+        }
+
+        string VratiFormu()
+        {
+            if (txtNALOGID.Text == "")
+            {
+
+                MessageBox.Show("Obelezite bar jednu stavku voza");
+                return "";
+            }
+            else
+            {
+                string formica = "";
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("select Forma from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    formica = dr["Forma"].ToString().TrimEnd();
+
+
+
+                }
+                con.Close();
+                return formica;
+            }
+
+
+        }
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtNALOGID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

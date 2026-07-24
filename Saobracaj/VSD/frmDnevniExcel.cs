@@ -142,12 +142,22 @@ namespace Saobracaj.VSD
 
 
                 InsertVSDDnevni ins = new InsertVSDDnevni();
-              //  ins.InsUvozNHMDiana(Convert.ToInt32(txtID.Text), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToDouble(row.Cells[6].Value.ToString()), row.Cells[7].Value.ToString());
+                ins.InsVSDDnevni(Convert.ToDateTime(dtpNaDan.Value),  row.Cells[1].Value.ToString(), row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[2].Value.ToString()), Convert.ToDouble(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToDouble(row.Cells[6].Value.ToString()), Convert.ToInt32(cboPlan.SelectedValue));
 
+               
+
+                /*
+                var select = "   SELECT MAx(dbo.DnevniERP.Datum) as NaDatum, MAx(dbo.DnevniERP.Komercijalista) as Komercijalista, MAx(dbo.DnevniERP.Brend) as Brend, " +
+               " Sum(dbo.DnevniERP.Kolicina) as KolicinaSum,  Sum(dbo.DnevniERP.PVrednost) as UkupnaProdaja " +
+" FROM dbo.DnevniERP  where dbo.DnevniERP.Komercijalista = 'ALEKSANDAR.JOVIC' and Brend = '1.REVLON'";
+                */
 
             }
-
+ InsertPlan upd = new InsertPlan();
+                upd.UpdPlanTekuceDana(Convert.ToInt32(cboPlan.SelectedValue));
             FillDG2Konacna();
+
+            MessageBox.Show("Uspesno ste ucitali podatke u BP");
         }
 
         private void frmDnevniExcel_Load(object sender, EventArgs e)

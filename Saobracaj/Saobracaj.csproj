@@ -4841,6 +4841,7 @@
     <Compile Include="VSD\frmPlan.Designer.cs">
       <DependentUpon>frmPlan.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\InsertPlan.cs" />
     <Compile Include="VSD\InsertVSDDnevni.cs" />
     <Compile Include="VSD\VSDMain.cs">
       <SubType>Form</SubType>

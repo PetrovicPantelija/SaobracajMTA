@@ -874,5 +874,10 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 }
             }
         }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
