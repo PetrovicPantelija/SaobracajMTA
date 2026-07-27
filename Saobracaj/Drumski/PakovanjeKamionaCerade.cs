@@ -1086,7 +1086,9 @@ namespace Saobracaj.Drumski
 		                        x.Uvoz,
 		                        x.PolaznaCarinarnica,
 		                        x.OdredisnaCarinarnica,
-                                x.VlasnistvoLegeta
+                                x.VlasnistvoLegeta,
+                                x.TipTransporta,
+                                CASE WHEN COUNT(prn.id) > 0 THEN 'True' else 'False' end as Protokol
 
                             FROM 
                             (
@@ -1122,7 +1124,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
-								       rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, i.OdredisnaCarinarnica AS OdredisnaCarinarnica
+								       rn.Uvoz,i.MestoCarinjenja as polaznaCarinarnica, i.OdredisnaCarinarnica AS OdredisnaCarinarnica, rn.TipTransporta
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1167,7 +1169,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
-								       rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, ik.OdredisnaCarinarnica AS OdredisnaCarinarnica 
+								       rn.Uvoz,ik.MestoCarinjenja as polaznaCarinarnica, ik.OdredisnaCarinarnica AS OdredisnaCarinarnica , rn.TipTransporta
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1212,7 +1214,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
-								       rn.Uvoz,  0 as polaznaCarinarnica,  uk.OdredisnaCarina as OdredisnaCarinarnica 
+								       rn.Uvoz,  0 as polaznaCarinarnica,  uk.OdredisnaCarina as OdredisnaCarinarnica , rn.TipTransporta
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1257,7 +1259,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
-								       rn.Uvoz,  0 as polaznaCarinarnica, u.OdredisnaCarina as OdredisnaCarinarnica 
+								       rn.Uvoz,  0 as polaznaCarinarnica, u.OdredisnaCarina as OdredisnaCarinarnica, rn.TipTransporta 
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1302,7 +1304,7 @@ namespace Saobracaj.Drumski
                                        rn.PoslataNajava, Rtrim(dk.DeIme) + ' ' + Rtrim(dk.DePriimek) AS NajavuPoslao, 
                                        CONVERT(VARCHAR,rn.NajavaPoslataDatum,104) AS SlanjeNajave,
                                        rn.Status, rn.Status AS StatusID , CASE WHEN ap.VoziloID IS NOT NULL THEN 1 ELSE 0 END AS TehnickiNeispravan,
-								       rn.Uvoz ,rn.PolaznaCarinarnica, rn.OdredisnaCarinarnica as OdredisnaCarinarnica
+								       rn.Uvoz ,rn.PolaznaCarinarnica, rn.OdredisnaCarinarnica as OdredisnaCarinarnica, rn.TipTransporta
                                 FROM RadniNalogDrumski rn 
                                 LEFT JOIN Delavci dk ON dk.DeSifra = rn.NajavuPoslaoKorisnik 
                                 INNER JOIN Automobili au ON au.ID = rn.KamionID 
@@ -1325,6 +1327,7 @@ namespace Saobracaj.Drumski
                                     AND IdentifikatorScenarija.OdredisnaCI = (CASE WHEN x.OdredisnaCarinarnica IS NOT NULL AND x.OdredisnaCarinarnica > 0 THEN 1 ELSE 0 END)
                                 LEFT JOIN MestaUtovara mu ON mu.id = x.MestoUtovara 
                                 LEFT JOIN MestaUtovara mi on mi.ID = x.MestoIstovara
+                                LEFT JOIN ProtokolRadniNalogDrumski  prn on x.ID = prn.RadniNalogDrumskiID
                                 LEFT JOIN ScenarioTokTransporta_Statusi sts ON 
                                     sts.ScenarioID = IdentifikatorScenarija.ScenarioID 
                                     AND sts.Status = x.Status
@@ -1349,7 +1352,8 @@ namespace Saobracaj.Drumski
 		                        x.OdredisnaCarinarnica,
                                 x.VlasnistvoLegeta,
                                 mu.Naziv,
-                                mi.Naziv
+                                mi.Naziv,
+                                x.TipTransporta
 
                             ORDER BY 
                                  x.DatumZaSortiranje,x.DatumIstovara ASC";
@@ -1429,8 +1433,26 @@ namespace Saobracaj.Drumski
             chk.FalseValue = 0;
             chk.ThreeState = false;
 
-            // Ubaci novu kolonu na isto mesto
+
             dataGridView3.Columns.Insert(colIndex, chk);
+
+            // Ukloni originalnu kolonu
+            int colIndex1 = dataGridView3.Columns["Protokol"].Index;
+            // Ubaci novu kolonu na isto mesto
+            // Ukloni originalnu kolonu
+            dataGridView3.Columns.RemoveAt(colIndex1);
+
+
+            DataGridViewCheckBoxColumn chk1 = new DataGridViewCheckBoxColumn();
+            chk1.Name = "Protokol";
+            chk1.HeaderText = "Protokol";
+            chk1.DataPropertyName = "Protokol"; // mora da se poklapa sa imenom kolone iz DataTable
+            chk1.TrueValue = 1;
+            chk1.FalseValue = 0;
+            chk1.ThreeState = false;
+
+            // Ubaci novu kolonu na isto mesto
+            dataGridView3.Columns.Insert(colIndex1, chk1);
 
             upozorenjeTehnickiNeispravni = ""; // reset pre svakog punjenja
 
@@ -1453,7 +1475,7 @@ namespace Saobracaj.Drumski
             dataGridView3.RowHeadersWidth = 30; // ili bilo koja vrednost u pikselima
 
             string[] koloneZaSakrivanje = new string[] {
-                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan", "VoziloDrumskog","DatumZaSortiranje", "OdredisnaCarinarnica", "PolaznaCarinarnica" ,"VlasnistvoLegeta"
+                    "ID", "KamionID", "Uvoz","StatusID", "IdsRadniNalogDrumski","TehnickiNeispravan", "VoziloDrumskog","DatumZaSortiranje", "OdredisnaCarinarnica", "PolaznaCarinarnica" ,"VlasnistvoLegeta","TipTransporta"
                     };
             //string[] koloneZaSakrivanje = new string[] {
             //        "ID", "KamionID", "Cena", "DtPreuzimanjaPraznogKontejnera", "AdresaUtovara", "AdresaIstovara", "MestoUtovara", "MestoIstovara", "BrojKontejnera2",
@@ -1480,6 +1502,18 @@ namespace Saobracaj.Drumski
                 dataGridView3.Columns["PoslataNajava"].Width = 60;
                 dataGridView3.Columns["PoslataNajava"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView3.Columns["PoslataNajava"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (dataGridView3.Columns.Contains("Protokol"))
+            {
+                dataGridView3.Columns["Protokol"].Width = 60;
+                dataGridView3.Columns["Protokol"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView3.Columns["Protokol"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            if (dataGridView3.Columns.Contains("SlanjeNajave"))
+            {
+                dataGridView3.Columns["SlanjeNajave"].Width = 80;
+                //dataGridView3.Columns["SlanjeNajave"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //dataGridView3.Columns["SlanjeNajave"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -3026,7 +3060,7 @@ namespace Saobracaj.Drumski
                                            WHEN Detalji.Scenario IN (8, 24) AND Izvor = 'Izvoz' THEN  (Rtrim(pko.PaKOIme) + ' ' + Rtrim(pko.PaKoPriimek)) + ' '  + pko.PaKOTel
                                            ELSE Detalji.KontaktOsobaUtovarIstovar 
                                        END AS KontaktOsobaUtovarIstovar,'' AS AdresaIstovara, OdredisnaCarina, OdredisnaSpedicijaKontakt, DodatniOpis, NalogID, PolaznaSpedicija, PolaznaSpedicijaKontakt,
-                                       BrojKontejnera, BrojKontejnera2,DatumKreiranjaTokena, Uvoz, PolaznaCarinaID, OdredisnaCarinaID, Nalogodavac, Cena, Valuta, TipVozila, Kamion, KamionID, BrojPosiljke
+                                       BrojKontejnera, BrojKontejnera2,DatumKreiranjaTokena, Uvoz, PolaznaCarinaID, OdredisnaCarinaID, Nalogodavac, Cena, Valuta, TipVozila, Kamion, KamionID, BrojPosiljke, TipTransporta
                                 FROM (
                                     {unionQueryBody}
                                 ) AS Detalji
@@ -3354,6 +3388,27 @@ namespace Saobracaj.Drumski
                 _stariStatusID = value != null && value != DBNull.Value
                     ? Convert.ToInt32(value)
                     : -1;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate selektovati makar jedan red!", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+            {
+                if (row.IsNewRow) continue;
+
+                // Dohvati spojeni string ID-jeva
+                int id = Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                int tipTransporta = Convert.ToInt32(row.Cells["TipTransporta"].Value.ToString());
+                frmListaProtokola frm = new frmListaProtokola(id, tipTransporta);
+                frm.ShowDialog();
+                RefreshDataGrid3();
+
             }
         }
     }
