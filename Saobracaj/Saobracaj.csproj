@@ -3596,6 +3596,12 @@
     <Compile Include="Skladista main\TipSkladista.Designer.cs">
       <DependentUpon>TipSkladista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\ViljuskaristiPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\ViljuskaristiPregled.Designer.cs">
+      <DependentUpon>ViljuskaristiPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\CarinskoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6301,6 +6307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista main\TipSkladista.resx">
       <DependentUpon>TipSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\ViljuskaristiPregled.resx">
+      <DependentUpon>ViljuskaristiPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>

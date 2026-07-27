@@ -31,18 +31,18 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cboSkeniraj = new System.Windows.Forms.ComboBox();
+            this.cboStampaj = new System.Windows.Forms.ComboBox();
+            this.cboProtokol = new System.Windows.Forms.ComboBox();
             this.btnViljuskarista = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.cboSkeniraj = new System.Windows.Forms.ComboBox();
-            this.cboStampaj = new System.Windows.Forms.ComboBox();
-            this.cboProtokol = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -89,6 +89,136 @@
             this.panel2.Size = new System.Drawing.Size(1038, 67);
             this.panel2.TabIndex = 6;
             // 
+            // button5
+            // 
+            this.button5.AutoSize = true;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button5.Location = new System.Drawing.Point(659, 8);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(147, 26);
+            this.button5.TabIndex = 37;
+            this.button5.Text = "Skeniraj";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button4.Location = new System.Drawing.Point(476, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(147, 26);
+            this.button4.TabIndex = 36;
+            this.button4.Text = "Štampaj";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button3.Location = new System.Drawing.Point(308, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(147, 27);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "Protokol";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(928, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 61);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "Refresh";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button1.Location = new System.Drawing.Point(820, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 64);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "Završi proces";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // cboSkeniraj
+            // 
+            this.cboSkeniraj.FormattingEnabled = true;
+            this.cboSkeniraj.Items.AddRange(new object[] {
+            "Saglasnost za carinu",
+            "Prijemnica"});
+            this.cboSkeniraj.Location = new System.Drawing.Point(659, 40);
+            this.cboSkeniraj.Name = "cboSkeniraj";
+            this.cboSkeniraj.Size = new System.Drawing.Size(147, 21);
+            this.cboSkeniraj.TabIndex = 32;
+            // 
+            // cboStampaj
+            // 
+            this.cboStampaj.FormattingEnabled = true;
+            this.cboStampaj.Items.AddRange(new object[] {
+            "Saglasnost za carinu",
+            "Carinsko obeležje",
+            "Prijemnica"});
+            this.cboStampaj.Location = new System.Drawing.Point(476, 41);
+            this.cboStampaj.Name = "cboStampaj";
+            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
+            this.cboStampaj.TabIndex = 29;
+            // 
+            // cboProtokol
+            // 
+            this.cboProtokol.FormattingEnabled = true;
+            this.cboProtokol.Items.AddRange(new object[] {
+            "Manjak robe",
+            "Višak robe",
+            "Oštećenje"});
+            this.cboProtokol.Location = new System.Drawing.Point(308, 41);
+            this.cboProtokol.Name = "cboProtokol";
+            this.cboProtokol.Size = new System.Drawing.Size(147, 21);
+            this.cboProtokol.TabIndex = 27;
+            // 
             // btnViljuskarista
             // 
             this.btnViljuskarista.AutoSize = true;
@@ -103,9 +233,9 @@
             this.btnViljuskarista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.btnViljuskarista.Location = new System.Drawing.Point(205, 0);
             this.btnViljuskarista.Name = "btnViljuskarista";
-            this.btnViljuskarista.Size = new System.Drawing.Size(93, 67);
+            this.btnViljuskarista.Size = new System.Drawing.Size(94, 67);
             this.btnViljuskarista.TabIndex = 19;
-            this.btnViljuskarista.Text = "Radni nalog";
+            this.btnViljuskarista.Text = "Radni nalozi";
             this.btnViljuskarista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnViljuskarista.UseVisualStyleBackColor = true;
             this.btnViljuskarista.Click += new System.EventHandler(this.btnViljuskarista_Click);
@@ -185,136 +315,6 @@
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             // 
-            // cboSkeniraj
-            // 
-            this.cboSkeniraj.FormattingEnabled = true;
-            this.cboSkeniraj.Items.AddRange(new object[] {
-            "Saglasnost za carinu",
-            "Prijemnica"});
-            this.cboSkeniraj.Location = new System.Drawing.Point(659, 40);
-            this.cboSkeniraj.Name = "cboSkeniraj";
-            this.cboSkeniraj.Size = new System.Drawing.Size(147, 21);
-            this.cboSkeniraj.TabIndex = 32;
-            // 
-            // cboStampaj
-            // 
-            this.cboStampaj.FormattingEnabled = true;
-            this.cboStampaj.Items.AddRange(new object[] {
-            "Saglasnost za carinu",
-            "Carinsko obeležje",
-            "Prijemnica"});
-            this.cboStampaj.Location = new System.Drawing.Point(476, 41);
-            this.cboStampaj.Name = "cboStampaj";
-            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
-            this.cboStampaj.TabIndex = 29;
-            // 
-            // cboProtokol
-            // 
-            this.cboProtokol.FormattingEnabled = true;
-            this.cboProtokol.Items.AddRange(new object[] {
-            "Manjak robe",
-            "Višak robe",
-            "Oštećenje"});
-            this.cboProtokol.Location = new System.Drawing.Point(308, 41);
-            this.cboProtokol.Name = "cboProtokol";
-            this.cboProtokol.Size = new System.Drawing.Size(147, 21);
-            this.cboProtokol.TabIndex = 27;
-            // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(820, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 64);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Završi proces";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(928, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 61);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Refresh";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(308, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 27);
-            this.button3.TabIndex = 35;
-            this.button3.Text = "Protokol";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(476, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 26);
-            this.button4.TabIndex = 36;
-            this.button4.Text = "Štampaj";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.AutoSize = true;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button5.Location = new System.Drawing.Point(659, 8);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(147, 26);
-            this.button5.TabIndex = 37;
-            this.button5.Text = "Skeniraj";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // CarinskoSkladistePregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,6 +326,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CarinskoSkladistePregled";
             this.Text = "CarinskoSkladistePregled";
+            this.Load += new System.EventHandler(this.CarinskoSkladistePregled_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel2.ResumeLayout(false);

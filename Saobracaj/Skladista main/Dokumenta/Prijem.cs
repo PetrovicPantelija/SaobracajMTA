@@ -548,7 +548,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                     }
                     else
                     {
-                        ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
+                        //Ovaj update nije potreban samo u direktnim a videcemo i tu
+                       // ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
                     }
 
                     MessageBox.Show("RADNI NALOG SAČUVAN");
@@ -877,7 +878,183 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
         private void button24_Click(object sender, EventArgs e)
         {
+            InsertSkladista ins = new InsertSkladista();
+            if (txtID.Text != "")
+            {
+                try
+                {
+                    int idUsluge = 0;
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("Select Max(ID)+1 From RNCarinskoSkladisteDodatneUsluge", conn))
+                        {
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
 
+                                idUsluge = Convert.ToInt32(dr[0].ToString());
+                            }
+                        }
+                    }
+                    ins.DeleteDodatneUsluge(Convert.ToInt32(txtID.Text));
+
+                    foreach (DataRow row in dtUsluge.Rows)
+                    {
+                        int valueMember = Convert.ToInt32(row["UslugaID"]);
+                        ins.InsertDodatneUsluge(idUsluge, Convert.ToInt32(txtID.Text), valueMember);
+                        idUsluge++;
+                    }
+
+                    ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
+                        Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
+                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text),
+
+                        // Polja za OTPREMU: ova forma ih nema, zato se u helper šalje null,
+                        // a helper ih u SQL šalje kao DBNull.Value.
+                        null, null, null, null, null, null,
+                        null, null, null,
+                        null, null, null,
+                        null, null, null,
+                        Convert.ToInt32(cboTipTransportaPrijem.SelectedValue), Convert.ToInt32(cboVrstaKamionaPrijem.SelectedValue),
+                        txtVoziloPrijem.Text.ToString().TrimEnd(), txtVozacPrijem.Text.ToString().TrimEnd(), txtLKPrijem.Text.ToString().TrimEnd(), txtTelefonPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
+                        Convert.ToInt32(cboSpediterPrijem.SelectedValue), txtKontakOsobaSpediterPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboMestoIstovaraPrijem.SelectedValue), txtAdresaPrijem.Text.ToString().TrimEnd(), txtKontaktOsobaPrijem.Text.ToString().TrimEnd(),
+                        Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), txtKontejnerPrijem.Text.ToString().TrimEnd(), txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
+                        txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
+
+                    if (Ulaz == "")
+                    {
+                        ins.InsertRNInterni(3, Korisnik);
+                    }
+                    else
+                    {
+                        //Ovaj update nije potreban samo u direktnim a videcemo i tu
+                        // ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
+                    }
+
+                    MessageBox.Show("RADNI NALOG SAČUVAN");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR Update \n:" + ex.ToString());
+                    return;
+                }
+            }
+            else
+            {
+                try
+                {
+                    int rn = 0;
+
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    {
+                        conn.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(ID),0)+1 FROM RadniNalogSkladista", conn))
+                        {
+                            object result = cmd.ExecuteScalar();
+                            rn = Convert.ToInt32(result);
+                        }
+                    }
+
+                    int IdUsluge = 0;
+
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    {
+                        conn.Open();
+
+                        using (SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(ID),0)+1 FROM RNCarinskoSkladisteDodatneUsluge", conn))
+                        {
+                            object result = cmd.ExecuteScalar();
+                            IdUsluge = Convert.ToInt32(result);
+                        }
+                    }
+
+                    foreach (DataRow row in dtUsluge.Rows)
+                    {
+                        int valueMember = Convert.ToInt32(row["UslugaID"]);
+                        ins.InsertDodatneUsluge(IdUsluge, rn, valueMember);
+                        IdUsluge++;
+                    }
+
+                    ins.InsertRadniNalog("Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
+                        Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
+                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text),
+
+                        // Polja za OTPREMU: ova forma ih nema, zato se u helper šalje null,
+                        // a helper ih u SQL šalje kao DBNull.Value.
+                        null, null, null, null, null, null,
+                        null, null, null,
+                        null, null, null,
+                        null, null, null,
+                        Convert.ToInt32(cboTipTransportaPrijem.SelectedValue), Convert.ToInt32(cboVrstaKamionaPrijem.SelectedValue),
+                        txtVoziloPrijem.Text.ToString().TrimEnd(), txtVozacPrijem.Text.ToString().TrimEnd(), txtLKPrijem.Text.ToString().TrimEnd(), txtTelefonPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
+                        Convert.ToInt32(cboSpediterPrijem.SelectedValue), txtKontakOsobaSpediterPrijem.Text.ToString().TrimEnd(), Convert.ToInt32(cboMestoIstovaraPrijem.SelectedValue), txtAdresaPrijem.Text.ToString().TrimEnd(), txtKontaktOsobaPrijem.Text.ToString().TrimEnd(),
+                        Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), txtKontejnerPrijem.Text.ToString().TrimEnd(), txtPosebniUslovi.Text.ToString().TrimEnd(), IdUsluge,
+                        txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
+
+
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("select Max(ID) as ID from RadniNalogSkladista", conn))
+                        {
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                txtID.Text = dr["ID"].ToString();
+                            }
+                        }
+                        conn.Close();
+                    }
+
+                    if (Ulaz == "")
+                    {
+                        ins.InsertRNInterni(3, Korisnik);
+                    }
+                    else
+                    {
+                        ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
+                    }
+
+                    MessageBox.Show("RADNI NALOG KREIRAN");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR Insert \n:" + ex.ToString());
+                    return;
+                }
+            }
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            int VratiNalogID = VratiNalogIDF();
+            Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+            ins1.UpdRadniNalogInterniIzvozSkladistePotvrdjen(Convert.ToInt32(VratiNalogID));
+
+            MessageBox.Show("LO nalog potvrdjen");
+        }
+
+        int VratiNalogIDF()
+        {
+            int nalogID = 0;
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select ID from RadniNalogInterni where TipRN = 'RN20' and BrojRN =" + txtID.Text, conn))
+                {
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        nalogID = Convert.ToInt32(dr["ID"].ToString());
+                    }
+                }
+                conn.Close();
+            }
+
+            return nalogID;
         }
     }
 }

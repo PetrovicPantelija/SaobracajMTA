@@ -798,66 +798,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            InsertSkladista ins = new InsertSkladista();
-            try
-            {
-                int proces;
-                if (chkUprocesu.Checked)
-                {
-                    proces = 1;
-                }
-                else
-                {
-                    proces = 0;
-                }
-
-
-                if (txtPrijemnica.Text == "")
-                {
-                    ins.InsertPrijemnicaCarinska(Korisnik, Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtSmestajniDokument.Text.ToString().TrimEnd(),
-                        txtRok.Text.ToString().TrimEnd(), Convert.ToInt32(cboPosiljalac.SelectedValue), txtFaktura.Text.ToString().TrimEnd(), txtCRM.Text.ToString().TrimEnd(), "OD");
-
-                    using(SqlConnection conn=new SqlConnection(connection))
-                    {
-                        conn.Open();
-                        using(SqlCommand cmd=new SqlCommand("SELECT MAX(ID) From RNCarinskoSkladistePrijemnica",conn))
-                        {
-                            var result = cmd.ExecuteScalar();
-                            if (result != null)
-                            {
-                                txtPrijemnica.Text = result.ToString();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    ins.UpdatePrijemnicaCarinska(Korisnik, Convert.ToInt32(txtPrijemnica.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue),
-                    txtSmestajniDokument.Text.ToString().TrimEnd(), txtRok.Text.ToString().TrimEnd(), Convert.ToInt32(cboPosiljalac.SelectedValue), txtFaktura.Text.ToString().TrimEnd(),
-                    txtCRM.Text.ToString().TrimEnd(), "OD", proces);
-                }
-
-                using(SqlConnection conn=new SqlConnection(connection))
-                {
-                    conn.Open();
-                    using(SqlCommand cmd=new SqlCommand("DELETE FROM RNCarinskoPrijemnicaStavke Where IDNadredjena="+Convert.ToInt32(txtPrijemnica.Text),conn))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                foreach (var i in list)
-                {
-                    ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
-                        i.Pozicija, i.Paleta, i.VrstaPaleta, Convert.ToInt32(i.PDV), Convert.ToInt32(i.Carina), Convert.ToDecimal(i.Neto), i.Napomena);
-                }
-
-                MessageBox.Show("Sačuvane stavke prijemnice");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR Insert prijemnica:" + ex.ToString());
-            }
+           
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventArgs e)
@@ -1073,6 +1014,12 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 }
                 conn.Close();
                 MessageBox.Show("Kreiran nalog za rukovaoca. ID:" + rnID.ToString());
+
+                int VratiNalogID = VratiNalogIDF();
+                Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+                ins1.UpdRadniNalogInterniIzvozSkladistePotvrdjen(Convert.ToInt32(VratiNalogID));
+
+                MessageBox.Show("Nalog rukovaocu potvrdjen");
             }
             catch (Exception ex)
             {
@@ -1223,7 +1170,115 @@ Where RadniNalogSkladista.ID=" + id, conn);
 
         private void Prijemnica_Load(object sender, EventArgs e)
         {
-           
+            cboDokumenta.SelectedIndex = 0;
+            cboStampaj.SelectedIndex = 0;
+        }
+
+        int VratiNalogIDF()
+        {
+            int nalogID = 0;
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select ID from RadniNalogInterni where TipRN = 'RN20' and BrojRN =" + txtID.Text, conn))
+                {
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        nalogID = Convert.ToInt32(dr["ID"].ToString());
+                    }
+                }
+                conn.Close();
+            }
+
+            return nalogID;
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            InsertSkladista ins = new InsertSkladista();
+            try
+            {
+                int proces;
+                if (chkUprocesu.Checked)
+                {
+                    proces = 1;
+                }
+                else
+                {
+                    proces = 0;
+                }
+
+
+                if (txtPrijemnica.Text == "")
+                {
+                    ins.InsertPrijemnicaCarinska(Korisnik, Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtSmestajniDokument.Text.ToString().TrimEnd(),
+                        txtRok.Text.ToString().TrimEnd(), Convert.ToInt32(cboPosiljalac.SelectedValue), txtFaktura.Text.ToString().TrimEnd(), txtCRM.Text.ToString().TrimEnd(), "OD");
+
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("SELECT MAX(ID) From RNCarinskoSkladistePrijemnica", conn))
+                        {
+                            var result = cmd.ExecuteScalar();
+                            if (result != null)
+                            {
+                                txtPrijemnica.Text = result.ToString();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ins.UpdatePrijemnicaCarinska(Korisnik, Convert.ToInt32(txtPrijemnica.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue),
+                    txtSmestajniDokument.Text.ToString().TrimEnd(), txtRok.Text.ToString().TrimEnd(), Convert.ToInt32(cboPosiljalac.SelectedValue), txtFaktura.Text.ToString().TrimEnd(),
+                    txtCRM.Text.ToString().TrimEnd(), "OD", proces);
+                }
+
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM RNCarinskoPrijemnicaStavke Where IDNadredjena=" + Convert.ToInt32(txtPrijemnica.Text), conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                foreach (var i in list)
+                {
+                    ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
+                        i.Pozicija, i.Paleta, i.VrstaPaleta, Convert.ToInt32(i.PDV), Convert.ToInt32(i.Carina), Convert.ToDecimal(i.Neto), i.Napomena);
+                }
+                int VratiNalogID = VratiNalogIDF();
+                Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+                ins1.UpdRadniNalogInterniIzvozPrijemnicaPotvrdjen(Convert.ToInt32(VratiNalogID));
+
+                MessageBox.Show("Prijemnica potvrdjena");
+                MessageBox.Show("Sačuvane stavke prijemnice");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR Insert prijemnica:" + ex.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuBezPrava(() => new TerminalMap.TerminalMapFRM());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel7.Visible = true;
+            NalogZaViljuskaristu();
+        }
+
+        private void btnZapisnik_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

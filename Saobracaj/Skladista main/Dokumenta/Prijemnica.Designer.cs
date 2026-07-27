@@ -165,9 +165,14 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cboDokumenta = new System.Windows.Forms.ComboBox();
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
-            this.cboProtokol = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.cboStampaj = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -900,6 +905,7 @@
             this.btnMapa.TabIndex = 24;
             this.btnMapa.Text = "Mapa pozicija";
             this.btnMapa.UseVisualStyleBackColor = false;
+            this.btnMapa.Visible = false;
             this.btnMapa.Click += new System.EventHandler(this.btnMapa_Click);
             // 
             // btnPreuzmi
@@ -912,6 +918,7 @@
             this.btnPreuzmi.TabIndex = 24;
             this.btnPreuzmi.Text = "Preuzmi iz špedicije";
             this.btnPreuzmi.UseVisualStyleBackColor = false;
+            this.btnPreuzmi.Visible = false;
             // 
             // btnPackingLista
             // 
@@ -923,6 +930,7 @@
             this.btnPackingLista.TabIndex = 24;
             this.btnPackingLista.Text = "Uvezi packing listu";
             this.btnPackingLista.UseVisualStyleBackColor = false;
+            this.btnPackingLista.Visible = false;
             this.btnPackingLista.Click += new System.EventHandler(this.btnPackingLista_Click);
             // 
             // btnNalog
@@ -935,6 +943,7 @@
             this.btnNalog.TabIndex = 24;
             this.btnNalog.Text = "Nalog za istovar rukovaocima";
             this.btnNalog.UseVisualStyleBackColor = false;
+            this.btnNalog.Visible = false;
             this.btnNalog.Click += new System.EventHandler(this.btnNalog_Click);
             // 
             // btnSnimi
@@ -945,8 +954,9 @@
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(107, 38);
             this.btnSnimi.TabIndex = 24;
-            this.btnSnimi.Text = "Snimi";
+            this.btnSnimi.Text = "Snimi - Staro";
             this.btnSnimi.UseVisualStyleBackColor = false;
+            this.btnSnimi.Visible = false;
             this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // btnZapisnik
@@ -959,6 +969,8 @@
             this.btnZapisnik.TabIndex = 24;
             this.btnZapisnik.Text = "Zapisnik";
             this.btnZapisnik.UseVisualStyleBackColor = false;
+            this.btnZapisnik.Visible = false;
+            this.btnZapisnik.Click += new System.EventHandler(this.btnZapisnik_Click);
             // 
             // btnCarinskoObelezije
             // 
@@ -970,6 +982,7 @@
             this.btnCarinskoObelezije.TabIndex = 24;
             this.btnCarinskoObelezije.Text = "Štampaj carinsko obeležje";
             this.btnCarinskoObelezije.UseVisualStyleBackColor = false;
+            this.btnCarinskoObelezije.Visible = false;
             // 
             // btnStampajPrijemnicu
             // 
@@ -981,6 +994,7 @@
             this.btnStampajPrijemnicu.TabIndex = 24;
             this.btnStampajPrijemnicu.Text = "Štampaj prijemnicu";
             this.btnStampajPrijemnicu.UseVisualStyleBackColor = false;
+            this.btnStampajPrijemnicu.Visible = false;
             // 
             // gridGroupingControl1
             // 
@@ -1557,7 +1571,6 @@
             this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelHeader.Controls.Add(this.txtSifra);
             this.panelHeader.Controls.Add(this.panel8);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -1567,7 +1580,7 @@
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(1126, 5);
+            this.txtSifra.Location = new System.Drawing.Point(1072, 7);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(100, 20);
             this.txtSifra.TabIndex = 7;
@@ -1577,13 +1590,30 @@
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel8.Controls.Add(this.cboProtokol);
+            this.panel8.Controls.Add(this.txtSifra);
+            this.panel8.Controls.Add(this.cboStampaj);
+            this.panel8.Controls.Add(this.button4);
+            this.panel8.Controls.Add(this.button3);
+            this.panel8.Controls.Add(this.button2);
+            this.panel8.Controls.Add(this.button1);
+            this.panel8.Controls.Add(this.cboDokumenta);
             this.panel8.Controls.Add(this.button25);
             this.panel8.Controls.Add(this.button24);
             this.panel8.Location = new System.Drawing.Point(11, -1);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1194, 32);
+            this.panel8.Size = new System.Drawing.Size(1232, 32);
             this.panel8.TabIndex = 6;
+            // 
+            // cboDokumenta
+            // 
+            this.cboDokumenta.FormattingEnabled = true;
+            this.cboDokumenta.Items.AddRange(new object[] {
+            "Špedicija",
+            "Pakovanje"});
+            this.cboDokumenta.Location = new System.Drawing.Point(205, 5);
+            this.cboDokumenta.Name = "cboDokumenta";
+            this.cboDokumenta.Size = new System.Drawing.Size(147, 21);
+            this.cboDokumenta.TabIndex = 28;
             // 
             // button25
             // 
@@ -1624,17 +1654,100 @@
             this.button24.Text = "Snimi";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
-            // cboProtokol
+            // button1
             // 
-            this.cboProtokol.FormattingEnabled = true;
-            this.cboProtokol.Items.AddRange(new object[] {
-            "Špedicija",
-            "Pakovanje"});
-            this.cboProtokol.Location = new System.Drawing.Point(205, 5);
-            this.cboProtokol.Name = "cboProtokol";
-            this.cboProtokol.Size = new System.Drawing.Size(147, 21);
-            this.cboProtokol.TabIndex = 28;
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button1.Location = new System.Drawing.Point(424, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 32);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Mapa pozicija";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(533, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 32);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Nalog rukovaocima";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button3.AutoSize = true;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button3.Location = new System.Drawing.Point(685, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 32);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "Zapisnik";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button4.Location = new System.Drawing.Point(766, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(147, 26);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "Štampaj";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // cboStampaj
+            // 
+            this.cboStampaj.FormattingEnabled = true;
+            this.cboStampaj.Items.AddRange(new object[] {
+            "Saglasnost za carinu",
+            "Carinsko obeležje",
+            "Prijemnica"});
+            this.cboStampaj.Location = new System.Drawing.Point(883, 6);
+            this.cboStampaj.Name = "cboStampaj";
+            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
+            this.cboStampaj.TabIndex = 38;
             // 
             // Prijemnica
             // 
@@ -1699,7 +1812,6 @@
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panelHeader.ResumeLayout(false);
-            this.panelHeader.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.ResumeLayout(false);
@@ -1847,6 +1959,11 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.ComboBox cboProtokol;
+        private System.Windows.Forms.ComboBox cboDokumenta;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox cboStampaj;
     }
 }

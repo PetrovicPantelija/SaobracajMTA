@@ -1,4 +1,5 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using Saobracaj.Skladista;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
@@ -82,7 +83,7 @@ where OJIzdavanja = 1 AND IDManipulacijaJED=74  order by rn.ID desc";
 from Scenario  
 inner join IzvozKonacna  on IzvozKonacna.Scenario = Scenario.ID  
 where IzvozKonacna.ID = rn.BrojOsnov) as ScenarioNaziv,
-CASE(select Count(*) as Potvrdjen from RadniNalogInterniPotvrda where IDNaloga = rn.[ID]) 
+CASE(select Count(*) as Potvrdjen from RadniNalogInterniSkladistePotvrda where IDNaloga = rn.[ID]) 
 WHEN 0 THEN 'NEAKTIVAN' 
 WHEN 1 THEN 'AKTIVAN' 
 END AS StatusKN, 
@@ -135,6 +136,14 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+            gcfd3.Expression = "[StatusKN] =  'AKTIVAN'";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
@@ -291,6 +300,126 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             {
                 InsertSkladista ins = new InsertSkladista();
 
+                var selektovaniID = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov");
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+                //Podesi vrednosti koje vec imas za unos
+                SqlCommand cmd;
+                cmd = new SqlCommand(
+                                  " SELECT ik.ID AS BrojDokumenta,ik.Scenario,ik.Korisnik AS NalogKreiraoKorisnik, Klijent1, ik.OpisPosla,  KvalitetKontejnera,ik.Brodar, BookingBrodara, CutOffPort," +
+                                  " BrojKontejnera, VrstaKontejnera, OstalePlombe, BrutoRobe as BTTRobe, NetoRobe as NTTORobe," +
+                                  " VrstaBrodskePlombe, BrodskaPlomba, ik.Izvoznik, " +
+                                  " NaslovSlanjaStatusa, ADR, NacinPakovanja, Inspekcija, Cirada, " +
+                                  " Vaganje, Tara, ik.Scenario , BrojLK, BrojTelefona, Vozilo, Vozac," +
+                                  " Klijent2, Napomena2REf, Klijent3, Napomena3REf,   " +
+                                  " MestoPreuzimanja3 AS OdlaznaMorskaLuka, MestoPreuzimanja2 AS MestoSpustanjaPunogKontejnera," +
+                                  " CarinskiPostupakUnutrasnji, MestoCarinjenja, Spedicija, KontaktSpeditera, OdredisnaCarinarnica, SpediterOdredisna, KontaktSpediteraOdredisna ," +
+                                  " MestoPreuzimanja2 AS MestoSpustanjaPunogKontejnera,PlaniraniDtSpustanjaKontejnera AS PlaniranDatSpustanjaKontejnera, PlaniranDtSpustanjaPunog AS NoviPlaniranDatSpustanjaKontejnera,DtRealizacijeSpustanjaPunog as DtRealizacijeSpustanja, " +
+                                  " PlaniraniDtPreuzimanja as DtPreuzimanjaPraznog, PlaniranDtPreuzimanjaPraznog as NoviDtPreuzimanjaPraznog, ik.DtRealizacijePreuzimanjaPraznog as DtRealizacijePreuzimanjaKontejnera ," +
+                                  " MestoPreuzimanja AS MestoPreuzimanjaPunogPraznog, PlaniraniDatumUtovara AS PlaniranDatUtovaraKontejnera,PlaniranDtUtovaraKontejnera AS NoviPlaniranDatUtovaraKontejnera, DtRealizacijeUtovaraKontejnera,MesoUtovara AS MestoUtovaraKontejnera,  " +
+                                  " KontaktOsoba AS KontaktOUtovaraKontejnera,  MestoUtovaraCerade AS MestoUtovaraCerade, KontaktOsobaUtovaraCerade AS KontaktOUtovaraCerade," +
+                                  " PlaniraniDtUtovaraCerade AS PlaniraniDatumUtovaraCerade, PlaniranDtUtovaraCerade As  NoviPlaniraniDatumUtovaraCerade, MestoIstovaraCerade AS MestoIstovaraCerade,KontaktOsobaIstovaraCerade AS KontaktOIstovaraCerade," +
+                                  " PlaniraniDtIstovaraCerade AS PlaniraniDatumIstovaraCerade, PlaniranDtIstovaraCerade AS NoviPlaniraniDatumIstovaraCerade, DtRealizacijeIstovaraCerade, DtRealizacijeUtovaraCerade, Scenario, Drumski " +
+
+                                  " FROM IzvozKonacna  ik " +
+                                  " LEFT JOIN ProdajniNalogIzvoz pn on ik.BrojStavkePorudzbenice = pn.ID " +
+                                  " where ik.ID =  " + selektovaniID, con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+                int Klijent1=0; string OpisPosla = "";int ADR = 0; string BrojKontejnera = "";
+                int VrstaKontejnera=0; int Izvoznik = 0; int VrstaKamiona = 0; string Vozilo = "";
+                string Vozac = ""; string BrLK = ""; string Telefon = ""; int NacinPakovanja = 0; string Napomena = "";
+                int CarinskiPUnutrasniTransport = 0;
+                int PolaznaCarinarnica = 0; int SpediterPolazna = 0; int OdredisnaCarinarnica = 0; int SpediterOdredisna = 0;
+                string KontaktSpediteraOdredisna = ""; string KontaktSpeditera = "";
+                int MestoUtovaraCerade = 0;
+                DateTime DatumUtovaraCerade = DateTime.Now;
+                DateTime NoviDatumUtovaraCerade = DateTime.Now;
+                int MestoIstovaraCerade = 0;
+                DateTime DatumIstovaraCerade = DateTime.Now;
+                DateTime  NoviDatumIstovaraCerade = DateTime.Now;
+                while (dr.Read())
+                {
+                    if (dr["Klijent1"] != DBNull.Value)
+                    {Klijent1 = Convert.ToInt32(dr["Klijent1"].ToString()); }
+                    OpisPosla = dr["OpisPosla"].ToString();
+                    
+                    if (dr["ADR"] != DBNull.Value)
+                    {
+                        ADR = Convert.ToInt32(dr["ADR"].ToString());
+                    }
+                  BrojKontejnera = dr["BrojKontejnera"].ToString();
+                   VrstaKontejnera = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                   Izvoznik= Convert.ToInt32(dr["Izvoznik"].ToString());
+                   VrstaKamiona = Convert.ToInt32(dr["Cirada"].ToString());
+                   Vozilo = dr["Vozilo"].ToString().Trim();
+                   Vozac = dr["Vozac"].ToString().Trim();
+                   BrLK = dr["BrojLK"].ToString().Trim();
+                   Telefon = dr["BrojTelefona"].ToString().Trim();
+                   
+                        if (dr["NacinPakovanja"] != DBNull.Value)
+                    { NacinPakovanja = Convert.ToInt32(dr["NacinPakovanja"].ToString());}
+                   Napomena = dr["NaslovSlanjaStatusa"].ToString().Trim();
+                   
+                    if (dr["CarinskiPostupakUnutrasnji"] != DBNull.Value)
+                    {CarinskiPUnutrasniTransport = Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"].ToString()); }
+
+              
+                    if (dr["MestoCarinjenja"] != DBNull.Value)
+                    {PolaznaCarinarnica = Convert.ToInt32(dr["MestoCarinjenja"].ToString()); }
+              
+                    if (dr["Spedicija"] != DBNull.Value)
+                    {SpediterPolazna = Convert.ToInt32(dr["Spedicija"].ToString()); }
+                
+                    if (dr["OdredisnaCarinarnica"] != DBNull.Value)
+                    {OdredisnaCarinarnica = Convert.ToInt32(dr["OdredisnaCarinarnica"].ToString()); }
+                   
+                    if (dr["SpediterOdredisna"] != DBNull.Value)
+                    {SpediterOdredisna = Convert.ToInt32(dr["SpediterOdredisna"].ToString()); }
+                   KontaktSpediteraOdredisna = dr["KontaktSpediteraOdredisna"].ToString().Trim();
+                   KontaktSpeditera = dr["KontaktSpeditera"].ToString().Trim();
+
+                    if (dr["MestoIstovaraCerade"] != DBNull.Value)
+                    {
+                        MestoIstovaraCerade = Convert.ToInt32(dr["MestoIstovaraCerade"].ToString());
+                    }
+                    if (dr["PlaniraniDatumIstovaraCerade"] != DBNull.Value)
+                    {
+                        DatumIstovaraCerade = Convert.ToDateTime(dr["PlaniraniDatumIstovaraCerade"]);
+                    }
+                    if ( dr["NoviPlaniraniDatumIstovaraCerade"] != DBNull.Value)
+                    {
+                       NoviDatumIstovaraCerade= Convert.ToDateTime(dr["NoviPlaniraniDatumIstovaraCerade"]);
+                    }
+                   
+                    if (dr["MestoUtovaraCerade"] != DBNull.Value)
+                    {
+                        MestoUtovaraCerade = Convert.ToInt32(dr["MestoUtovaraCerade"].ToString());
+                    }
+                    if (dr["PlaniraniDatumUtovaraCerade"] != DBNull.Value)
+                    {
+                        DatumUtovaraCerade= Convert.ToDateTime(dr["PlaniraniDatumUtovaraCerade"]);
+                    }
+                    if ( dr["NoviPlaniraniDatumUtovaraCerade"] != DBNull.Value)
+                    {
+                        NoviDatumUtovaraCerade = Convert.ToDateTime(dr["NoviPlaniraniDatumUtovaraCerade"]);
+                    }
+                    
+                 
+
+
+                }
+
+                string SkladisteTip = "Komercijalno";
+
+                if (CarinskiPUnutrasniTransport != 0)
+                        {
+                    SkladisteTip = "Carinsko";
+                }
+
+                //End of podesi vrednosti
                 // Formiram Radni nalog skladiste - LO NAlog
                 ins.InsertRadniNalog("Kreiran", 
                     DateTime.Now,
@@ -298,48 +427,48 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                     "Carinsko",
                     "Prijem", 
                     1008.ToString(),
-                    Convert.ToInt32(0), 
+                    Convert.ToInt32(0), //MB
+                    Convert.ToInt32(Klijent1), // Nalogodavac
+                    Convert.ToInt32(CarinskiPUnutrasniTransport),
+                    OpisPosla,
+                    Convert.ToInt32(Izvoznik),
+                    "", // Vrsta robe
+                   NacinPakovanja.ToString(), //NAcinPakovanja je inace sifarnik
+                   Convert.ToInt32(0), //Ostala skladista
+                   Convert.ToInt32(0), //PIB
+                    Convert.ToInt32(1), 
+                    Convert.ToInt32(VrstaKamiona),
+                    Vozilo,
+                    Vozac,
+                    BrLK,
+                    Telefon,
+                    Convert.ToInt32(OdredisnaCarinarnica), 
+                    Convert.ToInt32(SpediterOdredisna),
+                    KontaktSpediteraOdredisna, 
+                    Convert.ToInt32(MestoUtovaraCerade),  // MestoIstovaraOtprema
+                    "", // Adresa otprema
+                    "", // Kontakt osoba otprema
+                    DatumUtovaraCerade, //Planirani datum otprema
+                    NoviDatumUtovaraCerade,
+                    BrojKontejnera,
                     Convert.ToInt32(0),
-                    Convert.ToInt32(0),
-                    "OpisPosla",
-                    Convert.ToInt32(0),
+                    Convert.ToInt32(VrstaKamiona),
+                      Vozilo,
+                    Vozac,
+                    BrLK,
+                    Telefon,
+                    Convert.ToInt32(PolaznaCarinarnica),
+                    Convert.ToInt32(SpediterPolazna),
+                    KontaktSpeditera,
+                    Convert.ToInt32(MestoIstovaraCerade),
+                    "", // KontaktOsobaPrijemaCerade
                     "",
-                   "", 
-                   Convert.ToInt32(0), 
-                   Convert.ToInt32(0),
-                    Convert.ToInt32(0), 
-                    Convert.ToInt32(0),
-                    "Vozilo", 
-                    "Vozac", 
-                    "lk", 
-                    "Tel",
-                    Convert.ToInt32(0), 
-                    Convert.ToInt32(0), 
-                    "", 
-                    Convert.ToInt32(0), 
-                    "", 
-                    "",
-                    DateTime.Now, 
-                    DateTime.Now,
-                                      "",
-                    Convert.ToInt32(0),
-                    Convert.ToInt32(0),
-                    "",
-                    "",
-                    "",
-                    "",
-                    Convert.ToInt32(0),
-                    Convert.ToInt32(0),
-                    "",
-                    Convert.ToInt32(0),
-                    "",
-                    "",
-                    DateTime.Now,
-                    DateTime.Now,
-                    "",
-                    "",
-                    Convert.ToInt32(0),
-                    "",
+                    DatumIstovaraCerade,
+                    NoviDatumIstovaraCerade,
+                    BrojKontejnera,
+                    "", //PosebniUslovi
+                    Convert.ToInt32(0), //GrtupaUslugaID
+                    Napomena,
                     Convert.ToInt32(1),
                     Convert.ToInt32(1));
 
@@ -353,12 +482,12 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("select Max(ID) as ID from RadniNalogSkladista", conn))
+                    using (SqlCommand cmd1 = new SqlCommand("select Max(ID) as ID from RadniNalogSkladista", conn))
                     {
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        while (dr.Read())
+                        SqlDataReader dr1 = cmd1.ExecuteReader();
+                        while (dr1.Read())
                         {
-                            BrojRNMAX = dr["ID"].ToString();
+                            BrojRNMAX = dr1["ID"].ToString();
                         }
                     }
                     conn.Close();
@@ -366,14 +495,12 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
                
                ins.UpdateRNInterni(Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(BrojRNMAX));
-             
+
+                Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+                ins1.InsRadniNalogInterniIzvozSkladistePotvrda(Convert.ToInt32(txtNALOGID.Text));
+                MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
 
 
-
-                MessageBox.Show("Formirate Skladisninu");
-                //STEFAN TREBA DA NAPRAVIM RADNI NALOG SKLADISTE
-                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 0, OJ);
-                rd1.Show();
             }
 
 
@@ -447,6 +574,30 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             {
 
                 throw ex;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (gridGroupingControl1.Table.CurrentRecord != null)
+            {
+                // 2. Dohvatamo vrednost polja "ID" iz selektovanog reda
+                var selektovaniID = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov");
+
+
+                if (selektovaniID != null)
+                {
+                    int idZaFormu = Convert.ToInt32(selektovaniID);
+
+                    // 3. Sada imamo ID
+
+                    RNI.frmScenarioSCI sc1 = new RNI.frmScenarioSCI(idZaFormu, "Izvoz");
+                    sc1.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Molimo vas da prvo izaberete kontejner u gornjoj tabeli.");
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Saobracaj.Skladista;
 using Saobracaj.Skladista_main.Dokumenta;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -27,12 +28,16 @@ namespace Saobracaj.Skladista_main
         }
         private void VratiRN()
         {
-            var select = "Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste,RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe," +
-                "OpisPosla,Napomena,Aktivan,Formiran " +
-                "from RadniNalogSkladista " +
-                "inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac=p1.PaSifra " +
-                "inner join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe=p2.PaSifra " +
-                "WHere TipRN='" + Tip + "' and Formiran=1 order by ID desc";
+            var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
+               "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe, " +
+" OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
+" from RadniNalogSkladista " +
+" inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
+" inner join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe = p2.PaSifra " +
+" inner join(select RadniNalogInterni.BrojRN, RadniNalogInterniSkladistePotvrda.LO, RadniNalogInterniSkladistePotvrda.Prijem, RadniNalogInterniSkladistePotvrda.Viljuskarista from RadniNalogInterni " +
+" inner join RadniNalogInterniSkladistePotvrda on RadniNalogInterniSkladistePotvrda.Idnaloga = RadniNalogInterni.ID where RadniNalogInterni.TipRN = 'RN20') as T1 " +
+" on RadniNalogSkladista.ID = t1.BrojRN " +
+" WHere TipRN = '" + Tip + "' and Formiran = 1 order by ID desc               ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -117,13 +122,38 @@ namespace Saobracaj.Skladista_main
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
-
-                main.OtvoriFormuBezPrava(() => new NaloziViljuskaristiPregled());
+            ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+            main.OtvoriFormuBezPrava(() => new ViljuskaristiPregled(ID));
+            //Bio nalog viljuskaristipregled
         }
 
         private void button25_Click(object sender, EventArgs e)
         {
+            /*
+            if (Aktivan == 0)
+            {
+                MessageBox.Show("RN nije aktivan!");
+                return;
+            }
 
+            if (Formiran == 0)
+            {
+                MessageBox.Show("RN nije formiran!");
+                return;
+            }
+            */
+            ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuBezPrava(() => new Prijemnica(Tip, Vrsta, Convert.ToInt32(ID)));
+        }
+
+        private void CarinskoSkladistePregled_Load(object sender, EventArgs e)
+        {
+            cboProtokol.SelectedIndex = 0;
+            cboStampaj.SelectedIndex = 0;
+            cboSkeniraj.SelectedIndex = 0;
         }
     }
 }

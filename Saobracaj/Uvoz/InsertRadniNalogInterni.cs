@@ -1055,6 +1055,276 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
+
+        public void InsRadniNalogInterniIzvozSkladistePotvrda(int NalogID)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRadniNalogInterniSkladistePotvrda";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter ojizdavanja = new SqlParameter();
+            ojizdavanja.ParameterName = "@IDNaloga";
+            ojizdavanja.SqlDbType = SqlDbType.Int;
+            ojizdavanja.Direction = ParameterDirection.Input;
+            ojizdavanja.Value = NalogID;
+            cmd.Parameters.Add(ojizdavanja);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRadniNalogInterniIzvozSkladistePotvrdjen(int NalogID)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "updRadniNalogInterniSkladistePotvrdjen";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter ojizdavanja = new SqlParameter();
+            ojizdavanja.ParameterName = "@IDNaloga";
+            ojizdavanja.SqlDbType = SqlDbType.Int;
+            ojizdavanja.Direction = ParameterDirection.Input;
+            ojizdavanja.Value = NalogID;
+            cmd.Parameters.Add(ojizdavanja);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRadniNalogInterniIzvozRukovalacPotvrdjen(int NalogID)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "updRadniNalogInterniRukovalacPotvrdjen";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter ojizdavanja = new SqlParameter();
+            ojizdavanja.ParameterName = "@IDNaloga";
+            ojizdavanja.SqlDbType = SqlDbType.Int;
+            ojizdavanja.Direction = ParameterDirection.Input;
+            ojizdavanja.Value = NalogID;
+            cmd.Parameters.Add(ojizdavanja);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRadniNalogInterniIzvozSkladistarPotvrdio(int NalogID)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "updRadniNalogInterniSkladistarPotvrdio";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter ojizdavanja = new SqlParameter();
+            ojizdavanja.ParameterName = "@IDNaloga";
+            ojizdavanja.SqlDbType = SqlDbType.Int;
+            ojizdavanja.Direction = ParameterDirection.Input;
+            ojizdavanja.Value = NalogID;
+            cmd.Parameters.Add(ojizdavanja);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRadniNalogInterniIzvozPrijemnicaPotvrdjen(int NalogID)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "updRadniNalogInterniPrijemnicaPotvrdjen";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter ojizdavanja = new SqlParameter();
+            ojizdavanja.ParameterName = "@IDNaloga";
+            ojizdavanja.SqlDbType = SqlDbType.Int;
+            ojizdavanja.Direction = ParameterDirection.Input;
+            ojizdavanja.Value = NalogID;
+            cmd.Parameters.Add(ojizdavanja);
+
+
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
         public void InsRadniNalogInterniIzvoz2(int OJIzdavanja, int OJRealizacije, DateTime DatumIzdavanja, DateTime DatumRealizacije, string Napomena, int Uradjen, string Osnov, int BrojOsnov, string KorisnikIzdao, string KorisnikZavrsio)
         {
 

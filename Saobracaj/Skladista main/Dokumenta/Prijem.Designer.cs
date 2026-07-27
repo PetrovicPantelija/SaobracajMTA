@@ -412,6 +412,7 @@
             this.btnFormiranRN.TabIndex = 522;
             this.btnFormiranRN.Text = "FORMIRAN RN";
             this.btnFormiranRN.UseVisualStyleBackColor = false;
+            this.btnFormiranRN.Visible = false;
             this.btnFormiranRN.Click += new System.EventHandler(this.btnFormiranRN_Click);
             // 
             // btnSaglasnost
@@ -424,6 +425,7 @@
             this.btnSaglasnost.TabIndex = 521;
             this.btnSaglasnost.Text = "SAGLASNOST";
             this.btnSaglasnost.UseVisualStyleBackColor = false;
+            this.btnSaglasnost.Visible = false;
             // 
             // btnIspravka
             // 
@@ -435,6 +437,7 @@
             this.btnIspravka.TabIndex = 520;
             this.btnIspravka.Text = "ISPRAVKA";
             this.btnIspravka.UseVisualStyleBackColor = false;
+            this.btnIspravka.Visible = false;
             this.btnIspravka.Click += new System.EventHandler(this.btnIspravka_Click);
             // 
             // btnStorno
@@ -447,6 +450,7 @@
             this.btnStorno.TabIndex = 519;
             this.btnStorno.Text = "STORNO";
             this.btnStorno.UseVisualStyleBackColor = false;
+            this.btnStorno.Visible = false;
             this.btnStorno.Click += new System.EventHandler(this.btnStorno_Click);
             // 
             // panelPrijem1
@@ -576,6 +580,7 @@
             this.btnSnimi.TabIndex = 524;
             this.btnSnimi.Text = "SNIMI";
             this.btnSnimi.UseVisualStyleBackColor = false;
+            this.btnSnimi.Visible = false;
             this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // txtVrstaRobe
@@ -956,6 +961,7 @@
             this.button25.Text = "Potvrdi: LO nalog";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // button24
             // 

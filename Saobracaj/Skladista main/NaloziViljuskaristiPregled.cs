@@ -64,6 +64,7 @@ namespace Saobracaj.Skladista_main
     FROM RNCarinskoSkladisteRukovalac rn
     INNER JOIN CarinskoSkladistePostupak csp 
         ON rn.Postupak = csp.ID
+inner join RNCarinskoSkladistePrijemnica on RNCarinskoSkladistePrijemnica.ID = RNCarinskoSkladisteRukovalac.Prijemnica
     LEFT JOIN Delavci d 
         ON rn.Rukovalac = d.DeSifra
     WHERE rn.Status = 'OD'
@@ -576,6 +577,11 @@ ORDER BY
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

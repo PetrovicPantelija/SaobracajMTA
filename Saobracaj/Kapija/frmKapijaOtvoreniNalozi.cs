@@ -254,5 +254,10 @@ namespace Saobracaj.Kapija
 
 
         }
+
+        private void frmKapijaOtvoreniNalozi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
