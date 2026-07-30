@@ -326,7 +326,7 @@ namespace Saobracaj.Drumski
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
-            bool error = true;
+            bool error = false;
             try
             {
                 myCommand.ExecuteNonQuery();
@@ -338,17 +338,18 @@ namespace Saobracaj.Drumski
 
             catch (SqlException ex)
             {
-                //throw new Exception("Neuspešan upis");
-                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                myTransaction.Rollback(); // Ne zaboravi i rollback
+                throw new Exception("Neuspešan upis");
+                //MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //myTransaction.Rollback(); // Ne zaboravi i rollback
             }
 
             finally
             {
+
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Neuspešna promena podataka", "",
+                    MessageBox.Show("Protokol je uspešno kreiran.", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

@@ -111,19 +111,19 @@
             this.otvoriToolStripMenuItem,
             this.stornirajToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(135, 52);
             // 
             // otvoriToolStripMenuItem
             // 
             this.otvoriToolStripMenuItem.Name = "otvoriToolStripMenuItem";
-            this.otvoriToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.otvoriToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.otvoriToolStripMenuItem.Text = "Otvori";
             this.otvoriToolStripMenuItem.Click += new System.EventHandler(this.otvoriToolStripMenuItem_Click);
             // 
             // stornirajToolStripMenuItem
             // 
             this.stornirajToolStripMenuItem.Name = "stornirajToolStripMenuItem";
-            this.stornirajToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.stornirajToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.stornirajToolStripMenuItem.Text = "Storniraj";
             this.stornirajToolStripMenuItem.Click += new System.EventHandler(this.stornirajToolStripMenuItem_Click);
             // 
@@ -136,7 +136,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmListaProtokola";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmListaProtokola";
+            this.Text = "Protokoli";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();

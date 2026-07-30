@@ -1316,7 +1316,7 @@ namespace Saobracaj.Drumski
             if (protokolID == 0)
             {
                 InsertProtokolTransportnogNaloga ins = new InsertProtokolTransportnogNaloga();
-                ins.InsertProtokol(radniNalogDrumskiID, tipProtokola, tipTransporta, polaznaCarinarnica, polaznaSpedicija, polaznaSpedicijaKontakt,
+                protokolID = ins.InsertProtokol(radniNalogDrumskiID, tipProtokola, tipTransporta, polaznaCarinarnica, polaznaSpedicija, polaznaSpedicijaKontakt,
                 polaznaSpedicijaKontaktNovi, odredisnaCarinarnica, odredisnaSpedicija, odredisnaSpedicijaKontakt, odredisnaSpedicijaKontaktNovi, mestoUtovara,
                 adresaUtovara, kontaktOsobaNaUtovaru, datumUtovara, dtNoviUtovaraKontejnera, mestoSpustanjaPunog, datSpustanja, dtNoviSpustanja,
                 mestoPreuzimanjaKontejnera, dtPreuzimanjaPraznog, dtNoviPreuzimanjaPraznog, tKorisnik, trosak, cena, opis, situacija, mestoUtovaraCerade, adresaUtovaraCerade,

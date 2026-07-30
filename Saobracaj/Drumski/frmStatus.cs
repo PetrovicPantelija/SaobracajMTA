@@ -1413,7 +1413,8 @@ namespace Saobracaj.Drumski
 
             sb.AppendLine("<tr style='background-color:#d9e8fb; color:#0b3c6d; font-weight:bold; text-align:center;'>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>RB</th>");
-            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
+            if (_tipoviIn != null && _tipoviIn.Contains(1))
+                sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>NOVI STATUS</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>UPDATE</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>REGISTARSKI BROJ</th>");
@@ -1422,11 +1423,13 @@ namespace Saobracaj.Drumski
 
             sb.AppendLine("<tr>");
             sb.AppendLine("<td style='border:1px solid #9fbbe7;'>1</td>");
-            sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{kontejner}</td>");
+            if (_tipoviIn != null && _tipoviIn.Contains(1))
+                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{kontejner}</td>");
             sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{noviStatusTekst}</td>");
             sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{datumZaPrikaz}</td>");
             sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{kamion}</td>");
             sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{vozac}</td>");
+            sb.AppendLine("<td style='display:none; width:0px; border:none;'></td>");
             sb.AppendLine("</tr>");
 
             sb.AppendLine("</table>");
@@ -1636,7 +1639,8 @@ namespace Saobracaj.Drumski
 
             sb.AppendLine("<tr style='background-color:#d9e8fb; color:#0b3c6d; font-weight:bold; text-align:center;'>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>RB</th>");
-            sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
+            if (_tipoviIn != null && _tipoviIn.Contains(1))
+                sb.AppendLine("<th style='border:1px solid #9fbbe7;'>KONTEJNER</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>NOVI STATUS</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>UPDATE</th>");
             sb.AppendLine("<th style='border:1px solid #9fbbe7;'>REGISTARSKI BROJ</th>");
@@ -1670,11 +1674,13 @@ namespace Saobracaj.Drumski
                 }
                 sb.AppendLine("<tr>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{rb++}</td>");
-                sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{tekstKontejnera} </td>");
+                if (_tipoviIn != null && _tipoviIn.Contains(1))
+                    sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{tekstKontejnera} </td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{noviStatusTekst}</td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{datumZaPrikaz}</td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row["Kamion"].ToString()}</td>");
                 sb.AppendLine($"<td style='border:1px solid #9fbbe7;'>{row["Vozac"].ToString()}</td>");
+                sb.AppendLine("<td style='display:none; width:0px; border:none;'></td>");
                 sb.AppendLine("</tr>");
             }
             sb.AppendLine("</table>");
