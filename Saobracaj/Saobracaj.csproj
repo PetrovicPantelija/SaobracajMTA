@@ -3621,6 +3621,12 @@
     <Compile Include="Skladista\CarinskoSkladiste.Designer.cs">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista\frmIzvestajCarinskoObelezje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista\frmIzvestajCarinskoObelezje.Designer.cs">
+      <DependentUpon>frmIzvestajCarinskoObelezje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista\KomercijalnoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3843,6 +3849,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TestiranjeDataSet22.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet23.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet23.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet24.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet24.xsd</DependentUpon>
     </Compile>
     <Compile Include="TESTIRANJEDataSetTA12.cs">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
@@ -6333,6 +6349,9 @@
     <EmbeddedResource Include="Skladista\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\frmIzvestajCarinskoObelezje.resx">
+      <DependentUpon>frmIzvestajCarinskoObelezje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista\MainRN.resx">
       <DependentUpon>MainRN.cs</DependentUpon>
     </EmbeddedResource>
@@ -6357,6 +6376,9 @@
     <EmbeddedResource Include="Skladista\RNSkladista.resx">
       <DependentUpon>RNSkladista.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista\rptCarinskoObelezje.rdlc" />
+    <EmbeddedResource Include="Skladista\rptPrijemnica.rdlc" />
+    <EmbeddedResource Include="Skladista\rptSaglasnost.rdlc" />
     <EmbeddedResource Include="Skladista\Skladista.resx">
       <DependentUpon>Skladista.cs</DependentUpon>
     </EmbeddedResource>
@@ -7204,6 +7226,28 @@
     </None>
     <None Include="TestiranjeDataSet22.xss">
       <DependentUpon>TestiranjeDataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet23.xsc">
+      <DependentUpon>TestiranjeDataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet23.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet23.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet23.xss">
+      <DependentUpon>TestiranjeDataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet24.xsc">
+      <DependentUpon>TestiranjeDataSet24.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet24.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet24.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet24.xss">
+      <DependentUpon>TestiranjeDataSet24.xsd</DependentUpon>
     </None>
     <None Include="TESTIRANJEDataSetTA12.xsc">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>

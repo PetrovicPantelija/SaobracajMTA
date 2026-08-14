@@ -155,5 +155,30 @@ namespace Saobracaj.Skladista_main
             cboStampaj.SelectedIndex = 0;
             cboSkeniraj.SelectedIndex = 0;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+        
+            if (cboStampaj.SelectedIndex == -1)
+            {
+                MessageBox.Show("Izaberite izveštaj.");
+                return;
+            }
+
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value) return;
+
+            int id = Convert.ToInt32(idObj);
+            int izabraniIndeks = cboStampaj.SelectedIndex;
+
+            // Pozivamo istu formu, samo menjamo Enum tip u zavisnosti od indeksa
+            //  TipIzvestaja tip = (TipIzvestaja)izabraniIndeks;
+
+            frmIzvestajCarinskoObelezje f = new frmIzvestajCarinskoObelezje(id, izabraniIndeks);
+            f.ShowDialog();
+        }
     }
 }

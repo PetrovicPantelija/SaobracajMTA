@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBezUlazneFakture = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -44,6 +47,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridProtokol = new System.Windows.Forms.DataGridView();
+            this.txtRadniNalogID = new System.Windows.Forms.TextBox();
+            this.btnDodajDokumenta = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNalog = new System.Windows.Forms.TextBox();
             this.btnIzadjiBezPromena = new System.Windows.Forms.Button();
@@ -69,12 +75,11 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detaljiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDodajDokumenta = new System.Windows.Forms.Button();
-            this.txtRadniNalogID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProtokol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -241,6 +246,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.dataGridProtokol);
             this.panel3.Controls.Add(this.txtRadniNalogID);
             this.panel3.Controls.Add(this.btnDodajDokumenta);
             this.panel3.Controls.Add(this.label1);
@@ -269,6 +275,65 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1213, 450);
             this.panel3.TabIndex = 2;
+            // 
+            // dataGridProtokol
+            // 
+            this.dataGridProtokol.AllowUserToAddRows = false;
+            this.dataGridProtokol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridProtokol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridProtokol.Location = new System.Drawing.Point(712, 18);
+            this.dataGridProtokol.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridProtokol.Name = "dataGridProtokol";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridProtokol.RowHeadersWidth = 11;
+            this.dataGridProtokol.RowTemplate.Height = 24;
+            this.dataGridProtokol.Size = new System.Drawing.Size(483, 306);
+            this.dataGridProtokol.TabIndex = 831;
+            this.dataGridProtokol.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProtokol_CellEndEdit);
+            // 
+            // txtRadniNalogID
+            // 
+            this.txtRadniNalogID.Location = new System.Drawing.Point(552, 85);
+            this.txtRadniNalogID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRadniNalogID.Name = "txtRadniNalogID";
+            this.txtRadniNalogID.ReadOnly = true;
+            this.txtRadniNalogID.Size = new System.Drawing.Size(70, 22);
+            this.txtRadniNalogID.TabIndex = 489;
+            this.txtRadniNalogID.Visible = false;
+            // 
+            // btnDodajDokumenta
+            // 
+            this.btnDodajDokumenta.Location = new System.Drawing.Point(442, 142);
+            this.btnDodajDokumenta.Name = "btnDodajDokumenta";
+            this.btnDodajDokumenta.Size = new System.Drawing.Size(84, 24);
+            this.btnDodajDokumenta.TabIndex = 486;
+            this.btnDodajDokumenta.Text = "Dodaj";
+            this.btnDodajDokumenta.UseVisualStyleBackColor = true;
+            this.btnDodajDokumenta.Click += new System.EventHandler(this.btnDodajDokumenta_Click);
             // 
             // label1
             // 
@@ -507,26 +572,6 @@
             this.detaljiToolStripMenuItem.Text = "Detalji";
             this.detaljiToolStripMenuItem.Click += new System.EventHandler(this.detaljiToolStripMenuItem_Click);
             // 
-            // btnDodajDokumenta
-            // 
-            this.btnDodajDokumenta.Location = new System.Drawing.Point(442, 142);
-            this.btnDodajDokumenta.Name = "btnDodajDokumenta";
-            this.btnDodajDokumenta.Size = new System.Drawing.Size(84, 24);
-            this.btnDodajDokumenta.TabIndex = 486;
-            this.btnDodajDokumenta.Text = "Dodaj";
-            this.btnDodajDokumenta.UseVisualStyleBackColor = true;
-            this.btnDodajDokumenta.Click += new System.EventHandler(this.btnDodajDokumenta_Click);
-            // 
-            // txtRadniNalogID
-            // 
-            this.txtRadniNalogID.Location = new System.Drawing.Point(552, 85);
-            this.txtRadniNalogID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRadniNalogID.Name = "txtRadniNalogID";
-            this.txtRadniNalogID.ReadOnly = true;
-            this.txtRadniNalogID.Size = new System.Drawing.Size(70, 22);
-            this.txtRadniNalogID.TabIndex = 489;
-            this.txtRadniNalogID.Visible = false;
-            // 
             // frmObradaUlaznihFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -544,6 +589,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProtokol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -594,5 +640,6 @@
         private System.Windows.Forms.TextBox txtNalog;
         private System.Windows.Forms.Button btnDodajDokumenta;
         private System.Windows.Forms.TextBox txtRadniNalogID;
+        private System.Windows.Forms.DataGridView dataGridProtokol;
     }
 }

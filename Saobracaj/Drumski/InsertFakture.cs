@@ -182,7 +182,7 @@ namespace Saobracaj.Drumski
         }
 
 
-        public void InsStavkeFakture(int? TipFakture, int? FaktureDrumskogID, string IzlaznaFaktura, string UlaznaFaktura, string BeleskeFakture, DateTime? DatumSlanja, DateTime? DatumIzmeneUlazne, int? UlaznuIzmenio)
+        public void InsStavkeFakture(int? TipFakture, int? FaktureDrumskogID, string IzlaznaFaktura, string UlaznaFaktura, string BeleskeFakture, DateTime? DatumSlanja, DateTime? DatumIzmeneUlazne, int? UlaznuIzmenio, int? Protokol)
         {
 
             SqlConnection conn = new SqlConnection(connect);
@@ -248,6 +248,13 @@ namespace Saobracaj.Drumski
             ulaznuIzmenio.Direction = ParameterDirection.Input;
             ulaznuIzmenio.Value = UlaznuIzmenio.HasValue ? (object)UlaznuIzmenio.Value : DBNull.Value;
             cmd.Parameters.Add(ulaznuIzmenio);
+
+            SqlParameter protokol = new SqlParameter();
+            protokol.ParameterName = "@ProtokolID";
+            protokol.SqlDbType = SqlDbType.Int;
+            protokol.Direction = ParameterDirection.Input;
+            protokol.Value = Protokol.HasValue ? (object)Protokol.Value : DBNull.Value;
+            cmd.Parameters.Add(protokol);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

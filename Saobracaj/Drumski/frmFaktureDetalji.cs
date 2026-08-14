@@ -173,7 +173,7 @@ namespace Saobracaj.Drumski
                 if (izlaznaID == null)
                 {
                     // Insert
-                    ins.InsStavkeFakture(0, fakturaDrumskogID, txtIzlaznaFaktura.Text.Trim(), null, null, datumIzlazne, null, null);
+                    ins.InsStavkeFakture(0, fakturaDrumskogID, txtIzlaznaFaktura.Text.Trim(), null, null, datumIzlazne, null, null, null);
                     izmena = 1;
                 }
                 else
@@ -191,7 +191,7 @@ namespace Saobracaj.Drumski
                 if (ulaznaID == null)
                 {
                     // Insert
-                    ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtUlaznaFaktura.Text.Trim(), txtBeleske.Text.Trim(), null, DateTime.Now, zaposleni);
+                    ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtUlaznaFaktura.Text.Trim(), txtBeleske.Text.Trim(), null, DateTime.Now, zaposleni, null);
                     izmena = 1;
                 }
                 else

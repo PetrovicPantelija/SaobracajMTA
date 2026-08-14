@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnObjedinjenaDokumentaNalogID = new System.Windows.Forms.Button();
             this.btnObjedinjenaDokumentaIFaktura = new System.Windows.Forms.Button();
@@ -73,12 +76,14 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detaljiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridProtokol = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProtokol)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -264,6 +269,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.dataGridProtokol);
             this.panel3.Controls.Add(this.txtBrojlzlazneFakture);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
@@ -549,6 +555,45 @@
             this.detaljiToolStripMenuItem.Text = "Detalji";
             this.detaljiToolStripMenuItem.Click += new System.EventHandler(this.detaljiToolStripMenuItem_Click);
             // 
+            // dataGridProtokol
+            // 
+            this.dataGridProtokol.AllowUserToAddRows = false;
+            this.dataGridProtokol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridProtokol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridProtokol.Location = new System.Drawing.Point(693, 18);
+            this.dataGridProtokol.Margin = new System.Windows.Forms.Padding(1);
+            this.dataGridProtokol.Name = "dataGridProtokol";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridProtokol.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridProtokol.RowHeadersWidth = 11;
+            this.dataGridProtokol.RowTemplate.Height = 24;
+            this.dataGridProtokol.Size = new System.Drawing.Size(483, 337);
+            this.dataGridProtokol.TabIndex = 832;
+            this.dataGridProtokol.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridProtokol_CellEndEdit);
+            // 
             // frmNalogZaFakturisanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -559,7 +604,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmNalogZaFakturisanje";
             this.Text = "frmNalogZaFakturisanje";
-            //this.Shown += new System.EventHandler(this.frmNalogZaFakturisanje_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmNalogZaFakturisanje_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -569,6 +613,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProtokol)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -619,6 +664,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnObjedinjenaDokumentaNalogID;
         private System.Windows.Forms.Button btnObjedinjenaDokumentaIFaktura;
+        private System.Windows.Forms.DataGridView dataGridProtokol;
     }
 }
 

@@ -23,6 +23,7 @@ namespace Saobracaj.Drumski
         int brojDokumenata;
         int aktivanGrid = 0; // 1 je grid na prikazi, 2 je grid bez ulazne fakture
         int dodatDokument = 0;
+        int radiNalogDrumskiID = 0;
 
         public frmObradaUlaznihFaktura()
         {
@@ -382,7 +383,7 @@ namespace Saobracaj.Drumski
                                          AND ISNULL(pa.PDV, 0) = ISNULL(de.PDV, 0)
                                          AND ISNULL(pa.DodatniTrosak, 0)  = ISNULL(de.DodatniTrosakTransporta, 0) 
                 LEFT JOIN FakturaDrumski fd ON fd.RadniNalogDrumskiID = de.ID
-                LEFT JOIN FakturaDrumskiStavka fdsU ON fdsU.FaktureDrumskogID = fd.ID and fdsU.TipFakture = 1
+                LEFT JOIN FakturaDrumskiStavka fdsU ON fdsU.FaktureDrumskogID = fd.ID and fdsU.TipFakture = 1 AND ProtokolRadniNalogDrumskiID IS NULL
                 LEFT JOIN Dokumenti doc  ON doc.RadniNalogDrumskiID = de.ID
                 ORDER BY de.ID desc
                 ";
@@ -391,19 +392,21 @@ namespace Saobracaj.Drumski
             cmd.Connection = new SqlConnection(connection);
 
 
-
-            if (int.TryParse(txtKontejnerID.Text, out int kontejnerId))
+            if (!string.IsNullOrWhiteSpace(txtKontejnerID.Text))
             {
-                cmd.Parameters.Add("@ID", SqlDbType.Int).Value = kontejnerId;
-            }
-            else
-            {
-                // Ako konverzija nije uspela, prikazujemo poruku korisniku i prekidaš dalje izvršavanje
-                MessageBox.Show("Niste uneli ispravnu vrednost, polje KontejnerID očekuje brojnu vrednost.",
-                                "Greška pri unosu",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return; // Prekida izvršavanje metode kako se ne bi izvršio nevalidan SQL upit
+                if (int.TryParse(txtKontejnerID.Text, out int kontejnerId))
+                {
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = kontejnerId;
+                }
+                else
+                {
+                    // Ako konverzija nije uspela, prikazujemo poruku korisniku i prekidaš dalje izvršavanje
+                    MessageBox.Show("Niste uneli ispravnu vrednost, polje KontejnerID očekuje brojnu vrednost.",
+                                    "Greška pri unosu",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return; // Prekida izvršavanje metode kako se ne bi izvršio nevalidan SQL upit
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(txtBrojKontejnera.Text))
@@ -524,8 +527,9 @@ namespace Saobracaj.Drumski
 
                 DataRow red = dtRadniNalozi.Rows[0];
                 int id = Convert.ToInt32(red["KontejnerID"]);
-
+            //    RadniNalogID = Convert.ToInt32(red["ID"]);
                 PrikaziDetalje(red);
+                RefreshDataGrid1();
             }
             else
             {
@@ -866,6 +870,7 @@ namespace Saobracaj.Drumski
                 int id = Convert.ToInt32(red["KontejnerID"]);
 
                 PrikaziDetalje(red);
+                RefreshDataGrid1();
             }
             else
             {
@@ -891,6 +896,7 @@ namespace Saobracaj.Drumski
             if (drv == null) return;
 
             PrikaziDetalje(drv.Row);
+            RefreshDataGrid1();
         }
 
 
@@ -910,6 +916,7 @@ namespace Saobracaj.Drumski
             if (drv == null) return;
 
             PrikaziDetalje(drv.Row);
+            RefreshDataGrid1();
         }
 
         private void PrikaziDetalje(DataRow red)
@@ -975,6 +982,7 @@ namespace Saobracaj.Drumski
             if (drv == null) return;
 
             PrikaziDetalje(drv.Row);
+            RefreshDataGrid1();
 
             panel2.Visible = false;
             panel3.Visible = true;
@@ -1005,25 +1013,36 @@ namespace Saobracaj.Drumski
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SacuvajIliAzurirajUlaznuFakturu(string brojFakture, int? protokol)
         {
-           
+            if (string.IsNullOrWhiteSpace(brojFakture))
+            {
+                MessageBox.Show("Molimo unesite broj ulazne fakture.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
             int? ulaznaID = null;
             int? fakturaDrumskogID = null;
             int izmena = 0;
-            int FakturaID = -1;
 
-            // 1. Provera da li postoje zapisi
+            
+            // 1. Provera da li postoje zapisi u bazi
             using (var con = new SqlConnection(s_connection))
             using (var cmd = new SqlCommand(@"
-            SELECT MAX(rn.ID) as ID,
-                   MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
-            FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
-            WHERE rn.RadniNalogDrumskiID = @fid;", con))
+                    SELECT MAX(rn.ID) as ID,
+                           MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
+                    FROM FakturaDrumski rn 
+                    LEFT JOIN FakturaDrumskiStavka f ON f.FaktureDrumskogID = rn.ID AND (
+                            (@protokolID IS NULL AND f.ProtokolRadniNalogDrumskiID IS NULL)
+                            OR 
+                            (f.ProtokolRadniNalogDrumskiID = @protokolID)
+                          )
+                    WHERE rn.RadniNalogDrumskiID = @fid ; ", con))
             {
-                cmd.Parameters.AddWithValue("@fid", @RadniNalogID);
+                cmd.Parameters.AddWithValue("@fid", RadniNalogID);
+                cmd.Parameters.AddWithValue("@protokolID", (object)protokol ?? DBNull.Value);
 
                 con.Open();
                 using (var dr = cmd.ExecuteReader())
@@ -1032,7 +1051,6 @@ namespace Saobracaj.Drumski
                     {
                         ulaznaID = dr["UlaznaID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["UlaznaID"]);
                         fakturaDrumskogID = dr["ID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["ID"]);
-                        FakturaID = dr["ID"] == DBNull.Value ? -1 : Convert.ToInt32(dr["ID"]);
                     }
                 }
             }
@@ -1040,41 +1058,115 @@ namespace Saobracaj.Drumski
             var ins = new InsertFakture();
             int zaposleni = PostaviVrednostZaposleni();
 
-            // 2. ULAZNA FAKTURA
-          
-
+            // 2. ULAZNA FAKTURA (Insert ili Update)
             if (ulaznaID == null)
             {
-                // Insert
-                ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+                // Insert nove stavke
+                ins.InsStavkeFakture(1, fakturaDrumskogID, null, brojFakture.Trim(), null, null, DateTime.Now, zaposleni, protokol);
                 izmena = 1;
             }
             else
             {
-                // Update
-                ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+                // Update postojeće stavke
+                ins.UpdateFakturaDrumskiStavka(1, ulaznaID, brojFakture.Trim(), null, null, DateTime.Now, zaposleni);
                 izmena = 1;
             }
 
+            // 3. Provere i poruke
             if (brojDokumenata == 0)
             {
-
                 MessageBox.Show(
-                  "Ova ulazna faktura nema dodatu ulaznu dokumentaciju!\n\n",
-                  "Upozorenje!",
-                  MessageBoxButtons.OK,
-                  MessageBoxIcon.Warning
-              );
+                    "Ova ulazna faktura nema dodatu ulaznu dokumentaciju!\n\n",
+                    "Upozorenje!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
 
             if (izmena == 1)
+            {
                 MessageBox.Show("Podaci su uspešno sačuvani.");
+            }
 
             if (brojRedova > 1)
             {
                 panel3.Visible = false;
                 panel2.Visible = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            //var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            //int? ulaznaID = null;
+            //int? fakturaDrumskogID = null;
+            //int izmena = 0;
+            //int FakturaID = -1;
+
+            //// 1. Provera da li postoje zapisi
+            //using (var con = new SqlConnection(s_connection))
+            //using (var cmd = new SqlCommand(@"
+            //SELECT MAX(rn.ID) as ID,
+            //       MAX(CASE WHEN f.TipFakture = 1 THEN f.ID END) AS UlaznaID
+            //FROM FakturaDrumski rn LEFT JOIN FakturaDrumskiStavka f on f.FaktureDrumskogID = rn.ID
+            //WHERE rn.RadniNalogDrumskiID = @fid;", con))
+            //{
+            //    cmd.Parameters.AddWithValue("@fid", @RadniNalogID);
+
+            //    con.Open();
+            //    using (var dr = cmd.ExecuteReader())
+            //    {
+            //        if (dr.Read())
+            //        {
+            //            ulaznaID = dr["UlaznaID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["UlaznaID"]);
+            //            fakturaDrumskogID = dr["ID"] == DBNull.Value ? (int?)null : Convert.ToInt32(dr["ID"]);
+            //            FakturaID = dr["ID"] == DBNull.Value ? -1 : Convert.ToInt32(dr["ID"]);
+            //        }
+            //    }
+            //}
+
+            //var ins = new InsertFakture();
+            //int zaposleni = PostaviVrednostZaposleni();
+
+            //// 2. ULAZNA FAKTURA
+
+
+            //if (ulaznaID == null)
+            //{
+            //    // Insert
+            //    ins.InsStavkeFakture(1, fakturaDrumskogID, null, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+            //    izmena = 1;
+            //}
+            //else
+            //{
+            //    // Update
+            //    ins.UpdateFakturaDrumskiStavka(1, ulaznaID, txtBrojUlazneFakture.Text.Trim(), null, null, DateTime.Now, zaposleni);
+            //    izmena = 1;
+            //}
+
+            //if (brojDokumenata == 0)
+            //{
+
+            //    MessageBox.Show(
+            //      "Ova ulazna faktura nema dodatu ulaznu dokumentaciju!\n\n",
+            //      "Upozorenje!",
+            //      MessageBoxButtons.OK,
+            //      MessageBoxIcon.Warning
+            //  );
+            //}
+
+            //if (izmena == 1)
+            //    MessageBox.Show("Podaci su uspešno sačuvani.");
+
+            //if (brojRedova > 1)
+            //{
+            //    panel3.Visible = false;
+            //    panel2.Visible = true;
+            //}
+
+            SacuvajIliAzurirajUlaznuFakturu(txtBrojUlazneFakture.Text, null);
         }
         private int PostaviVrednostZaposleni()
         {
@@ -1100,6 +1192,8 @@ namespace Saobracaj.Drumski
             return ulogovaniZaposleniID;
 
         }
+
+     
         private void frmObradaUlaznihFaktura_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1239,14 +1333,180 @@ namespace Saobracaj.Drumski
             }
 
         }
-        //private void frmObradaUlaznihFaktura_Load(object sender, EventArgs e)
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            // dgv.ColumnHeadersHeight = 30;
+
+
+        }
+        //private void RefreshDataGrid1()
         //{
+        //    string s_connection = Sifarnici.frmLogovanje.connectionString;
+        //    SqlConnection conn = new SqlConnection(s_connection);
+
+        //    using (conn)
+        //    {
+        //        conn.Open();
+
+        //        var select = @"
+        //           SELECT tp.Naziv,pnd.TipProtokola, pnd.id,
+        //                  pnd.Trosak, pnd.Cena, pnd.Opis
+        //           FROM ProtokolRadniNalogDrumski pnd
+        //           INNER JOIN RadniNalogDrumski rn on rn.ID =  pnd.RadniNalogDrumskiID
+        //           LEFT JOIN TipProtokola tp on tp.ID = pnd.TipProtokola
+        //           WHERE pnd.RadniNalogDrumskiID = @ID 
+        //           ";
+
+        //        // Bind baze
+        //        SqlDataAdapter da = new SqlDataAdapter(select, conn);
+        //        da.SelectCommand.Parameters.AddWithValue("@ID", RadniNalogID);
+
+        //        var ds = new System.Data.DataSet();
+        //        da.Fill(ds);
+        //        dataGridProtokol.ReadOnly = true;
+        //        dataGridProtokol.DataSource = ds.Tables[0];
+
+        //        dataGridProtokol.RowHeadersWidth = 30;
+
+        //        if (dataGridProtokol.Columns.Contains("TipProtokola"))
+        //        {
+        //            dataGridProtokol.Columns["TipProtokola"].Visible = false;
+        //        }
+
+        //        if (dataGridProtokol.Columns.Contains("ID"))
+        //        {
+        //            dataGridProtokol.Columns["ID"].Visible = false;
+        //        }
+
+        //        if (ds.Tables[0].Rows.Count > 0)
+        //        {
+
+        //            int tipTransporta = Convert.ToInt32(ds.Tables[0].Rows[0]["TipProtokola"]);
+
+
+        //            if (dataGridProtokol.Columns.Contains("BrojKontejnera"))
+        //            {
+        //                dataGridProtokol.Columns["BrojKontejnera"].Visible = false;
+        //            }
+
+        //        }
+        //    }
+
+        //    PodesiDatagridView(dataGridProtokol);
 
         //}
 
-        //private void frmObradaUlaznihFaktura_Shown(object sender, EventArgs e)
-        //{
-        //    RefreshGrid();
-        //}
+        private void RefreshDataGrid1()
+        {
+            string s_connection = Sifarnici.frmLogovanje.connectionString;
+
+            using (SqlConnection conn = new SqlConnection(s_connection))
+            {
+                conn.Open();
+
+         
+                var select = @"
+                            SELECT pnd.id, tp.Naziv, pnd.TipProtokola, 
+                                   pnd.Trosak, pnd.Cena, pnd.Opis,fds.UlaznaFaktura as BrojUlazneFakture
+                            FROM ProtokolRadniNalogDrumski pnd
+                            INNER JOIN RadniNalogDrumski rn ON rn.ID = pnd.RadniNalogDrumskiID
+                            LEFT JOIN TipProtokola tp ON tp.ID = pnd.TipProtokola
+                            LEFT JOIN FakturaDrumski fd on fd.RadniNalogDrumskiID = pnd.RadniNalogDrumskiID
+                            LEFT JOIN FakturaDrumskiStavka fds on fds.FaktureDrumskogID = fd.ID AND fds.ProtokolRadniNalogDrumskiID = pnd.ID AND fds.TipFakture = 1
+                            WHERE pnd.RadniNalogDrumskiID = @ID  ";
+
+                SqlDataAdapter da = new SqlDataAdapter(select, conn);
+                da.SelectCommand.Parameters.AddWithValue("@ID", RadniNalogID);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count == 0)
+                {
+                    dataGridProtokol.DataSource = null;
+                    dataGridProtokol.Visible = false; // Sakrij grid ako je upit prazan
+                    return; // Prekini dalje izvršavanje pošto nema kolona za podešavanje
+                }
+
+                // Dozvoli izmenu u DataGridView-u
+                dataGridProtokol.ReadOnly = false;
+                dataGridProtokol.DataSource = dt;
+
+                dataGridProtokol.RowHeadersWidth = 30;
+
+                // Sakrij skrivene kolone
+                if (dataGridProtokol.Columns.Contains("TipProtokola"))
+                    dataGridProtokol.Columns["TipProtokola"].Visible = false;
+
+                if (dataGridProtokol.Columns.Contains("id"))
+                    dataGridProtokol.Columns["id"].Visible = false;
+
+                // Postavi sve ostale kolone na ReadOnly osim Ulazne Fakture
+                foreach (DataGridViewColumn col in dataGridProtokol.Columns)
+                {
+                    if (col.Name != "BrojUlazneFakture")
+                    {
+                        col.ReadOnly = true;
+                    }
+                    else
+                    {
+                        col.ReadOnly = false;
+                        col.HeaderText = "Ulazna Faktura";
+                    }
+                }
+            }
+
+            PodesiDatagridView(dataGridProtokol);
+        }
+
+        private void dataGridProtokol_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0) return;
+
+            string columnName = dataGridProtokol.Columns[e.ColumnIndex].Name;
+
+            // Proveravamo da li je izmenjena kolona za broj ulazne fakture
+            if (columnName == "BrojUlazneFakture" || columnName == "BrojFakture")
+            {
+                var currentRow = dataGridProtokol.Rows[e.RowIndex];
+
+                // 1. Izvlačimo ID protokola iz sakrivene ili vidljive "id" kolone istog reda
+                int? protokolID = null;
+                if (currentRow.Cells["id"].Value != null && currentRow.Cells["id"].Value != DBNull.Value)
+                {
+                    protokolID = Convert.ToInt32(currentRow.Cells["id"].Value);
+                }
+
+                // 2. Izvlačimo novouneti broj fakture
+                var cellValue = currentRow.Cells[e.ColumnIndex].Value;
+                string unetiBrojFakture = (cellValue != null && cellValue != DBNull.Value)
+                                          ? cellValue.ToString().Trim()
+                                          : string.Empty;
+
+                // 3. Pozivamo metodu za snimanje prosleđujući broj fakture i ID protokola
+                SacuvajIliAzurirajUlaznuFakturu(unetiBrojFakture, protokolID);
+
+            }
+        }
     }
 }
