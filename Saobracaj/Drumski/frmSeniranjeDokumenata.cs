@@ -9,6 +9,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Data.SqlClient;
 using Microsoft.VisualBasic;
+using System.Runtime.InteropServices;
 
 namespace Saobracaj.Drumski
 {
@@ -22,12 +23,16 @@ namespace Saobracaj.Drumski
         private List<Image> originalImages = new List<Image>();         // original skeniranih strana
         private bool editMode = false;
         private int radniNalogID;
+        private string parentModul = "";
+        private string _tipDokumentaNaziv;
 
-        public frmSeniranjeDokumenata(int id)
+        public frmSeniranjeDokumenata(int id, string modul, string tipDokumentaNaziv )
         {
             InitializeComponent();
             ChangeTextBox();
             radniNalogID = id;
+            parentModul = modul;
+            _tipDokumentaNaziv = tipDokumentaNaziv;
 
             // Panel za TrackBar i dugmad
             Panel bottomPanel = new Panel();
@@ -81,6 +86,12 @@ namespace Saobracaj.Drumski
             rightPanel.Controls.Add(bottomPanel);
             bottomPanel.BringToFront();
             pbPreview.BringToFront();
+
+            if (parentModul == "skladiste")
+            {
+                btnSaveTransport.Text = "Snimi";
+                btnSaveInvoice.Visible = false;
+            }
         }
         private void ChangeTextBox()
         {
@@ -189,6 +200,32 @@ namespace Saobracaj.Drumski
         }
 
 
+        //private void PopulateScanners()
+        //{
+        //    cmbScanners.Items.Clear();
+        //    try
+        //    {
+        //        DeviceManager manager = new DeviceManager();
+        //        for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+        //        {
+        //            var info = manager.DeviceInfos[i];
+        //            if (info.Type == WiaDeviceType.ScannerDeviceType)
+        //            {
+        //                var name = info.Properties["Name"].get_Value()?.ToString() ?? ("Scanner " + i);
+        //                cmbScanners.Items.Add(name);
+        //            }
+        //        }
+
+
+        //        if (cmbScanners.Items.Count > 0)
+        //            cmbScanners.SelectedIndex = 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Greška pri dohvatu skenera: " + ex.Message);
+        //    }
+        //}
+
         private void PopulateScanners()
         {
             cmbScanners.Items.Clear();
@@ -200,11 +237,20 @@ namespace Saobracaj.Drumski
                     var info = manager.DeviceInfos[i];
                     if (info.Type == WiaDeviceType.ScannerDeviceType)
                     {
-                        var name = info.Properties["Name"].get_Value()?.ToString() ?? ("Scanner " + i);
-                        cmbScanners.Items.Add(name);
+                        // var name = info.Properties["Name"].get_Value()?.ToString() ?? ("Scanner " + i);
+                        var rawName = info.Properties["Name"].get_Value()?.ToString() ?? ("Scanner " + i);
+
+                        // Uklanja razmak, znak # i sve brojeve na kraju naziva
+                        string cleanName = System.Text.RegularExpressions.Regex.Replace(rawName, @"\s*#\d+$", "").Trim();
+
+                        // Ubacujemo objekat
+                        cmbScanners.Items.Add(new ScannerItem
+                        {
+                            Name = cleanName,
+                            DeviceID = info.DeviceID
+                        });
                     }
                 }
-
 
                 if (cmbScanners.Items.Count > 0)
                     cmbScanners.SelectedIndex = 0;
@@ -229,88 +275,194 @@ namespace Saobracaj.Drumski
             scannedPages[idx] = (Image)originalImages[idx].Clone();
         }
 
+        //private void BtnScan_Click(object sender, EventArgs e)
+        //{
+        //    if (cmbScanners.SelectedItem == null)
+        //    {
+        //        MessageBox.Show("Izaberite skener.");
+        //        return;
+        //    }
+
+        //    var scannerName = cmbScanners.SelectedItem.ToString();
+        //    try
+        //    {
+        //        var image = ScanSinglePage(scannerName);
+        //        if (image != null)
+        //        {
+        //            scannedPages.Add((Image)image.Clone());
+        //            originalImages.Add((Image)image.Clone());
+
+        //            UpdatePagesList();
+        //            lbPages.SelectedIndex = scannedPages.Count - 1;
+        //            LoadScannedImage(image);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Greška pri skeniranju: " + ex.Message);
+        //    }
+        //}
         private void BtnScan_Click(object sender, EventArgs e)
         {
-            if (cmbScanners.SelectedItem == null)
+            if (cmbScanners.SelectedItem == null || !(cmbScanners.SelectedItem is ScannerItem selectedScanner))
             {
-                MessageBox.Show("Izaberite skener.");
+                MessageBox.Show("Izaberite skener sa liste.");
                 return;
             }
 
-            var scannerName = cmbScanners.SelectedItem.ToString();
+            btnScan.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
             try
             {
-                var image = ScanSinglePage(scannerName);
-                if (image != null)
+                // Prosleđujemo DeviceID u metodu za skeniranje
+                using (Image rawImage = ScanSinglePage(selectedScanner.DeviceID))
                 {
-                    scannedPages.Add((Image)image.Clone());
-                    originalImages.Add((Image)image.Clone());
+                    if (rawImage != null)
+                    {
+                        // Pravimo dve potpuno nezavisne kopije u memoriji
+                        Image originalCopy = (Image)rawImage.Clone(); // Čisti original za reset
+                        Image workingCopy = (Image)rawImage.Clone();  // Radna slika za rotaciju/edit
 
-                    UpdatePagesList();
-                    lbPages.SelectedIndex = scannedPages.Count - 1;
-                    LoadScannedImage(image);
+                        originalImages.Add(originalCopy);
+                        scannedPages.Add(workingCopy);
+
+                        UpdatePagesList();
+                        lbPages.SelectedIndex = scannedPages.Count - 1;
+
+                        // Učitavamo radnu sliku u preglednik
+                        LoadScannedImage(workingCopy);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Greška pri skeniranju: " + ex.Message);
             }
-        }
-        private Image ScanSinglePage(string scannerName)
-        {
-            DeviceManager manager = new DeviceManager();
-            DeviceInfo found = null;
-            for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+            finally
             {
-                var info = manager.DeviceInfos[i];
-                if (info.Type == WiaDeviceType.ScannerDeviceType)
+                Cursor = Cursors.Default;
+                btnScan.Enabled = true;
+            }
+        }
+        //private Image ScanSinglePage(string scannerName)
+        //{
+        //    DeviceManager manager = new DeviceManager();
+        //    DeviceInfo found = null;
+        //    for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+        //    {
+        //        var info = manager.DeviceInfos[i];
+        //        if (info.Type == WiaDeviceType.ScannerDeviceType)
+        //        {
+        //            var name = info.Properties["Name"].get_Value()?.ToString();
+        //            if (string.Equals(name, scannerName, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                found = info;
+        //                break;
+        //            }
+        //        }
+        //    }
+
+
+        //    if (found == null) return null;
+
+
+        //    var device = found.Connect();
+        //    var item = device.Items[1];
+
+
+        //    // Set common scanning properties (optional)
+        //    try
+        //    {
+        //        // Example: set color and DPI
+        //        SetWiaProperty(item.Properties, "6146", 1); // Color intent: 1 = Color
+        //        SetWiaProperty(item.Properties, "6147", 300); // Horizontal DPI
+        //        SetWiaProperty(item.Properties, "6148", 300); // Vertical DPI
+        //    }
+        //    catch { /* ignore if properties unavailable */ }
+
+
+        //    var imgFile = (ImageFile)item.Transfer(FormatID.wiaFormatJPEG);
+
+
+        //    var temp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".jpg");
+        //    imgFile.SaveFile(temp);
+
+
+        //    // Load as System.Drawing.Image
+        //    var img = Image.FromFile(temp);
+
+
+        //    // Delete temp file after cloning to memory to avoid locked file
+        //    var cloned = new Bitmap(img);
+        //    img.Dispose();
+        //    try { File.Delete(temp); } catch { }
+
+
+        //    return cloned;
+        //}
+
+        private Image ScanSinglePage(string deviceID)
+        {
+            DeviceManager manager = null;
+            DeviceInfo found = null;
+            Device device = null;
+            Item item = null;
+            ImageFile imgFile = null;
+
+            try
+            {
+                manager = new DeviceManager();
+
+                // Tražimo skener direktno po DeviceID-ju
+                for (int i = 1; i <= manager.DeviceInfos.Count; i++)
                 {
-                    var name = info.Properties["Name"].get_Value()?.ToString();
-                    if (string.Equals(name, scannerName, StringComparison.OrdinalIgnoreCase))
+                    var info = manager.DeviceInfos[i];
+                    if (info.Type == WiaDeviceType.ScannerDeviceType && info.DeviceID == deviceID)
                     {
                         found = info;
                         break;
                     }
                 }
+
+                if (found == null) return null;
+
+                device = found.Connect();
+                item = device.Items[1];
+
+                // Opciona podešavanja (DPI i Boja)
+                try
+                {
+                    SetWiaProperty(item.Properties, "6146", 1);   // Color
+                    SetWiaProperty(item.Properties, "6147", 300); // 300 DPI
+                    SetWiaProperty(item.Properties, "6148", 300);
+                }
+                catch { }
+
+                imgFile = (ImageFile)item.Transfer(FormatID.wiaFormatJPEG);
+
+                // Učitavanje iz memorijskih bajtova (bez kreiranja fajla na disku)
+                byte[] imageBytes = (byte[])imgFile.FileData.get_BinaryData();
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    using (Image tempImg = Image.FromStream(ms))
+                    {
+                        return new Bitmap(tempImg);
+                    }
+                }
             }
-
-
-            if (found == null) return null;
-
-
-            var device = found.Connect();
-            var item = device.Items[1];
-
-
-            // Set common scanning properties (optional)
-            try
+            catch (Exception ex)
             {
-                // Example: set color and DPI
-                SetWiaProperty(item.Properties, "6146", 1); // Color intent: 1 = Color
-                SetWiaProperty(item.Properties, "6147", 300); // Horizontal DPI
-                SetWiaProperty(item.Properties, "6148", 300); // Vertical DPI
+                throw new Exception("Greška pri skeniranju: " + ex.Message, ex);
             }
-            catch { /* ignore if properties unavailable */ }
-
-
-            var imgFile = (ImageFile)item.Transfer(FormatID.wiaFormatJPEG);
-
-
-            var temp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".jpg");
-            imgFile.SaveFile(temp);
-
-
-            // Load as System.Drawing.Image
-            var img = Image.FromFile(temp);
-
-
-            // Delete temp file after cloning to memory to avoid locked file
-            var cloned = new Bitmap(img);
-            img.Dispose();
-            try { File.Delete(temp); } catch { }
-
-
-            return cloned;
+            finally
+            {
+                // Oslobađanje COM resursa da skener ne ostane zablokiran
+                if (imgFile != null) Marshal.ReleaseComObject(imgFile);
+                if (item != null) Marshal.ReleaseComObject(item);
+                if (device != null) Marshal.ReleaseComObject(device);
+                if (manager != null) Marshal.ReleaseComObject(manager);
+            }
         }
 
         // Helper to set WIA property safely
@@ -443,40 +595,64 @@ namespace Saobracaj.Drumski
         private string GenerisiNazivFajlaZaKontejner()
         {
             string brojKontejnera = "";
-
-            // 1. Dohvati brojKontejnera iz tabele RadniNalogDrumski 
-            using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
-            using (var cmd = new SqlCommand(@"
+            int maxBroj = 0;
+            if (parentModul == "drumski")
+            {
+                // 1. Dohvati brojKontejnera iz tabele RadniNalogDrumski 
+                using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                using (var cmd = new SqlCommand(@"
             SELECT TOP 1 brojKontejnera 
             FROM RadniNalogDrumski 
             WHERE ID = @id", con))
-            {
-                cmd.Parameters.AddWithValue("@id", radniNalogID);
-                con.Open();
-                var result = cmd.ExecuteScalar();
-                if (result != null)
-                    brojKontejnera = result.ToString();
-                else
-                    brojKontejnera = "Dokument"; // fallback ako nije definisano
-            }
+                {
+                    cmd.Parameters.AddWithValue("@id", radniNalogID);
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    if (result != null)
+                        brojKontejnera = result.ToString();
+                    else
+                        brojKontejnera = "Dokument"; // fallback ako nije definisano
+                }
 
-            // 2. Proveri koji je poslednji broj dokumenta za taj kontejner
-            int maxBroj = 0;
-            using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
-            using (var cmd = new SqlCommand(@"
+
+                // 2. Proveri koji je poslednji broj dokumenta za taj kontejner
+
+                using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                using (var cmd = new SqlCommand(@"
                     SELECT MAX(CAST(SUBSTRING(
                     NazivDokumenta,
                     LEN(NazivDokumenta) - CHARINDEX('_', REVERSE(NazivDokumenta)) + 2,
                     CHARINDEX('.', NazivDokumenta) - (LEN(NazivDokumenta) - CHARINDEX('_', REVERSE(NazivDokumenta)) + 2)) AS INT))
                     FROM DokumentaFaktureDrumski
                     WHERE FakturaDrumskiID = @id AND NazivDokumenta LIKE @pattern", con))
+                {
+                    cmd.Parameters.AddWithValue("@id", radniNalogID);
+                    cmd.Parameters.AddWithValue("@pattern", brojKontejnera + "_%.pdf");
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                        maxBroj = Convert.ToInt32(result);
+                }
+            }
+            else if (parentModul == "skladiste")
             {
-                cmd.Parameters.AddWithValue("@id", radniNalogID);
-                cmd.Parameters.AddWithValue("@pattern", brojKontejnera + "_%.pdf");
-                con.Open();
-                var result = cmd.ExecuteScalar();
-                if (result != DBNull.Value && result != null)
-                    maxBroj = Convert.ToInt32(result);
+                brojKontejnera = _tipDokumentaNaziv;
+                using (var con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+                using (var cmd = new SqlCommand(@"
+                    SELECT MAX(CAST(SUBSTRING(
+                    NazivDokumenta,
+                    LEN(NazivDokumenta) - CHARINDEX('_', REVERSE(NazivDokumenta)) + 2,
+                    CHARINDEX('.', NazivDokumenta) - (LEN(NazivDokumenta) - CHARINDEX('_', REVERSE(NazivDokumenta)) + 2)) AS INT))
+                    FROM DokumentaSkladiste
+                    WHERE RadniNalogSkladistaID = @id AND NazivDokumenta LIKE @pattern", con))
+                {
+                    cmd.Parameters.AddWithValue("@id", radniNalogID);
+                    cmd.Parameters.AddWithValue("@pattern", brojKontejnera + "_%.pdf");
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                        maxBroj = Convert.ToInt32(result);
+                }
             }
 
             int noviBroj = maxBroj + 1;
@@ -491,11 +667,18 @@ namespace Saobracaj.Drumski
                 MessageBox.Show("Nema skeniranih strana za snimanje.");
                 return;
             }
+            if (parentModul == "drumski")
+                SnimiSkeniranaPrevoznica();
+            else if (parentModul == "skladiste")
+                SnimiSkeniranDokumentSkladista();
 
-            // 1. Generiši naziv fajla
+        }
+
+        private void SnimiSkeniranaPrevoznica()
+        {
             string nazivFajla = GenerisiNazivFajlaZaKontejner();
             string destinacijaFolder = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\SkeniranaPrevoznica\ID_{radniNalogID}";
-           
+
 
             try
             {
@@ -548,6 +731,63 @@ namespace Saobracaj.Drumski
             }
         }
 
+        private void SnimiSkeniranDokumentSkladista()
+        {
+            string nazivFajla = GenerisiNazivFajlaZaKontejner();
+            string destinacijaFolder = $@"\\192.168.150.110\Leget\Skladiste\Dokumenta\SkeniranaDokumenta\ID_{radniNalogID}";
+
+
+            try
+            {
+                if (!Directory.Exists(destinacijaFolder))
+                {
+                    Directory.CreateDirectory(destinacijaFolder);
+                }
+                string destinacija = Path.Combine(destinacijaFolder, nazivFajla);
+
+                // 2. Kreiraj PDF
+                using (var doc = new PdfSharp.Pdf.PdfDocument())
+                {
+                    foreach (var img in scannedPages)
+                    {
+                        var page = doc.AddPage();
+                        page.Width = PdfSharp.Drawing.XUnit.FromPoint(img.Width * 72.0 / img.HorizontalResolution);
+                        page.Height = PdfSharp.Drawing.XUnit.FromPoint(img.Height * 72.0 / img.VerticalResolution);
+
+                        using (var gfx = PdfSharp.Drawing.XGraphics.FromPdfPage(page))
+                        {
+                            using (var xImg = PdfSharp.Drawing.XImage.FromGdiPlusImage(img))
+                            {
+                                gfx.DrawImage(xImg, 0, 0, page.Width, page.Height);
+                            }
+                        }
+                    }
+
+                    // 3. Snimi PDF
+                    doc.Save(destinacija);
+                }
+
+                MessageBox.Show($"Dokument uspešno sačuvan: {nazivFajla}");
+
+                int tipId = TipDokumentaHelper.GetIdByNaziv(_tipDokumentaNaziv);
+
+                // 4. Snimi u bazu
+                int zaposleniID = PostaviVrednostZaposleni();
+                InsertFakture ins = new InsertFakture();
+                ins.SnimiUFajlBazuSkladiste(
+                    radniNalogID,
+                    zaposleniID,
+                    destinacija,
+                    nazivFajla,
+                    tipId
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri snimanju PDF-a: " + ex.Message);
+            }
+        }
+
         private void BtnSaveFaktura_Click(object sender, EventArgs e)
         {
             if (scannedPages.Count == 0)
@@ -558,7 +798,7 @@ namespace Saobracaj.Drumski
 
             // 1. Generiši naziv fajla
             string nazivFajla = GenerisiNazivFajlaZaKontejner();
-            string destinacijaFolder = $@"\\192.168.99.10\Leget\Drumski\Dokumenta\SkeniranaFaktura\ID_{radniNalogID}";
+            string destinacijaFolder = $@"\\192.168.150.110\Leget\Drumski\Dokumenta\SkeniranaFaktura\ID_{radniNalogID}";
 
 
             try
@@ -673,6 +913,30 @@ namespace Saobracaj.Drumski
             }
 
             return bmp;
+        }
+
+        public class ScannerItem
+        {
+            public string Name { get; set; }
+            public string DeviceID { get; set; }
+
+            public override string ToString()
+            {
+                return Name; // ComboBox će u listi prikazivati ovo ime
+            }
+        }
+
+        public static class TipDokumentaHelper
+        {
+            public static int GetIdByNaziv(string naziv)
+            {
+                switch (naziv?.Trim())
+                {
+                    case "Saglasnost za carinu": return 1;
+                    case "Prijemnica": return 2;
+                    default: return 0; // Ili neki default ID ako naziv nije prepoznat
+                }
+            }
         }
     }
 }

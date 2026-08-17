@@ -793,7 +793,7 @@ namespace Saobracaj.Drumski
 
             int id = Convert.ToInt32(idObj);
 
-            using (var frm = new frmSeniranjeDokumenata(id))
+            using (var frm = new frmSeniranjeDokumenata(id,"drumski", ""))
                 frm.ShowDialog();
         }
  

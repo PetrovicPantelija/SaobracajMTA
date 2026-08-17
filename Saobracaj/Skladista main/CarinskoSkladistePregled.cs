@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Saobracaj.Drumski;
 using Saobracaj.Skladista;
 using Saobracaj.Skladista_main.Dokumenta;
 using Saobracaj.Uvoz;
@@ -179,6 +180,24 @@ namespace Saobracaj.Skladista_main
 
             frmIzvestajCarinskoObelezje f = new frmIzvestajCarinskoObelezje(id, izabraniIndeks);
             f.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var record = gridGroupingControl1.Table.CurrentRecord;
+            if (record == null) return;
+
+            object idObj = record.GetValue("ID");
+            if (idObj == null || idObj == DBNull.Value)
+            {
+                MessageBox.Show("ID je nevažeći.");
+                return;
+            }
+
+            int id = Convert.ToInt32(idObj);
+
+            using (var frm = new frmSeniranjeDokumenata(id, "skladiste", cboSkeniraj.Text.Trim()))
+                frm.ShowDialog();
         }
     }
 }

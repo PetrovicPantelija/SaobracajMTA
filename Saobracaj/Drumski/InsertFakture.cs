@@ -482,6 +482,84 @@ namespace Saobracaj.Drumski
             }
         }
 
+        public void SnimiUFajlBazuSkladiste(int RadniNalogSkladistaID,  int? DodaoKorisnik, string Putanja, string NazivDokumenta, int? Tip)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertDokumentaSkladiste";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter iD = new SqlParameter();
+            iD.ParameterName = "@RadniNalogSkladistaID";
+            iD.SqlDbType = SqlDbType.Int;
+            iD.Direction = ParameterDirection.Input;
+            iD.Value = RadniNalogSkladistaID;
+            cmd.Parameters.Add(iD);
+
+           
+
+            SqlParameter dodaoKorisnik = new SqlParameter();
+            dodaoKorisnik.ParameterName = "@DodaoKorisnik";
+            dodaoKorisnik.SqlDbType = SqlDbType.Int;
+            dodaoKorisnik.Direction = ParameterDirection.Input;
+            dodaoKorisnik.Value = DodaoKorisnik.HasValue ? (object)DodaoKorisnik.Value : DBNull.Value;
+            cmd.Parameters.Add(dodaoKorisnik);
+
+            SqlParameter putanja = new SqlParameter();
+            putanja.ParameterName = "@Putanja";
+            putanja.SqlDbType = SqlDbType.NVarChar;
+            putanja.Size = 500;
+            putanja.Direction = ParameterDirection.Input;
+            putanja.Value = (object)Putanja ?? DBNull.Value;
+            cmd.Parameters.Add(putanja);
+
+            SqlParameter dokument = new SqlParameter();
+            dokument.ParameterName = "@NazivDokumenta";
+            dokument.SqlDbType = SqlDbType.NVarChar;
+            dokument.Size = 500;
+            dokument.Direction = ParameterDirection.Input;
+            dokument.Value = (object)NazivDokumenta ?? DBNull.Value;
+            cmd.Parameters.Add(dokument);
+
+            SqlParameter tip = new SqlParameter();
+            tip.ParameterName = "@Tip";
+            tip.SqlDbType = SqlDbType.Int;
+            tip.Direction = ParameterDirection.Input;
+            tip.Value = Tip.HasValue ? (object)Tip.Value : DBNull.Value;
+            cmd.Parameters.Add(tip);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tran.Rollback(); // Ne zaboravi i rollback
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Ažuriranje radnog naloga broja je uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+            }
+        }
+
         public void SnimiUFajlBazuKamioni(string NazivDokumenta, string Putanja, int? DodaoKorisnik, int RadniNalogID, int DodaoVozac)
         {
             SqlConnection conn = new SqlConnection(connect);
