@@ -1406,10 +1406,10 @@ namespace Saobracaj.Izvoz
                         uspesno = false;
                     }
 
-                if (!ValidirajObaveznuKolonu(dataGridView1, row, "SpustanjePunogDtRealizacije", "Ovo polje je obavezno polje!"))
-                {
-                    uspesno = false;
-                }
+                //if (!ValidirajObaveznuKolonu(dataGridView1, row, "SpustanjePunogDtRealizacije", "Ovo polje je obavezno polje!"))
+                //{
+                //    uspesno = false;
+                //}
             }
 
             if ((scenarioID == 7 || scenarioID == 23) && drumski == 1) //

@@ -1787,7 +1787,10 @@ namespace Saobracaj.Drumski
 
             FillComboSpedicija();
 
-            var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
+            string tipkontejnera;
+
+            tipkontejnera = "Select ID, SkNaziv From TipKontenjera where IsNull(VidljivoDrumskom,0) = 1 order by SkNaziv";
+         
             SqlDataAdapter tkAD = new SqlDataAdapter(tipkontejnera, conn);
             DataTable dtTipKont = new DataTable();
             tkAD.Fill(dtTipKont);
@@ -3192,21 +3195,50 @@ namespace Saobracaj.Drumski
             PopuniKontaktOsobu(cboMestoPreuzimanja, cbokontaktPreuzimanjaI1);
         }
 
+        //private void cbo_TextUpdate(object sender, EventArgs e)
+        //{
+        //    ComboBox cb = sender as ComboBox;
+        //    if (cb != null)
+        //    {
+        //        // Ako je lista otvorena (bilo klikom na strelicu ili preko Alt+Down)
+        //        if (cb.DroppedDown)
+        //        {
+        //            // Zatvaramo veliki padajući meni da bi SuggestAppend mogao normalno da radi
+        //            cb.DroppedDown = false;
+
+        //            // VAŽNO: Kada WinForms zatvori DroppedDown, često resetuje kursor na početak teksta.
+        //            // Zato ručno pomeramo kursor na kraj teksta kako bi korisnik nastavio da kuca normalno.
+        //            cb.SelectionStart = cb.Text.Length;
+        //        }
+        //    }
+        //}
         private void cbo_TextUpdate(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
-            if (cb != null)
-            {
-                // Ako je lista otvorena (bilo klikom na strelicu ili preko Alt+Down)
-                if (cb.DroppedDown)
-                {
-                    // Zatvaramo veliki padajući meni da bi SuggestAppend mogao normalno da radi
-                    cb.DroppedDown = false;
+            if (cb == null) return;
 
-                    // VAŽNO: Kada WinForms zatvori DroppedDown, često resetuje kursor na početak teksta.
-                    // Zato ručno pomeramo kursor na kraj teksta kako bi korisnik nastavio da kuca normalno.
-                    cb.SelectionStart = cb.Text.Length;
+            if (cb.DroppedDown)
+            {
+                // 1. Zapamti tačnu poziciju kursora i trenutno ukucan tekst
+                int caretPosition = cb.SelectionStart;
+                string typedText = cb.Text;
+
+                // Ako je ComboBox automatski selektovao ceo/preostali tekst (SuggestAppend ponašanje)
+                // uzimamo samo deo teksta do kursora koji je korisnik zaista ukucao
+                if (cb.SelectionLength > 0 && caretPosition > 0 && caretPosition <= typedText.Length)
+                {
+                    typedText = typedText.Substring(0, caretPosition);
                 }
+
+                // 2. Zatvori veliki padajući meni
+                cb.DroppedDown = false;
+
+                // 3. Vrati samo ukucani tekst bez auto-completed dodatka
+                cb.Text = typedText;
+
+                // 4. Resetuj selekciju - postavi kursor na kraj bez plave selekcije (highlights)
+                cb.SelectionStart = typedText.Length;
+                cb.SelectionLength = 0;
             }
         }
 

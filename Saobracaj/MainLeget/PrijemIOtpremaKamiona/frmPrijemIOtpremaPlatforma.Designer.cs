@@ -42,9 +42,10 @@
             this.btnPrijemIOtprema1.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema1.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema1.Location = new System.Drawing.Point(48, 121);
+            this.btnPrijemIOtprema1.Location = new System.Drawing.Point(64, 149);
+            this.btnPrijemIOtprema1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrijemIOtprema1.Name = "btnPrijemIOtprema1";
-            this.btnPrijemIOtprema1.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema1.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema1.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema1.TabIndex = 522;
@@ -61,9 +62,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(41, 46);
+            this.label2.Location = new System.Drawing.Point(55, 57);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(592, 39);
+            this.label2.Size = new System.Drawing.Size(744, 52);
             this.label2.TabIndex = 521;
             this.label2.Text = "Prijem i otprema kamiona - Platforma";
             // 
@@ -75,15 +77,17 @@
             this.btnPrijemIOtprema2.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema2.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema2.Location = new System.Drawing.Point(341, 121);
+            this.btnPrijemIOtprema2.Location = new System.Drawing.Point(455, 149);
+            this.btnPrijemIOtprema2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrijemIOtprema2.Name = "btnPrijemIOtprema2";
-            this.btnPrijemIOtprema2.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema2.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema2.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema2.TabIndex = 523;
             this.btnPrijemIOtprema2.Text = "Otprema";
             this.btnPrijemIOtprema2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtprema2.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtprema2.Click += new System.EventHandler(this.btnPrijemIOtprema2_Click);
             // 
             // btnPrijemIOtprema3
             // 
@@ -93,9 +97,10 @@
             this.btnPrijemIOtprema3.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema3.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema3.Location = new System.Drawing.Point(48, 327);
+            this.btnPrijemIOtprema3.Location = new System.Drawing.Point(64, 402);
+            this.btnPrijemIOtprema3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrijemIOtprema3.Name = "btnPrijemIOtprema3";
-            this.btnPrijemIOtprema3.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema3.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema3.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema3.TabIndex = 524;
@@ -106,15 +111,16 @@
             // 
             // frmPrijemIOtpremaPlatforma
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(794, 553);
+            this.ClientSize = new System.Drawing.Size(1059, 681);
             this.Controls.Add(this.btnPrijemIOtprema3);
             this.Controls.Add(this.btnPrijemIOtprema2);
             this.Controls.Add(this.btnPrijemIOtprema1);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmPrijemIOtpremaPlatforma";
             this.Text = "frmPrijemIOtpremaPlatforma";
             this.ResumeLayout(false);

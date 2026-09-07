@@ -416,7 +416,7 @@ namespace Saobracaj.Uvoz
 " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
 " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
 "  rn.Pokret,  rn.TipDokPrevoza, " +
-" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
+" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN, 0 AS Scenario " +
 " FROM [RadniNalogInterni] rn " +
 " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
 " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -456,8 +456,8 @@ namespace Saobracaj.Uvoz
 " WHEN 1 THEN 'AKTIVAN' " +
 " END AS StatusKN, " +
                     " CASE Cirada " +
-" WHEN 0 THEN 'PLATFORMA' " +
-" WHEN 1 THEN 'CIRADA' " +
+" WHEN 1 THEN 'PLATFORMA' " +
+" WHEN 2 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
                     "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
          " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
@@ -469,7 +469,7 @@ namespace Saobracaj.Uvoz
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, [Osnov], PlanID as PlanUtovara " +
       " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
       " , rn.Pokret,  rn.TipDokPrevoza, rn.BrojDokPrevoza," +
-      " rn.TipRN, rn.BrojRN   FROM RadniNalogInterni rn " +
+      " rn.TipRN, rn.BrojRN , IzvozKonacna.Scenario  FROM RadniNalogInterni rn " +
    
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
@@ -503,7 +503,7 @@ namespace Saobracaj.Uvoz
    " [Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]      " +
    "  , uv.PaNaziv as Platilac  , " +
    "  PlanID as PlanUtovara, rn.Pokret,  rn.TipDokPrevoza, rn.BrojDokPrevoza, " +
-   " rn.TipRN, rn.BrojRN  FROM [RadniNalogInterni] rn " +
+   " rn.TipRN, rn.BrojRN, 0 AS Scenario   FROM [RadniNalogInterni] rn " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
    " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -529,7 +529,7 @@ namespace Saobracaj.Uvoz
         " IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, [Osnov]  ,[BrojOsnov] as BrojOsnov , " +
         " VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]        , uv.PaNaziv as Platilac  ,  " +
         " PlanID as PlanUtovara, rn.Pokret, rn.TipDokPrevoza, rn.BrojDokPrevoza, rn.TipRN, " +
-        " rn.BrojRN  FROM [RadniNalogInterni] rn  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+        " rn.BrojRN , IzvozKonacna.Scenario  FROM [RadniNalogInterni] rn  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
         " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov  " +
         " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = rn.KonkretaIDUsluge  " +
         " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
@@ -600,6 +600,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJIzdavanja");
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJRealizacije");
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("IDVrstaManipulacije");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("Status"); 
 
             /*
             this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
@@ -703,7 +704,7 @@ namespace Saobracaj.Uvoz
 " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
 " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
 "  rn.Pokret,  rn.TipDokPrevoza, " +
-" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN " +
+" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN ,0 AS Scenario" +
 " FROM [RadniNalogInterni] rn " +
 " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
 " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -725,8 +726,8 @@ namespace Saobracaj.Uvoz
 " WHEN 1 THEN 'AKTIVAN' " +
 " END AS StatusKN, " +
                     " CASE Cirada " +
-" WHEN 0 THEN 'PLATFORMA' " +
-" WHEN 1 THEN 'CIRADA' " +
+" WHEN 1 THEN 'PLATFORMA' " +
+" WHEN 2 THEN 'CIRADA' " +
 " END AS TipNaloga,  " +
                     "   (select Top 1 Voz.NAzivVoza as OznakaVoza from IzvozKonacnaZaglavlje " +
          " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
@@ -738,7 +739,7 @@ namespace Saobracaj.Uvoz
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, [Osnov], PlanID as PlanUtovara " +
       " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
       " , rn.Pokret,  rn.TipDokPrevoza, rn.BrojDokPrevoza," +
-      " rn.TipRN, rn.BrojRN   FROM RadniNalogInterni rn " +
+      " rn.TipRN, rn.BrojRN ,IzvozKonacna.Scenario  FROM RadniNalogInterni rn " +
 
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
@@ -1316,6 +1317,39 @@ namespace Saobracaj.Uvoz
 
         }
 
+        int vratiNalogIDManipulacijePunogKontejnera(int idNalogaPraznog)
+        {
+            int idNalogaPunog = 0; // Vraća 0 ako nalog za puni kontejner nije pronađen
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            // Upit pronalazi ID naloga manipulacije punim kontejnerom (70)
+            // za isti kontejner (BrojOsnov) kojem pripada nalog praznog kontejnera (69)
+            string query = @"
+                        SELECT TOP 1 ID 
+                        FROM RadniNalogInterni 
+                        WHERE IDManipulacijaJed = 70 
+                          AND BrojOsnov = (SELECT BrojOsnov FROM RadniNalogInterni WHERE ID = @IDNalogaPraznog AND IDManipulacijaJed = 69)
+                        ORDER BY ID DESC";
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@IDNalogaPraznog", idNalogaPraznog);
+
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idNalogaPunog = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return idNalogaPunog;
+        }
+
         string TipRN = "";
         int BrojRN = 0;
         int ProveriDaLijeVecGenerisanaOperacija(string Nalog)
@@ -1389,10 +1423,43 @@ namespace Saobracaj.Uvoz
                 MessageBox.Show("Nije zavrsena predhodna usluga ne mozete generisati novu!!!");
             return;
             }
+            int scenarioIzGrida = 0;
+            if (gridGroupingControl1.Table.CurrentRecord != null)
+            {
+                object val = gridGroupingControl1.Table.CurrentRecord.GetValue("Scenario");
+                if (val != null && val != DBNull.Value)
+                {
+                    scenarioIzGrida = Convert.ToInt32(val);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nije selektovan red u gridu!");
+                return;
+            }
 
+            // 2. Mapiranje vrednosti iz grida (26 -> Scenario 1, 23 -> Scenario 2)
+            int scenarioZaBazu = 1; // Podrazumevana vrednost
+
+            if (scenarioIzGrida == 26)
+            {
+                scenarioZaBazu = 1;
+            }
+            else if (scenarioIzGrida == 23 || scenarioIzGrida == 7)
+            {
+                scenarioZaBazu = 2;
+            }
 
             Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
-            ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text));
+            ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text), scenarioZaBazu, 1);
+            // ako je scenario 2 pored inserta manipulacije praznim kontejnerom treba automatski odraditi insert manipulacije punim kontejnerom gde se fazaUsluge postavlja na 0
+            // dakle ne obradjuje se dok se ne zavrsi prethodna usluga
+            if (scenarioZaBazu == 2)
+            {
+              int rnBrojPunog =   vratiNalogIDManipulacijePunogKontejnera(Convert.ToInt32(txtNALOGID.Text));
+              if(rnBrojPunog > 0)
+                    ins.InsRadniNalogInterniIzvozPotvrda(rnBrojPunog, scenarioZaBazu, 0);
+            }
             MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
 
             //Scenario 1 test - Napravi PRI i RN4
@@ -1410,13 +1477,21 @@ namespace Saobracaj.Uvoz
                 frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0,OJ);
                 rd1.Show();
             }
-            if (Forma == "GATE OUT KAMION" || Forma ==  "GATE OUT KAMION TERMINAL")
+            if (Forma == "GATE OUT KAMION" || Forma ==  "GATE OUT KAMION TERMINAL" || Forma == "GATE OUT KAMION IZVOZ")
             {
-                
-                MessageBox.Show("Formirate GATE OUT KAMION Platforma");
-                KISUsl = VratiKonkretanIDUsluge();
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ,  txtBrojKontejnera.Text);
-                okk.Show();
+
+                if (OJ == 2)
+                {
+                   
+                    MessageBox.Show("Formirate GATE OUT KAMION Platforma");
+                     KISUsl = VratiKonkretanIDUsluge();
+                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ,  txtBrojKontejnera.Text);
+                    okk.Show();
+
+                }
+
+
+                  
 
               
 
@@ -1452,7 +1527,7 @@ namespace Saobracaj.Uvoz
                         // Handle the user's response
                         if (result == DialogResult.Yes)
                         {
-                           
+                           //Scenario 13 
                             Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
                             insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 0, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 2);
                             InsertUvozKonacna insk = new InsertUvozKonacna();
