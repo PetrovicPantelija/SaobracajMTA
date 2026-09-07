@@ -91,7 +91,7 @@ namespace Saobracaj
                     return new CompanyConfiguration
                     {
                         Naziv = "DPT",
-                        DB = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990",
+                        DB = @"Data Source=192.168.150.110\MSSQLServer2024;Initial Catalog=DPTDB;User ID=sa;Password=P@ss011!",
                         Dokumenta = @"\\192.168.129.7\TA\",
                         PIB = "111824604",
                         Name_Value = "Dry Port Terminals doo, Beograd\r\n",
