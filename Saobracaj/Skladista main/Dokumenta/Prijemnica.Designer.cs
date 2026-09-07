@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -163,16 +163,37 @@
             this.label50 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.txtSifra = new System.Windows.Forms.TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.cboStampaj = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.cboDokumenta = new System.Windows.Forms.ComboBox();
             this.button25 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.cboStampaj = new System.Windows.Forms.ComboBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtPrviNivo = new System.Windows.Forms.TextBox();
+            this.txtDrugiNivo = new System.Windows.Forms.TextBox();
+            this.txtTreciNivo = new System.Windows.Forms.TextBox();
+            this.txtCetvrtiNivo = new System.Windows.Forms.TextBox();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.btnDodajArtikal = new System.Windows.Forms.Button();
+            this.chkPrviNivo = new System.Windows.Forms.CheckBox();
+            this.chkDrugiNivo = new System.Windows.Forms.CheckBox();
+            this.chkTreciNivo = new System.Windows.Forms.CheckBox();
+            this.chkCetvrtiNivo = new System.Windows.Forms.CheckBox();
+            this.btnNazadArtikal = new System.Windows.Forms.Button();
+            this.btnArtikli = new System.Windows.Forms.Button();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtArtikalGlavni = new System.Windows.Forms.TextBox();
+            this.chkArtikal = new System.Windows.Forms.CheckBox();
+            this.btnPaleteNovo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -186,6 +207,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -1076,6 +1099,7 @@
             this.panel5.BackColor = System.Drawing.Color.LightCyan;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.btnPaleta);
+            this.panel5.Controls.Add(this.btnArtikli);
             this.panel5.Controls.Add(this.btnNHM);
             this.panel5.Controls.Add(this.txtPaleta);
             this.panel5.Controls.Add(this.txtVrednost);
@@ -1124,11 +1148,11 @@
             // 
             // btnNHM
             // 
-            this.btnNHM.Location = new System.Drawing.Point(191, 28);
+            this.btnNHM.Location = new System.Drawing.Point(6, 51);
             this.btnNHM.Name = "btnNHM";
-            this.btnNHM.Size = new System.Drawing.Size(27, 20);
+            this.btnNHM.Size = new System.Drawing.Size(68, 24);
             this.btnNHM.TabIndex = 25;
-            this.btnNHM.Text = "?";
+            this.btnNHM.Text = "NHM";
             this.btnNHM.UseVisualStyleBackColor = true;
             this.btnNHM.Click += new System.EventHandler(this.btnNHM_Click);
             // 
@@ -1533,14 +1557,14 @@
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Location = new System.Drawing.Point(3, 47);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(500, 161);
@@ -1578,13 +1602,6 @@
             this.panelHeader.Size = new System.Drawing.Size(1404, 32);
             this.panelHeader.TabIndex = 531;
             // 
-            // txtSifra
-            // 
-            this.txtSifra.Location = new System.Drawing.Point(1072, 7);
-            this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(100, 20);
-            this.txtSifra.TabIndex = 7;
-            // 
             // panel8
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1603,6 +1620,106 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1232, 32);
             this.panel8.TabIndex = 6;
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.Location = new System.Drawing.Point(1072, 7);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.TabIndex = 7;
+            // 
+            // cboStampaj
+            // 
+            this.cboStampaj.FormattingEnabled = true;
+            this.cboStampaj.Items.AddRange(new object[] {
+            "Saglasnost za carinu",
+            "Carinsko obeležje",
+            "Prijemnica"});
+            this.cboStampaj.Location = new System.Drawing.Point(883, 6);
+            this.cboStampaj.Name = "cboStampaj";
+            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
+            this.cboStampaj.TabIndex = 38;
+            // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button4.Location = new System.Drawing.Point(766, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(147, 26);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "Štampaj";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button3.AutoSize = true;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button3.Location = new System.Drawing.Point(685, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 32);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "Zapisnik";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(533, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 32);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Nalog rukovaocima";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button1.Location = new System.Drawing.Point(424, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 32);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Mapa pozicija";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboDokumenta
             // 
@@ -1656,98 +1773,221 @@
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
-            // button1
+            // panel9
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(424, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 32);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Mapa pozicija";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel9.Controls.Add(this.txtArtikalGlavni);
+            this.panel9.Controls.Add(this.chkCetvrtiNivo);
+            this.panel9.Controls.Add(this.chkTreciNivo);
+            this.panel9.Controls.Add(this.chkDrugiNivo);
+            this.panel9.Controls.Add(this.chkArtikal);
+            this.panel9.Controls.Add(this.chkPrviNivo);
+            this.panel9.Controls.Add(this.btnNazadArtikal);
+            this.panel9.Controls.Add(this.btnDodajArtikal);
+            this.panel9.Controls.Add(this.dataGridView3);
+            this.panel9.Controls.Add(this.txtCetvrtiNivo);
+            this.panel9.Controls.Add(this.txtTreciNivo);
+            this.panel9.Controls.Add(this.txtDrugiNivo);
+            this.panel9.Controls.Add(this.txtPrviNivo);
+            this.panel9.Controls.Add(this.label56);
+            this.panel9.Controls.Add(this.label55);
+            this.panel9.Controls.Add(this.label54);
+            this.panel9.Controls.Add(this.label57);
+            this.panel9.Controls.Add(this.label53);
+            this.panel9.Location = new System.Drawing.Point(63, 95);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(998, 391);
+            this.panel9.TabIndex = 532;
             // 
-            // button2
+            // label53
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button2.AutoSize = true;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(533, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 32);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "Nalog rukovaocima";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(191, 8);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(48, 13);
+            this.label53.TabIndex = 0;
+            this.label53.Text = "Prvi nivo";
             // 
-            // button3
+            // label54
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.AutoSize = true;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(685, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 32);
-            this.button3.TabIndex = 31;
-            this.button3.Text = "Zapisnik";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(414, 8);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(55, 13);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Drugi nivo";
             // 
-            // button4
+            // label55
             // 
-            this.button4.AutoSize = true;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(766, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 26);
-            this.button4.TabIndex = 37;
-            this.button4.Text = "Štampaj";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(627, 8);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(54, 13);
+            this.label55.TabIndex = 0;
+            this.label55.Text = "Treci nivo";
             // 
-            // cboStampaj
+            // label56
             // 
-            this.cboStampaj.FormattingEnabled = true;
-            this.cboStampaj.Items.AddRange(new object[] {
-            "Saglasnost za carinu",
-            "Carinsko obeležje",
-            "Prijemnica"});
-            this.cboStampaj.Location = new System.Drawing.Point(883, 6);
-            this.cboStampaj.Name = "cboStampaj";
-            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
-            this.cboStampaj.TabIndex = 38;
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(827, 10);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(60, 13);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "Cetvrti nivo";
+            // 
+            // txtPrviNivo
+            // 
+            this.txtPrviNivo.Location = new System.Drawing.Point(179, 28);
+            this.txtPrviNivo.Name = "txtPrviNivo";
+            this.txtPrviNivo.Size = new System.Drawing.Size(162, 20);
+            this.txtPrviNivo.TabIndex = 1;
+            this.txtPrviNivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrviNivo_KeyUp);
+            // 
+            // txtDrugiNivo
+            // 
+            this.txtDrugiNivo.Location = new System.Drawing.Point(378, 28);
+            this.txtDrugiNivo.Name = "txtDrugiNivo";
+            this.txtDrugiNivo.Size = new System.Drawing.Size(162, 20);
+            this.txtDrugiNivo.TabIndex = 1;
+            this.txtDrugiNivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDrugiNivo_KeyUp);
+            // 
+            // txtTreciNivo
+            // 
+            this.txtTreciNivo.Location = new System.Drawing.Point(579, 28);
+            this.txtTreciNivo.Name = "txtTreciNivo";
+            this.txtTreciNivo.Size = new System.Drawing.Size(162, 20);
+            this.txtTreciNivo.TabIndex = 1;
+            this.txtTreciNivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTreciNivo_KeyUp);
+            // 
+            // txtCetvrtiNivo
+            // 
+            this.txtCetvrtiNivo.Location = new System.Drawing.Point(777, 28);
+            this.txtCetvrtiNivo.Name = "txtCetvrtiNivo";
+            this.txtCetvrtiNivo.Size = new System.Drawing.Size(162, 20);
+            this.txtCetvrtiNivo.TabIndex = 1;
+            this.txtCetvrtiNivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCetvrtiNivo_KeyUp);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(11, 106);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(971, 279);
+            this.dataGridView3.TabIndex = 2;
+            // 
+            // btnDodajArtikal
+            // 
+            this.btnDodajArtikal.Location = new System.Drawing.Point(16, 77);
+            this.btnDodajArtikal.Name = "btnDodajArtikal";
+            this.btnDodajArtikal.Size = new System.Drawing.Size(98, 23);
+            this.btnDodajArtikal.TabIndex = 3;
+            this.btnDodajArtikal.Text = "Dodaj";
+            this.btnDodajArtikal.UseVisualStyleBackColor = true;
+            this.btnDodajArtikal.Click += new System.EventHandler(this.btnDodajArtikal_Click);
+            // 
+            // chkPrviNivo
+            // 
+            this.chkPrviNivo.AutoSize = true;
+            this.chkPrviNivo.Location = new System.Drawing.Point(183, 51);
+            this.chkPrviNivo.Name = "chkPrviNivo";
+            this.chkPrviNivo.Size = new System.Drawing.Size(47, 17);
+            this.chkPrviNivo.TabIndex = 4;
+            this.chkPrviNivo.Text = "Šifra";
+            this.chkPrviNivo.UseVisualStyleBackColor = true;
+            this.chkPrviNivo.CheckedChanged += new System.EventHandler(this.chkPrviNivo_CheckedChanged);
+            // 
+            // chkDrugiNivo
+            // 
+            this.chkDrugiNivo.AutoSize = true;
+            this.chkDrugiNivo.Location = new System.Drawing.Point(383, 50);
+            this.chkDrugiNivo.Name = "chkDrugiNivo";
+            this.chkDrugiNivo.Size = new System.Drawing.Size(47, 17);
+            this.chkDrugiNivo.TabIndex = 4;
+            this.chkDrugiNivo.Text = "Šifra";
+            this.chkDrugiNivo.UseVisualStyleBackColor = true;
+            this.chkDrugiNivo.CheckedChanged += new System.EventHandler(this.chkDrugiNivo_CheckedChanged);
+            // 
+            // chkTreciNivo
+            // 
+            this.chkTreciNivo.AutoSize = true;
+            this.chkTreciNivo.Location = new System.Drawing.Point(579, 51);
+            this.chkTreciNivo.Name = "chkTreciNivo";
+            this.chkTreciNivo.Size = new System.Drawing.Size(47, 17);
+            this.chkTreciNivo.TabIndex = 4;
+            this.chkTreciNivo.Text = "Šifra";
+            this.chkTreciNivo.UseVisualStyleBackColor = true;
+            this.chkTreciNivo.CheckedChanged += new System.EventHandler(this.chkTreciNivo_CheckedChanged);
+            // 
+            // chkCetvrtiNivo
+            // 
+            this.chkCetvrtiNivo.AutoSize = true;
+            this.chkCetvrtiNivo.Location = new System.Drawing.Point(777, 50);
+            this.chkCetvrtiNivo.Name = "chkCetvrtiNivo";
+            this.chkCetvrtiNivo.Size = new System.Drawing.Size(47, 17);
+            this.chkCetvrtiNivo.TabIndex = 4;
+            this.chkCetvrtiNivo.Text = "Šifra";
+            this.chkCetvrtiNivo.UseVisualStyleBackColor = true;
+            this.chkCetvrtiNivo.CheckedChanged += new System.EventHandler(this.chkCetvrtiNivo_CheckedChanged);
+            // 
+            // btnNazadArtikal
+            // 
+            this.btnNazadArtikal.Location = new System.Drawing.Point(132, 77);
+            this.btnNazadArtikal.Name = "btnNazadArtikal";
+            this.btnNazadArtikal.Size = new System.Drawing.Size(98, 23);
+            this.btnNazadArtikal.TabIndex = 3;
+            this.btnNazadArtikal.Text = "Nazad";
+            this.btnNazadArtikal.UseVisualStyleBackColor = true;
+            this.btnNazadArtikal.Click += new System.EventHandler(this.btnNazadArtikal_Click);
+            // 
+            // btnArtikli
+            // 
+            this.btnArtikli.Location = new System.Drawing.Point(117, 51);
+            this.btnArtikli.Name = "btnArtikli";
+            this.btnArtikli.Size = new System.Drawing.Size(68, 24);
+            this.btnArtikli.TabIndex = 25;
+            this.btnArtikli.Text = "Artikli";
+            this.btnArtikli.UseVisualStyleBackColor = true;
+            this.btnArtikli.Click += new System.EventHandler(this.btnArtikli_Click);
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(16, 10);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(36, 13);
+            this.label57.TabIndex = 0;
+            this.label57.Text = "Artikal";
+            // 
+            // txtArtikalGlavni
+            // 
+            this.txtArtikalGlavni.Location = new System.Drawing.Point(16, 28);
+            this.txtArtikalGlavni.Name = "txtArtikalGlavni";
+            this.txtArtikalGlavni.Size = new System.Drawing.Size(126, 20);
+            this.txtArtikalGlavni.TabIndex = 5;
+            this.txtArtikalGlavni.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtArtikalGlavni_KeyUp);
+            // 
+            // chkArtikal
+            // 
+            this.chkArtikal.AutoSize = true;
+            this.chkArtikal.Location = new System.Drawing.Point(16, 51);
+            this.chkArtikal.Name = "chkArtikal";
+            this.chkArtikal.Size = new System.Drawing.Size(47, 17);
+            this.chkArtikal.TabIndex = 4;
+            this.chkArtikal.Text = "Šifra";
+            this.chkArtikal.UseVisualStyleBackColor = true;
+            this.chkArtikal.CheckedChanged += new System.EventHandler(this.chkArtikal_CheckedChanged);
+            // 
+            // btnPaleteNovo
+            // 
+            this.btnPaleteNovo.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnPaleteNovo.ForeColor = System.Drawing.Color.White;
+            this.btnPaleteNovo.Location = new System.Drawing.Point(1259, 500);
+            this.btnPaleteNovo.Name = "btnPaleteNovo";
+            this.btnPaleteNovo.Size = new System.Drawing.Size(107, 38);
+            this.btnPaleteNovo.TabIndex = 24;
+            this.btnPaleteNovo.Text = "Prebaci na palete";
+            this.btnPaleteNovo.UseVisualStyleBackColor = false;
+            this.btnPaleteNovo.Visible = false;
+            this.btnPaleteNovo.Click += new System.EventHandler(this.btnPaleteNovo_Click);
             // 
             // Prijemnica
             // 
@@ -1755,6 +1995,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1404, 745);
+            this.Controls.Add(this.panel9);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel7);
@@ -1774,6 +2015,7 @@
             this.Controls.Add(this.label43);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.txtID);
+            this.Controls.Add(this.btnPaleteNovo);
             this.Controls.Add(this.btnStampajPrijemnicu);
             this.Controls.Add(this.txtPrijemnica);
             this.Controls.Add(this.btnCarinskoObelezije);
@@ -1814,6 +2056,9 @@
             this.panelHeader.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1965,5 +2210,26 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox cboStampaj;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.TextBox txtCetvrtiNivo;
+        private System.Windows.Forms.TextBox txtTreciNivo;
+        private System.Windows.Forms.TextBox txtDrugiNivo;
+        private System.Windows.Forms.TextBox txtPrviNivo;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.CheckBox chkCetvrtiNivo;
+        private System.Windows.Forms.CheckBox chkTreciNivo;
+        private System.Windows.Forms.CheckBox chkDrugiNivo;
+        private System.Windows.Forms.CheckBox chkPrviNivo;
+        private System.Windows.Forms.Button btnNazadArtikal;
+        private System.Windows.Forms.Button btnDodajArtikal;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button btnArtikli;
+        private System.Windows.Forms.TextBox txtArtikalGlavni;
+        private System.Windows.Forms.CheckBox chkArtikal;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Button btnPaleteNovo;
     }
 }

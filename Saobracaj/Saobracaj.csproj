@@ -3585,6 +3585,12 @@
     <Compile Include="Skladista main\OtpremaLager.Designer.cs">
       <DependentUpon>OtpremaLager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\PaletePrebacivanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\PaletePrebacivanje.Designer.cs">
+      <DependentUpon>PaletePrebacivanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\PregledKomercijalnihNaloga.cs">
       <SubType>Form</SubType>
     </Compile>

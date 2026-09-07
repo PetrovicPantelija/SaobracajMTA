@@ -930,14 +930,76 @@ namespace Saobracaj.Skladista_main
                 }
             }
         }
+        public void InsertPrijemnicaPalete(int Kolicina,int Prijemnica)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertPrijemnicaPalete";
+            cmd.CommandType = CommandType.StoredProcedure;
 
-        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena, int RB, int NHM, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Int;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter idNadredjena = new SqlParameter();
+            idNadredjena.ParameterName = "@Prijemnica";
+            idNadredjena.SqlDbType = SqlDbType.Int;
+            idNadredjena.Direction = ParameterDirection.Input;
+            idNadredjena.Value = Prijemnica;
+            cmd.Parameters.Add(idNadredjena);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena, int RB, int NHM,int IDArtikla, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
             string Valuta, string Pozicija, int Paleta, int VrstaPaleta, int PDV, int Carina, decimal Neto, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertRNCarinskoPrijemnicaStavke";
             cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter idArtikla = new SqlParameter();
+            idArtikla.ParameterName = "@IDArtikla";
+            idArtikla.SqlDbType = SqlDbType.Int;
+            idArtikla.Direction = ParameterDirection.Input;
+            idArtikla.Value = IDArtikla;
+            cmd.Parameters.Add(idArtikla);
 
             SqlParameter napomena = new SqlParameter();
             napomena.ParameterName = "@Napomena";
