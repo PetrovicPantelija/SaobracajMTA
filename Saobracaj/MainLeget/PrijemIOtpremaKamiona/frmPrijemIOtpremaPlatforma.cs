@@ -29,5 +29,11 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             VaganjePregled vaganjePregled = new VaganjePregled();
             vaganjePregled.Show();
         }
+
+        private void btnPrijemIOtprema2_Click(object sender, EventArgs e)
+        {
+            frmPlatformaOtprema pl = new frmPlatformaOtprema();
+            pl.Show();
+        }
     }
 }

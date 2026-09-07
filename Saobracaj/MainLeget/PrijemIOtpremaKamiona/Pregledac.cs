@@ -2,6 +2,7 @@
 using Saobracaj.Dokumenta;
 using Saobracaj.Izvoz;
 using Saobracaj.RadniNalozi;
+using Saobracaj.Skladista_main.Dokumenta;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -13,6 +14,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Net;
 using System.Security.Cryptography;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
@@ -44,16 +46,16 @@ inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniP
 inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov
 inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             */
-            select = "    select RadniNalogInterni.ID as KomNalogID, ProdajniNalogIzvozStavke.IDNAdredjenog as Porudz,'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
+            select = "    select RadniNalogInterni.ID as KomNalogID, RadniNalogInterniPotvrda.FazaUsluge,ProdajniNalogIzvozStavke.IDNAdredjenog as Porudz,'Izvoz' as Izvor, 'DOLAZAK' as Smer,  KorisnikIzdao, IZvozKonacna.OpisPosla, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC,  " +
 " CASE IzvozKonacna.Drumski  WHEN 0 THEN ' '  WHEN 1 THEN 'L'  END AS DrumskiIma,  " +
 " CASE Cirada " +
-" WHEN 0 THEN 'PLATFORMA' " +
-" WHEN 1 THEN 'CIRADA' " +
+" WHEN 1 THEN 'PLATFORMA' " +
+" WHEN 2 THEN 'CIRADA' " +
 " END AS TipNaloga, IzvozKonacna.ID AS IzvozID, " +
 " Partnerji.PANaziv as Brodar, IzvozKonacna.Tara, p1.PaNaziv as VlasnikBrodskaPlomba, BrodskaPlomba as BrojBrodskePlombe, OstalePlombe , " +
-" PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz " +
+" PlaniranDtSpustanjaPunog as PlaniraniDatum, PlaniraniDtSpustanjaKontejnera as NoviDatum, Kapija.DatumDolaska as KapijaDolazak, BrojStavkePorudzbenice, KapijaUlaz, RadniNalogInterniPotvrda.Scenario, RadniNalogInterni.IDManipulacijaJed " +
 " from RadniNalogInterni " +
 " inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
@@ -62,7 +64,16 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 " inner join Partnerji on PArtnerji.PaSifra = IzvozKonacna.Brodar " +
 " inner join Partnerji p1 on p1.PaSifra = IzvozKonacna.VrstaBrodskePlombe " +
 " left join Kapija on Kapija.NalogID = RadniNalogInterni.ID " +
-" where  (KapijaUlaz = 0 or KapijaUlaz = 1) and Pregledac = 0 ";
+            /*" where  (KapijaUlaz = 0 or KapijaUlaz = 1) and Pregledac = 0 "; */
+            "WHERE RadniNalogInterniPotvrda.FazaUsluge = 1 " +
+            " AND ( "+
+            //--Za sve standardne naloge (Scenario 1 i Druga faza Scenarija 2): Važi STARI uslov bez izmena
+            " ((KapijaUlaz = 0 OR KapijaUlaz = 1)  AND RadniNalogInterni.IDManipulacijaJed <> 69 AND  RadniNalogInterniPotvrda.Pregledac = 0 )" +
+            "  OR " +
+
+           //Samo za Prvu fazu Scenarija 2 (ID manipulacije 69): Mora dodatno da sačekati Kalmara
+           "(KapijaUlaz >= 1 AND RadniNalogInterni.IDManipulacijaJed = 69 AND RadniNalogInterniPotvrda.Kalmar = 1 AND RadniNalogInterniPotvrda.Pregledac = 1 ) " +
+   ")";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -77,6 +88,8 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
             gridGroupingControl2.DataSource = ds.Tables[0];
             this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("IzvozID");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Scenario");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("IDManipulacijaJed");
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
@@ -123,15 +136,24 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
         }
 
-        int VratiRN(int NajavaID)
+        int VratiRN(int NajavaID, int Scenario, int fazaUsluge, int idManipulacija)
         {
             int pom = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
+            SqlCommand cmd = new SqlCommand();
+            if (Scenario == 2 && fazaUsluge == 1 && idManipulacija == 69)
+            {
+                 cmd = new SqlCommand(" select ID from RNOtpremaPlatforme where NalogID = " + Convert.ToInt32(NajavaID), con);
+            }
+            else 
+            {
+                 cmd = new SqlCommand(" select ID from RNPrijemPlatforme where NalogID = " + Convert.ToInt32(NajavaID), con);
+            }
 
-            SqlCommand cmd = new SqlCommand(" select ID from RNPrijemPlatforme where NalogID = " + Convert.ToInt32(NajavaID), con);
+               
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -156,9 +178,22 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             {
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
                 {
-                    int BrojRN= VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
-                   up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
-                  
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    int fazaUsluge = Convert.ToInt32(selectedRecord.Record.GetValue("FazaUsluge"));
+                    int idManipulacija = Convert.ToInt32(selectedRecord.Record.GetValue("IDManipulacijaJed")); 
+
+                    //   up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
+                    if (scenario == 2 && fazaUsluge == 1 && idManipulacija == 69)
+                    {
+                        int BrojRN = VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), scenario, fazaUsluge, idManipulacija);
+                       up.UpdateRN6UradjeneVizuelni(BrojRN, Kor);
+                    }
+                    else
+                    {
+                        int BrojRN = VratiRN(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), scenario, fazaUsluge, idManipulacija);
+                        up.UpdateRN4UradjeneVizuelni(BrojRN, Kor);
+                    }
+
                 }
             }
 
@@ -217,16 +252,30 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                         NalogID = selectedRecord.Record.GetValue("KomNalogID").ToString();
                     rn.UpdateRN4PotrebanCIR(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
 
+                    DialogResult dialogResult = MessageBox.Show("Da li želite da napravite CIR u app?", "Izraditi CIR", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        int idManipulacija = Convert.ToInt32(selectedRecord.Record.GetValue("IDManipulacijaJed"));
+                        int fazaUsluge = Convert.ToInt32(selectedRecord.Record.GetValue("FazaUsluge"));
+                        int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                        int BrojRN = VratiRN(Convert.ToInt32(NalogID), scenario, fazaUsluge, idManipulacija);
+                        int PrijemID = VratiPrijemID(Convert.ToInt32(NalogID));
+                        frmCIR cir = new frmCIR(PrijemID, 1, "RN4", BrojRN, Convert.ToInt32(NalogID));
+                        cir.Show();
+                    }
+
+
                 }
             }
-            DialogResult dialogResult = MessageBox.Show("Da li želite da napravite CIR u app?", "Izraditi CIR", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                int BrojRN = VratiRN(Convert.ToInt32(NalogID));
-                int PrijemID = VratiPrijemID(Convert.ToInt32(NalogID));
-                frmCIR cir = new frmCIR(PrijemID,1,"RN4", BrojRN, Convert.ToInt32(NalogID));
-                cir.Show();
-            }
+            //DialogResult dialogResult = MessageBox.Show("Da li želite da napravite CIR u app?", "Izraditi CIR", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+            //    int BrojRN = VratiRN(Convert.ToInt32(NalogID));
+            //    int PrijemID = VratiPrijemID(Convert.ToInt32(NalogID));
+            //    frmCIR cir = new frmCIR(PrijemID,1,"RN4", BrojRN, Convert.ToInt32(NalogID));
+            //    cir.Show();
+            //}
            
            
         }

@@ -722,8 +722,13 @@ namespace Saobracaj.Drumski
                            LTRIM(RTRIM(x.Nalogodavac)) AS Nalogodavac,
                            x.NalogodavacID,
 	                       x.BrojKontejnera,
-                           x.NalogID,
-                            CASE 
+                              CASE 
+                              WHEN x.mestoutovara = 0 OR x.mestoutovara IS NULL 
+                                THEN CONCAT(Ltrim(Rtrim(mp.naziv)), ' - ', Ltrim(Rtrim(mi.naziv)))
+                              ELSE 
+                                CONCAT(Ltrim(Rtrim(mp.naziv)), ' - ', Ltrim(Rtrim(mu.naziv)), ' - ', Ltrim(Rtrim(mi.naziv)))
+                           END AS Relacija,
+                           CASE 
                                     WHEN Uvoz = 1 THEN 'Uvoz'
                                     WHEN Uvoz = 0 THEN 'Izvoz'
                                     WHEN Uvoz = 2 THEN '3PU'
@@ -734,12 +739,8 @@ namespace Saobracaj.Drumski
 	                       CONVERT(VARCHAR, COALESCE(x.DatumUtovara, x.DtPreuzimanjaPraznogKontejnera), 104) AS DatumUtovara,
                            CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
                            CONVERT(VARCHAR,x.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera,
-                           CASE 
-                              WHEN x.mestoutovara = 0 OR x.mestoutovara IS NULL 
-                                THEN CONCAT(Ltrim(Rtrim(mp.naziv)), ' - ', Ltrim(Rtrim(mi.naziv)))
-                              ELSE 
-                                CONCAT(Ltrim(Rtrim(mp.naziv)), ' - ', Ltrim(Rtrim(mu.naziv)), ' - ', Ltrim(Rtrim(mi.naziv)))
-                           END AS Relacija,
+                        
+                           x.NalogID,
                            x.TipTransporta,
                            x.RelevantniDatum,
                            x.Scenario

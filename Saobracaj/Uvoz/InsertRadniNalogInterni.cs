@@ -1002,7 +1002,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void InsRadniNalogInterniIzvozPotvrda(int NalogID)
+        public void InsRadniNalogInterniIzvozPotvrda(int NalogID, int ScenarioZaBazu, int FazaUsluge)
         {
 
             SqlConnection conn = new SqlConnection(connection);
@@ -1017,8 +1017,20 @@ namespace Saobracaj.Uvoz
             ojizdavanja.Value = NalogID;
             cmd.Parameters.Add(ojizdavanja);
 
-           
 
+            SqlParameter oScenarioZaBazu = new SqlParameter();
+            oScenarioZaBazu.ParameterName = "@ScenarioZaBazu";
+            oScenarioZaBazu.SqlDbType = SqlDbType.Int;
+            oScenarioZaBazu.Direction = ParameterDirection.Input;
+            oScenarioZaBazu.Value = ScenarioZaBazu;
+            cmd.Parameters.Add(oScenarioZaBazu);
+
+            SqlParameter fazaUsluge = new SqlParameter();
+            fazaUsluge.ParameterName = "@FazaUsluge";
+            fazaUsluge.SqlDbType = SqlDbType.Int;
+            fazaUsluge.Direction = ParameterDirection.Input;
+            fazaUsluge.Value = FazaUsluge;
+            cmd.Parameters.Add(fazaUsluge);
 
 
             conn.Open();
@@ -1565,7 +1577,104 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
+        
+        public void DozvoliIzlaz(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DozvoliIzlaz";
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void ObavljenPregled(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "ObavljenPregled";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
         public void PromeniStatusKapija(int ID)
         {
             SqlConnection conn = new SqlConnection(connection);

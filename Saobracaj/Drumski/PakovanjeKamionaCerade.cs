@@ -743,11 +743,6 @@ namespace Saobracaj.Drumski
                            LTRIM(RTRIM(x.Nalogodavac)) AS Nalogodavac,
                            x.NalogodavacID,
 	                       x.BrojKontejnera,
-                           x.NalogID,
-                           x.Kamion,
-	                       CONVERT(VARCHAR,x.DatumUtovara,104) AS DatumUtovara,
-                           CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
-                           CONVERT(VARCHAR,x.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera,
                            CASE 
                               WHEN mu.Naziv IS NOT NULL AND mi.Naziv IS NOT NULL 
                                 THEN LTRIM(RTRIM(mu.Naziv)) + ' - ' + LTRIM(RTRIM(mi.Naziv))
@@ -757,6 +752,12 @@ namespace Saobracaj.Drumski
                                 THEN LTRIM(RTRIM(mi.Naziv))
                               ELSE '' 
                            END AS Relacija,
+                           
+                           x.Kamion,
+	                       CONVERT(VARCHAR,x.DatumUtovara,104) AS DatumUtovara,
+                           CONVERT(VARCHAR,x.DatumIstovara,104) AS DatumIstovara,
+                           CONVERT(VARCHAR,x.DtPreuzimanjaPraznogKontejnera,104) AS DtPreuzimanjaPraznogKontejnera,
+                           x.NalogID,
                            x.TipTransporta
                            
                         FROM
