@@ -32,7 +32,7 @@ namespace Saobracaj
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Tools.SplitButtonRenderer splitButtonRenderer1 = new Syncfusion.Windows.Forms.Tools.SplitButtonRenderer();
+            Syncfusion.Windows.Forms.Tools.SplitButtonRenderer splitButtonRenderer2 = new Syncfusion.Windows.Forms.Tools.SplitButtonRenderer();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainP));
             this.splitButton1 = new Syncfusion.Windows.Forms.Tools.SplitButton();
             this.ribbonControlAdv1 = new Syncfusion.Windows.Forms.Tools.RibbonControlAdv();
@@ -710,8 +710,8 @@ namespace Saobracaj
             this.splitButton1.Location = new System.Drawing.Point(797, 125);
             this.splitButton1.MinimumSize = new System.Drawing.Size(75, 23);
             this.splitButton1.Name = "splitButton1";
-            splitButtonRenderer1.SplitButton = this.splitButton1;
-            this.splitButton1.Renderer = splitButtonRenderer1;
+            splitButtonRenderer2.SplitButton = this.splitButton1;
+            this.splitButton1.Renderer = splitButtonRenderer2;
             this.splitButton1.ShowDropDownOnButtonClick = false;
             this.splitButton1.Size = new System.Drawing.Size(279, 29);
             this.splitButton1.TabIndex = 9;
@@ -765,7 +765,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2013;
             this.ribbonControlAdv1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem11;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem14;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowQuickPanelBelowRibbon = true;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = true;
@@ -858,12 +858,12 @@ namespace Saobracaj
             this.backStageTab3.Controls.Add(this.pictureBox3);
             this.backStageTab3.Image = ((System.Drawing.Image)(resources.GetObject("backStageTab3.Image")));
             this.backStageTab3.ImageSize = new System.Drawing.Size(20, 20);
-            this.backStageTab3.Location = new System.Drawing.Point(131, 2);
+            this.backStageTab3.Location = new System.Drawing.Point(231, 2);
             this.backStageTab3.Name = "backStageTab3";
             this.backStageTab3.Placement = Syncfusion.Windows.Forms.BackStageItemPlacement.Top;
             this.backStageTab3.Position = new System.Drawing.Point(11, 49);
             this.backStageTab3.ShowCloseButton = true;
-            this.backStageTab3.Size = new System.Drawing.Size(1291, 724);
+            this.backStageTab3.Size = new System.Drawing.Size(1191, 724);
             this.backStageTab3.TabFont = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.backStageTab3.TabIndex = 7;
             this.backStageTab3.Text = "    Logistika uvoza";
@@ -893,7 +893,7 @@ namespace Saobracaj
             this.txtModul2.Location = new System.Drawing.Point(25, 235);
             this.txtModul2.Name = "txtModul2";
             this.txtModul2.ReadOnly = true;
-            this.txtModul2.Size = new System.Drawing.Size(1171, 29);
+            this.txtModul2.Size = new System.Drawing.Size(1071, 29);
             this.txtModul2.TabIndex = 22;
             this.txtModul2.Text = "Integrated Logistics Management system";
             this.txtModul2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -909,7 +909,7 @@ namespace Saobracaj
             this.txtModul.HideSelection = false;
             this.txtModul.Location = new System.Drawing.Point(34, 329);
             this.txtModul.Name = "txtModul";
-            this.txtModul.Size = new System.Drawing.Size(529, 29);
+            this.txtModul.Size = new System.Drawing.Size(429, 29);
             this.txtModul.TabIndex = 7;
             this.txtModul.Text = "Integrated Logistics Management system";
             this.txtModul.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -922,7 +922,7 @@ namespace Saobracaj
             this.textBox2.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox2.Location = new System.Drawing.Point(143, 175);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(500, 21);
+            this.textBox2.Size = new System.Drawing.Size(400, 21);
             this.textBox2.TabIndex = 21;
             // 
             // label5
@@ -1975,7 +1975,7 @@ namespace Saobracaj
             this.toolStripButton10,
             this.toolStripButton232});
             this.toolStripEx2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx2.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx2.Location = new System.Drawing.Point(218, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2064,7 +2064,7 @@ namespace Saobracaj
             this.toolStripButton11,
             this.toolStripButton175});
             this.toolStripEx3.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx3.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx3.Location = new System.Drawing.Point(461, 1);
             this.toolStripEx3.Name = "toolStripEx3";
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2236,7 +2236,7 @@ namespace Saobracaj
             this.toolStripButton173,
             this.toolStripButton174});
             this.toolStripEx5.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx5.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx5.Location = new System.Drawing.Point(184, 1);
             this.toolStripEx5.Name = "toolStripEx5";
             this.toolStripEx5.Office12Mode = false;
             this.toolStripEx5.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2385,7 +2385,7 @@ namespace Saobracaj
             this.toolStripButton119,
             this.toolStripButton219});
             this.toolStripEx6.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx6.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx6.Location = new System.Drawing.Point(432, 1);
             this.toolStripEx6.Name = "toolStripEx6";
             this.toolStripEx6.Office12Mode = false;
             this.toolStripEx6.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2485,7 +2485,7 @@ namespace Saobracaj
             this.toolStripButton20,
             this.toolStripButton21});
             this.toolStripEx7.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx7.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx7.Location = new System.Drawing.Point(558, 1);
             this.toolStripEx7.Name = "toolStripEx7";
             this.toolStripEx7.Office12Mode = false;
             this.toolStripEx7.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2542,7 +2542,7 @@ namespace Saobracaj
             this.toolStripButton316,
             this.toolStripButton317});
             this.toolStripEx40.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx40.Location = new System.Drawing.Point(180, 1);
+            this.toolStripEx40.Location = new System.Drawing.Point(725, 1);
             this.toolStripEx40.Name = "toolStripEx40";
             this.toolStripEx40.Office12Mode = false;
             this.toolStripEx40.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2604,7 +2604,7 @@ namespace Saobracaj
             this.toolStripButton340,
             this.toolStripButton353});
             this.toolStripEx52.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx52.Location = new System.Drawing.Point(225, 1);
+            this.toolStripEx52.Location = new System.Drawing.Point(871, 1);
             this.toolStripEx52.Name = "toolStripEx52";
             this.toolStripEx52.Office12Mode = false;
             this.toolStripEx52.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2890,7 +2890,7 @@ namespace Saobracaj
             this.toolStripButton87,
             this.toolStripButton59});
             this.toolStripEx26.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx26.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx26.Location = new System.Drawing.Point(207, 1);
             this.toolStripEx26.Name = "toolStripEx26";
             this.toolStripEx26.Office12Mode = false;
             this.toolStripEx26.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -2956,7 +2956,7 @@ namespace Saobracaj
             this.toolStripButton13,
             this.toolStripButton26});
             this.toolStripEx43.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx43.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx43.Location = new System.Drawing.Point(364, 1);
             this.toolStripEx43.Name = "toolStripEx43";
             this.toolStripEx43.Office12Mode = false;
             this.toolStripEx43.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3226,7 +3226,7 @@ namespace Saobracaj
             this.toolStripButton64,
             this.toolStripButton93});
             this.toolStripEx21.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx21.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx21.Location = new System.Drawing.Point(209, 1);
             this.toolStripEx21.Name = "toolStripEx21";
             this.toolStripEx21.Office12Mode = false;
             this.toolStripEx21.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3346,7 +3346,7 @@ namespace Saobracaj
             this.toolStripButton231,
             this.toolStripButton240});
             this.toolStripEx23.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx23.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx23.Location = new System.Drawing.Point(497, 1);
             this.toolStripEx23.Name = "toolStripEx23";
             this.toolStripEx23.Office12Mode = false;
             this.toolStripEx23.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3464,7 +3464,7 @@ namespace Saobracaj
             this.toolStripButton279,
             this.toolStripButton296});
             this.toolStripEx4.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx4.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx4.Location = new System.Drawing.Point(723, 1);
             this.toolStripEx4.Name = "toolStripEx4";
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3525,7 +3525,7 @@ namespace Saobracaj
             this.toolStripEx50.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx50.Image = null;
             this.toolStripEx50.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEx50.Location = new System.Drawing.Point(180, 1);
+            this.toolStripEx50.Location = new System.Drawing.Point(904, 1);
             this.toolStripEx50.Name = "toolStripEx50";
             this.toolStripEx50.Office12Mode = false;
             this.toolStripEx50.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3736,7 +3736,7 @@ namespace Saobracaj
             this.toolStripButton47,
             this.toolStripButton84});
             this.toolStripEx16.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx16.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx16.Location = new System.Drawing.Point(225, 1);
             this.toolStripEx16.Name = "toolStripEx16";
             this.toolStripEx16.Office12Mode = false;
             this.toolStripEx16.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3804,7 +3804,7 @@ namespace Saobracaj
             this.toolStripButton48,
             this.toolStripButton49});
             this.toolStripEx17.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx17.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx17.Location = new System.Drawing.Point(414, 1);
             this.toolStripEx17.Name = "toolStripEx17";
             this.toolStripEx17.Office12Mode = false;
             this.toolStripEx17.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3850,7 +3850,7 @@ namespace Saobracaj
             this.toolStripButton92,
             this.toolStripButton374});
             this.toolStripEx28.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx28.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx28.Location = new System.Drawing.Point(554, 1);
             this.toolStripEx28.Name = "toolStripEx28";
             this.toolStripEx28.Office12Mode = false;
             this.toolStripEx28.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -3911,7 +3911,7 @@ namespace Saobracaj
             this.toolStripButton109,
             this.toolStripButton110});
             this.toolStripEx29.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx29.Location = new System.Drawing.Point(180, 1);
+            this.toolStripEx29.Location = new System.Drawing.Point(734, 1);
             this.toolStripEx29.Name = "toolStripEx29";
             this.toolStripEx29.Office12Mode = false;
             this.toolStripEx29.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4011,7 +4011,7 @@ namespace Saobracaj
             this.toolStripButton376,
             this.toolStripButton378});
             this.toolStripEx53.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx53.Location = new System.Drawing.Point(225, 1);
+            this.toolStripEx53.Location = new System.Drawing.Point(952, 1);
             this.toolStripEx53.Name = "toolStripEx53";
             this.toolStripEx53.Office12Mode = false;
             this.toolStripEx53.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4115,7 +4115,7 @@ namespace Saobracaj
             this.toolStripEx31.Image = null;
             this.toolStripEx31.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx31.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx31.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx31.Location = new System.Drawing.Point(417, 1);
             this.toolStripEx31.Name = "toolStripEx31";
             this.toolStripEx31.Office12Mode = false;
             this.toolStripEx31.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4190,7 +4190,7 @@ namespace Saobracaj
             this.toolStripEx12.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton35});
             this.toolStripEx12.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx12.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx12.Location = new System.Drawing.Point(180, 1);
             this.toolStripEx12.Name = "toolStripEx12";
             this.toolStripEx12.Office12Mode = false;
             this.toolStripEx12.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4224,7 +4224,7 @@ namespace Saobracaj
             this.toolStripButton37,
             this.toolStripButton38});
             this.toolStripEx13.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx13.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx13.Location = new System.Drawing.Point(363, 1);
             this.toolStripEx13.Name = "toolStripEx13";
             this.toolStripEx13.Office12Mode = false;
             this.toolStripEx13.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4268,7 +4268,7 @@ namespace Saobracaj
             this.toolStripButton117,
             this.toolStripButton118});
             this.toolStripEx33.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx33.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx33.Location = new System.Drawing.Point(535, 1);
             this.toolStripEx33.Name = "toolStripEx33";
             this.toolStripEx33.Office12Mode = false;
             this.toolStripEx33.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4406,7 +4406,7 @@ namespace Saobracaj
             this.toolStripButton57,
             this.toolStripButton58});
             this.toolStripEx18.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx18.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx18.Location = new System.Drawing.Point(253, 1);
             this.toolStripEx18.Name = "toolStripEx18";
             this.toolStripEx18.Office12Mode = false;
             this.toolStripEx18.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4492,7 +4492,7 @@ namespace Saobracaj
             this.toolStripButton178,
             this.toolStripButton9});
             this.toolStripEx42.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx42.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx42.Location = new System.Drawing.Point(438, 1);
             this.toolStripEx42.Name = "toolStripEx42";
             this.toolStripEx42.Office12Mode = false;
             this.toolStripEx42.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -4564,7 +4564,7 @@ namespace Saobracaj
             this.toolStripEx58.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx58.Image = null;
             this.toolStripEx58.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx58.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx58.Location = new System.Drawing.Point(761, 1);
             this.toolStripEx58.Name = "toolStripEx58";
             this.toolStripEx58.Office12Mode = false;
             this.toolStripEx58.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -5357,7 +5357,7 @@ namespace Saobracaj
             this.toolStripButton238,
             this.toolStripButton338});
             this.toolStripEx35.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx35.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx35.Location = new System.Drawing.Point(346, 1);
             this.toolStripEx35.Name = "toolStripEx35";
             this.toolStripEx35.Office12Mode = false;
             this.toolStripEx35.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -5659,7 +5659,7 @@ namespace Saobracaj
             this.toolStripButton364,
             this.toolStripButton370});
             this.toolStripEx36.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx36.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx36.Location = new System.Drawing.Point(614, 1);
             this.toolStripEx36.Name = "toolStripEx36";
             this.toolStripEx36.Office12Mode = false;
             this.toolStripEx36.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -5951,7 +5951,7 @@ namespace Saobracaj
             this.toolStripButton375,
             this.toolStripSplitButton1});
             this.toolStripEx37.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx37.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx37.Location = new System.Drawing.Point(879, 1);
             this.toolStripEx37.Name = "toolStripEx37";
             this.toolStripEx37.Office12Mode = false;
             this.toolStripEx37.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6173,7 +6173,7 @@ namespace Saobracaj
             this.toolStripDropDownButton1,
             this.toolStripButton236});
             this.toolStripEx38.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx38.Location = new System.Drawing.Point(180, 1);
+            this.toolStripEx38.Location = new System.Drawing.Point(1132, 1);
             this.toolStripEx38.Name = "toolStripEx38";
             this.toolStripEx38.Office12Mode = false;
             this.toolStripEx38.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -6375,7 +6375,7 @@ namespace Saobracaj
             this.toolStripButton325,
             this.toolStripButton326});
             this.toolStripEx39.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx39.Location = new System.Drawing.Point(225, 1);
+            this.toolStripEx39.Location = new System.Drawing.Point(1177, 1);
             this.toolStripEx39.Name = "toolStripEx39";
             this.toolStripEx39.Office12Mode = false;
             this.toolStripEx39.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -7055,7 +7055,7 @@ namespace Saobracaj
             this.toolStripButton384,
             this.toolStripButton285});
             this.toolStripEx44.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx44.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx44.Location = new System.Drawing.Point(357, 1);
             this.toolStripEx44.Name = "toolStripEx44";
             this.toolStripEx44.Office12Mode = false;
             this.toolStripEx44.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -7253,7 +7253,7 @@ namespace Saobracaj
             this.toolStripButton203,
             this.toolStripButton206});
             this.toolStripEx45.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx45.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx45.Location = new System.Drawing.Point(652, 1);
             this.toolStripEx45.Name = "toolStripEx45";
             this.toolStripEx45.Office12Mode = false;
             this.toolStripEx45.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -7306,7 +7306,7 @@ namespace Saobracaj
             this.toolStripEx59.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton398});
             this.toolStripEx59.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx59.Location = new System.Drawing.Point(135, 1);
+            this.toolStripEx59.Location = new System.Drawing.Point(847, 1);
             this.toolStripEx59.Name = "toolStripEx59";
             this.toolStripEx59.Office12Mode = false;
             this.toolStripEx59.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -7749,7 +7749,7 @@ namespace Saobracaj
             this.toolStripButton349,
             this.toolStripButton383});
             this.toolStripEx47.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx47.Location = new System.Drawing.Point(413, 1);
+            this.toolStripEx47.Location = new System.Drawing.Point(45, 1);
             this.toolStripEx47.Name = "toolStripEx47";
             this.toolStripEx47.Office12Mode = false;
             this.toolStripEx47.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -7905,7 +7905,7 @@ namespace Saobracaj
             this.toolStripButton105,
             this.toolStripButton318});
             this.toolStripEx49.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx49.Location = new System.Drawing.Point(772, 1);
+            this.toolStripEx49.Location = new System.Drawing.Point(90, 1);
             this.toolStripEx49.Name = "toolStripEx49";
             this.toolStripEx49.Office12Mode = false;
             this.toolStripEx49.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -8096,7 +8096,7 @@ namespace Saobracaj
             this.toolStripButton409,
             this.toolStripButton410});
             this.toolStripEx55.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx55.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx55.Location = new System.Drawing.Point(250, 1);
             this.toolStripEx55.Name = "toolStripEx55";
             this.toolStripEx55.Office12Mode = false;
             this.toolStripEx55.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -8149,7 +8149,7 @@ namespace Saobracaj
             this.toolStripEx62.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton403});
             this.toolStripEx62.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx62.Location = new System.Drawing.Point(90, 1);
+            this.toolStripEx62.Location = new System.Drawing.Point(457, 1);
             this.toolStripEx62.Name = "toolStripEx62";
             this.toolStripEx62.Office12Mode = false;
             this.toolStripEx62.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -8276,7 +8276,7 @@ namespace Saobracaj
             this.toolStripButton390,
             this.toolStripButton396});
             this.toolStripEx56.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx56.Location = new System.Drawing.Point(41, 1);
+            this.toolStripEx56.Location = new System.Drawing.Point(200, 1);
             this.toolStripEx56.Name = "toolStripEx56";
             this.toolStripEx56.Office12Mode = false;
             this.toolStripEx56.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -8387,7 +8387,7 @@ namespace Saobracaj
             this.toolStripEx60.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton405});
             this.toolStripEx60.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx60.Location = new System.Drawing.Point(45, 1);
+            this.toolStripEx60.Location = new System.Drawing.Point(170, 1);
             this.toolStripEx60.Name = "toolStripEx60";
             this.toolStripEx60.Office12Mode = false;
             this.toolStripEx60.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);

@@ -1479,11 +1479,19 @@ namespace Saobracaj.Uvoz
             }
             if (Forma == "GATE OUT KAMION" || Forma ==  "GATE OUT KAMION TERMINAL" || Forma == "GATE OUT KAMION IZVOZ")
             {
-                
-                MessageBox.Show("Formirate GATE OUT KAMION Platforma");
-                KISUsl = VratiKonkretanIDUsluge();
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ,  txtBrojKontejnera.Text);
-                okk.Show();
+
+                if (OJ == 2)
+                {
+                   
+                    MessageBox.Show("Formirate GATE OUT KAMION Platforma");
+                     KISUsl = VratiKonkretanIDUsluge();
+                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ,  txtBrojKontejnera.Text);
+                    okk.Show();
+
+                }
+
+
+                  
 
               
 
@@ -1519,7 +1527,7 @@ namespace Saobracaj.Uvoz
                         // Handle the user's response
                         if (result == DialogResult.Yes)
                         {
-                           
+                           //Scenario 13 
                             Dokumeta.InsertPrijemKontejneraVoz insV = new Dokumeta.InsertPrijemKontejneraVoz();
                             insV.InsertPrijemKontVoz(Convert.ToDateTime(DateTime.Now), Convert.ToInt32(1), Convert.ToInt32(0), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.Now), Korisnik, "", "", 0, "Scenario I", Convert.ToInt32(0), Convert.ToInt32(0), 0, 0, Convert.ToInt32(0), 2);
                             InsertUvozKonacna insk = new InsertUvozKonacna();
