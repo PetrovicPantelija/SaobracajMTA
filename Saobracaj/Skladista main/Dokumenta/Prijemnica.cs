@@ -23,7 +23,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string Korisnik = Saobracaj.Sifarnici.frmLogovanje.user;
-        public Prijemnica(string tip,string vrsta,int rn)
+        public Prijemnica(string tip, string vrsta, int rn)
         {
             InitializeComponent();
             Tip = tip;
@@ -41,9 +41,11 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             panel6.Visible = false;
             panel7.Visible = false;
+            panel9.Visible = false;
 
         }
         DataTable dtUsluge = new DataTable();
+        DataTable dtArtikli = new DataTable();
         private void InitTable()
         {
             dtUsluge = new DataTable();
@@ -467,11 +469,12 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 }
                 conn.Close();
             }
-        }               
+        }
         public class PrijemnicaStavke
         {
             public int RB { get; set; }
             public int NHM { get; set; }
+            public int IDArtikla { get; set; }
             public string Naziv { get; set; }
             public string Naimenovanje { get; set; }
             public string JM { get; set; }
@@ -503,6 +506,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         SELECT 
             RB,
             NHM,
+            IDArtikla,
             RNCarinskoPrijemnicaStavke.Naziv as Naziv,
             Naimenovanje,
             JM,
@@ -537,6 +541,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                             {
                                 RB = Convert.ToInt32(dr["RB"]),
                                 NHM = dr["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NHM"]),
+                                IDArtikla = dr["IDArtikla"] == DBNull.Value ? 0 : Convert.ToInt32(dr["IDArtikla"]),
                                 Naziv = dr["Naziv"] == DBNull.Value ? "" : dr["Naziv"].ToString(),
                                 Naimenovanje = dr["Naimenovanje"] == DBNull.Value ? "" : dr["Naimenovanje"].ToString(),
                                 JM = dr["JM"] == DBNull.Value ? "" : dr["JM"].ToString(),
@@ -607,6 +612,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
             selektovanaStavka = null;
             selektovaniRB = 0;
             nhm = 0;
+            idArtikla = 0;
 
             txtArtikal.Text = "";
             txtNaimenovanje.Text = "";
@@ -627,6 +633,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private PrijemnicaStavke selektovanaStavka = null;
         private int selektovaniRB = 0;
         int nhm = 0;
+        int idArtikla = 0;
         private void PopuniPoljaIzStavke(PrijemnicaStavke stavka)
         {
             if (stavka == null)
@@ -635,6 +642,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
             selektovanaStavka = stavka;
             selektovaniRB = stavka.RB;
             nhm = stavka.NHM;
+            idArtikla = stavka.IDArtikla;
 
             txtArtikal.Text = stavka.Naziv;
             txtNaimenovanje.Text = stavka.Naimenovanje;
@@ -725,6 +733,86 @@ Where RadniNalogSkladista.ID=" + id, conn);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
 
         }
+        private void FillArtikli()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            var query = @"select a.ID as ID,a.Sifra as Sifra,RTRIM(a.Artikal) as Artikal,a.JM,a.KoeficijentKoletaJM,
+            aC.Sifra as [Cetvrti nivo sifra],RTRIM(aC.Naziv) as [Cetvrti nivo naziv],
+            aT.Sifra as [Treci nivo sifra],RTRIM(aT.Naziv) as [Treci nivo naziv],
+            aD.Sifra as [Drugi nivo sifra],RTRIM(aD.Naziv) as [Drugi nivo naziv],
+            aP.Sifra as [Prvi nivo sifra],RTRIM(aP.Naziv) as [Prvi nivo naziv]
+            from Artikli a
+            inner join ArtikliCetvrtiNivo aC on a.IDNadredjena=aC.ID
+            inner join ArtikliTreciNivo aT on aC.IDNadredjena=aT.ID
+            inner join ArtikliDrugiNivo aD on aT.IDNadredjena=aD.ID
+            inner join ArtikliPrviNivo aP on aD.IDNadredjena=aP.ID
+            order by a.ID asc";
+            var da = new SqlDataAdapter(query, conn);
+
+            dtArtikli = new DataTable();
+            da.Fill(dtArtikli);
+            dtArtikli.CaseSensitive = false;
+
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = dtArtikli.DefaultView;
+            dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView3.MultiSelect = false;
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+        }
+
+        private string EscapeArtikliFilter(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return "";
+
+            return value.Trim()
+                .Replace("'", "''")
+                .Replace("[", "[[]")
+                .Replace("%", "[%]")
+                .Replace("*", "[*]");
+        }
+
+        private void DodajArtikliFilter(List<string> filteri, string tekst, bool poSifri, string kolonaSifra, string kolonaNaziv)
+        {
+            if (string.IsNullOrWhiteSpace(tekst))
+                return;
+
+            string vrednost = EscapeArtikliFilter(tekst);
+            string kolona = poSifri ? kolonaSifra : kolonaNaziv;
+
+            filteri.Add("CONVERT([" + kolona + "], 'System.String') LIKE '%" + vrednost + "%'");
+        }
+
+        private void FiltrirajArtikle()
+        {
+            if (dtArtikli == null || dtArtikli.Columns.Count == 0)
+                return;
+
+            try
+            {
+                List<string> filteri = new List<string>();
+
+                DodajArtikliFilter(filteri, txtArtikalGlavni.Text, chkArtikal.Checked, "Sifra", "Artikal");
+                DodajArtikliFilter(filteri, txtPrviNivo.Text, chkPrviNivo.Checked, "Prvi nivo sifra", "Prvi nivo naziv");
+                DodajArtikliFilter(filteri, txtDrugiNivo.Text, chkDrugiNivo.Checked, "Drugi nivo sifra", "Drugi nivo naziv");
+                DodajArtikliFilter(filteri, txtTreciNivo.Text, chkTreciNivo.Checked, "Treci nivo sifra", "Treci nivo naziv");
+                DodajArtikliFilter(filteri, txtCetvrtiNivo.Text, chkCetvrtiNivo.Checked, "Cetvrti nivo sifra", "Cetvrti nivo naziv");
+
+                if (filteri.Count == 0)
+                {
+                    dtArtikli.DefaultView.RowFilter = "";
+                }
+                else
+                {
+                    dtArtikli.DefaultView.RowFilter = string.Join(" AND ", filteri);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri pretrazi artikala: " + ex.Message);
+            }
+        }
+
         private void btnIzbaci_Click(object sender, EventArgs e)
         {
             if (dgvUsluge.CurrentRow == null)
@@ -798,7 +886,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventArgs e)
@@ -812,7 +900,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
 
         private void cboMagacinskiBroj_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            MagacinskiBroj=Convert.ToInt32(cboMagacinskiBroj.SelectedValue);
+            MagacinskiBroj = Convert.ToInt32(cboMagacinskiBroj.SelectedValue);
         }
 
         private void btnPaleta_Click(object sender, EventArgs e)
@@ -879,6 +967,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     {
                         RB = rb,
                         NHM = nhm,
+                        IDArtikla = idArtikla,
                         Naziv = txtArtikal.Text.Trim(),
                         Naimenovanje = txtNaimenovanje.Text.Trim(),
                         JM = cboJM.SelectedValue == null ? "" : cboJM.SelectedValue.ToString(),
@@ -902,6 +991,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 else
                 {
                     postojeca.NHM = nhm;
+                    postojeca.IDArtikla = idArtikla;
                     postojeca.Naziv = txtArtikal.Text.Trim();
                     postojeca.Naimenovanje = txtNaimenovanje.Text.Trim();
                     postojeca.JM = cboJM.SelectedValue == null ? "" : cboJM.SelectedValue.ToString();
@@ -943,6 +1033,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 if (row.Selected)
                 {
                     nhm = Convert.ToInt32(row.Cells["ID"].Value);
+                    idArtikla = 0;
                     txtArtikal.Text = row.Cells["Naziv"].Value.ToString().TrimEnd();
                 }
             }
@@ -1110,6 +1201,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                         RB = ToIntExcel(rbObj),
                         Naziv = ToStringExcel(nazivObj),
                         NHM = ToIntExcel(nhmObj),
+                        IDArtikla = 0,
                         Koleta = ToDecimalExcel(koletaObj),
                         Neto = ToDecimalExcel(netoObj),
                         Bruto = ToDecimalExcel(brutoObj),
@@ -1246,7 +1338,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
 
                 foreach (var i in list)
                 {
-                    ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
+                    ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.IDArtikla, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
                         i.Pozicija, i.Paleta, i.VrstaPaleta, Convert.ToInt32(i.PDV), Convert.ToInt32(i.Carina), Convert.ToDecimal(i.Neto), i.Napomena);
                 }
                 int VratiNalogID = VratiNalogIDF();
@@ -1279,6 +1371,128 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void btnZapisnik_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnArtikli_Click(object sender, EventArgs e)
+        {
+            txtArtikalGlavni.Text = "";
+            txtPrviNivo.Text = "";
+            txtDrugiNivo.Text = "";
+            txtTreciNivo.Text = "";
+            txtCetvrtiNivo.Text = "";
+
+            chkArtikal.Checked = false;
+            chkPrviNivo.Checked = false;
+            chkDrugiNivo.Checked = false;
+            chkTreciNivo.Checked = false;
+            chkCetvrtiNivo.Checked = false;
+
+            FillArtikli();
+            panel9.Visible = true;
+        }
+
+        private void btnNazadArtikal_Click(object sender, EventArgs e)
+        {
+            panel9.Visible = false;
+        }
+
+        private void btnDodajArtikal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView3.CurrentRow == null)
+                {
+                    MessageBox.Show("Nijedan artikal nije selektovan.");
+                    return;
+                }
+
+                DataGridViewRow row = dataGridView3.CurrentRow;
+
+                if (row.Cells["ID"].Value == null || row.Cells["ID"].Value == DBNull.Value)
+                {
+                    MessageBox.Show("Izabrani artikal nema ID.");
+                    return;
+                }
+
+                idArtikla = Convert.ToInt32(row.Cells["ID"].Value);
+                nhm = 0;
+
+                if (row.Cells["Artikal"].Value != null && row.Cells["Artikal"].Value != DBNull.Value)
+                {
+                    txtArtikal.Text = row.Cells["Artikal"].Value.ToString().TrimEnd();
+                }
+
+                if (row.Cells["JM"].Value != null && row.Cells["JM"].Value != DBNull.Value)
+                {
+                    string jm = row.Cells["JM"].Value.ToString().TrimEnd();
+                    if (jm != "")
+                    {
+                        cboJM.SelectedValue = jm;
+                    }
+                }
+
+                panel9.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri izboru artikla: " + ex.Message);
+            }
+        }
+
+        private void chkPrviNivo_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void chkDrugiNivo_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void chkTreciNivo_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void chkCetvrtiNivo_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void txtPrviNivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void txtDrugiNivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void txtTreciNivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void txtCetvrtiNivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void chkArtikal_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void txtArtikalGlavni_KeyUp(object sender, KeyEventArgs e)
+        {
+            FiltrirajArtikle();
+        }
+
+        private void btnPaleteNovo_Click(object sender, EventArgs e)
+        {
+            PaletePrebacivanje frm = new PaletePrebacivanje();
+            frm.Show();
         }
     }
 }

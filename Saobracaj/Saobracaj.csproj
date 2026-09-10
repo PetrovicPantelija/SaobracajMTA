@@ -2409,6 +2409,12 @@
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.Designer.cs">
       <DependentUpon>frmPlatforma.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatformaOtprema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPlatformaOtprema.Designer.cs">
+      <DependentUpon>frmPlatformaOtprema.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaCerada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3584,6 +3590,12 @@
     </Compile>
     <Compile Include="Skladista main\OtpremaLager.Designer.cs">
       <DependentUpon>OtpremaLager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\PaletePrebacivanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\PaletePrebacivanje.Designer.cs">
+      <DependentUpon>PaletePrebacivanje.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\PregledKomercijalnihNaloga.cs">
       <SubType>Form</SubType>
@@ -5820,6 +5832,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.resx">
       <DependentUpon>frmPlatforma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatformaOtprema.resx">
+      <DependentUpon>frmPlatformaOtprema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPrijemIOtpremaCerada.resx">
       <DependentUpon>frmPrijemIOtpremaCerada.cs</DependentUpon>

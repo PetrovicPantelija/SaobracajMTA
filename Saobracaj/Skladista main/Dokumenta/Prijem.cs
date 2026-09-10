@@ -88,6 +88,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             Ulaz = ulaz;
             Vrsta = vrsta;
             panel5.Visible = false;
+            VratiMagacinskiPredmet();
         }
         private void Prijem_Load(object sender, EventArgs e)
         {
@@ -1055,6 +1056,121 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
 
             return nalogID;
+        }
+
+        private void btnNazad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIDMP_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void VratiMagacinskiPredmet()
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            var tipSklad = "Select ID,RTrim(Naziv) as Naziv from TipSkladista order by id asc";
+            var daTipSkladista = new SqlDataAdapter(tipSklad, conn);
+            var dsTipSkladista = new System.Data.DataSet();
+            daTipSkladista.Fill(dsTipSkladista);
+            cboTipSkladista.DataSource = dsTipSkladista.Tables[0];
+            cboTipSkladista.DisplayMember = "Naziv";
+            cboTipSkladista.ValueMember = "ID";
+
+            var sklad = "Select ID,RTrim(Naziv) as Naziv From Skladista order by id asc";
+            var da = new SqlDataAdapter(sklad, conn);
+            var ds = new System.Data.DataSet();
+            da.Fill(ds);
+            cboSklad.DataSource = ds.Tables[0];
+            cboSklad.DisplayMember = "Naziv";
+            cboSklad.ValueMember = "ID";
+
+            var valute = "Select VaSifra,VaNaziv From Valute";
+            var daValuta = new SqlDataAdapter(valute, conn);
+            var dsValuta = new System.Data.DataSet();
+            daValuta.Fill(dsValuta);
+            cboValutaMP.DataSource = dsValuta.Tables[0];
+            cboValutaMP.DisplayMember = "VaNaziv";
+            cboValutaMP.ValueMember = "VaSifra";
+
+            conn.Open();
+            var cmd = new SqlCommand(@"SELECT ID,TipSkladista,CI,SifraSkladista,VrstaCP,BrojJCI,Datum,OpisRobe,Koleta,Neto,Bruto,Valuta,Vrednost,Spedicija
+    FROM MagacinskiPredmet
+    Where RN=" + Convert.ToInt32(txtID.Text), conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                txtIDMP.Text = dr["ID"].ToString();
+                cboTipSkladista.SelectedValue = Convert.ToInt32(dr["TipSkladista"].ToString());
+                textBox3.Text = dr["CI"].ToString();
+                cboSklad.SelectedValue = Convert.ToInt32(dr["SifraSkladista"].ToString());
+                txtVrstaCP.Text = dr["VrstaCP"].ToString();
+                textBox4.Text = dr["BrojJCI"].ToString();
+                dateTimePicker1.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                txtKoleta.Text = dr["Koleta"].ToString();
+                txtNeto.Text = dr["Neto"].ToString();
+                txtBruto.Text = dr["Bruto"].ToString();
+                txtVrednost.Text = dr["Vrednost"].ToString();
+                cboValutaMP.SelectedValue = dr["Valuta"].ToString();
+                txtSpedicija.Text = dr["Spedicija"].ToString();
+                txtOpisRobe.Text = dr["OpisRobe"].ToString();
+            }
+            conn.Close();
+        }
+
+        private void btnNoviMP_Click(object sender, EventArgs e)
+        {
+            InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
+            bool ima = false;
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                
+                conn.Open();
+                var cmd = new SqlCommand(@"SELECT IsNull(ID,0) From MagacinskiPredmet Where RN=" + Convert.ToInt32(txtID.Text), conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (!dr.HasRows)
+                {
+
+                    ima = true;
+                }
+            }
+            if (ima == true)
+            {
+                ins.InsertMagacinskiPredmet(Convert.ToInt32(txtID.Text), MagacinskiBroj, DateTime.Now, Convert.ToInt32(cboVlasnikRobe.SelectedValue),
+                    Convert.ToInt32(cboTipSkladista.SelectedValue), textBox3.Text.ToString(), cboSklad.SelectedValue.ToString(), txtVrstaCP.Text.ToString(),
+                    textBox4.Text.ToString(), Convert.ToDateTime(dateTimePicker1.Value), txtOpisRobe.Text.ToString(), Convert.ToDecimal(txtKoleta.Text), Convert.ToDecimal(txtNeto.Text),
+                    Convert.ToDecimal(txtBruto.Text), cboValutaMP.SelectedValue.ToString(), Convert.ToDecimal(txtVrednost.Text), txtSpedicija.Text);
+
+                MessageBox.Show("Upisan magacinski predmet!");
+            }
+            else
+            {
+                MessageBox.Show("Za ovaj RN vec postoji magacinski predmet!");
+                return;
+            }
+        }
+
+        private void btnUpdateMP_Click(object sender, EventArgs e)
+        {
+            if (txtIDMP.Text != "")
+            {
+                InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
+                ins.UpdateMagacinskiPredmet(Convert.ToInt32(txtIDMP.Text),Convert.ToInt32(txtID.Text), MagacinskiBroj, DateTime.Now, Convert.ToInt32(cboVlasnikRobe.SelectedValue),
+                    Convert.ToInt32(cboTipSkladista.SelectedValue), textBox3.Text.ToString(), cboSklad.SelectedValue.ToString(), txtVrstaCP.Text.ToString(),
+                    textBox4.Text.ToString(), Convert.ToDateTime(dateTimePicker1.Value), txtOpisRobe.Text.ToString(), Convert.ToDecimal(txtKoleta.Text), Convert.ToDecimal(txtNeto.Text),
+                    Convert.ToDecimal(txtBruto.Text), cboValutaMP.SelectedValue.ToString(), Convert.ToDecimal(txtVrednost.Text), txtSpedicija.Text);
+
+                MessageBox.Show("Upisan magacinski predmet!");
+
+            }
+            else
+            {
+                MessageBox.Show("Za ovaj RN nije kreiran magacinski predmet!");
+                return;
+            }
         }
     }
 }

@@ -1434,7 +1434,335 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
                 }
             }
         }
+        public void InsertMagacinskiPredmet(int RN,int MB,DateTime Godina,int VlasnikRobe,int TipSkladista,string CI,string SifraSkladista,string VrstaCP,string BrojJCI,
+            DateTime Datum,string OpisRobe,decimal Koleta,decimal Neto,decimal Bruto,string Valuta,decimal Vrednost,string Spedicija)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertMagacinskiPredmet";
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter spedicija = new SqlParameter();
+            spedicija.ParameterName = "@Spedicija";
+            spedicija.SqlDbType = SqlDbType.NVarChar;
+            spedicija.Direction = ParameterDirection.Input;
+            spedicija.Value = Spedicija;
+            cmd.Parameters.Add(spedicija);
+
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.SqlDbType = SqlDbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost;
+            cmd.Parameters.Add(vrednost);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = Valuta;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta;
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter opis = new SqlParameter();
+            opis.ParameterName = "@OpisRobe";
+            opis.SqlDbType = SqlDbType.NVarChar;
+            opis.Direction = ParameterDirection.Input;
+            opis.Value = OpisRobe;
+            cmd.Parameters.Add(opis);
+
+            SqlParameter datum = new SqlParameter();
+            datum.ParameterName = "@Datum";
+            datum.SqlDbType = SqlDbType.DateTime;
+            datum.Direction = ParameterDirection.Input;
+            datum.Value = Datum;
+            cmd.Parameters.Add(datum);
+
+            SqlParameter broj = new SqlParameter();
+            broj.ParameterName = "@BrojJCI";
+            broj.SqlDbType = SqlDbType.NVarChar;
+            broj.Direction = ParameterDirection.Input;
+            broj.Value = BrojJCI;
+            cmd.Parameters.Add(broj);
+
+            SqlParameter vrstaCp = new SqlParameter();
+            vrstaCp.ParameterName = "@VrstaCP";
+            vrstaCp.SqlDbType = SqlDbType.NVarChar;
+            vrstaCp.Direction = ParameterDirection.Input;
+            vrstaCp.Value = VrstaCP;
+            cmd.Parameters.Add(vrstaCp);
+
+            SqlParameter sifraSkladista = new SqlParameter();
+            sifraSkladista.ParameterName = "@SifraSkladista";
+            sifraSkladista.SqlDbType = SqlDbType.NVarChar;
+            sifraSkladista.Direction = ParameterDirection.Input;
+            sifraSkladista.Value = SifraSkladista;
+            cmd.Parameters.Add(sifraSkladista);
+
+            SqlParameter ci = new SqlParameter();
+            ci.ParameterName = "@CI";
+            ci.SqlDbType = SqlDbType.NVarChar;
+            ci.Direction = ParameterDirection.Input;
+            ci.Value = CI;
+            cmd.Parameters.Add(ci);
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType=SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;  
+            cmd.Parameters.Add(rn);
+
+            SqlParameter mb = new SqlParameter();
+            mb.ParameterName = "@MB";
+            mb.SqlDbType=SqlDbType.Int;
+            mb.Direction = ParameterDirection.Input;
+            mb.Value = MB;
+            cmd.Parameters.Add(mb);
+
+            SqlParameter godina = new SqlParameter();
+            godina.ParameterName = "@Godina";
+            godina.SqlDbType=SqlDbType.DateTime;
+            godina.Direction= ParameterDirection.Input;
+            godina.Value= Godina;
+            cmd.Parameters.Add(godina);
+
+            SqlParameter vlasnikRobe = new SqlParameter();
+            vlasnikRobe.ParameterName = "@VlasnikRobe";
+            vlasnikRobe.SqlDbType=SqlDbType.Int;
+            vlasnikRobe.Direction= ParameterDirection.Input;
+            vlasnikRobe.Value = VlasnikRobe;
+            cmd.Parameters.Add(vlasnikRobe);
+
+            SqlParameter tipSkladista = new SqlParameter();
+            tipSkladista.ParameterName = "@TipSkladista";
+            tipSkladista.SqlDbType=SqlDbType.Int;
+            tipSkladista.Direction = ParameterDirection.Input;
+            tipSkladista.Value = TipSkladista;
+            cmd.Parameters.Add(tipSkladista);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void UpdateMagacinskiPredmet(int ID,int RN, int MB, DateTime Godina, int VlasnikRobe, int TipSkladista, string CI, string SifraSkladista, string VrstaCP, string BrojJCI,
+            DateTime Datum, string OpisRobe, decimal Koleta, decimal Neto, decimal Bruto, string Valuta, decimal Vrednost, string Spedicija)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateMagacinskiPredmet";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter spedicija = new SqlParameter();
+            spedicija.ParameterName = "@Spedicija";
+            spedicija.SqlDbType = SqlDbType.NVarChar;
+            spedicija.Direction = ParameterDirection.Input;
+            spedicija.Value = Spedicija;
+            cmd.Parameters.Add(spedicija);
+
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.SqlDbType = SqlDbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost;
+            cmd.Parameters.Add(vrednost);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = Valuta;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta;
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter opis = new SqlParameter();
+            opis.ParameterName = "@OpisRobe";
+            opis.SqlDbType = SqlDbType.NVarChar;
+            opis.Direction = ParameterDirection.Input;
+            opis.Value = OpisRobe;
+            cmd.Parameters.Add(opis);
+
+            SqlParameter datum = new SqlParameter();
+            datum.ParameterName = "@Datum";
+            datum.SqlDbType = SqlDbType.DateTime;
+            datum.Direction = ParameterDirection.Input;
+            datum.Value = Datum;
+            cmd.Parameters.Add(datum);
+
+            SqlParameter broj = new SqlParameter();
+            broj.ParameterName = "@BrojJCI";
+            broj.SqlDbType = SqlDbType.NVarChar;
+            broj.Direction = ParameterDirection.Input;
+            broj.Value = BrojJCI;
+            cmd.Parameters.Add(broj);
+
+            SqlParameter vrstaCp = new SqlParameter();
+            vrstaCp.ParameterName = "@VrstaCP";
+            vrstaCp.SqlDbType = SqlDbType.NVarChar;
+            vrstaCp.Direction = ParameterDirection.Input;
+            vrstaCp.Value = VrstaCP;
+            cmd.Parameters.Add(vrstaCp);
+
+            SqlParameter sifraSkladista = new SqlParameter();
+            sifraSkladista.ParameterName = "@SifraSkladista";
+            sifraSkladista.SqlDbType = SqlDbType.NVarChar;
+            sifraSkladista.Direction = ParameterDirection.Input;
+            sifraSkladista.Value = SifraSkladista;
+            cmd.Parameters.Add(sifraSkladista);
+
+            SqlParameter ci = new SqlParameter();
+            ci.ParameterName = "@CI";
+            ci.SqlDbType = SqlDbType.NVarChar;
+            ci.Direction = ParameterDirection.Input;
+            ci.Value = CI;
+            cmd.Parameters.Add(ci);
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter mb = new SqlParameter();
+            mb.ParameterName = "@MB";
+            mb.SqlDbType = SqlDbType.Int;
+            mb.Direction = ParameterDirection.Input;
+            mb.Value = MB;
+            cmd.Parameters.Add(mb);
+
+            SqlParameter godina = new SqlParameter();
+            godina.ParameterName = "@Godina";
+            godina.SqlDbType = SqlDbType.DateTime;
+            godina.Direction = ParameterDirection.Input;
+            godina.Value = Godina;
+            cmd.Parameters.Add(godina);
+
+            SqlParameter vlasnikRobe = new SqlParameter();
+            vlasnikRobe.ParameterName = "@VlasnikRobe";
+            vlasnikRobe.SqlDbType = SqlDbType.Int;
+            vlasnikRobe.Direction = ParameterDirection.Input;
+            vlasnikRobe.Value = VlasnikRobe;
+            cmd.Parameters.Add(vlasnikRobe);
+
+            SqlParameter tipSkladista = new SqlParameter();
+            tipSkladista.ParameterName = "@TipSkladista";
+            tipSkladista.SqlDbType = SqlDbType.Int;
+            tipSkladista.Direction = ParameterDirection.Input;
+            tipSkladista.Value = TipSkladista;
+            cmd.Parameters.Add(tipSkladista);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
         public void InsertNalogRukovalac(int ID, int Prijemnica, int Rukovalac, string Pozicija, decimal Koleta, int Paleta, int PaletaTip, decimal Bruto, int DodatneUsluge, string Napomena,
             string Vozilo, int Postupak, string Izdao)
         {
