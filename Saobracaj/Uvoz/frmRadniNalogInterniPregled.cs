@@ -416,7 +416,7 @@ namespace Saobracaj.Uvoz
 " UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ," +
 " [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
 "  rn.Pokret,  rn.TipDokPrevoza, " +
-" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN, 0 AS Scenario " +
+" rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN, 0 AS Scenario, rn.IDManipulacijaJed " +
 " FROM [RadniNalogInterni] rn " +
 " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
 " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
