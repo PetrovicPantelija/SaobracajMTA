@@ -32,6 +32,11 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 
         private void button8_Click(object sender, EventArgs e)
         {
+            VratiPodatke();
+        }
+
+        private void VratiPodatke()
+        {
             var select = "";
             /*
                  select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
@@ -44,7 +49,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                "  where Uradjen not in (1, 2)";
             */
 
-            select = "     SELECT RadniNalogInterni.[ID] as KomNalID, RadniNalogInterni.BrojOsnov as KontID," + 
+            select = "     SELECT RadniNalogInterni.[ID] as KomNalID, RadniNalogInterni.BrojOsnov as KontID," +
 " DatumPrijema as DatumPrijema, " +
 "  CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status,  " +
 "  REgBrKamiona, ImeVozaca, " +
@@ -54,13 +59,13 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
  "  (SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
 "  FOR XML PATH('')), 1, 1, ''  ) As Skupljen)  " +
- "  as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.Poreklo = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO " +
+ "  as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.Poreklo = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO, RadniNalogInterniPotvrda.Scenario " +
 "  FROM[dbo].[PrijemKontejneraVoz] as n1 " +
 "  inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Modul " +
 "  inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = n1.ID " +
 "  inner join RadniNalogInterni on RadniNalogInterni.ID = PrijemKontejneraVozStavke.NajavaID " +
 "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-"  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and (Pregledac = 1 or Pregledac = 2)  order by n1.ID desc";
+"  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and RadniNalogInterniPotvrda.FazaUsluge = 1  And KapijaUlaz < 2 order by n1.ID desc";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -74,6 +79,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             this.gridGroupingControl2.Table.Records.DeleteAll();
 
             gridGroupingControl2.DataSource = ds.Tables[0];
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Scenario");
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
@@ -82,8 +88,21 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 column.AllowFilter = true;
             }
 
+            // 1. Deo: Scenario = 1 i Pregledac = 0
+            GridConditionalFormatDescriptor gcfdPun1 = new GridConditionalFormatDescriptor();
+            gcfdPun1.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfdPun1.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfdPun1.Expression = "[Scenario] = 1 AND [Pregledac] = 1";
 
+            // 2. Deo: Scenario = 2 i Pregledac = 1
+            GridConditionalFormatDescriptor gcfdPun2 = new GridConditionalFormatDescriptor();
+            gcfdPun2.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfdPun2.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfdPun2.Expression = "[Scenario] = 2 AND [Pregledac] = 1";
 
+            // Dodavanje u grid
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfdPun1);
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfdPun2);
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl2);
         }
@@ -173,11 +192,13 @@ if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
             {
                 InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
+                ///menja na kapijaUlaz = 2
                 ir.PromeniStatusKapija(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
 
                 int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
                 UpisiLog(uslugaID, "POTVRDI");
             }
+            MessageBox.Show("Uspešno potrdjena kapija!");
         }
 
         private void UpisiLog(int uslugaidID, string mestoPoziva)
