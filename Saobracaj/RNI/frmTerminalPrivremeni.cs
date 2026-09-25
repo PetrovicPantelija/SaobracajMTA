@@ -319,16 +319,24 @@ namespace Saobracaj.RNI
             if (dt == null)
                 return;
 
-            try
+            // Ćelija u izmeni se potvrđuje da bi vrednost stigla u DataTable
+            GridCurrentCell tekucaCelija = gridGroupingControl1.TableControl.CurrentCell;
+            if (tekucaCelija.IsEditing && !tekucaCelija.ConfirmChanges(true))
             {
-                gridGroupingControl1.TableControl.CurrentCell.EndEdit();
-            }
-            catch (Exception)
-            {
-                // ne postoji ćelija u izmeni
+                MessageBox.Show("Vrednost u ćeliji koja se menja nije ispravna.", "Terminal privremeni",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            List<DataRow> izmenjeni = dt.Rows.Cast<DataRow>().Where(r => r.RowState != DataRowState.Unchanged).ToList();
+            // Red koji je u izmeni (grid ili polja na tabSplitterPage2) vodi se kao Unchanged
+            // dok se izmena ne zatvori, pa se sve započete izmene zatvaraju pre skupljanja izmenjenih redova
+            foreach (DataRow red in dt.Rows)
+            {
+                if (red.RowState != DataRowState.Deleted && red.HasVersion(DataRowVersion.Proposed))
+                    red.EndEdit();
+            }
+
+            List<DataRow> izmenjeni =dt.Rows.Cast<DataRow>().Where(r => r.RowState != DataRowState.Unchanged).ToList();
             if (izmenjeni.Count == 0)
             {
                 MessageBox.Show("Nema izmena za čuvanje.", "Terminal privremeni", MessageBoxButtons.OK, MessageBoxIcon.Information);
