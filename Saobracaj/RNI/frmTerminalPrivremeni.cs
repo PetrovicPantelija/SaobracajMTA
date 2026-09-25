@@ -1,13 +1,11 @@
 ﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -20,6 +18,7 @@ namespace Saobracaj.RNI
 
         private DataTable dt;
         private bool ucitavanje;
+        private Record prikazaniZapis;   // zapis cije vrednosti su trenutno u kontrolama
         private readonly Dictionary<string, Control> kontrole = new Dictionary<string, Control>();
 
         public frmTerminalPrivremeni()
@@ -118,17 +117,30 @@ namespace Saobracaj.RNI
             if (ucitavanje)
                 return;
 
-            Record zapis = gridGroupingControl1.Table.CurrentRecord;
+            Record zapis = prikazaniZapis;
             if (zapis == null)
                 return;
 
             zapis.SetValue(kolona, VrednostIzKontrole(kolona));
         }
 
-        // Tekuci zapis grida se prikazuje u kontrolama
+        // Zapis koji se prikazuje: oznaceni red (klik na zaglavlje reda), inace red tekuce celije
+        private Record IzaberiZapis()
+        {
+            Record oznaceni = null;
+            foreach (SelectedRecord sr in gridGroupingControl1.Table.SelectedRecords)
+            {
+                if (sr.Record != null)
+                    oznaceni = sr.Record;
+            }
+            return oznaceni ?? gridGroupingControl1.Table.CurrentRecord;
+        }
+
+        // Izabrani zapis grida se prikazuje u kontrolama
         private void OsveziPolja()
         {
-            Record zapis = gridGroupingControl1.Table.CurrentRecord;
+            Record zapis = IzaberiZapis();
+            prikazaniZapis = zapis;
 
             ucitavanje = true;
             try
@@ -168,6 +180,11 @@ namespace Saobracaj.RNI
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            OsveziPolja();
+        }
+
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, SelectedRecordsChangedEventArgs e)
         {
             OsveziPolja();
         }
@@ -372,161 +389,22 @@ namespace Saobracaj.RNI
         // ---------------------------------------------------------------------------------
         // Uvoz Excel
         // ---------------------------------------------------------------------------------
-        // Poredjenje naziva kolona: bez razmaka, "_", "/" i dijakritika, velika slova
-        private static string Kljuc(string tekst)
-        {
-            if (string.IsNullOrEmpty(tekst))
-                return "";
-
-            var sb = new StringBuilder();
-            foreach (char c in tekst.Replace('Đ', 'D').Replace('đ', 'd').Normalize(NormalizationForm.FormD))
-            {
-                if (CharUnicodeInfo.GetUnicodeCategory(c) == UnicodeCategory.NonSpacingMark)
-                    continue;
-                if (char.IsLetterOrDigit(c))
-                    sb.Append(char.ToUpperInvariant(c));
-            }
-            return sb.ToString();
-        }
 
         private void btnUvozExcel_Click(object sender, EventArgs e)
         {
-            if (dt == null)
-                return;
-
-            string putanja;
-            using (var ofd = new OpenFileDialog())
+            if (dt != null && dt.GetChanges() != null)
             {
-                ofd.Filter = "Excel (*.xlsx;*.xls)|*.xlsx;*.xls";
-                ofd.Title = "Uvoz Excel - prvi red mora sadržati nazive kolona";
-                if (ofd.ShowDialog() != DialogResult.OK)
-                    return;
-                putanja = ofd.FileName;
-            }
-
-            int uvezeno = 0;
-            var preskoceno = new List<string>();
-
-            try
-            {
-                using (ExcelEngine engine = new ExcelEngine())
-                {
-                    IWorkbook radnaKnjiga = engine.Excel.Workbooks.Open(putanja);
-                    IWorksheet list = radnaKnjiga.Worksheets[0];
-                    IRange opseg = list.UsedRange;
-
-                    int prviRed = opseg.Row;
-                    int poslednjiRed = opseg.LastRow;
-                    int prvaKolona = opseg.Column;
-                    int poslednjaKolona = opseg.LastColumn;
-
-                    var kolonaUExcelu = new Dictionary<string, int>();   // kolona tabele -> kolona u Excel-u
-                    var zaglavlja = new Dictionary<string, int>();
-                    for (int c = prvaKolona; c <= poslednjaKolona; c++)
-                    {
-                        string kljuc = Kljuc(list[prviRed, c].DisplayText);
-                        if (kljuc.Length > 0 && !zaglavlja.ContainsKey(kljuc))
-                            zaglavlja[kljuc] = c;
-                    }
-
-                    foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
-                    {
-                        int broj;
-                        if (zaglavlja.TryGetValue(Kljuc(polje.Kolona), out broj))
-                            kolonaUExcelu[polje.Kolona] = broj;
-                    }
-
-                    if (!kolonaUExcelu.ContainsKey("KONTEJNER"))
-                    {
-                        MessageBox.Show("U prvom redu fajla nije pronađena kolona KONTEJNER.", "Uvoz Excel",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    for (int r = prviRed + 1; r <= poslednjiRed; r++)
-                    {
-                        DataRow red = dt.NewRow();
-                        bool imaPodataka = false;
-                        var greske = new List<string>();
-
-                        foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
-                        {
-                            int c;
-                            if (!kolonaUExcelu.TryGetValue(polje.Kolona, out c))
-                                continue;
-
-                            IRange celija = list[r, c];
-                            string tekst = (celija.DisplayText ?? "").Trim();
-
-                            if (polje.Tip == TerminalPrivTip.Datum)
-                            {
-                                if (celija.HasDateTime)
-                                {
-                                    red[polje.Kolona] = celija.DateTime;
-                                    imaPodataka = true;
-                                }
-                                else if (tekst.Length > 0)
-                                {
-                                    DateTime datum;
-                                    if (DateTime.TryParse(tekst, CultureInfo.CurrentCulture, DateTimeStyles.None, out datum)
-                                        || DateTime.TryParse(tekst, new CultureInfo("sr-Latn-RS"), DateTimeStyles.None, out datum))
-                                    {
-                                        red[polje.Kolona] = datum;
-                                        imaPodataka = true;
-                                    }
-                                    else
-                                    {
-                                        greske.Add(polje.Kolona + " nije datum ('" + tekst + "')");
-                                    }
-                                }
-                            }
-                            else if (tekst.Length > 0)
-                            {
-                                red[polje.Kolona] = tekst;
-                                imaPodataka = true;
-                            }
-                        }
-
-                        if (!imaPodataka)
-                            continue;
-
-                        string greska = ProveriRed(red);
-                        if (greska != null)
-                            greske.Add(greska);
-
-                        if (greske.Count > 0)
-                        {
-                            preskoceno.Add("Red " + r + ": " + string.Join("; ", greske));
-                            continue;
-                        }
-
-                        dt.Rows.Add(red);
-                        uvezeno++;
-                    }
-
-                    radnaKnjiga.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Uvoz nije uspeo: " + ex.Message, "Uvoz Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Postoje nesačuvane izmene. Prvo kliknite 'Sačuvaj izmene'.", "Uvoz Excel",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var poruka = new StringBuilder();
-            poruka.AppendLine("Uvezeno redova: " + uvezeno + (uvezeno > 0 ? " (potrebno je kliknuti 'Sačuvaj izmene')" : ""));
-            if (preskoceno.Count > 0)
+            using (var forma = new frmTerminalPrivremeniExcel())
             {
-                poruka.AppendLine("Preskočeno redova: " + preskoceno.Count);
-                foreach (string red in preskoceno.Take(15))
-                    poruka.AppendLine(red);
-                if (preskoceno.Count > 15)
-                    poruka.AppendLine("...");
+                forma.ShowDialog(this);
+                if (forma.Uvezeno > 0)
+                    UcitajPodatke();
             }
-            MessageBox.Show(poruka.ToString(), "Uvoz Excel", MessageBoxButtons.OK,
-                preskoceno.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
-
-            OsveziPolja();
         }
 
         // ---------------------------------------------------------------------------------

@@ -176,6 +176,62 @@ namespace Saobracaj.RNI
             }
         }
 
+        // Uvoz iz Excel-a: redovi su nizovi od 7 vrednosti, redom
+        // KONTEJNER, VRSTA, BRODAR, NALOGODAVAC, POSTUPAK, UVOZNIK, PLOMBA_UVOZ.
+        // Svi redovi se upisuju u jednoj transakciji. Vraca broj upisanih redova.
+        public static readonly string[] ParametriIzExcela =
+        {
+            "@KONTEJNER", "@VRSTA", "@BRODAR", "@NALOGODAVAC", "@POSTUPAK", "@UVOZNIK", "@PLOMBA_UVOZ"
+        };
+
+        public int InsTerminalPrivFromExcel(System.Collections.Generic.IList<string[]> redovi)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "insTerminalPrivFromExcel";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            foreach (string naziv in ParametriIzExcela)
+            {
+                SqlParameter parameter = new SqlParameter();
+                parameter.ParameterName = naziv;
+                parameter.SqlDbType = SqlDbType.NVarChar;
+                parameter.Size = 25;
+                parameter.Direction = ParameterDirection.Input;
+                myCommand.Parameters.Add(parameter);
+            }
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            int upisano = 0;
+            try
+            {
+                foreach (string[] red in redovi)
+                {
+                    for (int i = 0; i < ParametriIzExcela.Length; i++)
+                    {
+                        string tekst = red[i] == null ? "" : red[i].Trim();
+                        myCommand.Parameters[i].Value = tekst.Length == 0 ? (object)DBNull.Value : tekst;
+                    }
+                    myCommand.ExecuteNonQuery();
+                    upisano++;
+                }
+                myTransaction.Commit();
+                return upisano;
+            }
+            catch (SqlException ex)
+            {
+                myTransaction.Rollback();
+                throw new Exception("Neuspešan uvoz u TerminalPriv (nijedan red nije upisan): " + ex.Message);
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
         private static void DodajParametreZaPolja(SqlCommand myCommand, DataRow red)
         {
             foreach (TerminalPrivPolje polje in Polja)

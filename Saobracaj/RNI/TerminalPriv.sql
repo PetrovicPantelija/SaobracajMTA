@@ -185,3 +185,24 @@ BEGIN
     DELETE FROM dbo.TerminalPriv WHERE ID = @ID;
 END
 GO
+
+-- Uvoz iz Excel-a (frmTerminalPrivremeniExcel): upisuju se samo polja koja se uvoze, ostala ostaju NULL
+-- Excel kolona C -> KONTEJNER, D -> VRSTA, K -> BRODAR, L -> NALOGODAVAC, T -> POSTUPAK, M -> UVOZNIK, H -> PLOMBA_UVOZ
+IF OBJECT_ID('dbo.insTerminalPrivFromExcel', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivFromExcel;
+GO
+CREATE PROCEDURE dbo.insTerminalPrivFromExcel
+    @KONTEJNER nvarchar(25),
+    @VRSTA nvarchar(25) = NULL,
+    @BRODAR nvarchar(25) = NULL,
+    @NALOGODAVAC nvarchar(25) = NULL,
+    @POSTUPAK nvarchar(25) = NULL,
+    @UVOZNIK nvarchar(25) = NULL,
+    @PLOMBA_UVOZ nvarchar(25) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO dbo.TerminalPriv (KONTEJNER, VRSTA, BRODAR, NALOGODAVAC, POSTUPAK, UVOZNIK, PLOMBA_UVOZ)
+    VALUES (@KONTEJNER, @VRSTA, @BRODAR, @NALOGODAVAC, @POSTUPAK, @UVOZNIK, @PLOMBA_UVOZ);
+END
+GO
