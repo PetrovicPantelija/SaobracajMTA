@@ -23,6 +23,7 @@ namespace Saobracaj.RNI
         {
             InitializeComponent();
             PovezKontrole();
+            PovezMeniGrida();
         }
 
         private void frmTerminalPrivremeni_Load(object sender, EventArgs e)
@@ -258,6 +259,85 @@ namespace Saobracaj.RNI
             }
 
             UcitajPodatke();
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Popup meni grida (desni klik): vrednost ćelije na sve filtrirane zapise kolone
+        // ---------------------------------------------------------------------------------
+        private void PovezMeniGrida()
+        {
+            GridTableControl tabelaGrida = gridGroupingControl1.TableControl;
+            tabelaGrida.ContextMenuStrip = contextMenuGrid;
+            tabelaGrida.MouseDown += (s, e) =>
+            {
+                // Desni klik prvo postavlja fokus na ćeliju ispod miša
+                if (e.Button != MouseButtons.Right)
+                    return;
+
+                int red, kolona;
+                if (tabelaGrida.PointToRowCol(e.Location, out red, out kolona))
+                    tabelaGrida.CurrentCell.MoveTo(red, kolona);
+            };
+        }
+
+        // Naziv kolone tekuće ćelije ili null ako meni nije primenjiv
+        private string KolonaTekuceCelije()
+        {
+            GridTableControl tabelaGrida = gridGroupingControl1.TableControl;
+            if (!tabelaGrida.CurrentCell.HasCurrentCell || gridGroupingControl1.Table.CurrentRecord == null)
+                return null;
+
+            int polje = tabelaGrida.Model.ColIndexToField(tabelaGrida.CurrentCell.ColIndex);
+            if (polje < 0)
+                return null;
+
+            string naziv = gridGroupingControl1.Table.TableDescriptor.Fields[polje].Name;
+            // ID se ne menja, a KONTEJNER je jedinstven po zapisu
+            return naziv == "ID" || naziv == "KONTEJNER" ? null : naziv;
+        }
+
+        private static string OpisVrednosti(object vrednost)
+        {
+            if (vrednost == null || vrednost == DBNull.Value || vrednost.ToString().Length == 0)
+                return "(prazno)";
+            return vrednost is DateTime ? ((DateTime)vrednost).ToString(FormatDatuma) : vrednost.ToString();
+        }
+
+        private void contextMenuGrid_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string kolona = KolonaTekuceCelije();
+            if (kolona == null)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            object vrednost = gridGroupingControl1.Table.CurrentRecord.GetValue(kolona);
+            mnuPrimeniNaFiltrirane.Text = "Postavi " + OpisVrednosti(vrednost) + " u koloni " + kolona
+                + " za sve filtrirane zapise (" + gridGroupingControl1.Table.FilteredRecords.Count + ")";
+        }
+
+        private void mnuPrimeniNaFiltrirane_Click(object sender, EventArgs e)
+        {
+            string kolona = KolonaTekuceCelije();
+            if (kolona == null)
+                return;
+
+            // Vrednost se čita pre potvrde, dok je fokus na ćeliji
+            object vrednost = gridGroupingControl1.Table.CurrentRecord.GetValue(kolona);
+            var zapisi = new List<Record>();
+            foreach (Record zapis in gridGroupingControl1.Table.FilteredRecords)
+                zapisi.Add(zapis);
+
+            if (MessageBox.Show("Kolona " + kolona + " će biti postavljena na " + OpisVrednosti(vrednost) + " za " + zapisi.Count
+                + " filtriranih zapisa. Nastaviti?", "Primeni na filtrirane", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            foreach (Record zapis in zapisi)
+                zapis.SetValue(kolona, vrednost);
+
+            MessageBox.Show("Promenjeno zapisa: " + zapisi.Count + ". Za upis u bazu kliknite 'Sačuvaj izmene'.",
+                "Primeni na filtrirane", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -504,117 +584,19 @@ namespace Saobracaj.RNI
             if (dt == null)
                 return;
 
-            var oznaceni = new List<Record>();
-            foreach (SelectedRecord sr in gridGroupingControl1.Table.SelectedRecords)
-            {
-                if (sr.Record != null)
-                    oznaceni.Add(sr.Record);
-            }
-
-            if (oznaceni.Count == 0)
+            if (gridGroupingControl1.Table.SelectedRecords.Count == 0)
             {
                 MessageBox.Show("Označite redove u tabeli (klik na zaglavlje reda, Ctrl/Shift za više redova).",
                     "Grupna promena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            TerminalPrivPolje polje;
-            object vrednost;
-            if (!PitajGrupnuPromenu(oznaceni.Count, out polje, out vrednost))
-                return;
-
-            foreach (Record zapis in oznaceni)
+            using (var forma = new frmTerminalPrivremeniPromeni(gridGroupingControl1))
             {
-                zapis.SetValue(polje.Kolona, vrednost);
+                forma.ShowDialog(this);
             }
 
             OsveziPolja();
-            MessageBox.Show("Promenjeno zapisa: " + oznaceni.Count + ". Za upis u bazu kliknite 'Sačuvaj izmene'.",
-                "Grupna promena", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private bool PitajGrupnuPromenu(int brojZapisa, out TerminalPrivPolje polje, out object vrednost)
-        {
-            polje = null;
-            vrednost = null;
-
-            // KONTEJNER je jedinstven po zapisu, pa se ne menja grupno
-            TerminalPrivPolje[] polja = insertTerminalPriv.Polja.Where(p => p.Kolona != "KONTEJNER").ToArray();
-
-            using (var forma = new Form())
-            {
-                forma.Text = "Grupna promena (" + brojZapisa + " zapisa)";
-                forma.FormBorderStyle = FormBorderStyle.FixedDialog;
-                forma.StartPosition = FormStartPosition.CenterParent;
-                forma.MaximizeBox = false;
-                forma.MinimizeBox = false;
-                forma.ClientSize = new Size(340, 150);
-
-                var lblPolje = new Label { Text = "Polje", Location = new Point(12, 12), AutoSize = true };
-                var cboPolje = new ComboBox { Location = new Point(12, 30), Width = 316, DropDownStyle = ComboBoxStyle.DropDownList };
-                cboPolje.Items.AddRange(polja.Select(p => p.Kolona).ToArray());
-
-                var lblVrednost = new Label { Text = "Nova vrednost (prazno = bez vrednosti)", Location = new Point(12, 60), AutoSize = true };
-                var mesto = new Panel { Location = new Point(12, 78), Size = new Size(316, 24) };
-
-                var btnOk = new Button { Text = "Primeni", DialogResult = DialogResult.OK, Location = new Point(172, 114), Width = 75 };
-                var btnOtkazi = new Button { Text = "Otkaži", DialogResult = DialogResult.Cancel, Location = new Point(253, 114), Width = 75 };
-                forma.AcceptButton = btnOk;
-                forma.CancelButton = btnOtkazi;
-                forma.Controls.AddRange(new Control[] { lblPolje, cboPolje, lblVrednost, mesto, btnOk, btnOtkazi });
-
-                Control unos = null;
-                cboPolje.SelectedIndexChanged += (s, ev) =>
-                {
-                    TerminalPrivPolje izabrano = polja[cboPolje.SelectedIndex];
-                    mesto.Controls.Clear();
-
-                    if (izabrano.Tip == TerminalPrivTip.Datum)
-                    {
-                        unos = new DateTimePicker
-                        {
-                            Format = DateTimePickerFormat.Custom,
-                            CustomFormat = FormatDatuma,
-                            ShowCheckBox = true,
-                            Checked = false,
-                            Width = 316
-                        };
-                    }
-                    else if (izabrano.Dozvoljeno != null)
-                    {
-                        var cbo = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Width = 316 };
-                        PopuniCombo(cbo, izabrano.Dozvoljeno);
-                        cbo.SelectedIndex = 0;
-                        unos = cbo;
-                    }
-                    else
-                    {
-                        unos = new TextBox { MaxLength = izabrano.Velicina, Width = 316 };
-                    }
-                    mesto.Controls.Add(unos);
-                };
-                cboPolje.SelectedIndex = 0;
-
-                if (forma.ShowDialog(this) != DialogResult.OK)
-                    return false;
-
-                polje = polja[cboPolje.SelectedIndex];
-
-                DateTimePicker dtp = unos as DateTimePicker;
-                if (dtp != null)
-                {
-                    vrednost = dtp.Checked ? (object)dtp.Value : DBNull.Value;
-                }
-                else
-                {
-                    string tekst = unos.Text.Trim();
-                    vrednost = tekst.Length == 0 ? (object)DBNull.Value : tekst;
-                }
-
-                string opis = vrednost == DBNull.Value ? "(prazno)" : (vrednost is DateTime ? ((DateTime)vrednost).ToString(FormatDatuma) : vrednost.ToString());
-                return MessageBox.Show("Polje " + polje.Kolona + " će biti postavljeno na " + opis + " za " + brojZapisa + " zapisa. Nastaviti?",
-                    "Grupna promena", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
-            }
         }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.contextMenuGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuPrimeniNaFiltrirane = new System.Windows.Forms.ToolStripMenuItem();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
@@ -103,6 +105,7 @@
             this.txtPoslateSlike = new System.Windows.Forms.TextBox();
             this.lblPrevoznik = new System.Windows.Forms.Label();
             this.txtPrevoznik = new System.Windows.Forms.TextBox();
+            this.contextMenuGrid.SuspendLayout();
             this.tabSplitterContainer1.SuspendLayout();
             this.tabSplitterPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -110,6 +113,21 @@
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // contextMenuGrid
+            // 
+            this.contextMenuGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuPrimeniNaFiltrirane});
+            this.contextMenuGrid.Name = "contextMenuGrid";
+            this.contextMenuGrid.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuGrid.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuGrid_Opening);
+            // 
+            // mnuPrimeniNaFiltrirane
+            // 
+            this.mnuPrimeniNaFiltrirane.Name = "mnuPrimeniNaFiltrirane";
+            this.mnuPrimeniNaFiltrirane.Size = new System.Drawing.Size(60, 22);
+            this.mnuPrimeniNaFiltrirane.Text = "Primeni na filtrirane";
+            this.mnuPrimeniNaFiltrirane.Click += new System.EventHandler(this.mnuPrimeniNaFiltrirane_Click);
             // 
             // tabSplitterContainer1
             // 
@@ -939,6 +957,7 @@
             this.Name = "frmTerminalPrivremeni";
             this.Text = "Terminal privremeni";
             this.Load += new System.EventHandler(this.frmTerminalPrivremeni_Load);
+            this.contextMenuGrid.ResumeLayout(false);
             this.tabSplitterContainer1.ResumeLayout(false);
             this.tabSplitterPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
@@ -953,6 +972,8 @@
 
         #endregion
 
+        private System.Windows.Forms.ContextMenuStrip contextMenuGrid;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrimeniNaFiltrirane;
         private Syncfusion.Windows.Forms.Tools.TabSplitterContainer tabSplitterContainer1;
         private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage1;
         private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage2;
