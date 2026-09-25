@@ -33,6 +33,7 @@
             this.btnIntermodalni12 = new Syncfusion.WinForms.Controls.SfButton();
             this.btnIntermodalni13 = new Syncfusion.WinForms.Controls.SfButton();
             this.btnIntermodalni14 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnIntermodalni15 = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             // 
             // label2
@@ -142,13 +143,37 @@
             this.btnIntermodalni14.Text = "Baza svih kontejnera";
             this.btnIntermodalni14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIntermodalni14.UseVisualStyleBackColor = false;
-            // 
+            //
+            // btnIntermodalni15
+            //
+            this.btnIntermodalni15.AccessibleName = "Button";
+            this.btnIntermodalni15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnIntermodalni15.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnIntermodalni15.ForeColor = System.Drawing.Color.White;
+            this.btnIntermodalni15.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnIntermodalni15.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnIntermodalni15.Location = new System.Drawing.Point(387, 368);
+            this.btnIntermodalni15.Name = "btnIntermodalni15";
+            this.btnIntermodalni15.Size = new System.Drawing.Size(288, 225);
+            this.btnIntermodalni15.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnIntermodalni15.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnIntermodalni15.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnIntermodalni15.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnIntermodalni15.Style.ForeColor = System.Drawing.Color.White;
+            this.btnIntermodalni15.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnIntermodalni15.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnIntermodalni15.TabIndex = 510;
+            this.btnIntermodalni15.Text = "Terminal temp";
+            this.btnIntermodalni15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIntermodalni15.UseVisualStyleBackColor = false;
+            //
             // Intermodalni1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1115, 667);
+            this.Controls.Add(this.btnIntermodalni15);
             this.Controls.Add(this.btnIntermodalni14);
             this.Controls.Add(this.btnIntermodalni13);
             this.Controls.Add(this.btnIntermodalni12);
@@ -169,5 +194,6 @@
         private Syncfusion.WinForms.Controls.SfButton btnIntermodalni12;
         private Syncfusion.WinForms.Controls.SfButton btnIntermodalni13;
         private Syncfusion.WinForms.Controls.SfButton btnIntermodalni14;
+        private Syncfusion.WinForms.Controls.SfButton btnIntermodalni15;
     }
 }
