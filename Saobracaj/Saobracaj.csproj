@@ -6127,6 +6127,9 @@
     <EmbeddedResource Include="RNI\frmScenarioSCI.resx">
       <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RNI\frmTerminalPrivremeni.resx">
+      <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="Servis\frmEvidencijaKvarova.resx">
       <DependentUpon>frmEvidencijaKvarova.cs</DependentUpon>
