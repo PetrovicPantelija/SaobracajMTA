@@ -17,8 +17,6 @@ namespace Saobracaj.RNI
         private const string FormatDatuma = "dd.MM.yyyy HH:mm";
 
         private DataTable dt;
-        private bool ucitavanje;
-        private Record prikazaniZapis;   // zapis cije vrednosti su trenutno u kontrolama
         private readonly Dictionary<string, Control> kontrole = new Dictionary<string, Control>();
 
         public frmTerminalPrivremeni()
@@ -70,25 +68,9 @@ namespace Saobracaj.RNI
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
-                string kolona = polje.Kolona;
-                Control kontrola = kontrole[kolona];
-
-                ComboBox cbo = kontrola as ComboBox;
+                ComboBox cbo = kontrole[polje.Kolona] as ComboBox;
                 if (cbo != null)
-                {
                     PopuniCombo(cbo, polje.Dozvoljeno);
-                    cbo.SelectionChangeCommitted += (s, e) => PrepisiUZapis(kolona);
-                    continue;
-                }
-
-                DateTimePicker dtp = kontrola as DateTimePicker;
-                if (dtp != null)
-                {
-                    dtp.ValueChanged += (s, e) => PrepisiUZapis(kolona);
-                    continue;
-                }
-
-                kontrola.TextChanged += (s, e) => PrepisiUZapis(kolona);
             }
         }
 
@@ -111,19 +93,6 @@ namespace Saobracaj.RNI
             return tekst.Length == 0 ? (object)DBNull.Value : tekst;
         }
 
-        // Izmena u kontrolama se odmah upisuje u tekuci zapis grida (DataTable)
-        private void PrepisiUZapis(string kolona)
-        {
-            if (ucitavanje)
-                return;
-
-            Record zapis = prikazaniZapis;
-            if (zapis == null)
-                return;
-
-            zapis.SetValue(kolona, VrednostIzKontrole(kolona));
-        }
-
         // Zapis koji se prikazuje: oznaceni red (klik na zaglavlje reda), inace red tekuce celije
         private Record IzaberiZapis()
         {
@@ -140,43 +109,155 @@ namespace Saobracaj.RNI
         private void OsveziPolja()
         {
             Record zapis = IzaberiZapis();
-            prikazaniZapis = zapis;
 
-            ucitavanje = true;
+            object id = zapis == null ? null : zapis.GetValue("ID");
+            txtID.Text = id == null || id == DBNull.Value || Convert.ToInt32(id) < 0 ? "" : id.ToString();
+
+            foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
+            {
+                object vrednost = zapis == null ? null : zapis.GetValue(polje.Kolona);
+                bool prazno = vrednost == null || vrednost == DBNull.Value;
+                Control kontrola = kontrole[polje.Kolona];
+
+                DateTimePicker dtp = kontrola as DateTimePicker;
+                if (dtp != null)
+                {
+                    dtp.Checked = !prazno;
+                    if (!prazno)
+                        dtp.Value = Convert.ToDateTime(vrednost);
+                    continue;
+                }
+
+                ComboBox cbo = kontrola as ComboBox;
+                if (cbo != null)
+                {
+                    cbo.SelectedIndex = prazno ? 0 : Math.Max(0, cbo.FindStringExact(vrednost.ToString()));
+                    continue;
+                }
+
+                kontrola.Text = prazno ? "" : vrednost.ToString();
+            }
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Sacuvaj novi / Promeni / Obrisi (rade nad vrednostima iz polja na tabSplitterPage2)
+        // ---------------------------------------------------------------------------------
+        // Red sa vrednostima iz polja; id > 0 samo pri izmeni postojeceg zapisa
+        private DataRow RedIzPolja(int id)
+        {
+            DataRow red = dt.NewRow();
+            if (id > 0)
+                red["ID"] = id;
+
+            foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
+                red[polje.Kolona] = VrednostIzKontrole(polje.Kolona);
+
+            return red;
+        }
+
+        // ID zapisa koji je prikazan u poljima; 0 ako nijedan zapis nije izabran
+        private int IzabraniId()
+        {
+            int id;
+            return int.TryParse(txtID.Text, out id) && id > 0 ? id : 0;
+        }
+
+        // Osvezavanje grida odbacuje nesacuvane izmene u tabeli, pa se prvo pita korisnik
+        private bool PotvrdiOsvezavanje()
+        {
+            if (dt == null || dt.GetChanges() == null)
+                return true;
+
+            return MessageBox.Show("U tabeli postoje nesačuvane izmene koje će biti izgubljene osvežavanjem. Nastaviti?",
+                "Terminal privremeni", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private void btnSacuvajNovi_Click(object sender, EventArgs e)
+        {
+            if (dt == null || !PotvrdiOsvezavanje())
+                return;
+
+            DataRow red = RedIzPolja(0);
+            string greska = ProveriRed(red);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Sačuvaj novi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                object id = zapis == null ? null : zapis.GetValue("ID");
-                txtID.Text = id == null || id == DBNull.Value || Convert.ToInt32(id) < 0 ? "" : id.ToString();
-
-                foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
-                {
-                    object vrednost = zapis == null ? null : zapis.GetValue(polje.Kolona);
-                    bool prazno = vrednost == null || vrednost == DBNull.Value;
-                    Control kontrola = kontrole[polje.Kolona];
-
-                    DateTimePicker dtp = kontrola as DateTimePicker;
-                    if (dtp != null)
-                    {
-                        dtp.Checked = !prazno;
-                        if (!prazno)
-                            dtp.Value = Convert.ToDateTime(vrednost);
-                        continue;
-                    }
-
-                    ComboBox cbo = kontrola as ComboBox;
-                    if (cbo != null)
-                    {
-                        cbo.SelectedIndex = prazno ? 0 : Math.Max(0, cbo.FindStringExact(vrednost.ToString()));
-                        continue;
-                    }
-
-                    kontrola.Text = prazno ? "" : vrednost.ToString();
-                }
+                new insertTerminalPriv().InsTerminalPriv(red);
             }
-            finally
+            catch (Exception ex)
             {
-                ucitavanje = false;
+                MessageBox.Show(ex.Message, "Sačuvaj novi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            UcitajPodatke();
+        }
+
+        private void btnPromeni_Click(object sender, EventArgs e)
+        {
+            int id = IzabraniId();
+            if (dt == null || id == 0)
+            {
+                MessageBox.Show("Izaberite zapis u tabeli koji se menja.", "Promeni", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!PotvrdiOsvezavanje())
+                return;
+
+            DataRow red = RedIzPolja(id);
+            string greska = ProveriRed(red);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Promeni", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                new insertTerminalPriv().UpdTerminalPriv(red);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Promeni", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            UcitajPodatke();
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            int id = IzabraniId();
+            if (dt == null || id == 0)
+            {
+                MessageBox.Show("Izaberite zapis u tabeli koji se briše.", "Obriši", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show("Obrisati zapis ID " + id + " (" + txtKontejner.Text + ")?", "Obriši",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            if (!PotvrdiOsvezavanje())
+                return;
+
+            try
+            {
+                new insertTerminalPriv().DelTerminalPriv(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Obriši", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            UcitajPodatke();
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)

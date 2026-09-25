@@ -38,6 +38,9 @@
             this.btnSacuvajIzmene = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
+            this.btnSacuvajNovi = new System.Windows.Forms.Button();
+            this.btnPromeni = new System.Windows.Forms.Button();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblKontejner = new System.Windows.Forms.Label();
@@ -172,6 +175,9 @@
             // tabSplitterPage2
             // 
             this.tabSplitterPage2.AutoScroll = true;
+            this.tabSplitterPage2.Controls.Add(this.btnSacuvajNovi);
+            this.tabSplitterPage2.Controls.Add(this.btnPromeni);
+            this.tabSplitterPage2.Controls.Add(this.btnObrisi);
             this.tabSplitterPage2.Controls.Add(this.lblID);
             this.tabSplitterPage2.Controls.Add(this.txtID);
             this.tabSplitterPage2.Controls.Add(this.lblKontejner);
@@ -791,6 +797,48 @@
             this.txtPrevoznik.MaxLength = 25;
             this.txtPrevoznik.TabIndex = 31;
             // 
+            // btnSacuvajNovi
+            // 
+            this.btnSacuvajNovi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.btnSacuvajNovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacuvajNovi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacuvajNovi.ForeColor = System.Drawing.Color.White;
+            this.btnSacuvajNovi.Location = new System.Drawing.Point(235, 285);
+            this.btnSacuvajNovi.Name = "btnSacuvajNovi";
+            this.btnSacuvajNovi.Size = new System.Drawing.Size(120, 27);
+            this.btnSacuvajNovi.TabIndex = 2000;
+            this.btnSacuvajNovi.Text = "Sačuvaj novi";
+            this.btnSacuvajNovi.UseVisualStyleBackColor = false;
+            this.btnSacuvajNovi.Click += new System.EventHandler(this.btnSacuvajNovi_Click);
+            // 
+            // btnPromeni
+            // 
+            this.btnPromeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.btnPromeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPromeni.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPromeni.ForeColor = System.Drawing.Color.White;
+            this.btnPromeni.Location = new System.Drawing.Point(365, 285);
+            this.btnPromeni.Name = "btnPromeni";
+            this.btnPromeni.Size = new System.Drawing.Size(120, 27);
+            this.btnPromeni.TabIndex = 2001;
+            this.btnPromeni.Text = "Promeni";
+            this.btnPromeni.UseVisualStyleBackColor = false;
+            this.btnPromeni.Click += new System.EventHandler(this.btnPromeni_Click);
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.btnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObrisi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisi.ForeColor = System.Drawing.Color.White;
+            this.btnObrisi.Location = new System.Drawing.Point(495, 285);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(120, 27);
+            this.btnObrisi.TabIndex = 2002;
+            this.btnObrisi.Text = "Obriši";
+            this.btnObrisi.UseVisualStyleBackColor = false;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            // 
             // panelHeader
             // 
             this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -914,6 +962,9 @@
         private System.Windows.Forms.Button btnSacuvajIzmene;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
+        private System.Windows.Forms.Button btnSacuvajNovi;
+        private System.Windows.Forms.Button btnPromeni;
+        private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblKontejner;
