@@ -3243,6 +3243,8 @@ namespace Saobracaj.Izvoz
             rn.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(40), kor, " ");
             rn.InsRadniNalogInterniIzvozDodatne(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(40), kor, " ");
 
+            MessageBox.Show("Uspešno kreiran komercijalni nalog!");
+            button2.Enabled = false;
             // Izvoz.frmFormiranjePlanaIzvoz fpi = new Izvoz.frmFormiranjePlanaIzvoz();
             // fpi.Show();
 

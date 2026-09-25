@@ -39,9 +39,9 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
               //  UpisiLog(uslugaID, "POTVRDI");
             }
+            MessageBox.Show("Uspešno potvrđena kapija!");
         }
-
-        private void button9_Click(object sender, EventArgs e)
+        private void VratiPodatke()
         {
             var select = "";
             /*
@@ -61,7 +61,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             "  REgBrKamiona, ImeVozaca, " +
             "  n1.VremeDolaska as VremeDol,  " +
             "  n1.[Datum] ,n1.[Korisnik] ,  RadniNalogInterniPotvrda.KapijaUlaz, RadniNalogInterniPotvrda.Pregledac," +
-
+            " RadniNalogInterniPotvrda.Kalmar, " +
              "  (SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
              "  FROM OtpremaKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
             "  FOR XML PATH('')), 1, 1, ''  ) As Skupljen)  " +
@@ -71,13 +71,14 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             "  inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNadredjenog = n1.ID " +
             "  inner join RadniNalogInterni on RadniNalogInterni.ID = OtpremaKontejneraVozStavke.NalogID " +
             "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0 " +
-                     "AND ( " +
-                       "(RadniNalogInterniPotvrda.KapijaUlaz >= 1 AND RadniNalogInterniPotvrda.Kalmar = 0) " + 
-                       "OR "+
-                       "(RadniNalogInterniPotvrda.Kalmar = 1 AND RadniNalogInterniPotvrda.Pregledac = 2)" + 
-                     ") order by n1.ID desc";
-                        // proveri zasto u PrijemKontejneraVoz za id 304,305,306 vozom = 1 a ne 0 to se odnosi na OtpremaKontejneraVozStavke.IDNadredjenog = 304,305,306 kontejner test scenario2-1
+            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0  order by n1.ID desc";
+            // ovo ide da bi požuteo
+            //"AND ( " +
+            //  "(RadniNalogInterniPotvrda.KapijaUlaz >= 1 AND RadniNalogInterniPotvrda.Kalmar = 0) " + 
+            //  "OR "+
+            //  "(RadniNalogInterniPotvrda.Kalmar = 1 AND RadniNalogInterniPotvrda.Pregledac = 2)" + 
+            //") order by n1.ID desc";
+            // proveri zasto u PrijemKontejneraVoz za id 304,305,306 vozom = 1 a ne 0 to se odnosi na OtpremaKontejneraVozStavke.IDNadredjenog = 304,305,306 kontejner test scenario2-1
             // where RadniNalogInterniPotvrda.Kamion = 0 and (Pregledac = 1 or Pregledac = 2)  order by n1.ID desc
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -99,9 +100,38 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             }
 
 
+            //GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            //gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            //gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Clear();
+
+            // Uslov 1: KapijaUlaz >= 1 AND Kalmar = 0
+            GridConditionalFormatDescriptor gcfd1 = new GridConditionalFormatDescriptor();
+            gcfd1.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd1.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfd1.Expression = "[KapijaUlaz] >= 1 AND [Kalmar] = 0";
+
+            // Uslov 2: Kalmar = 1 AND Pregledac = 2
+            GridConditionalFormatDescriptor gcfd2 = new GridConditionalFormatDescriptor();
+            gcfd2.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd2.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfd2.Expression = "[Kalmar] = 1 AND [Pregledac] = 2";
+
+            // Dodavanje oba uslova u Grid
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd1);
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd2);
+
+            //gcfd3.Expression = "(RadniNalogInterniPotvrda.KapijaUlaz >= 1 AND RadniNalogInterniPotvrda.Kalmar = 0)  OR (RadniNalogInterniPotvrda.Kalmar = 1 AND RadniNalogInterniPotvrda.Pregledac = 2)";
+            //this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl2);
+
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            VratiPodatke();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -114,6 +144,8 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
                 //  UpisiLog(uslugaID, "POTVRDI");
             }
+            MessageBox.Show("Uspešno potvrđena dozvola izlaza!");
+            VratiPodatke();
         }
 
         private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -143,6 +175,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
                 ir.ObavljenPregled(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
 
             }
+            MessageBox.Show("Uspešno potvrđen pregled!");
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -176,5 +209,17 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             }
             return PrijemID;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
+                ir.PromeniStatusKalmar(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
+
+            }
+            VratiPodatke();
+        }
+
     }
 }
