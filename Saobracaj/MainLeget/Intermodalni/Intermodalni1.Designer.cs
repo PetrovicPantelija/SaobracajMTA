@@ -166,6 +166,7 @@
             this.btnIntermodalni15.Text = "Terminal temp";
             this.btnIntermodalni15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIntermodalni15.UseVisualStyleBackColor = false;
+            this.btnIntermodalni15.Click += new System.EventHandler(this.btnIntermodalni15_Click);
             //
             // Intermodalni1
             // 

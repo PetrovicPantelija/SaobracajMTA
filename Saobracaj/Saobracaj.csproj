@@ -3078,6 +3078,13 @@
     <Compile Include="RNI\frmScenarioSCI.Designer.cs">
       <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeni.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\insertTerminalPriv.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>
