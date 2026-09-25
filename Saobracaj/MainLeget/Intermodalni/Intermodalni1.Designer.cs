@@ -143,9 +143,10 @@
             this.btnIntermodalni14.Text = "Baza svih kontejnera";
             this.btnIntermodalni14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIntermodalni14.UseVisualStyleBackColor = false;
-            //
+            this.btnIntermodalni14.Click += new System.EventHandler(this.btnIntermodalni14_Click);
+            // 
             // btnIntermodalni15
-            //
+            // 
             this.btnIntermodalni15.AccessibleName = "Button";
             this.btnIntermodalni15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnIntermodalni15.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
@@ -166,7 +167,7 @@
             this.btnIntermodalni15.Text = "Terminal temp";
             this.btnIntermodalni15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIntermodalni15.UseVisualStyleBackColor = false;
-            //
+            // 
             // Intermodalni1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

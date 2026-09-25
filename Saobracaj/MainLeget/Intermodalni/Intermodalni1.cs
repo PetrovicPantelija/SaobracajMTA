@@ -38,5 +38,10 @@ namespace Saobracaj.MainLeget.Intermodalni
                 btnIntermodalni13.Text,
                 () => new VozniPlanovi());
         }
+
+        private void btnIntermodalni14_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
