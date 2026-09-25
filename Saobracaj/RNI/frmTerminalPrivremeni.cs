@@ -94,7 +94,7 @@ namespace Saobracaj.RNI
             return tekst.Length == 0 ? (object)DBNull.Value : tekst;
         }
 
-        // Zapis koji se prikazuje: oznaceni red (klik na zaglavlje reda), inace red tekuce celije
+        // Zapis koji se prikazuje: oznaceni red (klik na red), inace red tekuce celije
         private Record IzaberiZapis()
         {
             Record oznaceni = null;
@@ -586,7 +586,7 @@ namespace Saobracaj.RNI
 
             if (gridGroupingControl1.Table.SelectedRecords.Count == 0)
             {
-                MessageBox.Show("Označite redove u tabeli (klik na zaglavlje reda, Ctrl/Shift za više redova).",
+                MessageBox.Show("Označite redove u tabeli (klik na red označava/poništava red, može više redova).",
                     "Grupna promena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
