@@ -403,7 +403,7 @@ namespace Saobracaj.RNI
             GridColumnDescriptorCollection kolone = gridGroupingControl1.TableDescriptor.Columns;
 
             kolone["ID"].Appearance.AnyRecordFieldCell.ReadOnly = true;
-            kolone["ID"].Width = SirinaKolone(kolone["ID"].HeaderText, "00000");
+            kolone["ID"].Width = SirinaKolone(gridGroupingControl1.Font, kolone["ID"].HeaderText, "00000");
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
@@ -411,7 +411,7 @@ namespace Saobracaj.RNI
                 if (kolona == null)
                     continue;
 
-                kolona.Width = SirinaKolone(kolona.HeaderText, PrimerSadrzaja(polje));
+                kolona.Width = SirinaKolone(gridGroupingControl1.Font, kolona.HeaderText, PrimerSadrzaja(polje));
 
                 if (polje.Tip == TerminalPrivTip.Datum)
                 {
@@ -432,7 +432,7 @@ namespace Saobracaj.RNI
 
         // Najduži sadržaj kolone po kome se računa širina: datum, najduža dozvoljena vrednost ili
         // onoliko velikih slova koliko polje ima karaktera (nvarchar(25) -> 25 karaktera)
-        private static string PrimerSadrzaja(TerminalPrivPolje polje)
+        internal static string PrimerSadrzaja(TerminalPrivPolje polje)
         {
             if (polje.Tip == TerminalPrivTip.Datum)
                 return "88.88.8888 88:88";
@@ -445,13 +445,12 @@ namespace Saobracaj.RNI
 
         // Širina kolone: dovoljna za ceo naslov (u boldu, sa mestom za ikonu sortiranja/filtera) i za sadržaj,
         // ali ograničena da najduža polja (NAPOMENA, OPIS) ne zauzmu ceo grid
-        private int SirinaKolone(string naslov, string sadrzaj)
+        internal static int SirinaKolone(Font font, string naslov, string sadrzaj)
         {
             const int NajvecaSirinaSadrzaja = 260;
             const int DodatakZaNaslov = 32;
             const int DodatakZaSadrzaj = 24;   // margine ćelije i dugme padajuće liste
 
-            Font font = gridGroupingControl1.Font;
             using (var fontNaslova = new Font(font, FontStyle.Bold))
             {
                 int sirinaNaslova = TextRenderer.MeasureText(naslov ?? "", fontNaslova, Size.Empty, TextFormatFlags.NoPadding).Width + DodatakZaNaslov;
@@ -667,6 +666,45 @@ namespace Saobracaj.RNI
                 forma.ShowDialog(this);
                 if (forma.Promenjeno)
                     PrimeniBrojSlika(id, forma.BrojSlika);
+            }
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Arhiviraj / Arhivirani podaci
+        // ---------------------------------------------------------------------------------
+        private void btnArhiviraj_Click(object sender, EventArgs e)
+        {
+            if (dt == null)
+                return;
+
+            if (MessageBox.Show("Da li ste sigurni da želite da arhivirate podatke?", "Arhiviraj",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            // Grid se posle arhiviranja ponovo učitava iz baze
+            if (!PotvrdiOsvezavanje())
+                return;
+
+            int arhivirano;
+            try
+            {
+                arhivirano = new insertTerminalPriv().InsTerminalPrivArhiv();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Arhiviraj", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            UcitajPodatke();
+            MessageBox.Show("Arhivirano zapisa: " + arhivirano, "Arhiviraj", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnArhiviraniPodaci_Click(object sender, EventArgs e)
+        {
+            using (var forma = new frmTerminalPrivremeniArhiva())
+            {
+                forma.ShowDialog(this);
             }
         }
 

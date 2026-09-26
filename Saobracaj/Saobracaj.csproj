@@ -3096,6 +3096,12 @@
     <Compile Include="RNI\frmTerminalPrivremeniPromeni.Designer.cs">
       <DependentUpon>frmTerminalPrivremeniPromeni.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniArhiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniArhiva.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniArhiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="RNI\frmTerminalPrivremeniLog.cs">
       <SubType>Form</SubType>
     </Compile>

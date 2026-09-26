@@ -20,15 +20,17 @@ namespace Saobracaj.RNI
         private const int VelicinaMiniature = 120;
 
         private readonly int id;
+        private readonly bool arhiva;   // zapis je u TerminalPrivArhiv (a ne u TerminalPriv)
         private int verzijaUcitavanja;
 
         // Broj slika u folderu posle poslednjeg dodavanja i da li je polje POSLATE SLIKE promenjeno u bazi
         public int BrojSlika { get; private set; }
         public bool Promenjeno { get; private set; }
 
-        public frmTerminalPrivremeniSlike(int id, string kontejner)
+        public frmTerminalPrivremeniSlike(int id, string kontejner, bool arhiva = false)
         {
             this.id = id;
+            this.arhiva = arhiva;
             InitializeComponent();
 
             Text = "Slike - ID " + id + (string.IsNullOrEmpty(kontejner) ? "" : " (" + kontejner + ")");
@@ -294,7 +296,11 @@ namespace Saobracaj.RNI
                 try
                 {
                     int broj = Directory.GetFiles(folder).Count(JeSlika);
-                    new insertTerminalPriv().UpdTerminalPrivPoslateSlike(id, broj);
+                    var ins = new insertTerminalPriv();
+                    if (arhiva)
+                        ins.UpdTerminalPrivArhivPoslateSlike(id, broj);
+                    else
+                        ins.UpdTerminalPrivPoslateSlike(id, broj);
                     BrojSlika = broj;
                     Promenjeno = true;
                 }

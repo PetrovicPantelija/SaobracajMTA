@@ -41,6 +41,8 @@
             this.btnZakaciSlike = new System.Windows.Forms.Button();
             this.btnZakaciDokumenta = new System.Windows.Forms.Button();
             this.btnPregledLoga = new System.Windows.Forms.Button();
+            this.btnArhiviraj = new System.Windows.Forms.Button();
+            this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
             this.btnSacuvajNovi = new System.Windows.Forms.Button();
@@ -877,6 +879,8 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnArhiviraniPodaci);
+            this.panel2.Controls.Add(this.btnArhiviraj);
             this.panel2.Controls.Add(this.btnPregledLoga);
             this.panel2.Controls.Add(this.btnZakaciDokumenta);
             this.panel2.Controls.Add(this.btnZakaciSlike);
@@ -887,6 +891,48 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1327, 31);
             this.panel2.TabIndex = 6;
+            // 
+            // btnArhiviraj
+            // 
+            this.btnArhiviraj.AutoSize = true;
+            this.btnArhiviraj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnArhiviraj.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnArhiviraj.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnArhiviraj.FlatAppearance.BorderSize = 0;
+            this.btnArhiviraj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnArhiviraj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnArhiviraj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArhiviraj.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnArhiviraj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnArhiviraj.Location = new System.Drawing.Point(764, 0);
+            this.btnArhiviraj.Name = "btnArhiviraj";
+            this.btnArhiviraj.Size = new System.Drawing.Size(100, 31);
+            this.btnArhiviraj.TabIndex = 7;
+            this.btnArhiviraj.Text = "Arhiviraj";
+            this.btnArhiviraj.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnArhiviraj.UseVisualStyleBackColor = true;
+            this.btnArhiviraj.Click += new System.EventHandler(this.btnArhiviraj_Click);
+            // 
+            // btnArhiviraniPodaci
+            // 
+            this.btnArhiviraniPodaci.AutoSize = true;
+            this.btnArhiviraniPodaci.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnArhiviraniPodaci.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnArhiviraniPodaci.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnArhiviraniPodaci.FlatAppearance.BorderSize = 0;
+            this.btnArhiviraniPodaci.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnArhiviraniPodaci.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnArhiviraniPodaci.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArhiviraniPodaci.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnArhiviraniPodaci.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnArhiviraniPodaci.Location = new System.Drawing.Point(864, 0);
+            this.btnArhiviraniPodaci.Name = "btnArhiviraniPodaci";
+            this.btnArhiviraniPodaci.Size = new System.Drawing.Size(150, 31);
+            this.btnArhiviraniPodaci.TabIndex = 8;
+            this.btnArhiviraniPodaci.Text = "Arhivirani podaci";
+            this.btnArhiviraniPodaci.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnArhiviraniPodaci.UseVisualStyleBackColor = true;
+            this.btnArhiviraniPodaci.Click += new System.EventHandler(this.btnArhiviraniPodaci_Click);
             // 
             // btnPregledLoga
             // 
@@ -1053,6 +1099,8 @@
         private System.Windows.Forms.Button btnZakaciSlike;
         private System.Windows.Forms.Button btnZakaciDokumenta;
         private System.Windows.Forms.Button btnPregledLoga;
+        private System.Windows.Forms.Button btnArhiviraj;
+        private System.Windows.Forms.Button btnArhiviraniPodaci;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
         private System.Windows.Forms.Button btnSacuvajNovi;

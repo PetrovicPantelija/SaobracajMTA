@@ -145,10 +145,21 @@ namespace Saobracaj.RNI
         // Menja samo polje POSLATE SLIKE (broj slika u folderu zapisa)
         public void UpdTerminalPrivPoslateSlike(int ID, int brojSlika)
         {
+            UpdPoslateSlike("updTerminalPrivPoslateSlike", ID, brojSlika);
+        }
+
+        // Isto za zapis u arhivi (TerminalPrivArhiv)
+        public void UpdTerminalPrivArhivPoslateSlike(int ID, int brojSlika)
+        {
+            UpdPoslateSlike("updTerminalPrivArhivPoslateSlike", ID, brojSlika);
+        }
+
+        private void UpdPoslateSlike(string procedura, int ID, int brojSlika)
+        {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "updTerminalPrivPoslateSlike";
+            myCommand.CommandText = procedura;
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter parameter = new SqlParameter();
@@ -178,6 +189,36 @@ namespace Saobracaj.RNI
             {
                 myTransaction.Rollback();
                 throw new Exception("Neuspešna izmena broja slika: " + ex.Message);
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        // Prebacuje sve zapise iz TerminalPriv kod kojih Konacni_GATE_OUT nije NULL u TerminalPrivArhiv i brise ih
+        // iz TerminalPriv (procedura InsertTerminalPrivArhiv). Vraca broj arhiviranih zapisa.
+        public int InsTerminalPrivArhiv()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertTerminalPrivArhiv";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            try
+            {
+                object rezultat = myCommand.ExecuteScalar();
+                myTransaction.Commit();
+                return Convert.ToInt32(rezultat);
+            }
+            catch (SqlException ex)
+            {
+                myTransaction.Rollback();
+                throw new Exception("Neuspešno arhiviranje: " + ex.Message);
             }
             finally
             {

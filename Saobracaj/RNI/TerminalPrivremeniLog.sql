@@ -82,7 +82,12 @@ BEGIN
     ELSE
     BEGIN
         INSERT INTO dbo.TerminalPrivremeniLog (TerminalPrivID, Akcija, Kontejner, Opis)
-        SELECT ID, N'DELETE', KONTEJNER, N'Obrisan zapis' FROM deleted;
+        -- InsertTerminalPrivArhiv postavlja session context pa se prebacivanje u arhivu razlikuje od brisanja
+        SELECT ID,
+               CASE WHEN CAST(SESSION_CONTEXT(N'ArhivirajTerminalPriv') AS int) = 1 THEN N'ARHIVA' ELSE N'DELETE' END,
+               KONTEJNER,
+               CASE WHEN CAST(SESSION_CONTEXT(N'ArhivirajTerminalPriv') AS int) = 1 THEN N'Prebačeno u arhivu' ELSE N'Obrisan zapis' END
+        FROM deleted;
     END
 END
 GO
