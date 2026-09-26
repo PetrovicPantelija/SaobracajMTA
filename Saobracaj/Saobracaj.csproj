@@ -452,6 +452,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracija\Administracija1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\Administracija1.Designer.cs">
+      <DependentUpon>Administracija1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administracija\frmDodeliGrupu.cs">
       <SubType>Form</SubType>
     </Compile>
