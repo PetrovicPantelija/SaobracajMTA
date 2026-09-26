@@ -206,3 +206,17 @@ BEGIN
     VALUES (@KONTEJNER, @VRSTA, @BRODAR, @NALOGODAVAC, @POSTUPAK, @UVOZNIK, @PLOMBA_UVOZ);
 END
 GO
+
+-- Broj poslatih slika (frmTerminalPrivremeniSlike): menja samo polje POSLATE SLIKE
+IF OBJECT_ID('dbo.updTerminalPrivPoslateSlike', 'P') IS NOT NULL DROP PROCEDURE dbo.updTerminalPrivPoslateSlike;
+GO
+CREATE PROCEDURE dbo.updTerminalPrivPoslateSlike
+    @ID int,
+    @POSLATE_SLIKE nvarchar(25) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE dbo.TerminalPriv SET [POSLATE SLIKE] = @POSLATE_SLIKE WHERE ID = @ID;
+END
+GO

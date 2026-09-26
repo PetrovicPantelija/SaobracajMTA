@@ -142,6 +142,49 @@ namespace Saobracaj.RNI
             }
         }
 
+        // Menja samo polje POSLATE SLIKE (broj slika u folderu zapisa)
+        public void UpdTerminalPrivPoslateSlike(int ID, int brojSlika)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "updTerminalPrivPoslateSlike";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
+
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@POSLATE_SLIKE";
+            parameter1.SqlDbType = SqlDbType.NVarChar;
+            parameter1.Size = 25;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = brojSlika.ToString();
+            myCommand.Parameters.Add(parameter1);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                myTransaction.Rollback();
+                throw new Exception("Neuspešna izmena broja slika: " + ex.Message);
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
         public void DelTerminalPriv(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

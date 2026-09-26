@@ -403,12 +403,15 @@ namespace Saobracaj.RNI
             GridColumnDescriptorCollection kolone = gridGroupingControl1.TableDescriptor.Columns;
 
             kolone["ID"].Appearance.AnyRecordFieldCell.ReadOnly = true;
+            kolone["ID"].Width = SirinaKolone(kolone["ID"].HeaderText, "00000");
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
                 GridColumnDescriptor kolona = kolone[polje.Kolona];
                 if (kolona == null)
                     continue;
+
+                kolona.Width = SirinaKolone(kolona.HeaderText, PrimerSadrzaja(polje));
 
                 if (polje.Tip == TerminalPrivTip.Datum)
                 {
@@ -424,6 +427,36 @@ namespace Saobracaj.RNI
                     izbor.AddRange(polje.Dozvoljeno);
                     kolona.Appearance.AnyRecordFieldCell.ChoiceList = izbor;
                 }
+            }
+        }
+
+        // Najduži sadržaj kolone po kome se računa širina: datum, najduža dozvoljena vrednost ili
+        // onoliko velikih slova koliko polje ima karaktera (nvarchar(25) -> 25 karaktera)
+        private static string PrimerSadrzaja(TerminalPrivPolje polje)
+        {
+            if (polje.Tip == TerminalPrivTip.Datum)
+                return "88.88.8888 88:88";
+
+            if (polje.Dozvoljeno != null)
+                return polje.Dozvoljeno.OrderByDescending(v => v.Length).First();
+
+            return new string('A', polje.Velicina);
+        }
+
+        // Širina kolone: dovoljna za ceo naslov (u boldu, sa mestom za ikonu sortiranja/filtera) i za sadržaj,
+        // ali ograničena da najduža polja (NAPOMENA, OPIS) ne zauzmu ceo grid
+        private int SirinaKolone(string naslov, string sadrzaj)
+        {
+            const int NajvecaSirinaSadrzaja = 260;
+            const int DodatakZaNaslov = 32;
+            const int DodatakZaSadrzaj = 24;   // margine ćelije i dugme padajuće liste
+
+            Font font = gridGroupingControl1.Font;
+            using (var fontNaslova = new Font(font, FontStyle.Bold))
+            {
+                int sirinaNaslova = TextRenderer.MeasureText(naslov ?? "", fontNaslova, Size.Empty, TextFormatFlags.NoPadding).Width + DodatakZaNaslov;
+                int sirinaSadrzaja = TextRenderer.MeasureText(sadrzaj, font, Size.Empty, TextFormatFlags.NoPadding).Width + DodatakZaSadrzaj;
+                return Math.Max(sirinaNaslova, Math.Min(sirinaSadrzaja, NajvecaSirinaSadrzaja));
             }
         }
 
@@ -595,6 +628,90 @@ namespace Saobracaj.RNI
             {
                 forma.ShowDialog(this);
             }
+
+            OsveziPolja();
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Zakaci slike
+        // ---------------------------------------------------------------------------------
+        // ID i kontejner izabranog zapisa; zapis bez ID-a (nov, nesačuvan) nema folder pa se ne prihvata
+        private bool IzaberiSacuvanZapis(string naslov, out int id, out string kontejner)
+        {
+            Record zapis = IzaberiZapis();
+            object idVrednost = zapis == null ? null : zapis.GetValue("ID");
+            id = idVrednost == null || idVrednost == DBNull.Value ? 0 : Convert.ToInt32(idVrednost);
+            kontejner = "";
+
+            if (id <= 0)
+            {
+                MessageBox.Show("Izaberite sačuvan zapis u tabeli. Novi zapis se prvo mora sačuvati da bi dobio ID.",
+                    naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            object vrednost = zapis.GetValue("KONTEJNER");
+            kontejner = vrednost == DBNull.Value ? "" : Convert.ToString(vrednost);
+            return true;
+        }
+
+        private void btnZakaciSlike_Click(object sender, EventArgs e)
+        {
+            int id;
+            string kontejner;
+            if (!IzaberiSacuvanZapis("Zakači slike", out id, out kontejner))
+                return;
+
+            using (var forma = new frmTerminalPrivremeniSlike(id, kontejner))
+            {
+                forma.ShowDialog(this);
+                if (forma.Promenjeno)
+                    PrimeniBrojSlika(id, forma.BrojSlika);
+            }
+        }
+
+        private void btnPregledLoga_Click(object sender, EventArgs e)
+        {
+            int id;
+            string kontejner;
+            if (!IzaberiSacuvanZapis("Pregled loga", out id, out kontejner))
+                return;
+
+            using (var forma = new frmTerminalPrivremeniLog(id, kontejner))
+            {
+                forma.ShowDialog(this);
+            }
+        }
+
+        private void btnZakaciDokumenta_Click(object sender, EventArgs e)
+        {
+            int id;
+            string kontejner;
+            if (!IzaberiSacuvanZapis("Zakači dokumenta", out id, out kontejner))
+                return;
+
+            using (var forma = new frmTerminalPrivremeniDokumenta(id, kontejner))
+            {
+                forma.ShowDialog(this);
+            }
+        }
+
+        // Baza je već ažurirana (updTerminalPrivPoslateSlike), pa se vrednost samo prikazuje u gridu bez
+        // označavanja reda kao izmenjenog. Red sa drugim nesačuvanim izmenama ostaje izmenjen.
+        private void PrimeniBrojSlika(int id, int broj)
+        {
+            DataRow[] redovi = dt.Select("ID = " + id);
+            if (redovi.Length == 0)
+                return;
+
+            DataRow red = redovi[0];
+            if (red.HasVersion(DataRowVersion.Proposed))
+                red.EndEdit();
+
+            bool imaDrugihIzmena = red.RowState == DataRowState.Modified;
+            red["POSLATE SLIKE"] = broj.ToString();
+            if (!imaDrugihIzmena)
+                red.AcceptChanges();
 
             OsveziPolja();
         }

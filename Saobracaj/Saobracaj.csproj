@@ -3096,6 +3096,24 @@
     <Compile Include="RNI\frmTerminalPrivremeniPromeni.Designer.cs">
       <DependentUpon>frmTerminalPrivremeniPromeni.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniLog.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniDokumenta.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniDokumenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniSlike.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniSlike.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniSlike.cs</DependentUpon>
+    </Compile>
     <Compile Include="RNI\insertTerminalPriv.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>

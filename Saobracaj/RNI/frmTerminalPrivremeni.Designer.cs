@@ -38,6 +38,9 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnSacuvajIzmene = new System.Windows.Forms.Button();
+            this.btnZakaciSlike = new System.Windows.Forms.Button();
+            this.btnZakaciDokumenta = new System.Windows.Forms.Button();
+            this.btnPregledLoga = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
             this.btnSacuvajNovi = new System.Windows.Forms.Button();
@@ -162,7 +165,7 @@
             this.gridGroupingControl1.ApplyVisualStyles = false;
             this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
             this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
@@ -874,6 +877,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnPregledLoga);
+            this.panel2.Controls.Add(this.btnZakaciDokumenta);
+            this.panel2.Controls.Add(this.btnZakaciSlike);
             this.panel2.Controls.Add(this.btnSacuvajIzmene);
             this.panel2.Controls.Add(this.btnGrupnaPromena);
             this.panel2.Controls.Add(this.btnUvozExcel);
@@ -881,6 +887,69 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1327, 31);
             this.panel2.TabIndex = 6;
+            // 
+            // btnPregledLoga
+            // 
+            this.btnPregledLoga.AutoSize = true;
+            this.btnPregledLoga.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPregledLoga.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPregledLoga.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnPregledLoga.FlatAppearance.BorderSize = 0;
+            this.btnPregledLoga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPregledLoga.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPregledLoga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPregledLoga.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnPregledLoga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnPregledLoga.Location = new System.Drawing.Point(640, 0);
+            this.btnPregledLoga.Name = "btnPregledLoga";
+            this.btnPregledLoga.Size = new System.Drawing.Size(120, 31);
+            this.btnPregledLoga.TabIndex = 6;
+            this.btnPregledLoga.Text = "Pregled log";
+            this.btnPregledLoga.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPregledLoga.UseVisualStyleBackColor = true;
+            this.btnPregledLoga.Click += new System.EventHandler(this.btnPregledLoga_Click);
+            // 
+            // btnZakaciDokumenta
+            // 
+            this.btnZakaciDokumenta.AutoSize = true;
+            this.btnZakaciDokumenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnZakaciDokumenta.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnZakaciDokumenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnZakaciDokumenta.FlatAppearance.BorderSize = 0;
+            this.btnZakaciDokumenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnZakaciDokumenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnZakaciDokumenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZakaciDokumenta.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnZakaciDokumenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnZakaciDokumenta.Location = new System.Drawing.Point(490, 0);
+            this.btnZakaciDokumenta.Name = "btnZakaciDokumenta";
+            this.btnZakaciDokumenta.Size = new System.Drawing.Size(150, 31);
+            this.btnZakaciDokumenta.TabIndex = 5;
+            this.btnZakaciDokumenta.Text = "Zakači dokumenta";
+            this.btnZakaciDokumenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnZakaciDokumenta.UseVisualStyleBackColor = true;
+            this.btnZakaciDokumenta.Click += new System.EventHandler(this.btnZakaciDokumenta_Click);
+            // 
+            // btnZakaciSlike
+            // 
+            this.btnZakaciSlike.AutoSize = true;
+            this.btnZakaciSlike.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnZakaciSlike.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnZakaciSlike.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnZakaciSlike.FlatAppearance.BorderSize = 0;
+            this.btnZakaciSlike.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnZakaciSlike.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnZakaciSlike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZakaciSlike.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnZakaciSlike.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnZakaciSlike.Location = new System.Drawing.Point(370, 0);
+            this.btnZakaciSlike.Name = "btnZakaciSlike";
+            this.btnZakaciSlike.Size = new System.Drawing.Size(120, 31);
+            this.btnZakaciSlike.TabIndex = 4;
+            this.btnZakaciSlike.Text = "Zakači slike";
+            this.btnZakaciSlike.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnZakaciSlike.UseVisualStyleBackColor = true;
+            this.btnZakaciSlike.Click += new System.EventHandler(this.btnZakaciSlike_Click);
             // 
             // btnSacuvajIzmene
             // 
@@ -981,6 +1050,9 @@
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSacuvajIzmene;
+        private System.Windows.Forms.Button btnZakaciSlike;
+        private System.Windows.Forms.Button btnZakaciDokumenta;
+        private System.Windows.Forms.Button btnPregledLoga;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
         private System.Windows.Forms.Button btnSacuvajNovi;
