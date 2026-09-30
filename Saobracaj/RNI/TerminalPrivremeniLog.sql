@@ -8,8 +8,8 @@ BEGIN
         LogID          int IDENTITY(1,1) NOT NULL,
         TerminalPrivID int           NOT NULL,   -- ID zapisa u TerminalPriv
         Datum          datetime      NOT NULL CONSTRAINT DF_TerminalPrivremeniLog_Datum DEFAULT (GETDATE()),
-        Akcija         nvarchar(10)  NOT NULL,   -- INSERT / UPDATE / DELETE
-        Kontejner      nvarchar(25)  NULL,
+        Akcija         nvarchar(10)  NOT NULL,   -- INSERT / UPDATE / DELETE / ARHIVA
+        Kontejner      nvarchar(30)  NULL,
         Opis           nvarchar(max) NULL,       -- kod UPDATE: kolona: staro -> novo
         Racunar        nvarchar(128) NULL CONSTRAINT DF_TerminalPrivremeniLog_Racunar DEFAULT (HOST_NAME()),
         CONSTRAINT PK_TerminalPrivremeniLog PRIMARY KEY CLUSTERED (LogID)
@@ -41,36 +41,37 @@ BEGIN
         FROM inserted i
         INNER JOIN deleted d ON d.ID = i.ID
         CROSS APPLY (SELECT CONCAT(
-            CASE WHEN EXISTS (SELECT d.[KONTEJNER] EXCEPT SELECT i.[KONTEJNER]) THEN N'KONTEJNER: ' + ISNULL(CONVERT(nvarchar(200), d.[KONTEJNER]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[KONTEJNER]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[STATUS] EXCEPT SELECT i.[STATUS]) THEN N'STATUS: ' + ISNULL(CONVERT(nvarchar(200), d.[STATUS]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[STATUS]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[POZICIJA] EXCEPT SELECT i.[POZICIJA]) THEN N'POZICIJA: ' + ISNULL(CONVERT(nvarchar(200), d.[POZICIJA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[POZICIJA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[VRSTA] EXCEPT SELECT i.[VRSTA]) THEN N'VRSTA: ' + ISNULL(CONVERT(nvarchar(200), d.[VRSTA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[VRSTA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[BRODAR] EXCEPT SELECT i.[BRODAR]) THEN N'BRODAR: ' + ISNULL(CONVERT(nvarchar(200), d.[BRODAR]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[BRODAR]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[NALOGODAVAC] EXCEPT SELECT i.[NALOGODAVAC]) THEN N'NALOGODAVAC: ' + ISNULL(CONVERT(nvarchar(200), d.[NALOGODAVAC]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[NALOGODAVAC]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[POSTUPAK] EXCEPT SELECT i.[POSTUPAK]) THEN N'POSTUPAK: ' + ISNULL(CONVERT(nvarchar(200), d.[POSTUPAK]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[POSTUPAK]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[UVOZNIK] EXCEPT SELECT i.[UVOZNIK]) THEN N'UVOZNIK: ' + ISNULL(CONVERT(nvarchar(200), d.[UVOZNIK]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[UVOZNIK]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[PLOMBA_UVOZ] EXCEPT SELECT i.[PLOMBA_UVOZ]) THEN N'PLOMBA_UVOZ: ' + ISNULL(CONVERT(nvarchar(200), d.[PLOMBA_UVOZ]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[PLOMBA_UVOZ]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[VOZ] EXCEPT SELECT i.[VOZ]) THEN N'VOZ: ' + ISNULL(CONVERT(nvarchar(200), d.[VOZ]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[VOZ]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[STANJE] EXCEPT SELECT i.[STANJE]) THEN N'STANJE: ' + ISNULL(CONVERT(nvarchar(200), d.[STANJE]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[STANJE]), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[KONTEJNER] EXCEPT SELECT i.[KONTEJNER]) THEN N'KONTEJNER: ' + ISNULL(d.[KONTEJNER], N'(prazno)') + N' -> ' + ISNULL(i.[KONTEJNER], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[STATUS] EXCEPT SELECT i.[STATUS]) THEN N'STATUS: ' + ISNULL(d.[STATUS], N'(prazno)') + N' -> ' + ISNULL(i.[STATUS], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POZICIJA] EXCEPT SELECT i.[POZICIJA]) THEN N'POZICIJA: ' + ISNULL(d.[POZICIJA], N'(prazno)') + N' -> ' + ISNULL(i.[POZICIJA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VRSTA] EXCEPT SELECT i.[VRSTA]) THEN N'VRSTA: ' + ISNULL(d.[VRSTA], N'(prazno)') + N' -> ' + ISNULL(i.[VRSTA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BRODAR] EXCEPT SELECT i.[BRODAR]) THEN N'BRODAR: ' + ISNULL(d.[BRODAR], N'(prazno)') + N' -> ' + ISNULL(i.[BRODAR], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[NALOGODAVAC/UVOZ] EXCEPT SELECT i.[NALOGODAVAC/UVOZ]) THEN N'NALOGODAVAC/UVOZ: ' + ISNULL(d.[NALOGODAVAC/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[NALOGODAVAC/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POSTUPAK/UVOZ] EXCEPT SELECT i.[POSTUPAK/UVOZ]) THEN N'POSTUPAK/UVOZ: ' + ISNULL(d.[POSTUPAK/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[POSTUPAK/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[UVOZNIK] EXCEPT SELECT i.[UVOZNIK]) THEN N'UVOZNIK: ' + ISNULL(d.[UVOZNIK], N'(prazno)') + N' -> ' + ISNULL(i.[UVOZNIK], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BL/UVOZ] EXCEPT SELECT i.[BL/UVOZ]) THEN N'BL/UVOZ: ' + ISNULL(d.[BL/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[BL/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PLOMBA_UVOZ] EXCEPT SELECT i.[PLOMBA_UVOZ]) THEN N'PLOMBA_UVOZ: ' + ISNULL(d.[PLOMBA_UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[PLOMBA_UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VOZ/kamion] EXCEPT SELECT i.[VOZ/kamion]) THEN N'VOZ/kamion: ' + ISNULL(d.[VOZ/kamion], N'(prazno)') + N' -> ' + ISNULL(i.[VOZ/kamion], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[STANJE] EXCEPT SELECT i.[STANJE]) THEN N'STANJE: ' + ISNULL(d.[STANJE], N'(prazno)') + N' -> ' + ISNULL(i.[STANJE], N'(prazno)') + N'; ' ELSE N'' END,
             CASE WHEN EXISTS (SELECT d.[GATE_IN_E/F] EXCEPT SELECT i.[GATE_IN_E/F]) THEN N'GATE_IN_E/F: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_IN_E/F], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_IN_E/F], 120), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[PREUZIMANJE_PUNOG] EXCEPT SELECT i.[PREUZIMANJE_PUNOG]) THEN N'PREUZIMANJE_PUNOG: ' + ISNULL(CONVERT(nvarchar(20), d.[PREUZIMANJE_PUNOG], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[PREUZIMANJE_PUNOG], 120), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[VRAĆANJE_PRAZNOG] EXCEPT SELECT i.[VRAĆANJE_PRAZNOG]) THEN N'VRAĆANJE_PRAZNOG: ' + ISNULL(CONVERT(nvarchar(20), d.[VRAĆANJE_PRAZNOG], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[VRAĆANJE_PRAZNOG], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PREUZIMANJE_PUNOG/Razvoz] EXCEPT SELECT i.[PREUZIMANJE_PUNOG/Razvoz]) THEN N'PREUZIMANJE_PUNOG/Razvoz: ' + ISNULL(CONVERT(nvarchar(20), d.[PREUZIMANJE_PUNOG/Razvoz], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[PREUZIMANJE_PUNOG/Razvoz], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VRAĆANJE_PRAZNOG/iz_Razvoza] EXCEPT SELECT i.[VRAĆANJE_PRAZNOG/iz_Razvoza]) THEN N'VRAĆANJE_PRAZNOG/iz_Razvoza: ' + ISNULL(CONVERT(nvarchar(20), d.[VRAĆANJE_PRAZNOG/iz_Razvoza], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[VRAĆANJE_PRAZNOG/iz_Razvoza], 120), N'(prazno)') + N'; ' ELSE N'' END,
             CASE WHEN EXISTS (SELECT d.[Konačni_GATE_OUT] EXCEPT SELECT i.[Konačni_GATE_OUT]) THEN N'Konačni_GATE_OUT: ' + ISNULL(CONVERT(nvarchar(20), d.[Konačni_GATE_OUT], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[Konačni_GATE_OUT], 120), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[BOOKING] EXCEPT SELECT i.[BOOKING]) THEN N'BOOKING: ' + ISNULL(CONVERT(nvarchar(200), d.[BOOKING]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[BOOKING]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[KLIJENT] EXCEPT SELECT i.[KLIJENT]) THEN N'KLIJENT: ' + ISNULL(CONVERT(nvarchar(200), d.[KLIJENT]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[KLIJENT]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[GATE_OUT_EMPTY Utovar] EXCEPT SELECT i.[GATE_OUT_EMPTY Utovar]) THEN N'GATE_OUT_EMPTY Utovar: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_OUT_EMPTY Utovar], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_OUT_EMPTY Utovar], 120), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[GATE_IN_FULL Utovar] EXCEPT SELECT i.[GATE_IN_FULL Utovar]) THEN N'GATE_IN_FULL Utovar: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_IN_FULL Utovar], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_IN_FULL Utovar], 120), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[GATE_IN/GATE_OUT] EXCEPT SELECT i.[GATE_IN/GATE_OUT]) THEN N'GATE_IN/GATE_OUT: ' + ISNULL(CONVERT(nvarchar(200), d.[GATE_IN/GATE_OUT]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[GATE_IN/GATE_OUT]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[L/R] EXCEPT SELECT i.[L/R]) THEN N'L/R: ' + ISNULL(CONVERT(nvarchar(200), d.[L/R]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[L/R]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[TARA] EXCEPT SELECT i.[TARA]) THEN N'TARA: ' + ISNULL(CONVERT(nvarchar(200), d.[TARA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[TARA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[MAX] EXCEPT SELECT i.[MAX]) THEN N'MAX: ' + ISNULL(CONVERT(nvarchar(200), d.[MAX]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[MAX]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[VOZILO] EXCEPT SELECT i.[VOZILO]) THEN N'VOZILO: ' + ISNULL(CONVERT(nvarchar(200), d.[VOZILO]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[VOZILO]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[PLOMBA] EXCEPT SELECT i.[PLOMBA]) THEN N'PLOMBA: ' + ISNULL(CONVERT(nvarchar(200), d.[PLOMBA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[PLOMBA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[NAPOMENA] EXCEPT SELECT i.[NAPOMENA]) THEN N'NAPOMENA: ' + ISNULL(CONVERT(nvarchar(200), d.[NAPOMENA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[NAPOMENA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[OPIS] EXCEPT SELECT i.[OPIS]) THEN N'OPIS: ' + ISNULL(CONVERT(nvarchar(200), d.[OPIS]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[OPIS]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[OTPREMA] EXCEPT SELECT i.[OTPREMA]) THEN N'OTPREMA: ' + ISNULL(CONVERT(nvarchar(200), d.[OTPREMA]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[OTPREMA]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[POSLATE SLIKE] EXCEPT SELECT i.[POSLATE SLIKE]) THEN N'POSLATE SLIKE: ' + ISNULL(CONVERT(nvarchar(200), d.[POSLATE SLIKE]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[POSLATE SLIKE]), N'(prazno)') + N'; ' ELSE N'' END,
-            CASE WHEN EXISTS (SELECT d.[Prevoznik] EXCEPT SELECT i.[Prevoznik]) THEN N'Prevoznik: ' + ISNULL(CONVERT(nvarchar(200), d.[Prevoznik]), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(200), i.[Prevoznik]), N'(prazno)') + N'; ' ELSE N'' END
+            CASE WHEN EXISTS (SELECT d.[BOOKING/IZVOZ] EXCEPT SELECT i.[BOOKING/IZVOZ]) THEN N'BOOKING/IZVOZ: ' + ISNULL(d.[BOOKING/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[BOOKING/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[KLIJENT/IZVOZ] EXCEPT SELECT i.[KLIJENT/IZVOZ]) THEN N'KLIJENT/IZVOZ: ' + ISNULL(d.[KLIJENT/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[KLIJENT/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_OUT_EMPTY/Utovar] EXCEPT SELECT i.[GATE_OUT_EMPTY/Utovar]) THEN N'GATE_OUT_EMPTY/Utovar: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_OUT_EMPTY/Utovar], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_OUT_EMPTY/Utovar], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_IN_FULL/sa_Utovara] EXCEPT SELECT i.[GATE_IN_FULL/sa_Utovara]) THEN N'GATE_IN_FULL/sa_Utovara: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_IN_FULL/sa_Utovara], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_IN_FULL/sa_Utovara], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_IN/_GATE_OUT] EXCEPT SELECT i.[GATE_IN/_GATE_OUT]) THEN N'GATE_IN/_GATE_OUT: ' + ISNULL(d.[GATE_IN/_GATE_OUT], N'(prazno)') + N' -> ' + ISNULL(i.[GATE_IN/_GATE_OUT], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[L/R] EXCEPT SELECT i.[L/R]) THEN N'L/R: ' + ISNULL(d.[L/R], N'(prazno)') + N' -> ' + ISNULL(i.[L/R], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[TARA] EXCEPT SELECT i.[TARA]) THEN N'TARA: ' + ISNULL(d.[TARA], N'(prazno)') + N' -> ' + ISNULL(i.[TARA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[MAX_NOSIVOST_CNT] EXCEPT SELECT i.[MAX_NOSIVOST_CNT]) THEN N'MAX_NOSIVOST_CNT: ' + ISNULL(d.[MAX_NOSIVOST_CNT], N'(prazno)') + N' -> ' + ISNULL(i.[MAX_NOSIVOST_CNT], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VOZILO/PREUZIMANJE] EXCEPT SELECT i.[VOZILO/PREUZIMANJE]) THEN N'VOZILO/PREUZIMANJE: ' + ISNULL(d.[VOZILO/PREUZIMANJE], N'(prazno)') + N' -> ' + ISNULL(i.[VOZILO/PREUZIMANJE], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PLOMBA/IZVOZ] EXCEPT SELECT i.[PLOMBA/IZVOZ]) THEN N'PLOMBA/IZVOZ: ' + ISNULL(d.[PLOMBA/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[PLOMBA/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[NAPOMENA] EXCEPT SELECT i.[NAPOMENA]) THEN N'NAPOMENA: ' + ISNULL(d.[NAPOMENA], N'(prazno)') + N' -> ' + ISNULL(i.[NAPOMENA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[OPIS] EXCEPT SELECT i.[OPIS]) THEN N'OPIS: ' + ISNULL(d.[OPIS], N'(prazno)') + N' -> ' + ISNULL(i.[OPIS], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[OTPREMA] EXCEPT SELECT i.[OTPREMA]) THEN N'OTPREMA: ' + ISNULL(d.[OTPREMA], N'(prazno)') + N' -> ' + ISNULL(i.[OTPREMA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POSLATE SLIKE] EXCEPT SELECT i.[POSLATE SLIKE]) THEN N'POSLATE SLIKE: ' + ISNULL(d.[POSLATE SLIKE], N'(prazno)') + N' -> ' + ISNULL(i.[POSLATE SLIKE], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[Prevoznik] EXCEPT SELECT i.[Prevoznik]) THEN N'Prevoznik: ' + ISNULL(d.[Prevoznik], N'(prazno)') + N' -> ' + ISNULL(i.[Prevoznik], N'(prazno)') + N'; ' ELSE N'' END
         ) AS Opis) x
         WHERE LEN(x.Opis) > 0;
     END

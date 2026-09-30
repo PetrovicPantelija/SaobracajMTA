@@ -9,11 +9,10 @@ namespace Saobracaj.RNI
 {
     public partial class frmTerminalPrivremeniExcel : Form
     {
-        // Excel kolone koje se uvoze, u redosledu parametara stored procedure insTerminalPrivFromExcel:
-        // KONTEJNER, VRSTA, BRODAR, NALOGODAVAC, POSTUPAK, UVOZNIK, PLOMBA_UVOZ
+        // Excel kolone koje se uvoze, redom kao insertTerminalPriv.KoloneIzExcela:
+        // KONTEJNER, VRSTA, BRODAR, NALOGODAVAC/UVOZ, POSTUPAK/UVOZ, UVOZNIK, PLOMBA_UVOZ
         private static readonly string[] KoloneZaUvoz = { "C", "D", "K", "L", "T", "M", "H" };
-        private static readonly string[] NaziviPolja = { "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC", "POSTUPAK", "UVOZNIK", "PLOMBA_UVOZ" };
-        private const int MaxDuzina = 25;
+        private static readonly string[] NaziviPolja = insertTerminalPriv.KoloneIzExcela;
         private const int MinBrojKolona = 20;   // do kolone T
 
         private DataTable tabela;
@@ -134,6 +133,7 @@ namespace Saobracaj.RNI
 
             var redovi = new List<string[]>();
             var greske = new List<string>();
+            var skracenja = new List<string>();
 
             for (int i = 0; i < tabela.Rows.Count; i++)
             {
@@ -151,10 +151,17 @@ namespace Saobracaj.RNI
                 if (vrednosti[0].Length != insertTerminalPriv.DuzinaKontejnera)
                     greskeReda.Add("KONTEJNER (kolona C) mora imati tačno " + insertTerminalPriv.DuzinaKontejnera + " karaktera");
 
+                // Predugačka vrednost se ne odbija: skraćuje se na dozvoljenu dužinu (bez razmaka na kraju) i beleži u log
                 for (int k = 1; k < vrednosti.Length; k++)
                 {
-                    if (vrednosti[k].Length > MaxDuzina)
-                        greskeReda.Add(NaziviPolja[k] + " (kolona " + KoloneZaUvoz[k] + ") može imati najviše " + MaxDuzina + " karaktera");
+                    int maxDuzina = insertTerminalPriv.Polje(NaziviPolja[k]).Velicina;
+                    if (vrednosti[k].Length > maxDuzina)
+                    {
+                        string skraceno = vrednosti[k].Substring(0, maxDuzina).TrimEnd();
+                        skracenja.Add("Red " + excelRed + ", " + NaziviPolja[k] + " (kolona " + KoloneZaUvoz[k] + "): "
+                            + vrednosti[k].Length + " -> " + skraceno.Length + " karaktera, upisano '" + skraceno + "'");
+                        vrednosti[k] = skraceno;
+                    }
                 }
 
                 if (greskeReda.Count > 0)
@@ -186,7 +193,19 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            MessageBox.Show("Upisano redova u TerminalPriv: " + Uvezeno, "Uvoz Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var izvestaj = new StringBuilder();
+            izvestaj.AppendLine("Upisano redova u TerminalPriv: " + Uvezeno);
+            if (skracenja.Count > 0)
+            {
+                izvestaj.AppendLine();
+                izvestaj.AppendLine("Skraćeno vrednosti dužih od dozvoljenog: " + skracenja.Count);
+                foreach (string s in skracenja.GetRange(0, Math.Min(15, skracenja.Count)))
+                    izvestaj.AppendLine(s);
+                if (skracenja.Count > 15)
+                    izvestaj.AppendLine("...");
+            }
+            MessageBox.Show(izvestaj.ToString(), "Uvoz Excel", MessageBoxButtons.OK,
+                skracenja.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
             Close();
         }
 

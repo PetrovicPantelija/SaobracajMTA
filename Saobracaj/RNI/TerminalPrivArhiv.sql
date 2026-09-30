@@ -7,38 +7,39 @@ IF OBJECT_ID('dbo.TerminalPrivArhiv', 'U') IS NULL
 BEGIN
     CREATE TABLE dbo.TerminalPrivArhiv
     (
-        ID                      int           NOT NULL,   -- ID iz TerminalPriv (nije IDENTITY)
-        KONTEJNER               nvarchar(25)  NOT NULL,
-        STATUS                  nvarchar(25)  NULL,
-        POZICIJA                nvarchar(25)  NULL,
-        VRSTA                   nvarchar(25)  NULL,
-        BRODAR                  nvarchar(25)  NULL,
-        NALOGODAVAC             nvarchar(25)  NULL,
-        POSTUPAK                nvarchar(25)  NULL,
-        UVOZNIK                 nvarchar(25)  NULL,
-        PLOMBA_UVOZ             nvarchar(25)  NULL,
-        VOZ                     nvarchar(25)  NULL,
-        STANJE                  nvarchar(25)  NULL,
-        [GATE_IN_E/F]           datetime      NULL,
-        PREUZIMANJE_PUNOG       datetime      NULL,
-        [VRAĆANJE_PRAZNOG]      datetime      NULL,
-        [Konačni_GATE_OUT]      datetime      NULL,
-        BOOKING                 nvarchar(25)  NULL,
-        KLIJENT                 nvarchar(25)  NULL,
-        [GATE_OUT_EMPTY Utovar] datetime      NULL,
-        [GATE_IN_FULL Utovar]   datetime      NULL,
-        [GATE_IN/GATE_OUT]      nvarchar(50)  NULL,
-        [L/R]                   nvarchar(25)  NULL,
-        TARA                    nvarchar(25)  NULL,
-        [MAX]                   nvarchar(25)  NULL,
-        VOZILO                  nvarchar(25)  NULL,
-        PLOMBA                  nvarchar(25)  NULL,
-        NAPOMENA                nvarchar(100) NULL,
-        OPIS                    nvarchar(100) NULL,
-        OTPREMA                 nvarchar(25)  NULL,
-        [POSLATE SLIKE]         nvarchar(25)  NULL,
-        Prevoznik               nvarchar(25)  NULL,
-        DatumArhiviranja        datetime      NOT NULL CONSTRAINT DF_TerminalPrivArhiv_Datum DEFAULT (GETDATE()),
+        ID                                 int            NOT NULL,   -- ID iz TerminalPriv (nije IDENTITY)
+        [KONTEJNER]                        nvarchar(30)   NOT NULL,
+        [STATUS]                           nvarchar(30)   NULL,
+        [POZICIJA]                         nvarchar(30)   NULL,
+        [VRSTA]                            nvarchar(30)   NULL,
+        [BRODAR]                           nvarchar(30)   NULL,
+        [NALOGODAVAC/UVOZ]                 nvarchar(50)   NULL,
+        [POSTUPAK/UVOZ]                    nvarchar(50)   NULL,
+        [UVOZNIK]                          nvarchar(50)   NULL,
+        [BL/UVOZ]                          nvarchar(30)   NULL,
+        [PLOMBA_UVOZ]                      nvarchar(30)   NULL,
+        [VOZ/kamion]                       nvarchar(30)   NULL,
+        [STANJE]                           nvarchar(30)   NULL,
+        [GATE_IN_E/F]                      datetime       NULL,
+        [PREUZIMANJE_PUNOG/Razvoz]         datetime       NULL,
+        [VRAĆANJE_PRAZNOG/iz_Razvoza]      datetime       NULL,
+        [Konačni_GATE_OUT]                 datetime       NULL,
+        [BOOKING/IZVOZ]                    nvarchar(30)   NULL,
+        [KLIJENT/IZVOZ]                    nvarchar(30)   NULL,
+        [GATE_OUT_EMPTY/Utovar]            datetime       NULL,
+        [GATE_IN_FULL/sa_Utovara]          datetime       NULL,
+        [GATE_IN/_GATE_OUT]                nvarchar(50)   NULL,
+        [L/R]                              nvarchar(30)   NULL,
+        [TARA]                             nvarchar(30)   NULL,
+        [MAX_NOSIVOST_CNT]                 nvarchar(30)   NULL,
+        [VOZILO/PREUZIMANJE]               nvarchar(30)   NULL,
+        [PLOMBA/IZVOZ]                     nvarchar(30)   NULL,
+        [NAPOMENA]                         nvarchar(300)  NULL,
+        [OPIS]                             nvarchar(300)  NULL,
+        [OTPREMA]                          nvarchar(30)   NULL,
+        [POSLATE SLIKE]                    nvarchar(30)   NULL,
+        [Prevoznik]                        nvarchar(30)   NULL,
+        DatumArhiviranja                   datetime       NOT NULL CONSTRAINT DF_TerminalPrivArhiv_Datum DEFAULT (GETDATE()),
         CONSTRAINT PK_TerminalPrivArhiv PRIMARY KEY CLUSTERED (ID)
     );
 END
@@ -66,19 +67,9 @@ BEGIN
     BEGIN TRY
         DELETE t
         OUTPUT
-            deleted.ID, deleted.KONTEJNER, deleted.STATUS, deleted.POZICIJA, deleted.VRSTA, deleted.BRODAR,
-            deleted.NALOGODAVAC, deleted.POSTUPAK, deleted.UVOZNIK, deleted.PLOMBA_UVOZ, deleted.VOZ, deleted.STANJE,
-            deleted.[GATE_IN_E/F], deleted.PREUZIMANJE_PUNOG, deleted.[VRAĆANJE_PRAZNOG], deleted.[Konačni_GATE_OUT],
-            deleted.BOOKING, deleted.KLIJENT, deleted.[GATE_OUT_EMPTY Utovar], deleted.[GATE_IN_FULL Utovar],
-            deleted.[GATE_IN/GATE_OUT], deleted.[L/R], deleted.TARA, deleted.[MAX], deleted.VOZILO, deleted.PLOMBA,
-            deleted.NAPOMENA, deleted.OPIS, deleted.OTPREMA, deleted.[POSLATE SLIKE], deleted.Prevoznik
+            deleted.ID, deleted.[KONTEJNER], deleted.[STATUS], deleted.[POZICIJA], deleted.[VRSTA], deleted.[BRODAR], deleted.[NALOGODAVAC/UVOZ], deleted.[POSTUPAK/UVOZ], deleted.[UVOZNIK], deleted.[BL/UVOZ], deleted.[PLOMBA_UVOZ], deleted.[VOZ/kamion], deleted.[STANJE], deleted.[GATE_IN_E/F], deleted.[PREUZIMANJE_PUNOG/Razvoz], deleted.[VRAĆANJE_PRAZNOG/iz_Razvoza], deleted.[Konačni_GATE_OUT], deleted.[BOOKING/IZVOZ], deleted.[KLIJENT/IZVOZ], deleted.[GATE_OUT_EMPTY/Utovar], deleted.[GATE_IN_FULL/sa_Utovara], deleted.[GATE_IN/_GATE_OUT], deleted.[L/R], deleted.[TARA], deleted.[MAX_NOSIVOST_CNT], deleted.[VOZILO/PREUZIMANJE], deleted.[PLOMBA/IZVOZ], deleted.[NAPOMENA], deleted.[OPIS], deleted.[OTPREMA], deleted.[POSLATE SLIKE], deleted.[Prevoznik]
         INTO dbo.TerminalPrivArhiv
-        (
-            ID, KONTEJNER, STATUS, POZICIJA, VRSTA, BRODAR, NALOGODAVAC, POSTUPAK, UVOZNIK, PLOMBA_UVOZ, VOZ, STANJE,
-            [GATE_IN_E/F], PREUZIMANJE_PUNOG, [VRAĆANJE_PRAZNOG], [Konačni_GATE_OUT], BOOKING, KLIJENT,
-            [GATE_OUT_EMPTY Utovar], [GATE_IN_FULL Utovar], [GATE_IN/GATE_OUT], [L/R], TARA, [MAX], VOZILO, PLOMBA,
-            NAPOMENA, OPIS, OTPREMA, [POSLATE SLIKE], Prevoznik
-        )
+            (ID, [KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik])
         FROM dbo.TerminalPriv t
         WHERE t.[Konačni_GATE_OUT] IS NOT NULL;
 
@@ -100,7 +91,7 @@ IF OBJECT_ID('dbo.updTerminalPrivArhivPoslateSlike', 'P') IS NOT NULL DROP PROCE
 GO
 CREATE PROCEDURE dbo.updTerminalPrivArhivPoslateSlike
     @ID int,
-    @POSLATE_SLIKE nvarchar(25) = NULL
+    @POSLATE_SLIKE nvarchar(30) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;

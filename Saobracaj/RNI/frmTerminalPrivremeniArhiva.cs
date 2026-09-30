@@ -30,7 +30,7 @@ namespace Saobracaj.RNI
             try
             {
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                var dataAdapter = new SqlDataAdapter("SELECT * FROM TerminalPrivArhiv ORDER BY ID DESC", s_connection);
+                var dataAdapter = new SqlDataAdapter("SELECT ID, " + insertTerminalPriv.SqlKolone() + ", DatumArhiviranja FROM TerminalPrivArhiv ORDER BY ID DESC", s_connection);
 
                 var tabela = new DataTable("TerminalPrivArhiv");
                 dataAdapter.Fill(tabela);

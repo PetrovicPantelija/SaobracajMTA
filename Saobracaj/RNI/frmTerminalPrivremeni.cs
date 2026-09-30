@@ -23,7 +23,18 @@ namespace Saobracaj.RNI
         {
             InitializeComponent();
             PovezKontrole();
-            PovezMeniGrida();
+            tabSplitterPage2.Leave += tabSplitterPage2_Leave;
+
+            // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
+            gridGroupingControl1.TableControlCurrentCellStartEditing += gridGroupingControl1_TableControlCurrentCellStartEditing;
+        }
+
+        private void gridGroupingControl1_TableControlCurrentCellStartEditing(object sender, GridTableControlCancelEventArgs e)
+        {
+            GridCurrentCell celija = e.TableControl.CurrentCell;
+            GridTableCellType tip = e.TableControl.GetTableViewStyleInfo(celija.RowIndex, celija.ColIndex).TableCellIdentity.TableCellType;
+            if (tip == GridTableCellType.RecordFieldCell || tip == GridTableCellType.AlternateRecordFieldCell)
+                e.Inner.Cancel = true;
         }
 
         private void frmTerminalPrivremeni_Load(object sender, EventArgs e)
@@ -41,26 +52,27 @@ namespace Saobracaj.RNI
             kontrole["POZICIJA"] = txtPozicija;
             kontrole["VRSTA"] = txtVrsta;
             kontrole["BRODAR"] = txtBrodar;
-            kontrole["NALOGODAVAC"] = txtNalogodavac;
-            kontrole["POSTUPAK"] = txtPostupak;
+            kontrole["NALOGODAVAC/UVOZ"] = txtNalogodavac;
+            kontrole["POSTUPAK/UVOZ"] = txtPostupak;
             kontrole["UVOZNIK"] = txtUvoznik;
+            kontrole["BL/UVOZ"] = txtBlUvoz;
             kontrole["PLOMBA_UVOZ"] = txtPlombaUvoz;
-            kontrole["VOZ"] = txtVoz;
+            kontrole["VOZ/kamion"] = txtVoz;
             kontrole["STANJE"] = cboStanje;
             kontrole["GATE_IN_E/F"] = dtpGateInEF;
-            kontrole["PREUZIMANJE_PUNOG"] = dtpPreuzimanjePunog;
-            kontrole["VRAĆANJE_PRAZNOG"] = dtpVracanjePraznog;
+            kontrole["PREUZIMANJE_PUNOG/Razvoz"] = dtpPreuzimanjePunog;
+            kontrole["VRAĆANJE_PRAZNOG/iz_Razvoza"] = dtpVracanjePraznog;
             kontrole["Konačni_GATE_OUT"] = dtpKonacniGateOut;
-            kontrole["BOOKING"] = txtBooking;
-            kontrole["KLIJENT"] = txtKlijent;
-            kontrole["GATE_OUT_EMPTY Utovar"] = dtpGateOutEmptyUtovar;
-            kontrole["GATE_IN_FULL Utovar"] = dtpGateInFullUtovar;
-            kontrole["GATE_IN/GATE_OUT"] = cboGateInGateOut;
+            kontrole["BOOKING/IZVOZ"] = txtBooking;
+            kontrole["KLIJENT/IZVOZ"] = txtKlijent;
+            kontrole["GATE_OUT_EMPTY/Utovar"] = dtpGateOutEmptyUtovar;
+            kontrole["GATE_IN_FULL/sa_Utovara"] = dtpGateInFullUtovar;
+            kontrole["GATE_IN/_GATE_OUT"] = cboGateInGateOut;
             kontrole["L/R"] = txtLR;
             kontrole["TARA"] = txtTara;
-            kontrole["MAX"] = txtMax;
-            kontrole["VOZILO"] = txtVozilo;
-            kontrole["PLOMBA"] = txtPlomba;
+            kontrole["MAX_NOSIVOST_CNT"] = txtMax;
+            kontrole["VOZILO/PREUZIMANJE"] = txtVozilo;
+            kontrole["PLOMBA/IZVOZ"] = txtPlomba;
             kontrole["NAPOMENA"] = txtNapomena;
             kontrole["OPIS"] = txtOpis;
             kontrole["OTPREMA"] = txtOtprema;
@@ -94,16 +106,21 @@ namespace Saobracaj.RNI
             return tekst.Length == 0 ? (object)DBNull.Value : tekst;
         }
 
-        // Zapis koji se prikazuje: oznaceni red (klik na red), inace red tekuce celije
+        // Zapis koji se prikazuje: poslednji kliknut red (tekući), ako je među označenima;
+        // inače poslednji označen red, a ako nijedan nije označen, red tekuće ćelije
         private Record IzaberiZapis()
         {
+            Record tekuci = gridGroupingControl1.Table.CurrentRecord;
             Record oznaceni = null;
             foreach (SelectedRecord sr in gridGroupingControl1.Table.SelectedRecords)
             {
-                if (sr.Record != null)
-                    oznaceni = sr.Record;
+                if (sr.Record == null)
+                    continue;
+                if (sr.Record == tekuci)
+                    return tekuci;
+                oznaceni = sr.Record;
             }
-            return oznaceni ?? gridGroupingControl1.Table.CurrentRecord;
+            return oznaceni ?? tekuci;
         }
 
         // Izabrani zapis grida se prikazuje u kontrolama
@@ -138,6 +155,119 @@ namespace Saobracaj.RNI
 
                 kontrola.Text = prazno ? "" : vrednost.ToString();
             }
+
+            ZapamtiVrednostiPolja();
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Nesačuvane promene u poljima: pitanje kada fokus napusti tabSplitterPage2
+        // (grid, tabSplitterPage1, dugmad u panel2). Dugmad Sačuvaj novi, Promeni i Obriši su na
+        // samoj stranici, pa klik na njih ne napušta stranicu i pitanje se ne postavlja.
+        // ---------------------------------------------------------------------------------
+        private readonly Dictionary<string, object> zapamceneVrednosti = new Dictionary<string, object>();
+        private bool pitanjeUToku;
+
+        private void ZapamtiVrednostiPolja()
+        {
+            zapamceneVrednosti.Clear();
+            foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
+                zapamceneVrednosti[polje.Kolona] = VrednostIzKontrole(polje.Kolona);
+        }
+
+        private bool PoljaSuIzmenjena()
+        {
+            foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
+            {
+                object zapamceno;
+                if (!zapamceneVrednosti.TryGetValue(polje.Kolona, out zapamceno))
+                    return false;   // polja još nisu popunjena iz reda
+                if (!Equals(zapamceno, VrednostIzKontrole(polje.Kolona)))
+                    return true;
+            }
+            return false;
+        }
+
+        private void tabSplitterPage2_Leave(object sender, EventArgs e)
+        {
+            if (pitanjeUToku || dt == null || !PoljaSuIzmenjena())
+                return;
+
+            pitanjeUToku = true;
+            try
+            {
+                int id = IzabraniId();
+                string pitanje = id > 0
+                    ? "Polja zapisa ID " + id + " su izmenjena, a nije kliknuto 'Promeni'. Da li želite da sačuvate promene?"
+                    : "Uneti podaci nisu sačuvani. Da li želite da ih sačuvate kao novi zapis?";
+
+                if (MessageBox.Show(pitanje, "Nesačuvane promene", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (!SacuvajIzPoljaBezOsvezavanja(id))
+                    {
+                        // čuvanje nije uspelo (poruka je već prikazana): vrati korisnika na polja
+                        BeginInvoke(new Action(() => txtKontejner.Focus()));
+                        return;
+                    }
+                }
+                else
+                {
+                    OsveziPolja();   // odbaci promene: vrati vrednosti izabranog reda
+                }
+            }
+            finally
+            {
+                pitanjeUToku = false;
+            }
+        }
+
+        // Čuva vrednosti iz polja (izmena postojećeg ili novi zapis) i ažurira red u tabeli bez ponovnog
+        // učitavanja grida, jer se poziva dok grid obrađuje klik koji je pomerio fokus
+        private bool SacuvajIzPoljaBezOsvezavanja(int id)
+        {
+            DataRow red = RedIzPolja(id);
+            string greska = ProveriRed(red);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Nesačuvane promene", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            try
+            {
+                if (id > 0)
+                    new insertTerminalPriv().UpdTerminalPriv(red);
+                else
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Nesačuvane promene", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            DataRow[] nadjeni = id > 0 ? dt.Select("ID = " + id) : new DataRow[0];
+            DataRow uTabeli = nadjeni.Length > 0 ? nadjeni[0] : null;
+            if (uTabeli == null)
+            {
+                dt.Rows.Add(red);
+                red.AcceptChanges();
+            }
+            else
+            {
+                if (uTabeli.HasVersion(DataRowVersion.Proposed))
+                    uTabeli.EndEdit();
+                bool imaDrugihIzmena = uTabeli.RowState != DataRowState.Unchanged;
+
+                foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
+                    uTabeli[polje.Kolona] = red[polje.Kolona];
+
+                // red sa drugim nesačuvanim izmenama iz grida ostaje za 'Sačuvaj izmene'
+                if (!imaDrugihIzmena)
+                    uTabeli.AcceptChanges();
+            }
+
+            ZapamtiVrednostiPolja();
+            return true;
         }
 
         // ---------------------------------------------------------------------------------
@@ -261,85 +391,6 @@ namespace Saobracaj.RNI
             UcitajPodatke();
         }
 
-        // ---------------------------------------------------------------------------------
-        // Popup meni grida (desni klik): vrednost ćelije na sve filtrirane zapise kolone
-        // ---------------------------------------------------------------------------------
-        private void PovezMeniGrida()
-        {
-            GridTableControl tabelaGrida = gridGroupingControl1.TableControl;
-            tabelaGrida.ContextMenuStrip = contextMenuGrid;
-            tabelaGrida.MouseDown += (s, e) =>
-            {
-                // Desni klik prvo postavlja fokus na ćeliju ispod miša
-                if (e.Button != MouseButtons.Right)
-                    return;
-
-                int red, kolona;
-                if (tabelaGrida.PointToRowCol(e.Location, out red, out kolona))
-                    tabelaGrida.CurrentCell.MoveTo(red, kolona);
-            };
-        }
-
-        // Naziv kolone tekuće ćelije ili null ako meni nije primenjiv
-        private string KolonaTekuceCelije()
-        {
-            GridTableControl tabelaGrida = gridGroupingControl1.TableControl;
-            if (!tabelaGrida.CurrentCell.HasCurrentCell || gridGroupingControl1.Table.CurrentRecord == null)
-                return null;
-
-            int polje = tabelaGrida.Model.ColIndexToField(tabelaGrida.CurrentCell.ColIndex);
-            if (polje < 0)
-                return null;
-
-            string naziv = gridGroupingControl1.Table.TableDescriptor.Fields[polje].Name;
-            // ID se ne menja, a KONTEJNER je jedinstven po zapisu
-            return naziv == "ID" || naziv == "KONTEJNER" ? null : naziv;
-        }
-
-        private static string OpisVrednosti(object vrednost)
-        {
-            if (vrednost == null || vrednost == DBNull.Value || vrednost.ToString().Length == 0)
-                return "(prazno)";
-            return vrednost is DateTime ? ((DateTime)vrednost).ToString(FormatDatuma) : vrednost.ToString();
-        }
-
-        private void contextMenuGrid_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            string kolona = KolonaTekuceCelije();
-            if (kolona == null)
-            {
-                e.Cancel = true;
-                return;
-            }
-
-            object vrednost = gridGroupingControl1.Table.CurrentRecord.GetValue(kolona);
-            mnuPrimeniNaFiltrirane.Text = "Postavi " + OpisVrednosti(vrednost) + " u koloni " + kolona
-                + " za sve filtrirane zapise (" + gridGroupingControl1.Table.FilteredRecords.Count + ")";
-        }
-
-        private void mnuPrimeniNaFiltrirane_Click(object sender, EventArgs e)
-        {
-            string kolona = KolonaTekuceCelije();
-            if (kolona == null)
-                return;
-
-            // Vrednost se čita pre potvrde, dok je fokus na ćeliji
-            object vrednost = gridGroupingControl1.Table.CurrentRecord.GetValue(kolona);
-            var zapisi = new List<Record>();
-            foreach (Record zapis in gridGroupingControl1.Table.FilteredRecords)
-                zapisi.Add(zapis);
-
-            if (MessageBox.Show("Kolona " + kolona + " će biti postavljena na " + OpisVrednosti(vrednost) + " za " + zapisi.Count
-                + " filtriranih zapisa. Nastaviti?", "Primeni na filtrirane", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                return;
-
-            foreach (Record zapis in zapisi)
-                zapis.SetValue(kolona, vrednost);
-
-            MessageBox.Show("Promenjeno zapisa: " + zapisi.Count + ". Za upis u bazu kliknite 'Sačuvaj izmene'.",
-                "Primeni na filtrirane", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {
             OsveziPolja();
@@ -363,7 +414,7 @@ namespace Saobracaj.RNI
             try
             {
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                var dataAdapter = new SqlDataAdapter("SELECT * FROM TerminalPriv ORDER BY ID DESC", s_connection);
+                var dataAdapter = new SqlDataAdapter("SELECT ID, " + insertTerminalPriv.SqlKolone() + " FROM TerminalPriv ORDER BY ID DESC", s_connection);
                 dataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
                 var tabela = new DataTable("TerminalPriv");
@@ -395,14 +446,34 @@ namespace Saobracaj.RNI
             }
 
             PodesiKolone();
+            PovezFiltere();
             OsveziPolja();
+        }
+
+        // Filter kao u Excel-u (padajuća lista sa vrednostima u zaglavlju kolone) i dinamički filter u filter baru
+        // (polje za kucanje). Grid pri svakom novom DataSource pravi kolone iznova, pa se filteri posle svakog
+        // učitavanja ponovo povezuju; prethodno povezivanje se prvo uklanja da se ne gomila.
+        private Syncfusion.GridHelperClasses.GridExcelFilter gridExcelFilter;
+        private Syncfusion.GridHelperClasses.GridDynamicFilter dynamicFilter;
+
+        private void PovezFiltere()
+        {
+            if (gridExcelFilter != null)
+                gridExcelFilter.UnWireGrid(this.gridGroupingControl1);
+            if (dynamicFilter != null)
+                dynamicFilter.UnWireGrid(this.gridGroupingControl1);
+
+            gridExcelFilter = new Syncfusion.GridHelperClasses.GridExcelFilter();
+            gridExcelFilter.WireGrid(this.gridGroupingControl1);
+
+            dynamicFilter = new Syncfusion.GridHelperClasses.GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void PodesiKolone()
         {
             GridColumnDescriptorCollection kolone = gridGroupingControl1.TableDescriptor.Columns;
 
-            kolone["ID"].Appearance.AnyRecordFieldCell.ReadOnly = true;
             kolone["ID"].Width = SirinaKolone(gridGroupingControl1.Font, kolone["ID"].HeaderText, "00000");
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
@@ -418,16 +489,11 @@ namespace Saobracaj.RNI
                     kolona.Appearance.AnyRecordFieldCell.CellValueType = typeof(DateTime);
                     kolona.Appearance.AnyRecordFieldCell.Format = FormatDatuma;
                 }
-                else if (polje.Dozvoljeno != null)
-                {
-                    kolona.Appearance.AnyRecordFieldCell.CellType = GridCellTypeName.ComboBox;
-                    kolona.Appearance.AnyRecordFieldCell.DropDownStyle = GridDropDownStyle.Exclusive;
-                    var izbor = new System.Collections.Specialized.StringCollection();
-                    izbor.Add("");
-                    izbor.AddRange(polje.Dozvoljeno);
-                    kolona.Appearance.AnyRecordFieldCell.ChoiceList = izbor;
-                }
             }
+
+            // Grid je samo za pregled: podaci se menjaju kroz polja na tabSplitterPage2 i Grupnu promenu
+            foreach (GridColumnDescriptor kolona in kolone)
+                kolona.Appearance.AnyRecordFieldCell.ReadOnly = true;
         }
 
         // Najduži sadržaj kolone po kome se računa širina: datum, najduža dozvoljena vrednost ili
@@ -618,7 +684,7 @@ namespace Saobracaj.RNI
 
             if (gridGroupingControl1.Table.SelectedRecords.Count == 0)
             {
-                MessageBox.Show("Označite redove u tabeli (klik na red označava/poništava red, može više redova).",
+                MessageBox.Show("Označite redove u tabeli: klik označava red, Shift+klik opseg od reda do reda, Ctrl+klik dodaje ili uklanja pojedinačan red.",
                     "Grupna promena", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
