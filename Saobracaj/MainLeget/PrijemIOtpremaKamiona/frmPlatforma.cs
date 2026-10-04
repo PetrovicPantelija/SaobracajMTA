@@ -65,7 +65,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 "  inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = n1.ID " +
 "  inner join RadniNalogInterni on RadniNalogInterni.ID = PrijemKontejneraVozStavke.NajavaID " +
 "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-"  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and RadniNalogInterniPotvrda.FazaUsluge = 1  And KapijaUlaz < 2 order by n1.ID desc";
+"  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and RadniNalogInterniPotvrda.FazaUsluge = 1  And KapijaUlaz < 2 and n1.Poreklo = 0 order by n1.ID desc";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;

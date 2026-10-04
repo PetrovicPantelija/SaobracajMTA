@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Izvoz;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,24 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
         public frmPrijemIOtpremaCerada()
         {
             InitializeComponent();
+        }
+
+        private void btnPrijemIOtprema1_Click(object sender, EventArgs e)
+        {
+            frmCerada pl = new frmCerada();
+            pl.Show();
+        }
+
+        private void btnPrijemIOtprema2_Click(object sender, EventArgs e)
+        {
+            frmCeradaOtprema pl = new frmCeradaOtprema();
+            pl.Show();
+        }
+
+        private void btnPrijemIOtprema3_Click(object sender, EventArgs e)
+        {
+            VaganjePregled vp = new VaganjePregled(2);
+            vp.ShowDialog();
         }
     }
 }

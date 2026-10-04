@@ -20,7 +20,7 @@ namespace Saobracaj.RadniNalozi
         int nalog,sklad,poz;
         int usao = 0;
         int PrijemnicaID = 0;
-
+        public int novaPrijenicaID = 0;
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -442,8 +442,8 @@ namespace Saobracaj.RadniNalozi
                         {
                             Tip = 3;
                         }
-                          
-                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(row.Cells["Skladiste"].Value),
+
+                        novaPrijenicaID = ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(row.Cells["Skladiste"].Value),
                             Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik.Trim(), 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
                             LOt, nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno, Tip);
 
@@ -455,7 +455,7 @@ namespace Saobracaj.RadniNalozi
                 }
             InsertRN up = new InsertRN();
 
-           up.PotvrdiUradjenPretovarCirade(nalog, korisnik);
+           up.PotvrdiUradjenPretovarCirade(nalog, korisnik, 0);
         }
             else
             {

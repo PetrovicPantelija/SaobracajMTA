@@ -71,7 +71,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             "  inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNadredjenog = n1.ID " +
             "  inner join RadniNalogInterni on RadniNalogInterni.ID = OtpremaKontejneraVozStavke.NalogID " +
             "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0  order by n1.ID desc";
+            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0 AND n1.Poreklo = 0 order by n1.ID desc";
             // ovo ide da bi požuteo
             //"AND ( " +
             //  "(RadniNalogInterniPotvrda.KapijaUlaz >= 1 AND RadniNalogInterniPotvrda.Kalmar = 0) " + 

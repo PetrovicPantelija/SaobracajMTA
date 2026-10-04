@@ -274,7 +274,7 @@ namespace Saobracaj.Drumski
                             FROM 
                             (
                                 -- Deo 1 (Izvoz)
-                                SELECT rn.ID, i.Scenario,
+                                SELECT rn.ID, i.Scenario, 'izvoz' as izvor,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
                                         (
                                         CASE 
@@ -323,7 +323,7 @@ namespace Saobracaj.Drumski
                                 
                                 UNION ALL 
                                 -- Deo 2 (IzvozKonacna)
-                                SELECT rn.ID, ik.Scenario,
+                                SELECT rn.ID, ik.Scenario, 'izvoz' as izvor,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac,   
                                         (
                                         CASE 
@@ -372,7 +372,7 @@ namespace Saobracaj.Drumski
                         
                                 UNION ALL 
                                 -- Deo 3 (UvozKonacna)
-                                SELECT rn.ID, rn.Scenario,
+                                SELECT rn.ID, rn.Scenario,'uvoz' as izvor,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
                                         (
                                           CASE 
@@ -414,7 +414,7 @@ namespace Saobracaj.Drumski
                 
                                 UNION ALL 
                                 -- Deo 4 (Uvoz)
-                                SELECT rn.ID, rn.Scenario,
+                                SELECT rn.ID, rn.Scenario, 'uvoz' as izvor,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
                                         (
                                           CASE 
@@ -456,7 +456,7 @@ namespace Saobracaj.Drumski
     
                                 UNION ALL 
                                 -- Deo 5 (Ostali drumski)
-                                SELECT rn.ID, rn.Scenario,
+                                SELECT rn.ID, rn.Scenario, 'drumski' as izvor,
                                        LTRIM(RTRIM(pa.PaNaziv)) AS Nalogodavac, 
                                         (
                                           CASE 
@@ -500,7 +500,7 @@ namespace Saobracaj.Drumski
                 
                             ) AS x
 
-                            LEFT JOIN (SELECT tt.ID AS ScenarioID, m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
+                            LEFT JOIN (SELECT tt.ID AS ScenarioID, izvor, m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
                             FROM ScenarijaTokaTransporta tt
                             JOIN MapiranjeTipaNaloga m ON tt.VrstaNaloga = m.VrstaNaloga
                                 ) AS IdentifikatorScenarija ON 
@@ -573,6 +573,9 @@ namespace Saobracaj.Drumski
 
                 if (dataGridView3.Columns.Contains("Status"))
                     dataGridView3.Columns.Remove("Status");
+
+                if (dataGridView3.Columns.Contains("izvor"))
+                    dataGridView3.Columns.Remove("izvor");
 
                 // Dodaj ComboBox kolonu na kraj 
                 dataGridView3.Columns.Add(cmbStatus);
@@ -928,6 +931,7 @@ namespace Saobracaj.Drumski
                 int noviStatusID = Convert.ToInt32(row.Cells["Status"].Value);
                 int brojDokumenata = Convert.ToInt32(row.Cells["BrojDokumenata"].Value);
                 string idsString = row.Cells["ID"].Value.ToString();
+                string izvor = row.Cells["izvor"].Value.ToString();
                 int tip = Convert.ToInt32(row.Cells["VlasnistvoLegeta"].Value);
                 int tipNalogaID = Convert.ToInt32(row.Cells["Uvoz"].Value); // Polje 0,1,2,3...
                 int imaCarinuP = (row.Cells["PolaznaCarinarnica"].Value != DBNull.Value && Convert.ToInt32(row.Cells["PolaznaCarinarnica"].Value) > 0) ? 1 : 0;
@@ -989,7 +993,7 @@ namespace Saobracaj.Drumski
                             if (trebaOkidatiInterni)
                         {
                             int radniNalogInterniID = PribaviRadniNalogInterniID(id);
-                            if (radniNalogInterniID > 0)
+                            if (radniNalogInterniID > 0 && (izvor == "izvoz" || izvor == "uvoz"))
                             {
 
                                 InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
@@ -1046,7 +1050,7 @@ namespace Saobracaj.Drumski
                                     SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
                                     FROM RadniNalogDrumski rn
                                     LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
-                                    WHERE rn.ID = @ID", connection);
+                                    WHERE rn.ID = @ID and rn.IDVrstaManipulacije = ri.IDManipulacijaJED", connection);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
                 using (var reader = cmd.ExecuteReader())

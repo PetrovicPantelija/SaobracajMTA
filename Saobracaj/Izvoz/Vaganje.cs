@@ -1,4 +1,5 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Saobracaj.MainLeget.Pretovari;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
@@ -292,6 +293,7 @@ namespace Saobracaj.Izvoz
                 ins.InsVaganje(Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(), txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
                     Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user, txtRoba.Text);
                 status = false;
+               
             }
             else
             {
@@ -459,6 +461,13 @@ namespace Saobracaj.Izvoz
         private void txtTara_Leave(object sender, EventArgs e)
         {
             txtNeto.Value = txtBruto.Value - txtTara.Value;
+        }
+
+        private void btnZavrsenoVaganje_Click(object sender, EventArgs e)
+        {
+            InsertPretovari ins1 = new InsertPretovari();
+            if(!string.IsNullOrWhiteSpace(txtKontID.Text))
+                ins1.PromeniStatusVaganje(Convert.ToInt32(txtKontID.Text));
         }
 
         private void VratiPodatke(string ID)

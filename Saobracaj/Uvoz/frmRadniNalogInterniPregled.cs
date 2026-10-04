@@ -1319,6 +1319,77 @@ namespace Saobracaj.Uvoz
 
         }
 
+
+        private int vratiUsluguValanje(int idSelektovaneUsluge)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            int idNalogaPretovar = 0;
+
+            string query = @"SELECT TOP 1 p.ID
+                            FROM RadniNalogInterni p
+                            INNER JOIN RadniNalogInterni prazan ON p.BrojOsnov = prazan.BrojOsnov
+                            INNER JOIN RadniNalogInterniPotvrda prazanPotvrda ON prazan.ID = prazanPotvrda.IDNaloga
+							INNER JOIN IzvozKonacna ON prazan.BrojOsnov = IzvozKonacna.ID 
+                            WHERE prazan.ID = @ID 
+                              AND p.IDManipulacijaJed in (102)
+							  AND IzvozKonacna.Vaganje = 1
+                            ORDER BY p.ID DESC";
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", idSelektovaneUsluge);
+
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idNalogaPretovar = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return idNalogaPretovar;
+        }
+
+
+        int vratiNalogIDManipulacijePretovara(int idNalogaPraznog)
+        {
+            int idNalogaPretovar = 0; // Vraća 0 ako nalog za puni kontejner nije pronađen
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            // Upit pronalazi ID naloga manipulacije punim kontejnerom (70)
+            // za isti kontejner (BrojOsnov) kojem pripada nalog praznog kontejnera (69)
+            string query = @"
+                        SELECT TOP 1 ID 
+                        FROM RadniNalogInterni 
+                        WHERE IDManipulacijaJed in ( 81) 
+                          AND BrojOsnov = (SELECT BrojOsnov FROM RadniNalogInterni WHERE ID = @IDNalogaPraznog AND IDManipulacijaJed = 69)
+                          AND (ID not in (SELECT IDNaloga FROM RadniNalogInterniPotvrda ))
+                        ORDER BY ID ASC";
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@IDNalogaPraznog", idNalogaPraznog);
+
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        idNalogaPretovar = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return idNalogaPretovar;
+        }
+
         int vratiNalogIDManipulacijePunogKontejnera(int idNalogaPraznog)
         {
             int idNalogaPunog = 0; // Vraća 0 ako nalog za puni kontejner nije pronađen
@@ -1459,16 +1530,31 @@ namespace Saobracaj.Uvoz
             {
                 scenarioZaBazu = 2;
             }
+            else if (scenarioIzGrida == 24 || scenarioIzGrida == 8)
+            {
+                scenarioZaBazu = 3;
+            }
 
             Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
             ins.InsRadniNalogInterniIzvozPotvrda(Convert.ToInt32(txtNALOGID.Text), scenarioZaBazu, 1);
             // ako je scenario 2 pored inserta manipulacije praznim kontejnerom treba automatski odraditi insert manipulacije punim kontejnerom gde se fazaUsluge postavlja na 0
             // dakle ne obradjuje se dok se ne zavrsi prethodna usluga
-            if (scenarioZaBazu == 2)
+            if (scenarioZaBazu == 2 || scenarioZaBazu == 3)
             {
               int rnBrojPunog =   vratiNalogIDManipulacijePunogKontejnera(Convert.ToInt32(txtNALOGID.Text));
               if(rnBrojPunog > 0)
                     ins.InsRadniNalogInterniIzvozPotvrda(rnBrojPunog, scenarioZaBazu, 0);
+                if (scenarioZaBazu == 3)
+                { 
+                int rnBrojPretovara = vratiNalogIDManipulacijePretovara(Convert.ToInt32(txtNALOGID.Text));
+                if (rnBrojPretovara > 0)
+                    ins.InsRadniNalogInterniIzvozPotvrda(rnBrojPretovara, scenarioZaBazu, 0);
+                
+                }
+                int rnBrojVaganja = vratiUsluguValanje(Convert.ToInt32(txtNALOGID.Text));
+                if (rnBrojVaganja > 0)
+                    ins.InsRadniNalogInterniIzvozPotvrda(rnBrojVaganja, scenarioZaBazu, 0);
+
             }
             MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
 
@@ -1629,17 +1715,45 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE OUT PRETOVAR")
             {
                 //
-                MessageBox.Show("Formirate GATE IN kamion Cirada");
-                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text,1, 1);
-                prijemplat.Show();
+                MessageBox.Show("Formirate GATE OUT kamion Cirada");
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1, OJ, txtBrojKontejnera.Text);
+                okk.Show();
 
             }
 
             if (Forma == "GATE IN PRETOVAR")
             {
-                MessageBox.Show("Formirate GATE OUT kamion Cirada");
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1,OJ, txtBrojKontejnera.Text);
-                okk.Show();
+                MessageBox.Show("Formirate GATE IN kamion Cirada");
+                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1, 2);
+                prijemplat.ShowDialog();
+
+                if (prijemplat.noviPrijemKontejneraVozID > 0)
+                {
+                    int nalogId = Convert.ToInt32(txtNALOGID.Text);
+                    int kontejnerId = Convert.ToInt32(textBox1.Text);
+
+                    InsertUvozKonacna ins3 = new InsertUvozKonacna();
+
+                    ins3.PrenesiKontejnerIzPlanaNaPrijemnicuIzvozIDNadredjenog( kontejnerId, nalogId, prijemplat.noviPrijemKontejneraVozID, 2, 1);
+                  //  ins3.PrenesiKontejnerIzPlanaNaPrijemnicuIzvoz(kontejnerId,nalogId );
+                }
+                else
+                {
+                    // Korisnik je odustao ili snimanje na formi nije uspelo
+                    MessageBox.Show("Prijem nije snimljen, prenos kontejnera je otkazan.");
+                }
+
+          
+
+                //VratiIzvozKonacna();
+                //Dokumeta.InsertPrijemKontejneraVoz ins2 = new Dokumeta.InsertPrijemKontejneraVoz();
+                //ins2.InsertPrijemKontVoz(Convert.ToDateTime(dateTimePicker1.Value.ToString()), 0, 0, Convert.ToDateTime(dateTimePicker1.MinDate.ToString()), DateTime.Now, korisnik, txtReg.Text.ToString(), txtVozac.Text.ToString(),
+                //    0, txtNapomena.Text.ToString(), 0, 0, 1, 1, 0, 2);
+                //  InsertUvozKonacna ins3 = new InsertUvozKonacna();
+
+                // ins3.PrenesiKontejnerIzPlanaNaPrijemnicuIzvoz(Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(textBox1.Text));
+                //   VratiPrijemID();
+
             }
 
             if (Forma == "GATE OUT VOZ")

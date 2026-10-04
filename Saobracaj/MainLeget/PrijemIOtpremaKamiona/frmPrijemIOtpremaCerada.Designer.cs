@@ -42,15 +42,17 @@
             this.btnPrijemIOtprema3.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema3.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema3.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema3.Location = new System.Drawing.Point(48, 317);
+            this.btnPrijemIOtprema3.Location = new System.Drawing.Point(64, 390);
+            this.btnPrijemIOtprema3.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrijemIOtprema3.Name = "btnPrijemIOtprema3";
-            this.btnPrijemIOtprema3.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema3.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema3.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema3.TabIndex = 528;
             this.btnPrijemIOtprema3.Text = "Vaga";
             this.btnPrijemIOtprema3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtprema3.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtprema3.Click += new System.EventHandler(this.btnPrijemIOtprema3_Click);
             // 
             // btnPrijemIOtprema2
             // 
@@ -60,15 +62,17 @@
             this.btnPrijemIOtprema2.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema2.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema2.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema2.Location = new System.Drawing.Point(341, 111);
+            this.btnPrijemIOtprema2.Location = new System.Drawing.Point(455, 137);
+            this.btnPrijemIOtprema2.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrijemIOtprema2.Name = "btnPrijemIOtprema2";
-            this.btnPrijemIOtprema2.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema2.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema2.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema2.TabIndex = 527;
             this.btnPrijemIOtprema2.Text = "Otprema";
             this.btnPrijemIOtprema2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtprema2.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtprema2.Click += new System.EventHandler(this.btnPrijemIOtprema2_Click);
             // 
             // btnPrijemIOtprema1
             // 
@@ -78,15 +82,17 @@
             this.btnPrijemIOtprema1.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema1.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemIOtprema1.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemIOtprema1.Location = new System.Drawing.Point(48, 111);
+            this.btnPrijemIOtprema1.Location = new System.Drawing.Point(64, 137);
+            this.btnPrijemIOtprema1.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrijemIOtprema1.Name = "btnPrijemIOtprema1";
-            this.btnPrijemIOtprema1.Size = new System.Drawing.Size(258, 190);
+            this.btnPrijemIOtprema1.Size = new System.Drawing.Size(344, 234);
             this.btnPrijemIOtprema1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemIOtprema1.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemIOtprema1.TabIndex = 526;
             this.btnPrijemIOtprema1.Text = "Prijem";
             this.btnPrijemIOtprema1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemIOtprema1.UseVisualStyleBackColor = false;
+            this.btnPrijemIOtprema1.Click += new System.EventHandler(this.btnPrijemIOtprema1_Click);
             // 
             // label2
             // 
@@ -96,23 +102,25 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(41, 36);
+            this.label2.Location = new System.Drawing.Point(55, 44);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(555, 39);
+            this.label2.Size = new System.Drawing.Size(700, 52);
             this.label2.TabIndex = 525;
             this.label2.Text = "Prijem i otprema kamiona - Cerada";
             // 
             // frmPrijemIOtpremaCerada
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(856, 545);
+            this.ClientSize = new System.Drawing.Size(1141, 671);
             this.Controls.Add(this.btnPrijemIOtprema3);
             this.Controls.Add(this.btnPrijemIOtprema2);
             this.Controls.Add(this.btnPrijemIOtprema1);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrijemIOtpremaCerada";
             this.Text = "frmPrijemIOtpremaCerada";
             this.ResumeLayout(false);
