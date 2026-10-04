@@ -235,7 +235,7 @@ namespace Saobracaj.RNI
             try
             {
                 if (id > 0)
-                    new insertTerminalPriv().UpdTerminalPriv(red);
+                    new insertTerminalPriv().UpdTerminalPriv(red, true);   // isto kao Promeni
                 else
                     red["ID"] = new insertTerminalPriv().InsTerminalPriv(red);
             }
@@ -351,7 +351,7 @@ namespace Saobracaj.RNI
 
             try
             {
-                new insertTerminalPriv().UpdTerminalPriv(red);
+                new insertTerminalPriv().UpdTerminalPriv(red, true);
             }
             catch (Exception ex)
             {
@@ -764,6 +764,74 @@ namespace Saobracaj.RNI
 
             UcitajPodatke();
             MessageBox.Show("Arhivirano zapisa: " + arhivirano, "Arhiviraj", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Izvoz Maersk: pokreti iz TerminalPrivMaersk koji još nisu izvezeni
+        // ---------------------------------------------------------------------------------
+        private void btnIzvozMaersk_Click(object sender, EventArgs e)
+        {
+            var izvoz = new TerminalPrivMaerskIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+
+            DataTable zapisi;
+            try
+            {
+                zapisi = izvoz.UcitajNeizvezene();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspešno čitanje Maersk zapisa: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (zapisi.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema novih Maersk zapisa za izvoz.", "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string putanja;
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel (*.xlsx)|*.xlsx";
+                sfd.FileName = TerminalPrivMaerskIzvoz.PredlogImena();
+                if (sfd.ShowDialog(this) != DialogResult.OK)
+                    return;
+                putanja = sfd.FileName;
+            }
+
+            int izvezeno;
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                izvezeno = izvoz.Izvezi(zapisi, putanja);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Fajl nije sačuvan, a zapisi nisu označeni kao izvezeni. Zatvorite fajl u Excelu i pokušajte ponovo.", "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Izvoz nije uspeo: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+
+            if (MessageBox.Show("Izvezeno zapisa: " + izvezeno + ". Otvoriti fajl?", "Izvoz Maersk", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(putanja) { UseShellExecute = true });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fajl ne može da se otvori: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void btnArhiviraniPodaci_Click(object sender, EventArgs e)

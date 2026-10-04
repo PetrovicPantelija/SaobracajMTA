@@ -108,13 +108,22 @@ namespace Saobracaj.RNI
             }
         }
 
-        public void UpdTerminalPriv(DataRow red)
+        // zapisiMaersk = true samo za izmenu dugmetom 'Promeni': procedura tada za Maersk kontejner upisuje
+        // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
+        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "updTerminalPriv";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter maersk = new SqlParameter();
+            maersk.ParameterName = "@ZapisiMaersk";
+            maersk.SqlDbType = SqlDbType.Bit;
+            maersk.Direction = ParameterDirection.Input;
+            maersk.Value = zapisiMaersk;
+            myCommand.Parameters.Add(maersk);
 
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@ID";

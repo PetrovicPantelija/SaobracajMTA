@@ -3127,6 +3127,7 @@
       <DependentUpon>frmTerminalPrivremeniSlike.cs</DependentUpon>
     </Compile>
     <Compile Include="RNI\insertTerminalPriv.cs" />
+    <Compile Include="RNI\TerminalPrivMaerskIzvoz.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>
