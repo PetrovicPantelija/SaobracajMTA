@@ -56,6 +56,7 @@
             this.btnKapija = new Syncfusion.WinForms.Controls.SfButton();
             this.btnFinansije = new Syncfusion.WinForms.Controls.SfButton();
             this.btnPodesavanja = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnAdministracija = new Syncfusion.WinForms.Controls.SfButton();
             this.btnVSD = new Syncfusion.WinForms.Controls.SfButton();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnLogout = new Syncfusion.WinForms.Controls.SfButton();
@@ -219,9 +220,7 @@
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -235,7 +234,7 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1633, 1052);
+            this.splitContainer2.Size = new System.Drawing.Size(1633, 948);
             this.splitContainer2.SplitterDistance = 256;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -260,6 +259,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnKapija);
             this.flowLayoutPanel1.Controls.Add(this.btnFinansije);
             this.flowLayoutPanel1.Controls.Add(this.btnPodesavanja);
+            this.flowLayoutPanel1.Controls.Add(this.btnAdministracija);
             this.flowLayoutPanel1.Controls.Add(this.btnVSD);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -748,6 +748,35 @@
             this.btnPodesavanja.UseVisualStyleBackColor = false;
             this.btnPodesavanja.Click += new System.EventHandler(this.btnPodesavanja_Click);
             // 
+            // btnAdministracija
+            // 
+            this.btnAdministracija.AccessibleName = "Button";
+            this.btnAdministracija.AllowImageAnimation = false;
+            this.btnAdministracija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdministracija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnAdministracija.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAdministracija.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnAdministracija.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnAdministracija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdministracija.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAdministracija.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnAdministracija.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnAdministracija.Location = new System.Drawing.Point(3, 868);
+            this.btnAdministracija.Name = "btnAdministracija";
+            this.btnAdministracija.Size = new System.Drawing.Size(250, 45);
+            this.btnAdministracija.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnAdministracija.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.btnAdministracija.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
+            this.btnAdministracija.Style.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnAdministracija.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
+            this.btnAdministracija.Style.ImageForeColor = System.Drawing.Color.White;
+            this.btnAdministracija.TabIndex = 67;
+            this.btnAdministracija.Text = "Administracija";
+            this.btnAdministracija.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnAdministracija.UseVisualStyleBackColor = false;
+            this.btnAdministracija.Click += new System.EventHandler(this.btnAdministracija_Click);
+            // 
             // btnVSD
             // 
             this.btnVSD.AccessibleName = "Button";
@@ -781,6 +810,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -796,8 +826,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.btnNazad);
             this.splitContainer3.Panel2.Controls.Add(this.btnHome);
             this.splitContainer3.Panel2.Controls.Add(this.btnDashboard);
-            this.splitContainer3.Size = new System.Drawing.Size(1373, 1052);
-            this.splitContainer3.SplitterDistance = 916;
+            this.splitContainer3.Size = new System.Drawing.Size(1373, 948);
+            this.splitContainer3.SplitterDistance = 884;
             this.splitContainer3.TabIndex = 0;
             // 
             // btnLogout
@@ -967,6 +997,7 @@
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaDirektnih;
         private Syncfusion.WinForms.Controls.SfButton btnZeleznicki;
         private Syncfusion.WinForms.Controls.SfButton btnPodesavanja;
+        private Syncfusion.WinForms.Controls.SfButton btnAdministracija;
         private Syncfusion.WinForms.Controls.SfButton btnFinansije;
         private Syncfusion.WinForms.Controls.SfButton btnKapija;
         private Syncfusion.WinForms.Controls.SfButton btnOdrzavanje;

@@ -54,8 +54,18 @@ namespace Saobracaj
         public NewMain(string korisnik)
         {
             InitializeComponent();
+            PostaviMaksimalneGranice();
             ShowHome();
             Korisnik = korisnik.ToLower().TrimEnd();
+        }
+
+        // Forma bez okvira u Maximized stanju inače zauzme ceo ekran (i ispod taskbara);
+        // ograničava se na radnu površinu ekrana na kome se nalazi
+        private void PostaviMaksimalneGranice()
+        {
+            Screen ekran = IsHandleCreated ? Screen.FromHandle(Handle) : Screen.FromPoint(Cursor.Position);
+            Rectangle radna = ekran.WorkingArea;
+            MaximizedBounds = new Rectangle(radna.Left - ekran.Bounds.Left, radna.Top - ekran.Bounds.Top, radna.Width, radna.Height);
         }
 
         private void MainLeget_Load(object sender, EventArgs e)
@@ -487,6 +497,25 @@ namespace Saobracaj
             BackColorKliknut(13);
         }
 
+        private void btnAdministracija_Click(object sender, EventArgs e)
+        {
+            string key = btnAdministracija.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Administracija' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new Saobracaj.Administracija.Administracija1(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "ADMINISTRACIJA";
+            BackColorKliknut(15);
+        }
+
         private void btnDrumski_Click(object sender, EventArgs e)
         {
             string key = btnDrumski.Text.Trim().ToLower();
@@ -787,6 +816,7 @@ namespace Saobracaj
             btnFinansije.BackColor = Color.FromArgb(32, 61, 85);
             btnPodesavanja.BackColor = Color.FromArgb(32, 61, 85);
             btnDepocnt.BackColor = Color.FromArgb(32, 61, 85);
+            btnAdministracija.BackColor = Color.FromArgb(32, 61, 85);
             switch (Dugme)
             {
                 case 0: btnLogistikaUvoza.BackColor = Color.FromArgb(1, 115, 199); break;
@@ -804,6 +834,7 @@ namespace Saobracaj
                 case 12: btnFinansije.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 13: btnPodesavanja.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 14: btnDepocnt.BackColor = Color.FromArgb(1, 115, 199); break;
+                case 15: btnAdministracija.BackColor = Color.FromArgb(1, 115, 199); break;
                 default: break;
             }
         }
@@ -847,6 +878,7 @@ namespace Saobracaj
             }
             else
             {
+                PostaviMaksimalneGranice();
                 this.WindowState = FormWindowState.Maximized;
                 // remove region so form fills screen without rounded corners
                 this.Region = null;

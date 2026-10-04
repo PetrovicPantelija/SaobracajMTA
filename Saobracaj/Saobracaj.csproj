@@ -452,6 +452,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracija\Administracija1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\Administracija1.Designer.cs">
+      <DependentUpon>Administracija1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administracija\frmDodeliGrupu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3097,6 +3103,50 @@
     <Compile Include="RNI\frmScenarioSCI.Designer.cs">
       <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeni.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniExcel.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniPromeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniPromeni.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniPromeni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniArhiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniArhiva.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniArhiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniLog.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniDokumenta.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniDokumenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniSlike.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniSlike.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniSlike.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\insertTerminalPriv.cs" />
+    <Compile Include="RNI\TerminalPrivMaerskIzvoz.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4882,6 +4932,7 @@
     <Compile Include="VSD\DnevniAnaliza.Designer.cs">
       <DependentUpon>DnevniAnaliza.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\DnevniPrometExcelExport.cs" />
     <Compile Include="VSD\frmDnevniExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6135,6 +6186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RNI\frmScenarioSCI.resx">
       <DependentUpon>frmScenarioSCI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RNI\frmTerminalPrivremeni.resx">
+      <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptNalogPrevoza.rdlc" />
     <EmbeddedResource Include="Servis\frmEvidencijaKvarova.resx">

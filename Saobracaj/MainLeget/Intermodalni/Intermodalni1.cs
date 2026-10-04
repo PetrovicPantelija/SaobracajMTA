@@ -38,5 +38,15 @@ namespace Saobracaj.MainLeget.Intermodalni
                 btnIntermodalni13.Text,
                 () => new VozniPlanovi());
         }
+
+        private void btnIntermodalni15_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnIntermodalni15.Text,
+                () => new Saobracaj.RNI.frmTerminalPrivremeni());
+        }
     }
 }

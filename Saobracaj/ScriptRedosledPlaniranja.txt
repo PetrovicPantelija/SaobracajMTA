@@ -1,0 +1,69 @@
+-- ============================================================
+-- InsertRedosledPlaniranja - Insert new record
+-- ============================================================
+CREATE OR ALTER PROCEDURE dbo.InsertRedosledPlaniranja
+    @Redosled NVARCHAR(30),
+    @MpSifra INT,
+    @MpCode NVARCHAR(60),
+    @MpKol DECIMAL(18, 2),
+    @MpNadredjeni INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        INSERT INTO dbo.RedosledPlaniranja (Redosled, MpSifra, MpCode, MpKol, MpNadredjeni)
+        VALUES (@Redosled, @MpSifra, @MpCode, @MpKol, @MpNadredjeni);
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END
+GO
+
+-- ============================================================
+-- UpdateRedosledPlaniranja - Update record by MpSifra
+-- ============================================================
+CREATE OR ALTER PROCEDURE dbo.UpdateRedosledPlaniranja
+    @MpSifra INT,
+    @Redosled NVARCHAR(30),
+    @MpCode NVARCHAR(60),
+    @MpKol DECIMAL(18, 2),
+    @MpNadredjeni INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        UPDATE dbo.RedosledPlaniranja
+        SET 
+            Redosled = @Redosled,
+            MpCode = @MpCode,
+            MpKol = @MpKol,
+            MpNadredjeni = @MpNadredjeni
+        WHERE MpSifra = @MpSifra;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END
+GO
+
+-- ============================================================
+-- DeleteRedosledPlaniranja - Delete record by MpSifra
+-- ============================================================
+CREATE OR ALTER PROCEDURE dbo.DeleteRedosledPlaniranja
+    @MpSifra INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        DELETE FROM dbo.RedosledPlaniranja
+        WHERE MpSifra = @MpSifra;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END
+GO
