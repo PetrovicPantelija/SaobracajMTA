@@ -1,0 +1,23 @@
+formu MainPlaniranje promeni dizajn kao na formi frmSifarniciPlaniranje
+pozivi formi ostaju ali u stilu  frmSifarniciPlaniranje
+frmSifarniciPlaniranje npr ono sto je Grupe i poziva MdfGrupe 
+RedovnoPakovanje na  PakovanjaPlanovi.NoviPlanPakovanja
+
+Magacin.frmPozicije - Pozicije
+RazloziZaustavljanja - Zastoji
+Kalkulacije.frmKolekcije  - Kolekcije
+Kalkulacije.frmProgram - Program
+Planovi_Excel.Podesavanje - Podesavanje
+Planovi_Excel.PripadnostKP  - Pripadnost
+Planovi_Excel.Izlaznost - Izlaznost
+Planovi_Excel.PlanVeza - Grupe-PlanVeza
+
+ Label lblInfo = new Label
+ {
+     Text = "Grupe",
+     Location = new Point(20, 80),
+     AutoSize = true,
+     ForeColor = System.Drawing.Color.Gray
+ };
+ pnlEkran.Controls.Add(lblInfo);
+ LoadFormInPanel(new MdfGrupe(), pnlEkran);
