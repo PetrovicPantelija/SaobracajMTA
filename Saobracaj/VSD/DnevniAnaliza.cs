@@ -106,6 +106,189 @@ namespace Saobracaj.VSD
             }
         }
 
+        // ---------------------------------------------------------------------------------
+        // Izvoz u Excel (list "Dnevni promet")
+        // ---------------------------------------------------------------------------------
+        private const string SviBrendovi = "Svi brendovi";
+        private const string PodrazumevaniBrend = "1.REVLON";
+
+        private void DnevniAnaliza_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                UcitajPlanove();
+                OsveziBrendoveIDatum();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspešno učitavanje planova: " + ex.Message, "Dnevne analize", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UcitajPlanove()
+        {
+            var tabela = new System.Data.DataTable();
+            using (var da = new SqlDataAdapter("SELECT ID, Naziv FROM dbo.[Plan] ORDER BY Godina DESC, ID DESC", Sifarnici.frmLogovanje.connectionString))
+                da.Fill(tabela);
+
+            cboPlan.DisplayMember = "Naziv";
+            cboPlan.ValueMember = "ID";
+            cboPlan.DataSource = tabela;
+            cboPlan.SelectedIndex = tabela.Rows.Count > 0 ? 0 : -1;   // najnoviji plan
+        }
+
+        private int? IzabraniPlan()
+        {
+            if (cboPlan.SelectedValue == null || cboPlan.SelectedValue == DBNull.Value)
+                return null;
+            return Convert.ToInt32(cboPlan.SelectedValue);
+        }
+
+        // Brendovi izabranog plana (prva stavka "Svi brendovi") i poslednji uvezeni dan
+        private void OsveziBrendoveIDatum()
+        {
+            cboBrend.Items.Clear();
+            cboBrend.Items.Add(SviBrendovi);
+
+            int? planId = IzabraniPlan();
+            if (planId == null)
+            {
+                cboBrend.SelectedIndex = 0;
+                return;
+            }
+
+            object poslednjiDan;
+            using (var conn = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand("SELECT DISTINCT Brend FROM dbo.DnevniERP WHERE PlanID = @PlanID ORDER BY Brend", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlanID", planId.Value);
+                    using (var rd = cmd.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            if (rd[0] != DBNull.Value)
+                                cboBrend.Items.Add(Convert.ToString(rd[0]));
+                        }
+                    }
+                }
+                using (var cmd = new SqlCommand("SELECT MAX(Datum) FROM dbo.DnevniERP WHERE PlanID = @PlanID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlanID", planId.Value);
+                    poslednjiDan = cmd.ExecuteScalar();
+                }
+            }
+
+            int revlon = cboBrend.Items.IndexOf(PodrazumevaniBrend);
+            cboBrend.SelectedIndex = revlon >= 0 ? revlon : 0;
+
+            if (poslednjiDan != null && poslednjiDan != DBNull.Value)
+            {
+                dtpDoDatuma.Value = Convert.ToDateTime(poslednjiDan).Date;
+            }
+            else
+            {
+                // plan bez uvezenog prometa: poslednji dan meseca plana
+                Tuple<int, int> mesec = new DnevniPrometExcelExport(Sifarnici.frmLogovanje.connectionString).MesecPlana(planId.Value);
+                if (mesec != null)
+                    dtpDoDatuma.Value = new DateTime(mesec.Item1, mesec.Item2, DateTime.DaysInMonth(mesec.Item1, mesec.Item2));
+            }
+        }
+
+        private void cboPlan_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                OsveziBrendoveIDatum();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspešno učitavanje brendova: " + ex.Message, "Dnevne analize", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnIzvozExcel_Click(object sender, EventArgs e)
+        {
+            int? planId = IzabraniPlan();
+            if (planId == null)
+            {
+                MessageBox.Show("Izaberite plan.", "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string brend = cboBrend.SelectedItem == null || (string)cboBrend.SelectedItem == SviBrendovi ? null : (string)cboBrend.SelectedItem;
+            DateTime doDatuma = dtpDoDatuma.Value.Date;
+            var izvoz = new DnevniPrometExcelExport(Sifarnici.frmLogovanje.connectionString);
+
+            try
+            {
+                Tuple<int, int> mesec = izvoz.MesecPlana(planId.Value);
+                if (mesec != null && (doDatuma.Year != mesec.Item1 || doDatuma.Month != mesec.Item2))
+                {
+                    MessageBox.Show("Datum mora biti u mesecu izabranog plana.", "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Neuspešno čitanje plana: " + ex.Message, "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string putanja;
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel (*.xlsx)|*.xlsx";
+                sfd.FileName = DnevniPrometExcelExport.PredlogImena(cboPlan.Text, brend, doDatuma);
+                if (sfd.ShowDialog(this) != DialogResult.OK)
+                    return;
+                putanja = sfd.FileName;
+            }
+
+            Cursor = Cursors.WaitCursor;
+            btnIzvozExcel.Enabled = false;
+            try
+            {
+                izvoz.Export(planId.Value, brend, doDatuma, putanja);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Fajl nije sačuvan. Zatvorite fajl u Excelu i pokušajte ponovo.", "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Nemate pravo upisa u izabrani folder. Izaberite drugi folder.", "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Izvoz nije uspeo: " + ex.Message, "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                btnIzvozExcel.Enabled = true;
+            }
+
+            if (!izvoz.ImaPrometa)
+                MessageBox.Show("Nema prometa za izabrane filtere.", "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            if (MessageBox.Show("Fajl je sačuvan. Otvoriti ga?", "Izvoz u Excel", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(putanja) { UseShellExecute = true });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fajl ne može da se otvori: " + ex.Message, "Izvoz u Excel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
         private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
         {
 

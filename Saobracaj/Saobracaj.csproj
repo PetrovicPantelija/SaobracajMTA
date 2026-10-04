@@ -4912,6 +4912,7 @@
     <Compile Include="VSD\DnevniAnaliza.Designer.cs">
       <DependentUpon>DnevniAnaliza.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSD\DnevniPrometExcelExport.cs" />
     <Compile Include="VSD\frmDnevniExcel.cs">
       <SubType>Form</SubType>
     </Compile>
