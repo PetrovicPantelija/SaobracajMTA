@@ -233,7 +233,7 @@ namespace Saobracaj.Drumski
                         )
                             SELECT   
                                 -- Agregirana kolona (Spojeni ID-jevi)
-                                x.ID,
+                                x.ID, izvor,
                                 LTRIM(RTRIM( x.Nalogodavac)) AS Nalogodavac,
                                 CASE 
                                 -- Slučaj kada NEMAMO mesto preuzimanja (spajamo samo utovar i istovar)
@@ -500,7 +500,7 @@ namespace Saobracaj.Drumski
                 
                             ) AS x
 
-                            LEFT JOIN (SELECT tt.ID AS ScenarioID, izvor, m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
+                            LEFT JOIN (SELECT tt.ID AS ScenarioID,  m.TipNalogaID, tt.TipTransporta, tt.PolaznaCI, tt.OdredisnaCI
                             FROM ScenarijaTokaTransporta tt
                             JOIN MapiranjeTipaNaloga m ON tt.VrstaNaloga = m.VrstaNaloga
                                 ) AS IdentifikatorScenarija ON 
