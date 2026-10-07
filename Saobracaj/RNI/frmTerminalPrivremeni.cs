@@ -237,7 +237,7 @@ namespace Saobracaj.RNI
                 if (id > 0)
                     new insertTerminalPriv().UpdTerminalPriv(red, true);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red);
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true);   // isto kao Sačuvaj novi
             }
             catch (Exception ex)
             {
@@ -318,7 +318,7 @@ namespace Saobracaj.RNI
 
             try
             {
-                new insertTerminalPriv().InsTerminalPriv(red);
+                new insertTerminalPriv().InsTerminalPriv(red, true);
             }
             catch (Exception ex)
             {

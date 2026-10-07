@@ -47,7 +47,7 @@ BEGIN
 END
 GO
 
--- Pokreti Maersk kontejnera (upisuje updTerminalPriv pri izmeni dugmetom 'Promeni', izvozi dugme 'Izvoz Maersk').
+-- Pokreti Maersk kontejnera (upisuje insTerminalPrivMaerskPokreti pri dugmetu 'Sačuvaj novi' i 'Promeni', izvozi dugme 'Izvoz Maersk').
 -- ID je ID zapisa iz TerminalPriv i ponavlja se kad isti kontejner ima više pokreta; MaerskID je ključ zapisa.
 IF OBJECT_ID('dbo.TerminalPrivMaersk', 'U') IS NULL
 BEGIN
@@ -77,6 +77,97 @@ GO
 
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivMaersk_Active' AND object_id = OBJECT_ID('dbo.TerminalPrivMaersk'))
     CREATE NONCLUSTERED INDEX IX_TerminalPrivMaersk_Active ON dbo.TerminalPrivMaersk (Active);
+GO
+
+-- Upis pokreta Maersk kontejnera u TerminalPrivMaersk (pozivaju insTerminalPriv i updTerminalPriv).
+-- Za svaki datum koji je prešao iz NULL u popunjen traži se pravilo (datum + GATE_IN/_GATE_OUT + OTPREMA +
+-- BOOKING/IZVOZ + BL/UVOZ); pokret se upisuje samo ako pravilo postoji. Stari datumi NULL = novi zapis.
+IF OBJECT_ID('dbo.insTerminalPrivMaerskPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivMaerskPokreti;
+GO
+CREATE PROCEDURE dbo.insTerminalPrivMaerskPokreti
+    @ID int,
+    @KONTEJNER nvarchar(30),
+    @BRODAR nvarchar(30) = NULL,
+    @GATE_IN_GATE_OUT nvarchar(50) = NULL,
+    @OTPREMA nvarchar(30) = NULL,
+    @BOOKING_IZVOZ nvarchar(30) = NULL,
+    @BL_UVOZ nvarchar(30) = NULL,
+    @GATE_IN_E_F datetime = NULL,
+    @PREUZIMANJE_PUNOG_RAZVOZ datetime = NULL,
+    @VRACANJE_PRAZNOG_IZ_RAZVOZA datetime = NULL,
+    @KONACNI_GATE_OUT datetime = NULL,
+    @GATE_OUT_EMPTY_UTOVAR datetime = NULL,
+    @GATE_IN_FULL_SA_UTOVARA datetime = NULL,
+    @StariGateInEF datetime = NULL,
+    @StariPreuzimanje datetime = NULL,
+    @StariVracanje datetime = NULL,
+    @StariKonacni datetime = NULL,
+    @StariGateOutEmpty datetime = NULL,
+    @StariGateInFull datetime = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- 1. brodar mora biti Maersk
+    IF UPPER(ISNULL(@BRODAR, N'')) NOT LIKE N'%MAERSK%'
+        RETURN;
+
+    DECLARE @Booking nvarchar(30) = NULLIF(LTRIM(RTRIM(@BOOKING_IZVOZ)), N'');
+    DECLARE @BL nvarchar(30) = NULLIF(LTRIM(RTRIM(@BL_UVOZ)), N'');
+    DECLARE @ImaOtpremu bit = CASE WHEN LTRIM(RTRIM(ISNULL(@OTPREMA, N''))) <> N'' THEN 1 ELSE 0 END;
+    DECLARE @ImaBooking bit = CASE WHEN @Booking IS NOT NULL THEN 1 ELSE 0 END;
+    DECLARE @ImaBL bit = CASE WHEN @BL IS NOT NULL THEN 1 ELSE 0 END;
+
+    INSERT INTO dbo.TerminalPrivMaersk
+        (ID, Terminal, [Date], [Time], Container, Move, [FULL/EMPTY], [Act Fore], [BKNG No], [RAIL CODE])
+    SELECT
+        @ID,
+        N'RSSMKTM',
+        CONVERT(nvarchar(10), n.Vrednost, 104) + N'.',              -- 30.09.2026.
+        LEFT(CONVERT(nvarchar(8), n.Vrednost, 108), 5),             -- 08:00
+        @KONTEJNER,
+        CASE @GATE_IN_GATE_OUT
+            WHEN N'GATE IN E' THEN N'GATE IN' WHEN N'GATE IN F' THEN N'GATE IN'
+            WHEN N'GATE OUT E' THEN N'GATE OUT' WHEN N'GATE OUT F' THEN N'GATE OUT' END,
+        CASE @GATE_IN_GATE_OUT
+            WHEN N'GATE IN E' THEN N'EMPTY' WHEN N'GATE IN F' THEN N'FULL'
+            WHEN N'GATE OUT E' THEN N'EMPTY' WHEN N'GATE OUT F' THEN N'FULL' END,
+        p.ActFore,
+        CASE p.BkngIz WHEN 'B' THEN @Booking WHEN 'L' THEN @BL END,
+        CASE WHEN p.RailCode = 1 THEN N'RSSMK' + CONVERT(nvarchar(6), n.Vrednost, 12) END   -- RSSMK260930
+    FROM (VALUES
+        -- 2. datum koji je prešao iz NULL u popunjen
+        ('GATE_IN_EF', @GATE_IN_E_F, @StariGateInEF, 1),
+        ('PREUZIMANJE', @PREUZIMANJE_PUNOG_RAZVOZ, @StariPreuzimanje, 2),
+        ('VRACANJE', @VRACANJE_PRAZNOG_IZ_RAZVOZA, @StariVracanje, 3),
+        ('KONACNI', @KONACNI_GATE_OUT, @StariKonacni, 4),
+        ('GATE_OUT_EMPTY', @GATE_OUT_EMPTY_UTOVAR, @StariGateOutEmpty, 5),
+        ('GATE_IN_FULL', @GATE_IN_FULL_SA_UTOVARA, @StariGateInFull, 6)
+    ) n (Polje, Vrednost, Stara, Redosled)
+    INNER JOIN (VALUES
+        -- 3. pravila: Otprema/Booking/BL = 1 ima vrednost, 0 nema, NULL svejedno; BkngIz B = Booking, L = BL, NULL = prazno
+        --  Polje             GATE_IN/_GATE_OUT  Otpr Book  BL    Act Fore  RAIL CODE  BKNG No
+        ('KONACNI',        N'GATE OUT F', 1, 1, NULL, N'EXP', 1, 'B'),
+        ('KONACNI',        N'GATE OUT E', 1, 1, NULL, N'POS', 1, 'B'),
+        ('KONACNI',        N'GATE OUT E', 0, 1, NULL, NULL,   0, 'B'),
+        ('KONACNI',        N'GATE OUT F', 0, 0, 1,    N'DEL', 0, 'L'),
+        ('KONACNI',        N'GATE OUT F', 0, 1, NULL, N'EXP', 0, 'B'),
+        ('GATE_IN_EF',     N'GATE IN F',  0, 1, NULL, N'EXP', 0, 'B'),
+        ('GATE_IN_EF',     N'GATE IN F',  0, 0, 1,    N'IMP', 0, 'L'),
+        ('GATE_IN_EF',     N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
+        ('GATE_IN_FULL',   N'GATE IN F',  0, 1, NULL, N'EXP', 0, 'B'),
+        ('PREUZIMANJE',    N'GATE OUT F', 0, 0, 1,    N'DEL', 0, 'L'),
+        ('VRACANJE',       N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
+        ('GATE_OUT_EMPTY', N'GATE OUT E', 0, 1, 0,    NULL,   0, 'B')
+    ) p (Polje, Gate, Otprema, Booking, BL, ActFore, RailCode, BkngIz)
+        ON p.Polje = n.Polje
+       AND p.Gate = @GATE_IN_GATE_OUT
+       AND p.Otprema = @ImaOtpremu
+       AND p.Booking = @ImaBooking
+       AND (p.BL IS NULL OR p.BL = @ImaBL)
+    WHERE n.Stara IS NULL AND n.Vrednost IS NOT NULL
+    ORDER BY n.Vrednost, n.Redosled;   -- hronoloski
+END
 GO
 
 IF OBJECT_ID('dbo.insTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPriv;
@@ -112,17 +203,31 @@ CREATE PROCEDURE dbo.insTerminalPriv
     @OPIS nvarchar(300) = NULL,
     @OTPREMA nvarchar(30) = NULL,
     @POSLATE_SLIKE nvarchar(30) = NULL,
-    @PREVOZNIK nvarchar(30) = NULL
+    @PREVOZNIK nvarchar(30) = NULL,
+    @ZapisiMaersk bit = 0   -- 1 = novi zapis dugmetom 'Sačuvaj novi': upis pokreta u TerminalPrivMaersk
 AS
 BEGIN
     SET NOCOUNT ON;
+
+    DECLARE @NoviID int;
 
     INSERT INTO dbo.TerminalPriv
         ([KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik])
     VALUES
         (@KONTEJNER, @STATUS, @POZICIJA, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @BL_UVOZ, @PLOMBA_UVOZ, @VOZ_KAMION, @STANJE, @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ, @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT, @BOOKING_IZVOZ, @KLIJENT_IZVOZ, @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA, @GATE_IN_GATE_OUT, @L_R, @TARA, @MAX_NOSIVOST_CNT, @VOZILO_PREUZIMANJE, @PLOMBA_IZVOZ, @NAPOMENA, @OPIS, @OTPREMA, @POSLATE_SLIKE, @PREVOZNIK);
 
-    SELECT CAST(SCOPE_IDENTITY() AS int) AS ID;
+    SET @NoviID = CAST(SCOPE_IDENTITY() AS int);
+
+    -- novi zapis: svi datumi su pre upisa bili prazni
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivMaerskPokreti
+            @ID = @NoviID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT,
+            @OTPREMA = @OTPREMA, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @BL_UVOZ = @BL_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA;
+
+    SELECT @NoviID AS ID;
 END
 GO
 
@@ -167,20 +272,17 @@ BEGIN
     SET NOCOUNT ON;
 
     -- datumi pre izmene (za proveru koji je datum prešao iz praznog u popunjen)
-    DECLARE @Stari TABLE (Polje varchar(20) NOT NULL, Vrednost datetime NULL);
+    DECLARE @StariGateInEF datetime, @StariPreuzimanje datetime, @StariVracanje datetime,
+            @StariKonacni datetime, @StariGateOutEmpty datetime, @StariGateInFull datetime;
     IF @ZapisiMaersk = 1
-        INSERT INTO @Stari (Polje, Vrednost)
-        SELECT v.Polje, v.Vrednost
-        FROM dbo.TerminalPriv t
-        CROSS APPLY (VALUES
-            ('GATE_IN_EF', t.[GATE_IN_E/F]),
-            ('PREUZIMANJE', t.[PREUZIMANJE_PUNOG/Razvoz]),
-            ('VRACANJE', t.[VRAĆANJE_PRAZNOG/iz_Razvoza]),
-            ('KONACNI', t.[Konačni_GATE_OUT]),
-            ('GATE_OUT_EMPTY', t.[GATE_OUT_EMPTY/Utovar]),
-            ('GATE_IN_FULL', t.[GATE_IN_FULL/sa_Utovara])
-        ) v (Polje, Vrednost)
-        WHERE t.ID = @ID;
+        SELECT @StariGateInEF = [GATE_IN_E/F],
+               @StariPreuzimanje = [PREUZIMANJE_PUNOG/Razvoz],
+               @StariVracanje = [VRAĆANJE_PRAZNOG/iz_Razvoza],
+               @StariKonacni = [Konačni_GATE_OUT],
+               @StariGateOutEmpty = [GATE_OUT_EMPTY/Utovar],
+               @StariGateInFull = [GATE_IN_FULL/sa_Utovara]
+        FROM dbo.TerminalPriv
+        WHERE ID = @ID;
 
     UPDATE dbo.TerminalPriv
     SET [KONTEJNER] = @KONTEJNER,
@@ -216,47 +318,15 @@ BEGIN
         [Prevoznik] = @PREVOZNIK
     WHERE ID = @ID;
 
-    -- Maersk: za svaki datum koji je ovom izmenom prešao iz praznog u popunjen upisuje se jedan pokret
-    IF @ZapisiMaersk = 1 AND UPPER(ISNULL(@BRODAR, N'')) LIKE N'%MAERSK%'
-    BEGIN
-        DECLARE @ImaOtpremu bit = CASE WHEN LTRIM(RTRIM(ISNULL(@OTPREMA, N''))) <> N'' THEN 1 ELSE 0 END;
-        DECLARE @ImaBooking bit = CASE WHEN LTRIM(RTRIM(ISNULL(@BOOKING_IZVOZ, N''))) <> N'' THEN 1 ELSE 0 END;
-        DECLARE @ImaBL bit = CASE WHEN LTRIM(RTRIM(ISNULL(@BL_UVOZ, N''))) <> N'' THEN 1 ELSE 0 END;
-
-        INSERT INTO dbo.TerminalPrivMaersk
-            (ID, Terminal, [Date], [Time], Container, Move, [FULL/EMPTY], [Act Fore], [BKNG No], [RAIL CODE])
-        SELECT
-            @ID,
-            N'RSSMKTM',
-            CONVERT(nvarchar(10), n.Vrednost, 104) + N'.',              -- 30.09.2026.
-            LEFT(CONVERT(nvarchar(8), n.Vrednost, 108), 5),             -- 08:00
-            @KONTEJNER,
-            CASE @GATE_IN_GATE_OUT
-                WHEN N'GATE IN E' THEN N'GATE IN' WHEN N'GATE IN F' THEN N'GATE IN'
-                WHEN N'GATE OUT E' THEN N'GATE OUT' WHEN N'GATE OUT F' THEN N'GATE OUT' END,
-            CASE @GATE_IN_GATE_OUT
-                WHEN N'GATE IN E' THEN N'EMPTY' WHEN N'GATE IN F' THEN N'FULL'
-                WHEN N'GATE OUT E' THEN N'EMPTY' WHEN N'GATE OUT F' THEN N'FULL' END,
-            CASE
-                WHEN @GATE_IN_GATE_OUT = N'GATE OUT E' AND @ImaOtpremu = 1 THEN N'POS'
-                WHEN @ImaBooking = 1 AND @ImaOtpremu = 1 THEN N'EXP'
-                WHEN @ImaBL = 1 AND n.Polje = 'GATE_IN_EF' THEN N'IMP'
-                WHEN @ImaBL = 1 AND n.Polje IN ('PREUZIMANJE', 'KONACNI') THEN N'DEL'
-                ELSE NULL END,                                          -- ostalo (npr. bez otpreme, GATE OUT EMPTY): prazno
-            NULLIF(LTRIM(RTRIM(@BOOKING_IZVOZ)), N''),
-            N'RSSMK' + CONVERT(nvarchar(6), n.Vrednost, 12)              -- RSSMK260930
-        FROM (VALUES
-            ('GATE_IN_EF', @GATE_IN_E_F, 1),
-            ('PREUZIMANJE', @PREUZIMANJE_PUNOG_RAZVOZ, 2),
-            ('VRACANJE', @VRACANJE_PRAZNOG_IZ_RAZVOZA, 3),
-            ('KONACNI', @KONACNI_GATE_OUT, 4),
-            ('GATE_OUT_EMPTY', @GATE_OUT_EMPTY_UTOVAR, 5),
-            ('GATE_IN_FULL', @GATE_IN_FULL_SA_UTOVARA, 6)
-        ) n (Polje, Vrednost, Redosled)
-        INNER JOIN @Stari s ON s.Polje = n.Polje
-        WHERE s.Vrednost IS NULL AND n.Vrednost IS NOT NULL
-        ORDER BY n.Vrednost, n.Redosled;   -- hronoloski
-    END
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivMaerskPokreti
+            @ID = @ID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT,
+            @OTPREMA = @OTPREMA, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @BL_UVOZ = @BL_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
+            @StariGateInEF = @StariGateInEF, @StariPreuzimanje = @StariPreuzimanje, @StariVracanje = @StariVracanje,
+            @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull;
 END
 GO
 
