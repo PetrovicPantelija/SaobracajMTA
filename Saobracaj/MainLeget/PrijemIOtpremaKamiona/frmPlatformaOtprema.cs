@@ -56,22 +56,20 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             */
 
             select = "     SELECT RadniNalogInterni.[ID] as KomNalID, RadniNalogInterni.BrojOsnov as KontID," +
-            " DatumPrijema as DatumPrijema, " +
-            "  CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status,  " +
+            " DatumOtpreme as DatumOtpreme, " +
             "  REgBrKamiona, ImeVozaca, " +
-            "  n1.VremeDolaska as VremeDol,  " +
             "  n1.[Datum] ,n1.[Korisnik] ,  RadniNalogInterniPotvrda.KapijaUlaz, RadniNalogInterniPotvrda.Pregledac," +
             " RadniNalogInterniPotvrda.Kalmar, " +
              "  (SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
              "  FROM OtpremaKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
             "  FOR XML PATH('')), 1, 1, ''  ) As Skupljen)  " +
-             "  as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.Poreklo = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO " +
-            "  FROM[dbo].[PrijemKontejneraVoz] as n1 " +
-            "  inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Modul " +
+             "  as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.VrstaKamiona = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO " +
+            "  FROM[dbo].[OtpremaKontejnera] as n1 " +
+            "  inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Poreklo " +
             "  inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNadredjenog = n1.ID " +
             "  inner join RadniNalogInterni on RadniNalogInterni.ID = OtpremaKontejneraVozStavke.NalogID " +
             "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0  order by n1.ID desc";
+            "  where RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.DozvolaIzlaz = 0 AND n1.NacinOtpreme = 0 and VrstaKamiona = 0 order by n1.ID desc";
             // ovo ide da bi požuteo
             //"AND ( " +
             //  "(RadniNalogInterniPotvrda.KapijaUlaz >= 1 AND RadniNalogInterniPotvrda.Kalmar = 0) " + 

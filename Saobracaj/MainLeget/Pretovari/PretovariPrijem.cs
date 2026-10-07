@@ -16,5 +16,12 @@ namespace Saobracaj.MainLeget.Pretovari
         {
             InitializeComponent();
         }
+
+        private void btnPretovarPrijem_Click(object sender, EventArgs e)
+        {
+
+            frmPretovarPrijem pl = new frmPretovarPrijem();
+            pl.Show();
+        }
     }
 }

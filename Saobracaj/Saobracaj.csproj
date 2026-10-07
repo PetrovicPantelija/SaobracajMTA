@@ -2379,6 +2379,13 @@
     <Compile Include="MainLeget\Pretovari\frmPretovariSkladista.Designer.cs">
       <DependentUpon>frmPretovariSkladista.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainLeget\Pretovari\frmPretovarPrijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\frmPretovarPrijem.Designer.cs">
+      <DependentUpon>frmPretovarPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\Pretovari\InsertPretovari.cs" />
     <Compile Include="MainLeget\Pretovari\Pretovari1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2402,6 +2409,18 @@
     </Compile>
     <Compile Include="MainLeget\Pretovari\PretovariPrijem.Designer.cs">
       <DependentUpon>PretovariPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmCerada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmCerada.Designer.cs">
+      <DependentUpon>frmCerada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmCeradaOtprema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmCeradaOtprema.Designer.cs">
+      <DependentUpon>frmCeradaOtprema.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.cs">
       <SubType>Form</SubType>
@@ -5866,6 +5885,9 @@
     <EmbeddedResource Include="MainLeget\Pretovari\frmPretovariSkladista.resx">
       <DependentUpon>frmPretovariSkladista.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\Pretovari\frmPretovarPrijem.resx">
+      <DependentUpon>frmPretovarPrijem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Pretovari\Pretovari1.resx">
       <DependentUpon>Pretovari1.cs</DependentUpon>
     </EmbeddedResource>
@@ -5877,6 +5899,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\Pretovari\PretovariPrijem.resx">
       <DependentUpon>PretovariPrijem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmCerada.resx">
+      <DependentUpon>frmCerada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmCeradaOtprema.resx">
+      <DependentUpon>frmCeradaOtprema.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmFotografijePregledac.resx">
       <DependentUpon>frmFotografijePregledac.cs</DependentUpon>

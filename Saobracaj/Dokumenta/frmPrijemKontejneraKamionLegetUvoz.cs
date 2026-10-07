@@ -19,6 +19,7 @@ using System.Security.Cryptography;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.Windows.Forms;
 using System.Drawing.Imaging;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 
 namespace Saobracaj.Dokumenta
 {
@@ -30,7 +31,8 @@ namespace Saobracaj.Dokumenta
         int usao = 0;
         int OJ= 0;
         int FormiranjeNovog = 0;
-        
+        public int noviPrijemKontejneraVozID = 0;
+
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         private void ChangeTextBox()
@@ -537,12 +539,24 @@ namespace Saobracaj.Dokumenta
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
-
-            SqlCommand cmd = new SqlCommand(" Select UvozKonacna.BrojKontejnera, UvozKonacna.TipKontejnera, RadniNalogInterni.KonkretaIDUsluge, Brodar, UvozKonacna.Napomena, NApomena1," +
-" DirigacijaKOntejeraZa, PostupakSaRobom, Nalogodavac1, Nalogodavac2, Nalogodavac3, BukingBrodara, BrojPlombe1, BrojPlombe2, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera from RadniNalogInterni " +
-  "          inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKOnacna.ID " +
-" where RadniNalogInterni.ID =  " + Convert.ToInt32(NalogID) , con);
-
+            SqlCommand cmd = new SqlCommand("");
+            if (chkIzvoz.Checked == true)
+            {
+                cmd = new SqlCommand(" Select IzvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera AS TipKontejnera, RadniNalogInterni.KonkretaIDUsluge, Brodar, '' AS Napomena,'' AS  NApomena1, " +
+                                   "  0 AS DirigacijaKOntejeraZa,0 AS PostupakSaRobom, Klijent1 AS Nalogodavac1, Klijent2 AS Nalogodavac2, Klijent3 AS Nalogodavac3, BookingBrodara AS BukingBrodara, BrodskaPlomba AS BrojPlombe1, OstalePlombe AS BrojPlombe2," +
+                                   " NetoRobe, BrutoRobe, Tara AS TaraKontejnera, VGMBrod AS BrutoKontejnera,CarinskiPostupakUnutrasnji,Vozac, Vozilo, NacinPakovanja, Drumski " +
+                                   " from RadniNalogInterni " +
+                                   " inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
+                                   " where RadniNalogInterni.ID =  " + Convert.ToInt32(NalogID), con);
+            }
+            else 
+            { 
+                cmd = new SqlCommand(" Select UvozKonacna.BrojKontejnera, UvozKonacna.TipKontejnera, RadniNalogInterni.KonkretaIDUsluge, Brodar, UvozKonacna.Napomena, NApomena1," +
+                                    " DirigacijaKOntejeraZa, PostupakSaRobom, Nalogodavac1, Nalogodavac2, Nalogodavac3, BukingBrodara, BrojPlombe1, BrojPlombe2, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera," +
+                                    " 0 AS CarinskiPostupakUnutrasnji, ''  AS Vozac, '' AS Vozilo,0 AS  NacinPakovanja, 0 AS Drumski from RadniNalogInterni " +
+                                      "          inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKOnacna.ID " +
+                                    " where RadniNalogInterni.ID =  " + Convert.ToInt32(NalogID), con);
+            }
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -577,6 +591,13 @@ namespace Saobracaj.Dokumenta
               bttoKontejnera.Value = Convert.ToDecimal(dr["BrutoKOntejnera"].ToString());
               txtNapomenaS2.Text = dr["Napomena1"].ToString();
                cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
+                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"].ToString());
+                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["CarinskiPostupakUnutrasnji"].ToString());
+                txtRegBrKamiona.Text = dr["Vozilo"].ToString();
+                txtImeVozaca.Text = dr["Vozac"].ToString();
+                if(Convert.ToDecimal(dr["Drumski"].ToString()) == 1)
+                    chkDrumski.Checked = true;
+
                 // txtKontejnerID.Text = dr["KontejnerID"].ToString(); ;// PostupakSaRobom
             }
 
@@ -595,6 +616,7 @@ namespace Saobracaj.Dokumenta
             ChangeTextBoxPanel6();
             ChangeTextBoxPanel5();
             ChangeTextBoxPanel7();
+            FillCombo();
             if (Cirada == 1)
             {
                 chkCirada.Checked = true;
@@ -664,7 +686,7 @@ namespace Saobracaj.Dokumenta
             }
 
             cboStatusPrijema.SelectedIndex = 0;
-            FillCombo();
+           // FillCombo();
             VratiKontejnerID();
             VratiPodatkeTEXTChangedKontejnerID();
             SelektujDG8();
@@ -873,6 +895,7 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
                 txtSifra.Text = dr["ID"].ToString();
+                noviPrijemKontejneraVozID = Convert.ToInt32(dr["ID"].ToString());
             }
 
             con.Close();

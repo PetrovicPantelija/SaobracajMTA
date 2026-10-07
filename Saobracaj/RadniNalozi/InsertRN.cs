@@ -173,7 +173,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void PotvrdiUradjenPretovarCirade(int NalogID, string Korisnik)
+        public void PotvrdiUradjenPretovarCirade(int NalogID, string Korisnik, int Uvoz)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -187,6 +187,7 @@ namespace Saobracaj.RadniNalozi
             nalogid.Value = NalogID;
             cmd.Parameters.Add(nalogid);
 
+
             SqlParameter kor = new SqlParameter();
             kor.ParameterName = "@Korisnik";
             kor.SqlDbType = SqlDbType.NVarChar;
@@ -194,6 +195,14 @@ namespace Saobracaj.RadniNalozi
             kor.Direction = ParameterDirection.Input;
             kor.Value = Korisnik;
             cmd.Parameters.Add(kor);
+
+
+            SqlParameter uvoz = new SqlParameter();
+            uvoz.ParameterName = "@Uvoz";
+            uvoz.SqlDbType = SqlDbType.Int;
+            uvoz.Direction = ParameterDirection.Input;
+            uvoz.Value = Uvoz;
+            cmd.Parameters.Add(uvoz);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

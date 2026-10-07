@@ -2234,7 +2234,7 @@ namespace Saobracaj.Drumski
                                     SELECT ISNULL(rn.Status, 0) AS Status, ri.ID AS RadniNalogInterniID
                                     FROM RadniNalogDrumski rn
                                     LEFT JOIN RadniNalogInterni ri ON ri.KonkretaIDUsluge = rn.UKID
-                                    WHERE rn.ID = @ID", connection);
+                                    WHERE rn.ID = @ID  and rn.IDVrstaManipulacije = ri.IDManipulacijaJED", connection);
                 cmd.Parameters.AddWithValue("@ID", ID);
 
                 using (var reader = cmd.ExecuteReader())

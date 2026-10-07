@@ -1,4 +1,5 @@
-﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Saobracaj.Izvoz
         int KontID;
         string Vozilo, Vozac;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        int Cerada = 1;
 
         private void ChangeTextBox()
         {
@@ -119,7 +121,14 @@ namespace Saobracaj.Izvoz
 
 
 
-        public VaganjePregled()
+        public VaganjePregled(int cerada)  // 1 je za platformu, 2 za ceradu
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            Cerada = cerada;
+        }
+
+        public VaganjePregled()  
         {
             InitializeComponent();
             ChangeTextBox();
@@ -131,9 +140,18 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac from IzvozKonacna Where Vaganje = 1 order by IzvozKonacna.ID desc";
+            var select = "";
+            if(Cerada == 2)
+                select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac " +
+                    "from IzvozKonacna " +
+                    "INNER JOIN RadniNalogInterni on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov and IDManipulacijaJED = 102 " +
+                    "INNER JOIN RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
+                    "Where  IzvozKonacna.Vaganje = 1 and Cirada = 2 and FazaUsluge = 1 order by IzvozKonacna.ID desc";
+            else 
+                select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac from IzvozKonacna Where Vaganje = 1 and Cirada = @Cerada order by IzvozKonacna.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
+            da.SelectCommand.Parameters.AddWithValue("@Cerada", Cerada);
             var ds = new System.Data.DataSet();
             da.Fill(ds);
             dataGridView1.ReadOnly = true;

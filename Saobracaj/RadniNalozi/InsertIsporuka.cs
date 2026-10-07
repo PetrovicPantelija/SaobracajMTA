@@ -633,14 +633,17 @@ namespace Saobracaj.RadniNalozi
                 }
             }
         }
-        public void InsertPromet(DateTime DatumTransakcije,string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa,decimal PrPrimKol,decimal PrIzdKol,int SkladisteU,int LokacijaU,int SkladisteIz,int LokacijaIz,
+        public int InsertPromet(DateTime DatumTransakcije,string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa,decimal PrPrimKol,decimal PrIzdKol,int SkladisteU,int LokacijaU,int SkladisteIz,int LokacijaIz,
             DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra,int Skladisteno, int Tip)
         {
+            int novGenerisaniId = -1;
             using (SqlConnection conn = new SqlConnection(connect))
             {
+               
                 conn.Open();
                 using (SqlTransaction transaction = conn.BeginTransaction())
                 {
+                  
                     try
                     {
                         using (SqlCommand cmd = conn.CreateCommand())
@@ -672,8 +675,17 @@ namespace Saobracaj.RadniNalozi
                             cmd.Parameters.Add(new SqlParameter("@Skladisteno", SqlDbType.Int) { Value = Skladisteno });
                             cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.Int) { Value = Tip });
 
-
+                            SqlParameter paramIdPom = new SqlParameter("@IDPom", SqlDbType.Int)
+                            {
+                                Direction = ParameterDirection.Output
+                            };
+                            cmd.Parameters.Add(paramIdPom);
                             cmd.ExecuteNonQuery();
+
+                            if (paramIdPom.Value != DBNull.Value)
+                            {
+                                novGenerisaniId = Convert.ToInt32(paramIdPom.Value);
+                            }
                         }
                         transaction.Commit();
                     }
@@ -681,11 +693,14 @@ namespace Saobracaj.RadniNalozi
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return -1;
                     }
                 }
                 conn.Close();
 
+
             }
+            return novGenerisaniId;
         }
 
 

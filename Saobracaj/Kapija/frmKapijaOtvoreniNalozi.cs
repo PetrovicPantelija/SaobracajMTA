@@ -63,6 +63,7 @@ namespace Saobracaj.Kapija
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
 /*" where KapijaUlaz = 0 or KapijaUlaz = 10" +  */
 " WHERE (KapijaUlaz = 0 OR KapijaUlaz = 10) AND RadniNalogInterniPotvrda.FazaUsluge = 1 " +
+"AND ((RadniNalogInterniPotvrda.Scenario <> 3)   OR    (RadniNalogInterniPotvrda.Scenario = 3 AND RadniNalogInterni.IDManipulacijaJed = 69) )" +
 "    union  select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'ODLAZAK',  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, " +
@@ -81,9 +82,10 @@ namespace Saobracaj.Kapija
 "       inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
 "       inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
 /* "        where Kalmar = 1 and KapijaIzlaz = 0"; */
-" WHERE Kalmar = 1 AND KapijaIzlaz = 0 AND RadniNalogInterniPotvrda.FazaUsluge = 1 " +
-" AND ( (RadniNalogInterniPotvrda.Scenario = 1 AND RadniNalogInterniPotvrda.Kalmar = 1) " +
-" OR (RadniNalogInterniPotvrda.Scenario = 2 AND ( ( radninaloginterni.idmanipulacijajed = 69 AND radninaloginternipotvrda.dozvolaizlaz = 1) OR   ( radninaloginterni.idmanipulacijajed in ( 70, 71)  AND radninaloginternipotvrda.kalmar = 1)) )) ";
+" WHERE Kalmar = 1 AND KapijaIzlaz = 0  " +
+" AND ( ( RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.Scenario = 1 AND RadniNalogInterniPotvrda.Kalmar = 1) " +
+" OR (RadniNalogInterniPotvrda.FazaUsluge = 1 AND RadniNalogInterniPotvrda.Scenario = 2 AND ( ( radninaloginterni.idmanipulacijajed = 69 AND radninaloginternipotvrda.dozvolaizlaz = 1) OR   ( radninaloginterni.idmanipulacijajed in ( 70, 71)  AND radninaloginternipotvrda.kalmar = 1)) )" +
+"  OR (RadniNalogInterniPotvrda.FazaUsluge = 2 AND RadniNalogInterniPotvrda.Scenario = 3 AND radninaloginternipotvrda.dozvolaizlaz = 1)) ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;

@@ -42,9 +42,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(40, 48);
+            this.label2.Location = new System.Drawing.Point(53, 59);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(484, 39);
+            this.label2.Size = new System.Drawing.Size(609, 52);
             this.label2.TabIndex = 531;
             this.label2.Text = "Operacije pretovara - Pretovar";
             // 
@@ -57,9 +58,10 @@
             this.btnPretovarPrijem.ForeColor = System.Drawing.Color.White;
             this.btnPretovarPrijem.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPretovarPrijem.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPretovarPrijem.Location = new System.Drawing.Point(47, 149);
+            this.btnPretovarPrijem.Location = new System.Drawing.Point(63, 183);
+            this.btnPretovarPrijem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPretovarPrijem.Name = "btnPretovarPrijem";
-            this.btnPretovarPrijem.Size = new System.Drawing.Size(276, 222);
+            this.btnPretovarPrijem.Size = new System.Drawing.Size(368, 273);
             this.btnPretovarPrijem.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarPrijem.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarPrijem.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -71,6 +73,7 @@
             this.btnPretovarPrijem.Text = "Prijem ";
             this.btnPretovarPrijem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPretovarPrijem.UseVisualStyleBackColor = false;
+            this.btnPretovarPrijem.Click += new System.EventHandler(this.btnPretovarPrijem_Click);
             // 
             // btnPretovarOtprema
             // 
@@ -81,9 +84,10 @@
             this.btnPretovarOtprema.ForeColor = System.Drawing.Color.White;
             this.btnPretovarOtprema.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPretovarOtprema.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPretovarOtprema.Location = new System.Drawing.Point(365, 149);
+            this.btnPretovarOtprema.Location = new System.Drawing.Point(487, 183);
+            this.btnPretovarOtprema.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPretovarOtprema.Name = "btnPretovarOtprema";
-            this.btnPretovarOtprema.Size = new System.Drawing.Size(276, 222);
+            this.btnPretovarOtprema.Size = new System.Drawing.Size(368, 273);
             this.btnPretovarOtprema.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarOtprema.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarOtprema.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -105,9 +109,10 @@
             this.btnPretovarKomercijalni.ForeColor = System.Drawing.Color.White;
             this.btnPretovarKomercijalni.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPretovarKomercijalni.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPretovarKomercijalni.Location = new System.Drawing.Point(679, 149);
+            this.btnPretovarKomercijalni.Location = new System.Drawing.Point(905, 183);
+            this.btnPretovarKomercijalni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPretovarKomercijalni.Name = "btnPretovarKomercijalni";
-            this.btnPretovarKomercijalni.Size = new System.Drawing.Size(276, 222);
+            this.btnPretovarKomercijalni.Size = new System.Drawing.Size(368, 273);
             this.btnPretovarKomercijalni.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarKomercijalni.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarKomercijalni.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -122,15 +127,16 @@
             // 
             // PretovariPrijem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1047, 516);
+            this.ClientSize = new System.Drawing.Size(1396, 635);
             this.Controls.Add(this.btnPretovarKomercijalni);
             this.Controls.Add(this.btnPretovarOtprema);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnPretovarPrijem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PretovariPrijem";
             this.Text = "PretovariPrijem";
             this.ResumeLayout(false);
