@@ -3147,6 +3147,7 @@
     </Compile>
     <Compile Include="RNI\insertTerminalPriv.cs" />
     <Compile Include="RNI\TerminalPrivMaerskIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivMSCIzvoz.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>

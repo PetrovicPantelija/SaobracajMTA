@@ -81,12 +81,12 @@ namespace Saobracaj.RNI
         // kontejner upisuje pokrete u TerminalPrivMaersk za popunjene datume
         public int InsTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
-            int brojMaersk;
-            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk);
+            int brojMaersk, brojMSC;
+            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC);
         }
 
-        // brojMaersk = broj pokreta upisanih u TerminalPrivMaersk
-        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk)
+        // brojMaersk / brojMSC = broj pokreta upisanih u TerminalPrivMaersk / TerminalPrivMSC
+        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -101,7 +101,8 @@ namespace Saobracaj.RNI
             maersk.Value = zapisiMaersk;
             myCommand.Parameters.Add(maersk);
 
-            SqlParameter broj = DodajParametarBrojMaersk(myCommand);
+            SqlParameter broj = DodajParametarBroj(myCommand, "@BrojMaersk");
+            SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
 
             DodajParametreZaPolja(myCommand, red);
 
@@ -112,7 +113,8 @@ namespace Saobracaj.RNI
             {
                 object rezultat = myCommand.ExecuteScalar();
                 myTransaction.Commit();
-                brojMaersk = broj.Value == DBNull.Value ? 0 : Convert.ToInt32(broj.Value);
+                brojMaersk = Broj(broj);
+                brojMSC = Broj(brojM);
                 return Convert.ToInt32(rezultat);
             }
             catch (SqlException ex)
@@ -130,12 +132,12 @@ namespace Saobracaj.RNI
         // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
         public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
-            int brojMaersk;
-            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk);
+            int brojMaersk, brojMSC;
+            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC);
         }
 
-        // brojMaersk = broj pokreta upisanih u TerminalPrivMaersk
-        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk)
+        // brojMaersk / brojMSC = broj pokreta upisanih u TerminalPrivMaersk / TerminalPrivMSC
+        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -157,7 +159,8 @@ namespace Saobracaj.RNI
             parameter.Value = Convert.ToInt32(red["ID"]);
             myCommand.Parameters.Add(parameter);
 
-            SqlParameter broj = DodajParametarBrojMaersk(myCommand);
+            SqlParameter broj = DodajParametarBroj(myCommand, "@BrojMaersk");
+            SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
 
             DodajParametreZaPolja(myCommand, red);
 
@@ -168,7 +171,8 @@ namespace Saobracaj.RNI
             {
                 myCommand.ExecuteNonQuery();
                 myTransaction.Commit();
-                brojMaersk = broj.Value == DBNull.Value ? 0 : Convert.ToInt32(broj.Value);
+                brojMaersk = Broj(broj);
+                brojMSC = Broj(brojM);
             }
             catch (SqlException ex)
             {
@@ -374,14 +378,20 @@ namespace Saobracaj.RNI
             }
         }
 
-        private static SqlParameter DodajParametarBrojMaersk(SqlCommand myCommand)
+        // Izlazni parametar procedure sa brojem upisanih pokreta brodara (@BrojMaersk, @BrojMSC)
+        private static SqlParameter DodajParametarBroj(SqlCommand myCommand, string naziv)
         {
             SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@BrojMaersk";
+            parameter.ParameterName = naziv;
             parameter.SqlDbType = SqlDbType.Int;
             parameter.Direction = ParameterDirection.Output;
             myCommand.Parameters.Add(parameter);
             return parameter;
+        }
+
+        private static int Broj(SqlParameter parameter)
+        {
+            return parameter.Value == null || parameter.Value == DBNull.Value ? 0 : Convert.ToInt32(parameter.Value);
         }
 
         private static void DodajParametreZaPolja(SqlCommand myCommand, DataRow red)

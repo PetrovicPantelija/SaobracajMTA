@@ -42,6 +42,7 @@
             this.btnArhiviraj = new System.Windows.Forms.Button();
             this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
             this.btnIzvozMaersk = new System.Windows.Forms.Button();
+            this.btnIzvozMSC = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
             this.btnSacuvajNovi = new System.Windows.Forms.Button();
@@ -885,6 +886,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnIzvozMSC);
             this.panel2.Controls.Add(this.btnIzvozMaersk);
             this.panel2.Controls.Add(this.btnArhiviraniPodaci);
             this.panel2.Controls.Add(this.btnArhiviraj);
@@ -940,7 +942,28 @@
             this.btnIzvozMaersk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIzvozMaersk.UseVisualStyleBackColor = true;
             this.btnIzvozMaersk.Click += new System.EventHandler(this.btnIzvozMaersk_Click);
-            // 
+            //
+            // btnIzvozMSC
+            //
+            this.btnIzvozMSC.AutoSize = true;
+            this.btnIzvozMSC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIzvozMSC.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnIzvozMSC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnIzvozMSC.FlatAppearance.BorderSize = 0;
+            this.btnIzvozMSC.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnIzvozMSC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnIzvozMSC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzvozMSC.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnIzvozMSC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnIzvozMSC.Location = new System.Drawing.Point(1134, 0);
+            this.btnIzvozMSC.Name = "btnIzvozMSC";
+            this.btnIzvozMSC.Size = new System.Drawing.Size(100, 31);
+            this.btnIzvozMSC.TabIndex = 10;
+            this.btnIzvozMSC.Text = "Izvoz MSC";
+            this.btnIzvozMSC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIzvozMSC.UseVisualStyleBackColor = true;
+            this.btnIzvozMSC.Click += new System.EventHandler(this.btnIzvozMSC_Click);
+            //
             // btnArhiviraniPodaci
             // 
             this.btnArhiviraniPodaci.AutoSize = true;
@@ -1127,6 +1150,7 @@
         private System.Windows.Forms.Button btnArhiviraj;
         private System.Windows.Forms.Button btnArhiviraniPodaci;
         private System.Windows.Forms.Button btnIzvozMaersk;
+        private System.Windows.Forms.Button btnIzvozMSC;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
         private System.Windows.Forms.Button btnSacuvajNovi;

@@ -232,13 +232,13 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            int brojMaersk;
+            int brojMaersk, brojMSC;
             try
             {
                 if (id > 0)
-                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk);   // isto kao Promeni
+                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk);   // isto kao Sačuvaj novi
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Sačuvaj novi
             }
             catch (Exception ex)
             {
@@ -246,7 +246,7 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            PorukaMaersk(brojMaersk);
+            PorukaPokreti(brojMaersk, brojMSC);
 
             DataRow[] nadjeni = id > 0 ? dt.Select("ID = " + id) : new DataRow[0];
             DataRow uTabeli = nadjeni.Length > 0 ? nadjeni[0] : null;
@@ -319,10 +319,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk;
+            int brojMaersk, brojMSC;
             try
             {
-                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk);
+                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);
             }
             catch (Exception ex)
             {
@@ -330,7 +330,7 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            PorukaMaersk(brojMaersk);
+            PorukaPokreti(brojMaersk, brojMSC);
             UcitajPodatke();
         }
 
@@ -354,10 +354,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk;
+            int brojMaersk, brojMSC;
             try
             {
-                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk);
+                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC);
             }
             catch (Exception ex)
             {
@@ -365,16 +365,19 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            PorukaMaersk(brojMaersk);
+            PorukaPokreti(brojMaersk, brojMSC);
             UcitajPodatke();
         }
 
-        // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk
-        private static void PorukaMaersk(int brojMaersk)
+        // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk / TerminalPrivMSC
+        private static void PorukaPokreti(int brojMaersk, int brojMSC)
         {
             if (brojMaersk > 0)
                 MessageBox.Show("Upisaću u tabelu TerminalPrivMaersk (broj pokreta: " + brojMaersk + ").",
                     "Maersk", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (brojMSC > 0)
+                MessageBox.Show("Upisaću u tabelu TerminalPrivMSC (broj pokreta: " + brojMSC + ").",
+                    "MSC", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
@@ -782,26 +785,38 @@ namespace Saobracaj.RNI
         }
 
         // ---------------------------------------------------------------------------------
-        // Izvoz Maersk: pokreti iz TerminalPrivMaersk koji još nisu izvezeni
+        // Izvoz Maersk / Izvoz MSC: pokreti iz TerminalPrivMaersk / TerminalPrivMSC koji još nisu izvezeni
         // ---------------------------------------------------------------------------------
         private void btnIzvozMaersk_Click(object sender, EventArgs e)
         {
             var izvoz = new TerminalPrivMaerskIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+            IzvozPokreta("Maersk", izvoz.UcitajNeizvezene, TerminalPrivMaerskIzvoz.PredlogImena(), izvoz.Izvezi);
+        }
+
+        private void btnIzvozMSC_Click(object sender, EventArgs e)
+        {
+            var izvoz = new TerminalPrivMSCIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+            IzvozPokreta("MSC", izvoz.UcitajNeizvezene, TerminalPrivMSCIzvoz.PredlogImena(), izvoz.Izvezi);
+        }
+
+        private void IzvozPokreta(string brodar, Func<DataTable> ucitajNeizvezene, string predlogImena, Func<DataTable, string, int> izvezi)
+        {
+            string naslov = "Izvoz " + brodar;
 
             DataTable zapisi;
             try
             {
-                zapisi = izvoz.UcitajNeizvezene();
+                zapisi = ucitajNeizvezene();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Neuspešno čitanje Maersk zapisa: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Neuspešno čitanje " + brodar + " zapisa: " + ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (zapisi.Rows.Count == 0)
             {
-                MessageBox.Show("Nema novih Maersk zapisa za izvoz.", "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nema novih " + brodar + " zapisa za izvoz.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -809,7 +824,7 @@ namespace Saobracaj.RNI
             using (var sfd = new SaveFileDialog())
             {
                 sfd.Filter = "Excel (*.xlsx)|*.xlsx";
-                sfd.FileName = TerminalPrivMaerskIzvoz.PredlogImena();
+                sfd.FileName = predlogImena;
                 if (sfd.ShowDialog(this) != DialogResult.OK)
                     return;
                 putanja = sfd.FileName;
@@ -819,16 +834,16 @@ namespace Saobracaj.RNI
             Cursor = Cursors.WaitCursor;
             try
             {
-                izvezeno = izvoz.Izvezi(zapisi, putanja);
+                izvezeno = izvezi(zapisi, putanja);
             }
             catch (System.IO.IOException)
             {
-                MessageBox.Show("Fajl nije sačuvan, a zapisi nisu označeni kao izvezeni. Zatvorite fajl u Excelu i pokušajte ponovo.", "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Fajl nije sačuvan, a zapisi nisu označeni kao izvezeni. Zatvorite fajl u Excelu i pokušajte ponovo.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Izvoz nije uspeo: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Izvoz nije uspeo: " + ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             finally
@@ -836,7 +851,7 @@ namespace Saobracaj.RNI
                 Cursor = Cursors.Default;
             }
 
-            if (MessageBox.Show("Izvezeno zapisa: " + izvezeno + ". Otvoriti fajl?", "Izvoz Maersk", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Izvezeno zapisa: " + izvezeno + ". Otvoriti fajl?", naslov, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -844,7 +859,7 @@ namespace Saobracaj.RNI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fajl ne može da se otvori: " + ex.Message, "Izvoz Maersk", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Fajl ne može da se otvori: " + ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
