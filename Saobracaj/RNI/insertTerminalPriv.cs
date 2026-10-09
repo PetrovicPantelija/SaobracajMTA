@@ -77,14 +77,22 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("Prevoznik", "@PREVOZNIK", TerminalPrivTip.Tekst, 30, null),
         };
 
-        // Vraca ID novog zapisa
-        public int InsTerminalPriv(DataRow red)
+        // Vraca ID novog zapisa. zapisiMaersk = true samo za dugme 'Sačuvaj novi': procedura tada za Maersk
+        // kontejner upisuje pokrete u TerminalPrivMaersk za popunjene datume
+        public int InsTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "insTerminalPriv";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter maersk = new SqlParameter();
+            maersk.ParameterName = "@ZapisiMaersk";
+            maersk.SqlDbType = SqlDbType.Bit;
+            maersk.Direction = ParameterDirection.Input;
+            maersk.Value = zapisiMaersk;
+            myCommand.Parameters.Add(maersk);
 
             DodajParametreZaPolja(myCommand, red);
 
