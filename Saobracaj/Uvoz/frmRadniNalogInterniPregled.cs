@@ -1551,11 +1551,13 @@ namespace Saobracaj.Uvoz
                     ins.InsRadniNalogInterniIzvozPotvrda(rnBrojPretovara, scenarioZaBazu, 0);
                 
                 }
-                int rnBrojVaganja = vratiUsluguValanje(Convert.ToInt32(txtNALOGID.Text));
-                if (rnBrojVaganja > 0)
-                    ins.InsRadniNalogInterniIzvozPotvrda(rnBrojVaganja, scenarioZaBazu, 0);
+                
 
             }
+       
+            int rnBrojVaganja = vratiUsluguValanje(Convert.ToInt32(txtNALOGID.Text));
+            if (rnBrojVaganja > 0)
+                ins.InsRadniNalogInterniIzvozPotvrda(rnBrojVaganja, scenarioZaBazu, 0);
             MessageBox.Show("Potvrdjen je Komercijalni nalog!!!");
 
             //Scenario 1 test - Napravi PRI i RN4

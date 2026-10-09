@@ -63,7 +63,7 @@ namespace Saobracaj.Kapija
 " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
 /*" where KapijaUlaz = 0 or KapijaUlaz = 10" +  */
 " WHERE (KapijaUlaz = 0 OR KapijaUlaz = 10) AND RadniNalogInterniPotvrda.FazaUsluge = 1 " +
-"AND ((RadniNalogInterniPotvrda.Scenario <> 3)   OR    (RadniNalogInterniPotvrda.Scenario = 3 AND RadniNalogInterni.IDManipulacijaJed = 69) )" +
+"AND ((RadniNalogInterniPotvrda.Scenario <> 3  AND radninaloginterni.idmanipulacijajed in( 69,70,71))   OR    (RadniNalogInterniPotvrda.Scenario = 3 AND RadniNalogInterni.IDManipulacijaJed = 69) )" +
 "    union  select RadniNalogInterni.ID as KomNalogID, 'Izvoz' as Izvor, 'ODLAZAK',  KorisnikIzdao, IZvozKonacna.BrojKontejnera, " +
 " TipKontenjera.SkNaziv as VrstaKontejnera, " +
 " (Select Top 1 Scenario.Naziv from Scenario where Scenario.ID = IzvozKonacna.Scenario) as SC, " +
@@ -130,19 +130,26 @@ namespace Saobracaj.Kapija
             string kontakt = "";
             string kontaktunutarfirme = "";
             int NalogID = 0;
+            string smer = "";
             if (gridGroupingControl2.Table.CurrentRecord != null)
                 {
                 vozac = gridGroupingControl2.Table.CurrentRecord.GetValue("Vozac").ToString();
                 registarskibroj = gridGroupingControl2.Table.CurrentRecord.GetValue("Vozilo").ToString();
                 kontakt = gridGroupingControl2.Table.CurrentRecord.GetValue("BrojTelefona").ToString();
                 NalogID = Convert.ToInt32(gridGroupingControl2.Table.CurrentRecord.GetValue("KomNalogID").ToString());
+                smer = gridGroupingControl2.Table.CurrentRecord.GetValue("Smer").ToString();
+
             }
 
+            if (smer.Trim().ToUpper() != "DOLAZAK")
+            {
 
+                return;
+            }
 
             InsertKapija ins = new InsertKapija();
                 int noviID = ins.InsKapija(1, vozac, registarskibroj, kontakt, "Izvoz", null, kontakt, kor, NalogID);
-                txtID.Text = noviID.ToString();
+             txtID.Text = noviID.ToString();
              VratiPodatke();
 
         }
@@ -171,11 +178,17 @@ namespace Saobracaj.Kapija
             string Kor = Sifarnici.frmLogovanje.user;
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
             {
+                string smer = gridGroupingControl2.Table.CurrentRecord.GetValue("Smer").ToString();
                 int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("ScenarioPotvrde").ToString());
+
+                if (smer.Trim().ToUpper() != "ODLAZAK")
+                    return;
+
                 InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
                 ir.PromeniStatusKapijaOdlazak(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
                 UpisiLog(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
 
+               
                 if (scenario == 2)
                 {
                     int manipulacijaid = 0;
