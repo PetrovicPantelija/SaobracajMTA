@@ -158,7 +158,7 @@ BEGIN
         ('GATE_IN_FULL',   N'GATE IN F',  0, 1, NULL, N'EXP', 0, 'B'),
         ('PREUZIMANJE',    N'GATE OUT F', 0, 0, 1,    N'DEL', 0, 'L'),
         ('VRACANJE',       N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
-        ('GATE_OUT_EMPTY', N'GATE OUT E', 0, 1, 0,    NULL,   0, 'B')
+        ('GATE_OUT_EMPTY', N'GATE OUT E', 0, 1, NULL, NULL,   0, 'B')
     ) p (Polje, Gate, Otprema, Booking, BL, ActFore, RailCode, BkngIz)
         ON p.Polje = n.Polje
        AND p.Gate = @GATE_IN_GATE_OUT
