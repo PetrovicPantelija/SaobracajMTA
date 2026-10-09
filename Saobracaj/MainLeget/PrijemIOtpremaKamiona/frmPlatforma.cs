@@ -3,6 +3,7 @@ using Microsoft.Office.Interop.Excel;
 using Saobracaj.Dokumenta;
 using Saobracaj.Drumski;
 using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.Pretovari;
 using Saobracaj.RadniNalozi;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
@@ -50,11 +51,12 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
             */
 
             select = "     SELECT RadniNalogInterni.[ID] as KomNalID, RadniNalogInterni.BrojOsnov as KontID," +
-" DatumPrijema as DatumPrijema, " +
+"  DatumPrijema as DatumPrijema, " +
 "  CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status,  " +
 "  REgBrKamiona, ImeVozaca, " +
 "  n1.VremeDolaska as VremeDol,  " +
 "  n1.[Datum] ,n1.[Korisnik] ,  RadniNalogInterniPotvrda.KapijaUlaz, RadniNalogInterniPotvrda.Pregledac," +
+"  RadniNalogInterniPotvrda.Vaganje, ik.Vaganje as PotrebnoVaganje, RadniNalogInterniPotvrda.FazaUsluge, " +
 
  "  (SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
@@ -64,6 +66,7 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 "  inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Modul " +
 "  inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = n1.ID " +
 "  inner join RadniNalogInterni on RadniNalogInterni.ID = PrijemKontejneraVozStavke.NajavaID " +
+"  left join IzvozKonacna ik on RadniNalogInterni.BrojOsnov = ik.ID " +
 "  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
 "  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and RadniNalogInterniPotvrda.FazaUsluge = 1  And KapijaUlaz < 2 and n1.Poreklo = 0 order by n1.ID desc";
 
@@ -80,6 +83,9 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
 
             gridGroupingControl2.DataSource = ds.Tables[0];
             this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Scenario");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Vaganje");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("PotrebnoVaganje");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("FazaUsluge"); 
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
 
@@ -175,16 +181,36 @@ namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
         private void button5_Click(object sender, EventArgs e)
         {
             // use the selectedRecord variable and Convert.ToString to avoid NRE
-if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
-{
-    var rec = gridGroupingControl2.Table.SelectedRecords[0].Record;
-    var bkontejnera = Convert.ToString(rec.GetValue("Kontejner"));
-    var vozilo = Convert.ToString(rec.GetValue("REgBrKamiona")); // or "RegBrKamiona" if SQL fixed
-    var vozac = Convert.ToString(rec.GetValue("ImeVozaca"));
-    var kontId = Convert.ToInt32(rec.GetValue("KontID") ?? 0);
-    var vag = new Vaganje(bkontejnera, kontId, vozilo, vozac);
-    vag.Show();
-}
+            //if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            //{
+            //    var rec = gridGroupingControl2.Table.SelectedRecords[0].Record;
+            //    var bkontejnera = Convert.ToString(rec.GetValue("Kontejner"));
+            //    var vozilo = Convert.ToString(rec.GetValue("REgBrKamiona")); // or "RegBrKamiona" if SQL fixed
+            //    var vozac = Convert.ToString(rec.GetValue("ImeVozaca"));
+            //    var kontId = Convert.ToInt32(rec.GetValue("KontID") ?? 0);
+            //    var vag = new Vaganje(bkontejnera, kontId, vozilo, vozac);
+            //    vag.Show();
+            //}
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                int uslugaPun = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                int vaganje = Convert.ToInt32(selectedRecord.Record.GetValue("Vaganje")?.ToString());
+                int potrebnoVaganje = Convert.ToInt32(selectedRecord.Record.GetValue("PotrebnoVaganje")?.ToString());
+                int fazaUsluge = Convert.ToInt32(selectedRecord.Record.GetValue("FazaUsluge")?.ToString());
+                if (vaganje > 1)
+                {
+                    MessageBox.Show("Nalog za vaganje je već napravljen.");
+                    return;
+                }
+
+
+
+                InsertPretovari ins = new InsertPretovari();
+                ins.UpdateStatusUslugeVaganje(uslugaPun);
+
+                MessageBox.Show("Usluga vaganja je uspešno aktivirana.");
+
+            }
         }
 
         private void button27_Click(object sender, EventArgs e)
@@ -326,6 +352,16 @@ if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
                 ir.PromeniStatusPregledac(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
 
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

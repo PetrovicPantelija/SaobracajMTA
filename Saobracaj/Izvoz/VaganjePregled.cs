@@ -141,14 +141,14 @@ namespace Saobracaj.Izvoz
         private void FillGV()
         {
             var select = "";
-            if(Cerada == 2)
+          //  if(Cerada == 2)
                 select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac " +
                     "from IzvozKonacna " +
                     "INNER JOIN RadniNalogInterni on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov and IDManipulacijaJED = 102 " +
                     "INNER JOIN RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
-                    "Where  IzvozKonacna.Vaganje = 1 and Cirada = 2 and FazaUsluge = 1 order by IzvozKonacna.ID desc";
-            else 
-                select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac from IzvozKonacna Where Vaganje = 1 and Cirada = @Cerada order by IzvozKonacna.ID desc";
+                    "Where  IzvozKonacna.Vaganje = 1 and Cirada = @Cerada and ((FazaUsluge = 1  AND RadniNalogInterniPotvrda.Scenario > 1) OR(RadniNalogInterniPotvrda.Scenario <= 1)) order by IzvozKonacna.ID desc";
+           // else 
+            //    select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac from IzvozKonacna Where Vaganje = 1 and Cirada = @Cerada order by IzvozKonacna.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             da.SelectCommand.Parameters.AddWithValue("@Cerada", Cerada);

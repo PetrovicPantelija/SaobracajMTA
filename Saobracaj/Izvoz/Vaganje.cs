@@ -25,6 +25,7 @@ namespace Saobracaj.Izvoz
         string  Vozilo, Vozac;
         int kontID, vrsta;
         bool status = false;
+        bool zavrsenoVaganje = false;
 
         private void ChangeTextBox()
         {
@@ -285,7 +286,12 @@ namespace Saobracaj.Izvoz
 
         private void button21_Click(object sender, EventArgs e)
         {
-
+           
+            if (zavrsenoVaganje == true || PoveriDaLiJeUradjena() == 1)
+            {
+                MessageBox.Show("Nije dozvoljeno snimanje kada je usluga vaganja završena!");
+                return;
+            }
 
             if (status == true)
             {
@@ -465,10 +471,63 @@ namespace Saobracaj.Izvoz
 
         private void btnZavrsenoVaganje_Click(object sender, EventArgs e)
         {
+
+            if ( PoveriDaLiJeUradjena() == 1)
+            {
+                MessageBox.Show("Vaganje je već završeno!");
+                return;
+            }
+
             InsertPretovari ins1 = new InsertPretovari();
-            if(!string.IsNullOrWhiteSpace(txtKontID.Text))
+            if (!string.IsNullOrWhiteSpace(txtKontID.Text))
+            {
                 ins1.PromeniStatusVaganje(Convert.ToInt32(txtKontID.Text));
+                zavrsenoVaganje = true;
+
+                MessageBox.Show("Vaganje je završeno.");
+            }
         }
+
+        private int PoveriDaLiJeUradjena()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            int jeUradjen = 0;
+
+            if (string.IsNullOrWhiteSpace(txtKontID.Text))
+            {
+                return 0;
+            }
+
+            // Upit proverava da li postoji zapis za zadati id (ili idSelektovaneUsluge) sa IDManipulacijaJed = 102
+            // i direktno vraća vrednost kolone Uradjen (1 ili 0)
+            string query = @"SELECT TOP 1 ISNULL(Uradjen, 0)
+                     FROM RadniNalogInterni  
+                     WHERE BrojOsnov = @ID 
+                       AND IDManipulacijaJed IN (102)
+                     ORDER BY ID DESC";
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    // Napomena: Ako treba da koristite parametar metode umesto txtID.Text, 
+                    // zamenite 'Convert.ToInt32(txtID.Text)' sa 'idSelektovaneUsluge'
+                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(txtKontID.Text));
+
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        jeUradjen = Convert.ToInt32(result) == 1 ? 1 : 0;
+                    }
+                }
+            }
+
+            return jeUradjen;
+        }
+
 
         private void VratiPodatke(string ID)
         {
@@ -497,15 +556,15 @@ namespace Saobracaj.Izvoz
                     dtpDatumMerenja.Value = Convert.ToDateTime(dr["DatumMerenja"].ToString());
                     txtTaraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
                     txtRoba.Text = dr["Roba"].ToString();
-                if (dr["Cirada"].ToString() == "1")
+                if (dr["Cirada"].ToString() == "2")
                 {
                     chkCirada.Checked = true;
                     chkPlatforma.Checked = false;
                 }
                 else
                 {
-                    chkCirada.Checked = true;
-                    chkPlatforma.Checked = false;
+                    chkCirada.Checked = false;
+                    chkPlatforma.Checked = true;
                 }
             }
 

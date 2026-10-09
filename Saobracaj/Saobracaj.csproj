@@ -5911,6 +5911,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatforma.resx">
       <DependentUpon>frmPlatforma.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLeget\PrijemIOtpremaKamiona\frmPlatformaOtprema.resx">
       <DependentUpon>frmPlatformaOtprema.cs</DependentUpon>
