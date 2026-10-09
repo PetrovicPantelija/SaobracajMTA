@@ -81,6 +81,13 @@ namespace Saobracaj.RNI
         // kontejner upisuje pokrete u TerminalPrivMaersk za popunjene datume
         public int InsTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
+            int brojMaersk;
+            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk);
+        }
+
+        // brojMaersk = broj pokreta upisanih u TerminalPrivMaersk
+        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk)
+        {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -94,6 +101,8 @@ namespace Saobracaj.RNI
             maersk.Value = zapisiMaersk;
             myCommand.Parameters.Add(maersk);
 
+            SqlParameter broj = DodajParametarBrojMaersk(myCommand);
+
             DodajParametreZaPolja(myCommand, red);
 
             myConnection.Open();
@@ -103,6 +112,7 @@ namespace Saobracaj.RNI
             {
                 object rezultat = myCommand.ExecuteScalar();
                 myTransaction.Commit();
+                brojMaersk = broj.Value == DBNull.Value ? 0 : Convert.ToInt32(broj.Value);
                 return Convert.ToInt32(rezultat);
             }
             catch (SqlException ex)
@@ -119,6 +129,13 @@ namespace Saobracaj.RNI
         // zapisiMaersk = true samo za izmenu dugmetom 'Promeni': procedura tada za Maersk kontejner upisuje
         // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
         public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
+        {
+            int brojMaersk;
+            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk);
+        }
+
+        // brojMaersk = broj pokreta upisanih u TerminalPrivMaersk
+        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -140,6 +157,8 @@ namespace Saobracaj.RNI
             parameter.Value = Convert.ToInt32(red["ID"]);
             myCommand.Parameters.Add(parameter);
 
+            SqlParameter broj = DodajParametarBrojMaersk(myCommand);
+
             DodajParametreZaPolja(myCommand, red);
 
             myConnection.Open();
@@ -149,6 +168,7 @@ namespace Saobracaj.RNI
             {
                 myCommand.ExecuteNonQuery();
                 myTransaction.Commit();
+                brojMaersk = broj.Value == DBNull.Value ? 0 : Convert.ToInt32(broj.Value);
             }
             catch (SqlException ex)
             {
@@ -352,6 +372,16 @@ namespace Saobracaj.RNI
             {
                 myConnection.Close();
             }
+        }
+
+        private static SqlParameter DodajParametarBrojMaersk(SqlCommand myCommand)
+        {
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@BrojMaersk";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Output;
+            myCommand.Parameters.Add(parameter);
+            return parameter;
         }
 
         private static void DodajParametreZaPolja(SqlCommand myCommand, DataRow red)

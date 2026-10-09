@@ -1,52 +1,15 @@
-﻿-- Terminal privremeni: tabela TerminalPriv + stored procedure insTerminalPriv, updTerminalPriv, delTerminalPriv,
--- insTerminalPrivFromExcel i updTerminalPrivPoslateSlike. Forma: Saobracaj.RNI.frmTerminalPrivremeni
--- Nova baza: izvrsiti ovu skriptu. Postojeca baza (stara struktura kolona): prvo TerminalPriv_Izmena_2026_09.sql.
+﻿-- PRODUKCIJA (oktobar 2026): Maersk pokreti po 12 scenarija, upis i na 'Sačuvaj novi' i 'Promeni'.
+-- Kreira tabelu TerminalPrivMaersk i indeks ako ne postoje, kreira/menja procedure
+-- insTerminalPrivMaerskPokreti, insTerminalPriv i updTerminalPriv. Postojeći podaci se ne menjaju.
+-- Skripta se može pustiti više puta. Pre pokretanja izabrati produkcionu bazu.
 
-IF OBJECT_ID('dbo.TerminalPriv', 'U') IS NULL
+-- Provera: tabela TerminalPriv mora imati novu strukturu kolona (TerminalPriv_Izmena_2026_09.sql)
+IF COL_LENGTH('dbo.TerminalPriv', 'BL/UVOZ') IS NULL OR COL_LENGTH('dbo.TerminalPriv', 'GATE_OUT_EMPTY/Utovar') IS NULL
 BEGIN
-    CREATE TABLE dbo.TerminalPriv
-    (
-        ID                                 int            IDENTITY(1,1) NOT NULL,
-        [KONTEJNER]                        nvarchar(30)   NOT NULL,
-        [STATUS]                           nvarchar(30)   NULL,
-        [POZICIJA]                         nvarchar(30)   NULL,
-        [VRSTA]                            nvarchar(30)   NULL,
-        [BRODAR]                           nvarchar(30)   NULL,
-        [NALOGODAVAC/UVOZ]                 nvarchar(50)   NULL,
-        [POSTUPAK/UVOZ]                    nvarchar(50)   NULL,
-        [UVOZNIK]                          nvarchar(50)   NULL,
-        [BL/UVOZ]                          nvarchar(30)   NULL,
-        [PLOMBA_UVOZ]                      nvarchar(30)   NULL,
-        [VOZ/kamion]                       nvarchar(30)   NULL,
-        [STANJE]                           nvarchar(30)   NULL,
-        [GATE_IN_E/F]                      datetime       NULL,
-        [PREUZIMANJE_PUNOG/Razvoz]         datetime       NULL,
-        [VRAĆANJE_PRAZNOG/iz_Razvoza]      datetime       NULL,
-        [Konačni_GATE_OUT]                 datetime       NULL,
-        [BOOKING/IZVOZ]                    nvarchar(30)   NULL,
-        [KLIJENT/IZVOZ]                    nvarchar(30)   NULL,
-        [GATE_OUT_EMPTY/Utovar]            datetime       NULL,
-        [GATE_IN_FULL/sa_Utovara]          datetime       NULL,
-        [GATE_IN/_GATE_OUT]                nvarchar(50)   NULL,
-        [L/R]                              nvarchar(30)   NULL,
-        [TARA]                             nvarchar(30)   NULL,
-        [MAX_NOSIVOST_CNT]                 nvarchar(30)   NULL,
-        [VOZILO/PREUZIMANJE]               nvarchar(30)   NULL,
-        [PLOMBA/IZVOZ]                     nvarchar(30)   NULL,
-        [NAPOMENA]                         nvarchar(300)  NULL,
-        [OPIS]                             nvarchar(300)  NULL,
-        [OTPREMA]                          nvarchar(30)   NULL,
-        [POSLATE SLIKE]                    nvarchar(30)   NULL,
-        [Prevoznik]                        nvarchar(30)   NULL,
-        CONSTRAINT PK_TerminalPriv PRIMARY KEY CLUSTERED (ID),
-        CONSTRAINT CK_TerminalPriv_KONTEJNER CHECK (LEN(KONTEJNER) = 11),
-        CONSTRAINT CK_TerminalPriv_STATUS CHECK (STATUS IN (N'PRAZAN', N'PUN', N'?', N'RAZVOZ', N'Blanks', N'PRETOVAR', N'U RAZVOZU', N'UTOVAR')),
-        CONSTRAINT CK_TerminalPriv_STANJE CHECK (STANJE IN (N'DOBAR', N'LOŠ', N'FOOD GRADE', N'OŠTEĆEN', N'FLEXI')),
-        CONSTRAINT CK_TerminalPriv_GATE CHECK ([GATE_IN/_GATE_OUT] IN (N'GATE IN E', N'GATE IN F', N'GATE OUT E', N'GATE OUT F', N'GATE IN E/REPOZICIJA', N'PRIJAVITI GATE IN E', N'NE ŠALJEMO POKRET BRODARU', N'REUSE', N'REPOZICIJA', N'PRIVREMENO', N'NE PRIJAVLJUJEMO POKRETE', N'PRIJAVITI SVE POKRETE'))
-    );
+    RAISERROR(N'Tabela dbo.TerminalPriv nema novu strukturu kolona. Prvo izvršiti TerminalPriv_Izmena_2026_09.sql. Skripta je prekinuta.', 16, 1);
+    SET NOEXEC ON;
 END
 GO
-
 -- Pokreti Maersk kontejnera (upisuje insTerminalPrivMaerskPokreti pri dugmetu 'Sačuvaj novi' i 'Promeni', izvozi dugme 'Izvoz Maersk').
 -- ID je ID zapisa iz TerminalPriv i ponavlja se kad isti kontejner ima više pokreta; MaerskID je ključ zapisa.
 IF OBJECT_ID('dbo.TerminalPrivMaersk', 'U') IS NULL
@@ -84,6 +47,7 @@ GO
 -- BOOKING/IZVOZ + BL/UVOZ); pokret se upisuje samo ako pravilo postoji. Stari datumi NULL = novi zapis.
 IF OBJECT_ID('dbo.insTerminalPrivMaerskPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivMaerskPokreti;
 GO
+
 CREATE PROCEDURE dbo.insTerminalPrivMaerskPokreti
     @ID int,
     @KONTEJNER nvarchar(30),
@@ -177,6 +141,7 @@ GO
 
 IF OBJECT_ID('dbo.insTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPriv;
 GO
+
 CREATE PROCEDURE dbo.insTerminalPriv
     @KONTEJNER nvarchar(30),
     @STATUS nvarchar(30) = NULL,
@@ -240,6 +205,7 @@ GO
 
 IF OBJECT_ID('dbo.updTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.updTerminalPriv;
 GO
+
 CREATE PROCEDURE dbo.updTerminalPriv
     @ID int,
     @KONTEJNER nvarchar(30),
@@ -339,49 +305,5 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID('dbo.delTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.delTerminalPriv;
-GO
-CREATE PROCEDURE dbo.delTerminalPriv
-    @ID int
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DELETE FROM dbo.TerminalPriv WHERE ID = @ID;
-END
-GO
-
--- Uvoz iz Excel-a (frmTerminalPrivremeniExcel): upisuju se samo polja koja se uvoze, ostala ostaju NULL
--- Excel kolona C -> KONTEJNER, D -> VRSTA, K -> BRODAR, L -> NALOGODAVAC/UVOZ, T -> POSTUPAK/UVOZ, M -> UVOZNIK, H -> PLOMBA_UVOZ
-IF OBJECT_ID('dbo.insTerminalPrivFromExcel', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivFromExcel;
-GO
-CREATE PROCEDURE dbo.insTerminalPrivFromExcel
-    @KONTEJNER nvarchar(30),
-    @VRSTA nvarchar(30) = NULL,
-    @BRODAR nvarchar(30) = NULL,
-    @NALOGODAVAC_UVOZ nvarchar(50) = NULL,
-    @POSTUPAK_UVOZ nvarchar(50) = NULL,
-    @UVOZNIK nvarchar(50) = NULL,
-    @PLOMBA_UVOZ nvarchar(30) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    INSERT INTO dbo.TerminalPriv ([KONTEJNER], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [PLOMBA_UVOZ])
-    VALUES (@KONTEJNER, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @PLOMBA_UVOZ);
-END
-GO
-
--- Broj poslatih slika (frmTerminalPrivremeniSlike): menja samo polje POSLATE SLIKE
-IF OBJECT_ID('dbo.updTerminalPrivPoslateSlike', 'P') IS NOT NULL DROP PROCEDURE dbo.updTerminalPrivPoslateSlike;
-GO
-CREATE PROCEDURE dbo.updTerminalPrivPoslateSlike
-    @ID int,
-    @POSLATE_SLIKE nvarchar(30) = NULL
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    UPDATE dbo.TerminalPriv SET [POSLATE SLIKE] = @POSLATE_SLIKE WHERE ID = @ID;
-END
+SET NOEXEC OFF;
 GO

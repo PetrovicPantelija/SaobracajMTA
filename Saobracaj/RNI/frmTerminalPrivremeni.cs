@@ -232,18 +232,21 @@ namespace Saobracaj.RNI
                 return false;
             }
 
+            int brojMaersk;
             try
             {
                 if (id > 0)
-                    new insertTerminalPriv().UpdTerminalPriv(red, true);   // isto kao Promeni
+                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true);   // isto kao Sačuvaj novi
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk);   // isto kao Sačuvaj novi
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Nesačuvane promene", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
+            PorukaMaersk(brojMaersk);
 
             DataRow[] nadjeni = id > 0 ? dt.Select("ID = " + id) : new DataRow[0];
             DataRow uTabeli = nadjeni.Length > 0 ? nadjeni[0] : null;
@@ -316,9 +319,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            int brojMaersk;
             try
             {
-                new insertTerminalPriv().InsTerminalPriv(red, true);
+                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk);
             }
             catch (Exception ex)
             {
@@ -326,6 +330,7 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            PorukaMaersk(brojMaersk);
             UcitajPodatke();
         }
 
@@ -349,9 +354,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            int brojMaersk;
             try
             {
-                new insertTerminalPriv().UpdTerminalPriv(red, true);
+                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk);
             }
             catch (Exception ex)
             {
@@ -359,7 +365,16 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            PorukaMaersk(brojMaersk);
             UcitajPodatke();
+        }
+
+        // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk
+        private static void PorukaMaersk(int brojMaersk)
+        {
+            if (brojMaersk > 0)
+                MessageBox.Show("Upisaću u tabelu TerminalPrivMaersk (broj pokreta: " + brojMaersk + ").",
+                    "Maersk", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)
