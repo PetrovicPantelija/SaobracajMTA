@@ -19,11 +19,18 @@ namespace Saobracaj.RNI
         private DataTable dt;
         private readonly Dictionary<string, Control> kontrole = new Dictionary<string, Control>();
 
+        // true posle dugmeta 'Novi': 'Promeni' tada upisuje novi zapis. Vraća se na false posle upisa
+        // novog zapisa i kada se u gridu izabere zapis.
+        private bool StatusZaUnosNovog = false;
+
         public frmTerminalPrivremeni()
         {
             InitializeComponent();
             PovezKontrole();
             tabSplitterPage2.Leave += tabSplitterPage2_Leave;
+
+            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC" });
+            cboIzvestaji.SelectedIndex = 0;
 
             // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
             gridGroupingControl1.TableControlCurrentCellStartEditing += gridGroupingControl1_TableControlCurrentCellStartEditing;
@@ -50,8 +57,8 @@ namespace Saobracaj.RNI
             kontrole["KONTEJNER"] = txtKontejner;
             kontrole["STATUS"] = cboStatus;
             kontrole["POZICIJA"] = txtPozicija;
-            kontrole["VRSTA"] = txtVrsta;
-            kontrole["BRODAR"] = txtBrodar;
+            kontrole["VRSTA"] = cboVrsta;
+            kontrole["BRODAR"] = cboBrodar;
             kontrole["NALOGODAVAC/UVOZ"] = txtNalogodavac;
             kontrole["POSTUPAK/UVOZ"] = txtPostupak;
             kontrole["UVOZNIK"] = txtUvoznik;
@@ -78,13 +85,34 @@ namespace Saobracaj.RNI
             kontrole["OTPREMA"] = txtOtprema;
             kontrole["POSLATE SLIKE"] = txtPoslateSlike;
             kontrole["Prevoznik"] = txtPrevoznik;
+            kontrole["BELEŠKA"] = txtBeleska;
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
                 ComboBox cbo = kontrole[polje.Kolona] as ComboBox;
                 if (cbo != null)
                     PopuniCombo(cbo, polje.Dozvoljeno);
+
+                DateTimePicker dtp = kontrole[polje.Kolona] as DateTimePicker;
+                if (dtp != null)
+                    dtp.ValueChanged += (s, e) => OznaciDatum((DateTimePicker)s);
             }
+        }
+
+        // Uneti (čekirani) datum se ispisuje boldovano
+        private Font fontDatuma, fontUnetogDatuma;
+
+        private void OznaciDatum(DateTimePicker dtp)
+        {
+            if (fontDatuma == null)
+            {
+                fontDatuma = dtp.Font;
+                fontUnetogDatuma = new Font(dtp.Font, FontStyle.Bold);
+            }
+
+            Font font = dtp.Checked ? fontUnetogDatuma : fontDatuma;
+            if (dtp.Font != font)
+                dtp.Font = font;
         }
 
         private static void PopuniCombo(ComboBox cbo, string[] vrednosti)
@@ -123,11 +151,16 @@ namespace Saobracaj.RNI
             return oznaceni ?? tekuci;
         }
 
-        // Izabrani zapis grida se prikazuje u kontrolama
+        // Izabrani zapis grida se prikazuje u kontrolama; izbor zapisa prekida unos novog
         private void OsveziPolja()
         {
-            Record zapis = IzaberiZapis();
+            StatusZaUnosNovog = false;
+            PrikaziZapis(IzaberiZapis());
+        }
 
+        // Vrednosti zapisa u kontrolama; zapis null = prazna polja
+        private void PrikaziZapis(Record zapis)
+        {
             object id = zapis == null ? null : zapis.GetValue("ID");
             txtID.Text = id == null || id == DBNull.Value || Convert.ToInt32(id) < 0 ? "" : id.ToString();
 
@@ -143,13 +176,21 @@ namespace Saobracaj.RNI
                     dtp.Checked = !prazno;
                     if (!prazno)
                         dtp.Value = Convert.ToDateTime(vrednost);
+                    OznaciDatum(dtp);
                     continue;
                 }
 
                 ComboBox cbo = kontrola as ComboBox;
                 if (cbo != null)
                 {
-                    cbo.SelectedIndex = prazno ? 0 : Math.Max(0, cbo.FindStringExact(vrednost.ToString()));
+                    // vrednost koje nema u listi (stari podatak) se prikazuje, a ne briše; pri čuvanju je validacija
+                    // prijavljuje kao nedozvoljenu, pa je korisnik mora izabrati iz liste
+                    if (cbo.Items.Count != polje.Dozvoljeno.Length + 1)
+                        PopuniCombo(cbo, polje.Dozvoljeno);
+                    int indeks = prazno ? 0 : cbo.FindStringExact(vrednost.ToString());
+                    if (indeks < 0)
+                        indeks = cbo.Items.Add(vrednost.ToString());
+                    cbo.SelectedIndex = indeks;
                     continue;
                 }
 
@@ -161,8 +202,8 @@ namespace Saobracaj.RNI
 
         // ---------------------------------------------------------------------------------
         // Nesačuvane promene u poljima: pitanje kada fokus napusti tabSplitterPage2
-        // (grid, tabSplitterPage1, dugmad u panel2). Dugmad Sačuvaj novi, Promeni i Obriši su na
-        // samoj stranici, pa klik na njih ne napušta stranicu i pitanje se ne postavlja.
+        // (grid, tabSplitterPage1, dugmad u panel2, među njima Novi i Obriši). Dugme Promeni je na
+        // samoj stranici, pa klik na njega ne napušta stranicu i pitanje se ne postavlja.
         // ---------------------------------------------------------------------------------
         private readonly Dictionary<string, object> zapamceneVrednosti = new Dictionary<string, object>();
         private bool pitanjeUToku;
@@ -238,7 +279,7 @@ namespace Saobracaj.RNI
                 if (id > 0)
                     new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Sačuvaj novi
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Promeni posle Novi
             }
             catch (Exception ex)
             {
@@ -247,6 +288,13 @@ namespace Saobracaj.RNI
             }
 
             PorukaPokreti(brojMaersk, brojMSC);
+
+            // upisan novi zapis: polja sada prikazuju njega, pa sledeće 'Promeni' menja taj zapis
+            if (id <= 0)
+            {
+                txtID.Text = red["ID"].ToString();
+                StatusZaUnosNovog = false;
+            }
 
             DataRow[] nadjeni = id > 0 ? dt.Select("ID = " + id) : new DataRow[0];
             DataRow uTabeli = nadjeni.Length > 0 ? nadjeni[0] : null;
@@ -306,36 +354,26 @@ namespace Saobracaj.RNI
                 "Terminal privremeni", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
 
-        private void btnSacuvajNovi_Click(object sender, EventArgs e)
+        // Novi: prazna polja za unos novog zapisa; zapis se upisuje dugmetom 'Promeni'
+        private void btnNovi_Click(object sender, EventArgs e)
         {
-            if (dt == null || !PotvrdiOsvezavanje())
+            if (dt == null)
                 return;
 
-            DataRow red = RedIzPolja(0);
-            string greska = ProveriRed(red);
-            if (greska != null)
-            {
-                MessageBox.Show(greska, "Sačuvaj novi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int brojMaersk, brojMSC;
-            try
-            {
-                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Sačuvaj novi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            PorukaPokreti(brojMaersk, brojMSC);
-            UcitajPodatke();
+            PrikaziZapis(null);
+            StatusZaUnosNovog = true;
+            txtKontejner.Focus();
         }
 
+        // Promeni: posle 'Novi' upisuje novi zapis, inače menja izabrani
         private void btnPromeni_Click(object sender, EventArgs e)
         {
+            if (StatusZaUnosNovog)
+            {
+                UpisiNovi();
+                return;
+            }
+
             int id = IzabraniId();
             if (dt == null || id == 0)
             {
@@ -369,6 +407,41 @@ namespace Saobracaj.RNI
             UcitajPodatke();
         }
 
+        private void UpisiNovi()
+        {
+            if (dt == null || !PotvrdiOsvezavanje())
+                return;
+
+            DataRow red = RedIzPolja(0);
+            string greska = ProveriRed(red);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Novi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int brojMaersk, brojMSC;
+            try
+            {
+                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Novi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            StatusZaUnosNovog = false;
+            PorukaPokreti(brojMaersk, brojMSC);
+            UcitajPodatke();
+        }
+
+        // Štampaj potvrdu: sadržaj potvrde još nije definisan
+        private void btnStampajPotvrdu_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Štampa potvrde još nije napravljena.", "Štampaj potvrdu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk / TerminalPrivMSC
         private static void PorukaPokreti(int brojMaersk, int brojMSC)
         {
@@ -389,8 +462,8 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            if (MessageBox.Show("Obrisati zapis ID " + id + " (" + txtKontejner.Text + ")?", "Obriši",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            if (MessageBox.Show("Da li ste sigurni da želite da obrišete zapis ID " + id + " (" + txtKontejner.Text + ")?", "Obriši",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
             if (!PotvrdiOsvezavanje())
@@ -500,6 +573,9 @@ namespace Saobracaj.RNI
                 if (kolona == null)
                     continue;
 
+                if (polje.Kolona == "VOZILO/PREUZIMANJE")
+                    kolona.HeaderText = "VOZILO";
+
                 kolona.Width = SirinaKolone(gridGroupingControl1.Font, kolona.HeaderText, PrimerSadrzaja(polje));
 
                 if (polje.Tip == TerminalPrivTip.Datum)
@@ -570,7 +646,7 @@ namespace Saobracaj.RNI
 
                 if (polje.Dozvoljeno != null)
                 {
-                    string tacna = polje.Dozvoljeno.FirstOrDefault(d => string.Equals(d, vrednost, StringComparison.CurrentCultureIgnoreCase));
+                    string tacna = insertTerminalPriv.DozvoljenaVrednost(polje, vrednost);
                     if (tacna == null)
                         greske.Add(polje.Kolona + " ima nedozvoljenu vrednost '" + vrednost + "'");
                     else if (!string.Equals(tacna, red[polje.Kolona].ToString(), StringComparison.Ordinal))
@@ -787,13 +863,25 @@ namespace Saobracaj.RNI
         // ---------------------------------------------------------------------------------
         // Izvoz Maersk / Izvoz MSC: pokreti iz TerminalPrivMaersk / TerminalPrivMSC koji još nisu izvezeni
         // ---------------------------------------------------------------------------------
-        private void btnIzvozMaersk_Click(object sender, EventArgs e)
+        // Izveštaji: izbor u listi pokreće izveštaj, a lista se vraća na naslov 'Izveštaji'
+        private void cboIzvestaji_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int izbor = cboIzvestaji.SelectedIndex;
+            cboIzvestaji.SelectedIndex = 0;
+
+            if (izbor == 1)
+                IzvestajMaersk();
+            else if (izbor == 2)
+                IzvestajMSC();
+        }
+
+        private void IzvestajMaersk()
         {
             var izvoz = new TerminalPrivMaerskIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
             IzvozPokreta("Maersk", izvoz.UcitajNeizvezene, TerminalPrivMaerskIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
-        private void btnIzvozMSC_Click(object sender, EventArgs e)
+        private void IzvestajMSC()
         {
             var izvoz = new TerminalPrivMSCIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
             IzvozPokreta("MSC", izvoz.UcitajNeizvezene, TerminalPrivMSCIzvoz.PredlogImena(), izvoz.Izvezi);

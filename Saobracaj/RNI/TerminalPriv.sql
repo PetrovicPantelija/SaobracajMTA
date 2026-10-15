@@ -38,6 +38,7 @@ BEGIN
         [OTPREMA]                          nvarchar(30)   NULL,
         [POSLATE SLIKE]                    nvarchar(30)   NULL,
         [Prevoznik]                        nvarchar(30)   NULL,
+        [BELEŠKA]                          nvarchar(300)  NULL,
         CONSTRAINT PK_TerminalPriv PRIMARY KEY CLUSTERED (ID),
         CONSTRAINT CK_TerminalPriv_KONTEJNER CHECK (LEN(KONTEJNER) = 11),
         CONSTRAINT CK_TerminalPriv_STATUS CHECK (STATUS IN (N'PRAZAN', N'PUN', N'?', N'RAZVOZ', N'Blanks', N'PRETOVAR', N'U RAZVOZU', N'UTOVAR')),
@@ -160,7 +161,7 @@ BEGIN
         ('GATE_IN_EF',     N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
         ('GATE_IN_FULL',   N'GATE IN F',  0, 1, NULL, N'EXP', 0, 'B'),
         ('PREUZIMANJE',    N'GATE OUT F', 0, 0, 1,    N'DEL', 0, 'L'),
-        ('VRACANJE',       N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
+        ('VRACANJE',       N'GATE IN E',  0, 0, 1,    NULL,   0, NULL),
         ('GATE_OUT_EMPTY', N'GATE OUT E', 0, 1, NULL, NULL,   0, 'B')
     ) p (Polje, Gate, Otprema, Booking, BL, ActFore, RailCode, BkngIz)
         ON p.Polje = n.Polje
@@ -284,9 +285,9 @@ BEGIN
         ('4.4', 'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    N'IDR', N'FULL',  0, 1),
         ('4.5', 'PREUZIMANJE',  N'GATE OUT F', 0,    0,    1,    N'ICO', N'FULL',  0, 1),
         ('4.6', 'KONACNI',      N'GATE OUT F', 0,    0,    1,    N'ICO', N'FULL',  0, 1),
-        ('4.7', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0),
-        ('4.8', 'VRACANJE',     N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0)
-        -- 4.9 (MPI) nije implementiran: ima iste uslove kao 4.7, čeka se uslov koji ih razlikuje
+        ('4.7', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    0,    N'MCY', N'EMPTY', 0, 0),
+        ('4.8', 'VRACANJE',     N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0),
+        ('4.9', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MPI', N'EMPTY', 0, 1)
     ) p (Slucaj, Polje, Gate, Otprema, Booking, BL, ContainerStatus, FullEmpty, BookingUpis, BLUpis)
         ON p.Polje = n.Polje
        AND p.Gate = @GATE_IN_GATE_OUT
@@ -298,6 +299,11 @@ BEGIN
 
     SET @BrojUpisanih = @@ROWCOUNT;
 END
+GO
+
+-- kolona BELEŠKA (oktobar 2026) za tabelu kreiranu pre njenog dodavanja
+IF COL_LENGTH(N'dbo.TerminalPriv', N'BELEŠKA') IS NULL
+    ALTER TABLE dbo.TerminalPriv ADD [BELEŠKA] nvarchar(300) NULL;
 GO
 
 IF OBJECT_ID('dbo.insTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPriv;
@@ -334,7 +340,8 @@ CREATE PROCEDURE dbo.insTerminalPriv
     @OTPREMA nvarchar(30) = NULL,
     @POSLATE_SLIKE nvarchar(30) = NULL,
     @PREVOZNIK nvarchar(30) = NULL,
-    @ZapisiMaersk bit = 0,  -- 1 = novi zapis dugmetom 'Sačuvaj novi': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
+    @BELESKA nvarchar(300) = NULL,
+    @ZapisiMaersk bit = 0,  -- 1 = novi zapis dugmetom 'Promeni' posle 'Novi': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
     @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
 AS
@@ -344,9 +351,9 @@ BEGIN
     DECLARE @NoviID int;
 
     INSERT INTO dbo.TerminalPriv
-        ([KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik])
+        ([KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik], [BELEŠKA])
     VALUES
-        (@KONTEJNER, @STATUS, @POZICIJA, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @BL_UVOZ, @PLOMBA_UVOZ, @VOZ_KAMION, @STANJE, @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ, @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT, @BOOKING_IZVOZ, @KLIJENT_IZVOZ, @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA, @GATE_IN_GATE_OUT, @L_R, @TARA, @MAX_NOSIVOST_CNT, @VOZILO_PREUZIMANJE, @PLOMBA_IZVOZ, @NAPOMENA, @OPIS, @OTPREMA, @POSLATE_SLIKE, @PREVOZNIK);
+        (@KONTEJNER, @STATUS, @POZICIJA, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @BL_UVOZ, @PLOMBA_UVOZ, @VOZ_KAMION, @STANJE, @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ, @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT, @BOOKING_IZVOZ, @KLIJENT_IZVOZ, @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA, @GATE_IN_GATE_OUT, @L_R, @TARA, @MAX_NOSIVOST_CNT, @VOZILO_PREUZIMANJE, @PLOMBA_IZVOZ, @NAPOMENA, @OPIS, @OTPREMA, @POSLATE_SLIKE, @PREVOZNIK, @BELESKA);
 
     SET @NoviID = CAST(SCOPE_IDENTITY() AS int);
 
@@ -408,6 +415,7 @@ CREATE PROCEDURE dbo.updTerminalPriv
     @OTPREMA nvarchar(30) = NULL,
     @POSLATE_SLIKE nvarchar(30) = NULL,
     @PREVOZNIK nvarchar(30) = NULL,
+    @BELESKA nvarchar(300) = NULL,
     @ZapisiMaersk bit = 0,  -- 1 = izmena dugmetom 'Promeni': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
     @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
@@ -459,7 +467,8 @@ BEGIN
         [OPIS] = @OPIS,
         [OTPREMA] = @OTPREMA,
         [POSLATE SLIKE] = @POSLATE_SLIKE,
-        [Prevoznik] = @PREVOZNIK
+        [Prevoznik] = @PREVOZNIK,
+        [BELEŠKA] = @BELESKA
     WHERE ID = @ID;
 
     IF @ZapisiMaersk = 1

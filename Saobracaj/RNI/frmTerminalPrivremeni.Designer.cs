@@ -41,11 +41,10 @@
             this.btnPregledLoga = new System.Windows.Forms.Button();
             this.btnArhiviraj = new System.Windows.Forms.Button();
             this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
-            this.btnIzvozMaersk = new System.Windows.Forms.Button();
-            this.btnIzvozMSC = new System.Windows.Forms.Button();
+            this.cboIzvestaji = new System.Windows.Forms.ComboBox();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
-            this.btnSacuvajNovi = new System.Windows.Forms.Button();
+            this.btnNovi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.lblID = new System.Windows.Forms.Label();
@@ -57,9 +56,9 @@
             this.lblPozicija = new System.Windows.Forms.Label();
             this.txtPozicija = new System.Windows.Forms.TextBox();
             this.lblVrsta = new System.Windows.Forms.Label();
-            this.txtVrsta = new System.Windows.Forms.TextBox();
+            this.cboVrsta = new System.Windows.Forms.ComboBox();
             this.lblBrodar = new System.Windows.Forms.Label();
-            this.txtBrodar = new System.Windows.Forms.TextBox();
+            this.cboBrodar = new System.Windows.Forms.ComboBox();
             this.lblNalogodavac = new System.Windows.Forms.Label();
             this.txtNalogodavac = new System.Windows.Forms.TextBox();
             this.lblPostupak = new System.Windows.Forms.Label();
@@ -112,6 +111,11 @@
             this.txtPoslateSlike = new System.Windows.Forms.TextBox();
             this.lblPrevoznik = new System.Windows.Forms.Label();
             this.txtPrevoznik = new System.Windows.Forms.TextBox();
+            this.lblBeleska = new System.Windows.Forms.Label();
+            this.txtBeleska = new System.Windows.Forms.TextBox();
+            this.btnStampajPotvrdu = new System.Windows.Forms.Button();
+            this.pnlDatumi = new System.Windows.Forms.Panel();
+            this.pnlVozilo = new System.Windows.Forms.Panel();
             this.tabSplitterContainer1.SuspendLayout();
             this.tabSplitterPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
@@ -186,9 +190,7 @@
             // tabSplitterPage2
             // 
             this.tabSplitterPage2.AutoScroll = true;
-            this.tabSplitterPage2.Controls.Add(this.btnSacuvajNovi);
             this.tabSplitterPage2.Controls.Add(this.btnPromeni);
-            this.tabSplitterPage2.Controls.Add(this.btnObrisi);
             this.tabSplitterPage2.Controls.Add(this.lblID);
             this.tabSplitterPage2.Controls.Add(this.txtID);
             this.tabSplitterPage2.Controls.Add(this.lblKontejner);
@@ -198,9 +200,9 @@
             this.tabSplitterPage2.Controls.Add(this.lblPozicija);
             this.tabSplitterPage2.Controls.Add(this.txtPozicija);
             this.tabSplitterPage2.Controls.Add(this.lblVrsta);
-            this.tabSplitterPage2.Controls.Add(this.txtVrsta);
+            this.tabSplitterPage2.Controls.Add(this.cboVrsta);
             this.tabSplitterPage2.Controls.Add(this.lblBrodar);
-            this.tabSplitterPage2.Controls.Add(this.txtBrodar);
+            this.tabSplitterPage2.Controls.Add(this.cboBrodar);
             this.tabSplitterPage2.Controls.Add(this.lblNalogodavac);
             this.tabSplitterPage2.Controls.Add(this.txtNalogodavac);
             this.tabSplitterPage2.Controls.Add(this.lblPostupak);
@@ -253,6 +255,11 @@
             this.tabSplitterPage2.Controls.Add(this.txtPoslateSlike);
             this.tabSplitterPage2.Controls.Add(this.lblPrevoznik);
             this.tabSplitterPage2.Controls.Add(this.txtPrevoznik);
+            this.tabSplitterPage2.Controls.Add(this.lblBeleska);
+            this.tabSplitterPage2.Controls.Add(this.txtBeleska);
+            this.tabSplitterPage2.Controls.Add(this.btnStampajPotvrdu);
+            this.tabSplitterPage2.Controls.Add(this.pnlDatumi);   // trake se dodaju poslednje da budu iza polja
+            this.tabSplitterPage2.Controls.Add(this.pnlVozilo);
             this.tabSplitterPage2.Hide = false;
             this.tabSplitterPage2.Location = new System.Drawing.Point(0, 420);
             this.tabSplitterPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -340,13 +347,14 @@
             this.lblVrsta.TabIndex = 1004;
             this.lblVrsta.Text = "VRSTA";
             // 
-            // txtVrsta
-            // 
-            this.txtVrsta.Location = new System.Drawing.Point(910, 25);
-            this.txtVrsta.Name = "txtVrsta";
-            this.txtVrsta.Size = new System.Drawing.Size(205, 20);
-            this.txtVrsta.MaxLength = 30;
-            this.txtVrsta.TabIndex = 5;
+            // cboVrsta
+            //
+            this.cboVrsta.Location = new System.Drawing.Point(910, 25);
+            this.cboVrsta.Name = "cboVrsta";
+            this.cboVrsta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVrsta.FormattingEnabled = true;
+            this.cboVrsta.Size = new System.Drawing.Size(205, 21);
+            this.cboVrsta.TabIndex = 5;
             // 
             // lblBrodar
             // 
@@ -357,13 +365,14 @@
             this.lblBrodar.TabIndex = 1005;
             this.lblBrodar.Text = "BRODAR";
             // 
-            // txtBrodar
-            // 
-            this.txtBrodar.Location = new System.Drawing.Point(1135, 25);
-            this.txtBrodar.Name = "txtBrodar";
-            this.txtBrodar.Size = new System.Drawing.Size(205, 20);
-            this.txtBrodar.MaxLength = 30;
-            this.txtBrodar.TabIndex = 6;
+            // cboBrodar
+            //
+            this.cboBrodar.Location = new System.Drawing.Point(1135, 25);
+            this.cboBrodar.Name = "cboBrodar";
+            this.cboBrodar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBrodar.FormattingEnabled = true;
+            this.cboBrodar.Size = new System.Drawing.Size(205, 21);
+            this.cboBrodar.TabIndex = 6;
             // 
             // lblNalogodavac
             // 
@@ -470,7 +479,7 @@
             // lblStanje
             // 
             this.lblStanje.AutoSize = true;
-            this.lblStanje.Location = new System.Drawing.Point(10, 112);
+            this.lblStanje.Location = new System.Drawing.Point(10, 164);
             this.lblStanje.Name = "lblStanje";
             this.lblStanje.Size = new System.Drawing.Size(60, 14);
             this.lblStanje.TabIndex = 1012;
@@ -478,17 +487,18 @@
             // 
             // cboStanje
             // 
-            this.cboStanje.Location = new System.Drawing.Point(10, 129);
+            this.cboStanje.Location = new System.Drawing.Point(10, 181);
             this.cboStanje.Name = "cboStanje";
             this.cboStanje.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStanje.FormattingEnabled = true;
             this.cboStanje.Size = new System.Drawing.Size(205, 21);
-            this.cboStanje.TabIndex = 13;
+            this.cboStanje.TabIndex = 19;
             // 
             // lblGateInEF
             // 
             this.lblGateInEF.AutoSize = true;
-            this.lblGateInEF.Location = new System.Drawing.Point(235, 112);
+            this.lblGateInEF.Location = new System.Drawing.Point(10, 112);
+            this.lblGateInEF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblGateInEF.Name = "lblGateInEF";
             this.lblGateInEF.Size = new System.Drawing.Size(60, 14);
             this.lblGateInEF.TabIndex = 1013;
@@ -496,19 +506,20 @@
             // 
             // dtpGateInEF
             // 
-            this.dtpGateInEF.Location = new System.Drawing.Point(235, 129);
+            this.dtpGateInEF.Location = new System.Drawing.Point(10, 129);
             this.dtpGateInEF.Name = "dtpGateInEF";
             this.dtpGateInEF.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpGateInEF.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpGateInEF.ShowCheckBox = true;
             this.dtpGateInEF.Checked = false;
             this.dtpGateInEF.Size = new System.Drawing.Size(205, 20);
-            this.dtpGateInEF.TabIndex = 14;
+            this.dtpGateInEF.TabIndex = 13;
             // 
             // lblPreuzimanjePunog
             // 
             this.lblPreuzimanjePunog.AutoSize = true;
-            this.lblPreuzimanjePunog.Location = new System.Drawing.Point(460, 112);
+            this.lblPreuzimanjePunog.Location = new System.Drawing.Point(235, 112);
+            this.lblPreuzimanjePunog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblPreuzimanjePunog.Name = "lblPreuzimanjePunog";
             this.lblPreuzimanjePunog.Size = new System.Drawing.Size(60, 14);
             this.lblPreuzimanjePunog.TabIndex = 1014;
@@ -516,19 +527,20 @@
             // 
             // dtpPreuzimanjePunog
             // 
-            this.dtpPreuzimanjePunog.Location = new System.Drawing.Point(460, 129);
+            this.dtpPreuzimanjePunog.Location = new System.Drawing.Point(235, 129);
             this.dtpPreuzimanjePunog.Name = "dtpPreuzimanjePunog";
             this.dtpPreuzimanjePunog.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPreuzimanjePunog.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPreuzimanjePunog.ShowCheckBox = true;
             this.dtpPreuzimanjePunog.Checked = false;
             this.dtpPreuzimanjePunog.Size = new System.Drawing.Size(205, 20);
-            this.dtpPreuzimanjePunog.TabIndex = 15;
+            this.dtpPreuzimanjePunog.TabIndex = 14;
             // 
             // lblVracanjePraznog
             // 
             this.lblVracanjePraznog.AutoSize = true;
-            this.lblVracanjePraznog.Location = new System.Drawing.Point(685, 112);
+            this.lblVracanjePraznog.Location = new System.Drawing.Point(460, 112);
+            this.lblVracanjePraznog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblVracanjePraznog.Name = "lblVracanjePraznog";
             this.lblVracanjePraznog.Size = new System.Drawing.Size(60, 14);
             this.lblVracanjePraznog.TabIndex = 1015;
@@ -536,19 +548,20 @@
             // 
             // dtpVracanjePraznog
             // 
-            this.dtpVracanjePraznog.Location = new System.Drawing.Point(685, 129);
+            this.dtpVracanjePraznog.Location = new System.Drawing.Point(460, 129);
             this.dtpVracanjePraznog.Name = "dtpVracanjePraznog";
             this.dtpVracanjePraznog.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVracanjePraznog.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpVracanjePraznog.ShowCheckBox = true;
             this.dtpVracanjePraznog.Checked = false;
             this.dtpVracanjePraznog.Size = new System.Drawing.Size(205, 20);
-            this.dtpVracanjePraznog.TabIndex = 16;
+            this.dtpVracanjePraznog.TabIndex = 15;
             // 
             // lblKonacniGateOut
             // 
             this.lblKonacniGateOut.AutoSize = true;
-            this.lblKonacniGateOut.Location = new System.Drawing.Point(910, 112);
+            this.lblKonacniGateOut.Location = new System.Drawing.Point(1135, 112);
+            this.lblKonacniGateOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblKonacniGateOut.Name = "lblKonacniGateOut";
             this.lblKonacniGateOut.Size = new System.Drawing.Size(60, 14);
             this.lblKonacniGateOut.TabIndex = 1016;
@@ -556,19 +569,19 @@
             // 
             // dtpKonacniGateOut
             // 
-            this.dtpKonacniGateOut.Location = new System.Drawing.Point(910, 129);
+            this.dtpKonacniGateOut.Location = new System.Drawing.Point(1135, 129);
             this.dtpKonacniGateOut.Name = "dtpKonacniGateOut";
             this.dtpKonacniGateOut.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpKonacniGateOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpKonacniGateOut.ShowCheckBox = true;
             this.dtpKonacniGateOut.Checked = false;
             this.dtpKonacniGateOut.Size = new System.Drawing.Size(205, 20);
-            this.dtpKonacniGateOut.TabIndex = 17;
+            this.dtpKonacniGateOut.TabIndex = 18;
             // 
             // lblBooking
             // 
             this.lblBooking.AutoSize = true;
-            this.lblBooking.Location = new System.Drawing.Point(1135, 112);
+            this.lblBooking.Location = new System.Drawing.Point(235, 216);
             this.lblBooking.Name = "lblBooking";
             this.lblBooking.Size = new System.Drawing.Size(60, 14);
             this.lblBooking.TabIndex = 1017;
@@ -576,16 +589,16 @@
             // 
             // txtBooking
             // 
-            this.txtBooking.Location = new System.Drawing.Point(1135, 129);
+            this.txtBooking.Location = new System.Drawing.Point(235, 233);
             this.txtBooking.Name = "txtBooking";
             this.txtBooking.Size = new System.Drawing.Size(205, 20);
             this.txtBooking.MaxLength = 30;
-            this.txtBooking.TabIndex = 18;
+            this.txtBooking.TabIndex = 26;
             // 
             // lblKlijent
             // 
             this.lblKlijent.AutoSize = true;
-            this.lblKlijent.Location = new System.Drawing.Point(10, 164);
+            this.lblKlijent.Location = new System.Drawing.Point(10, 216);
             this.lblKlijent.Name = "lblKlijent";
             this.lblKlijent.Size = new System.Drawing.Size(60, 14);
             this.lblKlijent.TabIndex = 1018;
@@ -593,16 +606,17 @@
             // 
             // txtKlijent
             // 
-            this.txtKlijent.Location = new System.Drawing.Point(10, 181);
+            this.txtKlijent.Location = new System.Drawing.Point(10, 233);
             this.txtKlijent.Name = "txtKlijent";
             this.txtKlijent.Size = new System.Drawing.Size(205, 20);
             this.txtKlijent.MaxLength = 30;
-            this.txtKlijent.TabIndex = 19;
+            this.txtKlijent.TabIndex = 25;
             // 
             // lblGateOutEmptyUtovar
             // 
             this.lblGateOutEmptyUtovar.AutoSize = true;
-            this.lblGateOutEmptyUtovar.Location = new System.Drawing.Point(235, 164);
+            this.lblGateOutEmptyUtovar.Location = new System.Drawing.Point(685, 112);
+            this.lblGateOutEmptyUtovar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblGateOutEmptyUtovar.Name = "lblGateOutEmptyUtovar";
             this.lblGateOutEmptyUtovar.Size = new System.Drawing.Size(60, 14);
             this.lblGateOutEmptyUtovar.TabIndex = 1019;
@@ -610,19 +624,20 @@
             // 
             // dtpGateOutEmptyUtovar
             // 
-            this.dtpGateOutEmptyUtovar.Location = new System.Drawing.Point(235, 181);
+            this.dtpGateOutEmptyUtovar.Location = new System.Drawing.Point(685, 129);
             this.dtpGateOutEmptyUtovar.Name = "dtpGateOutEmptyUtovar";
             this.dtpGateOutEmptyUtovar.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpGateOutEmptyUtovar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpGateOutEmptyUtovar.ShowCheckBox = true;
             this.dtpGateOutEmptyUtovar.Checked = false;
             this.dtpGateOutEmptyUtovar.Size = new System.Drawing.Size(205, 20);
-            this.dtpGateOutEmptyUtovar.TabIndex = 20;
+            this.dtpGateOutEmptyUtovar.TabIndex = 16;
             // 
             // lblGateInFullUtovar
             // 
             this.lblGateInFullUtovar.AutoSize = true;
-            this.lblGateInFullUtovar.Location = new System.Drawing.Point(460, 164);
+            this.lblGateInFullUtovar.Location = new System.Drawing.Point(910, 112);
+            this.lblGateInFullUtovar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             this.lblGateInFullUtovar.Name = "lblGateInFullUtovar";
             this.lblGateInFullUtovar.Size = new System.Drawing.Size(60, 14);
             this.lblGateInFullUtovar.TabIndex = 1020;
@@ -630,19 +645,19 @@
             // 
             // dtpGateInFullUtovar
             // 
-            this.dtpGateInFullUtovar.Location = new System.Drawing.Point(460, 181);
+            this.dtpGateInFullUtovar.Location = new System.Drawing.Point(910, 129);
             this.dtpGateInFullUtovar.Name = "dtpGateInFullUtovar";
             this.dtpGateInFullUtovar.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpGateInFullUtovar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpGateInFullUtovar.ShowCheckBox = true;
             this.dtpGateInFullUtovar.Checked = false;
             this.dtpGateInFullUtovar.Size = new System.Drawing.Size(205, 20);
-            this.dtpGateInFullUtovar.TabIndex = 21;
+            this.dtpGateInFullUtovar.TabIndex = 17;
             // 
             // lblGateInGateOut
             // 
             this.lblGateInGateOut.AutoSize = true;
-            this.lblGateInGateOut.Location = new System.Drawing.Point(685, 164);
+            this.lblGateInGateOut.Location = new System.Drawing.Point(910, 216);
             this.lblGateInGateOut.Name = "lblGateInGateOut";
             this.lblGateInGateOut.Size = new System.Drawing.Size(60, 14);
             this.lblGateInGateOut.TabIndex = 1021;
@@ -650,17 +665,17 @@
             // 
             // cboGateInGateOut
             // 
-            this.cboGateInGateOut.Location = new System.Drawing.Point(685, 181);
+            this.cboGateInGateOut.Location = new System.Drawing.Point(910, 233);
             this.cboGateInGateOut.Name = "cboGateInGateOut";
             this.cboGateInGateOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGateInGateOut.FormattingEnabled = true;
             this.cboGateInGateOut.Size = new System.Drawing.Size(205, 21);
-            this.cboGateInGateOut.TabIndex = 22;
+            this.cboGateInGateOut.TabIndex = 29;
             // 
             // lblLR
             // 
             this.lblLR.AutoSize = true;
-            this.lblLR.Location = new System.Drawing.Point(910, 164);
+            this.lblLR.Location = new System.Drawing.Point(1135, 216);
             this.lblLR.Name = "lblLR";
             this.lblLR.Size = new System.Drawing.Size(60, 14);
             this.lblLR.TabIndex = 1022;
@@ -668,16 +683,16 @@
             // 
             // txtLR
             // 
-            this.txtLR.Location = new System.Drawing.Point(910, 181);
+            this.txtLR.Location = new System.Drawing.Point(1135, 233);
             this.txtLR.Name = "txtLR";
             this.txtLR.Size = new System.Drawing.Size(205, 20);
             this.txtLR.MaxLength = 30;
-            this.txtLR.TabIndex = 23;
+            this.txtLR.TabIndex = 30;
             // 
             // lblTara
             // 
             this.lblTara.AutoSize = true;
-            this.lblTara.Location = new System.Drawing.Point(1135, 164);
+            this.lblTara.Location = new System.Drawing.Point(460, 164);
             this.lblTara.Name = "lblTara";
             this.lblTara.Size = new System.Drawing.Size(60, 14);
             this.lblTara.TabIndex = 1023;
@@ -685,16 +700,16 @@
             // 
             // txtTara
             // 
-            this.txtTara.Location = new System.Drawing.Point(1135, 181);
+            this.txtTara.Location = new System.Drawing.Point(460, 181);
             this.txtTara.Name = "txtTara";
             this.txtTara.Size = new System.Drawing.Size(205, 20);
             this.txtTara.MaxLength = 30;
-            this.txtTara.TabIndex = 24;
+            this.txtTara.TabIndex = 21;
             // 
             // lblMax
             // 
             this.lblMax.AutoSize = true;
-            this.lblMax.Location = new System.Drawing.Point(10, 216);
+            this.lblMax.Location = new System.Drawing.Point(685, 164);
             this.lblMax.Name = "lblMax";
             this.lblMax.Size = new System.Drawing.Size(60, 14);
             this.lblMax.TabIndex = 1024;
@@ -702,28 +717,29 @@
             // 
             // txtMax
             // 
-            this.txtMax.Location = new System.Drawing.Point(10, 233);
+            this.txtMax.Location = new System.Drawing.Point(685, 181);
             this.txtMax.Name = "txtMax";
             this.txtMax.Size = new System.Drawing.Size(205, 20);
             this.txtMax.MaxLength = 30;
-            this.txtMax.TabIndex = 25;
+            this.txtMax.TabIndex = 22;
             // 
             // lblVozilo
             // 
             this.lblVozilo.AutoSize = true;
-            this.lblVozilo.Location = new System.Drawing.Point(235, 216);
+            this.lblVozilo.Location = new System.Drawing.Point(460, 268);
+            this.lblVozilo.BackColor = System.Drawing.Color.Yellow;
             this.lblVozilo.Name = "lblVozilo";
             this.lblVozilo.Size = new System.Drawing.Size(60, 14);
             this.lblVozilo.TabIndex = 1025;
-            this.lblVozilo.Text = "VOZILO/PREUZIMANJE";
+            this.lblVozilo.Text = "VOZILO";
             // 
             // txtVozilo
             // 
-            this.txtVozilo.Location = new System.Drawing.Point(235, 233);
+            this.txtVozilo.Location = new System.Drawing.Point(460, 285);
             this.txtVozilo.Name = "txtVozilo";
             this.txtVozilo.Size = new System.Drawing.Size(205, 20);
             this.txtVozilo.MaxLength = 30;
-            this.txtVozilo.TabIndex = 26;
+            this.txtVozilo.TabIndex = 31;
             // 
             // lblPlomba
             // 
@@ -745,7 +761,7 @@
             // lblNapomena
             // 
             this.lblNapomena.AutoSize = true;
-            this.lblNapomena.Location = new System.Drawing.Point(685, 216);
+            this.lblNapomena.Location = new System.Drawing.Point(910, 164);
             this.lblNapomena.Name = "lblNapomena";
             this.lblNapomena.Size = new System.Drawing.Size(60, 14);
             this.lblNapomena.TabIndex = 1027;
@@ -753,16 +769,16 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(685, 233);
+            this.txtNapomena.Location = new System.Drawing.Point(910, 181);
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(205, 20);
             this.txtNapomena.MaxLength = 300;
-            this.txtNapomena.TabIndex = 28;
+            this.txtNapomena.TabIndex = 23;
             // 
             // lblOpis
             // 
             this.lblOpis.AutoSize = true;
-            this.lblOpis.Location = new System.Drawing.Point(910, 216);
+            this.lblOpis.Location = new System.Drawing.Point(235, 164);
             this.lblOpis.Name = "lblOpis";
             this.lblOpis.Size = new System.Drawing.Size(60, 14);
             this.lblOpis.TabIndex = 1028;
@@ -770,16 +786,16 @@
             // 
             // txtOpis
             // 
-            this.txtOpis.Location = new System.Drawing.Point(910, 233);
+            this.txtOpis.Location = new System.Drawing.Point(235, 181);
             this.txtOpis.Name = "txtOpis";
             this.txtOpis.Size = new System.Drawing.Size(205, 20);
             this.txtOpis.MaxLength = 300;
-            this.txtOpis.TabIndex = 29;
+            this.txtOpis.TabIndex = 20;
             // 
             // lblOtprema
             // 
             this.lblOtprema.AutoSize = true;
-            this.lblOtprema.Location = new System.Drawing.Point(1135, 216);
+            this.lblOtprema.Location = new System.Drawing.Point(685, 216);
             this.lblOtprema.Name = "lblOtprema";
             this.lblOtprema.Size = new System.Drawing.Size(60, 14);
             this.lblOtprema.TabIndex = 1029;
@@ -787,16 +803,16 @@
             // 
             // txtOtprema
             // 
-            this.txtOtprema.Location = new System.Drawing.Point(1135, 233);
+            this.txtOtprema.Location = new System.Drawing.Point(685, 233);
             this.txtOtprema.Name = "txtOtprema";
             this.txtOtprema.Size = new System.Drawing.Size(205, 20);
             this.txtOtprema.MaxLength = 30;
-            this.txtOtprema.TabIndex = 30;
+            this.txtOtprema.TabIndex = 28;
             // 
             // lblPoslateSlike
             // 
             this.lblPoslateSlike.AutoSize = true;
-            this.lblPoslateSlike.Location = new System.Drawing.Point(10, 268);
+            this.lblPoslateSlike.Location = new System.Drawing.Point(1135, 164);
             this.lblPoslateSlike.Name = "lblPoslateSlike";
             this.lblPoslateSlike.Size = new System.Drawing.Size(60, 14);
             this.lblPoslateSlike.TabIndex = 1030;
@@ -804,16 +820,17 @@
             // 
             // txtPoslateSlike
             // 
-            this.txtPoslateSlike.Location = new System.Drawing.Point(10, 285);
+            this.txtPoslateSlike.Location = new System.Drawing.Point(1135, 181);
             this.txtPoslateSlike.Name = "txtPoslateSlike";
             this.txtPoslateSlike.Size = new System.Drawing.Size(205, 20);
             this.txtPoslateSlike.MaxLength = 30;
-            this.txtPoslateSlike.TabIndex = 31;
+            this.txtPoslateSlike.TabIndex = 24;
             // 
             // lblPrevoznik
             // 
             this.lblPrevoznik.AutoSize = true;
-            this.lblPrevoznik.Location = new System.Drawing.Point(235, 268);
+            this.lblPrevoznik.Location = new System.Drawing.Point(685, 268);
+            this.lblPrevoznik.BackColor = System.Drawing.Color.Yellow;
             this.lblPrevoznik.Name = "lblPrevoznik";
             this.lblPrevoznik.Size = new System.Drawing.Size(60, 14);
             this.lblPrevoznik.TabIndex = 1031;
@@ -821,25 +838,80 @@
             // 
             // txtPrevoznik
             // 
-            this.txtPrevoznik.Location = new System.Drawing.Point(235, 285);
+            this.txtPrevoznik.Location = new System.Drawing.Point(685, 285);
             this.txtPrevoznik.Name = "txtPrevoznik";
             this.txtPrevoznik.Size = new System.Drawing.Size(205, 20);
             this.txtPrevoznik.MaxLength = 30;
             this.txtPrevoznik.TabIndex = 32;
+            //
+            // lblBeleska
+            //
+            this.lblBeleska.AutoSize = true;
+            this.lblBeleska.Location = new System.Drawing.Point(910, 268);
+            this.lblBeleska.BackColor = System.Drawing.Color.Yellow;
+            this.lblBeleska.Name = "lblBeleska";
+            this.lblBeleska.Size = new System.Drawing.Size(60, 14);
+            this.lblBeleska.TabIndex = 1032;
+            this.lblBeleska.Text = "BELEŠKA";
+            //
+            // txtBeleska
+            //
+            this.txtBeleska.Location = new System.Drawing.Point(910, 285);
+            this.txtBeleska.Name = "txtBeleska";
+            this.txtBeleska.Size = new System.Drawing.Size(205, 20);
+            this.txtBeleska.MaxLength = 300;
+            this.txtBeleska.TabIndex = 33;
+            //
+            // btnStampajPotvrdu
+            //
+            this.btnStampajPotvrdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.btnStampajPotvrdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStampajPotvrdu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStampajPotvrdu.ForeColor = System.Drawing.Color.White;
+            this.btnStampajPotvrdu.Location = new System.Drawing.Point(1135, 282);
+            this.btnStampajPotvrdu.Name = "btnStampajPotvrdu";
+            this.btnStampajPotvrdu.Size = new System.Drawing.Size(205, 27);
+            this.btnStampajPotvrdu.TabIndex = 35;
+            this.btnStampajPotvrdu.Text = "Štampaj potvrdu";
+            this.btnStampajPotvrdu.UseVisualStyleBackColor = false;
+            this.btnStampajPotvrdu.Click += new System.EventHandler(this.btnStampajPotvrdu_Click);
+            //
+            // pnlDatumi
+            //
+            this.pnlDatumi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            this.pnlDatumi.Location = new System.Drawing.Point(0, 105);
+            this.pnlDatumi.Name = "pnlDatumi";
+            this.pnlDatumi.Size = new System.Drawing.Size(1390, 52);
+            this.pnlDatumi.TabIndex = 3000;
+            //
+            // pnlVozilo
+            //
+            this.pnlVozilo.BackColor = System.Drawing.Color.Yellow;
+            this.pnlVozilo.Location = new System.Drawing.Point(453, 262);
+            this.pnlVozilo.Name = "pnlVozilo";
+            this.pnlVozilo.Size = new System.Drawing.Size(670, 52);
+            this.pnlVozilo.TabIndex = 3001;
             // 
-            // btnSacuvajNovi
-            // 
-            this.btnSacuvajNovi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            this.btnSacuvajNovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSacuvajNovi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSacuvajNovi.ForeColor = System.Drawing.Color.White;
-            this.btnSacuvajNovi.Location = new System.Drawing.Point(460, 285);
-            this.btnSacuvajNovi.Name = "btnSacuvajNovi";
-            this.btnSacuvajNovi.Size = new System.Drawing.Size(120, 27);
-            this.btnSacuvajNovi.TabIndex = 2000;
-            this.btnSacuvajNovi.Text = "Sačuvaj novi";
-            this.btnSacuvajNovi.UseVisualStyleBackColor = false;
-            this.btnSacuvajNovi.Click += new System.EventHandler(this.btnSacuvajNovi_Click);
+            // btnNovi
+            //
+            this.btnNovi.AutoSize = true;
+            this.btnNovi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNovi.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNovi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnNovi.FlatAppearance.BorderSize = 0;
+            this.btnNovi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnNovi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnNovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNovi.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnNovi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnNovi.Location = new System.Drawing.Point(0, 0);
+            this.btnNovi.Name = "btnNovi";
+            this.btnNovi.Size = new System.Drawing.Size(70, 31);
+            this.btnNovi.TabIndex = 0;
+            this.btnNovi.Text = "Novi";
+            this.btnNovi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNovi.UseVisualStyleBackColor = true;
+            this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);
             // 
             // btnPromeni
             // 
@@ -847,26 +919,33 @@
             this.btnPromeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPromeni.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPromeni.ForeColor = System.Drawing.Color.White;
-            this.btnPromeni.Location = new System.Drawing.Point(590, 285);
+            this.btnPromeni.Location = new System.Drawing.Point(235, 282);
             this.btnPromeni.Name = "btnPromeni";
-            this.btnPromeni.Size = new System.Drawing.Size(120, 27);
-            this.btnPromeni.TabIndex = 2001;
-            this.btnPromeni.Text = "Promeni";
+            this.btnPromeni.Size = new System.Drawing.Size(205, 27);
+            this.btnPromeni.TabIndex = 34;
+            this.btnPromeni.Text = "Potvrdi promenu";
             this.btnPromeni.UseVisualStyleBackColor = false;
             this.btnPromeni.Click += new System.EventHandler(this.btnPromeni_Click);
             // 
             // btnObrisi
             // 
-            this.btnObrisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.btnObrisi.AutoSize = true;
+            this.btnObrisi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnObrisi.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnObrisi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnObrisi.FlatAppearance.BorderSize = 0;
+            this.btnObrisi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnObrisi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnObrisi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnObrisi.ForeColor = System.Drawing.Color.White;
-            this.btnObrisi.Location = new System.Drawing.Point(720, 285);
+            this.btnObrisi.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnObrisi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnObrisi.Location = new System.Drawing.Point(1234, 0);
             this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(120, 27);
-            this.btnObrisi.TabIndex = 2002;
+            this.btnObrisi.Size = new System.Drawing.Size(80, 31);
+            this.btnObrisi.TabIndex = 11;
             this.btnObrisi.Text = "Obriši";
-            this.btnObrisi.UseVisualStyleBackColor = false;
+            this.btnObrisi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // panelHeader
@@ -886,8 +965,8 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.btnIzvozMSC);
-            this.panel2.Controls.Add(this.btnIzvozMaersk);
+            this.panel2.Controls.Add(this.btnObrisi);
+            this.panel2.Controls.Add(this.cboIzvestaji);
             this.panel2.Controls.Add(this.btnArhiviraniPodaci);
             this.panel2.Controls.Add(this.btnArhiviraj);
             this.panel2.Controls.Add(this.btnPregledLoga);
@@ -896,6 +975,7 @@
             this.panel2.Controls.Add(this.btnSacuvajIzmene);
             this.panel2.Controls.Add(this.btnGrupnaPromena);
             this.panel2.Controls.Add(this.btnUvozExcel);
+            this.panel2.Controls.Add(this.btnNovi);
             this.panel2.Location = new System.Drawing.Point(3, 1);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1327, 31);
@@ -922,47 +1002,19 @@
             this.btnArhiviraj.UseVisualStyleBackColor = true;
             this.btnArhiviraj.Click += new System.EventHandler(this.btnArhiviraj_Click);
             // 
-            // btnIzvozMaersk
+            // cboIzvestaji
             // 
-            this.btnIzvozMaersk.AutoSize = true;
-            this.btnIzvozMaersk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIzvozMaersk.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnIzvozMaersk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.btnIzvozMaersk.FlatAppearance.BorderSize = 0;
-            this.btnIzvozMaersk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnIzvozMaersk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnIzvozMaersk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzvozMaersk.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnIzvozMaersk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnIzvozMaersk.Location = new System.Drawing.Point(1014, 0);
-            this.btnIzvozMaersk.Name = "btnIzvozMaersk";
-            this.btnIzvozMaersk.Size = new System.Drawing.Size(120, 31);
-            this.btnIzvozMaersk.TabIndex = 9;
-            this.btnIzvozMaersk.Text = "Izvoz Maersk";
-            this.btnIzvozMaersk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIzvozMaersk.UseVisualStyleBackColor = true;
-            this.btnIzvozMaersk.Click += new System.EventHandler(this.btnIzvozMaersk_Click);
-            //
-            // btnIzvozMSC
-            //
-            this.btnIzvozMSC.AutoSize = true;
-            this.btnIzvozMSC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIzvozMSC.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnIzvozMSC.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.btnIzvozMSC.FlatAppearance.BorderSize = 0;
-            this.btnIzvozMSC.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnIzvozMSC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnIzvozMSC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzvozMSC.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.btnIzvozMSC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnIzvozMSC.Location = new System.Drawing.Point(1134, 0);
-            this.btnIzvozMSC.Name = "btnIzvozMSC";
-            this.btnIzvozMSC.Size = new System.Drawing.Size(100, 31);
-            this.btnIzvozMSC.TabIndex = 10;
-            this.btnIzvozMSC.Text = "Izvoz MSC";
-            this.btnIzvozMSC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIzvozMSC.UseVisualStyleBackColor = true;
-            this.btnIzvozMSC.Click += new System.EventHandler(this.btnIzvozMSC_Click);
+            this.cboIzvestaji.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cboIzvestaji.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIzvestaji.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboIzvestaji.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cboIzvestaji.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.cboIzvestaji.FormattingEnabled = true;
+            this.cboIzvestaji.Location = new System.Drawing.Point(1014, 0);
+            this.cboIzvestaji.Name = "cboIzvestaji";
+            this.cboIzvestaji.Size = new System.Drawing.Size(150, 24);
+            this.cboIzvestaji.TabIndex = 9;
+            this.cboIzvestaji.SelectionChangeCommitted += new System.EventHandler(this.cboIzvestaji_SelectionChangeCommitted);
             //
             // btnArhiviraniPodaci
             // 
@@ -1149,11 +1201,10 @@
         private System.Windows.Forms.Button btnPregledLoga;
         private System.Windows.Forms.Button btnArhiviraj;
         private System.Windows.Forms.Button btnArhiviraniPodaci;
-        private System.Windows.Forms.Button btnIzvozMaersk;
-        private System.Windows.Forms.Button btnIzvozMSC;
+        private System.Windows.Forms.ComboBox cboIzvestaji;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
-        private System.Windows.Forms.Button btnSacuvajNovi;
+        private System.Windows.Forms.Button btnNovi;
         private System.Windows.Forms.Button btnPromeni;
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Label lblID;
@@ -1165,9 +1216,9 @@
         private System.Windows.Forms.Label lblPozicija;
         private System.Windows.Forms.TextBox txtPozicija;
         private System.Windows.Forms.Label lblVrsta;
-        private System.Windows.Forms.TextBox txtVrsta;
+        private System.Windows.Forms.ComboBox cboVrsta;
         private System.Windows.Forms.Label lblBrodar;
-        private System.Windows.Forms.TextBox txtBrodar;
+        private System.Windows.Forms.ComboBox cboBrodar;
         private System.Windows.Forms.Label lblNalogodavac;
         private System.Windows.Forms.TextBox txtNalogodavac;
         private System.Windows.Forms.Label lblPostupak;
@@ -1220,5 +1271,10 @@
         private System.Windows.Forms.TextBox txtPoslateSlike;
         private System.Windows.Forms.Label lblPrevoznik;
         private System.Windows.Forms.TextBox txtPrevoznik;
+        private System.Windows.Forms.Label lblBeleska;
+        private System.Windows.Forms.TextBox txtBeleska;
+        private System.Windows.Forms.Button btnStampajPotvrdu;
+        private System.Windows.Forms.Panel pnlDatumi;
+        private System.Windows.Forms.Panel pnlVozilo;
     }
 }

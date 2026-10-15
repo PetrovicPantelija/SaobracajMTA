@@ -1,7 +1,9 @@
-﻿-- PRODUKCIJA (oktobar 2026): Maersk i MSC pokreti, upis i na 'Sačuvaj novi' i 'Promeni', izvoz u Excel.
--- Kreira tabele TerminalPrivMaersk i TerminalPrivMSC i njihove indekse ako ne postoje, kreira/menja procedure
--- insTerminalPrivMaerskPokreti, insTerminalPrivMSCPokreti, insTerminalPriv i updTerminalPriv. Postojeći podaci se ne menjaju.
--- Skripta se može pustiti više puta. Pre pokretanja izabrati produkcionu bazu.
+﻿-- PRODUKCIJA (oktobar 2026): Terminal privremeni - Maersk i MSC pokreti, kolona BELEŠKA, šifarnik VRSTA.
+-- 1. Tabele TerminalPrivMaersk i TerminalPrivMSC sa indeksima (ako ne postoje), procedure insTerminalPrivMaerskPokreti,
+--    insTerminalPrivMSCPokreti, insTerminalPriv i updTerminalPriv.
+-- 2. Kolona BELEŠKA u TerminalPriv i TerminalPrivArhiv, procedura InsertTerminalPrivArhiv i log trigger trg_TerminalPriv_Log.
+-- 3. VRSTA u TerminalPriv se prevodi u oblik iz šifarnika (40'HC -> 40' HC); na kraju se prikazuju vrednosti za ručnu ispravku.
+-- Skripta se može pustiti više puta. Pre pokretanja izabrati produkcionu bazu. Pustiti PRE instalacije nove verzije programa.
 
 -- Provera: tabela TerminalPriv mora imati novu strukturu kolona (TerminalPriv_Izmena_2026_09.sql)
 IF COL_LENGTH('dbo.TerminalPriv', 'BL/UVOZ') IS NULL OR COL_LENGTH('dbo.TerminalPriv', 'GATE_OUT_EMPTY/Utovar') IS NULL
@@ -124,7 +126,7 @@ BEGIN
         ('GATE_IN_EF',     N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
         ('GATE_IN_FULL',   N'GATE IN F',  0, 1, NULL, N'EXP', 0, 'B'),
         ('PREUZIMANJE',    N'GATE OUT F', 0, 0, 1,    N'DEL', 0, 'L'),
-        ('VRACANJE',       N'GATE IN E',  0, 0, 0,    NULL,   0, NULL),
+        ('VRACANJE',       N'GATE IN E',  0, 0, 1,    NULL,   0, NULL),
         ('GATE_OUT_EMPTY', N'GATE OUT E', 0, 1, NULL, NULL,   0, 'B')
     ) p (Polje, Gate, Otprema, Booking, BL, ActFore, RailCode, BkngIz)
         ON p.Polje = n.Polje
@@ -249,9 +251,9 @@ BEGIN
         ('4.4', 'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    N'IDR', N'FULL',  0, 1),
         ('4.5', 'PREUZIMANJE',  N'GATE OUT F', 0,    0,    1,    N'ICO', N'FULL',  0, 1),
         ('4.6', 'KONACNI',      N'GATE OUT F', 0,    0,    1,    N'ICO', N'FULL',  0, 1),
-        ('4.7', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0),
-        ('4.8', 'VRACANJE',     N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0)
-        -- 4.9 (MPI) nije implementiran: ima iste uslove kao 4.7, čeka se uslov koji ih razlikuje
+        ('4.7', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    0,    N'MCY', N'EMPTY', 0, 0),
+        ('4.8', 'VRACANJE',     N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0),
+        ('4.9', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MPI', N'EMPTY', 0, 1)
     ) p (Slucaj, Polje, Gate, Otprema, Booking, BL, ContainerStatus, FullEmpty, BookingUpis, BLUpis)
         ON p.Polje = n.Polje
        AND p.Gate = @GATE_IN_GATE_OUT
@@ -263,6 +265,11 @@ BEGIN
 
     SET @BrojUpisanih = @@ROWCOUNT;
 END
+GO
+
+-- kolona BELEŠKA (oktobar 2026) za tabelu kreiranu pre njenog dodavanja
+IF COL_LENGTH(N'dbo.TerminalPriv', N'BELEŠKA') IS NULL
+    ALTER TABLE dbo.TerminalPriv ADD [BELEŠKA] nvarchar(300) NULL;
 GO
 
 IF OBJECT_ID('dbo.insTerminalPriv', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPriv;
@@ -300,7 +307,8 @@ CREATE PROCEDURE dbo.insTerminalPriv
     @OTPREMA nvarchar(30) = NULL,
     @POSLATE_SLIKE nvarchar(30) = NULL,
     @PREVOZNIK nvarchar(30) = NULL,
-    @ZapisiMaersk bit = 0,  -- 1 = novi zapis dugmetom 'Sačuvaj novi': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
+    @BELESKA nvarchar(300) = NULL,
+    @ZapisiMaersk bit = 0,  -- 1 = novi zapis dugmetom 'Promeni' posle 'Novi': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
     @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
 AS
@@ -310,9 +318,9 @@ BEGIN
     DECLARE @NoviID int;
 
     INSERT INTO dbo.TerminalPriv
-        ([KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik])
+        ([KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik], [BELEŠKA])
     VALUES
-        (@KONTEJNER, @STATUS, @POZICIJA, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @BL_UVOZ, @PLOMBA_UVOZ, @VOZ_KAMION, @STANJE, @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ, @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT, @BOOKING_IZVOZ, @KLIJENT_IZVOZ, @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA, @GATE_IN_GATE_OUT, @L_R, @TARA, @MAX_NOSIVOST_CNT, @VOZILO_PREUZIMANJE, @PLOMBA_IZVOZ, @NAPOMENA, @OPIS, @OTPREMA, @POSLATE_SLIKE, @PREVOZNIK);
+        (@KONTEJNER, @STATUS, @POZICIJA, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @BL_UVOZ, @PLOMBA_UVOZ, @VOZ_KAMION, @STANJE, @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ, @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT, @BOOKING_IZVOZ, @KLIJENT_IZVOZ, @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA, @GATE_IN_GATE_OUT, @L_R, @TARA, @MAX_NOSIVOST_CNT, @VOZILO_PREUZIMANJE, @PLOMBA_IZVOZ, @NAPOMENA, @OPIS, @OTPREMA, @POSLATE_SLIKE, @PREVOZNIK, @BELESKA);
 
     SET @NoviID = CAST(SCOPE_IDENTITY() AS int);
 
@@ -375,6 +383,7 @@ CREATE PROCEDURE dbo.updTerminalPriv
     @OTPREMA nvarchar(30) = NULL,
     @POSLATE_SLIKE nvarchar(30) = NULL,
     @PREVOZNIK nvarchar(30) = NULL,
+    @BELESKA nvarchar(300) = NULL,
     @ZapisiMaersk bit = 0,  -- 1 = izmena dugmetom 'Promeni': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
     @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
@@ -426,7 +435,8 @@ BEGIN
         [OPIS] = @OPIS,
         [OTPREMA] = @OTPREMA,
         [POSLATE SLIKE] = @POSLATE_SLIKE,
-        [Prevoznik] = @PREVOZNIK
+        [Prevoznik] = @PREVOZNIK,
+        [BELEŠKA] = @BELESKA
     WHERE ID = @ID;
 
     IF @ZapisiMaersk = 1
@@ -451,6 +461,239 @@ BEGIN
             @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull,
             @BrojUpisanih = @BrojMSC OUTPUT;
 END
+GO
+
+-- Arhiva zapisa TerminalPriv: tabela TerminalPrivArhiv + procedure InsertTerminalPrivArhiv i updTerminalPrivArhivPoslateSlike
+-- Forma: Saobracaj.RNI.frmTerminalPrivremeniArhiva. Skriptu izvrsiti nad bazom aplikacije (posle TerminalPriv.sql i TerminalPrivremeniLog.sql).
+-- ID zapisa se pri arhiviranju cuva isti kao u TerminalPriv, pa folderi slika/dokumenata i log ostaju povezani sa zapisom.
+-- Tabela nema CHECK ogranicenja jer ih SQL Server ne dozvoljava na cilju OUTPUT INTO; zapise prima samo iz TerminalPriv (vec provereni).
+
+IF OBJECT_ID('dbo.TerminalPrivArhiv', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.TerminalPrivArhiv
+    (
+        ID                                 int            NOT NULL,   -- ID iz TerminalPriv (nije IDENTITY)
+        [KONTEJNER]                        nvarchar(30)   NOT NULL,
+        [STATUS]                           nvarchar(30)   NULL,
+        [POZICIJA]                         nvarchar(30)   NULL,
+        [VRSTA]                            nvarchar(30)   NULL,
+        [BRODAR]                           nvarchar(30)   NULL,
+        [NALOGODAVAC/UVOZ]                 nvarchar(50)   NULL,
+        [POSTUPAK/UVOZ]                    nvarchar(50)   NULL,
+        [UVOZNIK]                          nvarchar(50)   NULL,
+        [BL/UVOZ]                          nvarchar(30)   NULL,
+        [PLOMBA_UVOZ]                      nvarchar(30)   NULL,
+        [VOZ/kamion]                       nvarchar(30)   NULL,
+        [STANJE]                           nvarchar(30)   NULL,
+        [GATE_IN_E/F]                      datetime       NULL,
+        [PREUZIMANJE_PUNOG/Razvoz]         datetime       NULL,
+        [VRAĆANJE_PRAZNOG/iz_Razvoza]      datetime       NULL,
+        [Konačni_GATE_OUT]                 datetime       NULL,
+        [BOOKING/IZVOZ]                    nvarchar(30)   NULL,
+        [KLIJENT/IZVOZ]                    nvarchar(30)   NULL,
+        [GATE_OUT_EMPTY/Utovar]            datetime       NULL,
+        [GATE_IN_FULL/sa_Utovara]          datetime       NULL,
+        [GATE_IN/_GATE_OUT]                nvarchar(50)   NULL,
+        [L/R]                              nvarchar(30)   NULL,
+        [TARA]                             nvarchar(30)   NULL,
+        [MAX_NOSIVOST_CNT]                 nvarchar(30)   NULL,
+        [VOZILO/PREUZIMANJE]               nvarchar(30)   NULL,
+        [PLOMBA/IZVOZ]                     nvarchar(30)   NULL,
+        [NAPOMENA]                         nvarchar(300)  NULL,
+        [OPIS]                             nvarchar(300)  NULL,
+        [OTPREMA]                          nvarchar(30)   NULL,
+        [POSLATE SLIKE]                    nvarchar(30)   NULL,
+        [Prevoznik]                        nvarchar(30)   NULL,
+        [BELEŠKA]                          nvarchar(300)  NULL,
+        DatumArhiviranja                   datetime       NOT NULL CONSTRAINT DF_TerminalPrivArhiv_Datum DEFAULT (GETDATE()),
+        CONSTRAINT PK_TerminalPrivArhiv PRIMARY KEY CLUSTERED (ID)
+    );
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivArhiv_KONTEJNER' AND object_id = OBJECT_ID('dbo.TerminalPrivArhiv'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivArhiv_KONTEJNER ON dbo.TerminalPrivArhiv (KONTEJNER);
+GO
+
+-- kolona BELEŠKA (oktobar 2026) za tabelu kreiranu pre njenog dodavanja
+IF COL_LENGTH(N'dbo.TerminalPrivArhiv', N'BELEŠKA') IS NULL
+    ALTER TABLE dbo.TerminalPrivArhiv ADD [BELEŠKA] nvarchar(300) NULL;
+GO
+
+-- Svi zapisi iz TerminalPriv kod kojih Konacni_GATE_OUT nije NULL prebacuju se u TerminalPrivArhiv i brisu iz TerminalPriv.
+-- DELETE ... OUTPUT INTO je jedan atomican upis (ako nesto pukne, nista se ne prebacuje). Vraca broj arhiviranih zapisa.
+IF OBJECT_ID('dbo.InsertTerminalPrivArhiv', 'P') IS NOT NULL DROP PROCEDURE dbo.InsertTerminalPrivArhiv;
+GO
+
+CREATE PROCEDURE dbo.InsertTerminalPrivArhiv
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    DECLARE @Arhivirano int = 0;
+
+    -- trigger na TerminalPriv na osnovu ovoga u log upisuje ARHIVA umesto DELETE
+    EXEC sp_set_session_context @key = N'ArhivirajTerminalPriv', @value = 1;
+
+    BEGIN TRY
+        DELETE t
+        OUTPUT
+            deleted.ID, deleted.[KONTEJNER], deleted.[STATUS], deleted.[POZICIJA], deleted.[VRSTA], deleted.[BRODAR], deleted.[NALOGODAVAC/UVOZ], deleted.[POSTUPAK/UVOZ], deleted.[UVOZNIK], deleted.[BL/UVOZ], deleted.[PLOMBA_UVOZ], deleted.[VOZ/kamion], deleted.[STANJE], deleted.[GATE_IN_E/F], deleted.[PREUZIMANJE_PUNOG/Razvoz], deleted.[VRAĆANJE_PRAZNOG/iz_Razvoza], deleted.[Konačni_GATE_OUT], deleted.[BOOKING/IZVOZ], deleted.[KLIJENT/IZVOZ], deleted.[GATE_OUT_EMPTY/Utovar], deleted.[GATE_IN_FULL/sa_Utovara], deleted.[GATE_IN/_GATE_OUT], deleted.[L/R], deleted.[TARA], deleted.[MAX_NOSIVOST_CNT], deleted.[VOZILO/PREUZIMANJE], deleted.[PLOMBA/IZVOZ], deleted.[NAPOMENA], deleted.[OPIS], deleted.[OTPREMA], deleted.[POSLATE SLIKE], deleted.[Prevoznik], deleted.[BELEŠKA]
+        INTO dbo.TerminalPrivArhiv
+            (ID, [KONTEJNER], [STATUS], [POZICIJA], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [BL/UVOZ], [PLOMBA_UVOZ], [VOZ/kamion], [STANJE], [GATE_IN_E/F], [PREUZIMANJE_PUNOG/Razvoz], [VRAĆANJE_PRAZNOG/iz_Razvoza], [Konačni_GATE_OUT], [BOOKING/IZVOZ], [KLIJENT/IZVOZ], [GATE_OUT_EMPTY/Utovar], [GATE_IN_FULL/sa_Utovara], [GATE_IN/_GATE_OUT], [L/R], [TARA], [MAX_NOSIVOST_CNT], [VOZILO/PREUZIMANJE], [PLOMBA/IZVOZ], [NAPOMENA], [OPIS], [OTPREMA], [POSLATE SLIKE], [Prevoznik], [BELEŠKA])
+        FROM dbo.TerminalPriv t
+        WHERE t.[Konačni_GATE_OUT] IS NOT NULL;
+
+        SET @Arhivirano = @@ROWCOUNT;
+    END TRY
+    BEGIN CATCH
+        EXEC sp_set_session_context @key = N'ArhivirajTerminalPriv', @value = 0;
+        THROW;
+    END CATCH
+
+    EXEC sp_set_session_context @key = N'ArhivirajTerminalPriv', @value = 0;
+
+    SELECT @Arhivirano AS Arhivirano;
+END
+GO
+
+-- Broj poslatih slika za arhivirani zapis (frmTerminalPrivremeniSlike otvoren iz arhive)
+IF OBJECT_ID('dbo.updTerminalPrivArhivPoslateSlike', 'P') IS NOT NULL DROP PROCEDURE dbo.updTerminalPrivArhivPoslateSlike;
+GO
+
+CREATE PROCEDURE dbo.updTerminalPrivArhivPoslateSlike
+    @ID int,
+    @POSLATE_SLIKE nvarchar(30) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE dbo.TerminalPrivArhiv SET [POSLATE SLIKE] = @POSLATE_SLIKE WHERE ID = @ID;
+END
+GO
+
+-- Log izmena tabele TerminalPriv: tabela TerminalPrivremeniLog + trigger trg_TerminalPriv_Log
+-- Forma: Saobracaj.RNI.frmTerminalPrivremeniLog. Skriptu izvrsiti nad bazom aplikacije (posle TerminalPriv.sql).
+
+IF OBJECT_ID('dbo.TerminalPrivremeniLog', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.TerminalPrivremeniLog
+    (
+        LogID          int IDENTITY(1,1) NOT NULL,
+        TerminalPrivID int           NOT NULL,   -- ID zapisa u TerminalPriv
+        Datum          datetime      NOT NULL CONSTRAINT DF_TerminalPrivremeniLog_Datum DEFAULT (GETDATE()),
+        Akcija         nvarchar(10)  NOT NULL,   -- INSERT / UPDATE / DELETE / ARHIVA
+        Kontejner      nvarchar(30)  NULL,
+        Opis           nvarchar(max) NULL,       -- kod UPDATE: kolona: staro -> novo
+        Racunar        nvarchar(128) NULL CONSTRAINT DF_TerminalPrivremeniLog_Racunar DEFAULT (HOST_NAME()),
+        CONSTRAINT PK_TerminalPrivremeniLog PRIMARY KEY CLUSTERED (LogID)
+    );
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivremeniLog_ID_Datum' AND object_id = OBJECT_ID('dbo.TerminalPrivremeniLog'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivremeniLog_ID_Datum ON dbo.TerminalPrivremeniLog (TerminalPrivID, Datum DESC);
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivremeniLog_Datum' AND object_id = OBJECT_ID('dbo.TerminalPrivremeniLog'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivremeniLog_Datum ON dbo.TerminalPrivremeniLog (Datum DESC);
+GO
+
+IF OBJECT_ID('dbo.trg_TerminalPriv_Log', 'TR') IS NOT NULL DROP TRIGGER dbo.trg_TerminalPriv_Log;
+GO
+
+CREATE TRIGGER dbo.trg_TerminalPriv_Log
+ON dbo.TerminalPriv
+AFTER INSERT, UPDATE, DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (SELECT 1 FROM inserted) AND EXISTS (SELECT 1 FROM deleted)
+    BEGIN
+        -- UPDATE: upisuju se samo promenjene kolone (staro -> novo); red bez promena se ne loguje
+        INSERT INTO dbo.TerminalPrivremeniLog (TerminalPrivID, Akcija, Kontejner, Opis)
+        SELECT i.ID, N'UPDATE', i.KONTEJNER, x.Opis
+        FROM inserted i
+        INNER JOIN deleted d ON d.ID = i.ID
+        CROSS APPLY (SELECT CONCAT(
+            CASE WHEN EXISTS (SELECT d.[KONTEJNER] EXCEPT SELECT i.[KONTEJNER]) THEN N'KONTEJNER: ' + ISNULL(d.[KONTEJNER], N'(prazno)') + N' -> ' + ISNULL(i.[KONTEJNER], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[STATUS] EXCEPT SELECT i.[STATUS]) THEN N'STATUS: ' + ISNULL(d.[STATUS], N'(prazno)') + N' -> ' + ISNULL(i.[STATUS], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POZICIJA] EXCEPT SELECT i.[POZICIJA]) THEN N'POZICIJA: ' + ISNULL(d.[POZICIJA], N'(prazno)') + N' -> ' + ISNULL(i.[POZICIJA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VRSTA] EXCEPT SELECT i.[VRSTA]) THEN N'VRSTA: ' + ISNULL(d.[VRSTA], N'(prazno)') + N' -> ' + ISNULL(i.[VRSTA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BRODAR] EXCEPT SELECT i.[BRODAR]) THEN N'BRODAR: ' + ISNULL(d.[BRODAR], N'(prazno)') + N' -> ' + ISNULL(i.[BRODAR], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[NALOGODAVAC/UVOZ] EXCEPT SELECT i.[NALOGODAVAC/UVOZ]) THEN N'NALOGODAVAC/UVOZ: ' + ISNULL(d.[NALOGODAVAC/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[NALOGODAVAC/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POSTUPAK/UVOZ] EXCEPT SELECT i.[POSTUPAK/UVOZ]) THEN N'POSTUPAK/UVOZ: ' + ISNULL(d.[POSTUPAK/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[POSTUPAK/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[UVOZNIK] EXCEPT SELECT i.[UVOZNIK]) THEN N'UVOZNIK: ' + ISNULL(d.[UVOZNIK], N'(prazno)') + N' -> ' + ISNULL(i.[UVOZNIK], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BL/UVOZ] EXCEPT SELECT i.[BL/UVOZ]) THEN N'BL/UVOZ: ' + ISNULL(d.[BL/UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[BL/UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PLOMBA_UVOZ] EXCEPT SELECT i.[PLOMBA_UVOZ]) THEN N'PLOMBA_UVOZ: ' + ISNULL(d.[PLOMBA_UVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[PLOMBA_UVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VOZ/kamion] EXCEPT SELECT i.[VOZ/kamion]) THEN N'VOZ/kamion: ' + ISNULL(d.[VOZ/kamion], N'(prazno)') + N' -> ' + ISNULL(i.[VOZ/kamion], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[STANJE] EXCEPT SELECT i.[STANJE]) THEN N'STANJE: ' + ISNULL(d.[STANJE], N'(prazno)') + N' -> ' + ISNULL(i.[STANJE], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_IN_E/F] EXCEPT SELECT i.[GATE_IN_E/F]) THEN N'GATE_IN_E/F: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_IN_E/F], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_IN_E/F], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PREUZIMANJE_PUNOG/Razvoz] EXCEPT SELECT i.[PREUZIMANJE_PUNOG/Razvoz]) THEN N'PREUZIMANJE_PUNOG/Razvoz: ' + ISNULL(CONVERT(nvarchar(20), d.[PREUZIMANJE_PUNOG/Razvoz], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[PREUZIMANJE_PUNOG/Razvoz], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VRAĆANJE_PRAZNOG/iz_Razvoza] EXCEPT SELECT i.[VRAĆANJE_PRAZNOG/iz_Razvoza]) THEN N'VRAĆANJE_PRAZNOG/iz_Razvoza: ' + ISNULL(CONVERT(nvarchar(20), d.[VRAĆANJE_PRAZNOG/iz_Razvoza], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[VRAĆANJE_PRAZNOG/iz_Razvoza], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[Konačni_GATE_OUT] EXCEPT SELECT i.[Konačni_GATE_OUT]) THEN N'Konačni_GATE_OUT: ' + ISNULL(CONVERT(nvarchar(20), d.[Konačni_GATE_OUT], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[Konačni_GATE_OUT], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BOOKING/IZVOZ] EXCEPT SELECT i.[BOOKING/IZVOZ]) THEN N'BOOKING/IZVOZ: ' + ISNULL(d.[BOOKING/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[BOOKING/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[KLIJENT/IZVOZ] EXCEPT SELECT i.[KLIJENT/IZVOZ]) THEN N'KLIJENT/IZVOZ: ' + ISNULL(d.[KLIJENT/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[KLIJENT/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_OUT_EMPTY/Utovar] EXCEPT SELECT i.[GATE_OUT_EMPTY/Utovar]) THEN N'GATE_OUT_EMPTY/Utovar: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_OUT_EMPTY/Utovar], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_OUT_EMPTY/Utovar], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_IN_FULL/sa_Utovara] EXCEPT SELECT i.[GATE_IN_FULL/sa_Utovara]) THEN N'GATE_IN_FULL/sa_Utovara: ' + ISNULL(CONVERT(nvarchar(20), d.[GATE_IN_FULL/sa_Utovara], 120), N'(prazno)') + N' -> ' + ISNULL(CONVERT(nvarchar(20), i.[GATE_IN_FULL/sa_Utovara], 120), N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[GATE_IN/_GATE_OUT] EXCEPT SELECT i.[GATE_IN/_GATE_OUT]) THEN N'GATE_IN/_GATE_OUT: ' + ISNULL(d.[GATE_IN/_GATE_OUT], N'(prazno)') + N' -> ' + ISNULL(i.[GATE_IN/_GATE_OUT], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[L/R] EXCEPT SELECT i.[L/R]) THEN N'L/R: ' + ISNULL(d.[L/R], N'(prazno)') + N' -> ' + ISNULL(i.[L/R], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[TARA] EXCEPT SELECT i.[TARA]) THEN N'TARA: ' + ISNULL(d.[TARA], N'(prazno)') + N' -> ' + ISNULL(i.[TARA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[MAX_NOSIVOST_CNT] EXCEPT SELECT i.[MAX_NOSIVOST_CNT]) THEN N'MAX_NOSIVOST_CNT: ' + ISNULL(d.[MAX_NOSIVOST_CNT], N'(prazno)') + N' -> ' + ISNULL(i.[MAX_NOSIVOST_CNT], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[VOZILO/PREUZIMANJE] EXCEPT SELECT i.[VOZILO/PREUZIMANJE]) THEN N'VOZILO/PREUZIMANJE: ' + ISNULL(d.[VOZILO/PREUZIMANJE], N'(prazno)') + N' -> ' + ISNULL(i.[VOZILO/PREUZIMANJE], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[PLOMBA/IZVOZ] EXCEPT SELECT i.[PLOMBA/IZVOZ]) THEN N'PLOMBA/IZVOZ: ' + ISNULL(d.[PLOMBA/IZVOZ], N'(prazno)') + N' -> ' + ISNULL(i.[PLOMBA/IZVOZ], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[NAPOMENA] EXCEPT SELECT i.[NAPOMENA]) THEN N'NAPOMENA: ' + ISNULL(d.[NAPOMENA], N'(prazno)') + N' -> ' + ISNULL(i.[NAPOMENA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[OPIS] EXCEPT SELECT i.[OPIS]) THEN N'OPIS: ' + ISNULL(d.[OPIS], N'(prazno)') + N' -> ' + ISNULL(i.[OPIS], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[OTPREMA] EXCEPT SELECT i.[OTPREMA]) THEN N'OTPREMA: ' + ISNULL(d.[OTPREMA], N'(prazno)') + N' -> ' + ISNULL(i.[OTPREMA], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[POSLATE SLIKE] EXCEPT SELECT i.[POSLATE SLIKE]) THEN N'POSLATE SLIKE: ' + ISNULL(d.[POSLATE SLIKE], N'(prazno)') + N' -> ' + ISNULL(i.[POSLATE SLIKE], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[Prevoznik] EXCEPT SELECT i.[Prevoznik]) THEN N'Prevoznik: ' + ISNULL(d.[Prevoznik], N'(prazno)') + N' -> ' + ISNULL(i.[Prevoznik], N'(prazno)') + N'; ' ELSE N'' END,
+            CASE WHEN EXISTS (SELECT d.[BELEŠKA] EXCEPT SELECT i.[BELEŠKA]) THEN N'BELEŠKA: ' + ISNULL(d.[BELEŠKA], N'(prazno)') + N' -> ' + ISNULL(i.[BELEŠKA], N'(prazno)') + N'; ' ELSE N'' END
+        ) AS Opis) x
+        WHERE LEN(x.Opis) > 0;
+    END
+    ELSE IF EXISTS (SELECT 1 FROM inserted)
+    BEGIN
+        INSERT INTO dbo.TerminalPrivremeniLog (TerminalPrivID, Akcija, Kontejner, Opis)
+        SELECT ID, N'INSERT', KONTEJNER, N'Novi zapis' FROM inserted;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO dbo.TerminalPrivremeniLog (TerminalPrivID, Akcija, Kontejner, Opis)
+        -- InsertTerminalPrivArhiv postavlja session context pa se prebacivanje u arhivu razlikuje od brisanja
+        SELECT ID,
+               CASE WHEN CAST(SESSION_CONTEXT(N'ArhivirajTerminalPriv') AS int) = 1 THEN N'ARHIVA' ELSE N'DELETE' END,
+               KONTEJNER,
+               CASE WHEN CAST(SESSION_CONTEXT(N'ArhivirajTerminalPriv') AS int) = 1 THEN N'Prebačeno u arhivu' ELSE N'Obrisan zapis' END
+        FROM deleted;
+    END
+END
+GO
+
+-- VRSTA (vrsta kontejnera) u TerminalPriv prevodi se u oblik iz šifarnika (insertTerminalPriv.VrsteCnt).
+-- Vrednost koja se od šifarnika razlikuje samo po razmaku, apostrofu ili velikim/malim slovima se menja
+-- (40'HC, 40HC -> 40' HC). Ostale vrednosti (npr. 40RH, 20, 30) ostaju; forma ih prikazuje i pri čuvanju
+-- traži izbor iz šifarnika. Skripta se može pustiti više puta.
+
+UPDATE t
+SET [VRSTA] = s.Vrsta
+FROM dbo.TerminalPriv t
+INNER JOIN (VALUES
+    (N'20'' DB'), (N'20'' HC'), (N'20'' OT'), (N'20'' TC'), (N'40'' DB'),
+    (N'40'' HC'), (N'40'' OT'), (N'40'' FLAT'), (N'40'' RF'), (N'45'' HC')
+) s (Vrsta)
+    ON UPPER(REPLACE(REPLACE(t.[VRSTA], N' ', N''), N'''', N'')) = UPPER(REPLACE(REPLACE(s.Vrsta, N' ', N''), N'''', N''))
+WHERE t.[VRSTA] <> s.Vrsta COLLATE Latin1_General_BIN;
+
+SELECT @@ROWCOUNT AS Prevedeno;
+
+-- Vrednosti koje nisu u šifarniku (treba ih ispraviti ručno)
+SELECT [VRSTA], COUNT(*) AS Broj
+FROM dbo.TerminalPriv
+WHERE [VRSTA] IS NOT NULL
+  AND [VRSTA] NOT IN (N'20'' DB', N'20'' HC', N'20'' OT', N'20'' TC', N'40'' DB', N'40'' HC', N'40'' OT', N'40'' FLAT', N'40'' RF', N'45'' HC')
+GROUP BY [VRSTA];
 GO
 
 SET NOEXEC OFF;

@@ -33,7 +33,15 @@ namespace Saobracaj.RNI
         public const int DuzinaKontejnera = 11;
 
         public static readonly string[] Statusi = { "PRAZAN", "PUN", "?", "RAZVOZ", "Blanks", "PRETOVAR", "U RAZVOZU", "UTOVAR" };
-        public static readonly string[] Stanja = { "DOBAR", "LOŠ", "FOOD GRADE", "OŠTEĆEN", "FLEXI" };
+        public static readonly string[] VrsteCnt =
+        {
+            "20' DB", "20' HC", "20' OT", "20' TC", "40' DB", "40' HC", "40' OT", "40' FLAT", "40' RF", "45' HC"
+        };
+        public static readonly string[] Brodari =
+        {
+            "CMA", "MAERSK", "COSCO", "MSC", "HAPAG", "OOCL", "HMM", "EVERGREEN", "FLEXBOX", "YANG MING", "LEGET"
+        };
+        public static readonly string[] Stanja ={ "DOBAR", "LOŠ", "FOOD GRADE", "OŠTEĆEN", "FLEXI" };
         public static readonly string[] GateInGateOut =
         {
             "GATE IN E", "GATE IN F", "GATE OUT E", "GATE OUT F", "GATE IN E/REPOZICIJA",
@@ -47,8 +55,8 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("KONTEJNER", "@KONTEJNER", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("STATUS", "@STATUS", TerminalPrivTip.Tekst, 30, Statusi),
             new TerminalPrivPolje("POZICIJA", "@POZICIJA", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("VRSTA", "@VRSTA", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("BRODAR", "@BRODAR", TerminalPrivTip.Tekst, 30, null),
+            new TerminalPrivPolje("VRSTA", "@VRSTA", TerminalPrivTip.Tekst, 30, VrsteCnt),
+            new TerminalPrivPolje("BRODAR", "@BRODAR", TerminalPrivTip.Tekst, 30, Brodari),
             new TerminalPrivPolje("NALOGODAVAC/UVOZ", "@NALOGODAVAC_UVOZ", TerminalPrivTip.Tekst, 50, null),
             new TerminalPrivPolje("POSTUPAK/UVOZ", "@POSTUPAK_UVOZ", TerminalPrivTip.Tekst, 50, null),
             new TerminalPrivPolje("UVOZNIK", "@UVOZNIK", TerminalPrivTip.Tekst, 50, null),
@@ -75,6 +83,7 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("OTPREMA", "@OTPREMA", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("POSLATE SLIKE", "@POSLATE_SLIKE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("Prevoznik", "@PREVOZNIK", TerminalPrivTip.Tekst, 30, null),
+            new TerminalPrivPolje("BELEŠKA", "@BELESKA", TerminalPrivTip.Tekst, 300, null),
         };
 
         // Vraca ID novog zapisa. zapisiMaersk = true samo za dugme 'Sačuvaj novi': procedura tada za Maersk
@@ -317,6 +326,19 @@ namespace Saobracaj.RNI
             foreach (TerminalPrivPolje polje in Polja)
                 kolone.Add("[" + polje.Kolona + "]");
             return string.Join(", ", kolone);
+        }
+
+        // Vrednost iz liste dozvoljenih koja odgovara unetoj bez obzira na velika/mala slova, razmake i
+        // apostrofe (40'HC, 40HC -> 40' HC; maersk -> MAERSK); null ako takve nema
+        public static string DozvoljenaVrednost(TerminalPrivPolje polje, string vrednost)
+        {
+            string kljuc = KljucPoredjenja(vrednost);
+            return Array.Find(polje.Dozvoljeno, d => KljucPoredjenja(d) == kljuc);
+        }
+
+        private static string KljucPoredjenja(string vrednost)
+        {
+            return (vrednost ?? "").Replace(" ", "").Replace("'", "").ToUpperInvariant();
         }
 
         public static TerminalPrivPolje Polje(string kolona)
