@@ -146,7 +146,7 @@ namespace Saobracaj.RadniNalozi
 
         public RN1PrijemVoza()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
 
             InitializeComponent();
             FillGV();
@@ -158,7 +158,7 @@ namespace Saobracaj.RadniNalozi
 
         public RN1PrijemVoza(string Korisnik)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
 
             InitializeComponent();
             FillGV();
@@ -172,7 +172,7 @@ namespace Saobracaj.RadniNalozi
         public RN1PrijemVoza(int brojRN)
         {
             //Prijem voza iz Otvori Radni nalozi Interni
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
 
             InitializeComponent();
             BrojRN = brojRN;
@@ -186,7 +186,7 @@ namespace Saobracaj.RadniNalozi
 
         public RN1PrijemVoza(string Korisnik, string IDVOza, string IDUsluge, string PrijemID)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3tib3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
 
             InitializeComponent();
 

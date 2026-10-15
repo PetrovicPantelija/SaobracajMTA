@@ -17,7 +17,7 @@ namespace Saobracaj.Dokumenta
         public frmVozilaPregledPrijava()
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
         }
 
         private void frmVozilaPregledPrijava_Load(object sender, EventArgs e)
