@@ -817,6 +817,7 @@ namespace Saobracaj
             btnPodesavanja.BackColor = Color.FromArgb(32, 61, 85);
             btnDepocnt.BackColor = Color.FromArgb(32, 61, 85);
             btnAdministracija.BackColor = Color.FromArgb(32, 61, 85);
+            btnIntermodalni.BackColor = Color.FromArgb(32, 61, 85);
             switch (Dugme)
             {
                 case 0: btnLogistikaUvoza.BackColor = Color.FromArgb(1, 115, 199); break;
@@ -835,6 +836,7 @@ namespace Saobracaj
                 case 13: btnPodesavanja.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 14: btnDepocnt.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 15: btnAdministracija.BackColor = Color.FromArgb(1, 115, 199); break;
+                case 16: btnIntermodalni.BackColor = Color.FromArgb(1, 115, 199); break;
                 default: break;
             }
         }
@@ -1195,7 +1197,7 @@ namespace Saobracaj
             ShowChild(new Intermodalni1(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "Intermodalni terminal";
-            BackColorKliknut(3);
+            BackColorKliknut(6);
         }
 
         private void lblNaslov_Click(object sender, EventArgs e)
