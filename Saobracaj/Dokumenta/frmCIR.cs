@@ -155,7 +155,7 @@ namespace Saobracaj.Dokumenta
         public frmCIR()
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
         }
 
@@ -164,7 +164,7 @@ namespace Saobracaj.Dokumenta
            
             //Drugi podatak je stavljen 
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
             txtDokument.Text = PrijemID.ToString();
             VratiPodatkePoPrijemuStavkeID(PrijemID);
@@ -175,7 +175,7 @@ namespace Saobracaj.Dokumenta
             //Pravljeno ZA Leget
             //Prenosim 
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
             txtDokument.Text = PrijemID.ToString();
             txtRNTIP.Text = TIPRN;
@@ -222,7 +222,7 @@ namespace Saobracaj.Dokumenta
         public frmCIR(int Dokument)
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
             txtSifra.Text = Dokument.ToString();
             VratiPodatkeCIR(Dokument);
@@ -232,7 +232,7 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
 
         }
@@ -240,7 +240,7 @@ namespace Saobracaj.Dokumenta
         public frmCIR(string Korisnik, int dDokument, int dPrijem, string Kontejner, string Vagon, double Tara, string BrojKamiona, double Neto, int TipKon, DateTime DatumUlaza, string sPlomba, string sPlomba2)
         {
             InitializeComponent();
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JBaF5cXmRCd1p/TH5YfUNzdUVEY1ZUTXxaS1ZhSXxVd0VjX35ec3FXQ2JdUUZ9XEc=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             dtpDatumIn.Value = DatumUlaza;
             tk = TipKon;
             KorisnikCene = Korisnik;
