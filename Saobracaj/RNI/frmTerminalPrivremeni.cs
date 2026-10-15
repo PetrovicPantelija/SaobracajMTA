@@ -29,7 +29,7 @@ namespace Saobracaj.RNI
             PovezKontrole();
             tabSplitterPage2.Leave += tabSplitterPage2_Leave;
 
-            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC" });
+            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA" });
             cboIzvestaji.SelectedIndex = 0;
 
             // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
@@ -273,13 +273,13 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            int brojMaersk, brojMSC;
+            int brojMaersk, brojMSC, brojCMA;
             try
             {
                 if (id > 0)
-                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Promeni
+                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);   // isto kao Promeni posle Novi
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA);   // isto kao Promeni posle Novi
             }
             catch (Exception ex)
             {
@@ -287,7 +287,7 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            PorukaPokreti(brojMaersk, brojMSC);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA);
 
             // upisan novi zapis: polja sada prikazuju njega, pa sledeće 'Promeni' menja taj zapis
             if (id <= 0)
@@ -392,10 +392,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk, brojMSC;
+            int brojMaersk, brojMSC, brojCMA;
             try
             {
-                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC);
+                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA);
             }
             catch (Exception ex)
             {
@@ -403,7 +403,7 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            PorukaPokreti(brojMaersk, brojMSC);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA);
             UcitajPodatke();
         }
 
@@ -420,10 +420,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk, brojMSC;
+            int brojMaersk, brojMSC, brojCMA;
             try
             {
-                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC);
+                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA);
             }
             catch (Exception ex)
             {
@@ -432,7 +432,7 @@ namespace Saobracaj.RNI
             }
 
             StatusZaUnosNovog = false;
-            PorukaPokreti(brojMaersk, brojMSC);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA);
             UcitajPodatke();
         }
 
@@ -442,9 +442,12 @@ namespace Saobracaj.RNI
             MessageBox.Show("Štampa potvrde još nije napravljena.", "Štampaj potvrdu", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk / TerminalPrivMSC
-        private static void PorukaPokreti(int brojMaersk, int brojMSC)
+        // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk / TerminalPrivMSC / TerminalPrivCMA
+        private static void PorukaPokreti(int brojMaersk, int brojMSC, int brojCMA)
         {
+            if (brojCMA > 0)
+                MessageBox.Show("Upisaću u tabelu TerminalPrivCMA (broj pokreta: " + brojCMA + ").",
+                    "CMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (brojMaersk > 0)
                 MessageBox.Show("Upisaću u tabelu TerminalPrivMaersk (broj pokreta: " + brojMaersk + ").",
                     "Maersk", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -873,6 +876,14 @@ namespace Saobracaj.RNI
                 IzvestajMaersk();
             else if (izbor == 2)
                 IzvestajMSC();
+            else if (izbor == 3)
+                IzvestajCMA();
+        }
+
+        private void IzvestajCMA()
+        {
+            var izvoz = new TerminalPrivCMAIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+            IzvozPokreta("CMA", izvoz.UcitajNeizvezene, TerminalPrivCMAIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
         private void IzvestajMaersk()

@@ -301,6 +301,157 @@ BEGIN
 END
 GO
 
+-- Pokreti CMA kontejnera (upisuje insTerminalPrivCMAPokreti pri dugmetu 'Promeni', izvozi 'Izveštaj CMA').
+-- ID je ID zapisa iz TerminalPriv; CMAID je ključ zapisa. RB je redni broj u sledećem Excel fajlu
+-- (broj još neizvezenih zapisa + 1).
+IF OBJECT_ID('dbo.TerminalPrivCMA', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.TerminalPrivCMA
+    (
+        CMAID               int IDENTITY(1,1) NOT NULL,
+        ID                  int           NOT NULL,
+        [RB]                int           NULL,
+        [CONTAINER STATUS]  nvarchar(30)  NULL,
+        [opis]              nvarchar(60)  NULL,
+        [MOVE TYPE]         nvarchar(30)  NULL,
+        [CONTAINER NUMBER]  nvarchar(30)  NULL,
+        [Size]              nvarchar(30)  NULL,
+        [Type]              nvarchar(30)  NULL,
+        [S/T]               nvarchar(30)  NULL,
+        [ISO CODE]          nvarchar(30)  NULL,
+        [EXPORT / IMPORT]   nvarchar(30)  NULL,
+        [FULL/EMPTY]        nvarchar(30)  NULL,
+        [BOOKING NUMBER]    nvarchar(30)  NULL,
+        [MOVE DATE/TIME]    nvarchar(30)  NULL,
+        [TRANSPORT]         nvarchar(30)  NULL,
+        [Active]            int           NOT NULL CONSTRAINT DF_TerminalPrivCMA_Active DEFAULT (0),
+        [DatumIzvoza]       datetime      NULL,
+        CONSTRAINT PK_TerminalPrivCMA PRIMARY KEY CLUSTERED (CMAID)
+    );
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivCMA_Active' AND object_id = OBJECT_ID('dbo.TerminalPrivCMA'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivCMA_Active ON dbo.TerminalPrivCMA (Active);
+GO
+
+-- Upis pokreta CMA kontejnera u TerminalPrivCMA (pozivaju insTerminalPriv i updTerminalPriv), po istom principu
+-- kao insTerminalPrivMaerskPokreti: pokret se upisuje samo ako za datum koji je prešao iz NULL u popunjen postoji pravilo.
+IF OBJECT_ID('dbo.insTerminalPrivCMAPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivCMAPokreti;
+GO
+CREATE PROCEDURE dbo.insTerminalPrivCMAPokreti
+    @ID int,
+    @KONTEJNER nvarchar(30),
+    @BRODAR nvarchar(30) = NULL,
+    @VRSTA nvarchar(30) = NULL,
+    @VOZ_KAMION nvarchar(30) = NULL,
+    @GATE_IN_GATE_OUT nvarchar(50) = NULL,
+    @OTPREMA nvarchar(30) = NULL,
+    @BOOKING_IZVOZ nvarchar(30) = NULL,
+    @BL_UVOZ nvarchar(30) = NULL,
+    @GATE_IN_E_F datetime = NULL,
+    @PREUZIMANJE_PUNOG_RAZVOZ datetime = NULL,
+    @VRACANJE_PRAZNOG_IZ_RAZVOZA datetime = NULL,
+    @KONACNI_GATE_OUT datetime = NULL,
+    @GATE_OUT_EMPTY_UTOVAR datetime = NULL,
+    @GATE_IN_FULL_SA_UTOVARA datetime = NULL,
+    @StariGateInEF datetime = NULL,
+    @StariPreuzimanje datetime = NULL,
+    @StariVracanje datetime = NULL,
+    @StariKonacni datetime = NULL,
+    @StariGateOutEmpty datetime = NULL,
+    @StariGateInFull datetime = NULL,
+    @BrojUpisanih int = NULL OUTPUT   -- broj upisanih pokreta (za poruku u formi)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @BrojUpisanih = 0;
+
+    -- brodar mora biti CMA
+    IF UPPER(ISNULL(@BRODAR, N'')) NOT LIKE N'%CMA%'
+        RETURN;
+
+    DECLARE @Booking nvarchar(30) = NULLIF(LTRIM(RTRIM(@BOOKING_IZVOZ)), N'');
+    DECLARE @BL nvarchar(30) = NULLIF(LTRIM(RTRIM(@BL_UVOZ)), N'');
+    DECLARE @ImaOtpremu bit = CASE WHEN LTRIM(RTRIM(ISNULL(@OTPREMA, N''))) <> N'' THEN 1 ELSE 0 END;
+    DECLARE @ImaBooking bit = CASE WHEN @Booking IS NOT NULL THEN 1 ELSE 0 END;
+    DECLARE @ImaBL bit = CASE WHEN @BL IS NOT NULL THEN 1 ELSE 0 END;
+    -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
+    DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
+
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera, Type = ostatak posle razmaka
+    DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(LEFT(@VrstaCnt, 3), N'');
+    DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
+    DECLARE @Iso nvarchar(30) =
+        (SELECT i.Iso FROM (VALUES
+            (N'20''', N'DB', N'22G1'), (N'40''', N'DB', N'42G1'), (N'45''', N'HC', N'55G1'),
+            (N'20''', N'HC', N'25G1'), (N'40''', N'HC', N'45G1'), (N'20''', N'OT', N'22U1'),
+            (N'40''', N'FLAT', N'49P3'), (N'40''', N'RF', N'45H0')
+         ) i (Size, Type, Iso)
+         WHERE i.Size = @Size AND i.Type = @Type);
+
+    -- RB: nastavlja se na broj još neizvezenih zapisa
+    DECLARE @Aktivnih int = (SELECT COUNT(*) FROM dbo.TerminalPrivCMA WHERE Active <> 1);
+
+    INSERT INTO dbo.TerminalPrivCMA
+        (ID, [RB], [CONTAINER STATUS], [opis], [MOVE TYPE], [CONTAINER NUMBER], [Size], [Type], [S/T], [ISO CODE],
+         [EXPORT / IMPORT], [FULL/EMPTY], [BOOKING NUMBER], [MOVE DATE/TIME], [TRANSPORT])
+    SELECT
+        @ID,
+        @Aktivnih + ROW_NUMBER() OVER (ORDER BY n.Vrednost, n.Redosled),
+        p.ContainerStatus,
+        p.Opis,
+        p.MoveType,
+        @KONTEJNER,
+        @Size,
+        @Type,
+        CASE WHEN @Size IS NOT NULL AND @Type IS NOT NULL THEN @Size + N'-' + @Type END,   -- 20'-DB
+        @Iso,
+        p.ExportImport,
+        p.FullEmpty,
+        CASE p.BkngIz WHEN 'B' THEN @Booking WHEN 'L' THEN @BL END,
+        CONVERT(nvarchar(10), n.Vrednost, 104) + N'. ' + LEFT(CONVERT(nvarchar(8), n.Vrednost, 108), 5),   -- 08.10.2026. 22:54
+        p.Transport
+    FROM (VALUES
+        -- datum koji je prešao iz NULL u popunjen
+        ('GATE_IN_EF', @GATE_IN_E_F, @StariGateInEF, 1),
+        ('PREUZIMANJE', @PREUZIMANJE_PUNOG_RAZVOZ, @StariPreuzimanje, 2),
+        ('VRACANJE', @VRACANJE_PRAZNOG_IZ_RAZVOZA, @StariVracanje, 3),
+        ('KONACNI', @KONACNI_GATE_OUT, @StariKonacni, 4),
+        ('GATE_OUT_EMPTY', @GATE_OUT_EMPTY_UTOVAR, @StariGateOutEmpty, 5),
+        ('GATE_IN_FULL', @GATE_IN_FULL_SA_UTOVARA, @StariGateInFull, 6)
+    ) n (Polje, Vrednost, Stara, Redosled)
+    INNER JOIN (VALUES
+        -- pravila: Otprema/Booking/BL/Kamion = 1 ima (KAMION), 0 nema (nije KAMION), NULL svejedno;
+        -- BkngIz B = Booking/Izvoz, L = BL/Uvoz
+        --  #    Polje            GATE_IN/_GATE_OUT  Otpr  Book  BL    Kam   Status  Opis                                       Move Type    Exp/Imp     Full/Empty  BkngIz  Transport
+        (1,  'KONACNI',      N'GATE OUT F', 1,    1,    NULL, NULL, N'TPF', N'UKRCAJ PUNOG NA VOZ',                    N'GATE OUT', N'EXPORT', N'FULL',  'B', N'RAIL'),
+        (2,  'GATE_IN_EF',   N'GATE IN F',  0,    1,    NULL, NULL, N'IIT', N'POVRATAK PUNOG KONTEJNERA NA TERMINAL',  N'GATE IN',  N'EXPORT', N'FULL',  'B', N'TRUCK'),
+        (3,  'GATE_IN_FULL', N'GATE IN F',  0,    1,    NULL, NULL, N'IIT', N'POVRATAK PUNOG KONTEJNERA NA TERMINAL',  N'GATE IN',  N'EXPORT', N'FULL',  'B', N'TRUCK'),
+        (4,  'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    0,    N'IRI', N'DOLAZAK PUNOG NA TERMINAL',              N'GATE IN',  N'IMPORT', N'FULL',  'L', N'RAIL'),
+        (5,  'PREUZIMANJE',  N'GATE OUT F', 0,    0,    1,    NULL, N'IFC', N'PREUZIMANJE PUNOG SA TERMINALA',         N'GATE OUT', N'IMPORT', N'FULL',  'L', N'TRUCK'),
+        (6,  'KONACNI',      N'GATE OUT F', 0,    0,    1,    NULL, N'IFC', N'PREUZIMANJE PUNOG SA TERMINALA',         N'GATE OUT', N'IMPORT', N'FULL',  'L', N'TRUCK'),
+        (7,  'GATE_IN_EF',   N'GATE IN E',  0,    0,    0,    1,    N'MEA', N'DOLAZAK PRAZNOG NA TERMINAL',            N'GATE IN',  N'EXPORT', N'EMPTY', 'L', N'TRUCK'),
+        (8,  'VRACANJE',     N'GATE IN E',  0,    0,    1,    NULL, N'MEA', N'POVRATAK PRAZNOG NA TERMINAL',           N'GATE IN',  N'IMPORT', N'EMPTY', 'L', N'TRUCK'),
+        (9,  'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    0,    N'MEA', N'DOLAZAK PRAZNOG NA TERMINAL VOZ',        N'GATE IN',  N'IMPORT', N'EMPTY', 'L', N'RAIL'),
+        (10, 'KONACNI',      N'GATE OUT F', 0,    1,    NULL, NULL, N'TPF', N'UKRCAJ PUNOG NA KAMION',                 N'GATE OUT', N'EXPORT', N'FULL',  'B', N'TRUCK'),
+        (11, 'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    1,    N'IRI', N'DOLAZAK PUNOG NA TERMINAL',              N'GATE IN',  N'IMPORT', N'FULL',  'L', N'TRUCK')
+    ) p (Slucaj, Polje, Gate, Otprema, Booking, BL, Kamion, ContainerStatus, Opis, MoveType, ExportImport, FullEmpty, BkngIz, Transport)
+        ON p.Polje = n.Polje
+       AND p.Gate = @GATE_IN_GATE_OUT
+       AND (p.Otprema IS NULL OR p.Otprema = @ImaOtpremu)
+       AND (p.Booking IS NULL OR p.Booking = @ImaBooking)
+       AND (p.BL IS NULL OR p.BL = @ImaBL)
+       AND (p.Kamion IS NULL OR p.Kamion = @Kamion)
+    WHERE n.Stara IS NULL AND n.Vrednost IS NOT NULL
+    ORDER BY n.Vrednost, n.Redosled;   -- hronoloski
+
+    SET @BrojUpisanih = @@ROWCOUNT;
+END
+GO
+
 -- kolona BELEŠKA (oktobar 2026) za tabelu kreiranu pre njenog dodavanja
 IF COL_LENGTH(N'dbo.TerminalPriv', N'BELEŠKA') IS NULL
     ALTER TABLE dbo.TerminalPriv ADD [BELEŠKA] nvarchar(300) NULL;
@@ -343,7 +494,8 @@ CREATE PROCEDURE dbo.insTerminalPriv
     @BELESKA nvarchar(300) = NULL,
     @ZapisiMaersk bit = 0,  -- 1 = novi zapis dugmetom 'Promeni' posle 'Novi': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
-    @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
+    @BrojMSC int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivMSC
+    @BrojCMA int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivCMA
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -375,6 +527,15 @@ BEGIN
             @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
             @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
             @BrojUpisanih = @BrojMSC OUTPUT;
+
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivCMAPokreti
+            @ID = @NoviID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @VRSTA = @VRSTA, @VOZ_KAMION = @VOZ_KAMION,
+            @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT, @OTPREMA = @OTPREMA, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @BL_UVOZ = @BL_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
+            @BrojUpisanih = @BrojCMA OUTPUT;
 
     SELECT @NoviID AS ID;
 END
@@ -418,7 +579,8 @@ CREATE PROCEDURE dbo.updTerminalPriv
     @BELESKA nvarchar(300) = NULL,
     @ZapisiMaersk bit = 0,  -- 1 = izmena dugmetom 'Promeni': upis pokreta u TerminalPrivMaersk i TerminalPrivMSC
     @BrojMaersk int = 0 OUTPUT,  -- broj upisanih pokreta u TerminalPrivMaersk
-    @BrojMSC int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivMSC
+    @BrojMSC int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivMSC
+    @BrojCMA int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivCMA
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -492,6 +654,17 @@ BEGIN
             @StariGateInEF = @StariGateInEF, @StariPreuzimanje = @StariPreuzimanje, @StariVracanje = @StariVracanje,
             @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull,
             @BrojUpisanih = @BrojMSC OUTPUT;
+
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivCMAPokreti
+            @ID = @ID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @VRSTA = @VRSTA, @VOZ_KAMION = @VOZ_KAMION,
+            @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT, @OTPREMA = @OTPREMA, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @BL_UVOZ = @BL_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
+            @StariGateInEF = @StariGateInEF, @StariPreuzimanje = @StariPreuzimanje, @StariVracanje = @StariVracanje,
+            @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull,
+            @BrojUpisanih = @BrojCMA OUTPUT;
 END
 GO
 
