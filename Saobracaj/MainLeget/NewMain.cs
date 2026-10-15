@@ -1197,7 +1197,7 @@ namespace Saobracaj
             ShowChild(new Intermodalni1(), true, true);
             splitContainer3.Panel2.Show();
             lblNaslov.Text = "Intermodalni terminal";
-            BackColorKliknut(6);
+            BackColorKliknut(16);
         }
 
         private void lblNaslov_Click(object sender, EventArgs e)
