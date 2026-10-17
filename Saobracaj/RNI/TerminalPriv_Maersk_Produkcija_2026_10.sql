@@ -253,7 +253,10 @@ BEGIN
         ('4.6', 'KONACNI',      N'GATE OUT F', 0,    0,    1,    N'ICO', N'FULL',  0, 1),
         ('4.7', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    0,    N'MCY', N'EMPTY', 0, 0),
         ('4.8', 'VRACANJE',     N'GATE IN E',  0,    0,    1,    N'MCY', N'EMPTY', 0, 0),
-        ('4.9', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MPI', N'EMPTY', 0, 1)
+        ('4.9', 'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    N'MPI', N'EMPTY', 0, 1),
+        ('4.10', 'KONACNI',     N'GATE OUT E', 1,    1,    NULL, N'MPO', N'EMPTY', 1, 0),
+        ('4.11', 'KONACNI',     N'GATE OUT E', 0,    1,    NULL, N'MSH', N'EMPTY', 1, 0),
+        ('4.12', 'GATE_OUT_EMPTY', N'GATE OUT E', 0, 1,    NULL, N'MSH', N'EMPTY', 1, 0)
     ) p (Slucaj, Polje, Gate, Otprema, Booking, BL, ContainerStatus, FullEmpty, BookingUpis, BLUpis)
         ON p.Polje = n.Polje
        AND p.Gate = @GATE_IN_GATE_OUT
