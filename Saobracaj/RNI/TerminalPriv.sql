@@ -440,7 +440,10 @@ BEGIN
         (8,  'VRACANJE',     N'GATE IN E',  0,    0,    1,    NULL, N'MEA', N'POVRATAK PRAZNOG NA TERMINAL',           N'GATE IN',  N'IMPORT', N'EMPTY', 'L', N'TRUCK'),
         (9,  'GATE_IN_EF',   N'GATE IN E',  0,    0,    1,    0,    N'MEA', N'DOLAZAK PRAZNOG NA TERMINAL VOZ',        N'GATE IN',  N'IMPORT', N'EMPTY', 'L', N'RAIL'),
         (10, 'KONACNI',      N'GATE OUT F', 0,    1,    NULL, NULL, N'TPF', N'UKRCAJ PUNOG NA KAMION',                 N'GATE OUT', N'EXPORT', N'FULL',  'B', N'TRUCK'),
-        (11, 'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    1,    N'IRI', N'DOLAZAK PUNOG NA TERMINAL',              N'GATE IN',  N'IMPORT', N'FULL',  'L', N'TRUCK')
+        (11, 'GATE_IN_EF',   N'GATE IN F',  0,    0,    1,    1,    N'IRI', N'DOLAZAK PUNOG NA TERMINAL',              N'GATE IN',  N'IMPORT', N'FULL',  'L', N'TRUCK'),
+        (12, 'KONACNI',      N'GATE OUT E', 1,    1,    NULL, NULL, N'MIT', N'REPOZICIONIRANJE',                       N'GATE OUT', N'EXPORT', N'EMPTY', 'B', N'RAIL'),
+        (13, 'KONACNI',      N'GATE OUT E', 0,    1,    NULL, NULL, N'MOS', N'PREUZIMANJE PRAZNOG S TERMINALA',        N'GATE OUT', N'EXPORT', N'EMPTY', 'B', N'TRUCK'),
+        (14, 'GATE_OUT_EMPTY', N'GATE OUT E', 0,  1,    NULL, NULL, N'MOS', N'PREUZIMANJE PRAZNOG S TERMINALA',        N'GATE OUT', N'EXPORT', N'EMPTY', 'B', N'TRUCK')
     ) p (Slucaj, Polje, Gate, Otprema, Booking, BL, Kamion, ContainerStatus, Opis, MoveType, ExportImport, FullEmpty, BkngIz, Transport)
         ON p.Polje = n.Polje
        AND p.Gate = @GATE_IN_GATE_OUT
