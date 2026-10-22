@@ -1,7 +1,7 @@
-﻿-- PRODUKCIJA (oktobar 2026): Terminal privremeni - Maersk, MSC, CMA, OOCL i HMM pokreti, kolona BELEŠKA, šifarnik VRSTA.
--- 1. Tabele TerminalPrivMaersk, TerminalPrivMSC, TerminalPrivCMA, TerminalPrivOOCL i TerminalPrivHMM sa indeksima (ako ne
---    postoje), procedure insTerminalPrivMaerskPokreti, insTerminalPrivMSCPokreti, insTerminalPrivCMAPokreti,
---    insTerminalPrivOOCLPokreti, insTerminalPrivHMMPokreti, insTerminalPriv i updTerminalPriv.
+﻿-- PRODUKCIJA (oktobar 2026): Terminal privremeni - Maersk, MSC, CMA, OOCL, HMM i HAPAG pokreti, kolona BELEŠKA, šifarnik VRSTA.
+-- 1. Tabele TerminalPrivMaersk, TerminalPrivMSC, TerminalPrivCMA, TerminalPrivOOCL, TerminalPrivHMM i TerminalPrivHAPAG sa
+--    indeksima (ako ne postoje), procedure insTerminalPrivMaerskPokreti, insTerminalPrivMSCPokreti, insTerminalPrivCMAPokreti,
+--    insTerminalPrivOOCLPokreti, insTerminalPrivHMMPokreti, insTerminalPrivHAPAGPokreti, insTerminalPriv i updTerminalPriv.
 -- 2. Kolona BELEŠKA u TerminalPriv i TerminalPrivArhiv, procedura InsertTerminalPrivArhiv i log trigger trg_TerminalPriv_Log.
 -- 3. VRSTA u TerminalPriv se prevodi u oblik iz šifarnika (40'HC -> 40' HC); na kraju se prikazuju vrednosti za ručnu ispravku.
 -- Skripta se može pustiti više puta. Pre pokretanja izabrati produkcionu bazu. Pustiti PRE instalacije nove verzije programa.
@@ -716,6 +716,139 @@ BEGIN
 END
 GO
 
+-- Pokreti HAPAG kontejnera (upisuje insTerminalPrivHAPAGPokreti pri dugmetu 'Promeni', izvozi 'Izveštaj HAPAG').
+-- ID je ID zapisa iz TerminalPriv; HAPAGID je ključ zapisa.
+IF OBJECT_ID('dbo.TerminalPrivHAPAG', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.TerminalPrivHAPAG
+    (
+        HAPAGID             int IDENTITY(1,1) NOT NULL,
+        ID                  int           NOT NULL,
+        [Container]         nvarchar(30)  NULL,
+        [Type]              nvarchar(30)  NULL,
+        [Size]              nvarchar(30)  NULL,
+        [Full/Empty]        nvarchar(30)  NULL,
+        [Booking number]    nvarchar(30)  NULL,
+        [1st MOVE]          nvarchar(30)  NULL,
+        [DATE OF THE MOVE]  nvarchar(30)  NULL,
+        [PLOMBA]            nvarchar(30)  NULL,
+        [Active]            int           NOT NULL CONSTRAINT DF_TerminalPrivHAPAG_Active DEFAULT (0),
+        [DatumIzvoza]       datetime      NULL,
+        CONSTRAINT PK_TerminalPrivHAPAG PRIMARY KEY CLUSTERED (HAPAGID)
+    );
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivHAPAG_Active' AND object_id = OBJECT_ID('dbo.TerminalPrivHAPAG'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivHAPAG_Active ON dbo.TerminalPrivHAPAG (Active);
+GO
+
+-- Upis pokreta HAPAG kontejnera u TerminalPrivHAPAG (pozivaju insTerminalPriv i updTerminalPriv), po istom principu
+-- kao insTerminalPrivHMMPokreti: pokret se upisuje samo ako za datum koji je prešao iz NULL u popunjen postoji pravilo.
+IF OBJECT_ID('dbo.insTerminalPrivHAPAGPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivHAPAGPokreti;
+GO
+CREATE PROCEDURE dbo.insTerminalPrivHAPAGPokreti
+    @ID int,
+    @KONTEJNER nvarchar(30),
+    @BRODAR nvarchar(30) = NULL,
+    @VRSTA nvarchar(30) = NULL,
+    @VOZ_KAMION nvarchar(30) = NULL,
+    @GATE_IN_GATE_OUT nvarchar(50) = NULL,
+    @BOOKING_IZVOZ nvarchar(30) = NULL,
+    @PLOMBA_IZVOZ nvarchar(30) = NULL,
+    @BL_UVOZ nvarchar(30) = NULL,
+    @PLOMBA_UVOZ nvarchar(30) = NULL,
+    @GATE_IN_E_F datetime = NULL,
+    @PREUZIMANJE_PUNOG_RAZVOZ datetime = NULL,
+    @VRACANJE_PRAZNOG_IZ_RAZVOZA datetime = NULL,
+    @KONACNI_GATE_OUT datetime = NULL,
+    @GATE_OUT_EMPTY_UTOVAR datetime = NULL,
+    @GATE_IN_FULL_SA_UTOVARA datetime = NULL,
+    @StariGateInEF datetime = NULL,
+    @StariPreuzimanje datetime = NULL,
+    @StariVracanje datetime = NULL,
+    @StariKonacni datetime = NULL,
+    @StariGateOutEmpty datetime = NULL,
+    @StariGateInFull datetime = NULL,
+    @BrojUpisanih int = NULL OUTPUT   -- broj upisanih pokreta (za poruku u formi)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SET @BrojUpisanih = 0;
+
+    -- brodar mora biti HAPAG
+    IF UPPER(ISNULL(@BRODAR, N'')) NOT LIKE N'%HAPAG%'
+        RETURN;
+
+    DECLARE @Booking nvarchar(30) = NULLIF(LTRIM(RTRIM(@BOOKING_IZVOZ)), N'');
+    DECLARE @PlombaIz nvarchar(30) = NULLIF(LTRIM(RTRIM(@PLOMBA_IZVOZ)), N'');
+    DECLARE @BL nvarchar(30) = NULLIF(LTRIM(RTRIM(@BL_UVOZ)), N'');
+    DECLARE @PlombaUv nvarchar(30) = NULLIF(LTRIM(RTRIM(@PLOMBA_UVOZ)), N'');
+    DECLARE @ImaBooking bit = CASE WHEN @Booking IS NOT NULL THEN 1 ELSE 0 END;
+    DECLARE @ImaPlombuIz bit = CASE WHEN @PlombaIz IS NOT NULL THEN 1 ELSE 0 END;
+    DECLARE @ImaBL bit = CASE WHEN @BL IS NOT NULL THEN 1 ELSE 0 END;
+    DECLARE @ImaPlombuUv bit = CASE WHEN @PlombaUv IS NOT NULL THEN 1 ELSE 0 END;
+    -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
+    DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
+
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera bez apostrofa (20), Type = ostatak posle razmaka
+    DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'');
+    DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
+
+    INSERT INTO dbo.TerminalPrivHAPAG
+        (ID, [Container], [Type], [Size], [Full/Empty], [Booking number], [1st MOVE], [DATE OF THE MOVE], [PLOMBA])
+    SELECT
+        @ID,
+        @KONTEJNER,
+        @Type,
+        @Size,
+        p.FullEmpty,
+        CASE p.Upis WHEN 'I' THEN @Booking WHEN 'U' THEN @BL WHEN 'L' THEN @BL END,
+        p.Move,
+        CONVERT(nvarchar(10), n.Vrednost, 104) + N'.',   -- 08.10.2026.
+        CASE p.Upis WHEN 'I' THEN @PlombaIz WHEN 'U' THEN @PlombaUv END
+    FROM (VALUES
+        -- datum koji je prešao iz NULL u popunjen
+        ('GATE_IN_EF', @GATE_IN_E_F, @StariGateInEF, 1),
+        ('PREUZIMANJE', @PREUZIMANJE_PUNOG_RAZVOZ, @StariPreuzimanje, 2),
+        ('VRACANJE', @VRACANJE_PRAZNOG_IZ_RAZVOZA, @StariVracanje, 3),
+        ('KONACNI', @KONACNI_GATE_OUT, @StariKonacni, 4),
+        ('GATE_OUT_EMPTY', @GATE_OUT_EMPTY_UTOVAR, @StariGateOutEmpty, 5),
+        ('GATE_IN_FULL', @GATE_IN_FULL_SA_UTOVARA, @StariGateInFull, 6)
+    ) n (Polje, Vrednost, Stara, Redosled)
+    INNER JOIN (VALUES
+        -- pravila: Booking/Plomba/BL = 1 ima, 0 nema, NULL svejedno; Kamion 1 = KAMION, 0 = nije KAMION; Otprema se ne gleda.
+        -- Upis: I = Booking i Plomba izvoz, U = BL i Plomba uvoz, L = samo BL, N = ništa.
+        -- Slučaj 2 iz specifikacije je isti kao 1, pa se ne ponavlja (slučaj 8 ne postoji u specifikaciji).
+        --  #    Polje              GATE_IN/_GATE_OUT  Book  PlIz  Kam   BL    PlUv  Full/Empty  Upis  1st MOVE
+        (1,  'KONACNI',        N'GATE OUT E', 1,    1,    NULL, NULL, NULL, N'EMPTY', 'I', N'GATE OUT'),
+        (3,  'GATE_OUT_EMPTY', N'GATE OUT E', 1,    1,    NULL, NULL, NULL, N'EMPTY', 'I', N'GATE OUT'),
+        (4,  'KONACNI',        N'GATE OUT F', 1,    1,    NULL, NULL, NULL, N'FULL',  'I', N'GATE OUT'),
+        (5,  'GATE_IN_EF',     N'GATE IN F',  1,    1,    NULL, NULL, NULL, N'FULL',  'I', N'GATE IN'),
+        (6,  'GATE_IN_FULL',   N'GATE IN F',  1,    1,    NULL, NULL, NULL, N'FULL',  'I', N'GATE IN'),
+        (7,  'GATE_IN_EF',     N'GATE IN F',  0,    0,    NULL, 1,    1,    N'FULL',  'U', N'GATE IN'),
+        (9,  'PREUZIMANJE',    N'GATE OUT F', 0,    0,    NULL, 1,    1,    N'FULL',  'U', N'GATE OUT'),
+        (10, 'KONACNI',        N'GATE OUT F', 0,    0,    NULL, 1,    1,    N'FULL',  'U', N'GATE OUT'),
+        (11, 'GATE_IN_EF',     N'GATE IN E',  NULL, NULL, 1,    NULL, NULL, N'EMPTY', 'N', N'GATE IN'),
+        (12, 'VRACANJE',       N'GATE IN E',  NULL, NULL, NULL, NULL, NULL, N'EMPTY', 'N', N'GATE IN'),
+        (13, 'GATE_IN_EF',     N'GATE IN E',  NULL, NULL, 0,    1,    NULL, N'EMPTY', 'L', N'GATE IN')
+    ) p (Slucaj, Polje, Gate, Booking, PlombaIz, Kamion, BL, PlombaUv, FullEmpty, Upis, Move)
+        ON p.Polje = n.Polje
+       AND p.Gate = @GATE_IN_GATE_OUT
+       AND (p.Booking IS NULL OR p.Booking = @ImaBooking)
+       AND (p.PlombaIz IS NULL OR p.PlombaIz = @ImaPlombuIz)
+       AND (p.Kamion IS NULL OR p.Kamion = @Kamion)
+       AND (p.BL IS NULL OR p.BL = @ImaBL)
+       AND (p.PlombaUv IS NULL OR p.PlombaUv = @ImaPlombuUv)
+    WHERE n.Stara IS NULL AND n.Vrednost IS NOT NULL
+    ORDER BY n.Vrednost, n.Redosled;   -- hronoloski
+
+    SET @BrojUpisanih = @@ROWCOUNT;
+END
+GO
+
 -- kolona BELEŠKA (oktobar 2026) za tabelu kreiranu pre njenog dodavanja
 IF COL_LENGTH(N'dbo.TerminalPriv', N'BELEŠKA') IS NULL
     ALTER TABLE dbo.TerminalPriv ADD [BELEŠKA] nvarchar(300) NULL;
@@ -762,7 +895,8 @@ CREATE PROCEDURE dbo.insTerminalPriv
     @BrojMSC int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivMSC
     @BrojCMA int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivCMA
     @BrojOOCL int = 0 OUTPUT,    -- broj upisanih pokreta u TerminalPrivOOCL
-    @BrojHMM int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivHMM
+    @BrojHMM int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivHMM
+    @BrojHAPAG int = 0 OUTPUT    -- broj upisanih pokreta u TerminalPrivHAPAG
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -824,6 +958,16 @@ BEGIN
             @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
             @BrojUpisanih = @BrojHMM OUTPUT;
 
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivHAPAGPokreti
+            @ID = @NoviID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @VRSTA = @VRSTA, @VOZ_KAMION = @VOZ_KAMION,
+            @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @PLOMBA_IZVOZ = @PLOMBA_IZVOZ,
+            @BL_UVOZ = @BL_UVOZ, @PLOMBA_UVOZ = @PLOMBA_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
+            @BrojUpisanih = @BrojHAPAG OUTPUT;
+
     SELECT @NoviID AS ID;
 END
 GO
@@ -870,7 +1014,8 @@ CREATE PROCEDURE dbo.updTerminalPriv
     @BrojMSC int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivMSC
     @BrojCMA int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivCMA
     @BrojOOCL int = 0 OUTPUT,    -- broj upisanih pokreta u TerminalPrivOOCL
-    @BrojHMM int = 0 OUTPUT      -- broj upisanih pokreta u TerminalPrivHMM
+    @BrojHMM int = 0 OUTPUT,     -- broj upisanih pokreta u TerminalPrivHMM
+    @BrojHAPAG int = 0 OUTPUT    -- broj upisanih pokreta u TerminalPrivHAPAG
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -979,6 +1124,18 @@ BEGIN
             @StariGateInEF = @StariGateInEF, @StariPreuzimanje = @StariPreuzimanje, @StariVracanje = @StariVracanje,
             @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull,
             @BrojUpisanih = @BrojHMM OUTPUT;
+
+    IF @ZapisiMaersk = 1
+        EXEC dbo.insTerminalPrivHAPAGPokreti
+            @ID = @ID, @KONTEJNER = @KONTEJNER, @BRODAR = @BRODAR, @VRSTA = @VRSTA, @VOZ_KAMION = @VOZ_KAMION,
+            @GATE_IN_GATE_OUT = @GATE_IN_GATE_OUT, @BOOKING_IZVOZ = @BOOKING_IZVOZ, @PLOMBA_IZVOZ = @PLOMBA_IZVOZ,
+            @BL_UVOZ = @BL_UVOZ, @PLOMBA_UVOZ = @PLOMBA_UVOZ,
+            @GATE_IN_E_F = @GATE_IN_E_F, @PREUZIMANJE_PUNOG_RAZVOZ = @PREUZIMANJE_PUNOG_RAZVOZ,
+            @VRACANJE_PRAZNOG_IZ_RAZVOZA = @VRACANJE_PRAZNOG_IZ_RAZVOZA, @KONACNI_GATE_OUT = @KONACNI_GATE_OUT,
+            @GATE_OUT_EMPTY_UTOVAR = @GATE_OUT_EMPTY_UTOVAR, @GATE_IN_FULL_SA_UTOVARA = @GATE_IN_FULL_SA_UTOVARA,
+            @StariGateInEF = @StariGateInEF, @StariPreuzimanje = @StariPreuzimanje, @StariVracanje = @StariVracanje,
+            @StariKonacni = @StariKonacni, @StariGateOutEmpty = @StariGateOutEmpty, @StariGateInFull = @StariGateInFull,
+            @BrojUpisanih = @BrojHAPAG OUTPUT;
 END
 GO
 
