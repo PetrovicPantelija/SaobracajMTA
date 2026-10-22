@@ -90,13 +90,13 @@ namespace Saobracaj.RNI
         // kontejner upisuje pokrete u TerminalPrivMaersk za popunjene datume
         public int InsTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
-            int brojMaersk, brojMSC, brojCMA, brojOOCL;
-            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL);
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM;
+            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM);
         }
 
-        // brojMaersk / brojMSC / brojCMA / brojOOCL = broj pokreta upisanih u TerminalPrivMaersk / TerminalPrivMSC /
-        // TerminalPrivCMA / TerminalPrivOOCL
-        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL)
+        // brojMaersk / brojMSC / brojCMA / brojOOCL / brojHMM = broj pokreta upisanih u TerminalPrivMaersk /
+        // TerminalPrivMSC / TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM
+        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL, out int brojHMM)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -115,6 +115,7 @@ namespace Saobracaj.RNI
             SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
             SqlParameter brojC = DodajParametarBroj(myCommand, "@BrojCMA");
             SqlParameter brojO = DodajParametarBroj(myCommand, "@BrojOOCL");
+            SqlParameter brojH = DodajParametarBroj(myCommand, "@BrojHMM");
 
             DodajParametreZaPolja(myCommand, red);
 
@@ -129,6 +130,7 @@ namespace Saobracaj.RNI
                 brojMSC = Broj(brojM);
                 brojCMA = Broj(brojC);
                 brojOOCL = Broj(brojO);
+                brojHMM = Broj(brojH);
                 return Convert.ToInt32(rezultat);
             }
             catch (SqlException ex)
@@ -146,13 +148,13 @@ namespace Saobracaj.RNI
         // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
         public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
-            int brojMaersk, brojMSC, brojCMA, brojOOCL;
-            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL);
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM;
+            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM);
         }
 
-        // brojMaersk / brojMSC / brojCMA / brojOOCL = broj pokreta upisanih u TerminalPrivMaersk / TerminalPrivMSC /
-        // TerminalPrivCMA / TerminalPrivOOCL
-        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL)
+        // brojMaersk / brojMSC / brojCMA / brojOOCL / brojHMM = broj pokreta upisanih u TerminalPrivMaersk /
+        // TerminalPrivMSC / TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM
+        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL, out int brojHMM)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -178,6 +180,7 @@ namespace Saobracaj.RNI
             SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
             SqlParameter brojC = DodajParametarBroj(myCommand, "@BrojCMA");
             SqlParameter brojO = DodajParametarBroj(myCommand, "@BrojOOCL");
+            SqlParameter brojH = DodajParametarBroj(myCommand, "@BrojHMM");
 
             DodajParametreZaPolja(myCommand, red);
 
@@ -192,6 +195,7 @@ namespace Saobracaj.RNI
                 brojMSC = Broj(brojM);
                 brojCMA = Broj(brojC);
                 brojOOCL = Broj(brojO);
+                brojHMM = Broj(brojH);
             }
             catch (SqlException ex)
             {
@@ -410,7 +414,7 @@ namespace Saobracaj.RNI
             }
         }
 
-        // Izlazni parametar procedure sa brojem upisanih pokreta brodara (@BrojMaersk, @BrojMSC, @BrojCMA, @BrojOOCL)
+        // Izlazni parametar procedure sa brojem upisanih pokreta brodara (@BrojMaersk, @BrojMSC, @BrojCMA, @BrojOOCL, @BrojHMM)
         private static SqlParameter DodajParametarBroj(SqlCommand myCommand, string naziv)
         {
             SqlParameter parameter = new SqlParameter();
