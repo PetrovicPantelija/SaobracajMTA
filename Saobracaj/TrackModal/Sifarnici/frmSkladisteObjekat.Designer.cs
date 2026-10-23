@@ -257,7 +257,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label1.Location = new System.Drawing.Point(32, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             //
             // txtSifra
             //
@@ -276,7 +276,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label3.Location = new System.Drawing.Point(32, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 16);
-            this.label3.Text = "Oznaka:";
+            this.label3.Text = "Šifra:";
             //
             // txtOznaka
             //
@@ -393,7 +393,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.chkAktivan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAktivan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.chkAktivan.ForeColor = System.Drawing.Color.Black;
-            this.chkAktivan.Location = new System.Drawing.Point(480, 193);
+            this.chkAktivan.Location = new System.Drawing.Point(480, 121);
             this.chkAktivan.Name = "chkAktivan";
             this.chkAktivan.Size = new System.Drawing.Size(64, 19);
             this.chkAktivan.TabIndex = 8;

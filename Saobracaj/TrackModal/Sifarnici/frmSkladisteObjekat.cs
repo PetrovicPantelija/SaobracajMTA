@@ -249,11 +249,11 @@ namespace Saobracaj.TrackModal.Sifarnici
             PodesiDatagridView(dataGridView1);
 
             Kolona("ID", "ID", 50);
-            Kolona("Oznaka", "Oznaka", 100);
+            Kolona("Oznaka", "Šifra", 100);
             Kolona("Naziv", "Naziv", 220);
-            Kolona("LokacijaOznaka", "Lokacija oznaka", 100);
+            Kolona("LokacijaOznaka", "Lokacija šifra", 100);
             Kolona("Lokacija", "Lokacija naziv", 200);
-            Kolona("ZonaOznaka", "Zona oznaka", 90);
+            Kolona("ZonaOznaka", "Zona šifra", 90);
             Kolona("TipObjekta", "Tip objekta", 140);
             Kolona("Aktivan", "Aktivan", 70);
             Kolona("Datum", "Datum", 120);

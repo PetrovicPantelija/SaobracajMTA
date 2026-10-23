@@ -225,7 +225,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 128;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // txtKapacitet
             // 
@@ -393,7 +393,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 15);
             this.label5.TabIndex = 474;
-            this.label5.Text = "Oznaka:";
+            this.label5.Text = "Šifra:";
             // 
             // txtSKNaziv
             // 

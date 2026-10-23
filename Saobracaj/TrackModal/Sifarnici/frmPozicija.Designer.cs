@@ -196,7 +196,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 135;
-            this.label2.Text = "Oznaka:";
+            this.label2.Text = "Šifra:";
             // 
             // txtSifra
             // 
@@ -215,7 +215,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 133;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // label6
             // 

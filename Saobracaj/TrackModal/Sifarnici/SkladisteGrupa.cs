@@ -320,11 +320,11 @@ namespace Saobracaj.TrackModal.Sifarnici
             }
 
             Kolona("ID", "ID", 50);
-            Kolona("Oznaka", "Oznaka", 80);
+            Kolona("Oznaka", "Šifra", 80);
             Kolona("Naziv", "Naziv", 200);
             Kolona("ZonaID", "Zona ID", 40);
             dataGridView1.Columns["ZonaID"].Visible = false;
-            Kolona("Zona_Oznaka", "Zona Oznaka", 80);
+            Kolona("Zona_Oznaka", "Zona šifra", 80);
             Kolona("Zona_Naziv", "Zona Naziv", 220);
             Kolona("Drzava", "Drzava", 120);
             Kolona("Grad", "Grad", 120);

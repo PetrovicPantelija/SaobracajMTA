@@ -333,7 +333,7 @@ namespace Testiranje.Sifarnici
             PodesiDatagridView(dataGridView1);
 
             Kolona("ID", "ID", 50);
-            Kolona("Oznaka", "Oznaka", 100);
+            Kolona("Oznaka", "Šifra", 100);
             Kolona("SkNaziv", "SkNaziv", 100);
             Kolona("Naziv", "Naziv", 250);
             Kolona("Polje", "Polje", 180);
@@ -429,7 +429,7 @@ namespace Testiranje.Sifarnici
             dataGridView1.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Oznaka";
+            dataGridView1.Columns[3].HeaderText = "Šifra";
             dataGridView1.Columns[3].Width = 50;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];

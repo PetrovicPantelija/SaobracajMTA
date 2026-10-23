@@ -272,7 +272,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 16);
             this.label3.TabIndex = 491;
-            this.label3.Text = "Oznaka:";
+            this.label3.Text = "Šifra:";
             // 
             // txtNaziv
             // 
@@ -310,7 +310,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 487;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // txtDrzava
             // 
@@ -356,7 +356,7 @@
             this.txtAdresa.Location = new System.Drawing.Point(466, 168);
             this.txtAdresa.Multiline = true;
             this.txtAdresa.Name = "txtAdresa";
-            this.txtAdresa.Size = new System.Drawing.Size(229, 74);
+            this.txtAdresa.Size = new System.Drawing.Size(229, 55);
             this.txtAdresa.TabIndex = 499;
             // 
             // label7
@@ -573,7 +573,7 @@
             this.lblNadredjeni.Font = new System.Drawing.Font("Arial", 9F);
             this.lblNadredjeni.Location = new System.Drawing.Point(98, 229);
             this.lblNadredjeni.Name = "lblNadredjeni";
-            this.lblNadredjeni.Size = new System.Drawing.Size(600, 22);
+            this.lblNadredjeni.Size = new System.Drawing.Size(340, 22);
             this.lblNadredjeni.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1

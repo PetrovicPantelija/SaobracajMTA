@@ -267,7 +267,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].HeaderText = "Šifra";
             dataGridView1.Columns[1].Width = 80;
 
 

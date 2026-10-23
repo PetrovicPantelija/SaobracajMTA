@@ -243,7 +243,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 477;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // txtOznaka
             // 
@@ -262,7 +262,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 16);
             this.label3.TabIndex = 482;
-            this.label3.Text = "Oznaka:";
+            this.label3.Text = "Šifra:";
             // 
             // cboTipZoneID
             // 

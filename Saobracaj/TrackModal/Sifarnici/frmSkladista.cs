@@ -274,21 +274,24 @@ namespace Testiranje.Sifarnici
             kolona.Width = sirina;
         }
 
-        // Tip objekta određuje koja su polja aktivna: KONTEJNERSKO - vrsta i kvalitet kontejnera (tip palete CNT),
-        // PALETNO - tip palete, SLOBODNO - ništa; zaključana polja dobijaju vrednost "/" (nema)
+        // Tip objekta određuje koja se polja vide: KONTEJNERSKO - vrsta i kvalitet kontejnera (tip palete CNT),
+        // PALETNO - tip palete, SLOBODNO - ništa; skrivena polja dobijaju vrednost "/" (nema).
+        // Naziv tipa se poredi po početku reči ("KONT", jer je u šifarniku upisano "KONTJENRSKO SKLADIŠTE").
         private void PrimeniTipObjekta(int objekatId)
         {
             string tip = objekatId == 0 ? "" : Convert.ToString(HijerarhijaSkladista.Skalar(
                 "SELECT ts.Naziv FROM dbo.SkladisteObjekat o INNER JOIN dbo.TipSkladista ts ON ts.ID = o.TipSkladistaID WHERE o.ID = @ID",
                 HijerarhijaSkladista.Param("@ID", objekatId))).ToUpperInvariant();
-            bool kontejnersko = tip.Contains("KONTEJN");
+            bool kontejnersko = tip.Contains("KONT");
             bool paletno = tip.Contains("PALET");
             bool slobodno = tip.Contains("SLOBOD");
             bool poznat = kontejnersko || paletno || slobodno;
 
-            cboTipKontejnera.Enabled = kontejnersko || !poznat;
-            cboKvalitet.Enabled = kontejnersko || !poznat;
-            cboTipPalete.Enabled = paletno || !poznat;
+            bool vidiKontejner = kontejnersko || !poznat;
+            bool vidiPalete = paletno || !poznat;
+            label7.Visible = cboTipKontejnera.Visible = vidiKontejner;
+            label21.Visible = cboKvalitet.Visible = vidiKontejner;
+            label8.Visible = cboTipPalete.Visible = vidiPalete;
 
             if (kontejnersko)
                 IzaberiPoNazivu(cboTipPalete, "CNT");
@@ -388,13 +391,13 @@ namespace Testiranje.Sifarnici
             PodesiDatagridView(dataGridView1);
 
             Kolona("ID", "ID", 50);
-            Kolona("Oznaka", "Oznaka", 100);
+            Kolona("Oznaka", "Šifra", 100);
             Kolona("SkNaziv", "SkNaziv", 80);
             Kolona("Naziv", "Naziv", 200);
-            Kolona("ObjekatOznaka", "Objekat oznaka", 100);
+            Kolona("ObjekatOznaka", "Objekat šifra", 100);
             Kolona("Objekat", "Objekat naziv", 180);
             Kolona("TipObjekta", "Tip objekta", 120);
-            Kolona("LokacijaOznaka", "Lokacija oznaka", 100);
+            Kolona("LokacijaOznaka", "Lokacija šifra", 100);
             Kolona("Lokacija", "Lokacija", 180);
             Kolona("Brodar", "Brodar", 180);
             Kolona("TipKontejnera", "Tip kontejnera", 100);
