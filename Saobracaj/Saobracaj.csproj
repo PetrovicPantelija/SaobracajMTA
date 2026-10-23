@@ -3153,6 +3153,7 @@
     <Compile Include="RNI\TerminalPrivHMMIzvoz.cs" />
     <Compile Include="RNI\TerminalPrivHAPAGIzvoz.cs" />
     <Compile Include="RNI\TerminalPrivFLEXBOXIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivCOSCOIzvoz.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>

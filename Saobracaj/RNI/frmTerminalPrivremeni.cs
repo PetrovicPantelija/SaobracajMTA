@@ -29,7 +29,7 @@ namespace Saobracaj.RNI
             PovezKontrole();
             tabSplitterPage2.Leave += tabSplitterPage2_Leave;
 
-            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX" });
+            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX", "Izveštaj COSCO" });
             cboIzvestaji.SelectedIndex = 0;
 
             // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
@@ -273,13 +273,13 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX;
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO;
             try
             {
                 if (id > 0)
-                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX);   // isto kao Promeni
+                    new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);   // isto kao Promeni
                 else
-                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX);   // isto kao Promeni posle Novi
+                    red["ID"] = new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);   // isto kao Promeni posle Novi
             }
             catch (Exception ex)
             {
@@ -287,7 +287,7 @@ namespace Saobracaj.RNI
                 return false;
             }
 
-            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO);
 
             // upisan novi zapis: polja sada prikazuju njega, pa sledeće 'Promeni' menja taj zapis
             if (id <= 0)
@@ -392,10 +392,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX;
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO;
             try
             {
-                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX);
+                new insertTerminalPriv().UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
             }
             catch (Exception ex)
             {
@@ -403,7 +403,7 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO);
             UcitajPodatke();
         }
 
@@ -420,10 +420,10 @@ namespace Saobracaj.RNI
                 return;
             }
 
-            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX;
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO;
             try
             {
-                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX);
+                new insertTerminalPriv().InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
             }
             catch (Exception ex)
             {
@@ -432,7 +432,7 @@ namespace Saobracaj.RNI
             }
 
             StatusZaUnosNovog = false;
-            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX);
+            PorukaPokreti(brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO);
             UcitajPodatke();
         }
 
@@ -443,9 +443,12 @@ namespace Saobracaj.RNI
         }
 
         // Poruka samo kada su ispunjeni uslovi i pokret je upisan u TerminalPrivMaersk / TerminalPrivMSC /
-        // TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM / TerminalPrivHAPAG / TerminalPrivFLEXBOX
-        private static void PorukaPokreti(int brojMaersk, int brojMSC, int brojCMA, int brojOOCL, int brojHMM, int brojHAPAG, int brojFLEXBOX)
+        // TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM / TerminalPrivHAPAG / TerminalPrivFLEXBOX / TerminalPrivCOSCO
+        private static void PorukaPokreti(int brojMaersk, int brojMSC, int brojCMA, int brojOOCL, int brojHMM, int brojHAPAG, int brojFLEXBOX, int brojCOSCO)
         {
+            if (brojCOSCO > 0)
+                MessageBox.Show("Upisaću u tabelu TerminalPrivCOSCO (broj pokreta: " + brojCOSCO + ").",
+                    "COSCO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (brojFLEXBOX > 0)
                 MessageBox.Show("Upisaću u tabelu TerminalPrivFLEXBOX (broj pokreta: " + brojFLEXBOX + ").",
                     "FLEXBOX", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -899,6 +902,14 @@ namespace Saobracaj.RNI
                 IzvestajHAPAG();
             else if (izbor == 7)
                 IzvestajFLEXBOX();
+            else if (izbor == 8)
+                IzvestajCOSCO();
+        }
+
+        private void IzvestajCOSCO()
+        {
+            var izvoz = new TerminalPrivCOSCOIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+            IzvozPokreta("COSCO", izvoz.UcitajNeizvezene, TerminalPrivCOSCOIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
         private void IzvestajFLEXBOX()
