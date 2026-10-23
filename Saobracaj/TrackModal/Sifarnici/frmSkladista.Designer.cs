@@ -67,6 +67,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.lblNadredjeni = new System.Windows.Forms.Label();
             this.cboTipPalete = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -346,6 +347,7 @@
             // 
             // cboGrupaPolja
             // 
+            this.cboGrupaPolja.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGrupaPolja.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cboGrupaPolja.FormattingEnabled = true;
             this.cboGrupaPolja.Location = new System.Drawing.Point(299, 99);
@@ -362,7 +364,17 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 15);
             this.label4.TabIndex = 472;
-            this.label4.Text = "Lokacija:";
+            this.label4.Text = "Objekat:";
+            //
+            // lblNadredjeni
+            //
+            this.lblNadredjeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.lblNadredjeni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNadredjeni.Font = new System.Drawing.Font("Arial", 9F);
+            this.lblNadredjeni.Location = new System.Drawing.Point(900, 130);
+            this.lblNadredjeni.Name = "lblNadredjeni";
+            this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
+            this.lblNadredjeni.Size = new System.Drawing.Size(400, 150);
             // 
             // txtOznaka
             // 
@@ -584,6 +596,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1321, 628);
+            this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboTipPalete);
             this.Controls.Add(this.chkAktivna);
@@ -666,6 +679,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkAktivna;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblNadredjeni;
         private System.Windows.Forms.ComboBox cboTipPalete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button23;

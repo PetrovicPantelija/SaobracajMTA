@@ -179,6 +179,16 @@ namespace Saobracaj.TrackModal.Sifarnici
  int tmpAktivna = 0;
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
+
+            int id = status ? 0 : HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            string greska = HijerarhijaSkladista.ProveriOznaku(NivoSkladista.Zona, id, txtOznaka.Text)
+                ?? HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Zona, id, 0, tmpAktivna == 1);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (status == true)
             {
                 InsertZone ins = new InsertZone();
@@ -196,7 +206,14 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete, biće izbrisane i sve podredjene lokacije, polja i pozicije?", "Izbor", MessageBoxButtons.YesNo);
+            string greska = HijerarhijaSkladista.ProveriBrisanje(NivoSkladista.Zona, HijerarhijaSkladista.CeoBroj(txtSifra.Text));
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete zonu?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -371,6 +388,12 @@ namespace Saobracaj.TrackModal.Sifarnici
                 {
                     if (row.Selected)
                     {
+                        string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Zona, Convert.ToInt32(row.Cells[0].Value.ToString()), false);
+                        if (greska != null)
+                        {
+                            MessageBox.Show(row.Cells[1].Value + ": " + greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            continue;
+                        }
 
                         poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
                         // txtOpis.Text = row.Cells[1].Value.ToString();

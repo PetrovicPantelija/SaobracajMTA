@@ -157,6 +157,10 @@ namespace Saobracaj.TrackModal.Sifarnici
             dgv.ColumnHeadersHeight = 30;
         }
 
+        // Zone za izbor: aktivne FIZIČKE zone (i zona zapisa koji se menja)
+        DataView zone;
+        private const string FizickaZona = "TipZoneID IN (SELECT ID FROM dbo.TipZone WHERE Naziv LIKE N'FIZI%')";
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -167,6 +171,18 @@ namespace Saobracaj.TrackModal.Sifarnici
             txtAdresa.Text = "";
             txtGrad.Text = "";
             txtDrzava.Text = "";
+            txtPostanskiBroj.Text = "";
+            txtLatitude.Text = "";
+            txtLongitude.Text = "";
+            chkCarinsko.Checked = false;
+            cboCarinskaIspostava.SelectedIndex = -1;
+            txtCarinskaSifra.Text = "";
+            txtCarinskiNaziv.Text = "";
+            txtDrzalac.Text = "";
+            chkAktivna.Checked = true;
+            HijerarhijaSkladista.PostaviTrenutnog(zone, 0);
+            cboZonaID.SelectedIndex = -1;
+            lblNadredjeni.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -176,62 +192,113 @@ namespace Saobracaj.TrackModal.Sifarnici
             if (txtSifra.Text == "")
             {
                 status = true;
-              
+
             }
 
 
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
-            if (status == true)
+
+            int id = status ? 0 : HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            int zonaId = HijerarhijaSkladista.IzabraniId(cboZonaID);
+            decimal? lat = null, lon = null;
+
+            string greska = HijerarhijaSkladista.ProveriOznaku(NivoSkladista.Lokacija, id, txtOznaka.Text);
+            if (greska == null && txtNaziv.Text.Trim().Length == 0)
+                greska = "Unesite naziv lokacije.";
+            if (greska == null && zonaId == 0)
+                greska = "Izaberite zonu.";
+            if (greska == null && Convert.ToInt32(HijerarhijaSkladista.Skalar(
+                    "SELECT COUNT(*) FROM dbo.Zone WHERE ID = @ID AND " + FizickaZona, HijerarhijaSkladista.Param("@ID", zonaId))) == 0)
+                greska = "Lokacija može biti samo u FIZIČKOJ zoni.";
+            if (greska == null && !HijerarhijaSkladista.ProcitajKoordinatu(txtLatitude.Text, -90, 90, out lat))
+                greska = "Latitude mora biti broj između -90 i 90.";
+            if (greska == null && !HijerarhijaSkladista.ProcitajKoordinatu(txtLongitude.Text, -180, 180, out lon))
+                greska = "Longitude mora biti broj između -180 i 180.";
+            if (greska == null)
+                greska = HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Lokacija, id, zonaId, tmpAktivna == 1);
+            if (greska != null)
             {
-                InsertSkladistaGrupa ins = new InsertSkladistaGrupa();
-                ins.InsLokacija(txtNaziv.Text,txtOznaka.Text,  Convert.ToInt32(cboZonaID.SelectedValue), txtDrzava.Text, txtGrad.Text, txtAdresa.Text, tmpAktivna, Convert.ToInt32(cboTipSkladista.SelectedValue));
-                status = false;
+                MessageBox.Show(greska, "Lokacije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            // Tip skladišta se više ne unosi na lokaciji (prelazi na objekat); šalje se postojeća vrednost
+            int tipSkladista = HijerarhijaSkladista.IzabraniId(cboTipSkladista);
+
+            try
             {
-                if (txtSifra.Text == "")
-                { return; }
-                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                InsertSkladistaGrupa upd = new InsertSkladistaGrupa();
-                upd.UpdLokacija(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtOznaka.Text, Convert.ToInt32(cboZonaID.SelectedValue), txtDrzava.Text, txtGrad.Text, txtAdresa.Text, tmpAktivna, Convert.ToInt32(cboTipSkladista.SelectedValue));
+                if (status == true)
+                {
+                    InsertSkladistaGrupa ins = new InsertSkladistaGrupa();
+                    ins.InsLokacija(txtNaziv.Text, txtOznaka.Text, zonaId, txtDrzava.Text, txtGrad.Text, txtAdresa.Text, tmpAktivna, tipSkladista);
+                    id = HijerarhijaSkladista.IdPoOznaci(NivoSkladista.Lokacija, txtOznaka.Text);
+                    txtSifra.Text = id.ToString();
+                    status = false;
+                }
+                else
+                {
+                    InsertSkladistaGrupa upd = new InsertSkladistaGrupa();
+                    upd.UpdLokacija(id, txtNaziv.Text, txtOznaka.Text, zonaId, txtDrzava.Text, txtGrad.Text, txtAdresa.Text, tmpAktivna, tipSkladista);
+                }
+
+                bool carinsko = chkCarinsko.Checked;
+                HijerarhijaSkladista.Procedura("UpdateSkladistaGrupaDodatno",
+                    HijerarhijaSkladista.Param("@ID", id),
+                    HijerarhijaSkladista.ParamTekst("@PostanskiBroj", txtPostanskiBroj.Text, 10),
+                    HijerarhijaSkladista.ParamKoordinata("@Latitude", lat),
+                    HijerarhijaSkladista.ParamKoordinata("@Longitude", lon),
+                    HijerarhijaSkladista.Param("@CarinskoSkladiste", carinsko ? 1 : 0),
+                    HijerarhijaSkladista.Param("@CarinskaIspostavaID", carinsko && HijerarhijaSkladista.IzabraniId(cboCarinskaIspostava) > 0
+                        ? (object)HijerarhijaSkladista.IzabraniId(cboCarinskaIspostava) : null),
+                    HijerarhijaSkladista.ParamTekst("@CarinskaSifraSkladista", carinsko ? txtCarinskaSifra.Text : "", 30),
+                    HijerarhijaSkladista.ParamTekst("@CarinskiNazivSkladista", carinsko ? txtCarinskiNaziv.Text : "", 100),
+                    HijerarhijaSkladista.ParamTekst("@DrzalacSkladista", carinsko ? txtDrzalac.Text : "", 100),
+                    HijerarhijaSkladista.Param("@Datum", DateTime.Now),
+                    HijerarhijaSkladista.ParamTekst("@Korisnik", Kor, 20));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lokacije", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             RefreshDataGrid();
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete, brišu se i poljai pozicije?", "Izbor", MessageBoxButtons.YesNo);
+            int id = HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            if (id == 0)
+                return;
+
+            string greska = HijerarhijaSkladista.ProveriBrisanje(NivoSkladista.Lokacija, id);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Lokacije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete lokaciju?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
                 InsertSkladistaGrupa upd = new InsertSkladistaGrupa();
-                upd.DeleteLokacija(Convert.ToInt32(txtSifra.Text));
+                upd.DeleteLokacija(id);
                 RefreshDataGrid();
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
             }
         }
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT [SkladistaGrupa].[ID]      ,[SkladistaGrupa].[Oznaka]  as Oznaka     , [SkladistaGrupa].[Naziv]  as Naziv     ,[SkladistaGrupa].[ZonaID] " +
-"  	  , Zone.Oznaka as Zona_Oznaka, Zone.NAziv as Zona_Naziv     ,[SkladistaGrupa].[Drzava]      ,[SkladistaGrupa].[Grad]      ,[SkladistaGrupa].[Adresa] " +
-"      ,CASE WHEN SkladistaGrupa.Aktivna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, TipSkladista.Naziv as TipSkladista  FROM [dbo].[SkladistaGrupa] " +
-"       inner join Zone on Zone.ID = [SkladistaGrupa].[ZonaID]" +
-" inner join TipSkladista on SkladistaGrupa.TipSkladistaID = TipSkladista.ID  ";
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new System.Data.DataSet();
-            dataAdapter.Fill(ds);
+            var select = " SELECT g.ID, g.Oznaka, g.Naziv, g.ZonaID, z.Oznaka AS Zona_Oznaka, z.Naziv AS Zona_Naziv, g.Drzava, g.Grad, g.Adresa, g.PostanskiBroj, " +
+                " CASE WHEN g.Aktivna > 0 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END AS Aktivna, " +
+                " CASE WHEN g.CarinskoSkladiste = 1 THEN CAST(1 AS bit) ELSE CAST(0 AS bit) END AS CarinskoSkladiste, c.Naziv AS CarinskaIspostava " +
+                " FROM dbo.SkladistaGrupa g " +
+                " LEFT JOIN dbo.Zone z ON z.ID = g.ZonaID " +
+                " LEFT JOIN dbo.Carinarnice c ON c.ID = g.CarinskaIspostavaID " +
+                " ORDER BY g.ID";
             dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = HijerarhijaSkladista.Tabela(select);
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -252,121 +319,103 @@ namespace Saobracaj.TrackModal.Sifarnici
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             }
 
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-            
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Oznaka";
-            dataGridView1.Columns[1].Width = 80;
+            Kolona("ID", "ID", 50);
+            Kolona("Oznaka", "Oznaka", 80);
+            Kolona("Naziv", "Naziv", 200);
+            Kolona("ZonaID", "Zona ID", 40);
+            dataGridView1.Columns["ZonaID"].Visible = false;
+            Kolona("Zona_Oznaka", "Zona Oznaka", 80);
+            Kolona("Zona_Naziv", "Zona Naziv", 220);
+            Kolona("Drzava", "Drzava", 120);
+            Kolona("Grad", "Grad", 120);
+            Kolona("Adresa", "Adresa", 220);
+            Kolona("PostanskiBroj", "Poštanski broj", 90);
+            Kolona("Aktivna", "Aktivna", 70);
+            Kolona("CarinskoSkladiste", "Carinsko skladište", 90);
+            Kolona("CarinskaIspostava", "Carinska ispostava", 180);
+        }
 
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 200;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Zona ID";
-            dataGridView1.Columns[3].Width = 40;
-            dataGridView1.Columns[3].Visible = false;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Zona Oznaka";
-            dataGridView1.Columns[4].Width = 80;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Zona Naziv";
-            dataGridView1.Columns[5].Width = 280;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Drzava";
-            dataGridView1.Columns[6].Width = 150;
-
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Grad";
-            dataGridView1.Columns[7].Width = 150;
-
-            DataGridViewColumn column9= dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Adresa";
-            dataGridView1.Columns[8].Width = 250;
-
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Aktivna";
-            dataGridView1.Columns[9].Width = 80;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Tip skladista";
-            dataGridView1.Columns[10].Width = 180;
-
-
-
+        private void Kolona(string naziv, string naslov, int sirina)
+        {
+            DataGridViewColumn kolona = dataGridView1.Columns[naziv];
+            if (kolona == null)
+                return;
+            kolona.HeaderText = naslov;
+            kolona.Width = sirina;
         }
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection con = new SqlConnection(s_connection);
+            DataTable t = HijerarhijaSkladista.Tabela("SELECT * FROM dbo.SkladistaGrupa WHERE ID = @ID",
+                HijerarhijaSkladista.Param("@ID", HijerarhijaSkladista.CeoBroj(ID)));
+            if (t.Rows.Count == 0)
+                return;
+            DataRow dr = t.Rows[0];
 
-            con.Open();
+            txtNaziv.Text = dr["Naziv"].ToString();
+            txtOznaka.Text = dr["Oznaka"].ToString();
+            int zonaId = HijerarhijaSkladista.CeoBroj(dr["ZonaID"]);
+            HijerarhijaSkladista.PostaviTrenutnog(zone, zonaId);
+            cboZonaID.SelectedValue = zonaId;
+            txtDrzava.Text = dr["Drzava"].ToString();
+            txtGrad.Text = dr["Grad"].ToString();
+            txtAdresa.Text = dr["Adresa"].ToString();
+            chkAktivna.Checked = HijerarhijaSkladista.CeoBroj(dr["Aktivna"]) == 1;
+            cboTipSkladista.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["TipSkladistaID"]);
 
-            SqlCommand cmd = new SqlCommand("SELECT [SkladistaGrupa].[ID]      ,[SkladistaGrupa].[Naziv]  as Naziv     ,[SkladistaGrupa].[Oznaka]  as Oznaka     ,[SkladistaGrupa].[ZonaID]   ,[SkladistaGrupa].[Drzava]      ,[SkladistaGrupa].[Grad]      ,[SkladistaGrupa].[Adresa]      ,[SkladistaGrupa].[Aktivna], SkladistaGrupa.TipSkladistaID  FROM [dbo].[SkladistaGrupa] where ID=" + txtSifra.Text, con);
-            SqlDataReader dr = cmd.ExecuteReader();
+            txtPostanskiBroj.Text = dr["PostanskiBroj"].ToString();
+            txtLatitude.Text = HijerarhijaSkladista.KoordinataTekst(dr["Latitude"]);
+            txtLongitude.Text = HijerarhijaSkladista.KoordinataTekst(dr["Longitude"]);
+            chkCarinsko.Checked = HijerarhijaSkladista.CeoBroj(dr["CarinskoSkladiste"]) == 1;
+            int ispostava = HijerarhijaSkladista.CeoBroj(dr["CarinskaIspostavaID"]);
+            if (ispostava > 0)
+                cboCarinskaIspostava.SelectedValue = ispostava;
+            else
+                cboCarinskaIspostava.SelectedIndex = -1;
+            txtCarinskaSifra.Text = dr["CarinskaSifraSkladista"].ToString();
+            txtCarinskiNaziv.Text = dr["CarinskiNazivSkladista"].ToString();
+            txtDrzalac.Text = dr["DrzalacSkladista"].ToString();
 
-            while (dr.Read())
-            {
-                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
-
-                txtNaziv.Text = dr["Naziv"].ToString();
-                txtOznaka.Text = dr["Oznaka"].ToString();
-                cboZonaID.SelectedValue = Convert.ToInt32(dr["ZonaID"].ToString());
-                txtDrzava.Text = dr["Drzava"].ToString();
-                txtGrad.Text = dr["Grad"].ToString();
-                txtAdresa.Text = dr["Adresa"].ToString();
-                if (dr["Aktivna"].ToString() == "1")
-                {
-                    chkAktivna.Checked = true;
-                }
-                else
-                {
-                    chkAktivna.Checked = false;
-                }
-                cboTipSkladista.SelectedValue = Convert.ToInt32(dr["TipSkladistaID"].ToString());
-            }
-
-            con.Close();
+            lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Lokacija, zonaId);
         }
 
         private void FillCombo()
         {
-            SqlConnection conn = new SqlConnection(connection);
+            zone = HijerarhijaSkladista.ListaRoditelja(NivoSkladista.Zona, FizickaZona);
+            HijerarhijaSkladista.PoveziListu(cboZonaID, zone);
 
-            var dir = "Select ID,(Oznaka + ' ' + Naziv) as Naziv from Zone order by ID";
-            var dirAD = new SqlDataAdapter(dir, conn);
-            var dirDS = new System.Data.DataSet();
-            dirAD.Fill(dirDS);
-            cboZonaID.DataSource = dirDS.Tables[0];
-            cboZonaID.DisplayMember = "Naziv";
-            cboZonaID.ValueMember = "ID";
-
-
-            var dir2 = "Select ID,  Naziv from TipSkladista order by ID";
-            var dirAD2 = new SqlDataAdapter(dir2, conn);
-            var dirDS2 = new System.Data.DataSet();
-            dirAD2.Fill(dirDS2);
-            cboTipSkladista.DataSource = dirDS2.Tables[0];
+            cboTipSkladista.DataSource = HijerarhijaSkladista.Tabela("Select ID,  Naziv from TipSkladista order by ID");
             cboTipSkladista.DisplayMember = "Naziv";
             cboTipSkladista.ValueMember = "ID";
 
+            cboCarinskaIspostava.DataSource = HijerarhijaSkladista.Tabela("SELECT ID, Naziv FROM dbo.Carinarnice ORDER BY Naziv");
+            cboCarinskaIspostava.DisplayMember = "Naziv";
+            cboCarinskaIspostava.ValueMember = "ID";
+            cboCarinskaIspostava.SelectedIndex = -1;
         }
 
         private void SkladisteGrupa_Load(object sender, EventArgs e)
         {
             FillCombo();
-            
+            cboZonaID.SelectedIndexChanged += cboZonaID_SelectedIndexChanged;
+            chkCarinsko_CheckedChanged(chkCarinsko, EventArgs.Empty);
+
             RefreshDataGrid();
+        }
+
+        private void cboZonaID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Lokacija, HijerarhijaSkladista.IzabraniId(cboZonaID));
+        }
+
+        // Carinska polja se unose samo za carinsko skladište; pri snimanju bez čekiranja se prazne
+        private void chkCarinsko_CheckedChanged(object sender, EventArgs e)
+        {
+            bool carinsko = chkCarinsko.Checked;
+            cboCarinskaIspostava.Enabled = carinsko;
+            txtCarinskaSifra.Enabled = carinsko;
+            txtCarinskiNaziv.Enabled = carinsko;
+            txtDrzalac.Enabled = carinsko;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -378,8 +427,8 @@ namespace Saobracaj.TrackModal.Sifarnici
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
+                        status = false;
                         VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
             }
@@ -387,52 +436,52 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        // Aktivne / Neaktivne: menja aktivnost izabranih redova, uz pravila za zonu i podređene zapise
+        private void PromeniAktivnost(bool aktivan)
+        {
+            var greske = new System.Text.StringBuilder();
+            try
+            {
+                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (!row.Selected)
+                        continue;
+
+                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Lokacija, id, aktivan);
+                    if (greska != null)
+                    {
+                        greske.AppendLine(row.Cells[1].Value + ": " + greska);
+                        continue;
+                    }
+
+                    if (aktivan)
+                        poz.ProglasiAktivnim(id, 0);
+                    else
+                        poz.ProglasiNeAktivnim(id, 0);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+
+            if (greske.Length > 0)
+                MessageBox.Show(greske.ToString(), "Lokacije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            RefreshDataGrid();
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-
-                        poz.ProglasiAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            PromeniAktivnost(true);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-
-                        poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            PromeniAktivnost(false);
         }
 
         private void button2_Click(object sender, EventArgs e)

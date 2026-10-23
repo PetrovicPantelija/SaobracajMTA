@@ -108,6 +108,18 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
             );
         }
 
+        // Objekti se otvaraju kao Lokacije (u glavnom prozoru, uz proveru prava na karticu 'Objekti')
+        private void btnObjekti_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnObjekti.Text,
+                () => new TrackModal.Sifarnici.frmSkladisteObjekat()
+            );
+        }
+
         private void btnLogistikaIzvozaPM3_Click(object sender, EventArgs e)
         {
             FormCollection fc = Application.OpenForms;

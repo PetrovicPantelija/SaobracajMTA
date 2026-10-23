@@ -4444,6 +4444,13 @@
     <Compile Include="TrackModal\Sifarnici\InsertPredefinisanePoruke.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladista.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladistaGrupa.cs" />
+    <Compile Include="TrackModal\Sifarnici\HijerarhijaSkladista.cs" />
+    <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.Designer.cs">
+      <DependentUpon>frmSkladisteObjekat.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\SkladisteGrupa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6775,6 +6782,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\PrvaProbaForma.resx">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmSkladisteObjekat.resx">
+      <DependentUpon>frmSkladisteObjekat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\SkladisteGrupa.resx">
       <DependentUpon>SkladisteGrupa.cs</DependentUpon>

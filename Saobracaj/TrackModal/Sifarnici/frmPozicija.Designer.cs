@@ -49,6 +49,7 @@
             this.txtOpis = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNamena = new System.Windows.Forms.TextBox();
+            this.lblNadredjeni = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPretraziPoSkladistu = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -240,8 +241,9 @@
             // 
             this.txtOpis.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtOpis.Location = new System.Drawing.Point(12, 224);
+            this.txtOpis.MaxLength = 100;
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(231, 22);
+            this.txtOpis.Size = new System.Drawing.Size(340, 22);
             this.txtOpis.TabIndex = 139;
             // 
             // label3
@@ -259,9 +261,20 @@
             // 
             this.txtNamena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtNamena.Location = new System.Drawing.Point(379, 110);
+            this.txtNamena.MaxLength = 20;
             this.txtNamena.Name = "txtNamena";
-            this.txtNamena.Size = new System.Drawing.Size(87, 22);
+            this.txtNamena.Size = new System.Drawing.Size(160, 22);
             this.txtNamena.TabIndex = 141;
+            //
+            // lblNadredjeni
+            //
+            this.lblNadredjeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.lblNadredjeni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNadredjeni.Font = new System.Drawing.Font("Arial", 9F);
+            this.lblNadredjeni.Location = new System.Drawing.Point(690, 87);
+            this.lblNadredjeni.Name = "lblNadredjeni";
+            this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
+            this.lblNadredjeni.Size = new System.Drawing.Size(490, 160);
             // 
             // label4
             // 
@@ -471,6 +484,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1194, 528);
+            this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.chkAktivna);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.btnPretraziPoSkladistu);
@@ -526,6 +540,7 @@
         private System.Windows.Forms.TextBox txtOpis;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNamena;
+        private System.Windows.Forms.Label lblNadredjeni;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPretraziPoSkladistu;
         private System.Windows.Forms.Panel panelHeader;
