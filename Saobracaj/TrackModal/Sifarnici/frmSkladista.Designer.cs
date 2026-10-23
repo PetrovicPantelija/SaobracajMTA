@@ -68,6 +68,8 @@
             this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lblNadredjeni = new System.Windows.Forms.Label();
+            this.lblVrstaPozicija = new System.Windows.Forms.Label();
+            this.cboVrstaPozicija = new System.Windows.Forms.ComboBox();
             this.cboTipPalete = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -375,6 +377,26 @@
             this.lblNadredjeni.Name = "lblNadredjeni";
             this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
             this.lblNadredjeni.Size = new System.Drawing.Size(400, 150);
+            //
+            // lblVrstaPozicija
+            //
+            this.lblVrstaPozicija.AutoSize = true;
+            this.lblVrstaPozicija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblVrstaPozicija.ForeColor = System.Drawing.Color.Black;
+            this.lblVrstaPozicija.Location = new System.Drawing.Point(626, 175);
+            this.lblVrstaPozicija.Name = "lblVrstaPozicija";
+            this.lblVrstaPozicija.Size = new System.Drawing.Size(58, 15);
+            this.lblVrstaPozicija.Text = "Pozicije:";
+            //
+            // cboVrstaPozicija
+            //
+            this.cboVrstaPozicija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVrstaPozicija.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cboVrstaPozicija.FormattingEnabled = true;
+            this.cboVrstaPozicija.Location = new System.Drawing.Point(626, 194);
+            this.cboVrstaPozicija.Name = "cboVrstaPozicija";
+            this.cboVrstaPozicija.Size = new System.Drawing.Size(231, 21);
+            this.cboVrstaPozicija.TabIndex = 520;
             // 
             // txtOznaka
             // 
@@ -596,6 +618,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1321, 628);
+            this.Controls.Add(this.cboVrstaPozicija);
+            this.Controls.Add(this.lblVrstaPozicija);
             this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboTipPalete);
@@ -680,6 +704,8 @@
         private System.Windows.Forms.CheckBox chkAktivna;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblNadredjeni;
+        private System.Windows.Forms.Label lblVrstaPozicija;
+        private System.Windows.Forms.ComboBox cboVrstaPozicija;
         private System.Windows.Forms.ComboBox cboTipPalete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button23;

@@ -50,6 +50,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNamena = new System.Windows.Forms.TextBox();
             this.lblNadredjeni = new System.Windows.Forms.Label();
+            this.lblVrstaPozicija = new System.Windows.Forms.Label();
+            this.cboVrstaPozicija = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPretraziPoSkladistu = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -275,6 +277,26 @@
             this.lblNadredjeni.Name = "lblNadredjeni";
             this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
             this.lblNadredjeni.Size = new System.Drawing.Size(490, 160);
+            //
+            // lblVrstaPozicija
+            //
+            this.lblVrstaPozicija.AutoSize = true;
+            this.lblVrstaPozicija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblVrstaPozicija.ForeColor = System.Drawing.Color.Black;
+            this.lblVrstaPozicija.Location = new System.Drawing.Point(480, 206);
+            this.lblVrstaPozicija.Name = "lblVrstaPozicija";
+            this.lblVrstaPozicija.Size = new System.Drawing.Size(90, 15);
+            this.lblVrstaPozicija.Text = "Vrsta pozicije:";
+            //
+            // cboVrstaPozicija
+            //
+            this.cboVrstaPozicija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVrstaPozicija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboVrstaPozicija.FormattingEnabled = true;
+            this.cboVrstaPozicija.Location = new System.Drawing.Point(480, 224);
+            this.cboVrstaPozicija.Name = "cboVrstaPozicija";
+            this.cboVrstaPozicija.Size = new System.Drawing.Size(190, 24);
+            this.cboVrstaPozicija.TabIndex = 520;
             // 
             // label4
             // 
@@ -484,6 +506,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1194, 528);
+            this.Controls.Add(this.cboVrstaPozicija);
+            this.Controls.Add(this.lblVrstaPozicija);
             this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.chkAktivna);
             this.Controls.Add(this.panelHeader);
@@ -541,6 +565,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNamena;
         private System.Windows.Forms.Label lblNadredjeni;
+        private System.Windows.Forms.Label lblVrstaPozicija;
+        private System.Windows.Forms.ComboBox cboVrstaPozicija;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPretraziPoSkladistu;
         private System.Windows.Forms.Panel panelHeader;

@@ -188,9 +188,13 @@ namespace Saobracaj.TrackModal.Sifarnici
                 }
                 else
                 {
+                    bool bioAktivan = HijerarhijaSkladista.JeAktivan(NivoSkladista.Objekat, id);
                     var sviParametri = new System.Collections.Generic.List<System.Data.SqlClient.SqlParameter>(parametri);
                     sviParametri.Insert(0, HijerarhijaSkladista.Param("@ID", id));
                     HijerarhijaSkladista.Procedura("UpdateSkladisteObjekat", sviParametri.ToArray());
+
+                    // promena aktivnosti objekta prenosi se na polja i pozicije
+                    HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Objekat, id, bioAktivan, aktivan, "Objekti");
                 }
                 ucitaniTip = tipId;
             }
@@ -314,32 +318,10 @@ namespace Saobracaj.TrackModal.Sifarnici
             lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Objekat, HijerarhijaSkladista.IzabraniId(cboLokacija));
         }
 
-        // Aktivne / Neaktivne: menja aktivnost izabranih redova, uz pravila za roditelja i decu
+        // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            var greske = new System.Text.StringBuilder();
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-                {
-                    int id = HijerarhijaSkladista.CeoBroj(row.Cells["ID"].Value);
-                    string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Objekat, id, aktivan);
-                    if (greska != null)
-                    {
-                        greske.AppendLine(row.Cells["Oznaka"].Value + ": " + greska);
-                        continue;
-                    }
-                    HijerarhijaSkladista.Procedura("AktivnostSkladisteObjekat",
-                        HijerarhijaSkladista.Param("@ID", id), HijerarhijaSkladista.Param("@Aktivan", aktivan ? 1 : 0));
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Objekti", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (greske.Length > 0)
-                MessageBox.Show(greske.ToString(), "Objekti", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Objekat, aktivan, "Objekti");
             RefreshDataGrid();
         }
 

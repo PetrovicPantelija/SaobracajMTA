@@ -225,6 +225,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
             // Tip skladišta se više ne unosi na lokaciji (prelazi na objekat); šalje se postojeća vrednost
             int tipSkladista = HijerarhijaSkladista.IzabraniId(cboTipSkladista);
+            bool bioAktivan = id > 0 && HijerarhijaSkladista.JeAktivan(NivoSkladista.Lokacija, id);
 
             try
             {
@@ -256,6 +257,9 @@ namespace Saobracaj.TrackModal.Sifarnici
                     HijerarhijaSkladista.ParamTekst("@DrzalacSkladista", carinsko ? txtDrzalac.Text : "", 100),
                     HijerarhijaSkladista.Param("@Datum", DateTime.Now),
                     HijerarhijaSkladista.ParamTekst("@Korisnik", Kor, 20));
+
+                // promena aktivnosti lokacije prenosi se na objekte, polja i pozicije
+                HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Lokacija, id, bioAktivan, tmpAktivna == 1, "Lokacije");
             }
             catch (Exception ex)
             {
@@ -438,39 +442,10 @@ namespace Saobracaj.TrackModal.Sifarnici
             }
         }
 
-        // Aktivne / Neaktivne: menja aktivnost izabranih redova, uz pravila za zonu i podređene zapise
+        // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            var greske = new System.Text.StringBuilder();
-            try
-            {
-                InsertSkladistaGrupa poz = new InsertSkladistaGrupa();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (!row.Selected)
-                        continue;
-
-                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Lokacija, id, aktivan);
-                    if (greska != null)
-                    {
-                        greske.AppendLine(row.Cells[1].Value + ": " + greska);
-                        continue;
-                    }
-
-                    if (aktivan)
-                        poz.ProglasiAktivnim(id, 0);
-                    else
-                        poz.ProglasiNeAktivnim(id, 0);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-            if (greske.Length > 0)
-                MessageBox.Show(greske.ToString(), "Lokacije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Lokacija, aktivan, "Lokacije");
             RefreshDataGrid();
         }
 

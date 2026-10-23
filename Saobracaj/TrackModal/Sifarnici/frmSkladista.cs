@@ -176,6 +176,8 @@ namespace Testiranje.Sifarnici
             txtNaziv.Text = "";
             txtSKNaziv.Text = "";
             chkAktivna.Checked = true;
+            if (cboVrstaPozicija.DataSource != null)
+                cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
             if (objekti != null)
                 HijerarhijaSkladista.PostaviTrenutnog(objekti, 0);
             cboGrupaPolja.SelectedIndex = -1;
@@ -211,6 +213,7 @@ namespace Testiranje.Sifarnici
                 return;
             }
 
+            bool bioAktivan = id > 0 && HijerarhijaSkladista.JeAktivan(NivoSkladista.Polje, id);
             int lokacijaId = HijerarhijaSkladista.CeoBroj(HijerarhijaSkladista.Skalar(
                 "SELECT SkladistaGrupaID FROM dbo.SkladisteObjekat WHERE ID = @ID", HijerarhijaSkladista.Param("@ID", objekatId)));
 
@@ -233,6 +236,19 @@ namespace Testiranje.Sifarnici
 
                 HijerarhijaSkladista.Procedura("UpdateSkladistaObjekat",
                     HijerarhijaSkladista.Param("@ID", id), HijerarhijaSkladista.Param("@SkladisteObjekatID", objekatId));
+
+                // promena vrste pozicija (kontejnerske / paletne): aktivne postaju pozicije nove vrste, ostale neaktivne
+                int vrstaPozicija = HijerarhijaSkladista.IzabraniId(cboVrstaPozicija);
+                if (vrstaPozicija == 0)
+                    vrstaPozicija = HijerarhijaSkladista.KontejnerskePozicije;
+                int promenjenihPozicija = HijerarhijaSkladista.PostaviVrstuPozicijaPolja(id, vrstaPozicija);
+                if (promenjenihPozicija > 0)
+                    MessageBox.Show("Polje sada radi sa " + HijerarhijaSkladista.NazivVrstePozicija(vrstaPozicija)
+                        + " pozicijama. Promenjena aktivnost pozicija: " + promenjenihPozicija + ".",
+                        "Polja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // promena aktivnosti polja prenosi se na pozicije
+                HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Polje, id, bioAktivan, tmpAktivna == 1, "Polja");
             }
             catch (Exception ex)
             {
@@ -326,39 +342,10 @@ namespace Testiranje.Sifarnici
             PrimeniTipObjekta(objekatId);
         }
 
-        // Aktivne / Neaktivne: menja aktivnost izabranih redova, uz pravila za objekat i pozicije
+        // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            var greske = new System.Text.StringBuilder();
-            try
-            {
-                InsertSkladista poz = new InsertSkladista();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (!row.Selected)
-                        continue;
-
-                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Polje, id, aktivan);
-                    if (greska != null)
-                    {
-                        greske.AppendLine(row.Cells[1].Value + ": " + greska);
-                        continue;
-                    }
-
-                    if (aktivan)
-                        poz.ProglasiAktivnim(id, 0);
-                    else
-                        poz.ProglasiNeAktivnim(id, 0);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-            if (greske.Length > 0)
-                MessageBox.Show(greske.ToString(), "Polja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Polje, aktivan, "Polja");
             RefreshDataGrid();
         }
 
@@ -367,7 +354,9 @@ namespace Testiranje.Sifarnici
             var select = " SELECT Skladista.[ID] ,Skladista.Oznaka, Skladista.SkNaziv, Skladista.Naziv, SkladisteObjekat.Oznaka as ObjekatOznaka, SkladisteObjekat.Naziv as Objekat, " +
                 " TipSkladista.Naziv as TipObjekta, SkladistaGrupa.Oznaka as LokacijaOznaka,SkladistaGrupa.Naziv as Lokacija, " +
                 "  Partnerji.PaNaziv as Brodar, TipKontenjera.Naziv as TipKontejnera, " +
-                            " uvKvalitetKontejnera.Naziv as KValitetKontejnera, TipPalete.Naziv as TipPalete, CASE WHEN Skladista.Aktivan > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, Kapacitet" +
+                            " uvKvalitetKontejnera.Naziv as KValitetKontejnera, TipPalete.Naziv as TipPalete, " +
+                            " CASE WHEN Skladista.VrstaPozicija = 2 THEN 'Paletne' ELSE 'Kontejnerske' END as VrstaPozicija, " +
+                            " CASE WHEN Skladista.Aktivan > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, Kapacitet" +
                             " FROM [dbo].[Skladista] " +
                             " left join SkladisteObjekat on SkladisteObjekat.ID = Skladista.SkladisteObjekatID " +
                             " left join TipSkladista on TipSkladista.ID = SkladisteObjekat.TipSkladistaID " +
@@ -403,6 +392,7 @@ namespace Testiranje.Sifarnici
             Kolona("TipKontejnera", "Tip kontejnera", 100);
             Kolona("KValitetKontejnera", "Kvalitet kontejnera", 150);
             Kolona("TipPalete", "Tip palete", 120);
+            Kolona("VrstaPozicija", "Pozicije", 100);
             Kolona("Aktivna", "Aktivan", 80);
         }
 
@@ -428,6 +418,9 @@ namespace Testiranje.Sifarnici
             cboTipPalete.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["TipPalete"]);
             txtSKNaziv.Text = dr["SkNaziv"].ToString();
             chkAktivna.Checked = dr["Aktivan"].ToString() == "1";
+            int vrsta = HijerarhijaSkladista.CeoBroj(dr["VrstaPozicija"]);
+            cboVrstaPozicija.SelectedValue = vrsta == HijerarhijaSkladista.PaletnePozicije
+                ? HijerarhijaSkladista.PaletnePozicije : HijerarhijaSkladista.KontejnerskePozicije;
 
             // objekat se postavlja posle vrednosti polja, jer izbor objekta zaključava polja po tipu objekta
             int objekatId = HijerarhijaSkladista.CeoBroj(dr["SkladisteObjekatID"]);
@@ -578,6 +571,11 @@ namespace Testiranje.Sifarnici
 
         private void frmSkladista_Load(object sender, EventArgs e)
         {
+            cboVrstaPozicija.DataSource = HijerarhijaSkladista.VrstePozicija();
+            cboVrstaPozicija.DisplayMember = "Naziv";
+            cboVrstaPozicija.ValueMember = "ID";
+            cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
+
             objekti = HijerarhijaSkladista.ListaRoditelja(NivoSkladista.Objekat);
             HijerarhijaSkladista.PoveziListu(cboGrupaPolja, objekti);
             cboGrupaPolja.SelectionChangeCommitted += cboGrupaPolja_SelectedIndexChanged;

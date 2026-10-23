@@ -155,30 +155,83 @@ namespace Saobracaj.TrackModal.Sifarnici
             return Convert.ToInt32(broj) > 0 ? "Oznaka '" + oznaka.Trim() + "' već postoji." : null;
         }
 
-        // Aktivan zapis mora imati aktivnog roditelja; neaktivan ne sme imati aktivnu decu
+        // Aktivan zapis mora imati aktivnog roditelja. Deaktivacija je uvek dozvoljena: prenosi se na sve
+        // podređene zapise (PostaviAktivnost).
         public static string ProveriAktivnost(NivoSkladista nivo, int id, int roditeljId, bool aktivan)
         {
             Opis o = Nivoi[nivo];
-            if (aktivan)
+            if (aktivan && o.Roditelj.HasValue && roditeljId > 0 && !JeAktivan(o.Roditelj.Value, roditeljId))
+                return "Zapis ne može biti aktivan jer nadređeni zapis (" + Nivoi[o.Roditelj.Value].Naziv.ToLower()
+                    + ") nije aktivan.";
+            return null;
+        }
+
+        // Aktivnost u dubinu: zapis i svi njegovi podređeni zapisi (Zona -> Lokacije -> Objekti -> Polja -> Pozicije)
+        // dobijaju istu aktivnost. Vraća broj podređenih zapisa kojima je aktivnost promenjena.
+        public static int PostaviAktivnost(NivoSkladista nivo, int id, bool aktivan)
+        {
+            var broj = new SqlParameter("@BrojPodredjenih", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            Procedura("AktivnostHijerarhijaSkladista",
+                Param("@Nivo", nivo.ToString()), Param("@ID", id), Param("@Aktivan", aktivan ? 1 : 0), broj);
+            return CeoBroj(broj.Value);
+        }
+
+        // Dugmad Aktivne / Neaktivne: izabrani redovi grida (ID u prvoj, šifra u drugoj koloni) i njihovi podređeni
+        // zapisi; red čiji roditelj nije aktivan ne može se aktivirati. Prikazuje rezultat.
+        public static void PromeniAktivnostIzabranih(DataGridView grid, NivoSkladista nivo, bool aktivan, string naslov)
+        {
+            var redovi = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in grid.Rows)
+                if (row.Selected)
+                    redovi.Add(row);
+            if (redovi.Count == 0 && grid.CurrentRow != null)
+                redovi.Add(grid.CurrentRow);
+            if (redovi.Count == 0)
             {
-                if (o.Roditelj.HasValue && roditeljId > 0 && !JeAktivan(o.Roditelj.Value, roditeljId))
-                    return "Zapis ne može biti aktivan jer nadređeni zapis (" + Nivoi[o.Roditelj.Value].Naziv.ToLower()
-                        + ") nije aktivan.";
-                return null;
+                MessageBox.Show("Izaberite zapis u tabeli.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
-            if (id <= 0)
-                return null;
-
-            var poruke = new List<string>();
-            foreach (string[] deca in o.Deca)
+            var greske = new StringBuilder();
+            int promenjeno = 0, podredjenih = 0;
+            try
             {
-                int broj = BrojDece(deca, id, true);
-                if (broj > 0)
-                    poruke.Add("aktivnih " + deca[3] + ": " + broj);
+                foreach (DataGridViewRow row in redovi)
+                {
+                    int id = CeoBroj(row.Cells[0].Value);
+                    string greska = ProveriPromenuAktivnosti(nivo, id, aktivan);
+                    if (greska != null)
+                    {
+                        greske.AppendLine(Convert.ToString(row.Cells[1].Value) + ": " + greska);
+                        continue;
+                    }
+                    podredjenih += PostaviAktivnost(nivo, id, aktivan);
+                    promenjeno++;
+                }
             }
-            return poruke.Count == 0 ? null
-                : o.Naziv + " ima " + string.Join(", ", poruke) + ". Prvo ih deaktivirajte.";
+            catch (Exception ex)
+            {
+                greske.AppendLine(ex.Message);
+            }
+
+            string poruka = (aktivan ? "Aktivirano" : "Deaktivirano") + " zapisa: " + promenjeno
+                + (podredjenih > 0 ? ", podređenih zapisa: " + podredjenih : "") + ".";
+            if (greske.Length > 0)
+                MessageBox.Show(poruka + Environment.NewLine + Environment.NewLine + greske, naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+                MessageBox.Show(poruka, naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Pri snimanju: ako je zapisu promenjena aktivnost, ista aktivnost se prenosi na podređene zapise.
+        // bioAktivan = aktivnost pre snimanja (JeAktivan pozvan pre upisa).
+        public static void PrenesiAktivnostPosleSnimanja(NivoSkladista nivo, int id, bool bioAktivan, bool aktivan, string naslov)
+        {
+            if (id <= 0 || bioAktivan == aktivan)
+                return;
+            int podredjenih = PostaviAktivnost(nivo, id, aktivan);
+            if (podredjenih > 0)
+                MessageBox.Show((aktivan ? "Aktivirano" : "Deaktivirano") + " i podređenih zapisa: " + podredjenih + ".",
+                    naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Zapis koji ima decu (aktivnu ili neaktivnu) ne briše se
@@ -206,7 +259,60 @@ namespace Saobracaj.TrackModal.Sifarnici
                 object r = Skalar("SELECT " + o.KolonaRoditelja + " FROM dbo." + o.Tabela + " WHERE ID = @ID", Param("@ID", id));
                 roditeljId = r == null ? 0 : Convert.ToInt32(r);
             }
-            return ProveriAktivnost(nivo, id, roditeljId, aktivan);
+            string greska = ProveriAktivnost(nivo, id, roditeljId, aktivan);
+            if (greska == null && nivo == NivoSkladista.Pozicija && aktivan)
+            {
+                object vrsta = Skalar("SELECT VrstaPozicija FROM dbo.Pozicija WHERE ID = @ID", Param("@ID", id));
+                greska = ProveriVrstuPozicije(roditeljId, CeoBroj(vrsta));
+            }
+            return greska;
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Vrsta pozicija: polje radi sa kontejnerskim ili paletnim pozicijama; aktivne su samo pozicije njegove vrste
+        // ---------------------------------------------------------------------------------
+        public const int KontejnerskePozicije = 1;
+        public const int PaletnePozicije = 2;
+
+        public static DataTable VrstePozicija()
+        {
+            var t = new DataTable();
+            t.Columns.Add("ID", typeof(int));
+            t.Columns.Add("Naziv", typeof(string));
+            t.Rows.Add(KontejnerskePozicije, "Kontejnerske pozicije");
+            t.Rows.Add(PaletnePozicije, "Paletne pozicije");
+            return t;
+        }
+
+        public static string NazivVrstePozicija(int vrsta)
+        {
+            return vrsta == PaletnePozicije ? "paletne" : "kontejnerske";
+        }
+
+        public static int VrstaPozicijaPolja(int poljeId)
+        {
+            object v = Skalar("SELECT VrstaPozicija FROM dbo.Skladista WHERE ID = @ID", Param("@ID", poljeId));
+            return v == null ? KontejnerskePozicije : CeoBroj(v);
+        }
+
+        // Aktivna pozicija mora biti iste vrste kao polje
+        public static string ProveriVrstuPozicije(int poljeId, int vrstaPozicije)
+        {
+            if (poljeId <= 0)
+                return null;
+            int vrstaPolja = VrstaPozicijaPolja(poljeId);
+            return vrstaPolja == vrstaPozicije ? null
+                : "Pozicija ne može biti aktivna: polje radi sa " + NazivVrstePozicija(vrstaPolja) + " pozicijama, a pozicija je "
+                  + (vrstaPozicije == PaletnePozicije ? "paletna." : "kontejnerska.");
+        }
+
+        // Upisuje vrstu pozicija polja; ako je promenjena, pozicije nove vrste postaju aktivne (ako je polje aktivno),
+        // a ostale neaktivne. Vraća broj pozicija kojima je promenjena aktivnost.
+        public static int PostaviVrstuPozicijaPolja(int poljeId, int vrsta)
+        {
+            var broj = new SqlParameter("@BrojPozicija", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            Procedura("UpdateSkladistaVrstaPozicija", Param("@ID", poljeId), Param("@VrstaPozicija", vrsta), broj);
+            return CeoBroj(broj.Value);
         }
 
         public static bool JeAktivan(NivoSkladista nivo, int id)

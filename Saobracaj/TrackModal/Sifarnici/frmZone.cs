@@ -189,6 +189,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 return;
             }
 
+            bool bioAktivan = id > 0 && HijerarhijaSkladista.JeAktivan(NivoSkladista.Zona, id);
             if (status == true)
             {
                 InsertZone ins = new InsertZone();
@@ -201,6 +202,8 @@ namespace Saobracaj.TrackModal.Sifarnici
                 InsertZone upd = new InsertZone();
                 upd.UpdZone(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, txtNaziv.Text, Convert.ToInt32(cboTipZoneID.SelectedValue), tmpAktivna, Convert.ToDateTime(DateTime.Now), Kor);
             }
+            // promena aktivnosti zone prenosi se na lokacije, objekte, polja i pozicije
+            HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Zona, id, bioAktivan, tmpAktivna == 1, "Zone");
             RefreshDataGrid();
         }
 
@@ -356,56 +359,17 @@ namespace Saobracaj.TrackModal.Sifarnici
             RefreshDataGrid();
         }
 
+        // Aktivne / Neaktivne: izabrane zone i sve njihove lokacije, objekti, polja i pozicije
         private void button23_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertZone poz = new InsertZone();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-
-                        poz.ProglasiAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Zona, true, "Zone");
+            RefreshDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertZone poz = new InsertZone();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Zona, Convert.ToInt32(row.Cells[0].Value.ToString()), false);
-                        if (greska != null)
-                        {
-                            MessageBox.Show(row.Cells[1].Value + ": " + greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            continue;
-                        }
-
-                        poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Zona, false, "Zone");
+            RefreshDataGrid();
         }
 
         private void button2_Click(object sender, EventArgs e)

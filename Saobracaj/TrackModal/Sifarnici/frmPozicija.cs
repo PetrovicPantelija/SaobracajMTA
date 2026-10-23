@@ -175,6 +175,8 @@ namespace Testiranje.Sifarnici
             txtOpis.Text = "";
             txtNamena.Text = "";
             chkAktivna.Checked = true;
+            if (cboVrstaPozicija.DataSource != null)
+                cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
             if (polja != null)
                 HijerarhijaSkladista.PostaviTrenutnog(polja, 0);
             cboSkladiste.SelectedIndex = -1;
@@ -201,8 +203,14 @@ namespace Testiranje.Sifarnici
             string greska = HijerarhijaSkladista.ProveriOznaku(NivoSkladista.Pozicija, id, txtOznaka.Text);
             if (greska == null && poljeId == 0)
                 greska = "Izaberite polje.";
+            int vrstaPozicije = HijerarhijaSkladista.IzabraniId(cboVrstaPozicija);
+            if (vrstaPozicije == 0)
+                vrstaPozicije = HijerarhijaSkladista.KontejnerskePozicije;
             if (greska == null)
                 greska = HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Pozicija, id, poljeId, tmpAktivna == 1);
+            // aktivna pozicija mora biti iste vrste (kontejnerska / paletna) kao polje
+            if (greska == null && tmpAktivna == 1)
+                greska = HijerarhijaSkladista.ProveriVrstuPozicije(poljeId, vrstaPozicije);
             if (greska != null)
             {
                 MessageBox.Show(greska, "Pozicije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -233,7 +241,8 @@ namespace Testiranje.Sifarnici
                 HijerarhijaSkladista.Procedura("UpdatePozicijaNazivi",
                     HijerarhijaSkladista.Param("@ID", id),
                     HijerarhijaSkladista.ParamTekst("@Opis", txtOpis.Text, 100),
-                    HijerarhijaSkladista.ParamTekst("@Namena", txtNamena.Text, 20));
+                    HijerarhijaSkladista.ParamTekst("@Namena", txtNamena.Text, 20),
+                    HijerarhijaSkladista.Param("@VrstaPozicija", vrstaPozicije));
             }
             catch (Exception ex)
             {
@@ -245,7 +254,12 @@ namespace Testiranje.Sifarnici
 
         private void cboSkladiste_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Pozicija, HijerarhijaSkladista.IzabraniId(cboSkladiste));
+            int poljeId = HijerarhijaSkladista.IzabraniId(cboSkladiste);
+            lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Pozicija, poljeId);
+
+            // nova pozicija dobija vrstu pozicija izabranog polja
+            if (status && poljeId > 0)
+                cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.VrstaPozicijaPolja(poljeId);
         }
 
         private void Kolona(string naziv, string naslov, int sirina)
@@ -257,39 +271,10 @@ namespace Testiranje.Sifarnici
             kolona.Width = sirina;
         }
 
-        // Aktivne / Neaktivne: menja aktivnost izabranih redova; aktivna pozicija mora biti u aktivnom polju
+        // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            var greske = new System.Text.StringBuilder();
-            try
-            {
-                InsertPozicija poz = new InsertPozicija();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (!row.Selected)
-                        continue;
-
-                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    string greska = HijerarhijaSkladista.ProveriPromenuAktivnosti(NivoSkladista.Pozicija, id, aktivan);
-                    if (greska != null)
-                    {
-                        greske.AppendLine(row.Cells[1].Value + ": " + greska);
-                        continue;
-                    }
-
-                    if (aktivan)
-                        poz.ProglasiAktivnim(id, 0);
-                    else
-                        poz.ProglasiNeAktivnim(id, 0);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-            if (greske.Length > 0)
-                MessageBox.Show(greske.ToString(), "Pozicije", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Pozicija, aktivan, "Pozicije");
             RefreshDataGrid();
         }
 
@@ -314,7 +299,8 @@ namespace Testiranje.Sifarnici
         private void RefreshDataGrid()
         {
             var select = "SELECT Pozicija.ID, Pozicija.Oznaka, Pozicija.Namena as SkNaziv,Pozicija.Opis as Naziv,  Skladista.Naziv as Polje, " +
-                " SkladisteObjekat.Naziv as Objekat, SkladistaGrupa.Naziv as Lokacija, CASE WHEN Pozicija.Aktivna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, " +
+                " SkladisteObjekat.Naziv as Objekat, SkladistaGrupa.Naziv as Lokacija, " +
+                " CASE WHEN Pozicija.VrstaPozicija = 2 THEN 'Paletna' ELSE 'Kontejnerska' END as VrstaPozicija, CASE WHEN Pozicija.Aktivna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, " +
                 " Pozicija.Datum, Pozicija.Korisnik from Pozicija inner join Skladista on Pozicija.Skladiste= Skladista.ID " +
                 " left join SkladisteObjekat on SkladisteObjekat.ID = Skladista.SkladisteObjekatID " +
                 " left join SkladistaGrupa on SkladistaGrupa.ID = ISNULL(SkladisteObjekat.SkladistaGrupaID, Skladista.GrupaPoljaID) " +
@@ -339,6 +325,7 @@ namespace Testiranje.Sifarnici
             Kolona("Polje", "Polje", 180);
             Kolona("Objekat", "Objekat", 180);
             Kolona("Lokacija", "Lokacija", 180);
+            Kolona("VrstaPozicija", "Vrsta", 100);
             Kolona("Aktivna", "Aktivna", 60);
             Kolona("Datum", "Datum", 100);
             Kolona("Korisnik", "Korisnik", 100);
@@ -349,7 +336,7 @@ namespace Testiranje.Sifarnici
             if (polja == null)
                 return;
 
-            DataTable t = HijerarhijaSkladista.Tabela("SELECT Skladiste, Oznaka, Opis, Namena, Aktivna FROM dbo.Pozicija WHERE ID = @ID",
+            DataTable t = HijerarhijaSkladista.Tabela("SELECT Skladiste, Oznaka, Opis, Namena, Aktivna, VrstaPozicija FROM dbo.Pozicija WHERE ID = @ID",
                 HijerarhijaSkladista.Param("@ID", HijerarhijaSkladista.CeoBroj(ID)));
             if (t.Rows.Count == 0)
                 return;
@@ -363,6 +350,8 @@ namespace Testiranje.Sifarnici
             txtOpis.Text = dr["Opis"].ToString();
             txtNamena.Text = dr["Namena"].ToString();
             chkAktivna.Checked = dr["Aktivna"].ToString() == "1";
+            cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["VrstaPozicija"]) == HijerarhijaSkladista.PaletnePozicije
+                ? HijerarhijaSkladista.PaletnePozicije : HijerarhijaSkladista.KontejnerskePozicije;
             lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Pozicija, poljeId);
         }
 
@@ -390,6 +379,11 @@ namespace Testiranje.Sifarnici
 
         private void frmPozicija_Load(object sender, EventArgs e)
         {
+            cboVrstaPozicija.DataSource = HijerarhijaSkladista.VrstePozicija();
+            cboVrstaPozicija.DisplayMember = "Naziv";
+            cboVrstaPozicija.ValueMember = "ID";
+            cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
+
             polja = HijerarhijaSkladista.ListaRoditelja(NivoSkladista.Polje);
             HijerarhijaSkladista.PoveziListu(cboSkladiste, polja);
             cboSkladiste.SelectionChangeCommitted += cboSkladiste_SelectedIndexChanged;
