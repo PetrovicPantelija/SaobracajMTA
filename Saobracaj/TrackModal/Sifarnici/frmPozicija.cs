@@ -156,6 +156,8 @@ namespace Testiranje.Sifarnici
         {
             InitializeComponent();
             ChangeTextBox();
+            // stil Sava (docs/SAVA-DESIGN.md): traka sa dugmadima sa tekstom, boje i fontovi
+            SifarnikTema.Primeni(this, panelHeader, panel3, button22, button21, button20, button23, button1, button2, tsNew, tsSave, tsDelete);
 
         }
 
@@ -164,6 +166,8 @@ namespace Testiranje.Sifarnici
             InitializeComponent();
             KorisnikCene = Korisnik;
             ChangeTextBox();
+            // stil Sava (docs/SAVA-DESIGN.md): traka sa dugmadima sa tekstom, boje i fontovi
+            SifarnikTema.Primeni(this, panelHeader, panel3, button22, button21, button20, button23, button1, button2, tsNew, tsSave, tsDelete);
 
         }
         private void tsNew_Click(object sender, EventArgs e)

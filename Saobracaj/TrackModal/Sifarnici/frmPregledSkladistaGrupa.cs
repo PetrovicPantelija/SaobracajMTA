@@ -54,26 +54,13 @@ namespace Saobracaj.TrackModal.Sifarnici
         // Dugme "Pregled" na formama šifarnika: u traci panelHeader (Leget) i u meniju meniHeader
         public static void DodajDugme(Panel panelHeader, ToolStrip meniHeader)
         {
-            var dugme = new Button
-            {
-                AutoSize = true,
-                Dock = DockStyle.Left,
-                FlatStyle = FlatStyle.Flat,
-                Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel),
-                ForeColor = System.Drawing.Color.FromArgb(51, 51, 54),
-                Text = "Pregled",
-                UseVisualStyleBackColor = true
-            };
-            dugme.FlatAppearance.BorderSize = 0;
-            dugme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            dugme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            var dugme = new Button { Text = "Pregled" };
             dugme.Click += (s, e) => Otvori();
 
-            // u isti kontejner kao Refresh (na Poljima i Pozicijama dugmad su u unutrašnjem panelu trake),
-            // poslednje u nizu dugmadi poravnatih levo, tj. odmah desno od Refresh
-            Control kontejner = KontejnerDugmeta(panelHeader, "Refresh") ?? panelHeader;
-            kontejner.Controls.Add(dugme);
-            dugme.BringToFront();
+            // u istu grupu kao Osveži (na Poljima i Pozicijama dugmad su u unutrašnjem panelu trake),
+            // poslednje u nizu, odmah desno od Osveži; stil Sava kao ostala sporedna dugmad
+            Control kontejner = KontejnerDugmeta(panelHeader, "Osveži") ?? KontejnerDugmeta(panelHeader, "Refresh") ?? panelHeader;
+            SifarnikTema.DodajNaKraj(kontejner, dugme);
 
             var stavka = new ToolStripButton("Pregled") { DisplayStyle = ToolStripItemDisplayStyle.Text };
             stavka.Click += (s, e) => Otvori();

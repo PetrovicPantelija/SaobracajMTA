@@ -20,10 +20,11 @@ namespace Saobracaj.TrackModal.Sifarnici
             grid.TableDescriptor.AllowRemove = false;
             grid.TableOptions.AllowSelection = GridSelectionFlags.None;
             grid.TableOptions.ListBoxSelectionMode = SelectionMode.One;
-            grid.TableOptions.SelectionBackColor = Color.FromArgb(90, 199, 249);
-            grid.TableOptions.SelectionTextColor = Color.White;
             grid.TopLevelGroupOptions.ShowCaption = false;
             grid.ShowGroupDropArea = true;
+
+            // stil Sava: zaglavlje, redovi, izabrani red
+            Saobracaj.Theme.ThemeHelper.StyleGrid(grid);
         }
 
         // Novi podaci; Excel filter se posle svakog DataSource povezuje iznova (grid pravi kolone ponovo),
