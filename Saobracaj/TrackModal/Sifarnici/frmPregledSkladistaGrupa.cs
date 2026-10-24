@@ -68,12 +68,29 @@ namespace Saobracaj.TrackModal.Sifarnici
             dugme.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             dugme.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             dugme.Click += (s, e) => Otvori();
-            panelHeader.Controls.Add(dugme);
-            dugme.BringToFront();   // poslednje u nizu dugmadi traci (Dock Left)
+
+            // u isti kontejner kao Refresh (na Poljima i Pozicijama dugmad su u unutrašnjem panelu trake),
+            // poslednje u nizu dugmadi poravnatih levo, tj. odmah desno od Refresh
+            Control kontejner = KontejnerDugmeta(panelHeader, "Refresh") ?? panelHeader;
+            kontejner.Controls.Add(dugme);
+            dugme.BringToFront();
 
             var stavka = new ToolStripButton("Pregled") { DisplayStyle = ToolStripItemDisplayStyle.Text };
             stavka.Click += (s, e) => Otvori();
             meniHeader.Items.Add(stavka);
+        }
+
+        private static Control KontejnerDugmeta(Control koren, string tekst)
+        {
+            foreach (Control c in koren.Controls)
+            {
+                if (c is Button && c.Text == tekst)
+                    return koren;
+                Control nadjen = KontejnerDugmeta(c, tekst);
+                if (nadjen != null)
+                    return nadjen;
+            }
+            return null;
         }
 
         private void frmPregledSkladistaGrupa_Load(object sender, EventArgs e)
