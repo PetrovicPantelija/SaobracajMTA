@@ -6,7 +6,8 @@
 --    AktivnostHijerarhijaSkladista: aktivnost u dubinu (dugmad Aktivne / Neaktivne i promena aktivnosti pri snimanju).
 --    VrstaPozicija (1 = kontejnerske, 2 = paletne) na polju i poziciji; promena vrste na polju aktivira pozicije te vrste.
 -- 3. Migracija: svaka lokacija bez objekta dobija jedan objekat (ista Oznaka i Naziv), a polja se vezuju za njega.
--- 4. Kartica 'Objekti' na ekranu Šifarnici (kopija kartice 'Lokacije') i ista prava kao za 'Lokacije'.
+-- 4. Kartice 'Objekti', 'Polja' i 'Pozicije' na ekranu Šifarnici (ako ne postoje: kopija kartice 'Lokacije')
+--    i ista prava kao za 'Lokacije'.
 -- Skripta se može pustiti više puta; drugo pokretanje ništa ne menja. Pustiti PRE instalacije nove verzije programa.
 SET NOCOUNT ON;
 GO
@@ -392,25 +393,25 @@ FROM dbo.SkladisteObjekat GROUP BY Oznaka HAVING COUNT(*) > 1;
 GO
 
 -- ---------------------------------------------------------------------------------------------
--- 4. Kartica 'Objekti' (ekran Šifarnici otvara formu preko kartice i prava korisnika)
---    Pravi se kao kopija kartice 'Lokacije' (isti MainID i Parent), a korisnici sa pravom na 'Lokacije'
---    dobijaju pravo i na 'Objekti'. Kolone se čitaju iz baze, pa skripta ne zavisi od tačne strukture tabela.
+-- 4. Kartice 'Objekti', 'Polja' i 'Pozicije' (ekran Šifarnici otvara formu u glavnom prozoru preko kartice i prava)
+--    Svaka koja ne postoji pravi se kao kopija kartice 'Lokacije' (isti MainID i Parent), a korisnici sa pravom na 'Lokacije'
+--    dobijaju pravo i na nju. Kolone se čitaju iz baze, pa skripta ne zavisi od tačne strukture tabela.
 -- ---------------------------------------------------------------------------------------------
 IF OBJECT_ID('dbo.mainNoviKartice', 'U') IS NOT NULL AND OBJECT_ID('dbo.MainNoviPrava', 'U') IS NOT NULL
 BEGIN
-    DECLARE @LokacijeID int, @MainID int, @Parent int, @ObjektiID int, @sql nvarchar(max), @kolone nvarchar(max), @vrednosti nvarchar(max), @Broj int;
+    DECLARE @LokacijeID int, @MainID int, @Parent int, @ObjektiID int, @NovaKartica nvarchar(50), @sql nvarchar(max), @kolone nvarchar(max), @vrednosti nvarchar(max), @Broj int;
     DECLARE @KarticaIdentity bit = CASE WHEN COLUMNPROPERTY(OBJECT_ID('dbo.mainNoviKartice'), 'ID', 'IsIdentity') = 1 THEN 1 ELSE 0 END;
     DECLARE @PravaIdentity bit = CASE WHEN COLUMNPROPERTY(OBJECT_ID('dbo.MainNoviPrava'), 'ID', 'IsIdentity') = 1 THEN 1 ELSE 0 END;
 
     DECLARE kartice CURSOR LOCAL FAST_FORWARD FOR
-        SELECT ID, MainID, Parent FROM dbo.mainNoviKartice WHERE Naziv = N'Lokacije';
+        SELECT k.ID, k.MainID, k.Parent, n.Naziv FROM dbo.mainNoviKartice k
     OPEN kartice;
-    FETCH NEXT FROM kartice INTO @LokacijeID, @MainID, @Parent;
+    FETCH NEXT FROM kartice INTO @LokacijeID, @MainID, @Parent, @NovaKartica;
     WHILE @@FETCH_STATUS = 0
     BEGIN
         SELECT @ObjektiID = NULL;
         SELECT @ObjektiID = ID FROM dbo.mainNoviKartice
-        WHERE MainID = @MainID AND ISNULL(Parent, -1) = ISNULL(@Parent, -1) AND Naziv = N'Objekti';
+        WHERE MainID = @MainID AND ISNULL(Parent, -1) = ISNULL(@Parent, -1) AND Naziv = @NovaKartica;
 
         IF @ObjektiID IS NULL
         BEGIN
@@ -419,7 +420,7 @@ BEGIN
                                     WHERE c.object_id = OBJECT_ID('dbo.mainNoviKartice') AND c.is_identity = 0 AND c.is_computed = 0
                                     ORDER BY c.column_id FOR XML PATH('')), 1, 2, N''),
                    @vrednosti = STUFF((SELECT N', ' + CASE c.name
-                                                        WHEN 'Naziv' THEN N'N''Objekti'''
+                                                        WHEN 'Naziv' THEN N'@NovaKartica'
                                                         WHEN 'ID' THEN N'(SELECT ISNULL(MAX(ID), 0) + 1 FROM dbo.mainNoviKartice)'
                                                         ELSE QUOTENAME(c.name) END
                                        FROM sys.columns c
@@ -427,14 +428,14 @@ BEGIN
                                        ORDER BY c.column_id FOR XML PATH('')), 1, 2, N'');
             SET @sql = N'INSERT INTO dbo.mainNoviKartice (' + @kolone + N') SELECT ' + @vrednosti
                      + N' FROM dbo.mainNoviKartice WHERE ID = @Izvor';
-            EXEC sp_executesql @sql, N'@Izvor int', @Izvor = @LokacijeID;
+            EXEC sp_executesql @sql, N'@Izvor int, @NovaKartica nvarchar(50)', @Izvor = @LokacijeID, @NovaKartica = @NovaKartica;
 
             SELECT @ObjektiID = ID FROM dbo.mainNoviKartice
-            WHERE MainID = @MainID AND ISNULL(Parent, -1) = ISNULL(@Parent, -1) AND Naziv = N'Objekti';
-            PRINT N'Dodata kartica Objekti, ID = ' + CAST(@ObjektiID AS nvarchar(10)) + N', MainID = ' + CAST(@MainID AS nvarchar(10));
+            WHERE MainID = @MainID AND ISNULL(Parent, -1) = ISNULL(@Parent, -1) AND Naziv = @NovaKartica;
+            PRINT N'Dodata kartica ' + @NovaKartica + N', ID = ' + CAST(@ObjektiID AS nvarchar(10)) + N', MainID = ' + CAST(@MainID AS nvarchar(10));
         END
 
-        -- prava: svi koji imaju 'Lokacije' dobijaju 'Objekti' (samo ako ga već nemaju)
+        -- prava: svi koji imaju 'Lokacije' dobijaju i novu karticu (samo ako je već nemaju)
         SELECT @kolone = STUFF((SELECT N', ' + QUOTENAME(c.name)
                                 FROM sys.columns c
                                 WHERE c.object_id = OBJECT_ID('dbo.MainNoviPrava') AND c.is_identity = 0 AND c.is_computed = 0
@@ -453,9 +454,9 @@ BEGIN
         SET @Broj = 0;
         EXEC sp_executesql @sql, N'@Izvor int, @Novi int, @MainID int, @Broj int OUTPUT',
              @Izvor = @LokacijeID, @Novi = @ObjektiID, @MainID = @MainID, @Broj = @Broj OUTPUT;
-        PRINT N'Dodato prava za Objekti: ' + CAST(ISNULL(@Broj, 0) AS nvarchar(10));
+        PRINT N'Dodato prava za ' + @NovaKartica + N': ' + CAST(ISNULL(@Broj, 0) AS nvarchar(10));
 
-        FETCH NEXT FROM kartice INTO @LokacijeID, @MainID, @Parent;
+        FETCH NEXT FROM kartice INTO @LokacijeID, @MainID, @Parent, @NovaKartica;
     END
     CLOSE kartice;
     DEALLOCATE kartice;

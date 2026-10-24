@@ -552,6 +552,8 @@ namespace Testiranje.Sifarnici
 
         private void frmSkladista_Load(object sender, EventArgs e)
         {
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
             cboVrstaPozicija.DataSource = HijerarhijaSkladista.VrstePozicija();
             cboVrstaPozicija.DisplayMember = "Naziv";
             cboVrstaPozicija.ValueMember = "ID";

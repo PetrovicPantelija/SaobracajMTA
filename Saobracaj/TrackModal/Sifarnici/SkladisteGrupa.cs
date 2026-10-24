@@ -375,6 +375,8 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void SkladisteGrupa_Load(object sender, EventArgs e)
         {
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
             FillCombo();
             cboZonaID.SelectedIndexChanged += cboZonaID_SelectedIndexChanged;
             chkCarinsko_CheckedChanged(chkCarinsko, EventArgs.Empty);

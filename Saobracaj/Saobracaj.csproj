@@ -4446,6 +4446,12 @@
     <Compile Include="TrackModal\Sifarnici\InsertSkladistaGrupa.cs" />
     <Compile Include="TrackModal\Sifarnici\HijerarhijaSkladista.cs" />
     <Compile Include="TrackModal\Sifarnici\SifarnikGrid.cs" />
+    <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.Designer.cs">
+      <DependentUpon>frmPregledSkladistaGrupa.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.cs">
       <SubType>Form</SubType>
     </Compile>

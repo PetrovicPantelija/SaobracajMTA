@@ -96,6 +96,8 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void frmSkladisteObjekat_Load(object sender, EventArgs e)
         {
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
             lokacije = HijerarhijaSkladista.ListaRoditelja(NivoSkladista.Lokacija);
             HijerarhijaSkladista.PoveziListu(cboLokacija, lokacije);
 

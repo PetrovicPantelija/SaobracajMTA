@@ -120,47 +120,27 @@ namespace Saobracaj.MainLeget.LegNew.Podesavanjesistema
             );
         }
 
+        // Polja i Pozicije se otvaraju kao Zone (u glavnom prozoru, uz proveru prava na karticu)
         private void btnLogistikaIzvozaPM3_Click(object sender, EventArgs e)
         {
-            FormCollection fc = Application.OpenForms;
-            bool bFormNameOpen = false;
-            foreach (Form frm in fc)
-            {
-                //iterate through
-                if (frm.Name == "frmSkladista")
-                {
-                    bFormNameOpen = true;
-                    frm.Activate();
-                    frm.WindowState = FormWindowState.Normal;
-                }
-            }
-            if (bFormNameOpen == false)
-            {
-                frmSkladista sklad = new frmSkladista(Korisnik);
-                sklad.Show();
-            }
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM3.Text,
+                () => new frmSkladista(Korisnik)
+            );
         }
 
         private void btnLogistikaIzvozaPM4_Click(object sender, EventArgs e)
         {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
 
-            FormCollection fc = Application.OpenForms;
-            bool bFormNameOpen = false;
-            foreach (Form frm in fc)
-            {
-                //iterate through
-                if (frm.Name == "frmPozicija")
-                {
-                    bFormNameOpen = true;
-                    frm.Activate();
-                    frm.WindowState = FormWindowState.Normal;
-                }
-            }
-            if (bFormNameOpen == false)
-            {
-                frmPozicija poz = new frmPozicija(Korisnik);
-                poz.Show();
-            }
+            main.OtvoriFormuSaPravom(
+                btnLogistikaIzvozaPM4.Text,
+                () => new frmPozicija(Korisnik)
+            );
         }
 
         private void btnLogistikaIzvozaPM5_Click(object sender, EventArgs e)

@@ -299,6 +299,8 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void frmZone_Load(object sender, EventArgs e)
         {
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
 
             FillCombo();
             RefreshDataGrid();
