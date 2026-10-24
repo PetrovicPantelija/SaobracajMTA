@@ -405,6 +405,8 @@ BEGIN
 
     DECLARE kartice CURSOR LOCAL FAST_FORWARD FOR
         SELECT k.ID, k.MainID, k.Parent, n.Naziv FROM dbo.mainNoviKartice k
+        CROSS JOIN (VALUES (N'Objekti'), (N'Polja'), (N'Pozicije')) n (Naziv)
+        WHERE k.Naziv = N'Lokacije';
     OPEN kartice;
     FETCH NEXT FROM kartice INTO @LokacijeID, @MainID, @Parent, @NovaKartica;
     WHILE @@FETCH_STATUS = 0
