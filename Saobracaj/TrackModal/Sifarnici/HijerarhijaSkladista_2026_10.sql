@@ -262,9 +262,11 @@ BEGIN
 END
 GO
 
--- Aktivnost u dubinu: zapis i SVI njegovi podređeni zapisi dobijaju istu aktivnost
--- (Zona -> Lokacije -> Objekti -> Polja -> Pozicije). Polja vezana direktno za lokaciju (GrupaPoljaID, bez objekta)
--- računaju se kao deca lokacije. @Nivo: Zona, Lokacija, Objekat, Polje, Pozicija.
+-- Aktivnost u dubinu: zapis i SVI njegovi podređeni zapisi, nivo po nivo, dobijaju istu aktivnost:
+-- Zona -> sve njene Lokacije -> svi Objekti tih lokacija -> sva Polja tih objekata -> sve Pozicije tih polja.
+-- Polja vezana direktno za lokaciju (GrupaPoljaID, bez objekta) računaju se kao polja te lokacije.
+-- Pri aktiviranju pozicije postaju aktivne samo ako su iste vrste kao polje (kontejnerske / paletne).
+-- @Nivo: Zona, Lokacija, Objekat, Polje, Pozicija. Izlaz: broj promenjenih podređenih zapisa po nivoima.
 -- Da li se zapis sme aktivirati (roditelj mora biti aktivan) proverava forma.
 IF OBJECT_ID('dbo.AktivnostHijerarhijaSkladista', 'P') IS NOT NULL DROP PROCEDURE dbo.AktivnostHijerarhijaSkladista;
 GO
@@ -272,17 +274,57 @@ CREATE PROCEDURE dbo.AktivnostHijerarhijaSkladista
     @Nivo nvarchar(20),
     @ID int,
     @Aktivan int,
-    @BrojPodredjenih int = NULL OUTPUT   -- broj podređenih zapisa kojima je promenjena aktivnost
+    @BrojPodredjenih int = NULL OUTPUT,   -- ukupno promenjenih podređenih zapisa
+    @BrojLokacija int = NULL OUTPUT,
+    @BrojObjekata int = NULL OUTPUT,
+    @BrojPolja int = NULL OUTPUT,
+    @BrojPozicija int = NULL OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     SET @Aktivan = CASE WHEN @Aktivan > 0 THEN 1 ELSE 0 END;
-    SET @BrojPodredjenih = 0;
+    SELECT @BrojPodredjenih = 0, @BrojLokacija = 0, @BrojObjekata = 0, @BrojPolja = 0, @BrojPozicija = 0;
 
-    DECLARE @Lokacije TABLE (ID int NOT NULL);
-    DECLARE @Objekti TABLE (ID int NOT NULL);
-    DECLARE @Polja TABLE (ID int NOT NULL);
+    IF @Nivo NOT IN (N'Zona', N'Lokacija', N'Objekat', N'Polje', N'Pozicija')
+    BEGIN
+        RAISERROR(N'Nepoznat nivo hijerarhije: %s', 16, 1, @Nivo);
+        RETURN;
+    END
+
+    IF @Nivo = N'Pozicija'
+    BEGIN
+        UPDATE dbo.Pozicija SET Aktivna = @Aktivan WHERE ID = @ID;
+        RETURN;
+    END
+
+    -- skup zapisa po nivoima: izabrani zapis i sve ispod njega
+    DECLARE @Lokacije TABLE (ID int NOT NULL PRIMARY KEY);
+    DECLARE @Objekti TABLE (ID int NOT NULL PRIMARY KEY);
+    DECLARE @Polja TABLE (ID int NOT NULL PRIMARY KEY);
+
+    -- lokacije
+    IF @Nivo = N'Zona'
+        INSERT INTO @Lokacije (ID) SELECT DISTINCT ID FROM dbo.SkladistaGrupa WHERE ZonaID = @ID AND ID IS NOT NULL;
+    ELSE IF @Nivo = N'Lokacija'
+        INSERT INTO @Lokacije (ID) VALUES (@ID);
+
+    -- objekti svih tih lokacija
+    IF @Nivo = N'Objekat'
+        INSERT INTO @Objekti (ID) VALUES (@ID);
+    ELSE
+        INSERT INTO @Objekti (ID)
+        SELECT DISTINCT o.ID FROM dbo.SkladisteObjekat o WHERE o.SkladistaGrupaID IN (SELECT ID FROM @Lokacije);
+
+    -- polja svih tih objekata (i polja bez objekta vezana direktno za te lokacije)
+    IF @Nivo = N'Polje'
+        INSERT INTO @Polja (ID) VALUES (@ID);
+    ELSE
+        INSERT INTO @Polja (ID)
+        SELECT DISTINCT s.ID FROM dbo.Skladista s
+        WHERE s.ID IS NOT NULL
+          AND (s.SkladisteObjekatID IN (SELECT ID FROM @Objekti)
+               OR (s.SkladisteObjekatID IS NULL AND s.GrupaPoljaID IN (SELECT ID FROM @Lokacije)));
 
     -- sam zapis
     IF @Nivo = N'Zona'
@@ -293,54 +335,29 @@ BEGIN
         UPDATE dbo.SkladisteObjekat SET Aktivan = @Aktivan WHERE ID = @ID;
     ELSE IF @Nivo = N'Polje'
         UPDATE dbo.Skladista SET Aktivan = @Aktivan WHERE ID = @ID;
-    ELSE IF @Nivo = N'Pozicija'
-    BEGIN
-        UPDATE dbo.Pozicija SET Aktivna = @Aktivan WHERE ID = @ID;
-        RETURN;
-    END
-    ELSE
-    BEGIN
-        RAISERROR(N'Nepoznat nivo hijerarhije: %s', 16, 1, @Nivo);
-        RETURN;
-    END
 
-    -- podređeni zapisi, nivo po nivo
-    IF @Nivo = N'Zona'
-        INSERT INTO @Lokacije (ID) SELECT ID FROM dbo.SkladistaGrupa WHERE ZonaID = @ID AND ID IS NOT NULL;
-
-    IF @Nivo IN (N'Zona', N'Lokacija')
-        INSERT INTO @Objekti (ID)
-        SELECT o.ID FROM dbo.SkladisteObjekat o
-        WHERE o.SkladistaGrupaID IN (SELECT ID FROM @Lokacije) OR (@Nivo = N'Lokacija' AND o.SkladistaGrupaID = @ID);
-
-    IF @Nivo IN (N'Zona', N'Lokacija', N'Objekat')
-        INSERT INTO @Polja (ID)
-        SELECT s.ID FROM dbo.Skladista s
-        WHERE s.ID IS NOT NULL
-          AND (s.SkladisteObjekatID IN (SELECT ID FROM @Objekti)
-               OR (@Nivo = N'Objekat' AND s.SkladisteObjekatID = @ID)
-               OR s.GrupaPoljaID IN (SELECT ID FROM @Lokacije)
-               OR (@Nivo = N'Lokacija' AND s.GrupaPoljaID = @ID));
-
+    -- podređeni zapisi (izabrani zapis se ne broji)
     UPDATE dbo.SkladistaGrupa SET Aktivna = @Aktivan
-    WHERE ID IN (SELECT ID FROM @Lokacije) AND ISNULL(Aktivna, -1) <> @Aktivan;
-    SET @BrojPodredjenih = @BrojPodredjenih + @@ROWCOUNT;
+    WHERE ID IN (SELECT ID FROM @Lokacije) AND NOT (@Nivo = N'Lokacija' AND ID = @ID) AND ISNULL(Aktivna, -1) <> @Aktivan;
+    SET @BrojLokacija = @@ROWCOUNT;
 
     UPDATE dbo.SkladisteObjekat SET Aktivan = @Aktivan
-    WHERE ID IN (SELECT ID FROM @Objekti) AND Aktivan <> @Aktivan;
-    SET @BrojPodredjenih = @BrojPodredjenih + @@ROWCOUNT;
+    WHERE ID IN (SELECT ID FROM @Objekti) AND NOT (@Nivo = N'Objekat' AND ID = @ID) AND Aktivan <> @Aktivan;
+    SET @BrojObjekata = @@ROWCOUNT;
 
     UPDATE dbo.Skladista SET Aktivan = @Aktivan
-    WHERE ID IN (SELECT ID FROM @Polja) AND ISNULL(Aktivan, -1) <> @Aktivan;
-    SET @BrojPodredjenih = @BrojPodredjenih + @@ROWCOUNT;
+    WHERE ID IN (SELECT ID FROM @Polja) AND NOT (@Nivo = N'Polje' AND ID = @ID) AND ISNULL(Aktivan, -1) <> @Aktivan;
+    SET @BrojPolja = @@ROWCOUNT;
 
-    -- pri aktiviranju postaju aktivne samo pozicije iste vrste kao polje (kontejnerske / paletne), ostale neaktivne
+    -- pozicije svih tih polja; pri aktiviranju samo pozicije iste vrste kao polje, ostale neaktivne
     UPDATE p SET Aktivna = CASE WHEN @Aktivan = 1 AND p.VrstaPozicija = s.VrstaPozicija THEN 1 ELSE 0 END
     FROM dbo.Pozicija p
     INNER JOIN dbo.Skladista s ON s.ID = p.Skladiste
-    WHERE (p.Skladiste IN (SELECT ID FROM @Polja) OR (@Nivo = N'Polje' AND p.Skladiste = @ID))
+    WHERE p.Skladiste IN (SELECT ID FROM @Polja)
       AND ISNULL(p.Aktivna, -1) <> CASE WHEN @Aktivan = 1 AND p.VrstaPozicija = s.VrstaPozicija THEN 1 ELSE 0 END;
-    SET @BrojPodredjenih = @BrojPodredjenih + @@ROWCOUNT;
+    SET @BrojPozicija = @@ROWCOUNT;
+
+    SET @BrojPodredjenih = @BrojLokacija + @BrojObjekata + @BrojPolja + @BrojPozicija;
 END
 GO
 

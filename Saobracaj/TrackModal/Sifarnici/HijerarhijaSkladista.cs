@@ -166,14 +166,45 @@ namespace Saobracaj.TrackModal.Sifarnici
             return null;
         }
 
-        // Aktivnost u dubinu: zapis i svi njegovi podređeni zapisi (Zona -> Lokacije -> Objekti -> Polja -> Pozicije)
-        // dobijaju istu aktivnost. Vraća broj podređenih zapisa kojima je aktivnost promenjena.
-        public static int PostaviAktivnost(NivoSkladista nivo, int id, bool aktivan)
+        // Broj podređenih zapisa kojima je promenjena aktivnost, po nivoima
+        public class PromenaAktivnosti
         {
-            var broj = new SqlParameter("@BrojPodredjenih", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            public int Lokacija, Objekata, Polja, Pozicija;
+
+            public int Ukupno
+            {
+                get { return Lokacija + Objekata + Polja + Pozicija; }
+            }
+
+            public string Opis()
+            {
+                var delovi = new List<string>();
+                if (Lokacija > 0) delovi.Add("lokacija: " + Lokacija);
+                if (Objekata > 0) delovi.Add("objekata: " + Objekata);
+                if (Polja > 0) delovi.Add("polja: " + Polja);
+                if (Pozicija > 0) delovi.Add("pozicija: " + Pozicija);
+                return delovi.Count == 0 ? "nema podređenih zapisa za promenu" : "podređenih zapisa - " + string.Join(", ", delovi);
+            }
+        }
+
+        // Aktivnost u dubinu: zapis i svi njegovi podređeni zapisi, nivo po nivo
+        // (Zona -> Lokacije -> Objekti -> Polja -> Pozicije), dobijaju istu aktivnost
+        public static PromenaAktivnosti PostaviAktivnost(NivoSkladista nivo, int id, bool aktivan)
+        {
+            var lokacija = new SqlParameter("@BrojLokacija", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            var objekata = new SqlParameter("@BrojObjekata", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            var polja = new SqlParameter("@BrojPolja", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            var pozicija = new SqlParameter("@BrojPozicija", SqlDbType.Int) { Direction = ParameterDirection.Output };
             Procedura("AktivnostHijerarhijaSkladista",
-                Param("@Nivo", nivo.ToString()), Param("@ID", id), Param("@Aktivan", aktivan ? 1 : 0), broj);
-            return CeoBroj(broj.Value);
+                Param("@Nivo", nivo.ToString()), Param("@ID", id), Param("@Aktivan", aktivan ? 1 : 0),
+                lokacija, objekata, polja, pozicija);
+            return new PromenaAktivnosti
+            {
+                Lokacija = CeoBroj(lokacija.Value),
+                Objekata = CeoBroj(objekata.Value),
+                Polja = CeoBroj(polja.Value),
+                Pozicija = CeoBroj(pozicija.Value)
+            };
         }
 
         // Dugmad Aktivne / Neaktivne: izabrani red grida (kolone ID i Oznaka) i njegovi podređeni zapisi;
@@ -198,9 +229,8 @@ namespace Saobracaj.TrackModal.Sifarnici
                     return;
                 }
 
-                int podredjenih = PostaviAktivnost(nivo, id, aktivan);
-                MessageBox.Show(sifra + ": " + (aktivan ? "aktivirano" : "deaktivirano")
-                    + (podredjenih > 0 ? ", podređenih zapisa: " + podredjenih : "") + ".",
+                PromenaAktivnosti promena = PostaviAktivnost(nivo, id, aktivan);
+                MessageBox.Show(sifra + ": " + (aktivan ? "aktivirano" : "deaktivirano") + "; " + promena.Opis() + ".",
                     naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -215,9 +245,9 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
             if (id <= 0 || bioAktivan == aktivan)
                 return;
-            int podredjenih = PostaviAktivnost(nivo, id, aktivan);
-            if (podredjenih > 0)
-                MessageBox.Show((aktivan ? "Aktivirano" : "Deaktivirano") + " i podređenih zapisa: " + podredjenih + ".",
+            PromenaAktivnosti promena = PostaviAktivnost(nivo, id, aktivan);
+            if (promena.Ukupno > 0)
+                MessageBox.Show((aktivan ? "Aktivirano" : "Deaktivirano") + " i " + promena.Opis() + ".",
                     naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
