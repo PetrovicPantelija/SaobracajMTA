@@ -283,11 +283,7 @@ namespace Testiranje.Sifarnici
 
         private void Kolona(string naziv, string naslov, int sirina)
         {
-            DataGridViewColumn kolona = dataGridView1.Columns[naziv];
-            if (kolona == null)
-                return;
-            kolona.HeaderText = naslov;
-            kolona.Width = sirina;
+            SifarnikGrid.Kolona(gridGroupingControl1, naziv, naslov, sirina);
         }
 
         // Tip objekta određuje koja se polja vide: KONTEJNERSKO - vrsta i kvalitet kontejnera (tip palete CNT),
@@ -345,7 +341,7 @@ namespace Testiranje.Sifarnici
         // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Polje, aktivan, "Polja");
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Polje, aktivan, "Polja");
             RefreshDataGrid();
         }
 
@@ -374,10 +370,7 @@ namespace Testiranje.Sifarnici
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            PodesiDatagridView(dataGridView1);
+            SifarnikGrid.Napuni(gridGroupingControl1, ds.Tables[0]);
 
             Kolona("ID", "ID", 50);
             Kolona("Oznaka", "Šifra", 100);
@@ -432,26 +425,14 @@ namespace Testiranje.Sifarnici
             cboGrupaPolja_SelectedIndexChanged(cboGrupaPolja, EventArgs.Empty);
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id == 0)
+                return;
+            txtSifra.Text = id.ToString();
+            VratiPodatke(txtSifra.Text);
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

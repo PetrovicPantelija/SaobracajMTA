@@ -301,33 +301,12 @@ namespace Saobracaj.TrackModal.Sifarnici
                 " LEFT JOIN dbo.Zone z ON z.ID = g.ZonaID " +
                 " LEFT JOIN dbo.Carinarnice c ON c.ID = g.CarinskaIspostavaID " +
                 " ORDER BY g.ID";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = HijerarhijaSkladista.Tabela(select);
-
-            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
-            {
-                PodesiDatagridView(dataGridView1);
-            }
-            else
-            {
-                dataGridView1.BorderStyle = BorderStyle.None;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView1.BackgroundColor = Color.White;
-
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            }
+            SifarnikGrid.Napuni(gridGroupingControl1, HijerarhijaSkladista.Tabela(select));
 
             Kolona("ID", "ID", 50);
             Kolona("Oznaka", "Šifra", 80);
             Kolona("Naziv", "Naziv", 200);
-            Kolona("ZonaID", "Zona ID", 40);
-            dataGridView1.Columns["ZonaID"].Visible = false;
+            SifarnikGrid.Sakrij(gridGroupingControl1, "ZonaID");
             Kolona("Zona_Oznaka", "Zona šifra", 80);
             Kolona("Zona_Naziv", "Zona Naziv", 220);
             Kolona("Drzava", "Drzava", 120);
@@ -341,11 +320,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void Kolona(string naziv, string naslov, int sirina)
         {
-            DataGridViewColumn kolona = dataGridView1.Columns[naziv];
-            if (kolona == null)
-                return;
-            kolona.HeaderText = naslov;
-            kolona.Width = sirina;
+            SifarnikGrid.Kolona(gridGroupingControl1, naziv, naslov, sirina);
         }
 
         private void VratiPodatke(string ID)
@@ -422,30 +397,21 @@ namespace Saobracaj.TrackModal.Sifarnici
             txtDrzalac.Enabled = carinsko;
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        status = false;
-                        VratiPodatke(txtSifra.Text);
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id == 0)
+                return;
+            txtSifra.Text = id.ToString();
+            status = false;
+            VratiPodatke(txtSifra.Text);
         }
 
         // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Lokacija, aktivan, "Lokacije");
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Lokacija, aktivan, "Lokacije");
             RefreshDataGrid();
         }
 

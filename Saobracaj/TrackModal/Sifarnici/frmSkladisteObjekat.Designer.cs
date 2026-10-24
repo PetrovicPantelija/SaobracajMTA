@@ -60,12 +60,12 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblNadredjeni = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             //
@@ -356,6 +356,8 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 16);
             this.label6.Text = "Latitude:";
+            this.label6.Enabled = false;
+            this.label6.Visible = false;
             //
             // txtLatitude
             //
@@ -365,6 +367,8 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.txtLatitude.Name = "txtLatitude";
             this.txtLatitude.Size = new System.Drawing.Size(120, 22);
             this.txtLatitude.TabIndex = 6;
+            this.txtLatitude.Enabled = false;
+            this.txtLatitude.Visible = false;
             //
             // label7
             //
@@ -375,6 +379,8 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 16);
             this.label7.Text = "Longitude:";
+            this.label7.Enabled = false;
+            this.label7.Visible = false;
             //
             // txtLongitude
             //
@@ -384,6 +390,8 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.txtLongitude.Name = "txtLongitude";
             this.txtLongitude.Size = new System.Drawing.Size(120, 22);
             this.txtLongitude.TabIndex = 7;
+            this.txtLongitude.Enabled = false;
+            this.txtLongitude.Visible = false;
             //
             // chkAktivan
             //
@@ -420,22 +428,31 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.lblNadredjeni.Name = "lblNadredjeni";
             this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
             this.lblNadredjeni.Size = new System.Drawing.Size(660, 130);
-            //
-            // dataGridView1
-            //
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // gridGroupingControl1
+            // 
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 230);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1394, 349);
-            this.dataGridView1.TabIndex = 501;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 230);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1394, 349);
+            this.gridGroupingControl1.TabIndex = 501;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.AllowRemove = false;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.SelectedRecordsChanged += new Syncfusion.Grouping.SelectedRecordsChangedEventHandler(this.gridGroupingControl1_SelectedRecordsChanged);
             //
             // commandBarController1
             //
@@ -449,7 +466,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1418, 591);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.chkAktivan);
@@ -477,7 +494,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -516,7 +533,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblNadredjeni;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

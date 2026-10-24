@@ -264,17 +264,13 @@ namespace Testiranje.Sifarnici
 
         private void Kolona(string naziv, string naslov, int sirina)
         {
-            DataGridViewColumn kolona = dataGridView1.Columns[naziv];
-            if (kolona == null)
-                return;
-            kolona.HeaderText = naslov;
-            kolona.Width = sirina;
+            SifarnikGrid.Kolona(gridGroupingControl1, naziv, naslov, sirina);
         }
 
         // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Pozicija, aktivan, "Pozicije");
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Pozicija, aktivan, "Pozicije");
             RefreshDataGrid();
         }
 
@@ -313,10 +309,7 @@ namespace Testiranje.Sifarnici
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            PodesiDatagridView(dataGridView1);
+            SifarnikGrid.Napuni(gridGroupingControl1, ds.Tables[0]);
 
             Kolona("ID", "ID", 50);
             Kolona("Oznaka", "Šifra", 100);
@@ -355,26 +348,14 @@ namespace Testiranje.Sifarnici
             lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Pozicija, poljeId);
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id == 0)
+                return;
+            txtSifra.Text = id.ToString();
+            VratiPodatke(txtSifra.Text);
         }
 
         private void frmPozicija_Load(object sender, EventArgs e)
@@ -406,42 +387,16 @@ namespace Testiranje.Sifarnici
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            SifarnikGrid.Napuni(gridGroupingControl1, ds.Tables[0]);
 
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Skladiste";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Skladiste naziv";
-            dataGridView1.Columns[2].Width = 100;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Šifra";
-            dataGridView1.Columns[3].Width = 50;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Opis";
-            dataGridView1.Columns[4].Width = 150;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Namena";
-            dataGridView1.Columns[5].Width = 50;
-
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Datum";
-            dataGridView1.Columns[6].Width = 100;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Korisnik";
-            dataGridView1.Columns[7].Width = 100;
+            Kolona("ID", "ID", 50);
+            Kolona("Skladiste", "Polje ID", 60);
+            Kolona("Naziv", "Polje", 150);
+            Kolona("Oznaka", "Šifra", 100);
+            Kolona("Opis", "Naziv", 200);
+            Kolona("Namena", "SkNaziv", 100);
+            Kolona("Datum", "Datum", 100);
+            Kolona("Korisnik", "Korisnik", 100);
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

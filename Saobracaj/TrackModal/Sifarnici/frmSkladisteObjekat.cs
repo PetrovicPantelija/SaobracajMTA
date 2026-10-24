@@ -247,10 +247,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 + " LEFT JOIN dbo.Zone z ON z.ID = g.ZonaID "
                 + " LEFT JOIN dbo.TipSkladista ts ON ts.ID = o.TipSkladistaID "
                 + " ORDER BY o.ID";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = HijerarhijaSkladista.Tabela(select);
-
-            PodesiDatagridView(dataGridView1);
+            SifarnikGrid.Napuni(gridGroupingControl1, HijerarhijaSkladista.Tabela(select));
 
             Kolona("ID", "ID", 50);
             Kolona("Oznaka", "Šifra", 100);
@@ -266,11 +263,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void Kolona(string naziv, string naslov, int sirina)
         {
-            DataGridViewColumn kolona = dataGridView1.Columns[naziv];
-            if (kolona == null)
-                return;
-            kolona.HeaderText = naslov;
-            kolona.Width = sirina;
+            SifarnikGrid.Kolona(gridGroupingControl1, naziv, naslov, sirina);
         }
 
         private void VratiPodatke(int id)
@@ -300,17 +293,12 @@ namespace Saobracaj.TrackModal.Sifarnici
             lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Objekat, lokacijaId);
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Selected)
-                    VratiPodatke(HijerarhijaSkladista.CeoBroj(dataGridView1.CurrentRow.Cells["ID"].Value));
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id > 0)
+                VratiPodatke(id);
         }
 
         private void cboLokacija_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,7 +309,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
         private void PromeniAktivnost(bool aktivan)
         {
-            HijerarhijaSkladista.PromeniAktivnostIzabranih(dataGridView1, NivoSkladista.Objekat, aktivan, "Objekti");
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Objekat, aktivan, "Objekti");
             RefreshDataGrid();
         }
 

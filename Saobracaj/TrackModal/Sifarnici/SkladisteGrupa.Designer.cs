@@ -55,7 +55,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtAdresa = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.cboTipSkladista = new System.Windows.Forms.ComboBox();
@@ -81,7 +81,7 @@
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -370,20 +370,30 @@
             this.label7.TabIndex = 500;
             this.label7.Text = "Adresa:";
             // 
-            // dataGridView1
+            // gridGroupingControl1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 260);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1371, 319);
-            this.dataGridView1.TabIndex = 501;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 260);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1371, 319);
+            this.gridGroupingControl1.TabIndex = 501;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.AllowRemove = false;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.SelectedRecordsChanged += new Syncfusion.Grouping.SelectedRecordsChangedEventHandler(this.gridGroupingControl1_SelectedRecordsChanged);
             // 
             // commandBarController1
             // 
@@ -662,7 +672,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboTipSkladista);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.txtAdresa);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtGrad);
@@ -688,7 +698,7 @@
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -722,7 +732,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAdresa;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboTipSkladista;

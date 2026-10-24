@@ -176,50 +176,37 @@ namespace Saobracaj.TrackModal.Sifarnici
             return CeoBroj(broj.Value);
         }
 
-        // Dugmad Aktivne / Neaktivne: izabrani redovi grida (ID u prvoj, šifra u drugoj koloni) i njihovi podređeni
-        // zapisi; red čiji roditelj nije aktivan ne može se aktivirati. Prikazuje rezultat.
-        public static void PromeniAktivnostIzabranih(DataGridView grid, NivoSkladista nivo, bool aktivan, string naslov)
+        // Dugmad Aktivne / Neaktivne: izabrani red grida (kolone ID i Oznaka) i njegovi podređeni zapisi;
+        // red čiji roditelj nije aktivan ne može se aktivirati. Prikazuje rezultat.
+        public static void PromeniAktivnostIzabranih(Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl grid,
+            NivoSkladista nivo, bool aktivan, string naslov)
         {
-            var redovi = new List<DataGridViewRow>();
-            foreach (DataGridViewRow row in grid.Rows)
-                if (row.Selected)
-                    redovi.Add(row);
-            if (redovi.Count == 0 && grid.CurrentRow != null)
-                redovi.Add(grid.CurrentRow);
-            if (redovi.Count == 0)
+            int id = SifarnikGrid.IzabraniId(grid);
+            if (id == 0)
             {
                 MessageBox.Show("Izaberite zapis u tabeli.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var greske = new StringBuilder();
-            int promenjeno = 0, podredjenih = 0;
+            string sifra = Convert.ToString(SifarnikGrid.Vrednost(grid, "Oznaka"));
             try
             {
-                foreach (DataGridViewRow row in redovi)
+                string greska = ProveriPromenuAktivnosti(nivo, id, aktivan);
+                if (greska != null)
                 {
-                    int id = CeoBroj(row.Cells[0].Value);
-                    string greska = ProveriPromenuAktivnosti(nivo, id, aktivan);
-                    if (greska != null)
-                    {
-                        greske.AppendLine(Convert.ToString(row.Cells[1].Value) + ": " + greska);
-                        continue;
-                    }
-                    podredjenih += PostaviAktivnost(nivo, id, aktivan);
-                    promenjeno++;
+                    MessageBox.Show(sifra + ": " + greska, naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                int podredjenih = PostaviAktivnost(nivo, id, aktivan);
+                MessageBox.Show(sifra + ": " + (aktivan ? "aktivirano" : "deaktivirano")
+                    + (podredjenih > 0 ? ", podređenih zapisa: " + podredjenih : "") + ".",
+                    naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                greske.AppendLine(ex.Message);
+                MessageBox.Show(ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            string poruka = (aktivan ? "Aktivirano" : "Deaktivirano") + " zapisa: " + promenjeno
-                + (podredjenih > 0 ? ", podređenih zapisa: " + podredjenih : "") + ".";
-            if (greske.Length > 0)
-                MessageBox.Show(poruka + Environment.NewLine + Environment.NewLine + greske, naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                MessageBox.Show(poruka, naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Pri snimanju: ako je zapisu promenjena aktivnost, ista aktivnost se prenosi na podređene zapise.

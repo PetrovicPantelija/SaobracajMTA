@@ -4445,6 +4445,7 @@
     <Compile Include="TrackModal\Sifarnici\InsertSkladista.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladistaGrupa.cs" />
     <Compile Include="TrackModal\Sifarnici\HijerarhijaSkladista.cs" />
+    <Compile Include="TrackModal\Sifarnici\SifarnikGrid.cs" />
     <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.cs">
       <SubType>Form</SubType>
     </Compile>
