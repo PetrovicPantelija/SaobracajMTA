@@ -191,6 +191,19 @@ IF OBJECT_ID('dbo.Zaposleni', 'U') IS NULL
         SifraERP nvarchar(30)  NULL);
 GO
 
+-- Zaposleni.ID mora biti IDENTITY sa primarnim ključem (inače novi zaposleni dobija ID = NULL, a spoljni ključevi ne nastaju).
+-- Ako nije, skripta staje pre bilo kakve izmene (SET NOEXEC ON preskače ostatak skripte).
+IF COLUMNPROPERTY(OBJECT_ID('dbo.Zaposleni'), 'ID', 'IsIdentity') <> 1
+   OR NOT EXISTS (SELECT 1 FROM sys.key_constraints k
+                  JOIN sys.index_columns ic ON ic.object_id = k.parent_object_id AND ic.index_id = k.unique_index_id
+                  JOIN sys.columns c ON c.object_id = ic.object_id AND c.column_id = ic.column_id
+                  WHERE k.parent_object_id = OBJECT_ID('dbo.Zaposleni') AND k.type = 'PK' AND c.name = 'ID')
+BEGIN
+    RAISERROR(N'Zaposleni.ID nije IDENTITY sa primarnim ključem. Pokrenite prvo HR_Modul_ZaposleniID_2026_10.sql, pa ponovo ovu skriptu. Ništa nije promenjeno.', 16, 1);
+    SET NOEXEC ON;
+END
+GO
+
 DECLARE @kolone TABLE (Kolona sysname, Definicija nvarchar(200));
 INSERT @kolone VALUES
  (N'Status',              N'char(1) NOT NULL CONSTRAINT DF_Zaposleni_Status DEFAULT ''A'''),
@@ -1482,4 +1495,8 @@ DROP PROCEDURE #HR_DodajFK;
 GO
 
 PRINT N'HR modul: skripta završena.';
+GO
+
+-- vraća izvršavanje ako je skripta stala na proveri Zaposleni.ID
+SET NOEXEC OFF;
 GO

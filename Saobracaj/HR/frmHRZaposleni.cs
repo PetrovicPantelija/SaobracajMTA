@@ -258,10 +258,22 @@ namespace Saobracaj.HR
                 if (id == 0)
                 {
                     // SCOPE_IDENTITY umesto OUTPUT: tabela Zaposleni ima okidač (faza 2), a OUTPUT bez INTO tada nije dozvoljen
-                    string sql = "INSERT INTO dbo.Zaposleni (" + string.Join(", ", kolone.Select(k => "[" + k + "]")) + ", Datum, Korisnik, KreiraoKorisnik) " +
+                    // u transakciji: ako zapis ne dobije šifru (ID nije IDENTITY), unos se poništava umesto da ostane red bez ID-a
+                    string sql = "SET XACT_ABORT ON; BEGIN TRAN; " +
+                                 "INSERT INTO dbo.Zaposleni (" + string.Join(", ", kolone.Select(k => "[" + k + "]")) + ", Datum, Korisnik, KreiraoKorisnik) " +
                                  "VALUES (" + string.Join(", ", kolone.Select((k, i) => "@p" + i)) + ", GETDATE(), @Korisnik, @Korisnik); " +
-                                 "SELECT CAST(SCOPE_IDENTITY() AS int);";
+                                 "DECLARE @NoviID int = CAST(SCOPE_IDENTITY() AS int); " +
+                                 "IF @NoviID IS NULL ROLLBACK; ELSE COMMIT; " +
+                                 "SELECT @NoviID;";
                     id = HRBaza.CeoBroj(HRBaza.Skalar(sql, parametri.ToArray()));
+                    if (id <= 0)
+                    {
+                        MessageBox.Show("Zaposleni nije snimljen: tabela Zaposleni ne dodeljuje šifru (kolona ID nije IDENTITY).\n\n" +
+                                        "Na bazi treba pokrenuti skriptu HR_Modul_ZaposleniID_2026_10.sql.",
+                            "Zaposleni", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        id = 0;
+                        return;
+                    }
                     try
                     {
                         // osnov OSN (zakonski minimum godišnjeg odmora) za novog zaposlenog

@@ -265,9 +265,15 @@ namespace Saobracaj.HR
                     nazivi.Add("KreiraoKorisnik");
                     vrednosti.Add("@Korisnik");
                 }
-                sql.Append("INSERT INTO dbo.").Append(Def.Tabela).Append(" (").Append(string.Join(", ", nazivi))
-                   .Append(") VALUES (").Append(string.Join(", ", vrednosti)).Append("); SELECT CAST(SCOPE_IDENTITY() AS int);");
-                return HRBaza.CeoBroj(HRBaza.Skalar(sql.ToString(), parametri.ToArray()));
+                // u transakciji: ako zapis ne dobije šifru (ključ nije IDENTITY), unos se poništava
+                sql.Append("SET XACT_ABORT ON; BEGIN TRAN; ")
+                   .Append("INSERT INTO dbo.").Append(Def.Tabela).Append(" (").Append(string.Join(", ", nazivi))
+                   .Append(") VALUES (").Append(string.Join(", ", vrednosti)).Append("); ")
+                   .Append("DECLARE @NoviID int = CAST(SCOPE_IDENTITY() AS int); IF @NoviID IS NULL ROLLBACK; ELSE COMMIT; SELECT @NoviID;");
+                int novi = HRBaza.CeoBroj(HRBaza.Skalar(sql.ToString(), parametri.ToArray()));
+                if (novi <= 0)
+                    throw new InvalidOperationException("Zapis nije snimljen: tabela " + Def.Tabela + " ne dodeljuje šifru (ključ nije IDENTITY). Proverite SQL skripte HR modula.");
+                return novi;
             }
             else
             {

@@ -90,6 +90,10 @@ namespace Saobracaj.HR
             try
             {
                 DataTable dt = HRBaza.Lista(p.ListaUpit, !p.Obavezno);
+                // sopstveni BindingContext: stavke se pune odmah, i pre nego što ComboBox dobije roditelja
+                // (dijalog postavlja vrednosti u konstruktoru, dok kontrola još nije na formi)
+                if (cb.BindingContext == null || cb.Parent == null)
+                    cb.BindingContext = new BindingContext();
                 cb.DisplayMember = dt.Columns[1].ColumnName;
                 cb.ValueMember = dt.Columns[0].ColumnName;
                 cb.DataSource = dt;
@@ -193,12 +197,14 @@ namespace Saobracaj.HR
                 case ComboBox cb:
                     if (prazno)
                     {
+                        // prazna stavka na vrhu postoji samo kod neobaveznog polja, i samo kad su stavke već napunjene
                         var dt = cb.DataSource as DataTable;
-                        cb.SelectedIndex = dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] == DBNull.Value ? 0 : -1;
-                        if (cb.SelectedIndex < 0)
+                        bool praznaPrva = cb.Items.Count > 0 && dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] == DBNull.Value;
+                        cb.SelectedIndex = praznaPrva ? 0 : -1;
+                        if (!praznaPrva)
                             cb.Text = "";
                     }
-                    else
+                    else if (cb.Items.Count > 0)
                         cb.SelectedValue = v is string s ? (object)s.Trim() : v;
                     break;
                 case CheckBox chk:

@@ -66,6 +66,8 @@ namespace Saobracaj.HR
             grid.TableOptions.ListBoxSelectionMode = SelectionMode.One;
             grid.TopLevelGroupOptions.ShowCaption = false;
             grid.ShowGroupDropArea = false;
+            // ćelija se ne aktivira kao polje za unos, pa dupli klik stiže do tabele (DuplikKlik)
+            grid.TableModel.Options.ActivateCurrentCellBehavior = GridCellActivateAction.None;
             ThemeHelper.StyleGrid(grid);
         }
 
@@ -195,12 +197,24 @@ namespace Saobracaj.HR
 
         public static void DuplikKlik(GridGroupingControl grid, Action akcija)
         {
-            grid.TableControlCellDoubleClick += (s, e) =>
+            // dupli klik na samoj tabeli (ne u kontroli ćelije); kliknuti red postaje izabran, pa akcija radi baš sa njim
+            grid.TableControl.MouseDoubleClick += (s, e) =>
             {
-                GridTableCellStyleInfo stil = grid.TableControl.GetTableViewStyleInfo(e.Inner.RowIndex, e.Inner.ColIndex);
+                if (e.Button != MouseButtons.Left)
+                    return;
+                if (!grid.TableControl.PointToRowCol(e.Location, out int red, out int kolona) || red < 0 || kolona < 0)
+                    return;
+                GridTableCellStyleInfo stil = grid.TableControl.GetTableViewStyleInfo(red, kolona);
                 GridTableCellType tip = stil.TableCellIdentity.TableCellType;
-                if (tip == GridTableCellType.RecordFieldCell || tip == GridTableCellType.AlternateRecordFieldCell)
-                    akcija();
+                if (tip != GridTableCellType.RecordFieldCell && tip != GridTableCellType.AlternateRecordFieldCell)
+                    return;
+                Record zapis = stil.TableCellIdentity.DisplayElement?.GetRecord();
+                if (zapis == null)
+                    return;
+                grid.Table.SelectedRecords.Clear();
+                grid.Table.SelectedRecords.Add(zapis);
+                zapis.SetCurrent();
+                akcija();
             };
         }
 
