@@ -33,5 +33,16 @@ namespace Saobracaj.Administracija
                 btnPrava.Text,
                 () => new AdministracijaPravoPristupa(Korisnik));
         }
+
+        // Podešavanja aplikacije (tabela Podesavanja); otvara se samo uz pravo na karticu 'Podešavanja'
+        private void btnPodesavanja_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                btnPodesavanja.Text,
+                () => new frmPodesavanja());
+        }
     }
 }

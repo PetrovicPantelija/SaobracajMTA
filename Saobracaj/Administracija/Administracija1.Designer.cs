@@ -32,6 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnKorisnici = new Syncfusion.WinForms.Controls.SfButton();
             this.btnPrava = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnPodesavanja = new Syncfusion.WinForms.Controls.SfButton();
             this.SuspendLayout();
             //
             // splitter1
@@ -106,6 +107,31 @@
             this.btnPrava.UseVisualStyleBackColor = false;
             this.btnPrava.Click += new System.EventHandler(this.btnPrava_Click);
             //
+            // btnPodesavanja
+            //
+            this.btnPodesavanja.AccessibleName = "Button";
+            this.btnPodesavanja.AllowWrapText = true;
+            this.btnPodesavanja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPodesavanja.Font = new System.Drawing.Font("Segoe UI Semibold", 18F);
+            this.btnPodesavanja.ForeColor = System.Drawing.Color.White;
+            this.btnPodesavanja.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
+            this.btnPodesavanja.ImageSize = new System.Drawing.Size(70, 80);
+            this.btnPodesavanja.Location = new System.Drawing.Point(669, 105);
+            this.btnPodesavanja.Name = "btnPodesavanja";
+            this.btnPodesavanja.Size = new System.Drawing.Size(288, 225);
+            this.btnPodesavanja.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPodesavanja.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPodesavanja.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPodesavanja.Style.FocusedForeColor = System.Drawing.Color.White;
+            this.btnPodesavanja.Style.ForeColor = System.Drawing.Color.White;
+            this.btnPodesavanja.Style.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnPodesavanja.Style.PressedForeColor = System.Drawing.Color.White;
+            this.btnPodesavanja.TabIndex = 495;
+            this.btnPodesavanja.Text = "Podešavanja";
+            this.btnPodesavanja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPodesavanja.UseVisualStyleBackColor = false;
+            this.btnPodesavanja.Click += new System.EventHandler(this.btnPodesavanja_Click);
+            //
             // Administracija1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -113,6 +139,7 @@
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1056, 638);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnPodesavanja);
             this.Controls.Add(this.btnPrava);
             this.Controls.Add(this.btnKorisnici);
             this.Controls.Add(this.splitter1);
@@ -133,5 +160,6 @@
         private System.Windows.Forms.Label label2;
         private Syncfusion.WinForms.Controls.SfButton btnKorisnici;
         private Syncfusion.WinForms.Controls.SfButton btnPrava;
+        private Syncfusion.WinForms.Controls.SfButton btnPodesavanja;
     }
 }

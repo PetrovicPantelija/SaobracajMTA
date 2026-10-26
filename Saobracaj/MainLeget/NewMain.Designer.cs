@@ -55,6 +55,7 @@
             this.btnOdrzavanje = new Syncfusion.WinForms.Controls.SfButton();
             this.btnKapija = new Syncfusion.WinForms.Controls.SfButton();
             this.btnFinansije = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnHR = new Syncfusion.WinForms.Controls.SfButton();
             this.btnPodesavanja = new Syncfusion.WinForms.Controls.SfButton();
             this.btnAdministracija = new Syncfusion.WinForms.Controls.SfButton();
             this.btnVSD = new Syncfusion.WinForms.Controls.SfButton();
@@ -258,6 +259,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnOdrzavanje);
             this.flowLayoutPanel1.Controls.Add(this.btnKapija);
             this.flowLayoutPanel1.Controls.Add(this.btnFinansije);
+            this.flowLayoutPanel1.Controls.Add(this.btnHR);
             this.flowLayoutPanel1.Controls.Add(this.btnPodesavanja);
             this.flowLayoutPanel1.Controls.Add(this.btnAdministracija);
             this.flowLayoutPanel1.Controls.Add(this.btnVSD);
@@ -717,7 +719,36 @@
             this.btnFinansije.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.btnFinansije.UseVisualStyleBackColor = false;
             this.btnFinansije.Click += new System.EventHandler(this.btnFinansije_Click);
-            // 
+            //
+            // btnHR
+            //
+            this.btnHR.AccessibleName = "Button";
+            this.btnHR.AllowImageAnimation = false;
+            this.btnHR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnHR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHR.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnHR.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnHR.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHR.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHR.ImageMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnHR.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnHR.Location = new System.Drawing.Point(3, 715);
+            this.btnHR.Name = "btnHR";
+            this.btnHR.Size = new System.Drawing.Size(250, 45);
+            this.btnHR.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
+            this.btnHR.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.btnHR.Style.FocusedForeColor = System.Drawing.Color.CornflowerBlue;
+            this.btnHR.Style.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnHR.Style.Image = global::Saobracaj.Properties.Resources.PodešavanjeSistema;
+            this.btnHR.Style.ImageForeColor = System.Drawing.Color.White;
+            this.btnHR.TabIndex = 63;
+            this.btnHR.Text = "HR modul";
+            this.btnHR.TextMargin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.btnHR.UseVisualStyleBackColor = false;
+            this.btnHR.Click += new System.EventHandler(this.btnHR_Click);
+            //
             // btnPodesavanja
             // 
             this.btnPodesavanja.AccessibleName = "Button";
@@ -996,6 +1027,7 @@
         private Syncfusion.WinForms.Controls.SfButton btnDrumski;
         private Syncfusion.WinForms.Controls.SfButton btnLogistikaDirektnih;
         private Syncfusion.WinForms.Controls.SfButton btnZeleznicki;
+        private Syncfusion.WinForms.Controls.SfButton btnHR;
         private Syncfusion.WinForms.Controls.SfButton btnPodesavanja;
         private Syncfusion.WinForms.Controls.SfButton btnAdministracija;
         private Syncfusion.WinForms.Controls.SfButton btnFinansije;

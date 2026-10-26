@@ -57,6 +57,8 @@ namespace Saobracaj
             PostaviMaksimalneGranice();
             ShowHome();
             Korisnik = korisnik.ToLower().TrimEnd();
+            // tabela Podesavanja (firma, putanje, mail, HR pravila); bez tabele program radi kao do sada
+            Saobracaj.Administracija.Podesavanja.Ucitaj();
         }
 
         // Forma bez okvira u Maximized stanju inače zauzme ceo ekran (i ispod taskbara);
@@ -90,6 +92,7 @@ namespace Saobracaj
                 SetLeftButtonWidthToFlow(btnOdrzavanje);
                 SetLeftButtonWidthToFlow(btnKapija);
                 SetLeftButtonWidthToFlow(btnFinansije);
+                SetLeftButtonWidthToFlow(btnHR);
                 SetLeftButtonWidthToFlow(btnPodesavanja);
                 SetLeftButtonWidthToFlow(btnDepocnt);
                 
@@ -497,6 +500,26 @@ namespace Saobracaj
             BackColorKliknut(13);
         }
 
+        // HR modul: zaposleni, kontrolna tabla rokova, zahtevi za nabavku (Saobracaj/HR)
+        private void btnHR_Click(object sender, EventArgs e)
+        {
+            string key = btnHR.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'HR modul' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new Saobracaj.HR.frmHRMeni(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "HR MODUL";
+            BackColorKliknut(17);
+        }
+
         private void btnAdministracija_Click(object sender, EventArgs e)
         {
             string key = btnAdministracija.Text.Trim().ToLower();
@@ -818,6 +841,7 @@ namespace Saobracaj
             btnDepocnt.BackColor = Color.FromArgb(32, 61, 85);
             btnAdministracija.BackColor = Color.FromArgb(32, 61, 85);
             btnIntermodalni.BackColor = Color.FromArgb(32, 61, 85);
+            btnHR.BackColor = Color.FromArgb(32, 61, 85);
             switch (Dugme)
             {
                 case 0: btnLogistikaUvoza.BackColor = Color.FromArgb(1, 115, 199); break;
@@ -837,6 +861,7 @@ namespace Saobracaj
                 case 14: btnDepocnt.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 15: btnAdministracija.BackColor = Color.FromArgb(1, 115, 199); break;
                 case 16: btnIntermodalni.BackColor = Color.FromArgb(1, 115, 199); break;
+                case 17: btnHR.BackColor = Color.FromArgb(1, 115, 199); break;
                 default: break;
             }
         }

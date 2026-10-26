@@ -4447,6 +4447,71 @@
     <Compile Include="TrackModal\Sifarnici\HijerarhijaSkladista.cs" />
     <Compile Include="TrackModal\Sifarnici\SifarnikGrid.cs" />
     <Compile Include="TrackModal\Sifarnici\SifarnikTema.cs" />
+    <Compile Include="HR\HRBaza.cs" />
+    <Compile Include="HR\HRPrava.cs" />
+    <Compile Include="HR\HRStil.cs" />
+    <Compile Include="HR\HRGrid.cs" />
+    <Compile Include="HR\HRPolje.cs" />
+    <Compile Include="HR\HRObrazac.cs" />
+    <Compile Include="HR\HRPrilozi.cs" />
+    <Compile Include="HR\HRStampa.cs" />
+    <Compile Include="HR\HRTabelaKartica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRStavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRMeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZaposleniLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZaposleni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRRevers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRKontrolnaTabla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZahteviLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZahtev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRSifarnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\HRMail.cs" />
+    <Compile Include="HR\HREvidencija.cs" />
+    <Compile Include="HR\HRBeleske.cs" />
+    <Compile Include="HR\HRResenje.cs" />
+    <Compile Include="HR\HRGO.cs" />
+    <Compile Include="Administracija\Podesavanja.cs" />
+    <Compile Include="HR\frmHREvidencijaRada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRDan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGrupniUnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGOZahtevi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGOPravo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmPodesavanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Theme\SavaTheme.cs" />
     <Compile Include="Theme\ThemeHelper.cs" />
     <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.cs">
