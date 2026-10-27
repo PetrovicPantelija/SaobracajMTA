@@ -662,9 +662,9 @@ BEGIN
     -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
     DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
 
-    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera bez apostrofa (20), Type = ostatak posle razmaka
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = broj sa apostrofom (20'), Type = ostatak posle razmaka
     DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
-    DECLARE @Size nvarchar(30) = NULLIF(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(LTRIM(RTRIM(REPLACE(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'’', N''))), N'') + N'''';
     DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
 
     INSERT INTO dbo.TerminalPrivHMM
@@ -792,9 +792,9 @@ BEGIN
     -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
     DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
 
-    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera bez apostrofa (20), Type = ostatak posle razmaka
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = broj sa apostrofom (20'), Type = ostatak posle razmaka
     DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
-    DECLARE @Size nvarchar(30) = NULLIF(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(LTRIM(RTRIM(REPLACE(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'’', N''))), N'') + N'''';
     DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
 
     INSERT INTO dbo.TerminalPrivHAPAG
@@ -920,9 +920,9 @@ BEGIN
     -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
     DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
 
-    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera bez apostrofa (20), Type = ostatak posle razmaka
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = broj sa apostrofom (20'), Type = ostatak posle razmaka
     DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
-    DECLARE @Size nvarchar(30) = NULLIF(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(LTRIM(RTRIM(REPLACE(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'’', N''))), N'') + N'''';
     DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
 
     INSERT INTO dbo.TerminalPrivFLEXBOX
@@ -1046,9 +1046,9 @@ BEGIN
     -- VOZ/kamion: KAMION = tačno ta vrednost (bez obzira na velika/mala slova); sve ostalo, i prazno, nije KAMION
     DECLARE @Kamion bit = CASE WHEN UPPER(LTRIM(RTRIM(ISNULL(@VOZ_KAMION, N'')))) = N'KAMION' THEN 1 ELSE 0 END;
 
-    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = prva 3 karaktera bez apostrofa (20), Type = ostatak posle razmaka
+    -- VRSTA iz šifarnika (npr. 20' DB, 40' FLAT): Size = broj sa apostrofom (20'), Type = ostatak posle razmaka
     DECLARE @VrstaCnt nvarchar(30) = NULLIF(LTRIM(RTRIM(@VRSTA)), N'');
-    DECLARE @Size nvarchar(30) = NULLIF(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'');
+    DECLARE @Size nvarchar(30) = NULLIF(LTRIM(RTRIM(REPLACE(REPLACE(LEFT(@VrstaCnt, 3), N'''', N''), N'’', N''))), N'') + N'''';
     DECLARE @Type nvarchar(30) = NULLIF(LTRIM(SUBSTRING(@VrstaCnt, 4, 30)), N'');
 
     INSERT INTO dbo.TerminalPrivCOSCO

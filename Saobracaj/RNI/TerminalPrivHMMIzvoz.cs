@@ -65,14 +65,14 @@ namespace Saobracaj.RNI
                 IRange zaglavlje = ws.Range[1, 1, 1, Kolone.Length];
                 zaglavlje.CellStyle.Font.Bold = true;
 
-                // sve vrednosti se upisuju kao tekst (08.10.2026., 20), da ih Excel ne pretvara
+                // sve vrednosti se upisuju kao tekst (08.10.2026., 20'), da ih Excel ne pretvara
                 for (int r = 0; r < zapisi.Rows.Count; r++)
                 {
                     for (int k = 0; k < Kolone.Length; k++)
                     {
                         object v = zapisi.Rows[r][Kolone[k]];
                         if (v != DBNull.Value && v != null)
-                            ws.Range[r + 2, k + 1].Text = Convert.ToString(v);
+                            ws.Range[r + 2, k + 1].Text = Kolone[k] == "Size" ? SaApostrofom(Convert.ToString(v)) : Convert.ToString(v);
                     }
                 }
 
@@ -80,6 +80,13 @@ namespace Saobracaj.RNI
                 wb.SaveAs(putanja);
                 wb.Close();
             }
+        }
+
+        // Size uvek sa apostrofom (20', 40'); zapisi upisani pre ove izmene su bez njega
+        private static string SaApostrofom(string size)
+        {
+            string s = size.Trim();
+            return s == "" || s.EndsWith("'") || s.EndsWith("\u2019") ? s : s + "'";
         }
 
         private void OznaciIzvezene(DataTable zapisi)
