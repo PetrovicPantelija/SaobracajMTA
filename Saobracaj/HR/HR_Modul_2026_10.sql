@@ -49,6 +49,20 @@ BEGIN
 END
 GO
 
+-- Postojeća OrganizacioneJedinice mora imati ID kao IDENTITY sa primarnim ključem (inače HR šifarnik ne može da doda
+-- jedinicu, a spoljni ključevi ka njoj ne nastaju). Ako nema, skripta staje pre bilo kakve izmene (SET NOEXEC ON).
+IF OBJECT_ID('dbo.OrganizacioneJedinice', 'U') IS NOT NULL
+   AND (COLUMNPROPERTY(OBJECT_ID('dbo.OrganizacioneJedinice'), 'ID', 'IsIdentity') <> 1
+        OR NOT EXISTS (SELECT 1 FROM sys.key_constraints k
+                       JOIN sys.index_columns ic ON ic.object_id = k.parent_object_id AND ic.index_id = k.unique_index_id
+                       JOIN sys.columns c ON c.object_id = ic.object_id AND c.column_id = ic.column_id
+                       WHERE k.parent_object_id = OBJECT_ID('dbo.OrganizacioneJedinice') AND k.type = 'PK' AND c.name = 'ID'))
+BEGIN
+    RAISERROR(N'OrganizacioneJedinice.ID nije IDENTITY sa primarnim ključem. Pokrenite prvo HR_Modul_OrgJedID_2026_10.sql, pa ponovo ovu skriptu. Ništa nije promenjeno.', 16, 1);
+    SET NOEXEC ON;
+END
+GO
+
 /* ---------------------------------------------------------------------------------------------
    1. Šifarnici modula Zaposleni
    --------------------------------------------------------------------------------------------- */

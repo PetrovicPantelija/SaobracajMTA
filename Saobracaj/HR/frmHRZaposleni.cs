@@ -302,7 +302,13 @@ namespace Saobracaj.HR
             }
             catch (SqlException ex) when (ex.Number == 2601 || ex.Number == 2627)
             {
-                MessageBox.Show("Code, JMBG ili šifra u ERP-u već postoji kod drugog zaposlenog.", "Zaposleni", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // samo unikatni indeksi na Code, JMBG i SifraERP su duplikat koji korisnik ispravlja; ostalo (npr. PK_Zaposleni) je greška baze
+                string polje = ex.Message.Contains("UX_Zaposleni_Code") ? "Code"
+                             : ex.Message.Contains("UX_Zaposleni_JMBG") ? "JMBG"
+                             : ex.Message.Contains("UX_Zaposleni_SifraERP") ? "Šifra u ERP-u"
+                             : null;
+                MessageBox.Show(polje != null ? polje + " već postoji kod drugog zaposlenog." : ex.Message,
+                    "Zaposleni", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             catch (Exception ex)

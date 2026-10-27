@@ -13,7 +13,7 @@
      2. ID ima NULL vrednosti ili duplikate     -> prijavi i stani; te redove rešava korisnik
      3. inače: ID postaje IDENTITY NOT NULL uz očuvanje postojećih vrednosti (ALTER TABLE ... SWITCH u novu
         tabelu iste strukture), sa svim kolonama, RowVer, default-ima, check-ovima, indeksima, okidačima,
-        pravima i spoljnim ključevima; zatim PK_Zaposleni i DBCC CHECKIDENT na MAX(ID).
+        pravima i spoljnim ključevima; zatim PK_Zaposleni i DBCC CHECKIDENT tako da sledeći ID bude MAX(ID) + 1.
    Sve je u jednoj transakciji.
 
    Provera stanja (može se pustiti bilo kad, ništa ne menja):
@@ -216,9 +216,15 @@ BEGIN TRY
     IF NOT EXISTS (SELECT 1 FROM sys.key_constraints WHERE parent_object_id = OBJECT_ID('dbo.Zaposleni') AND type = 'PK')
         EXEC (N'ALTER TABLE dbo.Zaposleni ADD CONSTRAINT PK_Zaposleni PRIMARY KEY (ID);');
 
+    -- Sledeći ID mora biti MAX(ID) + 1. Tabela u koju je urađen SWITCH nikad nije imala INSERT (last_value IS NULL);
+    -- za takvu tabelu RESEED na N daje prvom sledećem redu baš N, pa se reseed radi na MAX + 1. Inače na MAX.
     DECLARE @max int = ISNULL((SELECT MAX(ID) FROM dbo.Zaposleni), 0);
     IF @max > 0
-        EXEC sp_executesql N'DBCC CHECKIDENT (''dbo.Zaposleni'', RESEED, @m) WITH NO_INFOMSGS;', N'@m int', @m = @max;
+    BEGIN
+        DECLARE @seed int = CASE WHEN (SELECT last_value FROM sys.identity_columns WHERE object_id = OBJECT_ID('dbo.Zaposleni') AND name = 'ID') IS NULL
+                                 THEN @max + 1 ELSE @max END;
+        EXEC sp_executesql N'DBCC CHECKIDENT (''dbo.Zaposleni'', RESEED, @m) WITH NO_INFOMSGS;', N'@m int', @m = @seed;
+    END
 
     DECLARE @r int = 1, @ukupno int = (SELECT COUNT(*) FROM @posle);
     WHILE @r <= @ukupno
