@@ -3140,6 +3140,13 @@
     <Compile Include="RNI\frmTerminalPrivremeniDokumenta.Designer.cs">
       <DependentUpon>frmTerminalPrivremeniDokumenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniOpstiIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniOpstiIzvoz.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniOpstiIzvoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\TerminalPrivOpstiIzvoz.cs" />
     <Compile Include="RNI\frmTerminalPrivremeniSlike.cs">
       <SubType>Form</SubType>
     </Compile>

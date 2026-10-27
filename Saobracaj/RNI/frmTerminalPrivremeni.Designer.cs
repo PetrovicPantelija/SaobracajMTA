@@ -42,6 +42,7 @@
             this.btnArhiviraj = new System.Windows.Forms.Button();
             this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
             this.cboIzvestaji = new System.Windows.Forms.ComboBox();
+            this.btnOpstiIzvoz = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
             this.btnNovi = new System.Windows.Forms.Button();
@@ -939,7 +940,7 @@
             this.btnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObrisi.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnObrisi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnObrisi.Location = new System.Drawing.Point(1234, 0);
+            this.btnObrisi.Location = new System.Drawing.Point(1274, 0);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(80, 31);
             this.btnObrisi.TabIndex = 11;
@@ -966,6 +967,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.btnObrisi);
+            this.panel2.Controls.Add(this.btnOpstiIzvoz);
             this.panel2.Controls.Add(this.cboIzvestaji);
             this.panel2.Controls.Add(this.btnArhiviraniPodaci);
             this.panel2.Controls.Add(this.btnArhiviraj);
@@ -1015,6 +1017,27 @@
             this.cboIzvestaji.Size = new System.Drawing.Size(150, 24);
             this.cboIzvestaji.TabIndex = 9;
             this.cboIzvestaji.SelectionChangeCommitted += new System.EventHandler(this.cboIzvestaji_SelectionChangeCommitted);
+            //
+            // btnOpstiIzvoz
+            //
+            this.btnOpstiIzvoz.AutoSize = true;
+            this.btnOpstiIzvoz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOpstiIzvoz.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOpstiIzvoz.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnOpstiIzvoz.FlatAppearance.BorderSize = 0;
+            this.btnOpstiIzvoz.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOpstiIzvoz.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnOpstiIzvoz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpstiIzvoz.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnOpstiIzvoz.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnOpstiIzvoz.Location = new System.Drawing.Point(1164, 0);
+            this.btnOpstiIzvoz.Name = "btnOpstiIzvoz";
+            this.btnOpstiIzvoz.Size = new System.Drawing.Size(110, 31);
+            this.btnOpstiIzvoz.TabIndex = 10;
+            this.btnOpstiIzvoz.Text = "Opšti izvoz";
+            this.btnOpstiIzvoz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOpstiIzvoz.UseVisualStyleBackColor = true;
+            this.btnOpstiIzvoz.Click += new System.EventHandler(this.btnOpstiIzvoz_Click);
             //
             // btnArhiviraniPodaci
             // 
@@ -1202,6 +1225,7 @@
         private System.Windows.Forms.Button btnArhiviraj;
         private System.Windows.Forms.Button btnArhiviraniPodaci;
         private System.Windows.Forms.ComboBox cboIzvestaji;
+        private System.Windows.Forms.Button btnOpstiIzvoz;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
         private System.Windows.Forms.Button btnNovi;

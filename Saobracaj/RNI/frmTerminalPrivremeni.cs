@@ -1019,6 +1019,99 @@ namespace Saobracaj.RNI
             }
         }
 
+        // ---------------------------------------------------------------------------------
+        // Opšti izvoz: zapisi koji su u gridu posle filtera, sa poljima koja korisnik štiklira
+        // ---------------------------------------------------------------------------------
+        private static List<string> poljaOpstegIzvoza;   // poslednji izbor polja, pamti se dok je program otvoren
+
+        private void btnOpstiIzvoz_Click(object sender, EventArgs e)
+        {
+            const string naslov = "Opšti izvoz";
+            if (dt == null)
+                return;
+
+            // sva polja zapisa, redom kako su kolone u gridu (ako je neka kolona sakrivena, ide na kraj)
+            GridTableDescriptor opis = gridGroupingControl1.TableDescriptor;
+            var redosled = new List<string>();
+            foreach (GridVisibleColumnDescriptor vidljiva in opis.VisibleColumns)
+                redosled.Add(vidljiva.Name);
+            foreach (GridColumnDescriptor kolona in opis.Columns)
+                if (!redosled.Contains(kolona.Name))
+                    redosled.Add(kolona.Name);
+
+            var polja = new List<KeyValuePair<string, string>>();
+            foreach (string ime in redosled)
+            {
+                GridColumnDescriptor kolona = opis.Columns[ime];
+                if (kolona != null)
+                    polja.Add(new KeyValuePair<string, string>(kolona.MappingName, string.IsNullOrEmpty(kolona.HeaderText) ? kolona.MappingName : kolona.HeaderText));
+            }
+
+            var zapisi = new List<Record>();
+            foreach (Record rec in gridGroupingControl1.Table.FilteredRecords)
+                zapisi.Add(rec);
+
+            if (zapisi.Count == 0)
+            {
+                MessageBox.Show("Posle filtera u gridu nema zapisa za izvoz.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            List<string> izabrana;
+            using (var forma = new frmTerminalPrivremeniOpstiIzvoz(polja, poljaOpstegIzvoza, zapisi.Count))
+            {
+                if (forma.ShowDialog(this) != DialogResult.OK)
+                    return;
+                izabrana = forma.IzabranaPolja;
+            }
+            poljaOpstegIzvoza = izabrana;
+
+            string putanja;
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Excel (*.xlsx)|*.xlsx";
+                sfd.FileName = TerminalPrivOpstiIzvoz.PredlogImena();
+                if (sfd.ShowDialog(this) != DialogResult.OK)
+                    return;
+                putanja = sfd.FileName;
+            }
+
+            var naslovi = izabrana.Select(k => polja.First(p => p.Key == k).Value).ToList();
+            var redovi = zapisi.Select(rec => izabrana.Select(k => rec.GetValue(k)).ToArray()).ToList();
+
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                TerminalPrivOpstiIzvoz.SnimiExcel(naslovi, redovi, putanja);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("Fajl nije sačuvan. Zatvorite fajl u Excelu i pokušajte ponovo.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Izvoz nije uspeo: " + ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+
+            if (MessageBox.Show("Izvezeno zapisa: " + redovi.Count + ". Otvoriti fajl?", naslov, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(putanja) { UseShellExecute = true });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fajl ne može da se otvori: " + ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
         private void btnArhiviraniPodaci_Click(object sender, EventArgs e)
         {
             using (var forma = new frmTerminalPrivremeniArhiva())
