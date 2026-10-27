@@ -227,7 +227,9 @@ namespace Saobracaj.Izvoz
             cboNalogodavac.DisplayMember = "PaNaziv";
             cboNalogodavac.ValueMember = "PaSifra";
 
-               
+            Saobracaj.Pomocni.ComboPretraga.Ukljuci(cboNalogodavac);
+            Saobracaj.Pomocni.ComboPretraga.Ukljuci(cboBrodar);
+            Saobracaj.Pomocni.ComboPretraga.Ukljuci(cboIzvoznik);
 
         }
         private bool ValidacijaSaIkonama()

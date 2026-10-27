@@ -2788,6 +2788,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Pomocni\ComboPretraga.cs" />
     <Compile Include="Pomocni\CustomMessageBox.cs" />
     <Compile Include="Pomocni\CustomOkMessageBox.cs" />
     <Compile Include="Pomocni\CustomTextBox.cs" />
