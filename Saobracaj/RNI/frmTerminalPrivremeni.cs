@@ -31,9 +31,26 @@ namespace Saobracaj.RNI
 
             cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX", "Izveštaj COSCO" });
             cboIzvestaji.SelectedIndex = 0;
+            SuziDugmadNaTraci();
 
             // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
             gridGroupingControl1.TableControlCurrentCellStartEditing += gridGroupingControl1_TableControlCurrentCellStartEditing;
+        }
+
+        // Dugmad na traci (panel2) su široka koliko natpis: uz AutoSize sa GrowOnly širina iz dizajnera je
+        // najmanja širina, pa su kratki natpisi imali mnogo praznog prostora. Lista izveštaja je široka
+        // koliko najduža stavka ("Izveštaj FLEXBOX") i strelica.
+        private void SuziDugmadNaTraci()
+        {
+            foreach (Button dugme in panel2.Controls.OfType<Button>())
+            {
+                dugme.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+                dugme.Padding = new Padding(2, 0, 2, 0);
+            }
+
+            int najduza = cboIzvestaji.Items.Cast<object>()
+                .Max(s => TextRenderer.MeasureText(s.ToString(), cboIzvestaji.Font).Width);
+            cboIzvestaji.Width = najduza + SystemInformation.VerticalScrollBarWidth + 8;
         }
 
         private void gridGroupingControl1_TableControlCurrentCellStartEditing(object sender, GridTableControlCancelEventArgs e)
