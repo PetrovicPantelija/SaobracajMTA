@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Org.BouncyCastle.Math;
 using Saobracaj.Drumski;
 using Saobracaj.Skladista;
 using Saobracaj.Skladista_main.Dokumenta;
@@ -31,14 +32,27 @@ namespace Saobracaj.Skladista_main
         {
             var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
                "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe, " +
-" OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
-" from RadniNalogSkladista " +
-" inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
-" inner join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe = p2.PaSifra " +
-" inner join(select RadniNalogInterni.BrojRN, RadniNalogInterniSkladistePotvrda.LO, RadniNalogInterniSkladistePotvrda.Prijem, RadniNalogInterniSkladistePotvrda.Viljuskarista from RadniNalogInterni " +
-" inner join RadniNalogInterniSkladistePotvrda on RadniNalogInterniSkladistePotvrda.Idnaloga = RadniNalogInterni.ID where RadniNalogInterni.TipRN = 'RN20') as T1 " +
-" on RadniNalogSkladista.ID = t1.BrojRN " +
-" WHere TipRN = '" + Tip + "' and Formiran = 1 order by ID desc               ";
+            " OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
+            " from RadniNalogSkladista " +
+            " inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
+            " left join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe = p2.PaSifra " +
+            " inner join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
+                            "    FROM radninaloginterni " +
+                            "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +
+                            " on RadniNalogSkladista.ID = t1.BrojRN " +
+                            " WHere TipRN = '" + Tip + "' and Formiran = 1 and VrstaRN = 'Carinsko' order by ID desc   ";
+
+            //var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
+            //   "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe, " +
+            //" OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
+            //" from RadniNalogSkladista " +
+            //" inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
+            //" left join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe = p2.PaSifra " +
+            //" inner join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
+            //                "    FROM radninaloginterni " +
+            //                "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +
+            //                " on RadniNalogSkladista.ID = t1.BrojRN " +
+            //                " WHere TipRN = '" + Tip + "' and Formiran = 1 and VrstaRN = 'Carinsko' order by ID desc   ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -84,7 +98,7 @@ namespace Saobracaj.Skladista_main
                 
                 using(SqlConnection conn=new SqlConnection(connection))
                 {
-                    using(SqlCommand cmd=new SqlCommand("Select OJIzdavanja From RadniNalogInterni Where TipRN='RN20' and BrojRN=" + ID, conn))
+                    using(SqlCommand cmd=new SqlCommand("Select OJIzdavanja From RadniNalogInterni Where TipRN='RN20' and IDManipulacijaJED = 74 and BrojRN=" + ID, conn))
                     {
                         conn.Open();
                         using(SqlDataReader reader = cmd.ExecuteReader())
@@ -99,7 +113,7 @@ namespace Saobracaj.Skladista_main
                                 {
                                     Ulaz = "Izvoz";
                                 }
-                                if (Convert.ToInt32(reader[0].ToString()) == 4)
+                                if (Convert.ToInt32(reader[0].ToString()) == 7)
                                 {
                                     Ulaz = "Direktni";
                                 }
@@ -110,7 +124,8 @@ namespace Saobracaj.Skladista_main
 
                 if (Tip == "Prijem")
                 {
-                    main.OtvoriFormuBezPrava(() => new Prijem(ID,Ulaz, Vrsta));
+                    // main.OtvoriFormuBezPrava(() => new Prijem(ID,Ulaz, Vrsta));
+                    main.OtvoriFormuBezPrava(() => new frmNalogPrijem("LO", Tip, Vrsta, Ulaz,ID, null));
                 }
                 if (Tip == "Otprema")
                 {

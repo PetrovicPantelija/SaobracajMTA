@@ -22,10 +22,11 @@ namespace Saobracaj.Skladista_main
         {
             InitializeComponent();
         }
-        public RadniNaloziSkladista(string vrsta)
+        public RadniNaloziSkladista(string vrsta, string ulaz)
         {
             InitializeComponent();
-            Vrsta=vrsta;
+            Ulaz = ulaz;
+            Vrsta =vrsta;
         }
         public RadniNaloziSkladista(int idInterni,string ulaz,string vrsta)
         {
@@ -41,7 +42,8 @@ namespace Saobracaj.Skladista_main
             if (main == null) return;
 
             main.OtvoriFormuBezPrava(
-                () => new Dokumenta.Prijem(IDInterni, Ulaz, Vrsta,Korisnik)
+              //  () => new Dokumenta.Prijem(IDInterni, Ulaz, Vrsta,Korisnik
+                () => new frmNalogPrijem("Novi", "Prijem", Vrsta, Ulaz, 0, null)
             );
         }
 

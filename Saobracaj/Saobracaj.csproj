@@ -3623,6 +3623,24 @@
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.Designer.cs">
       <DependentUpon>VanredniPoslovi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\frmMestoIsporuke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\frmMestoIsporuke.Designer.cs">
+      <DependentUpon>frmMestoIsporuke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.Designer.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmVozac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\frmVozac.Designer.cs">
+      <DependentUpon>frmVozac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\InsertSkladista.cs" />
     <Compile Include="Skladista main\KomercijalnoSkladiste.cs">
       <SubType>Form</SubType>
@@ -3635,6 +3653,12 @@
     </Compile>
     <Compile Include="Skladista main\CarinskoSkladiste.Designer.cs">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\KomercijalnoSkladistePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\KomercijalnoSkladistePregled.Designer.cs">
+      <DependentUpon>KomercijalnoSkladistePregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\MagacinskaKnjigaCarinska.cs">
       <SubType>Form</SubType>
@@ -6411,11 +6435,24 @@
     <EmbeddedResource Include="Skladista main\Dokumenta\VanredniPoslovi.resx">
       <DependentUpon>VanredniPoslovi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\frmMestoIsporuke.resx">
+      <DependentUpon>frmMestoIsporuke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\frmNalogPrijem.resx">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\frmVozac.resx">
+      <DependentUpon>frmVozac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Skladista main\KomercijalnoSkladiste.resx">
       <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista main\CarinskoSkladiste.resx">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skladista main\KomercijalnoSkladistePregled.resx">
+      <DependentUpon>KomercijalnoSkladistePregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Skladista main\MagacinskaKnjigaCarinska.resx">
       <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>

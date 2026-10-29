@@ -1,4 +1,5 @@
 ﻿using Saobracaj.eDokumenta;
+using Saobracaj.Skladista_main.Dokumenta;
 using Syncfusion.ProjIO;
 using Syncfusion.Windows.Forms.Tools.XPMenus;
 using Syncfusion.WinForms.Controls.Styles;
@@ -128,6 +129,326 @@ namespace Saobracaj.Skladista
                 }
             }
         }
+        public int InsertRadniNalogDirektni(string Status, DateTime Datum, string Korisnik, string VrstaRN, string TipRN, string CarinskoSkladiste, int? Nalogodavac, int? CarinskiPostupak,
+                    string OpisPosla, int? NacinPakovanja, int? VrstaPrevoznogSredstvaPrijem,
+                    int OdredisnaCarinarnicaPrijem, int SpediterPrijem, int? KontakOsobaSpediteraPrijem,  DateTime PlaniraniDatumPrijem,
+                    DateTime PlaniraniDatum2Prijem, int? Vaganje,int? ADR, int? PosebniUslovi, int DodatneUslugeID, string Napomena, int? InspekcijskiTretman, int Aktivan, int Formiran)
+        {
+            int kreiraniID = 0;
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRadniNalogSkladistaDirektni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.NVarChar) { Value = Status });
+            cmd.Parameters.Add(new SqlParameter("@Datum", SqlDbType.DateTime) { Value = Datum });
+            cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar) { Value = Korisnik });
+            cmd.Parameters.Add(new SqlParameter("@VrstaRN", SqlDbType.NVarChar) { Value = VrstaRN });
+            cmd.Parameters.Add(new SqlParameter("@TipRN", SqlDbType.NVarChar) { Value = TipRN });
+            cmd.Parameters.Add(new SqlParameter("@CarinskoSkladiste", SqlDbType.NVarChar) { Value = CarinskoSkladiste == null ? (object)DBNull.Value : CarinskoSkladiste });
+            cmd.Parameters.Add(new SqlParameter("@Nalogodavac", SqlDbType.Int) { Value = Nalogodavac == null ? (object)DBNull.Value : Nalogodavac });
+            cmd.Parameters.Add(new SqlParameter("@CarinskiPostupak", SqlDbType.Int) { Value = CarinskiPostupak == null ? (object)DBNull.Value : CarinskiPostupak });
+            cmd.Parameters.Add(new SqlParameter("@OpisPosla", SqlDbType.NVarChar) { Value = OpisPosla == null ? (object)DBNull.Value : OpisPosla });
+            cmd.Parameters.Add(new SqlParameter("@NacinPakovanja", SqlDbType.Int) { Value = NacinPakovanja == null ? (object)DBNull.Value : NacinPakovanja });
+
+            //cmd.Parameters.Add(new SqlParameter("@VrstaPrevoznogSredstvaOtprema", SqlDbType.Int) { Value = VrstaPrevoznogSredstvaOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@VrstaKamionaOtprema", SqlDbType.Int) { Value = VrstaKamionaOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@VoziloOtprema", SqlDbType.NVarChar) { Value = VoziloOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@VozacOtprema", SqlDbType.NVarChar) { Value = VozacOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@BrojLKOtprema", SqlDbType.NVarChar) { Value = BrojLKOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@BrojTelefonaOtprema", SqlDbType.NVarChar) { Value = BrojTelefonaOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@OdredisnaCarinarnicaOtpremaOtprema", SqlDbType.Int) { Value = OdredisnaCarinarnicaOtpremaOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@SpediterOtprema", SqlDbType.Int) { Value = SpediterOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@KontakOsobaSpediteraOtprema", SqlDbType.NVarChar) { Value = KontakOsobaSpediteraOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@MestoIstovaraOtprema", SqlDbType.Int) { Value = MestoIstovaraOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@AdresaOtprema", SqlDbType.NVarChar) { Value = AdresaOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@KontaktOsobaIstovarOtprema", SqlDbType.NVarChar) { Value = KontaktOsobaIstovarOtprema });
+            //cmd.Parameters.Add(new SqlParameter("@PlaniraniDatumOtpema", SqlDbType.DateTime) { Value = PlaniraniDatumOtpema });
+            //cmd.Parameters.Add(new SqlParameter("@PlaniraniDatum2Otprema", SqlDbType.DateTime) { Value = PlaniraniDatum2Otprema });
+            //cmd.Parameters.Add(new SqlParameter("@BrojKontejneraOtprema", SqlDbType.NVarChar) { Value = BrojKontejneraOtprema });
+
+            cmd.Parameters.Add(new SqlParameter("@VrstaPrevoznogSredstvaPrijem", SqlDbType.Int) { Value = VrstaPrevoznogSredstvaPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VrstaKamionaPrijem", SqlDbType.Int) { Value = VrstaKamionaPrijem == null ? (object)DBNull.Value : VrstaKamionaPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VoziloPrijem", SqlDbType.NVarChar) { Value = VoziloPrijem == null ? (object)DBNull.Value : VoziloPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VozacPrijem", SqlDbType.NVarChar) { Value = VozacPrijem == null ? (object)DBNull.Value : VozacPrijem }); 
+            //cmd.Parameters.Add(new SqlParameter("@BrojLKPrijem", SqlDbType.NVarChar) { Value = BrojLKPrijem == null ? (object)DBNull.Value : BrojLKPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@BrojTelefonaPrijem", SqlDbType.NVarChar) { Value = BrojTelefonaPrijem == null ? (object)DBNull.Value : BrojTelefonaPrijem }); 
+            cmd.Parameters.Add(new SqlParameter("@OdredisnaCarinarnicaPrijem", SqlDbType.Int) { Value = OdredisnaCarinarnicaPrijem == null ? (object)DBNull.Value : OdredisnaCarinarnicaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@SpediterPrijem", SqlDbType.Int) { Value = SpediterPrijem == null ? (object)DBNull.Value : SpediterPrijem });
+            cmd.Parameters.Add(new SqlParameter("@KontakOsobaSpediteraPrijem", SqlDbType.Int) { Value = KontakOsobaSpediteraPrijem == null ? (object)DBNull.Value : KontakOsobaSpediteraPrijem });
+
+            cmd.Parameters.Add(new SqlParameter("@PlaniraniDatumPrijem", SqlDbType.DateTime) { Value = PlaniraniDatumPrijem });
+            cmd.Parameters.Add(new SqlParameter("@PlaniraniDatum2Prijem", SqlDbType.DateTime) { Value = PlaniraniDatum2Prijem });
+            cmd.Parameters.Add(new SqlParameter("@Vaganje", SqlDbType.Int) { Value = Vaganje == null ? (object)DBNull.Value : Vaganje });
+            cmd.Parameters.Add(new SqlParameter("@ADR", SqlDbType.Int) { Value = ADR == null ? (object)DBNull.Value : ADR });
+            cmd.Parameters.Add(new SqlParameter("@PosebniUslovi", SqlDbType.Int) { Value = PosebniUslovi == null ? (object)DBNull.Value : PosebniUslovi });
+
+            cmd.Parameters.Add(new SqlParameter("@DodatneUslugeID", SqlDbType.Int) { Value = DodatneUslugeID == null ? (object)DBNull.Value : DodatneUslugeID });
+            cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar) { Value = Napomena == null ? (object)DBNull.Value : Napomena });
+            cmd.Parameters.Add(new SqlParameter("@InspekcijskiTretman", SqlDbType.TinyInt) { Value = InspekcijskiTretman == null ? (object)DBNull.Value : InspekcijskiTretman });
+            cmd.Parameters.Add(new SqlParameter("@Aktivan", SqlDbType.TinyInt) { Value = Aktivan });
+            cmd.Parameters.Add(new SqlParameter("@Formiran", SqlDbType.TinyInt) { Value = Formiran });
+            SqlParameter outputParam = new SqlParameter("@NoviID", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
+
+            cmd.Parameters.Add(outputParam);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = false;
+
+            try
+            {
+             
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                if (outputParam.Value != DBNull.Value)
+                {
+                    kreiraniID = Convert.ToInt32(outputParam.Value);
+                }
+            }
+            catch (SqlException ex)
+            {
+                error = true;
+                try
+                {
+                    myTransaction.Rollback();
+                }
+                catch { }
+
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+                if (!error)
+                {
+                    //MessageBox.Show("Kreiranje uspešno završeno", "",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            return kreiraniID;
+        }
+
+        public void UpdateRadniNalogDirektni(int ID, int? Nalogodavac, int? CarinskiPostupak,
+                    string OpisPosla, int? NacinPakovanja, int? VrstaPrevoznogSredstvaPrijem, int OdredisnaCarinarnicaPrijem, int SpediterPrijem, int? KontakOsobaSpediteraPrijem, DateTime PlaniraniDatumPrijem,
+                    DateTime PlaniraniDatum2Prijem, int? Vaganje, int? ADR, int? PosebniUslovi, int DodatneUslugeID, string Napomena, int? InspekcijskiTretman, int? VlasnikRobe, string OpisRobe, int? MagacinskiBroj, int? OstalaSkladista)
+        {
+            int kreiraniID = 0;
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogSkladistaDirektni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+            cmd.Parameters.Add(new SqlParameter("@Nalogodavac", SqlDbType.Int) { Value = Nalogodavac == null ? (object)DBNull.Value : Nalogodavac });
+            cmd.Parameters.Add(new SqlParameter("@CarinskiPostupak", SqlDbType.Int) { Value = CarinskiPostupak == null ? (object)DBNull.Value : CarinskiPostupak });
+            cmd.Parameters.Add(new SqlParameter("@OpisPosla", SqlDbType.NVarChar) { Value = OpisPosla == null ? (object)DBNull.Value : OpisPosla });
+            cmd.Parameters.Add(new SqlParameter("@NacinPakovanja", SqlDbType.Int) { Value = NacinPakovanja == null ? (object)DBNull.Value : NacinPakovanja });
+
+            cmd.Parameters.Add(new SqlParameter("@VrstaPrevoznogSredstvaPrijem", SqlDbType.Int) { Value = VrstaPrevoznogSredstvaPrijem == null ? (object)DBNull.Value : VrstaPrevoznogSredstvaPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VrstaKamionaPrijem", SqlDbType.Int) { Value = VrstaKamionaPrijem == null ? (object)DBNull.Value : VrstaKamionaPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VoziloPrijem", SqlDbType.NVarChar) { Value = VoziloPrijem == null ? (object)DBNull.Value : VoziloPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@VozacPrijem", SqlDbType.NVarChar) { Value = VozacPrijem == null ? (object)DBNull.Value : VozacPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@BrojLKPrijem", SqlDbType.NVarChar) { Value = BrojLKPrijem == null ? (object)DBNull.Value : BrojLKPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@BrojTelefonaPrijem", SqlDbType.NVarChar) { Value = BrojTelefonaPrijem == null ? (object)DBNull.Value : BrojTelefonaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@OdredisnaCarinarnicaPrijem", SqlDbType.Int) { Value = OdredisnaCarinarnicaPrijem == null ? (object)DBNull.Value : OdredisnaCarinarnicaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@SpediterPrijem", SqlDbType.Int) { Value = SpediterPrijem == null ? (object)DBNull.Value : SpediterPrijem });
+            cmd.Parameters.Add(new SqlParameter("@KontakOsobaSpediteraPrijem", SqlDbType.Int) { Value = KontakOsobaSpediteraPrijem == null ? (object)DBNull.Value : KontakOsobaSpediteraPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@MestoIstovaraPrijem", SqlDbType.Int) { Value = MestoIstovaraPrijem == null ? (object)DBNull.Value : MestoIstovaraPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@AdresaPrijem", SqlDbType.Int) { Value = AdresaPrijem == null ? (object)DBNull.Value : AdresaPrijem });
+            //cmd.Parameters.Add(new SqlParameter("@KontaktOsobaIstovarPrijem", SqlDbType.NVarChar) { Value = KontaktOsobaIstovarPrijem == null ? (object)DBNull.Value : KontaktOsobaIstovarPrijem });
+            cmd.Parameters.Add(new SqlParameter("@PlaniraniDatumPrijem", SqlDbType.DateTime) { Value = PlaniraniDatumPrijem == null ? (object)DBNull.Value : PlaniraniDatumPrijem });
+            cmd.Parameters.Add(new SqlParameter("@PlaniraniDatum2Prijem", SqlDbType.DateTime) { Value = PlaniraniDatum2Prijem == null ? (object)DBNull.Value : PlaniraniDatum2Prijem });
+            cmd.Parameters.Add(new SqlParameter("@Vaganje", SqlDbType.Int) { Value = Vaganje == null ? (object)DBNull.Value : Vaganje });
+            cmd.Parameters.Add(new SqlParameter("@ADR", SqlDbType.Int) { Value = ADR == null ? (object)DBNull.Value : ADR });
+            cmd.Parameters.Add(new SqlParameter("@PosebniUslovi", SqlDbType.Int) { Value = PosebniUslovi == null ? (object)DBNull.Value : PosebniUslovi });
+
+            cmd.Parameters.Add(new SqlParameter("@DodatneUslugeID", SqlDbType.Int) { Value = DodatneUslugeID == null ? (object)DBNull.Value : DodatneUslugeID });
+            cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar) { Value = Napomena == null ? (object)DBNull.Value : Napomena });
+            cmd.Parameters.Add(new SqlParameter("@InspekcijskiTretman", SqlDbType.Int) { Value = InspekcijskiTretman == null ? (object)DBNull.Value : InspekcijskiTretman });
+            cmd.Parameters.Add(new SqlParameter("@VlasnikRobe", SqlDbType.Int) { Value = VlasnikRobe == null ? (object)DBNull.Value : VlasnikRobe });
+            cmd.Parameters.Add(new SqlParameter("@OpisRobe", SqlDbType.NVarChar) { Value = OpisRobe == null ? (object)DBNull.Value : OpisRobe });
+            cmd.Parameters.Add(new SqlParameter("@MagacinskiBroj", SqlDbType.Int) { Value = MagacinskiBroj == null ? (object)DBNull.Value : MagacinskiBroj });
+            cmd.Parameters.Add(new SqlParameter("@OstalaSkladista", SqlDbType.Int) { Value = OstalaSkladista == null ? (object)DBNull.Value : OstalaSkladista });
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = false;
+
+            try
+            {
+
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+               
+            }
+            catch (SqlException ex)
+            {
+                error = true;
+                try
+                {
+                    myTransaction.Rollback();
+                }
+                catch { }
+
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+                if (!error)
+                {
+                    //MessageBox.Show("Kreiranje uspešno završeno", "",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
+        
+         public void UpdateRadniNalogDirektniIstovar(int IdNaloga, int? MestoIstovara, int? AdresaPrijem, int? KontaktOsobaPrijem)
+        {
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDirektniIstovar";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = IdNaloga });
+            cmd.Parameters.Add(new SqlParameter("@MestoIstovaraPrijem", SqlDbType.Int) { Value = MestoIstovara == null ? (object)DBNull.Value : MestoIstovara });
+            cmd.Parameters.Add(new SqlParameter("@AdresaPrijem", SqlDbType.Int) { Value = AdresaPrijem == null ? (object)DBNull.Value : AdresaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@KontaktOsobaIstovarPrijem", SqlDbType.Int) { Value = KontaktOsobaPrijem == null ? (object)DBNull.Value : KontaktOsobaPrijem });
+          
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = false;
+
+            try
+            {
+
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+
+            }
+            catch (SqlException ex)
+            {
+                error = true;
+                try
+                {
+                    myTransaction.Rollback();
+                }
+                catch { }
+
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+                if (!error)
+                {
+                    //MessageBox.Show("Kreiranje uspešno završeno", "",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+        }
+        public void UpdateRadniNalogDirektniVozilo(int IdNaloga,int? VrstaKamionaPrijem,string VoziloPrijem, string VozacPrijem, string BrojLKPrijem, string BrojTelefonaPrijem)
+        {
+          
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRadniNalogDirektniVozilo";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = IdNaloga });
+            cmd.Parameters.Add(new SqlParameter("@VrstaKamionaPrijem", SqlDbType.Int) { Value = VrstaKamionaPrijem == null ? (object)DBNull.Value : VrstaKamionaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@VoziloPrijem", SqlDbType.NVarChar) { Value = VoziloPrijem == null ? (object)DBNull.Value : VoziloPrijem });
+            cmd.Parameters.Add(new SqlParameter("@VozacPrijem", SqlDbType.NVarChar) { Value = VozacPrijem == null ? (object)DBNull.Value : VozacPrijem });
+            cmd.Parameters.Add(new SqlParameter("@BrojLKPrijem", SqlDbType.NVarChar) { Value = BrojLKPrijem == null ? (object)DBNull.Value : BrojLKPrijem });
+            cmd.Parameters.Add(new SqlParameter("@BrojTelefonaPrijem", SqlDbType.NVarChar) { Value = BrojTelefonaPrijem == null ? (object)DBNull.Value : BrojTelefonaPrijem });
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = false;
+
+            try
+            {
+
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+
+            }
+            catch (SqlException ex)
+            {
+                error = true;
+                try
+                {
+                    myTransaction.Rollback();
+                }
+                catch { }
+
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                conn.Close();
+
+                if (!error)
+                {
+                    //MessageBox.Show("Kreiranje uspešno završeno", "",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+        }
+        public void KreirajDodatneUslugeSkladista(int radniNalogSkladisteID, List<int> uslugeLista, string korisnik)
+        {
+            // Kreiramo DataTable koja odgovara TVP tipu u bazi
+            DataTable tvp = new DataTable();
+            tvp.Columns.Add("IDUsluge", typeof(int));
+
+            foreach (var uslugaID in uslugeLista)
+            {
+                tvp.Rows.Add(uslugaID);
+            }
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            using (SqlCommand cmd = new SqlCommand("InsertRNInterniSkladisteDodatneUsluge", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Dodavanje TVP parametra (lista usluga)
+                SqlParameter tvpParam = cmd.Parameters.AddWithValue("@NoveUsluge", tvp);
+                tvpParam.SqlDbType = SqlDbType.Structured;
+                tvpParam.TypeName = "dbo.IDListaType"; // Naziv tipa koji ste kreirali u bazi
+
+                // Dodavanje ID-ja skladišnog naloga
+                cmd.Parameters.Add("@RadniNalogSkladisteID", SqlDbType.Int).Value = radniNalogSkladisteID;
+
+                // Dodavanje korisnika
+                cmd.Parameters.Add("@Korisnik", SqlDbType.NVarChar, 50).Value = korisnik;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            MessageBox.Show("Usluge uspešno sačuvane.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public void InsertRadniNalog(string Status, DateTime Datum, string Korisnik, string VrstaRN, string TipRN, string CarinskoSkladiste, int MagacinskiBroj, int Nalogodavac, int CarinskiPostupak,
 string OpisPosla, int VlasnikRobe, string VrstaRobe, string NacinPakovanja, int OstalaSkladista, int PIB, int VrstaPrevoznogSredstvaOtprema, int VrstaKamionaOtprema, string VoziloOtprema, string VozacOtprema,
 string BrojLKOtprema, string BrojTelefonaOtprema, int OdredisnaCarinarnicaOtpremaOtprema,int SpediterOtprema, string KontakOsobaSpediteraOtprema, int MestoIstovaraOtprema, string AdresaOtprema, string KontaktOsobaIstovarOtprema,
@@ -883,6 +1204,58 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
 
+
+        public void DeleteRadniNalog(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteRadniNalogSkladisteDirektni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nalog je uspešno izbrisan!", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+
+
         public void UpdateMagacinskiBrojCarinski(int ID, string Naziv)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -1435,7 +1808,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
         public void InsertMagacinskiPredmet(int RN,int MB,DateTime Godina,int VlasnikRobe,int TipSkladista,string CI,string SifraSkladista,string VrstaCP,string BrojJCI,
-            DateTime Datum,string OpisRobe,decimal Koleta,decimal Neto,decimal Bruto,string Valuta,decimal Vrednost,string Spedicija)
+            DateTime Datum,string OpisRobe,decimal Koleta,decimal? Neto,decimal? Bruto,string Valuta,decimal? Vrednost,string Spedicija)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1453,7 +1826,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             vrednost.ParameterName = "@Vrednost";
             vrednost.SqlDbType = SqlDbType.Decimal;
             vrednost.Direction = ParameterDirection.Input;
-            vrednost.Value = Vrednost;
+            vrednost.Value = Vrednost.HasValue ? (object)Vrednost.Value : DBNull.Value; 
             cmd.Parameters.Add(vrednost);
 
             SqlParameter valuta = new SqlParameter();
@@ -1465,16 +1838,17 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
 
             SqlParameter bruto = new SqlParameter();
             bruto.ParameterName = "@Bruto";
-            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.DbType = DbType.Decimal;
             bruto.Direction = ParameterDirection.Input;
-            bruto.Value = Bruto;
+            bruto.Value = Bruto.HasValue ? (object)Bruto.Value : DBNull.Value;
             cmd.Parameters.Add(bruto);
+
 
             SqlParameter neto = new SqlParameter();
             neto.ParameterName = "@Neto";
             neto.SqlDbType = SqlDbType.Decimal;
             neto.Direction = ParameterDirection.Input;
-            neto.Value = Neto;
+            neto.Value = Neto.HasValue ? (object)Neto.Value : DBNull.Value; ;
             cmd.Parameters.Add(neto);
 
             SqlParameter koleta = new SqlParameter();
@@ -1596,7 +1970,7 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             }
         }
         public void UpdateMagacinskiPredmet(int ID,int RN, int MB, DateTime Godina, int VlasnikRobe, int TipSkladista, string CI, string SifraSkladista, string VrstaCP, string BrojJCI,
-            DateTime Datum, string OpisRobe, decimal Koleta, decimal Neto, decimal Bruto, string Valuta, decimal Vrednost, string Spedicija)
+            DateTime Datum, string OpisRobe, decimal Koleta, decimal? Neto, decimal? Bruto, string Valuta, decimal? Vrednost, string Spedicija)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1614,15 +1988,16 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
             spedicija.ParameterName = "@Spedicija";
             spedicija.SqlDbType = SqlDbType.NVarChar;
             spedicija.Direction = ParameterDirection.Input;
-            spedicija.Value = Spedicija;
+            spedicija.Value = string.IsNullOrEmpty(Spedicija) ? (object)DBNull.Value : Spedicija;
             cmd.Parameters.Add(spedicija);
 
             SqlParameter vrednost = new SqlParameter();
             vrednost.ParameterName = "@Vrednost";
             vrednost.SqlDbType = SqlDbType.Decimal;
             vrednost.Direction = ParameterDirection.Input;
-            vrednost.Value = Vrednost;
+            vrednost.Value = Vrednost.HasValue ? (object)Vrednost.Value : DBNull.Value;
             cmd.Parameters.Add(vrednost);
+
 
             SqlParameter valuta = new SqlParameter();
             valuta.ParameterName = "@Valuta";
@@ -1633,16 +2008,17 @@ DateTime PlaniraniDatum2Prijem,string BrojKontejneraPrijem,string PosebniUslovi,
 
             SqlParameter bruto = new SqlParameter();
             bruto.ParameterName = "@Bruto";
-            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.DbType = DbType.Decimal;
             bruto.Direction = ParameterDirection.Input;
-            bruto.Value = Bruto;
+            bruto.Value = Bruto.HasValue ? (object)Bruto.Value : DBNull.Value;
             cmd.Parameters.Add(bruto);
+
 
             SqlParameter neto = new SqlParameter();
             neto.ParameterName = "@Neto";
             neto.SqlDbType = SqlDbType.Decimal;
             neto.Direction = ParameterDirection.Input;
-            neto.Value = Neto;
+            neto.Value = Neto.HasValue ? (object)Neto.Value : DBNull.Value; 
             cmd.Parameters.Add(neto);
 
             SqlParameter koleta = new SqlParameter();

@@ -49,9 +49,10 @@
             this.btnUpravljanjeSkladistem.ForeColor = System.Drawing.Color.White;
             this.btnUpravljanjeSkladistem.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnUpravljanjeSkladistem.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnUpravljanjeSkladistem.Location = new System.Drawing.Point(942, 93);
+            this.btnUpravljanjeSkladistem.Location = new System.Drawing.Point(1256, 114);
+            this.btnUpravljanjeSkladistem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpravljanjeSkladistem.Name = "btnUpravljanjeSkladistem";
-            this.btnUpravljanjeSkladistem.Size = new System.Drawing.Size(288, 225);
+            this.btnUpravljanjeSkladistem.Size = new System.Drawing.Size(384, 277);
             this.btnUpravljanjeSkladistem.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnUpravljanjeSkladistem.Style.ForeColor = System.Drawing.Color.White;
             this.btnUpravljanjeSkladistem.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
@@ -69,9 +70,10 @@
             this.btnPretovarRobe.ForeColor = System.Drawing.Color.White;
             this.btnPretovarRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPretovarRobe.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPretovarRobe.Location = new System.Drawing.Point(633, 93);
+            this.btnPretovarRobe.Location = new System.Drawing.Point(844, 114);
+            this.btnPretovarRobe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPretovarRobe.Name = "btnPretovarRobe";
-            this.btnPretovarRobe.Size = new System.Drawing.Size(288, 225);
+            this.btnPretovarRobe.Size = new System.Drawing.Size(384, 277);
             this.btnPretovarRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPretovarRobe.Style.ForeColor = System.Drawing.Color.White;
             this.btnPretovarRobe.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
@@ -89,9 +91,10 @@
             this.btnPregledNerazduzenih.ForeColor = System.Drawing.Color.White;
             this.btnPregledNerazduzenih.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledNerazduzenih.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledNerazduzenih.Location = new System.Drawing.Point(942, 366);
+            this.btnPregledNerazduzenih.Location = new System.Drawing.Point(1256, 450);
+            this.btnPregledNerazduzenih.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPregledNerazduzenih.Name = "btnPregledNerazduzenih";
-            this.btnPregledNerazduzenih.Size = new System.Drawing.Size(288, 225);
+            this.btnPregledNerazduzenih.Size = new System.Drawing.Size(384, 277);
             this.btnPregledNerazduzenih.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPregledNerazduzenih.Style.ForeColor = System.Drawing.Color.White;
             this.btnPregledNerazduzenih.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
@@ -109,9 +112,10 @@
             this.btnPregledKartica.ForeColor = System.Drawing.Color.White;
             this.btnPregledKartica.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledKartica.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledKartica.Location = new System.Drawing.Point(633, 366);
+            this.btnPregledKartica.Location = new System.Drawing.Point(844, 450);
+            this.btnPregledKartica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPregledKartica.Name = "btnPregledKartica";
-            this.btnPregledKartica.Size = new System.Drawing.Size(288, 225);
+            this.btnPregledKartica.Size = new System.Drawing.Size(384, 277);
             this.btnPregledKartica.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPregledKartica.Style.ForeColor = System.Drawing.Color.White;
             this.btnPregledKartica.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
@@ -129,9 +133,10 @@
             this.btnPregledLagera.ForeColor = System.Drawing.Color.White;
             this.btnPregledLagera.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPregledLagera.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPregledLagera.Location = new System.Drawing.Point(318, 366);
+            this.btnPregledLagera.Location = new System.Drawing.Point(424, 450);
+            this.btnPregledLagera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPregledLagera.Name = "btnPregledLagera";
-            this.btnPregledLagera.Size = new System.Drawing.Size(288, 225);
+            this.btnPregledLagera.Size = new System.Drawing.Size(384, 277);
             this.btnPregledLagera.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPregledLagera.Style.ForeColor = System.Drawing.Color.White;
             this.btnPregledLagera.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
@@ -148,9 +153,10 @@
             this.btnMagacinskaKnjiga.ForeColor = System.Drawing.Color.White;
             this.btnMagacinskaKnjiga.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnMagacinskaKnjiga.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnMagacinskaKnjiga.Location = new System.Drawing.Point(9, 366);
+            this.btnMagacinskaKnjiga.Location = new System.Drawing.Point(12, 450);
+            this.btnMagacinskaKnjiga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMagacinskaKnjiga.Name = "btnMagacinskaKnjiga";
-            this.btnMagacinskaKnjiga.Size = new System.Drawing.Size(288, 225);
+            this.btnMagacinskaKnjiga.Size = new System.Drawing.Size(384, 277);
             this.btnMagacinskaKnjiga.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnMagacinskaKnjiga.Style.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnMagacinskaKnjiga.Style.FocusedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
@@ -173,9 +179,10 @@
             this.btnOtpremaRobe.ForeColor = System.Drawing.Color.White;
             this.btnOtpremaRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnOtpremaRobe.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnOtpremaRobe.Location = new System.Drawing.Point(318, 93);
+            this.btnOtpremaRobe.Location = new System.Drawing.Point(424, 114);
+            this.btnOtpremaRobe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOtpremaRobe.Name = "btnOtpremaRobe";
-            this.btnOtpremaRobe.Size = new System.Drawing.Size(288, 225);
+            this.btnOtpremaRobe.Size = new System.Drawing.Size(384, 277);
             this.btnOtpremaRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnOtpremaRobe.Style.ForeColor = System.Drawing.Color.White;
             this.btnOtpremaRobe.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
@@ -193,9 +200,10 @@
             this.btnPrijemRobe.ForeColor = System.Drawing.Color.White;
             this.btnPrijemRobe.ImageMargin = new System.Windows.Forms.Padding(20, 20, 20, 10);
             this.btnPrijemRobe.ImageSize = new System.Drawing.Size(70, 80);
-            this.btnPrijemRobe.Location = new System.Drawing.Point(9, 93);
+            this.btnPrijemRobe.Location = new System.Drawing.Point(12, 114);
+            this.btnPrijemRobe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrijemRobe.Name = "btnPrijemRobe";
-            this.btnPrijemRobe.Size = new System.Drawing.Size(288, 225);
+            this.btnPrijemRobe.Size = new System.Drawing.Size(384, 277);
             this.btnPrijemRobe.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(61)))), ((int)(((byte)(85)))));
             this.btnPrijemRobe.Style.ForeColor = System.Drawing.Color.White;
             this.btnPrijemRobe.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
@@ -203,6 +211,7 @@
             this.btnPrijemRobe.Text = "Prijem robe";
             this.btnPrijemRobe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPrijemRobe.UseVisualStyleBackColor = false;
+            this.btnPrijemRobe.Click += new System.EventHandler(this.btnPrijemRobe_Click);
             // 
             // label2
             // 
@@ -212,18 +221,19 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(365, 39);
+            this.label2.Size = new System.Drawing.Size(457, 52);
             this.label2.TabIndex = 508;
             this.label2.Text = "Komercijalno skladište";
             // 
             // KomercijalnoSkladiste
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1236, 601);
+            this.ClientSize = new System.Drawing.Size(1648, 740);
             this.Controls.Add(this.btnUpravljanjeSkladistem);
             this.Controls.Add(this.btnPretovarRobe);
             this.Controls.Add(this.btnPregledNerazduzenih);
@@ -234,6 +244,7 @@
             this.Controls.Add(this.btnPrijemRobe);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "KomercijalnoSkladiste";
             this.Text = "CarinskoSkladiste";
             this.ResumeLayout(false);

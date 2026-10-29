@@ -16,5 +16,13 @@ namespace Saobracaj.Skladista_main
         {
             InitializeComponent();
         }
+
+        private void btnPrijemRobe_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuBezPrava(() => new KomercijalnoSkladistePregled("Prijem"));
+        }
     }
 }

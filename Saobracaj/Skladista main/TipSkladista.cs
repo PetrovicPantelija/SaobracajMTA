@@ -21,6 +21,7 @@ namespace Saobracaj.Skladista_main
         public TipSkladista(string direktni)
         {
             InitializeComponent();
+            Ulaz = direktni;
         }
         public TipSkladista(int idInterni,string ulaz)
         {
@@ -47,7 +48,7 @@ namespace Saobracaj.Skladista_main
                 if (main == null) return;
 
                 main.OtvoriFormuBezPrava(
-                    () => new RadniNaloziSkladista(Vrsta)
+                    () => new RadniNaloziSkladista(Vrsta, Ulaz)
                 );
             }
         }
@@ -70,7 +71,7 @@ namespace Saobracaj.Skladista_main
                 if (main == null) return;
 
                 main.OtvoriFormuBezPrava(
-                    () => new RadniNaloziSkladista(Vrsta)
+                    () => new RadniNaloziSkladista(Vrsta,Ulaz)
                 );
             }
         }

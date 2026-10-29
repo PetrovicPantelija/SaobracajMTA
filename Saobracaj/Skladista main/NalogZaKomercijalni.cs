@@ -38,14 +38,35 @@ namespace Saobracaj.Skladista_main
             );
         }
 
+        //private void btnTransportDirektni_Click(object sender, EventArgs e)
+        //{
+        //    var main = this.TopLevelControl as NewMain;
+        //    if (main == null) return;
+
+        //    main.OtvoriFormuBezPrava(
+        //        () => new PregledKomercijalnihNaloga("Direktni")
+        //    );
+        //}
+
         private void btnTransportDirektni_Click(object sender, EventArgs e)
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
-            main.OtvoriFormuBezPrava(
-                () => new PregledKomercijalnihNaloga("Direktni")
-            );
+            main.OtvoriFormuBezPrava(() =>
+            {
+                // Ovde kreiraš tačno onu formu u kojoj se nalazi btnDelete_Click!
+                // Ako je ta forma frmNalogPrijem, stavi nju umesto PregledKomercijalnihNaloga
+                var forma = new PregledKomercijalnihNaloga("Direktni");
+
+                // Sada kompajler zna za OnNalogObrisan jer forma jeste tipa frmNalogPrijem
+                //forma.OnNalogObrisan = () =>
+                //{
+                //    UcitajPodatkeIzBaze(); // Metoda za osvežavanje grida na OVOJ formi
+                //};
+
+                return forma;
+            });
         }
 
         private void btnNovi_Click(object sender, EventArgs e)

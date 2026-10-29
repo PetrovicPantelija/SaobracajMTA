@@ -30,7 +30,7 @@ namespace Saobracaj.Skladista_main
             Ulaz= ulaz;   
             if(Ulaz=="Uvoz" || Ulaz == "Izvoz")
             {
-                button24.Visible= false;
+             //   button24.Visible= false;
             }
         }
         private void PregledKomercijalnihNaloga_Load(object sender, EventArgs e)
@@ -66,7 +66,7 @@ TipKontenjera.Naziv as Tipkontejnera, KontejnerStatus.Naziv, rn.[StatusIzdavanja
 UvozKonacnaVrstaManipulacije.IDVrstaManipulacije ,[Osnov] , PlanID as PlanUtovara  ,
  [BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  ,
   rn.Pokret,  rn.TipDokPrevoza,
- rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN 
+ rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN ,OjIzdavanja
 FROM [RadniNalogInterni] rn
  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID 
  inner join UvozKonacna on UvozKonacna.ID = BrojOsnov
@@ -102,7 +102,7 @@ inner join IzvozKonacna  on IzvozKonacna.Brodar = Partnerji.PaSifra
 where izvozKonacna.ID = rn.BrojOsnov) as Brodar,
 [OJIzdavanja], o1.Naziv as Izdao ,[OJRealizacije],o2.Naziv as Realizuje,[DatumIzdavanja],[DatumRealizacije]  ,rn.[Napomena], IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, 
 [Osnov], PlanID as PlanUtovara ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao],[KorisnikZavrsio], uv.PaNaziv as Platilac, rn.Pokret,  rn.TipDokPrevoza,
-rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN   
+rn.BrojDokPrevoza, rn.TipRN, rn.BrojRN   ,OjIzdavanja, ISNull(LOSkladiste, 0) AS LO
 FROM RadniNalogInterni rn 
 inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID 
 inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID 
@@ -112,16 +112,19 @@ inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipula
 inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac 
 Inner join KontejnerStatus on KontejnerStatus.ID = rn.StatusKontejnera 
 inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
+ LEFT JOIN RadniNalogInterniPotvrda inp on inp.IDNaloga = rn.ID AND rn.IDManipulacijaJED = 74
+
  where OJIzdavanja = 2 And IDManipulacijaJED=74  order by rn.ID desc";
             }
             if (Ulaz == "Direktni")
             {
-                select = @"Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste,RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe,
-                OpisPosla,Napomena,Aktivan,Formiran 
+                select = @"Select  RadniNalogSkladista.ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN, RadniNalogSkladista.TipRN,CarinskoSkladiste,RTRIM(p1.PaNaziv) as Nalogodavac,
+                OpisPosla, RadniNalogSkladista.Napomena,Aktivan,Formiran ,OjIzdavanja, ISNull(LOSkladiste, 0) AS LO
                 from RadniNalogSkladista 
                 inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac=p1.PaSifra 
-                inner join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe=p2.PaSifra 
-                WHere  Formiran=0";
+               INNER JOIN RadniNalogInterni int on  int.BrojRN = RadniNalogSkladista.ID AND int.TipRN = 'RN20' AND IDManipulacijaJED = 74
+                LEFT JOIN RadniNalogInterniPotvrda inp on inp.IDNaloga = int.ID
+                WHere  OjIzdavanja = 7";
             }
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -132,10 +135,15 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
+
+            
             // dataGridView1.ReadOnly = true;
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OjIzdavanja");
+            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("LO");
 
             GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
             gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
@@ -143,6 +151,14 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
             gcfd3.Expression = "[StatusKN] =  'AKTIVAN'";
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+
+            GridConditionalFormatDescriptor gcfd4 = new GridConditionalFormatDescriptor();
+            gcfd4.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfd4.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+
+            gcfd4.Expression = "[Formiran] = 1 AND [OjIzdavanja] = 7";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd4);
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
@@ -167,7 +183,77 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
         {
             if (Ulaz == "Izvoz" || Ulaz == "Uvoz")
             {
-               //Aktiviraj radni nalog
+                //Aktiviraj radni nalog
+                var main = this.TopLevelControl as NewMain;
+
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+                    //ovde kada bude bio interni RN sad je ID isto sto i brojRN
+                    //BrojRN= Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("BrojRN").ToString());
+                    BrojRN = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+                    //if(gridGroupingControl1.Table.CurrentRecord.GetValue("LO") is not null)
+                    int LO = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("LO").ToString());
+
+                    if (BrojRN != 0)
+                    {
+                        var s_connection = Sifarnici.frmLogovanje.connectionString;
+                        using (SqlConnection conn = new SqlConnection(s_connection))
+                        {
+                            conn.Open();
+                           // using (SqlCommand cmd = new SqlCommand(@"select VrstaRN,TipRN,Formiran From RadniNalogSkladista WHere ID=" + BrojRN, conn))
+                            using (SqlCommand cmd = new SqlCommand(@"select CASE 
+                                                                        WHEN ISNULL(CarinskiPostupakUnutrasnji, 0) > 0 THEN 'CARINSKO'
+                                                                        ELSE 'KOMERCIJALNO'
+                                                                    END AS VrstaRN
+                                                                   From IzvozKonacna IK 
+	                                                               INNER JOIN RadniNalogInterni RN ON IK.ID = RN.BrojOsnov   
+                                                                   WHere RN.IDManipulacijaJED = 74 AND RN.ID=" + BrojRN, conn))
+                            {
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.Read())
+                                    {
+                                        //var formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                                        //if (formiran == 1)
+                                        //{
+                                        //    MessageBox.Show("RN je već formiran!");
+                                        //    return;
+                                        //}
+                                        var vrstaRN = dr["VrstaRN"].ToString();
+                                        var tipRN = "Prijem";
+
+                                        if (tipRN == "Prijem")
+                                        {
+
+                                            // main.OtvoriFormuBezPrava(() => new Dokumenta.Prijem(ID, Ulaz, vrstaRN, Korisnik, BrojRN));
+                                            //main.OtvoriFormuBezPrava(() => new frmNalogPrijem("KOMERCIJALNINALOG", "Prijem", vrstaRN, BrojRN, LO));
+                                            main.OtvoriFormuBezPrava(() =>
+                                            {
+                                                // 1. Kreiramo formu sa tvojim parametrima
+                                                var forma = new frmNalogPrijem("KOMERCIJALNINALOG", "Prijem", vrstaRN, Ulaz, BrojRN, LO);
+
+                                                // 2. Definišemo šta se dešava kada se nalog obriše
+                                                forma.OnNalogObrisan = () =>
+                                                {
+                                                    // Ovde pozivaš metodu koja ponovo puni tvoj grid na ovoj formi sa pregledom
+                                                    FillGV();
+                                                };
+
+                                                // 3. Vraćamo formu glavnom meniju
+                                                return forma;
+                                            });
+                                        }
+                                        if (tipRN == "Otprema")
+                                        {
+                                            main.OtvoriFormuBezPrava(() => new Dokumenta.Otprema(ID, Ulaz, vrstaRN, Korisnik, BrojRN));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             if (Ulaz == "Direktni")
             {
@@ -179,6 +265,7 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                     //ovde kada bude bio interni RN sad je ID isto sto i brojRN
                     //BrojRN= Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("BrojRN").ToString());
                     BrojRN= Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
+                    int LO = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("LO").ToString());
 
                     if (BrojRN != 0)
                     {
@@ -192,18 +279,35 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                                 {
                                     if (dr.Read())
                                     {
-                                        var formiran = Convert.ToInt32(dr["Formiran"].ToString());
-                                        if (formiran == 1)
-                                        {
-                                            MessageBox.Show("RN je već formiran!");
-                                            return;
-                                        }
+                                        //var formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                                        //if (formiran == 1)
+                                        //{
+                                        //    MessageBox.Show("RN je već formiran!");
+                                        //    return;
+                                        //}
                                         var vrstaRN = dr["VrstaRN"].ToString();
                                         var tipRN = dr["TipRN"].ToString();
 
                                         if (tipRN == "Prijem")
                                         {
-                                            main.OtvoriFormuBezPrava(() => new Dokumenta.Prijem(ID, Ulaz, vrstaRN, Korisnik, BrojRN));
+
+                                            // main.OtvoriFormuBezPrava(() => new Dokumenta.Prijem(ID, Ulaz, vrstaRN, Korisnik, BrojRN));
+                                            //main.OtvoriFormuBezPrava(() => new frmNalogPrijem("KOMERCIJALNINALOG", "Prijem", vrstaRN, BrojRN, LO));
+                                            main.OtvoriFormuBezPrava(() =>
+                                            {
+                                                // 1. Kreiramo formu sa tvojim parametrima
+                                                var forma = new frmNalogPrijem("KOMERCIJALNINALOG", "Prijem", vrstaRN, Ulaz, BrojRN, LO);
+
+                                                // 2. Definišemo šta se dešava kada se nalog obriše
+                                                forma.OnNalogObrisan = () =>
+                                                {
+                                                    // Ovde pozivaš metodu koja ponovo puni tvoj grid na ovoj formi sa pregledom
+                                                    FillGV();
+                                                };
+
+                                                // 3. Vraćamo formu glavnom meniju
+                                                return forma;
+                                            });
                                         }
                                         if (tipRN == "Otprema")
                                         {
