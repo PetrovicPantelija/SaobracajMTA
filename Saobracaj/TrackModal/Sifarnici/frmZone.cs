@@ -33,6 +33,8 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
             InitializeComponent();
             ChangeTextBox();
+            // stil Sava (docs/SAVA-DESIGN.md): traka sa dugmadima sa tekstom, boje i fontovi
+            SifarnikTema.Primeni(this, panelHeader, panel3, button22, button21, button20, button23, button1, button2, tsNew, tsSave, tsDelete);
            
         }
 
@@ -179,6 +181,17 @@ namespace Saobracaj.TrackModal.Sifarnici
  int tmpAktivna = 0;
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
+
+            int id = status ? 0 : HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            string greska = HijerarhijaSkladista.ProveriOznaku(NivoSkladista.Zona, id, txtOznaka.Text)
+                ?? HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Zona, id, 0, tmpAktivna == 1);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool bioAktivan = id > 0 && HijerarhijaSkladista.JeAktivan(NivoSkladista.Zona, id);
             if (status == true)
             {
                 InsertZone ins = new InsertZone();
@@ -191,12 +204,21 @@ namespace Saobracaj.TrackModal.Sifarnici
                 InsertZone upd = new InsertZone();
                 upd.UpdZone(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, txtNaziv.Text, Convert.ToInt32(cboTipZoneID.SelectedValue), tmpAktivna, Convert.ToDateTime(DateTime.Now), Kor);
             }
+            // promena aktivnosti zone prenosi se na lokacije, objekte, polja i pozicije
+            HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Zona, id, bioAktivan, tmpAktivna == 1, "Zone");
             RefreshDataGrid();
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete, biće izbrisane i sve podredjene lokacije, polja i pozicije?", "Izbor", MessageBoxButtons.YesNo);
+            string greska = HijerarhijaSkladista.ProveriBrisanje(NivoSkladista.Zona, HijerarhijaSkladista.CeoBroj(txtSifra.Text));
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Zone", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete zonu?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -214,59 +236,13 @@ namespace Saobracaj.TrackModal.Sifarnici
         {
             var select = " Select Zone.ID, Zone.Oznaka, Zone.NAziv as Naziv, Zone.TipZoneID, TipZone.Naziv as TipZone, " +
                 " CASE WHEN Zone.Aktivna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna from Zone inner join TipZone on TipZone.ID = TipZoneID";
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new System.Data.DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
-            {
-                PodesiDatagridView(dataGridView1);
-            }
-            else
-            {
-                dataGridView1.BorderStyle = BorderStyle.None;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView1.BackgroundColor = Color.White;
-
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            }
-
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Oznaka";
-            dataGridView1.Columns[1].Width = 80;
-
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Tip zoneID";
-            dataGridView1.Columns[3].Width = 40;
-            dataGridView1.Columns[3].Visible = false;
-
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Tip zone";
-            dataGridView1.Columns[4].Width = 240;
+            SifarnikGrid.Napuni(gridGroupingControl1, HijerarhijaSkladista.Tabela(select));
+            SifarnikGrid.Kolona(gridGroupingControl1, "ID", "ID", 50);
+            SifarnikGrid.Kolona(gridGroupingControl1, "Oznaka", "Šifra", 80);
+            SifarnikGrid.Kolona(gridGroupingControl1, "Naziv", "Naziv", 250);
+            SifarnikGrid.Sakrij(gridGroupingControl1, "TipZoneID");
+            SifarnikGrid.Kolona(gridGroupingControl1, "TipZone", "Tip zone", 240);
+            SifarnikGrid.Kolona(gridGroupingControl1, "Aktivna", "Aktivna", 70);
         }
 
         private void VratiPodatke(string ID)
@@ -299,24 +275,15 @@ namespace Saobracaj.TrackModal.Sifarnici
             con.Close();
         }
 
-        private void dataGridView1_Click(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id == 0)
+                return;
+            txtSifra.Text = id.ToString();
+            status = false;
+            VratiPodatke(txtSifra.Text);
         }
         private void FillCombo()
         {
@@ -334,55 +301,24 @@ namespace Saobracaj.TrackModal.Sifarnici
 
         private void frmZone_Load(object sender, EventArgs e)
         {
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
 
             FillCombo();
             RefreshDataGrid();
         }
 
+        // Aktivne / Neaktivne: izabrane zone i sve njihove lokacije, objekti, polja i pozicije
         private void button23_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertZone poz = new InsertZone();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-
-                        poz.ProglasiAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Zona, true, "Zone");
+            RefreshDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                InsertZone poz = new InsertZone();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-
-                        poz.ProglasiNeAktivnim(Convert.ToInt32(row.Cells[0].Value.ToString()), 0);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Zona, false, "Zone");
+            RefreshDataGrid();
         }
 
         private void button2_Click(object sender, EventArgs e)

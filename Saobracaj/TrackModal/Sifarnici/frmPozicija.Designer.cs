@@ -39,7 +39,7 @@
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.txtOznaka = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -49,6 +49,9 @@
             this.txtOpis = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNamena = new System.Windows.Forms.TextBox();
+            this.lblNadredjeni = new System.Windows.Forms.Label();
+            this.lblVrstaPozicija = new System.Windows.Forms.Label();
+            this.cboVrstaPozicija = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPretraziPoSkladistu = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
@@ -63,7 +66,7 @@
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.chkAktivna = new System.Windows.Forms.CheckBox();
             this.meniHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -164,19 +167,30 @@
             this.tsPoslednja.Text = "toolStripButton1";
             this.tsPoslednja.Click += new System.EventHandler(this.tsPoslednja_Click);
             // 
-            // dataGridView1
+            // gridGroupingControl1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 257);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1172, 259);
-            this.dataGridView1.TabIndex = 136;
-            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 257);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1172, 259);
+            this.gridGroupingControl1.TabIndex = 136;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.AllowRemove = false;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.SelectedRecordsChanged += new Syncfusion.Grouping.SelectedRecordsChangedEventHandler(this.gridGroupingControl1_SelectedRecordsChanged);
             // 
             // txtOznaka
             // 
@@ -195,7 +209,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 135;
-            this.label2.Text = "Oznaka:";
+            this.label2.Text = "Šifra:";
             // 
             // txtSifra
             // 
@@ -214,7 +228,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 133;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // label6
             // 
@@ -240,8 +254,9 @@
             // 
             this.txtOpis.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtOpis.Location = new System.Drawing.Point(12, 224);
+            this.txtOpis.MaxLength = 100;
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(231, 22);
+            this.txtOpis.Size = new System.Drawing.Size(340, 22);
             this.txtOpis.TabIndex = 139;
             // 
             // label3
@@ -259,9 +274,40 @@
             // 
             this.txtNamena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtNamena.Location = new System.Drawing.Point(379, 110);
+            this.txtNamena.MaxLength = 20;
             this.txtNamena.Name = "txtNamena";
-            this.txtNamena.Size = new System.Drawing.Size(87, 22);
+            this.txtNamena.Size = new System.Drawing.Size(160, 22);
             this.txtNamena.TabIndex = 141;
+            //
+            // lblNadredjeni
+            //
+            this.lblNadredjeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.lblNadredjeni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNadredjeni.Font = new System.Drawing.Font("Arial", 9F);
+            this.lblNadredjeni.Location = new System.Drawing.Point(690, 87);
+            this.lblNadredjeni.Name = "lblNadredjeni";
+            this.lblNadredjeni.Padding = new System.Windows.Forms.Padding(4);
+            this.lblNadredjeni.Size = new System.Drawing.Size(490, 160);
+            //
+            // lblVrstaPozicija
+            //
+            this.lblVrstaPozicija.AutoSize = true;
+            this.lblVrstaPozicija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblVrstaPozicija.ForeColor = System.Drawing.Color.Black;
+            this.lblVrstaPozicija.Location = new System.Drawing.Point(480, 206);
+            this.lblVrstaPozicija.Name = "lblVrstaPozicija";
+            this.lblVrstaPozicija.Size = new System.Drawing.Size(90, 15);
+            this.lblVrstaPozicija.Text = "Vrsta pozicije:";
+            //
+            // cboVrstaPozicija
+            //
+            this.cboVrstaPozicija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboVrstaPozicija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboVrstaPozicija.FormattingEnabled = true;
+            this.cboVrstaPozicija.Location = new System.Drawing.Point(480, 224);
+            this.cboVrstaPozicija.Name = "cboVrstaPozicija";
+            this.cboVrstaPozicija.Size = new System.Drawing.Size(190, 24);
+            this.cboVrstaPozicija.TabIndex = 520;
             // 
             // label4
             // 
@@ -471,6 +517,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1194, 528);
+            this.Controls.Add(this.cboVrstaPozicija);
+            this.Controls.Add(this.lblVrstaPozicija);
+            this.Controls.Add(this.lblNadredjeni);
             this.Controls.Add(this.chkAktivna);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.btnPretraziPoSkladistu);
@@ -480,7 +529,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboSkladiste);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.txtOznaka);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSifra);
@@ -494,7 +543,7 @@
             this.Load += new System.EventHandler(this.frmPozicija_Load);
             this.meniHeader.ResumeLayout(false);
             this.meniHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -516,7 +565,7 @@
         private System.Windows.Forms.ToolStripButton tsNazad;
         private System.Windows.Forms.ToolStripButton tsNapred;
         private System.Windows.Forms.ToolStripButton tsPoslednja;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private System.Windows.Forms.TextBox txtOznaka;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSifra;
@@ -526,6 +575,9 @@
         private System.Windows.Forms.TextBox txtOpis;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNamena;
+        private System.Windows.Forms.Label lblNadredjeni;
+        private System.Windows.Forms.Label lblVrstaPozicija;
+        private System.Windows.Forms.ComboBox cboVrstaPozicija;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPretraziPoSkladistu;
         private System.Windows.Forms.Panel panelHeader;

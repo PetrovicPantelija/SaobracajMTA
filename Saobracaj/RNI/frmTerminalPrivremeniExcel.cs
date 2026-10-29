@@ -164,6 +164,21 @@ namespace Saobracaj.RNI
                     }
                 }
 
+                // Polja sa šifarnikom (BRODAR, VRSTA) moraju biti prazna ili iz šifarnika; upisuje se vrednost
+                // iz šifarnika (maersk -> MAERSK, 40'HC -> 40' HC)
+                for (int k = 1; k < vrednosti.Length; k++)
+                {
+                    TerminalPrivPolje polje = insertTerminalPriv.Polje(NaziviPolja[k]);
+                    if (polje.Dozvoljeno == null || vrednosti[k].Length == 0)
+                        continue;
+
+                    string tacna = insertTerminalPriv.DozvoljenaVrednost(polje, vrednosti[k]);
+                    if (tacna == null)
+                        greskeReda.Add(NaziviPolja[k] + " (kolona " + KoloneZaUvoz[k] + ") '" + vrednosti[k] + "' nije u šifarniku");
+                    else
+                        vrednosti[k] = tacna;
+                }
+
                 if (greskeReda.Count > 0)
                     greske.Add("Red " + excelRed + ": " + string.Join("; ", greskeReda));
                 else
@@ -179,6 +194,10 @@ namespace Saobracaj.RNI
                     poruka.AppendLine(g);
                 if (greske.Count > 15)
                     poruka.AppendLine("...");
+                poruka.AppendLine();
+                poruka.AppendLine("Vrednosti van šifarnika ispravite u Excel fajlu ili u tabeli. Šifarnici:");
+                poruka.AppendLine("BRODAR: " + string.Join(", ", insertTerminalPriv.Brodari));
+                poruka.AppendLine("VRSTA: " + string.Join(", ", insertTerminalPriv.VrsteCnt));
                 MessageBox.Show(poruka.ToString(), "Uvoz Excel", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }

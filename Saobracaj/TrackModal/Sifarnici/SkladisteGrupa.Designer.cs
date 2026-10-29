@@ -55,17 +55,33 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtAdresa = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.cboTipSkladista = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPostanskiBroj = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtLatitude = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtLongitude = new System.Windows.Forms.TextBox();
+            this.chkCarinsko = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cboCarinskaIspostava = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtCarinskaSifra = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCarinskiNaziv = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtDrzalac = new System.Windows.Forms.TextBox();
+            this.lblNadredjeni = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -256,7 +272,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 16);
             this.label3.TabIndex = 491;
-            this.label3.Text = "Oznaka:";
+            this.label3.Text = "Šifra:";
             // 
             // txtNaziv
             // 
@@ -294,7 +310,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 16);
             this.label1.TabIndex = 487;
-            this.label1.Text = "Šifra:";
+            this.label1.Text = "ID:";
             // 
             // txtDrzava
             // 
@@ -340,7 +356,7 @@
             this.txtAdresa.Location = new System.Drawing.Point(466, 168);
             this.txtAdresa.Multiline = true;
             this.txtAdresa.Name = "txtAdresa";
-            this.txtAdresa.Size = new System.Drawing.Size(229, 74);
+            this.txtAdresa.Size = new System.Drawing.Size(229, 55);
             this.txtAdresa.TabIndex = 499;
             // 
             // label7
@@ -354,20 +370,30 @@
             this.label7.TabIndex = 500;
             this.label7.Text = "Adresa:";
             // 
-            // dataGridView1
+            // gridGroupingControl1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 260);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1371, 319);
-            this.dataGridView1.TabIndex = 501;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 8.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 260);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1371, 319);
+            this.gridGroupingControl1.TabIndex = 501;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.AllowRemove = false;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.SelectedRecordsChanged += new Syncfusion.Grouping.SelectedRecordsChangedEventHandler(this.gridGroupingControl1_SelectedRecordsChanged);
             // 
             // commandBarController1
             // 
@@ -386,6 +412,7 @@
             this.label8.Size = new System.Drawing.Size(90, 16);
             this.label8.TabIndex = 503;
             this.label8.Text = "Tip skladišta:";
+            this.label8.Visible = false;
             // 
             // cboTipSkladista
             // 
@@ -399,6 +426,165 @@
             this.cboTipSkladista.Name = "cboTipSkladista";
             this.cboTipSkladista.Size = new System.Drawing.Size(231, 23);
             this.cboTipSkladista.TabIndex = 502;
+            this.cboTipSkladista.Visible = false;
+            //
+            // label9
+            //
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(734, 121);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 16);
+            this.label9.Text = "Poštanski broj:";
+            //
+            // txtPostanskiBroj
+            //
+            this.txtPostanskiBroj.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtPostanskiBroj.Location = new System.Drawing.Point(849, 119);
+            this.txtPostanskiBroj.MaxLength = 10;
+            this.txtPostanskiBroj.Name = "txtPostanskiBroj";
+            this.txtPostanskiBroj.Size = new System.Drawing.Size(120, 22);
+            this.txtPostanskiBroj.TabIndex = 504;
+            //
+            // label10
+            //
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(734, 157);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 16);
+            this.label10.Text = "Latitude:";
+            //
+            // txtLatitude
+            //
+            this.txtLatitude.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtLatitude.Location = new System.Drawing.Point(849, 155);
+            this.txtLatitude.MaxLength = 12;
+            this.txtLatitude.Name = "txtLatitude";
+            this.txtLatitude.Size = new System.Drawing.Size(120, 22);
+            this.txtLatitude.TabIndex = 505;
+            //
+            // label11
+            //
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(734, 193);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(75, 16);
+            this.label11.Text = "Longitude:";
+            //
+            // txtLongitude
+            //
+            this.txtLongitude.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtLongitude.Location = new System.Drawing.Point(849, 191);
+            this.txtLongitude.MaxLength = 12;
+            this.txtLongitude.Name = "txtLongitude";
+            this.txtLongitude.Size = new System.Drawing.Size(120, 22);
+            this.txtLongitude.TabIndex = 506;
+            //
+            // chkCarinsko
+            //
+            this.chkCarinsko.AutoSize = true;
+            this.chkCarinsko.BackColor = System.Drawing.Color.Transparent;
+            this.chkCarinsko.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.chkCarinsko.ForeColor = System.Drawing.Color.Black;
+            this.chkCarinsko.Location = new System.Drawing.Point(1000, 82);
+            this.chkCarinsko.Name = "chkCarinsko";
+            this.chkCarinsko.Size = new System.Drawing.Size(130, 19);
+            this.chkCarinsko.TabIndex = 507;
+            this.chkCarinsko.Text = "Carinsko skladište";
+            this.chkCarinsko.UseVisualStyleBackColor = false;
+            this.chkCarinsko.CheckedChanged += new System.EventHandler(this.chkCarinsko_CheckedChanged);
+            //
+            // label12
+            //
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(1000, 121);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(135, 16);
+            this.label12.Text = "Carinska ispostava:";
+            //
+            // cboCarinskaIspostava
+            //
+            this.cboCarinskaIspostava.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCarinskaIspostava.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.cboCarinskaIspostava.FormattingEnabled = true;
+            this.cboCarinskaIspostava.Location = new System.Drawing.Point(1150, 119);
+            this.cboCarinskaIspostava.Name = "cboCarinskaIspostava";
+            this.cboCarinskaIspostava.Size = new System.Drawing.Size(240, 23);
+            this.cboCarinskaIspostava.TabIndex = 508;
+            //
+            // label13
+            //
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(1000, 157);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(140, 16);
+            this.label13.Text = "Šifra car. skladišta:";
+            //
+            // txtCarinskaSifra
+            //
+            this.txtCarinskaSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtCarinskaSifra.Location = new System.Drawing.Point(1150, 155);
+            this.txtCarinskaSifra.MaxLength = 30;
+            this.txtCarinskaSifra.Name = "txtCarinskaSifra";
+            this.txtCarinskaSifra.Size = new System.Drawing.Size(240, 22);
+            this.txtCarinskaSifra.TabIndex = 509;
+            //
+            // label14
+            //
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(1000, 193);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(140, 16);
+            this.label14.Text = "Carinski naziv skl.:";
+            //
+            // txtCarinskiNaziv
+            //
+            this.txtCarinskiNaziv.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtCarinskiNaziv.Location = new System.Drawing.Point(1150, 191);
+            this.txtCarinskiNaziv.MaxLength = 100;
+            this.txtCarinskiNaziv.Name = "txtCarinskiNaziv";
+            this.txtCarinskiNaziv.Size = new System.Drawing.Size(240, 22);
+            this.txtCarinskiNaziv.TabIndex = 510;
+            //
+            // label15
+            //
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(1000, 229);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(130, 16);
+            this.label15.Text = "Držalac skladišta:";
+            //
+            // txtDrzalac
+            //
+            this.txtDrzalac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtDrzalac.Location = new System.Drawing.Point(1150, 227);
+            this.txtDrzalac.MaxLength = 100;
+            this.txtDrzalac.Name = "txtDrzalac";
+            this.txtDrzalac.Size = new System.Drawing.Size(240, 22);
+            this.txtDrzalac.TabIndex = 511;
+            //
+            // lblNadredjeni
+            //
+            this.lblNadredjeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.lblNadredjeni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNadredjeni.Font = new System.Drawing.Font("Arial", 9F);
+            this.lblNadredjeni.Location = new System.Drawing.Point(98, 229);
+            this.lblNadredjeni.Name = "lblNadredjeni";
+            this.lblNadredjeni.Size = new System.Drawing.Size(340, 22);
+            this.lblNadredjeni.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
             // 
@@ -468,9 +654,25 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1418, 591);
+            this.Controls.Add(this.lblNadredjeni);
+            this.Controls.Add(this.txtDrzalac);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtCarinskiNaziv);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txtCarinskaSifra);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cboCarinskaIspostava);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.chkCarinsko);
+            this.Controls.Add(this.txtLongitude);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtLatitude);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtPostanskiBroj);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboTipSkladista);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.txtAdresa);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtGrad);
@@ -496,7 +698,7 @@
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -530,12 +732,28 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAdresa;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboTipSkladista;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPostanskiBroj;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtLatitude;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtLongitude;
+        private System.Windows.Forms.CheckBox chkCarinsko;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cboCarinskaIspostava;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtCarinskaSifra;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtCarinskiNaziv;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtDrzalac;
+        private System.Windows.Forms.Label lblNadredjeni;
     }
 }

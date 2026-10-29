@@ -2788,6 +2788,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Pomocni\ComboPretraga.cs" />
     <Compile Include="Pomocni\CustomMessageBox.cs" />
     <Compile Include="Pomocni\CustomOkMessageBox.cs" />
     <Compile Include="Pomocni\CustomTextBox.cs" />
@@ -3139,6 +3140,13 @@
     <Compile Include="RNI\frmTerminalPrivremeniDokumenta.Designer.cs">
       <DependentUpon>frmTerminalPrivremeniDokumenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniOpstiIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeniOpstiIzvoz.Designer.cs">
+      <DependentUpon>frmTerminalPrivremeniOpstiIzvoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RNI\TerminalPrivOpstiIzvoz.cs" />
     <Compile Include="RNI\frmTerminalPrivremeniSlike.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3147,6 +3155,13 @@
     </Compile>
     <Compile Include="RNI\insertTerminalPriv.cs" />
     <Compile Include="RNI\TerminalPrivMaerskIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivMSCIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivCMAIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivOOCLIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivHMMIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivHAPAGIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivFLEXBOXIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivCOSCOIzvoz.cs" />
     <Compile Include="Servis\frmEvidencijaKvarova.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4461,6 +4476,88 @@
     <Compile Include="TrackModal\Sifarnici\InsertPredefinisanePoruke.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladista.cs" />
     <Compile Include="TrackModal\Sifarnici\InsertSkladistaGrupa.cs" />
+    <Compile Include="TrackModal\Sifarnici\HijerarhijaSkladista.cs" />
+    <Compile Include="TrackModal\Sifarnici\SifarnikGrid.cs" />
+    <Compile Include="TrackModal\Sifarnici\SifarnikTema.cs" />
+    <Compile Include="HR\HRBaza.cs" />
+    <Compile Include="HR\HRPrava.cs" />
+    <Compile Include="HR\HRStil.cs" />
+    <Compile Include="HR\HRGrid.cs" />
+    <Compile Include="HR\HRPolje.cs" />
+    <Compile Include="HR\HRObrazac.cs" />
+    <Compile Include="HR\HRPrilozi.cs" />
+    <Compile Include="HR\HRStampa.cs" />
+    <Compile Include="HR\HRTabelaKartica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRStavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRMeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZaposleniLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZaposleni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRRevers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRKontrolnaTabla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZahteviLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRZahtev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRSifarnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\HRMail.cs" />
+    <Compile Include="HR\HREvidencija.cs" />
+    <Compile Include="HR\HRBeleske.cs" />
+    <Compile Include="HR\HRResenje.cs" />
+    <Compile Include="HR\HRGO.cs" />
+    <Compile Include="Administracija\Podesavanja.cs" />
+    <Compile Include="HR\frmHREvidencijaRada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRDan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGrupniUnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGOZahtevi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRGOPravo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\frmHRLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmPodesavanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme\SavaTheme.cs" />
+    <Compile Include="Theme\ThemeHelper.cs" />
+    <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.Designer.cs">
+      <DependentUpon>frmPregledSkladistaGrupa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmSkladisteObjekat.Designer.cs">
+      <DependentUpon>frmSkladisteObjekat.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\SkladisteGrupa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6805,6 +6902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\PrvaProbaForma.resx">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmSkladisteObjekat.resx">
+      <DependentUpon>frmSkladisteObjekat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\SkladisteGrupa.resx">
       <DependentUpon>SkladisteGrupa.cs</DependentUpon>

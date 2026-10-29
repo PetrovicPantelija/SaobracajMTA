@@ -33,7 +33,15 @@ namespace Saobracaj.RNI
         public const int DuzinaKontejnera = 11;
 
         public static readonly string[] Statusi = { "PRAZAN", "PUN", "?", "RAZVOZ", "Blanks", "PRETOVAR", "U RAZVOZU", "UTOVAR" };
-        public static readonly string[] Stanja = { "DOBAR", "LOŠ", "FOOD GRADE", "OŠTEĆEN", "FLEXI" };
+        public static readonly string[] VrsteCnt =
+        {
+            "20' DB", "20' HC", "20' OT", "20' TC", "40' DB", "40' HC", "40' OT", "40' FLAT", "40' RF", "45' HC"
+        };
+        public static readonly string[] Brodari =
+        {
+            "CMA", "MAERSK", "COSCO", "MSC", "HAPAG", "OOCL", "HMM", "EVERGREEN", "FLEXBOX", "YANG MING", "LEGET"
+        };
+        public static readonly string[] Stanja ={ "DOBAR", "LOŠ", "FOOD GRADE", "OŠTEĆEN", "FLEXI" };
         public static readonly string[] GateInGateOut =
         {
             "GATE IN E", "GATE IN F", "GATE OUT E", "GATE OUT F", "GATE IN E/REPOZICIJA",
@@ -47,8 +55,8 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("KONTEJNER", "@KONTEJNER", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("STATUS", "@STATUS", TerminalPrivTip.Tekst, 30, Statusi),
             new TerminalPrivPolje("POZICIJA", "@POZICIJA", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("VRSTA", "@VRSTA", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("BRODAR", "@BRODAR", TerminalPrivTip.Tekst, 30, null),
+            new TerminalPrivPolje("VRSTA", "@VRSTA", TerminalPrivTip.Tekst, 30, VrsteCnt),
+            new TerminalPrivPolje("BRODAR", "@BRODAR", TerminalPrivTip.Tekst, 30, Brodari),
             new TerminalPrivPolje("NALOGODAVAC/UVOZ", "@NALOGODAVAC_UVOZ", TerminalPrivTip.Tekst, 50, null),
             new TerminalPrivPolje("POSTUPAK/UVOZ", "@POSTUPAK_UVOZ", TerminalPrivTip.Tekst, 50, null),
             new TerminalPrivPolje("UVOZNIK", "@UVOZNIK", TerminalPrivTip.Tekst, 50, null),
@@ -75,11 +83,20 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("OTPREMA", "@OTPREMA", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("POSLATE SLIKE", "@POSLATE_SLIKE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("Prevoznik", "@PREVOZNIK", TerminalPrivTip.Tekst, 30, null),
+            new TerminalPrivPolje("BELEŠKA", "@BELESKA", TerminalPrivTip.Tekst, 300, null),
         };
 
         // Vraca ID novog zapisa. zapisiMaersk = true samo za dugme 'Sačuvaj novi': procedura tada za Maersk
         // kontejner upisuje pokrete u TerminalPrivMaersk za popunjene datume
         public int InsTerminalPriv(DataRow red, bool zapisiMaersk = false)
+        {
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO;
+            return InsTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
+        }
+
+        // brojMaersk / brojMSC / brojCMA / brojOOCL / brojHMM / brojHAPAG / brojFLEXBOX / brojCOSCO = broj pokreta upisanih u TerminalPrivMaersk /
+        // TerminalPrivMSC / TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM / TerminalPrivHAPAG / TerminalPrivFLEXBOX / TerminalPrivCOSCO
+        public int InsTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL, out int brojHMM, out int brojHAPAG, out int brojFLEXBOX, out int brojCOSCO)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -94,6 +111,15 @@ namespace Saobracaj.RNI
             maersk.Value = zapisiMaersk;
             myCommand.Parameters.Add(maersk);
 
+            SqlParameter broj = DodajParametarBroj(myCommand, "@BrojMaersk");
+            SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
+            SqlParameter brojC = DodajParametarBroj(myCommand, "@BrojCMA");
+            SqlParameter brojO = DodajParametarBroj(myCommand, "@BrojOOCL");
+            SqlParameter brojH = DodajParametarBroj(myCommand, "@BrojHMM");
+            SqlParameter brojHA = DodajParametarBroj(myCommand, "@BrojHAPAG");
+            SqlParameter brojF = DodajParametarBroj(myCommand, "@BrojFLEXBOX");
+            SqlParameter brojCo = DodajParametarBroj(myCommand, "@BrojCOSCO");
+
             DodajParametreZaPolja(myCommand, red);
 
             myConnection.Open();
@@ -103,6 +129,14 @@ namespace Saobracaj.RNI
             {
                 object rezultat = myCommand.ExecuteScalar();
                 myTransaction.Commit();
+                brojMaersk = Broj(broj);
+                brojMSC = Broj(brojM);
+                brojCMA = Broj(brojC);
+                brojOOCL = Broj(brojO);
+                brojHMM = Broj(brojH);
+                brojHAPAG = Broj(brojHA);
+                brojFLEXBOX = Broj(brojF);
+                brojCOSCO = Broj(brojCo);
                 return Convert.ToInt32(rezultat);
             }
             catch (SqlException ex)
@@ -119,6 +153,14 @@ namespace Saobracaj.RNI
         // zapisiMaersk = true samo za izmenu dugmetom 'Promeni': procedura tada za Maersk kontejner upisuje
         // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
         public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
+        {
+            int brojMaersk, brojMSC, brojCMA, brojOOCL, brojHMM, brojHAPAG, brojFLEXBOX, brojCOSCO;
+            UpdTerminalPriv(red, zapisiMaersk, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
+        }
+
+        // brojMaersk / brojMSC / brojCMA / brojOOCL / brojHMM / brojHAPAG / brojFLEXBOX / brojCOSCO = broj pokreta upisanih u TerminalPrivMaersk /
+        // TerminalPrivMSC / TerminalPrivCMA / TerminalPrivOOCL / TerminalPrivHMM / TerminalPrivHAPAG / TerminalPrivFLEXBOX / TerminalPrivCOSCO
+        public void UpdTerminalPriv(DataRow red, bool zapisiMaersk, out int brojMaersk, out int brojMSC, out int brojCMA, out int brojOOCL, out int brojHMM, out int brojHAPAG, out int brojFLEXBOX, out int brojCOSCO)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -140,6 +182,15 @@ namespace Saobracaj.RNI
             parameter.Value = Convert.ToInt32(red["ID"]);
             myCommand.Parameters.Add(parameter);
 
+            SqlParameter broj = DodajParametarBroj(myCommand, "@BrojMaersk");
+            SqlParameter brojM = DodajParametarBroj(myCommand, "@BrojMSC");
+            SqlParameter brojC = DodajParametarBroj(myCommand, "@BrojCMA");
+            SqlParameter brojO = DodajParametarBroj(myCommand, "@BrojOOCL");
+            SqlParameter brojH = DodajParametarBroj(myCommand, "@BrojHMM");
+            SqlParameter brojHA = DodajParametarBroj(myCommand, "@BrojHAPAG");
+            SqlParameter brojF = DodajParametarBroj(myCommand, "@BrojFLEXBOX");
+            SqlParameter brojCo = DodajParametarBroj(myCommand, "@BrojCOSCO");
+
             DodajParametreZaPolja(myCommand, red);
 
             myConnection.Open();
@@ -149,6 +200,14 @@ namespace Saobracaj.RNI
             {
                 myCommand.ExecuteNonQuery();
                 myTransaction.Commit();
+                brojMaersk = Broj(broj);
+                brojMSC = Broj(brojM);
+                brojCMA = Broj(brojC);
+                brojOOCL = Broj(brojO);
+                brojHMM = Broj(brojH);
+                brojHAPAG = Broj(brojHA);
+                brojFLEXBOX = Broj(brojF);
+                brojCOSCO = Broj(brojCo);
             }
             catch (SqlException ex)
             {
@@ -295,6 +354,19 @@ namespace Saobracaj.RNI
             return string.Join(", ", kolone);
         }
 
+        // Vrednost iz liste dozvoljenih koja odgovara unetoj bez obzira na velika/mala slova, razmake i
+        // apostrofe (40'HC, 40HC -> 40' HC; maersk -> MAERSK); null ako takve nema
+        public static string DozvoljenaVrednost(TerminalPrivPolje polje, string vrednost)
+        {
+            string kljuc = KljucPoredjenja(vrednost);
+            return Array.Find(polje.Dozvoljeno, d => KljucPoredjenja(d) == kljuc);
+        }
+
+        private static string KljucPoredjenja(string vrednost)
+        {
+            return (vrednost ?? "").Replace(" ", "").Replace("'", "").ToUpperInvariant();
+        }
+
         public static TerminalPrivPolje Polje(string kolona)
         {
             foreach (TerminalPrivPolje polje in Polja)
@@ -352,6 +424,22 @@ namespace Saobracaj.RNI
             {
                 myConnection.Close();
             }
+        }
+
+        // Izlazni parametar procedure sa brojem upisanih pokreta brodara (@BrojMaersk, @BrojMSC, @BrojCMA, @BrojOOCL, @BrojHMM, @BrojHAPAG, @BrojFLEXBOX, @BrojCOSCO)
+        private static SqlParameter DodajParametarBroj(SqlCommand myCommand, string naziv)
+        {
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = naziv;
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Output;
+            myCommand.Parameters.Add(parameter);
+            return parameter;
+        }
+
+        private static int Broj(SqlParameter parameter)
+        {
+            return parameter.Value == null || parameter.Value == DBNull.Value ? 0 : Convert.ToInt32(parameter.Value);
         }
 
         private static void DodajParametreZaPolja(SqlCommand myCommand, DataRow red)
