@@ -43,6 +43,7 @@
             this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
             this.cboIzvestaji = new System.Windows.Forms.ComboBox();
             this.btnOpstiIzvoz = new System.Windows.Forms.Button();
+            this.btnPonistiFiltere = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
             this.btnNovi = new System.Windows.Forms.Button();
@@ -940,7 +941,7 @@
             this.btnObrisi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnObrisi.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnObrisi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnObrisi.Location = new System.Drawing.Point(1274, 0);
+            this.btnObrisi.Location = new System.Drawing.Point(1404, 0);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(80, 31);
             this.btnObrisi.TabIndex = 11;
@@ -967,6 +968,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.btnObrisi);
+            this.panel2.Controls.Add(this.btnPonistiFiltere);
             this.panel2.Controls.Add(this.btnOpstiIzvoz);
             this.panel2.Controls.Add(this.cboIzvestaji);
             this.panel2.Controls.Add(this.btnArhiviraniPodaci);
@@ -1038,6 +1040,27 @@
             this.btnOpstiIzvoz.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnOpstiIzvoz.UseVisualStyleBackColor = true;
             this.btnOpstiIzvoz.Click += new System.EventHandler(this.btnOpstiIzvoz_Click);
+            //
+            // btnPonistiFiltere
+            //
+            this.btnPonistiFiltere.AutoSize = true;
+            this.btnPonistiFiltere.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPonistiFiltere.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnPonistiFiltere.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnPonistiFiltere.FlatAppearance.BorderSize = 0;
+            this.btnPonistiFiltere.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPonistiFiltere.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPonistiFiltere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPonistiFiltere.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnPonistiFiltere.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnPonistiFiltere.Location = new System.Drawing.Point(1274, 0);
+            this.btnPonistiFiltere.Name = "btnPonistiFiltere";
+            this.btnPonistiFiltere.Size = new System.Drawing.Size(130, 31);
+            this.btnPonistiFiltere.TabIndex = 12;
+            this.btnPonistiFiltere.Text = "Poništi filtere";
+            this.btnPonistiFiltere.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPonistiFiltere.UseVisualStyleBackColor = true;
+            this.btnPonistiFiltere.Click += new System.EventHandler(this.btnPonistiFiltere_Click);
             //
             // btnArhiviraniPodaci
             // 
@@ -1226,6 +1249,7 @@
         private System.Windows.Forms.Button btnArhiviraniPodaci;
         private System.Windows.Forms.ComboBox cboIzvestaji;
         private System.Windows.Forms.Button btnOpstiIzvoz;
+        private System.Windows.Forms.Button btnPonistiFiltere;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
         private System.Windows.Forms.Button btnNovi;

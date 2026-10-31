@@ -33,6 +33,11 @@ namespace Saobracaj.RNI
             cboIzvestaji.SelectedIndex = 0;
             SuziDugmadNaTraci();
 
+            // desni klik na gridu: Poništi filtere (isto kao dugme na traci)
+            var meni = new ContextMenuStrip();
+            meni.Items.Add("Poništi filtere", null, (s, e) => PonistiFiltere());
+            gridGroupingControl1.ContextMenuStrip = meni;
+
             // Grid je samo za pregled: ne otvara se editor ćelija sa podacima (filter bar ostaje za kucanje)
             gridGroupingControl1.TableControlCurrentCellStartEditing += gridGroupingControl1_TableControlCurrentCellStartEditing;
         }
@@ -114,6 +119,95 @@ namespace Saobracaj.RNI
                 if (dtp != null)
                     dtp.ValueChanged += (s, e) => OznaciDatum((DateTimePicker)s);
             }
+        }
+
+        // ---------------------------------------------------------------------------------
+        // Kretanje strelicama između polja na tabSplitterPage2 (levo, desno, gore, dole po rasporedu polja)
+        //   - polje za tekst: levo/desno pomeraju kursor u tekstu, a u drugo polje prelaze tek sa početka/kraja teksta
+        //   - lista (STATUS, VRSTA...): sve četiri strelice prelaze u drugo polje; vrednost se bira kucanjem,
+        //     mišem ili Alt+Dole; dok je lista otvorena strelice se kreću po listi
+        //   - datum: strelice menjaju datum kao i ranije, a u drugo polje se prelazi sa Ctrl+strelica
+        //   - Ctrl+strelica prelazi u drugo polje iz svakog polja
+        // ---------------------------------------------------------------------------------
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            Keys taster = keyData & Keys.KeyCode;
+            Keys modifikator = keyData & Keys.Modifiers;
+            if ((taster == Keys.Left || taster == Keys.Right || taster == Keys.Up || taster == Keys.Down)
+                && (modifikator == Keys.None || modifikator == Keys.Control))
+            {
+                Control polje = FokusiranoPolje();
+                if (polje != null && (modifikator == Keys.Control || StrelicaNapustaPolje(polje, taster)))
+                {
+                    Control sledece = SusednoPolje(polje, taster);
+                    if (sledece != null)
+                    {
+                        sledece.Focus();
+                        if (sledece is TextBox tb)
+                            tb.SelectAll();
+                    }
+                    return true;   // i kad nema polja u tom pravcu: kursor ostaje u polju, vrednost se ne menja
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        // Polje za unos (iz 'kontrole') koje ima fokus, ili null
+        private Control FokusiranoPolje()
+        {
+            Control c = ActiveControl;
+            while (c is ContainerControl cc && cc.ActiveControl != null)
+                c = cc.ActiveControl;
+            return c != null && kontrole.ContainsValue(c) ? c : null;
+        }
+
+        private static bool StrelicaNapustaPolje(Control polje, Keys taster)
+        {
+            if (polje is DateTimePicker)
+                return false;
+
+            if (polje is ComboBox cbo)
+                return !cbo.DroppedDown;
+
+            if (polje is TextBox tb)
+            {
+                if (tb.SelectionLength > 0 && tb.SelectionLength < tb.TextLength)
+                    return taster == Keys.Up || taster == Keys.Down;
+                if (taster == Keys.Left)
+                    return tb.SelectionStart == 0 || tb.SelectionLength == tb.TextLength;
+                if (taster == Keys.Right)
+                    return tb.SelectionStart + tb.SelectionLength >= tb.TextLength;
+                return true;
+            }
+            return false;
+        }
+
+        // Najbliže dostupno polje u pravcu strelice. Polja istog reda imaju (skoro) isti Top.
+        // Levo/desno na kraju reda prelazi na kraj prethodnog / početak sledećeg reda.
+        private Control SusednoPolje(Control polje, Keys taster)
+        {
+            const int IstiRed = 10;
+            List<Control> dostupna = kontrole.Values
+                .Where(c => c != polje && c.Visible && c.Enabled && c.Parent == polje.Parent)
+                .ToList();
+
+            Func<Control, int> centar = c => c.Left + c.Width / 2;
+            int x = centar(polje), y = polje.Top;
+
+            switch (taster)
+            {
+                case Keys.Right:
+                    return dostupna.Where(c => Math.Abs(c.Top - y) <= IstiRed && c.Left > polje.Left).OrderBy(c => c.Left).FirstOrDefault()
+                        ?? dostupna.Where(c => c.Top > y + IstiRed).OrderBy(c => c.Top).ThenBy(c => c.Left).FirstOrDefault();
+                case Keys.Left:
+                    return dostupna.Where(c => Math.Abs(c.Top - y) <= IstiRed && c.Left < polje.Left).OrderByDescending(c => c.Left).FirstOrDefault()
+                        ?? dostupna.Where(c => c.Top < y - IstiRed).OrderByDescending(c => c.Top).ThenByDescending(c => c.Left).FirstOrDefault();
+                case Keys.Down:
+                    return dostupna.Where(c => c.Top > y + IstiRed).OrderBy(c => c.Top).ThenBy(c => Math.Abs(centar(c) - x)).FirstOrDefault();
+                case Keys.Up:
+                    return dostupna.Where(c => c.Top < y - IstiRed).OrderByDescending(c => c.Top).ThenBy(c => Math.Abs(centar(c) - x)).FirstOrDefault();
+            }
+            return null;
         }
 
         // Uneti (čekirani) datum se ispisuje boldovano
@@ -595,6 +689,37 @@ namespace Saobracaj.RNI
 
             dynamicFilter = new Syncfusion.GridHelperClasses.GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
+        }
+
+        // Poništava sve filtere u gridu: Excel filter (lista u zaglavlju), tekst u filter baru i ostale RecordFilters.
+        // Sortiranje i grupisanje ostaju.
+        private void btnPonistiFiltere_Click(object sender, EventArgs e)
+        {
+            PonistiFiltere();
+        }
+
+        private void PonistiFiltere()
+        {
+            if (gridExcelFilter != null)
+                gridExcelFilter.ClearFilters(gridGroupingControl1);
+
+            // tekst ukucan u filter baru se briše ćeliju po ćeliju (filter bar je u prvih nekoliko redova tabele)
+            GridTableControl tabela = gridGroupingControl1.TableControl;
+            int redova = Math.Min(tabela.Model.RowCount, 10);
+            for (int r = 1; r <= redova; r++)
+            {
+                for (int k = 1; k <= tabela.Model.ColCount; k++)
+                {
+                    GridTableCellStyleInfo stil = tabela.GetTableViewStyleInfo(r, k);
+                    if (stil.TableCellIdentity.TableCellType != GridTableCellType.FilterBarCell)
+                        continue;
+                    if (stil.CellModel is GridTableFilterBarCellModel model)
+                        model.Select(stil.TableCellIdentity, 0);   // stavka 0 = (All)
+                }
+            }
+
+            gridGroupingControl1.TableDescriptor.RecordFilters.Clear();
+            tabela.Refresh();
         }
 
         private void PodesiKolone()
