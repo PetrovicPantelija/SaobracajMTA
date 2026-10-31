@@ -342,7 +342,7 @@ namespace Saobracaj.RNI
         // Svi redovi se upisuju u jednoj transakciji. Vraca broj upisanih redova.
         public static readonly string[] KoloneIzExcela =
         {
-            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "PLOMBA_UVOZ"
+            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "PLOMBA_UVOZ", "VOZ/kamion"
         };
 
         // Kolone za SELECT redosledom iz Polja (u migriranoj bazi nova kolona BL/UVOZ je fizički poslednja)
