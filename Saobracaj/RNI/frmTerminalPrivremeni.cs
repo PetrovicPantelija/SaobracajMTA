@@ -27,6 +27,7 @@ namespace Saobracaj.RNI
         {
             InitializeComponent();
             PovezKontrole();
+            PovezOznakuFokusa();
             tabSplitterPage2.Leave += tabSplitterPage2_Leave;
 
             cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX", "Izveštaj COSCO" });
@@ -126,7 +127,8 @@ namespace Saobracaj.RNI
         //   - polje za tekst: levo/desno pomeraju kursor u tekstu, a u drugo polje prelaze tek sa početka/kraja teksta
         //   - lista (STATUS, VRSTA...): sve četiri strelice prelaze u drugo polje; vrednost se bira kucanjem,
         //     mišem ili Alt+Dole; dok je lista otvorena strelice se kreću po listi
-        //   - datum: strelice menjaju datum kao i ranije, a u drugo polje se prelazi sa Ctrl+strelica
+        //   - datum: gore/dole prelaze u drugo polje, levo/desno se kreću po delovima datuma (dan, mesec, godina, sat);
+        //     vrednost se menja kucanjem cifara ili iz kalendara (Alt+Dole), levo/desno u drugo polje sa Ctrl+strelica
         //   - Ctrl+strelica prelazi u drugo polje iz svakog polja
         // ---------------------------------------------------------------------------------
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -152,6 +154,48 @@ namespace Saobracaj.RNI
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        // Oznaka polja u kome je kursor: plavi okvir oko polja (cijan iz logotipa) i svetloplava pozadina
+        // polja za tekst i liste. DateTimePicker ne menja pozadinu (Windows je ne crta), pa za njega važi samo okvir.
+        private static readonly Color BojaOkviraFokusa = Color.FromArgb(0x3D, 0xB5, 0xE6);
+        private static readonly Color BojaPozadineFokusa = Color.FromArgb(0xDD, 0xF1, 0xFB);
+        private Panel okvirFokusa;
+        private Color pozadinaPreFokusa;
+
+        private void PovezOznakuFokusa()
+        {
+            okvirFokusa = new Panel { BackColor = BojaOkviraFokusa, Visible = false, TabStop = false, Enabled = false };
+            foreach (Control polje in kontrole.Values)
+            {
+                polje.Enter += (s, e) => OznaciPolje((Control)s);
+                polje.Leave += (s, e) => SkloniOznaku((Control)s);
+            }
+        }
+
+        private void OznaciPolje(Control polje)
+        {
+            const int Debljina = 2;
+            Control roditelj = polje.Parent;
+            if (okvirFokusa.Parent != roditelj)
+                roditelj.Controls.Add(okvirFokusa);
+            okvirFokusa.Bounds = Rectangle.Inflate(polje.Bounds, Debljina, Debljina);
+            // odmah iza polja: iznad traka u pozadini (pnlDatumi, pnlVozilo), ispod samog polja
+            roditelj.Controls.SetChildIndex(okvirFokusa, roditelj.Controls.GetChildIndex(polje) + 1);
+            okvirFokusa.Visible = true;
+
+            if (!(polje is DateTimePicker))
+            {
+                pozadinaPreFokusa = polje.BackColor;
+                polje.BackColor = BojaPozadineFokusa;
+            }
+        }
+
+        private void SkloniOznaku(Control polje)
+        {
+            okvirFokusa.Visible = false;
+            if (!(polje is DateTimePicker))
+                polje.BackColor = pozadinaPreFokusa;
+        }
+
         // Polje za unos (iz 'kontrole') koje ima fokus, ili null
         private Control FokusiranoPolje()
         {
@@ -164,7 +208,7 @@ namespace Saobracaj.RNI
         private static bool StrelicaNapustaPolje(Control polje, Keys taster)
         {
             if (polje is DateTimePicker)
-                return false;
+                return taster == Keys.Up || taster == Keys.Down;
 
             if (polje is ComboBox cbo)
                 return !cbo.DroppedDown;
