@@ -10,8 +10,8 @@ namespace Saobracaj.RNI
     public partial class frmTerminalPrivremeniExcel : Form
     {
         // Excel kolone koje se uvoze, redom kao insertTerminalPriv.KoloneIzExcela:
-        // KONTEJNER, VRSTA, BRODAR, NALOGODAVAC/UVOZ, POSTUPAK/UVOZ, UVOZNIK, PLOMBA_UVOZ, VOZ/kamion (AC = najava voza)
-        private static readonly string[] KoloneZaUvoz = { "C", "D", "K", "L", "T", "M", "H", "AC" };
+        // KONTEJNER, VRSTA, BRODAR, NALOGODAVAC/UVOZ, POSTUPAK/UVOZ, UVOZNIK, BL/UVOZ, VOZ/kamion (AC = najava voza), L/R
+        private static readonly string[] KoloneZaUvoz = { "C", "D", "K", "L", "T", "M", "H", "AC", "E" };
         private static readonly string[] NaziviPolja = insertTerminalPriv.KoloneIzExcela;
         private const int MinBrojKolona = 29;   // do kolone AC
 

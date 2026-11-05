@@ -461,6 +461,17 @@ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivOOCL_Activ
     CREATE NONCLUSTERED INDEX IX_TerminalPrivOOCL_Active ON dbo.TerminalPrivOOCL (Active);
 GO
 
+-- Izveštaj OOCL MAIL pamti svoj izvoz nezavisno od izveštaja OOCL EDI (Active, DatumIzvoza)
+IF COL_LENGTH('dbo.TerminalPrivOOCL', 'ActiveMail') IS NULL
+    ALTER TABLE dbo.TerminalPrivOOCL ADD [ActiveMail] int NOT NULL CONSTRAINT DF_TerminalPrivOOCL_ActiveMail DEFAULT (0);
+IF COL_LENGTH('dbo.TerminalPrivOOCL', 'DatumIzvozaMail') IS NULL
+    ALTER TABLE dbo.TerminalPrivOOCL ADD [DatumIzvozaMail] datetime NULL;
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivOOCL_ActiveMail' AND object_id = OBJECT_ID('dbo.TerminalPrivOOCL'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivOOCL_ActiveMail ON dbo.TerminalPrivOOCL (ActiveMail);
+GO
+
 -- Upis pokreta OOCL kontejnera u TerminalPrivOOCL (pozivaju insTerminalPriv i updTerminalPriv), po istom principu
 -- kao insTerminalPrivCMAPokreti; pravila 15-20 važe samo za STANJE = OŠTEĆEN, pravila 1-14 za sva ostala stanja.
 IF OBJECT_ID('dbo.insTerminalPrivOOCLPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivOOCLPokreti;
@@ -1650,14 +1661,14 @@ GO
 
 -- VRSTA (vrsta kontejnera) u TerminalPriv prevodi se u oblik iz šifarnika (insertTerminalPriv.VrsteCnt).
 -- Vrednost koja se od šifarnika razlikuje samo po razmaku, apostrofu ili velikim/malim slovima se menja
--- (40'HC, 40HC -> 40' HC). Ostale vrednosti (npr. 40RH, 20, 30) ostaju; forma ih prikazuje i pri čuvanju
+-- (40'HC, 40HC -> 40' HC). Ostale vrednosti (npr. 40RH, 30) ostaju; forma ih prikazuje i pri čuvanju
 -- traži izbor iz šifarnika. Skripta se može pustiti više puta.
 
 UPDATE t
 SET [VRSTA] = s.Vrsta
 FROM dbo.TerminalPriv t
 INNER JOIN (VALUES
-    (N'20'' DB'), (N'20'' HC'), (N'20'' OT'), (N'20'' TC'), (N'40'' DB'),
+    (N'20'), (N'20'' DB'), (N'20'' HC'), (N'20'' OT'), (N'20'' TC'), (N'40'), (N'40'' DB'),
     (N'40'' HC'), (N'40'' OT'), (N'40'' FLAT'), (N'40'' RF'), (N'45'' HC')
 ) s (Vrsta)
     ON UPPER(REPLACE(REPLACE(t.[VRSTA], N' ', N''), N'''', N'')) = UPPER(REPLACE(REPLACE(s.Vrsta, N' ', N''), N'''', N''))
@@ -1669,7 +1680,7 @@ SELECT @@ROWCOUNT AS Prevedeno;
 SELECT [VRSTA], COUNT(*) AS Broj
 FROM dbo.TerminalPriv
 WHERE [VRSTA] IS NOT NULL
-  AND [VRSTA] NOT IN (N'20'' DB', N'20'' HC', N'20'' OT', N'20'' TC', N'40'' DB', N'40'' HC', N'40'' OT', N'40'' FLAT', N'40'' RF', N'45'' HC')
+  AND [VRSTA] NOT IN (N'20', N'20'' DB', N'20'' HC', N'20'' OT', N'20'' TC', N'40', N'40'' DB', N'40'' HC', N'40'' OT', N'40'' FLAT', N'40'' RF', N'45'' HC')
 GROUP BY [VRSTA];
 GO
 

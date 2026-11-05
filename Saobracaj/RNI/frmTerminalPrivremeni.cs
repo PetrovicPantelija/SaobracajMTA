@@ -30,7 +30,7 @@ namespace Saobracaj.RNI
             PovezOznakuFokusa();
             tabSplitterPage2.Leave += tabSplitterPage2_Leave;
 
-            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX", "Izveštaj COSCO" });
+            cboIzvestaji.Items.AddRange(new object[] { "Izveštaji", "Izveštaj Maersk", "Izveštaj MSC", "Izveštaj CMA", "Izveštaj OOCL EDI", "Izveštaj OOCL MAIL", "Izveštaj HMM", "Izveštaj HAPAG", "Izveštaj FLEXBOX", "Izveštaj COSCO" });
             cboIzvestaji.SelectedIndex = 0;
             SuziDugmadNaTraci();
 
@@ -1083,12 +1083,14 @@ namespace Saobracaj.RNI
             else if (izbor == 4)
                 IzvestajOOCL();
             else if (izbor == 5)
-                IzvestajHMM();
+                IzvestajOOCLMail();
             else if (izbor == 6)
-                IzvestajHAPAG();
+                IzvestajHMM();
             else if (izbor == 7)
-                IzvestajFLEXBOX();
+                IzvestajHAPAG();
             else if (izbor == 8)
+                IzvestajFLEXBOX();
+            else if (izbor == 9)
                 IzvestajCOSCO();
         }
 
@@ -1116,10 +1118,17 @@ namespace Saobracaj.RNI
             IzvozPokreta("HMM", izvoz.UcitajNeizvezene, TerminalPrivHMMIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
+        // Isti pokreti kao OOCL EDI; izvoz se pamti posebno, pa zapis izvezen jednim izveštajem ostaje za drugi
+        private void IzvestajOOCLMail()
+        {
+            var izvoz = new TerminalPrivOOCLMailIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
+            IzvozPokreta("OOCL MAIL", izvoz.UcitajNeizvezene, TerminalPrivOOCLMailIzvoz.PredlogImena(), izvoz.Izvezi);
+        }
+
         private void IzvestajOOCL()
         {
             var izvoz = new TerminalPrivOOCLIzvoz(Saobracaj.Sifarnici.frmLogovanje.connectionString);
-            IzvozPokreta("OOCL", izvoz.UcitajNeizvezene, TerminalPrivOOCLIzvoz.PredlogImena(), izvoz.Izvezi);
+            IzvozPokreta("OOCL EDI", izvoz.UcitajNeizvezene, TerminalPrivOOCLIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
         private void IzvestajCMA()
