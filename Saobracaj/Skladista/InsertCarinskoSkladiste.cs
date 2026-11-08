@@ -167,7 +167,7 @@ namespace Saobracaj.Skladista
             //cmd.Parameters.Add(new SqlParameter("@PlaniraniDatum2Otprema", SqlDbType.DateTime) { Value = PlaniraniDatum2Otprema });
             //cmd.Parameters.Add(new SqlParameter("@BrojKontejneraOtprema", SqlDbType.NVarChar) { Value = BrojKontejneraOtprema });
 
-            cmd.Parameters.Add(new SqlParameter("@VrstaPrevoznogSredstvaPrijem", SqlDbType.Int) { Value = VrstaPrevoznogSredstvaPrijem });
+            cmd.Parameters.Add(new SqlParameter("@VrstaPrevoznogSredstvaPrijem", SqlDbType.Int) { Value = VrstaPrevoznogSredstvaPrijem == null ? (object)DBNull.Value : VrstaPrevoznogSredstvaPrijem });
             //cmd.Parameters.Add(new SqlParameter("@VrstaKamionaPrijem", SqlDbType.Int) { Value = VrstaKamionaPrijem == null ? (object)DBNull.Value : VrstaKamionaPrijem });
             //cmd.Parameters.Add(new SqlParameter("@VoziloPrijem", SqlDbType.NVarChar) { Value = VoziloPrijem == null ? (object)DBNull.Value : VoziloPrijem });
             //cmd.Parameters.Add(new SqlParameter("@VozacPrijem", SqlDbType.NVarChar) { Value = VozacPrijem == null ? (object)DBNull.Value : VozacPrijem }); 
@@ -236,7 +236,8 @@ namespace Saobracaj.Skladista
 
         public void UpdateRadniNalogDirektni(int ID, int? Nalogodavac, int? CarinskiPostupak,
                     string OpisPosla, int? NacinPakovanja, int? VrstaPrevoznogSredstvaPrijem, int OdredisnaCarinarnicaPrijem, int SpediterPrijem, int? KontakOsobaSpediteraPrijem, DateTime PlaniraniDatumPrijem,
-                    DateTime PlaniraniDatum2Prijem, int? Vaganje, int? ADR, int? PosebniUslovi, int DodatneUslugeID, string Napomena, int? InspekcijskiTretman, int? VlasnikRobe, string OpisRobe, int? MagacinskiBroj, int? OstalaSkladista)
+                    DateTime PlaniraniDatum2Prijem, int? Vaganje, int? ADR, int? PosebniUslovi, int DodatneUslugeID, string Napomena, int? InspekcijskiTretman, int? VlasnikRobe, string OpisRobe, int? MagacinskiBroj,
+                    int? OstalaSkladista,string SmestajniDokument, int UpisPodatakaUMP, int? Godina)
         {
             int kreiraniID = 0;
             SqlConnection conn = new SqlConnection(connection);
@@ -275,7 +276,9 @@ namespace Saobracaj.Skladista
             cmd.Parameters.Add(new SqlParameter("@OpisRobe", SqlDbType.NVarChar) { Value = OpisRobe == null ? (object)DBNull.Value : OpisRobe });
             cmd.Parameters.Add(new SqlParameter("@MagacinskiBroj", SqlDbType.Int) { Value = MagacinskiBroj == null ? (object)DBNull.Value : MagacinskiBroj });
             cmd.Parameters.Add(new SqlParameter("@OstalaSkladista", SqlDbType.Int) { Value = OstalaSkladista == null ? (object)DBNull.Value : OstalaSkladista });
-
+            cmd.Parameters.Add(new SqlParameter("@SmestajniDokument", SqlDbType.NVarChar) { Value = SmestajniDokument == null ? (object)DBNull.Value : SmestajniDokument });
+            cmd.Parameters.Add(new SqlParameter("@UpisPodatakaUMP", SqlDbType.Int) { Value = UpisPodatakaUMP });
+            cmd.Parameters.Add(new SqlParameter("@Godina", SqlDbType.Int) { Value = Godina });
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -446,7 +449,7 @@ namespace Saobracaj.Skladista
                 cmd.ExecuteNonQuery();
             }
 
-            MessageBox.Show("Usluge uspešno sačuvane.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           // MessageBox.Show("Usluge uspešno sačuvane.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void InsertRadniNalog(string Status, DateTime Datum, string Korisnik, string VrstaRN, string TipRN, string CarinskoSkladiste, int MagacinskiBroj, int Nalogodavac, int CarinskiPostupak,

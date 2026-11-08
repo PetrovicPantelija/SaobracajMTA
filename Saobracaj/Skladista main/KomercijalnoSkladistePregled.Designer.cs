@@ -290,7 +290,7 @@
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(168, 82);
             this.button24.TabIndex = 17;
-            this.button24.Text = "Popuni LO nalog";
+            this.button24.Text = "Magacinski predmet";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);

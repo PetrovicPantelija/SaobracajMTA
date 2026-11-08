@@ -8,6 +8,8 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Syncfusion.Presentation;
+using Saobracaj.Pantheon_Export;
+using Syncfusion.XlsIO.Implementation.XmlSerialization;
 
 
 namespace Saobracaj.Skladista_main
@@ -626,6 +628,378 @@ namespace Saobracaj.Skladista_main
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdateCarinskoStavke( int ID,int? IDNadredjena, int? NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto,  int? Paleta, int? VrstaPaleta,
+            decimal? Vrednost, string Valuta, decimal? PDV, decimal? Carina, string Napomena)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateCarinskoStavke";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter idNadredjena = new SqlParameter();
+            idNadredjena.ParameterName = "@IDNadredjena";
+            idNadredjena.SqlDbType = SqlDbType.Int;
+            idNadredjena.Direction = ParameterDirection.Input;
+            idNadredjena.Value = IDNadredjena.HasValue  ? (object)IDNadredjena.Value : DBNull.Value;
+            cmd.Parameters.Add(idNadredjena);
+
+            SqlParameter nhm = new SqlParameter();
+            nhm.ParameterName = "@NHM";
+            nhm.SqlDbType = SqlDbType.Int;
+            nhm.Direction = ParameterDirection.Input;
+            nhm.Value = NHM.HasValue ? (object)NHM.Value : DBNull.Value; 
+            cmd.Parameters.Add(nhm);
+
+            SqlParameter naimenovanje = new SqlParameter();
+            naimenovanje.ParameterName = "@Naimenovanje";
+            naimenovanje.SqlDbType = SqlDbType.NVarChar;
+            naimenovanje.Direction = ParameterDirection.Input;
+            naimenovanje.Value = Naimenovanje != null  ? (object)Naimenovanje : DBNull.Value;
+            cmd.Parameters.Add(naimenovanje);
+
+            SqlParameter rb = new SqlParameter();
+            rb.ParameterName = "@RB";
+            rb.SqlDbType = SqlDbType.Int;
+            rb.Direction = ParameterDirection.Input;
+            rb.Value = RB.HasValue ? (object)RB.Value : DBNull.Value; 
+            cmd.Parameters.Add(rb);
+
+            SqlParameter jm = new SqlParameter();
+            jm.ParameterName = "@JM";
+            jm.SqlDbType = SqlDbType.NVarChar;
+            jm.Direction = ParameterDirection.Input;
+            jm.Value = JM!= null ? (object)JM : DBNull.Value;
+            cmd.Parameters.Add(jm);
+
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.DbType = DbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina.HasValue ? (object)Kolicina.Value : DBNull.Value; 
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.DbType = DbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta.HasValue ? (object)Koleta.Value : DBNull.Value; 
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.DbType = DbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto.HasValue ? (object)Bruto.Value : DBNull.Value;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.DbType = DbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto.HasValue ? (object)Neto.Value : DBNull.Value;
+            cmd.Parameters.Add(neto);
+
+            SqlParameter paleta = new SqlParameter();
+            paleta.ParameterName = "@Paleta";
+            paleta.SqlDbType = SqlDbType.Int;
+            paleta.Direction = ParameterDirection.Input;
+            paleta.Value = Paleta.HasValue ? (object)Paleta.Value : DBNull.Value;
+            cmd.Parameters.Add(paleta);
+
+            SqlParameter vrstaPalete = new SqlParameter();
+            vrstaPalete.ParameterName = "@VrstaPaleta";
+            vrstaPalete.SqlDbType = SqlDbType.Int;
+            vrstaPalete.Direction = ParameterDirection.Input;
+            vrstaPalete.Value = VrstaPaleta.HasValue ? (object)VrstaPaleta.Value : DBNull.Value;
+            cmd.Parameters.Add(vrstaPalete);
+
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.DbType = DbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost.HasValue ? (object)Vrednost.Value : DBNull.Value;
+            cmd.Parameters.Add(vrednost);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = Valuta != null ? (object)Valuta : DBNull.Value;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter pdv = new SqlParameter();
+            pdv.ParameterName = "@PDV";
+            pdv.DbType = DbType.Decimal;
+            pdv.Direction = ParameterDirection.Input;
+            pdv.Value = PDV.HasValue ? (object)PDV.Value : DBNull.Value;
+            cmd.Parameters.Add(pdv);
+
+            SqlParameter carina = new SqlParameter();
+            carina.ParameterName = "@Carina";
+            carina.DbType = DbType.Decimal;
+            carina.Direction = ParameterDirection.Input;
+            carina.Value = Carina.HasValue ? (object)Carina.Value : DBNull.Value; 
+            cmd.Parameters.Add(carina);
+
+
+            SqlParameter napomena = new SqlParameter();
+            napomena.ParameterName = "@Napomena";
+            napomena.SqlDbType = SqlDbType.NVarChar;
+            napomena.Direction = ParameterDirection.Input;
+            napomena.Value = Napomena != null ? (object)Napomena : DBNull.Value; ;
+            cmd.Parameters.Add(napomena);
+          
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DeleteCarinskoStavke(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteCarinskoStavke";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void InsertCarinskoStavke( int? IDNadredjena, int? NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto, int? Paleta, int? VrstaPaleta,
+           decimal? Vrednost, string Valuta, decimal? PDV, decimal? Carina,  string Napomena)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertCarinskoStavke";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter idNadredjena = new SqlParameter();
+            idNadredjena.ParameterName = "@IDNadredjena";
+            idNadredjena.SqlDbType = SqlDbType.Int;
+            idNadredjena.Direction = ParameterDirection.Input;
+            idNadredjena.Value = IDNadredjena.HasValue ? (object)IDNadredjena.Value : DBNull.Value;
+            cmd.Parameters.Add(idNadredjena);
+
+            SqlParameter nhm = new SqlParameter();
+            nhm.ParameterName = "@NHM";
+            nhm.SqlDbType = SqlDbType.Int;
+            nhm.Direction = ParameterDirection.Input;
+            nhm.Value = NHM.HasValue ? (object)NHM.Value : DBNull.Value;
+            cmd.Parameters.Add(nhm);
+
+            SqlParameter naimenovanje = new SqlParameter();
+            naimenovanje.ParameterName = "@Naimenovanje";
+            naimenovanje.SqlDbType = SqlDbType.NVarChar;
+            naimenovanje.Direction = ParameterDirection.Input;
+            naimenovanje.Value = Naimenovanje != null ? (object)Naimenovanje : DBNull.Value;
+            cmd.Parameters.Add(naimenovanje);
+
+            SqlParameter rb = new SqlParameter();
+            rb.ParameterName = "@RB";
+            rb.SqlDbType = SqlDbType.Int;
+            rb.Direction = ParameterDirection.Input;
+            rb.Value = RB.HasValue ? (object)RB.Value : DBNull.Value;
+            cmd.Parameters.Add(rb);
+
+            SqlParameter jm = new SqlParameter();
+            jm.ParameterName = "@JM";
+            jm.SqlDbType = SqlDbType.NVarChar;
+            jm.Direction = ParameterDirection.Input;
+            jm.Value = JM != null ? (object)JM : DBNull.Value;
+            cmd.Parameters.Add(jm);
+
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.DbType = DbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina.HasValue ? (object)Kolicina.Value : DBNull.Value;
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter koleta = new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.DbType = DbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta.HasValue ? (object)Koleta.Value : DBNull.Value;
+            cmd.Parameters.Add(koleta);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.DbType = DbType.Decimal;
+            bruto.Direction = ParameterDirection.Input;
+            bruto.Value = Bruto.HasValue ? (object)Bruto.Value : DBNull.Value;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.DbType = DbType.Decimal;
+            neto.Direction = ParameterDirection.Input;
+            neto.Value = Neto.HasValue ? (object)Neto.Value : DBNull.Value;
+            cmd.Parameters.Add(neto);
+
+            SqlParameter paleta = new SqlParameter();
+            paleta.ParameterName = "@Paleta";
+            paleta.SqlDbType = SqlDbType.Int;
+            paleta.Direction = ParameterDirection.Input;
+            paleta.Value = Paleta.HasValue ? (object)Paleta.Value : DBNull.Value;
+            cmd.Parameters.Add(paleta);
+
+            SqlParameter vrstaPalete = new SqlParameter();
+            vrstaPalete.ParameterName = "@VrstaPaleta";
+            vrstaPalete.SqlDbType = SqlDbType.Int;
+            vrstaPalete.Direction = ParameterDirection.Input;
+            vrstaPalete.Value = VrstaPaleta.HasValue ? (object)VrstaPaleta.Value : DBNull.Value;
+            cmd.Parameters.Add(vrstaPalete);
+
+            SqlParameter vrednost = new SqlParameter();
+            vrednost.ParameterName = "@Vrednost";
+            vrednost.DbType = DbType.Decimal;
+            vrednost.Direction = ParameterDirection.Input;
+            vrednost.Value = Vrednost.HasValue ? (object)Vrednost.Value : DBNull.Value;
+            cmd.Parameters.Add(vrednost);
+
+            SqlParameter valuta = new SqlParameter();
+            valuta.ParameterName = "@Valuta";
+            valuta.SqlDbType = SqlDbType.NVarChar;
+            valuta.Direction = ParameterDirection.Input;
+            valuta.Value = Valuta != null ? (object)Valuta : DBNull.Value;
+            cmd.Parameters.Add(valuta);
+
+            SqlParameter pdv = new SqlParameter();
+            pdv.ParameterName = "@PDV";
+            pdv.DbType = DbType.Decimal;
+            pdv.Direction = ParameterDirection.Input;
+            pdv.Value = PDV.HasValue ? (object)PDV.Value : DBNull.Value;
+            cmd.Parameters.Add(pdv);
+
+            SqlParameter carina = new SqlParameter();
+            carina.ParameterName = "@Carina";
+            carina.DbType = DbType.Decimal;
+            carina.Direction = ParameterDirection.Input;
+            carina.Value = Carina.HasValue ? (object)Carina.Value : DBNull.Value;
+            cmd.Parameters.Add(carina);
+
+     
+
+            SqlParameter napomena = new SqlParameter();
+            napomena.ParameterName = "@Napomena";
+            napomena.SqlDbType = SqlDbType.NVarChar;
+            napomena.Direction = ParameterDirection.Input;
+            napomena.Value = Napomena != null ? (object)Napomena : DBNull.Value; ;
+            cmd.Parameters.Add(napomena);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

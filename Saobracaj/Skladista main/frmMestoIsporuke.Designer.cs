@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMestoIsporuke));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,9 +43,16 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.cboMestoIstovaraPrijem = new System.Windows.Forms.ComboBox();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelPrijem1.SuspendLayout();
+            this.meniHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -126,6 +135,7 @@
             // panelPrijem1
             // 
             this.panelPrijem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelPrijem1.Controls.Add(this.meniHeader);
             this.panelPrijem1.Controls.Add(this.cboKontaktOsobaPrijem);
             this.panelPrijem1.Controls.Add(this.cboAdresaPrijem);
             this.panelPrijem1.Controls.Add(this.label22);
@@ -199,6 +209,50 @@
             this.cboMestoIstovaraPrijem.TabIndex = 464;
             this.cboMestoIstovaraPrijem.Leave += new System.EventHandler(this.cboMestoIstovaraPrijem_Leave);
             // 
+            // meniHeader
+            // 
+            this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSave,
+            this.toolStripSeparator1,
+            this.toolStripButton2});
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(868, 27);
+            this.meniHeader.TabIndex = 600;
+            this.meniHeader.Text = "toolStrip1";
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Text = "tsSave";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // frmMestoIsporuke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -215,6 +269,9 @@
             this.panel2.PerformLayout();
             this.panelPrijem1.ResumeLayout(false);
             this.panelPrijem1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -234,5 +291,10 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cboMestoIstovaraPrijem;
+        private System.Windows.Forms.ToolStrip meniHeader;
+        private System.Windows.Forms.ToolStripButton tsSave;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

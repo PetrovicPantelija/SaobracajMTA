@@ -1,12 +1,20 @@
 ﻿using Microsoft.Ajax.Utilities;
-using Microsoft.ReportingServices.Diagnostics.Internal;
 using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
 using Saobracaj.Izvoz;
 using Saobracaj.MainLeget.LegNew;
+using Saobracaj.Pantheon_Export;
 using Saobracaj.Skladista;
 using Saobracaj.Skladista_main.Dokumenta;
+using Saobracaj.TrackModal.Sifarnici;
 using Saobracaj.Uvoz;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.Windows.Forms.Tools.Design;
+using Syncfusion.XlsIO.Implementation.XmlSerialization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +23,14 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Skladista_main
 {
-    public partial class frmNalogPrijem: Form
+    public partial class frmNalogPrijem : Form
     {
 
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -40,7 +49,7 @@ namespace Saobracaj.Skladista_main
 
 
 
-        public frmNalogPrijem(string status, string tip, string vrsta, string ulaz,int brojNaloga, int? lopotvrdjen)
+        public frmNalogPrijem(string status, string tip, string vrsta, string ulaz, int brojNaloga, int? lopotvrdjen)
         {
             InitializeComponent();
             Status = status; // komercijalninalog, novi, lo
@@ -54,8 +63,8 @@ namespace Saobracaj.Skladista_main
             if (brojNaloga > 0)
             {
                 txtID.Text = brojNaloga.ToString();
-                
-            }              
+
+            }
 
         }
         private void podesiPolja(string Status)
@@ -80,7 +89,8 @@ namespace Saobracaj.Skladista_main
                     }
 
                     panelMP.Visible = false;
-
+                    panelStavke.Visible = false;
+                    panelUnosStavki.Visible = false;
 
                     //   panelMP.Visible = false;
 
@@ -90,6 +100,8 @@ namespace Saobracaj.Skladista_main
                 {
 
                     panelMP.Visible = false;
+                    panelStavke.Visible = false;
+                    panelUnosStavki.Visible = false;
                     cboNalogodavac.Enabled = false;
                     cboCarinskiPostupak.Enabled = false;
                     //cboMestoIstovaraPrijem.Enabled = false;
@@ -105,6 +117,8 @@ namespace Saobracaj.Skladista_main
                     lblTitle.Text = "LO nalog" + Tip.ToUpper();
                     txtPIB.Enabled = false;
                     panelMP.Visible = true;
+                    panelStavke.Visible = true;
+                    panelUnosStavki.Visible = true;
 
                     txtMagacinskiBroj.ReadOnly = true;
                     txtVlasnikSifra.ReadOnly = true;
@@ -113,6 +127,9 @@ namespace Saobracaj.Skladista_main
                     txtCI.ReadOnly = true;
                     txtSklad.ReadOnly = true;
                     numGodina.Value = DateTime.Now.Year;
+
+
+                    postaviPoljaMagacinski();
 
                     lblTitle.Text = "Nalog za " + Tip.ToUpper();
                 }
@@ -135,14 +152,33 @@ namespace Saobracaj.Skladista_main
             {
                 postaviPoljaIzvoz();
             }
-                this.PerformLayout();
+            this.PerformLayout();
             this.Refresh();
+
+        }
+
+        private void postaviPoljaMagacinski()
+        {
+            txtMagacinskiBroj.ReadOnly = true;
+            txtVlasnikSifra.ReadOnly = true;
+            txtVlasnikRobe.ReadOnly = true;
+            txtVrstaCP.ReadOnly = true;
+            txtCI.ReadOnly = true;
+            txtSklad.ReadOnly = true;
+            txtKoleta.ReadOnly = true;
+            txtBruto.ReadOnly = true;
+            txtNeto.ReadOnly = true;
+            cboValuta.Enabled = false;
+            numGodina.Value = DateTime.Now.Year;
+            txtBrojJCI.ReadOnly = true;
+            dtDatum.Enabled = false;
+            txtVrednost.ReadOnly = true;
 
         }
 
         private void postaviPoljaIzvoz()
         {
-            if ( Status.ToUpper() == "KOMERCIJALNINALOG")
+            if (Status.ToUpper() == "KOMERCIJALNINALOG")
             {
                 lblCarinskoSkladiste.Visible = txtCarinskoSkladiste.Visible = false;
                 lblMagacinskiBroj.Visible = cboMagacinskiBroj.Visible = btnMagacinskiBroj.Visible = false;
@@ -167,7 +203,7 @@ namespace Saobracaj.Skladista_main
             else if (Status.ToUpper() == "LO")
             {
 
-                panelMP.Visible = false;
+
                 cboNalogodavac.Enabled = false;
                 cboCarinskiPostupak.Enabled = false;
                 //cboMestoIstovaraPrijem.Enabled = false;
@@ -184,13 +220,7 @@ namespace Saobracaj.Skladista_main
                 txtPIB.Enabled = false;
                 panelMP.Visible = true;
 
-                txtMagacinskiBroj.ReadOnly = true;
-                txtVlasnikSifra.ReadOnly = true;
-                txtVlasnikRobe.ReadOnly = true;
-                txtVrstaCP.ReadOnly = true;
-                txtCI.ReadOnly = true;
-                txtSklad.ReadOnly = true;
-                numGodina.Value = DateTime.Now.Year;
+                postaviPoljaMagacinski();
 
                 lblTitle.Text = "Nalog za " + Tip.ToUpper();
             }
@@ -416,6 +446,16 @@ namespace Saobracaj.Skladista_main
                 // 15. Valute
                 DataTable dtValute = UcitajTabelu("SELECT VaSifra, VaNaziv FROM Valute");
                 PostaviCombo(cboValuta, dtValute, "VaNaziv", "VaSifra", defaultIndex: -1);
+
+                PostaviCombo(cboValutaStavka, dtValute, "VaNaziv", "VaSifra", defaultIndex: -1);
+
+                DataTable dtMerskeEnote = UcitajTabelu("SELECT MeSifra FROM MerskeEnote");
+                PostaviCombo(cboJM, dtMerskeEnote, "MeSifra", "MeSifra", defaultIndex: -1);
+
+                DataTable dtTipPalete = UcitajTabelu("SELECT ID,Naziv FROM TipPalete");
+                PostaviCombo(cboVrstaPaleta, dtTipPalete, "Naziv", "ID", defaultIndex: -1);
+
+
             }
         }
         DataTable dtUsluge = new DataTable();
@@ -470,227 +510,25 @@ namespace Saobracaj.Skladista_main
 
         }
 
-        private void cboMestoIstovaraPrijem_Leave(object sender, EventArgs e)
-        {
-            //PopuniAdresu(cboMestoIstovaraPrijem, cboAdresaPrijem);
-            //PopuniKontaktOsobu(cboMestoIstovaraPrijem, cboKontaktOsobaPrijem);
-        }
-
-        private void PopuniAdresu(ComboBox cboIzvor, ComboBox cboCilj)
-        {
-            // Provera da li je vrednost validan broj (da izbegnemo grešku pri konverziji)
-            if (cboIzvor.SelectedValue == null || !int.TryParse(cboIzvor.SelectedValue.ToString(), out int sifra))
-            {
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connection))
-                {
-                    // Upit sa parametrom @Sifra
-                    string sql = "SELECT PaKoZapSt, (Rtrim(PaKOOpomba)) as Naziv FROM partnerjiKontOsebaMU WHERE PaKOSifra = @Sifra ORDER BY PaKOIme";
-
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@Sifra", sifra);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    if (dt.Rows.Count > 0)
-                    {
-                        cboCilj.DataSource = dt;
-                        cboCilj.DisplayMember = "Naziv";
-                        cboCilj.ValueMember = "PaKoZapSt";
-                        cboCilj.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        // Ako nema rezultata null
-                        cboCilj.DataSource = null;
-                        cboCilj.Items.Clear();
-                        cboCilj.Text = "";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Greška: " + ex.Message);
-            }
-        }
-
-        private void PopuniKontaktOsobu(ComboBox cboMesto, ComboBox cboKontakt)
-        {
-            // Provera selekcije
-            if (cboMesto.SelectedValue == null || cboMesto.SelectedValue == DBNull.Value)
-                return;
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connection))
-                {
-
-                    string sql = @"SELECT PaKoZapSt, 
-                           (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv 
-                           FROM partnerjiKontOsebaMU 
-                           WHERE PaKOSifra = @Sifra 
-                           ORDER BY PaKOIme";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Sifra", Convert.ToInt32(cboMesto.SelectedValue));
-
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        if (dt.Rows.Count > 0)
-                        {
-                            cboKontakt.DataSource = dt;
-                            cboKontakt.DisplayMember = "Naziv";
-                            cboKontakt.ValueMember = "PaKoZapSt";
-                            cboKontakt.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            // Ako nema rezultata null
-                            cboKontakt.DataSource = null;
-                            cboKontakt.Items.Clear();
-                            cboKontakt.Text = "";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Greška kod kontakta: " + ex.Message);
-            }
-        }
-
-        private void PopuniAdresu(ComboBox cboIzvor, ComboBox cboCilj, int? selektovaniIdAdrese = null)
-        {
-            if (cboIzvor.SelectedValue == null || !int.TryParse(cboIzvor.SelectedValue.ToString(), out int sifra))
-            {
-                cboCilj.DataSource = null;
-                cboCilj.Items.Clear();
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connection))
-                {
-                    string sql = "SELECT PaKoZapSt, (Rtrim(PaKOOpomba)) as Naziv FROM partnerjiKontOsebaMU WHERE PaKOSifra = @Sifra ORDER BY PaKOIme";
-
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@Sifra", sifra);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    if (dt.Rows.Count > 0)
-                    {
-                        cboCilj.DataSource = dt;
-                        cboCilj.DisplayMember = "Naziv";
-                        cboCilj.ValueMember = "PaKoZapSt";
-
-                        // Ako prosledimo konkretan ID (prilikom učitavanja forme), selektuj njega. Inače uzmi prvi.
-                        if (selektovaniIdAdrese.HasValue)
-                        {
-                            cboCilj.SelectedValue = selektovaniIdAdrese.Value;
-                        }
-                        else
-                        {
-                            cboCilj.SelectedIndex = 0;
-                        }
-                    }
-                    else
-                    {
-                        cboCilj.DataSource = null;
-                        cboCilj.Items.Clear();
-                        cboCilj.Text = "";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Greška: " + ex.Message);
-            }
-        }
-
-        private void PopuniKontaktOsobu(ComboBox cboMesto, ComboBox cboKontakt, int? selektovaniIdKontakta = null)
-        {
-            if (cboMesto.SelectedValue == null || cboMesto.SelectedValue == DBNull.Value)
-            {
-                cboKontakt.DataSource = null;
-                cboKontakt.Items.Clear();
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connection))
-                {
-                    string sql = @"SELECT PaKoZapSt, 
-                   (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv 
-                   FROM partnerjiKontOsebaMU 
-                   WHERE PaKOSifra = @Sifra 
-                   ORDER BY PaKOIme";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Sifra", Convert.ToInt32(cboMesto.SelectedValue));
-
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        if (dt.Rows.Count > 0)
-                        {
-                            cboKontakt.DataSource = dt;
-                            cboKontakt.DisplayMember = "Naziv";
-                            cboKontakt.ValueMember = "PaKoZapSt";
-
-                            if (selektovaniIdKontakta.HasValue)
-                            {
-                                cboKontakt.SelectedValue = selektovaniIdKontakta.Value;
-                            }
-                            else
-                            {
-                                cboKontakt.SelectedIndex = 0;
-                            }
-                        }
-                        else
-                        {
-                            cboKontakt.DataSource = null;
-                            cboKontakt.Items.Clear();
-                            cboKontakt.Text = "";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Greška kod kontakta: " + ex.Message);
-            }
-        }
+ 
 
         private void frmNalogPrijem_Load(object sender, EventArgs e)
         {
-  
-            FillCombo();   
+
+            FillCombo();
             InitTable();
             FillDodatneUsluge(txtID.Text);
-            if(!txtID.Text.IsNullOrWhiteSpace() && Convert.ToInt32(txtID.Text) > 0)
+            if (!txtID.Text.IsNullOrWhiteSpace() && Convert.ToInt32(txtID.Text) > 0)
             {
                 VratiPodatke(Convert.ToInt32(txtID.Text));
                 VratiPodatkeMP();
+                VratiCarinskeStavke();
+                this.gridGroupingControl1.QueryCustomSummary += GridGroupingControl1_QueryCustomSummary;
 
             }
             txtID.ReadOnly = true;
         }
+
 
         private void button24_Click(object sender, EventArgs e)
         {
@@ -699,7 +537,7 @@ namespace Saobracaj.Skladista_main
             int? nacinPakovanja = null;
             int? tipTransporta = null;
             int? vrstaKamionaPrijem = null;
-          
+
             int? vaganje = null;
 
             string opisPosla = string.IsNullOrWhiteSpace(txtOpisPosla.Text) ? null : txtOpisPosla.Text.Trim();
@@ -715,10 +553,11 @@ namespace Saobracaj.Skladista_main
             }
             if (int.TryParse(cboNacinPakovanja.SelectedValue.ToString(), out int nacinPakovanjaInt))
             {
-               
+
                 nacinPakovanja = nacinPakovanjaInt;
             }
-            if (int.TryParse(cboTipTransportaPrijem.SelectedValue.ToString(), out int tipTransportaInt))
+            
+            if (cboTipTransportaPrijem != null && cboTipTransportaPrijem.SelectedValue != null && int.TryParse(cboTipTransportaPrijem.SelectedValue.ToString(), out int tipTransportaInt))
             {
                 tipTransporta = tipTransportaInt;
             }
@@ -737,7 +576,7 @@ namespace Saobracaj.Skladista_main
             DateTime? novoPlaniranoVremeItsovara = novoVremePrijem.Value;
             DateTime? realizacijaVremeItsovara = vremeRealizacijaPrijem.Value;
 
-          
+
             if (chkVaganje.Checked == true)
             {
                 vaganje = 1;
@@ -748,7 +587,7 @@ namespace Saobracaj.Skladista_main
             {
                 kontaktOsobaSpediter = Convert.ToInt32(cboKontakOsobaSpediterPrijem.SelectedValue);
             }
-           
+
             int? adr = null;
             if (cboADR.SelectedValue != null)
             {
@@ -760,7 +599,7 @@ namespace Saobracaj.Skladista_main
             {
                 inspekcijskiTretman = Convert.ToInt32(cboInspekciskiTretman.SelectedValue);
             }
-            
+
 
             string Napomena = string.IsNullOrWhiteSpace(txtNapomena.Text) ? null : txtNapomena.Text.Trim();
 
@@ -769,7 +608,7 @@ namespace Saobracaj.Skladista_main
             {
                 vlasnikRobe = Convert.ToInt32(cboVlasnikRobe.SelectedValue);
             }
-            
+
             string opisRobe = string.IsNullOrWhiteSpace(txtOpisRobe.Text) ? null : txtOpisRobe.Text.Trim();
             int? posebniUslovi = null;
             if (cboPosebniUslovi.SelectedValue != null)
@@ -790,8 +629,21 @@ namespace Saobracaj.Skladista_main
                 ostalaSkladista = Convert.ToInt32(cboOstalaSkladista.SelectedValue);
             }
             string carinskoSkladiste = null;
-            if (Vrsta.ToUpper() == "KOMERCIJALNO")
+            if (Vrsta.ToUpper() == "CARINSKO")
                 carinskoSkladiste = "1008";
+
+            string smestajniDokument = string.IsNullOrWhiteSpace(txtSmestajniDokument.Text) ? null : txtSmestajniDokument.Text.Trim();
+            int upisPodatakaUMP = 0;
+            // samo kada je vec lo potvrdjen onda se upisuju podaci u MP
+            if (Status.ToUpper() == "LO")
+                upisPodatakaUMP = 1;
+            int? godina = null;
+            if (numGodina.Value != null)
+            {
+                godina = Convert.ToInt32(numGodina.Value);
+            }
+
+
 
             InsertCarinskoSkladiste insc = new InsertCarinskoSkladiste();
             if (txtID.Text.IsNullOrWhiteSpace())
@@ -801,8 +653,8 @@ namespace Saobracaj.Skladista_main
                                carinskiPostupak, opisPosla,
                                nacinPakovanja, tipTransporta,
                                Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
-                               Convert.ToInt32(cboSpediterPrijem.SelectedValue), Convert.ToInt32(cboKontakOsobaSpediterPrijem.SelectedValue), 
-                               
+                               Convert.ToInt32(cboSpediterPrijem.SelectedValue), Convert.ToInt32(cboKontakOsobaSpediterPrijem.SelectedValue),
+
                                Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), vaganje, adr, posebniUslovi, 0,
                                txtNapomena.Text.ToString().TrimEnd(), inspekcijskiTretman, 1, 0);
                 txtID.Text = noviID.ToString();
@@ -810,22 +662,21 @@ namespace Saobracaj.Skladista_main
             else  // update
             {
 
-                insc.UpdateRadniNalogDirektni(Convert.ToInt32(txtID.Text), nalogodavac, carinskiPostupak, opisPosla,nacinPakovanja, tipTransporta, Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
-                              Convert.ToInt32(cboSpediterPrijem.SelectedValue), Convert.ToInt32(cboKontakOsobaSpediterPrijem.SelectedValue), 
-                             
+                insc.UpdateRadniNalogDirektni(Convert.ToInt32(txtID.Text), nalogodavac, carinskiPostupak, opisPosla, nacinPakovanja, tipTransporta, Convert.ToInt32(cboCarinarnicaPrijem.SelectedValue),
+                              Convert.ToInt32(cboSpediterPrijem.SelectedValue), Convert.ToInt32(cboKontakOsobaSpediterPrijem.SelectedValue),
                               Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), vaganje, adr, posebniUslovi, 0,
-                              txtNapomena.Text.ToString().TrimEnd(), inspekcijskiTretman, vlasnikRobe, opisRobe,  magacinskiBroj, ostalaSkladista);
+                              txtNapomena.Text.ToString().TrimEnd(), inspekcijskiTretman, vlasnikRobe, opisRobe, magacinskiBroj, ostalaSkladista, smestajniDokument, upisPodatakaUMP, godina);
 
             }
 
 
-                InsertSkladista ins = new InsertSkladista();
+            InsertSkladista ins = new InsertSkladista();
             if (txtID.Text != "")
             {
                 try
 
                 {
-                   // int nalogID = VratiNalogIDF();
+                    // int nalogID = VratiNalogIDF();
                     int nalogID = Convert.ToInt32(txtID.Text); // ID komercijalnog naloga
                     InsertUvoz isu = new InsertUvoz();
 
@@ -846,7 +697,7 @@ namespace Saobracaj.Skladista_main
                         insc.KreirajDodatneUslugeSkladista(nalogID, listaUsluga, Korisnik);
 
                         //MessageBox.Show("Usluge uspešno sačuvane!", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                      //  RefreshGrid();
+                        //  RefreshGrid();
                     }
                     //int VratiNalogID = VratiNalogIDF();
                     //Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
@@ -931,9 +782,8 @@ namespace Saobracaj.Skladista_main
 
             Status = "LO";
             btnSnimi.Enabled = false;
-          //  podesiPolja(Status);
+            //  podesiPolja(Status);
         }
-
 
         private void VratiPodatke(int id)
         {
@@ -950,11 +800,12 @@ namespace Saobracaj.Skladista_main
                                   ,rns.Nalogodavac
                                   ,rns.CarinskiPostupak
                                   ,rns.OpisPosla
-                                  ,rns.VlasnikRobe
+                                  ,mp.VlasnikRobe
                                   ,rns.VrstaRobe
+                                  ,mp.OpisRobe
                                   ,rns.NacinPakovanjaInt
                                   ,rns.OstalaSkladista
-                                  ,rns.PIB
+                                  ,vlr.PIB
                                   ,rns.VrstaPrevoznogSredstvaOtprema
                                   ,rns.VrstaKamionaOtprema
                                   ,rns.VoziloOtprema
@@ -993,18 +844,20 @@ namespace Saobracaj.Skladista_main
                                   ,rns.ADR
                                   ,rns.Vaganje
                                   ,rns.InspekcijskiTretman
+                                  ,rns.SmestajniDokument
                                   ,IsNull(rnp.LOSkladiste,0) AS LO
                                   ,vlr.Naziv AS VlasnikRobeNaziv
                                   ,vlr.Sifra AS VlasnikRobeSifra
                                 FROM RadniNalogSkladista rns
                                        LEFT JOIN RadniNalogInterni rni on rns.ID = rni.BrojRN AND rni.IDManipulacijaJED = 74
                                        LEFT JOIN RadniNalogInterniPotvrda rnp ON  rnp.IDNaloga = rni.ID
-                                       LEFT JOIN VlasniciRobe vlr ON  vlr.id = rns.VlasnikRobe
+                                       LEFT JOIN MagacinskiPredmet mp on rns.ID = mp.RN 
+                                       LEFT JOIN VlasniciRobe vlr ON  vlr.id = mp.VlasnikRobe
                                 Where rns.ID=" + id, conn);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-        
+
                 txtID.Text = dr["ID"].ToString();
                 Vrsta = dr["VrstaRN"].ToString();
                 txtPIB.Text = dr["Pib"].ToString();
@@ -1019,7 +872,7 @@ namespace Saobracaj.Skladista_main
                     MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
                 }
 
-                txtOpisRobe.Text = dr["VrstaRobe"].ToString();
+                txtOpisRobe.Text = dr["OpisRobe"].ToString();
                 cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtOpisPosla.Text = dr["OpisPosla"].ToString();
                 if (cboVlasnikRobe != null && dr["VlasnikRobe"] != DBNull.Value)
@@ -1033,29 +886,30 @@ namespace Saobracaj.Skladista_main
                 if (cboInspekciskiTretman != null && dr["InspekcijskiTretman"] != DBNull.Value)
                     cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["InspekcijskiTretman"].ToString());
                 txtPIB.Text = dr["PIB"].ToString();
-             
+
                 cboCarinarnicaPrijem.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaPrijem"].ToString());
                 if (cboSpediterPrijem != null && dr["SpediterPrijem"] != DBNull.Value)
                 {
                     cboSpediterPrijem.SelectedValue = Convert.ToInt32(dr["SpediterPrijem"].ToString());
-                    
+
                     if (cboKontakOsobaSpediterPrijem != null && dr["KontakOsobaSpediterIntPrijem"] != DBNull.Value)
                     {
                         PopuniKontaktOsobuSpediter(cboSpediterPrijem, cboKontakOsobaSpediterPrijem);
                         cboKontakOsobaSpediterPrijem.SelectedValue = Convert.ToInt32(dr["KontakOsobaSpediterIntPrijem"].ToString());
                     }
                 }
+                if(dr["VrstaPrevoznogSredstvaPrijem"]!= DBNull.Value)
+                    cboTipTransportaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaPrijem"].ToString());
 
-                cboTipTransportaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaPrijem"].ToString());
-               
-              
+
                 planiranoVremePrijem.Value = Convert.ToDateTime(dr["PlaniraniDatumPrijem"].ToString());
                 novoVremePrijem.Value = Convert.ToDateTime(dr["PlaniraniDatum2Prijem"].ToString());
 
                 if (cboPosebniUslovi != null && dr["PosebniUslovi"] != DBNull.Value)
                     cboPosebniUslovi.SelectedValue = Convert.ToInt32(dr["PosebniUslovi"].ToString());
-               
+
                 txtNapomena.Text = dr["Napomena"].ToString();
+                txtSmestajniDokument.Text = dr["SmestajniDokument"].ToString();
 
                 if (dr["Vaganje"] != DBNull.Value && Convert.ToInt32(dr["Vaganje"]) == 1)
                     chkVaganje.Checked = true;
@@ -1082,10 +936,13 @@ namespace Saobracaj.Skladista_main
 
                 // Preporuka: Koristite SQL parametar umesto spajanja stringova zbog bezbednosti
                 var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, mp.SifraSkladista, mp.Koleta," +
-                                         "mp.Neto, mp.Bruto ,mp.Vrednost, mp.Valuta " +
-                                        " From MagacinskiPredmet mp " +
+                                         "mp.Neto, mp.Bruto ,mp.Vrednost, mp.Valuta, vcp.Oznaka as CarinskiPostupak, Carinarnice.CIOznaka, BrojJCI, mp.Godina " +
+                                        " From RadniNalogSkladista rns " +
+                                        " LEFT JOIN MagacinskiPredmet mp   ON  rns.id = mp.RN" +
                                         " LEFT JOIN VlasniciRobe vlr ON  vlr.id = mp.VlasnikRobe " +
-                                        " Where RN = @RN", conn);
+                                        " LEFT JOIN VrstaCarinskogPostupka vcp ON  vcp.id = rns.CarinskiPostupak " +
+                                        " LEFT JOIN Carinarnice ON Carinarnice.ID = rns.OdredisnaCarinarnicaPrijem " +
+                                        " WHERE rns.ID = @RN", conn);
                 cmd.Parameters.AddWithValue("@RN", Convert.ToInt32(txtID.Text));
 
                 using (SqlDataReader dr = cmd.ExecuteReader())
@@ -1098,20 +955,16 @@ namespace Saobracaj.Skladista_main
                             txtVlasnikRobe.Text = dr["NazivVlasnika"].ToString();
                             txtVlasnikSifra.Text = dr["SifraRobe"].ToString();
                             txtSklad.Text = dr["SifraSkladista"].ToString();
-                            
+
                             txtMagacinskiBroj.Text = dr["MB"].ToString();
-     
-                            if (dr["Koleta"] != DBNull.Value)
-                                txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
-                            if (dr["Neto"] != DBNull.Value)
-                                txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
-                            if (dr["Bruto"] != DBNull.Value)
-                                txtBruto.Value = Convert.ToDecimal(dr["Bruto"].ToString());
-                            if (dr["Vrednost"] != DBNull.Value)
-                                txtVrednost.Value = Convert.ToDecimal(dr["Vrednost"].ToString());
-                            if (dr["Valuta"] != DBNull.Value)
-                                cboValuta.SelectedValue = dr["Valuta"].ToString();
-         
+                            txtVrstaCP.Text = dr["CarinskiPostupak"].ToString();
+                            txtCI.Text = dr["CIOznaka"].ToString();
+                            txtSmestajniDokument.Text = dr["BrojJCI"].ToString();
+                            txtBrojJCI.Text = dr["BrojJCI"].ToString();
+                            if(dr["Godina"] != null && dr["Godina"] != DBNull.Value)
+                                numGodina.Value = Convert.ToInt32(dr["Godina"].ToString());
+                            txtMagacinskiPredmetID.Text = dr["ID"].ToString();
+
 
                         }
                     }
@@ -1203,9 +1056,10 @@ namespace Saobracaj.Skladista_main
         private void btnMagacinskiBroj_Click(object sender, EventArgs e)
         {
             FillMagacinskiBroj();
-            panel5.Visible = true;
+            panelMPEdit.Visible = true;
             btnMbSave.Enabled = true;
             btnMbNazad.Enabled = true;
+            panelMPEdit.BringToFront();
         }
 
         private void FillMagacinskiBroj()
@@ -1220,8 +1074,8 @@ namespace Saobracaj.Skladista_main
                 if (Vrsta == "Komercijalo")
                     tabela = "MagacinskiBrojKomercijalni";
                 //var partner5 = "Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from MagacinskiBrojCarinski order by ID Desc";
-               
-                
+
+
                 var partner5 = $"Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from {tabela} order by ID Desc";
                 var partAD5 = new SqlDataAdapter(partner5, conn);
                 var partDS5 = new System.Data.DataSet();
@@ -1285,7 +1139,7 @@ namespace Saobracaj.Skladista_main
 
         private void btnMbNazad_Click(object sender, EventArgs e)
         {
-            panel5.Visible = false;
+            panelMPEdit.Visible = false;
         }
 
         private void btnMbSave_Click(object sender, EventArgs e)
@@ -1335,8 +1189,8 @@ namespace Saobracaj.Skladista_main
 
                 cboMagacinskiBroj.SelectedValue = MagacinskiBroj;
 
-               // Aktivan = 1;
-                panel5.Visible = false;
+                // Aktivan = 1;
+                panelMPEdit.Visible = false;
             }
         }
 
@@ -1354,7 +1208,7 @@ namespace Saobracaj.Skladista_main
                 MessageBox.Show("Nalog je uspešno izbrisan!");
                 OnNalogObrisan?.Invoke();
 
-               
+
 
                 btnSnimi.Enabled = false;
                 btnLOPotvrda.Enabled = false;
@@ -1363,32 +1217,34 @@ namespace Saobracaj.Skladista_main
             }
 
         }
-        public Action OnNalogObrisan { get; set; }
+        public System.Action OnNalogObrisan { get; set; }
 
         private void cboVlasnikRobe_Leave(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("select PIB from VlasniciRobe where ID = " + Convert.ToInt32(cboVlasnikRobe.SelectedValue), conn))
+                using (SqlCommand cmd = new SqlCommand("select PIB, Sifra, Naziv from VlasniciRobe where ID = " + Convert.ToInt32(cboVlasnikRobe.SelectedValue), conn))
                 {
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        txtPIB.Text= (dr["PIB"].ToString());
+                        txtPIB.Text = (dr["PIB"].ToString());
+                        txtVlasnikSifra.Text = (dr["Sifra"].ToString());
+                        txtVlasnikRobe.Text = (dr["Naziv"].ToString());
                     }
                 }
                 conn.Close();
             }
 
-    
+
         }
 
         private void btnNoviMP_Click(object sender, EventArgs e)
         {
             InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
             bool ima = false;
-            int id= 0;
+            int id = 0;
             using (SqlConnection conn = new SqlConnection(connection))
             {
 
@@ -1400,7 +1256,7 @@ namespace Saobracaj.Skladista_main
                     ima = true;
                     id = Convert.ToInt32(dr["ID"].ToString());
                 }
-                
+
             }
 
             decimal? neto = null;
@@ -1417,7 +1273,7 @@ namespace Saobracaj.Skladista_main
 
             if (ima == true)
             { //cboValutaMP.SelectedValue.ToString()
-              
+
 
                 ins.InsertMagacinskiPredmet(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboMagacinskiBroj.SelectedValue), DateTime.Now, Convert.ToInt32(cboVlasnikRobe.SelectedValue),
                     0, txtCI.Text.ToString(), (txtSklad.Text), txtVrstaCP.Text.ToString(),
@@ -1428,7 +1284,7 @@ namespace Saobracaj.Skladista_main
             }
             else
             {
-   
+
                 ins.UpdateMagacinskiPredmet(id, Convert.ToInt32(txtID.Text), Convert.ToInt32(cboMagacinskiBroj.SelectedValue), DateTime.Now, Convert.ToInt32(cboVlasnikRobe.SelectedValue),
                     0, txtCI.Text.ToString(), (txtSklad.Text), txtVrstaCP.Text.ToString(),
                     txtBrojJCI.Text.ToString(), Convert.ToDateTime(dtDatum.Value), txtOpisRobe.Text.ToString(), Convert.ToDecimal(txtKoleta.Text), neto,
@@ -1480,6 +1336,759 @@ namespace Saobracaj.Skladista_main
             frmMestoIsporuke cpo = new frmMestoIsporuke(Convert.ToInt32(txtID.Text));
             cpo.Show();
         }
+        //private void VratiCarinskeStavke()
+        //{
+        //    // 1. SQL upit
+        //    var select = "SELECT RNCarinskoStavke.ID," +
+        //                 "   RNCarinskoStavke.NHM AS [NHM naimenovanja], " +
+        //                 "   RNCarinskoStavke.Naimenovanje AS [Naimenovanje], " +
+        //                 "   RNCarinskoStavke.RB AS [RB Naimenovanja], " +
+        //                 "   RNCarinskoStavke.JM AS [JM], " +
+        //                 "   RNCarinskoStavke.Kolicina AS [Količina po JM], " +
+        //                 "   RNCarinskoStavke.Koleta AS [Broj Koleta], " +
+        //                 "   RNCarinskoStavke.Bruto AS [Bruto], " +
+        //                 "   RNCarinskoStavke.Neto AS [Neto], " +
+        //                 "   RNCarinskoStavke.Paleta AS [Broj Paleta], " +
+        //                 "   RNCarinskoStavke.VrstaPaleta AS [VrstaPaletaID], " +
+        //                 "   TipPalete.Naziv AS [Vrsta palete], " +
+        //                 "   RNCarinskoStavke.Vrednost AS [Vrednost], " +
+        //                 "   RNCarinskoStavke.Valuta AS [Valuta], " +
+        //                 "   RNCarinskoStavke.PDV AS [PDV], " +
+        //                 "   RNCarinskoStavke.Carina AS [Carinska stopa], " +
+        //                 "   RNCarinskoStavke.VrednostGarancije AS [Vrednost garancije], " +
+        //                 "   RNCarinskoStavke.Napomena AS [Napomena] " +
+        //                 "FROM RNCarinskoStavke " +
+        //                 "INNER JOIN MagacinskiPredmet ON RNCarinskoStavke.IDNadredjena = MagacinskiPredmet.ID " +
+        //                 "LEFT JOIN TipPalete ON RNCarinskoStavke.VrstaPaleta = TipPalete.ID  " +
+        //                 "WHERE MagacinskiPredmet.RN = " + Convert.ToInt32(txtID.Text);
+
+        //    var s_connection = Sifarnici.frmLogovanje.connectionString;
+
+        //    using (SqlConnection myConnection = new SqlConnection(s_connection))
+        //    {
+        //        var dataAdapter = new SqlDataAdapter(select, myConnection);
+
+        //        DataSet ds = new DataSet();
+        //        dataAdapter.Fill(ds);
+
+        //        DataTable dt = ds.Tables[0];
+
+        //        // 2. Punjenje grida i podešavanje izgleda
+        //        gridGroupingControl1.DataSource = dt;
+
+        //        this.gridGroupingControl1.ShowGroupDropArea = false;
+        //        this.gridGroupingControl1.TopLevelGroupOptions.ShowCaption = false;
+        //        this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+        //        this.gridGroupingControl1.TableOptions.ShowRowHeader = false;
+
+        //        this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("ID");
+        //        this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaPaletaID");
+
+        //        // 3. Podešavanje filtera
+        //        foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
+        //        {
+        //            column.AllowFilter = true;
+        //        }
+
+        //        GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+        //        dynamicFilter.WireGrid(gridGroupingControl1);
+
+        //        GridExcelFilter gridExcelFilter = new GridExcelFilter();
+        //        gridExcelFilter.WireGrid(gridGroupingControl1);
+
+        //        // 4. Formiranje TOTAL reda (Stacked Headers)
+        //        var td = this.gridGroupingControl1.Table.TableDescriptor;
+        //        td.StackedHeaderRows.Clear();
+
+        //        // Kolone za koje vršimo sabiranje
+        //        string[] koloneZaSabiranje =
+        //        {
+        //            "Količina po JM",
+        //            "Broj Koleta",
+        //            "Bruto",
+        //            "Neto",
+        //            "Broj Paleta",
+        //            "Vrednost"
+        //        };
+
+        //        // Provera da li su JM svuda iste
+        //        string prvaJM = dt.Rows.Count > 0 ? dt.Rows[0]["JM"]?.ToString() : "";
+        //        bool jmIste = true;
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            if (row["JM"]?.ToString() != prvaJM) { jmIste = false; break; }
+        //        }
+
+        //        // Provera da li su Valute svuda iste
+        //        string prvaValuta = dt.Rows.Count > 0 ? dt.Rows[0]["Valuta"]?.ToString() : "";
+        //        bool valuteIste = true;
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            if (row["Valuta"]?.ToString() != prvaValuta) { valuteIste = false; break; }
+        //        }
+
+        //        decimal sumaBruto = 0;
+        //        decimal sumaNeto = 0;
+        //        decimal sumaVrednost = 0;
+        //        decimal sumaKoleta = 0;
+
+        //        // Kreiramo zaglavlja za svaku kolonu
+        //        List<GridStackedHeaderDescriptor> totalHeaders = new List<GridStackedHeaderDescriptor>();
+
+        //        foreach (DataColumn kolona in dt.Columns)
+        //        {
+        //            string nazivKolone = kolona.ColumnName;
+        //            string tekst = "";
+
+        //            // Oznaka "TOTAL" ispod kolone Naimenovanje
+        //            if (nazivKolone == "Naimenovanje")
+        //            {
+        //                tekst = "TOTAL";
+        //            }
+        //            // Ispis JM samo ako su sve iste
+        //            else if (nazivKolone == "JM")
+        //            {
+        //                tekst = jmIste ? prvaJM : "";
+        //            }
+        //            // Ispis Valute samo ako su sve iste
+        //            else if (nazivKolone == "Valuta")
+        //            {
+        //                tekst = valuteIste ? prvaValuta : "";
+        //            }
+        //            // Zbir za numeričke kolone
+        //            else if (koloneZaSabiranje.Contains(nazivKolone))
+        //            {
+        //                decimal suma = 0;
+
+        //                foreach (DataRow red in dt.Rows)
+        //                {
+        //                    if (red[nazivKolone] != DBNull.Value)
+        //                    {
+        //                        suma += Convert.ToDecimal(red[nazivKolone]);
+        //                    }
+        //                }
+
+        //                // Hvatanje vrednosti za kontrole na osnovu naziva kolone
+        //                if (nazivKolone == "Bruto") sumaBruto = suma;
+        //                else if (nazivKolone == "Neto") sumaNeto = suma;
+        //                else if (nazivKolone == "Vrednost") sumaVrednost = suma;
+        //                else if (nazivKolone == "Broj Koleta") sumaKoleta = suma;
+
+        //                tekst = suma.ToString("N2");
+        //            }
+
+        //            // Formiranje deskriptora za pojedinačnu kolonu
+        //            GridStackedHeaderDescriptor header = new GridStackedHeaderDescriptor(
+        //                "Total_" + nazivKolone,
+        //                tekst);
+
+        //            header.VisibleColumns.Add(
+        //                new GridStackedHeaderVisibleColumnDescriptor(nazivKolone));
+
+        //            totalHeaders.Add(header);
+        //        }
+
+        //        // Kreiranje celog reda sa sumama i dodavanje u tabelu
+        //        GridStackedHeaderRowDescriptor totalRow = new GridStackedHeaderRowDescriptor(
+        //            "TotalRow",
+        //            totalHeaders.ToArray());
+
+        //        td.StackedHeaderRows.Add(totalRow);
+
+        //        // Uključivanje prikaza višeslojnih zaglavlja
+        //        gridGroupingControl1.TopLevelGroupOptions.ShowStackedHeaders = true;
+
+        //        txtBruto.Value = sumaBruto;
+        //        txtNeto.Value = sumaNeto;
+        //        txtVrednost.Value = sumaVrednost;
+        //        txtKoleta.Value = sumaKoleta;
+
+        //        if (valuteIste && !string.IsNullOrEmpty(prvaValuta))
+        //        {
+        //            cboValuta.Text = prvaValuta; // Ili cboValuta.SelectedValue = ... zavisno od bindovanja
+        //        }
+        //        else
+        //        {
+        //            cboValuta.SelectedIndex = -1; // Ako nisu iste, poništavamo izbor
+        //        }
+        //    }
+        //}
+        private void VratiCarinskeStavke()
+        {
+            // 1. SQL upit
+            var select = "SELECT RNCarinskoStavke.ID," +
+                         "   RNCarinskoStavke.NHM AS [NHM naimenovanja], " +
+                         "   RNCarinskoStavke.Naimenovanje AS [Naimenovanje], " +
+                         "   RNCarinskoStavke.RB AS [RB Naimenovanja], " +
+                         "   RNCarinskoStavke.JM AS [JM], " +
+                         "   RNCarinskoStavke.Kolicina AS [Količina po JM], " +
+                         "   RNCarinskoStavke.Koleta AS [Broj Koleta], " +
+                         "   RNCarinskoStavke.Bruto AS [Bruto], " +
+                         "   RNCarinskoStavke.Neto AS [Neto], " +
+                         "   RNCarinskoStavke.Paleta AS [Broj Paleta], " +
+                         "   RNCarinskoStavke.VrstaPaleta AS [VrstaPaletaID], " +
+                         "   TipPalete.Naziv AS [Vrsta palete], " +
+                         "   RNCarinskoStavke.Vrednost AS [Vrednost], " +
+                         "   RNCarinskoStavke.Valuta AS [Valuta], " +
+                         "   RNCarinskoStavke.PDV AS [PDV], " +
+                         "   RNCarinskoStavke.Carina AS [Carinska stopa], " +
+                         "   RNCarinskoStavke.VrednostGarancije AS [Vrednost garancije], " +
+                         "   RNCarinskoStavke.Napomena AS [Napomena] " +
+                         "FROM RNCarinskoStavke " +
+                         "INNER JOIN MagacinskiPredmet ON RNCarinskoStavke.IDNadredjena = MagacinskiPredmet.ID " +
+                         "LEFT JOIN TipPalete ON RNCarinskoStavke.VrstaPaleta = TipPalete.ID  " +
+                         "WHERE MagacinskiPredmet.RN = " + Convert.ToInt32(txtID.Text);
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+
+            using (SqlConnection myConnection = new SqlConnection(s_connection))
+            {
+                var dataAdapter = new SqlDataAdapter(select, myConnection);
+
+                DataSet ds = new DataSet();
+                dataAdapter.Fill(ds);
+
+                DataTable dt = ds.Tables[0];
+
+                // 2. Punjenje grida i podešavanje izgleda
+                gridGroupingControl1.DataSource = dt;
+
+                this.gridGroupingControl1.ShowGroupDropArea = false;
+                this.gridGroupingControl1.TopLevelGroupOptions.ShowCaption = false;
+                this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+                this.gridGroupingControl1.TableOptions.ShowRowHeader = false;
+
+                this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("ID");
+                this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaPaletaID");
+
+                // 3. Podešavanje filtera
+                foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
+                {
+                    column.AllowFilter = true;
+                }
+
+                GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+                dynamicFilter.WireGrid(gridGroupingControl1);
+
+                GridExcelFilter gridExcelFilter = new GridExcelFilter();
+                gridExcelFilter.WireGrid(gridGroupingControl1);
+
+                // 4. Formiranje TOTAL reda (Stacked Headers)
+                var td = this.gridGroupingControl1.Table.TableDescriptor;
+                td.StackedHeaderRows.Clear();
+
+                // Kolone za koje vršimo sabiranje
+    //            string[] koloneZaSabiranje =
+    //            {
+    //    "Količina po JM",
+    //    "Broj Koleta",
+    //    "Bruto",
+    //    "Neto",
+    //    "Broj Paleta",
+    //    "Vrednost"
+    //};
+
+                string[] koloneZaSabiranje =
+                {
+                    "Količina po JM",
+                    "Broj Koleta",
+                    "Bruto",
+                    "Neto",
+                    "Broj Paleta",
+                    "Vrednost",
+                    "Vrednost garancije" // Dodato ako postoji u bazi
+                };
+
+                // Provera da li su JM svuda iste
+                string prvaJM = dt.Rows.Count > 0 ? dt.Rows[0]["JM"]?.ToString() : "";
+                bool jmIste = true;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["JM"]?.ToString() != prvaJM)
+                    {
+                        jmIste = false;
+                        break;
+                    }
+                }
+
+                // Provera da li su Valute svuda iste
+                string prvaValuta = dt.Rows.Count > 0 ? dt.Rows[0]["Valuta"]?.ToString() : "";
+                bool valuteIste = true;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["Valuta"]?.ToString() != prvaValuta)
+                    {
+                        valuteIste = false;
+                        break;
+                    }
+                }
+
+                decimal sumaBruto = 0;
+                decimal sumaNeto = 0;
+                decimal sumaVrednost = 0;
+                decimal sumaKoleta = 0;
+                decimal sumaPaleta = 0;
+                decimal sumaGarancija = 0;
+
+                // 5. Kreiranje zaglavlja za svaku kolonu
+                List<GridStackedHeaderDescriptor> totalHeaders =
+                    new List<GridStackedHeaderDescriptor>();
+
+                foreach (DataColumn kolona in dt.Columns)
+                {
+                    string nazivKolone = kolona.ColumnName;
+                    string tekst = "";
+
+                    // Oznaka TOTAL ispod kolone Naimenovanje
+                    if (nazivKolone == "Naimenovanje")
+                    {
+                        tekst = "TOTAL";
+                    }
+                    // Ispis JM samo ako su sve iste
+                    else if (nazivKolone == "JM")
+                    {
+                        tekst = jmIste ? prvaJM : "";
+                    }
+                    // Ispis Valute samo ako su sve iste
+                    else if (nazivKolone == "Valuta")
+                    {
+                        tekst = valuteIste ? prvaValuta : "";
+                    }
+                    // Zbir za numeričke kolone
+                    else if (koloneZaSabiranje.Contains(nazivKolone))
+                    {
+                        decimal suma = 0;
+
+                        foreach (DataRow red in dt.Rows)
+                        {
+                            if (red[nazivKolone] != DBNull.Value)
+                            {
+                                suma += Convert.ToDecimal(red[nazivKolone]);
+                            }
+                        }
+
+                        // Hvatanje vrednosti za kontrole
+                        if (nazivKolone == "Bruto")
+                            sumaBruto = suma;
+                        else if (nazivKolone == "Neto")
+                            sumaNeto = suma;
+                        else if (nazivKolone == "Vrednost")
+                            sumaVrednost = suma;
+                        else if (nazivKolone == "Broj Koleta")
+                            sumaKoleta = suma;
+                        else if (nazivKolone == "Broj Paleta") 
+                            sumaPaleta = suma;
+                        else if (nazivKolone == "Vrednost garancije") 
+                            sumaGarancija = suma;
+
+                        tekst = suma.ToString("N2");
+                    }
+
+                    // Formiranje deskriptora za TOTAL ćeliju
+                    GridStackedHeaderDescriptor header =
+                        new GridStackedHeaderDescriptor(
+                            "Total_" + nazivKolone,
+                            tekst);
+
+                    header.VisibleColumns.Add(
+                        new GridStackedHeaderVisibleColumnDescriptor(nazivKolone));
+
+                    totalHeaders.Add(header);
+                }
+
+                // 6. Kreiranje TOTAL reda i dodavanje u tabelu
+                GridStackedHeaderRowDescriptor totalRow =
+                    new GridStackedHeaderRowDescriptor(
+                        "TotalRow",
+                        totalHeaders.ToArray());
+
+                td.StackedHeaderRows.Add(totalRow);
+
+               
+                var columnHeader =
+                    gridGroupingControl1.Appearance.ColumnHeaderCell;
+
+                columnHeader.BackColor = Color.FromArgb(240, 240, 248);
+                columnHeader.TextColor = SystemColors.ControlText;
+                columnHeader.Font.FontStyle = FontStyle.Regular;
+
+                // Tanke ivice zaglavlja
+                columnHeader.Borders.Top =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(190, 190, 198),
+                        GridBorderWeight.Thin);
+
+                columnHeader.Borders.Bottom =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(190, 190, 198),
+                        GridBorderWeight.Thin);
+
+                columnHeader.Borders.Right =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(210, 210, 216),
+                        GridBorderWeight.Thin);
+
+                columnHeader.Themed = false;
+
+
+                // 8. Stilizovanje TOTAL reda
+                var totalAppearance =
+                    gridGroupingControl1.Appearance.StackedHeaderCell;
+
+                totalAppearance.BackColor = Color.FromArgb(240, 240, 248);
+                totalAppearance.TextColor = SystemColors.ControlText;
+                totalAppearance.Font.FontStyle = FontStyle.Regular;
+
+                // Tanke ivice TOTAL reda
+                totalAppearance.Borders.Top =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(190, 190, 198),
+                        GridBorderWeight.Thin);
+
+                totalAppearance.Borders.Bottom =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(190, 190, 198),
+                        GridBorderWeight.Thin);
+
+                totalAppearance.Borders.Right =
+                    new GridBorder(GridBorderStyle.Solid,
+                        Color.FromArgb(210, 210, 216),
+                        GridBorderWeight.Thin);
+
+                totalAppearance.Themed = false;
+
+
+                // 9. Uključivanje prikaza TOTAL reda
+                gridGroupingControl1.TopLevelGroupOptions.ShowStackedHeaders = true;
+                // 10. Popunjavanje zbirnih vrednosti u kontrolama
+                txtBruto.Value = sumaBruto;
+                txtNeto.Value = sumaNeto;
+                txtVrednost.Value = sumaVrednost;
+                txtKoleta.Value = sumaKoleta;
+
+                if (valuteIste && !string.IsNullOrEmpty(prvaValuta))
+                {
+                    cboValuta.Text = prvaValuta;
+                }
+                else
+                {
+                    cboValuta.SelectedIndex = -1;
+                }
+
+                if (jmIste && !string.IsNullOrEmpty(prvaJM))
+                {
+                    cboJM.Text = prvaJM;
+                }
+                else
+                {
+                   cboJM.SelectedIndex = -1;
+                }
+            }
+
+        }
+        private void GridGroupingControl1_QueryCustomSummary(object sender, GridQueryCustomSummaryEventArgs e)
+        {
+            // Provera da li se računa JM ili Valuta preko SummaryDescriptor-a
+            string summaryName = e.SummaryDescriptor != null ? e.SummaryDescriptor.Name : "";
+
+            if (summaryName == "JM" || summaryName == "Valuta")
+            {
+                string prvaVrednost = null;
+                bool sveIste = true;
+
+                // Prolazimo kroz redove tabele da vidimo da li su sve vrednosti iste
+                foreach (Syncfusion.Grouping.Record rec in gridGroupingControl1.Table.Records)
+                {
+                    string trenutna = rec.GetValue(summaryName)?.ToString();
+                    if (prvaVrednost == null)
+                    {
+                        prvaVrednost = trenutna;
+                    }
+                    else if (prvaVrednost != trenutna)
+                    {
+                        sveIste = false;
+                        break;
+                    }
+                }
+
+                // Kako u ovoj verziji nemamo direktan Result, koristimo Handled = true 
+                // i upisujemo vrednost ukoliko nam verzija dozvoljava, 
+                // ili jednostavno obeležavamo da je obrađeno.
+                e.Handled = true;
+            }
+        }
+
+        private void gridGroupingControl1_TableControlCurrentCellControlDoubleClick(object sender, GridTableControlControlEventArgs e)
+        {
+            var selectedRecord = this.gridGroupingControl1.Table.CurrentRecord;
+
+            if (selectedRecord != null)
+            {
+
+                // --- 1. POMOĆNA FUNKCIJA ZA NUMERIC UP DOWN ---
+                Action<NumericUpDown, string> setNumericValue = (numCtrl, fieldName) =>
+                {
+                    object val = selectedRecord.GetValue(fieldName);
+                    if (val != null && decimal.TryParse(val.ToString(), out decimal decVal))
+                    {
+                        if (decVal >= numCtrl.Minimum && decVal <= numCtrl.Maximum)
+                        {
+                            numCtrl.Value = decVal;
+                        }
+                    }
+                };
+
+
+
+                // 2. Popunjavamo NumericUpDown polja preko naše bezbedne funkcije
+                setNumericValue(txtNHMNaimenovanje, "NHM naimenovanja"); // prilagodi tačan naziv kolone ako nije "Naimenovanje"
+                setNumericValue(txtKolicinaJM, "Količina po JM");
+                setNumericValue(txtBrutoE, "Bruto");
+                setNumericValue(txtNetoE, "Neto");
+                setNumericValue(txtVrednostE, "Vrednost");
+                setNumericValue(txtPaleta, "Broj Paleta");
+                setNumericValue(txtCarina, "Carinska stopa");
+                setNumericValue(txtPDV, "PDV");
+
+
+                object valPaleta = selectedRecord.GetValue("VrstaPaletaID");
+                if (valPaleta != null && int.TryParse(valPaleta.ToString(), out int idPalete))
+                {
+                    cboVrstaPaleta.SelectedValue = idPalete;
+                }
+                else
+                {
+                    cboVrstaPaleta.SelectedIndex = -1;
+                }
+                txtIDStavke.Text = selectedRecord.GetValue("ID")?.ToString();
+                txtRBNaimenovanje.Text = selectedRecord.GetValue("RB Naimenovanja")?.ToString();
+                txtNaimenovanje.Text = selectedRecord.GetValue("Naimenovanje")?.ToString();
+                cboJM.Text = selectedRecord.GetValue("JM")?.ToString();
+                txtKoletaE.Text = selectedRecord.GetValue("Broj Koleta")?.ToString();
+
+                cboValutaStavka.Text = selectedRecord.GetValue("Valuta")?.ToString();
+                txtNapomenaE.Text = selectedRecord.GetValue("Napomena")?.ToString();
+            }
+
+
+        }
+
+        private void btnPaleta_Click(object sender, EventArgs e)
+        {
+
+            frmTipPalete frm = new frmTipPalete();
+            frm.Show();
+        }
+
+        private void btnDodajStavku_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtMagacinskiPredmetID.Text.IsNullOrWhiteSpace())
+                {
+                    MessageBox.Show("Neophodno je prvo snimiti podatke magacinskog predmeta");
+                    return;
+                }    
+
+                int magacinskiID = int.TryParse(txtMagacinskiPredmetID.Text, out int magacinskiPredmet) ? magacinskiPredmet : 0;
+                InsertSkladista ins = new InsertSkladista();
+
+                int? nhm = int.TryParse(txtNHMNaimenovanje.Text, out int nhmValue) ? nhmValue : (int?)null;
+
+                string naimenovanje = txtNaimenovanje.Text;
+
+                int? rb = int.TryParse(txtRBNaimenovanje.Text, out int rbValue) ? rbValue : (int?)null;
+
+                string jm = cboJM.Text;
+
+                decimal? kolicina = decimal.TryParse(txtKolicinaJM.Text, out decimal kolicinaValue) ? kolicinaValue : (decimal?)null;
+
+                decimal? koleta = decimal.TryParse(txtKoletaE.Text, out decimal koletaValue) ? koletaValue : (decimal?)null;
+
+                decimal? bruto = decimal.TryParse(txtBrutoE.Text, out decimal brutoValue) ? brutoValue : (decimal?)null;
+
+                decimal? neto = decimal.TryParse(txtNetoE.Text, out decimal netoValue) ? netoValue : (decimal?)null;
+
+                int? paleta = int.TryParse(txtPaleta.Text, out int paletaValue) ? paletaValue : (int?)null;
+
+                int? vrstaPaleta = cboVrstaPaleta.SelectedValue != null && cboVrstaPaleta.SelectedValue != DBNull.Value
+                    ? Convert.ToInt32(cboVrstaPaleta.SelectedValue) : (int?)null;
+
+                decimal? vrednost = decimal.TryParse(txtVrednostE.Text, out decimal vrednostValue) ? vrednostValue : (decimal?)null;
+
+                string valuta = cboValutaStavka.Text;
+
+                decimal? pdv = decimal.TryParse(txtPDV.Text, out decimal pdvValue) ? pdvValue : (decimal?)null;
+
+                decimal? carina = decimal.TryParse(txtCarina.Text, out decimal carinaValue) ? carinaValue : (decimal?)null;
+
+
+
+                string napomena = txtNapomenaE.Text;
+
+                ins.InsertCarinskoStavke(magacinskiID, nhm, naimenovanje, rb, jm, kolicina, koleta, bruto, neto, paleta, vrstaPaleta, vrednost, valuta, pdv, carina, napomena);
+
+                VratiCarinskeStavke();
+                ResetujPoljaArtikli();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri unosu/izmeni stavke: " + ex.Message);
+            }
+        }
+
+        private void ResetujPoljaArtikli()
+        {
+            //txtMagacinskiPredmetID.Clear();
+            txtRBNaimenovanje.Clear();
+            txtNaimenovanje.Clear();
+          
+            txtNapomenaE.Clear();
+
+            // Ako hoćete fiksno na nulu umesto minimuma, možete i ovako:
+            txtNHMNaimenovanje.Value = 0;
+            txtKolicinaJM.Value = 0;
+            txtKoletaE.Value = 0;
+            txtBrutoE.Value = 0;
+            txtNetoE.Value = 0;
+            txtPaleta.Value = 0;
+            txtVrednostE.Value = 0;
+            txtPDV.Value = 0;
+            txtCarina.Value = 0;
+
+            // Padajuće liste (ComboBox)
+            cboJM.SelectedIndex = -1;
+            cboJM.Text = string.Empty;
+
+            cboVrstaPaleta.SelectedIndex = -1;
+            cboVrstaPaleta.Text = string.Empty;
+
+            cboValutaStavka.SelectedIndex = -1;
+            cboValutaStavka.Text = string.Empty;
+        }
+        private void btnIzmeniStavku_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txtMagacinskiPredmetID.Text.IsNullOrWhiteSpace())
+                {
+                    MessageBox.Show("Neophodno je prvo snimiti podatke magacinskog predmeta");
+                    return;
+                }
+
+                int magacinskiID = int.TryParse(txtMagacinskiPredmetID.Text, out int magacinskiPredmet) ? magacinskiPredmet : 0;
+                InsertSkladista ins = new InsertSkladista();
+
+
+                int id = int.TryParse(txtIDStavke.Text, out int idValue) ? idValue : 0;
+                int? nhm = int.TryParse(txtNHMNaimenovanje.Text, out int nhmValue) ? nhmValue : (int?)null;
+
+                string naimenovanje = txtNaimenovanje.Text;
+
+                int? rb = int.TryParse(txtRBNaimenovanje.Text, out int rbValue) ? rbValue : (int?)null;
+
+                string jm = cboJM.Text;
+
+                decimal? kolicina = decimal.TryParse(txtKolicinaJM.Text, out decimal kolicinaValue) ? kolicinaValue : (decimal?)null;
+
+                decimal? koleta = decimal.TryParse(txtKoletaE.Text, out decimal koletaValue) ? koletaValue : (decimal?)null;
+
+                decimal? bruto = decimal.TryParse(txtBrutoE.Text, out decimal brutoValue) ? brutoValue : (decimal?)null;
+
+                decimal? neto = decimal.TryParse(txtNetoE.Text, out decimal netoValue) ? netoValue : (decimal?)null;
+
+                int? paleta = int.TryParse(txtPaleta.Text, out int paletaValue) ? paletaValue : (int?)null;
+
+                int? vrstaPaleta = cboVrstaPaleta.SelectedValue != null && cboVrstaPaleta.SelectedValue != DBNull.Value
+                    ? Convert.ToInt32(cboVrstaPaleta.SelectedValue) : (int?)null;
+
+                decimal? vrednost = decimal.TryParse(txtVrednostE.Text, out decimal vrednostValue) ? vrednostValue : (decimal?)null;
+
+                string valuta = cboValutaStavka.Text;
+
+                decimal? pdv = decimal.TryParse(txtPDV.Text, out decimal pdvValue) ? pdvValue : (decimal?)null;
+
+                decimal? carina = decimal.TryParse(txtCarina.Text, out decimal carinaValue) ? carinaValue : (decimal?)null;
+
+                decimal? vrednostGarancije = (decimal?)null;
+
+                string napomena = txtNapomenaE.Text;
+
+                ins.UpdateCarinskoStavke(id, magacinskiID, nhm, naimenovanje, rb, jm, kolicina, koleta, bruto, neto, paleta, vrstaPaleta, vrednost, valuta, pdv, carina, napomena);
+
+                VratiCarinskeStavke();
+                ResetujPoljaArtikli();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri unosu/izmeni stavke: " + ex.Message);
+            }
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int id = int.TryParse(txtIDStavke.Text, out int idValue) ? idValue : 0;
+            if (id == 0)
+            {
+                MessageBox.Show("Nije izabrana stavka za brisanje.");
+                return;
+            }
+            InsertSkladista ins = new InsertSkladista();
+
+            ins.DeleteCarinskoStavke(id);
+
+            VratiCarinskeStavke();
+            ResetujPoljaArtikli();
+        }
+
+        private void txtSmestajniDokument_TextChanged(object sender, EventArgs e)
+        {
+            if (!txtSmestajniDokument.Text.IsNullOrWhiteSpace())
+                txtBrojJCI.Text = txtSmestajniDokument.Text.Trim();
+        }
+
+       
+              private void cbo_TextUpdate(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (cb == null) return;
+
+            if (cb.DroppedDown)
+            {
+                // 1. Zapamti tačnu poziciju kursora i trenutno ukucan tekst
+                int caretPosition = cb.SelectionStart;
+                string typedText = cb.Text;
+
+                // Ako je ComboBox automatski selektovao ceo/preostali tekst (SuggestAppend ponašanje)
+                // uzimamo samo deo teksta do kursora koji je korisnik zaista ukucao
+                if (cb.SelectionLength > 0 && caretPosition > 0 && caretPosition <= typedText.Length)
+                {
+                    typedText = typedText.Substring(0, caretPosition);
+                }
+
+                // 2. Zatvori veliki padajući meni
+                cb.DroppedDown = false;
+
+                // 3. Vrati samo ukucani tekst bez auto-completed dodatka
+                cb.Text = typedText;
+
+                // 4. Resetuj selekciju - postavi kursor na kraj bez plave selekcije (highlights)
+                cb.SelectionStart = typedText.Length;
+                cb.SelectionLength = 0;
+            }
+        }
+
+      
     }
+    
+
+   
 
 }

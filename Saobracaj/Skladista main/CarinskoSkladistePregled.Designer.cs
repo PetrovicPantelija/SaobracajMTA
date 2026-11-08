@@ -57,15 +57,17 @@
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1248, 71);
+            this.panelHeader.Size = new System.Drawing.Size(1664, 87);
             this.panelHeader.TabIndex = 472;
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(1126, 5);
+            this.txtSifra.Location = new System.Drawing.Point(1501, 6);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.Size = new System.Drawing.Size(132, 22);
             this.txtSifra.TabIndex = 7;
             // 
             // panel2
@@ -84,9 +86,10 @@
             this.panel2.Controls.Add(this.btnViljuskarista);
             this.panel2.Controls.Add(this.button25);
             this.panel2.Controls.Add(this.button24);
-            this.panel2.Location = new System.Drawing.Point(11, -1);
+            this.panel2.Location = new System.Drawing.Point(4, -1);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1038, 67);
+            this.panel2.Size = new System.Drawing.Size(1396, 82);
             this.panel2.TabIndex = 6;
             // 
             // button5
@@ -100,9 +103,10 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button5.Location = new System.Drawing.Point(659, 8);
+            this.button5.Location = new System.Drawing.Point(866, 0);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(147, 26);
+            this.button5.Size = new System.Drawing.Size(181, 27);
             this.button5.TabIndex = 37;
             this.button5.Text = "Skeniraj";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -120,9 +124,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(476, 5);
+            this.button4.Location = new System.Drawing.Point(644, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 26);
+            this.button4.Size = new System.Drawing.Size(177, 27);
             this.button4.TabIndex = 36;
             this.button4.Text = "Štampaj";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -140,9 +145,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(308, 4);
+            this.button3.Location = new System.Drawing.Point(430, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 27);
+            this.button3.Size = new System.Drawing.Size(168, 27);
             this.button3.TabIndex = 35;
             this.button3.Text = "Protokol";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -159,9 +165,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button2.Location = new System.Drawing.Point(928, 3);
+            this.button2.Location = new System.Drawing.Point(1219, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 61);
+            this.button2.Size = new System.Drawing.Size(138, 75);
             this.button2.TabIndex = 34;
             this.button2.Text = "Refresh";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -178,9 +185,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button1.Location = new System.Drawing.Point(820, 0);
+            this.button1.Location = new System.Drawing.Point(1070, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 64);
+            this.button1.Size = new System.Drawing.Size(141, 79);
             this.button1.TabIndex = 33;
             this.button1.Text = "Završi proces";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -192,9 +200,10 @@
             this.cboSkeniraj.Items.AddRange(new object[] {
             "Saglasnost za carinu",
             "Prijemnica"});
-            this.cboSkeniraj.Location = new System.Drawing.Point(659, 40);
+            this.cboSkeniraj.Location = new System.Drawing.Point(866, 32);
+            this.cboSkeniraj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboSkeniraj.Name = "cboSkeniraj";
-            this.cboSkeniraj.Size = new System.Drawing.Size(147, 21);
+            this.cboSkeniraj.Size = new System.Drawing.Size(181, 24);
             this.cboSkeniraj.TabIndex = 32;
             // 
             // cboStampaj
@@ -204,9 +213,10 @@
             "Saglasnost za carinu",
             "Carinsko obeležje",
             "Prijemnica"});
-            this.cboStampaj.Location = new System.Drawing.Point(476, 41);
+            this.cboStampaj.Location = new System.Drawing.Point(644, 32);
+            this.cboStampaj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboStampaj.Name = "cboStampaj";
-            this.cboStampaj.Size = new System.Drawing.Size(147, 21);
+            this.cboStampaj.Size = new System.Drawing.Size(181, 24);
             this.cboStampaj.TabIndex = 29;
             // 
             // cboProtokol
@@ -216,9 +226,10 @@
             "Manjak robe",
             "Višak robe",
             "Oštećenje"});
-            this.cboProtokol.Location = new System.Drawing.Point(308, 41);
+            this.cboProtokol.Location = new System.Drawing.Point(423, 32);
+            this.cboProtokol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboProtokol.Name = "cboProtokol";
-            this.cboProtokol.Size = new System.Drawing.Size(147, 21);
+            this.cboProtokol.Size = new System.Drawing.Size(181, 24);
             this.cboProtokol.TabIndex = 27;
             // 
             // btnViljuskarista
@@ -233,9 +244,10 @@
             this.btnViljuskarista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViljuskarista.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.btnViljuskarista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.btnViljuskarista.Location = new System.Drawing.Point(205, 0);
+            this.btnViljuskarista.Location = new System.Drawing.Point(256, 0);
+            this.btnViljuskarista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnViljuskarista.Name = "btnViljuskarista";
-            this.btnViljuskarista.Size = new System.Drawing.Size(94, 67);
+            this.btnViljuskarista.Size = new System.Drawing.Size(125, 82);
             this.btnViljuskarista.TabIndex = 19;
             this.btnViljuskarista.Text = "Radni nalozi";
             this.btnViljuskarista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -254,9 +266,10 @@
             this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button25.Location = new System.Drawing.Point(123, 0);
+            this.button25.Location = new System.Drawing.Point(148, 0);
+            this.button25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(82, 67);
+            this.button25.Size = new System.Drawing.Size(108, 82);
             this.button25.TabIndex = 18;
             this.button25.Text = "Prijemnica";
             this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -276,10 +289,11 @@
             this.button24.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button24.Location = new System.Drawing.Point(0, 0);
+            this.button24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(123, 67);
+            this.button24.Size = new System.Drawing.Size(148, 82);
             this.button24.TabIndex = 17;
-            this.button24.Text = "Popuni LO nalog";
+            this.button24.Text = "Magacinski predmet";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
@@ -297,13 +311,14 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 93);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 117);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1239, 381);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1651, 468);
             this.gridGroupingControl1.TabIndex = 473;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -319,13 +334,14 @@
             // 
             // CarinskoSkladistePregled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1248, 486);
+            this.ClientSize = new System.Drawing.Size(1664, 598);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CarinskoSkladistePregled";
             this.Text = "CarinskoSkladistePregled";
             this.Load += new System.EventHandler(this.CarinskoSkladistePregled_Load);
