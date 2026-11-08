@@ -493,6 +493,17 @@ IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivOOCL_Activ
     CREATE NONCLUSTERED INDEX IX_TerminalPrivOOCL_Active ON dbo.TerminalPrivOOCL (Active);
 GO
 
+-- Izveštaj OOCL MAIL pamti svoj izvoz nezavisno od izveštaja OOCL EDI (Active, DatumIzvoza)
+IF COL_LENGTH('dbo.TerminalPrivOOCL', 'ActiveMail') IS NULL
+    ALTER TABLE dbo.TerminalPrivOOCL ADD [ActiveMail] int NOT NULL CONSTRAINT DF_TerminalPrivOOCL_ActiveMail DEFAULT (0);
+IF COL_LENGTH('dbo.TerminalPrivOOCL', 'DatumIzvozaMail') IS NULL
+    ALTER TABLE dbo.TerminalPrivOOCL ADD [DatumIzvozaMail] datetime NULL;
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'IX_TerminalPrivOOCL_ActiveMail' AND object_id = OBJECT_ID('dbo.TerminalPrivOOCL'))
+    CREATE NONCLUSTERED INDEX IX_TerminalPrivOOCL_ActiveMail ON dbo.TerminalPrivOOCL (ActiveMail);
+GO
+
 -- Upis pokreta OOCL kontejnera u TerminalPrivOOCL (pozivaju insTerminalPriv i updTerminalPriv), po istom principu
 -- kao insTerminalPrivCMAPokreti; pravila 15-20 važe samo za STANJE = OŠTEĆEN, pravila 1-14 za sva ostala stanja.
 IF OBJECT_ID('dbo.insTerminalPrivOOCLPokreti', 'P') IS NOT NULL DROP PROCEDURE dbo.insTerminalPrivOOCLPokreti;
@@ -1493,13 +1504,16 @@ CREATE PROCEDURE dbo.insTerminalPrivFromExcel
     @NALOGODAVAC_UVOZ nvarchar(50) = NULL,
     @POSTUPAK_UVOZ nvarchar(50) = NULL,
     @UVOZNIK nvarchar(50) = NULL,
-    @PLOMBA_UVOZ nvarchar(30) = NULL
+    @PLOMBA_UVOZ nvarchar(30) = NULL,    -- program ga više ne šalje; ostaje zbog starije verzije programa
+    @VOZ_KAMION nvarchar(30) = NULL,     -- kolona AC u Excel-u (najava voza, broj voza)
+    @BL_UVOZ nvarchar(30) = NULL,        -- kolona H u Excel-u
+    @L_R nvarchar(30) = NULL             -- kolona E u Excel-u (R/L)
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    INSERT INTO dbo.TerminalPriv ([KONTEJNER], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [PLOMBA_UVOZ])
-    VALUES (@KONTEJNER, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @PLOMBA_UVOZ);
+    INSERT INTO dbo.TerminalPriv ([KONTEJNER], [VRSTA], [BRODAR], [NALOGODAVAC/UVOZ], [POSTUPAK/UVOZ], [UVOZNIK], [PLOMBA_UVOZ], [VOZ/kamion], [BL/UVOZ], [L/R])
+    VALUES (@KONTEJNER, @VRSTA, @BRODAR, @NALOGODAVAC_UVOZ, @POSTUPAK_UVOZ, @UVOZNIK, @PLOMBA_UVOZ, @VOZ_KAMION, @BL_UVOZ, @L_R);
 END
 GO
 

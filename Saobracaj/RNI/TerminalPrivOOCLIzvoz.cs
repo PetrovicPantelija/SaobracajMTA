@@ -8,6 +8,7 @@ namespace Saobracaj.RNI
 {
     // Izvoz pokreta OOCL kontejnera (tabela TerminalPrivOOCL) u Excel. Izvoze se zapisi koji još nisu izvezeni
     // (Active <> 1); posle uspešnog snimanja fajla oni dobijaju Active = 1 i DatumIzvoza.
+    // Izveštaj OOCL MAIL (TerminalPrivOOCLMailIzvoz) svoj izvoz pamti posebno, u ActiveMail i DatumIzvozaMail.
     public class TerminalPrivOOCLIzvoz
     {
         // Kolone fajla, redom; naziv kolone u Excel-u je isti kao u tabeli
@@ -40,7 +41,7 @@ namespace Saobracaj.RNI
 
         public static string PredlogImena()
         {
-            return "OOCL " + DateTime.Now.ToString("yyyy-MM-dd HH-mm", CultureInfo.InvariantCulture) + ".xlsx";
+            return "OOCL EDI " + DateTime.Now.ToString("yyyy-MM-dd HH-mm", CultureInfo.InvariantCulture) + ".xlsx";
         }
 
         // Snima fajl sa zapisima iz tabele, pa ih označava kao izvezene. Vraća broj izvezenih zapisa.

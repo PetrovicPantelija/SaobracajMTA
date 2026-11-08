@@ -35,11 +35,11 @@ namespace Saobracaj.RNI
         public static readonly string[] Statusi = { "PRAZAN", "PUN", "?", "RAZVOZ", "Blanks", "PRETOVAR", "U RAZVOZU", "UTOVAR" };
         public static readonly string[] VrsteCnt =
         {
-            "20' DB", "20' HC", "20' OT", "20' TC", "40' DB", "40' HC", "40' OT", "40' FLAT", "40' RF", "45' HC"
+            "20", "20' DB", "20' HC", "20' OT", "20' TC", "40", "40' DB", "40' HC", "40' OT", "40' FLAT", "40' RF", "45' HC"
         };
         public static readonly string[] Brodari =
         {
-            "CMA", "MAERSK", "COSCO", "MSC", "HAPAG", "OOCL", "HMM", "EVERGREEN", "FLEXBOX", "YANG MING", "LEGET"
+            "CMA", "MAERSK", "COSCO", "MSC", "HAPAG", "OOCL", "HMM", "EVERGREEN", "FLEXBOX", "YANG MING", "LEGET", "ONE"
         };
         public static readonly string[] Stanja ={ "DOBAR", "LOŠ", "FOOD GRADE", "OŠTEĆEN", "FLEXI" };
         public static readonly string[] GateInGateOut =
@@ -342,7 +342,7 @@ namespace Saobracaj.RNI
         // Svi redovi se upisuju u jednoj transakciji. Vraca broj upisanih redova.
         public static readonly string[] KoloneIzExcela =
         {
-            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "PLOMBA_UVOZ"
+            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "BL/UVOZ", "VOZ/kamion", "L/R"
         };
 
         // Kolone za SELECT redosledom iz Polja (u migriranoj bazi nova kolona BL/UVOZ je fizički poslednja)
