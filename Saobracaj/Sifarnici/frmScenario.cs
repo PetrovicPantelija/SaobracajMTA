@@ -26,7 +26,11 @@ namespace Saobracaj.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -100,7 +104,11 @@ namespace Saobracaj.Sifarnici
             {
                 meniHeader.Visible = true;
 
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -161,13 +169,13 @@ namespace Saobracaj.Sifarnici
                 InsertScenario ins = new InsertScenario();
                 //0-Ako je novi scenario
                 //1-Ako je dodavanje stavke
-                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
+                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir, Convert.ToInt32(txtFaza.Text));
                 status = false;
             }
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir, Convert.ToInt32(txtFaza.Text));
 
             }
             RefreshDataGrid();
@@ -191,7 +199,7 @@ namespace Saobracaj.Sifarnici
         WHEN Scenario.OJIzdavanje = 2 THEN '2-Izvoz'
         WHEN Scenario.OJIzdavanje = 4 THEN '4-Terminal'
         ELSE ''
-    END AS OJIzdavanje,VizuelniPregled,CIR
+    END AS OJIzdavanje,VizuelniPregled,CIR, Faza
 FROM 
     Scenario
 INNER JOIN 
@@ -271,7 +279,7 @@ ORDER BY
         WHEN Scenario.OJIzdavanje = 2 THEN '2-Izvoz'
         WHEN Scenario.OJIzdavanje = 4 THEN '4-Terminal'
         ELSE ''
-    END AS OJIzdavanje,VizuelniPregled,CIR
+    END AS OJIzdavanje,VizuelniPregled,CIR, Faza
 FROM 
     Scenario
 INNER JOIN 
@@ -382,7 +390,7 @@ where Scenario.ID = " + txtSifra.Text + " ORDER BY   Scenario.ID,  Scenario.RB";
             {
                 vizuelniPregled = 1;
             }
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir, Convert.ToInt32(txtFaza.Text));
             RefreshDataGrid();
         }
         private void VratiPodatkeSelect(string ID, string RB)
@@ -392,7 +400,7 @@ where Scenario.ID = " + txtSifra.Text + " ORDER BY   Scenario.ID,  Scenario.RB";
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera, Forma,VizuelniPregled,CIR from Scenario where ID=" + ID + " AND RB =" + RB, con);
+            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera, Forma,VizuelniPregled,CIR, Faza from Scenario where ID=" + ID + " AND RB =" + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -415,6 +423,7 @@ where Scenario.ID = " + txtSifra.Text + " ORDER BY   Scenario.ID,  Scenario.RB";
                     cbCir.Checked = true;
                 }
                 else { cbCir.Checked = false; }
+                txtFaza.Text = dr["Faza"].ToString();
             }
 
             con.Close();
@@ -481,7 +490,7 @@ where Scenario.ID = " + txtSifra.Text + " ORDER BY   Scenario.ID,  Scenario.RB";
             {
                 vizuelniPregled = 1;
             }
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text, Convert.ToInt32(cboOJ.Text.Substring(0, 1)), vizuelniPregled, cir);
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text, Convert.ToInt32(cboOJ.Text.Substring(0, 1)), vizuelniPregled, cir, Convert.ToInt32(txtFaza.Text));
             RefreshDataGrid();
         }
 

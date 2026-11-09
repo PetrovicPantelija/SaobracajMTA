@@ -43,7 +43,11 @@ namespace Saobracaj.Uvoz
                 //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
 
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 // toolStripHeader.Visible = false;
 
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
@@ -123,7 +127,11 @@ namespace Saobracaj.Uvoz
             else
             {
              
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -317,13 +325,6 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
-
-
-
-           
-           
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -370,7 +371,7 @@ namespace Saobracaj.Uvoz
                 if (chkUvozniPosao.Checked == true )
                 {
 
-                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor.ToString().TrimEnd(), pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
                   
 
                 }

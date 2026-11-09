@@ -29,7 +29,11 @@ namespace Saobracaj.Uvoz
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -103,7 +107,11 @@ namespace Saobracaj.Uvoz
             {
          
 
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -145,7 +153,7 @@ namespace Saobracaj.Uvoz
 
         public frmAnalizaUvoza()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
             ChangeTextBox();

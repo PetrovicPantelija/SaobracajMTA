@@ -41,7 +41,11 @@ namespace Saobracaj.Uvoz
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -119,7 +123,11 @@ namespace Saobracaj.Uvoz
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -563,7 +571,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\" + FolderDestinacije + @"\Uvoz";
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\" + FolderDestinacije + @"\Uvoz";
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -599,7 +607,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\Voz\" + FolderDestinacije ;
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\Voz\" + FolderDestinacije ;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -635,7 +643,7 @@ namespace Saobracaj.Uvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.99.10\Leget\Uvoz\Usluga\" + FolderDestinacije;
+            targetPath = @"\\192.168.150.110\Leget\Uvoz\Usluga\" + FolderDestinacije;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);

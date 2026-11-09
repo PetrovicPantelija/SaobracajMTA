@@ -17,6 +17,8 @@ using System.Windows.Forms;
 using System.IdentityModel.Metadata;
 using System.Security.Cryptography.Xml;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Security.Cryptography;
+using System.Linq;
 
 namespace Saobracaj.Sifarnici
 {
@@ -41,6 +43,8 @@ namespace Saobracaj.Sifarnici
         string Dobavljac = "";
         string Kupac = "";
         string Obveznik = "";
+        int _currentMainId = 0;
+        public event EventHandler SnimanjeZavrseno;
 
         private void ChangeTextBox()
         {
@@ -55,9 +59,26 @@ namespace Saobracaj.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
-                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                
+                // If you have a Resources.resx file in the Properties folder, ensure it is set to generate the Resources class.
+                // If not, you need to add a Resources.resx file to the Properties folder and add LegetIconPNG to it.
+                try
+                {
+                    this.Icon = this.Icon = new Icon("LegetIconPNG.ico");
+                    // 
+                }
+                catch
+                {
+                    // Handle missing resource gracefully, e.g., do nothing or set a default icon
+                    // this.Icon = SystemIcons.Application;
+                }
+
                 // this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
@@ -133,7 +154,11 @@ namespace Saobracaj.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -169,10 +194,18 @@ namespace Saobracaj.Sifarnici
             ChangeTextBox();
 
         }
+
+        public frmPartnerji(int currentMainId)
+        {
+            InitializeComponent();
+            ChangeTextBox();
+            _currentMainId = currentMainId;
+        }
+
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
          //   RefreshDataGrid();
-            RefreshGridControl();
+           
             ChecBoxVisible(this.Controls);
             panel1.Visible = false;
             panel4.Visible = false;
@@ -186,6 +219,7 @@ namespace Saobracaj.Sifarnici
             cboValuta.DataSource = valutaDS.Tables[0];
             cboValuta.DisplayMember = "VaNaziv";
             cboValuta.ValueMember = "VaSifra";
+            RefreshGridControl();
 
         }
         private void ChecBoxVisible(Control.ControlCollection ctrlCollection)
@@ -204,15 +238,18 @@ namespace Saobracaj.Sifarnici
                 case "Leget":
                     btnDrzava.Visible = false;
                     //btnPosta.Visible = false;
-                    cbDobavljac.Visible = false;
+                    cbDobavljac.Visible = true;
                     cbObveznik.Visible = false;
                     cboValuta.Visible = false;
                     cboValuta.SelectedValue= "RSD";
                     int prviRedX = 16;
-                    int prviRedY = 245;
+                    int prviRedY = 345;
 
                     int drugiRedX = 159;
-                    int drugiRedY = 245;
+                    int drugiRedY = 345;
+
+                    int treciRedX = 313;
+                    int treciRedY = 345;
 
                     chkLogisitcar.Visible = true;
                     chkLogisitcar.Location = new Point(prviRedX, prviRedY);
@@ -223,21 +260,35 @@ namespace Saobracaj.Sifarnici
                     chkBrodar.Visible = true;
                     chkBrodar.Location = new Point(prviRedX, prviRedY + 60);
 
+
                     chkAgentBrodara.Visible = true;
                     chkAgentBrodara.Location = new Point(prviRedX, prviRedY + 90);
+                    chkAgentBrodara.Text = "Ostali";
 
                     chkUvoznik.Visible = true;
                     chkUvoznik.Location = new Point(drugiRedX, drugiRedY);
-
-                    chkIzvoznik.Visible = true;
-                    chkIzvoznik.Location = new Point(drugiRedX, drugiRedY + 30);
+                    chkUvoznik.Text = "Direktni";
+                   
+                    chkIzvoznik.Visible = false;
+                    chkDrumskiPrevoz.Text = "Vozar/Transporter";
+                    chkDrumskiPrevoz.Location = new Point(drugiRedX, drugiRedY + 30);
 
                     chkKamioner.Visible = true;
                     chkKamioner.Location = new Point(drugiRedX, drugiRedY + 60);
+                    chkKamioner.Text = "InterCompany";
 
                     chkOrganizator.Text = "Železnički operater";
                     chkOrganizator.Visible = true;
                     chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
+
+                    if(_currentMainId == 4)
+                        cbDobavljac.Location = new Point(treciRedX, treciRedY + 90);
+                    else
+                        cbDobavljac.Location = new Point(drugiRedX, drugiRedY + 120);
+
+                    chkDrumskiPrevoz.Text = "Vozar/Transporter";
+                    label2.Text = "ISO Code";
+                    label17.Text = "ISO Drzava";
 
                     //Nije vidljivo za Leget
                     toolStripButton2.Visible = false; //Export PAnteon
@@ -245,6 +296,12 @@ namespace Saobracaj.Sifarnici
                     label22.Visible = false;
                     numFREC.Visible = false; // FREC
                     chkDrumskiPrevoz.Visible = true;
+                    label31.Text = "Jedinstveni ID";
+                    label14.Text = "Domicilni ID";
+                    if (_currentMainId == 4)
+                    {
+                        SetCheckBoxesReadOnlyExcept(this, cbDobavljac, chkDrumskiPrevoz, chkSpediter);
+                    }
                     break;
 
                 case "TA":
@@ -288,6 +345,24 @@ namespace Saobracaj.Sifarnici
                     cboKupac.Visible = true;
                     chkDrumskiPrevoz.Visible = false;
                     break;
+            }
+        }
+
+        private void SetCheckBoxesReadOnlyExcept(Control parent, params CheckBox[] exceptions)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is CheckBox cb)
+                {
+                    if (!exceptions.Contains(cb))
+                    {
+                        cb.AutoCheck = false; // read-only ponašanje
+                    }
+                }
+                else if (c.HasChildren)
+                {
+                    SetCheckBoxesReadOnlyExcept(c, exceptions);
+                }
             }
         }
 
@@ -400,9 +475,36 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshGridControl()
         {
+<<<<<<< HEAD
             var select = " Select PaSifra as PaID, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun, " +
               " PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
           " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
+=======
+            var select = "";
+            string firma = Sifarnici.frmLogovanje.Firma;
+            switch (firma)
+            {
+                case "Leget":
+                    select = " Select PaSifra , Rtrim(PaNaziv) as Naziv,  ERPID as JedinstveniID, PaTelefon2 as Drzava,  PaEMatSt1 as DomicilniID,  " +
+" Rtrim(UICDrzava) as ISODrzava, Rtrim(UIC) as ISOCode, (CASE WHEN Logisticar > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Logisticar, " +
+" (CASE WHEN Brodar > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Brodar,  (CASE WHEN Spediter > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Spediter,  " + 
+" (CASE WHEN Organizator > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as ZeleznickiOperater,   (CASE WHEN UvoznikCH > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Direktni, " + 
+" (CASE WHEN DrumskiPrevoz > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as VOZAR_TRANSPORTER,   (CASE WHEN Kamioner > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as INTERCOMPANY, " +
+" (CASE WHEN AgentBrodara > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Ostali, CASE  WHEN Supplier = 'T' THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END AS Dobaavljac  from Partnerji order by PaSifra desc  ";
+                    break;
+                default:
+                    select = " Select PaSifra, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, " +
+           " PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun,  PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, " +
+           " Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, " +
+           " (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, " +
+           " (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac,  " +
+           " Brodar  , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik, " +
+           " Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency,  DrumskiPrevoz " +
+           " from Partnerji order by PaSifra desc ";
+                    break;
+            }
+
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -415,26 +517,20 @@ namespace Saobracaj.Sifarnici
             dataAdapter.Fill(ds);
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
-         
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
-          
-
-    
+            //foreach (var column in gridGroupingControl1.TableDescriptor.Columns)
+            //{
+            //    MessageBox.Show(column.Name);
+            //}
 
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
             }
 
-            GridExcelFilter gridExcelFilter = new GridExcelFilter();
-
-            //Wiring GridExcelFilter to GridGroupingControl
-            gridExcelFilter.WireGrid(this.gridGroupingControl1);
-
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
             dynamicFilter.WireGrid(this.gridGroupingControl1);
-
 
 
 
@@ -442,7 +538,7 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
+            var select = " Select PaSifra as Sifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
             " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
             SqlConnection myConnection = new SqlConnection(connect);
@@ -664,6 +760,70 @@ namespace Saobracaj.Sifarnici
             dataGridView2.Columns[5].Width = 250;
         }
 
+
+        private void RefreshDataGrid1(string SifraPartnera)
+        {
+            var select = " SELECT [PartnerID],[SifraApp],[Firma]   FROM [TESTIRANJE].[dbo].[PartnerjiFirma] WHERE PartnerID = "  + SifraPartnera;
+            SqlConnection myConnection = new SqlConnection(connect);
+            var c = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            /*
+            var select4 = " Select Distinct PaSifra, RTrim(PaNaziv) as Partner From Partnerji";
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboPrevoznik.DataSource = ds4.Tables[0];
+            cboPrevoznik.DisplayMember = "Partner";
+            cboPrevoznik.ValueMember = "PaSifra";
+            */
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                PodesiDatagridView(dataGridView1);
+            }
+            else
+            {
+                dataGridView1.BorderStyle = BorderStyle.None;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.White;
+
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            }
+
+            DataGridViewColumn column = dataGridView1.Columns[1];
+            dataGridView1.Columns[0].HeaderText = "Šifra";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Šifra APP";
+            dataGridView1.Columns[1].Width = 150;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Firma";
+            dataGridView1.Columns[2].Width = 150;
+  
+        }
+
         private void cboPartneri_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -840,6 +1000,12 @@ namespace Saobracaj.Sifarnici
             {
                 cboValuta.SelectedValue = "RSD";
             }
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
@@ -854,6 +1020,8 @@ namespace Saobracaj.Sifarnici
             }
             status = false;
             RefreshDataGrid();
+            RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -862,6 +1030,8 @@ namespace Saobracaj.Sifarnici
             del.DelPartneri(Convert.ToInt32(txtSifra.Text));
             status = false;
             RefreshDataGrid();
+            RefreshGridControl();
+            SnimanjeZavrseno?.Invoke(this, EventArgs.Empty);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -1091,11 +1261,10 @@ namespace Saobracaj.Sifarnici
    "   , [PaDelDrzave], [PaPostnaSt], [PaSifDrzave], [PaTelefon1] " +
    "     ,  [PaZiroRac] " +
    "     , [PaOpomba], [PaDMatSt], [PaEMail], [PaEMatSt1] " +
-   "     , " +
    "     , [UIC], [Prevoznik], [Posiljalac], [Primalac] " +
    "     , [Brodar], [Vlasnik], [Spediter], [Platilac] " +
    "     , [Organizator], [NalogodavacCH], [UvoznikCH]," +
-   "  [UICDrzava], [TR2], [Faks], " +
+   "       [UICDrzava], [TR2], [Faks], " +
    "      [PomIzvoznik] " +
    "     , [Logisticar], [Kamioner], [AgentBrodara], [Buyer] " +
    "     , [WayOfSale], [Currency], [Supplier], [SuppSaleMet] " +
@@ -1142,23 +1311,23 @@ namespace Saobracaj.Sifarnici
                 { chkAgentBrodara.Checked = true; }
                 else
                 { chkAgentBrodara.Checked = false; }
-
-                if (dr["Supplier"].ToString() == "1")
+               
+                if (dr["Supplier"].ToString() == "T")
                 { cbDobavljac.Checked = true; }
                 else
                 { cbDobavljac.Checked = false; }
+                /*
+               if (dr["Buyer"].ToString() == "1")
+               { cboKupac.Checked = true; }
+               else
+               { cboKupac.Checked = false; }
 
-                if (dr["Buyer"].ToString() == "1")
-                { cboKupac.Checked = true; }
-                else
-                { cboKupac.Checked = false; }
-
-                if (dr["WayOfSale"].ToString() == "Z")
-                { cbObveznik.Checked = true; }
-                else
-                { cbObveznik.Checked = false; }
-
- cboValuta.SelectedValue = dr["Currency"].ToString();
+               if (dr["WayOfSale"].ToString() == "Z")
+               { cbObveznik.Checked = true; }
+               else
+               { cbObveznik.Checked = false; }
+               */
+                cboValuta.SelectedValue = dr["Currency"].ToString();
 
 
 
@@ -1239,16 +1408,6 @@ namespace Saobracaj.Sifarnici
                 {
                     chkPosiljalac.Checked = false;
                 }
-
-               
-               
-               
-
-             
-
-
-           
-
             }
 
 
@@ -1265,19 +1424,38 @@ namespace Saobracaj.Sifarnici
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                    
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaID").ToString();
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("PaSifra").ToString();
                     VratiPodatkeSelect(Convert.ToInt32(txtSifra.Text));
 
-
-                   
                         RefreshDataGrid2(txtSifra.Text);
-                    }
+                        RefreshDataGrid1(txtSifra.Text);
+                }
                 
             }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+         //   Sifarnici.PartnerjiPregled p = new PartnerjiPregled();
+           // p.Show();
+        }
+
+        private void btnFirme_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSifra.Text))
+            {
+                Sifarnici.frmPartnerjiFirme pko = new Sifarnici.frmPartnerjiFirme(Convert.ToInt32(txtSifra.Text));
+                pko.FormClosed += pko_FormClosed;
+                pko.Show();
+            }
+        }
+        private void pko_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshDataGrid1(txtSifra.Text);
         }
     }
 }

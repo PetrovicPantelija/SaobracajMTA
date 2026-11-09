@@ -41,7 +41,11 @@ namespace Testiranje.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -120,7 +124,11 @@ namespace Testiranje.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -168,11 +176,17 @@ namespace Testiranje.Sifarnici
         {
             status = true;
             txtSifra.Enabled = false;
+            txtSifra.Text = "";
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertGreske ins = new InsertGreske();
@@ -184,6 +198,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertGreske upd = new InsertGreske();
                 upd.UpdGreske(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
             }
             RefreshDataGrid();
         }

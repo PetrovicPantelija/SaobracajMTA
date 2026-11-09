@@ -33,7 +33,7 @@ namespace Saobracaj.Drumski
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -106,7 +106,7 @@ namespace Saobracaj.Drumski
             else
             {
 
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -180,7 +180,7 @@ namespace Saobracaj.Drumski
             }
             else
             {
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
         }
 
@@ -196,7 +196,7 @@ namespace Saobracaj.Drumski
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -269,7 +269,7 @@ namespace Saobracaj.Drumski
             else
             {
 
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -343,7 +343,7 @@ namespace Saobracaj.Drumski
             }
             else
             {
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
             }
         }
 
@@ -495,7 +495,7 @@ namespace Saobracaj.Drumski
                                       "    FROM RadniNalogDrumski r " +
                                       "    WHERE  r.KamionID = a.ID " +
                                       "          AND ISNULL(r.Arhiviran, 0) <> 1" +
-                                      "          AND(r.Status IS NULL OR r.Status NOT IN ( " + statusiZaUpit + "))" +
+                                      //" --         AND(r.Status IS NULL OR r.Status NOT IN ( " + statusiZaUpit + "))" +
                                       ")) " +  condition;
 
 
@@ -1557,3 +1557,5 @@ namespace Saobracaj.Drumski
         }
     }
 }
+
+

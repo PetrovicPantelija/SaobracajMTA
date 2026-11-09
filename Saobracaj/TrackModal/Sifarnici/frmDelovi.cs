@@ -41,7 +41,11 @@ namespace Testiranje.Sifarnici
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
+<<<<<<< HEAD
              // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -121,7 +125,11 @@ namespace Testiranje.Sifarnici
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -174,6 +182,11 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertDelovi ins = new InsertDelovi();
@@ -185,6 +198,7 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertDelovi upd = new InsertDelovi();
                 upd.UpdDelovi(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
             }
             RefreshDataGrid();
         }

@@ -28,7 +28,11 @@ namespace Testiranje.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -107,7 +111,11 @@ namespace Testiranje.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -495,6 +503,12 @@ namespace Testiranje.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
+
             if (status == true)
             {
                 InsertCene ins = new InsertCene();
@@ -506,6 +520,8 @@ namespace Testiranje.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertCene upd = new InsertCene();
                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue), txtNazivCenovnika.Text, cboRazred.Text, txtOznakaManipulacije.Text, Convert.ToInt32(cboOrgJed.SelectedValue));
+                status = false;
+
             }
             RefreshDataGrid();
         }

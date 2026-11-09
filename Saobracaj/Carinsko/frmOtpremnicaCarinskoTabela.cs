@@ -34,7 +34,11 @@ namespace Saobracaj.Carinsko
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -113,7 +117,11 @@ namespace Saobracaj.Carinsko
             {
                 panelHeader.Visible = false;
 
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -200,14 +208,22 @@ namespace Saobracaj.Carinsko
         private void button23_Click(object sender, EventArgs e)
         {
             frmOtpremnicaCarinsko car = new frmOtpremnicaCarinsko();
+            car.FormClosed += car_FormClosed;
             car.Show();
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
             frmOtpremnicaCarinsko pc = new frmOtpremnicaCarinsko(txtSifra.Text);
+            pc.FormClosed += car_FormClosed;
             pc.Show();
         }
+
+        private void car_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RefreshDataGrid();
+        }
+
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {

@@ -1,19 +1,31 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Microsoft.Ajax.Utilities;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using WIA;
 namespace Saobracaj.Drumski
 {
     public partial class frmBrojFaktureModal: Form
     {
         public string BrojFakture { get; private set; }
+        private string _tekst = "";
 
         public frmBrojFaktureModal()
         {
             InitializeComponent();
             ChangeTextBox();
         }
+
+        public frmBrojFaktureModal(string tekst)
+        {
+            InitializeComponent();
+            _tekst = tekst;
+            lblStatus.Text = $"Unesite {_tekst} ID: ";
+            ChangeTextBox();
+        }
+
 
         private void ChangeTextBox()
         {
@@ -28,7 +40,7 @@ namespace Saobracaj.Drumski
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -105,7 +117,7 @@ namespace Saobracaj.Drumski
             else
             {
    
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
        
             }
         }
@@ -114,7 +126,10 @@ namespace Saobracaj.Drumski
         {
             if (string.IsNullOrWhiteSpace(txtBrojFakture.Text))
             {
-                MessageBox.Show("Unesite broj fakture!");
+                if(string.IsNullOrWhiteSpace(_tekst))
+                    MessageBox.Show("Unesite broj fakture!");
+                else
+                    MessageBox.Show($"Unesite broj {_tekst}!");
                 return;
             }
 

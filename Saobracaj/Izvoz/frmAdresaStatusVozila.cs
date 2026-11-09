@@ -25,7 +25,7 @@ namespace Saobracaj.Izvoz
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -103,7 +103,7 @@ namespace Saobracaj.Izvoz
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -197,21 +197,28 @@ namespace Saobracaj.Izvoz
         {
 
             status = true;
+            txtID.Text = "";
             txtID.Enabled = false;
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             if (status == true)
             {
                 InsertAdresaStatusVozila ins = new InsertAdresaStatusVozila();
                 ins.InsAdresaStatusVozila(txtNaziv.Text);
+                status = false;
             }
             else
             {
                 InsertAdresaStatusVozila upd = new InsertAdresaStatusVozila();
                 upd.UpdAdresaStatusVozila(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                status = false;
             }
             RefreshDataGrid();
         }

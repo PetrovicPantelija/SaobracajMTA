@@ -1,4 +1,5 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Saobracaj.MainLeget.Pretovari;
 using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,13 @@ namespace Saobracaj.Izvoz
     public partial class Vaganje : Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
 
         string brojKontejnera;
         string  Vozilo, Vozac;
         int kontID, vrsta;
         bool status = false;
+        bool zavrsenoVaganje = false;
 
         private void ChangeTextBox()
         {
@@ -34,7 +37,11 @@ namespace Saobracaj.Izvoz
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
+<<<<<<< HEAD
              // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -114,7 +121,11 @@ namespace Saobracaj.Izvoz
             {
               //  meniHeader.Visible = true;
                 panelHeader.Visible = false;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -230,7 +241,8 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik, IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
+            
+            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID,  IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -282,7 +294,12 @@ namespace Saobracaj.Izvoz
 
         private void button21_Click(object sender, EventArgs e)
         {
-
+           
+            if (zavrsenoVaganje == true || PoveriDaLiJeUradjena() == 1)
+            {
+                MessageBox.Show("Nije dozvoljeno snimanje kada je usluga vaganja završena!");
+                return;
+            }
 
             if (status == true)
             {
@@ -290,6 +307,7 @@ namespace Saobracaj.Izvoz
                 ins.InsVaganje(Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(), txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
                     Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user, txtRoba.Text);
                 status = false;
+               
             }
             else
             {
@@ -310,7 +328,7 @@ namespace Saobracaj.Izvoz
             }
 
 
-
+            UpisiLog(Convert.ToInt32(txtKontID.Text));
             FillGV();
 
 
@@ -335,6 +353,102 @@ namespace Saobracaj.Izvoz
             con.Close();
            */
         }
+
+
+        private void UpisiLog(int uslugaidID)
+        {
+
+            InsertIzvoz ink = new InsertIzvoz();
+
+
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(uslugaidID);
+            // ink.InsertKontejnerLog(Convert.ToInt32(textBox1.Text), poruka1, vreme1, lokacija, tKorisnik);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            int scenario = Convert.ToInt32(dtPodaci.Rows[0]["Scenario"].ToString());
+            switch (scenario)
+            {
+                // GRUPA I
+                case 13:
+                case 26:
+                    string poruka = "Izvršeno je vaganje";
+
+                    DateTime? vreme = null;
+                    string lokacija = string.Empty;
+
+                    int kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["ID"].ToString());
+
+                    // Čitanje lokacije
+                    if (dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    {
+                        lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                    }
+
+
+                    // Datum dolaska kamiona na kapiju
+                    if (dtPodaci.Rows[0]["DatumMerenja"] != DBNull.Value)
+                    {
+                        vreme = Convert.ToDateTime(dtPodaci.Rows[0]["DatumMerenja"]);
+                    }
+
+                 
+
+                   ink.InsertKontejnerLog(kontejnerID, poruka, vreme, lokacija, tKorisnik);
+                       
+                   break;
+            }
+
+
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int? kontejnerID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, Scenario,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera, vg.DatumMerenja
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN RadniNalogInterni rni on rni.BrojOsnov =  i.ID
+							 LEFT JOIN Vaganje vg on vg.IzvozKonacnaID =  i.ID
+                        WHERE i.ID = " + kontejnerID;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
 
         private void button23_Click(object sender, EventArgs e)
         {
@@ -363,6 +477,66 @@ namespace Saobracaj.Izvoz
             txtNeto.Value = txtBruto.Value - txtTara.Value;
         }
 
+        private void btnZavrsenoVaganje_Click(object sender, EventArgs e)
+        {
+
+            if ( PoveriDaLiJeUradjena() == 1)
+            {
+                MessageBox.Show("Vaganje je već završeno!");
+                return;
+            }
+
+            InsertPretovari ins1 = new InsertPretovari();
+            if (!string.IsNullOrWhiteSpace(txtKontID.Text))
+            {
+                ins1.PromeniStatusVaganje(Convert.ToInt32(txtKontID.Text));
+                zavrsenoVaganje = true;
+
+                MessageBox.Show("Vaganje je završeno.");
+            }
+        }
+
+        private int PoveriDaLiJeUradjena()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            int jeUradjen = 0;
+
+            if (string.IsNullOrWhiteSpace(txtKontID.Text))
+            {
+                return 0;
+            }
+
+            // Upit proverava da li postoji zapis za zadati id (ili idSelektovaneUsluge) sa IDManipulacijaJed = 102
+            // i direktno vraća vrednost kolone Uradjen (1 ili 0)
+            string query = @"SELECT TOP 1 ISNULL(Uradjen, 0)
+                     FROM RadniNalogInterni  
+                     WHERE BrojOsnov = @ID 
+                       AND IDManipulacijaJed IN (102)
+                     ORDER BY ID DESC";
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    // Napomena: Ako treba da koristite parametar metode umesto txtID.Text, 
+                    // zamenite 'Convert.ToInt32(txtID.Text)' sa 'idSelektovaneUsluge'
+                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(txtKontID.Text));
+
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        jeUradjen = Convert.ToInt32(result) == 1 ? 1 : 0;
+                    }
+                }
+            }
+
+            return jeUradjen;
+        }
+
+
         private void VratiPodatke(string ID)
         {
          
@@ -371,7 +545,7 @@ namespace Saobracaj.Izvoz
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz, Vaganje.Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
+                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Vaganje.Bruto as Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, IzvozKonacna.Taraz, Vaganje.Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
                  " where Vaganje.ID = " + ID, con);
 
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -390,15 +564,15 @@ namespace Saobracaj.Izvoz
                     dtpDatumMerenja.Value = Convert.ToDateTime(dr["DatumMerenja"].ToString());
                     txtTaraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
                     txtRoba.Text = dr["Roba"].ToString();
-                if (dr["Cirada"].ToString() == "1")
+                if (dr["Cirada"].ToString() == "2")
                 {
                     chkCirada.Checked = true;
                     chkPlatforma.Checked = false;
                 }
                 else
                 {
-                    chkCirada.Checked = true;
-                    chkPlatforma.Checked = false;
+                    chkCirada.Checked = false;
+                    chkPlatforma.Checked = true;
                 }
             }
 

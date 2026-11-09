@@ -38,7 +38,11 @@ namespace Saobracaj.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -116,7 +120,11 @@ namespace Saobracaj.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -281,12 +289,17 @@ namespace Saobracaj.Sifarnici
                 tmpInterni = 0;
             }
 
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 Insertnhm ins = new Insertnhm();
                 ins.InsNHM(txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni, tmpInterni);
                 // RefreshDataGrid();
-                RefrechDataGridT();
+        
                 status = false;
             }
             else
@@ -296,8 +309,9 @@ namespace Saobracaj.Sifarnici
                 status = false;
                 txtSifra.Enabled = false;
                // RefreshDataGrid();
-                RefrechDataGridT();
+               
             }
+            RefrechDataGridT();
         }
 
         private void tsNew_Click(object sender, EventArgs e)

@@ -26,7 +26,11 @@ namespace Saobracaj.RadniNalozi
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
+<<<<<<< HEAD
              // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -106,7 +110,11 @@ namespace Saobracaj.RadniNalozi
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
@@ -305,10 +313,15 @@ namespace Saobracaj.RadniNalozi
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtID.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
             InsertRN rn = new InsertRN();
             if (status == true)
             {

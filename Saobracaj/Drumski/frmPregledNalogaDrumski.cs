@@ -1,9 +1,12 @@
-﻿using Saobracaj.Uvoz;
+﻿using Saobracaj.DrumskiApp;
+using Saobracaj.Izvoz;
+using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +14,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Windows;
 using System.Windows.Forms;
 
 
@@ -23,8 +27,19 @@ namespace Saobracaj.Drumski
         private SqlDataAdapter dataAdapter;
         private DataTable mainTable;
         int? Nalogodavac = null;
-        string dan = null;
+        int? dan = null;
         private int? nalogID;
+        private readonly List<int> _tipoviIn;
+        private readonly List<int> _tipoviNotIn;
+        private readonly List<int> tipNaloga = null;
+        private bool dozvoliContextMenu = false;
+        private bool dozvoliOtkazivanjeZapisa = false;
+        private bool drumskiNew = false; // nova verzija programa
+        private bool duplirajZapisVisible = false;
+        private string forma;
+        private List<int> _arhivskiStatusi;
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+
         public frmPregledNalogaDrumski()
         {
             InitializeComponent();
@@ -32,7 +47,7 @@ namespace Saobracaj.Drumski
             RefreshGrid();
         }
 
-        public frmPregledNalogaDrumski(int NalogID, int NalogodavacID, string Dan)
+        public frmPregledNalogaDrumski(int NalogID, int? NalogodavacID, int? Dan)
         {
             nalogID = NalogID;
             Nalogodavac = NalogodavacID;
@@ -46,6 +61,65 @@ namespace Saobracaj.Drumski
             btnDodeliKamion.Visible = false;
             this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
 
+        }
+        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, int NalogID, int? NalogodavacID, int? Dan)
+        {
+            nalogID = NalogID;
+            Nalogodavac = NalogodavacID;
+            dan = Dan;
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            InitializeComponent();
+            ChangeTextBox();
+            RefreshGrid();
+
+            // vec imaju kreiran nalog id pa nema potrebe da budu vidljva sledeca dugmad
+            btnFormiranjeNaloga.Visible = false;
+            btnDopunaNaloga.Visible = false;
+            btnDodeliKamion.Visible = false;
+
+            this.Text = "Lista kontejnera naloga broj " + NalogID.ToString();
+            dozvoliContextMenu = true;
+            //dozvoliOtkazivanjeZapisa = false;
+            drumskiNew = true;
+            duplirajZapisVisible = true;
+        }
+
+        public frmPregledNalogaDrumski(List<int> tipoviIn, List<int> tipoviNotIn, List<int> tipoviNaloga, bool otkaziZapis, string nazivForme)
+        {
+            //nalogID = NalogID;
+            //Nalogodavac = NalogodavacID;
+
+            InitializeComponent();
+            tipNaloga = tipoviNaloga;
+            _tipoviIn = tipoviIn;
+            _tipoviNotIn = tipoviNotIn;
+            forma = nazivForme;
+            ChangeTextBox();
+            RefreshGrid();
+            dozvoliContextMenu = true;
+
+            //dozvoliOtkazivanjeZapisa = otkaziZapis;
+            btnDodeliKamion.Visible = false;
+            button3.Visible = false;
+            btnFormiranjeNaloga.Visible = false;
+            btnDopunaNaloga.Visible = false;
+           
+            drumskiNew = true;
+            //if (otkaziZapis == true)
+            //{
+            if (forma == "Otkazi")
+            {
+                button1.Visible = false;
+                button6.Visible = false;
+                btnOdobrioLO.Visible = false;
+
+            }
+            else if (forma == "TransportUvoz" || forma == "TransportIzvoz")
+            {
+                button6.Visible = false;
+                btnOdobrioLO.Visible = true;
+            }     
         }
 
         private void ChangeTextBox()
@@ -61,7 +135,7 @@ namespace Saobracaj.Drumski
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -82,7 +156,6 @@ namespace Saobracaj.Drumski
 
                 foreach (Control control in this.Controls)
                 {
-
                     if (control is System.Windows.Forms.TextBox textBox)
                     {
 
@@ -139,7 +212,7 @@ namespace Saobracaj.Drumski
             {
                 panelHeader.Visible = false;
     
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -150,6 +223,9 @@ namespace Saobracaj.Drumski
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             var connection = new SqlConnection(s_connection);
             List<string> statusi = new List<string>();
+            DateTime datumOd = new DateTime(1900, 1, 1); ;
+            DateTime datumDo = new DateTime(1900, 1, 1); ;
+
             using (connection)
             {
                 connection.Open();
@@ -166,6 +242,7 @@ namespace Saobracaj.Drumski
 
                 String conditionRadniNalogID = "";
                 String conditionNalogodavac = " 1 = 1 ";
+                String conditionDate = "";
                 if (nalogID !=null && nalogID > 0 )
                 {
                     conditionRadniNalogID = " AND rn.NalogID  = @NalogID ";
@@ -173,19 +250,46 @@ namespace Saobracaj.Drumski
                 if (Nalogodavac != null)
                 {
                     conditionNalogodavac += $" AND  x.NalogodavacID = {Nalogodavac} ";
+               
+                }
+                if (dan.HasValue)
+                {
+                    int brojDana = Convert.ToInt32(dan);
+                    datumOd = DateTime.Today.AddDays(brojDana);
+                    datumDo = datumOd.AddDays(1);
+                    //conditionRadniNalogID += @" AND (
+                    //                               (TipTransporta = 2
+                    //                                AND rn.DatumUtovara >= @DatumOd
+                    //                                AND rn.DatumUtovara <  @DatumDo
+                    //                               )
+                    //                            OR (TipTransporta <> 2
+                    //                                AND rn.DtPreuzimanjaPraznogKontejnera >= @DatumOd
+                    //                                AND rn.DtPreuzimanjaPraznogKontejnera <  @DatumDo
+                    //                               )
+                    //                             )";
+                    conditionDate += @" AND (  RelevantniDatum >= @DatumOd
+                                                    AND RelevantniDatum <  @DatumDo )";
+                }
+               
+                string conditionTipPrevoza = " 1 = 1";
+                if (_tipoviIn?.Any() == true)
+                {
+                    string listaIn = string.Join(",", _tipoviIn);
+                    conditionTipPrevoza += $" AND x.TipTransporta IN ({listaIn})";
+                }
 
-                    if (dan == "D")
-                    {
-                        conditionRadniNalogID += $" AND rn.DatumIstovara >= CAST(GetDate() AS DATE) AND rn.DatumIstovara < DATEADD(DAY, 1, CAST(GetDate() AS DATE))";
-                        // Alternativno, ako je DatumIstovara samo datum:
-                        // conditionRadniNalogID += $" AND rn.DatumIstovara = CAST(GetDate() AS DATE)";
-                    }
-                    else
-                    {
-                  
-                        conditionRadniNalogID += $" x.DatumIstovara >= DATEADD(DAY, 1, CAST(GetDate() AS DATE)) AND x.DatumIstovara < DATEADD(DAY, 2, CAST(GetDate() AS DATE))";
+                if (_tipoviNotIn?.Any() == true)
+                {
+                    string listaNotIn = string.Join(",", _tipoviNotIn);
+                    conditionTipPrevoza += $" AND x.TipTransporta NOT IN ({listaNotIn})";
+                }
 
-                    }
+                string conditionTipNaloga = "";
+         
+                if (tipNaloga?.Any() == true)
+                {
+                    string listaTipNaloga = string.Join(",", tipNaloga);
+                    conditionTipNaloga += $" AND x.Uvoz IN ({listaTipNaloga})";
                 }
 
                 // 2. Priprema statusa za upit
@@ -197,7 +301,7 @@ namespace Saobracaj.Drumski
                     SELECT *
                     FROM (
                             SELECT rn.ID,
-                                    pa.PaNaziv as Nalogodavac,
+                                    LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac,
                                     ik.Klijent3 AS NalogodavacID,
                                     ik.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
@@ -206,11 +310,25 @@ namespace Saobracaj.Drumski
                                     rn.KamionID,
                                     a.RegBr,
                                     a.Vozac,
-                                    rn.Status,   
-                                    rn.Status AS StatusID, 
+                                    -- rn.Status,   
+                                    --  rn.Status AS StatusID, 
+                                    LTRIM(Rtrim(sv.Naziv)) AS Status, 
                                     CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                                    rn.KontejnerID, 'KONACAN' as Trenutno,
-                                    ri.ID AS RadniNalogInterniID
+                                    rn.KontejnerID,  
+                                    CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                                    ELSE 'Neraspoređen' END AS Trenutno,
+                                    ri.ID AS RadniNalogInterniID,
+                                    rn.TipTransporta,
+                                    rn.Uvoz,
+                                    ik.Scenario,
+                                    0 AS ScenarioSaCarinskimPostupkom,
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                    (
+                                     CASE 
+                                        WHEN ik.Scenario in (13,26,7,23) THEN IIF(ik.PlaniranDtPreuzimanjaPraznog > '1900-01-01', ik.PlaniranDtPreuzimanjaPraznog, ik.PlaniraniDtPreuzimanja)
+                                        WHEN ik.Scenario in  (8,24,9,25) THEN IIF(ik.PlaniranDtUtovaraCerade > '1900-01-01', ik.PlaniranDtUtovaraCerade, ik.PlaniraniDtUtovaraCerade)
+                                    END
+                                    ) RelevantniDatum
                             FROM RadniNalogDrumski rn
                             LEFT JOIN Automobili a ON rn.KamionID = a.ID
                             LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -218,11 +336,12 @@ namespace Saobracaj.Drumski
                             LEFT JOIN Partnerji pa ON pa.PaSifra = ik.Klijent3
                             LEFT JOIN TipKontenjera tk ON ik.VrstaKontejnera = tk.ID
                             LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                            WHERE rn.Uvoz = 0  AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1  AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
+                            WHERE rn.Uvoz = 0  AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1  --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) 
+                                    {conditionRadniNalogID}
 
                             union all
                                     SELECT rn.ID,
-                                    pa.PaNaziv as Nalogodavac,
+                                     LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac,
                                     i.Klijent3 AS NalogodavacID,
                                     i.BrojKontejnera,
                                     tk.SkNaziv AS TipKontejnera,
@@ -231,11 +350,25 @@ namespace Saobracaj.Drumski
                                     rn.KamionID,
                                     a.RegBr,
                                     a.Vozac,
-                                    rn.Status,   
-                                    rn.Status AS StatusID, 
+                                    --rn.Status,   
+                                    --rn.Status AS StatusID, 
+                                    LTRIM(Rtrim(sv.Naziv)) AS Status,
                                     CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                                    rn.KontejnerID, 'NEODREDJEN' as Trenutno,
-                                    ri.ID AS RadniNalogInterniID
+                                    rn.KontejnerID, 
+                                    CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                                    ELSE 'Neraspoređen' END AS Trenutno,
+                                    ri.ID AS RadniNalogInterniID,
+                                    rn.TipTransporta,
+                                    rn.Uvoz,
+                                    i.Scenario,
+                                    0 AS ScenarioSaCarinskimPostupkom,
+                                    IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                    (
+                                     CASE 
+                                        WHEN i.Scenario in(13,26,7,23) THEN IIF(i.PlaniranDtPreuzimanjaPraznog > '1900-01-01', i.PlaniranDtPreuzimanjaPraznog, i.PlaniraniDtPreuzimanja)
+                                        WHEN i.Scenario in  (8,24,9,25) THEN IIF(i.PlaniranDtUtovaraCerade > '1900-01-01', i.PlaniranDtUtovaraCerade, i.PlaniraniDtUtovaraCerade)
+                                     END
+                                    ) RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -243,11 +376,12 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji pa ON pa.PaSifra = i.Klijent3
                         LEFT JOIN TipKontenjera tk ON i.VrstaKontejnera = tk.ID
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                        WHERE rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
+                        WHERE rn.Uvoz = 0 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) 
+                                {conditionRadniNalogID}
 
                         union all
                         SELECT rn.ID, 
-                               pa.PaNaziv as Nalogodavac,
+                                LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac,
                                uk.Nalogodavac3 AS NalogodavacID,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
@@ -256,11 +390,24 @@ namespace Saobracaj.Drumski
                                rn.KamionID,
                                a.RegBr,
                                a.Vozac,
-                               rn.Status,   
-                               rn.Status AS StatusID, 
+                               -- rn.Status,   
+                               --rn.Status AS StatusID, 
+                               LTRIM(Rtrim(sv.Naziv)) AS Status,
                                CONVERT(varchar,rn.DatumPromeneStatusa,104) AS PromenaStatusa,
-                               rn.KontejnerID, 'KONACAN' as Trenutno,
-                               ri.ID AS RadniNalogInterniID
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
+                               ri.ID AS RadniNalogInterniID,
+                               rn.TipTransporta,
+                               rn.Uvoz,
+                               uk.Scenario,
+                               0 AS ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                ( CASE 
+                                WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                WHEN rn.Scenario in (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                END) AS RelevantniDatum
+                            
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -268,11 +415,12 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 -- AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                              {conditionRadniNalogID}
 
                         union all
                                SELECT rn.ID, 
-                               pa.PaNaziv as Nalogodavac,
+                               LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac,
                                uk.Nalogodavac3 AS NalogodavacID,
                                uk.BrojKontejnera,
                                tk.SkNaziv AS TipKontejnera,
@@ -281,11 +429,23 @@ namespace Saobracaj.Drumski
                                rn.KamionID,
                                a.RegBr,
                                a.Vozac,
-                               rn.Status,   
-                               rn.Status AS StatusID, 
+                              -- rn.Status,   
+                               --rn.Status AS StatusID, 
+                               LTRIM(Rtrim(sv.Naziv)) AS Status,
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
-                               ri.ID AS RadniNalogInterniID
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
+                               ri.ID AS RadniNalogInterniID,
+                               rn.TipTransporta,
+                               rn.Uvoz,
+                               uk.Scenario,
+                               0 AS ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                        ( CASE 
+                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera, rn.DtPreuzimanjaPraznogKontejnera)
+                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                      END) AS RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
@@ -293,38 +453,59 @@ namespace Saobracaj.Drumski
                         LEFT JOIN Partnerji pa ON pa.PaSifra = uk.Nalogodavac3
                         LEFT JOIN TipKontenjera tk ON uk.TipKontejnera = tk.ID
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
+                        WHERE rn.Uvoz = 1 AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 -- AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                                {conditionRadniNalogID}
 
                         union all
                                SELECT rn.ID, 
-                               pa.PaNaziv as Nalogodavac,
+                                LTRIM(RTRIM(pa.PaNaziv)) as Nalogodavac,
                                rn.Klijent ASNalogodavac,
                                rn.BrojKontejnera as BrojKontejnera,
-                               '' AS TipKontejnera,
+                               tk.SkNaziv AS TipKontejnera,
                                rn.NalogID,
                                CONVERT(varchar, rn.DatumKreiranjaNaloga, 104) AS KreiranjeNaloga,
                                rn.KamionID,
                                a.RegBr,
                                a.Vozac,
-                               rn.Status,   
-                               rn.Status AS StatusID, 
+                               --rn.Status,   
+                               -- rn.Status AS StatusID,
+                               LTRIM(Rtrim(sv.Naziv)) AS Status, 
                                CONVERT(varchar, rn.DatumPromeneStatusa, 104) AS PromenaStatusa,
-                               rn.KontejnerID, 'NEODREDJEN' as Trenutno,
-                               ri.ID AS RadniNalogInterniID
+                               rn.KontejnerID, 
+                               CASE  WHEN ISNULL(rn.KamionID, 0) > 0 THEN 'Raspoređen'
+                               ELSE 'Neraspoređen' END AS Trenutno,
+                               ri.ID AS RadniNalogInterniID,
+                               rn.TipTransporta,
+                               rn.Uvoz,
+                               rn.Scenario,
+                               rn.ScenarioSaCarinskimPostupkom,
+                               IsNull(rn.OdobrioPlaner,0) AS OdobrioPlaner,
+                                     ( CASE 
+                                        WHEN rn.Scenario in (13,26,7,23) THEN IIF(rn.DtNoviPreuzimanjaKontejnera > '1900-01-01', rn.DtNoviPreuzimanjaKontejnera,rn.DtPreuzimanjaPraznogKontejnera)
+                                        WHEN rn.Scenario in  (8,24,9,25) THEN IIF(rn.DtNoviUtovaraCerade > '1900-01-01', rn.DtNoviUtovaraCerade,  rn.DtUtovaraCerade)
+                                      END) AS RelevantniDatum
                         FROM RadniNalogDrumski rn
                         LEFT JOIN Automobili a ON rn.KamionID = a.ID
                         LEFT JOIN StatusVozila sv ON sv.ID = rn.Status
                         LEFT JOIN Partnerji pa ON pa.PaSifra = rn.Klijent
+                        LEFT JOIN TipKontenjera tk ON rn.TipKontejnera = tk.ID
                         LEFT JOIN Radninaloginterni ri on ri.konkretaidusluge = rn.UKID
-                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit})) {conditionRadniNalogID}
+                        WHERE rn.Uvoz in (-1,2, 3, 4, 5) AND ISNULL(rn.RadniNalogOtkazan, 0) <> 1  AND ISNULL(rn.Arhiviran, 0) <> 1 --AND (rn.Status IS NULL OR rn.Status NOT IN ( {statusiZaUpit}))
+                        {conditionRadniNalogID}
                       ) x
-                    WHERE {conditionNalogodavac}
+                    WHERE {conditionNalogodavac} AND {conditionTipPrevoza} {conditionTipNaloga} {conditionDate}
                     ORDER BY ID DESC";
 
                 dataAdapter = new SqlDataAdapter(select, connection);
                 if (nalogID!=0 && nalogID > 0)
                 {
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@NalogID", nalogID);
+                }
+
+                if (dan.HasValue  && dan >= 0)
+                {
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@DatumOd", SqlDbType.DateTime).Value = datumOd;
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@DatumDo", SqlDbType.DateTime).Value = datumDo;
                 }
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
 
@@ -334,51 +515,57 @@ namespace Saobracaj.Drumski
                 mainTable = ds.Tables[0];
 
                 // Napuni status listu
-                var stv = "SELECT ID, Naziv FROM StatusVozila ORDER BY Naziv";
-                var stvAD = new SqlDataAdapter(stv, s_connection);
-                var stvDS = new DataSet();
-                stvAD.Fill(stvDS);
-                var dtStatus = stvDS.Tables[0];
+                //var stv = "SELECT ID, Naziv FROM StatusVozila ORDER BY Naziv";
+                //var stvAD = new SqlDataAdapter(stv, s_connection);
+                //var stvDS = new DataSet();
+                //stvAD.Fill(stvDS);
+                //var dtStatus = stvDS.Tables[0];
 
-                // Očisti null vrednosti
-                foreach (DataRow row in mainTable.Rows)
-                {
-                    if (row.IsNull("Status"))
-                        row["Status"] = DBNull.Value;
-                }
+                //// Očisti null vrednosti
+                //foreach (DataRow row in mainTable.Rows)
+                //{
+                //    if (row.IsNull("Status"))
+                //        row["Status"] = DBNull.Value;
+                //}
 
                 // Veži glavnu tabelu
                 gridGroupingControl1.DataSource = mainTable;
+
+                //if (!editingControlHandlerAttached)
+                //{
+                //    this.gridGroupingControl1.TableControlCurrentCellEditing += new GridTableControlCurrentCellEditingEventHandler(gridGroupingControl1_TableControlCurrentCellEditing);
+                //    editingControlHandlerAttached = true;
+                //}
 
                 // Postavi Syncfusion Visual Style (lepši izgled grida i kontrola)
                 gridGroupingControl1.TableOptions.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016Colorful;
 
                 // Pristupi koloni Status i definiši njen izgled
-                var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
-                var cellStyle = statusCol.Appearance.AnyRecordFieldCell;
+                //var statusCol = gridGroupingControl1.TableDescriptor.Columns["Status"];
+                //var cellStyle = statusCol.Appearance.AnyRecordFieldCell;
 
-                // Podešavanje ComboBox-a
-                cellStyle.CellType = "ComboBox";
-                cellStyle.DataSource = dtStatus;
-                cellStyle.DisplayMember = "Naziv";
-                cellStyle.ValueMember = "ID";
-                cellStyle.ExclusiveChoiceList = true;
-                cellStyle.DropDownStyle = GridDropDownStyle.AutoComplete;
+                //// Podešavanje ComboBox-a
+                //cellStyle.CellType = "ComboBox";
+                //cellStyle.DataSource = dtStatus;
+                //cellStyle.DisplayMember = "Naziv";
+                //cellStyle.ValueMember = "ID";
+                //cellStyle.ExclusiveChoiceList = true;
+                //cellStyle.DropDownStyle = GridDropDownStyle.AutoComplete;
 
                 // Ulepšavanje izgleda
-                cellStyle.Font.Facename = "Segoe UI";
-                cellStyle.Font.Size = 10;
-                cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
-                cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
-                cellStyle.BackColor = Color.White;
-                cellStyle.TextColor = Color.Black;
-                cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
-                cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
-                cellStyle.TextMargins = new GridMarginsInfo(2, 2, 2, 2);
-                cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
+                //cellStyle.Font.Facename = "Segoe UI";
+                //cellStyle.Font.Size = 10;
+                //cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
+                //cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
+                //cellStyle.BackColor = Color.White;
+                //cellStyle.TextColor = Color.Black;
+                //cellStyle.VerticalAlignment = GridVerticalAlignment.Middle;
+                //cellStyle.HorizontalAlignment = GridHorizontalAlignment.Left;
+                //cellStyle.TextMargins = new GridMarginsInfo(2, 2, 2, 2);
+                //cellStyle.Borders.All = new GridBorder(GridBorderStyle.Solid, Color.LightGray, GridBorderWeight.ExtraThin);
 
                 // Ukloni kolone koje ne želiš da se vide
-                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID", "NalogodavacID" }; // "Status" je Naziv
+                var colsToRemove = new[] { "KontejnerID", "StatusID" , "RadniNalogInterniID", "NalogodavacID", "Uvoz" , "TipTransporta" , "RelevantniDatum" }; // "Status" je Naziv
                 foreach (var col in colsToRemove)
                 {
                     if (gridGroupingControl1.TableDescriptor.VisibleColumns.Contains(col))
@@ -396,6 +583,10 @@ namespace Saobracaj.Drumski
                     column.AllowFilter = true;
                 }
 
+                GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+                //Wiring the Dynamic Filter to GridGroupingControl
+                dynamicFilter.WireGrid(this.gridGroupingControl1); 
+
                 GridExcelFilter excelFilter = new GridExcelFilter();
                 excelFilter.WireGrid(gridGroupingControl1);
 
@@ -410,11 +601,11 @@ namespace Saobracaj.Drumski
 
         private void button23_Click(object sender, EventArgs e)
         {
-            if (ActivateExistingForm("frmDrumski"))
-            {
-                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
-                return;
-            }
+            //if (ActivateExistingForm("frmDrumski"))
+            //{
+            //    // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+            //    return;
+            //}
 
             if (gridGroupingControl1.Table.SelectedRecords.Count > 0)
             {
@@ -424,29 +615,106 @@ namespace Saobracaj.Drumski
                 if (rec != null)
                 {
                     int ID = Convert.ToInt32(rec.GetValue("ID"));
-                    frmDrumski pnd = new frmDrumski(ID);
+                    int scenario = Convert.ToInt32(rec.GetValue("Scenario"));
+                    int uvoz = Convert.ToInt32(rec.GetValue("Uvoz"));
+                    int adr = 0;
+                    int tipNaloga = 0; // Pretpostavljam da je 0 podrazumevano grupa scenarija 1,2,3,4
+                    int carinskiPostupak = Convert.ToInt32(rec.GetValue("ScenarioSaCarinskimPostupkom")); 
+
+                    switch (scenario)
+                    { 
+                        //Grupa 1
+                        // Specijalni slučajevi za Tip Naloga koji nisu u gornjim ADR grupama
+                        case 13:
+                            tipNaloga = 1;
+                            // Ovde adr ostaje 0 (podrazumevano)
+                            break;
+                        case 26:
+                            adr = 1;
+                            tipNaloga = 1;
+                            break;
+                        //Grupa 2
+                        case 7:
+                            adr = 0;
+                            tipNaloga = 2;
+                            break;
+                        case 23:
+                            adr = 1;
+                            tipNaloga = 2;
+                            break;
+                        //grupa 3
+                        case 8:
+                            adr = 0;
+                            tipNaloga = 3;
+                            break;
+                        case 24:
+                            adr = 1;
+                            tipNaloga =3;
+                            break;
+
+                        // grupa 4
+                        case 9:
+                            adr = 0;
+                            tipNaloga = 4;
+                            break;
+
+                        case 25:
+                            adr = 1;
+                            tipNaloga = 4;
+                            break;
+
+                    }
+                    if (drumskiNew == true)
+                    {
+                        frmDrumski1 pnd = new frmDrumski1(_tipoviIn, _tipoviNotIn, "", ID,adr, uvoz, tipNaloga, carinskiPostupak);
+                        pnd.FormClosed += pnd_FormClosed;
+                        pnd.Show();
+                    }
+                    else
+                    {
+                        frmDrumski pnd = new frmDrumski(ID);
+                        pnd.FormClosed += pnd_FormClosed;
+                        pnd.Show();
+                    }
+                    //var parent = this.TopLevelControl as NewMain;
+                    //parent?.ShowChild(new frmDrumski(tipoviIn: new List<int> { 2 }, tipoviNotIn: null, "", null), true);
+                }
+            }
+            else if (nalogID > 0 )
+            {
+                if (drumskiNew == true)
+                {
+                    System.Windows.Forms.MessageBox.Show("Niste selektovali nijedan red.");
+                    return;
+                }
+                else 
+                {
+                    frmDrumski pnd = new frmDrumski("", nalogID);
                     pnd.FormClosed += pnd_FormClosed;
                     pnd.Show();
                 }
             }
-            else if (nalogID > 0)
-            {
-                frmDrumski pnd = new frmDrumski("", nalogID);
-                pnd.FormClosed += pnd_FormClosed;
-                pnd.Show();
-            }
             else
             {
-                frmDrumski pnd = new frmDrumski();
-                pnd.FormClosed += pnd_FormClosed;
-                pnd.Show();
+                if (drumskiNew == true)
+                {
+                    System.Windows.Forms.MessageBox.Show("Niste selektovali nijedan red.");
+                    return;
+                }
+                else
+                {
+                    
+                    frmDrumski pnd = new frmDrumski(_tipoviIn, _tipoviNotIn, "", null,0,0,0);
+                    pnd.FormClosed += pnd_FormClosed;
+                    pnd.Show();
+                }
             }
         }
 
         private bool ActivateExistingForm(string formName)
         {
             // Prolazi kroz sve otvorene forme u aplikaciji
-            foreach (Form frm in Application.OpenForms)
+            foreach (Form frm in System.Windows.Forms.Application.OpenForms)
             {
                 // Upoređujemo ime forme koju tražimo
                 if (frm.Name == formName)
@@ -475,8 +743,8 @@ namespace Saobracaj.Drumski
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmPakovanjeKamiona kam = new frmPakovanjeKamiona();
-            kam.Show();
+            //frmPakovanjeKamiona kam = new frmPakovanjeKamiona();
+            //kam.Show();
             PakovanjeKamiona1 pk = new PakovanjeKamiona1();
             pk.Show();
         }
@@ -514,12 +782,31 @@ namespace Saobracaj.Drumski
 
                 if (kolona == "Status")
                 {
+       
                     var red = record.GetData() as DataRowView;
-                    var novaVrednost = red["Status"];
-                    var id = red["ID"];
+                    if (red == null) return;
+
+                    if (red["ID"] == DBNull.Value || !int.TryParse(red["ID"].ToString(), out int id))
+                    {
+                        return; 
+                    }
+
+                    int? noviStatusID = null;
+
+                    if (red["Status"] != DBNull.Value &&
+                        int.TryParse(red["Status"].ToString(), out int parsedStatus))
+                    {
+                        noviStatusID = parsedStatus;
+                    }
 
                     InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
-                    ins.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), novaVrednost == DBNull.Value ? null : (int?)novaVrednost);
+                    ins.UpdateStatusRadniNalogDrumski(id, noviStatusID,tKorisnik);
+
+                    if (noviStatusID.HasValue && _arhivskiStatusi.Contains(noviStatusID.Value))
+                    {
+                        InsertRadniNalogInterni updi = new InsertRadniNalogInterni();
+                        //updi.UpdRadniNalogInterniZavrsen(id, Saobracaj.Sifarnici.frmLogovanje.user.Trim());
+                    }
                 }
             }
         }
@@ -598,7 +885,7 @@ namespace Saobracaj.Drumski
                         }
                     }
                    
-                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId);
+                    upd.UpdateStatusRadniNalogDrumski(Convert.ToInt32(id), noviStatusId,tKorisnik);
 
                     if (trebaOkidatiInterni && radniNalogInterniID.HasValue)
                     {
@@ -621,7 +908,7 @@ namespace Saobracaj.Drumski
                 object nalogIdValue = selectedRecord.Record.GetValue("NalogID");
                 if (nalogIdValue != null && int.TryParse(nalogIdValue.ToString(), out int nalogId) && nalogId != 0)
                 {
-                    MessageBox.Show("Radni nalog se može kreirati samo za stavke koje još nisu dodeljene nalogu.",
+                    System.Windows.Forms.MessageBox.Show("Radni nalog se može kreirati samo za stavke koje još nisu dodeljene nalogu.",
                                     "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -665,7 +952,7 @@ namespace Saobracaj.Drumski
 
             if (nalogIds.Count > 1)
             {
-                MessageBox.Show("Stavke se mogu dodati samo u jedan nalog. Selektovano je više različitih naloga.",
+                System.Windows.Forms.MessageBox.Show("Stavke se mogu dodati samo u jedan nalog. Selektovano je više različitih naloga.",
                                 "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -674,7 +961,7 @@ namespace Saobracaj.Drumski
             {
                 int nalogId = nalogIds.First();
 
-                DialogResult result = MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
+                DialogResult result = System.Windows.Forms.MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
                                                       "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -689,26 +976,83 @@ namespace Saobracaj.Drumski
         {
             if (gridGroupingControl1.Table.SelectedRecords.Count == 0)
             {
-                MessageBox.Show("Nije selektovan nijedan red.");
+                System.Windows.Forms.MessageBox.Show("Nije selektovan nijedan red.");
                 return;
             }
-            var result = MessageBox.Show(
-                    $"Da li pravite kopiju za nalog {nalogID}?",
-                    "Potvrda kopiranja",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
 
-                        int? duplikatNalogID;
+            foreach (SelectedRecord selectedRecord in gridGroupingControl1.Table.SelectedRecords)
+            {
+                var record = selectedRecord.Record;
 
-                        if (result == DialogResult.Yes)
-                            duplikatNalogID = nalogID;   // ako je korisnik kliknuo "Da"
-                        else
-                            duplikatNalogID = null;
+                int uvoz = 0;
+
+                var val = record.GetValue("Uvoz");
+
+                if (val != null && val != DBNull.Value)
+                    uvoz = Convert.ToInt32(val);
+
+                // ako je uvoz ili izvoz nema dupliranja
+                if (uvoz == 0 || uvoz == 1)
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "Nije moguće napraviti duplikat zapisa koji pripada Transportnom nalogu uvoza ili izvoza."
+                    );
+                    return; // prekidamo celu operaciju
+                }
+            }
+
+           
             bool sveUspešno = true;
             InsertRadniNalogDrumski isu = new InsertRadniNalogDrumski();
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
             {
+                int? nalogIDrow = null;
+                var value = selectedRecord.Record.GetValue("NalogID");
+
+                if (value != null && value != DBNull.Value)
+                {
+                    nalogIDrow = Convert.ToInt32(value);
+                }
+
+                // Ako postoji nalogID pitamo da li se pravi kopija ZA taj nalog
+                DialogResult result;
+                int? duplikatNalogID = null;
+
+                // SLUČAJ 1: postoji nalogID
+                if (nalogIDrow.HasValue)
+                {
+                    result = System.Windows.Forms.MessageBox.Show(
+                        $"Da li pravite kopiju za nalog {nalogIDrow}?",
+                        "Potvrda kopiranja",
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Cancel)
+                        return;
+
+                    if (result == DialogResult.Yes)
+                        duplikatNalogID = nalogIDrow;
+                    else
+                        duplikatNalogID = null; // NO → novi nalog bez ID
+                }
+                else
+                {
+                    // SLUČAJ 2: nema nalogID
+                    result = System.Windows.Forms.MessageBox.Show(
+                        "Da li želite da napravite kopiju zapisa?",
+                        "Potvrda kopiranja",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.No)
+                        return;
+
+                    // YES → pravi se kopija bez nalogID
+                    duplikatNalogID = null;
+                }
+
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
@@ -936,6 +1280,10 @@ namespace Saobracaj.Drumski
                         {
                             odredisnaCarinarnica = parsedOdredisnaCarina;
                         }
+
+                       
+
+                        
                         isu.DuplirajRadniNalogDrumski(duplikatNalogID, uvoz, autoDan, mestoPreuzimanja, klijent, mestoUtovara, adresaUtovara, datumUtovara, mestoIstovara, datumIstovara, adresaIstovara, dtPreuzimanjaPKontejnera, granicniPrelaz,
                             trosak, valuta, status, opis, cena, kontaktOsobaNaIstovaru, pdv, tipTransporta, brojVoza, bttoKontejnera, bttoRobe, bookingBrodara, brodskaTeretnica, brodskaPlomba, napomenaPoz, referenca,
                             polaznaCarinarnica, odredisnaCarinarnica, polaznaSpedicija, odredisnaSpedicija, polaznaSpedicijaKontakt, odredisnaSpedicijaKontakt );
@@ -945,11 +1293,172 @@ namespace Saobracaj.Drumski
                 catch (Exception ex)
                 {
                     sveUspešno = false;
-                    MessageBox.Show("Greška tokom obrade: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Greška tokom obrade: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break; // prekini dalje dupliranje
                 }
             }
             RefreshGrid();
+        }
+
+        private void frmPregledNalogaDrumski_Load(object sender, EventArgs e)
+        {
+            _arhivskiStatusi = UcitajArhivskeStatuse();
+            if (dozvoliContextMenu)
+            {
+                gridGroupingControl1.ContextMenuStrip = contextMenuStrip1;
+                toolStripMenuItemDuplirajZapis.Visible = duplirajZapisVisible;
+            }
+            else
+                gridGroupingControl1.ContextMenuStrip = null;
+
+            // Ovo će naterati Grid da se ugura između headera i statusa
+            gridGroupingControl1.BringToFront();
+            this.gridGroupingControl1.QueryCellStyleInfo += new GridTableCellStyleInfoEventHandler(gridGroupingControl1_QueryCellStyleInfo);
+        }
+
+        private void gridGroupingControl1_QueryCellStyleInfo(object sender, GridTableCellStyleInfoEventArgs e)
+        {
+            // Proveravamo da li je ćelija deo reda sa podacima
+    if (e.TableCellIdentity.TableCellType == GridTableCellType.RecordFieldCell ||
+        e.TableCellIdentity.TableCellType == GridTableCellType.AlternateRecordFieldCell)
+    {
+        // Dobijamo pristup rekordu (redu) kojem ćelija pripada
+        var record = e.TableCellIdentity.DisplayElement.GetRecord();
+        
+        if (record != null)
+        {
+            // Dobijamo vrednost kolone "OdobrioPlaner"
+            object val = record.GetValue("OdobrioPlaner");
+
+            // Provera: vrednost nije null i veća je od 0
+            if (val != null && val != DBNull.Value && Convert.ToInt32(val) > 0)
+            {
+                // Bojimo pozadinu ćelije u žuto
+                e.Style.BackColor = Color.Yellow;
+                
+                // Opciono: ako želiš da promeniš i boju teksta
+                // e.Style.TextColor = Color.Black;
+            }
+        }
+    }
+        }
+
+        private List<int> UcitajArhivskeStatuse()
+        {
+            List<int> statusi = new List<int>();
+            SqlConnection conn1 = new SqlConnection(connection);
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand cmd1 = new SqlCommand(
+                    "SELECT Vrednost FROM SistemskePostavke WHERE Naziv LIKE 'StatusKamiona%'", conn);
+
+                using (SqlDataReader reader = cmd1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string vrednost = reader.GetString(0).Trim();
+
+                        if (int.TryParse(vrednost, out int broj))
+                        {
+                            statusi.Add(broj);
+                        }
+                    }
+                }
+            }
+
+            return statusi;
+        }
+        private void GridGroupingControl1_TableControlMouseDown(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventArgs e)
+        {
+
+            if (System.Windows.Forms.Control.MouseButtons == MouseButtons.Right)
+            {
+                // Dobavljanje pozicije kliknutog reda i kolone
+                // Pronađi red i kolonu pod mišem
+                int rowIndex, colIndex;
+                e.TableControl.PointToRowCol(new System.Drawing.Point(e.Inner.X, e.Inner.Y), out rowIndex, out colIndex);
+
+                // Uzmi stil kliknutog polja
+                GridTableCellStyleInfo style = e.TableControl.GetTableViewStyleInfo(rowIndex, colIndex);
+
+                // Proveri da li je kliknuto u redu sa podacima
+                if (style.TableCellIdentity.DisplayElement.Kind == DisplayElementKind.Record)
+                {
+                    // Postavi aktivni red
+                    this.gridGroupingControl1.Table.CurrentRecord = style.TableCellIdentity.DisplayElement.ParentRecord;
+
+                    // Prikaži context menu na poziciji miša
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            int id = 0;
+            if (forma == "Otkazi")
+            {
+
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    id = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID"));
+
+                    InsertProdajniNalogIzvoz ipnk = new InsertProdajniNalogIzvoz();
+
+                    DialogResult result = System.Windows.Forms.MessageBox.Show(
+                    "Da li ste sigurni da želite da otkažete stavku?", // Message text
+                    "Potvrdite", // Title
+                    MessageBoxButtons.YesNoCancel, // Buttons
+                    MessageBoxIcon.Question // Icon
+                    );
+
+                    // Handle the result based on user selection
+                    if (result == DialogResult.Yes)
+                    {
+                        InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+                        ins.DelRadniNalogDrumski(id);
+                    }
+
+
+                    RefreshGrid();
+                }
+            }
+        }
+
+        private void btnOdobrioLO_Click(object sender, EventArgs e)
+        {
+            InsertRadniNalogDrumski ins = new InsertRadniNalogDrumski();
+            List<int> listaIdjeva = new List<int>();
+            if (gridGroupingControl1.Table.SelectedRecords.Count < 0)
+                return;
+            
+            foreach (SelectedRecord selRecord in gridGroupingControl1.Table.SelectedRecords)
+            {
+               
+                int id = Convert.ToInt32(selRecord.Record.GetValue("ID"));
+                listaIdjeva.Add(id);
+            }
+            
+            int temp = PostaviVrednostZaposleni();
+            int? NajavuPoslaoKorisnik = temp == 0 ? (int?)null : temp;
+            ins.UpdateOdobrioLO(listaIdjeva, NajavuPoslaoKorisnik);
+            RefreshGrid();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            {
+                // Uzimamo prvi selektovani red
+                int ID = Convert.ToInt32(gridGroupingControl1.Table.SelectedRecords[0].Record.GetValue("ID"));
+
+             
+                frmFormaZaVozace pnd = new frmFormaZaVozace(ID);
+                pnd.Show();
+                
+            }
         }
     }
 }

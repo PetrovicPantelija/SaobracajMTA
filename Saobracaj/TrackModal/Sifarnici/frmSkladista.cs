@@ -45,7 +45,11 @@ namespace Testiranje.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -124,7 +128,11 @@ namespace Testiranje.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -157,6 +165,8 @@ namespace Testiranje.Sifarnici
         {
             InitializeComponent();
             ChangeTextBox();
+            // stil Sava (docs/SAVA-DESIGN.md): traka sa dugmadima sa tekstom, boje i fontovi
+            SifarnikTema.Primeni(this, panelHeader, panel3, button22, button21, button20, button23, button1, button2, tsNew, tsSave, tsDelete);
 
         }
 
@@ -164,6 +174,8 @@ namespace Testiranje.Sifarnici
         {
             InitializeComponent();
             ChangeTextBox();
+            // stil Sava (docs/SAVA-DESIGN.md): traka sa dugmadima sa tekstom, boje i fontovi
+            SifarnikTema.Primeni(this, panelHeader, panel3, button22, button21, button20, button23, button1, button2, tsNew, tsSave, tsDelete);
             KorisnikCene = Korisnik;
             RefreshDataGrid();
 
@@ -172,12 +184,29 @@ namespace Testiranje.Sifarnici
         {
             status = true;
             txtSifra.Text = "";
+<<<<<<< HEAD
+=======
+            txtOznaka.Text = "";
+            txtNaziv.Text = "";
+            txtSKNaziv.Text = "";
+            chkAktivna.Checked = true;
+            if (cboVrstaPozicija.DataSource != null)
+                cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
+            if (objekti != null)
+                HijerarhijaSkladista.PostaviTrenutnog(objekti, 0);
+            cboGrupaPolja.SelectedIndex = -1;
+            lblNadredjeni.Text = "";
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
         }
+
+        // Objekti za izbor (nivo III); polje upisuje objekat, a GrupaPoljaID se popunjava lokacijom objekta
+        DataView objekti;
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpAktivna = 0;
 
+<<<<<<< HEAD
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
 
@@ -192,49 +221,178 @@ namespace Testiranje.Sifarnici
 
 
             if (status == true)
+=======
+            if (txtSifra.Text == "")
             {
-                InsertSkladista ins = new InsertSkladista();
-                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue),Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
-                status = false;
+                status = true;
             }
-            else
+
+
+            if (chkAktivna.Checked == true)
+            { tmpAktivna = 1; };
+
+            int id = status ? 0 : HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            int objekatId = HijerarhijaSkladista.IzabraniId(cboGrupaPolja);
+            string greska = HijerarhijaSkladista.ProveriOznaku(NivoSkladista.Polje, id, txtOznaka.Text);
+            if (greska == null && objekatId == 0)
+                greska = "Izaberite objekat.";
+            if (greska == null)
+                greska = HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Polje, id, objekatId, tmpAktivna == 1);
+            if (greska != null)
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
             {
-                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                InsertSkladista upd = new InsertSkladista();
-                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
+                MessageBox.Show(greska, "Polja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool bioAktivan = id > 0 && HijerarhijaSkladista.JeAktivan(NivoSkladista.Polje, id);
+            int lokacijaId = HijerarhijaSkladista.CeoBroj(HijerarhijaSkladista.Skalar(
+                "SELECT SkladistaGrupaID FROM dbo.SkladisteObjekat WHERE ID = @ID", HijerarhijaSkladista.Param("@ID", objekatId)));
+
+            try
+            {
+                if (status == true)
+                {
+                    InsertSkladista ins = new InsertSkladista();
+                    ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, lokacijaId, txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
+                    id = HijerarhijaSkladista.IdPoOznaci(NivoSkladista.Polje, txtOznaka.Text);
+                    txtSifra.Text = id.ToString();
+                    status = false;
+                }
+                else
+                {
+                    //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                    InsertSkladista upd = new InsertSkladista();
+                    upd.UpdSkladista(id, txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, lokacijaId, txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
+                }
+
+                HijerarhijaSkladista.Procedura("UpdateSkladistaObjekat",
+                    HijerarhijaSkladista.Param("@ID", id), HijerarhijaSkladista.Param("@SkladisteObjekatID", objekatId));
+
+                // promena vrste pozicija (kontejnerske / paletne): aktivne postaju pozicije nove vrste, ostale neaktivne
+                int vrstaPozicija = HijerarhijaSkladista.IzabraniId(cboVrstaPozicija);
+                if (vrstaPozicija == 0)
+                    vrstaPozicija = HijerarhijaSkladista.KontejnerskePozicije;
+                int promenjenihPozicija = HijerarhijaSkladista.PostaviVrstuPozicijaPolja(id, vrstaPozicija);
+                if (promenjenihPozicija > 0)
+                    MessageBox.Show("Polje sada radi sa " + HijerarhijaSkladista.NazivVrstePozicija(vrstaPozicija)
+                        + " pozicijama. Promenjena aktivnost pozicija: " + promenjenihPozicija + ".",
+                        "Polja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // promena aktivnosti polja prenosi se na pozicije
+                HijerarhijaSkladista.PrenesiAktivnostPosleSnimanja(NivoSkladista.Polje, id, bioAktivan, tmpAktivna == 1, "Polja");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Polja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             RefreshDataGrid();
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
+            int id = HijerarhijaSkladista.CeoBroj(txtSifra.Text);
+            if (id == 0)
+                return;
+
+            string greska = HijerarhijaSkladista.ProveriBrisanje(NivoSkladista.Polje, id);
+            if (greska != null)
+            {
+                MessageBox.Show(greska, "Polja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete polje?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
                 InsertSkladista upd = new InsertSkladista();
-                upd.DeleteSkladista(Convert.ToInt32(txtSifra.Text));
+                upd.DeleteSkladista(id);
                 RefreshDataGrid();
             }
-            else if (dialogResult == DialogResult.No)
+        }
+
+        private void Kolona(string naziv, string naslov, int sirina)
+        {
+            SifarnikGrid.Kolona(gridGroupingControl1, naziv, naslov, sirina);
+        }
+
+        // Tip objekta određuje koja se polja vide: KONTEJNERSKO - vrsta i kvalitet kontejnera (tip palete CNT),
+        // PALETNO - tip palete, SLOBODNO - ništa; skrivena polja dobijaju vrednost "/" (nema).
+        // Naziv tipa se poredi po početku reči ("KONT", jer je u šifarniku upisano "KONTJENRSKO SKLADIŠTE").
+        private void PrimeniTipObjekta(int objekatId)
+        {
+            string tip = objekatId == 0 ? "" : Convert.ToString(HijerarhijaSkladista.Skalar(
+                "SELECT ts.Naziv FROM dbo.SkladisteObjekat o INNER JOIN dbo.TipSkladista ts ON ts.ID = o.TipSkladistaID WHERE o.ID = @ID",
+                HijerarhijaSkladista.Param("@ID", objekatId))).ToUpperInvariant();
+            bool kontejnersko = tip.Contains("KONT");
+            bool paletno = tip.Contains("PALET");
+            bool slobodno = tip.Contains("SLOBOD");
+            bool poznat = kontejnersko || paletno || slobodno;
+
+            bool vidiKontejner = kontejnersko || !poznat;
+            bool vidiPalete = paletno || !poznat;
+            label7.Visible = cboTipKontejnera.Visible = vidiKontejner;
+            label21.Visible = cboKvalitet.Visible = vidiKontejner;
+            label8.Visible = cboTipPalete.Visible = vidiPalete;
+
+            if (kontejnersko)
+                IzaberiPoNazivu(cboTipPalete, "CNT");
+            if (paletno || slobodno)
             {
-                //do something else
+                IzaberiPoNazivu(cboTipKontejnera, "/");
+                IzaberiPoNazivu(cboKvalitet, "/");
             }
+            if (slobodno)
+                IzaberiPoNazivu(cboTipPalete, "/");
+        }
 
+        private static void IzaberiPoNazivu(ComboBox cbo, string naziv)
+        {
+            DataTable t = cbo.DataSource as DataTable;
+            if (t == null)
+                return;
+            foreach (DataRow r in t.Rows)
+            {
+                if (string.Equals(Convert.ToString(r[cbo.DisplayMember]).Trim(), naziv, StringComparison.OrdinalIgnoreCase))
+                {
+                    cbo.SelectedValue = r[cbo.ValueMember];
+                    return;
+                }
+            }
+        }
 
+        private void cboGrupaPolja_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int objekatId = HijerarhijaSkladista.IzabraniId(cboGrupaPolja);
+            lblNadredjeni.Text = HijerarhijaSkladista.OpisNadredjenih(NivoSkladista.Polje, objekatId);
+            PrimeniTipObjekta(objekatId);
+        }
+
+        // Aktivne / Neaktivne: izabrani zapisi i svi njihovi podređeni zapisi (aktivnost u dubinu)
+        private void PromeniAktivnost(bool aktivan)
+        {
+            HijerarhijaSkladista.PromeniAktivnostIzabranih(gridGroupingControl1, NivoSkladista.Polje, aktivan, "Polja");
+            RefreshDataGrid();
         }
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT Skladista.[ID] ,Skladista.Oznaka, Skladista.SkNaziv, Skladista.Naziv, SkladistaGrupa.Oznaka as LokacijaOznaka,SkladistaGrupa.Naziv as Lokacija, " +
+            var select = " SELECT Skladista.[ID] ,Skladista.Oznaka, Skladista.SkNaziv, Skladista.Naziv, SkladisteObjekat.Oznaka as ObjekatOznaka, SkladisteObjekat.Naziv as Objekat, " +
+                " TipSkladista.Naziv as TipObjekta, SkladistaGrupa.Oznaka as LokacijaOznaka,SkladistaGrupa.Naziv as Lokacija, " +
                 "  Partnerji.PaNaziv as Brodar, TipKontenjera.Naziv as TipKontejnera, " +
-                            " uvKvalitetKontejnera.Naziv as KValitetKontejnera, TipPalete.Naziv as TipPalete, CASE WHEN Skladista.Aktivan > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, Kapacitet" +
+                            " uvKvalitetKontejnera.Naziv as KValitetKontejnera, TipPalete.Naziv as TipPalete, " +
+                            " CASE WHEN Skladista.VrstaPozicija = 2 THEN 'Paletne' ELSE 'Kontejnerske' END as VrstaPozicija, " +
+                            " CASE WHEN Skladista.Aktivan > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Aktivna, Kapacitet" +
                             " FROM [dbo].[Skladista] " +
-                            " inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID " +
-                            " inner join Partnerji on PArtnerji.PaSifra = Skladista.Brodar " +
-                            " inner join TipKontenjera on TipKontenjera.ID = Skladista.TipKontejnera " +
-                            " inner join uvKvalitetKontejnera on uvKvalitetKontejnera.ID = Skladista.KvalitetKontejnera " +
-                            " inner join TipPalete on TipPalete.ID = Skladista.TipPalete " +
+                            " left join SkladisteObjekat on SkladisteObjekat.ID = Skladista.SkladisteObjekatID " +
+                            " left join TipSkladista on TipSkladista.ID = SkladisteObjekat.TipSkladistaID " +
+                            " left join SkladistaGrupa on SkladistaGrupa.ID = ISNULL(SkladisteObjekat.SkladistaGrupaID, Skladista.GrupaPoljaID) " +
+                            " left join Partnerji on PArtnerji.PaSifra = Skladista.Brodar " +
+                            " left join TipKontenjera on TipKontenjera.ID = Skladista.TipKontejnera " +
+                            " left join uvKvalitetKontejnera on uvKvalitetKontejnera.ID = Skladista.KvalitetKontejnera " +
+                            " left join TipPalete on TipPalete.ID = Skladista.TipPalete " +
                             " order by Skladista.ID";
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -244,120 +402,69 @@ namespace Testiranje.Sifarnici
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            SifarnikGrid.Napuni(gridGroupingControl1, ds.Tables[0]);
 
-            PodesiDatagridView(dataGridView1);
-
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Oznaka";
-            dataGridView1.Columns[1].Width = 100;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "SkNaziv";
-            dataGridView1.Columns[2].Width = 80;
-
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Naziv";
-            dataGridView1.Columns[3].Width = 200;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Lokacija oznaka";
-            dataGridView1.Columns[4].Width = 100;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Lokacija";
-            dataGridView1.Columns[5].Width = 200;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Brodar";
-            dataGridView1.Columns[6].Width = 200;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Tip kontejnera";
-            dataGridView1.Columns[7].Width = 100;
-
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Kvalitet kontejnera";
-            dataGridView1.Columns[8].Width = 150;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Tip palete";
-            dataGridView1.Columns[9].Width = 150;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Aktivan";
-            dataGridView1.Columns[10].Width = 80;
-
-
+            Kolona("ID", "ID", 50);
+            Kolona("Oznaka", "Šifra", 100);
+            Kolona("SkNaziv", "SkNaziv", 80);
+            Kolona("Naziv", "Naziv", 200);
+            Kolona("ObjekatOznaka", "Objekat šifra", 100);
+            Kolona("Objekat", "Objekat naziv", 180);
+            Kolona("TipObjekta", "Tip objekta", 120);
+            Kolona("LokacijaOznaka", "Lokacija šifra", 100);
+            Kolona("Lokacija", "Lokacija", 180);
+            Kolona("Brodar", "Brodar", 180);
+            Kolona("TipKontejnera", "Tip kontejnera", 100);
+            Kolona("KValitetKontejnera", "Kvalitet kontejnera", 150);
+            Kolona("TipPalete", "Tip palete", 120);
+            Kolona("VrstaPozicija", "Pozicije", 100);
+            Kolona("Aktivna", "Aktivan", 80);
         }
 
         private void VratiPodatke(string ID)
         {
-            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection con = new SqlConnection(s_connection);
+            // konstruktor puni grid pre Load-a, kada liste još nisu napunjene
+            if (objekti == null)
+                return;
 
-            con.Open();
+            DataTable t =HijerarhijaSkladista.Tabela("SELECT * FROM dbo.Skladista WHERE ID = @ID",
+                HijerarhijaSkladista.Param("@ID", HijerarhijaSkladista.CeoBroj(ID)));
+            if (t.Rows.Count == 0)
+                return;
+            DataRow dr = t.Rows[0];
 
-            SqlCommand cmd = new SqlCommand("SELECT Skladista.[ID] ,Skladista.Naziv,Skladista.SkNaziv, Skladista.Oznaka, Skladista.Kapacitet, " +
-                " SkladistaGrupa.ID as Lokacija,  Partnerji.PaSifra as Brodar, TipKontenjera.ID as TipKontejnera, uvKvalitetKontejnera.ID as KValitetKontejnera, TipPalete.ID as TipPalete, [Skladista].Aktivan FROM [dbo].[Skladista] inner join SkladistaGrupa on Skladista.GrupaPoljaID = SkladistaGrupa.ID inner join Partnerji on PArtnerji.PaSifra = Skladista.Brodar " +
-                "inner join TipKontenjera on TipKontenjera.ID = Skladista.TipKontejnera " +
-                "inner join uvKvalitetKontejnera on uvKvalitetKontejnera.ID = Skladista.KvalitetKontejnera inner join TipPalete on TipPalete.ID = Skladista.TipPalete where Skladista.ID=" + txtSifra.Text, con);
-            SqlDataReader dr = cmd.ExecuteReader();
+            status = false;
+            txtNaziv.Text = dr["Naziv"].ToString();
+            txtOznaka.Text = dr["Oznaka"].ToString();
+            txtKapacitet.Text = dr["Kapacitet"].ToString();
+            cboBrodar.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["Brodar"]);
+            cboTipKontejnera.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["TipKontejnera"]);
+            cboKvalitet.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["KvalitetKontejnera"]);
+            cboTipPalete.SelectedValue = HijerarhijaSkladista.CeoBroj(dr["TipPalete"]);
+            txtSKNaziv.Text = dr["SkNaziv"].ToString();
+            chkAktivna.Checked = dr["Aktivan"].ToString() == "1";
+            int vrsta = HijerarhijaSkladista.CeoBroj(dr["VrstaPozicija"]);
+            cboVrstaPozicija.SelectedValue = vrsta == HijerarhijaSkladista.PaletnePozicije
+                ? HijerarhijaSkladista.PaletnePozicije : HijerarhijaSkladista.KontejnerskePozicije;
 
-            while (dr.Read())
-            {
-                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
-                txtNaziv.Text = dr["Naziv"].ToString();
-                txtOznaka.Text = dr["Oznaka"].ToString();
-                txtKapacitet.Text = dr["Kapacitet"].ToString();
-                cboGrupaPolja.SelectedValue = Convert.ToInt32(dr["Lokacija"].ToString());
-                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
-                cboTipKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
-                cboKvalitet.SelectedValue = Convert.ToInt32(dr["KValitetKontejnera"].ToString());
-                cboTipPalete.SelectedValue = Convert.ToInt32(dr["TipPalete"].ToString());
-                txtSKNaziv.Text = dr["SkNaziv"].ToString();
-
-                if (dr["Aktivan"].ToString() == "1")
-                {
-                    chkAktivna.Checked = true;
-                }
-                else
-                {
-                    chkAktivna.Checked = false;
-                }
-            }
-
-            con.Close();
+            // objekat se postavlja posle vrednosti polja, jer izbor objekta zaključava polja po tipu objekta
+            int objekatId = HijerarhijaSkladista.CeoBroj(dr["SkladisteObjekatID"]);
+            HijerarhijaSkladista.PostaviTrenutnog(objekti, objekatId);
+            if (objekatId > 0)
+                cboGrupaPolja.SelectedValue = objekatId;
+            else
+                cboGrupaPolja.SelectedIndex = -1;
+            cboGrupaPolja_SelectedIndexChanged(cboGrupaPolja, EventArgs.Empty);
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        // izabrani red u gridu puni polja forme
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+            int id = SifarnikGrid.IzabraniId(gridGroupingControl1);
+            if (id == 0)
+                return;
+            txtSifra.Text = id.ToString();
+            VratiPodatke(txtSifra.Text);
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)
@@ -471,25 +578,22 @@ namespace Testiranje.Sifarnici
 
         private void tsNew_Click_1(object sender, EventArgs e)
         {
-            status = true;
+            tsNew_Click(sender, e);
             txtSifra.Enabled = false;
-            txtNaziv.Text = "";
         }
 
         private void frmSkladista_Load(object sender, EventArgs e)
         {
-            var select4 = "  select ID, Naziv from SkladistaGrupa order by ID";
-            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection4 = new SqlConnection(s_connection4);
-            var c4 = new SqlConnection(s_connection4);
-            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+            // dugme za pregled cele hijerarhije (Zona -> Lokacija -> Objekat -> Polje -> Pozicija)
+            frmPregledSkladistaGrupa.DodajDugme(panelHeader, meniHeader);
+            cboVrstaPozicija.DataSource = HijerarhijaSkladista.VrstePozicija();
+            cboVrstaPozicija.DisplayMember = "Naziv";
+            cboVrstaPozicija.ValueMember = "ID";
+            cboVrstaPozicija.SelectedValue = HijerarhijaSkladista.KontejnerskePozicije;
 
-            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
-            var ds4 = new DataSet();
-            dataAdapter4.Fill(ds4);
-            cboGrupaPolja.DataSource = ds4.Tables[0];
-            cboGrupaPolja.DisplayMember = "Naziv";
-            cboGrupaPolja.ValueMember = "ID";
+            objekti = HijerarhijaSkladista.ListaRoditelja(NivoSkladista.Objekat);
+            HijerarhijaSkladista.PoveziListu(cboGrupaPolja, objekti);
+            cboGrupaPolja.SelectionChangeCommitted += cboGrupaPolja_SelectedIndexChanged;
 
 
 
@@ -533,6 +637,21 @@ namespace Testiranje.Sifarnici
 
 
 
+            RefreshDataGrid();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            PromeniAktivnost(true);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PromeniAktivnost(false);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             RefreshDataGrid();
         }
     }

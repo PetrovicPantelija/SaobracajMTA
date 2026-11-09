@@ -1,14 +1,8 @@
-﻿using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms;
+﻿using Syncfusion.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Drumski
@@ -30,7 +24,7 @@ namespace Saobracaj.Drumski
                 //this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 //this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -108,7 +102,7 @@ namespace Saobracaj.Drumski
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -146,7 +140,7 @@ namespace Saobracaj.Drumski
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID, Naziv " +
+            var select = " SELECT ID, Naziv, StatusZaCerade, StatusZaPlatforme, StatusVangabaritni " +
                          " FROM  StatusVozila " + 
                          " ORDER BY ID ASC";
 
@@ -200,6 +194,41 @@ namespace Saobracaj.Drumski
             //   txtMeSifra.Enabled = false;
             txtSifra.Text = "";
             txtNaziv.Text = "";
+
+            if (ActivateExistingForm("frmStatusVozilaDetalji"))
+            {
+                // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                return;
+            }
+
+            frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji();
+            pnd.SnimanjeZavrseno += frmStatusVozila_SnimanjeZavrseno;
+            pnd.Show();
+        }
+
+        private bool ActivateExistingForm(string formName)
+        {
+            // Prolazi kroz sve otvorene forme u aplikaciji
+            foreach (Form frm in Application.OpenForms)
+            {
+                // Upoređujemo ime forme koju tražimo
+                if (frm.Name == formName)
+                {
+                    // Forma je pronađena!
+
+                    // 1. Dovedite je u prvi plan
+                    frm.Activate();
+
+                    // 2. Vratite je iz minimizovanog stanja, ako je minimizovana
+                    if (frm.WindowState == FormWindowState.Minimized)
+                    {
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+
+                    return true; // Vraćamo true jer je forma aktivirana
+                }
+            }
+            return false; // Forma nije pronađena
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -207,12 +236,12 @@ namespace Saobracaj.Drumski
             if (status == true)
             {
                 InsertStatus ins = new InsertStatus();
-                ins.InsStatusVozila( txtNaziv.Text.TrimEnd());
+                ins.InsStatusVozila( txtNaziv.Text.TrimEnd(), false, false, false);
             }
             else
             {
                 InsertStatus upd = new InsertStatus();
-                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString());
+                upd.UpdStatusVozila(Convert.ToInt32(txtSifra.Text.TrimEnd()), txtNaziv.Text.TrimEnd().ToString(), false, false, false);
             }
             RefreshDataGrid();
         }
@@ -242,6 +271,65 @@ namespace Saobracaj.Drumski
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        int txtID = 0;
+                        if (row.Cells[0].Value != DBNull.Value)
+                            txtID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        string txtNapomena = row.Cells[1].Value.ToString();
+
+                        if (ActivateExistingForm("frmStatusVozilaDetalji"))
+                        {
+                            // Ako je forma već otvorena i aktivirana, prekidamo izvršavanje.
+                            return;
+                        }
+
+                        // Status za Cerade
+                        bool statusCerade = false;
+                        if (row.Cells["StatusZaCerade"].Value != DBNull.Value)
+                            statusCerade = Convert.ToBoolean(row.Cells["StatusZaCerade"].Value);
+
+                        // Status za Platforme
+                        bool statusPlatforme = false;
+                        if (row.Cells["StatusZaPlatforme"].Value != DBNull.Value)
+                            statusPlatforme = Convert.ToBoolean(row.Cells["StatusZaPlatforme"].Value);
+
+                        // Status Vangabaritni
+                        bool statusVangabaritni = false;
+                        if (row.Cells["StatusVangabaritni"].Value != DBNull.Value)
+                            statusVangabaritni = Convert.ToBoolean(row.Cells["StatusVangabaritni"].Value);
+
+                        frmStatusVozilaDetalji pnd = new frmStatusVozilaDetalji(txtID, txtNapomena, statusCerade, statusPlatforme, statusVangabaritni);
+                        pnd.SnimanjeZavrseno += frmStatusVozila_SnimanjeZavrseno;
+                        pnd.Show();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void frmStatusVozila_SnimanjeZavrseno(int noviID)
+        {
+            RefreshDataGrid();
+            if (noviID > 0)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["ID"].Value) == noviID)
+                    {
+                        dataGridView1.ClearSelection();
+                        row.Selected = true;
+                        dataGridView1.CurrentCell = row.Cells[0];
+                        dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
+                        break;
+                    }
+                }
         }
     }
 }

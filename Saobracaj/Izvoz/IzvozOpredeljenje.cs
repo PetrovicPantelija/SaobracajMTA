@@ -27,7 +27,11 @@ namespace Saobracaj.Izvoz
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
           
             this.ControlBox = true;
+<<<<<<< HEAD
              // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -107,7 +111,11 @@ namespace Saobracaj.Izvoz
             {
                 //  meniHeader.Visible = true;
              
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

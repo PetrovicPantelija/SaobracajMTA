@@ -52,7 +52,11 @@ namespace Saobracaj.TrackModal.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -130,7 +134,11 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -163,12 +171,18 @@ namespace Saobracaj.TrackModal.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtNaziv.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 InsertTipPalete ins = new InsertTipPalete();
@@ -180,6 +194,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertTipPalete upd = new InsertTipPalete();
                 upd.UpdTipPalete(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), Kor);
+                status = false;
             }
 
             RefreshDataGrid();
@@ -260,7 +275,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv from TipPalete where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv,Dimenzije from TipPalete where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

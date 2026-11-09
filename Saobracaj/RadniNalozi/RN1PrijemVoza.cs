@@ -34,7 +34,11 @@ namespace Saobracaj.RadniNalozi
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
+<<<<<<< HEAD
              // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+            // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -114,7 +118,11 @@ namespace Saobracaj.RadniNalozi
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
+<<<<<<< HEAD
                  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+=======
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+>>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
@@ -186,7 +194,7 @@ namespace Saobracaj.RadniNalozi
 
         public RN1PrijemVoza(string Korisnik, string IDVOza, string IDUsluge, string PrijemID)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3tib3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
 
@@ -416,6 +424,7 @@ namespace Saobracaj.RadniNalozi
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtID.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -424,12 +433,18 @@ namespace Saobracaj.RadniNalozi
             DateTime datumRasporeda = Convert.ToDateTime(txtDatumRasporeda.Value);
             DateTime datumRealizacije = Convert.ToDateTime(txtDatumRealizacije.Value);
 
+            if (txtID.Text == "")
+            {
+                status = true;
+            }
+
             if (status == true)
             {
                 rn.InsRNPPrijemVoza(Convert.ToDateTime(txtDatumRasporeda.Value), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cbovrstakontejnera.SelectedValue),
                     txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value), Convert.ToInt32(cboSaVoznog.SelectedValue),
                     txtBrojPlombe.Text.ToString().TrimEnd(), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue),
                     Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), "", txtNapomena.Text.ToString().TrimEnd());
+                    status = false;
             }
             else
             {
@@ -438,9 +453,10 @@ namespace Saobracaj.RadniNalozi
                     txtBrojPlombe.Text.ToString().TrimEnd(), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue),
                     Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), txtNalogRealizovao.Text.ToString().TrimEnd(),
                     txtNapomena.Text.ToString().TrimEnd());
+                    status = false;
             }
             FillGV();
-            status = false;
+         
         }
 
         private void tsDelete_Click(object sender, EventArgs e)

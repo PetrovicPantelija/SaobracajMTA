@@ -53,7 +53,7 @@ namespace Saobracaj.Drumski
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -131,7 +131,7 @@ namespace Saobracaj.Drumski
             {
                 panelHeader.Visible = false;
 
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -793,12 +793,14 @@ namespace Saobracaj.Drumski
 
             int id = Convert.ToInt32(idObj);
 
-            using (var frm = new frmSeniranjeDokumenata(id))
+            using (var frm = new frmSeniranjeDokumenata(id,"drumski", ""))
                 frm.ShowDialog();
         }
  
         private void btnFormiranjeNaloga_Click(object sender, EventArgs e)
         {
+            //frmObradaUlaznihFaktura ob = new frmObradaUlaznihFaktura();
+            //ob.ShowDialog();
             var record = gridGroupingControl1.Table.CurrentRecord;
             if (record == null) return;
 
