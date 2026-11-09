@@ -959,7 +959,7 @@ namespace Saobracaj.Skladista_main
                 conn.Open();
 
                 // Preporuka: Koristite SQL parametar umesto spajanja stringova zbog bezbednosti
-                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, COALESE(mp.SifraSkladista,rns.CarinskoSkladiste ) AS SifraSkladista, mp.Koleta," +
+                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, COALESCE(mp.SifraSkladista,rns.CarinskoSkladiste ) AS SifraSkladista, mp.Koleta," +
                                          "mp.Neto, mp.Bruto ,mp.Vrednost, mp.Valuta, vcp.Oznaka as CarinskiPostupak, Carinarnice.CIOznaka, BrojJCI, mp.Godina " +
                                         " From RadniNalogSkladista rns " +
                                         " LEFT JOIN MagacinskiPredmet mp   ON  rns.id = mp.RN" +
