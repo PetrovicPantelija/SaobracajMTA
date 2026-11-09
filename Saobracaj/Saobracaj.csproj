@@ -4542,6 +4542,55 @@
     <Compile Include="HR\frmHRLog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Servis\SERBaza.cs" />
+    <Compile Include="Servis\SERPrava.cs" />
+    <Compile Include="Servis\SERStil.cs" />
+    <Compile Include="Servis\SERGrid.cs" />
+    <Compile Include="Servis\SERPolje.cs" />
+    <Compile Include="Servis\SERObrazac.cs" />
+    <Compile Include="Servis\SERDijalog.cs" />
+    <Compile Include="Servis\frmSERStavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERMeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERZalihe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERDeo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERPromet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERPrijem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERNalozi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERNalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERNabavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERNarudzbenica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERPopis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERKorekcije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERObavestenja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSERSifarnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Administracija\frmPodesavanja.cs">
       <SubType>Form</SubType>
     </Compile>
