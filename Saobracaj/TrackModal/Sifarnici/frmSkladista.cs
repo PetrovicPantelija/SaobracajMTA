@@ -45,11 +45,7 @@ namespace Testiranje.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -128,11 +124,7 @@ namespace Testiranje.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -184,8 +176,6 @@ namespace Testiranje.Sifarnici
         {
             status = true;
             txtSifra.Text = "";
-<<<<<<< HEAD
-=======
             txtOznaka.Text = "";
             txtNaziv.Text = "";
             txtSKNaziv.Text = "";
@@ -196,7 +186,6 @@ namespace Testiranje.Sifarnici
                 HijerarhijaSkladista.PostaviTrenutnog(objekti, 0);
             cboGrupaPolja.SelectedIndex = -1;
             lblNadredjeni.Text = "";
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
         }
 
         // Objekti za izbor (nivo III); polje upisuje objekat, a GrupaPoljaID se popunjava lokacijom objekta
@@ -206,22 +195,6 @@ namespace Testiranje.Sifarnici
         {
             int tmpAktivna = 0;
 
-<<<<<<< HEAD
-            if (chkAktivna.Checked == true)
-            { tmpAktivna = 1; };
-
-            if (txtSifra.Text == "" && status == false)
-                {
-                InsertSkladista ins = new InsertSkladista();
-                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
-                status = false;
-                }
-
-
-
-
-            if (status == true)
-=======
             if (txtSifra.Text == "")
             {
                 status = true;
@@ -239,7 +212,6 @@ namespace Testiranje.Sifarnici
             if (greska == null)
                 greska = HijerarhijaSkladista.ProveriAktivnost(NivoSkladista.Polje, id, objekatId, tmpAktivna == 1);
             if (greska != null)
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
             {
                 MessageBox.Show(greska, "Polja", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

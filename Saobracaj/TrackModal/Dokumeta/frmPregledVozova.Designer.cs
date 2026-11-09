@@ -159,11 +159,7 @@
             this.mainHeder.BackColor = System.Drawing.Color.Transparent;
             this.mainHeder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainHeder.Dock = System.Windows.Forms.DockStyle.Right;
-<<<<<<< HEAD
-            this.mainHeder.Location = new System.Drawing.Point(965, 0);
-=======
             this.mainHeder.Location = new System.Drawing.Point(891, 0);
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
             this.mainHeder.Name = "mainHeder";
             this.mainHeder.Size = new System.Drawing.Size(156, 31);
             this.mainHeder.TabIndex = 7;

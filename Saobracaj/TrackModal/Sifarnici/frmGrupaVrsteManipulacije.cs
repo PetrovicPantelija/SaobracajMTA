@@ -35,11 +35,7 @@ namespace Saobracaj.TrackModal.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -117,11 +113,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

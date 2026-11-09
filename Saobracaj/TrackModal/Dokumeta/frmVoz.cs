@@ -70,11 +70,7 @@ namespace Testiranje.Dokumeta
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
-<<<<<<< HEAD
-             //  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
             // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -154,11 +150,7 @@ namespace Testiranje.Dokumeta
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
-<<<<<<< HEAD
-                 //  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -303,11 +295,7 @@ namespace Testiranje.Dokumeta
             //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
             panelHeader.Visible = false;
             this.ControlBox = true;
-<<<<<<< HEAD
-             //  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
             // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
@@ -387,11 +375,7 @@ namespace Testiranje.Dokumeta
             {
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
-<<<<<<< HEAD
-                 //  // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

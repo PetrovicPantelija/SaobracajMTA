@@ -59,11 +59,7 @@ namespace Saobracaj.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 
                 // If you have a Resources.resx file in the Properties folder, ensure it is set to generate the Resources class.
@@ -154,11 +150,7 @@ namespace Saobracaj.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-<<<<<<< HEAD
-                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-=======
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -475,11 +467,6 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshGridControl()
         {
-<<<<<<< HEAD
-            var select = " Select PaSifra as PaID, Rtrim(PaNaziv) as Naziv, PaUlicaHisnaSt as Ulica , PaKraj as Grad, PaDelDrzave as Drzava, PaPostnaSt as Posta, PaSifDrzave as DrzavaID, PaTelefon1 as Telefon, PaZiroRac as TekRacun, " +
-              " PaOpomba as Napomena, PaDMatSt as Maticni, PaEMail as EMaill, PaEMatSt1 as PIB, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-          " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency, FREC, DrumskiPrevoz, ERPID from Partnerji order by PaSifra desc";
-=======
             var select = "";
             string firma = Sifarnici.frmLogovanje.Firma;
             switch (firma)
@@ -504,7 +491,6 @@ namespace Saobracaj.Sifarnici
                     break;
             }
 
->>>>>>> cf70735b24660dec56ecbc4ac07b040a77458662
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
