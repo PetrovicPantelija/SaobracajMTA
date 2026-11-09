@@ -699,6 +699,8 @@ namespace Saobracaj.Skladista_main
                         //MessageBox.Show("Usluge uspešno sačuvane!", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //  RefreshGrid();
                     }
+
+                    proveriDaLiJePopunjenMP();
                     //int VratiNalogID = VratiNalogIDF();
                     //Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
                     //ins1.InsRadniNalogInterniIzvozSkladistePotvrda(VratiNalogID);
@@ -735,6 +737,28 @@ namespace Saobracaj.Skladista_main
                     return;
                 }
 
+            }
+        }
+
+        private void proveriDaLiJePopunjenMP()
+        {
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT TOP(1) ID
+                                    FROM MagacinskiPredmet                                
+                                    WHERE RN = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID", txtID.Text);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        if (reader["ID"] != DBNull.Value)
+                            txtMagacinskiPredmetID.Text = (reader["ID"].ToString());
+                    }
+                }
             }
         }
 
@@ -935,7 +959,7 @@ namespace Saobracaj.Skladista_main
                 conn.Open();
 
                 // Preporuka: Koristite SQL parametar umesto spajanja stringova zbog bezbednosti
-                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, mp.SifraSkladista, mp.Koleta," +
+                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, COALESE(mp.SifraSkladista,rns.CarinskoSkladiste ) AS SifraSkladista, mp.Koleta," +
                                          "mp.Neto, mp.Bruto ,mp.Vrednost, mp.Valuta, vcp.Oznaka as CarinskiPostupak, Carinarnice.CIOznaka, BrojJCI, mp.Godina " +
                                         " From RadniNalogSkladista rns " +
                                         " LEFT JOIN MagacinskiPredmet mp   ON  rns.id = mp.RN" +
@@ -1536,7 +1560,7 @@ namespace Saobracaj.Skladista_main
                          "   RNCarinskoStavke.Napomena AS [Napomena] " +
                          "FROM RNCarinskoStavke " +
                          "INNER JOIN MagacinskiPredmet ON RNCarinskoStavke.IDNadredjena = MagacinskiPredmet.ID " +
-                         "LEFT JOIN TipPalete ON RNCarinskoStavke.VrstaPaleta = TipPalete.ID  " +
+                         "LEFT JOIN TipPalete ON RNCarinskoStavke.VrstaPaleta = TipPalete.ID " +
                          "WHERE MagacinskiPredmet.RN = " + Convert.ToInt32(txtID.Text);
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -1578,53 +1602,62 @@ namespace Saobracaj.Skladista_main
                 td.StackedHeaderRows.Clear();
 
                 // Kolone za koje vršimo sabiranje
-    //            string[] koloneZaSabiranje =
-    //            {
-    //    "Količina po JM",
-    //    "Broj Koleta",
-    //    "Bruto",
-    //    "Neto",
-    //    "Broj Paleta",
-    //    "Vrednost"
-    //};
-
                 string[] koloneZaSabiranje =
                 {
-                    "Količina po JM",
-                    "Broj Koleta",
-                    "Bruto",
-                    "Neto",
-                    "Broj Paleta",
-                    "Vrednost",
-                    "Vrednost garancije" // Dodato ako postoji u bazi
-                };
+            "Količina po JM",
+            "Broj Koleta",
+            "Bruto",
+            "Neto",
+            "Broj Paleta",
+            "Vrednost",
+            "Vrednost garancije"
+        };
 
-                // Provera da li su JM svuda iste
-                string prvaJM = dt.Rows.Count > 0 ? dt.Rows[0]["JM"]?.ToString() : "";
-                bool jmIste = true;
+                // Provera da li su sve JM iste
+                string prvaJM = dt.Rows.Count > 0
+                    ? dt.Rows[0]["JM"]?.ToString().Trim()
+                    : "";
+
+                bool jmIste = dt.Rows.Count > 0 &&
+                              !string.IsNullOrWhiteSpace(prvaJM);
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (row["JM"]?.ToString() != prvaJM)
+                    string trenutnaJM = row["JM"]?.ToString().Trim();
+
+                    if (!string.Equals(
+                        trenutnaJM,
+                        prvaJM,
+                        StringComparison.OrdinalIgnoreCase))
                     {
                         jmIste = false;
                         break;
                     }
                 }
 
-                // Provera da li su Valute svuda iste
-                string prvaValuta = dt.Rows.Count > 0 ? dt.Rows[0]["Valuta"]?.ToString() : "";
-                bool valuteIste = true;
+                // Provera da li su sve valute iste
+                string prvaValuta = dt.Rows.Count > 0
+                    ? dt.Rows[0]["Valuta"]?.ToString().Trim()
+                    : "";
+
+                bool valuteIste = dt.Rows.Count > 0 &&
+                                  !string.IsNullOrWhiteSpace(prvaValuta);
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (row["Valuta"]?.ToString() != prvaValuta)
+                    string trenutnaValuta = row["Valuta"]?.ToString().Trim();
+
+                    if (!string.Equals(
+                        trenutnaValuta,
+                        prvaValuta,
+                        StringComparison.OrdinalIgnoreCase))
                     {
                         valuteIste = false;
                         break;
                     }
                 }
 
+                // Zbirne vrednosti
                 decimal sumaBruto = 0;
                 decimal sumaNeto = 0;
                 decimal sumaVrednost = 0;
@@ -1646,44 +1679,66 @@ namespace Saobracaj.Skladista_main
                     {
                         tekst = "TOTAL";
                     }
+
                     // Ispis JM samo ako su sve iste
                     else if (nazivKolone == "JM")
                     {
                         tekst = jmIste ? prvaJM : "";
                     }
-                    // Ispis Valute samo ako su sve iste
+
+                    // Ispis valute samo ako su sve iste
                     else if (nazivKolone == "Valuta")
                     {
                         tekst = valuteIste ? prvaValuta : "";
                     }
+
                     // Zbir za numeričke kolone
                     else if (koloneZaSabiranje.Contains(nazivKolone))
                     {
-                        decimal suma = 0;
+                        bool mozeSabiranje = true;
 
-                        foreach (DataRow red in dt.Rows)
+                        // Količina se sabira samo ako su sve JM iste
+                        if (nazivKolone == "Količina po JM" && !jmIste)
                         {
-                            if (red[nazivKolone] != DBNull.Value)
-                            {
-                                suma += Convert.ToDecimal(red[nazivKolone]);
-                            }
+                            mozeSabiranje = false;
                         }
 
-                        // Hvatanje vrednosti za kontrole
-                        if (nazivKolone == "Bruto")
-                            sumaBruto = suma;
-                        else if (nazivKolone == "Neto")
-                            sumaNeto = suma;
-                        else if (nazivKolone == "Vrednost")
-                            sumaVrednost = suma;
-                        else if (nazivKolone == "Broj Koleta")
-                            sumaKoleta = suma;
-                        else if (nazivKolone == "Broj Paleta") 
-                            sumaPaleta = suma;
-                        else if (nazivKolone == "Vrednost garancije") 
-                            sumaGarancija = suma;
+                        // Vrednost i vrednost garancije
+                        // sabiraju se samo ako su sve valute iste
+                        if ((nazivKolone == "Vrednost" ||
+                             nazivKolone == "Vrednost garancije") && !valuteIste)
+                        {
+                            mozeSabiranje = false;
+                        }
 
-                        tekst = suma.ToString("N2");
+                        if (mozeSabiranje)
+                        {
+                            decimal suma = 0;
+
+                            foreach (DataRow red in dt.Rows)
+                            {
+                                if (red[nazivKolone] != DBNull.Value)
+                                {
+                                    suma += Convert.ToDecimal(red[nazivKolone]);
+                                }
+                            }
+
+                            // Hvatanje vrednosti za kontrole
+                            if (nazivKolone == "Bruto")
+                                sumaBruto = suma;
+                            else if (nazivKolone == "Neto")
+                                sumaNeto = suma;
+                            else if (nazivKolone == "Vrednost")
+                                sumaVrednost = suma;
+                            else if (nazivKolone == "Broj Koleta")
+                                sumaKoleta = suma;
+                            else if (nazivKolone == "Broj Paleta")
+                                sumaPaleta = suma;
+                            else if (nazivKolone == "Vrednost garancije")
+                                sumaGarancija = suma;
+
+                            tekst = suma.ToString("N2");
+                        }
                     }
 
                     // Formiranje deskriptora za TOTAL ćeliju
@@ -1706,7 +1761,7 @@ namespace Saobracaj.Skladista_main
 
                 td.StackedHeaderRows.Add(totalRow);
 
-               
+                // 7. Stilizovanje zaglavlja kolona
                 var columnHeader =
                     gridGroupingControl1.Appearance.ColumnHeaderCell;
 
@@ -1762,12 +1817,16 @@ namespace Saobracaj.Skladista_main
 
                 // 9. Uključivanje prikaza TOTAL reda
                 gridGroupingControl1.TopLevelGroupOptions.ShowStackedHeaders = true;
+
+
                 // 10. Popunjavanje zbirnih vrednosti u kontrolama
                 txtBruto.Value = sumaBruto;
                 txtNeto.Value = sumaNeto;
-                txtVrednost.Value = sumaVrednost;
+                txtVrednost.Value = valuteIste ? sumaVrednost : 0;
                 txtKoleta.Value = sumaKoleta;
 
+
+                // 11. Popunjavanje zajedničke valute
                 if (valuteIste && !string.IsNullOrEmpty(prvaValuta))
                 {
                     cboValuta.Text = prvaValuta;
@@ -1777,17 +1836,293 @@ namespace Saobracaj.Skladista_main
                     cboValuta.SelectedIndex = -1;
                 }
 
+
+                // 12. Popunjavanje zajedničke jedinice mere
                 if (jmIste && !string.IsNullOrEmpty(prvaJM))
                 {
                     cboJM.Text = prvaJM;
                 }
                 else
                 {
-                   cboJM.SelectedIndex = -1;
+                    cboJM.SelectedIndex = -1;
                 }
             }
-
         }
+        //    private void VratiCarinskeStavke()
+        //    {
+        //        // 1. SQL upit
+        //        var select = "SELECT RNCarinskoStavke.ID," +
+        //                     "   RNCarinskoStavke.NHM AS [NHM naimenovanja], " +
+        //                     "   RNCarinskoStavke.Naimenovanje AS [Naimenovanje], " +
+        //                     "   RNCarinskoStavke.RB AS [RB Naimenovanja], " +
+        //                     "   RNCarinskoStavke.JM AS [JM], " +
+        //                     "   RNCarinskoStavke.Kolicina AS [Količina po JM], " +
+        //                     "   RNCarinskoStavke.Koleta AS [Broj Koleta], " +
+        //                     "   RNCarinskoStavke.Bruto AS [Bruto], " +
+        //                     "   RNCarinskoStavke.Neto AS [Neto], " +
+        //                     "   RNCarinskoStavke.Paleta AS [Broj Paleta], " +
+        //                     "   RNCarinskoStavke.VrstaPaleta AS [VrstaPaletaID], " +
+        //                     "   TipPalete.Naziv AS [Vrsta palete], " +
+        //                     "   RNCarinskoStavke.Vrednost AS [Vrednost], " +
+        //                     "   RNCarinskoStavke.Valuta AS [Valuta], " +
+        //                     "   RNCarinskoStavke.PDV AS [PDV], " +
+        //                     "   RNCarinskoStavke.Carina AS [Carinska stopa], " +
+        //                     "   RNCarinskoStavke.VrednostGarancije AS [Vrednost garancije], " +
+        //                     "   RNCarinskoStavke.Napomena AS [Napomena] " +
+        //                     "FROM RNCarinskoStavke " +
+        //                     "INNER JOIN MagacinskiPredmet ON RNCarinskoStavke.IDNadredjena = MagacinskiPredmet.ID " +
+        //                     "LEFT JOIN TipPalete ON RNCarinskoStavke.VrstaPaleta = TipPalete.ID  " +
+        //                     "WHERE MagacinskiPredmet.RN = " + Convert.ToInt32(txtID.Text);
+
+        //        var s_connection = Sifarnici.frmLogovanje.connectionString;
+
+        //        using (SqlConnection myConnection = new SqlConnection(s_connection))
+        //        {
+        //            var dataAdapter = new SqlDataAdapter(select, myConnection);
+
+        //            DataSet ds = new DataSet();
+        //            dataAdapter.Fill(ds);
+
+        //            DataTable dt = ds.Tables[0];
+
+        //            // 2. Punjenje grida i podešavanje izgleda
+        //            gridGroupingControl1.DataSource = dt;
+
+        //            this.gridGroupingControl1.ShowGroupDropArea = false;
+        //            this.gridGroupingControl1.TopLevelGroupOptions.ShowCaption = false;
+        //            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.One;
+        //            this.gridGroupingControl1.TableOptions.ShowRowHeader = false;
+
+        //            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("ID");
+        //            this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaPaletaID");
+
+        //            // 3. Podešavanje filtera
+        //            foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
+        //            {
+        //                column.AllowFilter = true;
+        //            }
+
+        //            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+        //            dynamicFilter.WireGrid(gridGroupingControl1);
+
+        //            GridExcelFilter gridExcelFilter = new GridExcelFilter();
+        //            gridExcelFilter.WireGrid(gridGroupingControl1);
+
+        //            // 4. Formiranje TOTAL reda (Stacked Headers)
+        //            var td = this.gridGroupingControl1.Table.TableDescriptor;
+        //            td.StackedHeaderRows.Clear();
+
+        //            // Kolone za koje vršimo sabiranje
+        ////            string[] koloneZaSabiranje =
+        ////            {
+        ////    "Količina po JM",
+        ////    "Broj Koleta",
+        ////    "Bruto",
+        ////    "Neto",
+        ////    "Broj Paleta",
+        ////    "Vrednost"
+        ////};
+
+        //            string[] koloneZaSabiranje =
+        //            {
+        //                "Količina po JM",
+        //                "Broj Koleta",
+        //                "Bruto",
+        //                "Neto",
+        //                "Broj Paleta",
+        //                "Vrednost",
+        //                "Vrednost garancije" // Dodato ako postoji u bazi
+        //            };
+
+        //            // Provera da li su JM svuda iste
+        //            string prvaJM = dt.Rows.Count > 0 ? dt.Rows[0]["JM"]?.ToString() : "";
+        //            bool jmIste = true;
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                if (row["JM"]?.ToString() != prvaJM)
+        //                {
+        //                    jmIste = false;
+        //                    break;
+        //                }
+        //            }
+
+        //            // Provera da li su Valute svuda iste
+        //            string prvaValuta = dt.Rows.Count > 0 ? dt.Rows[0]["Valuta"]?.ToString() : "";
+        //            bool valuteIste = true;
+
+        //            foreach (DataRow row in dt.Rows)
+        //            {
+        //                if (row["Valuta"]?.ToString() != prvaValuta)
+        //                {
+        //                    valuteIste = false;
+        //                    break;
+        //                }
+        //            }
+
+        //            decimal sumaBruto = 0;
+        //            decimal sumaNeto = 0;
+        //            decimal sumaVrednost = 0;
+        //            decimal sumaKoleta = 0;
+        //            decimal sumaPaleta = 0;
+        //            decimal sumaGarancija = 0;
+
+        //            // 5. Kreiranje zaglavlja za svaku kolonu
+        //            List<GridStackedHeaderDescriptor> totalHeaders =
+        //                new List<GridStackedHeaderDescriptor>();
+
+        //            foreach (DataColumn kolona in dt.Columns)
+        //            {
+        //                string nazivKolone = kolona.ColumnName;
+        //                string tekst = "";
+
+        //                // Oznaka TOTAL ispod kolone Naimenovanje
+        //                if (nazivKolone == "Naimenovanje")
+        //                {
+        //                    tekst = "TOTAL";
+        //                }
+        //                // Ispis JM samo ako su sve iste
+        //                else if (nazivKolone == "JM")
+        //                {
+        //                    tekst = jmIste ? prvaJM : "";
+        //                }
+        //                // Ispis Valute samo ako su sve iste
+        //                else if (nazivKolone == "Valuta")
+        //                {
+        //                    tekst = valuteIste ? prvaValuta : "";
+        //                }
+        //                // Zbir za numeričke kolone
+        //                else if (koloneZaSabiranje.Contains(nazivKolone))
+        //                {
+        //                    decimal suma = 0;
+
+        //                    foreach (DataRow red in dt.Rows)
+        //                    {
+        //                        if (red[nazivKolone] != DBNull.Value)
+        //                        {
+        //                            suma += Convert.ToDecimal(red[nazivKolone]);
+        //                        }
+        //                    }
+
+        //                    // Hvatanje vrednosti za kontrole
+        //                    if (nazivKolone == "Bruto")
+        //                        sumaBruto = suma;
+        //                    else if (nazivKolone == "Neto")
+        //                        sumaNeto = suma;
+        //                    else if (nazivKolone == "Vrednost")
+        //                        sumaVrednost = suma;
+        //                    else if (nazivKolone == "Broj Koleta")
+        //                        sumaKoleta = suma;
+        //                    else if (nazivKolone == "Broj Paleta") 
+        //                        sumaPaleta = suma;
+        //                    else if (nazivKolone == "Vrednost garancije") 
+        //                        sumaGarancija = suma;
+
+        //                    tekst = suma.ToString("N2");
+        //                }
+
+        //                // Formiranje deskriptora za TOTAL ćeliju
+        //                GridStackedHeaderDescriptor header =
+        //                    new GridStackedHeaderDescriptor(
+        //                        "Total_" + nazivKolone,
+        //                        tekst);
+
+        //                header.VisibleColumns.Add(
+        //                    new GridStackedHeaderVisibleColumnDescriptor(nazivKolone));
+
+        //                totalHeaders.Add(header);
+        //            }
+
+        //            // 6. Kreiranje TOTAL reda i dodavanje u tabelu
+        //            GridStackedHeaderRowDescriptor totalRow =
+        //                new GridStackedHeaderRowDescriptor(
+        //                    "TotalRow",
+        //                    totalHeaders.ToArray());
+
+        //            td.StackedHeaderRows.Add(totalRow);
+
+
+        //            var columnHeader =
+        //                gridGroupingControl1.Appearance.ColumnHeaderCell;
+
+        //            columnHeader.BackColor = Color.FromArgb(240, 240, 248);
+        //            columnHeader.TextColor = SystemColors.ControlText;
+        //            columnHeader.Font.FontStyle = FontStyle.Regular;
+
+        //            // Tanke ivice zaglavlja
+        //            columnHeader.Borders.Top =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(190, 190, 198),
+        //                    GridBorderWeight.Thin);
+
+        //            columnHeader.Borders.Bottom =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(190, 190, 198),
+        //                    GridBorderWeight.Thin);
+
+        //            columnHeader.Borders.Right =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(210, 210, 216),
+        //                    GridBorderWeight.Thin);
+
+        //            columnHeader.Themed = false;
+
+
+        //            // 8. Stilizovanje TOTAL reda
+        //            var totalAppearance =
+        //                gridGroupingControl1.Appearance.StackedHeaderCell;
+
+        //            totalAppearance.BackColor = Color.FromArgb(240, 240, 248);
+        //            totalAppearance.TextColor = SystemColors.ControlText;
+        //            totalAppearance.Font.FontStyle = FontStyle.Regular;
+
+        //            // Tanke ivice TOTAL reda
+        //            totalAppearance.Borders.Top =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(190, 190, 198),
+        //                    GridBorderWeight.Thin);
+
+        //            totalAppearance.Borders.Bottom =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(190, 190, 198),
+        //                    GridBorderWeight.Thin);
+
+        //            totalAppearance.Borders.Right =
+        //                new GridBorder(GridBorderStyle.Solid,
+        //                    Color.FromArgb(210, 210, 216),
+        //                    GridBorderWeight.Thin);
+
+        //            totalAppearance.Themed = false;
+
+
+        //            // 9. Uključivanje prikaza TOTAL reda
+        //            gridGroupingControl1.TopLevelGroupOptions.ShowStackedHeaders = true;
+        //            // 10. Popunjavanje zbirnih vrednosti u kontrolama
+        //            txtBruto.Value = sumaBruto;
+        //            txtNeto.Value = sumaNeto;
+        //            txtVrednost.Value = sumaVrednost;
+        //            txtKoleta.Value = sumaKoleta;
+
+        //            if (valuteIste && !string.IsNullOrEmpty(prvaValuta))
+        //            {
+        //                cboValuta.Text = prvaValuta;
+        //            }
+        //            else
+        //            {
+        //                cboValuta.SelectedIndex = -1;
+        //            }
+
+        //            if (jmIste && !string.IsNullOrEmpty(prvaJM))
+        //            {
+        //                cboJM.Text = prvaJM;
+        //            }
+        //            else
+        //            {
+        //               cboJM.SelectedIndex = -1;
+        //            }
+        //        }
+
+        //    }
         private void GridGroupingControl1_QueryCustomSummary(object sender, GridQueryCustomSummaryEventArgs e)
         {
             // Provera da li se računa JM ili Valuta preko SummaryDescriptor-a
