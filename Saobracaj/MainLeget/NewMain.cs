@@ -658,8 +658,23 @@ namespace Saobracaj
             BackColorKliknut(9);
         }
 
+        // Održavanje: magacin rezervnih delova, radni nalozi, plan održavanja (Saobracaj/Servis)
         private void btnOdrzavanje_Click(object sender, EventArgs e)
         {
+            string key = btnOdrzavanje.Text.Trim().ToLower();
+
+            if (!_mainMap.TryGetValue(key, out _currentMainId))
+            {
+                MessageBox.Show("Modul 'Održavanje' nije pronađen u bazi MainNovi.",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _karticaStack.Clear();
+
+            ShowChild(new Saobracaj.Servis.frmSERMeni(), true, true);
+            splitContainer3.Panel2.Show();
+            lblNaslov.Text = "ODRŽAVANJE";
             BackColorKliknut(10);
         }
 
