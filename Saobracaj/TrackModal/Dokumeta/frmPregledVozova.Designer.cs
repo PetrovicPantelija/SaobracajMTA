@@ -63,9 +63,9 @@
             this.toolStripButton2,
             this.toolStripButton4,
             this.toolStripButton5});
-            this.meniHeader.Location = new System.Drawing.Point(0, 455);
+            this.meniHeader.Location = new System.Drawing.Point(1, 485);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(1049, 27);
+            this.meniHeader.Size = new System.Drawing.Size(1041, 27);
             this.meniHeader.TabIndex = 129;
             this.meniHeader.Text = "Pošalji mail infrastrukturi";
             // 
@@ -149,9 +149,9 @@
             this.panelHeader.Controls.Add(this.mainHeder);
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Location = new System.Drawing.Point(1, 1);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1049, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1041, 33);
             this.panelHeader.TabIndex = 461;
             // 
             // mainHeder
@@ -159,7 +159,7 @@
             this.mainHeder.BackColor = System.Drawing.Color.Transparent;
             this.mainHeder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.mainHeder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.mainHeder.Location = new System.Drawing.Point(973, 0);
+            this.mainHeder.Location = new System.Drawing.Point(965, 0);
             this.mainHeder.Name = "mainHeder";
             this.mainHeder.Size = new System.Drawing.Size(74, 31);
             this.mainHeder.TabIndex = 7;
@@ -177,7 +177,7 @@
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(3, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(857, 31);
+            this.panel2.Size = new System.Drawing.Size(849, 31);
             this.panel2.TabIndex = 6;
             // 
             // button26
@@ -275,13 +275,13 @@
             this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 39);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(1, 40);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1048, 413);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1040, 442);
             this.gridGroupingControl1.TabIndex = 462;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -301,14 +301,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1049, 482);
+            this.ClientSize = new System.Drawing.Size(1043, 513);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.panelHeader);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1, 1);
             this.Name = "frmPregledVozova";
+            this.Padding = new System.Windows.Forms.Padding(1);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pregled vozova";
             this.Load += new System.EventHandler(this.PrijemVozomPregled_Load);
             this.meniHeader.ResumeLayout(false);

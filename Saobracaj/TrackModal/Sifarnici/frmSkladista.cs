@@ -45,7 +45,7 @@ namespace Testiranje.Sifarnici
                 this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
                 this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
                 this.ControlBox = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
                 this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
@@ -124,7 +124,7 @@ namespace Testiranje.Sifarnici
             {
                 panelHeader.Visible = false;
                 meniHeader.Visible = true;
-                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
@@ -171,17 +171,26 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpAktivna = 0;
 
-
-
-
             if (chkAktivna.Checked == true)
             { tmpAktivna = 1; };
+
+            if (txtSifra.Text == "" && status == false)
+                {
+                InsertSkladista ins = new InsertSkladista();
+                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text, Convert.ToInt32(cboGrupaPolja.SelectedValue), txtOznaka.Text, txtSKNaziv.Text, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(cboTipPalete.SelectedValue), tmpAktivna);
+                status = false;
+                }
+
+
+
+
             if (status == true)
             {
                 InsertSkladista ins = new InsertSkladista();
