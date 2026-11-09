@@ -1,5 +1,7 @@
-﻿using Saobracaj.Drumski;
+﻿using Microsoft.Office.Interop.Excel;
+using Saobracaj.Drumski;
 using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.Drumski;
 using Saobracaj.Uvoz;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -21,13 +23,20 @@ namespace Saobracaj.Izvoz
     {
         int nadredjeni = 0;
         int kontejner = 0;
+        int StavkaPorudzbineID = 0;
         public frmIzvozPregledKontejneraDrumskeUsluge(int idNadredjeni, int id)
         {
             InitializeComponent();
-            InitializeComponent();
             nadredjeni = idNadredjeni;
             kontejner = id;
+            RefreshGridPoPorudzbini();
+        }
+
+        public frmIzvozPregledKontejneraDrumskeUsluge(int Porudzbina)
+        {
+            InitializeComponent();
             RefreshGrid();
+            StavkaPorudzbineID = Porudzbina;
         }
 
         private void RefreshGrid()
@@ -39,19 +48,19 @@ namespace Saobracaj.Izvoz
             if (nadredjeni == 0)
             {
                 
-                select = "select IzvozVrstaManipulacije.ID as IKID,IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
+                select = "select IzvozVrstaManipulacije.ID as IKID,IzvozVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                      " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr  " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr, IzvozKonacna.Cirada , IzvozKonacna.Scenario " +
                     " from IzvozVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
-                    " inner join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
+                    " inner join IzvozKonacna on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
                     " left join RadniNalogDrumski on Izvoz.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                     " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
                     " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
-                    " where  Izvoz.ID = " + kontejner + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by IzvozVrstaManipulacije.ID";
+                    " where  IzvozKonacna.ID = " + kontejner + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by IzvozVrstaManipulacije.ID";
 
             }
             else
@@ -60,7 +69,71 @@ namespace Saobracaj.Izvoz
                     " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
                     " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
                     " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila," +
-                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr   " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,  IzvozKonacna.Cirada, IzvozKonacna.Scenario  " +
+                    " from IzvozKonacnaVrstaManipulacije " +
+                    " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+                    " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+                    " inner join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID  " +
+                    " left join RadniNalogDrumski on IzvozKonacna.ID = RadniNalogDrumski.KontejnerID and IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozKonacnaVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
+                    " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
+                    " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID" +
+                      " where IzvozKonacna.IDNadredjena = " + nadredjeni + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by IzvozKonacnaVrstaManipulacije.ID";
+            }
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+        }
+
+        private void RefreshGridPoPorudzbini()
+        {
+
+            var select = "";
+
+
+            if (nadredjeni == 0)
+            {
+
+                select = "select IzvozVrstaManipulacije.ID as IKID,IzvozVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
+                    " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+                     " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+                    " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila, " +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr, IzvozKonacna.Cirada, IzvozKonacna.Scenario  " +
+                    " from IzvozVrstaManipulacije " +
+                    " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
+                    " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
+                    " inner join IzvozKonacna on IzvozVrstaManipulacije.IDNadredjena = IzvozKonacna.ID" +
+                    " left join RadniNalogDrumski on IzvozKonacna.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
+                    " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
+                    " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
+                    " where  IzvozKonacna.ID = " + kontejner + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by IzvozVrstaManipulacije.ID";
+
+            }
+            else
+            {
+                select = "select  IzvozKonacnaVrstaManipulacije.ID as IKID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
+                    " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+                    " OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+                    " RadniNalogDrumski.NalogID, CONVERT(varchar,RadniNalogDrumski.DatumKreiranjaNaloga,104) AS KreiranjeNaloga, StatusVozila.Naziv AS StatusVozila," +
+                    " CONVERT(varchar,RadniNalogDrumski.DatumPromeneStatusa,104) AS PromenaStatusa, Automobili.RegBr,  IzvozKonacna.Cirada, IzvozKonacna.Scenario  " +
                     " from IzvozKonacnaVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
@@ -101,7 +174,7 @@ namespace Saobracaj.Izvoz
                 InsertUvoz isu = new InsertUvoz();
                 int uvoz = 0;
 
-                List<(int kontejnerID, int manipulacijaID, int IKID)> stavke = new List<(int, int, int)>();
+                List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Status)> stavke = new List<(int, int, int, int, int)>();
 
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
@@ -115,7 +188,9 @@ namespace Saobracaj.Izvoz
                     int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavke.Add((kontejnerID, manipulacijaID, IKID));
+                    int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    stavke.Add((kontejnerID, manipulacijaID, IKID, cirada, scenario));
                 }
 
                 isu.KreirajRadniNalogDrumski(stavke, uvoz);
@@ -127,7 +202,7 @@ namespace Saobracaj.Izvoz
         {
             int uvoz = 0;
             InsertUvoz isu = new InsertUvoz();
-            List<(int kontejnerID, int manipulacijaID, int IKID)> stavkeBezNaloga = new List<(int, int, int)>();
+            List<(int kontejnerID, int manipulacijaID, int IKID, int Cirada, int Scenario)> stavkeBezNaloga = new List<(int, int, int, int, int)>();
             HashSet<int> nalogIds = new HashSet<int>();
 
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
@@ -148,7 +223,9 @@ namespace Saobracaj.Izvoz
                     int IKID = Convert.ToInt32(selectedRecord.Record.GetValue("IKID"));
                     int kontejnerID = Convert.ToInt32(selectedRecord.Record.GetValue("KontejnerID"));
                     int manipulacijaID = Convert.ToInt32(selectedRecord.Record.GetValue("ManipulacijaID"));
-                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID));
+                    int cirada = Convert.ToInt32(selectedRecord.Record.GetValue("Cirada"));
+                    int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("Scenario"));
+                    stavkeBezNaloga.Add((kontejnerID, manipulacijaID, IKID,cirada, scenario ));
                 }
             }
 
@@ -165,13 +242,18 @@ namespace Saobracaj.Izvoz
 
                 DialogResult result = MessageBox.Show($"Da li želite da dodate stavke u postojeći nalog ID: {nalogId}?",
                                                       "Potvrda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+               
                 if (result == DialogResult.Yes)
                 {
                     isu.UpdateRadniNalogDrumski(stavkeBezNaloga, nalogId, uvoz);
                     RefreshGrid();
                 }
             }
+        }
+
+        private void frmIzvozPregledKontejneraDrumskeUsluge_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

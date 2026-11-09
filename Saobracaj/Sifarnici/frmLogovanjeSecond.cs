@@ -20,6 +20,7 @@ using Saobracaj.Pantheon_Export;
 using Microsoft.Identity.Client;
 using Saobracaj.Uvoz;
 using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.LegNew;
 
 namespace Saobracaj.Sifarnici
 {
@@ -125,8 +126,22 @@ namespace Saobracaj.Sifarnici
                 if (myString.TrimEnd() == cboKorisnik.Text)
                 {
                     frmLogovanje.user = myString;
-                    MainP mainf = new MainP(cboKorisnik.Text, 1);
-                    mainf.Show();
+                    if (checkBox1.Checked)
+                    {
+                        MainP mainf = new MainP(cboKorisnik.Text, 1);
+                        mainf.Show();
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        /*
+                        LogistikaIzvoza1 frm = new LogistikaIzvoza1();
+                        frm.Show(); Drumski1 frm = new Drumski1();
+                        frm.Show();
+                        */
+                        NewMain frm = new NewMain(cboKorisnik.Text.ToString().TrimEnd());
+                        frm.Show();
+                    }
+                    
                 }
                 else
                 {
@@ -140,6 +155,29 @@ namespace Saobracaj.Sifarnici
         {
             Administracija.frmSistemskaTabela sis = new Administracija.frmSistemskaTabela();
             sis.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+        
+        // C#
+        void DisposeOnUiThread(Control control)
+        {
+            if (control.IsDisposed) return;
+            if (control.InvokeRequired)
+            {
+                control.Invoke((Action)(() => {
+                    control.Dispose();
+                    GC.SuppressFinalize(control); // if it has a finalizer
+                }));
+            }
+            else
+            {
+                control.Dispose();
+                GC.SuppressFinalize(control);
+            }
         }
     }
 }

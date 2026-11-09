@@ -81,18 +81,20 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.button1 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.label20 = new System.Windows.Forms.Label();
             this.cboNalogodavac = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDokument
@@ -148,7 +150,7 @@
             this.dtpDatum.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.dtpDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatum.Location = new System.Drawing.Point(151, 62);
-            this.dtpDatum.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpDatum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDatum.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(142, 21);
@@ -173,7 +175,7 @@
             this.cboSkladisteID.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboSkladisteID.FormattingEnabled = true;
             this.cboSkladisteID.Location = new System.Drawing.Point(32, 130);
-            this.cboSkladisteID.Margin = new System.Windows.Forms.Padding(2);
+            this.cboSkladisteID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboSkladisteID.Name = "cboSkladisteID";
             this.cboSkladisteID.Size = new System.Drawing.Size(230, 23);
             this.cboSkladisteID.TabIndex = 484;
@@ -215,9 +217,9 @@
             this.label5.Location = new System.Drawing.Point(29, 113);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 15);
+            this.label5.Size = new System.Drawing.Size(35, 15);
             this.label5.TabIndex = 493;
-            this.label5.Text = "Skladiste";
+            this.label5.Text = "Polje";
             // 
             // label6
             // 
@@ -237,7 +239,7 @@
             this.cboMagacinskiBroj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboMagacinskiBroj.FormattingEnabled = true;
             this.cboMagacinskiBroj.Location = new System.Drawing.Point(306, 418);
-            this.cboMagacinskiBroj.Margin = new System.Windows.Forms.Padding(2);
+            this.cboMagacinskiBroj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboMagacinskiBroj.Name = "cboMagacinskiBroj";
             this.cboMagacinskiBroj.Size = new System.Drawing.Size(230, 23);
             this.cboMagacinskiBroj.TabIndex = 496;
@@ -249,7 +251,7 @@
             this.cboVrstaSkladista.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboVrstaSkladista.FormattingEnabled = true;
             this.cboVrstaSkladista.Location = new System.Drawing.Point(306, 359);
-            this.cboVrstaSkladista.Margin = new System.Windows.Forms.Padding(2);
+            this.cboVrstaSkladista.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboVrstaSkladista.Name = "cboVrstaSkladista";
             this.cboVrstaSkladista.Size = new System.Drawing.Size(230, 23);
             this.cboVrstaSkladista.TabIndex = 498;
@@ -261,9 +263,9 @@
             this.label7.Location = new System.Drawing.Point(303, 341);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 15);
+            this.label7.Size = new System.Drawing.Size(53, 15);
             this.label7.TabIndex = 497;
-            this.label7.Text = "Vrsta skladista";
+            this.label7.Text = "Lokacija";
             // 
             // cboSektor
             // 
@@ -271,8 +273,11 @@
             this.cboSektor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSektor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboSektor.FormattingEnabled = true;
+            this.cboSektor.Items.AddRange(new object[] {
+            "UVOZ",
+            "IZVOZ"});
             this.cboSektor.Location = new System.Drawing.Point(589, 249);
-            this.cboSektor.Margin = new System.Windows.Forms.Padding(2);
+            this.cboSektor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboSektor.Name = "cboSektor";
             this.cboSektor.Size = new System.Drawing.Size(230, 23);
             this.cboSektor.TabIndex = 500;
@@ -306,7 +311,7 @@
             this.cboVlasnik.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboVlasnik.FormattingEnabled = true;
             this.cboVlasnik.Location = new System.Drawing.Point(32, 249);
-            this.cboVlasnik.Margin = new System.Windows.Forms.Padding(2);
+            this.cboVlasnik.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboVlasnik.Name = "cboVlasnik";
             this.cboVlasnik.Size = new System.Drawing.Size(230, 23);
             this.cboVlasnik.TabIndex = 501;
@@ -329,7 +334,7 @@
             this.cboKorisnikRobe.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboKorisnikRobe.FormattingEnabled = true;
             this.cboKorisnikRobe.Location = new System.Drawing.Point(32, 305);
-            this.cboKorisnikRobe.Margin = new System.Windows.Forms.Padding(2);
+            this.cboKorisnikRobe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboKorisnikRobe.Name = "cboKorisnikRobe";
             this.cboKorisnikRobe.Size = new System.Drawing.Size(230, 23);
             this.cboKorisnikRobe.TabIndex = 503;
@@ -352,7 +357,7 @@
             this.cboPosiljalac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboPosiljalac.FormattingEnabled = true;
             this.cboPosiljalac.Location = new System.Drawing.Point(32, 358);
-            this.cboPosiljalac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboPosiljalac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboPosiljalac.Name = "cboPosiljalac";
             this.cboPosiljalac.Size = new System.Drawing.Size(230, 23);
             this.cboPosiljalac.TabIndex = 505;
@@ -375,7 +380,7 @@
             this.cboPrimalac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboPrimalac.FormattingEnabled = true;
             this.cboPrimalac.Location = new System.Drawing.Point(32, 417);
-            this.cboPrimalac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboPrimalac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboPrimalac.Name = "cboPrimalac";
             this.cboPrimalac.Size = new System.Drawing.Size(230, 23);
             this.cboPrimalac.TabIndex = 507;
@@ -439,7 +444,7 @@
             this.txtNapomena1.BackColor = System.Drawing.Color.White;
             this.txtNapomena1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNapomena1.Location = new System.Drawing.Point(583, 316);
-            this.txtNapomena1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomena1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNapomena1.Multiline = true;
             this.txtNapomena1.Name = "txtNapomena1";
             this.txtNapomena1.Size = new System.Drawing.Size(234, 152);
@@ -463,7 +468,7 @@
             this.txtNapomena2.BackColor = System.Drawing.Color.White;
             this.txtNapomena2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNapomena2.Location = new System.Drawing.Point(856, 316);
-            this.txtNapomena2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomena2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNapomena2.Multiline = true;
             this.txtNapomena2.Name = "txtNapomena2";
             this.txtNapomena2.Size = new System.Drawing.Size(234, 152);
@@ -493,7 +498,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(598, 113);
+            this.label18.Location = new System.Drawing.Point(590, 113);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(77, 15);
@@ -504,7 +509,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(598, 168);
+            this.label19.Location = new System.Drawing.Point(590, 171);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(101, 15);
@@ -517,7 +522,7 @@
             this.dtpOcekivanoVreme.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.dtpOcekivanoVreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpOcekivanoVreme.Location = new System.Drawing.Point(593, 189);
-            this.dtpOcekivanoVreme.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpOcekivanoVreme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpOcekivanoVreme.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpOcekivanoVreme.Name = "dtpOcekivanoVreme";
             this.dtpOcekivanoVreme.Size = new System.Drawing.Size(142, 21);
@@ -549,7 +554,7 @@
             this.panel2.Controls.Add(this.button23);
             this.panel2.Location = new System.Drawing.Point(114, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 31);
+            this.panel2.Size = new System.Drawing.Size(783, 31);
             this.panel2.TabIndex = 6;
             // 
             // button3
@@ -564,9 +569,9 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button3.Location = new System.Drawing.Point(385, 0);
+            this.button3.Location = new System.Drawing.Point(389, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(262, 31);
+            this.button3.Size = new System.Drawing.Size(273, 31);
             this.button3.TabIndex = 25;
             this.button3.Text = "Štampaj prijemnicu / Skladisni dokumet";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -585,7 +590,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(326, 0);
+            this.button4.Location = new System.Drawing.Point(330, 0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(59, 31);
             this.button4.TabIndex = 24;
@@ -608,7 +613,7 @@
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button2.Location = new System.Drawing.Point(257, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(69, 31);
+            this.button2.Size = new System.Drawing.Size(73, 31);
             this.button2.TabIndex = 22;
             this.button2.Text = "Proknjizi";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -684,6 +689,7 @@
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button21
             // 
@@ -714,26 +720,12 @@
             this.button22.Location = new System.Drawing.Point(10, 3);
             this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
             this.button22.Name = "button22";
-            this.button22.Padding = new System.Windows.Forms.Padding(9);
+            this.button22.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 484);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1268, 289);
-            this.dataGridView1.TabIndex = 524;
             // 
             // sfDataGrid1
             // 
@@ -742,6 +734,7 @@
             this.sfDataGrid1.AllowDeleting = true;
             this.sfDataGrid1.Location = new System.Drawing.Point(951, 150);
             this.sfDataGrid1.Name = "sfDataGrid1";
+            this.sfDataGrid1.PreviewRowHeight = 35;
             this.sfDataGrid1.Size = new System.Drawing.Size(344, 59);
             this.sfDataGrid1.TabIndex = 525;
             this.sfDataGrid1.Text = "sfDataGrid1";
@@ -762,6 +755,7 @@
             this.button1.TabIndex = 16;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // commandBarController1
@@ -789,21 +783,46 @@
             this.cboNalogodavac.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboNalogodavac.FormattingEnabled = true;
             this.cboNalogodavac.Location = new System.Drawing.Point(306, 130);
-            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNalogodavac.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboNalogodavac.Name = "cboNalogodavac";
             this.cboNalogodavac.Size = new System.Drawing.Size(230, 23);
             this.cboNalogodavac.TabIndex = 526;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Location = new System.Drawing.Point(28, 484);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1268, 289);
+            this.panel1.TabIndex = 528;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 289);
+            this.dataGridView1.TabIndex = 567;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowLeave);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // frmPrijemnicaCarinsko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 776);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.cboNalogodavac);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.sfDataGrid1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.dtpOcekivanoVreme);
@@ -852,9 +871,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -910,7 +930,6 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -919,5 +938,7 @@
         private System.Windows.Forms.ComboBox cboNalogodavac;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

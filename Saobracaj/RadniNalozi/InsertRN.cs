@@ -173,7 +173,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void PotvrdiUradjenPretovarCirade(int NalogID, string Korisnik)
+        public void PotvrdiUradjenPretovarCirade(int NalogID, string Korisnik, int Uvoz)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -187,6 +187,7 @@ namespace Saobracaj.RadniNalozi
             nalogid.Value = NalogID;
             cmd.Parameters.Add(nalogid);
 
+
             SqlParameter kor = new SqlParameter();
             kor.ParameterName = "@Korisnik";
             kor.SqlDbType = SqlDbType.NVarChar;
@@ -194,6 +195,14 @@ namespace Saobracaj.RadniNalozi
             kor.Direction = ParameterDirection.Input;
             kor.Value = Korisnik;
             cmd.Parameters.Add(kor);
+
+
+            SqlParameter uvoz = new SqlParameter();
+            uvoz.ParameterName = "@Uvoz";
+            uvoz.SqlDbType = SqlDbType.Int;
+            uvoz.Direction = ParameterDirection.Input;
+            uvoz.Value = Uvoz;
+            cmd.Parameters.Add(uvoz);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -302,6 +311,233 @@ namespace Saobracaj.RadniNalozi
             rn.Direction = ParameterDirection.Input;
             rn.Value = RN;
             cmd.Parameters.Add(rn);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
+        public void UpdateRN4PotrebanCIR(int NalogID, string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN4PotrebanCIR";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+          
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@NalogID";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = NalogID;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
+        public void UpdateRN6PotrebanCIR(int NalogID, string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN6PotrebanCIR";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@NalogID";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = NalogID;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+        public void UpdateRN4UradjeneVizuelni(int NalogID, string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN4UradjeneVizuelni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = NalogID;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+        
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
+        public void UpdateRN6UradjeneVizuelni(int NalogID, string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN6UradjeneVizuelni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = NalogID;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 30;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -2030,6 +2266,63 @@ namespace Saobracaj.RadniNalozi
             izuvoza.Direction = ParameterDirection.Input;
             izuvoza.Value = IzUvoza;
             cmd.Parameters.Add(izuvoza);
+
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdRNPrijemPlatformeKamPusti(int NalogID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "updRN4PrPlatformeKamIzvozPusti";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+           
+
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
+
+
+ 
 
 
 

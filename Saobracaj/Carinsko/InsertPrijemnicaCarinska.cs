@@ -450,13 +450,7 @@ string TransportNo, DateTime OcekivanoVreme, int Nalogodavac)
             myCommand.Parameters.Add(parameter14);
 
 
-            SqlParameter parameter15 = new SqlParameter();
-            parameter15.ParameterName = "@Prevoznik";
-            parameter15.SqlDbType = SqlDbType.NVarChar;
-            parameter15.Size = 50;
-            parameter15.Direction = ParameterDirection.Input;
-            parameter15.Value = Prevoznik;
-            myCommand.Parameters.Add(parameter15);
+      
 
 
             SqlParameter parameter16 = new SqlParameter();

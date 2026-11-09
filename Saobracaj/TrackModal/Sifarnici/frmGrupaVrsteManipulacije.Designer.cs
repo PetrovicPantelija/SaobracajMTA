@@ -122,7 +122,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             // txtNaziv
             // 
             this.txtNaziv.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNaziv.Location = new System.Drawing.Point(21, 121);
+            this.txtNaziv.Location = new System.Drawing.Point(21, 129);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(233, 22);
             this.txtNaziv.TabIndex = 134;
@@ -132,7 +132,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(18, 103);
+            this.label2.Location = new System.Drawing.Point(18, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 135;
@@ -141,7 +141,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(21, 75);
+            this.txtSifra.Location = new System.Drawing.Point(21, 83);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(94, 22);
             this.txtSifra.TabIndex = 132;
@@ -151,7 +151,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(17, 57);
+            this.label1.Location = new System.Drawing.Point(17, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 133;

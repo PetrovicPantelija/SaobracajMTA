@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Saobracaj.MainLeget.Pretovari
+{
+    public partial class PretovariPrijem : Form
+    {
+        public PretovariPrijem()
+        {
+            InitializeComponent();
+        }
+
+        private void btnPretovarPrijem_Click(object sender, EventArgs e)
+        {
+
+            frmPretovarPrijem pl = new frmPretovarPrijem();
+            pl.Show();
+        }
+    }
+}

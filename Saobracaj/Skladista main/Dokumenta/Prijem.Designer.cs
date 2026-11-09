@@ -1,0 +1,1497 @@
+﻿namespace Saobracaj.Skladista_main.Dokumenta
+{
+    partial class Prijem
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.novoVremePrijem = new System.Windows.Forms.DateTimePicker();
+            this.planiranoVremePrijem = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtKontejnerPrijem = new System.Windows.Forms.TextBox();
+            this.txtAdresaPrijem = new System.Windows.Forms.TextBox();
+            this.txtKontaktOsobaPrijem = new System.Windows.Forms.TextBox();
+            this.txtKontakOsobaSpediterPrijem = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.cboCarinarnicaPrijem = new System.Windows.Forms.ComboBox();
+            this.cboMestoIstovaraPrijem = new System.Windows.Forms.ComboBox();
+            this.cboSpediterPrijem = new System.Windows.Forms.ComboBox();
+            this.dgvUsluge = new System.Windows.Forms.DataGridView();
+            this.panelPrijem2 = new System.Windows.Forms.Panel();
+            this.btnIzbaci = new System.Windows.Forms.Button();
+            this.txtOpisPosla = new System.Windows.Forms.TextBox();
+            this.cboCarinskiPostupak = new System.Windows.Forms.ComboBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.btnDodaj = new System.Windows.Forms.Button();
+            this.cboDodatneUsluge = new System.Windows.Forms.ComboBox();
+            this.txtTelefonPrijem = new System.Windows.Forms.TextBox();
+            this.btnPrijemnica = new System.Windows.Forms.Button();
+            this.btnFormiranRN = new System.Windows.Forms.Button();
+            this.btnSaglasnost = new System.Windows.Forms.Button();
+            this.btnIspravka = new System.Windows.Forms.Button();
+            this.btnStorno = new System.Windows.Forms.Button();
+            this.panelPrijem1 = new System.Windows.Forms.Panel();
+            this.txtLKPrijem = new System.Windows.Forms.TextBox();
+            this.txtVozacPrijem = new System.Windows.Forms.TextBox();
+            this.txtVoziloPrijem = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cboVrstaKamionaPrijem = new System.Windows.Forms.ComboBox();
+            this.cboTipTransportaPrijem = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnSnimi = new System.Windows.Forms.Button();
+            this.txtVrstaRobe = new System.Windows.Forms.TextBox();
+            this.txtPIB = new System.Windows.Forms.TextBox();
+            this.cboADR = new System.Windows.Forms.ComboBox();
+            this.txtNacinPakovanja = new System.Windows.Forms.TextBox();
+            this.cboNalogodavac = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboVlasnikRobe = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnMagacinskiBroj = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboMagacinskiBroj = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.txtPosebniUslovi = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnMbNazad = new System.Windows.Forms.Button();
+            this.btnMbSave = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtMbNaziv = new System.Windows.Forms.TextBox();
+            this.txtMbID = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.panelMP = new System.Windows.Forms.Panel();
+            this.btnNazad = new System.Windows.Forms.Button();
+            this.btnUpdateMP = new System.Windows.Forms.Button();
+            this.btnNoviMP = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cboSklad = new System.Windows.Forms.ComboBox();
+            this.cboValutaMP = new System.Windows.Forms.ComboBox();
+            this.cboTipSkladista = new System.Windows.Forms.ComboBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtOpisRobe = new System.Windows.Forms.TextBox();
+            this.txtSpedicija = new System.Windows.Forms.TextBox();
+            this.txtVrednost = new System.Windows.Forms.TextBox();
+            this.txtBruto = new System.Windows.Forms.TextBox();
+            this.txtNeto = new System.Windows.Forms.TextBox();
+            this.txtKoleta = new System.Windows.Forms.TextBox();
+            this.txtVrstaCP = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtIDMP = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.txtBrojJCI = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.txtCI = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsluge)).BeginInit();
+            this.panelPrijem2.SuspendLayout();
+            this.panelPrijem1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panelMP.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // novoVremePrijem
+            // 
+            this.novoVremePrijem.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.novoVremePrijem.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.novoVremePrijem.Location = new System.Drawing.Point(180, 139);
+            this.novoVremePrijem.Name = "novoVremePrijem";
+            this.novoVremePrijem.Size = new System.Drawing.Size(123, 20);
+            this.novoVremePrijem.TabIndex = 5;
+            // 
+            // planiranoVremePrijem
+            // 
+            this.planiranoVremePrijem.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.planiranoVremePrijem.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.planiranoVremePrijem.Location = new System.Drawing.Point(12, 139);
+            this.planiranoVremePrijem.Name = "planiranoVremePrijem";
+            this.planiranoVremePrijem.Size = new System.Drawing.Size(123, 20);
+            this.planiranoVremePrijem.TabIndex = 5;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label22.Location = new System.Drawing.Point(323, 62);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(98, 13);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "KONTAKT OSOBA";
+            // 
+            // txtKontejnerPrijem
+            // 
+            this.txtKontejnerPrijem.Location = new System.Drawing.Point(326, 139);
+            this.txtKontejnerPrijem.Name = "txtKontejnerPrijem";
+            this.txtKontejnerPrijem.Size = new System.Drawing.Size(124, 20);
+            this.txtKontejnerPrijem.TabIndex = 4;
+            // 
+            // txtAdresaPrijem
+            // 
+            this.txtAdresaPrijem.Location = new System.Drawing.Point(180, 79);
+            this.txtAdresaPrijem.Name = "txtAdresaPrijem";
+            this.txtAdresaPrijem.Size = new System.Drawing.Size(124, 20);
+            this.txtAdresaPrijem.TabIndex = 4;
+            // 
+            // txtKontaktOsobaPrijem
+            // 
+            this.txtKontaktOsobaPrijem.Location = new System.Drawing.Point(326, 78);
+            this.txtKontaktOsobaPrijem.Name = "txtKontaktOsobaPrijem";
+            this.txtKontaktOsobaPrijem.Size = new System.Drawing.Size(124, 20);
+            this.txtKontaktOsobaPrijem.TabIndex = 4;
+            // 
+            // txtKontakOsobaSpediterPrijem
+            // 
+            this.txtKontakOsobaSpediterPrijem.Location = new System.Drawing.Point(326, 30);
+            this.txtKontakOsobaSpediterPrijem.Name = "txtKontakOsobaSpediterPrijem";
+            this.txtKontakOsobaSpediterPrijem.Size = new System.Drawing.Size(124, 20);
+            this.txtKontakOsobaSpediterPrijem.TabIndex = 4;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label23.Location = new System.Drawing.Point(177, 62);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(51, 13);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "ADRESA";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label24.Location = new System.Drawing.Point(177, 108);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(96, 26);
+            this.label24.TabIndex = 0;
+            this.label24.Text = "NOVI PLANIRANI \r\nDATUM/VREME";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label28.Location = new System.Drawing.Point(9, 108);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(89, 26);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "PLANIRANI \r\nDATUM/VREME";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label29.Location = new System.Drawing.Point(323, 121);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(110, 13);
+            this.label29.TabIndex = 0;
+            this.label29.Text = "BROJ KONTEJNERA";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label30.Location = new System.Drawing.Point(9, 62);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(145, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "MESTO ISTOVARA CIRADE";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label31.Location = new System.Drawing.Point(323, 12);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(98, 13);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "KONTAKT OSOBA";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label32.Location = new System.Drawing.Point(177, 12);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(61, 13);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "ŠPEDITER";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label33.Location = new System.Drawing.Point(9, 12);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(147, 13);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "ODREDIŠNA CARINARNICA";
+            // 
+            // cboCarinarnicaPrijem
+            // 
+            this.cboCarinarnicaPrijem.FormattingEnabled = true;
+            this.cboCarinarnicaPrijem.Location = new System.Drawing.Point(12, 29);
+            this.cboCarinarnicaPrijem.Name = "cboCarinarnicaPrijem";
+            this.cboCarinarnicaPrijem.Size = new System.Drawing.Size(124, 21);
+            this.cboCarinarnicaPrijem.TabIndex = 3;
+            // 
+            // cboMestoIstovaraPrijem
+            // 
+            this.cboMestoIstovaraPrijem.FormattingEnabled = true;
+            this.cboMestoIstovaraPrijem.Location = new System.Drawing.Point(12, 78);
+            this.cboMestoIstovaraPrijem.Name = "cboMestoIstovaraPrijem";
+            this.cboMestoIstovaraPrijem.Size = new System.Drawing.Size(124, 21);
+            this.cboMestoIstovaraPrijem.TabIndex = 3;
+            // 
+            // cboSpediterPrijem
+            // 
+            this.cboSpediterPrijem.FormattingEnabled = true;
+            this.cboSpediterPrijem.Location = new System.Drawing.Point(180, 29);
+            this.cboSpediterPrijem.Name = "cboSpediterPrijem";
+            this.cboSpediterPrijem.Size = new System.Drawing.Size(124, 21);
+            this.cboSpediterPrijem.TabIndex = 3;
+            // 
+            // dgvUsluge
+            // 
+            this.dgvUsluge.AllowUserToAddRows = false;
+            this.dgvUsluge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsluge.Location = new System.Drawing.Point(6, 137);
+            this.dgvUsluge.Name = "dgvUsluge";
+            this.dgvUsluge.Size = new System.Drawing.Size(183, 199);
+            this.dgvUsluge.TabIndex = 3;
+            // 
+            // panelPrijem2
+            // 
+            this.panelPrijem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelPrijem2.Controls.Add(this.novoVremePrijem);
+            this.panelPrijem2.Controls.Add(this.planiranoVremePrijem);
+            this.panelPrijem2.Controls.Add(this.label22);
+            this.panelPrijem2.Controls.Add(this.txtKontejnerPrijem);
+            this.panelPrijem2.Controls.Add(this.txtAdresaPrijem);
+            this.panelPrijem2.Controls.Add(this.txtKontaktOsobaPrijem);
+            this.panelPrijem2.Controls.Add(this.txtKontakOsobaSpediterPrijem);
+            this.panelPrijem2.Controls.Add(this.label23);
+            this.panelPrijem2.Controls.Add(this.label24);
+            this.panelPrijem2.Controls.Add(this.label28);
+            this.panelPrijem2.Controls.Add(this.label29);
+            this.panelPrijem2.Controls.Add(this.label30);
+            this.panelPrijem2.Controls.Add(this.label31);
+            this.panelPrijem2.Controls.Add(this.label32);
+            this.panelPrijem2.Controls.Add(this.label33);
+            this.panelPrijem2.Controls.Add(this.cboCarinarnicaPrijem);
+            this.panelPrijem2.Controls.Add(this.cboMestoIstovaraPrijem);
+            this.panelPrijem2.Controls.Add(this.cboSpediterPrijem);
+            this.panelPrijem2.Location = new System.Drawing.Point(491, 369);
+            this.panelPrijem2.Name = "panelPrijem2";
+            this.panelPrijem2.Size = new System.Drawing.Size(466, 196);
+            this.panelPrijem2.TabIndex = 517;
+            // 
+            // btnIzbaci
+            // 
+            this.btnIzbaci.Location = new System.Drawing.Point(111, 108);
+            this.btnIzbaci.Name = "btnIzbaci";
+            this.btnIzbaci.Size = new System.Drawing.Size(75, 23);
+            this.btnIzbaci.TabIndex = 4;
+            this.btnIzbaci.Text = "Izbaci";
+            this.btnIzbaci.UseVisualStyleBackColor = true;
+            this.btnIzbaci.Click += new System.EventHandler(this.btnIzbaci_Click);
+            // 
+            // txtOpisPosla
+            // 
+            this.txtOpisPosla.Location = new System.Drawing.Point(881, 90);
+            this.txtOpisPosla.Multiline = true;
+            this.txtOpisPosla.Name = "txtOpisPosla";
+            this.txtOpisPosla.Size = new System.Drawing.Size(282, 73);
+            this.txtOpisPosla.TabIndex = 508;
+            // 
+            // cboCarinskiPostupak
+            // 
+            this.cboCarinskiPostupak.FormattingEnabled = true;
+            this.cboCarinskiPostupak.Location = new System.Drawing.Point(614, 141);
+            this.cboCarinskiPostupak.Name = "cboCarinskiPostupak";
+            this.cboCarinskiPostupak.Size = new System.Drawing.Size(237, 21);
+            this.cboCarinskiPostupak.TabIndex = 511;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label44.Location = new System.Drawing.Point(878, 73);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(70, 13);
+            this.label44.TabIndex = 503;
+            this.label44.Text = "OPIS POSLA";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label43.Location = new System.Drawing.Point(611, 125);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(118, 13);
+            this.label43.TabIndex = 504;
+            this.label43.Text = "CARINSKI POSTUPAK";
+            // 
+            // btnDodaj
+            // 
+            this.btnDodaj.Location = new System.Drawing.Point(6, 108);
+            this.btnDodaj.Name = "btnDodaj";
+            this.btnDodaj.Size = new System.Drawing.Size(75, 23);
+            this.btnDodaj.TabIndex = 4;
+            this.btnDodaj.Text = "Dodaj";
+            this.btnDodaj.UseVisualStyleBackColor = true;
+            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
+            // 
+            // cboDodatneUsluge
+            // 
+            this.cboDodatneUsluge.FormattingEnabled = true;
+            this.cboDodatneUsluge.Location = new System.Drawing.Point(6, 80);
+            this.cboDodatneUsluge.Name = "cboDodatneUsluge";
+            this.cboDodatneUsluge.Size = new System.Drawing.Size(180, 21);
+            this.cboDodatneUsluge.TabIndex = 2;
+            // 
+            // txtTelefonPrijem
+            // 
+            this.txtTelefonPrijem.Location = new System.Drawing.Point(335, 86);
+            this.txtTelefonPrijem.Name = "txtTelefonPrijem";
+            this.txtTelefonPrijem.Size = new System.Drawing.Size(121, 20);
+            this.txtTelefonPrijem.TabIndex = 4;
+            // 
+            // btnPrijemnica
+            // 
+            this.btnPrijemnica.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnPrijemnica.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnPrijemnica.Location = new System.Drawing.Point(1174, 517);
+            this.btnPrijemnica.Name = "btnPrijemnica";
+            this.btnPrijemnica.Size = new System.Drawing.Size(92, 34);
+            this.btnPrijemnica.TabIndex = 523;
+            this.btnPrijemnica.Text = "IDI NA PRIJEMNICU";
+            this.btnPrijemnica.UseVisualStyleBackColor = false;
+            this.btnPrijemnica.Click += new System.EventHandler(this.btnPrijemnica_Click);
+            // 
+            // btnFormiranRN
+            // 
+            this.btnFormiranRN.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnFormiranRN.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnFormiranRN.Location = new System.Drawing.Point(1174, 457);
+            this.btnFormiranRN.Name = "btnFormiranRN";
+            this.btnFormiranRN.Size = new System.Drawing.Size(92, 34);
+            this.btnFormiranRN.TabIndex = 522;
+            this.btnFormiranRN.Text = "FORMIRAN RN";
+            this.btnFormiranRN.UseVisualStyleBackColor = false;
+            this.btnFormiranRN.Visible = false;
+            this.btnFormiranRN.Click += new System.EventHandler(this.btnFormiranRN_Click);
+            // 
+            // btnSaglasnost
+            // 
+            this.btnSaglasnost.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSaglasnost.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSaglasnost.Location = new System.Drawing.Point(1174, 403);
+            this.btnSaglasnost.Name = "btnSaglasnost";
+            this.btnSaglasnost.Size = new System.Drawing.Size(92, 34);
+            this.btnSaglasnost.TabIndex = 521;
+            this.btnSaglasnost.Text = "SAGLASNOST";
+            this.btnSaglasnost.UseVisualStyleBackColor = false;
+            this.btnSaglasnost.Visible = false;
+            // 
+            // btnIspravka
+            // 
+            this.btnIspravka.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnIspravka.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnIspravka.Location = new System.Drawing.Point(1174, 347);
+            this.btnIspravka.Name = "btnIspravka";
+            this.btnIspravka.Size = new System.Drawing.Size(92, 34);
+            this.btnIspravka.TabIndex = 520;
+            this.btnIspravka.Text = "ISPRAVKA";
+            this.btnIspravka.UseVisualStyleBackColor = false;
+            this.btnIspravka.Visible = false;
+            this.btnIspravka.Click += new System.EventHandler(this.btnIspravka_Click);
+            // 
+            // btnStorno
+            // 
+            this.btnStorno.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnStorno.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnStorno.Location = new System.Drawing.Point(1174, 293);
+            this.btnStorno.Name = "btnStorno";
+            this.btnStorno.Size = new System.Drawing.Size(92, 34);
+            this.btnStorno.TabIndex = 519;
+            this.btnStorno.Text = "STORNO";
+            this.btnStorno.UseVisualStyleBackColor = false;
+            this.btnStorno.Visible = false;
+            this.btnStorno.Click += new System.EventHandler(this.btnStorno_Click);
+            // 
+            // panelPrijem1
+            // 
+            this.panelPrijem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelPrijem1.Controls.Add(this.txtTelefonPrijem);
+            this.panelPrijem1.Controls.Add(this.txtLKPrijem);
+            this.panelPrijem1.Controls.Add(this.txtVozacPrijem);
+            this.panelPrijem1.Controls.Add(this.txtVoziloPrijem);
+            this.panelPrijem1.Controls.Add(this.label16);
+            this.panelPrijem1.Controls.Add(this.label15);
+            this.panelPrijem1.Controls.Add(this.cboVrstaKamionaPrijem);
+            this.panelPrijem1.Controls.Add(this.cboTipTransportaPrijem);
+            this.panelPrijem1.Controls.Add(this.label14);
+            this.panelPrijem1.Controls.Add(this.label13);
+            this.panelPrijem1.Controls.Add(this.label12);
+            this.panelPrijem1.Controls.Add(this.label11);
+            this.panelPrijem1.Location = new System.Drawing.Point(491, 236);
+            this.panelPrijem1.Name = "panelPrijem1";
+            this.panelPrijem1.Size = new System.Drawing.Size(466, 127);
+            this.panelPrijem1.TabIndex = 514;
+            // 
+            // txtLKPrijem
+            // 
+            this.txtLKPrijem.Location = new System.Drawing.Point(193, 86);
+            this.txtLKPrijem.Name = "txtLKPrijem";
+            this.txtLKPrijem.Size = new System.Drawing.Size(123, 20);
+            this.txtLKPrijem.TabIndex = 4;
+            // 
+            // txtVozacPrijem
+            // 
+            this.txtVozacPrijem.Location = new System.Drawing.Point(3, 86);
+            this.txtVozacPrijem.Name = "txtVozacPrijem";
+            this.txtVozacPrijem.Size = new System.Drawing.Size(124, 20);
+            this.txtVozacPrijem.TabIndex = 4;
+            // 
+            // txtVoziloPrijem
+            // 
+            this.txtVoziloPrijem.Location = new System.Drawing.Point(335, 30);
+            this.txtVoziloPrijem.Name = "txtVoziloPrijem";
+            this.txtVoziloPrijem.Size = new System.Drawing.Size(121, 20);
+            this.txtVoziloPrijem.TabIndex = 4;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label16.Location = new System.Drawing.Point(332, 70);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(94, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "BROJ TELEFONA";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label15.Location = new System.Drawing.Point(192, 70);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "BROJ LK";
+            // 
+            // cboVrstaKamionaPrijem
+            // 
+            this.cboVrstaKamionaPrijem.FormattingEnabled = true;
+            this.cboVrstaKamionaPrijem.Location = new System.Drawing.Point(193, 29);
+            this.cboVrstaKamionaPrijem.Name = "cboVrstaKamionaPrijem";
+            this.cboVrstaKamionaPrijem.Size = new System.Drawing.Size(123, 21);
+            this.cboVrstaKamionaPrijem.TabIndex = 3;
+            // 
+            // cboTipTransportaPrijem
+            // 
+            this.cboTipTransportaPrijem.FormattingEnabled = true;
+            this.cboTipTransportaPrijem.Location = new System.Drawing.Point(3, 30);
+            this.cboTipTransportaPrijem.Name = "cboTipTransportaPrijem";
+            this.cboTipTransportaPrijem.Size = new System.Drawing.Size(124, 21);
+            this.cboTipTransportaPrijem.TabIndex = 3;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label14.Location = new System.Drawing.Point(3, 70);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(43, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "VOZAČ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label13.Location = new System.Drawing.Point(332, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "VOZILO";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label12.Location = new System.Drawing.Point(192, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(95, 13);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "VRSTA KAMIONA";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label11.Location = new System.Drawing.Point(3, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(175, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "VRSTA PREVOZNOG SREDSTVA";
+            // 
+            // btnSnimi
+            // 
+            this.btnSnimi.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnSnimi.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSnimi.Location = new System.Drawing.Point(1174, 236);
+            this.btnSnimi.Name = "btnSnimi";
+            this.btnSnimi.Size = new System.Drawing.Size(92, 34);
+            this.btnSnimi.TabIndex = 524;
+            this.btnSnimi.Text = "SNIMI";
+            this.btnSnimi.UseVisualStyleBackColor = false;
+            this.btnSnimi.Visible = false;
+            this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
+            // 
+            // txtVrstaRobe
+            // 
+            this.txtVrstaRobe.Location = new System.Drawing.Point(241, 27);
+            this.txtVrstaRobe.Name = "txtVrstaRobe";
+            this.txtVrstaRobe.Size = new System.Drawing.Size(176, 20);
+            this.txtVrstaRobe.TabIndex = 6;
+            // 
+            // txtPIB
+            // 
+            this.txtPIB.Location = new System.Drawing.Point(760, 26);
+            this.txtPIB.Name = "txtPIB";
+            this.txtPIB.Size = new System.Drawing.Size(121, 20);
+            this.txtPIB.TabIndex = 4;
+            // 
+            // cboADR
+            // 
+            this.cboADR.FormattingEnabled = true;
+            this.cboADR.Location = new System.Drawing.Point(595, 26);
+            this.cboADR.Name = "cboADR";
+            this.cboADR.Size = new System.Drawing.Size(148, 21);
+            this.cboADR.TabIndex = 3;
+            // 
+            // txtNacinPakovanja
+            // 
+            this.txtNacinPakovanja.Location = new System.Drawing.Point(431, 27);
+            this.txtNacinPakovanja.Name = "txtNacinPakovanja";
+            this.txtNacinPakovanja.Size = new System.Drawing.Size(141, 20);
+            this.txtNacinPakovanja.TabIndex = 2;
+            // 
+            // cboNalogodavac
+            // 
+            this.cboNalogodavac.FormattingEnabled = true;
+            this.cboNalogodavac.Location = new System.Drawing.Point(354, 142);
+            this.cboNalogodavac.Name = "cboNalogodavac";
+            this.cboNalogodavac.Size = new System.Drawing.Size(237, 21);
+            this.cboNalogodavac.TabIndex = 512;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label4.Location = new System.Drawing.Point(351, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 13);
+            this.label4.TabIndex = 507;
+            this.label4.Text = "NALOGODAVAC ZA USLUGE";
+            // 
+            // cboVlasnikRobe
+            // 
+            this.cboVlasnikRobe.FormattingEnabled = true;
+            this.cboVlasnikRobe.Location = new System.Drawing.Point(6, 27);
+            this.cboVlasnikRobe.Name = "cboVlasnikRobe";
+            this.cboVlasnikRobe.Size = new System.Drawing.Size(210, 21);
+            this.cboVlasnikRobe.TabIndex = 1;
+            this.cboVlasnikRobe.SelectionChangeCommitted += new System.EventHandler(this.cboVlasnikRobe_SelectionChangeCommitted);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label10.Location = new System.Drawing.Point(808, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(24, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "PIB";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label8.Location = new System.Drawing.Point(613, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "OSTALA SKLADIŠTA";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label7.Location = new System.Drawing.Point(441, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "NAČIN PAKOVANJA";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label6.Location = new System.Drawing.Point(238, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "OPIS ROBE";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(3, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "VLASNIK ROBE";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(19, 89);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(100, 20);
+            this.txtID.TabIndex = 509;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(19, 142);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(124, 20);
+            this.textBox1.TabIndex = 526;
+            // 
+            // btnMagacinskiBroj
+            // 
+            this.btnMagacinskiBroj.Location = new System.Drawing.Point(279, 139);
+            this.btnMagacinskiBroj.Name = "btnMagacinskiBroj";
+            this.btnMagacinskiBroj.Size = new System.Drawing.Size(38, 23);
+            this.btnMagacinskiBroj.TabIndex = 525;
+            this.btnMagacinskiBroj.Text = "?";
+            this.btnMagacinskiBroj.UseVisualStyleBackColor = true;
+            this.btnMagacinskiBroj.Click += new System.EventHandler(this.btnMagacinskiBroj_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label1.Location = new System.Drawing.Point(16, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 506;
+            this.label1.Text = "ID/BROJ DOKUMENTA";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label2.Location = new System.Drawing.Point(19, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.TabIndex = 505;
+            this.label2.Text = "CARINSKO SKLADIŠTE";
+            // 
+            // cboMagacinskiBroj
+            // 
+            this.cboMagacinskiBroj.FormattingEnabled = true;
+            this.cboMagacinskiBroj.Location = new System.Drawing.Point(172, 141);
+            this.cboMagacinskiBroj.Name = "cboMagacinskiBroj";
+            this.cboMagacinskiBroj.Size = new System.Drawing.Size(101, 21);
+            this.cboMagacinskiBroj.TabIndex = 510;
+            this.cboMagacinskiBroj.SelectionChangeCommitted += new System.EventHandler(this.cboMagacinskiBroj_SelectionChangeCommitted);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label3.Location = new System.Drawing.Point(169, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 13);
+            this.label3.TabIndex = 502;
+            this.label3.Text = "MAGACINSKI BROJ";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panel1.Controls.Add(this.txtVrstaRobe);
+            this.panel1.Controls.Add(this.txtPIB);
+            this.panel1.Controls.Add(this.cboADR);
+            this.panel1.Controls.Add(this.txtNacinPakovanja);
+            this.panel1.Controls.Add(this.cboVlasnikRobe);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Location = new System.Drawing.Point(19, 169);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(938, 61);
+            this.panel1.TabIndex = 513;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label27.Location = new System.Drawing.Point(3, 339);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(68, 13);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "NAPOMENA";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label26.Location = new System.Drawing.Point(3, 64);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(107, 13);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "DODATNE USLUGE";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label25.Location = new System.Drawing.Point(3, 11);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(155, 13);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "POSEBNI USLOVI SMEŠTAJA";
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Location = new System.Drawing.Point(6, 355);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(183, 34);
+            this.txtNapomena.TabIndex = 1;
+            // 
+            // txtPosebniUslovi
+            // 
+            this.txtPosebniUslovi.Location = new System.Drawing.Point(6, 27);
+            this.txtPosebniUslovi.Multiline = true;
+            this.txtPosebniUslovi.Name = "txtPosebniUslovi";
+            this.txtPosebniUslovi.Size = new System.Drawing.Size(180, 34);
+            this.txtPosebniUslovi.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panel4.Controls.Add(this.btnIzbaci);
+            this.panel4.Controls.Add(this.btnDodaj);
+            this.panel4.Controls.Add(this.dgvUsluge);
+            this.panel4.Controls.Add(this.cboDodatneUsluge);
+            this.panel4.Controls.Add(this.label27);
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.label25);
+            this.panel4.Controls.Add(this.txtNapomena);
+            this.panel4.Controls.Add(this.txtPosebniUslovi);
+            this.panel4.Location = new System.Drawing.Point(963, 169);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 396);
+            this.panel4.TabIndex = 518;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panel5.Controls.Add(this.btnMbNazad);
+            this.panel5.Controls.Add(this.btnMbSave);
+            this.panel5.Controls.Add(this.dataGridView1);
+            this.panel5.Controls.Add(this.txtMbNaziv);
+            this.panel5.Controls.Add(this.txtMbID);
+            this.panel5.Controls.Add(this.label17);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Location = new System.Drawing.Point(597, 52);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(466, 311);
+            this.panel5.TabIndex = 529;
+            // 
+            // btnMbNazad
+            // 
+            this.btnMbNazad.Location = new System.Drawing.Point(372, 106);
+            this.btnMbNazad.Name = "btnMbNazad";
+            this.btnMbNazad.Size = new System.Drawing.Size(80, 26);
+            this.btnMbNazad.TabIndex = 3;
+            this.btnMbNazad.Text = "NAZAD";
+            this.btnMbNazad.UseVisualStyleBackColor = true;
+            this.btnMbNazad.Click += new System.EventHandler(this.btnMbNazad_Click);
+            // 
+            // btnMbSave
+            // 
+            this.btnMbSave.Location = new System.Drawing.Point(372, 57);
+            this.btnMbSave.Name = "btnMbSave";
+            this.btnMbSave.Size = new System.Drawing.Size(80, 26);
+            this.btnMbSave.TabIndex = 3;
+            this.btnMbSave.Text = "SNIMI";
+            this.btnMbSave.UseVisualStyleBackColor = true;
+            this.btnMbSave.Click += new System.EventHandler(this.btnMbSave_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 68);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(345, 234);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // txtMbNaziv
+            // 
+            this.txtMbNaziv.Location = new System.Drawing.Point(135, 32);
+            this.txtMbNaziv.Name = "txtMbNaziv";
+            this.txtMbNaziv.Size = new System.Drawing.Size(216, 20);
+            this.txtMbNaziv.TabIndex = 1;
+            // 
+            // txtMbID
+            // 
+            this.txtMbID.Location = new System.Drawing.Point(6, 32);
+            this.txtMbID.Name = "txtMbID";
+            this.txtMbID.Size = new System.Drawing.Size(57, 20);
+            this.txtMbID.TabIndex = 1;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(138, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(124, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "NAZIV MB/NAPOMENA";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "ID";
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.txtSifra);
+            this.panelHeader.Controls.Add(this.panel2);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1280, 32);
+            this.panelHeader.TabIndex = 530;
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.Location = new System.Drawing.Point(1126, 5);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.button24);
+            this.panel2.Location = new System.Drawing.Point(11, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1070, 32);
+            this.panel2.TabIndex = 6;
+            // 
+            // button25
+            // 
+            this.button25.AutoSize = true;
+            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button25.FlatAppearance.BorderSize = 0;
+            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button25.Location = new System.Drawing.Point(70, 0);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(127, 32);
+            this.button25.TabIndex = 18;
+            this.button25.Text = "Potvrdi: LO nalog";
+            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button24
+            // 
+            this.button24.AutoSize = true;
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(0, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(70, 32);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Snimi";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // panelMP
+            // 
+            this.panelMP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelMP.Controls.Add(this.btnNazad);
+            this.panelMP.Controls.Add(this.btnUpdateMP);
+            this.panelMP.Controls.Add(this.btnNoviMP);
+            this.panelMP.Controls.Add(this.dateTimePicker1);
+            this.panelMP.Controls.Add(this.cboSklad);
+            this.panelMP.Controls.Add(this.cboValutaMP);
+            this.panelMP.Controls.Add(this.cboTipSkladista);
+            this.panelMP.Controls.Add(this.textBox4);
+            this.panelMP.Controls.Add(this.txtOpisRobe);
+            this.panelMP.Controls.Add(this.txtSpedicija);
+            this.panelMP.Controls.Add(this.txtVrednost);
+            this.panelMP.Controls.Add(this.txtBruto);
+            this.panelMP.Controls.Add(this.txtNeto);
+            this.panelMP.Controls.Add(this.txtKoleta);
+            this.panelMP.Controls.Add(this.txtVrstaCP);
+            this.panelMP.Controls.Add(this.textBox3);
+            this.panelMP.Controls.Add(this.txtIDMP);
+            this.panelMP.Controls.Add(this.label58);
+            this.panelMP.Controls.Add(this.label57);
+            this.panelMP.Controls.Add(this.label48);
+            this.panelMP.Controls.Add(this.label56);
+            this.panelMP.Controls.Add(this.label55);
+            this.panelMP.Controls.Add(this.label54);
+            this.panelMP.Controls.Add(this.label53);
+            this.panelMP.Controls.Add(this.label52);
+            this.panelMP.Controls.Add(this.txtBrojJCI);
+            this.panelMP.Controls.Add(this.label50);
+            this.panelMP.Controls.Add(this.label49);
+            this.panelMP.Controls.Add(this.label59);
+            this.panelMP.Controls.Add(this.txtCI);
+            this.panelMP.Controls.Add(this.label47);
+            this.panelMP.Location = new System.Drawing.Point(16, 236);
+            this.panelMP.Name = "panelMP";
+            this.panelMP.Size = new System.Drawing.Size(453, 347);
+            this.panelMP.TabIndex = 530;
+            this.panelMP.Paint += new System.Windows.Forms.PaintEventHandler(this.txtIDMP_Paint);
+            // 
+            // btnNazad
+            // 
+            this.btnNazad.Location = new System.Drawing.Point(295, 13);
+            this.btnNazad.Name = "btnNazad";
+            this.btnNazad.Size = new System.Drawing.Size(100, 33);
+            this.btnNazad.TabIndex = 4;
+            this.btnNazad.Text = "Nazad";
+            this.btnNazad.UseVisualStyleBackColor = true;
+            this.btnNazad.Click += new System.EventHandler(this.btnNazad_Click);
+            // 
+            // btnUpdateMP
+            // 
+            this.btnUpdateMP.Location = new System.Drawing.Point(149, 13);
+            this.btnUpdateMP.Name = "btnUpdateMP";
+            this.btnUpdateMP.Size = new System.Drawing.Size(100, 33);
+            this.btnUpdateMP.TabIndex = 4;
+            this.btnUpdateMP.Text = "Izmeni MP";
+            this.btnUpdateMP.UseVisualStyleBackColor = true;
+            this.btnUpdateMP.Click += new System.EventHandler(this.btnUpdateMP_Click);
+            // 
+            // btnNoviMP
+            // 
+            this.btnNoviMP.Location = new System.Drawing.Point(21, 13);
+            this.btnNoviMP.Name = "btnNoviMP";
+            this.btnNoviMP.Size = new System.Drawing.Size(100, 33);
+            this.btnNoviMP.TabIndex = 4;
+            this.btnNoviMP.Text = "Novi MP";
+            this.btnNoviMP.UseVisualStyleBackColor = true;
+            this.btnNoviMP.Click += new System.EventHandler(this.btnNoviMP_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(236, 142);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 3;
+            // 
+            // cboSklad
+            // 
+            this.cboSklad.FormattingEnabled = true;
+            this.cboSklad.Location = new System.Drawing.Point(337, 80);
+            this.cboSklad.Name = "cboSklad";
+            this.cboSklad.Size = new System.Drawing.Size(99, 21);
+            this.cboSklad.TabIndex = 2;
+            // 
+            // cboValutaMP
+            // 
+            this.cboValutaMP.FormattingEnabled = true;
+            this.cboValutaMP.Location = new System.Drawing.Point(347, 203);
+            this.cboValutaMP.Name = "cboValutaMP";
+            this.cboValutaMP.Size = new System.Drawing.Size(99, 21);
+            this.cboValutaMP.TabIndex = 2;
+            // 
+            // cboTipSkladista
+            // 
+            this.cboTipSkladista.FormattingEnabled = true;
+            this.cboTipSkladista.Location = new System.Drawing.Point(102, 79);
+            this.cboTipSkladista.Name = "cboTipSkladista";
+            this.cboTipSkladista.Size = new System.Drawing.Size(99, 21);
+            this.cboTipSkladista.TabIndex = 2;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(127, 143);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(98, 20);
+            this.textBox4.TabIndex = 1;
+            // 
+            // txtOpisRobe
+            // 
+            this.txtOpisRobe.Location = new System.Drawing.Point(7, 280);
+            this.txtOpisRobe.Multiline = true;
+            this.txtOpisRobe.Name = "txtOpisRobe";
+            this.txtOpisRobe.Size = new System.Drawing.Size(439, 56);
+            this.txtOpisRobe.TabIndex = 1;
+            // 
+            // txtSpedicija
+            // 
+            this.txtSpedicija.Location = new System.Drawing.Point(333, 254);
+            this.txtSpedicija.Name = "txtSpedicija";
+            this.txtSpedicija.Size = new System.Drawing.Size(113, 20);
+            this.txtSpedicija.TabIndex = 1;
+            // 
+            // txtVrednost
+            // 
+            this.txtVrednost.Location = new System.Drawing.Point(264, 202);
+            this.txtVrednost.Name = "txtVrednost";
+            this.txtVrednost.Size = new System.Drawing.Size(65, 20);
+            this.txtVrednost.TabIndex = 1;
+            // 
+            // txtBruto
+            // 
+            this.txtBruto.Location = new System.Drawing.Point(184, 202);
+            this.txtBruto.Name = "txtBruto";
+            this.txtBruto.Size = new System.Drawing.Size(65, 20);
+            this.txtBruto.TabIndex = 1;
+            // 
+            // txtNeto
+            // 
+            this.txtNeto.Location = new System.Drawing.Point(96, 202);
+            this.txtNeto.Name = "txtNeto";
+            this.txtNeto.Size = new System.Drawing.Size(65, 20);
+            this.txtNeto.TabIndex = 1;
+            // 
+            // txtKoleta
+            // 
+            this.txtKoleta.Location = new System.Drawing.Point(7, 202);
+            this.txtKoleta.Name = "txtKoleta";
+            this.txtKoleta.Size = new System.Drawing.Size(65, 20);
+            this.txtKoleta.TabIndex = 1;
+            // 
+            // txtVrstaCP
+            // 
+            this.txtVrstaCP.Location = new System.Drawing.Point(7, 143);
+            this.txtVrstaCP.Name = "txtVrstaCP";
+            this.txtVrstaCP.Size = new System.Drawing.Size(98, 20);
+            this.txtVrstaCP.TabIndex = 1;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(220, 79);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(98, 20);
+            this.textBox3.TabIndex = 1;
+            // 
+            // txtIDMP
+            // 
+            this.txtIDMP.Location = new System.Drawing.Point(7, 79);
+            this.txtIDMP.Name = "txtIDMP";
+            this.txtIDMP.Size = new System.Drawing.Size(45, 20);
+            this.txtIDMP.TabIndex = 1;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(6, 261);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(52, 13);
+            this.label58.TabIndex = 0;
+            this.label58.Text = "Opis robe";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(347, 234);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(50, 13);
+            this.label57.TabIndex = 0;
+            this.label57.Text = "Špedicija";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(367, 184);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(37, 13);
+            this.label48.TabIndex = 0;
+            this.label48.Text = "Valuta";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(269, 182);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(49, 13);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "Vrednost";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(187, 182);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(47, 13);
+            this.label55.TabIndex = 0;
+            this.label55.Text = "Bruto kg";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(101, 182);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(45, 13);
+            this.label54.TabIndex = 0;
+            this.label54.Text = "Neto kg";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(15, 182);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(37, 13);
+            this.label53.TabIndex = 0;
+            this.label53.Text = "Koleta";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(304, 126);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(38, 13);
+            this.label52.TabIndex = 0;
+            this.label52.Text = "Datum";
+            // 
+            // txtBrojJCI
+            // 
+            this.txtBrojJCI.AutoSize = true;
+            this.txtBrojJCI.Location = new System.Drawing.Point(158, 127);
+            this.txtBrojJCI.Name = "txtBrojJCI";
+            this.txtBrojJCI.Size = new System.Drawing.Size(43, 13);
+            this.txtBrojJCI.TabIndex = 0;
+            this.txtBrojJCI.Text = "Broj JCI";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(15, 127);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(48, 13);
+            this.label50.TabIndex = 0;
+            this.label50.Text = "Vrsta CP";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(344, 63);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(72, 13);
+            this.label49.TabIndex = 0;
+            this.label49.Text = "Šifra skladišta";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(15, 63);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(18, 13);
+            this.label59.TabIndex = 0;
+            this.label59.Text = "ID";
+            // 
+            // txtCI
+            // 
+            this.txtCI.AutoSize = true;
+            this.txtCI.Location = new System.Drawing.Point(261, 63);
+            this.txtCI.Name = "txtCI";
+            this.txtCI.Size = new System.Drawing.Size(17, 13);
+            this.txtCI.TabIndex = 0;
+            this.txtCI.Text = "CI";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(112, 63);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(66, 13);
+            this.label47.TabIndex = 0;
+            this.label47.Text = "Tip skladista";
+            // 
+            // Prijem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Azure;
+            this.ClientSize = new System.Drawing.Size(1280, 600);
+            this.Controls.Add(this.panelMP);
+            this.Controls.Add(this.panelHeader);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panelPrijem2);
+            this.Controls.Add(this.txtOpisPosla);
+            this.Controls.Add(this.cboCarinskiPostupak);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.btnPrijemnica);
+            this.Controls.Add(this.btnFormiranRN);
+            this.Controls.Add(this.btnSaglasnost);
+            this.Controls.Add(this.btnIspravka);
+            this.Controls.Add(this.btnStorno);
+            this.Controls.Add(this.panelPrijem1);
+            this.Controls.Add(this.btnSnimi);
+            this.Controls.Add(this.cboNalogodavac);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnMagacinskiBroj);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboMagacinskiBroj);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "Prijem";
+            this.Text = "Prijem";
+            this.Load += new System.EventHandler(this.Prijem_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsluge)).EndInit();
+            this.panelPrijem2.ResumeLayout(false);
+            this.panelPrijem2.PerformLayout();
+            this.panelPrijem1.ResumeLayout(false);
+            this.panelPrijem1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panelMP.ResumeLayout(false);
+            this.panelMP.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.DateTimePicker novoVremePrijem;
+        private System.Windows.Forms.DateTimePicker planiranoVremePrijem;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtKontejnerPrijem;
+        private System.Windows.Forms.TextBox txtAdresaPrijem;
+        private System.Windows.Forms.TextBox txtKontaktOsobaPrijem;
+        private System.Windows.Forms.TextBox txtKontakOsobaSpediterPrijem;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox cboCarinarnicaPrijem;
+        private System.Windows.Forms.ComboBox cboMestoIstovaraPrijem;
+        private System.Windows.Forms.ComboBox cboSpediterPrijem;
+        private System.Windows.Forms.DataGridView dgvUsluge;
+        private System.Windows.Forms.Panel panelPrijem2;
+        private System.Windows.Forms.Button btnIzbaci;
+        private System.Windows.Forms.TextBox txtOpisPosla;
+        private System.Windows.Forms.ComboBox cboCarinskiPostupak;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.ComboBox cboDodatneUsluge;
+        private System.Windows.Forms.TextBox txtTelefonPrijem;
+        private System.Windows.Forms.Button btnPrijemnica;
+        private System.Windows.Forms.Button btnFormiranRN;
+        private System.Windows.Forms.Button btnSaglasnost;
+        private System.Windows.Forms.Button btnIspravka;
+        private System.Windows.Forms.Button btnStorno;
+        private System.Windows.Forms.Panel panelPrijem1;
+        private System.Windows.Forms.TextBox txtLKPrijem;
+        private System.Windows.Forms.TextBox txtVozacPrijem;
+        private System.Windows.Forms.TextBox txtVoziloPrijem;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cboVrstaKamionaPrijem;
+        private System.Windows.Forms.ComboBox cboTipTransportaPrijem;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnSnimi;
+        private System.Windows.Forms.TextBox txtVrstaRobe;
+        private System.Windows.Forms.TextBox txtPIB;
+        private System.Windows.Forms.ComboBox cboADR;
+        private System.Windows.Forms.TextBox txtNacinPakovanja;
+        private System.Windows.Forms.ComboBox cboNalogodavac;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboVlasnikRobe;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnMagacinskiBroj;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboMagacinskiBroj;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.TextBox txtPosebniUslovi;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TextBox txtMbNaziv;
+        private System.Windows.Forms.TextBox txtMbID;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnMbNazad;
+        private System.Windows.Forms.Button btnMbSave;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Panel panelMP;
+        private System.Windows.Forms.Button btnNazad;
+        private System.Windows.Forms.Button btnUpdateMP;
+        private System.Windows.Forms.Button btnNoviMP;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cboSklad;
+        private System.Windows.Forms.ComboBox cboValutaMP;
+        private System.Windows.Forms.ComboBox cboTipSkladista;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtOpisRobe;
+        private System.Windows.Forms.TextBox txtSpedicija;
+        private System.Windows.Forms.TextBox txtVrednost;
+        private System.Windows.Forms.TextBox txtBruto;
+        private System.Windows.Forms.TextBox txtNeto;
+        private System.Windows.Forms.TextBox txtKoleta;
+        private System.Windows.Forms.TextBox txtVrstaCP;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtIDMP;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label txtBrojJCI;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label txtCI;
+        private System.Windows.Forms.Label label47;
+    }
+}

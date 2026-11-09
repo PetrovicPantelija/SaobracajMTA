@@ -26,12 +26,16 @@ namespace Saobracaj
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             //  Application.EnableVisualStyles();
             // Application.SetCompatibleTextRenderingDefault(false);
-            SkinManager.ApplicationVisualTheme = "Office2016Colourful";
+           // SkinManager.ApplicationVisualTheme = "Office2016Colourful";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (companyosn.ToString() == "Leget")
             {
                 Application.Run(new Sifarnici.frmLogovanjeSecond());
+            }
+            else if (companyosn.ToString() == "VSD")
+            {
+                Application.Run(new Sifarnici.frmLogovanjeVSD());
             }
             else
             {

@@ -449,6 +449,7 @@ namespace Saobracaj.RadniNalozi
             this.button2.Text = "Dodela polja";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // cboSaPoz
             // 

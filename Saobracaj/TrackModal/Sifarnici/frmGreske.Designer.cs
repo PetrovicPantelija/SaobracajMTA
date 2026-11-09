@@ -154,7 +154,7 @@
             // txtNaziv
             // 
             this.txtNaziv.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNaziv.Location = new System.Drawing.Point(23, 123);
+            this.txtNaziv.Location = new System.Drawing.Point(24, 138);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(234, 22);
             this.txtNaziv.TabIndex = 135;
@@ -164,7 +164,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(21, 105);
+            this.label2.Location = new System.Drawing.Point(22, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 136;
@@ -173,7 +173,7 @@
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(23, 80);
+            this.txtSifra.Location = new System.Drawing.Point(24, 95);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(86, 22);
             this.txtSifra.TabIndex = 133;
@@ -183,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(20, 59);
+            this.label1.Location = new System.Drawing.Point(21, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 134;
@@ -197,10 +197,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 151);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 176);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(805, 365);
+            this.dataGridView1.Size = new System.Drawing.Size(805, 340);
             this.dataGridView1.TabIndex = 138;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 

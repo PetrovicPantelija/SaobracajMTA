@@ -92,7 +92,7 @@
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(1148, 4);
+            this.txtSifra.Location = new System.Drawing.Point(1150, 8);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(100, 20);
             this.txtSifra.TabIndex = 7;

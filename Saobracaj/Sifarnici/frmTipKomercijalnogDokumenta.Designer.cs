@@ -63,10 +63,9 @@
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 31);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(800, 40);
+            this.panelHeader.Size = new System.Drawing.Size(600, 33);
             this.panelHeader.TabIndex = 478;
             // 
             // panel2
@@ -74,10 +73,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(168, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(126, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(631, 38);
+            this.panel2.Size = new System.Drawing.Size(473, 31);
             this.panel2.TabIndex = 7;
             // 
             // panel3
@@ -88,9 +86,8 @@
             this.panel3.Controls.Add(this.button22);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 38);
+            this.panel3.Size = new System.Drawing.Size(108, 31);
             this.panel3.TabIndex = 2;
             // 
             // button20
@@ -103,10 +100,9 @@
             this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button20.Location = new System.Drawing.Point(93, 4);
-            this.button20.Margin = new System.Windows.Forms.Padding(4);
+            this.button20.Location = new System.Drawing.Point(70, 3);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(36, 33);
+            this.button20.Size = new System.Drawing.Size(27, 27);
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
@@ -121,10 +117,9 @@
             this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Location = new System.Drawing.Point(52, 4);
-            this.button21.Margin = new System.Windows.Forms.Padding(4);
+            this.button21.Location = new System.Drawing.Point(39, 3);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(36, 33);
+            this.button21.Size = new System.Drawing.Size(27, 27);
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
@@ -139,11 +134,11 @@
             this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Location = new System.Drawing.Point(13, 4);
-            this.button22.Margin = new System.Windows.Forms.Padding(12, 7, 8, 7);
+            this.button22.Location = new System.Drawing.Point(10, 3);
+            this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
             this.button22.Name = "button22";
-            this.button22.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.button22.Size = new System.Drawing.Size(36, 33);
+            this.button22.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
@@ -160,7 +155,7 @@
             this.toolStripSeparator1});
             this.meniHeader.Location = new System.Drawing.Point(0, 0);
             this.meniHeader.Name = "meniHeader";
-            this.meniHeader.Size = new System.Drawing.Size(800, 31);
+            this.meniHeader.Size = new System.Drawing.Size(600, 27);
             this.meniHeader.TabIndex = 472;
             this.meniHeader.Text = "Osveži";
             // 
@@ -170,7 +165,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 36);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             // 
             // tsSave
@@ -179,7 +174,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 36);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -188,13 +183,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 36);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // dataGridView1
             // 
@@ -203,48 +198,43 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 222);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 180);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 222);
+            this.dataGridView1.Size = new System.Drawing.Size(580, 180);
             this.dataGridView1.TabIndex = 477;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(16, 119);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtID.Location = new System.Drawing.Point(12, 97);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(113, 22);
+            this.txtID.Size = new System.Drawing.Size(86, 20);
             this.txtID.TabIndex = 476;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 99);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 16);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 475;
             this.label3.Text = "Šifra";
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(13, 178);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNaziv.Location = new System.Drawing.Point(10, 145);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(304, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(229, 20);
             this.txtNaziv.TabIndex = 474;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(16, 158);
-            this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNaziv.Location = new System.Drawing.Point(12, 128);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(41, 16);
+            this.lblNaziv.Size = new System.Drawing.Size(34, 13);
             this.lblNaziv.TabIndex = 473;
             this.lblNaziv.Text = "Naziv";
             // 
@@ -258,18 +248,19 @@
             // chkPotrebnoZaFakturu
             // 
             this.chkPotrebnoZaFakturu.AutoSize = true;
-            this.chkPotrebnoZaFakturu.Location = new System.Drawing.Point(416, 178);
+            this.chkPotrebnoZaFakturu.Location = new System.Drawing.Point(312, 145);
+            this.chkPotrebnoZaFakturu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkPotrebnoZaFakturu.Name = "chkPotrebnoZaFakturu";
-            this.chkPotrebnoZaFakturu.Size = new System.Drawing.Size(143, 20);
+            this.chkPotrebnoZaFakturu.Size = new System.Drawing.Size(119, 17);
             this.chkPotrebnoZaFakturu.TabIndex = 483;
             this.chkPotrebnoZaFakturu.Text = "Potrebno za fakturu";
             this.chkPotrebnoZaFakturu.UseVisualStyleBackColor = true;
             // 
             // frmTipKomercijalnogDokumenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.chkPotrebnoZaFakturu);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.meniHeader);
@@ -278,8 +269,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.lblNaziv);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTipKomercijalnogDokumenta";
-            this.Text = "frmTipKomercijalnogDokumenta";
+            this.Text = "Tip komercijalnog dokumenta";
             this.Load += new System.EventHandler(this.frmTipKomercijalnogDokumenta_Load);
             this.panelHeader.ResumeLayout(false);
             this.panel3.ResumeLayout(false);

@@ -1987,9 +1987,9 @@ namespace Saobracaj.Izvoz
             this.panel4.Controls.Add(this.button16);
             this.panel4.Controls.Add(this.sfNalogodavac1);
             this.panel4.Controls.Add(this.label28);
-            this.panel4.Location = new System.Drawing.Point(911, 117);
+            this.panel4.Location = new System.Drawing.Point(824, 106);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(112, 53);
+            this.panel4.Size = new System.Drawing.Size(306, 324);
             this.panel4.TabIndex = 533;
             this.panel4.Visible = false;
             // 

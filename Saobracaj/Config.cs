@@ -30,9 +30,10 @@ namespace Saobracaj
                     return new CompanyConfiguration
                     {
                         Naziv = "Leget",
-                        // DB = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=Leget;User ID=sa;Password=P@ss011!;",
-                        DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;;Initial Catalog=Testiranje;User ID=sa;Password=duki7990;",
-                        Dokumenta = @"\\192.168.99.10\Leget\",
+                         DB = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=Testiranje;User ID=sa;Password=P@ss011!;",
+                        //DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;;Initial Catalog=Testiranje;User ID=sa;Password=duki7990;",
+                        //Dokumenta = @"\\192.168.99.10\Leget\",
+                        Dokumenta = @"\\192.168.150.110\Leget\",
                         PIB = "100791711",
                         Name_Value = "RTC LUKA LEGET AD SREMSKA MITROVICA",
                         Ulica_Value = "Jarački put 10",
@@ -90,7 +91,7 @@ namespace Saobracaj
                     return new CompanyConfiguration
                     {
                         Naziv = "DPT",
-                        DB = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990",
+                        DB = @"Data Source=192.168.150.110\MSSQLServer2024;Initial Catalog=DPTDB;User ID=sa;Password=P@ss011!",
                         Dokumenta = @"\\192.168.129.7\TA\",
                         PIB = "111824604",
                         Name_Value = "Dry Port Terminals doo, Beograd\r\n",
@@ -103,6 +104,28 @@ namespace Saobracaj
                         EmailSender_Value = "office@dpterminals.rs",
                         OsnovnoSkladiste = "9",
                         OsnovnaLokacija = "1044"
+                        //
+
+                    };
+                case "VSD":
+                    return new CompanyConfiguration
+                    {
+                        Naziv = "VSD",
+                        DB = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=VSD;User ID=sa;Password=P@ss011!;",
+                        //DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;;Initial Catalog=Testiranje;User ID=sa;Password=duki7990;",
+                        //Dokumenta = @"\\192.168.99.10\Leget\",
+                        Dokumenta = @"\\192.168.150.110\Leget\",
+                        PIB = "100791711",
+                        Name_Value = "RTC LUKA LEGET AD SREMSKA MITROVICA",
+                        Ulica_Value = "Jarački put 10",
+                        Grad_Value = "Sremska Mitrovica",
+                        PostanskiBroj_Value = "22000",
+                        Line_Value = "Jarački put 10,22000 Sremska Mitrovica",
+                        CompanyID_Value = "RS100791711",
+                        MB_Value = "08039534",
+                        EmailSender_Value = "office@leget.rs",
+                        OsnovnoSkladiste = "1",
+                        OsnovnaLokacija = "1"
                         //
 
                     };

@@ -168,13 +168,14 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1256, 626);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmKontejnerTekuce";
             this.Text = "Tekuci status kontejnera";
+            this.Load += new System.EventHandler(this.frmKontejnerTekuce_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

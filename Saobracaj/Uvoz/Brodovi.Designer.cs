@@ -54,6 +54,7 @@ namespace Saobracaj.Uvoz
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.txtNaziv = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripEx1.SuspendLayout();
@@ -187,9 +188,9 @@ namespace Saobracaj.Uvoz
             this.contextMenuStripEx1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.contextMenuStripEx1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(236)))), ((int)(((byte)(249)))));
             this.contextMenuStripEx1.Name = "contextMenuStripEx1";
-            this.contextMenuStripEx1.Size = new System.Drawing.Size(98, 75);
+            this.contextMenuStripEx1.Size = new System.Drawing.Size(250, 75);
             this.contextMenuStripEx1.Style = Syncfusion.Windows.Forms.Tools.ContextMenuStripEx.ContextMenuStyle.Office2016Black;
-            this.contextMenuStripEx1.Text = "Glavni meni";
+            this.contextMenuStripEx1.Text = "Integrated Logistics Management System";
             this.contextMenuStripEx1.ThemeName = "Office2016Black";
             // 
             // newToolStripMenuItem
@@ -317,6 +318,10 @@ namespace Saobracaj.Uvoz
             this.txtNaziv.Size = new System.Drawing.Size(231, 20);
             this.txtNaziv.TabIndex = 462;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
             // Brodovi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,5 +390,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

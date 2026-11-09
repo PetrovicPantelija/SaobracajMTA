@@ -25,16 +25,7 @@ namespace Saobracaj.Dokumenta
         }
         private void frmIskljuceniVagoni_Load(object sender, EventArgs e)
         {
-            /*
-            SELECT      TeretnicaStavke.VRNP, 
-                         stanice_3.Opis AS Otpravna, stanice_4.Opis AS Uputna, TeretnicaStavke.Reon, TeretnicaStavke.Primedba, TeretnicaStavke.RucKoc
-   FROM         TeretnicaIskljuceniVagoni INNER JOIN
-                         stanice ON TeretnicaIskljuceniVagoni.StanicaIskljucenja = stanice.ID INNER JOIN
-                         TeretnicaStavke ON TeretnicaIskljuceniVagoni.IDTeretnice = TeretnicaStavke.ID INNER JOIN
-                         stanice AS stanice_1 ON TeretnicaStavke.Uvrstena = stanice_1.ID INNER JOIN
-                         stanice AS stanice_2 ON TeretnicaStavke.Otkacena = stanice_2.ID INNER JOIN
-                         stanice AS stanice_3 ON TeretnicaStavke.Otpravna = stanice_3.ID INNER JOIN
-            */
+          
 
 
             var select = " SELECT     TeretnicaIskljuceniVagoni.ID, TeretnicaIskljuceniVagoni.IDTeretnice, stanice.Opis, TeretnicaStavke.RB, TeretnicaStavke.BrojTeretnice, TeretnicaStavke.IDNajave, " +

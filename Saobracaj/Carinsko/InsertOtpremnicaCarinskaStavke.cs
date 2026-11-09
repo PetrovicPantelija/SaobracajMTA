@@ -245,7 +245,7 @@ namespace Saobracaj.Carinsko
 
             return IDPom;
         }
-        public void DelOtpremnicaCarinskaStavke(int ID)
+        public void DelOtpremnicaCarinskaStavke(int ID, int IDNadredjena)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -258,6 +258,13 @@ namespace Saobracaj.Carinsko
             id.Direction = ParameterDirection.Input;
             id.Value = ID;
             cmd.Parameters.Add(id);
+
+            SqlParameter iDNadredjena = new SqlParameter();
+            iDNadredjena.ParameterName = "@IDNadredjena";
+            iDNadredjena.SqlDbType = SqlDbType.Int;
+            iDNadredjena.Direction = ParameterDirection.Input;
+            iDNadredjena.Value = IDNadredjena;
+            cmd.Parameters.Add(iDNadredjena);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

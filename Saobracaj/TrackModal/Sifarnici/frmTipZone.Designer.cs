@@ -46,11 +46,13 @@
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.carinskaOtpremnicaDataSet1 = new Saobracaj.CarinskaOtpremnicaDataSet();
             this.meniHeader.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carinskaOtpremnicaDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // meniHeader
@@ -241,6 +243,11 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // carinskaOtpremnicaDataSet1
+            // 
+            this.carinskaOtpremnicaDataSet1.DataSetName = "CarinskaOtpremnicaDataSet";
+            this.carinskaOtpremnicaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmTipZone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,6 +269,7 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carinskaOtpremnicaDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,5 +293,6 @@
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private CarinskaOtpremnicaDataSet carinskaOtpremnicaDataSet1;
     }
 }

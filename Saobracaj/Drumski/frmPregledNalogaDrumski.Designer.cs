@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnOdobrioLO = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.btnDopunaNaloga = new System.Windows.Forms.Button();
             this.btnFormiranjeNaloga = new System.Windows.Forms.Button();
@@ -38,19 +39,26 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemOtvori = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDuplirajZapis = new System.Windows.Forms.ToolStripMenuItem();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.gridGroupingControl3 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -58,6 +66,8 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.btnOdobrioLO);
             this.panel2.Controls.Add(this.button6);
             this.panel2.Controls.Add(this.btnDopunaNaloga);
             this.panel2.Controls.Add(this.btnFormiranjeNaloga);
@@ -67,8 +77,30 @@
             this.panel2.Location = new System.Drawing.Point(15, -1);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(767, 38);
+            this.panel2.Size = new System.Drawing.Size(1284, 38);
             this.panel2.TabIndex = 6;
+            // 
+            // btnOdobrioLO
+            // 
+            this.btnOdobrioLO.AutoSize = true;
+            this.btnOdobrioLO.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOdobrioLO.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOdobrioLO.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnOdobrioLO.FlatAppearance.BorderSize = 0;
+            this.btnOdobrioLO.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOdobrioLO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnOdobrioLO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOdobrioLO.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnOdobrioLO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnOdobrioLO.Location = new System.Drawing.Point(702, 0);
+            this.btnOdobrioLO.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOdobrioLO.Name = "btnOdobrioLO";
+            this.btnOdobrioLO.Size = new System.Drawing.Size(212, 38);
+            this.btnOdobrioLO.TabIndex = 25;
+            this.btnOdobrioLO.Text = "Potvrdi LO nalog za Transport";
+            this.btnOdobrioLO.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOdobrioLO.UseVisualStyleBackColor = true;
+            this.btnOdobrioLO.Click += new System.EventHandler(this.btnOdobrioLO_Click);
             // 
             // button6
             // 
@@ -209,10 +241,10 @@
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Location = new System.Drawing.Point(1, 1);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1401, 40);
+            this.panelHeader.Size = new System.Drawing.Size(1338, 40);
             this.panelHeader.TabIndex = 472;
             // 
             // gridGroupingControl2
@@ -247,37 +279,29 @@
             this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
             // 
-            // gridGroupingControl1
+            // contextMenuStrip1
             // 
-            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.ApplyVisualStyles = false;
-            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 40);
-            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.gridGroupingControl1.Name = "gridGroupingControl1";
-            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
-            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
-            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
-            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1401, 524);
-            this.gridGroupingControl1.TabIndex = 475;
-            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
-            this.gridGroupingControl1.Text = "gridGroupingControl1";
-            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemOtvori,
+            this.toolStripMenuItemDuplirajZapis});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 52);
+            this.contextMenuStrip1.Text = "Otvori";
+            // 
+            // toolStripMenuItemOtvori
+            // 
+            this.toolStripMenuItemOtvori.Name = "toolStripMenuItemOtvori";
+            this.toolStripMenuItemOtvori.Size = new System.Drawing.Size(169, 24);
+            this.toolStripMenuItemOtvori.Text = "Otvori";
+            this.toolStripMenuItemOtvori.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // toolStripMenuItemDuplirajZapis
+            // 
+            this.toolStripMenuItemDuplirajZapis.Name = "toolStripMenuItemDuplirajZapis";
+            this.toolStripMenuItemDuplirajZapis.Size = new System.Drawing.Size(169, 24);
+            this.toolStripMenuItemDuplirajZapis.Text = "Dupliraj zapis";
+            this.toolStripMenuItemDuplirajZapis.Click += new System.EventHandler(this.button6_Click);
             // 
             // panelStatus
             // 
@@ -335,23 +359,120 @@
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // gridGroupingControl3
+            // 
+            this.gridGroupingControl3.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl3.ApplyVisualStyles = false;
+            this.gridGroupingControl3.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl3.ContextMenuStrip = this.contextMenuStrip1;
+            this.gridGroupingControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridGroupingControl3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl3.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl3.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl3.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl3.HorizontalScrollTips = true;
+            this.gridGroupingControl3.Location = new System.Drawing.Point(0, 40);
+            this.gridGroupingControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.gridGroupingControl3.Name = "gridGroupingControl3";
+            this.gridGroupingControl3.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl3.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl3.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl3.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl3.Size = new System.Drawing.Size(1401, 524);
+            this.gridGroupingControl3.TabIndex = 478;
+            this.gridGroupingControl3.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl3.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl3.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl3.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl3.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl3.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl3.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl3.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl3.Text = "gridGroupingControl3";
+            this.gridGroupingControl3.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl3.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl3.VerticalScrollTips = true;
+            // 
+            // gridGroupingControl1
+            // 
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.ApplyVisualStyles = false;
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.ContextMenuStrip = this.contextMenuStrip1;
+            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(1, 41);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1338, 505);
+            this.gridGroupingControl1.TabIndex = 475;
+            this.gridGroupingControl1.TableDescriptor.AllowEdit = false;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlMouseDown += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlMouseEventHandler(this.GridGroupingControl1_TableControlMouseDown);
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // button2
+            // 
+            this.button2.AutoSize = true;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button2.Location = new System.Drawing.Point(914, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(212, 38);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Vozac";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // frmPregledNalogaDrumski
             // 
-            this.ClientSize = new System.Drawing.Size(1401, 564);
-            this.Controls.Add(this.panelStatus);
+            this.ClientSize = new System.Drawing.Size(1340, 564);
             this.Controls.Add(this.gridGroupingControl1);
+            this.Controls.Add(this.panelStatus);
             this.Controls.Add(this.panelHeader);
             this.Name = "frmPregledNalogaDrumski";
+            this.Padding = new System.Windows.Forms.Padding(1, 1, 1, 18);
             this.Text = "Lista naloga";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmPregledNalogaDrumski_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panelStatus.ResumeLayout(false);
             this.panelStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -363,7 +484,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
-        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
@@ -373,5 +493,12 @@
         private System.Windows.Forms.Button btnFormiranjeNaloga;
         private System.Windows.Forms.Button btnDopunaNaloga;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOtvori;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDuplirajZapis;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl3;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.Button btnOdobrioLO;
+        private System.Windows.Forms.Button button2;
     }
 }

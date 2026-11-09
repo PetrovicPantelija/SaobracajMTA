@@ -211,6 +211,7 @@
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // button21
             // 
@@ -227,6 +228,7 @@
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // button22
             // 
@@ -245,6 +247,7 @@
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.tsNew_Click);
             // 
             // commandBarController1
             // 

@@ -86,7 +86,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1113, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(835, 27);
             this.toolStrip1.TabIndex = 33;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -97,7 +97,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -107,7 +107,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -117,7 +117,7 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -129,38 +129,34 @@
             // txtSifra
             // 
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifra.Location = new System.Drawing.Point(121, 46);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifra.Location = new System.Drawing.Point(91, 37);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(73, 22);
+            this.txtSifra.Size = new System.Drawing.Size(56, 20);
             this.txtSifra.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 49);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(10, 40);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 17);
+            this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 36;
             this.label4.Text = "Šifra";
             // 
             // txtSifraNajave
             // 
             this.txtSifraNajave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifraNajave.Location = new System.Drawing.Point(313, 46);
-            this.txtSifraNajave.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifraNajave.Location = new System.Drawing.Point(235, 37);
             this.txtSifraNajave.Name = "txtSifraNajave";
-            this.txtSifraNajave.Size = new System.Drawing.Size(113, 22);
+            this.txtSifraNajave.Size = new System.Drawing.Size(86, 20);
             this.txtSifraNajave.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(221, 46);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(166, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 17);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 34;
             this.label3.Text = "Šifra najave";
             // 
@@ -168,10 +164,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(557, 235);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(418, 191);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 25);
+            this.button1.Size = new System.Drawing.Size(59, 20);
             this.button1.TabIndex = 4;
             this.button1.Text = "Pronađi";
             this.button1.UseVisualStyleBackColor = false;
@@ -179,10 +174,9 @@
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(120, 235);
-            this.txtPutanja.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPutanja.Location = new System.Drawing.Point(90, 191);
             this.txtPutanja.Name = "txtPutanja";
-            this.txtPutanja.Size = new System.Drawing.Size(428, 22);
+            this.txtPutanja.Size = new System.Drawing.Size(322, 20);
             this.txtPutanja.TabIndex = 3;
             // 
             // ofd1
@@ -192,10 +186,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 239);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(11, 194);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 17);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 40;
             this.label1.Text = "Ostala dok";
             // 
@@ -206,11 +199,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 313);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 254);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1080, 193);
+            this.dataGridView1.Size = new System.Drawing.Size(810, 157);
             this.dataGridView1.TabIndex = 41;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
@@ -219,10 +211,9 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(656, 235);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(492, 191);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 25);
+            this.button2.Size = new System.Drawing.Size(61, 20);
             this.button2.TabIndex = 42;
             this.button2.Text = "Otvori";
             this.button2.UseVisualStyleBackColor = false;
@@ -231,20 +222,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 117);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(11, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 17);
+            this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 45;
             this.label2.Text = "CIM";
             // 
             // txtPutanja2
             // 
             this.txtPutanja2.Enabled = false;
-            this.txtPutanja2.Location = new System.Drawing.Point(120, 113);
-            this.txtPutanja2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPutanja2.Location = new System.Drawing.Point(90, 92);
             this.txtPutanja2.Name = "txtPutanja2";
-            this.txtPutanja2.Size = new System.Drawing.Size(428, 22);
+            this.txtPutanja2.Size = new System.Drawing.Size(322, 20);
             this.txtPutanja2.TabIndex = 43;
             // 
             // button3
@@ -252,10 +241,9 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button3.Enabled = false;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(557, 112);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(418, 91);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 25);
+            this.button3.Size = new System.Drawing.Size(59, 20);
             this.button3.TabIndex = 44;
             this.button3.Text = "Pronađi";
             this.button3.UseVisualStyleBackColor = false;
@@ -265,10 +253,9 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(765, 234);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Location = new System.Drawing.Point(574, 190);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 25);
+            this.button4.Size = new System.Drawing.Size(61, 20);
             this.button4.TabIndex = 47;
             this.button4.Text = "Sačuvaj";
             this.button4.UseVisualStyleBackColor = false;
@@ -279,10 +266,9 @@
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button6.Enabled = false;
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(765, 108);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Location = new System.Drawing.Point(574, 88);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 25);
+            this.button6.Size = new System.Drawing.Size(61, 20);
             this.button6.TabIndex = 48;
             this.button6.Text = "Sačuvaj";
             this.button6.UseVisualStyleBackColor = false;
@@ -293,10 +279,9 @@
             this.btnSacuvajTovarniList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnSacuvajTovarniList.Enabled = false;
             this.btnSacuvajTovarniList.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSacuvajTovarniList.Location = new System.Drawing.Point(765, 76);
-            this.btnSacuvajTovarniList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSacuvajTovarniList.Location = new System.Drawing.Point(574, 62);
             this.btnSacuvajTovarniList.Name = "btnSacuvajTovarniList";
-            this.btnSacuvajTovarniList.Size = new System.Drawing.Size(81, 25);
+            this.btnSacuvajTovarniList.Size = new System.Drawing.Size(61, 20);
             this.btnSacuvajTovarniList.TabIndex = 52;
             this.btnSacuvajTovarniList.Text = "Sačuvaj";
             this.btnSacuvajTovarniList.UseVisualStyleBackColor = false;
@@ -305,20 +290,18 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 85);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(11, 69);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 17);
+            this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 51;
             this.label5.Text = "Tovarni list";
             // 
             // txtTovarniList
             // 
             this.txtTovarniList.Enabled = false;
-            this.txtTovarniList.Location = new System.Drawing.Point(120, 81);
-            this.txtTovarniList.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTovarniList.Location = new System.Drawing.Point(90, 66);
             this.txtTovarniList.Name = "txtTovarniList";
-            this.txtTovarniList.Size = new System.Drawing.Size(428, 22);
+            this.txtTovarniList.Size = new System.Drawing.Size(322, 20);
             this.txtTovarniList.TabIndex = 49;
             // 
             // btnTovarniList
@@ -326,10 +309,9 @@
             this.btnTovarniList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.btnTovarniList.Enabled = false;
             this.btnTovarniList.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnTovarniList.Location = new System.Drawing.Point(557, 80);
-            this.btnTovarniList.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTovarniList.Location = new System.Drawing.Point(418, 65);
             this.btnTovarniList.Name = "btnTovarniList";
-            this.btnTovarniList.Size = new System.Drawing.Size(79, 25);
+            this.btnTovarniList.Size = new System.Drawing.Size(59, 20);
             this.btnTovarniList.TabIndex = 50;
             this.btnTovarniList.Text = "Pronađi";
             this.btnTovarniList.UseVisualStyleBackColor = false;
@@ -340,10 +322,9 @@
             this.btnCIT23Sacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnCIT23Sacuvaj.Enabled = false;
             this.btnCIT23Sacuvaj.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCIT23Sacuvaj.Location = new System.Drawing.Point(765, 140);
-            this.btnCIT23Sacuvaj.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCIT23Sacuvaj.Location = new System.Drawing.Point(574, 114);
             this.btnCIT23Sacuvaj.Name = "btnCIT23Sacuvaj";
-            this.btnCIT23Sacuvaj.Size = new System.Drawing.Size(81, 25);
+            this.btnCIT23Sacuvaj.Size = new System.Drawing.Size(61, 20);
             this.btnCIT23Sacuvaj.TabIndex = 56;
             this.btnCIT23Sacuvaj.Text = "Sačuvaj";
             this.btnCIT23Sacuvaj.UseVisualStyleBackColor = false;
@@ -352,20 +333,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 149);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(11, 121);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 17);
+            this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 55;
             this.label6.Text = "CIT23";
             // 
             // txtCIT23
             // 
             this.txtCIT23.Enabled = false;
-            this.txtCIT23.Location = new System.Drawing.Point(120, 145);
-            this.txtCIT23.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCIT23.Location = new System.Drawing.Point(90, 118);
             this.txtCIT23.Name = "txtCIT23";
-            this.txtCIT23.Size = new System.Drawing.Size(428, 22);
+            this.txtCIT23.Size = new System.Drawing.Size(322, 20);
             this.txtCIT23.TabIndex = 53;
             // 
             // btnCIT23
@@ -373,10 +352,9 @@
             this.btnCIT23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.btnCIT23.Enabled = false;
             this.btnCIT23.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCIT23.Location = new System.Drawing.Point(557, 144);
-            this.btnCIT23.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCIT23.Location = new System.Drawing.Point(418, 117);
             this.btnCIT23.Name = "btnCIT23";
-            this.btnCIT23.Size = new System.Drawing.Size(79, 25);
+            this.btnCIT23.Size = new System.Drawing.Size(59, 20);
             this.btnCIT23.TabIndex = 54;
             this.btnCIT23.Text = "Pronađi";
             this.btnCIT23.UseVisualStyleBackColor = false;
@@ -387,10 +365,9 @@
             this.btnRacunSacuvaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnRacunSacuvaj.Enabled = false;
             this.btnRacunSacuvaj.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRacunSacuvaj.Location = new System.Drawing.Point(765, 172);
-            this.btnRacunSacuvaj.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRacunSacuvaj.Location = new System.Drawing.Point(574, 140);
             this.btnRacunSacuvaj.Name = "btnRacunSacuvaj";
-            this.btnRacunSacuvaj.Size = new System.Drawing.Size(81, 25);
+            this.btnRacunSacuvaj.Size = new System.Drawing.Size(61, 20);
             this.btnRacunSacuvaj.TabIndex = 60;
             this.btnRacunSacuvaj.Text = "Sačuvaj";
             this.btnRacunSacuvaj.UseVisualStyleBackColor = false;
@@ -399,20 +376,18 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 181);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(11, 147);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 17);
+            this.label7.Size = new System.Drawing.Size(39, 13);
             this.label7.TabIndex = 59;
             this.label7.Text = "Račun";
             // 
             // txtRacun
             // 
             this.txtRacun.Enabled = false;
-            this.txtRacun.Location = new System.Drawing.Point(120, 177);
-            this.txtRacun.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRacun.Location = new System.Drawing.Point(90, 144);
             this.txtRacun.Name = "txtRacun";
-            this.txtRacun.Size = new System.Drawing.Size(428, 22);
+            this.txtRacun.Size = new System.Drawing.Size(322, 20);
             this.txtRacun.TabIndex = 57;
             // 
             // btnRacun
@@ -420,10 +395,9 @@
             this.btnRacun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.btnRacun.Enabled = false;
             this.btnRacun.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRacun.Location = new System.Drawing.Point(557, 176);
-            this.btnRacun.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRacun.Location = new System.Drawing.Point(418, 143);
             this.btnRacun.Name = "btnRacun";
-            this.btnRacun.Size = new System.Drawing.Size(79, 25);
+            this.btnRacun.Size = new System.Drawing.Size(59, 20);
             this.btnRacun.TabIndex = 58;
             this.btnRacun.Text = "Pronađi";
             this.btnRacun.UseVisualStyleBackColor = false;
@@ -433,10 +407,9 @@
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button12.Location = new System.Drawing.Point(16, 267);
-            this.button12.Margin = new System.Windows.Forms.Padding(4);
+            this.button12.Location = new System.Drawing.Point(12, 217);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(289, 38);
+            this.button12.Size = new System.Drawing.Size(217, 31);
             this.button12.TabIndex = 61;
             this.button12.Text = "Dokumentacija pripremljena formiraj pdf ";
             this.button12.UseVisualStyleBackColor = false;
@@ -446,10 +419,9 @@
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Location = new System.Drawing.Point(765, 202);
-            this.button13.Margin = new System.Windows.Forms.Padding(4);
+            this.button13.Location = new System.Drawing.Point(574, 164);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(81, 25);
+            this.button13.Size = new System.Drawing.Size(61, 20);
             this.button13.TabIndex = 65;
             this.button13.Text = "Sačuvaj";
             this.button13.UseVisualStyleBackColor = false;
@@ -457,29 +429,26 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(15, 206);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(11, 167);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 33);
+            this.label8.Size = new System.Drawing.Size(73, 27);
             this.label8.TabIndex = 64;
             this.label8.Text = "Prijemna teretnica";
             // 
             // txtPrijemnaTeretnica
             // 
-            this.txtPrijemnaTeretnica.Location = new System.Drawing.Point(120, 207);
-            this.txtPrijemnaTeretnica.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrijemnaTeretnica.Location = new System.Drawing.Point(90, 168);
             this.txtPrijemnaTeretnica.Name = "txtPrijemnaTeretnica";
-            this.txtPrijemnaTeretnica.Size = new System.Drawing.Size(428, 22);
+            this.txtPrijemnaTeretnica.Size = new System.Drawing.Size(322, 20);
             this.txtPrijemnaTeretnica.TabIndex = 62;
             // 
             // button14
             // 
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Location = new System.Drawing.Point(557, 206);
-            this.button14.Margin = new System.Windows.Forms.Padding(4);
+            this.button14.Location = new System.Drawing.Point(418, 167);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(79, 25);
+            this.button14.Size = new System.Drawing.Size(59, 20);
             this.button14.TabIndex = 63;
             this.button14.Text = "Pronađi";
             this.button14.UseVisualStyleBackColor = false;
@@ -488,38 +457,34 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(463, 46);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Location = new System.Drawing.Point(347, 37);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(87, 17);
+            this.label30.Size = new System.Drawing.Size(66, 13);
             this.label30.TabIndex = 152;
             this.label30.Text = "Tip prevoza:";
             // 
             // txtTipPrevoza
             // 
             this.txtTipPrevoza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtTipPrevoza.Location = new System.Drawing.Point(559, 46);
-            this.txtTipPrevoza.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTipPrevoza.Location = new System.Drawing.Point(419, 37);
             this.txtTipPrevoza.Name = "txtTipPrevoza";
-            this.txtTipPrevoza.Size = new System.Drawing.Size(287, 22);
+            this.txtTipPrevoza.Size = new System.Drawing.Size(216, 20);
             this.txtTipPrevoza.TabIndex = 153;
             // 
             // txtObjedinjen
             // 
-            this.txtObjedinjen.Location = new System.Drawing.Point(313, 274);
-            this.txtObjedinjen.Margin = new System.Windows.Forms.Padding(4);
+            this.txtObjedinjen.Location = new System.Drawing.Point(235, 223);
             this.txtObjedinjen.Name = "txtObjedinjen";
-            this.txtObjedinjen.Size = new System.Drawing.Size(453, 22);
+            this.txtObjedinjen.Size = new System.Drawing.Size(341, 20);
             this.txtObjedinjen.TabIndex = 154;
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(776, 273);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Location = new System.Drawing.Point(582, 222);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 25);
+            this.button5.Size = new System.Drawing.Size(61, 20);
             this.button5.TabIndex = 155;
             this.button5.Text = "Otvori";
             this.button5.UseVisualStyleBackColor = false;
@@ -527,10 +492,10 @@
             // 
             // frmDokumentaNajava
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1113, 521);
+            this.ClientSize = new System.Drawing.Size(835, 423);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.txtObjedinjen);
             this.Controls.Add(this.txtTipPrevoza);
@@ -568,7 +533,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDokumentaNajava";
             this.Text = "Dokumenta najava";
             this.Load += new System.EventHandler(this.frmDokumentaNajava_Load);

@@ -4287,6 +4287,90 @@ int PotvrdioKlijent, int UradilaCarina,
 
         }
 
+
+       public void PrenesiKontejnerIzPlanaNaPrijemnicuIzvozIDNadredjenog(int KontejnerID, int NalogID, int IDNadredjenog, int ModulID, int Poreklo)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spPrenesiKontejnerIzPlanaNaPrijemnicuIzvozPoIdNadredjenog";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@KontejnerID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = KontejnerID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
+
+
+            SqlParameter iDNadredjenog = new SqlParameter();
+            iDNadredjenog.ParameterName = "@IDNadredjenog";
+            iDNadredjenog.SqlDbType = SqlDbType.Int;
+            iDNadredjenog.Direction = ParameterDirection.Input;
+            iDNadredjenog.Value = IDNadredjenog;
+            cmd.Parameters.Add(iDNadredjenog);
+
+
+            SqlParameter modulID = new SqlParameter();
+            modulID.ParameterName = "@ModulID";
+            modulID.SqlDbType = SqlDbType.Int;
+            modulID.Direction = ParameterDirection.Input;
+            modulID.Value = ModulID;
+            cmd.Parameters.Add(modulID);
+
+
+            SqlParameter poreklo = new SqlParameter();
+            poreklo.ParameterName = "@Poreklo";
+            poreklo.SqlDbType = SqlDbType.Int;
+            poreklo.Direction = ParameterDirection.Input;
+            poreklo.Value = Poreklo;
+            cmd.Parameters.Add(poreklo);
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                //throw new Exception("Neuspešan upis ");
+                MessageBox.Show("Greška u SQL izvršavanju: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                myTransaction.Rollback(); // Ne zaboravi i rollback
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
         public void PrenesiKontejnerIzPlanaNaPrijemnicuIzvoz(int KontejnerID, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connection);

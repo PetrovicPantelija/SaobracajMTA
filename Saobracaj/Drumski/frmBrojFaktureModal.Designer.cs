@@ -40,12 +40,12 @@
             // 
             this.txtBrojFakture.Location = new System.Drawing.Point(54, 64);
             this.txtBrojFakture.Name = "txtBrojFakture";
-            this.txtBrojFakture.Size = new System.Drawing.Size(241, 22);
+            this.txtBrojFakture.Size = new System.Drawing.Size(309, 22);
             this.txtBrojFakture.TabIndex = 8;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(184, 105);
+            this.button5.Location = new System.Drawing.Point(139, 106);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(111, 30);
             this.button5.TabIndex = 7;
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 163);
+            this.ClientSize = new System.Drawing.Size(396, 163);
             this.Controls.Add(this.txtBrojFakture);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.lblStatus);

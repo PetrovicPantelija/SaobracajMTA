@@ -128,6 +128,8 @@ namespace Saobracaj.Administracija
             // 
             // combo_Grupa
             // 
+            this.combo_Grupa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combo_Grupa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combo_Grupa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_Grupa.FormattingEnabled = true;
             this.combo_Grupa.Location = new System.Drawing.Point(270, 51);

@@ -1,0 +1,367 @@
+﻿using GMap.NET.MapProviders;
+using Microsoft.Office.Interop.Excel;
+using Saobracaj.Dokumenta;
+using Saobracaj.Drumski;
+using Saobracaj.Izvoz;
+using Saobracaj.MainLeget.Pretovari;
+using Saobracaj.RadniNalozi;
+using Saobracaj.Uvoz;
+using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.XlsIO.Implementation.XmlSerialization;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Security.Cryptography;
+using System.Web.UI.WebControls;
+using System.Windows.Forms;
+
+namespace Saobracaj.MainLeget.PrijemIOtpremaKamiona
+{
+    public partial class frmPlatforma : Form
+    {
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
+        public frmPlatforma()
+        {
+            InitializeComponent();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            VratiPodatke();
+        }
+
+        private void VratiPodatke()
+        {
+            var select = "";
+            /*
+                 select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
+               "  inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID inner join Scenario on UvozKonacna.Scenario = Scenario.ID " +
+               "  where Uradjen not in (1, 2) " +
+                " union " +
+               "  select Distinct RadniNalogInterni.PlanID, IzvozKonacna.BrojKontejnera, Scenario.Naziv , 'Izvozni' as OJ  from RadniNalogInterni " +
+               "  inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
+               "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
+               "  where Uradjen not in (1, 2)";
+            */
+
+            select = "     SELECT RadniNalogInterni.[ID] as KomNalID, RadniNalogInterni.BrojOsnov as KontID," +
+"  DatumPrijema as DatumPrijema, " +
+"  CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status,  " +
+"  REgBrKamiona, ImeVozaca, " +
+"  n1.VremeDolaska as VremeDol,  " +
+"  n1.[Datum] ,n1.[Korisnik] ,  RadniNalogInterniPotvrda.KapijaUlaz, RadniNalogInterniPotvrda.Pregledac," +
+"  RadniNalogInterniPotvrda.Vaganje, ik.Vaganje as PotrebnoVaganje, RadniNalogInterniPotvrda.FazaUsluge, " +
+
+ "  (SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+ "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+"  FOR XML PATH('')), 1, 1, ''  ) As Skupljen)  " +
+ "  as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.Poreklo = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO, RadniNalogInterniPotvrda.Scenario " +
+"  FROM[dbo].[PrijemKontejneraVoz] as n1 " +
+"  inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Modul " +
+"  inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = n1.ID " +
+"  inner join RadniNalogInterni on RadniNalogInterni.ID = PrijemKontejneraVozStavke.NajavaID " +
+"  left join IzvozKonacna ik on RadniNalogInterni.BrojOsnov = ik.ID " +
+"  inner join RadniNalogInterniPotvrda on RadniNalogInterni.ID = RadniNalogInterniPotvrda.IDNaloga " +
+"  where Vozom = 0  and RadniNalogInterniPotvrda.Kamion = 0 and RadniNalogInterniPotvrda.FazaUsluge = 1  And KapijaUlaz < 2 and n1.Poreklo = 0 order by n1.ID desc";
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            this.gridGroupingControl2.Table.Records.DeleteAll();
+
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Scenario");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("Vaganje");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("PotrebnoVaganje");
+            this.gridGroupingControl2.TableDescriptor.VisibleColumns.Remove("FazaUsluge"); 
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            // 1. Deo: Scenario = 1 i Pregledac = 0
+            GridConditionalFormatDescriptor gcfdPun1 = new GridConditionalFormatDescriptor();
+            gcfdPun1.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfdPun1.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfdPun1.Expression = "[Scenario] = 1 AND [Pregledac] = 1";
+
+            // 2. Deo: Scenario = 2 i Pregledac = 1
+            GridConditionalFormatDescriptor gcfdPun2 = new GridConditionalFormatDescriptor();
+            gcfdPun2.Appearance.AnyRecordFieldCell.BackColor = Color.Yellow;
+            gcfdPun2.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
+            gcfdPun2.Expression = "[Scenario] = 2 AND [Pregledac] = 1";
+
+            // Dodavanje u grid
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfdPun1);
+            this.gridGroupingControl2.TableDescriptor.ConditionalFormats.Add(gcfdPun2);
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl2);
+        }
+
+        private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+
+
+                // ČISTO REŠENJE: Sinhronizacija i čišćenje selekcije
+                if (gridGroupingControl2.Table.CurrentRecord != null)
+                {
+                    // 1. Prvo čistimo sve stare redove da se ne bi gomilali u memoriji!
+                    gridGroupingControl2.Table.SelectedRecords.Clear();
+
+                    // 2. Dodajemo isključivo i samo ovaj trenutno kliknuti red
+                    gridGroupingControl2.Table.SelectedRecords.Add(gridGroupingControl2.Table.CurrentRecord);
+                }
+
+            }
+            catch (Exception ex) { }
+        }
+        int VratiPrijemnicu(int KomNalID)
+        {
+            int PrijemID = 0;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter("Select ID from PrijemKontejneraVozStavke where NajavaID=" + KomNalID, c);
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                PrijemID = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
+            }
+            return PrijemID;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int PrijemID = VratiPrijemnicu(Convert.ToInt32(this.gridGroupingControl2.Table.SelectedRecords[0].Record.GetValue("KomNalID").ToString()));
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(PrijemID.ToString(), 2);
+            ds.Show();
+
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.UpdRNPrijemPlatformeKamPusti(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
+                int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                UpisiLog(uslugaID, "KALMARISTA");
+            }
+        }
+
+        private void frmPlatforma_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                frmPrijemKamionaDetalji frm = new frmPrijemKamionaDetalji(Convert.ToInt32(selectedRecord.Record.GetValue("KontID").ToString()));
+                frm.Show();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // use the selectedRecord variable and Convert.ToString to avoid NRE
+            //if (gridGroupingControl2.Table.SelectedRecords.Count > 0)
+            //{
+            //    var rec = gridGroupingControl2.Table.SelectedRecords[0].Record;
+            //    var bkontejnera = Convert.ToString(rec.GetValue("Kontejner"));
+            //    var vozilo = Convert.ToString(rec.GetValue("REgBrKamiona")); // or "RegBrKamiona" if SQL fixed
+            //    var vozac = Convert.ToString(rec.GetValue("ImeVozaca"));
+            //    var kontId = Convert.ToInt32(rec.GetValue("KontID") ?? 0);
+            //    var vag = new Vaganje(bkontejnera, kontId, vozilo, vozac);
+            //    vag.Show();
+            //}
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                int uslugaPun = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                int vaganje = Convert.ToInt32(selectedRecord.Record.GetValue("Vaganje")?.ToString());
+                int potrebnoVaganje = Convert.ToInt32(selectedRecord.Record.GetValue("PotrebnoVaganje")?.ToString());
+                int fazaUsluge = Convert.ToInt32(selectedRecord.Record.GetValue("FazaUsluge")?.ToString());
+                if (vaganje > 1)
+                {
+                    MessageBox.Show("Nalog za vaganje je već napravljen.");
+                    return;
+                }
+
+
+
+                InsertPretovari ins = new InsertPretovari();
+                ins.UpdateStatusUslugeVaganje(uslugaPun);
+
+                MessageBox.Show("Usluga vaganja je uspešno aktivirana.");
+
+            }
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
+                ///menja na kapijaUlaz = 2
+                ir.PromeniStatusKapija(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
+
+                int uslugaID = Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString());
+                UpisiLog(uslugaID, "POTVRDI");
+            }
+            MessageBox.Show("Uspešno potrdjena kapija!");
+        }
+
+        private void UpisiLog(int uslugaidID, string mestoPoziva)
+        {
+
+            InsertIzvoz ink = new InsertIzvoz();
+
+     
+
+            System.Data.DataTable dtPodaci = VratiPodatkeZaLog(uslugaidID);
+            // ink.InsertKontejnerLog(Convert.ToInt32(textBox1.Text), poruka1, vreme1, lokacija, tKorisnik);
+
+            if (dtPodaci == null || dtPodaci.Rows.Count == 0)
+            {
+                return;
+            }
+
+            int scenario = Convert.ToInt32(dtPodaci.Rows[0]["Scenario"].ToString());
+            switch (scenario)
+            {
+                
+                case 13: // GRUPA I
+                case 26: // Scenario I-L
+                    string poruka1 = "Kamion je na kapiji";
+                    string poruka2 = "Izvršen je pregled kontejnera";
+                    string poruka3 = "Potvrđeno je spuštanje punog kontejnera";
+
+                    DateTime? vreme1 = null;
+                    DateTime? vreme2 = null;
+                    DateTime? vreme3 = null;
+                    string lokacija = string.Empty;
+
+                    int kontejnerID = Convert.ToInt32(dtPodaci.Rows[0]["ID"].ToString());
+
+                    // Čitanje lokacije
+                    if (dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"] != DBNull.Value)
+                    {
+                        lokacija = dtPodaci.Rows[0]["MestoSpustanjaPunogKontejnera"].ToString();
+                    }
+                    
+                    
+                    // Datum dolaska kamiona na kapiju
+                    if (dtPodaci.Rows[0]["DatumDolaska"] != DBNull.Value)
+                    {
+                        vreme1 = Convert.ToDateTime(dtPodaci.Rows[0]["DatumDolaska"]);
+                    }
+
+                    if (dtPodaci.Rows[0]["VizuelniDatumReal"] != DBNull.Value)
+                    {
+                        vreme2 = Convert.ToDateTime(dtPodaci.Rows[0]["VizuelniDatumReal"]);
+                    }
+                    if (dtPodaci.Rows[0]["DatumRealizacije"] != DBNull.Value)
+                    {
+                        vreme3 = Convert.ToDateTime(dtPodaci.Rows[0]["DatumRealizacije"]);
+                    }
+                    
+                    if (mestoPoziva == "POTVRDI")
+                    {
+                        ink.InsertKontejnerLog(kontejnerID, poruka1, vreme1, lokacija, tKorisnik);
+                        ink.InsertKontejnerLog(kontejnerID, poruka2, vreme2, lokacija, tKorisnik);
+                    }
+                    else if (mestoPoziva == "KALMARISTA")
+                    {
+                        ink.InsertKontejnerLog(kontejnerID, poruka3, vreme3, lokacija, tKorisnik);
+                    }
+                break;
+                    
+            
+            }
+            
+
+        }
+
+        private System.Data.DataTable VratiPodatkeZaLog(int? kontejnerID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            System.Data.DataTable dt = new System.Data.DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(s_connection))
+            {
+
+                string query = @"SELECT i.ID, Scenario,
+                        LTRIM(RTRIM(mu.Naziv)) AS MestoSpustanjaPunogKontejnera,
+                        ka.DatumDolaska, rnpf.VizuelniDatumReal, rnpf.DatumRealizacije
+                        FROM IzvozKonacna i
+                             LEFT JOIN MestaUtovara mu ON i.MestoPreuzimanja2 = mu.ID
+                             LEFT JOIN RadniNalogInterni rni on rni.BrojOsnov =  i.ID
+							 LEFT JOIN Kapija ka on ka.NalogID =  rni.ID
+							 LEFT JOIN RNPrijemPlatforme rnpf on rnpf.NalogID = rni.ID
+                        WHERE rni.ID = " + kontejnerID;
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    dt.Load(dr);
+
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        Console.WriteLine("Kolona: " + col.ColumnName + " | Tip: " + col.DataType);
+                    }
+                    dr.Close();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            return dt;
+
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
+            {
+                InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
+                ir.PromeniStatusPregledac(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalID").ToString()));
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

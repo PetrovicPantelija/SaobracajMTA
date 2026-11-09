@@ -12,13 +12,21 @@ namespace Saobracaj.Carinsko
     internal class InsertMagacinskiBrojevi
     {
 
-        public void InsMagacinskiBrojevi( string Napomena)
+        public void InsMagacinskiBrojevi( string Napomena,string Tip)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertMagacinskiBroj";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@Tip";
+            parameter.SqlDbType = SqlDbType.NVarChar;
+            parameter.Size = 50;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = Tip;
+            myCommand.Parameters.Add(parameter);
 
 
             SqlParameter parameter1 = new SqlParameter();

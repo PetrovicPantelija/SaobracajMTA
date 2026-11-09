@@ -69,6 +69,8 @@ namespace Saobracaj.Sifarnici
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.txtFaza = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
@@ -526,12 +528,31 @@ namespace Saobracaj.Sifarnici
             this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.commandBarController1.UseBackwardCompatiblity = false;
             // 
+            // txtFaza
+            // 
+            this.txtFaza.Location = new System.Drawing.Point(15, 175);
+            this.txtFaza.Name = "txtFaza";
+            this.txtFaza.Size = new System.Drawing.Size(106, 20);
+            this.txtFaza.TabIndex = 463;
+            this.txtFaza.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 159);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 462;
+            this.label8.Text = "FAZA";
+            // 
             // frmScenario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(990, 473);
+            this.Controls.Add(this.txtFaza);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.cbCir);
             this.Controls.Add(this.cbVizuelni);
@@ -608,5 +629,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.Button button22;
         private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtFaza;
+        private System.Windows.Forms.Label label8;
     }
 }

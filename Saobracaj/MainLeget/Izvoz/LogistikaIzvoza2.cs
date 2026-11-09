@@ -1,0 +1,144 @@
+﻿using Saobracaj.Izvoz;
+using Saobracaj.MainLeget;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Saobracaj.MainLeget.LegNew
+{
+    public partial class LogistikaIzvoza2 : Form
+    {
+        
+        public LogistikaIzvoza2()
+        {
+            InitializeComponent();
+           // OpenInPanel2(new MainLeget.Info(OpenInPanel2));
+
+           // btnLogistikaUvoza.Click += (s, e) => OpenInPanel2(new MainLeget.UvozMain(OpenInPanel2));
+        }/*
+        public void OpenInPanel2(Form child)
+        {
+            if(_activeChild != null)
+            {
+                _activeChild.Close();
+                _activeChild.Dispose();
+                _activeChild = null;
+            }
+            _activeChild = child;
+            child.TopLevel = false;
+            child.FormBorderStyle=FormBorderStyle.None;
+            child.Dock = DockStyle.Fill;
+            child.AutoScaleMode=AutoScaleMode.None;
+
+            splitContainer2.Panel2.Controls.Clear();
+            splitContainer2.Panel2.Controls.Add(child);
+            child.Show();
+            child.BringToFront();
+            child.Focus();
+        }
+        */
+
+        private void MainLeget_Load(object sender, EventArgs e)
+        {
+        }
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           //OpenInPanel2(new MainLeget.Info(OpenInPanel2));
+        }
+
+        private void btnLogistikaUvoza_Click(object sender, EventArgs e)
+        {
+            //panel1.Visible = false;
+        }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void sfButton1_Click_1(object sender, EventArgs e)
+        {
+            //var main = this.TopLevelControl as NewMain;
+            //if (main == null) return;
+
+            //main.OtvoriFormuSaPravom(
+            //    sfButton1.Text,
+            //    () => new frmProdajniNalogIzvoz()
+            //);
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(0)
+            );
+
+        }
+
+        private void sfButton4_Click(object sender, EventArgs e)
+        {
+            //var main = this.TopLevelControl as NewMain;
+            //if (main == null) return;
+
+            //main.OtvoriFormuSaPravom(
+            //    sfButton3.Text,
+            //    () => new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(0)
+            //);
+
+        }
+
+        private void sfButton2_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton2.Text,
+                () => new frmPregledGrupaKontejneraIzvoz(1) //new frmProdajniNalogIzvozTabela(1)
+            );
+        }
+
+        private void sfButton3_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new frmPregledGrupaKontejneraIzvoz(2)//new Saobracaj.Izvoz.frmProdajniNalogIzvozTabela(2)
+            );
+        }
+
+        private void sfButton5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton6_Click(object sender, EventArgs e)
+        {
+            var main = this.TopLevelControl as NewMain;
+            if (main == null) return;
+
+            main.OtvoriFormuSaPravom(
+                sfButton3.Text,
+                () => new frmPregledGrupaKontejneraIzvoz(3)//za prikaz svih i Izvoz i IzvozKonacna
+            );
+        }
+    }
+}
+

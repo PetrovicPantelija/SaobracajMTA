@@ -11,7 +11,7 @@ namespace Saobracaj.Uvoz
     {
         string connection = Sifarnici.frmLogovanje.connectionString;
 
-        public void InsZapisnikONepravilnosti(int NalogID, string Napomena)
+        public void InsZapisnikONepravilnosti(int NalogID, string Napomena, string BrojKontejnera, int VrstaKontejnera, string BrojPlombe, string OstalePlombe)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -32,6 +32,38 @@ namespace Saobracaj.Uvoz
             napomena.Direction = ParameterDirection.Input;
             napomena.Value = Napomena;
             cmd.Parameters.Add(napomena);
+
+
+            SqlParameter brojkontejnera = new SqlParameter();
+            brojkontejnera.ParameterName = "@BrojKontejnera";
+            brojkontejnera.SqlDbType = SqlDbType.NVarChar;
+            brojkontejnera.Size = 50;
+            brojkontejnera.Direction = ParameterDirection.Input;
+            brojkontejnera.Value = BrojKontejnera;
+            cmd.Parameters.Add(brojkontejnera);
+
+            SqlParameter vrstakontejnera = new SqlParameter();
+            vrstakontejnera.ParameterName = "@VrstaKontejnera";
+            vrstakontejnera.SqlDbType = SqlDbType.Int;
+            vrstakontejnera.Direction = ParameterDirection.Input;
+            vrstakontejnera.Value = VrstaKontejnera;
+            cmd.Parameters.Add(vrstakontejnera);
+
+            SqlParameter brojplombe = new SqlParameter();
+            brojplombe.ParameterName = "@BrojPlombe";
+            brojplombe.SqlDbType = SqlDbType.NVarChar;
+            brojplombe.Size = 30;
+            brojplombe.Direction = ParameterDirection.Input;
+            brojplombe.Value = BrojPlombe;
+            cmd.Parameters.Add(brojplombe);
+
+            SqlParameter ostaleplombe = new SqlParameter();
+            ostaleplombe.ParameterName = "@OstalePlombe";
+            ostaleplombe.SqlDbType = SqlDbType.NVarChar;
+            ostaleplombe.Size = 50;
+            ostaleplombe.Direction = ParameterDirection.Input;
+            ostaleplombe.Value = OstalePlombe;
+            cmd.Parameters.Add(ostaleplombe);
 
 
             conn.Open();

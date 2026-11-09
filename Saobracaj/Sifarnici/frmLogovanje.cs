@@ -140,11 +140,11 @@ namespace Saobracaj.Sifarnici
 
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
-            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
-            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990";
-            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990";
-            connectionStringsSection.ConnectionStrings["WindowsFormsApplication3.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;Persist Security Info=True;User ID=sa;Password=duki7990";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=DPTDB2;User ID=sa;Password=P@ss011!;";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=DPTDB2;User ID=sa;Password=P@ss011!;";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=DPTDB2;User ID=sa;Password=P@ss011!";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=DPTDB2;User ID=sa;Password=P@ss011!";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication3.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.150.110\MSSQLSERVER2024;Initial Catalog=DPTDB2;Persist Security Info=True;User ID=sa;Password=P@ss011!";
             /*
             connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
             connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
