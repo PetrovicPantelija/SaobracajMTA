@@ -643,8 +643,6 @@ namespace Saobracaj.Skladista_main
                 godina = Convert.ToInt32(numGodina.Value);
             }
 
-
-
             InsertCarinskoSkladiste insc = new InsertCarinskoSkladiste();
             if (txtID.Text.IsNullOrWhiteSpace())
             {
@@ -667,6 +665,7 @@ namespace Saobracaj.Skladista_main
                               Convert.ToDateTime(planiranoVremePrijem.Value), Convert.ToDateTime(novoVremePrijem.Value), vaganje, adr, posebniUslovi, 0,
                               txtNapomena.Text.ToString().TrimEnd(), inspekcijskiTretman, vlasnikRobe, opisRobe, magacinskiBroj, ostalaSkladista, smestajniDokument, upisPodatakaUMP, godina);
 
+                VratiPodatkeMP();
             }
 
 
@@ -700,7 +699,8 @@ namespace Saobracaj.Skladista_main
                         //  RefreshGrid();
                     }
 
-                    proveriDaLiJePopunjenMP();
+                 //   proveriDaLiJePopunjenMP();
+                    
                     //int VratiNalogID = VratiNalogIDF();
                     //Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
                     //ins1.InsRadniNalogInterniIzvozSkladistePotvrda(VratiNalogID);
@@ -740,27 +740,7 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        private void proveriDaLiJePopunjenMP()
-        {
-            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
-            {
-                connection.Open();
-                var cmd = new SqlCommand(@"
-                                    SELECT TOP(1) ID
-                                    FROM MagacinskiPredmet                                
-                                    WHERE RN = @ID", connection);
-                cmd.Parameters.AddWithValue("@ID", txtID.Text);
-
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        if (reader["ID"] != DBNull.Value)
-                            txtMagacinskiPredmetID.Text = (reader["ID"].ToString());
-                    }
-                }
-            }
-        }
+      
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
@@ -799,6 +779,13 @@ namespace Saobracaj.Skladista_main
         private void button25_Click(object sender, EventArgs e)
         {
             int VratiNalogID = VratiNalogIDF();
+            int ID = Convert.ToInt32(txtID.Text);
+            bool mozeDalje = ProveriPodatkePrePotvrde(ID);
+
+            if (!mozeDalje)
+            {
+                return; // Ovde se zaustavlja izvršavanje, nalog se NE potvrđuje u bazi
+            }
             Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
             ins1.UpdRadniNalogInterniIzvozSkladistePotvrdjen(Convert.ToInt32(VratiNalogID));
 
@@ -807,6 +794,100 @@ namespace Saobracaj.Skladista_main
             Status = "LO";
             btnSnimi.Enabled = false;
             //  podesiPolja(Status);
+        }
+
+        private bool ProveriPodatkePrePotvrde(int nalogID)
+        {
+            bool vozacPodaciNedostaju = false;
+            bool istovarPodaciNedostaju = false;
+
+            // Prilagodi naziv konekcije i naziv ID kolone (npr. ID ili RadniNalogID) prema tvom projektu
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = @"SELECT VoziloPrijem, VozacPrijem, BrojLKPrijem, BrojTelefonaPrijem, 
+                            MestoIstovaraPrijem, AdresaIntPrijem, KontaktOsobaIstovarIntPrijem 
+                     FROM RadniNalogSkladista 
+                     WHERE ID = @NalogID";
+
+            using (SqlConnection conn = new SqlConnection(s_connection))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@NalogID", nalogID);
+
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Provera podataka vozača
+                            string vozilo = reader["VoziloPrijem"] as string;
+                            string vozac = reader["VozacPrijem"] as string;
+                            string brlk = reader["BrojLKPrijem"] as string;
+                            string telefon = reader["BrojTelefonaPrijem"] as string;
+
+                            if (string.IsNullOrWhiteSpace(vozilo) || string.IsNullOrWhiteSpace(vozac) ||
+                                string.IsNullOrWhiteSpace(brlk) || string.IsNullOrWhiteSpace(telefon))
+                            {
+                                vozacPodaciNedostaju = true;
+                            }
+
+                            // Provera podataka mesta istovara
+                            int? mestoIstovara = reader["MestoIstovaraPrijem"] != DBNull.Value ? (int?)Convert.ToInt32(reader["MestoIstovaraPrijem"]) : null;
+                            int? adresa = reader["AdresaIntPrijem"] != DBNull.Value ? (int?)Convert.ToInt32(reader["AdresaIntPrijem"]) : null;
+                            int? kontaktIstovar = reader["KontaktOsobaIstovarIntPrijem"] != DBNull.Value ? (int?)Convert.ToInt32(reader["KontaktOsobaIstovarIntPrijem"]) : null;
+
+                            // Smatramo da podatak nedostaje ako je vrednost null, ili ako je po tvojoj poslovnoj logici 0 (ili -1) prazno polje
+                            if (!mestoIstovara.HasValue || mestoIstovara.Value <= 0 ||
+                                !adresa.HasValue || adresa.Value <= 0 ||
+                                !kontaktIstovar.HasValue || kontaktIstovar.Value <= 0)
+                            {
+                                istovarPodaciNedostaju = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greška pri proveri podataka: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false; // U slučaju greške u bazi, sprečavamo radnju ili vraćamo false
+                }
+            }
+
+            // Ukoliko nedostaju neki podaci, pitamo korisnika šta želi
+            if (vozacPodaciNedostaju || istovarPodaciNedostaju)
+            {
+                string poruka = "";
+
+                if (vozacPodaciNedostaju && istovarPodaciNedostaju)
+                {
+                    poruka = "Nisu svi podaci vezani za vozača i mesto istovara popunjeni.";
+                }
+                else if (vozacPodaciNedostaju)
+                {
+                    poruka = "Nisu svi podaci vezani za vozača popunjeni.";
+                }
+                else if (istovarPodaciNedostaju)
+                {
+                    poruka = "Nisu svi podaci vezani za mesto istovara popunjeni.";
+                }
+
+                poruka += "\n\nDa li ipak želite da nastavite i potvrdite nalog?";
+
+                DialogResult rezultat = MessageBox.Show(poruka, "Upozorenje - Nedostaju podaci", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                // Ako korisnik klikne "No", vraćamo false i prekida se dalja akcija
+                if (rezultat == DialogResult.No)
+                {
+                    return false;
+                }
+            }
+
+            // Ako je sve popunjeno ili je korisnik izabrao "Yes", vraćamo true
+            return true;
+
+            // Ako je sve popunjeno, vraća true da može slobodno da se nastavi
+            return true;
         }
 
         private void VratiPodatke(int id)
@@ -944,7 +1025,7 @@ namespace Saobracaj.Skladista_main
                 VlasnikSifra = dr["VlasnikRobeSifra"].ToString();
                 Skladiste = dr["CarinskoSkladiste"].ToString();
 
-
+                
             }
             conn.Close();
         }
@@ -959,7 +1040,7 @@ namespace Saobracaj.Skladista_main
                 conn.Open();
 
                 // Preporuka: Koristite SQL parametar umesto spajanja stringova zbog bezbednosti
-                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, mp.SifraSkladista AS SifraSkladista, mp.Koleta," +
+                var cmd = new SqlCommand("SELECT mp.ID, MB,vlr.Naziv as NazivVlasnika , vlr.Sifra AS SifraRobe, ISNULL(mp.SifraSkladista, rns.CarinskoSkladiste) AS SifraSkladista, mp.Koleta," +
                                          "mp.Neto, mp.Bruto ,mp.Vrednost, mp.Valuta, vcp.Oznaka as CarinskiPostupak, Carinarnice.CIOznaka, BrojJCI, mp.Godina " +
                                         " From RadniNalogSkladista rns " +
                                         " LEFT JOIN MagacinskiPredmet mp   ON  rns.id = mp.RN" +

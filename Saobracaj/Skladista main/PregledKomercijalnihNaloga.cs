@@ -32,6 +32,10 @@ namespace Saobracaj.Skladista_main
             {
              //   button24.Visible= false;
             }
+            else if (Ulaz == "Direktni")
+            {
+                button1.Visible = false;
+            }
         }
         private void PregledKomercijalnihNaloga_Load(object sender, EventArgs e)
         {

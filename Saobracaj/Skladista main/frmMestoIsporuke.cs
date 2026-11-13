@@ -302,9 +302,68 @@ namespace Saobracaj.Skladista_main
             VratiPodatke(IdNaloga);
         }
 
+        private bool proveriDaLiJePotvrdioLO()
+        {
+            bool potvrdjenNalog = false;
+            int VratiNalogID = VratiNalogIDF();
+            using (var connection = new SqlConnection(Sifarnici.frmLogovanje.connectionString))
+            {
+                connection.Open();
+                var cmd = new SqlCommand(@"
+                                    SELECT TOP(1) idNaloga
+                                    FROM RadniNalogInterniPotvrda                                
+                                    WHERE idNaloga = @ID AND ISNull(LOSkladiste,0) = 1 ", connection);
+                cmd.Parameters.AddWithValue("@ID", VratiNalogID);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int? loPotvrdjen = reader["idNaloga"] != DBNull.Value ? (int?)Convert.ToInt32(reader["idNaloga"]) : null;
+
+                        if (loPotvrdjen.HasValue || loPotvrdjen.Value > 0 )
+                        {
+                            potvrdjenNalog = true;
+                        }
+                    }
+                }
+
+                
+            }
+            return potvrdjenNalog;
+        }
+
+        int VratiNalogIDF()
+        {
+            int nalogID = 0;
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select ID from RadniNalogInterni where TipRN = 'RN20' and IDManipulacijaJED = 74 and BrojRN =" + IdNaloga, conn))
+                {
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        nalogID = Convert.ToInt32(dr["ID"].ToString());
+                    }
+                }
+                conn.Close();
+            }
+
+            return nalogID;
+        }
+
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             int? mestoIstovara = null;
+            bool potvrdjenNalog = proveriDaLiJePotvrdioLO();
+
+            if (potvrdjenNalog == true)
+            {
+                MessageBox.Show("Nalog je već potvrđen i njije moguće snimiti izmene!");
+                return;
+            }
+               
 
             if (int.TryParse(cboMestoIstovaraPrijem.SelectedValue.ToString(), out int mestoIstovaraInt))
             {
