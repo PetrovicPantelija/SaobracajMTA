@@ -1,0 +1,47 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "restore",
+            // process: exe se pokreće direktno, bez PowerShell-a (putanje sa razmacima ne treba stavljati u navodnike)
+            "type": "process",
+            "command": "${workspaceFolder}\\tools\\nuget.exe",
+            "args": [
+                "restore",
+                "${workspaceFolder}\\Saobracaj.sln"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "type": "process",
+            "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe",
+            "args": [
+                // Build the csproj directly: the .sln maps Debug|Any CPU to Release
+                "${workspaceFolder}\\Saobracaj\\Saobracaj.csproj",
+                "/property:Configuration=Debug",
+                "/property:Platform=AnyCPU",
+                // Ask msbuild to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                "/t:build",
+                "/m",
+                "/verbosity:minimal",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "dependsOn": "restore",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                // Reveal the output only if unrecognized errors occur.
+                "reveal": "silent"
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

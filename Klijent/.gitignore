@@ -1,0 +1,7 @@
+# Sadržaj klijentskih foldera se ne čuva u git-u (mogu biti poverljivi podaci).
+# Čuvaju se samo struktura foldera i README fajlovi.
+*
+!*/
+!.gitignore
+!README.md
+!.gitkeep

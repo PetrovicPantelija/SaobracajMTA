@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rebase *)",
+      "PowerShell(sqlcmd -S \"192.168.129.7\" -d TESTIRANJE -U sa -P duki7990 -l 8 -h -1 -Q \"SET NOCOUNT ON; SELECT CASE WHEN OBJECT_DEFINITION\\(OBJECT_ID\\('dbo.AktivnostHijerarhijaSkladista'\\)\\) LIKE '%@Polja%' THEN 'ima' ELSE 'nema' END\" 2>&1)",
+      "PowerShell($p='C:\\\\Users\\\\Panta\\\\.claude\\\\projects\\\\d--Cloude-LG-SaobracajMTA\\\\823472d2-0738-471a-af2c-871ca1fd2f10.jsonl'; $lines=[IO.File]::ReadAllLines\\($p\\); for\\($i=$lines.Length-1;$i -ge 0;$i--\\){ if\\($lines[$i] -match 'Pravimo novu opciju HR'\\){ \"$i len=$\\($lines[$i].Length\\)\"; break } })",
+      "PowerShell($p='C:\\\\Users\\\\Panta\\\\.claude\\\\projects\\\\d--Cloude-LG-SaobracajMTA\\\\823472d2-0738-471a-af2c-871ca1fd2f10.jsonl'; $lines=[IO.File]::ReadAllLines\\($p\\); $lines[2428]; \"----\"; for\\($i=2420;$i -lt 2428;$i++\\){ \"$i len=$\\($lines[$i].Length\\) \" + $lines[$i].Substring\\(0,[Math]::Min\\(300,$lines[$i].Length\\)\\) })",
+      "PowerShell($p='C:\\\\Users\\\\Panta\\\\.claude\\\\projects\\\\d--Cloude-LG-SaobracajMTA\\\\823472d2-0738-471a-af2c-871ca1fd2f10.jsonl'; $lines=[IO.File]::ReadAllLines\\($p\\); for\\($i=0;$i -lt $lines.Length;$i++\\){ if\\($lines[$i] -match 'modul-zaposleni|zahtev-za-nabavku|izgled formi'\\){ \"$i len=$\\($lines[$i].Length\\) \" + $lines[$i].Substring\\(0,[Math]::Min\\(200,$lines[$i].Length\\)\\) } })",
+      "PowerShell($p='C:\\\\Users\\\\Panta\\\\.claude\\\\projects\\\\d--Cloude-LG-SaobracajMTA\\\\823472d2-0738-471a-af2c-871ca1fd2f10.jsonl'; $lines=[IO.File]::ReadAllLines\\($p\\); $o=$lines[2367] | ConvertFrom-Json; $out='C:\\\\Users\\\\Panta\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--Cloude-LG-SaobracajMTA\\\\823472d2-0738-471a-af2c-871ca1fd2f10\\\\scratchpad\\\\hr'; New-Item -ItemType Directory -Force $out | Out-Null; $n=0; foreach\\($c in $o.message.content\\){ $n++; \"$n type=$\\($c.type\\) srctype=$\\($c.source.type\\) media=$\\($c.source.media_type\\) title=$\\($c.title\\)\"; if\\($c.type -eq 'document' -and $c.source.type -eq 'base64'\\){ [IO.File]::WriteAllBytes\\(\"$out\\\\doc$n.pdf\",[Convert]::FromBase64String\\($c.source.data\\)\\) } elseif\\($c.type -eq 'document' -and $c.source.type -eq 'text'\\){ [IO.File]::WriteAllText\\(\"$out\\\\doc$n.md\",$c.source.data\\) } elseif\\($c.type -eq 'text'\\){ [IO.File]::WriteAllText\\(\"$out\\\\text$n.txt\",$c.text\\) } }; Get-ChildItem $out | Select Name,Length)",
+      "PowerShell(python --version)",
+      "PowerShell(python -c \"import fitz; print\\('fitz ok'\\)\")",
+      "PowerShell(python -c \"import pypdf; print\\('pypdf ok'\\)\")",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" D:\\\\Cloude\\\\LG\\\\SaobracajMTA\\\\Saobracaj\\\\Saobracaj.csproj /p:Configuration=Debug /p:Platform=AnyCPU /t:build /m /v:minimal /nologo /clp:NoSummary | Select-String -Pattern \" error |Saobracaj ->\" | Select-Object -First 60 | ForEach-Object { $_.Line })",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" D:\\\\Cloude\\\\LG\\\\SaobracajMTA\\\\Saobracaj\\\\Saobracaj.csproj /p:Configuration=Debug /p:Platform=AnyCPU /t:build /m /v:minimal /nologo /clp:NoSummary | Select-String -Pattern \" error |Saobracaj ->\" | Select-Object -First 30 | ForEach-Object { $_.Line })",
+      "PowerShell(foreach\\($f in 'HR_Modul_2026_10.sql','HR_Modul_Faza2_2026_10.sql'\\){ \"=== $f ===\"; sqlcmd -S \"192.168.150.110\\\\MSSQLSERVER2024\" -d Testiranje -U sa -P 'P@ss011!' -l 8 -W -I -f 65001 -i \"D:\\\\Cloude\\\\LG\\\\SaobracajMTA\\\\Saobracaj\\\\HR\\\\$f\" })",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" Saobracaj/Saobracaj.csproj /p:Configuration=Debug /p:Platform=AnyCPU /m /v:minimal)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" Saobracaj\\\\Saobracaj.csproj /p:Configuration=Debug /p:Platform=AnyCPU /m /v:minimal)",
+      "PowerShell($asm = [System.Reflection.Assembly]::LoadFrom\\(\"D:\\\\Cloude\\\\LG\\\\SaobracajMTA\\\\packages\\\\Syncfusion.SfListView.WinForms.19.4.0.56\\\\lib\\\\net46\\\\Syncfusion.SfListView.WinForms.dll\"\\); $t = $asm.GetType\\(\"Syncfusion.WinForms.ListView.SfComboBox\"\\); $t.GetProperties\\(\\) | Where-Object { $_.Name -match \"Filter|Auto|Text|Data|Display|Value|Drop\" } | ForEach-Object { \"$\\($_.PropertyType.Name\\) $\\($_.Name\\)\" })",
+      "Bash(python -c ' *)",
+      "Bash(awk '/<member name=\"P:Syncfusion.WinForms.ListView.SfComboBox.Filter\">/,/<\\\\/member>/' Syncfusion.SfListView.WinForms.xml)",
+      "Bash(awk '/<member name=\"P:Syncfusion.WinForms.ListView.SfComboBox.AutoCompleteMode\">/,/<\\\\/member>/' Syncfusion.SfListView.WinForms.xml)",
+      "Bash(awk '/<member name=\"P:Syncfusion.WinForms.ListView.SfComboBox.AutoCompleteSuggestMode\">/,/<\\\\/member>/' Syncfusion.SfListView.WinForms.xml)",
+      "Bash(awk '/<member name=\"P:Syncfusion.WinForms.ListView.SfComboBox.ComboBoxMode\">/,/<\\\\/member>/' Syncfusion.SfListView.WinForms.xml)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" d:\\\\Cloude\\\\LG\\\\SaobracajMTA\\\\Saobracaj\\\\Saobracaj.csproj /p:Configuration=Debug /p:Platform=AnyCPU /m /v:minimal)"
+    ]
+  }
+}

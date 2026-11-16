@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch SaobracajMTA (.NET Framework)",
+            "type": "clr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}\\Saobracaj\\bin\\Debug\\Saobracaj.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}\\Saobracaj\\bin\\Debug",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Attach to SaobracajMTA (.NET Framework)",
+            "type": "clr",
+            "request": "attach",
+            "processName": "Saobracaj.exe"
+        }
+    ]
+}
