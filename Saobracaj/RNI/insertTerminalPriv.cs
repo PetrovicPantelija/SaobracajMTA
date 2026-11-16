@@ -150,7 +150,7 @@ namespace Saobracaj.RNI
             }
         }
 
-        // zapisiMaersk = true samo za izmenu dugmetom 'Promeni': procedura tada za Maersk kontejner upisuje
+        // zapisiMaersk = true za izmenu dugmetom 'Promeni' i 'Sačuvaj izmene': procedura tada za Maersk kontejner upisuje
         // pokrete u TerminalPrivMaersk za datume koji su prešli iz praznog u popunjen
         public void UpdTerminalPriv(DataRow red, bool zapisiMaersk = false)
         {
@@ -342,7 +342,7 @@ namespace Saobracaj.RNI
         // Svi redovi se upisuju u jednoj transakciji. Vraca broj upisanih redova.
         public static readonly string[] KoloneIzExcela =
         {
-            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "BL/UVOZ", "VOZ/kamion", "L/R"
+            "KONTEJNER", "VRSTA", "BRODAR", "NALOGODAVAC/UVOZ", "POSTUPAK/UVOZ", "UVOZNIK", "BL/UVOZ", "VOZ/kamion", "L/R", "PLOMBA_UVOZ"
         };
 
         // Kolone za SELECT redosledom iz Polja (u migriranoj bazi nova kolona BL/UVOZ je fizički poslednja)

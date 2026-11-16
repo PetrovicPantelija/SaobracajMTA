@@ -916,12 +916,16 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            // Pokreti za brodare (TerminalPrivMaersk, TerminalPrivMSC...) se upisuju za svaki red isto kao
+            // dugmetom 'Potvrdi promenu', pa i za redove izmenjene grupnom promenom; broj pokreta se sabira
             var ins = new insertTerminalPriv();
             int sacuvano = 0;
+            int ukMaersk = 0, ukMSC = 0, ukCMA = 0, ukOOCL = 0, ukHMM = 0, ukHAPAG = 0, ukFLEXBOX = 0, ukCOSCO = 0;
             try
             {
                 foreach (DataRow red in izmenjeni)
                 {
+                    int brojMaersk = 0, brojMSC = 0, brojCMA = 0, brojOOCL = 0, brojHMM = 0, brojHAPAG = 0, brojFLEXBOX = 0, brojCOSCO = 0;
                     if (red.RowState == DataRowState.Deleted)
                     {
                         int id = Convert.ToInt32(red["ID", DataRowVersion.Original]);
@@ -930,12 +934,15 @@ namespace Saobracaj.RNI
                     }
                     else if (red.RowState == DataRowState.Added)
                     {
-                        red["ID"] = ins.InsTerminalPriv(red);
+                        red["ID"] = ins.InsTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
                     }
                     else
                     {
-                        ins.UpdTerminalPriv(red);
+                        ins.UpdTerminalPriv(red, true, out brojMaersk, out brojMSC, out brojCMA, out brojOOCL, out brojHMM, out brojHAPAG, out brojFLEXBOX, out brojCOSCO);
                     }
+
+                    ukMaersk += brojMaersk; ukMSC += brojMSC; ukCMA += brojCMA; ukOOCL += brojOOCL;
+                    ukHMM += brojHMM; ukHAPAG += brojHAPAG; ukFLEXBOX += brojFLEXBOX; ukCOSCO += brojCOSCO;
 
                     red.AcceptChanges();
                     sacuvano++;
@@ -945,10 +952,12 @@ namespace Saobracaj.RNI
             {
                 MessageBox.Show("Sačuvano zapisa: " + sacuvano + " od " + izmenjeni.Count + Environment.NewLine + ex.Message,
                     "Terminal privremeni", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PorukaPokreti(ukMaersk, ukMSC, ukCMA, ukOOCL, ukHMM, ukHAPAG, ukFLEXBOX, ukCOSCO);   // za već sačuvane zapise
                 return;
             }
 
             MessageBox.Show("Izmene su sačuvane (" + sacuvano + ").", "Terminal privremeni", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            PorukaPokreti(ukMaersk, ukMSC, ukCMA, ukOOCL, ukHMM, ukHAPAG, ukFLEXBOX, ukCOSCO);
             UcitajPodatke();
         }
 
@@ -1149,7 +1158,7 @@ namespace Saobracaj.RNI
             IzvozPokreta("MSC", izvoz.UcitajNeizvezene, TerminalPrivMSCIzvoz.PredlogImena(), izvoz.Izvezi);
         }
 
-        private void IzvozPokreta(string brodar, Func<DataTable> ucitajNeizvezene, string predlogImena, Func<DataTable, string, int> izvezi)
+        private void IzvozPokreta(string brodar, Func<DataTable> ucitajNeizvezene, string predlogImena, Func<DataTable, string, bool, int> izvezi)
         {
             string naslov = "Izvoz " + brodar;
 
@@ -1170,6 +1179,16 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            // Da = izveštaj se šalje klijentu: zapisi se označavaju kao izvezeni i ne pojavljuju se u sledećem izveštaju.
+            // Ne = samo pregled: Excel je isti, ali zapisi ostaju za sledeći izveštaj.
+            DialogResult zaKlijenta = MessageBox.Show("Da li je izveštaj za slanje klijentu?" + Environment.NewLine + Environment.NewLine
+                + "Da: zapisi se označavaju kao poslati i neće se pojaviti u sledećem izveštaju." + Environment.NewLine
+                + "Ne: zapisi ostaju i pojaviće se i u sledećem izveštaju.",
+                naslov, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (zaKlijenta == DialogResult.Cancel)
+                return;
+            bool oznaciIzvezene = zaKlijenta == DialogResult.Yes;
+
             string putanja;
             using (var sfd = new SaveFileDialog())
             {
@@ -1184,7 +1203,7 @@ namespace Saobracaj.RNI
             Cursor = Cursors.WaitCursor;
             try
             {
-                izvezeno = izvezi(zapisi, putanja);
+                izvezeno = izvezi(zapisi, putanja, oznaciIzvezene);
             }
             catch (System.IO.IOException)
             {
@@ -1201,7 +1220,8 @@ namespace Saobracaj.RNI
                 Cursor = Cursors.Default;
             }
 
-            if (MessageBox.Show("Izvezeno zapisa: " + izvezeno + ". Otvoriti fajl?", naslov, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            string napomena = oznaciIzvezene ? "" : Environment.NewLine + "Zapisi nisu označeni kao poslati i pojaviće se i u sledećem izveštaju.";
+            if (MessageBox.Show("Izvezeno zapisa: " + izvezeno + "." + napomena + Environment.NewLine + "Otvoriti fajl?", naslov, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {

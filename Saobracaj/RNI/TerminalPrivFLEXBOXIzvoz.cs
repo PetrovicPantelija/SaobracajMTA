@@ -42,11 +42,13 @@ namespace Saobracaj.RNI
             return "FLEXBOX " + DateTime.Now.ToString("yyyy-MM-dd HH-mm", CultureInfo.InvariantCulture) + ".xlsx";
         }
 
-        // Snima fajl sa zapisima iz tabele, pa ih označava kao izvezene. Vraća broj izvezenih zapisa.
-        public int Izvezi(DataTable zapisi, string putanja)
+        // Snima fajl sa zapisima iz tabele, pa ih označava kao izvezene (samo ako je oznaciIzvezene = true, tj. izveštaj
+        // se šalje klijentu; inače se zapisi pojavljuju i u sledećem izveštaju). Vraća broj izvezenih zapisa.
+        public int Izvezi(DataTable zapisi, string putanja, bool oznaciIzvezene)
         {
             SnimiExcel(zapisi, putanja);
-            OznaciIzvezene(zapisi);
+            if (oznaciIzvezene)
+                OznaciIzvezene(zapisi);
             return zapisi.Rows.Count;
         }
 
