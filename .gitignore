@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Saobracaj/RNI/frmTerminalPrivremeni.resx
+
+# Instalacije koje pravi setup.iss (Inno Setup) - ne cuvaju se u git-u
+Output/*.exe
