@@ -138,6 +138,11 @@ namespace Saobracaj.Skladista_main
         {
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
+            if (gridGroupingControl1.Table.CurrentRecord == null)   // ISP-10
+            {
+                MessageBox.Show("Izaberite nalog u tabeli.");
+                return;
+            }
             ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
             main.OtvoriFormuBezPrava(() => new ViljuskaristiPregled(ID));
             //Bio nalog viljuskaristipregled
@@ -158,6 +163,11 @@ namespace Saobracaj.Skladista_main
                 return;
             }
             */
+            if (gridGroupingControl1.Table.CurrentRecord == null)   // ISP-10
+            {
+                MessageBox.Show("Izaberite nalog u tabeli.");
+                return;
+            }
             ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;

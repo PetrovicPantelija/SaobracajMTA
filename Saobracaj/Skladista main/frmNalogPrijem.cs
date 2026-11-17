@@ -52,6 +52,7 @@ namespace Saobracaj.Skladista_main
         public frmNalogPrijem(string status, string tip, string vrsta, string ulaz, int brojNaloga, int? lopotvrdjen)
         {
             InitializeComponent();
+            PodesiBrojcanaPolja();   // ISP-04, ISP-05, ISP-06
             Status = status; // komercijalninalog, novi, lo
             Tip = tip; // prijem, otprema
             Vrsta = vrsta;//carinsko, komercijalno
@@ -65,6 +66,8 @@ namespace Saobracaj.Skladista_main
                 txtID.Text = brojNaloga.ToString();
 
             }
+            UcitajMagacinskeBrojeve();   // ISP-09: lista magacinskih brojeva odmah pri otvaranju
+            InitRaspored();              // grupe koje se skrivaju i pokazuju, tabela popunjava ostatak
 
         }
         private void podesiPolja(string Status)
@@ -1185,12 +1188,14 @@ namespace Saobracaj.Skladista_main
                 var partAD5 = new SqlDataAdapter(partner5, conn);
                 var partDS5 = new System.Data.DataSet();
                 partAD5.Fill(partDS5);
-                if (!MagacinskiBroj.HasValue || MagacinskiBroj == 0)
-                {
-                    cboMagacinskiBroj.DataSource = partDS5.Tables[0];
-                    cboMagacinskiBroj.DisplayMember = "ID";
-                    cboMagacinskiBroj.ValueMember = "ID";
-                }
+                // ISP-09: lista se uvek puni iznova (i novi broj se odmah vidi), pa se bira sačuvani broj
+                cboMagacinskiBroj.DataSource = partDS5.Tables[0];
+                cboMagacinskiBroj.DisplayMember = "ID";
+                cboMagacinskiBroj.ValueMember = "ID";
+                if (MagacinskiBroj.HasValue && MagacinskiBroj > 0)
+                    cboMagacinskiBroj.SelectedValue = MagacinskiBroj.Value;
+                else
+                    cboMagacinskiBroj.SelectedIndex = -1;
 
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1376,7 +1381,8 @@ namespace Saobracaj.Skladista_main
             if (decimal.TryParse(txtVrednost.Text, out decimal parsedVrednost))
                 vrednost = parsedVrednost;
 
-            if (ima == true)
+            // ISP-12: ima = magacinski predmet za nalog postoji -> izmena; ne postoji -> upis (uslov je bio obrnut)
+            if (ima == false)
             { //cboValutaMP.SelectedValue.ToString()
 
 
@@ -1665,6 +1671,7 @@ namespace Saobracaj.Skladista_main
 
                 this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("ID");
                 this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("VrstaPaletaID");
+                KoloneGrida.Primeni(gridGroupingControl1, KljucKolona);   // kolone koje je korisnik sklonio
 
                 // 3. Podešavanje filtera
                 foreach (GridColumnDescriptor column in gridGroupingControl1.TableDescriptor.Columns)
@@ -2300,6 +2307,8 @@ namespace Saobracaj.Skladista_main
 
         private void btnDodajStavku_Click(object sender, EventArgs e)
         {
+            if (!NHMIspravan())   // ISP-04
+                return;
             try
             {
                 if (txtMagacinskiPredmetID.Text.IsNullOrWhiteSpace())
@@ -2389,6 +2398,8 @@ namespace Saobracaj.Skladista_main
         }
         private void btnIzmeniStavku_Click(object sender, EventArgs e)
         {
+            if (!NHMIspravan())   // ISP-04
+                return;
             try
             {
 

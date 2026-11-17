@@ -31,6 +31,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             Vrsta = vrsta;
             FillCombo();
             InitTable();
+            InitUvozPL();
             FillDodatneUsluge(RN.ToString());
             VratiPodatke(RN);
 
@@ -38,6 +39,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 VratiStavkePrijemnice(Convert.ToInt32(txtPrijemnica.Text));
             }
+            PosleUcitavanjaStavki();
+            InitRaspored();
 
             panel6.Visible = false;
             panel7.Visible = false;
@@ -223,6 +226,29 @@ namespace Saobracaj.Skladista_main.Dokumenta
         int DodatneUslugeID;
         int Aktivan;
         int Formiran;
+
+        private static int VratiInt(object v)
+        {
+            int broj;
+            return v != null && v != DBNull.Value && int.TryParse(v.ToString(), out broj) ? broj : 0;
+        }
+
+        private static void PostaviCombo(ComboBox cbo, object v)
+        {
+            int broj;
+            if (v != null && v != DBNull.Value && int.TryParse(v.ToString(), out broj))
+                cbo.SelectedValue = broj;
+            else
+                cbo.SelectedIndex = -1;
+        }
+
+        private static void PostaviDatum(DateTimePicker dtp, object v)
+        {
+            DateTime datum;
+            if (v != null && v != DBNull.Value && DateTime.TryParse(v.ToString(), out datum))
+                dtp.Value = datum;
+        }
+
         private void VratiPodatke(int id)
         {
             using (SqlConnection conn = new SqlConnection(connection))
@@ -304,44 +330,44 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     Vrsta = dr["VrstaRN"].ToString();
                     Tip = dr["TipRN"].ToString();
                     textBox1.Text = dr["CarinskoSkladiste"].ToString();
-                    cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                    cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
-                    cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                    PostaviCombo(cboNalogodavac, dr["Nalogodavac"]);
+                    PostaviCombo(cboCarinskiPostupak, dr["CarinskiPostupak"]);
+                    PostaviCombo(cboVlasnikRobe, dr["VlasnikRobe"]);
                     txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
                     txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
-                    cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                    PostaviCombo(cboADR, dr["OstalaSkladista"]);
                     txtPIB.Text = dr["PIB"].ToString();
 
-                    cboTipTransportaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaPrijem"].ToString());
-                    cboVrstaKamionaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaKamionaPrijem"].ToString());
+                    PostaviCombo(cboTipTransportaPrijem, dr["VrstaPrevoznogSredstvaPrijem"]);
+                    PostaviCombo(cboVrstaKamionaPrijem, dr["VrstaKamionaPrijem"]);
                     txtVoziloPrijem.Text = dr["VoziloPrijem"].ToString();
                     txtVozacPrijem.Text = dr["VozacPrijem"].ToString();
                     txtLKPrijem.Text = dr["BrojLKPrijem"].ToString();
                     txtTelefonPrijem.Text = dr["BrojTelefonaPrijem"].ToString();
-                    cboCarinarnicaPrijem.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaPrijem"].ToString());
-                    cboSpediterPrijem.SelectedValue = Convert.ToInt32(dr["SpediterPrijem"].ToString());
+                    PostaviCombo(cboCarinarnicaPrijem, dr["OdredisnaCarinarnicaPrijem"]);
+                    PostaviCombo(cboSpediterPrijem, dr["SpediterPrijem"]);
                     txtKontakOsobaSpediterPrijem.Text = dr["KontakOsobaSpediteraPrijem"].ToString();
-                    cboMestoIstovaraPrijem.SelectedValue = Convert.ToInt32(dr["MestoIstovaraPrijem"].ToString());
+                    PostaviCombo(cboMestoIstovaraPrijem, dr["MestoIstovaraPrijem"]);
                     txtAdresaPrijem.Text = dr["AdresaPrijem"].ToString();
                     txtKontaktOsobaPrijem.Text = dr["KontaktOsobaIstovarPrijem"].ToString();
-                    dateTimePicker1.Value = Convert.ToDateTime(dr["PlaniraniDatumPrijem"].ToString());
-                    dateTimePicker2.Value = Convert.ToDateTime(dr["PlaniraniDatum2Prijem"].ToString());
+                    PostaviDatum(dateTimePicker1, dr["PlaniraniDatumPrijem"]);
+                    PostaviDatum(dateTimePicker2, dr["PlaniraniDatum2Prijem"]);
                     txtKontejnerPrijem.Text = dr["BrojKontejneraPrijem"].ToString();
                     txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                     txtNapomena.Text = dr["Napomena"].ToString();
-                    Aktivan = Convert.ToInt32(dr["Aktivan"].ToString());
-                    Formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                    Aktivan = VratiInt(dr["Aktivan"]);
+                    Formiran = VratiInt(dr["Formiran"]);
 
-                    MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
+                    MagacinskiBroj = VratiInt(dr["MagacinskiBroj"]);
                     if (MagacinskiBroj != 0)
                     {
                         cboMagacinskiBroj.SelectedValue = MagacinskiBroj;
                     }
 
-                    DodatneUslugeID = Convert.ToInt32(dr["DodatneUslugeID"].ToString());
+                    DodatneUslugeID = VratiInt(dr["DodatneUslugeID"]);
                     if (dr["CarinskiPostupak"] != DBNull.Value)
                     {
-                        cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                        PostaviCombo(cboCarinskiPostupak, dr["CarinskiPostupak"]);
                     }
 
                 }
@@ -401,7 +427,10 @@ Where RadniNalogSkladista.ID=" + id, conn);
       ,[Napomena]
       ,[Aktivan]
       ,[Formiran]
-	  ,RNCarinskoSkladistePrijemnica.ID as Prijemnica,RadniNalogSkladista.CarinskiPostupak as CarinskiPostupak,SmestajniDokument,Rok,Posiljalac,Faktura,CRM,uProcesu
+	  ,RNCarinskoSkladistePrijemnica.ID as Prijemnica,RadniNalogSkladista.CarinskiPostupak as CarinskiPostupak
+	  ,RNCarinskoSkladistePrijemnica.SmestajniDokument as SmestajniDokument,RNCarinskoSkladistePrijemnica.Rok as Rok
+	  ,RNCarinskoSkladistePrijemnica.Posiljalac as Posiljalac,RNCarinskoSkladistePrijemnica.Faktura as Faktura
+	  ,RNCarinskoSkladistePrijemnica.CRM as CRM,RNCarinskoSkladistePrijemnica.uProcesu as uProcesu
     FROM RadniNalogSkladista
 inner join RNCarinskoSkladistePrijemnica on RadniNalogSkladista.ID=RNCarinskoSkladistePrijemnica.RN
 Where RadniNalogSkladista.ID=" + id, conn);
@@ -412,56 +441,56 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     Vrsta = dr["VrstaRN"].ToString();
                     Tip = dr["TipRN"].ToString();
                     textBox1.Text = dr["CarinskoSkladiste"].ToString();
-                    cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                    cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
-                    cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                    PostaviCombo(cboNalogodavac, dr["Nalogodavac"]);
+                    PostaviCombo(cboCarinskiPostupak, dr["CarinskiPostupak"]);
+                    PostaviCombo(cboVlasnikRobe, dr["VlasnikRobe"]);
                     txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
                     txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
-                    cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                    PostaviCombo(cboADR, dr["OstalaSkladista"]);
                     txtPIB.Text = dr["PIB"].ToString();
 
-                    cboTipTransportaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaPrijem"].ToString());
-                    cboVrstaKamionaPrijem.SelectedValue = Convert.ToInt32(dr["VrstaKamionaPrijem"].ToString());
+                    PostaviCombo(cboTipTransportaPrijem, dr["VrstaPrevoznogSredstvaPrijem"]);
+                    PostaviCombo(cboVrstaKamionaPrijem, dr["VrstaKamionaPrijem"]);
                     txtVoziloPrijem.Text = dr["VoziloPrijem"].ToString();
                     txtVozacPrijem.Text = dr["VozacPrijem"].ToString();
                     txtLKPrijem.Text = dr["BrojLKPrijem"].ToString();
                     txtTelefonPrijem.Text = dr["BrojTelefonaPrijem"].ToString();
-                    cboCarinarnicaPrijem.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaPrijem"].ToString());
-                    cboSpediterPrijem.SelectedValue = Convert.ToInt32(dr["SpediterPrijem"].ToString());
+                    PostaviCombo(cboCarinarnicaPrijem, dr["OdredisnaCarinarnicaPrijem"]);
+                    PostaviCombo(cboSpediterPrijem, dr["SpediterPrijem"]);
                     txtKontakOsobaSpediterPrijem.Text = dr["KontakOsobaSpediteraPrijem"].ToString();
-                    cboMestoIstovaraPrijem.SelectedValue = Convert.ToInt32(dr["MestoIstovaraPrijem"].ToString());
+                    PostaviCombo(cboMestoIstovaraPrijem, dr["MestoIstovaraPrijem"]);
                     txtAdresaPrijem.Text = dr["AdresaPrijem"].ToString();
                     txtKontaktOsobaPrijem.Text = dr["KontaktOsobaIstovarPrijem"].ToString();
-                    dateTimePicker1.Value = Convert.ToDateTime(dr["PlaniraniDatumPrijem"].ToString());
-                    dateTimePicker2.Value = Convert.ToDateTime(dr["PlaniraniDatum2Prijem"].ToString());
+                    PostaviDatum(dateTimePicker1, dr["PlaniraniDatumPrijem"]);
+                    PostaviDatum(dateTimePicker2, dr["PlaniraniDatum2Prijem"]);
                     txtKontejnerPrijem.Text = dr["BrojKontejneraPrijem"].ToString();
                     txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                     txtNapomena.Text = dr["Napomena"].ToString();
-                    Aktivan = Convert.ToInt32(dr["Aktivan"].ToString());
-                    Formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                    Aktivan = VratiInt(dr["Aktivan"]);
+                    Formiran = VratiInt(dr["Formiran"]);
 
-                    MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
+                    MagacinskiBroj = VratiInt(dr["MagacinskiBroj"]);
                     if (MagacinskiBroj != 0)
                     {
                         cboMagacinskiBroj.SelectedValue = MagacinskiBroj;
                     }
 
                     txtPrijemnica.Text = dr["Prijemnica"].ToString();
-                    DodatneUslugeID = Convert.ToInt32(dr["DodatneUslugeID"].ToString());
+                    DodatneUslugeID = VratiInt(dr["DodatneUslugeID"]);
                     if (dr["CarinskiPostupak"] != DBNull.Value)
                     {
-                        cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                        PostaviCombo(cboCarinskiPostupak, dr["CarinskiPostupak"]);
                     }
                     txtSmestajniDokument.Text = dr["SmestajniDokument"].ToString();
                     txtRok.Text = dr["Rok"].ToString();
                     if (dr["Posiljalac"] != DBNull.Value)
                     {
-                        cboPosiljalac.SelectedValue = Convert.ToInt32(dr["Posiljalac"].ToString());
+                        PostaviCombo(cboPosiljalac, dr["Posiljalac"]);
                     }
                     txtFaktura.Text = dr["Faktura"].ToString();
                     txtCRM.Text = dr["CRM"].ToString();
 
-                    int proces = Convert.ToInt32(dr["uProcesu"].ToString());
+                    int proces = VratiInt(dr["uProcesu"]);
                     if (proces == 1)
                     {
                         chkUprocesu.Checked = true;
@@ -491,6 +520,17 @@ Where RadniNalogSkladista.ID=" + id, conn);
             public decimal PDV { get; set; }
             public decimal Carina { get; set; }
             public string Napomena { get; set; }
+
+            // Carinski prijem iz packing liste (Prijemnica.UvozPL.cs)
+            public int ID { get; set; }
+            public int? IDNaimenovanja { get; set; }
+            public decimal? KoletaPL { get; set; }
+            public decimal? KolicinaJM { get; set; }
+            public decimal? Koeficijent { get; set; }
+            public int? IDPLStavke { get; set; }
+            public decimal? NetoPL { get; set; }
+            public decimal? BrutoPL { get; set; }
+            public decimal? VrednostPL { get; set; }
         }
         private List<PrijemnicaStavke> list = new List<PrijemnicaStavke>();
         private int rb = 1;
@@ -503,31 +543,38 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 conn.Open();
 
                 string query = @"
-        SELECT 
-            RB,
-            NHM,
-            IDArtikla,
-            RNCarinskoPrijemnicaStavke.Naziv as Naziv,
-            Naimenovanje,
-            JM,
-            Koleta,
-            Bruto,
-            Neto,
-            Vrednost,
-            Valuta,
-            Pozicija,
-            Paleta,
-            VrstaPaleta,
-            PDV,
-            Carina,
-            Napomena,
+        SELECT
+            s.RB,
+            s.NHM,
+            s.IDArtikla,
+            s.Naziv as Naziv,
+            s.Naimenovanje,
+            s.JM,
+            s.Koleta,
+            s.Bruto,
+            s.Neto,
+            s.Vrednost,
+            s.Valuta,
+            s.Pozicija,
+            s.Paleta,
+            s.VrstaPaleta,
+            s.PDV,
+            s.Carina,
+            s.Napomena,
             TipPalete.Naziv as PaletaOpis,
-            TipPalete.Dimenzije as DimenzijePalete
-        FROM RNCarinskoPrijemnicaStavke
-        LEFT JOIN TipPalete 
-            ON TipPalete.ID = RNCarinskoPrijemnicaStavke.VrstaPaleta
-        WHERE IDNadredjena = @ID
-        ORDER BY RB";
+            TipPalete.Dimenzije as DimenzijePalete"
+            + (ImaPLKolone ? @",
+            s.ID, s.IDNaimenovanja, s.KoletaPL, s.KolicinaJM, s.IDPLStavke,
+            pls.Neto as NetoPL, pls.Bruto as BrutoPL, pls.Vrednost as VrednostPL,
+            dbo.fn_PL_Koeficijent(CONVERT(nvarchar(100), art.KoeficijentKoletaJM)) as Koeficijent" : "") + @"
+        FROM RNCarinskoPrijemnicaStavke s
+        LEFT JOIN TipPalete
+            ON TipPalete.ID = s.VrstaPaleta"
+            + (ImaPLKolone ? @"
+        LEFT JOIN RNCarinskoPackingListaStavka pls ON pls.ID = s.IDPLStavke
+        LEFT JOIN Artikli art ON art.ID = s.IDArtikla" : "") + @"
+        WHERE s.IDNadredjena = @ID
+        ORDER BY s.RB";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -559,6 +606,8 @@ Where RadniNalogSkladista.ID=" + id, conn);
                                 Carina = dr["Carina"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["Carina"]),
                                 Napomena = dr["Napomena"] == DBNull.Value ? "" : dr["Napomena"].ToString()
                             };
+                            if (ImaPLKolone)
+                                PopuniPLPolja(stavka, dr);
 
                             list.Add(stavka);
                         }
@@ -572,7 +621,9 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void OsveziGrid()
         {
             gridGroupingControl1.DataSource = null;
-            gridGroupingControl1.DataSource = list.ToList();
+            gridGroupingControl1.DataSource = IzvorStavki();
+            SakrijTehnickeKolone();
+            PodesiGridZaUnos();
             gridGroupingControl1.Refresh();
 
             if (list.Count > 0)
@@ -736,7 +787,8 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void FillArtikli()
         {
             SqlConnection conn = new SqlConnection(connection);
-            var query = @"select a.ID as ID,a.Sifra as Sifra,RTRIM(a.Artikal) as Artikal,a.JM,a.KoeficijentKoletaJM,
+            var query = @"select a.ID as ID,a.Sifra as Sifra,RTRIM(a.Artikal) as Artikal,a.JM,a.KoeficijentKoletaJM,"
+            + (ImaPLKolone ? "a.Katalog as Katalog," : "") + @"
             aC.Sifra as [Cetvrti nivo sifra],RTRIM(aC.Naziv) as [Cetvrti nivo naziv],
             aT.Sifra as [Treci nivo sifra],RTRIM(aT.Naziv) as [Treci nivo naziv],
             aD.Sifra as [Drugi nivo sifra],RTRIM(aD.Naziv) as [Drugi nivo naziv],
@@ -1257,6 +1309,11 @@ Where RadniNalogSkladista.ID=" + id, conn);
         }
         private void btnPackingLista_Click(object sender, EventArgs e)
         {
+            if (ImaPLKolone)
+            {
+                OtvoriUvozPL();
+                return;
+            }
             UcitajStavkeIzExcela();
         }
 
@@ -1289,6 +1346,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void button24_Click(object sender, EventArgs e)
         {
             InsertSkladista ins = new InsertSkladista();
+            ZavrsiUnosUGridu();
             try
             {
                 int proces;
@@ -1301,6 +1359,8 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     proces = 0;
                 }
 
+                if (ImaPLKolone && !ProveriStavkePreSnimanja())
+                    return;
 
                 if (txtPrijemnica.Text == "")
                 {
@@ -1324,23 +1384,40 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 {
                     ins.UpdatePrijemnicaCarinska(Korisnik, Convert.ToInt32(txtPrijemnica.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue),
                     txtSmestajniDokument.Text.ToString().TrimEnd(), txtRok.Text.ToString().TrimEnd(), Convert.ToInt32(cboPosiljalac.SelectedValue), txtFaktura.Text.ToString().TrimEnd(),
-                    txtCRM.Text.ToString().TrimEnd(), "OD", proces);
+                    txtCRM.Text.ToString().TrimEnd(), ImaPLKolone && StatusPrijemnice != "" ? StatusPrijemnice : "OD", proces);
                 }
 
-                using (SqlConnection conn = new SqlConnection(connection))
+                if (ImaPLKolone)
                 {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("DELETE FROM RNCarinskoPrijemnicaStavke Where IDNadredjena=" + Convert.ToInt32(txtPrijemnica.Text), conn))
+                    // CAR-P07: stavke se ažuriraju po ID-u, ne brišu se (ID stavke koristi Promet)
+                    if (!SnimiStavkeBezBrisanja())
+                        return;
+                    UcitajStatusPrijemnice();
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(connection))
                     {
-                        cmd.ExecuteNonQuery();
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("DELETE FROM RNCarinskoPrijemnicaStavke Where IDNadredjena=" + Convert.ToInt32(txtPrijemnica.Text), conn))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    foreach (var i in list)
+                    {
+                        ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.IDArtikla, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
+                            i.Pozicija, i.Paleta, i.VrstaPaleta, Convert.ToInt32(i.PDV), Convert.ToInt32(i.Carina), Convert.ToDecimal(i.Neto), i.Napomena);
                     }
                 }
-
-                foreach (var i in list)
+                if (ImaPLKolone)
                 {
-                    ins.InsertPrijemnicaCarinskaStavke(Convert.ToInt32(txtPrijemnica.Text), i.RB, i.NHM, i.IDArtikla, i.Naziv, i.Naimenovanje, i.JM, i.Koleta, i.Bruto, i.Vrednost, i.Valuta,
-                        i.Pozicija, i.Paleta, i.VrstaPaleta, Convert.ToInt32(i.PDV), Convert.ToInt32(i.Carina), Convert.ToDecimal(i.Neto), i.Napomena);
+                    // ISP-08: Snimi samo snima; potvrda (interni RN, status ZA, promet) je na dugmetu Potvrdi prijemnicu
+                    MessageBox.Show("Prijemnica snimljena.");
+                    return;
                 }
+
                 int VratiNalogID = VratiNalogIDF();
                 Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
                 ins1.UpdRadniNalogInterniIzvozPrijemnicaPotvrdjen(Convert.ToInt32(VratiNalogID));
