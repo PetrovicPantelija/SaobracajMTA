@@ -22,6 +22,16 @@ namespace Saobracaj.RNI
 
             foreach (string osnovni in izvori)
             {
+                try
+                {
+                    Saobracaj.Administracija.MrezniFolder.Povezi(osnovni);   // prijava na server iz Podešavanja
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(vlasnik, ex.Message, Naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (!Directory.Exists(osnovni))
                 {
                     MessageBox.Show(vlasnik, "Folder " + osnovni + " nije dostupan. Proverite vezu sa serverom.", Naslov,

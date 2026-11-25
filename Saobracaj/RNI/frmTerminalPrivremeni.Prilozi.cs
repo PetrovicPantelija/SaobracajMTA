@@ -99,6 +99,15 @@ namespace Saobracaj.RNI
         // Broj fajlova po folderu zapisa (folder se zove po ID-u); null ako osnovni folder nije dostupan
         private static Dictionary<int, int> Prebroj(string osnovni, HashSet<int> idjevi)
         {
+            try
+            {
+                Saobracaj.Administracija.MrezniFolder.Povezi(osnovni);   // prijava na server iz Podešavanja
+            }
+            catch (IOException)
+            {
+                return null;   // poruku prikazuju Zakači slike i Zakači dokumenta
+            }
+
             var koren = new DirectoryInfo(osnovni);
             if (!koren.Exists)
                 return null;

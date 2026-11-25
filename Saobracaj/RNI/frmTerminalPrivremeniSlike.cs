@@ -69,7 +69,11 @@ namespace Saobracaj.RNI
             List<KeyValuePair<string, Bitmap>> miniature;
             try
             {
-                miniature = await Task.Run(() => UcitajMiniature(folder));
+                miniature = await Task.Run(() =>
+                {
+                    Saobracaj.Administracija.MrezniFolder.Povezi(folder);   // prijava na server iz Podešavanja
+                    return UcitajMiniature(folder);
+                });
             }
             catch (Exception ex)
             {
@@ -190,6 +194,16 @@ namespace Saobracaj.RNI
 
         private void btnOtvoriFolder_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Saobracaj.Administracija.MrezniFolder.Povezi(FolderZapisa);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message, "Slike", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!Directory.Exists(FolderZapisa))
             {
                 MessageBox.Show("Folder još ne postoji. Kreira se pri dodavanju prve slike.", "Slike",
@@ -263,6 +277,7 @@ namespace Saobracaj.RNI
             {
                 await Task.Run(() =>
                 {
+                    Saobracaj.Administracija.MrezniFolder.Povezi(folder);
                     Directory.CreateDirectory(folder);   // folder se zove po ID-u zapisa
                     foreach (string izvor in slike)
                     {

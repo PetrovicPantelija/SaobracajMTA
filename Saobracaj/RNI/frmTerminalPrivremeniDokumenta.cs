@@ -49,7 +49,11 @@ namespace Saobracaj.RNI
             DataTable tabela;
             try
             {
-                tabela = await Task.Run(() => NapraviSpisak(folder));
+                tabela = await Task.Run(() =>
+                {
+                    Saobracaj.Administracija.MrezniFolder.Povezi(folder);   // prijava na server iz Podešavanja
+                    return NapraviSpisak(folder);
+                });
             }
             catch (Exception ex)
             {
@@ -144,6 +148,16 @@ namespace Saobracaj.RNI
 
         private void btnOtvoriFolder_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Saobracaj.Administracija.MrezniFolder.Povezi(FolderZapisa);
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message, "Dokumenta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!Directory.Exists(FolderZapisa))
             {
                 MessageBox.Show("Folder još ne postoji. Kreira se pri dodavanju prvog dokumenta.", "Dokumenta",
@@ -214,6 +228,7 @@ namespace Saobracaj.RNI
             {
                 await Task.Run(() =>
                 {
+                    Saobracaj.Administracija.MrezniFolder.Povezi(folder);
                     Directory.CreateDirectory(folder);   // folder se zove po ID-u zapisa
                     foreach (string izvor in fajlovi)
                     {

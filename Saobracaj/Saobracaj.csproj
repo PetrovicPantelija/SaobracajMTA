@@ -2038,6 +2038,9 @@
     <Compile Include="Izvoz\frmIzvozUnosManipulacije.Designer.cs">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmIzvozUnosManipulacije.Nalog.cs">
+      <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmKontaktOsobeMU.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3654,6 +3657,9 @@
     <Compile Include="Skladista main\frmNalogPrijem.Ispravke.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.MagacinskiPredmet.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4545,6 +4551,7 @@
     <Compile Include="HR\HRResenje.cs" />
     <Compile Include="HR\HRGO.cs" />
     <Compile Include="Administracija\Podesavanja.cs" />
+    <Compile Include="Administracija\MrezniFolder.cs" />
     <Compile Include="HR\frmHREvidencijaRada.cs">
       <SubType>Form</SubType>
     </Compile>

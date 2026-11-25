@@ -53,6 +53,7 @@ namespace Saobracaj.Skladista_main
         {
             InitializeComponent();
             PodesiBrojcanaPolja();   // ISP-04, ISP-05, ISP-06
+            InitMagacinskiPredmet(); // količina po JM, brojevi kontejnera
             Status = status; // komercijalninalog, novi, lo
             Tip = tip; // prijem, otprema
             Vrsta = vrsta;//carinsko, komercijalno
@@ -535,6 +536,9 @@ namespace Saobracaj.Skladista_main
 
         private void button24_Click(object sender, EventArgs e)
         {
+            if (!C7SlobodanNaMB() || !KontejneriIspravni())
+                return;
+
             int? nalogodavac = null;
             int? carinskiPostupak = null;
             int? nacinPakovanja = null;
@@ -670,6 +674,7 @@ namespace Saobracaj.Skladista_main
 
                 VratiPodatkeMP();
             }
+            SnimiKontejnere();
 
 
             InsertSkladista ins = new InsertSkladista();
@@ -1018,6 +1023,7 @@ namespace Saobracaj.Skladista_main
 
                 txtNapomena.Text = dr["Napomena"].ToString();
                 txtSmestajniDokument.Text = dr["SmestajniDokument"].ToString();
+                UcitajKontejnere(id, dr["BrojKontejneraPrijem"].ToString()); // tabela kontejnera (MagacinskiPredmet.cs)
 
                 if (dr["Vaganje"] != DBNull.Value && Convert.ToInt32(dr["Vaganje"]) == 1)
                     chkVaganje.Checked = true;
@@ -1352,6 +1358,8 @@ namespace Saobracaj.Skladista_main
 
         private void btnNoviMP_Click(object sender, EventArgs e)
         {
+            if (!C7SlobodanNaMB())
+                return;
             InsertCarinskoSkladiste ins = new InsertCarinskoSkladiste();
             bool ima = false;
             int id = 0;

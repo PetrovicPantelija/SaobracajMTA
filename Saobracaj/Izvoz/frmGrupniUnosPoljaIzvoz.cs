@@ -2277,7 +2277,9 @@ namespace Saobracaj.Izvoz
             //
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija, Scenario);
+            // Forma dobija sve kontejnere naloga: usluge se dodaju kontejnerima koje korisnik tamo označi
+            var kontejneriNaloga = new List<int>(noviIDs);
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija, Scenario, kontejneriNaloga);
             um.Show();
 
         }
@@ -2469,7 +2471,6 @@ namespace Saobracaj.Izvoz
         int ScenarioGL = 0;
         private void MoguciScenario()
         {
-            string Moguce = "";
             if (pickUp == "Leget -" && pickUp2 == "Leget -" && pickUp3 != "Leget -")
             {
                 ScenarioGL = 1; ///Leget - Leget - Krajnja destinacija
@@ -2491,68 +2492,11 @@ namespace Saobracaj.Izvoz
             }
 
 
-            //Provera SCENARIJA UKLJUCITI ADR
-            if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp > 1)
-            {
-                Moguce = "7,8,9"; // Leget - Leget - NestoDrugo - BEZ ADR - pun
-            }
-            else if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) > 1 && pp > 1)
-            {
-                Moguce = "23,24,25";  // PUN
-            }
-            else if (ScenarioGL == 2 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp > 1)
-            {
-                Moguce = "13"; // PUN Ostaje na terminalu \"11,12,13,14,29
-            }
-            else if (ScenarioGL == 1 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp == 0)
-            {
-                Moguce = "12,29"; // PRAYAN
-            }
-            else if (ScenarioGL == 2 && Convert.ToInt32(cboADR.SelectedValue) > 1 && pp > 1)
-            {
-                Moguce = "25,26";
-            }
-
-            else if (ScenarioGL == 3 && Convert.ToInt32(cboADR.SelectedValue) == 0 && pp == 0)
-            {
-                Moguce = "14";
-            }
-
-
-            int poklapase = 0;
-            string[] split = Moguce.Split(',');
-            foreach (string item in split)
-            {
-                if (item == scenarioID.ToString())
-                {
-                    poklapase = 1;
-                }
-
-            }
-
-            if (poklapase == 0)
-            {
-                int k = ProveriImaUsluga(txtID.Text);
-                if (k == 0)
-                {
-                    //Kada jos nisu definisane usluge
-                }
-                else
-                {
-                    DialogResult result = MessageBox.Show("Trenutni scenario je" + ScenarioNaziv + " moguci scenariji " + Moguce + " se ne poklapaju sa njim, da li želite brisanje terminalskih usluge?", "Confirmation", MessageBoxButtons.YesNoCancel);
-                    if (result == DialogResult.Yes)
-                    {
-                        InsertIzvozKonacna uvK = new InsertIzvozKonacna();
-                        uvK.DelIzvozUslugaTerminalskih(Convert.ToInt32(txtID.Text));
-                    }
-                    else
-                    {
-                        //...
-                    }
-                }
-
-
-            }
+            // Mogući scenariji (7,8,9 / 23,24,25 / 13 / 12,29 / 25,26 / 14 po ScenarioGL, ADR i pun/prazan) su se ovde poredili sa
+            // scenarijom kontejnera, pa je pitanje 'Trenutni scenario je ... mogući scenariji ... se ne poklapaju sa njim, da li
+            // želite brisanje terminalskih usluga?' nudilo brisanje. Pitanje je ukinuto (zahtev 25.11.2026): terminalske usluge
+            // ostaju, a brišu se na formi Dodaj usluge (Obriši selektovane) kad je potrebno. Ponuda scenarija na toj formi
+            // (FillCombo u frmIzvozUnosManipulacije) koristi ScenarioGL i dalje.
         }
         int ProveriImaUsluga(string UvozID)
         {
