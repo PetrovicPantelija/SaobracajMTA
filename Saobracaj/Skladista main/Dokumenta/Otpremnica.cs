@@ -754,7 +754,8 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                 }
                 else
                 {
-                    ins.UpdateCarinskaOtpremnica(Convert.ToInt32(txtID.Text),Korisnik, Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtDokumentRazduzenja.Text.ToString().TrimEnd(),
+                    // prvi parametar je ID otpremnice, treći broj radnog naloga
+                    ins.UpdateCarinskaOtpremnica(Convert.ToInt32(txtOtpremnica.Text), Korisnik, Convert.ToInt32(txtID.Text), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtDokumentRazduzenja.Text.ToString().TrimEnd(),
                         Convert.ToDateTime(dtDatumRazduzenja.Value), txtDestinacija.Text.ToString().TrimEnd(), DateTime.Now, Convert.ToInt32(textBox2.Text));
                 }
             }

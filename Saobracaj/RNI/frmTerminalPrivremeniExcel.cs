@@ -131,9 +131,24 @@ namespace Saobracaj.RNI
 
             dataGridView1.EndEdit();
 
+            // Kontejneri koji su već u terminalu se ne upisuju ponovo (ponovljen uvoz istog ili dopunjenog fajla)
+            HashSet<string> uTerminalu;
+            try
+            {
+                uTerminalu = new insertTerminalPriv().AktivniKontejneri();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nije moguće proveriti kontejnere koji su već u terminalu: " + ex.Message, "Uvoz Excel",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var redovi = new List<string[]>();
             var greske = new List<string>();
             var skracenja = new List<string>();
+            var preskoceni = new List<string>();
+            var redKontejnera = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             for (int i = 0; i < tabela.Rows.Count; i++)
             {
@@ -150,6 +165,10 @@ namespace Saobracaj.RNI
                 var greskeReda = new List<string>();
                 if (vrednosti[0].Length != insertTerminalPriv.DuzinaKontejnera)
                     greskeReda.Add("KONTEJNER (kolona C) mora imati tačno " + insertTerminalPriv.DuzinaKontejnera + " karaktera");
+                else if (redKontejnera.ContainsKey(vrednosti[0]))
+                    greskeReda.Add("kontejner " + vrednosti[0] + " je u fajlu dva puta (i u redu " + redKontejnera[vrednosti[0]] + ")");
+                else
+                    redKontejnera[vrednosti[0]] = excelRed;
 
                 // Predugačka vrednost se ne odbija: skraćuje se na dozvoljenu dužinu (bez razmaka na kraju) i beleži u log
                 for (int k = 1; k < vrednosti.Length; k++)
@@ -181,6 +200,8 @@ namespace Saobracaj.RNI
 
                 if (greskeReda.Count > 0)
                     greske.Add("Red " + excelRed + ": " + string.Join("; ", greskeReda));
+                else if (uTerminalu.Contains(vrednosti[0]))
+                    preskoceni.Add("Red " + excelRed + ": " + vrednosti[0]);
                 else
                     redovi.Add(vrednosti);
             }
@@ -202,6 +223,15 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            if (redovi.Count == 0)
+            {
+                var sviPostoje = new StringBuilder();
+                sviPostoje.AppendLine("Ništa nije upisano: svi kontejneri iz fajla su već u terminalu (bez konačnog GATE OUT).");
+                DodajSpisak(sviPostoje, preskoceni);
+                MessageBox.Show(sviPostoje.ToString(), "Uvoz Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             try
             {
                 Uvezeno = new insertTerminalPriv().InsTerminalPrivFromExcel(redovi);
@@ -214,6 +244,12 @@ namespace Saobracaj.RNI
 
             var izvestaj = new StringBuilder();
             izvestaj.AppendLine("Upisano redova u TerminalPriv: " + Uvezeno);
+            if (preskoceni.Count > 0)
+            {
+                izvestaj.AppendLine();
+                izvestaj.AppendLine("Preskočeno kontejnera koji su već u terminalu: " + preskoceni.Count);
+                DodajSpisak(izvestaj, preskoceni);
+            }
             if (skracenja.Count > 0)
             {
                 izvestaj.AppendLine();
@@ -224,8 +260,17 @@ namespace Saobracaj.RNI
                     izvestaj.AppendLine("...");
             }
             MessageBox.Show(izvestaj.ToString(), "Uvoz Excel", MessageBoxButtons.OK,
-                skracenja.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+                skracenja.Count > 0 || preskoceni.Count > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
             Close();
+        }
+
+        // Prvih 15 stavki spiska, pa „...“
+        private static void DodajSpisak(StringBuilder poruka, List<string> spisak)
+        {
+            foreach (string s in spisak.GetRange(0, Math.Min(15, spisak.Count)))
+                poruka.AppendLine(s);
+            if (spisak.Count > 15)
+                poruka.AppendLine("...");
         }
 
         // Broj reda u Excel fajlu za red tabele (redovi bez podataka su izostavljeni, pa se pamti stvarni broj)

@@ -1381,8 +1381,8 @@ namespace Saobracaj.Izvoz
     "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
-   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2,KontaktSpeditera" +
-   " KontaktOsobe, UvozID, Scenario, MestoPreuzimanja2, MestoPreuzimanja3" +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2,KontaktSpeditera," +
+   " KontaktOsobe, UvozID, Scenario, MestoPreuzimanja2, MestoPreuzimanja3, DobijenNalogKlijent1, TaraZ" +
  "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1394,7 +1394,8 @@ namespace Saobracaj.Izvoz
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
                 cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
-                if (dr["DodatneNapomeneDrumski"].ToString() == "1")
+                // Sačuvaj upisuje ovo polje u DobijenNalogKlijent1, pa se iz te kolone i čita
+                if (dr["DobijenNalogKlijent1"].ToString() == "1")
                 {
                     cboDobijenNalog.Checked = true;
                 }
@@ -1447,7 +1448,9 @@ namespace Saobracaj.Izvoz
                 txtAutoDana.Value = SafeDecimal(dr["AutoDana"].ToString());
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
-                //dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
+                // Sačuvaj upisuje sva polja iz forme; polje koje se ne učita prepisalo bi se vrednošću prethodnog kontejnera
+                if (dr["EtaLeget"] != DBNull.Value)
+                    dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"]);
                 cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
                 cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
@@ -1455,7 +1458,8 @@ namespace Saobracaj.Izvoz
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
                 txtKontaktOsoba.Text = Convert.ToString(dr["KontaktOsoba"].ToString());
                 cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
-                //dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
+                if (dr["PlaniraniDatumUtovara"] != DBNull.Value)
+                    dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"]);
                 if (dr["Cirada"].ToString() == "1")
                 {
                     chkCirada.Text = "CIRADA";
@@ -1470,7 +1474,7 @@ namespace Saobracaj.Izvoz
                 cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
                 cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
                 txtValuta.SelectedValue = dr["Valuta"].ToString();
-               // txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
+                PostaviBroj(txtVrednostRobeFaktura, dr["VrednostRobeFaktura"]);
                 txtCBMO.Value = SafeDecimal(dr["CBMO"].ToString());
                 txtCBM.Value = SafeDecimal(dr["CBM"].ToString());
                 txtKoletaO.Value = SafeDecimal(dr["BrojKoletaO"].ToString());
@@ -1490,9 +1494,8 @@ namespace Saobracaj.Izvoz
                 txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
 
                 cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
-               
-                
-                //txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
+                PostaviBroj(txtTaraKontejneraZ, dr["TaraZ"]);
+                txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
 
                 /*
 
@@ -1556,10 +1559,40 @@ namespace Saobracaj.Izvoz
 
 
             con.Close();
+            UcitajTerminal(ID);
             FillDGUsluge();
             FillDGUslugeUvozne();
 
         }
+
+        // Broj iz baze u polje; NULL daje 0, a vrednost van granica polja se svodi na granicu (inače polje baci grešku)
+        private static void PostaviBroj(NumericUpDown polje, object vrednost)
+        {
+            decimal broj;
+            if (vrednost == null || vrednost == DBNull.Value || !decimal.TryParse(vrednost.ToString(), out broj))
+                broj = 0m;
+            polje.Value = Math.Min(polje.Maximum, Math.Max(polje.Minimum, broj));
+        }
+
+        // Oznaka Terminal se čita posebno: Sačuvaj je upisuje, a kolona možda ne postoji u bazi svake firme.
+        // Kad kolone nema, oznaka ostaje kakva jeste.
+        private void UcitajTerminal(int ID)
+        {
+            const string upit = "IF COL_LENGTH('dbo.IzvozKonacna', 'Terminal') IS NOT NULL " +
+                "EXEC sp_executesql N'SELECT Terminal FROM dbo.IzvozKonacna WHERE ID = @ID', N'@ID int', @ID = @ID";
+            using (SqlConnection conn = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+            using (SqlCommand cmd = new SqlCommand(upit, conn))
+            {
+                cmd.Parameters.AddWithValue("@ID", ID);
+                conn.Open();
+                object terminal = cmd.ExecuteScalar();
+                if (terminal == null)
+                    return;
+                string t = Convert.ToString(terminal);
+                chkTerminal.Checked = t == "1" || t.Equals("True", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)

@@ -429,6 +429,25 @@ namespace Saobracaj.RNI
             throw new ArgumentException("Nepoznata kolona: " + kolona);
         }
 
+        // Kontejneri koji su već u TerminalPriv i nisu konačno izašli (Konačni_GATE_OUT je prazan).
+        // Uvoz Excela ih preskače, da se isti kontejner ne upiše dvaput.
+        public System.Collections.Generic.HashSet<string> AktivniKontejneri()
+        {
+            var aktivni = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            using (SqlConnection con = new SqlConnection(Saobracaj.Sifarnici.frmLogovanje.connectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT DISTINCT RTRIM(KONTEJNER) FROM dbo.TerminalPriv WHERE [Konačni_GATE_OUT] IS NULL AND KONTEJNER IS NOT NULL", con))
+            {
+                con.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                        aktivni.Add(Convert.ToString(dr[0]));
+                }
+            }
+            return aktivni;
+        }
+
         public int InsTerminalPrivFromExcel(System.Collections.Generic.IList<string[]> redovi)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

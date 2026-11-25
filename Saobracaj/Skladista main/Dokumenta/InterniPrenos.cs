@@ -478,6 +478,9 @@ namespace Saobracaj.Skladista_main.Dokumenta
                         Convert.ToDateTime("01.01.1900"), Convert.ToDateTime("01.01.1900"), "", txtPosebniUslovi.Text.ToString().TrimEnd(), idUsluge,
                         txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
 
+                    // Isključeno kao u Otpremi: InsertRNInterni šalje korisničko ime u Int parametar i uvek
+                    // pada posle upisanog naloga, pa drugi klik na SNIMI pravi isti nalog još jednom.
+                    /*
                     if (Ulaz != "")
                     {
                         ins.InsertRNInterni(3, Korisnik);
@@ -486,6 +489,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                     {
                         ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
                     }
+                    */
 
                     MessageBox.Show("RADNI NALOG SAČUVAN");
                 }
@@ -542,6 +546,9 @@ namespace Saobracaj.Skladista_main.Dokumenta
                         Convert.ToDateTime("01.01.1900"), Convert.ToDateTime("01.01.1900"), "", txtPosebniUslovi.Text.ToString().TrimEnd(), IdUsluge,
                         txtNapomena.Text.ToString().TrimEnd(), Aktivan, Formiran);
 
+                    // Isključeno kao u Otpremi: InsertRNInterni šalje korisničko ime u Int parametar i uvek
+                    // pada posle upisanog naloga, pa drugi klik na SNIMI pravi isti nalog još jednom.
+                    /*
                     if (Ulaz != "")
                     {
                         ins.InsertRNInterni(3, Korisnik);
@@ -550,6 +557,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                     {
                         ins.UpdateRNInterni(IDInterni, Convert.ToInt32(txtID.Text));
                     }
+                    */
 
                     MessageBox.Show("RADNI NALOG KREIRAN");
 

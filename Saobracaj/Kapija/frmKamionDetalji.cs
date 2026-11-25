@@ -303,12 +303,18 @@ namespace Saobracaj.Kapija
             string kor = Sifarnici.frmLogovanje.user;
 
             InsertKapija ins = new InsertKapija();
-            if (status == true)
+            // Bez ID-ja (Novi dolazak bez klika na „Novi“, ili Otvori bez izabranog reda) zapis se upisuje kao nov;
+            // izmena zapisa 0 ne bi upisala ništa, a prikazala bi poruku o uspehu.
+            if (status == true || iD <= 0)
             {
 
                 int noviID = ins.InsKapija(status1, vozac, registarskiBroj, kontakt, razlogDolaska, datumZakazanogDolaska, kontaktUnutarFirme, kor, 0);
-                txtID.Text = noviID.ToString();
-                status = false;
+                if (noviID > 0)
+                {
+                    txtID.Text = noviID.ToString();
+                    oldStatusID = status1;
+                    status = false;
+                }
             }
             else
             {

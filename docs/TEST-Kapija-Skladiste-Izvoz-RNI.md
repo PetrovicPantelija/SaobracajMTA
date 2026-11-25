@@ -402,3 +402,33 @@ Scenariji proveravaju osnovni tok i nalaze iz ovog izveštaja. Kolona „Nalaz�
 3. Za stavke „Proveriti“: pregled procedura u bazi (PotvrdiPrijem, InsertKapija, InsertRadniNalogSkladista, InsertRNCarinskoSkladisteOtpremnica, InsertRnCarinskoSkladisteOtpremaStavkePom).
 4. Ručne scenarije iz odeljka 8 proći na test bazi. Korak koji ne daje „Očekivano“ upisati kao potvrđen nalaz.
 5. SKC-05 traži odluku: da li kolona NHM naimenovanja čuva ID iz tabele NHM ili tarifni broj od 7 cifara.
+
+## 10. Ispravljeno (25.11.2026)
+
+Ispravke su urađene na zahtev, a build prolazi. Nisu proverene u aplikaciji: proveravaju se koracima iz odeljka 8 navedenim u koloni „Provera“.
+
+| Oznaka | Šta je promenjeno | Provera |
+|---|---|---|
+| IZV-17 | `Izvoz\frmOtpremaKontejneraKamionomIzKontejnera.cs`: uklonjen poziv `ChangeTextBox()` iz same sebe (grana za firme koje nisu Leget) | 8.4 korak 19 |
+| IZV-15 | `Izvoz\Vaganje.cs`: tabela prikazuje samo vaganja kontejnera za koji je forma otvorena; neto se računa bez pada (tara veća od bruto daje 0); Sačuvaj odbija taru veću od bruto. `Izvoz\VaganjePregled.cs`: u prikazu „Izvagani kontejneri“ Otvori šalje KontID | 8.4 korak 18 |
+| IZV-09 | `Izvoz\frmIzvozKonacna.cs` (`VratiPodatkeSelect`): dodat zarez posle KontaktSpeditera; učitavaju se ETA Leget, Planirani datum utovara, Vrednost robe, Kontakt špeditera, TaraZ i Dobijen nalog (iz `DobijenNalogKlijent1`); oznaka Terminal se čita posebnim upitom samo ako kolona postoji | 8.4 korak 15 |
+| SKK-04 | `Skladista main\Dokumenta\Otpremnica.cs`: izmena šalje ID otpremnice (`txtOtpremnica`), a ne broj radnog naloga | 8.3 korak 15 |
+| SKK-05 | `InterniPoslovi.cs`, `InterniPrenos.cs`, `VanredniPoslovi.cs`: poziv `InsertRNInterni`/`UpdateRNInterni` isključen kao u `Otprema.cs` (uvek je padao, pa nikad ništa nije upisao u bazu) | 8.3 korak 16 |
+| SKK-07 | `Skladista main\PregledKomercijalnihNaloga.cs`: Potvrdi upisuje VrstaRN iz izračunatog tipa (Komercijalno/Carinsko); šifra skladišta 1008 samo za carinsko | 8.3 korak 2 |
+| KAP-01 | `Kapija\frmKamionDetalji.cs`: Sačuvaj bez ID-ja upisuje nov dolazak; posle neuspelog upisa forma ostaje u režimu novog | 8.1 korak 1 |
+| KAP-03 | `Kapija\frmKapijaOtvoreniNalozi.cs`: smer se čita iz svakog izabranog reda; nalozi koji nisu ODLAZAK se preskaču uz poruku; bez izbora poruka „Izaberite nalog za ODLAZAK“ | 8.1 koraci 7 i 10 |
+| RNI-01 | `RNI\frmTerminalPrivremeniExcel.cs`, `RNI\insertTerminalPriv.cs` (`AktivniKontejneri`): kontejner koji je već u TerminalPriv bez Konačnog GATE OUT se preskače i navodi u izveštaju; isti kontejner dva puta u fajlu je greška (navode se oba reda) | 8.5 koraci 3 i 4 |
+| RNI-07 | `RNI\frmScenarioSCI.cs`: `\|\|` umesto `&&` na četiri mesta; Cut-off port se sakriva za sve scenarije osim 9 i 25 | 8.5 korak 18 |
+
+**Ista greška kao IZV-17, nije ispravljena (čeka odobrenje):** `ChangeTextBox()` poziva samu sebe u grani za firme koje nisu Leget i u ovim formama:
+- `Dokumenta\frmPregledOtpreme.cs:123`
+- `Dokumenta\frmPrijemKontejneraKamionPregled.cs:124`
+- `Dokumenta\frmPrijemVozomPregled.cs:122`
+- `RadniNalozi\frmDodelaSkladista.cs:116`
+- `RadniNalozi\RN1PrijemVoza.cs:118`
+- `RadniNalozi\RN5PrijemPlatforme2.cs:111`
+- `RadniNalozi\RN6OtpremaPlatforme.cs:109`
+- `RadniNalozi\RN7OtpremaPlatforme2.cs:109`
+- `RadniNalozi\RN8OtpremaCirade.cs:110`
+- `RadniNalozi\RN9PrijemCirade.cs:109`
+- `Uvoz\frmFormiranjeRobnihDokumenata.cs:111`

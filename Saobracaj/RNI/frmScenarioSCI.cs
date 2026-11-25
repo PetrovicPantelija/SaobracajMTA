@@ -766,6 +766,8 @@ namespace Saobracaj.RNI
 
         private void PodesiPoljaPoScenariju(int scenarioID)
         {
+            // Cut-off port postoji samo za scenarije 9 i 25; za ostale se sakriva
+            PostaviVidljivostPoljaCutOffPort();
 
             switch (scenarioID)
             {
@@ -894,7 +896,7 @@ namespace Saobracaj.RNI
         {
             bool isADR = (ADR == 1); // 
             {
-                if (ScenarioID == 9 && ScenarioID == 25)
+                if (ScenarioID == 9 || ScenarioID == 25)
                 {
                     cboADR4.Visible = isADR;
                     lblADR4.Visible = isADR;
@@ -908,7 +910,7 @@ namespace Saobracaj.RNI
             }
             if (isADR == false)
             {
-                if (ScenarioID == 9 && ScenarioID == 25)
+                if (ScenarioID == 9 || ScenarioID == 25)
                     cboADR4.SelectedValue = -1;
                 else
                     cboADR.SelectedValue = -1;
@@ -917,7 +919,7 @@ namespace Saobracaj.RNI
 
         private void PostaviVidljivostPoljaNapomena()
         {
-            bool napomenaVisible = (ScenarioID == 7 && ScenarioID == 23); // 
+            bool napomenaVisible = (ScenarioID == 7 || ScenarioID == 23); // 
             {
                 dataGridView4.Visible = napomenaVisible;
                 lblNapomenaPoz.Visible = napomenaVisible;
@@ -927,7 +929,7 @@ namespace Saobracaj.RNI
 
         private void PostaviVidljivostPoljaCutOffPort()
         {
-            bool cutOffPortVisible = (ScenarioID == 9 && ScenarioID == 25); // 
+            bool cutOffPortVisible = (ScenarioID == 9 || ScenarioID == 25); // 
             {
                 dtpCutOffPort.Visible = cutOffPortVisible;
                 lblCutOffPort.Visible = cutOffPortVisible;

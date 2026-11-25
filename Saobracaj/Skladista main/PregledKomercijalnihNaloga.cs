@@ -527,14 +527,17 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
                     SkladisteTip = "Carinsko";
                 }
 
+                // Carinsko skladište ima šifru 1008; komercijalni nalog je nema (isto kao u frmNalogPrijem i InterniPoslovi)
+                string sifraSkladista = SkladisteTip == "Carinsko" ? "1008" : "";
+
                 //End of podesi vrednosti
                 // Formiram Radni nalog skladiste - LO NAlog
-                ins.InsertRadniNalog("Kreiran", 
+                ins.InsertRadniNalog("Kreiran",
                     DateTime.Now,
-                    Korisnik, 
-                    "Carinsko",
-                    "Prijem", 
-                    1008.ToString(),
+                    Korisnik,
+                    SkladisteTip,
+                    "Prijem",
+                    sifraSkladista,
                     Convert.ToInt32(0), //MB
                     Convert.ToInt32(Klijent1), // Nalogodavac
                     Convert.ToInt32(CarinskiPUnutrasniTransport),

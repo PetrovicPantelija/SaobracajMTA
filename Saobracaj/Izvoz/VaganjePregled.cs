@@ -182,7 +182,9 @@ namespace Saobracaj.Izvoz
                     textBox1.Text = row.Cells[0].Value.ToString();
                     brojKontejnera = row.Cells["BrojKontejnera"].Value.ToString().TrimEnd();
                   //  vrstaKontejnera = row.Cells["VrstaKontejnera"].Value.ToString();
-                    KontID =  Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                    // u prikazu „Izvagani kontejneri“ ID je ID vaganja, a kontejner je u koloni KontID
+                    string kolonaKontejnera = dataGridView1.Columns.Contains("KontID") ? "KontID" : "ID";
+                    KontID = Convert.ToInt32(row.Cells[kolonaKontejnera].Value.ToString());
                    // Vozilo = row.Cells["Vozilo"].Value.ToString();
                    // Vozac = row.Cells["Vozac"].Value.ToString();
                 }

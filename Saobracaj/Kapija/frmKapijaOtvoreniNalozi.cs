@@ -176,16 +176,23 @@ namespace Saobracaj.Kapija
         private void button3_Click(object sender, EventArgs e)
         {
             string Kor = Sifarnici.frmLogovanje.user;
+            // Smer se čita iz reda koji se obrađuje (ne iz tekućeg reda); nalozi koji nisu ODLAZAK se preskaču.
+            int obradjeno = 0;
+            int preskoceno = 0;
             foreach (SelectedRecord selectedRecord in this.gridGroupingControl2.Table.SelectedRecords)
             {
-                string smer = gridGroupingControl2.Table.CurrentRecord.GetValue("Smer").ToString();
-                int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("ScenarioPotvrde").ToString());
-
+                string smer = Convert.ToString(selectedRecord.Record.GetValue("Smer"));
                 if (smer.Trim().ToUpper() != "ODLAZAK")
-                    return;
+                {
+                    preskoceno++;
+                    continue;
+                }
+
+                int scenario = Convert.ToInt32(selectedRecord.Record.GetValue("ScenarioPotvrde").ToString());
 
                 InsertRadniNalogInterni ir = new InsertRadniNalogInterni();
                 ir.PromeniStatusKapijaOdlazak(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()), Kor);
+                obradjeno++;
                 UpisiLog(Convert.ToInt32(selectedRecord.Record.GetValue("KomNalogID").ToString()));
 
                
@@ -281,6 +288,14 @@ namespace Saobracaj.Kapija
                         FormirajRadniNalog(2, noviNalogID, kontejnerID, manipulacijaid);
                 }
             }
+
+            if (obradjeno == 0 && preskoceno == 0)
+            {
+                MessageBox.Show("Izaberite nalog za ODLAZAK.");
+                return;
+            }
+            if (preskoceno > 0)
+                MessageBox.Show("Potvrđen odlazak: " + obradjeno + ". Preskočeno naloga koji nisu ODLAZAK: " + preskoceno + ".");
             VratiPodatke();
         }
 

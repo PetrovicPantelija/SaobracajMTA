@@ -234,9 +234,15 @@ namespace Saobracaj.Izvoz
         private void FillGV()
         {
             
-            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID,  IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID order by Vaganje.ID desc";
+            // Forma je otvorena za jedan kontejner: prikazuju se samo njegova vaganja, inače izbor reda
+            // (prvi red se bira sam) prepiše kontejner u formi i vaganje se snimi na drugi kontejner.
+            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID,  IZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada, Roba from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
+                (kontID > 0 ? "where Vaganje.IzvozKonacnaID = @KontID " : "") +
+                "order by Vaganje.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
+            if (kontID > 0)
+                da.SelectCommand.Parameters.AddWithValue("@KontID", kontID);
             var ds = new System.Data.DataSet();
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
@@ -292,6 +298,13 @@ namespace Saobracaj.Izvoz
                 MessageBox.Show("Nije dozvoljeno snimanje kada je usluga vaganja završena!");
                 return;
             }
+
+            if (txtTara.Value > txtBruto.Value)
+            {
+                MessageBox.Show("Tara ne može biti veća od bruto težine.");
+                return;
+            }
+            PreracunajNeto();
 
             if (status == true)
             {
@@ -461,12 +474,23 @@ namespace Saobracaj.Izvoz
 
         private void txtBruto_Leave(object sender, EventArgs e)
         {
-            txtNeto.Value = txtBruto.Value - txtTara.Value;
+            PreracunajNeto();
         }
 
         private void txtTara_Leave(object sender, EventArgs e)
         {
-            txtNeto.Value = txtBruto.Value - txtTara.Value;
+            PreracunajNeto();
+        }
+
+        // Dok tara nije manja od bruto (npr. tara se unosi prva), neto ostaje 0; polje ne prima negativan broj.
+        private void PreracunajNeto()
+        {
+            decimal neto = txtBruto.Value - txtTara.Value;
+            if (neto < txtNeto.Minimum)
+                neto = txtNeto.Minimum;
+            if (neto > txtNeto.Maximum)
+                neto = txtNeto.Maximum;
+            txtNeto.Value = neto;
         }
 
         private void btnZavrsenoVaganje_Click(object sender, EventArgs e)
