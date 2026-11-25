@@ -2038,8 +2038,11 @@
     <Compile Include="Izvoz\frmIzvozUnosManipulacije.Designer.cs">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
     </Compile>
-    <Compile Include="Izvoz\frmIzvozUnosManipulacije.Nalog.cs">
-      <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
+    <Compile Include="Izvoz\frmIzvozUslugeNaloga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozUslugeNaloga.Designer.cs">
+      <DependentUpon>frmIzvozUslugeNaloga.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmKontaktOsobeMU.cs">
       <SubType>Form</SubType>

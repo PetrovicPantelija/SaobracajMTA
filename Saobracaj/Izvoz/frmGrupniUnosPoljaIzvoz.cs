@@ -2276,10 +2276,9 @@ namespace Saobracaj.Izvoz
 
             //
 
-            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
             // Forma dobija sve kontejnere naloga: usluge se dodaju kontejnerima koje korisnik tamo označi
-            var kontejneriNaloga = new List<int>(noviIDs);
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac.SelectedValue), Convert.ToInt32(cboNalogodavacZaUsluge.SelectedValue), Convert.ToInt32(cboNalogodavacZaDrumski.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp, ScenarioGL, ADR, pp, Zeleznina, Repozicija, Scenario, kontejneriNaloga);
+            var um = new frmIzvozUslugeNaloga(Convert.ToInt32(txtID.Text), noviIDs, Convert.ToInt32(cboIzvoznik.SelectedValue),
+                terminal, ScenarioGL, ADR, pp, Zeleznina, Repozicija, Scenario);
             um.Show();
 
         }

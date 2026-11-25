@@ -1,5 +1,6 @@
 using Syncfusion.Drawing;
 using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.WinForms.DataGrid;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,6 +31,11 @@ namespace Saobracaj.Theme
             if (c is DataGridView dgv)
             {
                 StyleGrid(dgv);
+                return;
+            }
+            if (c is SfDataGrid sfGrid)
+            {
+                StyleGrid(sfGrid);
                 return;
             }
 
@@ -261,6 +267,29 @@ namespace Saobracaj.Theme
             grid.DefaultCellStyle.SelectionBackColor = SavaTheme.SelectedRow;
             grid.DefaultCellStyle.SelectionForeColor = SavaTheme.Text;
             grid.AlternatingRowsDefaultCellStyle.BackColor = SavaTheme.White;
+        }
+
+        // Syncfusion SfDataGrid: isti izgled kao tabela u dokumentu (sekcija 4, DataGridView)
+        public static void StyleGrid(SfDataGrid grid)
+        {
+            grid.BackColor = SavaTheme.White;
+            grid.RowHeight = SavaTheme.GridRowHeight;
+            grid.HeaderRowHeight = SavaTheme.GridHeaderHeight;
+            grid.Style.BorderColor = SavaTheme.Line;
+
+            grid.Style.HeaderStyle.BackColor = SavaTheme.GridHeader;
+            grid.Style.HeaderStyle.TextColor = SavaTheme.Text;
+            grid.Style.HeaderStyle.Font.Facename = SavaTheme.GridHeaderFont.Name;
+            grid.Style.HeaderStyle.Font.Size = SavaTheme.GridHeaderFont.Size;
+            grid.Style.HeaderStyle.Font.Bold = false;
+
+            grid.Style.CellStyle.BackColor = SavaTheme.White;
+            grid.Style.CellStyle.TextColor = SavaTheme.Text;
+            grid.Style.CellStyle.Font.Facename = SavaTheme.FieldFont.Name;
+            grid.Style.CellStyle.Font.Size = SavaTheme.FieldFont.Size;
+
+            grid.Style.SelectionStyle.BackColor = SavaTheme.SelectedRow;
+            grid.Style.SelectionStyle.TextColor = SavaTheme.Text;
         }
     }
 }

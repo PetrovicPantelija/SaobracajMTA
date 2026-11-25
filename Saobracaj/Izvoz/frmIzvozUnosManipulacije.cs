@@ -229,12 +229,9 @@ namespace Saobracaj.Izvoz
         }
 
 
-        // kontejneriNaloga: svi kontejneri Naloga za otpremu (frmGrupniUnosPoljaIzvoz); usluge se tada dodaju označenim
-        // kontejnerima naloga (frmIzvozUnosManipulacije.Nalog.cs)
-        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp, int ScenarioGL, int ADR, int pp, int Zeleznina, int Repozicija, int ScenarioKon, IList<int> kontejneriNaloga = null)
+        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp, int ScenarioGL, int ADR, int pp, int Zeleznina, int Repozicija, int ScenarioKon)
         {
             InitializeComponent();
-            this.kontejneriNaloga = kontejneriNaloga;
             pIDPlana = IDPlana;
             pID = ID;
             txtID.Text = ID.ToString();
@@ -291,8 +288,6 @@ namespace Saobracaj.Izvoz
             }
             ScenarioKonacan = ScenarioKon;
 
-            if (kontejneriNaloga != null)
-                PrilagodiZaNalog();
         }
         int VratiUnetuZelezninu(int ID)
         {
@@ -902,7 +897,7 @@ namespace Saobracaj.Izvoz
 " inner " +
  "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
 " left " +
-" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where Dodatna = 0 and Administrativna = 0 and IzvozVrstaManipulacije.IDNadredjena in (" + KontejneriZaPrikaz(pID) + ")";
+" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where Dodatna = 0 and Administrativna = 0 and IzvozVrstaManipulacije.IDNadredjena =  " + pID;
             }
             else
             {
@@ -1015,9 +1010,9 @@ namespace Saobracaj.Izvoz
  "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
 " left " +
 " join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
-" where Izvoz.ID in (" +
- KontejneriZaPrikaz(Convert.ToInt32(txtID.Text)) +
-") and Dodatna = 1 and Administrativna = 0";
+" where Izvoz.ID = " +
+ +Convert.ToInt32(txtID.Text) +
+" and Dodatna = 1 and Administrativna = 0";
 
 
             }
@@ -1131,7 +1126,7 @@ namespace Saobracaj.Izvoz
 " inner " +
  "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
 " left " +
-" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where Administrativna = 1  and IzvozVrstaManipulacije.IDNadredjena in (" + KontejneriZaPrikaz(pID) + ")";
+" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where Administrativna = 1  and IzvozVrstaManipulacije.IDNadredjena =  " + pID;
 
 
             }
@@ -2259,11 +2254,7 @@ namespace Saobracaj.Izvoz
             cboNalogodavac2.SelectedValue = pNalogodavac2;
             cboNalogodavac3.SelectedValue = pNalogodavac3;
             cboUvoznik.SelectedValue = pIzvoznik;
-            if (kontejneriNaloga != null)
-            {
-                PrikaziKontejnereNaloga();
-            }
-            else if (txtNadredjeni.Text == "0")
+            if (txtNadredjeni.Text == "0")
             {
                 FillGVIzvoz();
             }
@@ -3544,12 +3535,6 @@ namespace Saobracaj.Izvoz
 
         private void button22_Click(object sender, EventArgs e)
         {
-            if (kontejneriNaloga != null)
-            {
-                SnimiZaNalog();   // označene usluge za sve označene kontejnere naloga
-                return;
-            }
-
             //Uzima cenu samo za PArtnera
             int pomID = 0;
             int pomManupulacija = 0;
