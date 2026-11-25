@@ -33,6 +33,8 @@
             this.btnPregledLog = new System.Windows.Forms.Button();
             this.btnZakaciDokumenta = new System.Windows.Forms.Button();
             this.btnZakaciSlike = new System.Windows.Forms.Button();
+            this.btnIzveziSlikeIDokumenta = new System.Windows.Forms.Button();
+            this.btnVratiIzArhive = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,7 +58,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.btnVratiIzArhive);
             this.panel2.Controls.Add(this.btnPregledLog);
+            this.panel2.Controls.Add(this.btnIzveziSlikeIDokumenta);
             this.panel2.Controls.Add(this.btnZakaciDokumenta);
             this.panel2.Controls.Add(this.btnZakaciSlike);
             this.panel2.Location = new System.Drawing.Point(3, 1);
@@ -84,6 +88,48 @@
             this.btnPregledLog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPregledLog.UseVisualStyleBackColor = true;
             this.btnPregledLog.Click += new System.EventHandler(this.btnPregledLog_Click);
+            //
+            // btnIzveziSlikeIDokumenta
+            //
+            this.btnIzveziSlikeIDokumenta.AutoSize = true;
+            this.btnIzveziSlikeIDokumenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIzveziSlikeIDokumenta.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.BorderSize = 0;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnIzveziSlikeIDokumenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzveziSlikeIDokumenta.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnIzveziSlikeIDokumenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnIzveziSlikeIDokumenta.Location = new System.Drawing.Point(390, 0);
+            this.btnIzveziSlikeIDokumenta.Name = "btnIzveziSlikeIDokumenta";
+            this.btnIzveziSlikeIDokumenta.Size = new System.Drawing.Size(180, 31);
+            this.btnIzveziSlikeIDokumenta.TabIndex = 4;
+            this.btnIzveziSlikeIDokumenta.Text = "Izvezi slike i dokumenta";
+            this.btnIzveziSlikeIDokumenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIzveziSlikeIDokumenta.UseVisualStyleBackColor = true;
+            this.btnIzveziSlikeIDokumenta.Click += new System.EventHandler(this.btnIzveziSlikeIDokumenta_Click);
+            //
+            // btnVratiIzArhive
+            //
+            this.btnVratiIzArhive.AutoSize = true;
+            this.btnVratiIzArhive.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVratiIzArhive.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnVratiIzArhive.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnVratiIzArhive.FlatAppearance.BorderSize = 0;
+            this.btnVratiIzArhive.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnVratiIzArhive.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnVratiIzArhive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVratiIzArhive.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnVratiIzArhive.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnVratiIzArhive.Location = new System.Drawing.Point(570, 0);
+            this.btnVratiIzArhive.Name = "btnVratiIzArhive";
+            this.btnVratiIzArhive.Size = new System.Drawing.Size(130, 31);
+            this.btnVratiIzArhive.TabIndex = 5;
+            this.btnVratiIzArhive.Text = "Vrati iz arhive";
+            this.btnVratiIzArhive.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVratiIzArhive.UseVisualStyleBackColor = true;
+            this.btnVratiIzArhive.Click += new System.EventHandler(this.btnVratiIzArhive_Click);
             //
             // btnZakaciDokumenta
             //
@@ -187,6 +233,8 @@
         private System.Windows.Forms.Button btnPregledLog;
         private System.Windows.Forms.Button btnZakaciDokumenta;
         private System.Windows.Forms.Button btnZakaciSlike;
+        private System.Windows.Forms.Button btnIzveziSlikeIDokumenta;
+        private System.Windows.Forms.Button btnVratiIzArhive;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
     }
 }

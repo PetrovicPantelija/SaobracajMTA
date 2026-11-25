@@ -38,6 +38,7 @@
             this.btnSacuvajIzmene = new System.Windows.Forms.Button();
             this.btnZakaciSlike = new System.Windows.Forms.Button();
             this.btnZakaciDokumenta = new System.Windows.Forms.Button();
+            this.btnIzveziSlikeIDokumenta = new System.Windows.Forms.Button();
             this.btnPregledLoga = new System.Windows.Forms.Button();
             this.btnArhiviraj = new System.Windows.Forms.Button();
             this.btnArhiviraniPodaci = new System.Windows.Forms.Button();
@@ -46,8 +47,10 @@
             this.btnPonistiFiltere = new System.Windows.Forms.Button();
             this.btnGrupnaPromena = new System.Windows.Forms.Button();
             this.btnUvozExcel = new System.Windows.Forms.Button();
+            this.btnOsvezi = new System.Windows.Forms.Button();
             this.btnNovi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
+            this.chkVozac = new System.Windows.Forms.CheckBox();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -259,6 +262,7 @@
             this.tabSplitterPage2.Controls.Add(this.txtPrevoznik);
             this.tabSplitterPage2.Controls.Add(this.lblBeleska);
             this.tabSplitterPage2.Controls.Add(this.txtBeleska);
+            this.tabSplitterPage2.Controls.Add(this.chkVozac);
             this.tabSplitterPage2.Controls.Add(this.btnStampajPotvrdu);
             this.tabSplitterPage2.Controls.Add(this.pnlDatumi);   // trake se dodaju poslednje da budu iza polja
             this.tabSplitterPage2.Controls.Add(this.pnlVozilo);
@@ -705,7 +709,7 @@
             this.txtTara.Location = new System.Drawing.Point(460, 181);
             this.txtTara.Name = "txtTara";
             this.txtTara.Size = new System.Drawing.Size(205, 20);
-            this.txtTara.MaxLength = 30;
+            this.txtTara.MaxLength = 4;
             this.txtTara.TabIndex = 21;
             // 
             // lblMax
@@ -722,7 +726,7 @@
             this.txtMax.Location = new System.Drawing.Point(685, 181);
             this.txtMax.Name = "txtMax";
             this.txtMax.Size = new System.Drawing.Size(205, 20);
-            this.txtMax.MaxLength = 30;
+            this.txtMax.MaxLength = 5;
             this.txtMax.TabIndex = 22;
             // 
             // lblVozilo
@@ -742,7 +746,18 @@
             this.txtVozilo.Size = new System.Drawing.Size(205, 20);
             this.txtVozilo.MaxLength = 30;
             this.txtVozilo.TabIndex = 31;
-            // 
+            //
+            // chkVozac (u žutom okviru, u redu oznaka, desno iznad polja VOZILO)
+            //
+            this.chkVozac.AutoSize = true;
+            this.chkVozac.BackColor = System.Drawing.Color.Yellow;
+            this.chkVozac.Location = new System.Drawing.Point(600, 266);
+            this.chkVozac.Name = "chkVozac";
+            this.chkVozac.Size = new System.Drawing.Size(62, 17);
+            this.chkVozac.TabIndex = 36;
+            this.chkVozac.Text = "VOZAČ";
+            this.chkVozac.UseVisualStyleBackColor = false;
+            //
             // lblPlomba
             // 
             this.lblPlomba.AutoSize = true;
@@ -974,15 +989,17 @@
             this.panel2.Controls.Add(this.btnArhiviraniPodaci);
             this.panel2.Controls.Add(this.btnArhiviraj);
             this.panel2.Controls.Add(this.btnPregledLoga);
+            this.panel2.Controls.Add(this.btnIzveziSlikeIDokumenta);
             this.panel2.Controls.Add(this.btnZakaciDokumenta);
             this.panel2.Controls.Add(this.btnZakaciSlike);
             this.panel2.Controls.Add(this.btnSacuvajIzmene);
             this.panel2.Controls.Add(this.btnGrupnaPromena);
             this.panel2.Controls.Add(this.btnUvozExcel);
+            this.panel2.Controls.Add(this.btnOsvezi);
             this.panel2.Controls.Add(this.btnNovi);
             this.panel2.Location = new System.Drawing.Point(3, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1327, 31);
+            this.panel2.Size = new System.Drawing.Size(1382, 31);   // do desne ivice zaglavlja (3 px kao levo), da stanu sva dugmad
             this.panel2.TabIndex = 6;
             // 
             // btnArhiviraj
@@ -1124,7 +1141,28 @@
             this.btnZakaciDokumenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnZakaciDokumenta.UseVisualStyleBackColor = true;
             this.btnZakaciDokumenta.Click += new System.EventHandler(this.btnZakaciDokumenta_Click);
-            // 
+            //
+            // btnIzveziSlikeIDokumenta
+            //
+            this.btnIzveziSlikeIDokumenta.AutoSize = true;
+            this.btnIzveziSlikeIDokumenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIzveziSlikeIDokumenta.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.BorderSize = 0;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnIzveziSlikeIDokumenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnIzveziSlikeIDokumenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzveziSlikeIDokumenta.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnIzveziSlikeIDokumenta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnIzveziSlikeIDokumenta.Location = new System.Drawing.Point(640, 0);
+            this.btnIzveziSlikeIDokumenta.Name = "btnIzveziSlikeIDokumenta";
+            this.btnIzveziSlikeIDokumenta.Size = new System.Drawing.Size(180, 31);
+            this.btnIzveziSlikeIDokumenta.TabIndex = 14;
+            this.btnIzveziSlikeIDokumenta.Text = "Izvezi slike i dokumenta";
+            this.btnIzveziSlikeIDokumenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIzveziSlikeIDokumenta.UseVisualStyleBackColor = true;
+            this.btnIzveziSlikeIDokumenta.Click += new System.EventHandler(this.btnIzveziSlikeIDokumenta_Click);
+            //
             // btnZakaciSlike
             // 
             this.btnZakaciSlike.AutoSize = true;
@@ -1208,7 +1246,28 @@
             this.btnUvozExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnUvozExcel.UseVisualStyleBackColor = true;
             this.btnUvozExcel.Click += new System.EventHandler(this.btnUvozExcel_Click);
-            // 
+            //
+            // btnOsvezi
+            //
+            this.btnOsvezi.AutoSize = true;
+            this.btnOsvezi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOsvezi.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnOsvezi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.btnOsvezi.FlatAppearance.BorderSize = 0;
+            this.btnOsvezi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOsvezi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnOsvezi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOsvezi.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.btnOsvezi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.btnOsvezi.Location = new System.Drawing.Point(0, 0);
+            this.btnOsvezi.Name = "btnOsvezi";
+            this.btnOsvezi.Size = new System.Drawing.Size(70, 31);
+            this.btnOsvezi.TabIndex = 13;
+            this.btnOsvezi.Text = "Osveži";
+            this.btnOsvezi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOsvezi.UseVisualStyleBackColor = true;
+            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
+            //
             // frmTerminalPrivremeni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1244,6 +1303,7 @@
         private System.Windows.Forms.Button btnSacuvajIzmene;
         private System.Windows.Forms.Button btnZakaciSlike;
         private System.Windows.Forms.Button btnZakaciDokumenta;
+        private System.Windows.Forms.Button btnIzveziSlikeIDokumenta;
         private System.Windows.Forms.Button btnPregledLoga;
         private System.Windows.Forms.Button btnArhiviraj;
         private System.Windows.Forms.Button btnArhiviraniPodaci;
@@ -1252,6 +1312,7 @@
         private System.Windows.Forms.Button btnPonistiFiltere;
         private System.Windows.Forms.Button btnGrupnaPromena;
         private System.Windows.Forms.Button btnUvozExcel;
+        private System.Windows.Forms.Button btnOsvezi;
         private System.Windows.Forms.Button btnNovi;
         private System.Windows.Forms.Button btnPromeni;
         private System.Windows.Forms.Button btnObrisi;
@@ -1324,5 +1385,6 @@
         private System.Windows.Forms.Button btnStampajPotvrdu;
         private System.Windows.Forms.Panel pnlDatumi;
         private System.Windows.Forms.Panel pnlVozilo;
+        private System.Windows.Forms.CheckBox chkVozac;
     }
 }

@@ -16,6 +16,9 @@ namespace Saobracaj.RNI
             "Container", "Type", "Size", "Full/Empty", "Booking number", "1st MOVE", "DATE OF THE MOVE", "PLOMBA"
         };
 
+        // HAPAG traži praznu prvu kolonu (A): podaci počinju od kolone B
+        private const int PrvaKolona = 2;
+
         private readonly string connectionString;
 
         public TerminalPrivHAPAGIzvoz(string connectionString)
@@ -63,8 +66,8 @@ namespace Saobracaj.RNI
                 ws.Name = "HAPAG";
 
                 for (int k = 0; k < Kolone.Length; k++)
-                    ws.Range[1, k + 1].Text = Kolone[k];
-                IRange zaglavlje = ws.Range[1, 1, 1, Kolone.Length];
+                    ws.Range[1, PrvaKolona + k].Text = Kolone[k];
+                IRange zaglavlje = ws.Range[1, PrvaKolona, 1, PrvaKolona + Kolone.Length - 1];
                 zaglavlje.CellStyle.Font.Bold = true;
 
                 // sve vrednosti se upisuju kao tekst (08.10.2026., 20'), da ih Excel ne pretvara
@@ -74,7 +77,7 @@ namespace Saobracaj.RNI
                     {
                         object v = zapisi.Rows[r][Kolone[k]];
                         if (v != DBNull.Value && v != null)
-                            ws.Range[r + 2, k + 1].Text = Kolone[k] == "Size" ? SaApostrofom(Convert.ToString(v)) : Convert.ToString(v);
+                            ws.Range[r + 2, PrvaKolona + k].Text = Kolone[k] == "Size" ? SaApostrofom(Convert.ToString(v)) : Convert.ToString(v);
                     }
                 }
 

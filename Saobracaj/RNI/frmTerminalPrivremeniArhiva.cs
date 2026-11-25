@@ -1,8 +1,11 @@
 ﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Saobracaj.RNI
@@ -14,6 +17,9 @@ namespace Saobracaj.RNI
         private const string FormatDatuma = "dd.MM.yyyy HH:mm";
 
         private DataTable dt;
+
+        // Broj zapisa vraćenih u terminal; glavna forma ih posle zatvaranja prikazuje u gridu
+        public int Vraceno { get; private set; }
 
         public frmTerminalPrivremeniArhiva()
         {
@@ -68,6 +74,13 @@ namespace Saobracaj.RNI
                 GridColumnDescriptor kolona = kolone[polje.Kolona];
                 if (kolona == null)
                     continue;
+
+                // štiklir (VOZAČ) se ne prikazuje u gridu, kao ni u terminalu
+                if (polje.Tip == TerminalPrivTip.DaNe)
+                {
+                    gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(polje.Kolona);
+                    continue;
+                }
 
                 kolona.Width = frmTerminalPrivremeni.SirinaKolone(font, kolona.HeaderText, frmTerminalPrivremeni.PrimerSadrzaja(polje));
                 if (polje.Tip == TerminalPrivTip.Datum)
@@ -166,6 +179,106 @@ namespace Saobracaj.RNI
             {
                 forma.ShowDialog(this);
             }
+        }
+
+        // Slike i dokumenta označenih zapisa (ili izabranog) na Desktop, folder po kontejneru
+        private void btnIzveziSlikeIDokumenta_Click(object sender, EventArgs e)
+        {
+            var zapisi = new List<KeyValuePair<int, string>>();
+            foreach (SelectedRecord sr in gridGroupingControl1.Table.SelectedRecords)
+            {
+                object id = sr.Record == null ? null : sr.Record.GetValue("ID");
+                if (id != null && id != DBNull.Value)
+                    zapisi.Add(new KeyValuePair<int, string>(Convert.ToInt32(id), Convert.ToString(sr.Record.GetValue("KONTEJNER"))));
+            }
+
+            if (zapisi.Count == 0)
+            {
+                int id;
+                string kontejner;
+                if (!IzaberiArhiviranZapis("Izvezi slike i dokumenta", out id, out kontejner))
+                    return;
+                zapisi.Add(new KeyValuePair<int, string>(id, kontejner));
+            }
+
+            TerminalPrivFajloviNaDesktop.Izvezi(this, zapisi);
+        }
+
+        // Vrati iz arhive: zapis se vraća u terminal (TerminalPriv) sa istim ID-jem. Konačni_GATE_OUT se briše, a iz izveštaja
+        // brodaru i iz loga briše se ono što je on upisao (procedura VratiTerminalPrivIzArhive). Pre vraćanja poruka kaže šta
+        // će biti obrisano i da li je pokret već poslat brodaru.
+        private void btnVratiIzArhive_Click(object sender, EventArgs e)
+        {
+            const string naslov = "Vrati iz arhive";
+            int id;
+            string kontejner;
+            if (!IzaberiArhiviranZapis(naslov, out id, out kontejner))
+                return;
+
+            var ins = new insertTerminalPriv();
+            DataSet provera;
+            try
+            {
+                provera = ins.ProveriVracanjeIzArhive(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataRow stanje = provera.Tables[0].Rows[0];
+            DataTable pokreti = provera.Tables[1];
+            bool poslat = pokreti.Rows.Cast<DataRow>().Any(p => Convert.ToBoolean(p["Poslat"]));
+            int uTerminalu = Convert.ToInt32(stanje["UTerminalu"]);
+
+            var poruka = new StringBuilder();
+            poruka.AppendLine("Vratiti kontejner " + kontejner + " (ID " + id + ") iz arhive u terminal?");
+            poruka.AppendLine();
+            object konacni = stanje["KonacniGateOut"];
+            poruka.AppendLine("- Konačni_GATE_OUT" + (konacni == DBNull.Value ? "" : " " + Convert.ToDateTime(konacni).ToString(FormatDatuma)) + " se briše.");
+            if (pokreti.Rows.Count == 0)
+                poruka.AppendLine("- U izveštajima brodaru nema pokreta koji je upisao Konačni_GATE_OUT.");
+            foreach (DataRow p in pokreti.Rows)
+            {
+                poruka.Append("- Iz izveštaja brodaru " + p["Izvestaj"] + " briše se pokret " + p["Pokret"] + " " + p["DatumPokreta"] + ".");
+                if (Convert.ToBoolean(p["Poslat"]))
+                    poruka.Append(" Pokret je već poslat brodaru"
+                        + (p["DatumIzvoza"] == DBNull.Value ? "" : " " + Convert.ToDateTime(p["DatumIzvoza"]).ToString(FormatDatuma))
+                        + "; brodaru treba javiti.");
+                poruka.AppendLine();
+            }
+            if (Convert.ToInt32(stanje["NadjenLog"]) == 1)
+                poruka.AppendLine("- Iz loga se briše upis Konačni_GATE_OUT.");
+            if (uTerminalu > 0)
+            {
+                poruka.AppendLine();
+                poruka.AppendLine("Pažnja: kontejner " + kontejner + " je već u terminalu (zapisa: " + uTerminalu + ").");
+            }
+
+            if (MessageBox.Show(poruka.ToString(), naslov, MessageBoxButtons.YesNo,
+                poslat || uTerminalu > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                ins.VratiIzArhive(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, naslov, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Vraceno++;
+
+            // red se uklanja iz grida bez ponovnog učitavanja, pa filteri u arhivi ostaju
+            foreach (DataRow red in dt.Select("ID = " + id))
+                red.Delete();
+            dt.AcceptChanges();
+            Text = "Arhivirani podaci (" + dt.Rows.Count + ")";
+
+            MessageBox.Show("Kontejner " + kontejner + " je vraćen u terminal.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

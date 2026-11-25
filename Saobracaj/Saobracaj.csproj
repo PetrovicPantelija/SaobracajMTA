@@ -3110,6 +3110,9 @@
     <Compile Include="RNI\frmTerminalPrivremeni.Designer.cs">
       <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
     </Compile>
+    <Compile Include="RNI\frmTerminalPrivremeni.Prilozi.cs">
+      <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
+    </Compile>
     <Compile Include="RNI\frmTerminalPrivremeniExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3148,6 +3151,7 @@
     </Compile>
     <Compile Include="RNI\TerminalPrivOOCLMailIzvoz.cs" />
     <Compile Include="RNI\TerminalPrivOpstiIzvoz.cs" />
+    <Compile Include="RNI\TerminalPrivFajloviNaDesktop.cs" />
     <Compile Include="RNI\frmTerminalPrivremeniSlike.cs">
       <SubType>Form</SubType>
     </Compile>

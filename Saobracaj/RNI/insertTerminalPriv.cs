@@ -7,7 +7,8 @@ namespace Saobracaj.RNI
     public enum TerminalPrivTip
     {
         Tekst,
-        Datum
+        Datum,
+        DaNe    // bit (štiklir); ne prikazuje se u gridu
     }
 
     public class TerminalPrivPolje
@@ -74,8 +75,8 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("GATE_IN_FULL/sa_Utovara", "@GATE_IN_FULL_SA_UTOVARA", TerminalPrivTip.Datum, 0, null),
             new TerminalPrivPolje("GATE_IN/_GATE_OUT", "@GATE_IN_GATE_OUT", TerminalPrivTip.Tekst, 50, GateInGateOut),
             new TerminalPrivPolje("L/R", "@L_R", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("TARA", "@TARA", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("MAX_NOSIVOST_CNT", "@MAX_NOSIVOST_CNT", TerminalPrivTip.Tekst, 30, null),
+            new TerminalPrivPolje("TARA", "@TARA", TerminalPrivTip.Tekst, 4, null),                          // kolona je nvarchar(30), unos je do 4 karaktera
+            new TerminalPrivPolje("MAX_NOSIVOST_CNT", "@MAX_NOSIVOST_CNT", TerminalPrivTip.Tekst, 5, null),  // kolona je nvarchar(30), unos je do 5 karaktera
             new TerminalPrivPolje("VOZILO/PREUZIMANJE", "@VOZILO_PREUZIMANJE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("PLOMBA/IZVOZ", "@PLOMBA_IZVOZ", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("NAPOMENA", "@NAPOMENA", TerminalPrivTip.Tekst, 300, null),
@@ -84,6 +85,7 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("POSLATE SLIKE", "@POSLATE_SLIKE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("Prevoznik", "@PREVOZNIK", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("BELEŠKA", "@BELESKA", TerminalPrivTip.Tekst, 300, null),
+            new TerminalPrivPolje("VOZAČ", "@VOZAC", TerminalPrivTip.DaNe, 0, null),   // za potvrdu (TerminalPriv_Vozac_Arhiva_2026_11.sql)
         };
 
         // Vraca ID novog zapisa. zapisiMaersk = true samo za dugme 'Sačuvaj novi': procedura tada za Maersk
@@ -304,6 +306,56 @@ namespace Saobracaj.RNI
             }
         }
 
+        // Šta će vraćanje zapisa iz arhive uraditi, bez izmena u bazi (procedura VratiTerminalPrivIzArhive, @Proveri = 1):
+        // Tables[0] = Kontejner, KonacniGateOut, NadjenLog, UTerminalu; Tables[1] = pokreti koji se brišu iz izveštaja brodaru
+        // (Izvestaj, Pokret, DatumPokreta, Poslat, DatumIzvoza)
+        public DataSet ProveriVracanjeIzArhive(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            using (var myConnection = new SqlConnection(s_connection))
+            using (var myCommand = new SqlCommand("VratiTerminalPrivIzArhive", myConnection))
+            {
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                myCommand.Parameters.Add("@Proveri", SqlDbType.Bit).Value = true;
+
+                var rezultat = new DataSet();
+                try
+                {
+                    new SqlDataAdapter(myCommand).Fill(rezultat);
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception("Neuspešna provera arhiviranog zapisa: " + ex.Message);
+                }
+                return rezultat;
+            }
+        }
+
+        // Vraća zapis iz TerminalPrivArhiv u TerminalPriv (isti ID), briše Konačni_GATE_OUT, pokret koji je on upisao u izveštaj
+        // brodaru i njegov upis u logu. Procedura ima svoju transakciju.
+        public void VratiIzArhive(int ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            using (var myConnection = new SqlConnection(s_connection))
+            using (var myCommand = new SqlCommand("VratiTerminalPrivIzArhive", myConnection))
+            {
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                myCommand.Parameters.Add("@Proveri", SqlDbType.Bit).Value = false;
+
+                try
+                {
+                    myConnection.Open();
+                    myCommand.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception("Neuspešno vraćanje iz arhive: " + ex.Message);
+                }
+            }
+        }
+
         public void DelTerminalPriv(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -455,6 +507,11 @@ namespace Saobracaj.RNI
                 {
                     parameter.SqlDbType = SqlDbType.DateTime;
                     parameter.Value = vrednost == null || vrednost == DBNull.Value ? (object)DBNull.Value : vrednost;
+                }
+                else if (polje.Tip == TerminalPrivTip.DaNe)
+                {
+                    parameter.SqlDbType = SqlDbType.Bit;
+                    parameter.Value = vrednost != null && vrednost != DBNull.Value && Convert.ToBoolean(vrednost);
                 }
                 else
                 {

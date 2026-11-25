@@ -13,8 +13,8 @@ namespace Saobracaj.RNI
     {
         private const string FormatDatuma = "dd.MM.yyyy HH:mm";
 
-        // KONTEJNER je jedinstven po zapisu, a POSLATE SLIKE se ne menja grupno
-        private static readonly string[] IskljucenaPolja = { "KONTEJNER", "POSLATE SLIKE" };
+        // KONTEJNER je jedinstven po zapisu, a POSLATE SLIKE i VOZAČ (za potvrdu pojedinačnog kontejnera) se ne menjaju grupno
+        private static readonly string[] IskljucenaPolja = { "KONTEJNER", "POSLATE SLIKE", "VOZAČ" };
 
         private readonly GridGroupingControl grid;
         private readonly TerminalPrivPolje[] polja;
@@ -30,6 +30,21 @@ namespace Saobracaj.RNI
             cboPolje.Items.AddRange(polja.Select(p => (object)p.Kolona).ToArray());
             lblOznaceno.Text = "Označeno zapisa: " + grid.Table.SelectedRecords.Count;
             cboPolje.SelectedIndex = 0;
+
+            // klik na štiklir ili kalendar prvo da fokus polju, pa štiklira trenutno vreme
+            dtpOpsti.Enter += (s, e) =>
+            {
+                if (!dtpOpsti.Checked)
+                    PonudiTrenutnoVreme();
+            };
+        }
+
+        // Prazan datum nudi trenutni datum i vreme (do minuta), kao polja datuma na formi Terminal privremeni
+        private void PonudiTrenutnoVreme()
+        {
+            DateTime sada = DateTime.Now;
+            dtpOpsti.Value = new DateTime(sada.Year, sada.Month, sada.Day, sada.Hour, sada.Minute, 0);
+            dtpOpsti.Checked = false;   // dodela Value štiklira polje
         }
 
         private TerminalPrivPolje IzabranoPolje()
@@ -50,7 +65,7 @@ namespace Saobracaj.RNI
 
             if (polje.Tip == TerminalPrivTip.Datum)
             {
-                dtpOpsti.Checked = false;   // nečekirano = bez vrednosti (NULL)
+                PonudiTrenutnoVreme();      // nečekirano = bez vrednosti (NULL)
                 dtpOpsti.Visible = true;
             }
             else if (polje.Dozvoljeno != null)
