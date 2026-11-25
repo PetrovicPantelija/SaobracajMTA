@@ -19,6 +19,8 @@ namespace Saobracaj.Skladista_main
             txtNHMNaimenovanje.Minimum = 0;
             txtNHMNaimenovanje.DecimalPlaces = 0;
             txtNHMNaimenovanje.Maximum = 9999999m;
+            // dvoklik na naimenovanje (obrada iz dizajnera puni polja) pamti učitani NHM, da izmena ne traži 7 cifara
+            gridGroupingControl1.TableControlCurrentCellControlDoubleClick += (s, e) => ZapamtiUcitaniNHM();
 
             // ISP-06: klik ili ulazak u brojčano polje označava ceo sadržaj, pa novi broj zamenjuje stari
             foreach (var polje in SvaBrojcanaPolja(this))
@@ -54,10 +56,33 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        // ISP-04: NHM mora imati tačno 7 cifara ili biti 0 (nije unet)
-        private bool NHMIspravan()
+        // NHM naimenovanja učitanog dvoklikom iz tabele (null kad nije učitano)
+        decimal? nhmUcitan;
+
+        private void ZapamtiUcitaniNHM()
+        {
+            nhmUcitan = null;
+            try
+            {
+                var zapis = gridGroupingControl1.Table.CurrentRecord;
+                object v = zapis == null ? null : zapis.GetValue("NHM naimenovanja");
+                decimal d;
+                if (v != null && v != DBNull.Value && decimal.TryParse(v.ToString(), out d))
+                    nhmUcitan = d;
+            }
+            catch
+            {
+                // bez učitane vrednosti važi pravilo od 7 cifara
+            }
+        }
+
+        // ISP-04: NHM mora imati tačno 7 cifara ili biti 0 (nije unet).
+        // Izmena postojećeg naimenovanja prolazi dok se NHM ne menja: stara naimenovanja imaju NHM unet pre ovog pravila.
+        private bool NHMIspravan(bool izmenaPostojeceg = false)
         {
             decimal nhm = txtNHMNaimenovanje.Value;
+            if (izmenaPostojeceg && nhmUcitan.HasValue && nhm == nhmUcitan.Value)
+                return true;
             if (nhm != 0 && (nhm < 1000000m || nhm > 9999999m))
             {
                 MessageBox.Show("NHM mora imati 7 cifara.");
@@ -93,10 +118,29 @@ namespace Saobracaj.Skladista_main
             grupeForme.Zavrsi(panelStavke, traka, panelMPEdit);
         }
 
+        // Vrsta komercijalnog naloga stiže kao „Komercijalno“ (TipSkladista, VrstaRN iz baze);
+        // ranije poređenje sa „Komercijalo“ nikad nije bilo tačno, pa se lista brojeva nije punila.
+        private bool JeKomercijalno
+        {
+            get { return string.Equals((Vrsta ?? "").Trim(), "Komercijalno", StringComparison.OrdinalIgnoreCase); }
+        }
+
+        // Tabela MagacinskiBrojKomercijalni se koristi samo ovde; ako je u bazi nema, lista ostaje prazna kao do sada
+        // (upit nad nepostojećom tabelom bi oborio formu pri kliku na „?“).
+        private bool PostojiTabelaKomercijalnihBrojeva()
+        {
+            using (var conn = new System.Data.SqlClient.SqlConnection(connection))
+            using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT CASE WHEN OBJECT_ID('dbo.MagacinskiBrojKomercijalni') IS NULL THEN 0 ELSE 1 END", conn))
+            {
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+            }
+        }
+
         // ISP-09: lista magacinskih brojeva se puni pri otvaranju forme (ne tek posle klika na „?“)
         private void UcitajMagacinskeBrojeve()
         {
-            if (Vrsta != "Carinsko" && Vrsta != "Komercijalo")
+            if (Vrsta != "Carinsko" && !JeKomercijalno)
                 return;
             try
             {

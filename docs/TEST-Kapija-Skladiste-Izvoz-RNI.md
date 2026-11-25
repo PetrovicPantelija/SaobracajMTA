@@ -432,3 +432,17 @@ Ispravke su urađene na zahtev, a build prolazi. Nisu proverene u aplikaciji: pr
 - `RadniNalozi\RN8OtpremaCirade.cs:110`
 - `RadniNalozi\RN9PrijemCirade.cs:109`
 - `Uvoz\frmFormiranjeRobnihDokumenata.cs:111`
+
+### 10.1 Ispravke u kodu iz operativne faze (25.11.2026)
+
+| Oznaka | Šta je promenjeno | Provera |
+|---|---|---|
+| SKC-01 | `Prijemnica.cs` (Snimi) i `Prijemnica.Potvrda.cs` (`StatusNepromenjenUBazi`): pre snimanja status se čita iz baze; ako se razlikuje od statusa pri otvaranju (npr. potvrđena u drugom prozoru), ništa se ne snima, stavke se ponovo učitavaju i korisnik dobija poruku | 8.2 korak 22 |
+| SKC-04 | `Prijemnica.Raspored.cs` (`GridStavke_RecordContextChange`): kad se u tabeli stavki promeni koleta, poziva se `PromeniKoleta` kao u Uparivanju (Količina JM po koeficijentu; neto, bruto i vrednost srazmerno packing listi). Ručno unet neto, bruto i vrednost se ne prepisuju dok se koleta ne promeni | 8.2 korak 14 |
+| SKC-05 | `frmNalogPrijem.Ispravke.cs` (`NHMIspravan`, `ZapamtiUcitaniNHM`), `frmNalogPrijem.cs` (Izmeni): izmena postojećeg naimenovanja prolazi dok se NHM ne menja; nov ili promenjen NHM i dalje mora imati 7 cifara | 8.2 korak 4 |
+| SKC-18 | `frmNalogPrijem.Ispravke.cs` (`JeKomercijalno`, `PostojiTabelaKomercijalnihBrojeva`), `frmNalogPrijem.cs` (`FillMagacinskiBroj`): komercijalni nalog se prepoznaje po „Komercijalno“; lista se puni iz `MagacinskiBrojKomercijalni` samo ako ta tabela postoji (u kodu je nigde drugde nema). ISP-12: `btnNoviMP_Click` nije vezan ni za jedno dugme, a magacinski predmet upisuje procedura `UpdateRadniNalogDirektni` (nije u repozitorijumu), pa se uslov upis/izmena proverava u njoj | 8.2 korak 8 |
+
+**Ostaje otvoreno:**
+- SKC-05, drugi deo: `sp_Prijem_Kontrola` spaja NHM naimenovanja sa `NHM.ID`, a Prijemnica u NHM stavke upisuje `NHM.ID` pri izboru iz liste, a broj iz naimenovanja pri uparivanju. Ovo se rešava zajedno sa izmenom „tarifni broj kao tekst do 10 cifara“ (Magacinski predmet, čeka rezultat `NalogPrijem_MP_Provera_2026_11.sql`).
+- SKC-18: dugme Sačuvaj na panelu magacinskog broja (`btnMbSave_Click`) upisuje samo carinski broj; komercijalni nalog može da izabere postojeći broj, ali ne i da napravi nov.
+- SKC-01: dva prozora sa istim statusom (oba OD) i dalje mogu da prepišu stavke jedan drugom; snima se ono što je poslednje sačuvano.

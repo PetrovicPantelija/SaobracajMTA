@@ -265,6 +265,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             gridGroupingControl1.ActivateCurrentCellBehavior = GridCellActivateAction.ClickOnCell;
             gridGroupingControl1.TableControlCellDoubleClick += GridStavke_CellDoubleClick;
+            gridGroupingControl1.CurrentRecordContextChange += GridStavke_RecordContextChange;
 
             // izbor artikla / NHM iz postojećih panela dodeljuje se stavki iz tabele
             btnDodajArtikal.Click += (s, e) =>
@@ -371,6 +372,46 @@ namespace Saobracaj.Skladista_main.Dokumenta
         private bool StavkeZakljucaneZaUnos()
         {
             return ImaPLKolone && StavkeZakljucane();
+        }
+
+        // Koleta izmenjena u tabeli stavki preračunava se kao u Uparivanju (PromeniKoleta): Količina JM po koeficijentu,
+        // a stavci iz packing liste i neto, bruto i vrednost srazmerno packing listi. Preračun ide samo kad se
+        // koleta stvarno promeni, pa ručno uneti neto, bruto i vrednost ostaju dok se koleta ne menja.
+        PrijemnicaStavke stavkaUIzmeni;
+        decimal koletaPreIzmene;
+
+        private void GridStavke_RecordContextChange(object sender, Syncfusion.Grouping.CurrentRecordContextChangeEventArgs e)
+        {
+            if (e.Action == Syncfusion.Grouping.CurrentRecordAction.BeginEditComplete)
+            {
+                stavkaUIzmeni = StavkaZapisa(e.Record);
+                if (stavkaUIzmeni != null)
+                    koletaPreIzmene = stavkaUIzmeni.Koleta;
+            }
+            else if (e.Action == Syncfusion.Grouping.CurrentRecordAction.EndEditComplete)
+            {
+                PrijemnicaStavke s = StavkaZapisa(e.Record);
+                if (s != null && ReferenceEquals(s, stavkaUIzmeni) && s.Koleta != koletaPreIzmene
+                    && (s.IDPLStavke.HasValue || s.Koeficijent.HasValue))
+                {
+                    PromeniKoleta(s, s.Koleta);
+                    BeginInvoke(new Action(() => gridGroupingControl1.Refresh()));
+                }
+                stavkaUIzmeni = null;
+            }
+        }
+
+        private static PrijemnicaStavke StavkaZapisa(Syncfusion.Grouping.Element zapis)
+        {
+            try
+            {
+                Syncfusion.Grouping.Record r = zapis == null ? null : zapis.GetRecord();
+                return r == null ? null : r.GetData() as PrijemnicaStavke;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         // pre snimanja: izmena u ćeliji koja se još kuca se upisuje u stavku

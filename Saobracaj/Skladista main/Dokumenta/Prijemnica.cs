@@ -1359,6 +1359,10 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     proces = 0;
                 }
 
+                // status iz baze, ne iz trenutka otvaranja forme (potvrda u drugom prozoru)
+                if (ImaPLKolone && txtPrijemnica.Text != "" && !StatusNepromenjenUBazi())
+                    return;
+
                 if (ImaPLKolone && !ProveriStavkePreSnimanja())
                     return;
 

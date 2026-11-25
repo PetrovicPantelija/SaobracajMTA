@@ -1179,13 +1179,14 @@ namespace Saobracaj.Skladista_main
         private void FillMagacinskiBroj()
         {
             SqlConnection conn = new SqlConnection(connection);
+            bool komercijalno = JeKomercijalno && PostojiTabelaKomercijalnihBrojeva();
 
-            if (Vrsta == "Carinsko" || Vrsta == "Komercijalo")
+            if (Vrsta == "Carinsko" || komercijalno)
             {
                 string tabela = "";
                 if (Vrsta == "Carinsko")
                     tabela = "MagacinskiBrojCarinski";
-                if (Vrsta == "Komercijalo")
+                if (komercijalno)
                     tabela = "MagacinskiBrojKomercijalni";
                 //var partner5 = "Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from MagacinskiBrojCarinski order by ID Desc";
 
@@ -1389,7 +1390,9 @@ namespace Saobracaj.Skladista_main
             if (decimal.TryParse(txtVrednost.Text, out decimal parsedVrednost))
                 vrednost = parsedVrednost;
 
-            // ISP-12: ima = magacinski predmet za nalog postoji -> izmena; ne postoji -> upis (uslov je bio obrnut)
+            // ISP-12: ima = magacinski predmet za nalog postoji -> izmena; ne postoji -> upis (uslov je bio obrnut).
+            // Napomena: ova metoda nije vezana ni za jedno dugme. Magacinski predmet upisuje procedura
+            // UpdateRadniNalogDirektni iz Snimi (button24_Click, @UpisPodatakaUMP = 1 kad je Status LO).
             if (ima == false)
             { //cboValutaMP.SelectedValue.ToString()
 
@@ -2406,7 +2409,7 @@ namespace Saobracaj.Skladista_main
         }
         private void btnIzmeniStavku_Click(object sender, EventArgs e)
         {
-            if (!NHMIspravan())   // ISP-04
+            if (!NHMIspravan(true))   // ISP-04; nepromenjen NHM postojećeg naimenovanja prolazi
                 return;
             try
             {

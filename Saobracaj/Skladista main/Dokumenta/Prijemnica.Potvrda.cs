@@ -144,5 +144,22 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 MessageBox.Show("Prijemnica nije potvrđena: " + ex.Message);
             }
         }
+
+        // Pre snimanja se status čita iz baze: prijemnica je mogla biti potvrđena (ZA) u drugom prozoru ili kod
+        // drugog korisnika posle otvaranja. Snimi tada ne sme da vrati stari status ni da menja potvrđene stavke.
+        private bool StatusNepromenjenUBazi()
+        {
+            string uFormi = StatusPrijemnice;
+            UcitajStatusPrijemnice();
+            if (StatusPrijemnice == uFormi)
+                return true;
+
+            VratiStavkePrijemnice(Convert.ToInt32(txtPrijemnica.Text));
+            stavkeSnimak = PotpisStavki();
+            MessageBox.Show("Prijemnica je u međuvremenu izmenjena u drugom prozoru ili kod drugog korisnika (status "
+                + (uFormi == "" ? "bez statusa" : uFormi) + " → " + StatusPrijemnice + ").\n"
+                + "Ništa nije snimljeno; stavke su ponovo učitane iz baze.");
+            return false;
+        }
     }
 }
