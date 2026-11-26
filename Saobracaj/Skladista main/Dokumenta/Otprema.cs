@@ -176,36 +176,38 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 Vrsta = dr["VrstaRN"].ToString();
                 Tip = dr["TipRN"].ToString();
                 textBox1.Text = dr["CarinskoSkladiste"].ToString();
-                cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                cboNalogodavac.SelectedValue = CeoBroj(dr["Nalogodavac"]);
+                cboCarinskiPostupak.SelectedValue = CeoBroj(dr["CarinskiPostupak"]);
                 txtOpisPosla.Text = dr["OpisPosla"].ToString();
-                cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                cboVlasnikRobe.SelectedValue = CeoBroj(dr["VlasnikRobe"]);
                 txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
                 txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
-                cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                cboADR.SelectedValue = CeoBroj(dr["OstalaSkladista"]);
                 txtPIB.Text = dr["PIB"].ToString();
-                cboTipTransportaOtprema.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaOtprema"].ToString());
-                cboVrstaKamionaOtprema.SelectedValue = Convert.ToInt32(dr["VrstaKamionaOtprema"].ToString());
+                cboTipTransportaOtprema.SelectedValue = CeoBroj(dr["VrstaPrevoznogSredstvaOtprema"]);
+                cboVrstaKamionaOtprema.SelectedValue = CeoBroj(dr["VrstaKamionaOtprema"]);
                 txtVoziloOtprema.Text = dr["VoziloOtprema"].ToString();
                 txtVozacOtprema.Text = dr["VozacOtprema"].ToString();
                 txtLKOtprema.Text = dr["BrojLKOtprema"].ToString();
                 txtTelefonOtprema.Text = dr["BrojTelefonaOtprema"].ToString();
-                cboCarinarnicaOtprema.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaOtpremaOtprema"].ToString());
-                cboSpediterOtprema.SelectedValue = Convert.ToInt32(dr["SpediterOtprema"].ToString());
+                cboCarinarnicaOtprema.SelectedValue = CeoBroj(dr["OdredisnaCarinarnicaOtpremaOtprema"]);
+                cboSpediterOtprema.SelectedValue = CeoBroj(dr["SpediterOtprema"]);
                 txtKontakOsobaSpediterOtprema.Text = dr["KontakOsobaSpediteraOtprema"].ToString();
-                cboMestoIstovaraOtprema.SelectedValue = Convert.ToInt32(dr["MestoIstovaraOtprema"].ToString());
+                cboMestoIstovaraOtprema.SelectedValue = CeoBroj(dr["MestoIstovaraOtprema"]);
                 txtAdresaOtprema.Text = dr["AdresaOtprema"].ToString();
                 txtKontaktOsobaOtprema.Text = dr["KontaktOsobaIstovarOtprema"].ToString();
-                planiranoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatumOtpema"].ToString());
-                novoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatum2Otprema"].ToString());
+                if (dr["PlaniraniDatumOtpema"] != DBNull.Value)
+                    planiranoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatumOtpema"]);
+                if (dr["PlaniraniDatum2Otprema"] != DBNull.Value)
+                    novoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatum2Otprema"]);
                 txtKontejnerOtprema.Text = dr["BrojKontejneraOtprema"].ToString();
 
                 txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
-                Aktivan = Convert.ToInt32(dr["Aktivan"].ToString());
-                Formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                Aktivan = CeoBroj(dr["Aktivan"]);
+                Formiran = CeoBroj(dr["Formiran"]);
 
-                MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
+                MagacinskiBroj = CeoBroj(dr["MagacinskiBroj"]);
             }
             conn.Close();
 
@@ -616,6 +618,15 @@ ORDER BY o.RB;";
             dgvUsluge.AutoGenerateColumns = true;
             dgvUsluge.DataSource = dtUsluge;
         }
+        // Prazno polje iz baze (NULL ili tekst koji nije broj) je 0, kao i do sada upisana nula: lista tada ostaje bez izbora.
+        // Convert.ToInt32("") je rušio Otpremu pri izboru magacinskog broja kad nalog za prijem nema vlasnika, ostala
+        // skladišta ili dodatne usluge (test 26.11.2026, nalozi 77–81).
+        private static int CeoBroj(object v)
+        {
+            int n;
+            return v != null && v != DBNull.Value && int.TryParse(v.ToString().Trim(), out n) ? n : 0;
+        }
+
         private void FillDodatneUsluge(string rn)
         {
             dtUsluge.Rows.Clear();
@@ -631,7 +642,7 @@ ORDER BY o.RB;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@RN", rn);
+                    cmd.Parameters.AddWithValue("@RN", CeoBroj(rn));   // novi nalog ima prazan txtID
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -722,21 +733,21 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                        cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                        cboNalogodavac.SelectedValue = CeoBroj(dr["Nalogodavac"]);
+                        cboVlasnikRobe.SelectedValue = CeoBroj(dr["VlasnikRobe"]);
                         txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
                         txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
-                        cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                        cboADR.SelectedValue = CeoBroj(dr["OstalaSkladista"]);
                         txtPIB.Text = dr["PIB"].ToString();
                         txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                         txtNapomena.Text = dr["Napomena"].ToString();
 
 
-                        PrijemnicaID = Convert.ToInt32(dr["prijemID"].ToString());
-                        PrijemRN = Convert.ToInt32(dr["RN"].ToString());
+                        PrijemnicaID = CeoBroj(dr["prijemID"]);
+                        PrijemRN = CeoBroj(dr["RN"]);
                         textBox2.Text = PrijemnicaID.ToString();
 
-                        int dodatneUslugeID = Convert.ToInt32(dr["DodatneUslugeID"].ToString());
+                        int dodatneUslugeID = CeoBroj(dr["DodatneUslugeID"]);
                         FillDodatneUsluge(dodatneUslugeID.ToString());
                     }
                 }
@@ -1148,15 +1159,15 @@ Where ID=" + PrijemRN, conn))
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                        cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                        cboNalogodavac.SelectedValue = CeoBroj(dr["Nalogodavac"]);
+                        cboVlasnikRobe.SelectedValue = CeoBroj(dr["VlasnikRobe"]);
                         txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
                         txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
-                        cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                        cboADR.SelectedValue = CeoBroj(dr["OstalaSkladista"]);
                         txtPIB.Text = dr["PIB"].ToString();
                         txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                         txtNapomena.Text = dr["Napomena"].ToString();
-                        int dodatneUslugeID = Convert.ToInt32(dr["DodatneUslugeID"].ToString());
+                        int dodatneUslugeID = CeoBroj(dr["DodatneUslugeID"]);
                         FillDodatneUsluge(dodatneUslugeID.ToString());
                     }
                 }

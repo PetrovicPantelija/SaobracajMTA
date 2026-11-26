@@ -192,6 +192,13 @@ namespace Saobracaj.Skladista_main.Dokumenta
         int Aktivan;
         int Formiran;
         int MagacinskiBroj;
+        // Prazno polje iz baze (NULL ili tekst koji nije broj) je 0, kao i do sada upisana nula (vidi Otprema.CeoBroj)
+        private static int CeoBroj(object v)
+        {
+            int n;
+            return v != null && v != DBNull.Value && int.TryParse(v.ToString().Trim(), out n) ? n : 0;
+        }
+
         private void VratiPodatke(int id)
         {
             using (SqlConnection conn2 = new SqlConnection(connection))
@@ -272,36 +279,38 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 Vrsta = dr["VrstaRN"].ToString();
                 Tip = dr["TipRN"].ToString();
                 textBox1.Text = dr["CarinskoSkladiste"].ToString();
-                cboNalogodavac.SelectedValue = Convert.ToInt32(dr["Nalogodavac"].ToString());
-                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                cboNalogodavac.SelectedValue = CeoBroj(dr["Nalogodavac"]);
+                cboCarinskiPostupak.SelectedValue = CeoBroj(dr["CarinskiPostupak"]);
                 txtOpisPosla.Text = dr["OpisPosla"].ToString();
-                cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr["VlasnikRobe"].ToString());
+                cboVlasnikRobe.SelectedValue = CeoBroj(dr["VlasnikRobe"]);
                 txtNacinPakovanja.Text = dr["NacinPakovanja"].ToString();
                 txtVrstaRobe.Text = dr["VrstaRobe"].ToString();
-                cboADR.SelectedValue = Convert.ToInt32(dr["OstalaSkladista"].ToString());
+                cboADR.SelectedValue = CeoBroj(dr["OstalaSkladista"]);
                 txtPIB.Text = dr["PIB"].ToString();
-                cboTipTransportaOtprema.SelectedValue = Convert.ToInt32(dr["VrstaPrevoznogSredstvaOtprema"].ToString());
-                cboVrstaKamionaOtprema.SelectedValue = Convert.ToInt32(dr["VrstaKamionaOtprema"].ToString());
+                cboTipTransportaOtprema.SelectedValue = CeoBroj(dr["VrstaPrevoznogSredstvaOtprema"]);
+                cboVrstaKamionaOtprema.SelectedValue = CeoBroj(dr["VrstaKamionaOtprema"]);
                 txtVoziloOtprema.Text = dr["VoziloOtprema"].ToString();
                 txtVozacOtprema.Text = dr["VozacOtprema"].ToString();
                 txtLKOtprema.Text = dr["BrojLKOtprema"].ToString();
                 txtTelefonOtprema.Text = dr["BrojTelefonaOtprema"].ToString();
-                cboCarinarnicaOtprema.SelectedValue = Convert.ToInt32(dr["OdredisnaCarinarnicaOtpremaOtprema"].ToString());
-                cboSpediterOtprema.SelectedValue = Convert.ToInt32(dr["SpediterOtprema"].ToString());
+                cboCarinarnicaOtprema.SelectedValue = CeoBroj(dr["OdredisnaCarinarnicaOtpremaOtprema"]);
+                cboSpediterOtprema.SelectedValue = CeoBroj(dr["SpediterOtprema"]);
                 txtKontakOsobaSpediterOtprema.Text = dr["KontakOsobaSpediteraOtprema"].ToString();
-                cboMestoIstovaraOtprema.SelectedValue = Convert.ToInt32(dr["MestoIstovaraOtprema"].ToString());
+                cboMestoIstovaraOtprema.SelectedValue = CeoBroj(dr["MestoIstovaraOtprema"]);
                 txtAdresaOtprema.Text = dr["AdresaOtprema"].ToString();
                 txtKontaktOsobaOtprema.Text = dr["KontaktOsobaIstovarOtprema"].ToString();
-                planiranoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatumOtpema"].ToString());
-                novoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatum2Otprema"].ToString());
+                if (dr["PlaniraniDatumOtpema"] != DBNull.Value)
+                    planiranoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatumOtpema"]);
+                if (dr["PlaniraniDatum2Otprema"] != DBNull.Value)
+                    novoVremeOtprema.Value = Convert.ToDateTime(dr["PlaniraniDatum2Otprema"]);
                 txtKontejnerOtprema.Text = dr["BrojKontejneraOtprema"].ToString();
 
                 txtPosebniUslovi.Text = dr["PosebniUslovi"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
-                Aktivan = Convert.ToInt32(dr["Aktivan"].ToString());
-                Formiran = Convert.ToInt32(dr["Formiran"].ToString());
+                Aktivan = CeoBroj(dr["Aktivan"]);
+                Formiran = CeoBroj(dr["Formiran"]);
 
-                MagacinskiBroj = Convert.ToInt32(dr["MagacinskiBroj"].ToString());
+                MagacinskiBroj = CeoBroj(dr["MagacinskiBroj"]);
             }
             conn.Close();
             if (MagacinskiBroj != 0)
@@ -321,7 +330,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                         {
                             // SKK-03: podaci i usluge su otpremnice (učitani gore i u konstruktoru po RN);
                             // iz naloga prijema uzima se samo veza sa prijemnicom
-                            int PrijemnicaID = Convert.ToInt32(dr2["prijemID"].ToString());
+                            int PrijemnicaID = CeoBroj(dr2["prijemID"]);
                             textBox2.Text = PrijemnicaID.ToString();
                         }
                     }
@@ -340,7 +349,8 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                     while (dr2.Read())
                     {
                         txtDokumentRazduzenja.Text = dr2["DokumentRazduzenja"].ToString();
-                        dtDatumRazduzenja.Value = Convert.ToDateTime(dr2["DatumRazduzenja"].ToString());
+                        if (dr2["DatumRazduzenja"] != DBNull.Value)   // otpremnica još nije razdužena
+                            dtDatumRazduzenja.Value = Convert.ToDateTime(dr2["DatumRazduzenja"]);
                         txtDestinacija.Text = dr2["Destinacija"].ToString().TrimEnd();
                     }
                 }
