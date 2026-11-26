@@ -5,6 +5,8 @@
    Skripta se može pustiti više puta. */
 
 SET NOCOUNT ON;
+SET QUOTED_IDENTIFIER ON;   -- potrebno za XML metode (.nodes, .value) u prenosu ispod
+SET ANSI_NULLS ON;
 
 IF OBJECT_ID('dbo.RNCarinskoKontejner', 'U') IS NULL
 BEGIN
@@ -32,15 +34,26 @@ ELSE
 GO
 
 /* Prenos postojećih brojeva iz zbirnog polja (samo nalozi koji još nemaju redove u tabeli).
-   Prenose se samo delovi koji liče na broj kontejnera (4 slova + 7 cifara). */
-;WITH Delovi AS
+   Prenose se samo delovi koji liče na broj kontejnera (4 slova + 7 cifara).
+   Podela po , ; / ide preko XML-a, ne STRING_SPLIT (baza može imati nivo kompatibilnosti ispod 130);
+   znakovi & < > se pretvaraju u separator, jer bi pokvarili XML, a nisu deo broja kontejnera. */
+;WITH Izvor AS
 (
     SELECT rns.ID AS IDNaloga,
-           UPPER(LTRIM(RTRIM(REPLACE(REPLACE(s.value, ' ', ''), '-', '')))) AS Broj
+           CAST(N'<x>' + REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
+               CONVERT(nvarchar(max), rns.BrojKontejneraPrijem),
+               N'&', N','), N'<', N','), N'>', N','), N';', N','), N'/', N','),
+               N',', N'</x><x>') + N'</x>' AS xml) AS X
     FROM dbo.RadniNalogSkladista rns
-    CROSS APPLY STRING_SPLIT(REPLACE(REPLACE(rns.BrojKontejneraPrijem, ';', ','), '/', ','), ',') s
     WHERE rns.BrojKontejneraPrijem IS NOT NULL AND LTRIM(RTRIM(rns.BrojKontejneraPrijem)) <> ''
       AND NOT EXISTS (SELECT 1 FROM dbo.RNCarinskoKontejner k WHERE k.IDNaloga = rns.ID)
+),
+Delovi AS
+(
+    SELECT i.IDNaloga,
+           UPPER(LTRIM(RTRIM(REPLACE(REPLACE(t.c.value('.', 'nvarchar(200)'), ' ', ''), '-', '')))) AS Broj
+    FROM Izvor i
+    CROSS APPLY i.X.nodes('/x') t(c)
 ),
 Ispravni AS
 (
