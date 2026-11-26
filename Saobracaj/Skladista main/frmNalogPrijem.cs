@@ -81,10 +81,9 @@ namespace Saobracaj.Skladista_main
                 {
                     lblCarinskoSkladiste.Visible = txtCarinskoSkladiste.Visible = false;
                     lblMagacinskiBroj.Visible = cboMagacinskiBroj.Visible = btnMagacinskiBroj.Visible = false;
-                    lblVlasnikRobe.Visible = cboVlasnikRobe.Visible = false;
+                    // RAZ-07: vlasnik robe i PIB se vide i na komercijalnom nalogu (frmNalogPrijem.VlasnikRobe.cs)
                     lblOpisRobe.Visible = txtOpisRobe.Visible = false;
                     lblOstalaSkladista.Visible = cboOstalaSkladista.Visible = false;
-                    lblPIB.Visible = txtPIB.Visible = false;
                     lblPosebniUslovi.Visible = cboPosebniUslovi.Visible = false;
                     lblSmestajniDokument.Visible = txtSmestajniDokument.Visible = false;
                     if (Status.ToUpper() == "KOMERCIJALNINALOG" && LOPotvrdjen == 0)
@@ -187,10 +186,9 @@ namespace Saobracaj.Skladista_main
             {
                 lblCarinskoSkladiste.Visible = txtCarinskoSkladiste.Visible = false;
                 lblMagacinskiBroj.Visible = cboMagacinskiBroj.Visible = btnMagacinskiBroj.Visible = false;
-                lblVlasnikRobe.Visible = cboVlasnikRobe.Visible = false;
+                // RAZ-07: vlasnik robe i PIB se vide i na komercijalnom nalogu (frmNalogPrijem.VlasnikRobe.cs)
                 lblOpisRobe.Visible = txtOpisRobe.Visible = false;
                 lblOstalaSkladista.Visible = cboOstalaSkladista.Visible = false;
-                lblPIB.Visible = txtPIB.Visible = false;
                 lblPosebniUslovi.Visible = cboPosebniUslovi.Visible = false;
                 if (Status.ToUpper() == "KOMERCIJALNINALOG" && LOPotvrdjen == 0)
                 {
@@ -677,6 +675,7 @@ namespace Saobracaj.Skladista_main
             }
             SnimiKontejnere();
             SnimiRbrKnjige();   // RAZ-17
+            SnimiIzabranogVlasnika();   // RAZ-07: komercijalni nalog (frmNalogPrijem.VlasnikRobe.cs)
             PrenesiVlasnikaNaNalog();   // RAZ-06 (frmNalogPrijem.MagacinskiPredmet.cs)
 
 

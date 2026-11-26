@@ -30,25 +30,28 @@ namespace Saobracaj.Skladista_main
             InitOtprema();   // RAZ-11: novi nalog otpreme (CarinskoSkladistePregled.Otprema.cs)
         }
 
-        // RAZ-11: nalog otpreme se pravi direktno sa ove liste, bez internog naloga RN20 i potvrde LO; zato se za Otpremu
-        // interni nalog spaja sa LEFT JOIN i prikazuju se i neformirani nalozi (kolona Formiran). Prijem ostaje kao do sada.
+        // RAZ-11: nalog može nastati bez komercijalnog naloga (Radni nalozi > Kreiraj novi > Carinsko skladište > Prijem,
+        // ili Novi nalog otpreme sa ove liste). Takav nalog nema interni nalog RN20 (usluga 74) ni potvrdu LO, a ostaje
+        // Formiran = 0, jer se forma bez RN20 ne može formirati. Zato se interni nalog i nalogodavac spajaju sa LEFT JOIN,
+        // prikazuju se i neformirani nalozi, a kolone Formiran i Izvor (Komercijalni / Direktni) pokazuju stanje.
+        // Komercijalni nalozi (Aktiviraj u Radnim nalozima) i dalje dolaze sa RN20 i Formiran = 1.
         private string UpitListe()
         {
             string tip = tipListe ?? Tip;   // Tip menja button24_Click (TipRN izabranog reda)
-            bool otprema = tip == "Otprema";
             return " Select RadniNalogSkladista.ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
                "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(vlr.Naziv) as VlasnikRobe, " +
             " OpisPosla,Napomena,Aktivan, " +
-            (otprema ? " CASE WHEN RadniNalogSkladista.Formiran = 1 THEN 'Da' ELSE 'Ne' END as Formiran, " : "") +
+            " CASE WHEN RadniNalogSkladista.Formiran = 1 THEN 'Da' ELSE 'Ne' END as Formiran, " +
+            " CASE WHEN t1.BrojRN IS NULL THEN 'Direktni' ELSE 'Komercijalni' END as Izvor, " +
             " t1.LO, t1.Prijem, t1.Viljuskarista " +
             " from RadniNalogSkladista " +
-            " inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
+            " left join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
             " left join (SELECT id, Naziv FROM VlasniciRobe) as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: samo id i Naziv, da ne bude dvosmislenih kolona
-            (otprema ? " left" : " inner") + " join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
+            " left join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
                             "    FROM radninaloginterni " +
                             "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +
                             " on RadniNalogSkladista.ID = t1.BrojRN " +
-                            " WHere TipRN = '" + tip + "' and " + (otprema ? "" : "Formiran = 1 and ") + "VrstaRN = 'Carinsko' order by RadniNalogSkladista.ID desc   ";
+                            " WHere TipRN = '" + tip + "' and VrstaRN = 'Carinsko' order by RadniNalogSkladista.ID desc   ";
         }
 
         private void VratiRN()
@@ -113,7 +116,9 @@ namespace Saobracaj.Skladista_main
                 var main = this.TopLevelControl as NewMain;
                 if (main == null) return;
 
-                
+                // RAZ-11: nalog bez internog naloga RN20 je direktni; bez ovoga Ulaz ostaje od prethodnog reda (ili prazan),
+                // pa forma naloga ne podešava polja (podesiPolja radi samo za Direktni i Izvoz)
+                Ulaz = "Direktni";
                 using(SqlConnection conn=new SqlConnection(connection))
                 {
                     using(SqlCommand cmd=new SqlCommand("Select OJIzdavanja From RadniNalogInterni Where TipRN='RN20' and IDManipulacijaJED = 74 and BrojRN=" + ID, conn))
