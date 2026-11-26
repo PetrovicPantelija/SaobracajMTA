@@ -199,6 +199,25 @@ namespace Saobracaj.Skladista_main.Dokumenta
             return v != null && v != DBNull.Value && int.TryParse(v.ToString().Trim(), out n) ? n : 0;
         }
 
+        // PIB je PIB vlasnika robe iz VlasniciRobe (vidi Otprema.PopuniPIBVlasnika); na nalogu otpreme je mogao da ostane
+        // PIB nekog drugog subjekta (test 26.11.2026: otpremnica 105563241, vlasnik 123456789). Bez vlasnika ostaje PIB sa naloga.
+        private void PopuniPIBVlasnika()
+        {
+            int vlasnik = CeoBroj(cboVlasnikRobe.SelectedValue);
+            if (vlasnik == 0)
+                return;
+            using (var conn = new SqlConnection(connection))
+            using (var cmd = new SqlCommand("SELECT PIB FROM VlasniciRobe WHERE id = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", vlasnik);
+                conn.Open();
+                object o = cmd.ExecuteScalar();
+                string pib = o == null || o == DBNull.Value ? "" : o.ToString().Trim();
+                if (pib != "")
+                    txtPIB.Text = pib;
+            }
+        }
+
         private void VratiPodatke(int id)
         {
             using (SqlConnection conn2 = new SqlConnection(connection))
@@ -313,6 +332,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 MagacinskiBroj = CeoBroj(dr["MagacinskiBroj"]);
             }
             conn.Close();
+            PopuniPIBVlasnika();
             if (MagacinskiBroj != 0)
             {
                 cboMagacinskiBroj.SelectedValue = MagacinskiBroj;

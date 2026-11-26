@@ -520,6 +520,7 @@ namespace Saobracaj.Skladista_main
             cmd.Parameters.Add(new SqlParameter("@Formiran", SqlDbType.TinyInt) { Value = Formiran });
 
             conn.Open();
+            List<string> izostavljeni = UskladiSaProcedurom(cmd, conn);
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
             bool error = false;
@@ -546,10 +547,61 @@ namespace Saobracaj.Skladista_main
 
                 if (!error)
                 {
-                    MessageBox.Show("Izmena uspešno završena", "",
+                    MessageBox.Show("Izmena uspešno završena" + (izostavljeni.Count == 0 ? "" :
+                        "\n\nProcedura UpdateRadniNalogSkladista u ovoj bazi nema polja: " + string.Join(", ", izostavljeni) +
+                        ".\nTa polja nisu izmenjena."), "",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        // Procedura u bazi može imati manje parametara nego što kod šalje: test baza je za UpdateRadniNalogSkladista
+        // javljala „has too many arguments specified“ (test 26.11.2026), pa nijedan nalog skladišta nije mogao da se izmeni.
+        // Šalju se samo parametri koje procedura ima (sys.parameters, čita se jednom po proceduri); vraća se spisak
+        // izostavljenih parametara koji su nosili vrednost. Ako spisak ne može da se pročita, šalje se sve, kao do sada.
+        // Koji parametri nedostaju pokazuje skripta Carina_Provera_UpdateRadniNalog_2026_11.sql.
+        static readonly Dictionary<string, HashSet<string>> parametriProcedura =
+            new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+        private static List<string> UskladiSaProcedurom(SqlCommand cmd, SqlConnection conn)
+        {
+            var izostavljeni = new List<string>();
+            HashSet<string> postoje;
+            lock (parametriProcedura)
+            {
+                if (!parametriProcedura.TryGetValue(cmd.CommandText, out postoje))
+                {
+                    postoje = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    try
+                    {
+                        using (var c = new SqlCommand("SELECT name FROM sys.parameters WHERE object_id = OBJECT_ID(@Procedura)", conn))
+                        {
+                            c.Parameters.AddWithValue("@Procedura", "dbo." + cmd.CommandText);
+                            using (var r = c.ExecuteReader())
+                                while (r.Read())
+                                    postoje.Add(r.GetString(0));
+                        }
+                    }
+                    catch (SqlException)
+                    {
+                        postoje.Clear();
+                    }
+                    parametriProcedura[cmd.CommandText] = postoje;
+                }
+            }
+            if (postoje.Count == 0)
+                return izostavljeni;
+
+            for (int i = cmd.Parameters.Count - 1; i >= 0; i--)
+            {
+                var p = cmd.Parameters[i];
+                if (postoje.Contains(p.ParameterName))
+                    continue;
+                if (p.Value != null && p.Value != DBNull.Value)
+                    izostavljeni.Insert(0, p.ParameterName.TrimStart('@'));
+                cmd.Parameters.RemoveAt(i);
+            }
+            return izostavljeni;
         }
         public void UpdateMagacinskiBrojCarinski(int ID, string Naziv)
         {

@@ -752,7 +752,29 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
                     }
                 }
             }
+            PopuniPIBVlasnika();
+        }
 
+        // PIB je PIB vlasnika robe (VlasniciRobe), kao na nalogu za prijem (cboVlasnikRobe_Leave). Nalog za prijem ga
+        // često nema upisanog, pa je pri izboru magacinskog broja ostajao prazan i Snimi je pucao (test 26.11.2026).
+        private void PopuniPIBVlasnika()
+        {
+            int vlasnik = CeoBroj(cboVlasnikRobe.SelectedValue);
+            if (vlasnik == 0)
+                return;
+            using (var conn = new SqlConnection(connection))
+            using (var cmd = new SqlCommand("SELECT PIB FROM VlasniciRobe WHERE id = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", vlasnik);
+                conn.Open();
+                object o = cmd.ExecuteScalar();
+                string pib = o == null || o == DBNull.Value ? "" : o.ToString().Trim();
+                if (pib != "")
+                {
+                    txtPIB.Text = pib;
+                    PIB = CeoBroj(pib);
+                }
+            }
         }
 
         private void btnMbSave_Click(object sender, EventArgs e)
@@ -885,7 +907,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
 
                     ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
-                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
+                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), CeoBroj(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
@@ -951,7 +973,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
                     }
                     ins.InsertRadniNalog("Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
-                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
+                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), CeoBroj(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
@@ -1055,7 +1077,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
 
                     ins.UpdateRadniNalog(Convert.ToInt32(txtID.Text), "Kreiran", DateTime.Now, Korisnik, Vrsta, Tip, textBox1.Text.ToString().TrimEnd(), MagacinskiBroj, Convert.ToInt32(cboNalogodavac.SelectedValue),
                         Convert.ToInt32(cboCarinskiPostupak.SelectedValue), txtOpisPosla.Text.ToString().TrimEnd(), Convert.ToInt32(cboVlasnikRobe.SelectedValue), txtVrstaRobe.Text.ToString().TrimEnd(),
-                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), Convert.ToInt32(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
+                        txtNacinPakovanja.Text.ToString().TrimEnd(), Convert.ToInt32(cboADR.SelectedValue), CeoBroj(txtPIB.Text), Convert.ToInt32(cboTipTransportaOtprema.SelectedValue),
                         Convert.ToInt32(cboVrstaKamionaOtprema.SelectedValue), txtVoziloOtprema.Text.ToString().TrimEnd(), txtVozacOtprema.Text.ToString().TrimEnd(), txtLKOtprema.Text.ToString().TrimEnd(),
                         txtTelefonOtprema.Text.ToString().TrimEnd(), Convert.ToInt32(cboCarinarnicaOtprema.SelectedValue), Convert.ToInt32(cboSpediterOtprema.SelectedValue), txtKontakOsobaSpediterOtprema.Text.ToString().TrimEnd(),
                         Convert.ToInt32(cboMestoIstovaraOtprema.SelectedValue), txtAdresaOtprema.Text.ToString().TrimEnd(), txtKontaktOsobaOtprema.Text.ToString().TrimEnd(), Convert.ToDateTime(planiranoVremeOtprema.Value),
@@ -1172,6 +1194,7 @@ Where ID=" + PrijemRN, conn))
                     }
                 }
             }
+            PopuniPIBVlasnika();
             panel2.Visible = false;
         }
         public class OtpremaStavke
