@@ -3692,6 +3692,12 @@
     <Compile Include="Skladista main\frmNalogPrijem.ZamenaTarife.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.VlasnikRobe.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmVlasnikRobeNovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">
       <SubType>Form</SubType>
     </Compile>

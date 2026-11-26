@@ -85,6 +85,7 @@ namespace Saobracaj.Skladista_main
 
             InitRbrKnjige();   // RAZ-17 (frmNalogPrijem.KnjigaRbr.cs)
             InitZamenaTarife();   // RAZ-05 (frmNalogPrijem.ZamenaTarife.cs)
+            InitNoviVlasnik();    // RAZ-07 (frmNalogPrijem.VlasnikRobe.cs)
         }
 
         // RAZ-10: vrsta prevoza -> tip transportne jedinice; null = prevoz bez tabele (kao do sada)
