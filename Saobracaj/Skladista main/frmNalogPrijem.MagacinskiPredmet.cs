@@ -14,7 +14,8 @@ namespace Saobracaj.Skladista_main
     //  - Smeštajni dokument = broj C7 (prepisuje se u Broj JCI kao i do sada)
     //  - kad roba stiže kontejnerom unosi se TABELA kontejnera (RNCarinskoKontejner: broj, koleta, bruto, napomena);
     //    zbirna lista ostaje i u RadniNalogSkladista.BrojKontejneraPrijem, jer je čitaju Prijemnica, Otprema i drugi ekrani
-    //  - na istom magacinskom broju ne mogu biti dva naloga sa postupkom C7 (C7SlobodanNaMB; još nije uključeno u Snimi)
+    //  - na istom magacinskom broju ne mogu biti dva naloga sa postupkom C7 (C7SlobodanNaMB, na Snimi i Snimi MP);
+    //    potvrđeno 26.11.2026: drugi C7 dobija svoj magacinski broj
     public partial class frmNalogPrijem
     {
         // Jedan red tabele kontejnera
@@ -24,7 +25,10 @@ namespace Saobracaj.Skladista_main
             public int? Koleta;
             public decimal? Bruto;
             public string Napomena;
+            public string Tip = TipKontejner;   // RAZ-10: KONTEJNER, VAGON ili KAMION
         }
+
+        const string TipKontejner = "KONTEJNER", TipVagon = "VAGON", TipKamion = "KAMION";
 
         Label lblKontejneri;
         TextBox txtKontejneri;
@@ -78,11 +82,35 @@ namespace Saobracaj.Skladista_main
 
             cboTipTransportaPrijem.SelectedIndexChanged += (s, e) => PrikaziKontejnere();
             cboTipTransportaPrijem.TextChanged += (s, e) => PrikaziKontejnere();
+
+            InitRbrKnjige();   // RAZ-17 (frmNalogPrijem.KnjigaRbr.cs)
         }
 
+        // RAZ-10: vrsta prevoza -> tip transportne jedinice; null = prevoz bez tabele (kao do sada)
+        private string TipJedinicePrevoza()
+        {
+            string t = cboTipTransportaPrijem.Text ?? "";
+            Func<string, bool> ima = s => t.IndexOf(s, StringComparison.OrdinalIgnoreCase) >= 0;
+            if (ima("kontejner")) return TipKontejner;
+            if (ima("vagon")) return TipVagon;
+            if (ima("kamion") || ima("tegljač") || ima("tegljac") || ima("šleper") || ima("sleper")) return TipKamion;
+            return null;
+        }
+
+        // roba stiže kontejnerom, vagonom ili kamionom: nalog ima tabelu transportnih jedinica
         private bool UlazKontejnerom()
         {
-            return cboTipTransportaPrijem.Text.IndexOf("kontejner", StringComparison.OrdinalIgnoreCase) >= 0;
+            return TipJedinicePrevoza() != null;
+        }
+
+        private string NaslovJedinica()
+        {
+            switch (TipJedinicePrevoza())
+            {
+                case TipVagon: return "VAGONI";
+                case TipKamion: return "KAMIONI";
+                default: return "KONTEJNERI";
+            }
         }
 
         // Polje i dugme za kontejnere stoje desno od posebnih uslova smeštaja, koji se tada sužavaju
@@ -116,7 +144,7 @@ namespace Saobracaj.Skladista_main
             txtKontejneri.Text = kontejneriLista.Count == 0
                 ? ""
                 : kontejneriLista.Count + ": " + string.Join(", ", kontejneriLista.Select(k => k.Broj));
-            lblKontejneri.Text = kontejneriLista.Count == 0 ? "KONTEJNERI" : "KONTEJNERI (" + kontejneriLista.Count + ")";
+            lblKontejneri.Text = kontejneriLista.Count == 0 ? NaslovJedinica() : NaslovJedinica() + " (" + kontejneriLista.Count + ")";
         }
 
         private string ZbirnaListaKontejnera()
@@ -130,7 +158,7 @@ namespace Saobracaj.Skladista_main
         {
             using (var f = new Form())
             {
-                f.Text = "Kontejneri – nalog " + (string.IsNullOrWhiteSpace(txtID.Text) ? "(nov)" : txtID.Text);
+                f.Text = "Transportne jedinice – nalog " + (string.IsNullOrWhiteSpace(txtID.Text) ? "(nov)" : txtID.Text);
                 f.StartPosition = FormStartPosition.CenterParent;
                 f.Size = new Size(720, 420);
                 f.MinimizeBox = f.MaximizeBox = false;
@@ -139,9 +167,10 @@ namespace Saobracaj.Skladista_main
 
                 var lbl = new Label
                 {
-                    Text = "Jedan red = jedan kontejner. Broj: 4 slova + 7 cifara (npr. MSDU1184432). Koleta i bruto su opcioni.",
+                    Text = "Jedan red = jedan kontejner, vagon ili kamion. Kontejner: 4 slova + 7 cifara (npr. MSDU1184432);\n" +
+                           "vagon: broj vagona; kamion: registracija (npr. BABD925). Koleta i bruto su opcioni.",
                     Dock = DockStyle.Top,
-                    Height = 32,
+                    Height = 44,
                     Padding = new Padding(6, 8, 6, 0)
                 };
 
@@ -155,17 +184,22 @@ namespace Saobracaj.Skladista_main
                     SelectionMode = DataGridViewSelectionMode.RowHeaderSelect
                 };
                 var colRB = new DataGridViewTextBoxColumn { Name = "RB", HeaderText = "RB", ReadOnly = true, FillWeight = 12 };
-                var colBroj = new DataGridViewTextBoxColumn { Name = "Broj", HeaderText = "Broj kontejnera", MaxInputLength = 11, FillWeight = 40 };
+                var colTip = new DataGridViewComboBoxColumn { Name = "Tip", HeaderText = "Vrsta", FillWeight = 26, FlatStyle = FlatStyle.Flat };
+                colTip.Items.AddRange(TipKontejner, TipVagon, TipKamion);
+                var colBroj = new DataGridViewTextBoxColumn { Name = "Broj", HeaderText = "Broj / oznaka", MaxInputLength = 20, FillWeight = 40 };
                 var colKoleta = new DataGridViewTextBoxColumn { Name = "Koleta", HeaderText = "Koleta", FillWeight = 20 };
                 var colBruto = new DataGridViewTextBoxColumn { Name = "Bruto", HeaderText = "Bruto kg", FillWeight = 25 };
                 var colNap = new DataGridViewTextBoxColumn { Name = "Napomena", HeaderText = "Napomena", MaxInputLength = 200, FillWeight = 50 };
                 colKoleta.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 colBruto.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 colBruto.DefaultCellStyle.Format = "N3";
-                dgv.Columns.AddRange(colRB, colBroj, colKoleta, colBruto, colNap);
+                dgv.Columns.AddRange(colRB, colTip, colBroj, colKoleta, colBruto, colNap);
+                // nov red dobija vrstu po vrsti prevoza
+                dgv.DefaultValuesNeeded += (s, e) => e.Row.Cells["Tip"].Value = TipJedinicePrevoza() ?? TipKontejner;
+                dgv.DataError += (s, e) => e.ThrowException = false;
 
                 foreach (var k in kontejneriLista)
-                    dgv.Rows.Add(null, k.Broj, k.Koleta?.ToString(), k.Bruto?.ToString("N3"), k.Napomena);
+                    dgv.Rows.Add(null, k.Tip ?? TipKontejner, k.Broj, k.Koleta?.ToString(), k.Bruto?.ToString("N3"), k.Napomena);
 
                 Action numerisi = () =>
                 {
@@ -236,21 +270,32 @@ namespace Saobracaj.Skladista_main
                 string koletaTxt = (Convert.ToString(r.Cells["Koleta"].Value) ?? "").Trim();
                 string brutoTxt = (Convert.ToString(r.Cells["Bruto"].Value) ?? "").Trim();
                 string napomena = (Convert.ToString(r.Cells["Napomena"].Value) ?? "").Trim();
+                string tip = Convert.ToString(r.Cells["Tip"].Value);
+                if (tip != TipVagon && tip != TipKamion)
+                    tip = TipKontejner;
 
                 if (broj == "" && koletaTxt == "" && brutoTxt == "" && napomena == "")
                     continue; // prazan red
 
                 int rb = r.Index + 1;
-                if (!Regex.IsMatch(broj, @"^[A-Z]{4}\d{7}$"))
+                if (tip == TipKontejner && !Regex.IsMatch(broj, @"^[A-Z]{4}\d{7}$"))
                 {
                     MessageBox.Show("Red " + rb + ": broj kontejnera mora imati 4 slova i 7 cifara (npr. MSDU1184432).", "Kontejneri",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dgv.CurrentCell = r.Cells["Broj"];
                     return false;
                 }
+                // RAZ-10: vagon (broj vagona) i kamion (registracija): slova i cifre, 2 do 20 znakova; ISO 6346 se ne proverava
+                if (tip != TipKontejner && !Regex.IsMatch(broj, @"^[A-ZČĆŽŠĐ0-9]{2,20}$"))
+                {
+                    MessageBox.Show("Red " + rb + ": " + (tip == TipVagon ? "broj vagona" : "registracija kamiona") +
+                        " ima samo slova i cifre, od 2 do 20 znakova.", "Transportne jedinice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgv.CurrentCell = r.Cells["Broj"];
+                    return false;
+                }
                 if (lista.Any(k => k.Broj == broj))
                 {
-                    MessageBox.Show("Red " + rb + ": kontejner " + broj + " je već upisan.", "Kontejneri",
+                    MessageBox.Show("Red " + rb + ": " + broj + " je već upisan.", "Transportne jedinice",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dgv.CurrentCell = r.Cells["Broj"];
                     return false;
@@ -280,10 +325,10 @@ namespace Saobracaj.Skladista_main
                     bruto = Math.Round(b, 3);
                 }
 
-                if (!KontrolnaCifraIspravna(broj))
+                if (tip == TipKontejner && !KontrolnaCifraIspravna(broj))
                     losaCifra.Add(broj);
 
-                lista.Add(new KontejnerRed { Broj = broj, Koleta = koleta, Bruto = bruto, Napomena = napomena == "" ? null : napomena });
+                lista.Add(new KontejnerRed { Broj = broj, Koleta = koleta, Bruto = bruto, Napomena = napomena == "" ? null : napomena, Tip = tip });
             }
 
             if (losaCifra.Count > 0 &&
@@ -338,7 +383,7 @@ namespace Saobracaj.Skladista_main
             if (!UlazKontejnerom() || kontejneriLista.Count > 0)
                 return true;
 
-            return MessageBox.Show("Roba stiže kontejnerom, a tabela kontejnera je prazna.\n\nDa li ipak želite da snimite nalog?",
+            return MessageBox.Show("Roba stiže (" + cboTipTransportaPrijem.Text.Trim() + "), a tabela " + NaslovJedinica().ToLower() + " je prazna.\n\nDa li ipak želite da snimite nalog?",
                 "Kontejneri", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
         }
 
@@ -347,6 +392,13 @@ namespace Saobracaj.Skladista_main
         private static bool TabelaKontejneraPostoji(SqlConnection conn)
         {
             var cmd = new SqlCommand("SELECT CASE WHEN OBJECT_ID('dbo.RNCarinskoKontejner', 'U') IS NULL THEN 0 ELSE 1 END", conn);
+            return Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+        }
+
+        // RAZ-10: kolona Tip postoji posle skripte Carina_TransportneJedinice_2026_11.sql
+        private static bool KolonaTipJedinicePostoji(SqlConnection conn, SqlTransaction tr = null)
+        {
+            var cmd = new SqlCommand("SELECT CASE WHEN COL_LENGTH('dbo.RNCarinskoKontejner', 'Tip') IS NULL THEN 0 ELSE 1 END", conn, tr);
             return Convert.ToInt32(cmd.ExecuteScalar()) == 1;
         }
 
@@ -361,7 +413,8 @@ namespace Saobracaj.Skladista_main
                     conn.Open();
                     if (TabelaKontejneraPostoji(conn))
                     {
-                        var cmd = new SqlCommand(@"SELECT BrojKontejnera, Koleta, Bruto, Napomena
+                        var cmd = new SqlCommand(@"SELECT BrojKontejnera, Koleta, Bruto, Napomena, " +
+                                                   (KolonaTipJedinicePostoji(conn) ? "Tip" : "N'KONTEJNER' AS Tip") + @"
                                                    FROM dbo.RNCarinskoKontejner
                                                    WHERE IDNaloga = @ID ORDER BY RB, ID", conn);
                         cmd.Parameters.AddWithValue("@ID", idNaloga);
@@ -372,7 +425,8 @@ namespace Saobracaj.Skladista_main
                                     Broj = dr.GetString(0),
                                     Koleta = dr.IsDBNull(1) ? (int?)null : dr.GetInt32(1),
                                     Bruto = dr.IsDBNull(2) ? (decimal?)null : dr.GetDecimal(2),
-                                    Napomena = dr.IsDBNull(3) ? null : dr.GetString(3)
+                                    Napomena = dr.IsDBNull(3) ? null : dr.GetString(3),
+                                    Tip = dr.IsDBNull(4) ? TipKontejner : dr.GetString(4).Trim()
                                 });
                     }
                 }
@@ -407,6 +461,13 @@ namespace Saobracaj.Skladista_main
                 {
                     conn.Open();
                     bool imaTabelu = TabelaKontejneraPostoji(conn);
+                    bool imaTip = imaTabelu && KolonaTipJedinicePostoji(conn);
+                    if (imaTabelu && !imaTip && lista.Any(k => k.Tip != TipKontejner))
+                    {
+                        MessageBox.Show("Vagoni i kamioni nisu snimljeni: potrebna je skripta Carina_TransportneJedinice_2026_11.sql.",
+                            "Transportne jedinice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
                     // zbirna lista za ekrane koji čitaju BrojKontejneraPrijem; dužina kolone u znakovima (-1 = max)
                     var cmdDuzina = new SqlCommand(@"SELECT CASE WHEN c.max_length = -1 THEN -1
@@ -443,11 +504,13 @@ namespace Saobracaj.Skladista_main
                             short rb = 1;
                             foreach (var k in lista)
                             {
-                                var ins = new SqlCommand(@"INSERT INTO dbo.RNCarinskoKontejner (IDNaloga, RB, BrojKontejnera, Koleta, Bruto, Napomena, NameOper)
-                                                           VALUES (@ID, @RB, @Broj, @Koleta, @Bruto, @Napomena, @Korisnik)", conn, tr);
+                                var ins = new SqlCommand(@"INSERT INTO dbo.RNCarinskoKontejner (IDNaloga, RB, BrojKontejnera, Koleta, Bruto, Napomena, NameOper" + (imaTip ? ", Tip" : "") + @")
+                                                           VALUES (@ID, @RB, @Broj, @Koleta, @Bruto, @Napomena, @Korisnik" + (imaTip ? ", @Tip" : "") + ")", conn, tr);
                                 ins.Parameters.AddWithValue("@ID", id);
                                 ins.Parameters.Add("@RB", SqlDbType.SmallInt).Value = rb++;
-                                ins.Parameters.Add("@Broj", SqlDbType.NVarChar, 11).Value = k.Broj;
+                                ins.Parameters.Add("@Broj", SqlDbType.NVarChar, 20).Value = k.Broj;
+                                if (imaTip)
+                                    ins.Parameters.Add("@Tip", SqlDbType.NVarChar, 10).Value = k.Tip ?? TipKontejner;
                                 ins.Parameters.Add("@Koleta", SqlDbType.Int).Value = (object)k.Koleta ?? DBNull.Value;
                                 var pb = ins.Parameters.Add("@Bruto", SqlDbType.Decimal);
                                 pb.Precision = 18; pb.Scale = 3; pb.Value = (object)k.Bruto ?? DBNull.Value;
@@ -471,7 +534,7 @@ namespace Saobracaj.Skladista_main
         }
 
         // Na istom magacinskom broju ne mogu biti dva naloga sa carinskim postupkom C7
-        // NAPOMENA: scenario Daska (C7 1296 pa C7 1356 na MB 750) ima dve C7 na istom MB – pravilo još nije uključeno u Snimi.
+        // Scenario Daska (C7 1296 pa C7 1356 na MB 750): drugi C7 dobija svoj magacinski broj (potvrđeno 26.11.2026).
         private bool C7SlobodanNaMB()
         {
             if (cboMagacinskiBroj.SelectedValue == null || cboCarinskiPostupak.SelectedValue == null)

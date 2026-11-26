@@ -75,8 +75,8 @@ namespace Saobracaj.RNI
                 if (kolona == null)
                     continue;
 
-                // štiklir (VOZAČ) se ne prikazuje u gridu, kao ni u terminalu
-                if (polje.Tip == TerminalPrivTip.DaNe)
+                // VOZAČ se ne prikazuje u gridu, kao ni u terminalu
+                if (polje.Tip == TerminalPrivTip.TekstZaPotvrdu)
                 {
                     gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(polje.Kolona);
                     continue;
@@ -204,9 +204,10 @@ namespace Saobracaj.RNI
             TerminalPrivFajloviNaDesktop.Izvezi(this, zapisi);
         }
 
-        // Vrati iz arhive: zapis se vraća u terminal (TerminalPriv) sa istim ID-jem. Konačni_GATE_OUT se briše, a iz izveštaja
-        // brodaru i iz loga briše se ono što je on upisao (procedura VratiTerminalPrivIzArhive). Pre vraćanja poruka kaže šta
-        // će biti obrisano i da li je pokret već poslat brodaru.
+        // Vrati iz arhive: zapis se vraća u terminal (TerminalPriv) sa istim ID-jem. Poništava se poslednja izmena koja je upisala
+        // pokret u izveštaj brodaru, za bilo koji datum: brišu se ti pokreti, datumi koji su ih upisali i njihov upis u logu, a
+        // Konačni_GATE_OUT se briše uvek (procedura VratiTerminalPrivIzArhive). Pre vraćanja poruka kaže šta će biti obrisano i da
+        // li je pokret već poslat brodaru.
         private void btnVratiIzArhive_Click(object sender, EventArgs e)
         {
             const string naslov = "Vrati iz arhive";
@@ -229,27 +230,45 @@ namespace Saobracaj.RNI
 
             DataRow stanje = provera.Tables[0].Rows[0];
             DataTable pokreti = provera.Tables[1];
+            DataTable datumi = provera.Tables[2];
             bool poslat = pokreti.Rows.Cast<DataRow>().Any(p => Convert.ToBoolean(p["Poslat"]));
             int uTerminalu = Convert.ToInt32(stanje["UTerminalu"]);
 
             var poruka = new StringBuilder();
             poruka.AppendLine("Vratiti kontejner " + kontejner + " (ID " + id + ") iz arhive u terminal?");
             poruka.AppendLine();
-            object konacni = stanje["KonacniGateOut"];
-            poruka.AppendLine("- Konačni_GATE_OUT" + (konacni == DBNull.Value ? "" : " " + Convert.ToDateTime(konacni).ToString(FormatDatuma)) + " se briše.");
+            if (pokreti.Rows.Count > 0)
+            {
+                object izmena = stanje["DatumIzmene"];
+                poruka.AppendLine(izmena == DBNull.Value
+                    ? "Poništava se poslednji upis u izveštaj brodaru (upisan pri unosu zapisa ili promeni GATE_IN/_GATE_OUT):"
+                    : "Poništava se izmena od " + Convert.ToDateTime(izmena).ToString(FormatDatuma) + ", poslednja koja je upisala u izveštaj brodaru:");
+            }
+
+            foreach (DataRow d in datumi.Rows)
+            {
+                object vrednost = d["Vrednost"];
+                poruka.AppendLine("- " + d["Polje"] + (vrednost == DBNull.Value ? "" : " " + Convert.ToDateTime(vrednost).ToString(FormatDatuma)) + " se briše.");
+            }
+
             if (pokreti.Rows.Count == 0)
-                poruka.AppendLine("- U izveštajima brodaru nema pokreta koji je upisao Konačni_GATE_OUT.");
+                poruka.AppendLine(Convert.ToInt32(stanje["BrojPokreta"]) == 0
+                    ? "- U izveštajima brodaru nema pokreta ovog zapisa."
+                    : "- Za poslednji pokret u izveštaju brodaru nije nađen datum koji ga je upisao, pa se izveštaji brodaru ne menjaju.");
             foreach (DataRow p in pokreti.Rows)
             {
-                poruka.Append("- Iz izveštaja brodaru " + p["Izvestaj"] + " briše se pokret " + p["Pokret"] + " " + p["DatumPokreta"] + ".");
+                poruka.Append("- Iz izveštaja brodaru " + p["Izvestaj"] + " briše se pokret " + p["Pokret"] + " " + p["DatumPokreta"]
+                    + " (upisao ga je " + p["Polje"] + ").");
                 if (Convert.ToBoolean(p["Poslat"]))
                     poruka.Append(" Pokret je već poslat brodaru"
                         + (p["DatumIzvoza"] == DBNull.Value ? "" : " " + Convert.ToDateTime(p["DatumIzvoza"]).ToString(FormatDatuma))
                         + "; brodaru treba javiti.");
                 poruka.AppendLine();
             }
-            if (Convert.ToInt32(stanje["NadjenLog"]) == 1)
-                poruka.AppendLine("- Iz loga se briše upis Konačni_GATE_OUT.");
+
+            List<string> izLoga = datumi.Rows.Cast<DataRow>().Where(d => Convert.ToInt32(d["IzLoga"]) == 1).Select(d => Convert.ToString(d["Polje"])).ToList();
+            if (izLoga.Count > 0)
+                poruka.AppendLine("- Iz loga se briše upis: " + string.Join(", ", izLoga) + ".");
             if (uTerminalu > 0)
             {
                 poruka.AppendLine();

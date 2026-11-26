@@ -120,6 +120,13 @@ namespace Saobracaj.RNI
             }
 
             object vrednost = NovaVrednost(polje);
+            if (polje.TacnaDuzina && vrednost != DBNull.Value && vrednost.ToString().Length != polje.Velicina)
+            {
+                MessageBox.Show(polje.Kolona + " mora imati tačno " + polje.Velicina + " karaktera.", "Grupna promena",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (MessageBox.Show("Polje " + polje.Kolona + " će biti postavljeno na " + OpisVrednosti(vrednost) + " za " + zapisi.Count
                 + " zapisa. Nastaviti?", "Grupna promena", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;

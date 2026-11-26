@@ -125,7 +125,11 @@ namespace Saobracaj.Skladista_main
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int VratiNalogID = VratiNalogIDF();
+            if (gridGroupingControl2.Table.CurrentRecord == null)
+            {
+                MessageBox.Show("Izaberite nalog u tabeli.");
+                return;
+            }
             Saobracaj.Uvoz.InsertRadniNalogInterni ins1 = new Saobracaj.Uvoz.InsertRadniNalogInterni();
             int IDNajave = Convert.ToInt32(gridGroupingControl2.Table.CurrentRecord.GetValue("NalogID").ToString());
             ins1.UpdRadniNalogInterniIzvozSkladistarPotvrdio(Convert.ToInt32(IDNajave));
@@ -145,8 +149,12 @@ namespace Saobracaj.Skladista_main
                "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
                "  where Uradjen not in (1, 2)";
             */
-            int bn = Convert.ToInt32(gridGroupingControl2.Table.CurrentRecord.GetValue("ID").ToString());
-            select = " select RNCarinskoSkladisteDodatneUsluge.* , VrstaManipulacije.Naziv as Usluga from RadniNalogSkladista " +
+            // SKC-06: klik na zaglavlje ili filter nema izabran red
+            if (gridGroupingControl2.Table.CurrentRecord == null)
+                return;
+            // usluge pripadaju nalogu skladišta za koji je forma otvorena; kolona ID je ID naloga rukovaocu
+            int bn = brLONaloga;
+            select =" select RNCarinskoSkladisteDodatneUsluge.* , VrstaManipulacije.Naziv as Usluga from RadniNalogSkladista " +
 " inner join RNCarinskoSkladistePrijemnica on RadniNalogSkladista.ID = RNCarinskoSkladistePrijemnica.RN " +
 " inner join RNCarinskoSkladisteDodatneUsluge on RNCarinskoSkladisteDodatneUsluge.RN = RadniNalogSkladista.ID " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = RNCarinskoSkladisteDodatneUsluge.Usluga " +

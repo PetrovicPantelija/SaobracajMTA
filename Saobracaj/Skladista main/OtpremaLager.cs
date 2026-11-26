@@ -299,9 +299,9 @@ INNER JOIN RNCarinskoSkladistePrijemnica
     ON RNCarinskoPrijemnicaStavke.IDNadredjena = RNCarinskoSkladistePrijemnica.ID
 INNER JOIN RadniNalogSkladista 
     ON RNCarinskoSkladistePrijemnica.RN = RadniNalogSkladista.ID
-INNER JOIN Partnerji 
+INNER JOIN (SELECT id AS PaSifra, Naziv AS PaNaziv FROM VlasniciRobe) Partnerji   -- RAZ-06: vlasnik robe iz VlasniciRobe
     ON RadniNalogSkladista.VlasnikRobe = Partnerji.PaSifra
-INNER JOIN Promet 
+INNER JOIN Promet
     ON RNCarinskoPrijemnicaStavke.ID = Promet.IDSaDokumenta
 WHERE RNCarinskoSkladistePrijemnica.Status = 'ZA'
 GROUP BY 
@@ -348,7 +348,7 @@ INNER JOIN Promet
     ON RNCarinskoPrijemnicaStavke.ID = Promet.IDSaDokumenta
 LEFT JOIN MagacinskiBrojCarinski 
     ON Promet.MagacinskiBroj = MagacinskiBrojCarinski.ID
-LEFT JOIN Partnerji 
+LEFT JOIN (SELECT id AS PaSifra, Naziv AS PaNaziv FROM VlasniciRobe) Partnerji   -- RAZ-06: vlasnik robe iz VlasniciRobe
     ON RadniNalogSkladista.VlasnikRobe = Partnerji.PaSifra
 WHERE 
     RNCarinskoSkladistePrijemnica.Status = 'ZA'
@@ -523,7 +523,7 @@ ORDER BY Promet.MagacinskiBroj DESC", conn))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije AS DimenzijePalete,
-        s.NHM AS SifraArtikla,
+        (SELECT RTRIM(CONVERT(nvarchar(50), art.Sifra)) FROM Artikli art WHERE art.ID = s.IDArtikla) AS SifraArtikla,   -- RAZ-03: šifra artikla, ne tarifni broj
         s.PDV,
         s.Carina,
         ISNULL(MAX(p.SkladisteU), '') AS TabelaPozicija
@@ -535,7 +535,7 @@ ORDER BY Promet.MagacinskiBroj DESC", conn))
     LEFT JOIN Promet p 
         ON s.ID = p.IDSaDokumenta
        AND p.MagacinskiBroj = rn.MagacinskiBroj
-    INNER JOIN TipPalete tp 
+    LEFT JOIN TipPalete tp   -- RAZ-12: stavka bez vrste palete ostaje na lageru
         ON s.VrstaPaleta = tp.ID
     LEFT JOIN Skladista skl 
         ON s.Pozicija = skl.Naziv
@@ -560,6 +560,7 @@ ORDER BY Promet.MagacinskiBroj DESC", conn))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije,
+        s.IDArtikla,
         s.PDV,
         s.Carina
 ),
@@ -730,7 +731,7 @@ ORDER BY IDSkladisneStavke";
                 PrijemRB = GetInt(dr, "PrijemRB"),
                 Prijemnica = GetInt(dr, "Prijemnica"),
                 Naimenovanje = GetString(dr, "Naimenovanje"),
-                NHM = GetInt(dr, "NHM"),
+                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                 Naziv = GetString(dr, "Naziv"),
                 JM = GetString(dr, "JM"),
 
@@ -758,7 +759,7 @@ ORDER BY IDSkladisneStavke";
                 Paleta = GetInt(dr, "Paleta"),
                 VrstaPalete = GetInt(dr, "VrstaPaleta"),
                 DimenzijePalete = GetString(dr, "DimenzijePalete"),
-                SifraArtikla = GetInt(dr, "SifraArtikla"),
+                SifraArtikla = GetString(dr, "SifraArtikla"),
                 PDV = GetDecimal(dr, "PDV"),
                 Carina = GetDecimal(dr, "Carina"),
                 TabelaPozicija = GetString(dr, "TabelaPozicija")
@@ -1001,7 +1002,8 @@ ORDER BY IDSkladisneStavke";
             decimal ukupnoNeto = VratiUkupnoNeto(stavka);
             decimal ukupnoVrednost = VratiUkupnoVrednost(stavka);
 
-            if (ukupnoKoleta > 0 && novaKoleta > ukupnoKoleta)
+            // SKK-01: i kad je raspoloživo 0 koleta (a bruto > 0), veća količina se odbija
+            if (novaKoleta > ukupnoKoleta)
             {
                 MessageBox.Show("Uneta koleta ne mogu biti veća od nerazduženih koleta.");
                 return false;
@@ -1154,7 +1156,7 @@ ORDER BY IDSkladisneStavke";
                 return;
 
             decimal ukupnoKoleta = VratiUkupnoKoleta(stavka);
-            if (ukupnoKoleta > 0 && stavka.Koleta > ukupnoKoleta)
+            if (stavka.Koleta > ukupnoKoleta)   // SKK-01: i kad je raspoloživo 0
                 stavka.Koleta = ukupnoKoleta;
 
             decimal ukupnoBruto = VratiUkupnoBruto(stavka);
@@ -1176,7 +1178,7 @@ ORDER BY IDSkladisneStavke";
                 return;
 
             decimal ukupnoKoleta = VratiUkupnoKoleta(stavka);
-            if (ukupnoKoleta > 0 && stavka.Koleta > ukupnoKoleta)
+            if (stavka.Koleta > ukupnoKoleta)   // SKK-01: i kad je raspoloživo 0
                 stavka.Koleta = ukupnoKoleta;
 
             decimal ukupnoBruto = VratiUkupnoBruto(stavka);

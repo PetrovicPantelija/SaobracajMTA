@@ -481,3 +481,15 @@ Ispravke su urađene na zahtev, a build prolazi. Nisu proverene u aplikaciji: pr
 - Kopiranje usluga (`frmIzvozKopiranjeUslugaKontejnera1`): tabela ciljnih kontejnera se nigde ne puni. Treba odluka koje kontejnere ponuditi (isti plan, ista porudžbenica).
 - Skladište (SKK-01, SKK-03, SKC-06, SKC-10, SKC-11, SKC-12, SKC-17) čeka da druga sesija završi izmene tarifnog broja u istim fajlovima.
 - Zaštita od drugog klika (KAP-08, KAP-11, IZV-12) važi dok je forma otvorena; provera u bazi traži procedure kojih nema u repozitorijumu.
+
+### 10.4 Paket B, Skladište (26.11.2026)
+
+| Oznaka | Šta je promenjeno | Provera |
+|---|---|---|
+| SKK-01 | `Skladista main\OtpremaLager.cs`, `Dokumenta\Otprema.cs`: koleta veća od raspoloživih se odbija i kad je raspoloživo 0. Za bruto, neto i vrednost uslov „> 0“ ostaje, jer 0 tamo znači i da vrednost u prijemnici nije uneta | 8.3 korak 13 |
+| SKK-03 | `Dokumenta\Otprema.cs`, `Dokumenta\Otpremnica.cs` (VratiPodatke): sačuvana otprema i otpremnica zadržavaju svoje podatke i usluge; iz naloga prijema uzima se samo veza sa prijemnicom | 8.3 korak 11 |
+| SKC-06 | `Skladista main\ViljuskaristiPregled.cs`: usluge se prikazuju za nalog skladišta za koji je forma otvorena; klik na zaglavlje i „Skladištar potvrdio“ bez izbora ne obaraju formu | 8.2 korak 25 |
+| SKC-10 | `Dokumenta\Prijemnica.UvozPL.cs` (SnimiStavkeBezBrisanja): posle greške pri snimanju stavke se ne čitaju iz baze; vraćaju se samo ID-jevi iz neuspelog pokušaja, a izmene ostaju u tabeli | 8.2 korak 19 |
+| SKC-11 | `Carina_PrijemnicaPL_2026_11.sql` (sp_PL_Analiziraj): neispravan koeficijent iz fajla je Greška samo za nov artikal; postojeći artikal dobija Upozorenje i prenosi se. **Skriptu treba ponovo pustiti** | 8.2 korak 12 |
+| SKC-12 | `Dokumenta\Prijemnica.UvozPL.cs` (UcitajKlasifikacije): lista klasifikacija se puni iznova posle Pregleda klasifikacije i posle dvoklika na nivo | 8.2 korak 11 |
+| SKC-17 | `Skladista main\frmNalogPrijem.cs` (cboMagacinskiBroj_Leave): magacinski broj se upisuje i kad je grupa „Magacinski predmet“ zatvorena | 8.2 korak 7 |

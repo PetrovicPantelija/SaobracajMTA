@@ -664,7 +664,7 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        public void UpdateCarinskoStavke( int ID,int? IDNadredjena, int? NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto,  int? Paleta, int? VrstaPaleta,
+        public void UpdateCarinskoStavke( int ID,int? IDNadredjena, string NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto,  int? Paleta, int? VrstaPaleta,
             decimal? Vrednost, string Valuta, decimal? PDV, decimal? Carina, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -686,11 +686,7 @@ namespace Saobracaj.Skladista_main
             idNadredjena.Value = IDNadredjena.HasValue  ? (object)IDNadredjena.Value : DBNull.Value;
             cmd.Parameters.Add(idNadredjena);
 
-            SqlParameter nhm = new SqlParameter();
-            nhm.ParameterName = "@NHM";
-            nhm.SqlDbType = SqlDbType.Int;
-            nhm.Direction = ParameterDirection.Input;
-            nhm.Value = NHM.HasValue ? (object)NHM.Value : DBNull.Value; 
+            SqlParameter nhm = TarifniBroj.Parametar("@NHM", TarifniBroj.Normalizuj(NHM), false);   // RAZ-02
             cmd.Parameters.Add(nhm);
 
             SqlParameter naimenovanje = new SqlParameter();
@@ -877,7 +873,7 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        public void InsertCarinskoStavke( int? IDNadredjena, int? NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto, int? Paleta, int? VrstaPaleta,
+        public void InsertCarinskoStavke( int? IDNadredjena, string NHM, string Naimenovanje, int? RB, string JM, decimal? Kolicina, decimal? Koleta, decimal? Bruto, decimal? Neto, int? Paleta, int? VrstaPaleta,
            decimal? Vrednost, string Valuta, decimal? PDV, decimal? Carina,  string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -893,11 +889,7 @@ namespace Saobracaj.Skladista_main
             idNadredjena.Value = IDNadredjena.HasValue ? (object)IDNadredjena.Value : DBNull.Value;
             cmd.Parameters.Add(idNadredjena);
 
-            SqlParameter nhm = new SqlParameter();
-            nhm.ParameterName = "@NHM";
-            nhm.SqlDbType = SqlDbType.Int;
-            nhm.Direction = ParameterDirection.Input;
-            nhm.Value = NHM.HasValue ? (object)NHM.Value : DBNull.Value;
+            SqlParameter nhm = TarifniBroj.Parametar("@NHM", TarifniBroj.Normalizuj(NHM), false);   // RAZ-02
             cmd.Parameters.Add(nhm);
 
             SqlParameter naimenovanje = new SqlParameter();
@@ -1360,7 +1352,7 @@ namespace Saobracaj.Skladista_main
             }
 
         }
-        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena, int RB, int NHM,int IDArtikla, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
+        public void InsertPrijemnicaCarinskaStavke(int IDNadredjena, int RB, string NHM,int IDArtikla, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
             string Valuta, string Pozicija, int Paleta, int VrstaPaleta, int PDV, int Carina, decimal Neto, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -1478,11 +1470,7 @@ namespace Saobracaj.Skladista_main
             cmd.Parameters.Add(naziv);
 
 
-            SqlParameter nhm = new SqlParameter();
-            nhm.ParameterName = "@NHM";
-            nhm.SqlDbType = SqlDbType.Int;
-            nhm.Direction = ParameterDirection.Input;
-            nhm.Value = NHM;
+            SqlParameter nhm = TarifniBroj.Parametar("@NHM", TarifniBroj.Normalizuj(NHM), true);   // RAZ-02
             cmd.Parameters.Add(nhm);
 
             SqlParameter rb = new SqlParameter();
@@ -1720,7 +1708,7 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        public void InsertOtpremaStavke(int RB, int NHM, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
+        public void InsertOtpremaStavke(int RB, string NHM, string Naziv, string Naimenovanje, string JM, decimal Koleta, decimal Bruto, decimal Vrednost,
             string Valuta, string Pozicija, int Paleta, int VrstaPaleta, decimal PDV, decimal Carina, decimal Neto, string Napomena,string Kreirao,int Prijemnica)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -1845,11 +1833,7 @@ namespace Saobracaj.Skladista_main
             cmd.Parameters.Add(naziv);
 
 
-            SqlParameter nhm = new SqlParameter();
-            nhm.ParameterName = "@NHM";
-            nhm.SqlDbType = SqlDbType.Int;
-            nhm.Direction = ParameterDirection.Input;
-            nhm.Value = NHM;
+            SqlParameter nhm = TarifniBroj.Parametar("@NHM", TarifniBroj.Normalizuj(NHM), true);   // RAZ-02
             cmd.Parameters.Add(nhm);
 
             SqlParameter rb = new SqlParameter();

@@ -246,6 +246,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 if (ImaPolja)
                     UcitajPolja();
 
+                PodesiKontejnereZaPalete();   // RAZ-09 (Prijemnica.Kontejneri.cs)
+
                 // dodela polja ostaje dozvoljena i posle potvrde (CAR-PP07: smeštaj posle prijema)
                 bool zakljucano = StavkeZakljucane();
                 foreach (Control c in new Control[] { btnNapraviPalete, btnDodajPaletu, btnIzbaciPaletu, btnSpojiPalete, dgvKontejneri })
@@ -458,7 +460,13 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 int ostatak = Math.Max(prva.Koleta - prva.Rasporedjeno, 0);
                 int bezPolja = Math.Max(prva.Koleta - KoletaNaPozicioniranim(prva.ID), 0);
-                dgvKontejneri.Rows.Add(txtKontejnerPrijem.Text.Trim(), ostatak > 0 ? ostatak : bezPolja);
+                // RAZ-09: stavka sa raspodelom po kontejnerima i bez paleta na polju -> po jedan red za svaki kontejner
+                var poKontejneru = KoletaNaPozicioniranim(prva.ID) == 0 ? RaspodelaStavke(prva.ID) : null;
+                if (poKontejneru != null && poKontejneru.Count > 0)
+                    foreach (var k in poKontejneru)
+                        dgvKontejneri.Rows.Add(KontejnerZaPaletu(k.Key), k.Value);
+                else
+                    dgvKontejneri.Rows.Add(KontejnerZaPaletu(txtKontejnerPrijem.Text.Trim()), ostatak > 0 ? ostatak : bezPolja);
             }
         }
 
@@ -721,6 +729,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 + "Postojeće planirane palete ove stavke se brišu" + (pozicionirano > 0 ? " (palete sa poljem ostaju: " + pozicionirano.ToString("N0") + " koleta)" : "") + ".";
             if (ukupno + pozicionirano != stavka.Koleta)
                 poruka += "\n\nPAŽNJA: stavka ima " + stavka.Koleta.ToString("N0") + " koleta, a raspoređuje se " + (ukupno + pozicionirano).ToString("N0") + ".";
+            if (pozicionirano == 0)
+                poruka += RazlikaOdRaspodele(stavka.ID, redovi);   // RAZ-09: palete po kontejneru = raspodela
             if (MessageBox.Show(poruka + "\n\nNastaviti?", "Napravi palete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 

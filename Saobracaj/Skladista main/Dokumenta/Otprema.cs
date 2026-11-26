@@ -224,22 +224,12 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                         SqlDataReader dr2 = cmd2.ExecuteReader();
                         while (dr2.Read())
                         {
-                            cboNalogodavac.SelectedValue = Convert.ToInt32(dr2["Nalogodavac"].ToString());
-                            cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr2["VlasnikRobe"].ToString());
-                            txtVrstaRobe.Text = dr2["VrstaRobe"].ToString();
-                            txtNacinPakovanja.Text = dr2["NacinPakovanja"].ToString();
-                            cboADR.SelectedValue = Convert.ToInt32(dr2["OstalaSkladista"].ToString());
-                            txtPIB.Text = dr2["PIB"].ToString();
-                            txtPosebniUslovi.Text = dr2["PosebniUslovi"].ToString();
-                            txtNapomena.Text = dr2["Napomena"].ToString();
-
-
+                            // SKK-03: otprema je već sačuvana, pa se iz naloga prijema uzima samo veza sa prijemnicom.
+                            // Ranije su se ovde prepisivali nalogodavac, vlasnik, vrsta robe, napomena i posebni uslovi
+                            // podacima prijema, a usluge su se punile po ID-ju grupe usluga kao da je broj naloga.
                             PrijemnicaID = Convert.ToInt32(dr2["prijemID"].ToString());
                             PrijemRN = Convert.ToInt32(dr2["RN"].ToString());
                             textBox2.Text = PrijemnicaID.ToString();
-
-                            int dodatneUslugeID = Convert.ToInt32(dr2["DodatneUslugeID"].ToString());
-                            FillDodatneUsluge(dodatneUslugeID.ToString());
                         }
                     }
                 }
@@ -276,7 +266,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije AS DimenzijaPaleta,
-        s.NHM AS SifraArtikla,
+        (SELECT RTRIM(CONVERT(nvarchar(50), art.Sifra)) FROM Artikli art WHERE art.ID = s.IDArtikla) AS SifraArtikla,   -- RAZ-03: šifra artikla, ne tarifni broj
         s.PDV,
         s.Carina,
         ISNULL(MAX(p.SkladisteU), '') AS TabelaPozicija
@@ -288,7 +278,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
     LEFT JOIN Promet p 
         ON s.ID = p.IDSaDokumenta
        AND p.MagacinskiBroj = rn.MagacinskiBroj
-    INNER JOIN TipPalete tp 
+    LEFT JOIN TipPalete tp   -- RAZ-12: stavka bez vrste palete ostaje u listi
         ON s.VrstaPaleta = tp.ID
     LEFT JOIN Skladista skl  
         ON s.Pozicija = skl.Naziv
@@ -315,6 +305,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije,
+        s.IDArtikla,
         s.PDV,
         s.Carina
 ),
@@ -434,7 +425,7 @@ SELECT
     o.Paleta,
     o.VrstaPaleta,
     ISNULL(l.DimenzijaPaleta, '') AS DimenzijaPaleta,
-    ISNULL(l.SifraArtikla, o.NHM) AS SifraArtikla,
+    ISNULL(l.SifraArtikla, '') AS SifraArtikla,
     o.PDV,
     o.Carina,
     ISNULL(l.TabelaPozicija, '') AS TabelaPozicija,
@@ -474,7 +465,7 @@ ORDER BY o.RB;";
                                 PrijemRB = dr["PrijemRB"] == DBNull.Value ? 0 : Convert.ToInt32(dr["PrijemRB"]),
 
                                 Naimenovanje = dr["Naimenovanje"] == DBNull.Value ? "" : dr["Naimenovanje"].ToString(),
-                                NHM = dr["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NHM"]),
+                                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                                 Naziv = dr["Naziv"] == DBNull.Value ? "" : dr["Naziv"].ToString(),
                                 JM = dr["JM"] == DBNull.Value ? "" : dr["JM"].ToString(),
 
@@ -502,7 +493,7 @@ ORDER BY o.RB;";
                                 Paleta = dr["Paleta"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Paleta"]),
                                 VrstaPalete = dr["VrstaPaleta"] == DBNull.Value ? 0 : Convert.ToInt32(dr["VrstaPaleta"]),
                                 DimenzijePalete = dr["DimenzijaPaleta"] == DBNull.Value ? "" : dr["DimenzijaPaleta"].ToString(),
-                                SifraArtikla = dr["SifraArtikla"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SifraArtikla"]),
+                                SifraArtikla = dr["SifraArtikla"] == DBNull.Value ? "" : dr["SifraArtikla"].ToString(),
 
                                 PDV = dr["PDV"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["PDV"]),
                                 Carina = dr["Carina"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["Carina"]),
@@ -549,13 +540,14 @@ ORDER BY o.RB;";
             cboNalogodavac.DisplayMember = "PaNaziv";
             cboNalogodavac.ValueMember = "PaSifra";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            // RAZ-06: vlasnik robe je iz VlasniciRobe; Otprema ga preuzima sa magacinskog predmeta i takav čuva na nalogu otpreme
+            var partner = "Select id, Naziv From VlasniciRobe order by Naziv";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new System.Data.DataSet();
             partAD.Fill(partDS);
             cboVlasnikRobe.DataSource = partDS.Tables[0];
-            cboVlasnikRobe.DisplayMember = "PaNaziv";
-            cboVlasnikRobe.ValueMember = "PaSifra";
+            cboVlasnikRobe.DisplayMember = "Naziv";
+            cboVlasnikRobe.ValueMember = "id";
 
             var carinskiPostupak = "Select id,Naziv from VrstaCarinskogPostupka order by id asc";
             var carinskiPostupakDa = new SqlDataAdapter(carinskiPostupak, conn);
@@ -835,12 +827,13 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
 
             var conn = new SqlConnection(connection);
             conn.Open();
-            var cmd = new SqlCommand("SELECT PaEMatSt1 from Partnerji Where PaSifra=" + Convert.ToInt32(cboVlasnikRobe.SelectedValue), conn);
+            var cmd = new SqlCommand("SELECT PIB from VlasniciRobe Where id=" + Convert.ToInt32(cboVlasnikRobe.SelectedValue), conn);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                PIB = Convert.ToInt32(dr[0].ToString());
-                txtPIB.Text = PIB.ToString();
+                int pib;
+                PIB = int.TryParse(dr[0].ToString().Trim(), out pib) ? pib : 0;
+                txtPIB.Text = dr[0].ToString().Trim();
             }
             conn.Close();
         }
@@ -1171,7 +1164,7 @@ Where ID=" + PrijemRN, conn))
             public int RB { get; set; }
 
             public string Naimenovanje { get; set; }
-            public int NHM { get; set; }
+            public string NHM { get; set; } = "";   // RAZ-02: tarifni broj kao tekst
             public string Naziv { get; set; }
             public string JM { get; set; }
 
@@ -1195,7 +1188,7 @@ Where ID=" + PrijemRN, conn))
             public int Paleta { get; set; }
             public int VrstaPalete { get; set; }
             public string DimenzijePalete { get; set; }
-            public int SifraArtikla { get; set; }
+            public string SifraArtikla { get; set; }
             public decimal PDV { get; set; }
             public decimal Carina { get; set; }
             public string TabelaPozicija { get; set; }
@@ -1438,7 +1431,8 @@ Where ID=" + PrijemRN, conn))
             decimal maxNeto = stavka.UkupnoNetoLager > 0 ? stavka.UkupnoNetoLager : stavka.Neto;
             decimal maxVrednost = stavka.UkupnoVrednostLager > 0 ? stavka.UkupnoVrednostLager : stavka.OstatakValute + staraVrednost;
 
-            if (maxKoleta > 0 && novaKoleta > maxKoleta)
+            // SKK-01: i kad je raspoloživo 0 koleta, veća količina se odbija
+            if (novaKoleta > maxKoleta)
             {
                 MessageBox.Show("Uneta koleta ne mogu biti veća od ukupno raspoloživih koleta za tu stavku.");
                 return false;
@@ -1577,7 +1571,7 @@ Where ID=" + PrijemRN, conn))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije AS DimenzijaPaleta,
-        s.NHM AS SifraArtikla,
+        (SELECT RTRIM(CONVERT(nvarchar(50), art.Sifra)) FROM Artikli art WHERE art.ID = s.IDArtikla) AS SifraArtikla,   -- RAZ-03: šifra artikla, ne tarifni broj
         s.PDV,
         s.Carina,
         ISNULL(MAX(p.SkladisteU), '') AS TabelaPozicija
@@ -1585,7 +1579,7 @@ Where ID=" + PrijemRN, conn))
     INNER JOIN RNCarinskoSkladistePrijemnica pr ON s.IDNadredjena = pr.ID
     INNER JOIN RadniNalogSkladista rn ON pr.RN = rn.ID
     LEFT JOIN Promet p ON s.ID = p.IDSaDokumenta AND p.MagacinskiBroj = rn.MagacinskiBroj
-    INNER JOIN TipPalete tp ON s.VrstaPaleta = tp.ID
+    LEFT JOIN TipPalete tp ON s.VrstaPaleta = tp.ID   -- RAZ-12: stavka bez vrste palete se razdužuje
     LEFT JOIN Skladista skl ON s.Pozicija = skl.Naziv
     WHERE pr.Status = 'ZA'
       AND rn.MagacinskiBroj = @MagacinskiBroj
@@ -1607,6 +1601,7 @@ Where ID=" + PrijemRN, conn))
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije,
+        s.IDArtikla,
         s.PDV,
         s.Carina
 ),
@@ -1718,7 +1713,7 @@ ORDER BY p.IDSkladisneStavke";
                                 RB = rb,
                                 Prijemnica = dr["Prijemnica"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Prijemnica"]),
                                 Naimenovanje = dr["Naimenovanje"] == DBNull.Value ? "" : dr["Naimenovanje"].ToString(),
-                                NHM = dr["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NHM"]),
+                                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                                 Naziv = dr["Naziv"] == DBNull.Value ? "" : dr["Naziv"].ToString(),
                                 JM = dr["JM"] == DBNull.Value ? "" : dr["JM"].ToString(),
 
@@ -1746,7 +1741,7 @@ ORDER BY p.IDSkladisneStavke";
                                 Paleta = dr["Paleta"] == DBNull.Value ? 0 : Convert.ToInt32(dr["Paleta"]),
                                 VrstaPalete = dr["VrstaPaleta"] == DBNull.Value ? 0 : Convert.ToInt32(dr["VrstaPaleta"]),
                                 DimenzijePalete = dr["DimenzijaPaleta"] == DBNull.Value ? "" : dr["DimenzijaPaleta"].ToString(),
-                                SifraArtikla = dr["SifraArtikla"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SifraArtikla"]),
+                                SifraArtikla = dr["SifraArtikla"] == DBNull.Value ? "" : dr["SifraArtikla"].ToString(),
                                 PDV = dr["PDV"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["PDV"]),
                                 Carina = dr["Carina"] == DBNull.Value ? 0 : Convert.ToDecimal(dr["Carina"]),
                                 TabelaPozicija = dr["TabelaPozicija"] == DBNull.Value ? "" : dr["TabelaPozicija"].ToString()

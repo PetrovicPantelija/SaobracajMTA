@@ -83,13 +83,14 @@ namespace Saobracaj.Skladista_main.Dokumenta
             cboNalogodavac.DisplayMember = "PaNaziv";
             cboNalogodavac.ValueMember = "PaSifra";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            // RAZ-06: vlasnik robe je iz VlasniciRobe, kao na magacinskom predmetu (RadniNalogSkladista.VlasnikRobe = VlasniciRobe.id)
+            var partner = "Select id, Naziv From VlasniciRobe order by Naziv";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new System.Data.DataSet();
             partAD.Fill(partDS);
             cboVlasnikRobe.DataSource = partDS.Tables[0];
-            cboVlasnikRobe.DisplayMember = "PaNaziv";
-            cboVlasnikRobe.ValueMember = "PaSifra";
+            cboVlasnikRobe.DisplayMember = "Naziv";
+            cboVlasnikRobe.ValueMember = "id";
 
             var carinskiPostupak = "Select id,Naziv from VrstaCarinskogPostupka order by id asc";
             var carinskiPostupakDa = new SqlDataAdapter(carinskiPostupak, conn);
@@ -317,21 +318,10 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                         SqlDataReader dr2 = cmd2.ExecuteReader();
                         while (dr2.Read())
                         {
-                            cboNalogodavac.SelectedValue = Convert.ToInt32(dr2["Nalogodavac"].ToString());
-                            cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr2["VlasnikRobe"].ToString());
-                            txtVrstaRobe.Text = dr2["VrstaRobe"].ToString();
-                            txtNacinPakovanja.Text = dr2["NacinPakovanja"].ToString();
-                            cboADR.SelectedValue = Convert.ToInt32(dr2["OstalaSkladista"].ToString());
-                            txtPIB.Text = dr2["PIB"].ToString();
-                            txtPosebniUslovi.Text = dr2["PosebniUslovi"].ToString();
-                            txtNapomena.Text = dr2["Napomena"].ToString();
-
-
+                            // SKK-03: podaci i usluge su otpremnice (učitani gore i u konstruktoru po RN);
+                            // iz naloga prijema uzima se samo veza sa prijemnicom
                             int PrijemnicaID = Convert.ToInt32(dr2["prijemID"].ToString());
                             textBox2.Text = PrijemnicaID.ToString();
-
-                            int dodatneUslugeID = Convert.ToInt32(dr2["DodatneUslugeID"].ToString());
-                            FillDodatneUsluge(dodatneUslugeID.ToString());
                         }
                     }
                     conn2.Close();
@@ -359,7 +349,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
         public class OtpremnicaStavke
         {
             public int RB { get; set; }
-            public int NHM { get; set; }
+            public string NHM { get; set; } = "";   // RAZ-02: tarifni broj kao tekst
             public string Naziv { get; set; }
             public string Naimenovanje { get; set; }
             public string JM { get; set; }
@@ -424,7 +414,7 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                             var stavka = new OtpremnicaStavke
                             {
                                 RB = Convert.ToInt32(dr["RB"]),
-                                NHM = dr["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NHM"]),
+                                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                                 Naziv = dr["Naziv"] == DBNull.Value ? "" : dr["Naziv"].ToString(),
                                 Naimenovanje = dr["Naimenovanje"] == DBNull.Value ? "" : dr["Naimenovanje"].ToString(),
                                 JM = dr["JM"] == DBNull.Value ? "" : dr["JM"].ToString(),

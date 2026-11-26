@@ -413,7 +413,7 @@ WITH Primljeno AS
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije AS DimenzijePalete,
-        s.NHM AS SifraArtikla,
+        (SELECT RTRIM(CONVERT(nvarchar(50), art.Sifra)) FROM Artikli art WHERE art.ID = s.IDArtikla) AS SifraArtikla,   -- RAZ-03: šifra artikla, ne tarifni broj
         s.PDV,
         s.Carina,
         ISNULL(MAX(p.SkladisteU), '') AS TabelaPozicija
@@ -425,13 +425,13 @@ WITH Primljeno AS
     INNER JOIN Promet p 
         ON s.ID = p.IDSaDokumenta
        AND p.MagacinskiBroj = rn.MagacinskiBroj
-    INNER JOIN TipPalete tp 
+    LEFT JOIN TipPalete tp   -- RAZ-12: stavka bez vrste palete ostaje na lageru
         ON s.VrstaPaleta = tp.ID
     LEFT JOIN Skladista skl 
         ON s.Pozicija = skl.Naziv
     LEFT JOIN MagacinskiBrojCarinski mb
         ON rn.MagacinskiBroj = mb.ID
-    LEFT JOIN Partnerji pa
+    LEFT JOIN (SELECT id AS PaSifra, Naziv AS PaNaziv FROM VlasniciRobe) pa   -- RAZ-06: vlasnik robe iz VlasniciRobe
         ON rn.VlasnikRobe = pa.PaSifra
     WHERE pr.Status = 'ZA'
     GROUP BY 
@@ -456,6 +456,7 @@ WITH Primljeno AS
         s.Paleta,
         s.VrstaPaleta,
         tp.Dimenzije,
+        s.IDArtikla,
         s.PDV,
         s.Carina
 ),
@@ -682,7 +683,7 @@ ORDER BY
 
                 RB = 0,
                 Naimenovanje = GetString(dr, "Naimenovanje"),
-                NHM = GetInt(dr, "NHM"),
+                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                 Naziv = GetString(dr, "Naziv"),
                 JM = GetString(dr, "JM"),
 
@@ -713,7 +714,7 @@ ORDER BY
                 Paleta = GetInt(dr, "Paleta"),
                 VrstaPalete = GetInt(dr, "VrstaPalete"),
                 DimenzijePalete = GetString(dr, "DimenzijePalete"),
-                SifraArtikla = GetInt(dr, "SifraArtikla"),
+                SifraArtikla = GetString(dr, "SifraArtikla"),
                 PDV = GetDecimal(dr, "PDV"),
                 Carina = GetDecimal(dr, "Carina"),
                 TabelaPozicija = GetString(dr, "TabelaPozicija")
@@ -931,7 +932,7 @@ ORDER BY
             public string VlasnikRobeNaziv { get; set; }
 
             public string Naimenovanje { get; set; }
-            public int NHM { get; set; }
+            public string NHM { get; set; } = "";   // RAZ-02: tarifni broj kao tekst
             public string Naziv { get; set; }
             public string JM { get; set; }
 
@@ -968,7 +969,7 @@ ORDER BY
             public int VrstaPalete { get; set; }
             public string DimenzijePalete { get; set; }
 
-            public int SifraArtikla { get; set; }
+            public string SifraArtikla { get; set; }
             public decimal PDV { get; set; }
             public decimal Carina { get; set; }
 

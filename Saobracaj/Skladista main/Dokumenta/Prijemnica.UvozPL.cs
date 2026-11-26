@@ -264,11 +264,16 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 try
                 {
+                    // SKC-12: lista se puni iznova, jer nivo uvezen u Pregledu klasifikacije (Uvoz artikala) u njoj još ne postoji
                     ArtikliKatalogDijalozi.PrikaziKlasifikaciju(this, connection, KatalogPL, id =>
                     {
-                        UcitajKlasifikacije();
+                        UcitajKlasifikacije(true);
                         cboPLKlasifikacija.SelectedValue = id;
                     });
+                    object izabrano = cboPLKlasifikacija.SelectedValue;
+                    UcitajKlasifikacije(true);
+                    if (izabrano != null)
+                        cboPLKlasifikacija.SelectedValue = izabrano;
                 }
                 catch (Exception ex)
                 {
@@ -318,9 +323,9 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
         }
 
-        private void UcitajKlasifikacije()
+        private void UcitajKlasifikacije(bool ponovo = false)
         {
-            if (cboPLKlasifikacija.DataSource != null)
+            if (cboPLKlasifikacija.DataSource != null && !ponovo)
                 return;
 
             var dt = new DataTable();
@@ -610,12 +615,17 @@ namespace Saobracaj.Skladista_main.Dokumenta
                         id = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
+                    // RAZ-09: kolona Kontejner postoji posle skripte Carina_StavkaKontejner_2026_11.sql
+                    bool kolonaKontejner;
+                    using (var cmd = new SqlCommand("SELECT CASE WHEN COL_LENGTH('dbo.RNCarinskoPackingListaStavka', 'Kontejner') IS NULL THEN 0 ELSE 1 END", conn, tran))
+                        kolonaKontejner = Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+
                     using (var cmd = new SqlCommand(@"INSERT INTO RNCarinskoPackingListaStavka
                         (IDPackingListe, RedUFajlu, Nivo1Sifra, Nivo1Naziv, Nivo2Sifra, Nivo2Naziv, Nivo3Sifra, Nivo3Naziv, Nivo4Sifra, Nivo4Naziv,
                          Sifra, Artikal, JM, Kolicina, Koleta, Koeficijent, Neto, Bruto, Vrednost, Valuta, NHM,
-                         BarKod, KataloskiBroj, NetoPoJM, BrutoPoJM, CenaPoJM, JMPoPaleti, KoletaPoPaleti)
+                         BarKod, KataloskiBroj, NetoPoJM, BrutoPoJM, CenaPoJM, JMPoPaleti, KoletaPoPaleti" + (kolonaKontejner ? ", Kontejner" : "") + @")
                         VALUES (@PL, @Red, @N1S, @N1N, @N2S, @N2N, @N3S, @N3N, @N4S, @N4N, @Sifra, @Artikal, @JM, @Kolicina, @Koleta, @Koef,
-                                @Neto, @Bruto, @Vrednost, @Valuta, @NHM, @BarKod, @KatBroj, @NetoPoJM, @BrutoPoJM, @CenaPoJM, @JMPoPaleti, @KPP)", conn, tran))
+                                @Neto, @Bruto, @Vrednost, @Valuta, @NHM, @BarKod, @KatBroj, @NetoPoJM, @BrutoPoJM, @CenaPoJM, @JMPoPaleti, @KPP" + (kolonaKontejner ? ", @Kontejner" : "") + ")", conn, tran))
                     {
                         foreach (var r in redovi)
                         {
@@ -648,6 +658,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                             cmd.Parameters.AddWithValue("@CenaPoJM", DbVrednost(r.CenaPoJM));
                             cmd.Parameters.AddWithValue("@JMPoPaleti", DbVrednost(r.JMPoPaleti));
                             cmd.Parameters.AddWithValue("@KPP", DbVrednost(r.KoletaPoPaleti));
+                            if (kolonaKontejner)
+                                cmd.Parameters.AddWithValue("@Kontejner", DbVrednost(Skrati(r.Kontejner, 20)));
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -843,7 +855,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
             stavka.IDNaimenovanja = Convert.ToInt32(naim["ID"]);
             stavka.Naimenovanje = Convert.ToString(naim["Naimenovanje"]);
-            stavka.NHM = naim["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(naim["NHM"]);
+            stavka.NHM = TarifniBroj.Normalizuj(naim["NHM"]);
             if (prenesiStope && naim.Table.Columns.Contains("PDV"))
             {
                 stavka.PDV = naim["PDV"] == DBNull.Value ? 0 : Convert.ToDecimal(naim["PDV"]);
@@ -873,6 +885,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             public string Sifra, Artikal, JM, Valuta, NHM, BarKod, KataloskiBroj;
             public decimal? Kolicina, Koleta, Koeficijent, Neto, Bruto, Vrednost, NetoPoJM, BrutoPoJM, CenaPoJM, JMPoPaleti;
             public int? KoletaPoPaleti;   // JM po paleti / JM po koletu (predlog za palete)
+            public string Kontejner;      // RAZ-09: broj kontejnera reda (opciona kolona), bez razmaka i crtica
         }
 
         string poslednjiListPL = "";   // list iz koga je uvezena packing lista (ISP-01)
@@ -899,6 +912,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             { "Vrednost", "Vrednost;Iznos;Value;Amount" },
             { "Valuta", "Valuta;Currency" },
             { "NHM", "NHM;Tarifni broj;HS code;HS" },
+            { "Kontejner", "Kontejner;Container;Container No;Container No.;Cont.;Broj kontejnera" },
             { "NetoPoJM", "Neto težina po JM;Neto po JM;Net weight per unit" },
             { "BrutoPoJM", "Bruto težina po JM;Bruto po JM;Gross weight per unit" },
             { "CenaPoJM", "Cena po JM;Jedinična cena;Unit price" },
@@ -1022,7 +1036,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                             KataloskiBroj = tekstPolja(r, "KataloskiBroj"),
                             NetoPoJM = brojPolja(r, "NetoPoJM"),
                             BrutoPoJM = brojPolja(r, "BrutoPoJM"),
-                            CenaPoJM = brojPolja(r, "CenaPoJM")
+                            CenaPoJM = brojPolja(r, "CenaPoJM"),
+                            Kontejner = BrojKontejneraIzTeksta(tekstPolja(r, "Kontejner"))
                         };
 
                         // Neto, bruto i cena dati po JM: ukupno = količina × vrednost po JM (kad fajl nema kolonu ukupno)
@@ -1603,6 +1618,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 return true;
 
             int idPrijemnice = Convert.ToInt32(txtPrijemnica.Text);
+            // ID-jevi pre pokušaja: posle greške (rollback) nove stavke se vraćaju na ID 0, a lista ostaje u memoriji
+            var idPrePokusaja = list.Select(s => new KeyValuePair<PrijemnicaStavke, int>(s, s.ID)).ToList();
             try
             {
                 using (var conn = new SqlConnection(connection))
@@ -1642,9 +1659,11 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
             catch (SqlException ex)
             {
-                VratiStavkePrijemnice(idPrijemnice);   // ID-jevi novih stavki nisu upisani: stavke se čitaju ponovo iz baze
-                stavkeSnimak = PotpisStavki();
-                MessageBox.Show("Stavke prijemnice nisu snimljene: " + ex.Message);
+                // SKC-10: stavke se NE čitaju ponovo iz baze (to je brisalo neusnimljen prenos iz PL, uparivanje i
+                // izmene koleta); vraćaju se samo ID-jevi koje je ovaj pokušaj dodelio, pa sledeći Snimi upisuje ponovo
+                foreach (var p in idPrePokusaja)
+                    p.Key.ID = p.Value;
+                MessageBox.Show("Stavke prijemnice nisu snimljene: " + ex.Message + "\n\nIzmene su ostale u tabeli; otklonite uzrok i ponovo kliknite Snimi.");
                 return false;
             }
         }
@@ -1662,7 +1681,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 if (!obrisi)
                 {
                     cmd.Parameters.AddWithValue("@RB", s.RB);
-                    cmd.Parameters.AddWithValue("@NHM", s.NHM);
+                    cmd.Parameters.Add(TarifniBroj.Parametar("@NHM", s.NHM, true));   // RAZ-02
                     cmd.Parameters.AddWithValue("@IDArtikla", s.IDArtikla);
                     cmd.Parameters.AddWithValue("@Naziv", s.Naziv ?? "");
                     cmd.Parameters.AddWithValue("@Naimenovanje", s.Naimenovanje ?? "");

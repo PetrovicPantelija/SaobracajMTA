@@ -50,7 +50,8 @@
             this.btnOsvezi = new System.Windows.Forms.Button();
             this.btnNovi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
-            this.chkVozac = new System.Windows.Forms.CheckBox();
+            this.lblVozac = new System.Windows.Forms.Label();
+            this.txtVozac = new System.Windows.Forms.TextBox();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -262,7 +263,8 @@
             this.tabSplitterPage2.Controls.Add(this.txtPrevoznik);
             this.tabSplitterPage2.Controls.Add(this.lblBeleska);
             this.tabSplitterPage2.Controls.Add(this.txtBeleska);
-            this.tabSplitterPage2.Controls.Add(this.chkVozac);
+            this.tabSplitterPage2.Controls.Add(this.lblVozac);
+            this.tabSplitterPage2.Controls.Add(this.txtVozac);
             this.tabSplitterPage2.Controls.Add(this.btnStampajPotvrdu);
             this.tabSplitterPage2.Controls.Add(this.pnlDatumi);   // trake se dodaju poslednje da budu iza polja
             this.tabSplitterPage2.Controls.Add(this.pnlVozilo);
@@ -747,17 +749,6 @@
             this.txtVozilo.MaxLength = 30;
             this.txtVozilo.TabIndex = 31;
             //
-            // chkVozac (u žutom okviru, u redu oznaka, desno iznad polja VOZILO)
-            //
-            this.chkVozac.AutoSize = true;
-            this.chkVozac.BackColor = System.Drawing.Color.Yellow;
-            this.chkVozac.Location = new System.Drawing.Point(600, 266);
-            this.chkVozac.Name = "chkVozac";
-            this.chkVozac.Size = new System.Drawing.Size(62, 17);
-            this.chkVozac.TabIndex = 36;
-            this.chkVozac.Text = "VOZAČ";
-            this.chkVozac.UseVisualStyleBackColor = false;
-            //
             // lblPlomba
             // 
             this.lblPlomba.AutoSize = true;
@@ -879,16 +870,34 @@
             this.txtBeleska.MaxLength = 300;
             this.txtBeleska.TabIndex = 33;
             //
-            // btnStampajPotvrdu
+            // lblVozac (u žutom okviru, posle BELEŠKA)
+            //
+            this.lblVozac.AutoSize = true;
+            this.lblVozac.Location = new System.Drawing.Point(1135, 268);
+            this.lblVozac.BackColor = System.Drawing.Color.Yellow;
+            this.lblVozac.Name = "lblVozac";
+            this.lblVozac.Size = new System.Drawing.Size(60, 14);
+            this.lblVozac.TabIndex = 1033;
+            this.lblVozac.Text = "VOZAČ";
+            //
+            // txtVozac (ime vozača)
+            //
+            this.txtVozac.Location = new System.Drawing.Point(1135, 285);
+            this.txtVozac.Name = "txtVozac";
+            this.txtVozac.Size = new System.Drawing.Size(205, 20);
+            this.txtVozac.MaxLength = 50;
+            this.txtVozac.TabIndex = 34;
+            //
+            // btnStampajPotvrdu (levo od 'Potvrdi promenu'; njegovo mesto je dobilo polje VOZAČ)
             //
             this.btnStampajPotvrdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.btnStampajPotvrdu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStampajPotvrdu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStampajPotvrdu.ForeColor = System.Drawing.Color.White;
-            this.btnStampajPotvrdu.Location = new System.Drawing.Point(1135, 282);
+            this.btnStampajPotvrdu.Location = new System.Drawing.Point(10, 282);
             this.btnStampajPotvrdu.Name = "btnStampajPotvrdu";
             this.btnStampajPotvrdu.Size = new System.Drawing.Size(205, 27);
-            this.btnStampajPotvrdu.TabIndex = 35;
+            this.btnStampajPotvrdu.TabIndex = 36;
             this.btnStampajPotvrdu.Text = "Štampaj potvrdu";
             this.btnStampajPotvrdu.UseVisualStyleBackColor = false;
             this.btnStampajPotvrdu.Click += new System.EventHandler(this.btnStampajPotvrdu_Click);
@@ -906,7 +915,7 @@
             this.pnlVozilo.BackColor = System.Drawing.Color.Yellow;
             this.pnlVozilo.Location = new System.Drawing.Point(453, 262);
             this.pnlVozilo.Name = "pnlVozilo";
-            this.pnlVozilo.Size = new System.Drawing.Size(670, 52);
+            this.pnlVozilo.Size = new System.Drawing.Size(894, 52);   // VOZILO, Prevoznik, BELEŠKA i VOZAČ
             this.pnlVozilo.TabIndex = 3001;
             // 
             // btnNovi
@@ -939,7 +948,7 @@
             this.btnPromeni.Location = new System.Drawing.Point(235, 282);
             this.btnPromeni.Name = "btnPromeni";
             this.btnPromeni.Size = new System.Drawing.Size(205, 27);
-            this.btnPromeni.TabIndex = 34;
+            this.btnPromeni.TabIndex = 35;
             this.btnPromeni.Text = "Potvrdi promenu";
             this.btnPromeni.UseVisualStyleBackColor = false;
             this.btnPromeni.Click += new System.EventHandler(this.btnPromeni_Click);
@@ -1385,6 +1394,7 @@
         private System.Windows.Forms.Button btnStampajPotvrdu;
         private System.Windows.Forms.Panel pnlDatumi;
         private System.Windows.Forms.Panel pnlVozilo;
-        private System.Windows.Forms.CheckBox chkVozac;
+        private System.Windows.Forms.Label lblVozac;
+        private System.Windows.Forms.TextBox txtVozac;
     }
 }

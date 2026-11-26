@@ -8,7 +8,7 @@ namespace Saobracaj.RNI
     {
         Tekst,
         Datum,
-        DaNe    // bit (štiklir); ne prikazuje se u gridu
+        TekstZaPotvrdu   // tekst samo u poljima ispod grida (VOZAČ); ne prikazuje se u gridu, ne izvozi se i ne menja grupno
     }
 
     public class TerminalPrivPolje
@@ -18,14 +18,16 @@ namespace Saobracaj.RNI
         public TerminalPrivTip Tip;
         public int Velicina;        // maksimalan broj karaktera (za tekst)
         public string[] Dozvoljeno; // dozvoljene vrednosti (null = bez ogranicenja)
+        public bool TacnaDuzina;    // uneta vrednost mora imati tačno Velicina karaktera (prazno je dozvoljeno)
 
-        public TerminalPrivPolje(string kolona, string parametar, TerminalPrivTip tip, int velicina, string[] dozvoljeno)
+        public TerminalPrivPolje(string kolona, string parametar, TerminalPrivTip tip, int velicina, string[] dozvoljeno, bool tacnaDuzina = false)
         {
             Kolona = kolona;
             Parametar = parametar;
             Tip = tip;
             Velicina = velicina;
             Dozvoljeno = dozvoljeno;
+            TacnaDuzina = tacnaDuzina;
         }
     }
 
@@ -75,8 +77,8 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("GATE_IN_FULL/sa_Utovara", "@GATE_IN_FULL_SA_UTOVARA", TerminalPrivTip.Datum, 0, null),
             new TerminalPrivPolje("GATE_IN/_GATE_OUT", "@GATE_IN_GATE_OUT", TerminalPrivTip.Tekst, 50, GateInGateOut),
             new TerminalPrivPolje("L/R", "@L_R", TerminalPrivTip.Tekst, 30, null),
-            new TerminalPrivPolje("TARA", "@TARA", TerminalPrivTip.Tekst, 4, null),                          // kolona je nvarchar(30), unos je do 4 karaktera
-            new TerminalPrivPolje("MAX_NOSIVOST_CNT", "@MAX_NOSIVOST_CNT", TerminalPrivTip.Tekst, 5, null),  // kolona je nvarchar(30), unos je do 5 karaktera
+            new TerminalPrivPolje("TARA", "@TARA", TerminalPrivTip.Tekst, 4, null, true),                          // kolona je nvarchar(30), unos je tačno 4 karaktera
+            new TerminalPrivPolje("MAX_NOSIVOST_CNT", "@MAX_NOSIVOST_CNT", TerminalPrivTip.Tekst, 5, null, true),  // kolona je nvarchar(30), unos je tačno 5 karaktera
             new TerminalPrivPolje("VOZILO/PREUZIMANJE", "@VOZILO_PREUZIMANJE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("PLOMBA/IZVOZ", "@PLOMBA_IZVOZ", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("NAPOMENA", "@NAPOMENA", TerminalPrivTip.Tekst, 300, null),
@@ -85,7 +87,7 @@ namespace Saobracaj.RNI
             new TerminalPrivPolje("POSLATE SLIKE", "@POSLATE_SLIKE", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("Prevoznik", "@PREVOZNIK", TerminalPrivTip.Tekst, 30, null),
             new TerminalPrivPolje("BELEŠKA", "@BELESKA", TerminalPrivTip.Tekst, 300, null),
-            new TerminalPrivPolje("VOZAČ", "@VOZAC", TerminalPrivTip.DaNe, 0, null),   // za potvrdu (TerminalPriv_Vozac_Arhiva_2026_11.sql)
+            new TerminalPrivPolje("VOZAČ", "@VOZAC", TerminalPrivTip.TekstZaPotvrdu, 50, null),   // ime vozača, za potvrdu (TerminalPriv_VozacTekst_Vracanje_2026_11.sql)
         };
 
         // Vraca ID novog zapisa. zapisiMaersk = true samo za dugme 'Sačuvaj novi': procedura tada za Maersk
@@ -307,8 +309,9 @@ namespace Saobracaj.RNI
         }
 
         // Šta će vraćanje zapisa iz arhive uraditi, bez izmena u bazi (procedura VratiTerminalPrivIzArhive, @Proveri = 1):
-        // Tables[0] = Kontejner, KonacniGateOut, NadjenLog, UTerminalu; Tables[1] = pokreti koji se brišu iz izveštaja brodaru
-        // (Izvestaj, Pokret, DatumPokreta, Poslat, DatumIzvoza)
+        // Tables[0] = Kontejner, KonacniGateOut, NadjenLog, UTerminalu, BrojPokreta, DatumIzmene; Tables[1] = pokreti koji se
+        // brišu iz izveštaja brodaru (Izvestaj, Pokret, DatumPokreta, Poslat, DatumIzvoza, Polje); Tables[2] = datumi koji
+        // postaju prazni (Polje, Vrednost, IzLoga)
         public DataSet ProveriVracanjeIzArhive(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -332,8 +335,9 @@ namespace Saobracaj.RNI
             }
         }
 
-        // Vraća zapis iz TerminalPrivArhiv u TerminalPriv (isti ID), briše Konačni_GATE_OUT, pokret koji je on upisao u izveštaj
-        // brodaru i njegov upis u logu. Procedura ima svoju transakciju.
+        // Vraća zapis iz TerminalPrivArhiv u TerminalPriv (isti ID) i poništava poslednju izmenu koja je upisala pokret u izveštaj
+        // brodaru: briše te pokrete, datume koji su ih upisali i njihov upis u logu; Konačni_GATE_OUT se uvek briše.
+        // Procedura ima svoju transakciju.
         public void VratiIzArhive(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -527,17 +531,13 @@ namespace Saobracaj.RNI
                     parameter.SqlDbType = SqlDbType.DateTime;
                     parameter.Value = vrednost == null || vrednost == DBNull.Value ? (object)DBNull.Value : vrednost;
                 }
-                else if (polje.Tip == TerminalPrivTip.DaNe)
-                {
-                    parameter.SqlDbType = SqlDbType.Bit;
-                    parameter.Value = vrednost != null && vrednost != DBNull.Value && Convert.ToBoolean(vrednost);
-                }
                 else
                 {
                     parameter.SqlDbType = SqlDbType.NVarChar;
                     parameter.Size = polje.Velicina;
                     string tekst = vrednost == null || vrednost == DBNull.Value ? "" : vrednost.ToString().Trim();
-                    parameter.Value = tekst.Length == 0 ? (object)DBNull.Value : tekst;
+                    // prazan VOZAČ ide kao prazan tekst i briše ime; NULL procedura čita kao 'bez izmene' (starija verzija programa)
+                    parameter.Value = tekst.Length == 0 && polje.Tip != TerminalPrivTip.TekstZaPotvrdu ? (object)DBNull.Value : tekst;
                 }
                 myCommand.Parameters.Add(parameter);
             }

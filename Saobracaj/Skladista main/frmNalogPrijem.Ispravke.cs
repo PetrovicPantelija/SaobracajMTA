@@ -15,11 +15,9 @@ namespace Saobracaj.Skladista_main
             PostaviMaksimum(999999999.999m, txtNeto, txtBruto, txtNetoE, txtBrutoE, txtVrednost, txtVrednostE);
             PostaviMaksimum(100m, txtPDV, txtCarina);
 
-            // ISP-04: NHM naimenovanja ima 7 cifara (0 = nije unet)
-            txtNHMNaimenovanje.Minimum = 0;
-            txtNHMNaimenovanje.DecimalPlaces = 0;
-            txtNHMNaimenovanje.Maximum = 9999999m;
-            // dvoklik na naimenovanje (obrada iz dizajnera puni polja) pamti učitani NHM, da izmena ne traži 7 cifara
+            // RAZ-01/02: tarifni broj je tekst od 8 (ili 10) cifara, sa vodećom nulom; brojčano polje iz dizajnera se skriva
+            NapraviPoljeTarifnogBroja();
+            // dvoklik na naimenovanje (obrada iz dizajnera puni polja) pamti učitani broj, da izmena starog naimenovanja prođe
             gridGroupingControl1.TableControlCurrentCellControlDoubleClick += (s, e) => ZapamtiUcitaniNHM();
 
             // ISP-06: klik ili ulazak u brojčano polje označava ceo sadržaj, pa novi broj zamenjuje stari
@@ -56,8 +54,41 @@ namespace Saobracaj.Skladista_main
             }
         }
 
-        // NHM naimenovanja učitanog dvoklikom iz tabele (null kad nije učitano)
-        decimal? nhmUcitan;
+        // tarifni broj naimenovanja (zamena za brojčano polje txtNHMNaimenovanje)
+        TextBox txtTarifniBroj;
+
+        private void NapraviPoljeTarifnogBroja()
+        {
+            txtTarifniBroj = new TextBox
+            {
+                Name = "txtTarifniBroj",
+                Location = txtNHMNaimenovanje.Location,
+                Size = txtNHMNaimenovanje.Size,
+                Anchor = txtNHMNaimenovanje.Anchor,
+                Font = txtNHMNaimenovanje.Font,
+                TabIndex = txtNHMNaimenovanje.TabIndex,
+                MaxLength = TarifniBroj.MaxDuzina,
+                TextAlign = HorizontalAlignment.Right
+            };
+            // samo cifre (i kontrolni tasteri, npr. Backspace)
+            txtTarifniBroj.KeyPress += (s, e) => { if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true; };
+            // nalepljen tekst (npr. "7321 19 00") se svodi na cifre
+            txtTarifniBroj.Leave += (s, e) => txtTarifniBroj.Text = TarifniBroj.Normalizuj(txtTarifniBroj.Text);
+            txtNHMNaimenovanje.Parent.Controls.Add(txtTarifniBroj);
+            txtTarifniBroj.BringToFront();
+            txtNHMNaimenovanje.Visible = false;
+            txtNHMNaimenovanje.TabStop = false;
+        }
+
+        // tarifni broj iz polja, samo cifre; "" kad nije unet
+        private string TarifniBrojNaimenovanja
+        {
+            get { return TarifniBroj.Normalizuj(txtTarifniBroj.Text); }
+            set { txtTarifniBroj.Text = TarifniBroj.Normalizuj(value); }
+        }
+
+        // tarifni broj naimenovanja učitanog dvoklikom iz tabele (null kad nije učitano)
+        string nhmUcitan;
 
         private void ZapamtiUcitaniNHM()
         {
@@ -66,27 +97,27 @@ namespace Saobracaj.Skladista_main
             {
                 var zapis = gridGroupingControl1.Table.CurrentRecord;
                 object v = zapis == null ? null : zapis.GetValue("NHM naimenovanja");
-                decimal d;
-                if (v != null && v != DBNull.Value && decimal.TryParse(v.ToString(), out d))
-                    nhmUcitan = d;
+                nhmUcitan = TarifniBroj.Normalizuj(v);
+                TarifniBrojNaimenovanja = nhmUcitan;
             }
             catch
             {
-                // bez učitane vrednosti važi pravilo od 7 cifara
+                // bez učitane vrednosti važi pravilo od 8 cifara
             }
         }
 
-        // ISP-04: NHM mora imati tačno 7 cifara ili biti 0 (nije unet).
-        // Izmena postojećeg naimenovanja prolazi dok se NHM ne menja: stara naimenovanja imaju NHM unet pre ovog pravila.
+        // RAZ-01: tarifni broj ima 8 cifara (10 za TARIC) ili je prazan.
+        // Izmena postojećeg naimenovanja prolazi dok se broj ne menja: stara naimenovanja imaju 7 cifara iz ranijeg pravila.
         private bool NHMIspravan(bool izmenaPostojeceg = false)
         {
-            decimal nhm = txtNHMNaimenovanje.Value;
-            if (izmenaPostojeceg && nhmUcitan.HasValue && nhm == nhmUcitan.Value)
+            string nhm = TarifniBrojNaimenovanja;
+            if (izmenaPostojeceg && nhmUcitan != null && nhm == nhmUcitan)
                 return true;
-            if (nhm != 0 && (nhm < 1000000m || nhm > 9999999m))
+            string greska = TarifniBroj.Provera(nhm);
+            if (greska != null)
             {
-                MessageBox.Show("NHM mora imati 7 cifara.");
-                txtNHMNaimenovanje.Focus();
+                MessageBox.Show(greska);
+                txtTarifniBroj.Focus();
                 return false;
             }
             return true;
