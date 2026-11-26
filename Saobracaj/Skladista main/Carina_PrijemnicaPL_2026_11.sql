@@ -637,7 +637,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_PrijemnicaStavka_Snimi
     @IDNadredjena   int,
     @Obrisi         bit = 0,
     @RB             int = NULL,
-    @NHM            int = NULL,
+    @NHM            varchar(10) = NULL,   -- tarifni broj kao tekst (Carina_TarifniBroj_2026_11.sql)
     @IDArtikla      int = NULL,
     @Naziv          nvarchar(max) = NULL,
     @Naimenovanje   nvarchar(max) = NULL,
@@ -739,7 +739,7 @@ BEGIN
              Paleta, VrstaPaleta, PDV, Carina, Napomena, IDNaimenovanja, KoletaPL, KolicinaJM, IDPLStavke)
             VALUES (@ID, @IDNadredjena, @RB, @NHM, @IDArtikla, @Naziv, @Naimenovanje, @JM, @Koleta, @Bruto, @Neto, @Vrednost, @Valuta, @Pozicija,
              @Paleta, @VrstaPaleta, @PDV, @Carina, @Napomena, @IDNaimenovanja, @KoletaPL, @KolicinaJM, @IDPLStavke)',
-            N'@ID int, @IDNadredjena int, @RB int, @NHM int, @IDArtikla int, @Naziv nvarchar(max), @Naimenovanje nvarchar(max), @JM nvarchar(50),
+            N'@ID int, @IDNadredjena int, @RB int, @NHM varchar(10), @IDArtikla int, @Naziv nvarchar(max), @Naimenovanje nvarchar(max), @JM nvarchar(50),
               @Koleta decimal(18,3), @Bruto decimal(18,3), @Neto decimal(18,3), @Vrednost decimal(18,2), @Valuta nvarchar(50), @Pozicija nvarchar(200),
               @Paleta int, @VrstaPaleta int, @PDV decimal(18,2), @Carina decimal(18,2), @Napomena nvarchar(max), @IDNaimenovanja int,
               @KoletaPL decimal(18,3), @KolicinaJM decimal(18,3), @IDPLStavke int',
@@ -774,7 +774,7 @@ BEGIN
            ISNULL(n.PDV, 0) AS PDV, ISNULL(n.Carina, 0) AS Carina   -- ISP-07: prenose se na stavku pri uparivanju
     FROM dbo.RNCarinskoStavke n
     JOIN dbo.MagacinskiPredmet mp ON mp.ID = n.IDNadredjena
-    LEFT JOIN dbo.NHM nh ON nh.ID = n.NHM
+    LEFT JOIN dbo.NHM nh ON RTRIM(CONVERT(nvarchar(50), nh.Broj)) = RTRIM(CONVERT(nvarchar(50), n.NHM))   -- RAZ-03: NHM je tarifni broj, ne ID
     OUTER APPLY (SELECT SUM(s.Koleta) AS Koleta, SUM(s.Neto) AS Neto, SUM(s.Bruto) AS Bruto, SUM(s.Vrednost) AS Vrednost
                  FROM dbo.RNCarinskoPrijemnicaStavke s
                  JOIN dbo.RNCarinskoSkladistePrijemnica p ON p.ID = s.IDNadredjena

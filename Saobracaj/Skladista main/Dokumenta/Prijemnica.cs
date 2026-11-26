@@ -120,13 +120,14 @@ namespace Saobracaj.Skladista_main.Dokumenta
             cboNalogodavac.DisplayMember = "PaNaziv";
             cboNalogodavac.ValueMember = "PaSifra";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            // RAZ-06: vlasnik robe je iz VlasniciRobe, kao na magacinskom predmetu (RadniNalogSkladista.VlasnikRobe = VlasniciRobe.id)
+            var partner = "Select id, Naziv From VlasniciRobe order by Naziv";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new System.Data.DataSet();
             partAD.Fill(partDS);
             cboVlasnikRobe.DataSource = partDS.Tables[0];
-            cboVlasnikRobe.DisplayMember = "PaNaziv";
-            cboVlasnikRobe.ValueMember = "PaSifra";
+            cboVlasnikRobe.DisplayMember = "Naziv";
+            cboVlasnikRobe.ValueMember = "id";
 
 
             var spediter = "Select PaSifra,PaNaziv From Partnerji Where Spediter=1 order by PaSifra desc";
@@ -502,7 +503,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         public class PrijemnicaStavke
         {
             public int RB { get; set; }
-            public int NHM { get; set; }
+            public string NHM { get; set; } = "";   // RAZ-02: tarifni broj kao tekst
             public int IDArtikla { get; set; }
             public string Naziv { get; set; }
             public string Naimenovanje { get; set; }
@@ -587,7 +588,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                             var stavka = new PrijemnicaStavke
                             {
                                 RB = Convert.ToInt32(dr["RB"]),
-                                NHM = dr["NHM"] == DBNull.Value ? 0 : Convert.ToInt32(dr["NHM"]),
+                                NHM = TarifniBroj.Normalizuj(dr["NHM"]),
                                 IDArtikla = dr["IDArtikla"] == DBNull.Value ? 0 : Convert.ToInt32(dr["IDArtikla"]),
                                 Naziv = dr["Naziv"] == DBNull.Value ? "" : dr["Naziv"].ToString(),
                                 Naimenovanje = dr["Naimenovanje"] == DBNull.Value ? "" : dr["Naimenovanje"].ToString(),
@@ -662,7 +663,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         {
             selektovanaStavka = null;
             selektovaniRB = 0;
-            nhm = 0;
+            nhm = "";
             idArtikla = 0;
 
             txtArtikal.Text = "";
@@ -683,7 +684,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
         }
         private PrijemnicaStavke selektovanaStavka = null;
         private int selektovaniRB = 0;
-        int nhm = 0;
+        string nhm = "";   // tarifni broj (NHM.Broj), ne ID iz šifarnika (RAZ-03)
         int idArtikla = 0;
         private void PopuniPoljaIzStavke(PrijemnicaStavke stavka)
         {
@@ -1096,7 +1097,8 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 MessageBox.Show("Izaberite NHM u listi.");
                 return;
             }
-            nhm = Convert.ToInt32(row.Cells["ID"].Value);
+            // RAZ-03: na stavku ide tarifni broj iz šifarnika (Broj), ne ID reda
+            nhm = TarifniBroj.Normalizuj(row.Cells["Broj"].Value);
             idArtikla = 0;
             txtArtikal.Text = row.Cells["Naziv"].Value.ToString().TrimEnd();
             panel6.Visible = false;
@@ -1262,7 +1264,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                     {
                         RB = ToIntExcel(rbObj),
                         Naziv = ToStringExcel(nazivObj),
-                        NHM = ToIntExcel(nhmObj),
+                        NHM = TarifniBroj.Normalizuj(nhmObj),
                         IDArtikla = 0,
                         Koleta = ToDecimalExcel(koletaObj),
                         Neto = ToDecimalExcel(netoObj),
@@ -1506,7 +1508,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
                 }
 
                 idArtikla = Convert.ToInt32(row.Cells["ID"].Value);
-                nhm = 0;
+                nhm = "";
 
                 if (row.Cells["Artikal"].Value != null && row.Cells["Artikal"].Value != DBNull.Value)
                 {

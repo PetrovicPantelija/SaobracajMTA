@@ -537,7 +537,7 @@ namespace Saobracaj.Skladista_main
 
         private void button24_Click(object sender, EventArgs e)
         {
-            if (!C7SlobodanNaMB() || !KontejneriIspravni())
+            if (!C7SlobodanNaMB() || !KontejneriIspravni() || !RbrKnjigeIspravan())
                 return;
 
             int? nalogodavac = null;
@@ -676,6 +676,7 @@ namespace Saobracaj.Skladista_main
                 VratiPodatkeMP();
             }
             SnimiKontejnere();
+            SnimiRbrKnjige();   // RAZ-17
 
 
             InsertSkladista ins = new InsertSkladista();
@@ -1093,6 +1094,7 @@ namespace Saobracaj.Skladista_main
                     }
                 }
             }
+            UcitajRbrKnjige();   // RAZ-17
         }
 
         int VratiNalogIDF()
@@ -2278,7 +2280,7 @@ namespace Saobracaj.Skladista_main
 
 
                 // 2. Popunjavamo NumericUpDown polja preko naše bezbedne funkcije
-                setNumericValue(txtNHMNaimenovanje, "NHM naimenovanja"); // prilagodi tačan naziv kolone ako nije "Naimenovanje"
+                TarifniBrojNaimenovanja = Convert.ToString(selectedRecord.GetValue("NHM naimenovanja"));   // RAZ-02: tekst, sa vodećom nulom
                 setNumericValue(txtKolicinaJM, "Količina po JM");
                 setNumericValue(txtBrutoE, "Bruto");
                 setNumericValue(txtNetoE, "Neto");
@@ -2332,7 +2334,7 @@ namespace Saobracaj.Skladista_main
                 int magacinskiID = int.TryParse(txtMagacinskiPredmetID.Text, out int magacinskiPredmet) ? magacinskiPredmet : 0;
                 InsertSkladista ins = new InsertSkladista();
 
-                int? nhm = int.TryParse(txtNHMNaimenovanje.Text, out int nhmValue) ? nhmValue : (int?)null;
+                string nhm = TarifniBrojNaimenovanja;   // RAZ-02: tarifni broj kao tekst
 
                 string naimenovanje = txtNaimenovanje.Text;
 
@@ -2391,7 +2393,7 @@ namespace Saobracaj.Skladista_main
             txtNapomenaE.Clear();
 
             // Ako hoćete fiksno na nulu umesto minimuma, možete i ovako:
-            txtNHMNaimenovanje.Value = 0;
+            TarifniBrojNaimenovanja = "";
             txtKolicinaJM.Value = 0;
             txtKoletaE.Value = 0;
             txtBrutoE.Value = 0;
@@ -2434,7 +2436,7 @@ namespace Saobracaj.Skladista_main
                     MessageBox.Show("Izaberite naimenovanje za izmenu (dvoklik u tabeli).");
                     return;
                 }
-                int? nhm = int.TryParse(txtNHMNaimenovanje.Text, out int nhmValue) ? nhmValue : (int?)null;
+                string nhm = TarifniBrojNaimenovanja;   // RAZ-02: tarifni broj kao tekst
 
                 string naimenovanje = txtNaimenovanje.Text;
 

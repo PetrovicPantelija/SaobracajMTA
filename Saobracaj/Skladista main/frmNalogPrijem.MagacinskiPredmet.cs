@@ -14,7 +14,8 @@ namespace Saobracaj.Skladista_main
     //  - Smeštajni dokument = broj C7 (prepisuje se u Broj JCI kao i do sada)
     //  - kad roba stiže kontejnerom unosi se TABELA kontejnera (RNCarinskoKontejner: broj, koleta, bruto, napomena);
     //    zbirna lista ostaje i u RadniNalogSkladista.BrojKontejneraPrijem, jer je čitaju Prijemnica, Otprema i drugi ekrani
-    //  - na istom magacinskom broju ne mogu biti dva naloga sa postupkom C7 (C7SlobodanNaMB; još nije uključeno u Snimi)
+    //  - na istom magacinskom broju ne mogu biti dva naloga sa postupkom C7 (C7SlobodanNaMB, na Snimi i Snimi MP);
+    //    potvrđeno 26.11.2026: drugi C7 dobija svoj magacinski broj
     public partial class frmNalogPrijem
     {
         // Jedan red tabele kontejnera
@@ -78,6 +79,8 @@ namespace Saobracaj.Skladista_main
 
             cboTipTransportaPrijem.SelectedIndexChanged += (s, e) => PrikaziKontejnere();
             cboTipTransportaPrijem.TextChanged += (s, e) => PrikaziKontejnere();
+
+            InitRbrKnjige();   // RAZ-17 (frmNalogPrijem.KnjigaRbr.cs)
         }
 
         private bool UlazKontejnerom()
@@ -471,7 +474,7 @@ namespace Saobracaj.Skladista_main
         }
 
         // Na istom magacinskom broju ne mogu biti dva naloga sa carinskim postupkom C7
-        // NAPOMENA: scenario Daska (C7 1296 pa C7 1356 na MB 750) ima dve C7 na istom MB – pravilo još nije uključeno u Snimi.
+        // Scenario Daska (C7 1296 pa C7 1356 na MB 750): drugi C7 dobija svoj magacinski broj (potvrđeno 26.11.2026).
         private bool C7SlobodanNaMB()
         {
             if (cboMagacinskiBroj.SelectedValue == null || cboCarinskiPostupak.SelectedValue == null)

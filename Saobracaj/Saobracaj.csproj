@@ -3656,11 +3656,18 @@
     <Compile Include="Skladista main\Dokumenta\Prijemnica.Potvrda.cs">
       <DependentUpon>Prijemnica.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijemnica.Kontejneri.cs">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\GrupeForme.cs" />
+    <Compile Include="Skladista main\TarifniBroj.cs" />
     <Compile Include="Skladista main\frmNalogPrijem.Ispravke.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\frmNalogPrijem.MagacinskiPredmet.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.KnjigaRbr.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">

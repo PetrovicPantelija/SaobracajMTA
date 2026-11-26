@@ -252,6 +252,9 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 btnDodeliPalete.Margin = new Padding(16, 0, 0, 0);
                 traka.Controls.Add(btnDodeliPalete);
             }
+            var raspodela = NapraviDugmeRaspodele();   // RAZ-08 (Prijemnica.Kontejneri.cs)
+            if (raspodela != null)
+                traka.Controls.Add(raspodela);
             var potvrda = NapraviDugmePotvrde();
             if (potvrda != null)
                 traka.Controls.Add(potvrda);
@@ -272,7 +275,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 if (ciljArtikla == null || panel9.Visible) return;
                 ciljArtikla.IDArtikla = idArtikla;
-                ciljArtikla.NHM = 0;
+                ciljArtikla.NHM = "";
                 ciljArtikla.Naziv = txtArtikal.Text.Trim();
                 if (cboJM.SelectedValue != null) ciljArtikla.JM = cboJM.SelectedValue.ToString();
                 ciljArtikla = null;
