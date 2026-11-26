@@ -3118,6 +3118,7 @@
     </Compile>
     <Compile Include="RNI\frmTerminalPrivremeni.Prilozi.cs">
       <DependentUpon>frmTerminalPrivremeni.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="RNI\frmTerminalPrivremeniExcel.cs">
       <SubType>Form</SubType>
@@ -3645,23 +3646,29 @@
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Prijemnica.UvozPL.cs">
       <DependentUpon>Prijemnica.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\ArtikliKatalogDijalozi.cs" />
     <Compile Include="Skladista main\Dokumenta\Prijemnica.Raspored.cs">
       <DependentUpon>Prijemnica.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Prijemnica.Palete.cs">
       <DependentUpon>Prijemnica.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Prijemnica.Potvrda.cs">
       <DependentUpon>Prijemnica.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\GrupeForme.cs" />
     <Compile Include="Skladista main\frmNalogPrijem.Ispravke.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\frmNalogPrijem.MagacinskiPredmet.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">
       <SubType>Form</SubType>
