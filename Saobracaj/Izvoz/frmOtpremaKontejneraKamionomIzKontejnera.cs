@@ -329,6 +329,21 @@ namespace Saobracaj.Izvoz
 
             if (txtKontejnerID.Text != "" && txtNalogID.Text != "")
             {
+                // KAP-08: bez zaglavlja otpreme (Novi) prenos izvoza/terminala pada na praznoj šifri,
+                // a drugi klik na Sačuvaj ponovo prenosi isti kontejner i ponovo nudi RN6
+                if (!chkUvoz.Checked && !int.TryParse(txtSifra.Text, out _))
+                {
+                    MessageBox.Show("Otprema nije formirana. Kliknite Novi, pa Sačuvaj.");
+                    return;
+                }
+                string kljucPrenosa = txtSifra.Text + "|" + txtKontejnerID.Text + "|" + txtNalogID.Text;
+                if (prenetoUOtpremu == kljucPrenosa)
+                {
+                    MessageBox.Show("Kontejner je već prenet u ovu otpremu.");
+                    return;
+                }
+                prenetoUOtpremu = kljucPrenosa;
+
                 int Usluga = VratiUsluguPoNalogu(txtNalogID.Text);
                 if (chkUvoz.Checked == true)
                 {
@@ -386,6 +401,8 @@ namespace Saobracaj.Izvoz
                 
             }
         }
+
+        string prenetoUOtpremu;   // otprema|kontejner|nalog koji je već prenet iz ove forme
 
         private void PrenesiRN7()
         {

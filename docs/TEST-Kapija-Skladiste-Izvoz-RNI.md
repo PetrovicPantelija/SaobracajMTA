@@ -461,3 +461,23 @@ Ispravke su urađene na zahtev, a build prolazi. Nisu proverene u aplikaciji: pr
 | IZV-16 | `Izvoz\frmIzvozDokumenta.cs`: Izbriši na svakom tabu briše dokument izabran u svojoj tabeli, uz potvrdu; izbor bukinga upisuje putanju bukinga | 8.4 korak 17 |
 | IZV-04 | `Izvoz\frmGrupniUnosPoljaIzvoz.cs` (`VratiPodatkeGrupeSelect`): porudžbenica se nalazi preko stavke (`ProdajniNalogIzvozStavke`), LEFT JOIN, pa se podaci kontejnera učitavaju i kad stavke nema | 8.4 korak 7 |
 | SKK-06 | `Skladista main\PregledKomercijalnihNaloga.cs`: za listu Uvoz Otvori, Potvrdi i Pregledaj podatke daju poruku „radi samo za izvoz“; dugme Potvrdi se ne prikazuje za uvoz. Ove radnje su napravljene samo nad `IzvozKonacna`; uvozna verzija je nova funkcija | 8.3 korak 5 |
+
+### 10.3 Paket B, Kapija i Izvoz (26.11.2026)
+
+| Oznaka | Šta je promenjeno | Provera |
+|---|---|---|
+| KAP-08 | `Izvoz\frmOtpremaKontejneraKamionomIzKontejnera.cs`: bez zaglavlja otpreme (izvoz/terminal) poruka „Kliknite Novi“; drugi klik na Sačuvaj ne prenosi isti kontejner ponovo | 8.1 korak 14 |
+| KAP-11 | `Uvoz\frmPrijemVozaIzPlana.cs`: Sačuvaj bez prijemnice daje poruku; drugi klik ne prenosi isti nalog ponovo; provera postojećeg RN4 važi i kad ih ima više | 8.1 korak 13 |
+| KAP-04 (+ KAP-13) | `Kapija\frmKapijaOtvoreniNalozi.cs`: Prijavi neslaganje uzima nalog iz izabranog reda i osvežava listu; Potvrdi dolazak bez DOLAZAK reda daje poruku | 8.1 koraci 7 i 9 |
+| KAP-02 | `Kapija\frmKamionDetalji.cs`: datumi imaju štiklir; prazan datum iz baze ostaje prazan; nov dolazak nema datum odlaska | 8.1 korak 3 |
+| IZV-12 | `Izvoz\frmFormiranjePlanaIzvoz.cs`: ID novog kontejnera iz `SCOPE_IDENTITY()`; neuspeo upis prekida prenos; nalog iz uvoza se prenosi jednom; korisnik i datum kao parametri | 8.4 korak 14 |
+| IZV-14 | `Izvoz\frmIzvozPregledKontejneraDrumskeUsluge.cs`: osvežavanje posle formiranja naloga koristi `IzvozKonacna.ID`; postojeća provera NalogID tada sprečava drugi nalog | 8.4 korak 13 |
+| IZV-11 | `Izvoz\frmIzvozKonacnaTable.cs`: svaka opcija ima kolonu i vrednost kao parametar; ispravljene kolone (KontaktSpeditera, Spedicija, VrstaBrodskePlombe, Inspekcija); Adresa utovara daje poruku; više označenih redova; poruka sa brojem izmenjenih | 8.4 korak 16 |
+| IZV-07 | `Izvoz\frmGrupniUnosPoljaIzvoz.cs`, `frmIzvozKonacna.cs`: tip kontejnera u upitima za železninu i repoziciju je parametar (radi i za 20DV, 45G1); Dodaj usluge pre snimanja daje poruku | 8.4 koraci 6 i 11 |
+| IZV-13 | `Izvoz\frmIzvozUnosManipulacije.cs`: postojeća železnina se traži u izvoznim tabelama (ne ubacuje se ponovo); cena kao parametar; prazna ili neispravna cena daje poruku. `frmIzvozKopiranjeUslugaKontejnera1.cs`: tabela Izvoz umesto nepostojeće „Izvoza“ | 8.4 koraci 11 i 12 |
+| IZV-05 | `Izvoz\frmGrupniUnosPoljaIzvoz.cs` (Formiraj KN I Faza): provera po svakom kontejneru (ne TOP 1 grupe), svi se proveravaju pre ijednog prenosa, poruka navodi kontejner, zastavice se vraćaju na svakom kliku, pitanje o bescarinskom postupku jednom, bez kontejnera nema radnih naloga | 8.4 korak 10 |
+
+**Ostaje otvoreno iz paketa B:**
+- Kopiranje usluga (`frmIzvozKopiranjeUslugaKontejnera1`): tabela ciljnih kontejnera se nigde ne puni. Treba odluka koje kontejnere ponuditi (isti plan, ista porudžbenica).
+- Skladište (SKK-01, SKK-03, SKC-06, SKC-10, SKC-11, SKC-12, SKC-17) čeka da druga sesija završi izmene tarifnog broja u istim fajlovima.
+- Zaštita od drugog klika (KAP-08, KAP-11, IZV-12) važi dok je forma otvorena; provera u bazi traži procedure kojih nema u repozitorijumu.

@@ -18,6 +18,7 @@ namespace Saobracaj.Kapija
         public frmKamionDetalji()
         {
             InitializeComponent();
+            UkljuciPrazneDatume();
             ChangeTextBox();
             FillCombo();
             ResetPolja();
@@ -26,6 +27,7 @@ namespace Saobracaj.Kapija
         {
             this.id = ID;
             InitializeComponent();
+            UkljuciPrazneDatume();
             FillCombo();
             VratiPodatke();
             ChangeTextBox();
@@ -232,12 +234,10 @@ namespace Saobracaj.Kapija
                 txtRazlogDolaska.Text = dr["RazlogDolaska"].ToString();
                 txtKontaktUFirmi.Text = dr["KontaktUnutarFirme"].ToString();
 
-                if (dr["DatumDolaska"] != DBNull.Value)
-                    dtpDatum.Value = Convert.ToDateTime(dr["DatumDolaska"].ToString());
-                if (dr["DatumZakazanogDolaska"] != DBNull.Value)
-                    dtpZakazaniDatumDolaska.Value = Convert.ToDateTime(dr["DatumZakazanogDolaska"].ToString());
-                if (dr["DatumOdlaska"] != DBNull.Value)
-                    dtpDatumOdlaska.Value = Convert.ToDateTime(dr["DatumOdlaska"].ToString());
+                // KAP-02: prazan datum u bazi ostaje prazan (polje bez štiklira), da Sačuvaj ne upiše vrednost iz dizajnera
+                PostaviDatum(dtpDatum, dr["DatumDolaska"]);
+                PostaviDatum(dtpZakazaniDatumDolaska, dr["DatumZakazanogDolaska"]);
+                PostaviDatum(dtpDatumOdlaska, dr["DatumOdlaska"]);
 
              
             }
@@ -263,6 +263,28 @@ namespace Saobracaj.Kapija
             dtpDatum.Value = DateTime.Now;
             dtpZakazaniDatumDolaska.Value = DateTime.Now;
             dtpDatumOdlaska.Value = DateTime.Now;
+            dtpDatum.Checked = true;
+            dtpZakazaniDatumDolaska.Checked = true;
+            dtpDatumOdlaska.Checked = false;   // nov dolazak: kamion još nije otišao
+        }
+
+        // Datumi dobijaju štiklir: neoznačen datum se snima kao prazan (NULL)
+        private void UkljuciPrazneDatume()
+        {
+            dtpDatum.ShowCheckBox = true;
+            dtpZakazaniDatumDolaska.ShowCheckBox = true;
+            dtpDatumOdlaska.ShowCheckBox = true;
+        }
+
+        private static void PostaviDatum(DateTimePicker polje, object vrednost)
+        {
+            if (vrednost == null || vrednost == DBNull.Value)
+            {
+                polje.Checked = false;
+                return;
+            }
+            polje.Value = Convert.ToDateTime(vrednost);
+            polje.Checked = true;
         }
 
         private void button21_Click(object sender, EventArgs e)

@@ -299,11 +299,11 @@ namespace Saobracaj.Izvoz
             con.Open();
             if (txtNadredjeni.Text != "0")
             {
-                Komanda = "select VrstaManipulacije.ID from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
+                Komanda = "select VrstaManipulacije.ID from IzvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
             }
             else
             {
-                Komanda = "select VrstaManipulacije.ID from UvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
+                Komanda = "select VrstaManipulacije.ID from IzvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where GrupaVrsteManipulacijeID = 1 and IDNadredjena= ";
             }
 
             SqlCommand cmd = new SqlCommand(Komanda + ID, con);
@@ -395,8 +395,13 @@ namespace Saobracaj.Izvoz
 
                 con2.Open();
 
-                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = " + ZelezninaNova + ", Cena = " + pomCena + " where IDVrstaManipulacije = " + ZelezninaStara + " and IDNAdredjena = " + pID, con2);
-                SqlDataReader dr2 = cmd2.ExecuteReader();
+                // IZV-13: cena kao parametar (12,5 sa srpskim regionalnim podešavanjima je davalo sintaksnu grešku)
+                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = @Nova, Cena = @Cena where IDVrstaManipulacije = @Stara and IDNAdredjena = @ID", con2);
+                cmd2.Parameters.AddWithValue("@Nova", ZelezninaNova);
+                cmd2.Parameters.AddWithValue("@Cena", pomCena);
+                cmd2.Parameters.AddWithValue("@Stara", ZelezninaStara);
+                cmd2.Parameters.AddWithValue("@ID", pID);
+                cmd2.ExecuteNonQuery();
 
 
 
@@ -451,8 +456,12 @@ namespace Saobracaj.Izvoz
 
                 con2.Open();
 
-                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = " + RepozicijaNova + ", Cena = " + pomCena + " where IDVrstaManipulacije = " + RepozicijaStara + " and IDNAdredjena = " + pID, con2);
-                SqlDataReader dr2 = cmd2.ExecuteReader();
+                SqlCommand cmd2 = new SqlCommand("update IzvozVrstaManipulacije set IDVrstaManipulacije = @Nova, Cena = @Cena where IDVrstaManipulacije = @Stara and IDNAdredjena = @ID", con2);
+                cmd2.Parameters.AddWithValue("@Nova", RepozicijaNova);
+                cmd2.Parameters.AddWithValue("@Cena", pomCena);
+                cmd2.Parameters.AddWithValue("@Stara", RepozicijaStara);
+                cmd2.Parameters.AddWithValue("@ID", pID);
+                cmd2.ExecuteNonQuery();
 
 
 
@@ -3190,17 +3199,26 @@ namespace Saobracaj.Izvoz
                 if (columnIndex == 6)
                 {   string value = dataGridView7.Rows[rowIndex].Cells[0].EditedFormattedValue.ToString();
                     string value1 = dataGridView7.Rows[rowIndex].Cells[6].EditedFormattedValue.ToString();
-                    string value2 = dataGridView7.Rows[rowIndex].Cells[6].Value.ToString();
+                    // IZV-13: prazna ili neispravna cena daje poruku (ranije Convert.ToDouble("") je obarao formu)
+                    double cena;
+                    int idUsluge;
+                    if (!int.TryParse(value, out idUsluge))
+                        return;
+                    if (!double.TryParse(value1, out cena))
+                    {
+                        MessageBox.Show("Cena mora biti broj (npr. 12,5).");
+                        return;
+                    }
                     if (txtNadredjeni.Text != "0")
                     {
                         InsertIzvoz uvK = new InsertIzvoz();
-                        uvK.UpdCENAIzvozKonacnaUsluga(Convert.ToInt32(value), Convert.ToDouble(value1));
+                        uvK.UpdCENAIzvozKonacnaUsluga(idUsluge, cena);
                        // FillDG8();
                     }
                     else
                     {
                         InsertIzvoz uvK = new InsertIzvoz();
-                        uvK.UpdCENAIzvozUsluga(Convert.ToInt32(value), Convert.ToDouble(value1));
+                        uvK.UpdCENAIzvozUsluga(idUsluge, cena);
                         //FillDG8();
 
                     }

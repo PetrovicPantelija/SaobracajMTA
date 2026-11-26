@@ -1770,8 +1770,9 @@ namespace Saobracaj.Izvoz
 
             SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
                 " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID" +
-                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = @Tip AND RLTerminali = " +
                 pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+                cmd.Parameters.AddWithValue("@Tip", TipKOntejnera ?? "");   // IZV-07: šifra tipa kao parametar (ranije je radila samo kad se završava apostrofom, npr. 40')
             SqlDataReader dr = cmd.ExecuteReader();
 
 
@@ -1798,8 +1799,9 @@ namespace Saobracaj.Izvoz
 
             SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
                 " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID " +
-                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = @Tip AND RLTerminali = " +
                 pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+                cmd.Parameters.AddWithValue("@Tip", TipKOntejnera ?? "");   // IZV-07: šifra tipa kao parametar (ranije je radila samo kad se završava apostrofom, npr. 40')
             SqlDataReader dr = cmd.ExecuteReader();
 
 

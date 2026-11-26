@@ -143,7 +143,7 @@ namespace Saobracaj.Kapija
 
             if (smer.Trim().ToUpper() != "DOLAZAK")
             {
-
+                MessageBox.Show("Izaberite nalog za DOLAZAK.");
                 return;
             }
 
@@ -156,13 +156,17 @@ namespace Saobracaj.Kapija
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == "")
+            // KAP-04: nalog se uzima iz izabranog reda; txtID posle „Potvrdi dolazak“ sadrži ID iz tabele Kapija, ne nalog
+            int nalogID;
+            var zapis = gridGroupingControl2.Table.CurrentRecord;
+            if (zapis == null || !int.TryParse(Convert.ToString(zapis.GetValue("KomNalogID")), out nalogID) || nalogID <= 0)
             {
-                MessageBox.Show("Izaberite zapis");
+                MessageBox.Show("Izaberite nalog u listi.");
                 return;
             }
             InsertKapija ukn = new InsertKapija();
-            ukn.UpdeteKapijaNeslaganje(Convert.ToInt32(txtID.Text));
+            ukn.UpdeteKapijaNeslaganje(nalogID);
+            VratiPodatke();
         }
 
         private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)

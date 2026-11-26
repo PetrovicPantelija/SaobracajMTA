@@ -2173,6 +2173,13 @@ namespace Saobracaj.Izvoz
         {
             ///Ovde se mora proveriti
 
+            // IZV-07: pre snimanja nema kontejnera, a upit „IN ()“ je padao
+            if (noviIDs == null || noviIDs.Count == 0)
+            {
+                MessageBox.Show("Prvo sačuvajte kontejnere (Sačuvaj), pa dodajte usluge.");
+                return;
+            }
+
             if (drumski == 1 || chkVaganje.Checked)
             {
                 string idsZaUpit = string.Join(", ", noviIDs);
@@ -2423,8 +2430,9 @@ namespace Saobracaj.Izvoz
 
             SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
                 " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID " +
-                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = @Tip AND RLTerminali = " +
                 pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+                cmd.Parameters.AddWithValue("@Tip", TipKOntejnera ?? "");   // IZV-07: šifra tipa kao parametar (ranije je radila samo kad se završava apostrofom, npr. 40')
             SqlDataReader dr = cmd.ExecuteReader();
 
 
@@ -2451,8 +2459,9 @@ namespace Saobracaj.Izvoz
 
             SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
                 " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID" +
-                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                " where GrupaVrsteManipulacijeID = 1 and Substring(TipKontenjera.SkNaziv,1,3) = @Tip AND RLTerminali = " +
                 pickUp + " and RLTerminali2 = " + pickUp2 + " AND RLTerminali3 = " + pickUp3, con);
+                cmd.Parameters.AddWithValue("@Tip", TipKOntejnera ?? "");   // IZV-07: šifra tipa kao parametar (ranije je radila samo kad se završava apostrofom, npr. 40')
             SqlDataReader dr = cmd.ExecuteReader();
 
 
@@ -2549,11 +2558,12 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private PodaciIzvoza VratiPodatkeIzvoza()
+        // IZV-05: sa ID-jem kontejnera čita baš taj kontejner (ranije TOP 1 iz cele grupe za svaki red)
+        private PodaciIzvoza VratiPodatkeIzvoza(int kontejnerID = 0)
         {
             PodaciIzvoza podaci = null;
 
-            string idsZaUpit = string.Join(",", noviIDs);
+            string idsZaUpit = kontejnerID > 0 ? kontejnerID.ToString() : string.Join(",", noviIDs);
             using (SqlConnection con = new SqlConnection(connection)) // Koristi using za konekciju
             {
                 con.Open();
@@ -2960,15 +2970,16 @@ namespace Saobracaj.Izvoz
         private int brojKontejneraPopunjeno = 1;   //uspesno 0-neuspesno
         private void ProveriPodatkeDaLiSuPripreljeni(int KontejnerID)
         {
-            var podaci = VratiPodatkeIzvoza();
-           
+            var podaci = VratiPodatkeIzvoza(KontejnerID);
+
 
             if (podaci == null) return; // Nema podataka
                                         //Proveri Carinsko
             carinskoPopunjeno = ProveriCarinsko(podaci);
 
-            if (bescarinski == 1)
+            if (bescarinski == 1 && !pitanBescarinski)   // pita se jednom po kliku, ne za svaki kontejner
             {
+                pitanBescarinski = true;
                 DialogResult rezultat = MessageBox.Show(
                     "Izabrali ste bescarinski postupak. Da li želite da nastavite kao bescarinski postupak? \n\n(Kliknite 'No' ako želite da se vratite i popunite podatke)",
                     "Obaveštenje o postupku",
@@ -3048,15 +3059,37 @@ namespace Saobracaj.Izvoz
                 }
         }
 
+        bool pitanBescarinski;
+
         private void button2_Click(object sender, EventArgs e)
         {
             InsertIzvozKonacna ins = new InsertIzvozKonacna();
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            // IZV-05: zastavice se vraćaju na početku svakog klika (ranije je posle „No“ dugme prestajalo da radi),
+            // svi kontejneri se proveravaju PRE ijednog prenosa, a bez kontejnera nema ni radnih naloga
+            bescarinski = 0;
+            vratiNaDopunuPodataka = 0;
+            pitanBescarinski = false;
+            var kontejneri = new List<int>();
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                int idK;
+                if (!r.IsNewRow && r.Cells[0].Value != null && int.TryParse(r.Cells[0].Value.ToString(), out idK))
+                    kontejneri.Add(idK);
+            }
+            if (kontejneri.Count == 0)
+            {
+                MessageBox.Show("Nema kontejnera. Prvo sačuvajte grupu (Sačuvaj).");
+                return;
+            }
+
+            foreach (int kontejnerZaProveru in kontejneri)
             {
                 // if (row.Selected)
                 // {
-                ProveriPodatkeDaLiSuPripreljeni(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                relacijaPopunjena = 1;          // za scenarije bez provere relacije / broja kontejnera
+                brojKontejneraPopunjeno = 1;    // ne sme ostati vrednost prethodnog kontejnera
+                ProveriPodatkeDaLiSuPripreljeni(kontejnerZaProveru);
 
                 // koristimo samo ako je carinski postupak izabran kao / a korisnik se izjasnio da zeli ipak da popuni podatke
                 if (vratiNaDopunuPodataka == 1)
@@ -3171,16 +3204,17 @@ namespace Saobracaj.Izvoz
                         poruka += $"{glagol} {spisakPolja}";
                     }
 
-                    poruka += "!";
+                    poruka += " (kontejner ID " + kontejnerZaProveru + "). Ništa nije preneto u plan.";
                     MessageBox.Show(poruka);
                     return;
                 }
+            }
 
-
-                ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(40));
-                upisiLogKontejnera(Convert.ToInt32(row.Cells[0].Value.ToString()), false);
-
-                // }
+            // svi kontejneri su ispravni: tek sada se prenose
+            foreach (int kontejnerID in kontejneri)
+            {
+                ins.PrenesiUPlanUtovaraIzvoz(kontejnerID, Convert.ToInt32(40));
+                upisiLogKontejnera(kontejnerID, false);
             }
             string kor = Sifarnici.frmLogovanje.user;
 

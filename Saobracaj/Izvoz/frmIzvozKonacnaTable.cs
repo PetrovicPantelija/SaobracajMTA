@@ -106,6 +106,8 @@ namespace Saobracaj.Izvoz
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
+            // IZV-11: grupna izmena radi nad više označenih redova (dizajner je dozvoljavao samo jedan)
+            gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.MultiExtended;
             ChangeTextBox();
             RefreshGV();
         }
@@ -115,6 +117,8 @@ namespace Saobracaj.Izvoz
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
+            // IZV-11: grupna izmena radi nad više označenih redova (dizajner je dozvoljavao samo jedan)
+            gridGroupingControl1.TableOptions.ListBoxSelectionMode = SelectionMode.MultiExtended;
             txtPlanID.Text = PlanID;
             ChangeTextBox();
             RefreshGVPoPlanu();
@@ -576,144 +580,82 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void UpdateVrednostiPolja(int IdZaPromenu)
+        // IZV-11: jedna izmena = kolona + vrsta vrednosti; vrednost ide kao parametar. Ranije su datumi išli u SQL bez
+        // navodnika (uvek greška), tekst je padao na apostrof, tri opcije su pisale u nepostojeću kolonu obijeBZ,
+        // „Inspekcija]“ je imala višak zagrade, a Brodska plomba je upisivala brodara u broj plombe.
+        private bool UpdateVrednostiPolja(int IdZaPromenu)
         {
-            SqlConnection conn = new SqlConnection(connection);
-            string updatestring = "";
+            string kolona;
+            object vrednost;
             switch (cboPolje.Text)
             {
+                case "Cut off port": kolona = "CutOffPort"; vrednost = dtpOpsti.Value; break;
+                case "Planirani datum utovara": kolona = "PlaniraniDatumUtovara"; vrednost = dtpOpsti.Value; break;
+                case "ETA Leget": kolona = "EtaLeget"; vrednost = dtpOpsti.Value; break;
 
-                case "Cut off port":
-                    updatestring = " Update IzvozKonacna set CutOffPort = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Planirani datum utovara":
-                    updatestring = " Update IzvozKonacna set PlaniraniDatumUtovara = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
-                    break;
+                case "Broj kontejnera": kolona = "BrojKontejnera"; vrednost = txtOpsti.Text; break;
+                case "Booking brodara": kolona = "BookingBrodara"; vrednost = txtOpsti.Text; break;
+                case "Ostale plombe": kolona = "OstalePlombe"; vrednost = txtOpsti.Text; break;
+                case "Kontakt osobe": kolona = "KontaktOsobe"; vrednost = txtOpsti.Text; break;
+                case "Naslov za slanje statusa vozila": kolona = "NaslovSlanjaStatusa"; vrednost = txtOpsti.Text; break;
+                case "Adresa za slanje statusa vozila": kolona = "AdresaSlanjaStatusa"; vrednost = txtOpsti.Text; break;
+                case "DODATNE NAPOMENE ZA KAMIONSKI PREVOZ I PRETOVAR": kolona = "DodatneNapomeneDrumski"; vrednost = txtOpsti.Text; break;
+                case "NAPOMENA ZA ROBU": kolona = "NapomenaZaRobu"; vrednost = txtOpsti.Text; break;
+                case "Ref za fakturisanje 1": kolona = "Napomena1REf"; vrednost = txtOpsti.Text; break;
+                case "Ref za fakturisanje 2": kolona = "Napomena2REf"; vrednost = txtOpsti.Text; break;
+                case "Ref za fakturisanje 3": kolona = "Napomena3REf"; vrednost = txtOpsti.Text; break;
+                case "Broj vagona": kolona = "BrojVagona"; vrednost = txtOpsti.Text; break;
+                case "Kontakt osoba špeditera": kolona = "KontaktSpeditera"; vrednost = txtOpsti.Text; break;
 
-                case "ETA Leget":
-                    updatestring = " Update IzvozKonacna set EtaLeget = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Broj kontejnera":
-                    updatestring = " Update IzvozKonacna set BrojKontejnera = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Booking brodara":
-                    updatestring = " Update IzvozKonacna set BookingBrodara = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Ostale plombe":
-                    updatestring = " Update IzvozKonacna set OstalePlombe = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Kontakt osobe":
-                    updatestring = " Update IzvozKonacna set KontaktOsobe = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Naslov za slanje statusa vozila":
-                    updatestring = " Update IzvozKonacna set NaslovSlanjaStatusa = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Adresa za slanje statusa vozila":
-                    updatestring = " Update IzvozKonacna set AdresaSlanjaStatusa = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "DODATNE NAPOMENE ZA KAMIONSKI PREVOZ I PRETOVAR":
-                    updatestring = " Update IzvozKonacna set DodatneNapomeneDrumski = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "NAPOMENA ZA ROBU":
-                    updatestring = " Update IzvozKonacna set NapomenaZaRobu = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Ref za fakturisanje 1":
-                    updatestring = " Update IzvozKonacna set Napomena1REf = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Ref za fakturisanje 2":
-                    updatestring = " Update IzvozKonacna set Napomena2REf = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Ref za fakturisanje 3":
-                    updatestring = " Update IzvozKonacna set Napomena3REf= '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
+                case "Izvoznik": kolona = "Izvoznik"; vrednost = cboOpsti.SelectedValue; break;
+                case "Nalogodavac za voz": kolona = "Klijent1"; vrednost = cboOpsti.SelectedValue; break;
+                case "Nalogodavac za usluge": kolona = "Klijent2"; vrednost = cboOpsti.SelectedValue; break;
+                case "Nalogodavac za drumski prevoz": kolona = "Klijent3"; vrednost = cboOpsti.SelectedValue; break;
+                case "Špediter u Rijeci": kolona = "SpediterRijeka"; vrednost = cboOpsti.SelectedValue; break;
+                case "Vrsta kontejnera": kolona = "VrstaKontejnera"; vrednost = cboOpsti.SelectedValue; break;
+                case "Brodar": kolona = "Brodar"; vrednost = cboOpsti.SelectedValue; break;
+                case "Brodska plomba": kolona = "VrstaBrodskePlombe"; vrednost = cboOpsti.SelectedValue; break;   // lista brodara, kao cboVrstaPlombe u planu
+                case "Valuta": kolona = "Valuta"; vrednost = cboOpsti.SelectedValue == null ? null : cboOpsti.SelectedValue.ToString(); break;
+                case "Krajnja destinacija": kolona = "KrajnaDestinacija"; vrednost = cboOpsti.SelectedValue; break;
+                case "Pick up CNT": kolona = "MestoPreuzimanja"; vrednost = cboOpsti.SelectedValue; break;
+                case "Mesto utovara": kolona = "MesoUtovara"; vrednost = cboOpsti.SelectedValue; break;
+                case "Mesto carinjenja": kolona = "MestoCarinjenja"; vrednost = cboOpsti.SelectedValue; break;
+                case "Špediter": kolona = "Spedicija"; vrednost = cboOpsti.SelectedValue; break;
+                case "Napomena o Carinskom postupku na LGT": kolona = "NapomenaReexport"; vrednost = cboOpsti.SelectedValue; break;
+                case "Inspekciski tretman": kolona = "Inspekcija"; vrednost = cboOpsti.SelectedValue; break;
+                case "Način pakovanja": kolona = "NacinPakovanja"; vrednost = cboOpsti.SelectedValue; break;
 
-                case "Broj vagona":
-                    updatestring = " Update IzvozKonacna set BrojVagona = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    break;
-                case "Kontakt osoba špeditera":
-                    updatestring = " Update IzvozKonacna set obijeBZ = " + dtpOpsti.Text + " where ID =" + IdZaPromenu;
-                    break;
-                case "Izvoznik":
-                    updatestring = " Update IzvozKonacna set Izvoznik = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogodavac za voz":
-                    updatestring = " Update IzvozKonacna set Klijent1 = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogodavac za usluge":
-                    updatestring = " Update IzvozKonacna set Klijent2 = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Nalogodavac za drumski prevoz":
-                    updatestring = " Update IzvozKonacna set Klijent3 = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Špediter u Rijeci":
-                    updatestring = " Update IzvozKonacna set SpediterRijeka = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Vrsta kontejnera":
-                    updatestring = " Update IzvozKonacna set VrstaKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Brodar":
-                    updatestring = " Update IzvozKonacna set Brodar = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Brodska plomba":
-                    updatestring = " Update IzvozKonacna set BrodskaPlomba = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Valuta":
-                    updatestring = " Update IzvozKonacna set Valuta = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Krajnja destinacija":
-                    updatestring = " Update IzvozKonacna set KrajnaDestinacija = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Pick up CNT":
-                    updatestring = " Update IzvozKonacna set MestoPreuzimanja = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Mesto utovara":
-                    updatestring = " Update IzvozKonacna set MesoUtovara = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
                 case "Adresa utovara":
-                    updatestring = " Update IzvozKonacna set obijeBZ = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Mesto carinjenja":
-                    updatestring = " Update IzvozKonacna set MestoCarinjenja = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Špediter":
-                    updatestring = " Update IzvozKonacna set obijeBZ = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Napomena o Carinskom postupku na LGT":
-                    updatestring = " Update IzvozKonacna set NapomenaReexport = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Inspekciski tretman":
-                    updatestring = " Update IzvozKonacna set Inspekcija] = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
-                case "Način pakovanja":
-                    updatestring = " Update IzvozKonacna set NacinPakovanja = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                    break;
+                    MessageBox.Show("Izmena adrese utovara iz tabele još ne postoji (nema liste adresa ni kolone).");
+                    return false;
                 default:
-                    Console.WriteLine("Nema podatka");
-                    break;
-
+                    MessageBox.Show("Izaberite polje koje se menja.");
+                    return false;
             }
 
-            string updateSql = updatestring;
+            if (vrednost == null)
+            {
+                MessageBox.Show("Izaberite vrednost za polje „" + cboPolje.Text + "“.");
+                return false;
+            }
 
-            SqlConnection conn2 = new SqlConnection(connection);
-            SqlCommand cmd = new SqlCommand(updateSql, conn2);
-            conn2.Open();
-            var q = cmd.ExecuteNonQuery();
-            conn2.Close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            try
+            {
+                using (SqlConnection conn2 = new SqlConnection(connection))
+                using (SqlCommand cmd = new SqlCommand("UPDATE IzvozKonacna SET [" + kolona + "] = @V WHERE ID = @ID", conn2))
+                {
+                    cmd.Parameters.AddWithValue("@V", vrednost);
+                    cmd.Parameters.AddWithValue("@ID", IdZaPromenu);
+                    conn2.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Izmena nije upisana (kontejner ID " + IdZaPromenu + "): " + ex.Message);
+                return false;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -851,11 +793,20 @@ namespace Saobracaj.Izvoz
             if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
             {
                 int IDZaPromenu = 0;
+                int izmenjeno = 0;
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
                     IDZaPromenu = Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString());
-                    UpdateVrednostiPolja(IDZaPromenu);
+                    if (!UpdateVrednostiPolja(IDZaPromenu))
+                        break;   // ista greška bi se ponovila za svaki red
+                    izmenjeno++;
                 }
+                if (izmenjeno > 0)
+                    MessageBox.Show("Izmenjeno kontejnera: " + izmenjeno);
+            }
+            else
+            {
+                MessageBox.Show("Označite kontejnere u tabeli.");
             }
 
             RefreshGV();

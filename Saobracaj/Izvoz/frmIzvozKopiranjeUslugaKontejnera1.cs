@@ -163,7 +163,7 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select BrojKontejnera from Izvoza where ID = " + Convert.ToInt32(txtID.Text), con);
+            SqlCommand cmd = new SqlCommand("select BrojKontejnera from Izvoz where ID = " + Convert.ToInt32(txtID.Text), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

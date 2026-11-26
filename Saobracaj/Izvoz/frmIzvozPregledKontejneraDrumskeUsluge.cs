@@ -56,8 +56,9 @@ namespace Saobracaj.Izvoz
                     " from IzvozVrstaManipulacije " +
                     " Inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
                     " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
-                    " inner join IzvozKonacna on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
-                    " left join RadniNalogDrumski on Izvoz.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
+                    // IZV-14: tabela Izvoz nije u upitu (Izvoz.ID je davao SqlException posle formiranja naloga); kao u RefreshGridPoPorudzbini
+                    " inner join IzvozKonacna on IzvozVrstaManipulacije.IDNadredjena = IzvozKonacna.ID" +
+                    " left join RadniNalogDrumski on IzvozKonacna.ID = RadniNalogDrumski.KontejnerID and IzvozVrstaManipulacije.IDVrstaManipulacije = RadniNalogDrumski.IDVrstaManipulacije AND IzvozVrstaManipulacije.ID = RadniNalogDrumski.UKID " +
                     " left join StatusVozila  ON StatusVozila.ID = RadniNalogDrumski.Status " +
                     " left join Automobili ON RadniNalogDrumski.KamionID = Automobili.ID " +
                     " where  IzvozKonacna.ID = " + kontejner + " and OrganizacioneJedinice.Naziv = 'Drumski prevoz' order by IzvozVrstaManipulacije.ID";

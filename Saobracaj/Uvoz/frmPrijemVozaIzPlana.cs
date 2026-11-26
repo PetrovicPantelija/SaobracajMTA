@@ -552,11 +552,21 @@ namespace Saobracaj.Uvoz
 
         }
 
+        string prenetoUPrijem;   // prijemnica|nalog koji je već prenet iz ove forme
+
         private void PrenesiStavkeIRN()
         {
             int Usluga = VratiUsluguPoNalogu(txtNalogID.Text);
             if (txtSifra.Text == "")
             {
+                // KAP-11: ranije bez poruke, pa je korisnik mislio da je GATE IN urađen
+                MessageBox.Show("Prijemnica nije formirana. Kliknite Novi, pa Sačuvaj.");
+                return;
+            }
+            else if (Kamion == 0 && prenetoUPrijem == txtSifra.Text + "|" + txtNalogID.Text)
+            {
+                // drugi klik na Sačuvaj ponovo bi preneo isti nalog na istu prijemnicu i ponovo ponudio RN4
+                MessageBox.Show("Kontejner je već prenet na ovu prijemnicu.");
                 return;
             }
             else
@@ -604,7 +614,8 @@ namespace Saobracaj.Uvoz
                     {
                         ins.PrenesiPlanUtovaraUPrijemPLatforma(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogID.Text));
                     }
-               
+                    prenetoUPrijem = txtSifra.Text + "|" + txtNalogID.Text;
+
                     VratiPodatkeMax();
                     RefreshDataGrid();
                     int Modul = 0;
@@ -626,7 +637,8 @@ namespace Saobracaj.Uvoz
                     else if (chkUvoz.Checked == true)
                     {
                         ProveriDaLijeFormiranVecRN4();
-                        if (txtPostoji.Text == "1")
+                        int postojiRN4;
+                        if (int.TryParse(txtPostoji.Text, out postojiRN4) && postojiRN4 > 0)   // i kad ih ima više od jednog
                         {
                             MessageBox.Show("Vec je napravljen RN");
                             return;

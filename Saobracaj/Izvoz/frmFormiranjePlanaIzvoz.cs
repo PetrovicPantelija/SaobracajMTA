@@ -513,24 +513,35 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void FormirajNoviID()
+        // IZV-12: ID novog reda iz istog upisa (SCOPE_IDENTITY), ne MAX(ID) sa druge konekcije;
+        // kad upis ne uspe, vraća false i ništa se dalje ne upisuje u tuđi kontejner
+        private bool FormirajNoviID()
         {
             try
             {
-                SqlConnection conn = new SqlConnection(connection);
-                SqlCommand cmd = new SqlCommand("Insert into Izvoz Default Values", conn);
-                conn.Open();
-                var q = cmd.ExecuteNonQuery();
-                conn.Close();
-
+                using (SqlConnection conn = new SqlConnection(connection))
+                using (SqlCommand cmd = new SqlCommand("Insert into Izvoz Default Values; SELECT CAST(SCOPE_IDENTITY() AS int);", conn))
+                {
+                    conn.Open();
+                    object id = cmd.ExecuteScalar();
+                    if (id == null || id == DBNull.Value)
+                    {
+                        MessageBox.Show("Novi kontejner nije upisan.");
+                        return false;
+                    }
+                    IDUvozni = Convert.ToInt32(id).ToString();
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
+                return false;
             }
-            GetID();
-
+            UpisiKorisnikaIVreme(Convert.ToInt32(IDUvozni));
+            return true;
         }
+
+        bool prenetoIzUvoza;   // nalog iz uvoza je već prenet u plan iz ove forme
 
         string IDUvozni = "0"; // Ovo je izvozni 
       
@@ -560,7 +571,11 @@ namespace Saobracaj.Izvoz
             using (SqlConnection connection1 = new SqlConnection(connection))
             using (SqlCommand command = connection1.CreateCommand())
             {
-                command.CommandText = "Update Izvoz set Korisnik = '" + frmLogovanje.user + "' , DatumKreiranja = ' " + DateTime.Now + "' where ID = " + IDpom;
+                // datum kao parametar (tekst datuma zavisi od regionalnih podešavanja računara)
+                command.CommandText = "Update Izvoz set Korisnik = @Korisnik, DatumKreiranja = @Datum where ID = @ID";
+                command.Parameters.AddWithValue("@Korisnik", frmLogovanje.user);
+                command.Parameters.AddWithValue("@Datum", DateTime.Now);
+                command.Parameters.AddWithValue("@ID", IDpom);
 
 
 
@@ -575,13 +590,21 @@ namespace Saobracaj.Izvoz
         {
             if (pomIzUvoza == 1)
             {
+                // Forma je otvorena za jedan nalog iz uvoza (pomRadniNalogInterni): prenosi se jednom, bez obzira
+                // na broj označenih redova; drugi klik bi napravio još jedan kontejner i još jedan radni nalog
+                if (prenetoIzUvoza)
+                {
+                    MessageBox.Show("Nalog iz uvoza je već prenet u plan.");
+                    return;
+                }
                  if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
                 {
-                    foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                     {
 
-                        FormirajNoviID();
-                        
+                        if (!FormirajNoviID())
+                            return;
+                        prenetoIzUvoza = true;
+
                         //Updejtuj podatke
                         
                         InsertIzvozKonacna ins = new InsertIzvozKonacna();
