@@ -27,20 +27,33 @@ namespace Saobracaj.Skladista_main
             InitializeComponent();
             Tip = tip;
             VratiRN();
+            InitOtprema();   // RAZ-11: novi nalog otpreme (CarinskoSkladistePregled.Otprema.cs)
         }
-        private void VratiRN()
+
+        // RAZ-11: nalog otpreme se pravi direktno sa ove liste, bez internog naloga RN20 i potvrde LO; zato se za Otpremu
+        // interni nalog spaja sa LEFT JOIN i prikazuju se i neformirani nalozi (kolona Formiran). Prijem ostaje kao do sada.
+        private string UpitListe()
         {
-            var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
+            string tip = tipListe ?? Tip;   // Tip menja button24_Click (TipRN izabranog reda)
+            bool otprema = tip == "Otprema";
+            return " Select RadniNalogSkladista.ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
                "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(vlr.Naziv) as VlasnikRobe, " +
-            " OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
+            " OpisPosla,Napomena,Aktivan, " +
+            (otprema ? " CASE WHEN RadniNalogSkladista.Formiran = 1 THEN 'Da' ELSE 'Ne' END as Formiran, " : "") +
+            " t1.LO, t1.Prijem, t1.Viljuskarista " +
             " from RadniNalogSkladista " +
             " inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
-            " left join VlasniciRobe as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: vlasnik robe iz VlasniciRobe
-            " inner join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
+            " left join (SELECT id, Naziv FROM VlasniciRobe) as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: samo id i Naziv, da ne bude dvosmislenih kolona
+            (otprema ? " left" : " inner") + " join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
                             "    FROM radninaloginterni " +
                             "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +
                             " on RadniNalogSkladista.ID = t1.BrojRN " +
-                            " WHere TipRN = '" + Tip + "' and Formiran = 1 and VrstaRN = 'Carinsko' order by ID desc   ";
+                            " WHere TipRN = '" + tip + "' and " + (otprema ? "" : "Formiran = 1 and ") + "VrstaRN = 'Carinsko' order by RadniNalogSkladista.ID desc   ";
+        }
+
+        private void VratiRN()
+        {
+            var select = UpitListe();
 
             //var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN,CarinskoSkladiste, " +
             //   "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe, " +
@@ -87,6 +100,11 @@ namespace Saobracaj.Skladista_main
 
         private void button24_Click(object sender, EventArgs e)
         {
+            if (gridGroupingControl1.Table.CurrentRecord == null)   // ISP-10
+            {
+                MessageBox.Show("Izaberite nalog u tabeli.");
+                return;
+            }
             if (gridGroupingControl1.Table.CurrentRecord != null)
             {
                 ID = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString());

@@ -28,17 +28,17 @@ namespace Saobracaj.Skladista_main
 
         private void VratiRN()
         {
-            var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN, " +
+            var select = " Select RadniNalogSkladista.ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN, " +
                "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(vlr.Naziv) as VlasnikRobe, " +
                 " OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
                 " from RadniNalogSkladista " +
                 " inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
-                " left join VlasniciRobe as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: vlasnik robe iz VlasniciRobe
+                " left join (SELECT id, Naziv FROM VlasniciRobe) as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: samo id i Naziv, da ne bude dvosmislenih kolona
                 " inner join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
                "    FROM radninaloginterni " +
                "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +
                " on RadniNalogSkladista.ID = t1.BrojRN " +
-               " WHere TipRN = '" + Tip + "' and Formiran = 1 and VrstaRN = 'Komercijalno' order by ID desc   ";
+               " WHere TipRN = '" + Tip + "' and Formiran = 1 and VrstaRN = 'Komercijalno' order by RadniNalogSkladista.ID desc   ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;

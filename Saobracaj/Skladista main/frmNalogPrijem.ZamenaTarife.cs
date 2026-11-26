@@ -23,24 +23,35 @@ namespace Saobracaj.Skladista_main
         static readonly Color SavaOznaka = Color.FromArgb(0x4C, 0x5D, 0x6E);
         static readonly Color SavaPovrsina = Color.FromArgb(0xF4, 0xF7, 0xFA);
 
-        // poziva se iz InitMagacinskiPredmet, pre InitRaspored: Napomena se sužava, dugmad staju između nje i Dodaj/Izmeni/Izbriši
+        // poziva se iz InitMagacinskiPredmet, pre InitRaspored: Napomena se sužava, dugmad staju između nje i Dodaj/Izmeni/Izbriši.
+        // Mere se računaju od dugmeta Dodaj (button3), ne od fiksnih piksela: forma ima AutoScaleMode.Font, pa se pri
+        // drugačijem fontu ili DPI pomeraju i Napomena i Dodaj; sa fiksnom širinom dugmad su delimično ulazila pod Dodaj.
         private void InitZamenaTarife()
         {
             var panel = txtNapomenaE.Parent;
-            txtNapomenaE.Width = 120;
-            int x = txtNapomenaE.Right + 8;
+            float k = button3.Width / 87f;                       // 87 = širina dugmeta Dodaj u dizajneru
+            int razmak = Math.Max(6, (int)(8 * k));
+            int sirina = (int)(94 * k);
+            int x = button3.Left - razmak - sirina;              // dugmad završavaju levo od Dodaj
+            int gore = button3.Top;
+            int dole = button5.Bottom;                           // Izbriši
+            int visina = (dole - gore - 4) / 2;
+
+            // Napomena zauzima ostatak do dugmadi (najmanje 80 px)
+            txtNapomenaE.Width = Math.Max(80, x - razmak - txtNapomenaE.Left);
+
             btnZameniTarifu = new Button
             {
                 Text = "Zameni tarifni broj",
-                Location = new Point(x, 8),
-                Size = new Size(94, 48),
+                Location = new Point(x, gore),
+                Size = new Size(sirina, visina),
                 UseVisualStyleBackColor = true
             };
             btnIstorijaTarifa = new Button
             {
                 Text = "Istorija tarifa",
-                Location = new Point(x, 60),
-                Size = new Size(94, 44),
+                Location = new Point(x, gore + visina + 4),
+                Size = new Size(sirina, dole - gore - visina - 4),
                 UseVisualStyleBackColor = true
             };
             var tip = new ToolTip();

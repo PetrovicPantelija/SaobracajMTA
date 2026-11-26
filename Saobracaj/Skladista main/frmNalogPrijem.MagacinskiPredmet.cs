@@ -570,5 +570,34 @@ namespace Saobracaj.Skladista_main
                 "Carinski postupak C7", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
+
+        // RAZ-06: vlasnika robe upisuje procedura UpdateRadniNalogSkladistaDirektni u MagacinskiPredmet, a liste naloga,
+        // Prijemnica, Otprema i Pregled lagera ga čitaju iz RadniNalogSkladista.VlasnikRobe. Posle snimanja nalog dobija
+        // vlasnika svog magacinskog predmeta (samo vlasnika koji postoji u VlasniciRobe). Isto za postojeće naloge radi
+        // skripta Carina_VlasnikRobe_2026_11.sql.
+        private void PrenesiVlasnikaNaNalog()
+        {
+            if (!int.TryParse(txtID.Text, out int id) || id <= 0)
+                return;
+            try
+            {
+                using (var conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand(@"UPDATE rns SET VlasnikRobe = mp.VlasnikRobe
+                                               FROM RadniNalogSkladista rns
+                                               CROSS APPLY (SELECT TOP 1 m.VlasnikRobe FROM MagacinskiPredmet m
+                                                            WHERE m.RN = rns.ID AND m.VlasnikRobe IN (SELECT id FROM VlasniciRobe)
+                                                            ORDER BY m.ID) mp
+                                               WHERE rns.ID = @ID AND ISNULL(rns.VlasnikRobe, 0) <> mp.VlasnikRobe", conn);
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Vlasnik robe nije prenet na nalog: " + ex.Message);
+            }
+        }
     }
 }

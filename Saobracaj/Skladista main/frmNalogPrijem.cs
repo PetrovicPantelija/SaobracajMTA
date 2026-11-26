@@ -677,6 +677,7 @@ namespace Saobracaj.Skladista_main
             }
             SnimiKontejnere();
             SnimiRbrKnjige();   // RAZ-17
+            PrenesiVlasnikaNaNalog();   // RAZ-06 (frmNalogPrijem.MagacinskiPredmet.cs)
 
 
             InsertSkladista ins = new InsertSkladista();

@@ -3596,6 +3596,9 @@
     <Compile Include="Skladista main\CarinskoSkladistePregled.Designer.cs">
       <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\CarinskoSkladistePregled.Otprema.cs">
+      <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\InterniPoslovi.cs">
       <SubType>Form</SubType>
     </Compile>
