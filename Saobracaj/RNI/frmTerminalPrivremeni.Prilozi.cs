@@ -14,6 +14,7 @@ namespace Saobracaj.RNI
     // Kolone Slike i Dokumenta u gridu: ikonica i broj fajlova u folderu zapisa (frmTerminalPrivremeniSlike.OsnovniFolder\ID i
     // frmTerminalPrivremeniDokumenta.OsnovniFolder\ID). Nisu kolone tabele TerminalPriv: fajlovi se broje na mrežnom folderu u
     // pozadini posle učitavanja i osvežavanja, pa ikonice stižu malo posle podataka (do tada važi broj iz prethodnog brojanja).
+    // Postoje samo u gridu (ne u poljima ispod grida, Grupnoj promeni ni Opštem izvozu).
     public partial class frmTerminalPrivremeni
     {
         internal const string KolonaSlike = "Slike";
@@ -35,6 +36,7 @@ namespace Saobracaj.RNI
             Disposed += (s, e) => ikonePriloga.Dispose();
 
             gridGroupingControl1.QueryCellStyleInfo += gridGroupingControl1_QueryCellStyleInfo;
+            gridGroupingControl1.TableControlCellDrawn += gridGroupingControl1_TableControlCellDrawn;
         }
 
         private static void DodajKolonePriloga(DataTable tabela)
@@ -209,7 +211,8 @@ namespace Saobracaj.RNI
                 red.AcceptChanges();
         }
 
-        // Kolone Slike i Dokumenta odmah posle KONTEJNER, uske (ikonica i broj)
+        // Kolone Slike i Dokumenta odmah posle KONTEJNER, samo obaveštenje: u zaglavlju ikonica umesto naziva i bez filtera
+        // (ni lista u zaglavlju ni polje u filter baru). Poziva se pre povezivanja filtera.
         private void PodesiKolonePriloga()
         {
             GridTableDescriptor opis = gridGroupingControl1.TableDescriptor;
@@ -220,28 +223,63 @@ namespace Saobracaj.RNI
             vidljive.Insert(posle + 1, KolonaSlike);
             vidljive.Insert(posle + 2, KolonaDokumenta);
 
-            foreach (string ime in new[] { KolonaSlike, KolonaDokumenta })
-            {
-                GridColumnDescriptor kolona = opis.Columns[ime];
-                kolona.Width = SirinaKolone(gridGroupingControl1.Font, kolona.HeaderText, "0000000");   // ikonica i broj
-            }
+            opis.Columns[KolonaSlike].AllowFilter = false;
+            opis.Columns[KolonaDokumenta].AllowFilter = false;
+        }
+
+        // Najuža širina u kojoj staju ikonica i trocifren broj. Poziva se posle povezivanja filtera, jer ono svim kolonama
+        // dodaje mesto za ikonice filtera, a ove kolone filter nemaju.
+        private void SuziKolonePriloga()
+        {
+            const int MarginaCelije = 8;
+            int sirina = ikonePriloga.ImageSize.Width + MarginaCelije
+                + TextRenderer.MeasureText("999", gridGroupingControl1.Font, Size.Empty, TextFormatFlags.NoPadding).Width;
+            gridGroupingControl1.TableDescriptor.Columns[KolonaSlike].Width = sirina;
+            gridGroupingControl1.TableDescriptor.Columns[KolonaDokumenta].Width = sirina;
         }
 
         private void gridGroupingControl1_QueryCellStyleInfo(object sender, GridTableCellStyleInfoEventArgs e)
         {
-            GridTableCellType tip = e.TableCellIdentity.TableCellType;
-            if (tip != GridTableCellType.RecordFieldCell && tip != GridTableCellType.AlternateRecordFieldCell)
-                return;
             if (e.TableCellIdentity.Column == null)
                 return;
 
             string ime = e.TableCellIdentity.Column.Name;
             int ikona = ime == KolonaSlike ? 0 : ime == KolonaDokumenta ? 1 : -1;
-            if (ikona < 0 || e.Style.CellValue == null || e.Style.CellValue == DBNull.Value)
+            if (ikona < 0)
+                return;
+
+            GridTableCellType tip = e.TableCellIdentity.TableCellType;
+            if (tip == GridTableCellType.ColumnHeaderCell)
+            {
+                // umesto naziva ikonica (crta je TableControlCellDrawn); naziv ostaje u opisu kolone i prikazuje se kao napomena
+                e.Style.CellTipText = e.Style.Text;
+                e.Style.Text = "";
+                return;
+            }
+
+            if (tip != GridTableCellType.RecordFieldCell && tip != GridTableCellType.AlternateRecordFieldCell)
+                return;
+            if (e.Style.CellValue == null || e.Style.CellValue == DBNull.Value)
                 return;
 
             e.Style.ImageList = ikonePriloga;
             e.Style.ImageIndex = ikona;
+        }
+
+        // Zaglavlje kolone ne crta ikonicu iz stila, pa se crta posle ćelije, levo kao u redovima
+        private void gridGroupingControl1_TableControlCellDrawn(object sender, GridTableControlDrawCellEventArgs e)
+        {
+            GridTableCellStyleInfo stil = e.Inner.Style as GridTableCellStyleInfo;
+            if (stil == null || stil.TableCellIdentity.TableCellType != GridTableCellType.ColumnHeaderCell || stil.TableCellIdentity.Column == null)
+                return;
+
+            string ime = stil.TableCellIdentity.Column.Name;
+            int ikona = ime == KolonaSlike ? 0 : ime == KolonaDokumenta ? 1 : -1;
+            if (ikona < 0)
+                return;
+
+            Rectangle okvir = e.Inner.Bounds;
+            ikonePriloga.Draw(e.Inner.Graphics, okvir.Left + 3, okvir.Top + (okvir.Height - ikonePriloga.ImageSize.Height) / 2, ikona);
         }
 
         private static Bitmap NacrtajIkonu(Action<Graphics> crtaj)

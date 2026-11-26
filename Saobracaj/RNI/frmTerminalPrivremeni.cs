@@ -110,7 +110,7 @@ namespace Saobracaj.RNI
             kontrole["POSLATE SLIKE"] = txtPoslateSlike;
             kontrole["Prevoznik"] = txtPrevoznik;
             kontrole["BELEŠKA"] = txtBeleska;
-            kontrole["VOZAČ"] = chkVozac;
+            kontrole["VOZAČ"] = txtVozac;
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
@@ -234,9 +234,6 @@ namespace Saobracaj.RNI
             if (polje is ComboBox cbo)
                 return !cbo.DroppedDown;
 
-            if (polje is CheckBox)
-                return true;
-
             if (polje is TextBox tb)
             {
                 if (tb.SelectionLength > 0 && tb.SelectionLength < tb.TextLength)
@@ -309,10 +306,6 @@ namespace Saobracaj.RNI
             if (dtp != null)
                 return dtp.Checked ? (object)dtp.Value : DBNull.Value;
 
-            CheckBox chk = kontrola as CheckBox;
-            if (chk != null)
-                return chk.Checked;
-
             string tekst = kontrola.Text.Trim();
             return tekst.Length == 0 ? (object)DBNull.Value : tekst;
         }
@@ -369,13 +362,6 @@ namespace Saobracaj.RNI
                         dtp.Value = Convert.ToDateTime(vrednost);
                         OznaciDatum(dtp);
                     }
-                    continue;
-                }
-
-                CheckBox chk = kontrola as CheckBox;
-                if (chk != null)
-                {
-                    chk.Checked = !prazno && Convert.ToBoolean(vrednost);
                     continue;
                 }
 
@@ -764,6 +750,7 @@ namespace Saobracaj.RNI
 
             PodesiKolone();
             PovezFiltere();
+            SuziKolonePriloga();
             OsveziPolja();
             PrebrojPriloge();
         }
@@ -966,8 +953,8 @@ namespace Saobracaj.RNI
                 if (kolona == null)
                     continue;
 
-                // štiklir (VOZAČ) je samo u poljima ispod grida
-                if (polje.Tip == TerminalPrivTip.DaNe)
+                // VOZAČ je samo u poljima ispod grida
+                if (polje.Tip == TerminalPrivTip.TekstZaPotvrdu)
                 {
                     gridGroupingControl1.TableDescriptor.VisibleColumns.Remove(polje.Kolona);
                     continue;
@@ -1036,14 +1023,16 @@ namespace Saobracaj.RNI
 
             foreach (TerminalPrivPolje polje in insertTerminalPriv.Polja)
             {
-                if (polje.Tip != TerminalPrivTip.Tekst || red[polje.Kolona] == DBNull.Value)
+                if (polje.Tip == TerminalPrivTip.Datum || red[polje.Kolona] == DBNull.Value)
                     continue;
 
                 string vrednost = red[polje.Kolona].ToString().Trim();
                 if (vrednost.Length == 0)
                     continue;
 
-                if (vrednost.Length > polje.Velicina)
+                if (polje.TacnaDuzina && vrednost.Length != polje.Velicina)
+                    greske.Add(polje.Kolona + " mora imati tačno " + polje.Velicina + " karaktera");
+                else if (vrednost.Length > polje.Velicina)
                     greske.Add(polje.Kolona + " može imati najviše " + polje.Velicina + " karaktera");
 
                 if (polje.Dozvoljeno != null)
@@ -1452,8 +1441,8 @@ namespace Saobracaj.RNI
                 if (!redosled.Contains(kolona.Name))
                     redosled.Add(kolona.Name);
 
-            // štiklir (VOZAČ) nije kolona grida, a Slike i Dokumenta nisu polja zapisa (broj fajlova u folderu), pa se ne izvoze
-            var bezIzvoza = new HashSet<string>(insertTerminalPriv.Polja.Where(p => p.Tip == TerminalPrivTip.DaNe).Select(p => p.Kolona));
+            // VOZAČ nije kolona grida, a Slike i Dokumenta nisu polja zapisa (broj fajlova u folderu), pa se ne izvoze
+            var bezIzvoza = new HashSet<string>(insertTerminalPriv.Polja.Where(p => p.Tip == TerminalPrivTip.TekstZaPotvrdu).Select(p => p.Kolona));
             bezIzvoza.Add(KolonaSlike);
             bezIzvoza.Add(KolonaDokumenta);
 
