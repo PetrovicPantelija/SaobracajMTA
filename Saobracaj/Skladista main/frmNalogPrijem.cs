@@ -1421,7 +1421,8 @@ namespace Saobracaj.Skladista_main
 
         private void cboMagacinskiBroj_Leave(object sender, EventArgs e)
         {
-            if (cboMagacinskiBroj.SelectedValue != null && panelMP.Visible)
+            // SKC-17: Visible je false i kad je samo grupa zatvorena; Vidljiva gleda da li forma sama sakriva panel
+            if (cboMagacinskiBroj.SelectedValue != null && GrupeForme.Vidljiva(panelMP))
             {
                 // Uzimamo vrednost iz combobox-a kao string (ili int, zavisno od tipa)
                 string izabranaVrednost = cboMagacinskiBroj.SelectedValue.ToString();

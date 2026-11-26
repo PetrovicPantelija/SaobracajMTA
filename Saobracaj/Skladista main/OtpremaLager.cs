@@ -1002,7 +1002,8 @@ ORDER BY IDSkladisneStavke";
             decimal ukupnoNeto = VratiUkupnoNeto(stavka);
             decimal ukupnoVrednost = VratiUkupnoVrednost(stavka);
 
-            if (ukupnoKoleta > 0 && novaKoleta > ukupnoKoleta)
+            // SKK-01: i kad je raspoloživo 0 koleta (a bruto > 0), veća količina se odbija
+            if (novaKoleta > ukupnoKoleta)
             {
                 MessageBox.Show("Uneta koleta ne mogu biti veća od nerazduženih koleta.");
                 return false;
@@ -1155,7 +1156,7 @@ ORDER BY IDSkladisneStavke";
                 return;
 
             decimal ukupnoKoleta = VratiUkupnoKoleta(stavka);
-            if (ukupnoKoleta > 0 && stavka.Koleta > ukupnoKoleta)
+            if (stavka.Koleta > ukupnoKoleta)   // SKK-01: i kad je raspoloživo 0
                 stavka.Koleta = ukupnoKoleta;
 
             decimal ukupnoBruto = VratiUkupnoBruto(stavka);
@@ -1177,7 +1178,7 @@ ORDER BY IDSkladisneStavke";
                 return;
 
             decimal ukupnoKoleta = VratiUkupnoKoleta(stavka);
-            if (ukupnoKoleta > 0 && stavka.Koleta > ukupnoKoleta)
+            if (stavka.Koleta > ukupnoKoleta)   // SKK-01: i kad je raspoloživo 0
                 stavka.Koleta = ukupnoKoleta;
 
             decimal ukupnoBruto = VratiUkupnoBruto(stavka);

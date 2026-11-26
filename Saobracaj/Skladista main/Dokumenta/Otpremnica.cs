@@ -318,21 +318,10 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                         SqlDataReader dr2 = cmd2.ExecuteReader();
                         while (dr2.Read())
                         {
-                            cboNalogodavac.SelectedValue = Convert.ToInt32(dr2["Nalogodavac"].ToString());
-                            cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr2["VlasnikRobe"].ToString());
-                            txtVrstaRobe.Text = dr2["VrstaRobe"].ToString();
-                            txtNacinPakovanja.Text = dr2["NacinPakovanja"].ToString();
-                            cboADR.SelectedValue = Convert.ToInt32(dr2["OstalaSkladista"].ToString());
-                            txtPIB.Text = dr2["PIB"].ToString();
-                            txtPosebniUslovi.Text = dr2["PosebniUslovi"].ToString();
-                            txtNapomena.Text = dr2["Napomena"].ToString();
-
-
+                            // SKK-03: podaci i usluge su otpremnice (učitani gore i u konstruktoru po RN);
+                            // iz naloga prijema uzima se samo veza sa prijemnicom
                             int PrijemnicaID = Convert.ToInt32(dr2["prijemID"].ToString());
                             textBox2.Text = PrijemnicaID.ToString();
-
-                            int dodatneUslugeID = Convert.ToInt32(dr2["DodatneUslugeID"].ToString());
-                            FillDodatneUsluge(dodatneUslugeID.ToString());
                         }
                     }
                     conn2.Close();

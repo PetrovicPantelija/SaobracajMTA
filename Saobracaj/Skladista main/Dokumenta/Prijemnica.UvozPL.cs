@@ -264,11 +264,16 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 try
                 {
+                    // SKC-12: lista se puni iznova, jer nivo uvezen u Pregledu klasifikacije (Uvoz artikala) u njoj još ne postoji
                     ArtikliKatalogDijalozi.PrikaziKlasifikaciju(this, connection, KatalogPL, id =>
                     {
-                        UcitajKlasifikacije();
+                        UcitajKlasifikacije(true);
                         cboPLKlasifikacija.SelectedValue = id;
                     });
+                    object izabrano = cboPLKlasifikacija.SelectedValue;
+                    UcitajKlasifikacije(true);
+                    if (izabrano != null)
+                        cboPLKlasifikacija.SelectedValue = izabrano;
                 }
                 catch (Exception ex)
                 {
@@ -318,9 +323,9 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
         }
 
-        private void UcitajKlasifikacije()
+        private void UcitajKlasifikacije(bool ponovo = false)
         {
-            if (cboPLKlasifikacija.DataSource != null)
+            if (cboPLKlasifikacija.DataSource != null && !ponovo)
                 return;
 
             var dt = new DataTable();
@@ -1613,6 +1618,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 return true;
 
             int idPrijemnice = Convert.ToInt32(txtPrijemnica.Text);
+            // ID-jevi pre pokušaja: posle greške (rollback) nove stavke se vraćaju na ID 0, a lista ostaje u memoriji
+            var idPrePokusaja = list.Select(s => new KeyValuePair<PrijemnicaStavke, int>(s, s.ID)).ToList();
             try
             {
                 using (var conn = new SqlConnection(connection))
@@ -1652,9 +1659,11 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
             catch (SqlException ex)
             {
-                VratiStavkePrijemnice(idPrijemnice);   // ID-jevi novih stavki nisu upisani: stavke se čitaju ponovo iz baze
-                stavkeSnimak = PotpisStavki();
-                MessageBox.Show("Stavke prijemnice nisu snimljene: " + ex.Message);
+                // SKC-10: stavke se NE čitaju ponovo iz baze (to je brisalo neusnimljen prenos iz PL, uparivanje i
+                // izmene koleta); vraćaju se samo ID-jevi koje je ovaj pokušaj dodelio, pa sledeći Snimi upisuje ponovo
+                foreach (var p in idPrePokusaja)
+                    p.Key.ID = p.Value;
+                MessageBox.Show("Stavke prijemnice nisu snimljene: " + ex.Message + "\n\nIzmene su ostale u tabeli; otklonite uzrok i ponovo kliknite Snimi.");
                 return false;
             }
         }

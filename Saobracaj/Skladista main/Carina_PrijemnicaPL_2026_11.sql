@@ -363,10 +363,17 @@ BEGIN
            OR (ISNULL(s.Nivo4Sifra, N'') = N'' AND ISNULL(s.Nivo4Naziv, N'') <> N''
                AND UPPER(LTRIM(RTRIM(s.Nivo4Naziv))) <> UPPER(LTRIM(RTRIM(CONVERT(nvarchar(200), c.Naziv)))) COLLATE DATABASE_DEFAULT));
 
-    -- ISP-02: koeficijent iz fajla mora biti ceo broj veći od nule
+    -- ISP-02: koeficijent iz fajla mora biti ceo broj veći od nule.
+    -- SKC-11: greška samo za nov artikal; postojeći artikal koristi svoj koeficijent, pa je to upozorenje
+    -- (ranije je red ostajao Greška, a izmena „JM po koletu“ ide u Artikli, pa prenos nije bio moguć).
     UPDATE dbo.RNCarinskoPackingListaStavka
     SET StatusReda = N'Greska', Poruka = ISNULL(Poruka + N' ', N'') + N'JM po koletu iz fajla (' + CONVERT(nvarchar(40), CONVERT(decimal(18,3), Koeficijent)) + N') nije ceo broj veći od nule.'
-    WHERE IDPackingListe = @IDPackingListe AND Koeficijent IS NOT NULL AND (Koeficijent <= 0 OR Koeficijent <> ROUND(Koeficijent, 0));
+    WHERE IDPackingListe = @IDPackingListe AND IDArtikla IS NULL AND Koeficijent IS NOT NULL AND (Koeficijent <= 0 OR Koeficijent <> ROUND(Koeficijent, 0));
+
+    UPDATE dbo.RNCarinskoPackingListaStavka
+    SET StatusReda = CASE WHEN StatusReda = N'Ok' THEN N'Upozorenje' ELSE StatusReda END,
+        Poruka = ISNULL(Poruka + N' ', N'') + N'JM po koletu iz fajla (' + CONVERT(nvarchar(40), CONVERT(decimal(18,3), Koeficijent)) + N') nije ceo broj; koristi se koeficijent artikla.'
+    WHERE IDPackingListe = @IDPackingListe AND IDArtikla IS NOT NULL AND Koeficijent IS NOT NULL AND (Koeficijent <= 0 OR Koeficijent <> ROUND(Koeficijent, 0));
 
     UPDATE s
     SET StatusReda = CASE WHEN s.StatusReda = N'Ok' THEN N'Upozorenje' ELSE s.StatusReda END,
@@ -939,7 +946,7 @@ IF OBJECT_ID('dbo.RNCarinskoPaleta', 'U') IS NULL
         DatumUnosa     datetime      NOT NULL CONSTRAINT DF_RNCarinskoPaleta_DatumUnosa DEFAULT (GETDATE()),
         DatumIzmene    datetime      NULL,
         CONSTRAINT CK_RNCarinskoPaleta_Broj CHECK (BrojPalete BETWEEN 1000000000000 AND 9999999999999),
-        CONSTRAINT CK_RNCarinskoPaleta_Status CHECK (Status IN (1, 2)));
+        CONSTRAINT CK_RNCarinskoPaleta_Status CHECK (Status IN (1, 2, 3)));   -- 3 Izdata (Carina_Izlaz_2026_11.sql)
 GO
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID('dbo.RNCarinskoPaleta') AND name = 'IX_RNCarinskoPaleta_Prijemnica')
     CREATE INDEX IX_RNCarinskoPaleta_Prijemnica ON dbo.RNCarinskoPaleta (IDPrijemnice);
@@ -1080,6 +1087,12 @@ BEGIN
     DECLARE @IDPrijemnice int = (SELECT IDNadredjena FROM dbo.RNCarinskoPrijemnicaStavke WHERE ID = @IDStavke);
     DECLARE @broj int;
 
+    -- RAZ-13 (Carina_Izlaz_2026_11.sql): planirana paleta sa izlazom ili rezervacijom ostaje
+    IF OBJECT_ID('dbo.RNCarinskoPaletaIzlaz', 'U') IS NOT NULL
+        IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaletaIzlaz x JOIN dbo.RNCarinskoPaleta p ON p.ID = x.IDPalete
+                   WHERE x.IDStavke = @IDStavke AND p.Status = 1)
+        BEGIN RAISERROR(N'Stavka ima palete izabrane za otpremu; palete se ne brišu dok se otprema ne oslobodi.', 16, 1); RETURN; END
+
     BEGIN TRAN;
     DELETE ps
     FROM dbo.RNCarinskoPaletaStavka ps
@@ -1163,6 +1176,9 @@ BEGIN
     IF @IDPrijemnice IS NULL RETURN;
     IF @status <> 1
     BEGIN RAISERROR(N'Paleta je na polju i ne može da se izbaci; prvo Ukloni polje (CAR-PP04).', 16, 1); RETURN; END
+    IF OBJECT_ID('dbo.RNCarinskoPaletaIzlaz', 'U') IS NOT NULL   -- RAZ-13
+        IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaletaIzlaz WHERE IDPalete = @IDPalete)
+        BEGIN RAISERROR(N'Paleta je izabrana za otpremu ili izdata i ne može da se izbaci.', 16, 1); RETURN; END
 
     BEGIN TRAN;
     DELETE FROM dbo.RNCarinskoPaletaStavka WHERE IDPalete = @IDPalete;
@@ -1190,6 +1206,9 @@ BEGIN
     BEGIN RAISERROR(N'Koleta ne mogu biti negativna.', 16, 1); RETURN; END
     IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaleta WHERE ID = @IDPalete AND Status <> 1)
     BEGIN RAISERROR(N'Paleta je na polju; koleta se ne menjaju dok se ne Ukloni polje (CAR-PP04).', 16, 1); RETURN; END
+    IF OBJECT_ID('dbo.RNCarinskoPaletaIzlaz', 'U') IS NOT NULL   -- RAZ-13
+        IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaletaIzlaz WHERE IDPalete = @IDPalete)
+        BEGIN RAISERROR(N'Paleta je izabrana za otpremu ili izdata; koleta se ne menjaju.', 16, 1); RETURN; END
 
     BEGIN TRAN;
     IF @Koleta = 0
@@ -1233,6 +1252,9 @@ BEGIN
     BEGIN RAISERROR(N'Spajaju se samo palete iste prijemnice.', 16, 1); RETURN; END
     IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaleta p JOIN @ids i ON i.ID = p.ID WHERE p.Status <> 1)
     BEGIN RAISERROR(N'Palete na polju se ne spajaju; prvo Ukloni polje (CAR-PP04).', 16, 1); RETURN; END
+    IF OBJECT_ID('dbo.RNCarinskoPaletaIzlaz', 'U') IS NOT NULL   -- RAZ-13
+        IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaletaIzlaz x JOIN @ids i ON i.ID = x.IDPalete)
+        BEGIN RAISERROR(N'Paleta izabrana za otpremu ili izdata se ne spaja.', 16, 1); RETURN; END
     IF (SELECT COUNT(DISTINCT ISNULL(s.IDNaimenovanja, -1))
         FROM dbo.RNCarinskoPaletaStavka ps
         JOIN @ids i ON i.ID = ps.IDPalete
@@ -1290,7 +1312,7 @@ BEGIN
     END
 
     SELECT sk.ID, RTRIM(CONVERT(nvarchar(200), sk.Naziv)) AS Naziv,
-           (SELECT COUNT(*) FROM dbo.RNCarinskoPaleta p WHERE p.IDSkladista = sk.ID) AS BrojPaleta
+           (SELECT COUNT(*) FROM dbo.RNCarinskoPaleta p WHERE p.IDSkladista = sk.ID AND p.Status <> 3) AS BrojPaleta
     FROM dbo.Skladista sk
     WHERE CONVERT(int, ISNULL(sk.Aktivan, 1)) = 1
       AND (NOT EXISTS (SELECT 1 FROM @g) OR sk.GrupaPoljaID IN (SELECT ID FROM @g))
@@ -1324,6 +1346,9 @@ BEGIN
     DECLARE @naziv nvarchar(200) = (SELECT RTRIM(CONVERT(nvarchar(200), Naziv)) FROM dbo.Skladista WHERE ID = @IDSkladista);
     IF @naziv IS NULL
     BEGIN RAISERROR(N'Izaberite polje.', 16, 1); RETURN; END
+
+    IF EXISTS (SELECT 1 FROM dbo.RNCarinskoPaleta p JOIN @ids i ON i.ID = p.ID WHERE p.Status = 3)   -- RAZ-13: izdata paleta
+    BEGIN RAISERROR(N'Izdata paleta nema polje. Izaberite samo palete koje su u skladištu.', 16, 1); RETURN; END
 
     DECLARE @za bit = CASE WHEN EXISTS (SELECT 1 FROM dbo.RNCarinskoSkladistePrijemnica WHERE ID = @IDPrijemnice AND RTRIM(Status) = N'ZA') THEN 1 ELSE 0 END;
     IF @za = 1 AND EXISTS (SELECT 1 FROM dbo.RNCarinskoPaleta p JOIN @ids i ON i.ID = p.ID
@@ -1387,7 +1412,7 @@ BEGIN
     UPDATE p
     SET IDSkladista = NULL, Pozicija = NULL, Status = 1, DatumPolja = NULL, KorisnikPolja = NULL, DatumIzmene = GETDATE()
     FROM dbo.RNCarinskoPaleta p JOIN @ids i ON i.ID = p.ID
-    WHERE p.IDSkladista IS NOT NULL OR p.Status <> 1;
+    WHERE (p.IDSkladista IS NOT NULL OR p.Status <> 1) AND p.Status <> 3;   -- RAZ-13: izdata paleta ostaje izdata
     SET @Uklonjeno = @@ROWCOUNT;
 
     EXEC dbo.sp_Palete_Preracunaj @IDPrijemnice;

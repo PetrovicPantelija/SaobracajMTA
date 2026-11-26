@@ -224,22 +224,12 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
                         SqlDataReader dr2 = cmd2.ExecuteReader();
                         while (dr2.Read())
                         {
-                            cboNalogodavac.SelectedValue = Convert.ToInt32(dr2["Nalogodavac"].ToString());
-                            cboVlasnikRobe.SelectedValue = Convert.ToInt32(dr2["VlasnikRobe"].ToString());
-                            txtVrstaRobe.Text = dr2["VrstaRobe"].ToString();
-                            txtNacinPakovanja.Text = dr2["NacinPakovanja"].ToString();
-                            cboADR.SelectedValue = Convert.ToInt32(dr2["OstalaSkladista"].ToString());
-                            txtPIB.Text = dr2["PIB"].ToString();
-                            txtPosebniUslovi.Text = dr2["PosebniUslovi"].ToString();
-                            txtNapomena.Text = dr2["Napomena"].ToString();
-
-
+                            // SKK-03: otprema je već sačuvana, pa se iz naloga prijema uzima samo veza sa prijemnicom.
+                            // Ranije su se ovde prepisivali nalogodavac, vlasnik, vrsta robe, napomena i posebni uslovi
+                            // podacima prijema, a usluge su se punile po ID-ju grupe usluga kao da je broj naloga.
                             PrijemnicaID = Convert.ToInt32(dr2["prijemID"].ToString());
                             PrijemRN = Convert.ToInt32(dr2["RN"].ToString());
                             textBox2.Text = PrijemnicaID.ToString();
-
-                            int dodatneUslugeID = Convert.ToInt32(dr2["DodatneUslugeID"].ToString());
-                            FillDodatneUsluge(dodatneUslugeID.ToString());
                         }
                     }
                 }
@@ -1441,7 +1431,8 @@ Where ID=" + PrijemRN, conn))
             decimal maxNeto = stavka.UkupnoNetoLager > 0 ? stavka.UkupnoNetoLager : stavka.Neto;
             decimal maxVrednost = stavka.UkupnoVrednostLager > 0 ? stavka.UkupnoVrednostLager : stavka.OstatakValute + staraVrednost;
 
-            if (maxKoleta > 0 && novaKoleta > maxKoleta)
+            // SKK-01: i kad je raspoloživo 0 koleta, veća količina se odbija
+            if (novaKoleta > maxKoleta)
             {
                 MessageBox.Show("Uneta koleta ne mogu biti veća od ukupno raspoloživih koleta za tu stavku.");
                 return false;
