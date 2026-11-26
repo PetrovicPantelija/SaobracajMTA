@@ -527,7 +527,7 @@ namespace Saobracaj.RNI
                 else if (panel4.Visible)
                 {
                     txtVozilo4.Text = dr["Vozilo"].ToString().Trim();
-                    txtVozac4.Text = dr["Vozilo"].ToString().Trim();
+                    txtVozac4.Text = dr["Vozac"].ToString().Trim();
                     txtBrLK4.Text = dr["BrojLK"].ToString().Trim();
                     txtTelefon4.Text = dr["BrojTelefona"].ToString().Trim();
 

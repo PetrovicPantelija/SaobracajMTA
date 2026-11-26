@@ -41,7 +41,7 @@ namespace Saobracaj.Skladista_main
         {
             FillGV();
 
-            if(Ulaz=="Izvoz" || Ulaz == "Uvoz")
+            if(Ulaz=="Izvoz")   // Potvrdi postoji samo za izvoz (vidi NijeZaUvoz)
             {
                 btnAktiviraj.Visible = true;
             }
@@ -183,8 +183,20 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
         }
         int ID;
         int BrojRN;
+        // Otvori, Potvrdi i Pregledaj podatke čitaju IzvozKonacna; za uvozni nalog bi (po ID-ju iz UvozKonacna)
+        // našli tuđi izvozni kontejner, a lista Uvoz nema ni kolonu LO, pa je Otvori padao.
+        private bool NijeZaUvoz()
+        {
+            if (Ulaz != "Uvoz")
+                return true;
+            MessageBox.Show("Za uvozne naloge ova radnja još ne postoji (radi samo za izvoz).");
+            return false;
+        }
+
         private void button24_Click(object sender, EventArgs e)
         {
+            if (!NijeZaUvoz())
+                return;
             if (Ulaz == "Izvoz" || Ulaz == "Uvoz")
             {
                 //Aktiviraj radni nalog
@@ -366,6 +378,8 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
         private void btnAktiviraj_Click(object sender, EventArgs e)
         {
+            if (!NijeZaUvoz())
+                return;
             if (txtNALOGID.Text == "")
             {
                 MessageBox.Show("Obelezite uslugu");
@@ -690,6 +704,8 @@ inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!NijeZaUvoz())
+                return;
             if (gridGroupingControl1.Table.CurrentRecord != null)
             {
                 // 2. Dohvatamo vrednost polja "ID" iz selektovanog reda

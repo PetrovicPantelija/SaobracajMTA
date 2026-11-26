@@ -833,8 +833,20 @@ namespace Saobracaj.Uvoz
 
         }
 
+        // Dugmad OTVORI rade nad formiranom prijemnicom; bez šifre Convert.ToInt32("") obara formu
+        private bool ImaSifruPrijemnice()
+        {
+            int sifra;
+            if (int.TryParse(txtSifra.Text, out sifra) && sifra > 0)
+                return true;
+            MessageBox.Show("Morate prvo formirati zapis (Sačuvaj).");
+            return false;
+        }
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            if (!ImaSifruPrijemnice())
+                return;
             string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
             switch (Company)
             {
@@ -863,18 +875,25 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
+            if (!ImaSifruPrijemnice())
+                return;
             frmPrijemKontejneraKamionLegetIzvoz li = new frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0, OJD);
             li.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            frmPrijemKontejneraKamionLegetUvoz lu = new frmPrijemKontejneraKamionLegetUvoz(txtSifra.Text, 0);
+            if (!ImaSifruPrijemnice())
+                return;
+            // (sifra, korisnik, vozom): ranije je šifra prijemnice išla u parametar Korisnik, pa se forma otvarala prazna
+            frmPrijemKontejneraKamionLegetUvoz lu = new frmPrijemKontejneraKamionLegetUvoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 0);
             lu.Show();
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
+            if (!ImaSifruPrijemnice())
+                return;
             frmPrijemKontejneraKamionLegetIzvoz li = new frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text, 0, OJD);
             li.Show();
         }

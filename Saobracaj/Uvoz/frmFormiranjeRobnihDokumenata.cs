@@ -108,7 +108,6 @@ namespace Saobracaj.Uvoz
             else
             {
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

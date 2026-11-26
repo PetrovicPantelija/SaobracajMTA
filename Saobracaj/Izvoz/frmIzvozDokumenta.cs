@@ -374,9 +374,25 @@ namespace Saobracaj.Izvoz
 
         private void button3_Click(object sender, EventArgs e)
         {
+            ObrisiDokument(txtSifra, RefreshDataGrid);
+        }
+
+        // Svaki tab briše dokument izabran u svojoj tabeli (Kontejner: txtSifra, Buking: txtSifra2, Voz: txtSifra3);
+        // ranije su Buking i Voz brisali dokument izabran na tabu Kontejner.
+        private void ObrisiDokument(TextBox sifra, Action osvezi)
+        {
+            int id;
+            if (!int.TryParse(sifra.Text, out id) || id <= 0)
+            {
+                MessageBox.Show("Izaberite dokument u tabeli.");
+                return;
+            }
+            if (MessageBox.Show("Obrisati izabrani dokument?", "Brisanje dokumenta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
-            ins.DelIzvozDokumenta(Convert.ToInt32(txtSifra.Text));
-            RefreshDataGrid();
+            ins.DelIzvozDokumenta(id);
+            sifra.Text = "";
+            osvezi();
 
             status = true;
         }
@@ -484,20 +500,12 @@ namespace Saobracaj.Izvoz
 
         private void button5_Click(object sender, EventArgs e)
         {
-            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
-            ins.DelIzvozDokumenta(Convert.ToInt32(txtSifra.Text));
-            RefreshDataGrid2();
-
-            status = true;
+            ObrisiDokument(txtSifra2, RefreshDataGrid2);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
-            ins.DelIzvozDokumenta(Convert.ToInt32(txtSifra.Text));
-            RefreshDataGrid3();
-
-            status = true;
+            ObrisiDokument(txtSifra3, RefreshDataGrid3);
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
@@ -509,7 +517,7 @@ namespace Saobracaj.Izvoz
                     if (row.Selected)
                     {
                         txtSifra2.Text = row.Cells[0].Value.ToString();
-                        txtPutanja.Text = row.Cells[2].Value.ToString();
+                        txtPutanja2.Text = row.Cells[2].Value.ToString();   // putanja bukinga, ne kontejnera
 
                     }
                 }

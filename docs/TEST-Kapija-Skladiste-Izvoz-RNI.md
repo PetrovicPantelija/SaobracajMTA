@@ -446,3 +446,18 @@ Ispravke su urađene na zahtev, a build prolazi. Nisu proverene u aplikaciji: pr
 - SKC-05, drugi deo: `sp_Prijem_Kontrola` spaja NHM naimenovanja sa `NHM.ID`, a Prijemnica u NHM stavke upisuje `NHM.ID` pri izboru iz liste, a broj iz naimenovanja pri uparivanju. Ovo se rešava zajedno sa izmenom „tarifni broj kao tekst do 10 cifara“ (Magacinski predmet, čeka rezultat `NalogPrijem_MP_Provera_2026_11.sql`).
 - SKC-18: dugme Sačuvaj na panelu magacinskog broja (`btnMbSave_Click`) upisuje samo carinski broj; komercijalni nalog može da izabere postojeći broj, ali ne i da napravi nov.
 - SKC-01: dva prozora sa istim statusom (oba OD) i dalje mogu da prepišu stavke jedan drugom; snima se ono što je poslednje sačuvano.
+
+### 10.2 Paket A (26.11.2026)
+
+| Oznaka | Šta je promenjeno | Provera |
+|---|---|---|
+| IZV-17 (još 11 formi) | Uklonjen poziv `ChangeTextBox()` iz same sebe u granama za firme koje nisu Leget: frmPregledOtpreme, frmPrijemKontejneraKamionPregled, frmPrijemVozomPregled, frmDodelaSkladista, RN1PrijemVoza, RN5PrijemPlatforme2, RN6OtpremaPlatforme, RN7OtpremaPlatforme2, RN8OtpremaCirade, RN9PrijemCirade, frmFormiranjeRobnihDokumenata. Ponovna pretraga celog koda ne nalazi više nijednu | Prijava kao TA, otvoriti svaku formu |
+| KAP-06 (+ KAP-07) | `Uvoz\frmPrijemVozaIzPlana.cs`: „GATE IN KAMION UVOZ“ zove konstruktor `(šifra, korisnik, vozom)`; sva četiri dugmeta OTVORI bez formirane prijemnice daju poruku | 8.1 koraci 12 i 13 |
+| RNI-08 | `RNI\frmScenarioSCI.cs`: Vozač (scenariji 9 i 25) iz kolone Vozac | 8.5 korak 18 |
+| SKC-16 | `frmNalogPrijem.cs`: LOPotvrdjen se upisuje u polje forme | Komercijalni nalog sa LO = 1 ne nudi LO potvrdu i Obriši |
+| SKC-02 | `frmNalogPrijem.cs`, `frmNalogPrijem.Ispravke.cs` (`NaimenovanjeKoristePrijemnice`): ID naimenovanja se briše sa poljima; Izmeni bez izabranog naimenovanja daje poruku; Obriši pita za potvrdu i odbija naimenovanje koje koriste stavke prijemnice | 8.2 korak 5 |
+| SKC-03 | `Dokumenta\Prijemnica.cs` (`btnNHMDodaj_Click`): uzima izabrani red ili red sa kursorom; bez izbora poruka, panel ostaje otvoren i stavka se ne menja | 8.2 korak 15 |
+| SKC-07 | `Dokumenta\Prijemnica.cs` (`NHMKod`, `NHMNaziv`): tekst pretrage je parametar; `%`, `_` i `[` se traže kao obični znaci | 8.2 korak 16 |
+| IZV-16 | `Izvoz\frmIzvozDokumenta.cs`: Izbriši na svakom tabu briše dokument izabran u svojoj tabeli, uz potvrdu; izbor bukinga upisuje putanju bukinga | 8.4 korak 17 |
+| IZV-04 | `Izvoz\frmGrupniUnosPoljaIzvoz.cs` (`VratiPodatkeGrupeSelect`): porudžbenica se nalazi preko stavke (`ProdajniNalogIzvozStavke`), LEFT JOIN, pa se podaci kontejnera učitavaju i kad stavke nema | 8.4 korak 7 |
+| SKK-06 | `Skladista main\PregledKomercijalnihNaloga.cs`: za listu Uvoz Otvori, Potvrdi i Pregledaj podatke daju poruku „radi samo za izvoz“; dugme Potvrdi se ne prikazuje za uvoz. Ove radnje su napravljene samo nad `IzvozKonacna`; uvozna verzija je nova funkcija | 8.3 korak 5 |

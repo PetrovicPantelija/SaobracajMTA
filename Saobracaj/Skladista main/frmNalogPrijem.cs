@@ -58,7 +58,8 @@ namespace Saobracaj.Skladista_main
             Tip = tip; // prijem, otprema
             Vrsta = vrsta;//carinsko, komercijalno
             Ulaz = ulaz; // uvoz, izvoz, direktni
-            int LOPotvrdjen = (lopotvrdjen.HasValue && lopotvrdjen.Value == 1) ? 1 : 0;
+            // polje forme (ranije je ovde bila lokalna promenljiva, pa je polje uvek ostajalo 0)
+            LOPotvrdjen = (lopotvrdjen.HasValue && lopotvrdjen.Value == 1) ? 1 : 0;
             podesiPolja(Status);
             txtKorisnik.Text = Korisnik;
             txtKorisnik.Enabled = false;
@@ -2381,6 +2382,9 @@ namespace Saobracaj.Skladista_main
         private void ResetujPoljaArtikli()
         {
             //txtMagacinskiPredmetID.Clear();
+            // ID izabranog naimenovanja se briše sa poljima: inače sledeći Obriši ili Izmeni pogađa stari zapis
+            txtIDStavke.Clear();
+            nhmUcitan = null;
             txtRBNaimenovanje.Clear();
             txtNaimenovanje.Clear();
           
@@ -2425,6 +2429,11 @@ namespace Saobracaj.Skladista_main
 
 
                 int id = int.TryParse(txtIDStavke.Text, out int idValue) ? idValue : 0;
+                if (id == 0)
+                {
+                    MessageBox.Show("Izaberite naimenovanje za izmenu (dvoklik u tabeli).");
+                    return;
+                }
                 int? nhm = int.TryParse(txtNHMNaimenovanje.Text, out int nhmValue) ? nhmValue : (int?)null;
 
                 string naimenovanje = txtNaimenovanje.Text;
@@ -2478,6 +2487,14 @@ namespace Saobracaj.Skladista_main
                 MessageBox.Show("Nije izabrana stavka za brisanje.");
                 return;
             }
+            if (NaimenovanjeKoristePrijemnice(id))
+            {
+                MessageBox.Show("Naimenovanje se koristi na stavkama prijemnice i ne može da se obriše.");
+                return;
+            }
+            if (MessageBox.Show("Obrisati naimenovanje " + txtNaimenovanje.Text.Trim() + "?", "Brisanje naimenovanja",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             InsertSkladista ins = new InsertSkladista();
 
             ins.DeleteCarinskoStavke(id);

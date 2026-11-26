@@ -480,7 +480,10 @@ namespace Saobracaj.Izvoz
                                             "Vaganje, Tara,  DatumKreiranja, BrojStavkePorudzbenice, i.Scenario , " +
                                             " Klijent2, Napomena2REf, Klijent3, Napomena3REf, i.OpisPosla, i.Link, KvalitetKontejnera,i. Korisnik, ADR, Vaganje, NacinPakovanja " +
                                             " FROM Izvoz  i " +
-                                            " INNER JOIN ProdajniNalogIzvoz pn on i.BrojStavkePorudzbenice = pn.ID  " +
+                                            // BrojStavkePorudzbenice je ID stavke porudžbenice; zaglavlje se nalazi preko stavke
+                                            // (ranije je spajano direktno sa ID zaglavlja, pa se učitavao tuđi ili nijedan zapis)
+                                            " LEFT JOIN (SELECT ID AS StavkaPorudzbeniceID, IDNAdredjenog AS PorudzbenicaID FROM ProdajniNalogIzvozStavke) sp ON sp.StavkaPorudzbeniceID = i.BrojStavkePorudzbenice " +
+                                            " LEFT JOIN ProdajniNalogIzvoz pn on pn.ID = sp.PorudzbenicaID  " +
                                             " where i.ID =  " + kontejnerID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();

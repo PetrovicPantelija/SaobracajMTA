@@ -762,8 +762,10 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void NHMKod()
         {
             SqlConnection conn = new SqlConnection(connection);
-            var query = "select ID,Broj,RTRIM(Naziv) as Naziv from NHM Where Broj like '%" + txtNhm.Text.ToString().TrimEnd() + "%'order by ID asc";
+            // tekst pretrage ide kao parametar (apostrof u tekstu je obarao formu)
+            var query = "select ID,Broj,RTRIM(Naziv) as Naziv from NHM Where Broj like '%' + @T + '%' order by ID asc";
             var da = new SqlDataAdapter(query, conn);
+            da.SelectCommand.Parameters.AddWithValue("@T", TekstZaLike(txtNhm.Text));
             var ds = new System.Data.DataSet();
 
             da.Fill(ds);
@@ -774,8 +776,9 @@ Where RadniNalogSkladista.ID=" + id, conn);
         private void NHMNaziv()
         {
             SqlConnection conn = new SqlConnection(connection);
-            var query = "select ID,Broj,RTRIM(Naziv) as Naziv from NHM Where Naziv like '%" + txtNhmNaziv.Text.ToString().TrimEnd() + "%'order by ID asc";
+            var query = "select ID,Broj,RTRIM(Naziv) as Naziv from NHM Where Naziv like '%' + @T + '%' order by ID asc";
             var da = new SqlDataAdapter(query, conn);
+            da.SelectCommand.Parameters.AddWithValue("@T", TekstZaLike(txtNhmNaziv.Text));
             var ds = new System.Data.DataSet();
 
             da.Fill(ds);
@@ -1078,17 +1081,24 @@ Where RadniNalogSkladista.ID=" + id, conn);
             panel6.Visible = false;
         }
 
+        // %, _ i [ u tekstu pretrage traže se kao obični znaci
+        private static string TekstZaLike(string tekst)
+        {
+            return (tekst ?? "").TrimEnd().Replace("[", "[[]").Replace("%", "[%]").Replace("_", "[_]");
+        }
+
         private void btnNHMDodaj_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            // izabran red ili red sa kursorom (klik na ćeliju ne označava red); bez izbora panel ostaje otvoren
+            DataGridViewRow row = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0] : dataGridView1.CurrentRow;
+            if (row == null || row.IsNewRow || row.Cells["ID"].Value == null || row.Cells["ID"].Value == DBNull.Value)
             {
-                if (row.Selected)
-                {
-                    nhm = Convert.ToInt32(row.Cells["ID"].Value);
-                    idArtikla = 0;
-                    txtArtikal.Text = row.Cells["Naziv"].Value.ToString().TrimEnd();
-                }
+                MessageBox.Show("Izaberite NHM u listi.");
+                return;
             }
+            nhm = Convert.ToInt32(row.Cells["ID"].Value);
+            idArtikla = 0;
+            txtArtikal.Text = row.Cells["Naziv"].Value.ToString().TrimEnd();
             panel6.Visible = false;
         }
 

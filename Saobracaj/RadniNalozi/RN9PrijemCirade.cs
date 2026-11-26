@@ -106,7 +106,6 @@ namespace Saobracaj.RadniNalozi
                 meniHeader.Visible = true;
                 panelHeader.Visible = false;
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

@@ -113,7 +113,6 @@ namespace Saobracaj.RadniNalozi
             {
             
                 // this.FormBorderStyle = FormBorderStyle.FixedSingle;
-                ChangeTextBox();
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }

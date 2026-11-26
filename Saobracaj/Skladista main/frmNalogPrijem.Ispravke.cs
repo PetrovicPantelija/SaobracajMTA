@@ -118,6 +118,20 @@ namespace Saobracaj.Skladista_main
             grupeForme.Zavrsi(panelStavke, traka, panelMPEdit);
         }
 
+        // Da li stavke prijemnice upućuju na naimenovanje (kolona IDNaimenovanja postoji tek posle skripte packing liste)
+        private bool NaimenovanjeKoristePrijemnice(int idNaimenovanja)
+        {
+            const string upit = "IF COL_LENGTH('dbo.RNCarinskoPrijemnicaStavke', 'IDNaimenovanja') IS NULL SELECT 0 " +
+                "ELSE EXEC sp_executesql N'SELECT COUNT(*) FROM dbo.RNCarinskoPrijemnicaStavke WHERE IDNaimenovanja = @ID', N'@ID int', @ID = @ID";
+            using (var conn = new System.Data.SqlClient.SqlConnection(connection))
+            using (var cmd = new System.Data.SqlClient.SqlCommand(upit, conn))
+            {
+                cmd.Parameters.AddWithValue("@ID", idNaimenovanja);
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
         // Vrsta komercijalnog naloga stiže kao „Komercijalno“ (TipSkladista, VrstaRN iz baze);
         // ranije poređenje sa „Komercijalo“ nikad nije bilo tačno, pa se lista brojeva nije punila.
         private bool JeKomercijalno
