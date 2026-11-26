@@ -386,6 +386,57 @@ WHERE
 ";
         }
 
+        // RAZ-13: izlaz po paletama; bez skripte Carina_Izlaz_2026_11.sql (tabele ne postoje) upit radi kao do sada
+        bool? imaIzlazPaleta;
+
+        private bool ImaIzlazPaleta()
+        {
+            if (!imaIzlazPaleta.HasValue)
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(connection))
+                    using (SqlCommand cmd = new SqlCommand(@"SELECT CASE WHEN OBJECT_ID('dbo.RNCarinskoPaletaIzlaz', 'U') IS NULL
+                                                                   OR OBJECT_ID('dbo.RNCarinskoPaletaStavka', 'U') IS NULL THEN 0 ELSE 1 END", conn))
+                    {
+                        conn.Open();
+                        imaIzlazPaleta = Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+                    }
+                }
+                catch (SqlException)
+                {
+                    imaIzlazPaleta = false;
+                }
+            }
+            return imaIzlazPaleta.Value;
+        }
+
+        // izdato (status 2) i rezervisano (status 1) po paletama za stavku prijemnice s
+        private string KolonePaleta()
+        {
+            if (!ImaIzlazPaleta())
+                return @"
+        CAST(0 AS decimal(18, 3)) AS IzdatoPalete, CAST(0 AS decimal(18, 3)) AS IzdatoPaleteBruto,
+        CAST(0 AS decimal(18, 3)) AS IzdatoPaleteNeto, CAST(0 AS decimal(18, 2)) AS IzdatoPaleteVrednost,
+        CAST(0 AS decimal(18, 3)) AS RezervisanoPalete, CAST(0 AS decimal(18, 3)) AS RezervisanoPaleteBruto,
+        CAST(0 AS decimal(18, 3)) AS RezervisanoPaleteNeto, CAST(0 AS decimal(18, 2)) AS RezervisanaPaleteVrednost,
+        CAST(NULL AS nvarchar(max)) AS RezervisanoPaleteRN, 0 AS ImaPalete,";
+
+            return @"
+        (SELECT ISNULL(SUM(x.Koleta), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 2) AS IzdatoPalete,
+        (SELECT ISNULL(SUM(x.Bruto), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 2) AS IzdatoPaleteBruto,
+        (SELECT ISNULL(SUM(x.Neto), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 2) AS IzdatoPaleteNeto,
+        (SELECT ISNULL(SUM(x.Vrednost), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 2) AS IzdatoPaleteVrednost,
+        (SELECT ISNULL(SUM(x.Koleta), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 1) AS RezervisanoPalete,
+        (SELECT ISNULL(SUM(x.Bruto), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 1) AS RezervisanoPaleteBruto,
+        (SELECT ISNULL(SUM(x.Neto), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 1) AS RezervisanoPaleteNeto,
+        (SELECT ISNULL(SUM(x.Vrednost), 0) FROM RNCarinskoPaletaIzlaz x WHERE x.IDStavke = s.ID AND x.Status = 1) AS RezervisanaPaleteVrednost,
+        STUFF((SELECT DISTINCT ', ' + CAST(x.RN AS varchar(20)) FROM RNCarinskoPaletaIzlaz x
+               WHERE x.IDStavke = s.ID AND x.Status = 1
+               FOR XML PATH(''), TYPE).value('.', 'nvarchar(max)'), 1, 2, '') AS RezervisanoPaleteRN,
+        CASE WHEN EXISTS (SELECT 1 FROM RNCarinskoPaletaStavka ps WHERE ps.IDStavke = s.ID) THEN 1 ELSE 0 END AS ImaPalete,";
+        }
+
         private string OsnovniQueryBezWhere()
         {
             return @"
@@ -404,6 +455,8 @@ WITH Primljeno AS
         s.Naziv,
         s.JM,
         ISNULL(SUM(p.PrPrimKol), 0) - ISNULL(SUM(p.PrIzdKol), 0) AS KoletaPoPrometu,
+        ISNULL(SUM(p.PrIzdKol), 0) AS IzdatoPoPrometu,
+" + KolonePaleta() + @"
         s.Koleta AS PrimljenoKoleta,
         s.Bruto AS PrimljenoBruto,
         ISNULL(s.Neto, 0) AS PrimljenoNeto,
@@ -550,21 +603,21 @@ Stock AS
         p.JM,
 
         NerazduzenoKoleta =
-            CASE WHEN p.KoletaPoPrometu < 0 THEN 0 ELSE p.KoletaPoPrometu END,
+            CASE WHEN e.KoletaPoPrometu < 0 THEN 0 ELSE e.KoletaPoPrometu END,
 
         TezinaKomad = CAST(p.PrimljenoBruto / NULLIF(p.PrimljenoKoleta, 0) AS decimal(18, 2)),
 
         NerazduzenaTezina =
             CAST(
-                CASE WHEN p.PrimljenoBruto - ISNULL(z.ZavrsenoBruto, 0) < 0 THEN 0
-                     ELSE p.PrimljenoBruto - ISNULL(z.ZavrsenoBruto, 0) END
+                CASE WHEN p.PrimljenoBruto - e.ZavrsenoBruto < 0 THEN 0
+                     ELSE p.PrimljenoBruto - e.ZavrsenoBruto END
                 AS decimal(18, 2)
             ),
 
         NerazduzenoNeto =
             CAST(
-                CASE WHEN p.PrimljenoNeto - ISNULL(z.ZavrsenoNeto, 0) < 0 THEN 0
-                     ELSE p.PrimljenoNeto - ISNULL(z.ZavrsenoNeto, 0) END
+                CASE WHEN p.PrimljenoNeto - e.ZavrsenoNeto < 0 THEN 0
+                     ELSE p.PrimljenoNeto - e.ZavrsenoNeto END
                 AS decimal(18, 2)
             ),
 
@@ -572,54 +625,55 @@ Stock AS
 
         OstatakValute =
             CAST(
-                CASE WHEN p.PrimljenaVrednost - ISNULL(z.ZavrsenaVrednost, 0) < 0 THEN 0
-                     ELSE p.PrimljenaVrednost - ISNULL(z.ZavrsenaVrednost, 0) END
+                CASE WHEN p.PrimljenaVrednost - e.ZavrsenaVrednost < 0 THEN 0
+                     ELSE p.PrimljenaVrednost - e.ZavrsenaVrednost END
                 AS decimal(18, 2)
             ),
 
-        RezervisanoKoleta = ISNULL(r.RezervisanoKoleta, 0),
-        RezervisanoBruto = ISNULL(r.RezervisanoBruto, 0),
-        RezervisanoNeto = ISNULL(r.RezervisanoNeto, 0),
-        RezervisanaVrednost = ISNULL(r.RezervisanaVrednost, 0),
+        RezervisanoKoleta = e.RezervisanoKoleta,
+        RezervisanoBruto = e.RezervisanoBruto,
+        RezervisanoNeto = e.RezervisanoNeto,
+        RezervisanaVrednost = e.RezervisanaVrednost,
 
         SlobodnoKoleta =
             CAST(
-                CASE WHEN p.KoletaPoPrometu - ISNULL(r.RezervisanoKoleta, 0) < 0 THEN 0
-                     ELSE p.KoletaPoPrometu - ISNULL(r.RezervisanoKoleta, 0) END
+                CASE WHEN e.KoletaPoPrometu - e.RezervisanoKoleta < 0 THEN 0
+                     ELSE e.KoletaPoPrometu - e.RezervisanoKoleta END
                 AS decimal(18, 2)
             ),
 
         SlobodnaTezina =
             CAST(
-                CASE WHEN (p.PrimljenoBruto - ISNULL(z.ZavrsenoBruto, 0)) - ISNULL(r.RezervisanoBruto, 0) < 0 THEN 0
-                     ELSE (p.PrimljenoBruto - ISNULL(z.ZavrsenoBruto, 0)) - ISNULL(r.RezervisanoBruto, 0) END
+                CASE WHEN (p.PrimljenoBruto - e.ZavrsenoBruto) - e.RezervisanoBruto < 0 THEN 0
+                     ELSE (p.PrimljenoBruto - e.ZavrsenoBruto) - e.RezervisanoBruto END
                 AS decimal(18, 2)
             ),
 
         SlobodanNeto =
             CAST(
-                CASE WHEN (p.PrimljenoNeto - ISNULL(z.ZavrsenoNeto, 0)) - ISNULL(r.RezervisanoNeto, 0) < 0 THEN 0
-                     ELSE (p.PrimljenoNeto - ISNULL(z.ZavrsenoNeto, 0)) - ISNULL(r.RezervisanoNeto, 0) END
+                CASE WHEN (p.PrimljenoNeto - e.ZavrsenoNeto) - e.RezervisanoNeto < 0 THEN 0
+                     ELSE (p.PrimljenoNeto - e.ZavrsenoNeto) - e.RezervisanoNeto END
                 AS decimal(18, 2)
             ),
 
         SlobodnaVrednost =
             CAST(
-                CASE WHEN (p.PrimljenaVrednost - ISNULL(z.ZavrsenaVrednost, 0)) - ISNULL(r.RezervisanaVrednost, 0) < 0 THEN 0
-                     ELSE (p.PrimljenaVrednost - ISNULL(z.ZavrsenaVrednost, 0)) - ISNULL(r.RezervisanaVrednost, 0) END
+                CASE WHEN (p.PrimljenaVrednost - e.ZavrsenaVrednost) - e.RezervisanaVrednost < 0 THEN 0
+                     ELSE (p.PrimljenaVrednost - e.ZavrsenaVrednost) - e.RezervisanaVrednost END
                 AS decimal(18, 2)
             ),
 
         Rezervisano =
-            CASE WHEN ISNULL(r.RezervisanoKoleta, 0) > 0
-                   OR ISNULL(r.RezervisanoBruto, 0) > 0
-                   OR ISNULL(r.RezervisanoNeto, 0) > 0
-                   OR ISNULL(r.RezervisanaVrednost, 0) > 0
+            CASE WHEN e.RezervisanoKoleta > 0
+                   OR e.RezervisanoBruto > 0
+                   OR e.RezervisanoNeto > 0
+                   OR e.RezervisanaVrednost > 0
                  THEN CAST(1 AS bit)
                  ELSE CAST(0 AS bit)
             END,
 
-        RezervisanoRN = ISNULL(r.RezervisanoRN, ''),
+        RezervisanoRN = e.RezervisanoRN,
+        IzdatoKoleta = e.IzdatoKoleta,
 
         p.Valuta,
         '' AS DokumentRazduzenja,
@@ -653,6 +707,21 @@ Stock AS
        AND RTRIM(ISNULL(r.Valuta, '')) = RTRIM(ISNULL(p.Valuta, ''))
        AND RTRIM(ISNULL(r.Pozicija, '')) = RTRIM(ISNULL(p.Pozicija, ''))
        AND ISNULL(r.VrstaPaleta, 0) = ISNULL(p.VrstaPaleta, 0)
+    -- RAZ-13: izlaz po paletama (RNCarinskoPaletaIzlaz) ne upisuje Promet ni stavke otpremnice, a da li to radi
+    -- stara otpremnica nije poznato (procedure nisu u repozitorijumu). Izdato je zato veće od dva izvora, ne zbir:
+    -- isti izlaz se ne oduzima dva puta. Stavka na paletama ima rezervaciju iz izbora paleta (status 1), ne iz stavki otpreme.
+    CROSS APPLY (SELECT
+        KoletaPoPrometu = p.KoletaPoPrometu - CASE WHEN p.IzdatoPalete > p.IzdatoPoPrometu THEN p.IzdatoPalete - p.IzdatoPoPrometu ELSE 0 END,
+        IzdatoKoleta = CASE WHEN p.IzdatoPalete > p.IzdatoPoPrometu THEN p.IzdatoPalete ELSE p.IzdatoPoPrometu END,
+        ZavrsenoBruto = CASE WHEN p.IzdatoPaleteBruto > ISNULL(z.ZavrsenoBruto, 0) THEN p.IzdatoPaleteBruto ELSE ISNULL(z.ZavrsenoBruto, 0) END,
+        ZavrsenoNeto = CASE WHEN p.IzdatoPaleteNeto > ISNULL(z.ZavrsenoNeto, 0) THEN p.IzdatoPaleteNeto ELSE ISNULL(z.ZavrsenoNeto, 0) END,
+        ZavrsenaVrednost = CASE WHEN p.IzdatoPaleteVrednost > ISNULL(z.ZavrsenaVrednost, 0) THEN p.IzdatoPaleteVrednost ELSE ISNULL(z.ZavrsenaVrednost, 0) END,
+        RezervisanoKoleta = CASE WHEN p.ImaPalete = 1 THEN p.RezervisanoPalete ELSE ISNULL(r.RezervisanoKoleta, 0) END,
+        RezervisanoBruto = CASE WHEN p.ImaPalete = 1 THEN p.RezervisanoPaleteBruto ELSE ISNULL(r.RezervisanoBruto, 0) END,
+        RezervisanoNeto = CASE WHEN p.ImaPalete = 1 THEN p.RezervisanoPaleteNeto ELSE ISNULL(r.RezervisanoNeto, 0) END,
+        RezervisanaVrednost = CASE WHEN p.ImaPalete = 1 THEN p.RezervisanaPaleteVrednost ELSE ISNULL(r.RezervisanaVrednost, 0) END,
+        RezervisanoRN = CASE WHEN p.ImaPalete = 1 THEN ISNULL(p.RezervisanoPaleteRN, '') ELSE ISNULL(r.RezervisanoRN, '') END
+    ) e
 )
 ";
         }
@@ -704,6 +773,7 @@ ORDER BY
                 SlobodnaVrednost = GetDecimal(dr, "SlobodnaVrednost"),
                 Rezervisano = GetBool(dr, "Rezervisano"),
                 RezervisanoRN = GetString(dr, "RezervisanoRN"),
+                IzdatoKoleta = GetDecimal(dr, "IzdatoKoleta"),
 
                 Valuta = GetString(dr, "Valuta"),
                 DokumentRazduzenja = GetString(dr, "DokumentRazduzenja"),
@@ -791,6 +861,7 @@ ORDER BY
             PodesiVidljivuKolonu("SlobodnoKoleta", "Nerazduženo koleta", ref index);
             PodesiVidljivuKolonu("SlobodnaTezina", "Nerazdužena težina", ref index);
             PodesiVidljivuKolonu("SlobodnaVrednost", "Nerazdužena vrednost", ref index);
+            PodesiVidljivuKolonu("IzdatoKoleta", "Izdato koleta", ref index);
 
             PodesiVidljivuKolonu("Rezervisano", "Rezervisano", ref index);
             PodesiVidljivuKolonu("RezervisanoRN", "RN rezervacije", ref index);
@@ -957,6 +1028,7 @@ ORDER BY
 
             public bool Rezervisano { get; set; }
             public string RezervisanoRN { get; set; }
+            public decimal IzdatoKoleta { get; set; }   // RAZ-13: izdato (palete ili promet, veće od dva)
 
             public string DokumentRazduzenja { get; set; }
             public DateTime DatumRazduzenja { get; set; }

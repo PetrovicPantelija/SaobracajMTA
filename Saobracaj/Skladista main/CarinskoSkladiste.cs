@@ -17,6 +17,7 @@ namespace Saobracaj.Skladista_main
         public CarinskoSkladiste()
         {
             InitializeComponent();
+            InitCarinskaKnjiga();   // RAZ-16 (CarinskoSkladiste.Knjiga.cs)
         }
 
         private void btnPrijemRobe_Click(object sender, EventArgs e)

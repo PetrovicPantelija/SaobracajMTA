@@ -122,7 +122,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             };
 
             int y = 62;
-            txtCI = Polje(vrh, "CI razduženja", new TextBox { MaxLength = 10 }, 20, y, 80);
+            txtCI = Polje(vrh, "CI razduženja", new TextBox { MaxLength = 40 }, 20, y, 80);   // ceo zapis se razlaže (RazloziCI)
             cboVrsta = Polje(vrh, "Vrsta dokumenta", new ComboBox { DropDownStyle = ComboBoxStyle.DropDown, MaxLength = 10 }, 110, y, 90);
             cboVrsta.Items.AddRange(new object[] { "C4", "IZ3", "C3", "C5", "C9" });
             txtBroj = Polje(vrh, "Broj", new TextBox { MaxLength = 20 }, 210, y, 110);
@@ -134,6 +134,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
             foreach (Control c in new Control[] { txtCI, cboVrsta, txtBroj, numGodina, dtpIzdavanja, txtValuta, txtKurs, txtNapomena })
                 c.TextChanged += (s, e) => { if (!punim) izmenjeno = true; };
             numGodina.ValueChanged += (s, e) => { if (!punim) izmenjeno = true; };
+            txtCI.Leave += (s, e) => RazloziCI();
+            new ToolTip().SetToolTip(txtCI, "CI carinarnice, npr. 42072. Može i ceo zapis iz knjige: 42072/C4/11971/2025 (deli se na CI, vrstu, broj i godinu).");
 
             // otpremnice dokumenta (desno)
             var desno = new Panel { Dock = DockStyle.Right, Width = 260, Padding = new Padding(8, 0, 20, 0) };
@@ -621,9 +623,37 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
         #region Snimanje
 
+        // Polje CI prima i ceo zapis iz kolone 12 carinske knjige („42072/C4/11971/2025“ ili „42072 C4 11971/2025“):
+        // deli se na CI, vrstu, broj i godinu (test 26.11.2026: ceo zapis nije stao u polje od 10 znakova).
+        private void RazloziCI()
+        {
+            string t = txtCI.Text.Trim();
+            if (t.IndexOfAny(new[] { '/', ' ' }) < 0)
+                return;
+            var delovi = t.Split(new[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (delovi.Length < 2)
+                return;
+            txtCI.Text = delovi[0];
+            int i = 1;
+            if (!delovi[i].All(char.IsDigit))
+                cboVrsta.Text = delovi[i++].ToUpperInvariant();
+            if (i < delovi.Length)
+                txtBroj.Text = delovi[i++];
+            int godina;
+            if (i < delovi.Length && int.TryParse(delovi[i], out godina) && godina >= numGodina.Minimum && godina <= numGodina.Maximum)
+                numGodina.Value = godina;
+        }
+
         private void Sacuvaj()
         {
             dgv.EndEdit();
+            RazloziCI();
+            if (txtCI.Text.Trim().Length > 10)
+            {
+                MessageBox.Show("CI razduženja je šifra carinarnice (npr. 42072), najviše 10 znakova.");
+                txtCI.Focus();
+                return;
+            }
             string vrsta = cboVrsta.Text.Trim().ToUpperInvariant();
             string broj = txtBroj.Text.Trim();
             if (vrsta == "" || broj == "")
