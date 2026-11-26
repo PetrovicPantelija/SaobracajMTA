@@ -29,11 +29,11 @@ namespace Saobracaj.Skladista_main
         private void VratiRN()
         {
             var select = " Select ID,RadniNalogSkladista.Datum as Datum,Korisnik,VrstaRN,TipRN, " +
-               "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(p2.PaNaziv) as VlasnikRobe, " +
+               "  RTRIM(p1.PaNaziv) as Nalogodavac,RTrim(vlr.Naziv) as VlasnikRobe, " +
                 " OpisPosla,Napomena,Aktivan, t1.LO, t1.Prijem, t1.Viljuskarista " +
                 " from RadniNalogSkladista " +
                 " inner join Partnerji as p1 on RadniNalogSkladista.Nalogodavac = p1.PaSifra " +
-                " left join Partnerji as p2 on RadniNalogSkladista.VlasnikRobe = p2.PaSifra " +
+                " left join VlasniciRobe as vlr on RadniNalogSkladista.VlasnikRobe = vlr.id " +   // RAZ-06: vlasnik robe iz VlasniciRobe
                 " inner join(SELECT radninaloginterni.brojrn, RadniNalogInterniPotvrda.LOSkladiste as lo,RadniNalogInterniPotvrda.PrijemSklediste as prijem, RadniNalogInterniPotvrda.ViljuskaristaSkladiste as viljuskarista " +
                "    FROM radninaloginterni " +
                "     INNER JOIN RadniNalogInterniPotvrda    ON RadniNalogInterniPotvrda.idnaloga = radninaloginterni.id   WHERE radninaloginterni.tiprn = 'RN20' AND IDManipulacijaJED = 74) as T1 " +

@@ -3614,11 +3614,20 @@
     <Compile Include="Skladista main\Dokumenta\Otprema.Designer.cs">
       <DependentUpon>Otprema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otprema.Palete.cs">
+      <DependentUpon>Otprema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\Otpremnica.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Otpremnica.Designer.cs">
       <DependentUpon>Otpremnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otpremnica.Izlaz.cs">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\frmRazduzenje.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\PregledLagera.cs">
       <SubType>Form</SubType>
@@ -3675,6 +3684,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\frmNalogPrijem.KnjigaRbr.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.ZamenaTarife.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">

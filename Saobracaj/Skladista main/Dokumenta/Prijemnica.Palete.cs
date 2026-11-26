@@ -410,7 +410,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                         p.BrojKontejnera AS Kontejner,"
                         + (ImaPolja ? " RTRIM(ISNULL(CONVERT(nvarchar(200), sk.Naziv), ISNULL(p.Pozicija, ''))) AS Polje," : "") + @"
                         CASE WHEN (SELECT COUNT(*) FROM RNCarinskoPaletaStavka x WHERE x.IDPalete = p.ID) > 1 THEN N'Da' ELSE N'Ne' END AS [Mešana],
-                        CASE p.Status WHEN 1 THEN N'Planirana' ELSE N'Na polju' END AS Status
+                        CASE p.Status WHEN 1 THEN N'Planirana' WHEN 3 THEN N'Izdata' ELSE N'Na polju' END AS Status
                     FROM RNCarinskoPaletaStavka ps
                     JOIN RNCarinskoPaleta p ON p.ID = ps.IDPalete
                     JOIN RNCarinskoPrijemnicaStavke s ON s.ID = ps.IDStavke

@@ -84,6 +84,7 @@ namespace Saobracaj.Skladista_main
             cboTipTransportaPrijem.TextChanged += (s, e) => PrikaziKontejnere();
 
             InitRbrKnjige();   // RAZ-17 (frmNalogPrijem.KnjigaRbr.cs)
+            InitZamenaTarife();   // RAZ-05 (frmNalogPrijem.ZamenaTarife.cs)
         }
 
         // RAZ-10: vrsta prevoza -> tip transportne jedinice; null = prevoz bez tabele (kao do sada)

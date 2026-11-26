@@ -26,7 +26,11 @@ SET ANSI_NULLS ON;
 GO
 
 IF OBJECT_ID('dbo.RNCarinskoPaleta', 'U') IS NULL OR OBJECT_ID('dbo.RNCarinskoPaletaStavka', 'U') IS NULL
-    RAISERROR(N'GREŠKA: nema tabela paleta. Prvo pustiti Carina_PrijemnicaPL_2026_11.sql.', 16, 1);
+   OR OBJECT_ID('dbo.RNCarinskoPaletaPoljeLog', 'U') IS NULL OR COL_LENGTH('dbo.RNCarinskoPrijemnicaStavke', 'IDNaimenovanja') IS NULL
+BEGIN
+    RAISERROR(N'GREŠKA: nema tabela paleta i polja. Prvo pustiti Carina_PrijemnicaPL_2026_11.sql; ova skripta se ne izvršava.', 16, 1);
+    SET NOEXEC ON;   -- ostatak skripte se ne izvršava (isključuje se na kraju)
+END
 GO
 
 /* ---------------------------------------------------------------------------------------------
@@ -265,10 +269,11 @@ BEGIN
     BEGIN
         DECLARE @x xml = CAST(N'<r>' + @Izbor + N'</r>' AS xml);
         INSERT @n (IDPalete, IDStavke, Koleta)
-        SELECT t.c.value('@p', 'int'), t.c.value('@s', 'int'), SUM(t.c.value('@k', 'int'))
-        FROM @x.nodes('/r/i') t(c)
-        GROUP BY t.c.value('@p', 'int'), t.c.value('@s', 'int')
-        HAVING SUM(t.c.value('@k', 'int')) <> 0;
+        SELECT d.p, d.s, SUM(d.k)
+        FROM (SELECT t.c.value('@p', 'int') AS p, t.c.value('@s', 'int') AS s, t.c.value('@k', 'int') AS k
+              FROM @x.nodes('/r/i') t(c)) d
+        GROUP BY d.p, d.s
+        HAVING SUM(d.k) <> 0;
     END
 
     IF EXISTS (SELECT 1 FROM @n WHERE Koleta < 0)
@@ -544,11 +549,12 @@ BEGIN
     DECLARE @s TABLE (IDNaimenovanja int PRIMARY KEY, Koleta decimal(18,3), Neto decimal(18,3), Bruto decimal(18,3), Vrednost decimal(18,2));
     DECLARE @x xml = CAST(N'<r>' + ISNULL(@Stavke, N'') + N'</r>' AS xml);
     INSERT @s (IDNaimenovanja, Koleta, Neto, Bruto, Vrednost)
-    SELECT t.c.value('@n', 'int'),
-           SUM(ISNULL(t.c.value('@k', 'decimal(18,3)'), 0)), SUM(ISNULL(t.c.value('@ne', 'decimal(18,3)'), 0)),
-           SUM(ISNULL(t.c.value('@b', 'decimal(18,3)'), 0)), SUM(ISNULL(t.c.value('@v', 'decimal(18,2)'), 0))
-    FROM @x.nodes('/r/i') t(c)
-    GROUP BY t.c.value('@n', 'int');
+    SELECT d.n, SUM(ISNULL(d.k, 0)), SUM(ISNULL(d.ne, 0)), SUM(ISNULL(d.b, 0)), SUM(ISNULL(d.v, 0))
+    FROM (SELECT t.c.value('@n', 'int') AS n,
+                 t.c.value('@k', 'decimal(18,3)') AS k, t.c.value('@ne', 'decimal(18,3)') AS ne,
+                 t.c.value('@b', 'decimal(18,3)') AS b, t.c.value('@v', 'decimal(18,2)') AS v
+          FROM @x.nodes('/r/i') t(c)) d
+    GROUP BY d.n;
     DELETE FROM @s WHERE Koleta = 0 AND Neto = 0 AND Bruto = 0 AND Vrednost = 0;
 
     IF NOT EXISTS (SELECT 1 FROM @s)
@@ -669,4 +675,6 @@ ORDER BY o.name;
 GO
 
 PRINT 'Carina_Izlaz_2026_11.sql: završeno.';
+GO
+SET NOEXEC OFF;
 GO

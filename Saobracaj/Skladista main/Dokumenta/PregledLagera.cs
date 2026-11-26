@@ -781,7 +781,7 @@ ORDER BY
 
             PodesiVidljivuKolonu("Prijemnica", "Prijemnica", ref index);
             PodesiVidljivuKolonu("MagacinskiBroj", "Magacinski broj", ref index);
-            PodesiVidljivuKolonu("VlasnikRobe", "Vlasnik robe", ref index);
+            PodesiVidljivuKolonu("VlasnikRobeNaziv", "Vlasnik robe", ref index);   // RAZ-06: naziv iz VlasniciRobe, ne ID
             PodesiVidljivuKolonu("RB", "RB", ref index);
             PodesiVidljivuKolonu("NHM", "NHM", ref index);
             PodesiVidljivuKolonu("Naziv", "Naziv", ref index);

@@ -110,6 +110,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             PoveziEventeStavki();
             OcistiPanelStavke();
+            PodesiIzlazPoPaletama();   // RAZ-13, RAZ-15 (Otprema.Palete.cs)
         }
         private void VratiPodatke(int id)
         {
@@ -843,6 +844,8 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             //OTPREMA
+            if (!UskladiRezervacijeSaListom())   // RAZ-15: stavke otpreme = izabrane palete (Otprema.Palete.cs)
+                return;
             InsertSkladista ins = new InsertSkladista();
             if (txtID.Text != "")
             {
@@ -1005,6 +1008,8 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn))
 
         private void btnFormiranRN_Click(object sender, EventArgs e)
         {
+            if (!UskladiRezervacijeSaListom())   // RAZ-15 (Otprema.Palete.cs)
+                return;
             InsertSkladista ins = new InsertSkladista();
             if (Formiran == 1)
             {
@@ -1498,6 +1503,9 @@ Where ID=" + PrijemRN, conn))
                 return;
             }
 
+            if (!MozeRucnaIzmena(stavka))   // RAZ-13: stavka iz paleta se menja u Izbor paleta
+                return;
+
             if (!AzurirajStavkuIzPanela(stavka))
                 return;
 
@@ -1529,6 +1537,7 @@ Where ID=" + PrijemRN, conn))
                 return;
 
             list.Remove(stavka);
+            OslobodiPaleteStavke(stavka);   // RAZ-15: izbačena stavka oslobađa svoje palete
             RenumerisiRB();
             OsveziGrid();
             OcistiPanelStavke();

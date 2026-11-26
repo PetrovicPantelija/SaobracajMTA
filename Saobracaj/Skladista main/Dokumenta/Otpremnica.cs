@@ -41,6 +41,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
 
             panel7.Visible = false;
+            PodesiIzlaz();   // RAZ-11, RAZ-13, RAZ-14 (Otpremnica.Izlaz.cs)
         }
         private void FillMagacinskiBroj()
         {
@@ -717,6 +718,8 @@ Where MagacinskiBroj=" + MagacinskiBroj, conn2))
             cboRukovalac.DataSource = dsViljuskarista.Tables[0];
             cboRukovalac.DisplayMember = "Zaposleni";
             cboRukovalac.ValueMember = "DeSifra";
+
+            DopuniNalogPaletama();   // RAZ-13: brojevi paleta po polju (Otpremnica.Izlaz.cs)
         }
 
         private void btnSnimi_Click(object sender, EventArgs e)
