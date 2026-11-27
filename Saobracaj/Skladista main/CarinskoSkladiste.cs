@@ -50,7 +50,8 @@ namespace Saobracaj.Skladista_main
             var main = this.TopLevelControl as NewMain;
             if (main == null) return;
 
-            main.OtvoriFormuBezPrava(() => new MagacinskaKnjigaCarinska());
+            // magacinska knjiga carinskog skladišta je evidencija iz frmCarinskaKnjiga; dosadašnja tabela je na dugmetu „Kartica prometa“
+            main.OtvoriFormuBezPrava(() => new frmCarinskaKnjiga());
         }
 
         private void btnPregledLagera_Click(object sender, EventArgs e)

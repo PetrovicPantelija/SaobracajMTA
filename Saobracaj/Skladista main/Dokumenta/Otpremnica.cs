@@ -50,7 +50,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             if (Vrsta == "Carinsko")
             {
-                var partner5 = @"Select MagacinskiBroj as ID, MagacinskiBrojCarinski.Naziv as Naziv
+                var partner5 = @"Select MagacinskiBroj as ID, " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "MagacinskiBroj", "MagacinskiBrojCarinski.Naziv") + @" as Naziv
 	From RadniNalogSkladista 
 	inner join RNCarinskoSkladistePrijemnica on RadniNalogSkladista.ID=RNCarinskoSkladistePrijemnica.RN 
 	inner join MagacinskiBrojCarinski on RadniNalogSkladista.MagacinskiBroj=MagacinskiBrojCarinski.ID

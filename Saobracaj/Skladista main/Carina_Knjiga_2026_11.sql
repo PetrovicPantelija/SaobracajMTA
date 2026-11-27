@@ -10,8 +10,11 @@
    10 Vrsta robe (naimenovanje + kontejneri + C7) | 11 Vrednost u valuti | 12 CI razduženja, vrsta, broj/godina |
    13 Datum izdavanja | 14 Napomena (vlasnik; otpremnice) | 15 Sektor
 
-   Pre ove skripte moraju biti puštene: Carina_Kontejneri_2026_11.sql, Carina_RbrKnjige_2026_11.sql,
-   Carina_Izlaz_2026_11.sql. Ekran: Carinsko skladište > Carinska knjiga.
+   Kolona 1 (Rbr) je magacinski broj u godini (MagacinskiBrojCarinskiGodina.Broj; magacinski broj je redni broj u carinskoj
+   knjizi, posebnog rednog broja nema, 27.11.2026; kolonu MagacinskiPredmet.RbrKnjige uklanja Carina_RbrKnjige_Ukloni_2026_11.sql).
+
+   Pre ove skripte moraju biti puštene: Carina_Kontejneri_2026_11.sql, Carina_Izlaz_2026_11.sql,
+   Carina_MagacinskiBrojGodina_2026_11.sql. Ekran: Carinsko skladište > Carinska knjiga.
    Skripta se može pustiti više puta. Radi i na bazi sa nivoom kompatibilnosti 100. */
 
 SET NOCOUNT ON;
@@ -21,9 +24,9 @@ GO
 
 IF OBJECT_ID('dbo.RNCarinskoRazduzenje', 'U') IS NULL OR OBJECT_ID('dbo.RNCarinskoRazduzenjeStavka', 'U') IS NULL
    OR OBJECT_ID('dbo.RNCarinskoOtpremnicaRazduzenje', 'U') IS NULL OR OBJECT_ID('dbo.RNCarinskoKontejner', 'U') IS NULL
-   OR COL_LENGTH('dbo.MagacinskiPredmet', 'RbrKnjige') IS NULL
+   OR OBJECT_ID('dbo.MagacinskiBrojCarinskiGodina', 'U') IS NULL
 BEGIN
-    RAISERROR(N'GREŠKA: prvo pustiti Carina_Kontejneri_2026_11.sql, Carina_RbrKnjige_2026_11.sql i Carina_Izlaz_2026_11.sql; ova skripta se ne izvršava.', 16, 1);
+    RAISERROR(N'GREŠKA: prvo pustiti Carina_Kontejneri_2026_11.sql, Carina_Izlaz_2026_11.sql i Carina_MagacinskiBrojGodina_2026_11.sql; ova skripta se ne izvršava.', 16, 1);
     SET NOEXEC ON;   -- ostatak skripte se ne izvršava (isključuje se na kraju)
 END
 GO
@@ -68,10 +71,13 @@ BEGIN
                Koleta, Bruto, Neto, Vrednost, Valuta, VlasnikID, Vlasnik, Kontejneri)
     SELECT n.ID, mp.RN, rns.MagacinskiBroj,
            ISNULL(mp.Godina, YEAR(ISNULL(mp.Datum, pr.Datum))),
-           mp.RbrKnjige,
+           ISNULL(mbg.Broj, rns.MagacinskiBroj),   -- redni broj u knjizi = magacinski broj u godini (27.11.2026)
            CAST(ISNULL(mp.Datum, pr.Datum) AS date),
            ISNULL(NULLIF(RTRIM(CONVERT(nvarchar(20), mp.CI)), N''), RTRIM(CONVERT(nvarchar(20), ci.CIOznaka))),
            d.Vrsta + CASE WHEN d.Broj = N'' THEN N''
+                          -- broj C7 u obliku CI/C7/broj/godina (42072/C7/15622/2025): kolona 4 je „C7 15622/2025“
+                          WHEN d.Broj LIKE N'%/' + d.Vrsta + N'/%/%' AND d.Vrsta <> N''
+                               THEN N' ' + SUBSTRING(d.Broj, CHARINDEX(N'/' + d.Vrsta + N'/', d.Broj) + LEN(d.Vrsta) + 2, 100)
                           WHEN CHARINDEX(N'/', d.Broj) > 0 THEN N' ' + d.Broj
                           ELSE N'/' + d.Broj + ISNULL(N'/' + CONVERT(nvarchar(4), ISNULL(mp.Godina, YEAR(ISNULL(mp.Datum, pr.Datum)))), N'') END,
            d.Broj,
@@ -90,6 +96,7 @@ BEGIN
     FROM dbo.RNCarinskoStavke n
     JOIN dbo.MagacinskiPredmet mp ON mp.ID = n.IDNadredjena
     JOIN dbo.RadniNalogSkladista rns ON rns.ID = mp.RN
+    LEFT JOIN dbo.MagacinskiBrojCarinskiGodina mbg ON mbg.ID = rns.MagacinskiBroj
     CROSS APPLY (SELECT MIN(p.Datum) AS Datum, COUNT(*) AS Broj
                  FROM dbo.RNCarinskoSkladistePrijemnica p
                  WHERE p.RN = mp.RN AND p.Status = 'ZA') pr
@@ -171,7 +178,7 @@ BEGIN
     ) x
     WHERE (@Od IS NULL OR x.DatumReda >= @Od)
       AND (@Do IS NULL OR x.DatumReda <= @Do)
-    ORDER BY x.Godina, CASE WHEN x.Rbr IS NULL THEN 1 ELSE 0 END, x.Rbr, x.MagacinskiBroj, x.RBNaimenovanja, x.IDNaimenovanja,
+    ORDER BY x.Godina, CASE WHEN x.Rbr IS NULL THEN 1 ELSE 0 END, x.Rbr, x.RBNaimenovanja, x.IDNaimenovanja,
              x.VrstaReda, x.DatumReda, x.IDRazduzenja;
 END
 GO

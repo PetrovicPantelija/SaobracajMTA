@@ -332,7 +332,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             if (Vrsta == "Carinsko")
             {
-                var partner5 = "Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from MagacinskiBrojCarinski order by ID Desc";
+                var partner5 = "Select ID, " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "ID", "Naziv") + " as Naziv from MagacinskiBrojCarinski order by ID Desc";
                 var partAD5 = new SqlDataAdapter(partner5, conn);
                 var partDS5 = new System.Data.DataSet();
                 partAD5.Fill(partDS5);

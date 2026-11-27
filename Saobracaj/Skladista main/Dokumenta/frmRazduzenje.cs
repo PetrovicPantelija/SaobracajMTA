@@ -293,7 +293,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 punim = true;
                 var mb = Upit(@"SELECT DISTINCT rns.MagacinskiBroj AS ID,
-                                   CONVERT(nvarchar(10), rns.MagacinskiBroj) + ISNULL(N' - ' + RTRIM(CONVERT(nvarchar(100), mbc.Naziv)), N'') AS Naziv
+                                   " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "rns.MagacinskiBroj", "mbc.Naziv") + @" AS Naziv
                                 FROM dbo.MagacinskiPredmet mp
                                 JOIN dbo.RadniNalogSkladista rns ON rns.ID = mp.RN
                                 LEFT JOIN dbo.MagacinskiBrojCarinski mbc ON mbc.ID = rns.MagacinskiBroj

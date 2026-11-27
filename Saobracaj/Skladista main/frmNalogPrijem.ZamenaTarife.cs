@@ -679,7 +679,8 @@ namespace Saobracaj.Skladista_main
                                     i.StavkiPrijemnice AS [Stavki prijemnice], i.StavkiOtpreme AS [Stavki otpreme]
                                 FROM dbo.RNCarinskoNHMIzmena i
                                 LEFT JOIN dbo.RNCarinskoStavke n ON n.ID = i.IDNaimenovanja
-                                WHERE (@MB = '' OR CONVERT(nvarchar(20), i.MagacinskiBroj) = @MB)
+                                WHERE (@MB = '' OR CONVERT(nvarchar(20), i.MagacinskiBroj) = @MB
+                                       OR " + MagacinskiBrojOznaka.Izraz(connection, "i.MagacinskiBroj") + @" = @MB)
                                   AND (@C7 = '' OR i.BrojC7 LIKE '%' + @C7 + '%')
                                   AND (@Kor = '' OR i.Korisnik LIKE '%' + @Kor + '%')
                                 ORDER BY i.Datum DESC, i.ID DESC", conn))

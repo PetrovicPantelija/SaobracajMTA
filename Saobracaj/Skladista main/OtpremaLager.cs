@@ -267,7 +267,7 @@ namespace Saobracaj.Skladista_main
                 string mb = @"
 SELECT 
     Promet.MagacinskiBroj AS ID,
-    CAST(Promet.MagacinskiBroj AS nvarchar(20)) + ' - ' + RTRIM(ISNULL(MagacinskiBrojCarinski.Naziv, '')) AS Naziv
+    " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "Promet.MagacinskiBroj", "MagacinskiBrojCarinski.Naziv") + @" AS Naziv
 FROM RNCarinskoPrijemnicaStavke
 INNER JOIN RNCarinskoSkladistePrijemnica 
     ON RNCarinskoPrijemnicaStavke.IDNadredjena = RNCarinskoSkladistePrijemnica.ID
@@ -338,7 +338,7 @@ ORDER BY RTRIM(Partnerji.PaNaziv)";
             using (SqlCommand cmd = new SqlCommand(@"
 SELECT TOP 1
     Promet.MagacinskiBroj AS MagacinskiBroj,
-    CAST(Promet.MagacinskiBroj AS nvarchar(20)) + ' - ' + RTRIM(ISNULL(MagacinskiBrojCarinski.Naziv, '')) AS MagacinskiBrojNaziv,
+    " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "Promet.MagacinskiBroj", "MagacinskiBrojCarinski.Naziv") + @" AS MagacinskiBrojNaziv,
     Partnerji.PaSifra AS VlasnikID,
     RTRIM(Partnerji.PaNaziv) AS VlasnikNaziv
 FROM RNCarinskoPrijemnicaStavke

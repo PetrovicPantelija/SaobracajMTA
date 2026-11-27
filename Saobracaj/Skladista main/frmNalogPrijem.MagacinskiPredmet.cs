@@ -43,7 +43,11 @@ namespace Saobracaj.Skladista_main
 
             // Smeštajni dokument je broj C7
             lblSmestajniDokument.Text = "BROJ C7 (SMEŠT. DOK.)";
-            new ToolTip().SetToolTip(txtSmestajniDokument, "Broj C7 sa isprave, npr. 2544 ili 42072/2544/11.08.2026");
+            // broj C7 se slaže u oblik CI/C7/broj/godina (BrojC7.cs); ispostava iz odredišne carinarnice
+            new ToolTip().SetToolTip(txtSmestajniDokument, BrojC7.Opis);
+            txtSmestajniDokument.Leave += (s, e) =>
+                txtSmestajniDokument.Text = BrojC7.Normalizuj(txtSmestajniDokument.Text,
+                    BrojC7.OznakaCI(connection, cboCarinarnicaPrijem.SelectedValue), (int)numGodina.Value);
 
             sirinaPosebnihUslova = cboPosebniUslovi.Width;
             lblKontejneri = new Label
@@ -83,7 +87,6 @@ namespace Saobracaj.Skladista_main
             cboTipTransportaPrijem.SelectedIndexChanged += (s, e) => PrikaziKontejnere();
             cboTipTransportaPrijem.TextChanged += (s, e) => PrikaziKontejnere();
 
-            InitRbrKnjige();   // RAZ-17 (frmNalogPrijem.KnjigaRbr.cs)
             InitZamenaTarife();   // RAZ-05 (frmNalogPrijem.ZamenaTarife.cs)
             InitNoviVlasnik();    // RAZ-07 (frmNalogPrijem.VlasnikRobe.cs)
         }

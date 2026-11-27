@@ -99,7 +99,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
                 string query = OsnovniQueryBezWhere() + @"
 SELECT 
     MagacinskiBroj AS ID,
-    CAST(MagacinskiBroj AS nvarchar(20)) + ' - ' + RTRIM(ISNULL(MagacinskiBrojNaziv, '')) AS Naziv
+    " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "MagacinskiBroj", "MagacinskiBrojNaziv") + @" AS Naziv
 FROM Stock
 WHERE
     (NerazduzenoKoleta > 0.0001 OR NerazduzenaTezina > 0.0001 OR NerazduzenoNeto > 0.0001 OR OstatakValute > 0.0001)
@@ -221,7 +221,7 @@ ORDER BY RTRIM(ISNULL(VlasnikRobeNaziv, ''))";
                 string query = OsnovniQueryBezWhere() + @"
 SELECT 
     MagacinskiBroj AS ID,
-    CAST(MagacinskiBroj AS nvarchar(20)) + ' - ' + RTRIM(ISNULL(MagacinskiBrojNaziv, '')) AS Naziv
+    " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "MagacinskiBroj", "MagacinskiBrojNaziv") + @" AS Naziv
 FROM Stock
 WHERE
     VlasnikRobe = @Vlasnik

@@ -38,7 +38,7 @@ namespace Saobracaj.Skladista_main
         // kolone tabele: naziv iz procedure, zaglavlje (broj kolone obrasca), širina, format broja (null = tekst)
         static readonly string[][] Kolone =
         {
-            new[] { "Rbr", "1 Rbr", "50", "" },
+            new[] { "Rbr", "1 Rbr (magacinski broj)", "70", "" },   // redni broj u knjizi je magacinski broj
             new[] { "Datum", "2 Datum", "84", "d" },
             new[] { "CIPrijave", "3 CI prijave", "64", null },
             new[] { "DokumentPrijave", "4 Vrsta dokumenta, broj/godina", "150", null },
@@ -54,13 +54,12 @@ namespace Saobracaj.Skladista_main
             new[] { "DatumIzdavanja", "13 Datum izdavanja", "84", "d" },
             new[] { "Napomena", "14 Napomena", "200", null },
             new[] { "Sektor", "15 Sektor", "60", null },
-            new[] { "MagacinskiBroj", "Magacinski broj", "70", "" },
             new[] { "NHM", "Tarifni broj", "76", null },
         };
 
         // kolone koje opisuju usklađištenje: u redovima razduženja su sive (isti C7 i naimenovanje)
         static readonly HashSet<string> KoloneUskladistenja = new HashSet<string>
-            { "Rbr", "CIPrijave", "DokumentPrijave", "RBNaimenovanja", "VrstaRobe", "MagacinskiBroj", "NHM" };
+            { "Rbr", "CIPrijave", "DokumentPrijave", "RBNaimenovanja", "VrstaRobe", "NHM" };
 
         public frmCarinskaKnjiga()
         {
@@ -256,7 +255,7 @@ namespace Saobracaj.Skladista_main
                 Napuni(cboGodina, Upit(@"SELECT DISTINCT mp.Godina AS ID, CONVERT(nvarchar(4), mp.Godina) AS Naziv
                                          FROM dbo.MagacinskiPredmet mp WHERE mp.Godina IS NOT NULL ORDER BY ID DESC", CommandType.Text), "Sve");
                 Napuni(cboMagacinskiBroj, Upit(@"SELECT DISTINCT rns.MagacinskiBroj AS ID,
-                                   CONVERT(nvarchar(10), rns.MagacinskiBroj) + ISNULL(N' - ' + RTRIM(CONVERT(nvarchar(100), mbc.Naziv)), N'') AS Naziv
+                                   " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "rns.MagacinskiBroj", "mbc.Naziv") + @" AS Naziv
                                 FROM dbo.MagacinskiPredmet mp
                                 JOIN dbo.RadniNalogSkladista rns ON rns.ID = mp.RN
                                 LEFT JOIN dbo.MagacinskiBrojCarinski mbc ON mbc.ID = rns.MagacinskiBroj

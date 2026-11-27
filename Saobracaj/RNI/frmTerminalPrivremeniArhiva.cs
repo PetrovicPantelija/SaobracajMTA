@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -204,10 +205,10 @@ namespace Saobracaj.RNI
             TerminalPrivFajloviNaDesktop.Izvezi(this, zapisi);
         }
 
-        // Vrati iz arhive: zapis se vraća u terminal (TerminalPriv) sa istim ID-jem. Poništava se poslednja izmena koja je upisala
-        // pokret u izveštaj brodaru, za bilo koji datum: brišu se ti pokreti, datumi koji su ih upisali i njihov upis u logu, a
-        // Konačni_GATE_OUT se briše uvek (procedura VratiTerminalPrivIzArhive). Pre vraćanja poruka kaže šta će biti obrisano i da
-        // li je pokret već poslat brodaru.
+        // Vrati iz arhive: zapis se vraća u terminal (TerminalPriv) sa istim ID-jem. Poništava se poslednja izmena zapisa, kao Undo:
+        // sva polja koja je promenila vraćaju se na vrednost pre nje, brišu se pokreti koje je upisala u izveštaj brodaru i ona sama
+        // iz loga, a Konačni_GATE_OUT se briše uvek (procedura VratiTerminalPrivIzArhive). Pre vraćanja poruka kaže šta se vraća i
+        // briše i da li je pokret već poslat brodaru.
         private void btnVratiIzArhive_Click(object sender, EventArgs e)
         {
             const string naslov = "Vrati iz arhive";
@@ -228,33 +229,45 @@ namespace Saobracaj.RNI
                 return;
             }
 
+            if (provera.Tables.Count < 3 || !provera.Tables[0].Columns.Contains("BrojIzmena"))
+            {
+                MessageBox.Show("Procedura VratiTerminalPrivIzArhive u bazi je starija verzija. Na bazi treba pustiti skriptu TerminalPriv_Vracanje_Ponisti_2026_11.sql.",
+                    naslov, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DataRow stanje = provera.Tables[0].Rows[0];
             DataTable pokreti = provera.Tables[1];
-            DataTable datumi = provera.Tables[2];
+            DataTable promene = provera.Tables[2];
             bool poslat = pokreti.Rows.Cast<DataRow>().Any(p => Convert.ToBoolean(p["Poslat"]));
             int uTerminalu = Convert.ToInt32(stanje["UTerminalu"]);
+            int brojIzmena = Convert.ToInt32(stanje["BrojIzmena"]);
 
             var poruka = new StringBuilder();
             poruka.AppendLine("Vratiti kontejner " + kontejner + " (ID " + id + ") iz arhive u terminal?");
             poruka.AppendLine();
-            if (pokreti.Rows.Count > 0)
-            {
-                object izmena = stanje["DatumIzmene"];
-                poruka.AppendLine(izmena == DBNull.Value
-                    ? "Poništava se poslednji upis u izveštaj brodaru (upisan pri unosu zapisa ili promeni GATE_IN/_GATE_OUT):"
-                    : "Poništava se izmena od " + Convert.ToDateTime(izmena).ToString(FormatDatuma) + ", poslednja koja je upisala u izveštaj brodaru:");
-            }
+            object izmena = stanje["DatumIzmene"];
+            if (brojIzmena > 0 && izmena != DBNull.Value)
+                poruka.AppendLine("Poništava se izmena od " + Convert.ToDateTime(izmena).ToString(FormatDatuma)
+                    + (brojIzmena > 1 ? " i " + (brojIzmena - 1) + " kasnijih" : "")
+                    + ". Polja se vraćaju na vrednost pre izmene:");
+            else if (pokreti.Rows.Count > 0)
+                poruka.AppendLine("Poništava se poslednji upis u izveštaj brodaru (upisan pri unosu zapisa ili promeni GATE_IN/_GATE_OUT):");
+            else if (Convert.ToInt32(stanje["NadjenLog"]) == 0)
+                poruka.AppendLine("U logu nije nađena izmena koja je upisala Konačni_GATE_OUT, pa se briše samo taj datum:");
 
-            foreach (DataRow d in datumi.Rows)
+            foreach (DataRow d in promene.Rows)
             {
-                object vrednost = d["Vrednost"];
-                poruka.AppendLine("- " + d["Polje"] + (vrednost == DBNull.Value ? "" : " " + Convert.ToDateTime(vrednost).ToString(FormatDatuma)) + " se briše.");
+                bool jeDatum = Convert.ToBoolean(d["JeDatum"]);
+                poruka.AppendLine("- " + d["Polje"] + ": " + PrikaziVrednost(d["Sada"], jeDatum) + " → " + PrikaziVrednost(d["Postaje"], jeDatum));
             }
 
             if (pokreti.Rows.Count == 0)
                 poruka.AppendLine(Convert.ToInt32(stanje["BrojPokreta"]) == 0
                     ? "- U izveštajima brodaru nema pokreta ovog zapisa."
-                    : "- Za poslednji pokret u izveštaju brodaru nije nađen datum koji ga je upisao, pa se izveštaji brodaru ne menjaju.");
+                    : brojIzmena > 0
+                        ? "- Poništena izmena nije upisala pokret u izveštaj brodaru, pa se izveštaji brodaru ne menjaju."
+                        : "- Za poslednji pokret u izveštaju brodaru nije nađen datum koji ga je upisao, pa se izveštaji brodaru ne menjaju.");
             foreach (DataRow p in pokreti.Rows)
             {
                 poruka.Append("- Iz izveštaja brodaru " + p["Izvestaj"] + " briše se pokret " + p["Pokret"] + " " + p["DatumPokreta"]
@@ -266,9 +279,10 @@ namespace Saobracaj.RNI
                 poruka.AppendLine();
             }
 
-            List<string> izLoga = datumi.Rows.Cast<DataRow>().Where(d => Convert.ToInt32(d["IzLoga"]) == 1).Select(d => Convert.ToString(d["Polje"])).ToList();
-            if (izLoga.Count > 0)
-                poruka.AppendLine("- Iz loga se briše upis: " + string.Join(", ", izLoga) + ".");
+            if (brojIzmena > 0)
+                poruka.AppendLine(brojIzmena == 1
+                    ? "- Poništena izmena se briše iz loga; red VRAĆANJE u logu beleži šta je vraćeno."
+                    : "- Poništene izmene se brišu iz loga; red VRAĆANJE u logu beleži šta je vraćeno.");
             if (uTerminalu > 0)
             {
                 poruka.AppendLine();
@@ -298,6 +312,19 @@ namespace Saobracaj.RNI
             Text = "Arhivirani podaci (" + dt.Rows.Count + ")";
 
             MessageBox.Show("Kontejner " + kontejner + " je vraćen u terminal.", naslov, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Vrednost iz provere vraćanja: datum je tekst stilom 120 (2026-11-23 12:51:00), prazno je NULL
+        private static string PrikaziVrednost(object vrednost, bool jeDatum)
+        {
+            if (vrednost == null || vrednost == DBNull.Value)
+                return "(prazno)";
+
+            string tekst = Convert.ToString(vrednost);
+            DateTime datum;
+            if (jeDatum && DateTime.TryParseExact(tekst, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out datum))
+                return datum.ToString(FormatDatuma);
+            return tekst.Length == 0 ? "\"\"" : tekst;
         }
     }
 }

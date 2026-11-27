@@ -3,7 +3,8 @@ using System.Drawing;
 
 namespace Saobracaj.Skladista_main
 {
-    // RAZ-16: dugme „Carinska knjiga“ (evidencija carinskog skladišta) pored „Magacinska knjiga“.
+    // RAZ-16: dugme „Kartica prometa“ (tabela MagacinskaKnjigaCarinska); evidencija carinskog skladišta
+    // (frmCarinskaKnjiga) otvara se sa dugmeta „Magacinska knjiga“.
     // Mreža 4 × 2 je puna, pa dugme ide u treći red ispod Magacinske knjige, istog izgleda;
     // forma dobija klizač ako panel nije dovoljno visok.
     public partial class CarinskoSkladiste
@@ -16,7 +17,7 @@ namespace Saobracaj.Skladista_main
             var btn = new SfButton
             {
                 AccessibleName = "Button",
-                Text = "Carinska knjiga",
+                Text = "Kartica prometa",
                 Font = uzor.Font,
                 ForeColor = uzor.ForeColor,
                 BackColor = uzor.BackColor,
@@ -39,7 +40,7 @@ namespace Saobracaj.Skladista_main
             {
                 var main = this.TopLevelControl as NewMain;
                 if (main == null) return;
-                main.OtvoriFormuBezPrava(() => new frmCarinskaKnjiga());
+                main.OtvoriFormuBezPrava(() => new MagacinskaKnjigaCarinska());
             };
 
             Controls.Add(btn);

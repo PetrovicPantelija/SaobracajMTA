@@ -309,9 +309,9 @@ namespace Saobracaj.RNI
         }
 
         // Šta će vraćanje zapisa iz arhive uraditi, bez izmena u bazi (procedura VratiTerminalPrivIzArhive, @Proveri = 1):
-        // Tables[0] = Kontejner, KonacniGateOut, NadjenLog, UTerminalu, BrojPokreta, DatumIzmene; Tables[1] = pokreti koji se
-        // brišu iz izveštaja brodaru (Izvestaj, Pokret, DatumPokreta, Poslat, DatumIzvoza, Polje); Tables[2] = datumi koji
-        // postaju prazni (Polje, Vrednost, IzLoga)
+        // Tables[0] = Kontejner, KonacniGateOut, NadjenLog, UTerminalu, BrojPokreta, DatumIzmene, BrojIzmena; Tables[1] = pokreti
+        // koji se brišu iz izveštaja brodaru (Izvestaj, Pokret, DatumPokreta, Poslat, DatumIzvoza, Polje); Tables[2] = polja koja
+        // se vraćaju (Polje, JeDatum, Sada, Postaje; datum kao tekst 2026-11-23 12:51:00, NULL = prazno)
         public DataSet ProveriVracanjeIzArhive(int ID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -335,8 +335,8 @@ namespace Saobracaj.RNI
             }
         }
 
-        // Vraća zapis iz TerminalPrivArhiv u TerminalPriv (isti ID) i poništava poslednju izmenu koja je upisala pokret u izveštaj
-        // brodaru: briše te pokrete, datume koji su ih upisali i njihov upis u logu; Konačni_GATE_OUT se uvek briše.
+        // Vraća zapis iz TerminalPrivArhiv u TerminalPriv (isti ID) i poništava poslednju izmenu zapisa (kao Undo): polja se vraćaju
+        // na vrednost pre nje, brišu se pokreti koje je upisala u izveštaj brodaru i ona iz loga; Konačni_GATE_OUT se uvek briše.
         // Procedura ima svoju transakciju.
         public void VratiIzArhive(int ID)
         {

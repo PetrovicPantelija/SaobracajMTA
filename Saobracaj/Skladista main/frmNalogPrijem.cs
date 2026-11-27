@@ -536,7 +536,7 @@ namespace Saobracaj.Skladista_main
 
         private void button24_Click(object sender, EventArgs e)
         {
-            if (!C7SlobodanNaMB() || !KontejneriIspravni() || !RbrKnjigeIspravan())
+            if (!C7SlobodanNaMB() || !KontejneriIspravni())
                 return;
 
             int? nalogodavac = null;
@@ -675,7 +675,6 @@ namespace Saobracaj.Skladista_main
                 VratiPodatkeMP();
             }
             SnimiKontejnere();
-            SnimiRbrKnjige();   // RAZ-17
             SnimiIzabranogVlasnika();   // RAZ-07: komercijalni nalog (frmNalogPrijem.VlasnikRobe.cs)
             PrenesiVlasnikaNaNalog();   // RAZ-06 (frmNalogPrijem.MagacinskiPredmet.cs)
 
@@ -1069,15 +1068,27 @@ namespace Saobracaj.Skladista_main
                     {
                         while (dr.Read())
                         {
+                            // upit uvek vraća red (LEFT JOIN na nalog): dok magacinski predmet ne postoji, polja se
+                            // popunjavaju sa naloga, a broj C7 unet na nalogu se ne briše (27.11.2026)
+                            bool imaMP = dr["ID"] != DBNull.Value;
                             txtVlasnikRobe.Text = dr["NazivVlasnika"].ToString();
                             txtVlasnikSifra.Text = dr["SifraRobe"].ToString();
+                            if (!imaMP && txtVlasnikRobe.Text == "" && cboVlasnikRobe.SelectedIndex >= 0)
+                                txtVlasnikRobe.Text = cboVlasnikRobe.Text;
                             txtSklad.Text = dr["SifraSkladista"].ToString();
 
-                            txtMagacinskiBroj.Text = dr["MB"].ToString();
+                            int mb;
+                            if (int.TryParse(dr["MB"].ToString(), out mb) && mb > 0)
+                                PrikaziMagacinskiBroj(mb);
+                            else if (!imaMP && MagacinskiBroj.HasValue && MagacinskiBroj.Value > 0)
+                                PrikaziMagacinskiBroj(MagacinskiBroj.Value);
+                            else
+                                txtMagacinskiBroj.Text = dr["MB"].ToString();
                             txtVrstaCP.Text = dr["CarinskiPostupak"].ToString();
                             txtCI.Text = dr["CIOznaka"].ToString();
-                            txtSmestajniDokument.Text = dr["BrojJCI"].ToString();
-                            txtBrojJCI.Text = dr["BrojJCI"].ToString();
+                            if (dr["BrojJCI"].ToString().Trim() != "")
+                                txtSmestajniDokument.Text = dr["BrojJCI"].ToString();
+                            txtBrojJCI.Text = imaMP && dr["BrojJCI"].ToString().Trim() != "" ? dr["BrojJCI"].ToString() : txtSmestajniDokument.Text.Trim();
                             if(dr["Godina"] != null && dr["Godina"] != DBNull.Value)
                                 numGodina.Value = Convert.ToInt32(dr["Godina"].ToString());
                             txtMagacinskiPredmetID.Text = dr["ID"].ToString();
@@ -1095,7 +1106,6 @@ namespace Saobracaj.Skladista_main
                     }
                 }
             }
-            UcitajRbrKnjige();   // RAZ-17
         }
 
         int VratiNalogIDF()
@@ -1195,13 +1205,15 @@ namespace Saobracaj.Skladista_main
                 //var partner5 = "Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from MagacinskiBrojCarinski order by ID Desc";
 
 
-                var partner5 = $"Select ID, cast(ID as nvarchar(5))+' - '+Naziv as Naziv from {tabela} order by ID Desc";
+                // carinski broj se prikazuje kao „broj/godina“ (MagacinskiBrojOznaka.cs); vrednost ostaje ID
+                string oznaka = Vrsta == "Carinsko" ? MagacinskiBrojOznaka.Izraz(connection, "ID") : "CONVERT(nvarchar(20), ID)";
+                var partner5 = $"Select ID, {oznaka} AS Oznaka, {oznaka} + ' - ' + Naziv as Naziv from {tabela} order by ID Desc";
                 var partAD5 = new SqlDataAdapter(partner5, conn);
                 var partDS5 = new System.Data.DataSet();
                 partAD5.Fill(partDS5);
                 // ISP-09: lista se uvek puni iznova (i novi broj se odmah vidi), pa se bira sačuvani broj
                 cboMagacinskiBroj.DataSource = partDS5.Tables[0];
-                cboMagacinskiBroj.DisplayMember = "ID";
+                cboMagacinskiBroj.DisplayMember = "Oznaka";
                 cboMagacinskiBroj.ValueMember = "ID";
                 if (MagacinskiBroj.HasValue && MagacinskiBroj > 0)
                     cboMagacinskiBroj.SelectedValue = MagacinskiBroj.Value;
@@ -1425,16 +1437,16 @@ namespace Saobracaj.Skladista_main
             // SKC-17: Visible je false i kad je samo grupa zatvorena; Vidljiva gleda da li forma sama sakriva panel
             if (cboMagacinskiBroj.SelectedValue != null && GrupeForme.Vidljiva(panelMP))
             {
-                // Uzimamo vrednost iz combobox-a kao string (ili int, zavisno od tipa)
-                string izabranaVrednost = cboMagacinskiBroj.SelectedValue.ToString();
-
-                // Upoređujemo sa trenutnom vrednošću u txtMagacinskiBroj
-                // (ako je txtMagacinskiBroj običan TextBox, koristite .Text)
-                if (txtMagacinskiBroj.Text != izabranaVrednost)
-                {
-                    txtMagacinskiBroj.Text = izabranaVrednost;
-                }
+                int izabrani;
+                if (int.TryParse(cboMagacinskiBroj.SelectedValue.ToString(), out izabrani))
+                    PrikaziMagacinskiBroj(izabrani);
             }
+        }
+
+        // MB u magacinskom predmetu: carinski broj kao „broj/godina“ (MagacinskiBrojOznaka.cs), komercijalni kao ranije
+        private void PrikaziMagacinskiBroj(int id)
+        {
+            txtMagacinskiBroj.Text = Vrsta == "Carinsko" ? MagacinskiBrojOznaka.Za(connection, id) : id.ToString();
         }
 
         private void btnPregled_Click(object sender, EventArgs e)

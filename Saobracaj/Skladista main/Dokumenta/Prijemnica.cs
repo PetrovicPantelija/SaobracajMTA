@@ -34,6 +34,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             InitUvozPL();
             FillDodatneUsluge(RN.ToString());
             VratiPodatke(RN);
+            PreuzmiIzNaloga();   // polja naloga koja VratiPodatke ne prenosi (Prijemnica.IzNaloga.cs)
 
             if (txtPrijemnica.Text != "")
             {
@@ -1341,7 +1342,7 @@ Where RadniNalogSkladista.ID=" + id, conn);
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("select ID from RadniNalogInterni where TipRN = 'RN20' and BrojRN =" + txtID.Text, conn))
+                using (SqlCommand cmd = new SqlCommand("select ID from RadniNalogInterni where TipRN = 'RN20' and IDManipulacijaJED = 74 and BrojRN =" + txtID.Text, conn))
                 {
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())

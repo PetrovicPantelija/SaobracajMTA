@@ -664,7 +664,7 @@ ORDER BY o.RB;";
 
             if (Vrsta == "Carinsko")
             {
-                var partner5 = @"Select MagacinskiBroj as ID, (Cast(MagacinskiBrojCarinski.ID as nvarchar(5))+' - ' + MagacinskiBrojCarinski.Naziv) as Naziv
+                var partner5 = @"Select MagacinskiBroj as ID, " + MagacinskiBrojOznaka.IzrazSaNazivom(connection, "MagacinskiBrojCarinski.ID", "MagacinskiBrojCarinski.Naziv") + @" as Naziv
 	From RadniNalogSkladista 
 	inner join RNCarinskoSkladistePrijemnica on RadniNalogSkladista.ID=RNCarinskoSkladistePrijemnica.RN 
 	inner join MagacinskiBrojCarinski on RadniNalogSkladista.MagacinskiBroj=MagacinskiBrojCarinski.ID
