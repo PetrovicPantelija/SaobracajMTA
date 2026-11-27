@@ -42,7 +42,7 @@ namespace Saobracaj.Skladista_main
 
             btnZameniTarifu = new Button
             {
-                Text = "Zameni tarifni broj",
+                Text = "Zameni tarifu",
                 Location = new Point(x, gore),
                 Size = new Size(sirina, visina),
                 UseVisualStyleBackColor = true
@@ -61,6 +61,22 @@ namespace Saobracaj.Skladista_main
             btnIstorijaTarifa.Click += (s, e) => OtvoriIstorijuTarifa();
             panel.Controls.Add(btnZameniTarifu);
             panel.Controls.Add(btnIstorijaTarifa);
+        }
+
+        // Sava: posle teme (Segoe UI) tekst dugmadi je u jednom redu (dva reda ne staju u pola visine Dodaj/Izmeni/
+        // Izbriši), pa između Napomene i Dodaj nema mesta. Dugmad idu desno od kolone Dodaj/Izmeni/Izbriši (panel
+        // naimenovanja je tu prazan), a Napomena dobija prostor do Dodaj.
+        private void PoravnajDugmadTarife()
+        {
+            if (btnZameniTarifu == null)
+                return;
+            Func<Button, int> jedanRed = b => TextRenderer.MeasureText(b.Text, b.Font).Width + 24;
+            int sirina = Math.Max(jedanRed(btnZameniTarifu), jedanRed(btnIstorijaTarifa));
+            const int razmak = 8;
+            int x = button3.Right + razmak;
+            btnZameniTarifu.SetBounds(x, btnZameniTarifu.Top, sirina, btnZameniTarifu.Height);
+            btnIstorijaTarifa.SetBounds(x, btnIstorijaTarifa.Top, sirina, btnIstorijaTarifa.Height);
+            txtNapomenaE.Width = Math.Max(80, button3.Left - razmak - txtNapomenaE.Left);
         }
 
         private bool ImaPravoZameneTarife()
@@ -197,7 +213,7 @@ namespace Saobracaj.Skladista_main
             }
             if (idNaim <= 0)
             {
-                MessageBox.Show("Izaberite naimenovanje u tabeli (klik na red), pa Zameni tarifni broj.\nZa više naimenovanja odjednom: u prozoru zamene dugme „Iz Excela“.",
+                MessageBox.Show("Izaberite naimenovanje u tabeli (klik na red), pa Zameni tarifu.\nZa više naimenovanja odjednom: u prozoru zamene dugme „Iz Excela“.",
                     "Zamena tarifnog broja");
                 return;
             }

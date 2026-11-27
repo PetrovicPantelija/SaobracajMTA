@@ -17,6 +17,7 @@ namespace Saobracaj.Izvoz
         public frmIzvozDokumenta()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (frmIzvozDokumenta.Sava.cs)
         }
 
         public frmIzvozDokumenta(string sifra)
@@ -25,6 +26,7 @@ namespace Saobracaj.Izvoz
             txtSifraUvoza.Text = sifra;
             FillCombo();
             RefreshDataGrid();
+            PrimeniSava();   // redizajn Sava (frmIzvozDokumenta.Sava.cs)
         }
 
         public frmIzvozDokumenta(string sifra, string Buking, string Voz)
@@ -37,6 +39,7 @@ namespace Saobracaj.Izvoz
             RefreshDataGrid();
             RefreshDataGrid2();
             RefreshDataGrid3();
+            PrimeniSava();   // redizajn Sava (frmIzvozDokumenta.Sava.cs)
         }
 
         private void RefreshDataGrid()
@@ -60,17 +63,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.DataSource = ds.Tables[0];
 
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dataGridView1);   // redizajn Sava
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -107,17 +100,7 @@ namespace Saobracaj.Izvoz
             dataGridView2.DataSource = ds.Tables[0];
 
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dataGridView2);   // redizajn Sava
 
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
@@ -154,17 +137,7 @@ namespace Saobracaj.Izvoz
             dataGridView3.DataSource = ds.Tables[0];
 
 
-            dataGridView3.BorderStyle = BorderStyle.None;
-            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView3.BackgroundColor = Color.White;
-
-            dataGridView3.EnableHeadersVisualStyles = false;
-            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dataGridView3);   // redizajn Sava
 
             DataGridViewColumn column = dataGridView3.Columns[0];
             dataGridView3.Columns[0].HeaderText = "ID";

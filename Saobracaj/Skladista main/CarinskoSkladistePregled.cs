@@ -28,6 +28,7 @@ namespace Saobracaj.Skladista_main
             Tip = tip;
             VratiRN();
             InitOtprema();   // RAZ-11: novi nalog otpreme (CarinskoSkladistePregled.Otprema.cs)
+            PrimeniSava();   // redizajn Sava (CarinskoSkladistePregled.Sava.cs)
         }
 
         // RAZ-11: nalog može nastati bez komercijalnog naloga (Radni nalozi > Kreiraj novi > Carinsko skladište > Prijem,

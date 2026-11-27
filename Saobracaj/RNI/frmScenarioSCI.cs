@@ -35,6 +35,7 @@ namespace Saobracaj.RNI
             txtBrojDokumenta.Text = id.ToString();
            
             
+            PrimeniSava();   // redizajn Sava (frmScenarioSCI.Sava.cs)
         }
 
         private void ChangeTextBox()
@@ -1112,28 +1113,7 @@ namespace Saobracaj.RNI
 
         private void PodesiDatagridView(DataGridView dgv)
         {
-
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            // dgv.ColumnHeadersHeight = 30;
-
-
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dgv);   // redizajn Sava
         }
 
         private System.Data.DataTable VratiPodatkeIzBazeNHM()

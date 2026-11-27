@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Saobracaj.Skladista_main
@@ -70,10 +71,17 @@ namespace Saobracaj.Skladista_main
                 MaxLength = TarifniBroj.MaxDuzina,
                 TextAlign = HorizontalAlignment.Right
             };
-            // samo cifre (i kontrolni tasteri, npr. Backspace)
-            txtTarifniBroj.KeyPress += (s, e) => { if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true; };
-            // nalepljen tekst (npr. "7321 19 00") se svodi na cifre
-            txtTarifniBroj.Leave += (s, e) => txtTarifniBroj.Text = TarifniBroj.Normalizuj(txtTarifniBroj.Text);
+            // samo cifre (i kontrolni tasteri, npr. Backspace); odbijen znak dobija kratko objašnjenje pored polja
+            var napomena = new ToolTip();
+            txtTarifniBroj.KeyPress += (s, e) =>
+            {
+                if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar))
+                    return;
+                e.Handled = true;
+                napomena.Show("Samo cifre: 8, ili 10 za TARIC.", txtTarifniBroj, 0, txtTarifniBroj.Height + 2, 2500);
+            };
+            // nalepljen tekst (npr. "7321 19 00") gubi razmake i tačke; slova ostaju, pa ih Dodaj/Izmeni prijavi
+            txtTarifniBroj.Leave += (s, e) => txtTarifniBroj.Text = TarifniBroj.BezRazdvajanja(txtTarifniBroj.Text);
             txtNHMNaimenovanje.Parent.Controls.Add(txtTarifniBroj);
             txtTarifniBroj.BringToFront();
             txtNHMNaimenovanje.Visible = false;
@@ -110,17 +118,51 @@ namespace Saobracaj.Skladista_main
         // Izmena postojećeg naimenovanja prolazi dok se broj ne menja: stara naimenovanja imaju 7 cifara iz ranijeg pravila.
         private bool NHMIspravan(bool izmenaPostojeceg = false)
         {
+            string uneto = TarifniBroj.BezRazdvajanja(txtTarifniBroj.Text);
+            bool samoCifre = uneto.All(char.IsDigit);
             string nhm = TarifniBrojNaimenovanja;
-            if (izmenaPostojeceg && nhmUcitan != null && nhm == nhmUcitan)
+            if (izmenaPostojeceg && samoCifre && nhmUcitan != null && nhm == nhmUcitan)
                 return true;
-            string greska = TarifniBroj.Provera(nhm);
+            string greska = TarifniBroj.Provera(samoCifre ? nhm : uneto);
             if (greska != null)
             {
-                MessageBox.Show(greska);
+                MessageBox.Show(greska, "Tarifni broj", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTarifniBroj.Focus();
+                txtTarifniBroj.SelectAll();
                 return false;
             }
             return true;
+        }
+
+        // Dodaj: magacinski predmet u koji se upisuje mora postojati i pripadati otvorenom nalogu, jer tabela
+        // naimenovanja prikazuje stavke po nalogu (MagacinskiPredmet.RN). null = u redu, inače poruka.
+        private string PredmetZaNaimenovanje(int magacinskiPredmet)
+        {
+            using (var conn = new System.Data.SqlClient.SqlConnection(connection))
+            using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT RN FROM dbo.MagacinskiPredmet WHERE ID = @ID", conn))
+            {
+                cmd.Parameters.AddWithValue("@ID", magacinskiPredmet);
+                conn.Open();
+                object rn = cmd.ExecuteScalar();
+                if (rn == null)
+                    return "Magacinski predmet " + magacinskiPredmet + " ne postoji u bazi.\n\nZatvorite nalog, otvorite ga ponovo i kliknite Snimi.";
+                if (rn == DBNull.Value || Convert.ToString(rn).Trim() != txtID.Text.Trim())
+                    return "Magacinski predmet " + magacinskiPredmet + " pripada nalogu " + Convert.ToString(rn) + ", a otvoren je nalog " + txtID.Text.Trim() +
+                           ".\nNaimenovanje se ne bi videlo u tabeli ovog naloga.\n\nZatvorite nalog i otvorite ga ponovo.";
+                return null;
+            }
+        }
+
+        // broj naimenovanja magacinskog predmeta; Dodaj poredi broj pre i posle upisa
+        private int BrojNaimenovanja(int magacinskiPredmet)
+        {
+            using (var conn = new System.Data.SqlClient.SqlConnection(connection))
+            using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT COUNT(*) FROM dbo.RNCarinskoStavke WHERE IDNadredjena = @ID", conn))
+            {
+                cmd.Parameters.AddWithValue("@ID", magacinskiPredmet);
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
         }
 
         // Raspored kao na Prijemnici: grupe koje se skrivaju i pokazuju, bez praznih delova; tabela naimenovanja

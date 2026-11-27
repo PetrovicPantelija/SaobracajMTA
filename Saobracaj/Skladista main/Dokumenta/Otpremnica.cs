@@ -42,6 +42,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             panel7.Visible = false;
             PodesiIzlaz();   // RAZ-11, RAZ-13, RAZ-14 (Otpremnica.Izlaz.cs)
+            PrimeniSava();   // redizajn Sava (Otpremnica.Sava.cs)
         }
         private void FillMagacinskiBroj()
         {

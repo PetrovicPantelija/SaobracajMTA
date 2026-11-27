@@ -92,6 +92,7 @@ namespace Saobracaj.Drumski
                 btnSaveTransport.Text = "Snimi";
                 btnSaveInvoice.Visible = false;
             }
+            PrimeniSava();   // redizajn Sava (frmSeniranjeDokumenata.Sava.cs)
         }
         private void ChangeTextBox()
         {

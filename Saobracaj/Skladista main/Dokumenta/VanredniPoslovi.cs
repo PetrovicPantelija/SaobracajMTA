@@ -43,6 +43,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 textBox1.Text = "1008";
             }
+            PrimeniSava();   // redizajn Sava (VanredniPoslovi.Sava.cs)
         }
 
         private void VanredniPoslovi_Load(object sender, EventArgs e)

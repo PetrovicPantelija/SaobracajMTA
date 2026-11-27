@@ -3,6 +3,7 @@ using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.WinForms.DataGrid;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Saobracaj.Theme
@@ -12,6 +13,12 @@ namespace Saobracaj.Theme
     // Font same forme se ne menja (AutoScaleMode.Font bi pomerio kontrole); fontovi idu na pojedinačne kontrole.
     public static class ThemeHelper
     {
+        // ApplyZbijeno: polja i dugmad 9 pt umesto 10 pt (forme sa mnogo polja jedno do drugog)
+        [ThreadStatic] static bool zbijeno;
+        static Font PoljeFont { get { return zbijeno ? SavaTheme.FieldFontZbijeno : SavaTheme.FieldFont; } }
+        static Font DugmeFont { get { return zbijeno ? SavaTheme.ButtonFontZbijeno : SavaTheme.ButtonFont; } }
+        static Font DugmeFontSemibold { get { return zbijeno ? SavaTheme.ButtonFontSemiboldZbijeno : SavaTheme.ButtonFontSemibold; } }
+
         public static void Apply(Control root)
         {
             if (root is Form forma)
@@ -19,6 +26,13 @@ namespace Saobracaj.Theme
 
             foreach (Control c in root.Controls)
                 ApplyControl(c);
+        }
+
+        public static void ApplyZbijeno(Control root)
+        {
+            zbijeno = true;
+            try { Apply(root); }
+            finally { zbijeno = false; }
         }
 
         private static void ApplyControl(Control c)
@@ -45,26 +59,26 @@ namespace Saobracaj.Theme
                 StyleTextBox(textBox);
             else if (c is ComboBox comboBox)
             {
-                comboBox.Font = SavaTheme.FieldFont;
+                comboBox.Font = PoljeFont;
                 comboBox.ForeColor = SavaTheme.Text;
                 comboBox.BackColor = SavaTheme.White;
             }
             else if (c is NumericUpDown numeric)
             {
-                numeric.Font = SavaTheme.FieldFont;
+                numeric.Font = PoljeFont;
                 numeric.ForeColor = SavaTheme.Text;
                 numeric.TextAlign = HorizontalAlignment.Right;
             }
             else if (c is CheckedListBox || c is ListBox)
             {
-                c.Font = SavaTheme.FieldFont;
+                c.Font = PoljeFont;
                 c.ForeColor = SavaTheme.Text;
                 c.BackColor = SavaTheme.White;
             }
             else if (c is CheckBox checkBox)
                 StyleCheckBox(checkBox);
             else if (c is DateTimePicker)
-                c.Font = SavaTheme.FieldFont;
+                c.Font = PoljeFont;
             else if (c is Button button)
                 StyleButton(button);
             else if (c is ToolStrip toolStrip)
@@ -97,7 +111,7 @@ namespace Saobracaj.Theme
         public static void StyleTextBox(TextBox textBox)
         {
             textBox.BorderStyle = BorderStyle.FixedSingle;
-            textBox.Font = SavaTheme.FieldFont;
+            textBox.Font = PoljeFont;
             textBox.ForeColor = SavaTheme.Text;
             textBox.BackColor = textBox.ReadOnly ? SavaTheme.Surface : SavaTheme.White;
         }
@@ -112,7 +126,7 @@ namespace Saobracaj.Theme
             checkBox.FlatAppearance.CheckedBackColor = SavaTheme.White;
             checkBox.FlatAppearance.MouseOverBackColor = SavaTheme.HoverLight;
             checkBox.FlatAppearance.MouseDownBackColor = SavaTheme.HoverLight;
-            checkBox.Font = SavaTheme.FieldFont;
+            checkBox.Font = PoljeFont;
             checkBox.ForeColor = SavaTheme.Text;
             checkBox.BackColor = Color.Transparent;
             checkBox.UseVisualStyleBackColor = false;
@@ -121,8 +135,22 @@ namespace Saobracaj.Theme
 
         public static void StyleButton(Button btn)
         {
+            if ((btn.Tag as string) == "grupa")   // traka grupe polja (GrupeForme): naslov dela forme, ne akcija
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.UseVisualStyleBackColor = false;
+                btn.BackColor = SavaTheme.GridHeader;
+                btn.ForeColor = SavaTheme.Text;
+                btn.Font = SavaTheme.SectionFont;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = SavaTheme.Line;
+                btn.FlatAppearance.MouseOverBackColor = SavaTheme.HoverLight;
+                btn.FlatAppearance.MouseDownBackColor = SavaTheme.HoverLight;
+                return;
+            }
+
             btn.FlatStyle = FlatStyle.Flat;
-            btn.Font = SavaTheme.ButtonFont;
+            btn.Font = DugmeFont;
             btn.Cursor = Cursors.Hand;
             btn.UseVisualStyleBackColor = false;
             btn.FlatAppearance.BorderSize = 1;
@@ -133,7 +161,7 @@ namespace Saobracaj.Theme
             {
                 btn.BackColor = SavaTheme.Primary;
                 btn.ForeColor = SavaTheme.White;
-                btn.Font = SavaTheme.ButtonFontSemibold;
+                btn.Font = DugmeFontSemibold;
                 btn.FlatAppearance.BorderColor = SavaTheme.Primary;
                 btn.FlatAppearance.MouseOverBackColor = SavaTheme.PrimaryHover;
             }
@@ -151,6 +179,120 @@ namespace Saobracaj.Theme
                 btn.FlatAppearance.BorderColor = SavaTheme.FieldBorder;
                 btn.FlatAppearance.MouseOverBackColor = SavaTheme.HoverLight;
             }
+        }
+
+        // Oznake i checkbox-ovi napisani VELIKIM SLOVIMA dobijaju obična slova („MAGACINSKI BROJ“ -> „Magacinski broj“);
+        // skraćenice ostaju velike (PIB, C7, JCI...). Tekst koji nije ceo velikim slovima se ne dira. Ne poziva se iz Apply,
+        // nego posebno, posle koda forme koji postavlja tekstove; kontrole u izuzeci se preskaču (npr. naslov forme).
+        public static void OznakeNormalnimSlovima(Control root, params Control[] izuzeci)
+        {
+            foreach (Control c in root.Controls)
+            {
+                if (Array.IndexOf(izuzeci, c) >= 0)
+                    continue;
+                if (c is Label || c is CheckBox)
+                    c.Text = NormalnaSlova(c.Text);
+                if (!(c is DataGridView) && !(c is GridGroupingControl) && !(c is SfDataGrid))
+                    OznakeNormalnimSlovima(c, izuzeci);
+            }
+        }
+
+        static readonly string[] Skracenice =
+        {
+            "ID", "MB", "CP", "CI", "JCI", "PIB", "ADR", "JM", "NHM", "RB", "RN", "LO", "PDV", "EUR", "USD", "RSD",
+            "SD", "CMR", "TIR", "PL", "MP", "CNT", "HS", "UN", "EU", "BD", "LK", "CRM"
+        };
+
+        public static string NormalnaSlova(string tekst)
+        {
+            if (string.IsNullOrEmpty(tekst) || tekst.Count(char.IsLetter) < 2 || tekst != tekst.ToUpperInvariant())
+                return tekst;
+            string rezultat = System.Text.RegularExpressions.Regex.Replace(tekst, @"\p{L}[\p{L}\d]*", m =>
+            {
+                string rec = m.Value;
+                if (rec.Any(char.IsDigit) || Array.IndexOf(Skracenice, rec) >= 0)
+                    return rec;
+                return rec.ToLowerInvariant();
+            });
+            int prvo = rezultat.TakeWhile(ch => !char.IsLetter(ch)).Count();
+            if (prvo < rezultat.Length && char.IsLower(rezultat[prvo]))
+                rezultat = rezultat.Substring(0, prvo) + char.ToUpperInvariant(rezultat[prvo]) + rezultat.Substring(prvo + 1);
+            return rezultat;
+        }
+
+        // Zamena teksta oznaka (poređenje bez obzira na velika slova, prelome i razmake); nova oznaka je u jednom redu.
+        // parovi: stari tekst, novi tekst, stari, novi...
+        public static void ZameniOznake(Control root, params string[] parovi)
+        {
+            foreach (Control c in root.Controls)
+            {
+                if (c is Label l)
+                {
+                    string kljuc = string.Join(" ", l.Text.Split(new[] { ' ', '\r', '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
+                    for (int i = 0; i + 1 < parovi.Length; i += 2)
+                        if (string.Equals(kljuc, parovi[i], StringComparison.OrdinalIgnoreCase))
+                        {
+                            int dno = l.Bottom;   // oznaka ostaje tik iznad svog polja
+                            l.Text = parovi[i + 1];
+                            l.AutoSize = true;
+                            l.Top = dno - l.Height;
+                            break;
+                        }
+                }
+                if (!(c is DataGridView) && !(c is GridGroupingControl) && !(c is SfDataGrid) && c.Controls.Count > 0)
+                    ZameniOznake(c, parovi);
+            }
+        }
+
+        // Oznake datuma iz više redova („PLANIRANI / DATUM/VREME“) koje na Segoe UI ne staju između polja: kraće, u jednom redu
+        public static readonly string[] OznakeDatuma =
+        {
+            "Planirani datum/vreme", "Planirano vreme",
+            "Novi planirani datum/vreme", "Novo planirano vreme",
+            "Planirani datum/vreme realizacije", "Vreme realizacije"
+        };
+
+        // Segoe UI je viši od starog fonta forme, pa oznaka iznad polja zalazi u njegovu gornju ivicu i prekriva je.
+        // Oznaka koja stoji iznad polja (isti roditelj, preklapa se po širini, polje počinje pre kraja oznake)
+        // podiže se tako da se završava 1 px iznad polja. Oznake pored polja (u istom redu) se ne diraju.
+        public static void OznakeIznadPolja(Control root)
+        {
+            var polja = root.Controls.Cast<Control>()
+                .Where(c => Postavljena(c) && (c is TextBox || c is ComboBox || c is NumericUpDown || c is DateTimePicker)).ToList();
+            foreach (var l in root.Controls.OfType<Label>().Where(l => Postavljena(l) && l.BorderStyle == BorderStyle.None))
+            {
+                var polje = polja
+                    .Where(p => p.Top > l.Top && p.Top < l.Bottom && p.Left < l.Right && p.Right > l.Left)
+                    .OrderBy(p => p.Top).FirstOrDefault();
+                if (polje != null)
+                    l.Top = Math.Max(0, polje.Top - l.Height - 1);
+            }
+            foreach (Control c in root.Controls)
+                if (!(c is DataGridView) && !(c is GridGroupingControl) && !(c is SfDataGrid) && c.Controls.Count > 0)
+                    OznakeIznadPolja(c);
+        }
+
+        // Sopstvena vidljivost kontrole: Visible vraća false dok forma nije prikazana (npr. u konstruktoru)
+        static readonly System.Reflection.MethodInfo getState =
+            typeof(Control).GetMethod("GetState", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+        static bool Postavljena(Control c)
+        {
+            return getState == null ? c.Visible : (bool)getState.Invoke(c, new object[] { 2 });
+        }
+
+        // Panel sa poljima: bela kartica sa okvirom boje Linija (SAVA-DESIGN.md, sekcija 4)
+        public static void Kartica(Panel panel)
+        {
+            panel.BackColor = SavaTheme.White;
+            panel.Paint -= CrtajOkvir;
+            panel.Paint += CrtajOkvir;
+        }
+
+        private static void CrtajOkvir(object sender, PaintEventArgs e)
+        {
+            var p = (Control)sender;
+            ControlPaint.DrawBorder(e.Graphics, p.ClientRectangle, SavaTheme.Line, ButtonBorderStyle.Solid);
         }
 
         public static void StyleToolStrip(ToolStrip toolStrip)

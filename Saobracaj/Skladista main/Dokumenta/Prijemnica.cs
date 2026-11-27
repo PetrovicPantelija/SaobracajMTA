@@ -45,7 +45,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             panel6.Visible = false;
             panel7.Visible = false;
             panel9.Visible = false;
-
+            PrimeniSava();   // redizajn Sava (Prijemnica.Sava.cs)
         }
         DataTable dtUsluge = new DataTable();
         DataTable dtArtikli = new DataTable();

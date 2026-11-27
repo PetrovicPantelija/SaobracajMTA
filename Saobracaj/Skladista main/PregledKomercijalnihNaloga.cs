@@ -36,6 +36,7 @@ namespace Saobracaj.Skladista_main
             {
                 button1.Visible = false;
             }
+            PrimeniSava();   // redizajn Sava (PregledKomercijalnihNaloga.Sava.cs)
         }
         private void PregledKomercijalnihNaloga_Load(object sender, EventArgs e)
         {

@@ -27,6 +27,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 textBox1.Text = "1008";
             }
+            PrimeniSava();   // redizajn Sava (Pretovar.Sava.cs)
         }
     }
 }

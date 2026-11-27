@@ -48,6 +48,7 @@ namespace Saobracaj.Skladista_main
             InitializeComponent();
             postojeceStavke = new List<Otprema.OtpremaStavke>();
             IzabraneStavke = new List<Otprema.OtpremaStavke>();
+            PrimeniSava();   // redizajn Sava (OtpremaLager.Sava.cs)
         }
 
         public OtpremaLager(
@@ -70,6 +71,7 @@ namespace Saobracaj.Skladista_main
                     .ToList();
 
             IzabraneStavke = new List<Otprema.OtpremaStavke>();
+            PrimeniSava();   // redizajn Sava (OtpremaLager.Sava.cs)
         }
 
         private void OtpremaLager_Load(object sender, EventArgs e)
@@ -1571,17 +1573,7 @@ ORDER BY IDSkladisneStavke";
 
         private void SrediGrid(DataGridView dgv)
         {
-            dgv.BorderStyle = BorderStyle.None;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dgv);   // redizajn Sava
         }
 
         private void SakrijKolonuAkoPostoji(DataGridView dgv, string nazivKolone)

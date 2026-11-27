@@ -26,6 +26,7 @@ namespace Saobracaj.Skladista_main
             IdNaloga = idNaloga;
             ChangeTextBox();
             this.Text = "Mesto Istovara";
+            PrimeniSava();   // redizajn Sava (frmMestoIsporuke.Sava.cs)
         }
 
         private void ChangeTextBox()

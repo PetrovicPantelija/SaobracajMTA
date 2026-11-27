@@ -36,6 +36,14 @@ namespace Saobracaj.Theme
         public static readonly Font ButtonFontSemibold = new Font("Segoe UI Semibold", 10f);
         public static readonly Font ComputedFont = new Font("Segoe UI", 10f, FontStyle.Bold);
 
+        // Zbijene forme (mnogo polja jedno do drugog, npr. nalog za prijem, prijemnica, otprema): polja i dugmad
+        // ostaju 9 pt, jer bi na 10 pt polja porasla i preklopila se (SAVA-DESIGN.md, sekcija 2)
+        public static readonly Font FieldFontZbijeno = new Font("Segoe UI", 9f);
+        public static readonly Font ButtonFontZbijeno = new Font("Segoe UI", 9f);
+        public static readonly Font ButtonFontSemiboldZbijeno = new Font("Segoe UI Semibold", 9f);
+        public static readonly Font SectionFont = new Font("Segoe UI Semibold", 9f);     // traka grupe, podnaslov u formi
+        public static readonly Font SubtitleFont = new Font("Segoe UI Semibold", 10f);   // naslov dela forme (npr. Magacinski predmet)
+
         // Mere
         public const int ToolbarHeight = 52;
         public const int ButtonHeight = 32;

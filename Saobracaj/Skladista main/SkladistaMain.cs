@@ -16,6 +16,7 @@ namespace Saobracaj.Skladista_main
         public SkladistaMain()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (SkladistaMain.Sava.cs)
         }
 
         private void btnRadniNalozi_Click(object sender, EventArgs e)

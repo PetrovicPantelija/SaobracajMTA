@@ -26,6 +26,7 @@ namespace Saobracaj.Uvoz
         public UvozDokumenta()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (UvozDokumenta.Sava.cs)
         }
 
         private void ChangeTextBox()
@@ -127,25 +128,7 @@ namespace Saobracaj.Uvoz
 
         private void PodesiDatagridView(DataGridView dgv)
         {
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.BackgroundColor = Color.White;
-
-            dgv.DefaultCellStyle.Font = new Font("Helvetica", 10F, GraphicsUnit.Pixel);
-            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dgv.EnableHeadersVisualStyles = false;
-            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 30;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dgv);   // redizajn Sava
         }
 
         public UvozDokumenta(string sifra, string Nadredjeni, string Usluga)
@@ -159,6 +142,7 @@ namespace Saobracaj.Uvoz
             pomUsluga = Usluga;
             FillCombo();
 
+            PrimeniSava();   // redizajn Sava (UvozDokumenta.Sava.cs)
         }
 
         public UvozDokumenta(string sifra, string Nadredjeni)
@@ -171,6 +155,7 @@ namespace Saobracaj.Uvoz
             pomSifra = sifra;
             IzForme = 1;
             FillCombo();
+            PrimeniSava();   // redizajn Sava (UvozDokumenta.Sava.cs)
         }
 
         private void FillCombo()

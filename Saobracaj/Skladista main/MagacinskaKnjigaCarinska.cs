@@ -18,6 +18,7 @@ namespace Saobracaj.Skladista_main
         public MagacinskaKnjigaCarinska()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (MagacinskaKnjigaCarinska.Sava.cs)
         }
         private void FillGV()
         {

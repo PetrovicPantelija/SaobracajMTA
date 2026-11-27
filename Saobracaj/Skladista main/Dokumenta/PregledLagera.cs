@@ -20,6 +20,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
         public PregledLagera(string ulaz)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (PregledLagera.Sava.cs)
             Ulaz = ulaz;
         }
 
@@ -57,8 +58,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
 
             if (Ulaz == "Magacinski broj")
             {
-                lblPrva.Text = "Magacinski broj:";
-                lblFilter.Text = "Vlasnik robe:";
+                lblPrva.Text = "Magacinski broj";
+                lblFilter.Text = "Vlasnik robe";
 
                 cboPrvi.Enabled = true;
                 cboFilter.Enabled = false;
@@ -70,8 +71,8 @@ namespace Saobracaj.Skladista_main.Dokumenta
             }
             else if (Ulaz == "Partner")
             {
-                lblPrva.Text = "Partner:";
-                lblFilter.Text = "Magacinski broj:";
+                lblPrva.Text = "Partner";
+                lblFilter.Text = "Magacinski broj";
 
                 cboPrvi.Enabled = true;
                 cboFilter.Enabled = true;
@@ -820,17 +821,7 @@ ORDER BY
 
         private void SrediGrid()
         {
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Saobracaj.Theme.ThemeHelper.StyleGrid(dataGridView1);   // redizajn Sava
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -886,6 +877,11 @@ ORDER BY
             col.HeaderText = headerText;
             col.DisplayIndex = displayIndex;
             displayIndex++;
+
+            // Sava: brojevi (koleta, težine, vrednosti) poravnati desno
+            Type tip = Nullable.GetUnderlyingType(col.ValueType ?? typeof(string)) ?? col.ValueType;
+            if (tip == typeof(decimal) || tip == typeof(double) || tip == typeof(float))
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void SetHeader(string columnName, string headerText)
@@ -905,21 +901,20 @@ ORDER BY
             if (stavka == null)
                 return;
 
+            // Sava: rezervisane stavke ostaju označene; ostali redovi beli (bez zebra redova), izabrani red svetlo plav
             if (stavka.Rezervisano)
             {
                 row.DefaultCellStyle.BackColor = Color.Khaki;
-                row.DefaultCellStyle.ForeColor = Color.Black;
+                row.DefaultCellStyle.ForeColor = Saobracaj.Theme.SavaTheme.Text;
                 row.DefaultCellStyle.SelectionBackColor = Color.DarkGoldenrod;
                 row.DefaultCellStyle.SelectionForeColor = Color.White;
             }
             else
             {
-                row.DefaultCellStyle.BackColor = e.RowIndex % 2 == 0
-                    ? Color.White
-                    : Color.FromArgb(238, 239, 249);
-                row.DefaultCellStyle.ForeColor = Color.Black;
-                row.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                row.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                row.DefaultCellStyle.BackColor = Saobracaj.Theme.SavaTheme.White;
+                row.DefaultCellStyle.ForeColor = Saobracaj.Theme.SavaTheme.Text;
+                row.DefaultCellStyle.SelectionBackColor = Saobracaj.Theme.SavaTheme.SelectedRow;
+                row.DefaultCellStyle.SelectionForeColor = Saobracaj.Theme.SavaTheme.Text;
             }
         }
 

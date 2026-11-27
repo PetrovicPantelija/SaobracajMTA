@@ -42,6 +42,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             {
                 textBox1.Text = "1008";
             }
+            PrimeniSava();   // redizajn Sava (InterniPrenos.Sava.cs)
         }
 
         private void InterniPrenos_Load(object sender, EventArgs e)

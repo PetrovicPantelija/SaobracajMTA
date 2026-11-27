@@ -70,6 +70,7 @@ namespace Saobracaj.Skladista_main
             }
             UcitajMagacinskeBrojeve();   // ISP-09: lista magacinskih brojeva odmah pri otvaranju
             InitRaspored();              // grupe koje se skrivaju i pokazuju, tabela popunjava ostatak
+            PrimeniSava();               // redizajn Sava (frmNalogPrijem.Sava.cs)
 
         }
         private void podesiPolja(string Status)
@@ -2330,9 +2331,21 @@ namespace Saobracaj.Skladista_main
                 {
                     MessageBox.Show("Neophodno je prvo snimiti podatke magacinskog predmeta");
                     return;
-                }    
+                }
 
-                int magacinskiID = int.TryParse(txtMagacinskiPredmetID.Text, out int magacinskiPredmet) ? magacinskiPredmet : 0;
+                // magacinski predmet mora postojati i pripadati ovom nalogu, inače bi red otišao pod predmet koji tabela ne prikazuje
+                if (!int.TryParse(txtMagacinskiPredmetID.Text, out int magacinskiID) || magacinskiID <= 0)
+                {
+                    MessageBox.Show("Magacinski predmet nije učitan (ID: " + txtMagacinskiPredmetID.Text + "). Kliknite Snimi, pa ponovo Dodaj.");
+                    return;
+                }
+                string greskaPredmeta = PredmetZaNaimenovanje(magacinskiID);
+                if (greskaPredmeta != null)
+                {
+                    MessageBox.Show(greskaPredmeta, "Dodaj naimenovanje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                int naimenovanjaPre = BrojNaimenovanja(magacinskiID);
                 InsertSkladista ins = new InsertSkladista();
 
                 string nhm = TarifniBrojNaimenovanja;   // RAZ-02: tarifni broj kao tekst
@@ -2370,7 +2383,17 @@ namespace Saobracaj.Skladista_main
 
                 ins.InsertCarinskoStavke(magacinskiID, nhm, naimenovanje, rb, jm, kolicina, koleta, bruto, neto, paleta, vrstaPaleta, vrednost, valuta, pdv, carina, napomena);
 
-                VratiCarinskeStavke();
+                // procedura InsertCarinskoStavke je u bazi svake firme posebno; red se proverava posle upisa, da Dodaj nikad ne ćuti
+                if (BrojNaimenovanja(magacinskiID) <= naimenovanjaPre)
+                {
+                    MessageBox.Show("Naimenovanje nije dodato.\n\nUpis je prošao bez greške, ali red za magacinski predmet " + magacinskiID +
+                        " (nalog " + txtID.Text.Trim() + ") nije u bazi. Uneti podaci su ostali u poljima.\n\n" +
+                        "Pokrenite skriptu NalogPrijem_Dodaj_Provera_2026_11.sql i pošaljite rezultat.",
+                        "Dodaj naimenovanje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                VratiCarinskeStavke();   // tabela i totali magacinskog predmeta (koleta, bruto, neto, vrednost, valuta)
                 ResetujPoljaArtikli();
 
 

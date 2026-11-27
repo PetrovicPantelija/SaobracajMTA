@@ -115,6 +115,7 @@ namespace Saobracaj.Uvoz
 
             InitializeComponent();
             ChangeTextBox();
+            PrimeniSava();   // redizajn Sava (frmKontejnerTekuce.Sava.cs)
         }
 
         public frmKontejnerTekuce(string sklad)
@@ -124,6 +125,7 @@ namespace Saobracaj.Uvoz
             InitializeComponent();
             ChangeTextBox();
             Polje = sklad;
+            PrimeniSava();   // redizajn Sava (frmKontejnerTekuce.Sava.cs)
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -466,7 +466,9 @@ namespace Saobracaj.Skladista_main
                     bool imaTip = imaTabelu && KolonaTipJedinicePostoji(conn);
                     if (imaTabelu && !imaTip && lista.Any(k => k.Tip != TipKontejner))
                     {
-                        MessageBox.Show("Vagoni i kamioni nisu snimljeni: potrebna je skripta Carina_TransportneJedinice_2026_11.sql.",
+                        MessageBox.Show("Vagoni i kamioni nisu snimljeni: potrebna je skripta Carina_TransportneJedinice_2026_11.sql.\n\n" +
+                            "Tabela transportnih jedinica ostala je kakva je bila (ni kontejneri sa ovog ekrana nisu upisani); ostali podaci naloga se snimaju.\n" +
+                            "Skriptu pušta administrator baze (posle rezervne kopije); zatim ponovo kliknite Snimi.",
                             "Transportne jedinice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }

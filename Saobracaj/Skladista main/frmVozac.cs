@@ -29,6 +29,7 @@ namespace Saobracaj.Skladista_main
             IdNaloga = idNaloga;
             ChangeTextBox();
             this.Text = "Vozač";
+            PrimeniSava();   // redizajn Sava (frmVozac.Sava.cs)
         }
 
         private void ChangeTextBox()

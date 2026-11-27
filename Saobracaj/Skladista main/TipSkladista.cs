@@ -17,15 +17,18 @@ namespace Saobracaj.Skladista_main
         public TipSkladista()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (TipSkladista.Sava.cs)
         }
         public TipSkladista(string direktni)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (TipSkladista.Sava.cs)
             Ulaz = direktni;
         }
         public TipSkladista(int idInterni,string ulaz)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (TipSkladista.Sava.cs)
             IDInterni = idInterni;
             Ulaz = ulaz;
         }

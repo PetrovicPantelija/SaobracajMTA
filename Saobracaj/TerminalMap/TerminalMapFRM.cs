@@ -43,6 +43,7 @@ namespace Saobracaj.TerminalMap
             btnResetViews.Click += BtnResetViews_Click;
 
             Load += TerminalMapFRM_Load;
+            PrimeniSava();   // redizajn Sava (TerminalMapFRM.Sava.cs)
         }
 
         private void TerminalMapFRM_Load(object sender, EventArgs e)

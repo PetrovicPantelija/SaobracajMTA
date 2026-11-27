@@ -17,6 +17,7 @@ namespace Saobracaj.Skladista_main
         public CarinskoSkladiste()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (CarinskoSkladiste.Sava.cs)
             InitCarinskaKnjiga();   // RAZ-16 (CarinskoSkladiste.Knjiga.cs)
         }
 

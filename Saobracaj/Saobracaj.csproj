@@ -1735,6 +1735,9 @@
     <Compile Include="Drumski\frmSeniranjeDokumenata.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Drumski\frmSeniranjeDokumenata.Sava.cs">
+      <DependentUpon>frmSeniranjeDokumenata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Drumski\frmSeniranjeDokumenata.Designer.cs">
       <DependentUpon>frmSeniranjeDokumenata.cs</DependentUpon>
     </Compile>
@@ -1968,6 +1971,9 @@
     </Compile>
     <Compile Include="Izvoz\frmIzvozDokumenta.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozDokumenta.Sava.cs">
+      <DependentUpon>frmIzvozDokumenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmIzvozDokumenta.Designer.cs">
       <DependentUpon>frmIzvozDokumenta.cs</DependentUpon>
@@ -3107,6 +3113,9 @@
     <Compile Include="RNI\frmScenarioSCI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RNI\frmScenarioSCI.Sava.cs">
+      <DependentUpon>frmScenarioSCI.cs</DependentUpon>
+    </Compile>
     <Compile Include="RNI\frmScenarioSCI.Designer.cs">
       <DependentUpon>frmScenarioSCI.cs</DependentUpon>
     </Compile>
@@ -3593,6 +3602,9 @@
     <Compile Include="Skladista main\CarinskoSkladistePregled.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\CarinskoSkladistePregled.Sava.cs">
+      <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\CarinskoSkladistePregled.Designer.cs">
       <DependentUpon>CarinskoSkladistePregled.cs</DependentUpon>
     </Compile>
@@ -3602,11 +3614,17 @@
     <Compile Include="Skladista main\Dokumenta\InterniPoslovi.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPoslovi.Sava.cs">
+      <DependentUpon>InterniPoslovi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\InterniPoslovi.Designer.cs">
       <DependentUpon>InterniPoslovi.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\InterniPrenos.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\InterniPrenos.Sava.cs">
+      <DependentUpon>InterniPrenos.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\InterniPrenos.Designer.cs">
       <DependentUpon>InterniPrenos.cs</DependentUpon>
@@ -3620,8 +3638,17 @@
     <Compile Include="Skladista main\Dokumenta\Otprema.Palete.cs">
       <DependentUpon>Otprema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otprema.Sava.cs">
+      <DependentUpon>Otprema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Prijemnica.Sava.cs">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\Otpremnica.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Otpremnica.Sava.cs">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Otpremnica.Designer.cs">
       <DependentUpon>Otpremnica.cs</DependentUpon>
@@ -3635,11 +3662,17 @@
     <Compile Include="Skladista main\Dokumenta\PregledLagera.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\PregledLagera.Sava.cs">
+      <DependentUpon>PregledLagera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\PregledLagera.Designer.cs">
       <DependentUpon>PregledLagera.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Pretovar.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\Dokumenta\Pretovar.Sava.cs">
+      <DependentUpon>Pretovar.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\Pretovar.Designer.cs">
       <DependentUpon>Pretovar.cs</DependentUpon>
@@ -3695,17 +3728,26 @@
     <Compile Include="Skladista main\frmNalogPrijem.VlasnikRobe.cs">
       <DependentUpon>frmNalogPrijem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Skladista main\frmNalogPrijem.Sava.cs">
+      <DependentUpon>frmNalogPrijem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\frmVlasnikRobeNovi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.Sava.cs">
+      <DependentUpon>VanredniPoslovi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\Dokumenta\VanredniPoslovi.Designer.cs">
       <DependentUpon>VanredniPoslovi.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\frmMestoIsporuke.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\frmMestoIsporuke.Sava.cs">
+      <DependentUpon>frmMestoIsporuke.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\frmMestoIsporuke.Designer.cs">
       <DependentUpon>frmMestoIsporuke.cs</DependentUpon>
@@ -3719,6 +3761,9 @@
     <Compile Include="Skladista main\frmVozac.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\frmVozac.Sava.cs">
+      <DependentUpon>frmVozac.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\frmVozac.Designer.cs">
       <DependentUpon>frmVozac.cs</DependentUpon>
     </Compile>
@@ -3726,11 +3771,17 @@
     <Compile Include="Skladista main\KomercijalnoSkladiste.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\KomercijalnoSkladiste.Sava.cs">
+      <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\KomercijalnoSkladiste.Designer.cs">
       <DependentUpon>KomercijalnoSkladiste.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\CarinskoSkladiste.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\CarinskoSkladiste.Sava.cs">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\CarinskoSkladiste.Designer.cs">
       <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
@@ -3744,17 +3795,26 @@
     <Compile Include="Skladista main\KomercijalnoSkladistePregled.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\KomercijalnoSkladistePregled.Sava.cs">
+      <DependentUpon>KomercijalnoSkladistePregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\KomercijalnoSkladistePregled.Designer.cs">
       <DependentUpon>KomercijalnoSkladistePregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\MagacinskaKnjigaCarinska.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Sava.cs">
+      <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Designer.cs">
       <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\NalogZaKomercijalni.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\NalogZaKomercijalni.Sava.cs">
+      <DependentUpon>NalogZaKomercijalni.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\NalogZaKomercijalni.Designer.cs">
       <DependentUpon>NalogZaKomercijalni.cs</DependentUpon>
@@ -3768,6 +3828,9 @@
     <Compile Include="Skladista main\OtpremaLager.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\OtpremaLager.Sava.cs">
+      <DependentUpon>OtpremaLager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\OtpremaLager.Designer.cs">
       <DependentUpon>OtpremaLager.cs</DependentUpon>
     </Compile>
@@ -3780,11 +3843,17 @@
     <Compile Include="Skladista main\PregledKomercijalnihNaloga.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\PregledKomercijalnihNaloga.Sava.cs">
+      <DependentUpon>PregledKomercijalnihNaloga.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\PregledKomercijalnihNaloga.Designer.cs">
       <DependentUpon>PregledKomercijalnihNaloga.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\RadniNaloziSkladista.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\RadniNaloziSkladista.Sava.cs">
+      <DependentUpon>RadniNaloziSkladista.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\RadniNaloziSkladista.Designer.cs">
       <DependentUpon>RadniNaloziSkladista.cs</DependentUpon>
@@ -3792,17 +3861,26 @@
     <Compile Include="Skladista main\SkladistaMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\SkladistaMain.Sava.cs">
+      <DependentUpon>SkladistaMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\SkladistaMain.Designer.cs">
       <DependentUpon>SkladistaMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\TipSkladista.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\TipSkladista.Sava.cs">
+      <DependentUpon>TipSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Skladista main\TipSkladista.Designer.cs">
       <DependentUpon>TipSkladista.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\ViljuskaristiPregled.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skladista main\ViljuskaristiPregled.Sava.cs">
+      <DependentUpon>ViljuskaristiPregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\ViljuskaristiPregled.Designer.cs">
       <DependentUpon>ViljuskaristiPregled.cs</DependentUpon>
@@ -3955,6 +4033,9 @@
     <Compile Include="Tehnologija\frmDefinisiPoziciju.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Tehnologija\frmDefinisiPoziciju.Sava.cs">
+      <DependentUpon>frmDefinisiPoziciju.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tehnologija\frmDefinisiPoziciju.Designer.cs">
       <DependentUpon>frmDefinisiPoziciju.cs</DependentUpon>
     </Compile>
@@ -3985,6 +4066,9 @@
     <Compile Include="TerminalMap\frmRN12InterniPrenos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TerminalMap\frmRN12InterniPrenos.Sava.cs">
+      <DependentUpon>frmRN12InterniPrenos.cs</DependentUpon>
+    </Compile>
     <Compile Include="TerminalMap\frmRN12InterniPrenos.Designer.cs">
       <DependentUpon>frmRN12InterniPrenos.cs</DependentUpon>
     </Compile>
@@ -3998,6 +4082,9 @@
     </Compile>
     <Compile Include="TerminalMap\TerminalMapFRM.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TerminalMap\TerminalMapFRM.Sava.cs">
+      <DependentUpon>TerminalMapFRM.cs</DependentUpon>
     </Compile>
     <Compile Include="TerminalMap\TerminalMapFRM.Designer.cs">
       <DependentUpon>TerminalMapFRM.cs</DependentUpon>
@@ -4484,6 +4571,9 @@
     <Compile Include="TrackModal\Sifarnici\frmTipPalete.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmTipPalete.Sava.cs">
+      <DependentUpon>frmTipPalete.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\frmTipPalete.Designer.cs">
       <DependentUpon>frmTipPalete.cs</DependentUpon>
     </Compile>
@@ -4668,6 +4758,7 @@
     </Compile>
     <Compile Include="Theme\SavaTheme.cs" />
     <Compile Include="Theme\ThemeHelper.cs" />
+    <Compile Include="Theme\SavaForme.cs" />
     <Compile Include="TrackModal\Sifarnici\frmPregledSkladistaGrupa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4860,6 +4951,9 @@
     <Compile Include="Uvoz\frmDodatneUsluge.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Uvoz\frmDodatneUsluge.Sava.cs">
+      <DependentUpon>frmDodatneUsluge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmDodatneUsluge.Designer.cs">
       <DependentUpon>frmDodatneUsluge.cs</DependentUpon>
     </Compile>
@@ -4889,6 +4983,9 @@
     </Compile>
     <Compile Include="Uvoz\frmKontejnerTekuce.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmKontejnerTekuce.Sava.cs">
+      <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\frmKontejnerTekuce.Designer.cs">
       <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
@@ -5113,6 +5210,9 @@
     </Compile>
     <Compile Include="Uvoz\UvozDokumenta.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozDokumenta.Sava.cs">
+      <DependentUpon>UvozDokumenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\UvozDokumenta.Designer.cs">
       <DependentUpon>UvozDokumenta.cs</DependentUpon>

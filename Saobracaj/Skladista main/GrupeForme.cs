@@ -94,7 +94,8 @@ namespace Saobracaj.Skladista_main
                     BackColor = Color.FromArgb(0xEA, 0xF0, 0xF6),
                     Font = new Font(forma.Font, FontStyle.Bold),
                     Cursor = Cursors.Hand,
-                    TabStop = false
+                    TabStop = false,
+                    Tag = "grupa"   // Sava: ThemeHelper je stilizuje kao traku grupe, ne kao dugme
                 }
             };
             g.Traka.FlatAppearance.BorderColor = Color.FromArgb(0xD4, 0xDD, 0xE6);

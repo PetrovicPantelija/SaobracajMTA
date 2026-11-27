@@ -22,6 +22,7 @@ namespace Saobracaj.Skladista_main
         public KomercijalnoSkladistePregled(string tip)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (KomercijalnoSkladistePregled.Sava.cs)
             Tip = tip;
             VratiRN();
         }

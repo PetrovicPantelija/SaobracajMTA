@@ -111,6 +111,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             PoveziEventeStavki();
             OcistiPanelStavke();
             PodesiIzlazPoPaletama();   // RAZ-13, RAZ-15 (Otprema.Palete.cs)
+            PrimeniSava();             // redizajn Sava (Otprema.Sava.cs)
         }
         private void VratiPodatke(int id)
         {

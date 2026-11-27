@@ -130,6 +130,7 @@ namespace Saobracaj.Tehnologija
         {
             InitializeComponent();
             ChangeTextBox();
+            PrimeniSava();   // redizajn Sava (frmDefinisiPoziciju.Sava.cs)
         }
         int Pozicija=0;
         public frmDefinisiPoziciju(int pozicija) 
@@ -137,6 +138,7 @@ namespace Saobracaj.Tehnologija
             InitializeComponent();
             Pozicija = pozicija;
             ProveriPoziciju();
+            PrimeniSava();   // redizajn Sava (frmDefinisiPoziciju.Sava.cs)
         }
         private void ProveriPoziciju()
         {

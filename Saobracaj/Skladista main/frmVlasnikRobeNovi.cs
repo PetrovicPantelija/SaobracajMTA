@@ -1,3 +1,4 @@
+using Saobracaj.Theme;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,8 +19,10 @@ namespace Saobracaj.Skladista_main
 
         public int VlasnikID { get; private set; }
 
-        static readonly Color Plava = Color.FromArgb(0x0A, 0x66, 0xB8);
-        static readonly Color Oznaka = Color.FromArgb(0x4C, 0x5D, 0x6E);
+        // boje i fontovi iz palete Sava (Theme/SavaTheme.cs)
+
+        static readonly Color Plava = SavaTheme.Primary;
+        static readonly Color Oznaka = SavaTheme.Label;
 
         public frmVlasnikRobeNovi()
         {

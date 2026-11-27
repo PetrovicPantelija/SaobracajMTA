@@ -134,6 +134,7 @@ namespace Saobracaj.Uvoz
         {
             InitializeComponent();
             ChangeTextBox();
+            PrimeniSava();   // redizajn Sava (frmDodatneUsluge.Sava.cs)
         }
 
 
@@ -144,6 +145,7 @@ namespace Saobracaj.Uvoz
             OJPF = OJ;
             OsnovPF = Osnov;
             ChangeTextBox();
+            PrimeniSava();   // redizajn Sava (frmDodatneUsluge.Sava.cs)
         }
 
         private void button3_Click(object sender, EventArgs e)

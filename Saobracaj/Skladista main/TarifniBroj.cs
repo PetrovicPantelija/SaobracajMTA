@@ -56,18 +56,40 @@ namespace Saobracaj.Skladista_main
             return s;
         }
 
+        public const string Pravilo = "Tarifni broj ima 8 cifara, ili 10 za TARIC (npr. 73211900); vodeća nula se piše (02071100).";
+
+        // tekst iz polja bez razmaka i znakova razdvajanja ("7321 19 00", "7321.19.00"); slova ostaju, da ih Provera prijavi
+        public static string BezRazdvajanja(string tekst)
+        {
+            if (string.IsNullOrEmpty(tekst))
+                return "";
+            return new string(tekst.Where(c => !char.IsWhiteSpace(c) && c != '.' && c != '-' && c != '/').ToArray());
+        }
+
         // null = ispravno; inače poruka za korisnika
         public static string Provera(string broj)
         {
             if (string.IsNullOrEmpty(broj))
                 return null;
             if (!broj.All(char.IsDigit))
-                return "Tarifni broj sme da sadrži samo cifre.";
-            if (broj.Length == 8)
-                return null;
-            if (broj.Length == 10)
-                return KolonaJeTekst ? null : "Tarifni broj od 10 cifara se prima tek posle skripte Carina_TarifniBroj_2026_11.sql. Unesite 8 cifara.";
-            return "Tarifni broj mora imati 8 cifara (ili 10 za TARIC).";
+                return "Tarifni broj sme da sadrži samo cifre (uneto: " + broj + ").\n\n" + Pravilo;
+            if (broj.Length != 8 && broj.Length != 10)
+                return "Tarifni broj " + broj + " ima " + Cifara(broj.Length) + ".\n\n" + Pravilo;
+            if (broj.Length == 10 && !KolonaJeTekst)
+                return "Tarifni broj od 10 cifara se prima tek posle skripte Carina_TarifniBroj_2026_11.sql. Unesite 8 cifara.";
+            // dok je kolona int, 02071100 bi se upisao kao 2071100
+            if (broj[0] == '0' && !KolonaJeTekst)
+                return "Tarifni broj sa vodećom nulom (" + broj + ") se čuva tek posle skripte Carina_TarifniBroj_2026_11.sql; " +
+                       "do tada bi se upisao kao " + broj.TrimStart('0') + ".";
+            return null;
+        }
+
+        static string Cifara(int n)
+        {
+            int d = n % 10;
+            if (d == 1 && n % 100 != 11) return n + " cifru";
+            if (d >= 2 && d <= 4 && (n % 100 < 12 || n % 100 > 14)) return n + " cifre";
+            return n + " cifara";
         }
 
         // parametar procedure: VarChar(10); prazno je NULL, a dok je kolona int, 0

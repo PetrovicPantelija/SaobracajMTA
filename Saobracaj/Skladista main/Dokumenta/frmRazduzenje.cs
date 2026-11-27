@@ -1,3 +1,4 @@
+using Saobracaj.Theme;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -36,10 +37,12 @@ namespace Saobracaj.Skladista_main.Dokumenta
         Label lblStanje;
         Button btnObrisi;
 
-        static readonly Color Plava = Color.FromArgb(0x0A, 0x66, 0xB8);
-        static readonly Color Oznaka = Color.FromArgb(0x4C, 0x5D, 0x6E);
-        static readonly Color Opasnost = Color.FromArgb(0xB3, 0x26, 0x1E);
-        static readonly Color Povrsina = Color.FromArgb(0xF4, 0xF7, 0xFA);
+        // boje i fontovi iz palete Sava (Theme/SavaTheme.cs)
+
+        static readonly Color Plava = SavaTheme.Primary;
+        static readonly Color Oznaka = SavaTheme.Label;
+        static readonly Color Opasnost = SavaTheme.Danger;
+        static readonly Color Povrsina = SavaTheme.Surface;
 
         public frmRazduzenje(int idOtpremnice, int magacinskiBroj)
         {
@@ -182,7 +185,7 @@ namespace Saobracaj.Skladista_main.Dokumenta
             };
             dgv.RowTemplate.Height = 28;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f);
+            dgv.ColumnHeadersDefaultCellStyle.Font = SavaTheme.GridHeaderFont;
 
             var sredina = new Panel { Dock = DockStyle.Fill, Padding = new Padding(20, 4, 0, 0) };
             sredina.Controls.Add(dgv);

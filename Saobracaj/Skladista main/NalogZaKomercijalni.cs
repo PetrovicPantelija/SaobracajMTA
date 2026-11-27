@@ -16,6 +16,7 @@ namespace Saobracaj.Skladista_main
         public NalogZaKomercijalni()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (NalogZaKomercijalni.Sava.cs)
         }
 
         private void btnTransportUvoz_Click(object sender, EventArgs e)

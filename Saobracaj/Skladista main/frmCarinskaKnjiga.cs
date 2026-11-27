@@ -1,4 +1,5 @@
 using Syncfusion.XlsIO;
+using Saobracaj.Theme;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,13 +25,15 @@ namespace Saobracaj.Skladista_main
         Label lblZbir;
         DataTable knjiga;
 
-        static readonly Color Plava = Color.FromArgb(0x0A, 0x66, 0xB8);
-        static readonly Color Oznaka = Color.FromArgb(0x4C, 0x5D, 0x6E);
-        static readonly Color Povrsina = Color.FromArgb(0xF4, 0xF7, 0xFA);
-        static readonly Color ZaglavljeTabele = Color.FromArgb(0xEA, 0xF0, 0xF6);
-        static readonly Color IzabraniRed = Color.FromArgb(0xDD, 0xF1, 0xFB);
-        static readonly Color Tekst = Color.FromArgb(0x17, 0x24, 0x33);
-        static readonly Font Polumasni = new Font("Segoe UI Semibold", 9f);
+        // boje i fontovi iz palete Sava (Theme/SavaTheme.cs)
+
+        static readonly Color Plava = SavaTheme.Primary;
+        static readonly Color Oznaka = SavaTheme.Label;
+        static readonly Color Povrsina = SavaTheme.Surface;
+        static readonly Color ZaglavljeTabele = SavaTheme.GridHeader;
+        static readonly Color IzabraniRed = SavaTheme.SelectedRow;
+        static readonly Color Tekst = SavaTheme.Text;
+        static readonly Font Polumasni = SavaTheme.GridHeaderFont;
 
         // kolone tabele: naziv iz procedure, zaglavlje (broj kolone obrasca), širina, format broja (null = tekst)
         static readonly string[][] Kolone =
@@ -112,7 +115,7 @@ namespace Saobracaj.Skladista_main
             vrh.Controls.Add(new Label
             {
                 Text = "Carinska knjiga",
-                Font = new Font("Segoe UI Semibold", 14f),
+                Font = SavaTheme.FormTitleFont,
                 ForeColor = Tekst,
                 AutoSize = true,
                 Location = new Point(18, 6)
@@ -154,7 +157,7 @@ namespace Saobracaj.Skladista_main
             };
             dgv.RowTemplate.Height = 30;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI Semibold", 9f);
+            dgv.ColumnHeadersDefaultCellStyle.Font = SavaTheme.GridHeaderFont;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = ZaglavljeTabele;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Tekst;
             dgv.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;

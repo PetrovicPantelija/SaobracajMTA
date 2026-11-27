@@ -21,16 +21,19 @@ namespace Saobracaj.Skladista_main
         public RadniNaloziSkladista()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (RadniNaloziSkladista.Sava.cs)
         }
         public RadniNaloziSkladista(string vrsta, string ulaz)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (RadniNaloziSkladista.Sava.cs)
             Ulaz = ulaz;
             Vrsta =vrsta;
         }
         public RadniNaloziSkladista(int idInterni,string ulaz,string vrsta)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (RadniNaloziSkladista.Sava.cs)
             IDInterni=idInterni;
             Ulaz=ulaz;
             Vrsta = vrsta;

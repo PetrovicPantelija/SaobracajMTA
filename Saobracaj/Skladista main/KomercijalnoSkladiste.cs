@@ -15,6 +15,7 @@ namespace Saobracaj.Skladista_main
         public KomercijalnoSkladiste()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (KomercijalnoSkladiste.Sava.cs)
         }
 
         private void btnPrijemRobe_Click(object sender, EventArgs e)

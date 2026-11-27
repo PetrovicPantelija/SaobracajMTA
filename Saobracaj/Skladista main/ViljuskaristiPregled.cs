@@ -28,10 +28,12 @@ namespace Saobracaj.Skladista_main
         public ViljuskaristiPregled()
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (ViljuskaristiPregled.Sava.cs)
         }
         public ViljuskaristiPregled(int BrLO)
         {
             InitializeComponent();
+            PrimeniSava();   // redizajn Sava (ViljuskaristiPregled.Sava.cs)
             brLONaloga = BrLO;
         }
 
