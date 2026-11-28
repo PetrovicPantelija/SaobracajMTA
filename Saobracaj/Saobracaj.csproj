@@ -3797,6 +3797,12 @@
     <Compile Include="Skladista main\frmCarinskaKnjiga.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Skladista main\CarinskoSkladiste.NerazduzeniC7.cs">
+      <DependentUpon>CarinskoSkladiste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\frmSkladistenjeC7.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Skladista main\KomercijalnoSkladistePregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3810,6 +3816,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Sava.cs">
+      <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Kartica.cs">
       <DependentUpon>MagacinskaKnjigaCarinska.cs</DependentUpon>
     </Compile>
     <Compile Include="Skladista main\MagacinskaKnjigaCarinska.Designer.cs">

@@ -19,6 +19,7 @@ namespace Saobracaj.Skladista_main
             InitializeComponent();
             PrimeniSava();   // redizajn Sava (CarinskoSkladiste.Sava.cs)
             InitCarinskaKnjiga();   // RAZ-16 (CarinskoSkladiste.Knjiga.cs)
+            InitNerazduzeniC7();    // pregled nerazduženih C7 i skladištenje (CarinskoSkladiste.NerazduzeniC7.cs)
         }
 
         private void btnPrijemRobe_Click(object sender, EventArgs e)

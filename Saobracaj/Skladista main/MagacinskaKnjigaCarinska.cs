@@ -22,19 +22,21 @@ namespace Saobracaj.Skladista_main
         }
         private void FillGV()
         {
-            var select = "Select * from MagacinskaKnjigaCarinska";
-
-
+            // Kartica prometa: ulaz i izlaz iz dokumenata (MagacinskaKnjigaCarinska.Kartica.cs); view MagacinskaKnjigaCarinska ima samo prijem
+            Text = "Kartica prometa";
             var s_connection = Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            // dataGridView1.ReadOnly = true;
-            gridGroupingControl1.DataSource = ds.Tables[0];
+            DataTable kartica;
+            try
+            {
+                kartica = KarticaPrometa(s_connection);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Kartica prometa nije učitana: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            gridGroupingControl1.DataSource = kartica;
+            PodesiKoloneKartice();
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
